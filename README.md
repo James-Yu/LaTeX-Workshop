@@ -1,6 +1,6 @@
 # Visual Studio Code LaTeX Workshop Extension
 
-LaTeX Workshop is an extension for Visual Studio Code, aiming to provide all-in-one features and utilities for latex typesetting with Visual Studio Code. 
+LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudio.com/), aiming to provide all-in-one features and utilities for latex typesetting with Visual Studio Code. 
 
 ## Features
 
