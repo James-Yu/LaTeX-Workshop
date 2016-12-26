@@ -1,0 +1,36 @@
+{
+    "name": "latex-workshop",
+    "displayName": "LaTeX Workshop",
+    "description": "AIO LaTeX extension to preview, compile, hint, and more.",
+    "version": "0.0.1",
+    "publisher": "jamesyu",
+    "engines": {
+        "vscode": "^1.5.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:latex-workshop.compile"
+    ],
+    "main": "./out/src/extension",
+    "contributes": {
+        "commands": [{
+            "command": "latex-workshop.compile",
+            "title": "LaTeX Workshop: Compile LaTeX"
+        }]
+    },
+    "scripts": {
+        "vscode:prepublish": "tsc -p ./",
+        "compile": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "test": "node ./node_modules/vscode/bin/test"
+    },
+    "devDependencies": {
+        "typescript": "^2.0.3",
+        "vscode": "^1.0.0",
+        "mocha": "^2.3.3",
+        "@types/node": "^6.0.40",
+        "@types/mocha": "^2.2.32"
+    }
+}
