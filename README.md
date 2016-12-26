@@ -4,56 +4,32 @@ LaTeX Workshop is an extension for Visual Studio Code, aiming to provide all-in-
 
 ## Features
 
-- 
+- [x] Compile LaTeX to PDF
+- [ ] Preview PDF on-the-fly
+- [ ] Support direct and reverse SyncTex
+- [ ] Autocomplete
 
 ## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+- LaTeX distribution in system PATH. Examples:
+  - [MiKTeX](https://miktex.org/) for Windows
+  - [MacTeX](http://www.tug.org/mactex/) for Mac OS
+  - [TeX Live](https://www.tug.org/texlive/)
 
-## Extension Settings
+## Installation
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+LaTeX Workshop will be accessible from VSCode marketplace. So far, you can check out this repository and copy it to the VSCode local extensions folder:
+- Windows `%USERPROFILE%\.vscode\extensions`
+- Mac/Linux `$HOME/.vscode/extensions`
 
-For example:
+## Settings
 
-This extension contributes the following settings:
+Full customization is the next TODO on the list.
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+## Contributing
 
-## Known Issues
+Fork it and thank you!
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+## License
 
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+[MIT](https://opensource.org/licenses/MIT)
