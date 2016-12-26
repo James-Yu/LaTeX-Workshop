@@ -2,11 +2,13 @@
 
 import * as vscode from 'vscode';
 
+var configuration;
 var output_channel;
 
 export function activate(context: vscode.ExtensionContext) {
 
     console.log('LaTeX Workshop activated.');
+    configuration = vscode.workspace.getConfiguration('latex-workshop');
     output_channel = vscode.window.createOutputChannel('LaTeX Workshop');
 
     // Code heavily borrowed from LaTeXCompile extension
@@ -20,14 +22,6 @@ export function deactivate() {
 }
 
 function compile() {
-    // Settings
-    var compiler = 'pdflatex',
-        args = '-halt-on-error -file-line-error',
-        cmds = ['%compiler% %args% %document%',
-                'bibtex %document%',
-                '%compiler% %args% %document%',
-                '%compiler% %args% %document%'];
-    
     var exec = require('child_process').exec;
     vscode.workspace.saveAll();
 
@@ -52,8 +46,8 @@ function compile() {
     function compile_cmd(cmds, idx) {
         // Create compilation command
         var cmd = cmds[idx];
-        cmd = replace_all(cmd, '%compiler%', compiler);
-        cmd = replace_all(cmd, '%args%', args);
+        cmd = replace_all(cmd, '%compiler%', configuration.compiler);
+        cmd = replace_all(cmd, '%arguments%', configuration.compile_argument);
         cmd = replace_all(cmd, '%document%', '"' + file_name + '"');
         vscode.window.setStatusBarMessage('LaTeX compilation step ' + String(idx + 1) + ': ' + cmd, 3000);
 
@@ -78,7 +72,7 @@ function compile() {
         })
     }
     output_channel.clear();
-    compile_cmd(cmds, 0)
+    compile_cmd(configuration.compile_workflow, 0)
 }
 
 function replace_all(str, from, to) {

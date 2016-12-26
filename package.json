@@ -3,13 +3,28 @@
     "displayName": "LaTeX Workshop",
     "description": "AIO LaTeX extension to preview, compile, hint, and more.",
     "version": "0.0.1",
-    "publisher": "jamesyu",
+    "publisher": "James-Yu",
+    "license": "MIT",
+    "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/James-Yu/LaTeX-Workshop.git"
+	},
     "engines": {
         "vscode": "^1.5.0"
     },
     "categories": [
-        "Other"
+        "Languages"
     ],
+	"keywords": [
+		"latex",
+		"tex",
+		"pdf",
+		"compile",
+		"preview",
+        "hint",
+        "intellisense"
+	],
     "activationEvents": [
         "onCommand:latex-workshop.compile"
     ],
@@ -17,14 +32,37 @@
     "contributes": {
         "commands": [{
             "command": "latex-workshop.compile",
-            "title": "LaTeX Workshop: Compile LaTeX"
-        }]
+            "title": "LaTeX Workshop: Compile LaTeX to PDF"
+        }],
+        "configuration": {
+            "type": "object",
+            "title": "LaTeX Workshop configuration",
+            "properties": {
+                "latex-workshop.compiler": {
+                    "type": "string",
+                    "default": "pdflatex",
+                    "description": "LaTeX compiler to use. Default: pdflatex."
+                },
+                "latex-workshop.compile_argument": {
+                    "type": "string",
+                    "default": "-halt-on-error -file-line-error",
+                    "description": "Compiler options to use. Default: -halt-on-error -file-line-error."
+                },
+                "latex-workshop.compile_workflow": {
+                    "type": "array",
+                    "default": ["%compiler% %arguments% %document%",
+                                "bibtex %document%",
+                                "%compiler% %arguments% %document%",
+                                "%compiler% %arguments% %document%"],
+                    "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%."
+                }
+            }
+        }
     },
     "scripts": {
         "vscode:prepublish": "tsc -p ./",
         "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install",
-        "test": "node ./node_modules/vscode/bin/test"
+        "postinstall": "node ./node_modules/vscode/bin/install"
     },
     "devDependencies": {
         "typescript": "^2.0.3",
