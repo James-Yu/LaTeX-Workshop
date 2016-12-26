@@ -2,38 +2,38 @@
     "name": "latex-workshop",
     "displayName": "LaTeX Workshop",
     "description": "AIO LaTeX extension to preview, compile, hint, and more.",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "publisher": "James-Yu",
     "license": "MIT",
     "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/James-Yu/LaTeX-Workshop.git"
-	},
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
+    },
     "engines": {
         "vscode": "^1.5.0"
     },
     "categories": [
         "Languages"
     ],
-	"keywords": [
-		"latex",
-		"tex",
-		"pdf",
-		"compile",
-		"preview",
-        "hint",
-        "intellisense"
-	],
+    "keywords": [
+        "latex",
+        "tex",
+        "compile",
+        "preview",
+        "hint"
+    ],
     "activationEvents": [
-        "onCommand:latex-workshop.compile"
+        "onLanguage:latex"
     ],
     "main": "./out/src/extension",
     "contributes": {
-        "commands": [{
-            "command": "latex-workshop.compile",
-            "title": "LaTeX Workshop: Compile LaTeX to PDF"
-        }],
+        "commands": [
+            {
+                "command": "latex-workshop.compile",
+                "title": "LaTeX Workshop: Compile LaTeX to PDF"
+            }
+        ],
         "configuration": {
             "type": "object",
             "title": "LaTeX Workshop configuration",
@@ -50,11 +50,18 @@
                 },
                 "latex-workshop.compile_workflow": {
                     "type": "array",
-                    "default": ["%compiler% %arguments% %document%",
-                                "bibtex %document%",
-                                "%compiler% %arguments% %document%",
-                                "%compiler% %arguments% %document%"],
+                    "default": [
+                        "%compiler% %arguments% %document%",
+                        "bibtex %document%",
+                        "%compiler% %arguments% %document%",
+                        "%compiler% %arguments% %document%"
+                    ],
                     "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%."
+                },
+                "latex-workshop.compile_on_save": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
                 }
             }
         }

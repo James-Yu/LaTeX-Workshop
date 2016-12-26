@@ -3,18 +3,25 @@
 import * as vscode from 'vscode';
 
 var configuration;
-var output_channel;
+var latex_output;
+var compiling = false;
+var to_compile = false;
 
 export function activate(context: vscode.ExtensionContext) {
 
     console.log('LaTeX Workshop activated.');
     configuration = vscode.workspace.getConfiguration('latex-workshop');
-    output_channel = vscode.window.createOutputChannel('LaTeX Workshop');
+    latex_output = vscode.window.createOutputChannel('LaTeX Raw Output');
 
     // Code heavily borrowed from LaTeXCompile extension
     let compile_func = vscode.commands.registerCommand('latex-workshop.compile', compile);
-
     context.subscriptions.push(compile_func);
+
+    if (configuration.compile_on_save) {
+        let compile_on_save = vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => compile());
+        context.subscriptions.push(compile_on_save);
+    }
+
 }
 
 // this method is called when your extension is deactivated
@@ -22,6 +29,13 @@ export function deactivate() {
 }
 
 function compile() {
+    if (compiling) {
+        to_compile = true;
+        return;
+    } else {
+        compiling = true;
+        to_compile = false;
+    }
     var exec = require('child_process').exec;
     vscode.workspace.saveAll();
 
@@ -57,21 +71,27 @@ function compile() {
             if ((idx < cmds.length - 1) && !compile_error)
                 compile_cmd(cmds, idx + 1);
             // Just finished the last one
-            else if (idx >= cmds.length - 1)
-                vscode.window.setStatusBarMessage('LaTeX compiled.', 3000);
+            else {
+                compiling = false;
+                if (idx >= cmds.length - 1)
+                    vscode.window.setStatusBarMessage('LaTeX compiled.', 3000);
+                // User want to compile when compiling
+                if (to_compile)
+                    compile()
+            }
         });
 
         // Detect if error occurs
         out.stdout.on('data', function(data){
-            output_channel.append(data);
+            latex_output.append(data);
             if (String(data).toLowerCase().indexOf('error') <= 0 || compile_error)
                 return;
             compile_error = true;
-            output_channel.show();
+            latex_output.show();
             vscode.window.showErrorMessage('An error occurs when compiling LaTeX. See compilation log for details.');
         })
     }
-    output_channel.clear();
+    latex_output.clear();
     compile_cmd(configuration.compile_workflow, 0)
 }
 

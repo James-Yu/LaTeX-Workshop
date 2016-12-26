@@ -27,16 +27,18 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 
 ## Commands
 
-- `latex-workshop.compile`: Compile LaTeX to PDF
+- `latex-workshop.compile`: Compile LaTeX to PDF.
 
 ## Settings
 
+All settings need VS Code reload to take effect.
 - `latex-workshop.compiler`: Set the LaTeX compiler command.
 - `latex-workshop.compile_argument`: Set the compiler arguments. It is required that non-blocking compile argument is used, e.g., `-halt-on-error` and `-interaction=nonstopmode`.
 - `latex-workshop.compile_workflow`: Set the compile workflow of LaTeX. Default is `latex`->`bibtex`->`latex`->`latex`. An array of commands is required here. Each command will be executed when the previous one is finished. If any command outputs `error`, the workflow will terminate. Some placeholders are available:
   - `%compiler%`: The compiler set in `latex-workshop.compiler`.
   - `%arguments%`: The compiler argument set in `latex-workshop.compile_argument`.
   - `%document%`: Name of the current active file in VS Code.
+- `latex-workshop.compile_on_save`: Whether LaTeX Workshop should compile the current active LaTeX file on save.
 
 ## Contributing
 
