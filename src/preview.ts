@@ -4,6 +4,7 @@ import * as path from "path";
 import * as vscode from 'vscode';
 import * as http from "http";
 import * as ws from "ws";
+import * as latex_workshop from './extension';
 import compile from './compile';
 
 var fs = require('fs');
@@ -50,6 +51,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     private ws_server;
     private listening;
     private clients = new Map<string, ws>();
+    private exec = require('child_process').exec;
 
     constructor(private context) {
         this.resource_path = file => this.context.asAbsolutePath(file);
@@ -72,7 +74,18 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
                 this.clients.set(data.path, client);
                 break;
             case "click":
-                console.log(data);
+                var cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${decodeURIComponent(data.path)}"`;
+                var out = this.exec(cmd, (err, stdout, stderr) => {
+                    if (err && err.code != 0) {
+                        latex_workshop.workshop_output.clear();
+                        latex_workshop.workshop_output.append(String(err));
+                        latex_workshop.workshop_output.show();
+                        vscode.window.showErrorMessage(`Synctex returned error code ${err.code}. See LaTeX Workshop log for details.`);
+                        return;
+                    }
+                    console.log(cmd)
+                    console.log(stdout)
+                });
                 break;
             default:
                 break;

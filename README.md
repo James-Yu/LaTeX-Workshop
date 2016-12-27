@@ -12,10 +12,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 ## Requirements
 
-- LaTeX distribution in system PATH. Examples:
-  - [MiKTeX](https://miktex.org/) for Windows
-  - [MacTeX](http://www.tug.org/mactex/) for Mac OS
-  - [TeX Live](https://www.tug.org/texlive/)
+- LaTeX distribution in system PATH. For example, [TeX Live](https://www.tug.org/texlive/).
 
 ## Installation
 
