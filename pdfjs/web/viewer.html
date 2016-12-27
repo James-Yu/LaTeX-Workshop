@@ -349,6 +349,29 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
+    <script>
+      console.log("123")
+      var query = document.location.search.substring(1);
+      var parts = query.split('&');
+      var server, path;
+      for (var i = 0, ii = parts.length; i < ii; ++i) {
+        var param = parts[i].split('=');
+        if (param[0].toLowerCase() == "server")
+          server = param[1];
+        if (param[0].toLowerCase() == "path")
+          path = param[1];
+      }
+      var socket = new WebSocket(server);
+      socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:path})));
+
+      document.addEventListener('pagerendered', (e) => load(e.target), true);
+      function load(target) {
+        target.onclick = (e) => {
+          socket.send(JSON.stringify({type:"click", path:path, x:e.offsetX, y:e.offsetY, page:target.dataset.pageNumber}));
+        };
+        console.log(target)
+      }
+    </script>
   </body>
 </html>
 

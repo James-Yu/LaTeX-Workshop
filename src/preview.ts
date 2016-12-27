@@ -2,7 +2,11 @@
 
 import * as path from "path";
 import * as vscode from 'vscode';
+import * as http from "http";
+import * as ws from "ws";
 import compile from './compile';
+
+var fs = require('fs');
 
 export function preview(file_uri, column) {
     if (!file_uri)
@@ -15,7 +19,7 @@ export function preview(file_uri, column) {
             default: return preview(file_uri, vscode.ViewColumn.One);
         }
 
-    if (!require('fs').existsSync(tex_uri2pdf_file(file_uri))) {
+    if (!fs.existsSync(texUri2pdfFile(file_uri))) {
         compile();
     }
 
@@ -35,19 +39,46 @@ export function source(preview_uri) {
     return vscode.workspace.openTextDocument(uri).then(vscode.window.showTextDocument);
 }
 
-function tex_uri2pdf_file(uri: vscode.Uri): string {
+function texUri2pdfFile(uri: vscode.Uri): string {
     return path.join(path.dirname(uri.fsPath), path.basename(uri.fsPath, '.tex') + '.pdf');
 }
 
 export class previewProvider implements vscode.TextDocumentContentProvider {
     private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
     private resource_path;
+    private http_server;
+    private ws_server;
+    private listening;
+    private clients = new Map<string, ws>();
 
     constructor(private context) {
         this.resource_path = file => this.context.asAbsolutePath(file);
+        this.http_server = http.createServer();
+        this.ws_server = ws.createServer({server: this.http_server});
+        this.listening = new Promise((c, e) => this.http_server.listen(0, "localhost", undefined, err => err ? e(err) : c()));
+        this.ws_server.on("connection", client => {
+            client.on("message", this.onClientMessage.bind(this, client));
+            client.on("close", this.onClientClose.bind(this, client));
+        });
     }
 
     dispose() {}
+
+    private onClientMessage(client, msg) {
+        var data = JSON.parse(msg);
+
+        switch (data.type) {
+            case "open":
+                this.clients.set(data.path, client);
+                break;
+            case "click":
+                console.log(data);
+                break;
+            default:
+                break;
+        }
+    }
+    private onClientClose(client) {}
 
     get onDidChange(): vscode.Event<vscode.Uri> {
         return this._onDidChange.event;
@@ -61,15 +92,14 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     }
 
     public async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {
-        var file = tex_uri2pdf_file(uri);
+        var file = texUri2pdfFile(uri);
+        var {address, port} = this.http_server.address();
+        var websocket_addr = `ws://${address}:${port}`;
         return `
-        <!DOCTYPE html>
-        <html>
-        <head>
-        </head>
-        <body>
-        <iframe class="preview-panel" src="${this.resource_path('pdfjs/web/viewer.html')}?file=${encodeURIComponent(file)}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;"></iframe>
-        </body>
-        </html>`;
+<!DOCTYPE html><html><head></head>
+<body>
+<iframe class="preview-panel" src="${this.resource_path('pdfjs/web/viewer.html')}?file=${encodeURIComponent(file)}&server=${websocket_addr}&path=${file}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;"></iframe>
+</body>
+</html>`;
     }
 }

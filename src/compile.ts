@@ -53,7 +53,7 @@ function compile() {
         cmd = replace_all(cmd, '%compiler%', latex_workshop.configuration.compiler);
         cmd = replace_all(cmd, '%arguments%', latex_workshop.configuration.compile_argument);
         cmd = replace_all(cmd, '%document%', '"' + path.basename(file, '.tex') + '"');
-        vscode.window.setStatusBarMessage('LaTeX compilation step ' + String(idx + 1) + ': ' + cmd, 3000);
+        vscode.window.setStatusBarMessage(`LaTeX compilation step ${idx + 1}: ${cmd}`, 3000);
 
         // Execute the command, set its callback to the next command
         var out = exec(cmd_change_dir + cmd, (err, stdout, stderr) => {
@@ -61,7 +61,7 @@ function compile() {
             if (err && err.code != 0) {
                 latex_workshop.workshop_output.append(String(err));
                 latex_workshop.latex_output.show();
-                vscode.window.showErrorMessage('LaTeX compilation step ' + String(idx + 1) + ' exited with error code ' + err.code + '. See LaTeX Workshop and LaTeX raw log for details.');
+                vscode.window.showErrorMessage(`LaTeX compilation step ${idx + 1} exited with error code ${err.code}. See LaTeX Workshop and LaTeX raw log for details.`);
                 compiling = false;
                 to_compile = false;
                 return;
