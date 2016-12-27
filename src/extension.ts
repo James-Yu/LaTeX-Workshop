@@ -1,8 +1,8 @@
 'use strict';
 
 import * as vscode from 'vscode';
-import compile from './compile'
-import {preview, previewProvider} from './preview'
+import compile from './compile';
+import {preview, previewProvider} from './preview';
 
 export var configuration,
            latex_output,

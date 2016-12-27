@@ -1,7 +1,8 @@
 'use strict';
 
-import * as path from "path"
+import * as path from "path";
 import * as vscode from 'vscode';
+import compile from './compile';
 
 export function preview(file_uri, column) {
     if (!file_uri)
@@ -14,10 +15,18 @@ export function preview(file_uri, column) {
             default: return preview(file_uri, vscode.ViewColumn.One);
         }
 
+    if (!require('fs').existsSync(tex_uri2pdf_file(file_uri))) {
+        compile();
+    }
+
     var uri = file_uri.with({scheme:'latex-workshop-preview'});
     var title = "Preview";
 
     vscode.commands.executeCommand("vscode.previewHtml", uri, column, title);
+}
+
+function tex_uri2pdf_file(uri: vscode.Uri): string {
+    return path.join(path.dirname(uri.fsPath), path.basename(uri.fsPath, '.tex') + '.pdf');
 }
 
 export class previewProvider implements vscode.TextDocumentContentProvider {
@@ -34,10 +43,6 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
         return this._onDidChange.event;
     }
 
-    private tex_uri2pdf_file(uri: vscode.Uri): string {
-        return path.join(path.dirname(uri.fsPath), path.basename(uri.fsPath, '.tex') + '.pdf');
-    }
-
     public update(uri: vscode.Uri) {
         if (!uri)
             uri = vscode.window.activeTextEditor.document.uri;
@@ -46,7 +51,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     }
 
     public async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {
-        var file = this.tex_uri2pdf_file(uri);
+        var file = tex_uri2pdf_file(uri);
         return `
         <!DOCTYPE html>
         <html>
