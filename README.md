@@ -28,6 +28,8 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 ## Commands
 
 - `latex-workshop.compile`: Compile LaTeX to PDF.
+- `latex-workshop.preview`: Open a live preview column for LaTeX.
+- `latex-workshop.source`: Show LaTeX source of the preview.
 
 ## Settings
 

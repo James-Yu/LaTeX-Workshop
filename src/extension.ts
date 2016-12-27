@@ -2,7 +2,7 @@
 
 import * as vscode from 'vscode';
 import compile from './compile';
-import {preview, previewProvider} from './preview';
+import {preview, source, previewProvider} from './preview';
 
 export var configuration,
            latex_output,
@@ -18,7 +18,8 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('latex-workshop.compile', compile),
-        vscode.commands.registerCommand('latex-workshop.preview', preview)
+        vscode.commands.registerCommand('latex-workshop.preview', preview),
+        vscode.commands.registerCommand('latex-workshop.source', source)
     );
 
     if (configuration.compile_on_save)

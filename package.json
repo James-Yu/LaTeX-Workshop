@@ -2,7 +2,7 @@
     "name": "latex-workshop",
     "displayName": "LaTeX Workshop",
     "description": "AIO LaTeX extension to preview, compile, hint, and more.",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "publisher": "James-Yu",
     "license": "MIT",
     "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -36,6 +36,10 @@
             {
                 "command": "latex-workshop.preview",
                 "title": "LaTeX Workshop: Preview PDF"
+            },
+            {
+                "command": "latex-workshop.source",
+                "title": "LaTeX Workshop: Show LaTeX"
             }
         ],
         "configuration": {
@@ -74,6 +78,11 @@
                 {
                     "when": "editorLangId == latex",
                     "command": "latex-workshop.preview",
+                    "group": "navigation"
+                },
+                {
+                    "when": "resourceScheme == latex-workshop-preview",
+                    "command": "latex-workshop.source",
                     "group": "navigation"
                 }
             ]

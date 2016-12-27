@@ -25,6 +25,16 @@ export function preview(file_uri, column) {
     vscode.commands.executeCommand("vscode.previewHtml", uri, column, title);
 }
 
+export function source(preview_uri) {
+    var uri = preview_uri.with({scheme: "file"});
+    for (var editor of vscode.window.visibleTextEditors) {
+        if (editor.document.uri.toString() === uri.toString()) {
+            return vscode.window.showTextDocument(editor.document, editor.viewColumn);
+        }
+    }
+    return vscode.workspace.openTextDocument(uri).then(vscode.window.showTextDocument);
+}
+
 function tex_uri2pdf_file(uri: vscode.Uri): string {
     return path.join(path.dirname(uri.fsPath), path.basename(uri.fsPath, '.tex') + '.pdf');
 }
