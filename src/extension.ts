@@ -2,10 +2,12 @@
 
 import * as vscode from 'vscode';
 import compile from './compile'
+import {preview, previewProvider} from './preview'
 
 export var configuration,
            latex_output,
-           workshop_output;
+           workshop_output,
+           preview_provider;
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -14,14 +16,17 @@ export function activate(context: vscode.ExtensionContext) {
     latex_output = vscode.window.createOutputChannel('LaTeX Raw Output');
     workshop_output = vscode.window.createOutputChannel('LaTeX Workshop Output');
 
-    // Code heavily borrowed from LaTeXCompile extension
-    let compile_func = vscode.commands.registerCommand('latex-workshop.compile', compile);
-    context.subscriptions.push(compile_func);
+    context.subscriptions.push(
+        vscode.commands.registerCommand('latex-workshop.compile', compile),
+        vscode.commands.registerCommand('latex-workshop.preview', preview)
+    );
 
-    if (configuration.compile_on_save) {
-        let compile_on_save = vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => compile());
-        context.subscriptions.push(compile_on_save);
-    }
+    if (configuration.compile_on_save)
+        context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => compile()));
+
+    preview_provider = new previewProvider(context);
+    context.subscriptions.push(preview_provider);
+    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-preview', preview_provider));
 
 }
 

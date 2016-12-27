@@ -1,5 +1,6 @@
 'use strict';
 
+import * as path from "path"
 import * as vscode from 'vscode';
 import * as latex_workshop from './extension';
 
@@ -20,6 +21,14 @@ export default function compile_try() {
 function compile() {
     vscode.workspace.saveAll();
 
+    // Develop file name related variables
+    var file = vscode.window.activeTextEditor.document.fileName;
+    var uri = vscode.window.activeTextEditor.document.uri;
+    if (path.extname(file) != '.tex') {
+        vscode.window.showErrorMessage('You can only compile LaTeX from a .tex file.');
+        return;
+    }
+
     // Wait if currently compiling
     if (compiling) {
         to_compile = true;
@@ -34,21 +43,8 @@ function compile() {
     latex_workshop.workshop_output.clear();
     var exec = require('child_process').exec;
 
-    // Develop file name relatex variables
-    var file_full_path = vscode.window.activeTextEditor.document.fileName;
-    var file_path = (file_full_path.match(/(.*)[\/\\]/)[1] || '') + '/';
-    var file_name_ext = file_full_path.replace(/^.*[\\\/]/, '');
-    var file_name = file_name_ext.split('.')[0];
-    var file_ext = file_name_ext.split('.')[1];
-    var file_output = file_path + file_name + '.pdf';
-
-    if (file_ext != 'tex') {
-        vscode.window.showErrorMessage('You can only compile LaTeX from a .tex file.');
-        return;
-    }
-
     // Change working directory for console commands
-    var cmd_change_dir = ((process.platform == "win32")?'cd /d ':'cd ') + '"' + file_path + '" && '
+    var cmd_change_dir = ((process.platform == "win32")?'cd /d ':'cd ') + '"' + path.dirname(file) + '" && '
 
     // Create compilation commands and sequence
     function compile_cmd(cmds, idx) {
@@ -56,7 +52,7 @@ function compile() {
         var cmd = cmds[idx];
         cmd = replace_all(cmd, '%compiler%', latex_workshop.configuration.compiler);
         cmd = replace_all(cmd, '%arguments%', latex_workshop.configuration.compile_argument);
-        cmd = replace_all(cmd, '%document%', '"' + file_name + '"');
+        cmd = replace_all(cmd, '%document%', '"' + path.basename(file, '.tex') + '"');
         vscode.window.setStatusBarMessage('LaTeX compilation step ' + String(idx + 1) + ': ' + cmd, 3000);
 
         // Execute the command, set its callback to the next command
@@ -78,6 +74,7 @@ function compile() {
                 compiling = false;
                 if (idx >= cmds.length - 1)
                     vscode.window.setStatusBarMessage('LaTeX compiled.', 3000);
+                    latex_workshop.preview_provider.update(uri);
                 // User want to compile when compiling
                 if (to_compile)
                     compile();

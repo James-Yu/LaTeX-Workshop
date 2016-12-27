@@ -32,6 +32,9 @@
             {
                 "command": "latex-workshop.compile",
                 "title": "LaTeX Workshop: Compile LaTeX to PDF"
+            },{
+                "command": "latex-workshop.preview",
+                "title": "LaTeX Workshop: Preview PDF"
             }
         ],
         "configuration": {
@@ -64,6 +67,15 @@
                     "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
                 }
             }
+        },
+        "menus": {
+            "editor/title": [
+                {
+                    "when": "editorLangId == latex",
+                    "command": "latex-workshop.preview",
+                    "group": "navigation"
+                }
+            ]
         }
     },
     "scripts": {
