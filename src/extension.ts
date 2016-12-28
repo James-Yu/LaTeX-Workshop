@@ -1,7 +1,7 @@
 'use strict';
 
 import * as vscode from 'vscode';
-import compile from './compile';
+import {compile} from './compile';
 import {preview, source, previewProvider} from './preview';
 
 export var configuration,
@@ -9,8 +9,7 @@ export var configuration,
            workshop_output,
            preview_provider;
 
-export function activate(context: vscode.ExtensionContext) {
-
+export async function activate(context: vscode.ExtensionContext) {
     console.log('LaTeX Workshop activated.');
     configuration = vscode.workspace.getConfiguration('latex-workshop');
     latex_output = vscode.window.createOutputChannel('LaTeX Raw Output');

@@ -5,7 +5,7 @@ import * as vscode from 'vscode';
 import * as http from "http";
 import * as ws from "ws";
 import * as latex_workshop from './extension';
-import compile from './compile';
+import {compile} from './compile';
 
 var fs = require('fs');
 
@@ -66,7 +66,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
 
     dispose() {}
 
-    private onClientMessage(client, msg) {
+    private async onClientMessage(client, msg) {
         var data = JSON.parse(msg);
 
         switch (data.type) {
@@ -75,17 +75,20 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
                 break;
             case "click":
                 var cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${decodeURIComponent(data.path)}"`;
-                var out = this.exec(cmd, (err, stdout, stderr) => {
-                    if (err && err.code != 0) {
-                        latex_workshop.workshop_output.clear();
-                        latex_workshop.workshop_output.append(String(err));
-                        latex_workshop.workshop_output.show();
-                        vscode.window.showErrorMessage(`Synctex returned error code ${err.code}. See LaTeX Workshop log for details.`);
-                        return;
-                    }
-                    console.log(cmd)
-                    console.log(stdout)
-                });
+                
+                let promise = require('child-process-promise').exec(cmd);
+                var log;
+                await promise
+                .then((child) => {
+                    log = child.stdout;
+                })
+                .catch((err) => {
+                    latex_workshop.workshop_output.clear();
+                    latex_workshop.workshop_output.append(String(err));
+                    latex_workshop.workshop_output.show();
+                    vscode.window.showErrorMessage(`Synctex returned error code ${err.code}. See LaTeX Workshop log for details.`);
+                })
+                console.log(log);
                 break;
             default:
                 break;
