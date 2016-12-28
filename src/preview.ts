@@ -41,6 +41,7 @@ export function source(preview_uri) {
 }
 
 export async function inPreview() {
+    if (!latex_workshop.has_synctex) return;
     let uri = vscode.window.activeTextEditor.document.uri;
     let position = vscode.window.activeTextEditor.selection.active;
     if (!uri || !position) return;
@@ -122,6 +123,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
                 this.clients.set(client, data.path);
                 break;
             case "click":
+                if (!latex_workshop.has_synctex) break;
                 let cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${decodeURIComponent(data.path)}"`;
                 
                 let promise = require('child-process-promise').exec(cmd);
