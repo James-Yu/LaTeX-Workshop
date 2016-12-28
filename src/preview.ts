@@ -20,7 +20,7 @@ export function preview(file_uri, column) {
             default: return preview(file_uri, vscode.ViewColumn.One);
         }
 
-    if (!fs.existsSync(texUri2pdfFile(file_uri))) {
+    if (!fs.existsSync(texUri2PdfFile(file_uri))) {
         compile();
     }
 
@@ -40,7 +40,33 @@ export function source(preview_uri) {
     return vscode.workspace.openTextDocument(uri).then(vscode.window.showTextDocument);
 }
 
-function texUri2pdfFile(uri: vscode.Uri): string {
+export async function inPreview() {
+    let uri = vscode.window.activeTextEditor.document.uri;
+    let position = vscode.window.activeTextEditor.selection.active;
+    if (!uri || !position) return;
+
+    let cmd = `synctex view -i "${position.line + 1}:${position.character + 1}:${uri.fsPath}" -o "${texUri2PdfFile(uri)}"`;
+    
+    let promise = require('child-process-promise').exec(cmd);
+    let record = {};
+    await promise
+    .then((child) => {
+        record = parseSyncTex(child.stdout);
+        preview(null, null);
+        for (let [candidate, path] of latex_workshop.preview_provider.clients.entries()) {
+            if (decodeURI(path) != texUri2PdfFile(uri)) continue;
+            candidate.send(JSON.stringify({type:"synctex", data:record}))
+        }
+    })
+    .catch((err) => {
+        latex_workshop.workshop_output.clear();
+        latex_workshop.workshop_output.append(String(err));
+        latex_workshop.workshop_output.show();
+        vscode.window.showErrorMessage(`Synctex returned error code ${err.code}. See LaTeX Workshop log for details.`);
+    })
+}
+
+function texUri2PdfFile(uri: vscode.Uri): string {
     return path.join(path.dirname(uri.fsPath), path.basename(uri.fsPath, '.tex') + '.pdf');
 }
 
@@ -60,6 +86,7 @@ function parseSyncTex(out: string) {
         if (idx < 0) {
             continue;
         }
+        if (record.hasOwnProperty(line.substr(0, idx).toLowerCase())) break;
         record[line.substr(0, idx).toLowerCase()] = line.substr(idx + 1);
     }
     return record;
@@ -71,7 +98,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     private http_server;
     private ws_server;
     private listening;
-    private clients = new Map<string, ws>();
+    public clients = new Map<ws, string>();
     private exec = require('child_process').exec;
 
     constructor(private context) {
@@ -92,7 +119,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
 
         switch (data.type) {
             case "open":
-                this.clients.set(data.path, client);
+                this.clients.set(client, data.path);
                 break;
             case "click":
                 let cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${decodeURIComponent(data.path)}"`;
@@ -123,7 +150,13 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
                 break;
         }
     }
-    private onClientClose(client) {}
+    private onClientClose(client) {
+        for (let [candidate, path] of this.clients.entries()) {
+            if (candidate == client) {
+                this.clients.delete(candidate);
+            }
+        }
+    }
 
     get onDidChange(): vscode.Event<vscode.Uri> {
         return this._onDidChange.event;
@@ -137,7 +170,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     }
 
     public async provideTextDocumentContent(uri: vscode.Uri): Promise<string> {
-        var file = texUri2pdfFile(uri);
+        var file = texUri2PdfFile(uri);
         var {address, port} = this.http_server.address();
         var websocket_addr = `ws://${address}:${port}`;
         return `

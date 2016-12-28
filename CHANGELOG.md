@@ -8,4 +8,5 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - Compile LaTeX to PDF
 - Live Preview
+- SyncTex
 - Configuration

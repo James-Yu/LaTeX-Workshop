@@ -362,6 +362,18 @@ See https://github.com/adobe-type-tools/cmap-resources
       }
       var socket = new WebSocket(server);
       socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:path})));
+      socket.addEventListener("message", (event) => {
+        var data = JSON.parse(event.data);
+        switch (data.type) {
+          case "synctex":
+            var pos = PDFViewerApplication.pdfViewer._pages[data.data.page-1].viewport.convertToViewportPoint(data.data.x, data.data.y-72);
+            var container = document.getElementById('viewerContainer');
+            container.scrollTop = document.getElementsByClassName('page')[0].offsetHeight * data.data.page  - pos[1];
+            break;
+          default:
+            break;
+        }
+      });
 
       document.addEventListener('pagerendered', (e) => {
         var page = e.target.dataset.pageNumber;

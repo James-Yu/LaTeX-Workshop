@@ -7,7 +7,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 - [x] Compile LaTeX to PDF
 - [x] Compile BibTeX
 - [x] Preview PDF on-the-fly
-- [ ] Support direct and reverse SyncTex
+- [x] Support direct and reverse SyncTex
 - [ ] Autocomplete
 
 ## Requirements
@@ -21,6 +21,13 @@ Installing LaTeX Workshop is simple. You can find it in [Visual Studio Code Mark
 Alternatively, you can check out this repository and copy it to the VS Code local extensions folder:
 - Windows `%USERPROFILE%\.vscode\extensions`
 - Mac/Linux `$HOME/.vscode/extensions`
+
+## Usage
+
+- Compile: Either use `latex-workshop.compile` command, or simply save the TeX source file.
+- Preview: Click on the `Preview PDF` button on the top-right corner of the editor. The preview is updated automatically after compilation.
+- Direct SyncTex from Tex to PDF: Open preview first then right click on TeX and select `Show in Preview`.
+- Reverse SyncTex from PDF to TeX: ctrl/cmd + left click on PDF preview.
 
 ## Commands
 
