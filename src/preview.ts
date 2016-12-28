@@ -44,6 +44,27 @@ function texUri2pdfFile(uri: vscode.Uri): string {
     return path.join(path.dirname(uri.fsPath), path.basename(uri.fsPath, '.tex') + '.pdf');
 }
 
+function parseSyncTex(out: string) {
+    let record = {};
+    let log_start = false;
+    for (let line of out.split("\n")) {
+        if (line.indexOf("SyncTeX result begin") >= 0) {
+            log_start = true;
+            continue;
+        } else if (line.indexOf("SyncTeX result end") >= 0) {
+            break;
+        } else if (!log_start) {
+            continue;
+        }
+        let idx = line.indexOf(':');
+        if (idx < 0) {
+            continue;
+        }
+        record[line.substr(0, idx).toLowerCase()] = line.substr(idx + 1);
+    }
+    return record;
+}
+
 export class previewProvider implements vscode.TextDocumentContentProvider {
     private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
     private resource_path;
@@ -67,20 +88,20 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     dispose() {}
 
     private async onClientMessage(client, msg) {
-        var data = JSON.parse(msg);
+        let data = JSON.parse(msg);
 
         switch (data.type) {
             case "open":
                 this.clients.set(data.path, client);
                 break;
             case "click":
-                var cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${decodeURIComponent(data.path)}"`;
+                let cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${decodeURIComponent(data.path)}"`;
                 
                 let promise = require('child-process-promise').exec(cmd);
-                var log;
+                let record = {};
                 await promise
                 .then((child) => {
-                    log = child.stdout;
+                    record = parseSyncTex(child.stdout);
                 })
                 .catch((err) => {
                     latex_workshop.workshop_output.clear();
@@ -88,7 +109,15 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
                     latex_workshop.workshop_output.show();
                     vscode.window.showErrorMessage(`Synctex returned error code ${err.code}. See LaTeX Workshop log for details.`);
                 })
-                console.log(log);
+                if (!record) break;
+                let col = (record["column"] > 0) ? record["column"] - 1 : 0;
+                let row = record["line"] - 1;
+                let pos = new vscode.Position(row, col);
+
+                let doc = await vscode.workspace.openTextDocument(record["input"].replace(/(\r\n|\n|\r)/gm,""));
+                let editor = await vscode.window.showTextDocument(doc);
+                editor.selection = new vscode.Selection(pos, pos);
+                await vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'});
                 break;
             default:
                 break;
