@@ -178,7 +178,7 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
         return `
 <!DOCTYPE html><html><head></head>
 <body>
-<iframe class="preview-panel" src="${this.resource_path('pdfjs/web/viewer.html')}?file=${encodeURIComponent(file)}&server=${websocket_addr}&path=${file}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;"></iframe>
+<iframe class="preview-panel" src="file://${this.resource_path('pdfjs/web/viewer.html')}?file=${encodeURIComponent(file)}&server=${websocket_addr}&path=${file}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;"></iframe>
 </body>
 </html>`;
     }
