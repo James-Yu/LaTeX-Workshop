@@ -7,14 +7,15 @@ import * as latex_workshop from './extension';
 var compiling = false,
     to_compile = false;
 
-export async function compile() {
+export async function compile(non_tex_alert=false) {
     vscode.workspace.saveAll();
 
     // Develop file name related variables
     let file = vscode.window.activeTextEditor.document.fileName;
     let uri = vscode.window.activeTextEditor.document.uri;
     if (path.extname(file) != '.tex') {
-        vscode.window.showErrorMessage('You can only compile LaTeX from a .tex file.');
+        if (non_tex_alert)
+            vscode.window.showErrorMessage('You can only compile LaTeX from a .tex file.');
         return;
     }
 

@@ -21,7 +21,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     has_compiler = hasbin.sync(configuration.compiler);
     context.subscriptions.push(
-        vscode.commands.registerCommand('latex-workshop.compile', has_compiler ? compile : deavtivated_feature)
+        vscode.commands.registerCommand('latex-workshop.compile', has_compiler ? () => {compile(true)} : deavtivated_feature)
     );
     if (!has_compiler) {
         vscode.window.showWarningMessage(`LaTeX compiler ${configuration.compiler} cannot be found.`);
