@@ -17,8 +17,8 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
         var command_reg = /\\(.*?){/.exec(line.substring(command_idx));
         var command;
         var is_cite = false;
-        if (command_reg != null) {
-            command = command[1];
+        if (command_reg != undefined) {
+            command = command_reg[1];
             is_cite = command.indexOf('cite') > -1;
         }
         if (line.slice(-1) == ',' && !is_cite) {
