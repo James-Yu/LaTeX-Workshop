@@ -28,7 +28,7 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
         if (line.slice(-1) == '\\') {
             // command completion
             return new Promise((resolve, reject) => {
-                resolve(latex_data.get_auto_completions()['backslash'].map((key) => new vscode.CompletionItem(key)));
+                resolve(latex_data.get_auto_completions()['latex']['commands'].map((key) => new vscode.CompletionItem(key)));
             });
         } else if (is_cite) {
             find_citation_keys();
