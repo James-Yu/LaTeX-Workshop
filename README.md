@@ -4,11 +4,11 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 ## Features
 
-- [x] Compile LaTeX to PDF
-- [x] Compile BibTeX
-- [x] Preview PDF on-the-fly
-- [x] Support direct and reverse SyncTex
-- [ ] Autocomplete
+- Compile LaTeX to PDF
+- Compile BibTeX
+- Preview PDF on-the-fly
+- Support direct and reverse SyncTex
+- Autocomplete
 
 ## Requirements
 

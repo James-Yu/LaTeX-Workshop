@@ -3,6 +3,7 @@
 import * as path from "path"
 import * as vscode from 'vscode';
 import * as latex_workshop from './extension';
+import {find_citation_keys} from './utilities';
 
 var compiling = false,
     to_compile = false;

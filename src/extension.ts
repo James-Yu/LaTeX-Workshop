@@ -3,8 +3,11 @@
 import * as vscode from 'vscode';
 import {compile} from './compile';
 import {preview, source, inPreview, previewProvider} from './preview';
+import {LaTeXCompletionItemProvider} from './completion';
+import {set_auto_completions} from './data'
 
 var hasbin = require('hasbin');
+var fs = require('fs');
 
 export var configuration,
            latex_output,
@@ -18,6 +21,9 @@ export async function activate(context: vscode.ExtensionContext) {
     configuration = vscode.workspace.getConfiguration('latex-workshop');
     latex_output = vscode.window.createOutputChannel('LaTeX Raw Output');
     workshop_output = vscode.window.createOutputChannel('LaTeX Workshop Output');
+
+    // Developed from http://wch.github.io/latexsheet/
+    set_auto_completions(JSON.parse(fs.readFileSync(context.asAbsolutePath('data/completion.json'))));
 
     has_compiler = hasbin.sync(configuration.compiler);
     context.subscriptions.push(
@@ -47,6 +53,8 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(preview_provider);
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-preview', preview_provider));
 
+    var completion_provider = new LaTeXCompletionItemProvider();
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', completion_provider, '\\', '{', ','));
 }
 
 // this method is called when your extension is deactivated
