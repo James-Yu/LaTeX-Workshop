@@ -28,6 +28,7 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 - Preview: Click on the `Preview PDF` button on the top-right corner of the editor. The preview is updated automatically after compilation.
 - Direct SyncTex from Tex to PDF: Open preview first then right click on TeX and select `Show in Preview`.
 - Reverse SyncTex from PDF to TeX: ctrl/cmd + left click on PDF preview.
+- Autocomplete: An autocomplete list will show up when '\' or '{' is typed. Multi-citation supported.
 
 ## Commands
 
