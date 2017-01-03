@@ -25,17 +25,12 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
             // "," will only work within citations
             return new Promise((resolve, reject) => {resolve([])});
         }
-        if (line.slice(-1) == '\\') {
-            // command completion
-            return new Promise((resolve, reject) => {
-                resolve(latex_data.get_auto_completions()['latex']['commands'].map((key) => new vscode.CompletionItem(key)));
-            });
-        } else if (is_cite) {
+        if (is_cite) {
             find_citation_keys();
             return new Promise((resolve, reject) => {
                 resolve(latex_data.get_citation_keys().map((key) => new vscode.CompletionItem(key)));
             })
-        } else if (command == 'ref') {
+        } else if (command == 'ref' || command == 'pageref') {
             find_label_keys();
             return new Promise((resolve, reject) => {
                 resolve(latex_data.get_label_keys().map((key) => new vscode.CompletionItem(key)));

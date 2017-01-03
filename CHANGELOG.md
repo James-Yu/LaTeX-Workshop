@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.3] - 2017-01-03
+### Changed
+- Use code snippet for all latex backslash commands.
+  - Now autocomplete will show when the first letter is input after the backslash.
+  - Now backslash autocomplete can use tab to navigate to proper positions for contents.
+
+### Fixed
+- \ref won't develop autocomplete recommends when .aux file is not generated.
+
 ## [0.1.2] - 2017-01-03
 ### Changed
 - Synchronously read related files when developing citation and reference autocompletes.

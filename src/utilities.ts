@@ -57,6 +57,6 @@ export function find_label_keys() {
         }
         var buffer = fs.readFileSync(aux_file);
         parse_keys(buffer);
-        latex_data.set_label_keys(keys);
     }
+    latex_data.set_label_keys(keys);
 }
