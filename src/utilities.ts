@@ -24,17 +24,9 @@ export function find_citation_keys() {
     while (bib = reg.exec(text)) {
         var file = path.join(path.dirname(vscode.window.activeTextEditor.document.uri.fsPath), path.basename(bib[1], '.bib') + '.bib')
         if (!fs.existsSync(file)) continue;
-        if (latex_data.get_citation_keys().length == 0) {
-            var buffer = fs.readFileSync(file);
-            parse_keys(buffer);
-            latex_data.set_citation_keys(keys);
-        } else {
-            fs.readFile(file, (err, data) => {
-                if (err) return;
-                parse_keys(data);
-                latex_data.set_citation_keys(keys);
-            })
-        }
+        var buffer = fs.readFileSync(file);
+        parse_keys(buffer);
+        latex_data.set_citation_keys(keys);
     }
 }
 
@@ -63,16 +55,8 @@ export function find_label_keys() {
                 }
             }
         }
-        if (latex_data.get_label_keys().length == 0) {
-            var buffer = fs.readFileSync(aux_file);
-            parse_keys(buffer);
-            latex_data.set_label_keys(keys);
-        } else {
-            fs.readFile(aux_file, (err, data) => {
-                if (err) return;
-                parse_keys(data);
-                latex_data.set_label_keys(keys);
-            })
-        }
+        var buffer = fs.readFileSync(aux_file);
+        parse_keys(buffer);
+        latex_data.set_label_keys(keys);
     }
 }
