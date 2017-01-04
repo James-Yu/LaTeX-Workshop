@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.6] - 2017-01-04
+### Added
+- `latex-workshop.main_document` config to explicitly define the main document.
+  - If set with some value, the auto-detection is disabled.
+  - If set `null`, auto-detection will use the old logic as in 0.1.5.
+
+### Changed
+- Snippet for \begin command. Now the \end command will also be appended.
+
 ## [0.1.5] - 2017-01-04
 ### Added
 - Right click text editor for compile option.

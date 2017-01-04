@@ -8,7 +8,7 @@ import * as latex_data from './data';
 var fs = require('fs');
 
 export function find_citation_keys() {
-    if (latex_data.main_document == undefined) find_main_document();
+    find_main_document();
     var reg = /\\bibliography{(.*?)}/g;
     var text = get_main_document_text();
     var bib;
@@ -32,7 +32,7 @@ export function find_citation_keys() {
 }
 
 export function find_label_keys() {
-    if (latex_data.main_document == undefined) find_main_document();
+    find_main_document();
     var reg = /\\label{(.*?)}/g;
     var text = vscode.window.activeTextEditor.document.getText();
     var keys = [];
@@ -63,7 +63,12 @@ export function find_label_keys() {
 }
 
 export function find_main_document() {
-    latex_data.set_main_document(undefined);
+    if (latex_data.main_document != undefined) return;
+    if (latex_workshop.configuration.main_document != null) {
+        var file = path.join(vscode.workspace.rootPath, latex_workshop.configuration.main_document);
+        latex_data.set_main_document(file);
+        return;
+    }
     var reg = /\\begin{document}/;
     var text = vscode.window.activeTextEditor.document.getText();
     if (reg.exec(text)) {

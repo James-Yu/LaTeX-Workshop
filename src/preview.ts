@@ -14,7 +14,7 @@ var cursor_uri;
 var cursor_position;
 
 export function preview(file_uri, column) {
-    if (latex_data.main_document == undefined) find_main_document();
+    find_main_document();
     file_uri = vscode.Uri.file(latex_data.main_document);
 
     if (!column)
@@ -52,7 +52,7 @@ export function source(preview_uri) {
 }
 
 export async function inPreview(uri, position) {
-    if (latex_data.main_document == undefined) find_main_document();
+    find_main_document();
     if (!latex_workshop.has_synctex) return;
     uri = uri || vscode.window.activeTextEditor.document.uri;
     position = position || vscode.window.activeTextEditor.selection.active;

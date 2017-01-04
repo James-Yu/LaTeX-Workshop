@@ -3,7 +3,7 @@
     "displayName": "LaTeX Workshop",
     "description": "AIO LaTeX extension to preview, compile, autocomplete, and more.",
     "icon": "img/icon.png",
-    "version": "0.1.5",
+    "version": "0.1.6",
     "publisher": "James-Yu",
     "license": "MIT",
     "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -45,10 +45,6 @@
             {
                 "command": "latex-workshop.synctex",
                 "title": "Show in Preview"
-            },
-            {
-                "command": "latex-workshop.citation",
-                "title": "Get Citation Keys"
             }
         ],
         "configuration": {
@@ -79,6 +75,11 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
+                },
+                "latex-workshop.main_document": {
+                    "type": "string",
+                    "default": null,
+                    "description": "Define the main document for LaTeX project. Must be the relative path from the project root folder. Set to null for auto-detection. Default: null."
                 }
             }
         },
