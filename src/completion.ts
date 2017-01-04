@@ -28,12 +28,12 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
         if (is_cite) {
             find_citation_keys();
             return new Promise((resolve, reject) => {
-                resolve(latex_data.get_citation_keys().map((key) => new vscode.CompletionItem(key)));
+                resolve(latex_data.citation_keys.map((key) => new vscode.CompletionItem(key)));
             })
         } else if (command == 'ref' || command == 'pageref') {
             find_label_keys();
             return new Promise((resolve, reject) => {
-                resolve(latex_data.get_label_keys().map((key) => new vscode.CompletionItem(key)));
+                resolve(latex_data.label_keys.map((key) => new vscode.CompletionItem(key)));
             })
         }
     }

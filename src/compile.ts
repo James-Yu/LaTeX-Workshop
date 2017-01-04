@@ -3,22 +3,19 @@
 import * as path from "path"
 import * as vscode from 'vscode';
 import * as latex_workshop from './extension';
-import {find_citation_keys} from './utilities';
+import * as latex_data from './data';
+import {find_main_document} from './utilities';
 
 var compiling = false,
     to_compile = false;
 
 export async function compile(non_tex_alert=false) {
     vscode.workspace.saveAll();
+    find_main_document();
+    if (latex_data.main_document == undefined) return;
 
     // Develop file name related variables
-    let file = vscode.window.activeTextEditor.document.fileName;
-    let uri = vscode.window.activeTextEditor.document.uri;
-    if (path.extname(file) != '.tex') {
-        if (non_tex_alert)
-            vscode.window.showErrorMessage('You can only compile LaTeX from a .tex file.');
-        return;
-    }
+    let uri = vscode.Uri.file(latex_data.main_document);
 
     // Wait if currently compiling
     if (compiling) {
@@ -41,11 +38,11 @@ export async function compile(non_tex_alert=false) {
         let cmd = cmds[cmd_idx];
         cmd = replace_all(cmd, '%compiler%', latex_workshop.configuration.compiler);
         cmd = replace_all(cmd, '%arguments%', latex_workshop.configuration.compile_argument);
-        cmd = replace_all(cmd, '%document%', '"' + path.basename(file, '.tex') + '"');
+        cmd = replace_all(cmd, '%document%', '"' + path.basename(latex_data.main_document, '.tex') + '"');
         vscode.window.setStatusBarMessage(`LaTeX compilation step ${cmd_idx + 1}: ${cmd}`, 3000);
 
         // Execute command
-        let promise = require('child-process-promise').exec(cmd, {cwd:path.dirname(file)});
+        let promise = require('child-process-promise').exec(cmd, {cwd:path.dirname(latex_data.main_document)});
         let child = promise.childProcess;
         child.stdout.on('data', (data) => latex_workshop.latex_output.append(data));
 

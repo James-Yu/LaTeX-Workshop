@@ -8,8 +8,9 @@ import * as latex_data from './data';
 var fs = require('fs');
 
 export function find_citation_keys() {
+    if (latex_data.main_document == undefined) find_main_document();
     var reg = /\\bibliography{(.*?)}/g;
-    var text = vscode.window.activeTextEditor.document.getText();
+    var text = get_main_document_text();
     var bib;
     var keys = []
     function parse_keys(data) {
@@ -22,7 +23,7 @@ export function find_citation_keys() {
         }
     }
     while (bib = reg.exec(text)) {
-        var file = path.join(path.dirname(vscode.window.activeTextEditor.document.uri.fsPath), path.basename(bib[1], '.bib') + '.bib')
+        var file = path.join(path.dirname(latex_data.main_document), path.basename(bib[1], '.bib') + '.bib')
         if (!fs.existsSync(file)) continue;
         var buffer = fs.readFileSync(file);
         parse_keys(buffer);
@@ -31,6 +32,7 @@ export function find_citation_keys() {
 }
 
 export function find_label_keys() {
+    if (latex_data.main_document == undefined) find_main_document();
     var reg = /\\label{(.*?)}/g;
     var text = vscode.window.activeTextEditor.document.getText();
     var keys = [];
@@ -43,8 +45,7 @@ export function find_label_keys() {
         }
     }
     // Parse aux labels
-    let uri = vscode.window.activeTextEditor.document.uri;
-    let aux_file = path.join(path.dirname(uri.fsPath), path.basename(uri.fsPath, '.tex') + '.aux');
+    let aux_file = path.join(path.dirname(latex_data.main_document), path.basename(latex_data.main_document, '.tex') + '.aux');
     if (fs.existsSync(aux_file)) {
         function parse_keys(data) {
             var key, key_reg = /\\newlabel{(.*?)}/g;
@@ -59,4 +60,34 @@ export function find_label_keys() {
         parse_keys(buffer);
     }
     latex_data.set_label_keys(keys);
+}
+
+export function find_main_document() {
+    latex_data.set_main_document(undefined);
+    var reg = /\\begin{document}/;
+    var text = vscode.window.activeTextEditor.document.getText();
+    if (reg.exec(text)) {
+        latex_data.set_main_document(vscode.window.activeTextEditor.document.uri.fsPath);
+        return;
+    }
+    try {
+        var files = fs.readdirSync(vscode.workspace.rootPath);
+        for (let file of files) {
+            if (path.extname(file) != '.tex') continue;
+            file = path.join(vscode.workspace.rootPath, file);
+            var buffer = fs.readFileSync(file);
+            if (reg.exec(buffer)) {
+                latex_data.set_main_document(file);
+                return;
+            }
+        }
+    } catch (e) {
+
+    }
+    vscode.window.showErrorMessage('No valid main LaTeX document found.');
+}
+
+function get_main_document_text() {
+    if (latex_data.main_document == undefined) return '';
+    return fs.readFileSync(latex_data.main_document);
 }

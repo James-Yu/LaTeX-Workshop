@@ -3,7 +3,7 @@
     "displayName": "LaTeX Workshop",
     "description": "AIO LaTeX extension to preview, compile, autocomplete, and more.",
     "icon": "img/icon.png",
-    "version": "0.1.4",
+    "version": "0.1.5",
     "publisher": "James-Yu",
     "license": "MIT",
     "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -84,6 +84,11 @@
         },
         "menus": {
             "editor/context": [
+                {
+                    "when": "resourceLangId == latex",
+                    "command": "latex-workshop.compile",
+                    "group": "1_modification"
+                },
                 {
                     "when": "resourceLangId == latex",
                     "command": "latex-workshop.synctex",

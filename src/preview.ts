@@ -5,15 +5,17 @@ import * as vscode from 'vscode';
 import * as http from "http";
 import * as ws from "ws";
 import * as latex_workshop from './extension';
+import * as latex_data from './data';
 import {compile} from './compile';
+import {find_main_document} from './utilities';
 
 var fs = require('fs');
 var cursor_uri;
 var cursor_position;
 
 export function preview(file_uri, column) {
-    if (!file_uri)
-        file_uri = vscode.window.activeTextEditor.document.uri;
+    if (latex_data.main_document == undefined) find_main_document();
+    file_uri = vscode.Uri.file(latex_data.main_document);
 
     if (!column)
         switch (vscode.window.activeTextEditor.viewColumn) {
@@ -28,8 +30,13 @@ export function preview(file_uri, column) {
 
     var uri = file_uri.with({scheme:'latex-workshop-preview'});
     var title = "Preview";
-    cursor_uri = vscode.window.activeTextEditor.document.uri;
-    cursor_position = vscode.window.activeTextEditor.selection.active;
+    try {
+        cursor_uri = vscode.window.activeTextEditor.document.uri;
+        cursor_position = vscode.window.activeTextEditor.selection.active;
+    } catch (e) {
+
+    }
+    //console.log(uri)
 
     vscode.commands.executeCommand("vscode.previewHtml", uri, column, title);
 }
@@ -45,21 +52,21 @@ export function source(preview_uri) {
 }
 
 export async function inPreview(uri, position) {
+    if (latex_data.main_document == undefined) find_main_document();
     if (!latex_workshop.has_synctex) return;
     uri = uri || vscode.window.activeTextEditor.document.uri;
     position = position || vscode.window.activeTextEditor.selection.active;
     if (!uri || !position) return;
 
-    let cmd = `synctex view -i "${position.line + 1}:${position.character + 1}:${uri.fsPath}" -o "${texUri2PdfFile(uri)}"`;
+    let cmd = `synctex view -i "${position.line + 1}:${position.character + 1}:${uri.fsPath}" -o "${tex2PdfFile(latex_data.main_document)}"`;
     
     let promise = require('child-process-promise').exec(cmd);
     let record = {};
     await promise
     .then((child) => {
         record = parseSyncTex(child.stdout);
-        //preview(cursor_uri, null);
         for (let [candidate, path] of latex_workshop.preview_provider.clients.entries()) {
-            if (decodeURI(path) != texUri2PdfFile(uri)) continue;
+            if (decodeURI(path) != tex2PdfFile(latex_data.main_document)) continue;
             candidate.send(JSON.stringify({type:"synctex", data:record}))
         }
     })
@@ -70,6 +77,10 @@ export async function inPreview(uri, position) {
         latex_workshop.workshop_output.show();
         vscode.window.showErrorMessage(`Synctex returned error code ${err.code}. See LaTeX Workshop log for details.`);
     })
+}
+
+function tex2PdfFile(file: string): string {
+    return path.join(path.dirname(file), path.basename(file, '.tex') + '.pdf');
 }
 
 function texUri2PdfFile(uri: vscode.Uri): string {
@@ -174,8 +185,12 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     }
 
     public update(uri: vscode.Uri) {
-        cursor_uri = vscode.window.activeTextEditor.document.uri;
-        cursor_position = vscode.window.activeTextEditor.selection.active;
+        try {
+            cursor_uri = vscode.window.activeTextEditor.document.uri;
+            cursor_position = vscode.window.activeTextEditor.selection.active;
+        } catch (e) {
+
+        }
         if (!uri)
             uri = vscode.window.activeTextEditor.document.uri;
         uri = uri.with({scheme:'latex-workshop-preview'})
