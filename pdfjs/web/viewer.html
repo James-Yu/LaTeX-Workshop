@@ -375,6 +375,10 @@ See https://github.com/adobe-type-tools/cmap-resources
         }
       });
 
+      document.addEventListener('pagesloaded', (e) => {
+        socket.send(JSON.stringify({type:"pagesloaded"}));
+      });
+
       document.addEventListener('pagerendered', (e) => {
         var page = e.target.dataset.pageNumber;
         var target = e.target;

@@ -8,6 +8,8 @@ import * as latex_workshop from './extension';
 import {compile} from './compile';
 
 var fs = require('fs');
+var cursor_uri;
+var cursor_position;
 
 export function preview(file_uri, column) {
     if (!file_uri)
@@ -26,6 +28,8 @@ export function preview(file_uri, column) {
 
     var uri = file_uri.with({scheme:'latex-workshop-preview'});
     var title = "Preview";
+    cursor_uri = vscode.window.activeTextEditor.document.uri;
+    cursor_position = vscode.window.activeTextEditor.selection.active;
 
     vscode.commands.executeCommand("vscode.previewHtml", uri, column, title);
 }
@@ -40,10 +44,10 @@ export function source(preview_uri) {
     return vscode.workspace.openTextDocument(uri).then(vscode.window.showTextDocument);
 }
 
-export async function inPreview() {
+export async function inPreview(uri, position) {
     if (!latex_workshop.has_synctex) return;
-    let uri = vscode.window.activeTextEditor.document.uri;
-    let position = vscode.window.activeTextEditor.selection.active;
+    uri = uri || vscode.window.activeTextEditor.document.uri;
+    position = position || vscode.window.activeTextEditor.selection.active;
     if (!uri || !position) return;
 
     let cmd = `synctex view -i "${position.line + 1}:${position.character + 1}:${uri.fsPath}" -o "${texUri2PdfFile(uri)}"`;
@@ -53,13 +57,14 @@ export async function inPreview() {
     await promise
     .then((child) => {
         record = parseSyncTex(child.stdout);
-        preview(null, null);
+        //preview(cursor_uri, null);
         for (let [candidate, path] of latex_workshop.preview_provider.clients.entries()) {
             if (decodeURI(path) != texUri2PdfFile(uri)) continue;
             candidate.send(JSON.stringify({type:"synctex", data:record}))
         }
     })
     .catch((err) => {
+        console.log(err.stack)
         latex_workshop.workshop_output.clear();
         latex_workshop.workshop_output.append(String(err));
         latex_workshop.workshop_output.show();
@@ -148,7 +153,11 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
                 editor.selection = new vscode.Selection(pos, pos);
                 await vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'});
                 break;
+            case "pagesloaded":
+                inPreview(cursor_uri, cursor_position);
+                break;
             default:
+                console.log(`Unknown command received: ${data.type}`)
                 break;
         }
     }
@@ -165,6 +174,8 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     }
 
     public update(uri: vscode.Uri) {
+        cursor_uri = vscode.window.activeTextEditor.document.uri;
+        cursor_position = vscode.window.activeTextEditor.selection.active;
         if (!uri)
             uri = vscode.window.activeTextEditor.document.uri;
         uri = uri.with({scheme:'latex-workshop-preview'})

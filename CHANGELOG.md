@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.4] - 2017-01-04
+### Changed
+- Now PDF viewer will try to use synctex to scroll to tex editor cursor position upon refresh.
+
 ## [0.1.3] - 2017-01-03
 ### Changed
 - Use code snippet for all latex backslash commands.
@@ -35,4 +39,4 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Configuration
 
 ## [0.0.1] - [0.0.12]
-// Undocumented
+- Merged into version 0.1.0.
