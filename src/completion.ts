@@ -16,10 +16,12 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
         );
         var command_reg = /\\(.*?){/.exec(line.substring(command_idx));
         var command;
-        var is_cite = false;
+        var is_cite = false,
+            is_ref = false;
         if (command_reg != undefined) {
             command = command_reg[1];
             is_cite = command.indexOf('cite') > -1;
+            is_ref = command.indexOf('ref') > -1;
         }
         if (line.slice(-1) == ',' && !is_cite) {
             // "," will only work within citations
@@ -30,7 +32,7 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
             return new Promise((resolve, reject) => {
                 resolve(latex_data.citation_keys.map((key) => new vscode.CompletionItem(key)));
             })
-        } else if (command == 'ref' || command == 'pageref') {
+        } else if (is_ref) {
             find_label_keys();
             return new Promise((resolve, reject) => {
                 resolve(latex_data.label_keys.map((key) => new vscode.CompletionItem(key)));
