@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.1.7] - 2017-01-05
+### Added
+- Colorization using textmate grammar file.
+
+### Changed
+- Wildcard reference autocomplete for any commands with `ref`.
+
 ## [0.1.6] - 2017-01-04
 ### Added
 - `latex-workshop.main_document` config to explicitly define the main document.
