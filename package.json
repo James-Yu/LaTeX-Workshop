@@ -1,9 +1,9 @@
 {
     "name": "latex-workshop",
     "displayName": "LaTeX Workshop",
-    "description": "AIO LaTeX extension to preview, compile, autocomplete, and more.",
+    "description": "AIO LaTeX extension to preview, compile, autocomplete, colorize, and more.",
     "icon": "img/icon.png",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "publisher": "James-Yu",
     "license": "MIT",
     "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -15,7 +15,8 @@
         "vscode": "^1.5.0"
     },
     "categories": [
-        "Languages"
+        "Languages",
+        "Snippets"
     ],
     "keywords": [
         "latex",
@@ -29,6 +30,26 @@
     ],
     "main": "./out/src/extension",
     "contributes": {
+        "languages": [
+            {
+                "id": "latex",
+                "aliases": [
+                "LaTeX",
+                "latex"
+                ],
+                "extensions": [
+                ".tex"
+                ],
+                "configuration": "./data/lang_config.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "latex",
+                "scopeName": "text.tex.latex",
+                "path": "./data/grammar.tmLanguage"
+            }
+        ],
         "commands": [
             {
                 "command": "latex-workshop.compile",
