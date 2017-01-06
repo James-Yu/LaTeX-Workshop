@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.1.8] - 2017-01-05
+### Added
+- More colorization with textmate tex grammar.
+
+## [0.1.8] - 2017-01-05
 ### Fixed
 - Command autocomplete not working.
 
