@@ -24,13 +24,12 @@ socket.addEventListener("message", (event) => {
                                         scale:PDFViewerApplication.pdfViewer.currentScaleValue, 
                                         scrollTop:document.getElementById('viewerContainer').scrollTop, 
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft}));
+            break;
         case "position":
-            console.log(data.scale)
-            console.log(data.scrollTop)
-            console.log(data.scrollTop)
             PDFViewerApplication.pdfViewer.currentScaleValue = data.scale;
             document.getElementById('viewerContainer').scrollTop = data.scrollTop;
             document.getElementById('viewerContainer').scrollLeft = data.scrollLeft;
+            break;
         default:
             break;
     }
