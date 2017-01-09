@@ -4,6 +4,7 @@ import * as path from "path"
 import * as vscode from 'vscode';
 import * as latex_workshop from './extension';
 import * as latex_data from './data';
+import {getPreviewPosition} from './preview';
 import {find_main_document} from './utilities';
 
 var compiling = false,
@@ -12,6 +13,8 @@ var compiling = false,
 export async function compile(non_tex_alert=false) {
     vscode.workspace.saveAll();
     find_main_document();
+    getPreviewPosition();
+
     if (latex_data.main_document == undefined) return;
 
     // Develop file name related variables

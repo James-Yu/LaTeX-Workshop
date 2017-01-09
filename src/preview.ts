@@ -12,6 +12,8 @@ import {find_main_document} from './utilities';
 var fs = require('fs');
 var cursor_uri;
 var cursor_position;
+var client = undefined;
+var position = undefined;
 
 export function preview(file_uri, column) {
     find_main_document();
@@ -65,10 +67,7 @@ export async function inPreview(uri, position) {
     await promise
     .then((child) => {
         record = parseSyncTex(child.stdout);
-        for (let [candidate, path] of latex_workshop.preview_provider.clients.entries()) {
-            if (decodeURI(path) != tex2PdfFile(latex_data.main_document)) continue;
-            candidate.send(JSON.stringify({type:"synctex", data:record}))
-        }
+        client.send(JSON.stringify({type:"synctex", data:record}))
     })
     .catch((err) => {
         console.log(err.stack)
@@ -109,13 +108,16 @@ function parseSyncTex(out: string) {
     return record;
 }
 
+export function getPreviewPosition() {
+    client.send(JSON.stringify({type:"get_position"}));
+}
+
 export class previewProvider implements vscode.TextDocumentContentProvider {
     private _onDidChange = new vscode.EventEmitter<vscode.Uri>();
     private resource_path;
     private http_server;
     private ws_server;
     private listening;
-    public clients = new Map<ws, string>();
     private exec = require('child_process').exec;
 
     constructor(private context) {
@@ -123,20 +125,20 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
         this.http_server = http.createServer();
         this.ws_server = ws.createServer({server: this.http_server});
         this.listening = new Promise((c, e) => this.http_server.listen(0, "localhost", undefined, err => err ? e(err) : c()));
-        this.ws_server.on("connection", client => {
-            client.on("message", this.onClientMessage.bind(this, client));
-            client.on("close", this.onClientClose.bind(this, client));
+        this.ws_server.on("connection", ws => {
+            ws.on("message", this.onClientMessage.bind(this, ws));
+            ws.on("close", this.onClientClose.bind(this, ws));
         });
     }
 
     dispose() {}
 
-    private async onClientMessage(client, msg) {
+    private async onClientMessage(ws, msg) {
         let data = JSON.parse(msg);
 
         switch (data.type) {
             case "open":
-                this.clients.set(client, data.path);
+                client = ws;
                 break;
             case "click":
                 if (!latex_workshop.has_synctex) break;
@@ -164,20 +166,20 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
                 editor.selection = new vscode.Selection(pos, pos);
                 await vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'});
                 break;
-            case "pagesloaded":
-                inPreview(cursor_uri, cursor_position);
+            case "loaded":
+                if (position != undefined)
+                    client.send(JSON.stringify(position));
+                break;
+            case "position":
+                position = data;
                 break;
             default:
                 console.log(`Unknown command received: ${data.type}`)
                 break;
         }
     }
-    private onClientClose(client) {
-        for (let [candidate, path] of this.clients.entries()) {
-            if (candidate == client) {
-                this.clients.delete(candidate);
-            }
-        }
+    private onClientClose(ws) {
+        client = undefined
     }
 
     get onDidChange(): vscode.Event<vscode.Uri> {

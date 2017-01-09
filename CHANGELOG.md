@@ -4,7 +4,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [0.1.8] - 2017-01-05
+## [0.1.10] - 2017-01-09
+### Changed
+- Use HTML data to store PDF position before compilation.
+  - The PDF position can be restored after compilation instead of previous SyncTeX method.
+
+## [0.1.9] - 2017-01-05
 ### Added
 - More colorization with textmate tex grammar.
 
