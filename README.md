@@ -5,7 +5,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 ## Features
 
 - Compile LaTeX with BibTeX to PDF
-- Preview PDF on-the-fly
+- Preview PDF on-the-fly (in VSCode or browser)
 - Support direct and reverse SyncTex
 - Autocomplete
 - Colorize
@@ -25,8 +25,9 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 ## Usage
 
 - Compile: Either use `latex-workshop.compile` command, or use right click menu, or simply enable compile-on-save.
-- Preview: Click on the `Preview PDF` button on the top-right corner of the editor. The preview is updated automatically after compilation.
-- Direct SyncTex from Tex to PDF: Open preview first then right click on TeX and select `Show in Preview`.
+- Preview: Click on the `Show Preview` button on the top-right corner of the editor. The preview is updated automatically after compilation.
+- In-browser Preview: Right click on TeX and select `Show In-browser Preview`
+- Direct SyncTex from Tex to PDF: Open preview first then right click on TeX and select `Find in Preview`.
 - Reverse SyncTex from PDF to TeX: ctrl/cmd + left click on PDF preview.
 - Autocomplete: An autocomplete list will show up when '\' or '{' is typed. Multi-citation supported.
 
@@ -34,6 +35,7 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 
 - `latex-workshop.compile`: Compile LaTeX to PDF.
 - `latex-workshop.preview`: Open a live preview column for LaTeX.
+- `latex-workshop.preview_browser`: Open a webpage preview for LaTeX.
 - `latex-workshop.source`: Show LaTeX source of the preview.
 - `latex-workshop.synctex`: Direct synctex from cursor position.
 
