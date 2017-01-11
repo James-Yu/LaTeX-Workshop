@@ -1,16 +1,16 @@
 var query = document.location.search.substring(1);
 var parts = query.split('&');
-var server, path;
+var server, file;
 for (var i = 0, ii = parts.length; i < ii; ++i) {
     var param = parts[i].split('=');
     if (param[0].toLowerCase() == "server")
         server = param[1];
-    if (param[0].toLowerCase() == "path")
-        path = param[1];
+    if (param[0].toLowerCase() == "file")
+        file = decodeURIComponent(param[1]);
 }
 
 var socket = new WebSocket(server);
-socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:path})));
+socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:file})));
 socket.addEventListener("message", (event) => {
     var data = JSON.parse(event.data);
     switch (data.type) {
@@ -30,6 +30,9 @@ socket.addEventListener("message", (event) => {
             document.getElementById('viewerContainer').scrollTop = data.scrollTop;
             document.getElementById('viewerContainer').scrollLeft = data.scrollLeft;
             break;
+        case "refresh":
+            location.reload();
+            break;
         default:
             break;
     }
@@ -48,6 +51,6 @@ document.addEventListener('pagerendered', (e) => {
         var left = e.pageX - target.offsetLeft + target.parentNode.parentNode.scrollLeft - 9;
         var top = e.pageY - target.offsetTop + target.parentNode.parentNode.scrollTop - 41;
         var pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top);
-        socket.send(JSON.stringify({type:"click", path:path, pos:pos, page:page}));
+        socket.send(JSON.stringify({type:"click", path:file, pos:pos, page:page}));
     }
 }, true);

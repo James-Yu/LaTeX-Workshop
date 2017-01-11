@@ -57,15 +57,19 @@
             },
             {
                 "command": "latex-workshop.preview",
-                "title": "Preview PDF"
+                "title": "Show Preview"
+            },
+            {
+                "command": "latex-workshop.preview_browser",
+                "title": "Show In-browser Preview"
             },
             {
                 "command": "latex-workshop.source",
-                "title": "Show LaTeX"
+                "title": "Show LaTeX Column"
             },
             {
                 "command": "latex-workshop.synctex",
-                "title": "Show in Preview"
+                "title": "Find Here in Preview"
             }
         ],
         "configuration": {
@@ -113,8 +117,18 @@
                 },
                 {
                     "when": "resourceLangId == latex",
+                    "command": "latex-workshop.preview",
+                    "group": "navigation@101"
+                },
+                {
+                    "when": "resourceLangId == latex",
+                    "command": "latex-workshop.preview_browser",
+                    "group": "navigation@102"
+                },
+                {
+                    "when": "resourceLangId == latex",
                     "command": "latex-workshop.synctex",
-                    "group": "navigation"
+                    "group": "navigation@103"
                 }
             ],
             "editor/title": [
@@ -150,7 +164,8 @@
     "dependencies": {
         "ws": "^1.1.1",
         "child-process-promise": "^2.2.0",
-        "hasbin": "^1.2.3"
+        "hasbin": "^1.2.3",
+        "open": "^0.0.5"
     },
     "devDependencies": {
         "typescript": "^2.0.3",

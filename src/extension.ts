@@ -2,7 +2,7 @@
 
 import * as vscode from 'vscode';
 import {compile} from './compile';
-import {preview, source, inPreview, previewProvider} from './preview';
+import {create_server, preview, preview_browser, source, inPreview, previewProvider} from './preview';
 import {LaTeXCompletionItemProvider} from './completion';
 
 var hasbin = require('hasbin');
@@ -31,6 +31,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('latex-workshop.preview', preview),
+        vscode.commands.registerCommand('latex-workshop.preview_browser', preview_browser),
         vscode.commands.registerCommand('latex-workshop.source', source)
     );
 
@@ -51,6 +52,8 @@ export async function activate(context: vscode.ExtensionContext) {
 
     var completion_provider = new LaTeXCompletionItemProvider();
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', completion_provider, '{', ','));
+
+    create_server(context);
 }
 
 // this method is called when your extension is deactivated
