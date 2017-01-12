@@ -1,12 +1,16 @@
 var query = document.location.search.substring(1);
 var parts = query.split('&');
-var server, file;
+var server = undefined;
+var file;
 for (var i = 0, ii = parts.length; i < ii; ++i) {
     var param = parts[i].split('=');
     if (param[0].toLowerCase() == "server")
         server = param[1];
     if (param[0].toLowerCase() == "file")
         file = decodeURIComponent(param[1]);
+}
+if (server == undefined) {
+    server = `ws://${window.location.hostname}:${window.location.port}`
 }
 
 var socket = new WebSocket(server);

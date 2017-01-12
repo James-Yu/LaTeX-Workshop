@@ -26,7 +26,7 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 
 - Compile: Either use `latex-workshop.compile` command, or use right click menu, or simply enable compile-on-save.
 - Preview: Click on the `Show Preview` button on the top-right corner of the editor. The preview is updated automatically after compilation.
-- In-browser Preview: Right click on TeX and select `Show In-browser Preview`
+- In-browser Preview: Right click on TeX and select `Show In-browser Preview`.
 - Direct SyncTex from Tex to PDF: Open preview first then right click on TeX and select `Find in Preview`.
 - Reverse SyncTex from PDF to TeX: ctrl/cmd + left click on PDF preview.
 - Autocomplete: An autocomplete list will show up when '\' or '{' is typed. Multi-citation supported.

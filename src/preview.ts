@@ -23,7 +23,7 @@ var in_browser_url = undefined;
 export function create_server(context) {
     var html_file = context.asAbsolutePath('pdfjs')
     http_server = http.createServer((request, response) => {
-        if (request.url.indexOf('/pdf-file') < 0) {
+        if (request.url.indexOf('/pdf-preview') < 0) {
             var file = path.join(html_file, request.url.split('?')[0])
             var extname = path.extname(file);
             var contentType = 'text/html';
@@ -77,7 +77,7 @@ export function create_server(context) {
             e(err)
         else {
             var {address, port} = http_server.address();
-            in_browser_url = `http://${address}:${port}/web/viewer.html?file=pdf-file&server=ws://${address}:${port}`
+            in_browser_url = `http://${address}:${port}/web/viewer.html?file=pdf-preview`
             c()
         }
     }));
@@ -148,7 +148,6 @@ export function preview_browser() {
         compile();
     }
     open(in_browser_url);
-    console.log(in_browser_url)
 }
 
 export function preview(file_uri, column) {
