@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.2] - 2017-01-13
+### Fixed
+- (#4) Compile throw error on sending websocket message with undefined client.
+
 ## [0.2.1] - 2017-01-12
 ### Changed
 - In browser PDF preview URL.
@@ -27,7 +31,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [0.1.10] - 2017-01-09
 ### Changed
-- Use HTML data to store PDF position before compilation.
+- (#2) Use HTML data to store PDF position before compilation.
   - The PDF position can be restored after compilation instead of previous SyncTeX method.
 
 ## [0.1.9] - 2017-01-05
@@ -59,7 +63,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Right click text editor for compile option.
 
 ### Changed
-- Compile and preview will search for main tex document for processing.
+- (#1) Compile and preview will search for main tex document for processing.
   - Main document is determined by "\begin{document}" string.
   - If the current active file has this string, it is set to the main document.
   - Otherwise, all .tex files under the root of the opened folder is checked. The first one with this string is the main document.

@@ -244,7 +244,8 @@ function parseSyncTex(out: string) {
 }
 
 export function getPreviewPosition() {
-    client.send(JSON.stringify({type:"get_position"}));
+    if (client != undefined)
+        client.send(JSON.stringify({type:"get_position"}));
 }
 
 export class previewProvider implements vscode.TextDocumentContentProvider {
