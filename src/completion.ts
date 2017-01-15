@@ -5,6 +5,25 @@ import * as latex_workshop from './extension';
 import * as latex_data from './data';
 import {find_citation_keys, find_label_keys} from './utilities';
 
+export function process_auto_complete(tag, data) {
+    var completion = {
+        cmds: [],
+        envs: []
+    }
+
+    for (var cmd of data.commands) {
+        var item = new vscode.CompletionItem(cmd.label, vscode.CompletionItemKind.Keyword);
+        item.insertText = new vscode.SnippetString(cmd.insert);
+        item.documentation = cmd.documentation;
+        completion.cmds.push(item)
+    }
+
+    var all_completions = latex_data.auto_completes;
+    all_completions[tag] = completion;
+
+    latex_data.set_auto_completes(all_completions);
+}
+
 export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvider {
     public provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken):
             Thenable<vscode.CompletionItem[]> {
@@ -37,6 +56,10 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
             return new Promise((resolve, reject) => {
                 resolve(latex_data.label_keys.map((key) => new vscode.CompletionItem(key)));
             })
+        }
+        if (line.slice(-1) == '\\') {
+            var items = latex_data.auto_completes['latex'].cmds;
+            return new Promise((resolve, reject) => {resolve(items)});
         }
     }
 }

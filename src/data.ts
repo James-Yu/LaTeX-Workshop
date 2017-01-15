@@ -1,5 +1,10 @@
 'use strict';
 
+export var auto_completes = {};
+export function set_auto_completes(new_data) {
+    auto_completes = new_data;
+}
+
 export var citation_keys = [];
 export function set_citation_keys(new_keys) {
     citation_keys = new_keys;

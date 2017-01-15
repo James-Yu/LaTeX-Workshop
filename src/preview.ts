@@ -11,8 +11,6 @@ import {find_main_document} from './utilities';
 
 var fs = require('fs');
 var open = require('open');
-var cursor_uri;
-var cursor_position;
 var client = undefined;
 var position = undefined;
 var http_server;
@@ -167,12 +165,6 @@ export function preview(file_uri, column) {
 
     var uri = file_uri.with({scheme:'latex-workshop-preview'});
     var title = "Preview";
-    try {
-        cursor_uri = vscode.window.activeTextEditor.document.uri;
-        cursor_position = vscode.window.activeTextEditor.selection.active;
-    } catch (e) {
-
-    }
 
     vscode.commands.executeCommand("vscode.previewHtml", uri, column, title);
 }
@@ -264,12 +256,6 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
     }
 
     public update(uri: vscode.Uri) {
-        try {
-            cursor_uri = vscode.window.activeTextEditor.document.uri;
-            cursor_position = vscode.window.activeTextEditor.selection.active;
-        } catch (e) {
-
-        }
         if (client != undefined)
             client.send(JSON.stringify({type:"refresh"}))
         if (!uri)
