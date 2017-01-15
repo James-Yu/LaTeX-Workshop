@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [Unpublished]
+### Changed
+- Add curly brackets after multiple commands.
+  - User can go on typing for inner content autocompletion.
+
 ## [0.2.3] - 2017-01-15
 ### Changed
 - Revert back to manual CompletionItem and SnippetString creation for auto-completion.
