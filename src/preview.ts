@@ -269,8 +269,8 @@ export class previewProvider implements vscode.TextDocumentContentProvider {
         var {address, port} = http_server.address();
         var websocket_addr = `ws://${address}:${port}`;
         return `
-<!DOCTYPE html><html><head></head>
-<body>
+<!DOCTYPE html style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;"><html><head></head>
+<body style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;">
 <iframe class="preview-panel" src="file://${this.resource_path('pdfjs/web/viewer.html')}?file=${encodeURIComponent(file)}&server=${websocket_addr}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;"></iframe>
 </body>
 </html>`;
