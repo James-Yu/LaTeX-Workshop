@@ -4,8 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unpublished]
+## [0.2.4] - 2017-01-17
 ### Changed
+- Better bibTeX autocompletion
+  - Now provide title, publication, and authors in citation autocomplete.
+  - If parser failed, fallback to original implementation.
 - Add curly brackets after multiple commands.
   - User can go on typing for inner content autocompletion.
 

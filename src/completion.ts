@@ -48,9 +48,7 @@ export class LaTeXCompletionItemProvider implements vscode.CompletionItemProvide
         }
         if (is_cite) {
             find_citation_keys();
-            return new Promise((resolve, reject) => {
-                resolve(latex_data.citation_keys.map((key) => new vscode.CompletionItem(key)));
-            })
+            return new Promise((resolve, reject) => {resolve(latex_data.citations)});
         } else if (is_ref) {
             find_label_keys();
             return new Promise((resolve, reject) => {

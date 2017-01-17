@@ -6,6 +6,7 @@ import * as latex_workshop from './extension';
 import * as latex_data from './data';
 
 var fs = require('fs');
+var BibtexParser = require('zotero-bibtex-parse');
 
 export function find_citation_keys() {
     find_main_document();
@@ -13,22 +14,29 @@ export function find_citation_keys() {
     var text = get_main_document_text();
     var bib;
     var keys = []
-    function parse_keys(data) {
-        var key, key_reg = /\@\w+\{(.*?),/g;
-        while (key = key_reg.exec(data)) {
-            key = key[1]
-            if (keys.indexOf(key) < 0) {
-                keys.push(key);
-            }
-        }
-    }
     while (bib = reg.exec(text)) {
         var file = path.join(path.dirname(latex_data.main_document), path.basename(bib[1], '.bib') + '.bib')
         if (!fs.existsSync(file)) continue;
-        var buffer = fs.readFileSync(file);
-        parse_keys(buffer);
-        latex_data.set_citation_keys(keys);
+        var bib_content = fs.readFileSync(file, 'utf8');
+        try {
+            var parser = new BibtexParser(bib_content);
+            var data = parser.parse();
+            data.map((item) => {
+                var key = new vscode.CompletionItem(item.citationKey, vscode.CompletionItemKind.Keyword);
+                if (item.entryTags != undefined) {
+                    key.documentation = `${item.entryTags.title}\n\n${item.entryTags.journal}\n\n${item.entryTags.author}`;
+                }
+                keys.push(key);
+            });
+        } catch (e) {
+            console.log(e)
+            var key, key_reg = /\@\w+\{(.*?),/g;
+            while (key = key_reg.exec(bib_content)) {
+                keys.push(new vscode.CompletionItem(key[1], vscode.CompletionItemKind.Keyword));
+            }
+        }
     }
+    latex_data.set_citations(keys);
 }
 
 export function find_label_keys() {

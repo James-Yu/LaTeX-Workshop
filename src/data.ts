@@ -5,9 +5,9 @@ export function set_auto_completes(new_data) {
     auto_completes = new_data;
 }
 
-export var citation_keys = [];
-export function set_citation_keys(new_keys) {
-    citation_keys = new_keys;
+export var citations = [];
+export function set_citations(new_data) {
+    citations = new_data;
 }
 
 export var label_keys = [];
