@@ -17,7 +17,7 @@ export function find_citation_keys() {
     while (bib = reg.exec(text)) {
         var file = path.join(path.dirname(latex_data.main_document), path.basename(bib[1], '.bib') + '.bib')
         if (!fs.existsSync(file)) continue;
-        var bib_content = fs.readFileSync(file, 'utf8');
+        var bib_content = fs.readFileSync(file, 'utf8').replace(/{{/g, '').replace(/}}/g, '');
         try {
             var parser = new BibtexParser(bib_content);
             var data = parser.parse();
