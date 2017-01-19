@@ -58,9 +58,6 @@ export async function compile(non_tex_alert=false) {
             latex_workshop.latex_output.append(data);
             log_content += data;
         });
-        try {
-            //requirejs([latex_workshop.find_path('lib/latex-log-parser')])
-        }catch(e){console.log(e)}
         // Wait command finish
         await promise.catch((err) => {
             latex_workshop.workshop_output.append(String(err));
@@ -82,7 +79,10 @@ export async function compile(non_tex_alert=false) {
         latex_workshop.workshop_output.show();
         latex_workshop.workshop_output.append('\n------------\nLaTeX Log Parser Result\n');
         for (var entry of entries.all) {
-            latex_workshop.workshop_output.append(`[${entry.level}][Line ${entry.line}] ${entry.message}\n`)
+            if ((entry.level == 'typesetting' && latex_workshop.configuration.log_level == 'all') ||
+                (entry.level == 'warning' && latex_workshop.configuration.log_level != 'error') ||
+                (entry.level == 'error'))
+            latex_workshop.workshop_output.append(`[${entry.level}][${entry.file}][Line ${entry.line}] ${entry.message}\n`)
         }
     }
 
