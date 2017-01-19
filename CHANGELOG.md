@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.5] - 2017-01-17
+### Added
+- LaTeX log parser. Output to LaTeX Workshop output channel.
+
+### Fixed
+- Ignoring double curly brackets in parsed bibtex items to avoid spamming
+
 ## [0.2.4] - 2017-01-17
 ### Changed
 - Better bibTeX autocompletion

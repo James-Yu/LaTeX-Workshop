@@ -9,6 +9,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 - Support direct and reverse SyncTex
 - Autocomplete
 - Colorize
+- Log parser
 
 ## Requirements
 
@@ -50,6 +51,7 @@ All settings need VS Code reload to take effect.
   - `%document%`: Name of the current active file in VS Code.
 - `latex-workshop.compile_on_save`: Whether LaTeX Workshop should compile the current active LaTeX file on save.
 - `latex-workshop.main_document`: The relative path to the main document for LaTeX project. Auto-detection enabled with `null`.
+- `latex-workshop.log_level`: Define the LaTeX log parser output level. Available levels: `all` for all log entries, `warning` for warnings and errors, `error` for errors only.
 
 ## Contributing
 
