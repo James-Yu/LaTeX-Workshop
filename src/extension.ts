@@ -7,13 +7,15 @@ import {process_auto_complete, LaTeXCompletionItemProvider} from './completion';
 
 var hasbin = require('hasbin');
 var fs = require('fs');
+var loader = require("amd-loader");
 
 export var configuration,
            latex_output,
            workshop_output,
            preview_provider,
            has_compiler,
-           has_synctex;
+           has_synctex,
+           find_path;
 
 export async function activate(context: vscode.ExtensionContext) {
     console.log('LaTeX Workshop activated.');
@@ -59,6 +61,8 @@ export async function activate(context: vscode.ExtensionContext) {
     });
 
     create_server(context);
+
+    find_path = context.asAbsolutePath;
 }
 
 // this method is called when your extension is deactivated

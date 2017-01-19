@@ -7,6 +7,11 @@ import * as latex_data from './data';
 import {getPreviewPosition} from './preview';
 import {find_main_document} from './utilities';
 
+var requirejs = require('requirejs');
+requirejs.config({
+    nodeRequire: require
+});
+
 var compiling = false,
     to_compile = false;
 
@@ -36,6 +41,7 @@ export async function compile(non_tex_alert=false) {
     // Sequentially execute all commands
     let cmds = latex_workshop.configuration.compile_workflow;
     let error_occurred = false;
+    var log_content;
     for (let cmd_idx = 0; cmd_idx < cmds.length; ++cmd_idx){
         // Parse placeholder
         let cmd = cmds[cmd_idx];
@@ -47,12 +53,18 @@ export async function compile(non_tex_alert=false) {
         // Execute command
         let promise = require('child-process-promise').exec(cmd, {cwd:path.dirname(latex_data.main_document)});
         let child = promise.childProcess;
-        child.stdout.on('data', (data) => latex_workshop.latex_output.append(data));
-
+        log_content = '';
+        child.stdout.on('data', (data) => {
+            latex_workshop.latex_output.append(data);
+            log_content += data;
+        });
+        try {
+            //requirejs([latex_workshop.find_path('lib/latex-log-parser')])
+        }catch(e){console.log(e)}
         // Wait command finish
         await promise.catch((err) => {
             latex_workshop.workshop_output.append(String(err));
-            latex_workshop.latex_output.show();
+            latex_workshop.workshop_output.show();
             vscode.window.showErrorMessage(`LaTeX compilation step ${cmd_idx + 1} exited with error code ${err.code}. See LaTeX Workshop and LaTeX raw log for details.`);
             error_occurred = true;
         });
@@ -61,6 +73,16 @@ export async function compile(non_tex_alert=false) {
         if (error_occurred) {
             to_compile = false;
             break;
+        }
+    }
+
+    var LatexLogParser = require(latex_workshop.find_path('lib/latex-log-parser'));
+    var entries = LatexLogParser.parse(log_content);
+    if (entries.all.length > 0) {
+        latex_workshop.workshop_output.show();
+        latex_workshop.workshop_output.append('\n------------\nLaTeX Log Parser Result\n');
+        for (var entry of entries.all) {
+            latex_workshop.workshop_output.append(`[${entry.level}][Line ${entry.line}] ${entry.message}\n`)
         }
     }
 
