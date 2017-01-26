@@ -114,7 +114,8 @@ async function onClientMessage(msg) {
             let row = record["line"] - 1;
             let pos = new vscode.Position(row, col);
 
-            let doc = await vscode.workspace.openTextDocument(record["input"].replace(/(\r\n|\n|\r)/gm,""));
+            let file = path.join(path.dirname(latex_data.main_document), record["input"].replace(/(\r\n|\n|\r)/gm,""));
+            let doc = await vscode.workspace.openTextDocument(file);
             let editor = await vscode.window.showTextDocument(doc);
             editor.selection = new vscode.Selection(pos, pos);
             await vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'});
