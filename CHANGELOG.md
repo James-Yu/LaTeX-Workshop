@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.7] - 2017-01-26
+### Changed
+- Way of presenting latex log results.
+
+### Fixed
+- Unable to parse `file.tex:123: latex error` type error.
+
 ## [0.2.6] - 2017-01-17
 ### Fixed
 - Missing requirejs dependency leading to failed extension initialization.
