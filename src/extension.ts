@@ -18,6 +18,7 @@ export var configuration,
            find_path;
 
 export async function activate(context: vscode.ExtensionContext) {
+    find_path = context.asAbsolutePath;
     console.log('LaTeX Workshop activated.');
     configuration = vscode.workspace.getConfiguration('latex-workshop');
     latex_output = vscode.window.createOutputChannel('LaTeX Raw Output');
@@ -62,7 +63,6 @@ export async function activate(context: vscode.ExtensionContext) {
 
     create_server(context);
 
-    find_path = context.asAbsolutePath;
 }
 
 // this method is called when your extension is deactivated

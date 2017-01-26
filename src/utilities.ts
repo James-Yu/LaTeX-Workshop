@@ -6,7 +6,6 @@ import * as latex_workshop from './extension';
 import * as latex_data from './data';
 
 var fs = require('fs');
-var BibtexParser = require('zotero-bibtex-parse');
 
 export function find_citation_keys() {
     find_main_document();
@@ -19,6 +18,7 @@ export function find_citation_keys() {
         if (!fs.existsSync(file)) continue;
         var bib_content = fs.readFileSync(file, 'utf8').replace(/{{/g, '').replace(/}}/g, '');
         try {
+            var BibtexParser = require(latex_workshop.find_path('lib/bibtex-parser'));
             var parser = new BibtexParser(bib_content);
             var data = parser.parse();
             data.map((item) => {
