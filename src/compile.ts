@@ -75,6 +75,11 @@ export async function compile(non_tex_alert=false) {
 
     var LatexLogParser = require(latex_workshop.find_path('lib/latex-log-parser'));
     var entries = LatexLogParser.parse(log_content);
+    var entry_tag = {
+        'typesetting': 'T',
+        'warning': 'W',
+        'error': 'E'
+    }
     if (entries.all.length > 0) {
         latex_workshop.workshop_output.show();
         latex_workshop.workshop_output.append('\n------------\nLaTeX Log Parser Result\n');
@@ -82,7 +87,7 @@ export async function compile(non_tex_alert=false) {
             if ((entry.level == 'typesetting' && latex_workshop.configuration.log_level == 'all') ||
                 (entry.level == 'warning' && latex_workshop.configuration.log_level != 'error') ||
                 (entry.level == 'error'))
-            latex_workshop.workshop_output.append(`[${entry.level}][${entry.file}][Line ${entry.line}] ${entry.message}\n`)
+            latex_workshop.workshop_output.append(`[${entry_tag[entry.level]}][${entry.file}:${entry.line}] ${entry.message}\n`)
         }
     }
 
