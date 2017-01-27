@@ -72,8 +72,9 @@ export function find_label_keys() {
 
 export function find_main_document() {
     if (latex_data.main_document != undefined) return;
-    if (latex_workshop.configuration.main_document != null) {
-        var file = path.join(vscode.workspace.rootPath, latex_workshop.configuration.main_document);
+    var configuration = vscode.workspace.getConfiguration('latex-workshop');
+    if (configuration.get('main_document') != null) {
+        var file = path.join(vscode.workspace.rootPath, configuration.get('main_document') as string);
         latex_data.set_main_document(file);
         return;
     }

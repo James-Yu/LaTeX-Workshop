@@ -15,7 +15,7 @@ requirejs.config({
 var compiling = false,
     to_compile = false;
 
-export async function compile(non_tex_alert=false) {
+export async function compile(on_save=true) {
     vscode.workspace.saveAll();
     find_main_document();
     getPreviewPosition();
@@ -39,14 +39,15 @@ export async function compile(non_tex_alert=false) {
     latex_workshop.workshop_output.clear();
 
     // Sequentially execute all commands
-    let cmds = latex_workshop.configuration.compile_workflow;
+    var configuration = vscode.workspace.getConfiguration('latex-workshop');
+    let cmds = configuration.get('compile_workflow') as Array<string>;
     let error_occurred = false;
     var log_content;
     for (let cmd_idx = 0; cmd_idx < cmds.length; ++cmd_idx){
         // Parse placeholder
         let cmd = cmds[cmd_idx];
-        cmd = replace_all(cmd, '%compiler%', latex_workshop.configuration.compiler);
-        cmd = replace_all(cmd, '%arguments%', latex_workshop.configuration.compile_argument);
+        cmd = replace_all(cmd, '%compiler%', configuration.get('compiler'));
+        cmd = replace_all(cmd, '%arguments%', configuration.get('compile_argument'));
         cmd = replace_all(cmd, '%document%', '"' + path.basename(latex_data.main_document, '.tex') + '"');
         vscode.window.setStatusBarMessage(`LaTeX compilation step ${cmd_idx + 1}: ${cmd}`, 3000);
 
@@ -80,12 +81,13 @@ export async function compile(non_tex_alert=false) {
         'warning': 'W',
         'error': 'E'
     }
+    var log_level = configuration.get('log_level');
     if (entries.all.length > 0) {
         latex_workshop.workshop_output.show();
         latex_workshop.workshop_output.append('\n------------\nLaTeX Log Parser Result\n');
         for (var entry of entries.all) {
-            if ((entry.level == 'typesetting' && latex_workshop.configuration.log_level == 'all') ||
-                (entry.level == 'warning' && latex_workshop.configuration.log_level != 'error') ||
+            if ((entry.level == 'typesetting' && log_level == 'all') ||
+                (entry.level == 'warning' && log_level != 'error') ||
                 (entry.level == 'error'))
             latex_workshop.workshop_output.append(`[${entry_tag[entry.level]}][${entry.file}:${entry.line}] ${entry.message}\n`)
         }

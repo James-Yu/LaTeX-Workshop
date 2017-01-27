@@ -9,8 +9,7 @@ var hasbin = require('hasbin');
 var fs = require('fs');
 var loader = require("amd-loader");
 
-export var configuration,
-           latex_output,
+export var latex_output,
            workshop_output,
            preview_provider,
            has_compiler,
@@ -20,16 +19,21 @@ export var configuration,
 export async function activate(context: vscode.ExtensionContext) {
     find_path = context.asAbsolutePath;
     console.log('LaTeX Workshop activated.');
-    configuration = vscode.workspace.getConfiguration('latex-workshop');
+    var configuration = vscode.workspace.getConfiguration('latex-workshop');
     latex_output = vscode.window.createOutputChannel('LaTeX Raw Output');
     workshop_output = vscode.window.createOutputChannel('LaTeX Workshop Output');
 
-    has_compiler = hasbin.sync(configuration.compiler);
+    has_compiler = hasbin.sync(configuration.get('compiler'));
     context.subscriptions.push(
-        vscode.commands.registerCommand('latex-workshop.compile', has_compiler ? () => {compile(true)} : deavtivated_feature)
+        vscode.commands.registerCommand('latex-workshop.compile', has_compiler ? () => {
+            if (configuration.get('compile_on_save'))
+                vscode.workspace.saveAll();
+            else
+                compile(false)
+        } : deactivated_feature)
     );
     if (!has_compiler) {
-        vscode.window.showWarningMessage(`LaTeX compiler ${configuration.compiler} is not found.`);
+        vscode.window.showWarningMessage(`LaTeX compiler ${configuration.get('compiler')} is not found.`);
     }
 
     context.subscriptions.push(
@@ -40,14 +44,17 @@ export async function activate(context: vscode.ExtensionContext) {
 
     has_synctex = hasbin.sync('synctex');
     context.subscriptions.push(
-        vscode.commands.registerCommand('latex-workshop.synctex', has_synctex ? inPreview : deavtivated_feature)
+        vscode.commands.registerCommand('latex-workshop.synctex', has_synctex ? inPreview : deactivated_feature)
     );
     if (!has_synctex) {
         vscode.window.showWarningMessage(`SyncTeX is not found.`);
     }
 
-    if (has_compiler && configuration.compile_on_save)
-        context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => compile()));
+    if (has_compiler)
+        context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
+            if (configuration.get('compile_on_save'))
+                compile()
+        }));
 
     preview_provider = new previewProvider(context);
     context.subscriptions.push(preview_provider);
@@ -69,6 +76,6 @@ export async function activate(context: vscode.ExtensionContext) {
 export function deactivate() {
 }
 
-function deavtivated_feature() {
+function deactivated_feature() {
 
 }
