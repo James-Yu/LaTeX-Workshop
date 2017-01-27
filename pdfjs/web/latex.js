@@ -51,7 +51,7 @@ document.addEventListener('pagerendered', (e) => {
     var target = e.target;
     var canvas_dom = e.target.childNodes[1];
     canvas_dom.onclick = (e) => {
-        if (!e.ctrlKey) return;
+        if (!(e.ctrlKey || e.metaKey)) return;
         var left = e.pageX - target.offsetLeft + target.parentNode.parentNode.scrollLeft - 9;
         var top = e.pageY - target.offsetTop + target.parentNode.parentNode.scrollTop - 41;
         var pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top);

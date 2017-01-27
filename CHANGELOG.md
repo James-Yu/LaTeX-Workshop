@@ -4,12 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.9] - 2017-01-27
+### Fixed
+- (#8) SyncTeX use full path and the constructed uri is different. Credited to `jccha`.
+- (#8) OSX CMD+Click not working for reverse SyncTeX. Credited to `jccha`.
+
 ## [0.2.8] - 2017-01-27
 ### Changed
 - Now configurations will take effect without reload except `compiler`.
 
 ### Fixed
-- (#7) SyncTeX fails when main document is not in root. Credit: `Andersw88`.
+- (#7) SyncTeX fails when main document is not in root. Credited to `Andersw88`.
 - Compile twice if unsaved and click compile from context menu.
 
 ## [0.2.7] - 2017-01-26

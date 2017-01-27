@@ -114,12 +114,15 @@ async function onClientMessage(msg) {
             let row = record["line"] - 1;
             let pos = new vscode.Position(row, col);
 
-            let file = path.join(path.dirname(latex_data.main_document), record["input"].replace(/(\r\n|\n|\r)/gm,""));
+            let file = record["input"].replace(/(\r\n|\n|\r)/gm, "");
+            if (file.charAt(0) != '/')
+                file = path.join(path.dirname(latex_data.main_document), file);
+            file = file.replace(/\/.\//gm, "\/");
             let doc = await vscode.workspace.openTextDocument(file);
             let editor = await vscode.window.showTextDocument(doc);
             editor.selection = new vscode.Selection(pos, pos);
             await vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'});
-            break;
+            break; 
         case "loaded":
             if (position != undefined)
                 client.send(JSON.stringify(position));
