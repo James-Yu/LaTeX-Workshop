@@ -13,9 +13,10 @@ requirejs.config({
 });
 
 var compiling = false,
-    to_compile = false;
+    to_compile = false,
+    prev_time = 0;
 
-export async function compile(on_save=true) {
+export async function compile() {
     vscode.workspace.saveAll();
     find_main_document();
     getPreviewPosition();
@@ -27,7 +28,10 @@ export async function compile(on_save=true) {
 
     // Wait if currently compiling
     if (compiling) {
-        to_compile = true;
+        if (Date.now() - prev_time > 500) {
+            to_compile = true;
+            prev_time = Date.now();
+        }
         return;
     } else {
         compiling = true;

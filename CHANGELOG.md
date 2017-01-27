@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.8] - 2017-01-27
+### Changed
+- Now configurations will take effect without reload except `compiler`.
+
+### Fixed
+- (#7) SyncTeX fails when main document is not in root. Credit: `Andersw88`.
+- Compile twice if unsaved and click compile from context menu.
+
 ## [0.2.7] - 2017-01-26
 ### Changed
 - Way of presenting latex log results.
