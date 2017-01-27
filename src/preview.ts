@@ -115,7 +115,7 @@ async function onClientMessage(msg) {
             let pos = new vscode.Position(row, col);
 
             let file = record["input"].replace(/(\r\n|\n|\r)/gm, "");
-            if (file.charAt(0) != '/')
+            if (file.charAt(0) != '/' && file.indexOf(':\\') < 0)
                 file = path.join(path.dirname(latex_data.main_document), file);
             file = file.replace(/(\/|\\).(\/|\\)/gm, "\/");
             let doc = await vscode.workspace.openTextDocument(file);
