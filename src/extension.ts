@@ -1,5 +1,6 @@
 'use strict';
 
+import * as path from "path";
 import * as vscode from 'vscode';
 import {compile} from './compile';
 import {create_server, preview, preview_browser, source, inPreview, previewProvider} from './preview';
@@ -49,6 +50,14 @@ export async function activate(context: vscode.ExtensionContext) {
 
     if (has_compiler)
         context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
+            try {
+                var ext = path.extname(vscode.window.activeTextEditor.document.fileName);
+                console.log(ext)
+            if (ext != '.tex')
+                    return;
+            } catch (e) {
+                return;
+            }
             if (compile_on_save)
                 compile()
         }));
