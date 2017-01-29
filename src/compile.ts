@@ -53,7 +53,8 @@ export async function compile() {
         cmd = replace_all(cmd, '%compiler%', configuration.get('compiler'));
         cmd = replace_all(cmd, '%arguments%', configuration.get('compile_argument'));
         cmd = replace_all(cmd, '%document%', '"' + path.basename(latex_data.main_document, '.tex') + '"');
-        vscode.window.setStatusBarMessage(`LaTeX compilation step ${cmd_idx + 1}: ${cmd}`, 3000);
+        vscode.window.setStatusBarMessage(`Step ${cmd_idx + 1}`, 3000);
+        latex_workshop.workshop_output.append(`Step ${cmd_idx + 1}: ${cmd}\n`);
 
         // Execute command
         let promise = require('child-process-promise').exec(cmd, {cwd:path.dirname(latex_data.main_document)});
@@ -67,7 +68,7 @@ export async function compile() {
         await promise.catch((err) => {
             latex_workshop.workshop_output.append(String(err));
             latex_workshop.workshop_output.show();
-            vscode.window.showErrorMessage(`LaTeX compilation step ${cmd_idx + 1} exited with error code ${err.code}. See LaTeX Workshop and LaTeX raw log for details.`);
+            vscode.window.showErrorMessage(`Step ${cmd_idx + 1} exited with code ${err.code}. See LaTeX Workshop and Compiler log for details.`);
             error_occurred = true;
         });
 

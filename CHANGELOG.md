@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/) 
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.11] - 2017-01-29
+### Added
+- A lovely icon in status bar to toggle compile-on-save feature.
+  - The configuration `latex-workshop.compile_on_save` is used to set the initial state.
+
+### Changed
+- The compilation logging pattern.
+
 ## [0.2.10] - 2017-01-27
 ### Fixed
 - SyncTeX use full path with `\.\` in Windows.
@@ -65,7 +73,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Several useless PDF viewer buttons: open, download, presentation mode.
 
 ## [0.2.0] - 2017-01-11
-### Add
+### Added
 - In browser PDF preview.
   - Find it in right-click menu!
 

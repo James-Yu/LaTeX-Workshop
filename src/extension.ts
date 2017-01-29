@@ -14,13 +14,15 @@ export var latex_output,
            preview_provider,
            has_compiler,
            has_synctex,
-           find_path;
+           find_path,
+           compile_on_save,
+           compile_on_save_statusbar;
 
 export async function activate(context: vscode.ExtensionContext) {
     find_path = context.asAbsolutePath;
     console.log('LaTeX Workshop activated.');
     var configuration = vscode.workspace.getConfiguration('latex-workshop');
-    latex_output = vscode.window.createOutputChannel('LaTeX Raw Output');
+    latex_output = vscode.window.createOutputChannel('LaTeX Compiler Output');
     workshop_output = vscode.window.createOutputChannel('LaTeX Workshop Output');
 
     has_compiler = hasbin.sync(configuration.get('compiler'));
@@ -47,9 +49,18 @@ export async function activate(context: vscode.ExtensionContext) {
 
     if (has_compiler)
         context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
-            if (configuration.get('compile_on_save'))
+            if (compile_on_save)
                 compile()
         }));
+
+    vscode.commands.registerCommand("latex-workshop.toggle_compile_on_save", toggle_compile_on_save);
+    compile_on_save_statusbar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
+    compile_on_save_statusbar.command = "latex-workshop.toggle_compile_on_save";
+    compile_on_save_statusbar.tooltip = "Toggle Compile-on-save Feature";
+    compile_on_save_statusbar.show();
+
+    compile_on_save = !configuration.get('compile_on_save');
+    toggle_compile_on_save();
 
     preview_provider = new previewProvider(context);
     context.subscriptions.push(preview_provider);
@@ -65,6 +76,17 @@ export async function activate(context: vscode.ExtensionContext) {
 
     create_server(context);
 
+}
+
+function toggle_compile_on_save() {
+    compile_on_save = !compile_on_save;
+    if (compile_on_save) {
+        compile_on_save_statusbar.text = `$(file-pdf) Compile-on-save Enabled`;
+        compile_on_save_statusbar.color = "white";
+    } else {
+        compile_on_save_statusbar.text = `$(file-text) Compile-on-save Disabled`;
+        compile_on_save_statusbar.color = "orange";
+    }
 }
 
 // this method is called when your extension is deactivated
