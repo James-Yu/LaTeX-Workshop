@@ -9,6 +9,7 @@ import {process_auto_complete, LaTeXCompletionItemProvider} from './completion';
 var hasbin = require('hasbin');
 var fs = require('fs');
 var loader = require("amd-loader");
+var process = require("process");
 
 export var latex_output,
            workshop_output,
@@ -26,7 +27,8 @@ export async function activate(context: vscode.ExtensionContext) {
     latex_output = vscode.window.createOutputChannel('LaTeX Compiler Output');
     workshop_output = vscode.window.createOutputChannel('LaTeX Workshop Output');
 
-    has_compiler = hasbin.sync(configuration.get('compiler'));
+    const is_mac = process.platform === 'darwin';
+    has_compiler = hasbin.sync(configuration.get('compiler')) || is_mac;
     context.subscriptions.push(
         vscode.commands.registerCommand('latex-workshop.compile', has_compiler ? () => compile() : deactivated_feature)
     );
@@ -40,7 +42,7 @@ export async function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand('latex-workshop.source', source)
     );
 
-    has_synctex = hasbin.sync('synctex');
+    has_synctex = hasbin.sync('synctex') || is_mac;
     context.subscriptions.push(
         vscode.commands.registerCommand('latex-workshop.synctex', has_synctex ? inPreview : deactivated_feature)
     );
