@@ -88,13 +88,14 @@ export async function compile() {
     }
     var log_level = configuration.get('log_level');
     if (entries.all.length > 0) {
-        latex_workshop.workshop_output.show();
         latex_workshop.workshop_output.append('\n------------\nLaTeX Log Parser Result\n');
         for (var entry of entries.all) {
             if ((entry.level == 'typesetting' && log_level == 'all') ||
                 (entry.level == 'warning' && log_level != 'error') ||
-                (entry.level == 'error'))
-            latex_workshop.workshop_output.append(`[${entry_tag[entry.level]}][${entry.file}:${entry.line}] ${entry.message}\n`)
+                (entry.level == 'error')) {
+                latex_workshop.workshop_output.append(`[${entry_tag[entry.level]}][${entry.file}:${entry.line}] ${entry.message}\n`);
+                latex_workshop.workshop_output.show();
+            }
         }
     }
 
