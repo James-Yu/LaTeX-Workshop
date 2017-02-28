@@ -70,7 +70,8 @@ export function find_label_keys() {
     latex_data.set_label_keys(keys);
 }
 
-export function find_main_document() {
+export function find_main_document(here = false) {
+    if (here) latex_data.set_main_document(undefined);
     if (latex_data.main_document != undefined) return;
     var configuration = vscode.workspace.getConfiguration('latex-workshop');
     if (configuration.get('main_document') != null) {

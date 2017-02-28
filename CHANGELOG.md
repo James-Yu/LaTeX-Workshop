@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.16] - 2017-02-28
+### Added
+- (#18) Compile from active editor command.
+
 ## [0.2.15] - 2017-02-19
 ### Changed
 - (#14) Do not pop log panel with no log messages.

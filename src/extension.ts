@@ -30,7 +30,8 @@ export async function activate(context: vscode.ExtensionContext) {
     const is_mac = process.platform === 'darwin';
     has_compiler = hasbin.sync(configuration.get('compiler')) || is_mac;
     context.subscriptions.push(
-        vscode.commands.registerCommand('latex-workshop.compile', has_compiler ? () => compile() : deactivated_feature)
+        vscode.commands.registerCommand('latex-workshop.compile', has_compiler ? () => compile() : deactivated_feature),
+        vscode.commands.registerCommand('latex-workshop.compile_here', has_compiler ? () => compile(true) : deactivated_feature)
     );
     if (!has_compiler) {
         vscode.window.showWarningMessage(`LaTeX compiler ${configuration.get('compiler')} is not found.`);

@@ -16,9 +16,9 @@ var compiling = false,
     to_compile = false,
     prev_time = 0;
 
-export async function compile() {
+export async function compile(here = false) {
     vscode.workspace.saveAll();
-    find_main_document();
+    find_main_document(here);
     getPreviewPosition();
 
     if (latex_data.main_document == undefined) return;
