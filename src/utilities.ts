@@ -14,7 +14,11 @@ export function find_citation_keys() {
     var bib;
     var keys = []
     while (bib = reg.exec(text)) {
-        var file = path.join(path.dirname(latex_data.main_document), path.basename(bib[1], '.bib') + '.bib')
+        var bibname = bib[1]
+        if (path.extname(bibname) == '') {
+            bibname += '.bib'
+        }
+        var file = path.join(path.dirname(latex_data.main_document), bibname)
         if (!fs.existsSync(file)) continue;
         var bib_content = fs.readFileSync(file, 'utf8').replace(/{{/g, '').replace(/}}/g, '');
         try {
