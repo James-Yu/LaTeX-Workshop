@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.18] - 2017-03-15
+### Changed
+- (#21) Use icon instead of text in editor title to save space.
+
 ## [0.2.17] - 2017-03-14
 ### Fixed
 - (#25) Bibliography file in subfolders now supports autocompletion.
