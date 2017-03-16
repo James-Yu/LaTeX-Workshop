@@ -14,29 +14,32 @@ export function find_citation_keys() {
     var bib;
     var keys = []
     while (bib = reg.exec(text)) {
-        var bibname = bib[1]
-        if (path.extname(bibname) == '') {
-            bibname += '.bib'
-        }
-        var file = path.join(path.dirname(latex_data.main_document), bibname)
-        if (!fs.existsSync(file)) continue;
-        var bib_content = fs.readFileSync(file, 'utf8').replace(/{{/g, '').replace(/}}/g, '');
-        try {
-            var BibtexParser = require(latex_workshop.find_path('lib/bibtex-parser'));
-            var parser = new BibtexParser(bib_content);
-            var data = parser.parse();
-            data.map((item) => {
-                var key = new vscode.CompletionItem(item.citationKey, vscode.CompletionItemKind.Keyword);
-                if (item.entryTags != undefined) {
-                    key.documentation = `${item.entryTags.title}\n\n${item.entryTags.journal}\n\n${item.entryTags.author}`;
+        var bibnames = bib[1]
+        for (let bibname of bibnames.split(',')) {
+            bibname = bibname.trim()
+            if (path.extname(bibname) == '') {
+                bibname += '.bib'
+            }
+            var file = path.join(path.dirname(latex_data.main_document), bibname)
+            if (!fs.existsSync(file)) continue;
+            var bib_content = fs.readFileSync(file, 'utf8').replace(/{{/g, '').replace(/}}/g, '');
+            try {
+                var BibtexParser = require(latex_workshop.find_path('lib/bibtex-parser'));
+                var parser = new BibtexParser(bib_content);
+                var data = parser.parse();
+                data.map((item) => {
+                    var key = new vscode.CompletionItem(item.citationKey, vscode.CompletionItemKind.Keyword);
+                    if (item.entryTags != undefined) {
+                        key.documentation = `${item.entryTags.title}\n\n${item.entryTags.journal}\n\n${item.entryTags.author}`;
+                    }
+                    keys.push(key);
+                });
+            } catch (e) {
+                console.log(e)
+                var key, key_reg = /\@\w+\{(.*?),/g;
+                while (key = key_reg.exec(bib_content)) {
+                    keys.push(new vscode.CompletionItem(key[1], vscode.CompletionItemKind.Keyword));
                 }
-                keys.push(key);
-            });
-        } catch (e) {
-            console.log(e)
-            var key, key_reg = /\@\w+\{(.*?),/g;
-            while (key = key_reg.exec(bib_content)) {
-                keys.push(new vscode.CompletionItem(key[1], vscode.CompletionItemKind.Keyword));
             }
         }
     }
