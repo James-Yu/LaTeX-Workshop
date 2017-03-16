@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.19] - 2017-03-16
+### Fixed
+- (#30) Not able to parse multiple bib files in a same command.
+
+### Changed
+- (#28) Use icons provided by @bartosz-antosik. Many thanks!
+
 ## [0.2.18] - 2017-03-15
 ### Changed
 - (#21) Use icon instead of text in editor title to save space.
