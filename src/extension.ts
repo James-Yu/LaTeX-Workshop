@@ -18,7 +18,8 @@ export var latex_output,
            has_synctex,
            find_path,
            compile_on_save,
-           compile_on_save_statusbar;
+           compile_on_save_statusbar,
+           compile_on_save_statusbar_timeout;
 
 export async function activate(context: vscode.ExtensionContext) {
     find_path = context.asAbsolutePath;
@@ -68,7 +69,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("latex-workshop.toggle_compile_on_save", toggle_compile_on_save);
     compile_on_save_statusbar = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1);
     compile_on_save_statusbar.command = "latex-workshop.toggle_compile_on_save";
-    compile_on_save_statusbar.tooltip = "Toggle Compile-on-save Feature";
+    compile_on_save_statusbar.tooltip = "Toggle LaTeX Compile-on-save";
     compile_on_save_statusbar.show();
 
     compile_on_save = !configuration.get('compile_on_save');
@@ -95,9 +96,17 @@ function toggle_compile_on_save() {
     if (compile_on_save) {
         compile_on_save_statusbar.text = `$(file-pdf) Compile-on-save Enabled`;
         compile_on_save_statusbar.color = "white";
+        if (compile_on_save_statusbar_timeout) {
+            clearTimeout(compile_on_save_statusbar_timeout)
+        }
+        compile_on_save_statusbar_timeout = setTimeout(() => {compile_on_save_statusbar.text = `$(file-pdf)`}, 2000)
     } else {
-        compile_on_save_statusbar.text = `$(file-text) Compile-on-save Disabled`;
-        compile_on_save_statusbar.color = "orange";
+        compile_on_save_statusbar.text = `$(file-pdf) Compile-on-save Disabled`;
+        compile_on_save_statusbar.color = "silver";
+        if (compile_on_save_statusbar_timeout) {
+            clearTimeout(compile_on_save_statusbar_timeout)
+        }
+        compile_on_save_statusbar_timeout = setTimeout(() => {compile_on_save_statusbar.text = `$(file-pdf)`}, 2000)
     }
 }
 
