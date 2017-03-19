@@ -89,12 +89,20 @@
                 "latex-workshop.compiler": {
                     "type": "string",
                     "default": "pdflatex",
-                    "description": "LaTeX compiler to use. Reload to take effect. Default: pdflatex."
+                    "description": "LaTeX compiler to use. Reload to take effect. Default: pdflatex.",
+                    "enum": [
+						"pdflatex",
+						"latexmk"
+					]
                 },
                 "latex-workshop.compile_argument": {
                     "type": "string",
                     "default": "-synctex=1 -interaction=nonstopmode -file-line-error",
-                    "description": "Compiler options to use. Default: -synctex=1 -interaction=nonstopmode -file-line-error."
+                    "description": "Compiler options to use. Default: -synctex=1 -interaction=nonstopmode -file-line-error.",
+                    "enum": [
+                        "-synctex=1 -interaction=nonstopmode -file-line-error",
+                        "-file-line-error -synctex=1 -cd -outdir=latex.mk -lualatex"
+                    ]
                 },
                 "latex-workshop.compile_workflow": {
                     "type": "array",
@@ -104,12 +112,24 @@
                         "%compiler% %arguments% %document%",
                         "%compiler% %arguments% %document%"
                     ],
-                    "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%."
+                    "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%.",
+                    "enum": [
+                        [
+                            "%compiler% %arguments% %document%",
+                            "bibtex %document%",
+                            "%compiler% %arguments% %document%",
+                            "%compiler% %arguments% %document%"
+                        ],
+                        [
+                            "%compiler% %arguments% %document%",
+		                    "mv ./latex.mk/%document%.pdf ."
+                        ]
+                    ]
                 },
                 "latex-workshop.compile_on_save": {
                     "type": "boolean",
                     "default": true,
-                    "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
+                    "description": "Compile LaTeX when user saves LaTeX source file. Default: true." 
                 },
                 "latex-workshop.main_document": {
                     "type": "string",
@@ -119,7 +139,12 @@
                 "latex-workshop.log_level": {
                     "type": "string",
                     "default": "all",
-                    "description": "Define the LaTeX log parser output level. Available levels: 'all' for all log entries, 'warning' for warnings and errors, 'error' for errors only. Default: 'all'."
+                    "description": "Define the LaTeX log parser output level. Available levels: 'all' for all log entries, 'warning' for warnings and errors, 'error' for errors only. Default: 'all'.",
+                    "enum": [
+                        "all",
+                        "warning",
+                        "error"
+                    ]
                 }
             }
         },
