@@ -56,9 +56,8 @@ export async function activate(context: vscode.ExtensionContext) {
         context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
             try {
                 var ext = path.extname(vscode.window.activeTextEditor.document.fileName);
-                console.log(ext)
             if (ext != '.tex')
-                    return;
+                return;
             } catch (e) {
                 return;
             }
@@ -71,6 +70,18 @@ export async function activate(context: vscode.ExtensionContext) {
     compile_on_save_statusbar.command = "latex-workshop.toggle_compile_on_save";
     compile_on_save_statusbar.tooltip = "Toggle LaTeX Compile-on-save";
     compile_on_save_statusbar.show();
+
+    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
+        try {
+            var ext = path.extname(vscode.window.activeTextEditor.document.fileName);
+        if (ext != '.tex')
+            compile_on_save_statusbar.hide();
+        else
+            compile_on_save_statusbar.show();
+        } catch (e) {
+            return;
+        }
+    }));
 
     compile_on_save = !configuration.get('compile_on_save');
     toggle_compile_on_save();

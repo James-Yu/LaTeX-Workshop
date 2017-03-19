@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [0.2.20] - 2017-03-19
+### Changed
+- (#29) Status bar item auto-fold after two seconds.
+- (#29) Status bar item does not display on non-tex files.
+
 ## [0.2.19] - 2017-03-16
 ### Fixed
 - (#30) Not able to parse multiple bib files in a same command.
