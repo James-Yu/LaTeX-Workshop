@@ -66,9 +66,7 @@ export async function compile(here = false) {
         });
         // Wait command finish
         await promise.catch((err) => {
-            latex_workshop.workshop_output.append(String(err));
-            latex_workshop.workshop_output.show();
-            vscode.window.showErrorMessage(`Step ${cmd_idx + 1} exited with code ${err.code}. See LaTeX Workshop and Compiler log for details.`);
+            vscode.window.setStatusBarMessage(`Step ${cmd_idx + 1} failed (exit code: ${err.code}).`, 6000);
             error_occurred = true;
         });
 
@@ -81,22 +79,38 @@ export async function compile(here = false) {
 
     var LatexLogParser = require(latex_workshop.find_path('lib/latex-log-parser'));
     var entries = LatexLogParser.parse(log_content);
-    var entry_tag = {
-        'typesetting': 'T',
-        'warning': 'W',
-        'error': 'E'
-    }
+    const diagnositic_severity = {
+                'typesetting': vscode.DiagnosticSeverity.Hint,
+                'warning': vscode.DiagnosticSeverity.Warning,
+                'error': vscode.DiagnosticSeverity.Error,
+    };
+    const diagnostics = vscode.languages.createDiagnosticCollection('latex');
     var log_level = configuration.get('log_level');
     if (entries.all.length > 0) {
-        latex_workshop.workshop_output.append('\n------------\nLaTeX Log Parser Result\n');
+        const diags_per_file: {[key:string]:vscode.Diagnostic[]} = {}
         for (var entry of entries.all) {
             if ((entry.level == 'typesetting' && log_level == 'all') ||
                 (entry.level == 'warning' && log_level != 'error') ||
                 (entry.level == 'error')) {
-                latex_workshop.workshop_output.append(`[${entry_tag[entry.level]}][${entry.file}:${entry.line}] ${entry.message}\n`);
-                latex_workshop.workshop_output.show();
+                const range = new vscode.Range(new vscode.Position(entry.line - 1, 0), 
+                                               new vscode.Position(entry.line - 1, 0));
+                const diag = new vscode.Diagnostic(range, entry.message, diagnositic_severity[entry.level]);
+                if (diags_per_file[entry.file] === undefined) {
+                    diags_per_file[entry.file] = [];
+                }
+                diags_per_file[entry.file].push(diag);
             }
-        }
+         }
+
+        // clear any previous run LaTeX diagnostics...
+        diagnostics.clear();
+        // ...and map over all diagnostics per file and set them.
+        Object.keys(diags_per_file).forEach(path => {
+            const diags = diags_per_file[path];
+            const uri = vscode.Uri.file(vscode.workspace.rootPath + '/' + vscode.workspace.asRelativePath(path));
+            diagnostics.set(uri, diags);
+        })
+
     }
 
     // Succeed in all steps
