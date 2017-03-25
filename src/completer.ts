@@ -5,20 +5,22 @@ import * as vscode from 'vscode'
 import {Extension} from './main'
 import {Citation} from './providers/citation'
 import {Command} from './providers/command'
+import {Environment} from './providers/environment'
+import {Reference} from './providers/reference'
 
 export class Completer implements vscode.CompletionItemProvider {
     extension: Extension
     citation: Citation
     command: Command
-    reference: Citation
-    environment: Citation
+    environment: Environment
+    reference: Reference
 
     constructor(extension: Extension) {
         this.extension = extension
         this.citation = new Citation(extension)
         this.command = new Command(extension)
-        this.reference = new Citation(extension)
-        this.environment = new Citation(extension)
+        this.environment = new Environment(extension)
+        this.reference = new Reference(extension)
     }
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken):
