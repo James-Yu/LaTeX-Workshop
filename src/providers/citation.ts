@@ -19,10 +19,15 @@ export class Citation {
             items = items.concat(this.getBibItems(bib))
         let suggestions = []
         for (let item of items) {
-            let citation = new vscode.CompletionItem(`${item.key}: ${item.title}`,
-                vscode.CompletionItemKind.Reference)
+            let citation = new vscode.CompletionItem(item.key,vscode.CompletionItemKind.Reference)
+            citation.detail = item.title
+            citation.filterText = `${item.author} ${item.title} ${item.journal}`
             citation.insertText = item.key
-            citation.documentation = `${item.author}, ${item.title}, ${item.journal}`
+            citation.documentation = Object.keys(item)
+                .filter(k => (k !== 'key' && k !== 'title'))
+                .sort()
+                .map(k => `${k}: ${item[k]}`)
+                .join('\n');
             suggestions.push(citation)
         }
         return suggestions
