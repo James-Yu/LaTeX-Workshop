@@ -87,6 +87,18 @@ export class Command {
             counts: 1,
             chain: true,
             snippet: 'begin{$1}\n\t$2\n\\\\end{$1}'
+        },
+        cite: {
+            command: 'cite',
+            counts: 1,
+            chain: true,
+            snippet: 'cite{$1}'
+        },
+        ref: {
+            command: 'ref',
+            counts: 1,
+            chain: true,
+            snippet: 'ref{$1}'
         }
     }
 }
