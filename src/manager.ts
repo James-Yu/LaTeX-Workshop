@@ -42,6 +42,8 @@ export class Manager {
     }
 
     findRootMagic() : string | undefined {
+        if (!vscode.window.activeTextEditor)
+            return undefined
         let regex = /(?:%\s*!\s*TEX\sroot\s*=\s*([^\s]*\.tex)$)/m
         let content = vscode.window.activeTextEditor.document.getText()
 
@@ -55,6 +57,8 @@ export class Manager {
     }
 
     findRootSelf() : string | undefined {
+        if (!vscode.window.activeTextEditor)
+            return undefined
         let regex = /\\begin{document}/m
         let content = vscode.window.activeTextEditor.document.getText()
         let result = content.match(regex)

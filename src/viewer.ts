@@ -27,7 +27,7 @@ export class Viewer {
         return false
     }
 
-    openViewer(sourceFile: string) {
+    checkViewer(sourceFile: string) : string {
         if (this.refreshExistingViewer(sourceFile))
             return
         let pdfFile = this.extension.manager.tex2pdf(sourceFile)
@@ -39,9 +39,29 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        let url = `http://${this.extension.server.address}/viewer.html?file="pdf:${encodeURIComponent(pdfFile)}`
+        return `http://${this.extension.server.address}/viewer.html?file="pdf:${encodeURIComponent(pdfFile)}`
+    }
+
+    openViewer(sourceFile: string) {
+        let url = this.checkViewer(sourceFile)
+        if (!url)
+            return
+        let pdfFile = this.extension.manager.tex2pdf(sourceFile)
         open(url)
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
+    }
+
+    openTab(sourceFile: string) {
+        let url = this.checkViewer(sourceFile)
+        if (!url)
+            return;
+        let pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        let uri = vscode.Uri.file(pdfFile).with({scheme:'latex-workshop-pdf'})
+        let column = vscode.ViewColumn.Two
+        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two)
+            column = vscode.ViewColumn.Three
+        vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
+        this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
     handler(ws: object, msg: string) {
@@ -82,4 +102,22 @@ export class Viewer {
         this.clients[pdfFile].send(JSON.stringify({type: "synctex", data: record}))
         this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
     }
+}
+
+export class PDFProvider implements vscode.TextDocumentContentProvider {
+    extension: Extension
+
+    constructor(extension: Extension) {
+        this.extension = extension
+    }
+
+    public provideTextDocumentContent(uri: vscode.Uri): string {
+        let url = `http://${this.extension.server.address}/viewer.html?file=\\pdf:${encodeURIComponent(uri.fsPath)}`
+        return `
+            <!DOCTYPE html style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;"><html><head></head>
+            <body style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;">
+            <iframe class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
+            </iframe></body></html>
+        `
+	}
 }

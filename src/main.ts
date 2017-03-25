@@ -6,7 +6,7 @@ import {Logger} from './logger'
 import {Commander} from './commander'
 import {Manager} from './manager'
 import {Builder} from './builder'
-import {Viewer} from './viewer'
+import {Viewer, PDFProvider} from './viewer'
 import {Server} from './server'
 import {Locator} from './locator'
 import {Parser} from './parser'
@@ -15,16 +15,19 @@ import {Completer} from './completer'
 export async function activate(context: vscode.ExtensionContext) {
     let extension = new Extension()
     global['latex'] = extension
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('LaTeX', extension.completer, '\\', '{', ','));
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
+    vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName))
             extension.commander.build()
     }))
+
+    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('LaTeX', extension.completer, '\\', '{', ','));
 }
 
 export class Extension {

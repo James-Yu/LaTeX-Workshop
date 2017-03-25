@@ -27,11 +27,13 @@ export class Reference {
                     suggestions[key] = items[key]
             })
         })
-        let items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
-        Object.keys(items).map(key => {
-            if (!(key in suggestions))
-                suggestions[key] = items[key]
-        })
+        if (vscode.window.activeTextEditor) {
+            let items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
+            Object.keys(items).map(key => {
+                if (!(key in suggestions))
+                    suggestions[key] = items[key]
+            })
+        }
         this.suggestions = []
         Object.keys(suggestions).map(key => {
             let item = suggestions[key]
