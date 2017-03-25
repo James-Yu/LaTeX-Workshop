@@ -27,10 +27,18 @@ export function find_citation_keys() {
                 var BibtexParser = require(latex_workshop.find_path('lib/bibtex-parser'));
                 var parser = new BibtexParser(bib_content);
                 var data = parser.parse();
-                data.map((item) => {
-                    var key = new vscode.CompletionItem(item.citationKey, vscode.CompletionItemKind.Keyword);
+                data.forEach(item => {
+                    if (item.citationKey === undefined) {
+                        return;
+                    }
+                    const key = new vscode.CompletionItem(item.citationKey, vscode.CompletionItemKind.Reference);
                     if (item.entryTags != undefined) {
-                        key.documentation = `${item.entryTags.title}\n\n${item.entryTags.journal}\n\n${item.entryTags.author}`;
+                        key.detail = item.entryTags.title;
+                        key.filterText = `${item.citationKey} ${item.entryTags.title}`;
+                        key.documentation = Object.keys(item.entryTags)
+                                                .filter(k => k !== 'title')  // we already show the title in the detail
+                                                .map(k => `${k}: ${item.entryTags[k]}`)
+                                                .join('\n');
                     }
                     keys.push(key);
                 });
