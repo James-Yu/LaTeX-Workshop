@@ -12,6 +12,8 @@ export class Manager {
     texFiles: string[]
     bibFiles: string[]
 
+    findAllDependentFilesTime: number
+
     constructor(extension: Extension) {
         this.extension = extension
     }
@@ -91,6 +93,9 @@ export class Manager {
     }
 
     findAllDependentFiles() {
+        if (Date.now() - this.findAllDependentFilesTime < 1000)
+            return
+        this.findAllDependentFilesTime = Date.now()
         if (this.rootFile === undefined)
             this.findRoot()
         if (this.rootFile === undefined)

@@ -7,29 +7,35 @@ import {Extension} from './../main'
 
 export class Citation {
     extension: Extension
+    suggestions: vscode.CompletionItem[]
+    provideRefreshTime: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     provide() : vscode.CompletionItem[] {
+        if (Date.now() - this.provideRefreshTime < 1000)
+            return this.suggestions
+        this.provideRefreshTime = Date.now()
         this.extension.manager.findAllDependentFiles()
         let items = []
-        for (let bib of this.extension.manager.bibFiles)
-            items = items.concat(this.getBibItems(bib))
+        this.extension.manager.bibFiles.map(bib =>
+            items = items.concat(this.getBibItems(bib)))
         let suggestions = []
-        for (let item of items) {
+        items.map(item => {
             let citation = new vscode.CompletionItem(item.key,vscode.CompletionItemKind.Reference)
             citation.detail = item.title
             citation.filterText = `${item.author} ${item.title} ${item.journal}`
             citation.insertText = item.key
             citation.documentation = Object.keys(item)
-                .filter(k => (k !== 'key' && k !== 'title'))
+                .filter(key => (key !== 'key' && key !== 'title'))
                 .sort()
-                .map(k => `${k}: ${item[k]}`)
+                .map(key => `${key}: ${item[key]}`)
                 .join('\n');
             suggestions.push(citation)
-        }
+        })
+        this.suggestions = suggestions
         return suggestions
     }
 
