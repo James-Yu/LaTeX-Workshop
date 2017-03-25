@@ -1,190 +1,132 @@
 {
-    "name": "latex-workshop",
-    "displayName": "LaTeX Workshop",
-    "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
-    "icon": "img/icon.png",
-    "version": "0.2.20",
-    "publisher": "James-Yu",
-    "license": "MIT",
-    "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
-    },
-    "engines": {
-        "vscode": "^1.8.0"
-    },
-    "categories": [
-        "Languages",
-        "Snippets"
-    ],
-    "keywords": [
-        "latex",
-        "tex",
-        "compile",
-        "preview",
-        "hint"
-    ],
-    "activationEvents": [
-        "onLanguage:latex"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "languages": [
-            {
-                "id": "latex",
-                "aliases": [
-                    "LaTeX",
-                    "latex"
-                ],
-                "extensions": [
-                    ".tex"
-                ],
-                "configuration": "./data/lang_config.json"
-            }
+  "name": "latex-workshop",
+  "displayName": "LaTeX Workshop",
+  "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
+  "icon": "img/icon.png",
+  "version": "0.2.20",
+  "publisher": "James-Yu",
+  "license": "MIT",
+  "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
+  },
+  "engines": {
+    "vscode": "^1.8.0"
+  },
+  "categories": [
+    "Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "latex",
+    "tex",
+    "compile",
+    "preview",
+    "hint"
+  ],
+  "activationEvents": [
+    "onLanguage:LaTeX"
+  ],
+  "main": "./out/src/main",
+  "contributes": {
+    "languages": [
+      {
+        "id": "LaTeX",
+        "aliases": [
+          "LaTeX",
+          "latex"
         ],
-        "grammars": [
-            {
-                "language": "latex",
-                "scopeName": "text.tex.latex",
-                "path": "./data/grammar.tmLanguage"
-            }
+        "extensions": [
+          ".tex"
         ],
-        "commands": [
-            {
-                "command": "latex-workshop.compile",
-                "title": "Compile LaTeX to PDF"
-            },
-            {
-                "command": "latex-workshop.compile_here",
-                "title": "Compile LaTeX to PDF from active editor"
-            },
-            {
-                "command": "latex-workshop.preview",
-                "title": "Show PDF Preview",
-                "icon": "./img/pdf.svg"
-            },
-            {
-                "command": "latex-workshop.preview_browser",
-                "title": "Show In-browser Preview"
-            },
-            {
-                "command": "latex-workshop.source",
-                "title": "Locate LaTeX Column",
-                "icon": "./img/file.svg"
-            },
-            {
-                "command": "latex-workshop.synctex",
-                "title": "Find Here in Preview"
-            },
-            {
-                "command": "latex-workshop.toggle_compile_on_save",
-                "title": "Toggle LaTeX Compile-on-save"
-            }
-        ],
-        "configuration": {
-            "type": "object",
-            "title": "LaTeX Workshop configuration",
-            "properties": {
-                "latex-workshop.compiler": {
-                    "type": "string",
-                    "default": "pdflatex",
-                    "description": "LaTeX compiler to use. Reload to take effect. Default: pdflatex."
-                },
-                "latex-workshop.compile_argument": {
-                    "type": "string",
-                    "default": "-synctex=1 -interaction=nonstopmode -file-line-error",
-                    "description": "Compiler options to use. Default: -synctex=1 -interaction=nonstopmode -file-line-error."
-                },
-                "latex-workshop.compile_workflow": {
-                    "type": "array",
-                    "default": [
-                        "%compiler% %arguments% %document%",
-                        "bibtex %document%",
-                        "%compiler% %arguments% %document%",
-                        "%compiler% %arguments% %document%"
-                    ],
-                    "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%."
-                },
-                "latex-workshop.compile_on_save": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
-                },
-                "latex-workshop.main_document": {
-                    "type": "string",
-                    "default": null,
-                    "description": "Define the main document for LaTeX project. Must be the relative path from the project root folder. Set to null for auto-detection. Default: null."
-                },
-                "latex-workshop.log_level": {
-                    "type": "string",
-                    "default": "all",
-                    "description": "Define the LaTeX log parser output level. Available levels: 'all' for all log entries, 'warning' for warnings and errors, 'error' for errors only. Default: 'all'."
-                }
-            }
+        "configuration": "./data/lang_config.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "LaTeX",
+        "scopeName": "text.tex.latex",
+        "path": "./data/grammar.tmLanguage"
+      }
+    ],
+    "commands": [
+      {
+        "command": "latex-workshop.build",
+        "title": "Build LaTeX project"
+      },
+      {
+        "command": "latex-workshop.view",
+        "title": "View PDF file"
+      },
+      {
+        "command": "latex-workshop.synctex",
+        "title": "SyncTeX from LaTeX to PDF"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "LaTeX Workshop configuration",
+      "properties": {
+        "latex-workshop.compiler": {
+          "type": "string",
+          "default": "pdflatex",
+          "description": "LaTeX compiler to use. Reload to take effect. Default: pdflatex."
         },
-        "menus": {
-            "editor/context": [
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.compile",
-                    "group": "1_modification"
-                },
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.preview",
-                    "group": "navigation@101"
-                },
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.preview_browser",
-                    "group": "navigation@102"
-                },
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.synctex",
-                    "group": "navigation@103"
-                }
-            ],
-            "editor/title": [
-                {
-                    "when": "editorLangId == latex",
-                    "command": "latex-workshop.preview",
-                    "group": "navigation"
-                },
-                {
-                    "when": "resourceScheme == latex-workshop-preview",
-                    "command": "latex-workshop.source",
-                    "group": "navigation"
-                }
-            ]
+        "latex-workshop.compile_argument": {
+          "type": "string",
+          "default": "-synctex=1 -interaction=nonstopmode -file-line-error",
+          "description": "Compiler options to use. Default: -synctex=1 -interaction=nonstopmode -file-line-error."
+        },
+        "latex-workshop.compile_workflow": {
+          "type": "array",
+          "default": [
+            "%compiler% %arguments% %document%",
+            "bibtex %document%",
+            "%compiler% %arguments% %document%",
+            "%compiler% %arguments% %document%"
+          ],
+          "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%."
+        },
+        "latex-workshop.compile_on_save": {
+          "type": "boolean",
+          "default": true,
+          "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
+        },
+        "latex-workshop.main_document": {
+          "type": "string",
+          "default": null,
+          "description": "Define the main document for LaTeX project. Must be the relative path from the project root folder. Set to null for auto-detection. Default: null."
+        },
+        "latex-workshop.log_level": {
+          "type": "string",
+          "default": "all",
+          "description": "Define the LaTeX log parser output level. Available levels: 'all' for all log entries, 'warning' for warnings and errors, 'error' for errors only. Default: 'all'."
         }
-    },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "capabilities": {
-        "completionProvider": {
-            "resolveProvider": "true"
-        }
-    },
-    "dependencies": {
-        "ws": "^1.1.1",
-        "child-process-promise": "^2.2.0",
-        "hasbin": "^1.2.3",
-        "open": "^0.0.5",
-        "amd-loader": "^0.0.5",
-        "underscore-plus": "^1.6.1",
-        "unorm": "^1.3.3",
-        "requirejs": "^2.3.2"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+      }
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "capabilities": {
+    "completionProvider": {
+      "resolveProvider": "true"
+    }
+  },
+  "dependencies": {
+    "hasbin": "^1.2.3",
+    "open": "0.0.5",
+    "tmp": "0.0.31",
+    "ws": "^1.1.1"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0",
+    "mocha": "^2.3.3",
+    "@types/node": "^6.0.40",
+    "@types/mocha": "^2.2.32"
+  }
 }
