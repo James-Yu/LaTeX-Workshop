@@ -20,6 +20,11 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
+
+    context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
+        if (extension.manager.isTex(e.fileName))
+            extension.commander.build()
+    }))
 }
 
 export class Extension {
