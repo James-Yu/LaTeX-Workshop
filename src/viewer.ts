@@ -17,18 +17,19 @@ export class Viewer {
         this.extension = extension
     }
 
-    refreshExistingViewer(sourceFile: string) : boolean {
+    refreshExistingViewer(sourceFile: string, type: string = undefined) : boolean {
         let pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        if (pdfFile in this.clients) {
+        if (pdfFile in this.clients && 
+            (type === undefined || this.clients[pdfFile].type === type)) {
             this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-            this.clients[pdfFile].send(JSON.stringify({type: "refresh"}))
+            this.clients[pdfFile].ws.send(JSON.stringify({type: "refresh"}))
             return true
         }
         return false
     }
 
-    checkViewer(sourceFile: string) : string {
-        if (this.refreshExistingViewer(sourceFile))
+    checkViewer(sourceFile: string, type: string) : string {
+        if (this.refreshExistingViewer(sourceFile, type))
             return
         let pdfFile = this.extension.manager.tex2pdf(sourceFile)
         if (!fs.existsSync(pdfFile)) {
@@ -43,16 +44,17 @@ export class Viewer {
     }
 
     openViewer(sourceFile: string) {
-        let url = this.checkViewer(sourceFile)
+        let url = this.checkViewer(sourceFile, 'viewer')
         if (!url)
             return
         let pdfFile = this.extension.manager.tex2pdf(sourceFile)
         open(url)
+        this.clients[pdfFile] = {type: 'viewer'}
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
     }
 
     openTab(sourceFile: string) {
-        let url = this.checkViewer(sourceFile)
+        let url = this.checkViewer(sourceFile, 'tab')
         if (!url)
             return;
         let pdfFile = this.extension.manager.tex2pdf(sourceFile)
@@ -61,6 +63,7 @@ export class Viewer {
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two)
             column = vscode.ViewColumn.Three
         vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
+        this.clients[pdfFile] = {type: 'tab'}
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
@@ -68,22 +71,22 @@ export class Viewer {
         let data = JSON.parse(msg)
         switch (data.type) {
             case 'open':
-                this.clients[decodeURIComponent(data.path)] = ws
+                this.clients[decodeURIComponent(data.path)]['ws'] = ws
                 break
             case 'close':
                 for (let key in this.clients)
-                    if (this.clients[key] == ws)
-                        delete this.clients[key]
+                    if (this.clients[key].ws == ws)
+                        delete this.clients[key].ws
                         break
             case 'position':
                 for (let key in this.clients)
-                    if (this.clients[key] == ws)
-                        this.positions[key] = data
+                    if (this.clients[key].ws == ws)
+                        this.clients[key].position = data
                         break
             case 'loaded':
                 let pdfFile = decodeURIComponent(data.path)
-                if (pdfFile in this.clients && pdfFile in this.positions)
-                    this.clients[pdfFile].send(JSON.stringify(this.positions[pdfFile]))
+                if (pdfFile in this.clients && 'position' in this.clients[pdfFile])
+                    this.clients[pdfFile].ws.send(JSON.stringify(this.clients[pdfFile].position))
                 break
             case 'click':
                 this.extension.locator.locate(data, decodeURIComponent(data.path))
@@ -99,7 +102,7 @@ export class Viewer {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
         }
-        this.clients[pdfFile].send(JSON.stringify({type: "synctex", data: record}))
+        this.clients[pdfFile].ws.send(JSON.stringify({type: "synctex", data: record}))
         this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
     }
 }
