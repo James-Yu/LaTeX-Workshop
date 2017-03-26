@@ -29,6 +29,18 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.commander.build()
     }))
 
+    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
+        if (!vscode.window.activeTextEditor)
+            extension.logger.status.hide()
+        else if (!vscode.window.activeTextEditor.document.fileName)
+            extension.logger.status.hide()
+        else if (!extension.manager.isTex(vscode.window.activeTextEditor.document.fileName))
+            extension.logger.status.hide()
+        else
+            extension.logger.status.show()
+    }))
+
+
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('LaTeX', extension.completer, '\\', '{', ','));
 }

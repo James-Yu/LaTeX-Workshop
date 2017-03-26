@@ -75,7 +75,6 @@ export class Command {
                     items[result[1]].snippet += `{$\{2:arg}}`
                 if (result[4])
                     items[result[1]].snippet += `{$\{3:arg}}`
-                console.log(items[result[1]].snippet)
             } else
                 items[result[1]].counts += 1
         }

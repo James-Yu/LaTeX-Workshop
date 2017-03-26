@@ -31,6 +31,7 @@ export class Builder {
         }
 
         this.extension.logger.addLogMessage(`Toolchain step ${index + 1}: ${toolchain[index]}`)
+        this.extension.logger.displayStatus('sync', 'orange', `LaTeX build toolchain step ${index + 1}.`, 0)
         this.currentProcess = this.processWrapper(toolchain[index], {cwd: path.dirname(rootFile)}, (error, stdout, stderr) => {
             this.extension.parser.parse(stdout)
             if (!error) {
@@ -38,11 +39,13 @@ export class Builder {
                 return
             }
             this.extension.logger.addLogMessage(`Toolchain returns with error.`)
+            this.extension.logger.displayStatus('x', 'red', `LaTeX toolchain terminated with error.`)
         })
     }
 
     buildFinished(rootFile: string) {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
+        this.extension.logger.displayStatus('check', 'white', `LaTeX toolchain succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
     }
 

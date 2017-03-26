@@ -51,6 +51,7 @@ export class Viewer {
         open(url)
         this.clients[pdfFile] = {type: 'viewer'}
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
+        this.extension.logger.displayStatus('repo', 'white', `Open PDF viewer for ${path.basename(pdfFile)}.`)
     }
 
     openTab(sourceFile: string) {
@@ -65,6 +66,7 @@ export class Viewer {
         vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
         this.clients[pdfFile] = {type: 'tab'}
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
+        this.extension.logger.displayStatus('repo', 'white', `Open PDF tab for ${path.basename(pdfFile)}.`)
     }
 
     handler(ws: object, msg: string) {
