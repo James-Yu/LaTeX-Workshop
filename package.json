@@ -32,6 +32,20 @@
   "contributes": {
     "languages": [
       {
+        "id": "TeX",
+        "aliases": [
+          "TeX",
+          "tex"
+        ],
+        "extensions": [
+          ".sty",
+          ".cls",
+          ".bbx",
+          ".cbx"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
         "id": "LaTeX",
         "aliases": [
           "LaTeX",
@@ -41,6 +55,39 @@
           ".tex"
         ],
         "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "BibTeX",
+        "aliases": [
+          "BibTeX",
+          "bibtex"
+        ],
+        "extensions": [
+          ".bib"
+        ]
+      },
+      {
+        "id": "LaTeX Beamer",
+        "aliases": [
+          "LaTeX Beamer"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "LaTeX Memoir",
+        "aliases": [
+          "LaTeX Memoir"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "LaTeX Log",
+        "aliases": [
+          "LaTeX Log"
+        ],
+        "extensions": [
+          ".log"
+        ]
       }
     ],
     "grammars": [
@@ -143,8 +190,8 @@
   },
   "dependencies": {
     "hasbin": "^1.2.3",
-    "open": "0.0.5",
-    "tmp": "0.0.31",
+    "open": "^0.0.5",
+    "tmp": "^0.0.31",
     "ws": "^1.1.1"
   },
   "devDependencies": {
