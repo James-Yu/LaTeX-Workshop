@@ -42,7 +42,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
 
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('LaTeX', extension.completer, '\\', '{', ','));
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','));
 }
 
 export class Extension {
