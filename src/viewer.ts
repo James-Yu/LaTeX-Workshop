@@ -75,8 +75,10 @@ export class Viewer {
                 break
             case 'close':
                 for (let key in this.clients)
-                    if (this.clients[key].ws == ws)
+                    if (this.clients[key].ws == ws) {
                         delete this.clients[key].ws
+                        delete this.clients[key].type
+                    }
                         break
             case 'position':
                 for (let key in this.clients)

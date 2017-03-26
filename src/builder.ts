@@ -16,6 +16,8 @@ export class Builder {
 
     build(rootFile: string) {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
+        if (this.currentProcess)
+            this.currentProcess.kill()
         let toolchain = this.createToolchain(rootFile)
         this.extension.logger.addLogMessage(`Created toolchain ${toolchain}`)
         this.buildStep(rootFile, toolchain, 0)
@@ -50,8 +52,8 @@ export class Builder {
     }
 
     createToolchain(rootFile: string) : string[] {
-        return [
-            `latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf "${path.basename(rootFile, '.tex')}"`
-        ]
+        let configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let commands = configuration.get('toolchain') as Array<string>
+        return commands.map(command => command.replace('%DOC%', `"${rootFile}"`))
     }
 }

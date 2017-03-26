@@ -144,40 +144,15 @@
       "type": "object",
       "title": "LaTeX Workshop configuration",
       "properties": {
-        "latex-workshop.compiler": {
-          "type": "string",
-          "default": "pdflatex",
-          "description": "LaTeX compiler to use. Reload to take effect. Default: pdflatex."
-        },
-        "latex-workshop.compile_argument": {
-          "type": "string",
-          "default": "-synctex=1 -interaction=nonstopmode -file-line-error",
-          "description": "Compiler options to use. Default: -synctex=1 -interaction=nonstopmode -file-line-error."
-        },
-        "latex-workshop.compile_workflow": {
+        "latex-workshop.toolchain": {
           "type": "array",
-          "default": [
-            "%compiler% %arguments% %document%",
-            "bibtex %document%",
-            "%compiler% %arguments% %document%",
-            "%compiler% %arguments% %document%"
-          ],
-          "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%."
+          "default": ["latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf %DOC%"],
+          "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the file name (without '.tex' extension), and will be replaced when executing."
         },
-        "latex-workshop.compile_on_save": {
+        "latex-workshop.build_after_save": {
           "type": "boolean",
           "default": true,
-          "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
-        },
-        "latex-workshop.main_document": {
-          "type": "string",
-          "default": null,
-          "description": "Define the main document for LaTeX project. Must be the relative path from the project root folder. Set to null for auto-detection. Default: null."
-        },
-        "latex-workshop.log_level": {
-          "type": "string",
-          "default": "all",
-          "description": "Define the LaTeX log parser output level. Available levels: 'all' for all log entries, 'warning' for warnings and errors, 'error' for errors only. Default: 'all'."
+          "description": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
         }
       }
     }
