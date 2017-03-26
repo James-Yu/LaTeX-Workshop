@@ -32,6 +32,20 @@
   "contributes": {
     "languages": [
       {
+        "id": "TeX",
+        "aliases": [
+          "TeX",
+          "tex"
+        ],
+        "extensions": [
+          ".sty",
+          ".cls",
+          ".bbx",
+          ".cbx"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
         "id": "LaTeX",
         "aliases": [
           "LaTeX",
@@ -40,14 +54,72 @@
         "extensions": [
           ".tex"
         ],
-        "configuration": "./data/lang_config.json"
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "BibTeX",
+        "aliases": [
+          "BibTeX",
+          "bibtex"
+        ],
+        "extensions": [
+          ".bib"
+        ]
+      },
+      {
+        "id": "LaTeX Beamer",
+        "aliases": [
+          "LaTeX Beamer"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "LaTeX Memoir",
+        "aliases": [
+          "LaTeX Memoir"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "LaTeX Log",
+        "aliases": [
+          "LaTeX Log"
+        ],
+        "extensions": [
+          ".log"
+        ]
       }
     ],
     "grammars": [
       {
+        "language": "TeX",
+        "scopeName": "text.tex",
+        "path": "./syntax/TeX.plist"
+      },
+      {
         "language": "LaTeX",
         "scopeName": "text.tex.latex",
-        "path": "./data/grammar.tmLanguage"
+        "path": "./syntax/LaTeX.plist"
+      },
+      {
+        "language": "BibTeX",
+        "scopeName": "text.bibtex",
+        "path": "./syntax/Bibtex.plist"
+      },
+      {
+        "language": "LaTeX Beamer",
+        "scopeName": "text.tex.latex.beamer",
+        "path": "./syntax/LaTeX Beamer.plist"
+      },
+      {
+        "language": "LaTeX Memoir",
+        "scopeName": "text.tex.latex.memoir",
+        "path": "./syntax/LaTeX Memoir.plist"
+      },
+      {
+        "language": "LaTeX Log",
+        "scopeName": "text.log.latex",
+        "path": "./syntax/LaTeX Log.plist"
       }
     ],
     "commands": [
@@ -123,8 +195,8 @@
   "dependencies": {
     "glob": "^7.1.1",
     "hasbin": "^1.2.3",
-    "open": "0.0.5",
-    "tmp": "0.0.31",
+    "open": "^0.0.5",
+    "tmp": "^0.0.31",
     "ws": "^1.1.1"
   },
   "devDependencies": {
