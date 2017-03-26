@@ -15,16 +15,16 @@ export class Citation {
     }
 
     provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.provideRefreshTime < 1000)
+        if (Date.now() - this.provideRefreshTime < 1000) {
             return this.suggestions
+        }
         this.provideRefreshTime = Date.now()
         this.extension.manager.findAllDependentFiles()
         let items = []
-        this.extension.manager.bibFiles.map(bib =>
-            items = items.concat(this.getBibItems(bib)))
-        let suggestions = []
-        items.map(item => {
-            let citation = new vscode.CompletionItem(item.key,vscode.CompletionItemKind.Reference)
+        this.extension.manager.bibFiles.forEach(
+            bib => this.getBibItems(bib).forEach(i => items.push(i)))
+        this.suggestions = items.map(item => {
+            let citation = new vscode.CompletionItem(item.key, vscode.CompletionItemKind.Reference)
             citation.detail = item.title
             citation.filterText = `${item.author} ${item.title} ${item.journal}`
             citation.insertText = item.key
@@ -33,10 +33,9 @@ export class Citation {
                 .sort()
                 .map(key => `${key}: ${item[key]}`)
                 .join('\n');
-            suggestions.push(citation)
+            return citation
         })
-        this.suggestions = suggestions
-        return suggestions
+        return this.suggestions
     }
 
     getBibItems(bib: string) {
