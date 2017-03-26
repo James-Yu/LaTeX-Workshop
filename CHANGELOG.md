@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.1] - 2017-03-26
+### Fixed
+- (#37) Extension failed to activate with language id `latex` (instead of `LaTeX`).
+
 ## [1.0.0] - 2017-03-26
 - Completely re-write the extension with more extensibility.
   - Original features should be inherited. If not, please submit issues.
