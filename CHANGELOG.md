@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.0.0] - 2017-03-26
+- Completely re-write the extension with more extensibility.
+  - Original features should be inherited. If not, please submit issues.
+
 ## [0.2.20] - 2017-03-19
 ### Changed
 - (#29) Status bar item auto-fold after two seconds.

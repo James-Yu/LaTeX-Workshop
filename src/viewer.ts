@@ -20,7 +20,8 @@ export class Viewer {
     refreshExistingViewer(sourceFile: string, type: string = undefined) : boolean {
         let pdfFile = this.extension.manager.tex2pdf(sourceFile)
         if (pdfFile in this.clients && 
-            (type === undefined || this.clients[pdfFile].type === type)) {
+            (type === undefined || this.clients[pdfFile].type === type) &&
+            'ws' in this.clients[pdfFile]) {
             this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
             this.clients[pdfFile].ws.send(JSON.stringify({type: "refresh"}))
             return true

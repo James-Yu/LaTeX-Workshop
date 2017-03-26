@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "img/icon.png",
-  "version": "0.2.20",
+  "version": "1.0.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -129,11 +129,11 @@
       },
       {
         "command": "latex-workshop.view",
-        "title": "View PDF file"
+        "title": "View PDF file in web page"
       },
       {
         "command": "latex-workshop.tab",
-        "title": "Open PDF tab"
+        "title": "View PDF file in new tab"
       },
       {
         "command": "latex-workshop.synctex",
@@ -160,6 +160,30 @@
           "description": "Display LaTeX Workshop debug log in output panel.\nThis property defines whether LaTeX Workshop will output its debug log to the log panel."
         }
       }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == LaTeX",
+          "command": "latex-workshop.build",
+          "group": "navigation@100"
+        },
+        {
+          "when": "resourceLangId == LaTeX",
+          "command": "latex-workshop.view",
+          "group": "navigation@101"
+        },
+        {
+          "when": "resourceLangId == LaTeX",
+          "command": "latex-workshop.tab",
+          "group": "navigation@102"
+        },
+        {
+          "when": "resourceLangId == LaTeX",
+          "command": "latex-workshop.synctex",
+          "group": "navigation@103"
+        }
+      ]
     }
   },
   "scripts": {

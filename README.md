@@ -14,6 +14,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 ## Requirements
 
 - LaTeX distribution in system PATH. For example, [TeX Live](https://www.tug.org/texlive/).
+  - MikTeX does not ship with SyncTeX. See [this link](http://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#comment877274_338117) for a possible solution.
 
 ## Installation
 
@@ -25,34 +26,16 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 
 ## Usage
 
-- Compile: Either use `latex-workshop.compile` command, or use right click menu, or simply enable compile-on-save.
-- Preview: Click on the `Show Preview` button on the top-right corner of the editor. The preview is updated automatically after compilation.
-- In-browser Preview: Right click on TeX and select `Show In-browser Preview`.
-- Direct SyncTex from Tex to PDF: Open preview first then right click on TeX and select `Find in Preview`.
-- Reverse SyncTex from PDF to TeX: ctrl/cmd + left click on PDF preview.
-- Autocomplete: An autocomplete list will show up when '\' or '{' is typed. Multi-citation supported.
+- Open a `.tex` file, right click and many features have menu entries there.
+- For reverse SyncTeX from PDF to LaTeX, `ctrl`/`cmd` + mouse left click.
+- Alternatively, VS Code commands are provided as follows
 
 ## Commands
 
-- `latex-workshop.compile`: Compile LaTeX to PDF.
-- `latex-workshop.compile_here`: Compile LaTeX to PDF from active editor.
-- `latex-workshop.preview`: Open a live preview column for LaTeX.
-- `latex-workshop.preview_browser`: Open a webpage preview for LaTeX.
-- `latex-workshop.source`: Show LaTeX source of the preview.
+- `latex-workshop.build`: Build LaTeX project to PDF using LaTeX toolchain.
+- `latex-workshop.view`: Open a web browser window to view the PDF file.
+- `latex-workshop.tab`: Open a VS Code tab to view the PDF file.
 - `latex-workshop.synctex`: Direct synctex from cursor position.
-
-## Settings
-
-All settings need VS Code reload to take effect.
-- `latex-workshop.compiler`: Set the LaTeX compiler command.
-- `latex-workshop.compile_argument`: Set the compiler arguments. It is required that non-blocking compile argument is used, e.g., `-halt-on-error` and `-interaction=nonstopmode`.
-- `latex-workshop.compile_workflow`: Set the compile workflow of LaTeX. Default is `latex`->`bibtex`->`latex`->`latex`. An array of commands is required here. Each command will be executed when the previous one is finished. If any command outputs `error`, the workflow will terminate. Some placeholders are available:
-  - `%compiler%`: The compiler set in `latex-workshop.compiler`.
-  - `%arguments%`: The compiler argument set in `latex-workshop.compile_argument`.
-  - `%document%`: Name of the current active file in VS Code.
-- `latex-workshop.compile_on_save`: Whether LaTeX Workshop should compile the current active LaTeX file on save.
-- `latex-workshop.main_document`: The relative path to the main document for LaTeX project. Auto-detection enabled with `null`.
-- `latex-workshop.log_level`: Define the LaTeX log parser output level. Available levels: `all` for all log entries, `warning` for warnings and errors, `error` for errors only.
 
 ## Contributing
 
