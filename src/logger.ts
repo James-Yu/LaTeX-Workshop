@@ -15,6 +15,8 @@ export class Logger {
     }
 
     addLogMessage(message: string) {
-        this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', {hour12: false})}] ${message}\n`)
+        let configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('show_debug_log'))
+            this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', {hour12: false})}] ${message}\n`)
     }
 }

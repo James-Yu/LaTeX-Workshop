@@ -50,6 +50,7 @@ export class Locator {
         let root = this.extension.manager.findRoot(false)
         let pdfFile = this.extension.manager.tex2pdf(root)
         let cmd = `synctex view -i "${position.line + 1}:${position.character + 1}:${filePath}" -o "${pdfFile}"`
+        this.extension.logger.addLogMessage(`Executing ${cmd}`)
         cp.exec(cmd, {cwd: path.dirname(root)}, (err, stdout, stderr) => {
             if (err)
                 this.extension.logger.addLogMessage(`Cannot synctex: ${err}, ${stderr}`)
@@ -60,6 +61,7 @@ export class Locator {
 
     locate(data: any, pdfPath: string) {
         let cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${pdfPath}"`
+        this.extension.logger.addLogMessage(`Executing ${cmd}`)
         cp.exec(cmd, {cwd: path.dirname(pdfPath)}, (err, stdout, stderr) => {
             if (err) {
                 this.extension.logger.addLogMessage(`Cannot reverse synctex: ${err}, ${stderr}`)
