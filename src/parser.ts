@@ -156,7 +156,7 @@ export class Parser {
             this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
     }
 
-    showLinterDiagnostics(createBuildLogRaw: boolean = false) {
+    showLinterDiagnostics() {
         this.linterDiagnostics.clear()
         const diagsCollection: {[key:string]:vscode.Diagnostic[]} = {}
         for (const item of this.linterLog) {
