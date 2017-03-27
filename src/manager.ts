@@ -123,20 +123,25 @@ export class Manager {
             if (path.extname(inputFilePath) === '') {
                 inputFilePath += '.tex'
             }
-            if (this.texFiles.has(inputFilePath))
-                continue
-            if (fs.existsSync(inputFilePath)) {
+            if (!this.texFiles.has(inputFilePath)) {
                 this.texFiles.add(inputFilePath)
-                this.findDependentFiles(inputFilePath)
-            }
-            else {
-                inputFilePath += '.tex'
-                if (fs.existsSync(inputFilePath)) {
-                    this.texFiles.add(inputFilePath)
+                try {
                     this.findDependentFiles(inputFilePath)
+                } catch (err) {
+                    if (tryAppendTex && (err.code === 'ENOENT' || err.code === 'EISDIR')) {
+                        // It's possible that the filename was a .tex file with
+                        // a period in it (intro.math.tex)
+
+                        // Remove this filename from the checked list...
+                        this.texFiles.delete(inputFilePath)
+                        // ...add the .tex extension...
+                        inputFilePath += '.tex'
+                        this.texFiles.add(inputFilePath)
+                        // ...and try again. If this fails, don't try appending
+                        // .tex any more.
+                        this.findDependentFiles(inputFilePath, false)
+                    }
                 }
-                else
-                    this.extension.logger.addLogMessage(`File not found: ${inputFilePath}`)
             }
         }
 
