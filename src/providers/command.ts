@@ -20,7 +20,7 @@ export class Command {
         this.provideRefreshTime = Date.now()
         this.extension.manager.findAllDependentFiles()
         let suggestions = JSON.parse(JSON.stringify(this.defaults))
-        this.extension.manager.texFiles.map(filePath => {
+        this.extension.manager.texFiles.forEach(filePath => {
             let items = this.getCommandsTeX(filePath)
             Object.keys(items).map(key => {
                 if (key in suggestions)

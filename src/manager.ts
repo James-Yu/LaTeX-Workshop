@@ -9,8 +9,8 @@ import {Extension} from './main'
 export class Manager {
     extension: Extension
     rootFile: string
-    texFiles: string[]
-    bibFiles: string[]
+    texFiles: Set<string>
+    bibFiles: Set<string>
 
     findAllDependentFilesTime: number
 
@@ -103,12 +103,13 @@ export class Manager {
             this.findRoot()
         if (this.rootFile === undefined)
             return
-        this.texFiles = [this.rootFile]
-        this.bibFiles = []
+        this.texFiles = new Set<string>()
+        this.texFiles.add(this.rootFile)
+        this.bibFiles = new Set<string>()
         this.findDependentFiles(this.rootFile)
     }
 
-    findDependentFiles(filePath: string) {
+    findDependentFiles(filePath: string, tryAppendTex = true) {
         let content = fs.readFileSync(filePath, 'utf-8')
         let rootDir = path.dirname(this.rootFile)
 
@@ -117,19 +118,36 @@ export class Manager {
             let result = inputReg.exec(content)
             if (!result)
                 break
-            let inputFile = result[1];
-            if (path.extname(inputFile) === '')
-                inputFile += '.tex'
+            const inputFile = result[1]
             let inputFilePath = path.resolve(path.join(rootDir, inputFile))
-            if (this.texFiles.indexOf(inputFilePath) < 0) {
-                this.texFiles.push(inputFilePath)
-                this.findDependentFiles(inputFilePath)
+            if (path.extname(inputFilePath) === '') {
+                inputFilePath += '.tex'
+            }
+            if (!this.texFiles.has(inputFilePath)) {
+                this.texFiles.add(inputFilePath)
+                try {
+                    this.findDependentFiles(inputFilePath)
+                } catch (err) {
+                    if (tryAppendTex && (err.code === 'ENOENT' || err.code === 'EISDIR')) {
+                        // It's possible that the filename was a .tex file with
+                        // a period in it (intro.math.tex)
+
+                        // Remove this filename from the checked list...
+                        this.texFiles.delete(inputFilePath)
+                        // ...add the .tex extension...
+                        inputFilePath += '.tex'
+                        this.texFiles.add(inputFilePath)
+                        // ...and try again. If this fails, don't try appending
+                        // .tex any more.
+                        this.findDependentFiles(inputFilePath, false)
+                    }
+                }
             }
         }
 
         let bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^\[\]\{\}]*\])?){(.+?)}/g
         while (true) {
-            let result = bibReg.exec(content);
+            let result = bibReg.exec(content)
             if (!result)
                 break
             let bibs = result[1].split(',').map((bib) => {
@@ -139,8 +157,7 @@ export class Manager {
                 if (path.extname(bib) === '')
                     bib += '.bib'
                 let bibPath = path.resolve(path.join(rootDir, bib))
-                if (this.bibFiles.indexOf(bibPath) < 0)
-                    this.bibFiles.push(bibPath)
+                this.bibFiles.add(bibPath)
             }
         }
     }
