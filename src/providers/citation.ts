@@ -43,7 +43,7 @@ export class Citation {
         if (!fs.existsSync(bib))
             return items
         let content = fs.readFileSync(bib, 'utf-8').replace(/[\r\n]/g, ' ')
-        let itemReg = /@(\w+){/g
+        let itemReg = /@(\w+){\s*\w+\s*,/g
         let result = itemReg.exec(content)
         let prev_result = undefined
         while (result || prev_result) {
