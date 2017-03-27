@@ -118,7 +118,7 @@ export class Manager {
             let result = inputReg.exec(content)
             if (!result)
                 break
-            const inputFile = result[1];
+            const inputFile = result[1]
             let inputFilePath = path.resolve(path.join(rootDir, inputFile))
             if (path.extname(inputFilePath) === '') {
                 inputFilePath += '.tex'
@@ -147,7 +147,7 @@ export class Manager {
 
         let bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^\[\]\{\}]*\])?){(.+?)}/g
         while (true) {
-            let result = bibReg.exec(content);
+            let result = bibReg.exec(content)
             if (!result)
                 break
             let bibs = result[1].split(',').map((bib) => {
