@@ -18,6 +18,10 @@ export class Manager {
         this.extension = extension
     }
 
+    get rootDir() {
+        return path.dirname(this.rootFile)
+    }
+
     tex2pdf(texPath) {
         return `${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`
     }
