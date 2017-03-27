@@ -39,11 +39,14 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.logger.status.hide()
         else
             extension.logger.status.show()
+        if (vscode.window.activeTextEditor)
+            extension.manager.findRoot()
     }))
 
-
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','));
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
+
+    extension.manager.findRoot()
 }
 
 export class Extension {

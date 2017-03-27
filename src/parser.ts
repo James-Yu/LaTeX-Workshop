@@ -118,7 +118,6 @@ export class Parser {
                 components[1] = components[0] + ':' + components[1]
                 components.shift()
             }
-            console.log(components)
             this.linterLog.push({
                 type: 'warning',
                 text: components.slice(4).join(': '),

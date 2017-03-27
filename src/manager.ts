@@ -28,13 +28,12 @@ export class Manager {
         return false
     }
 
-    findRoot(saveRoot: boolean=true) : string | undefined {
+    findRoot() : string | undefined {
         let findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootSaved(), () => this.findRootDir()]
         for (let method of findMethods) {
             let rootFile = method()
             if (rootFile !== undefined) {
-                if (saveRoot)
-                    this.rootFile = rootFile
+                this.rootFile = rootFile
                 return rootFile
             }
         }

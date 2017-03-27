@@ -47,11 +47,10 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot get cursor position: ${position}`)
             return
         }
-        let root = this.extension.manager.findRoot(false)
-        let pdfFile = this.extension.manager.tex2pdf(root)
+        let pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
         let cmd = `synctex view -i "${position.line + 1}:${position.character + 1}:${filePath}" -o "${pdfFile}"`
         this.extension.logger.addLogMessage(`Executing ${cmd}`)
-        cp.exec(cmd, {cwd: path.dirname(root)}, (err, stdout, stderr) => {
+        cp.exec(cmd, {cwd: path.dirname(pdfFile)}, (err, stdout, stderr) => {
             if (err)
                 this.extension.logger.addLogMessage(`Cannot synctex: ${err}, ${stderr}`)
             else
