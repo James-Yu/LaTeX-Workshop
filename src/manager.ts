@@ -118,9 +118,10 @@ export class Manager {
             if (!result)
                 break
             let inputFile = result[1];
-            if (path.extname(inputFile) === '')
-                inputFile += '.tex'
             let inputFilePath = path.resolve(path.join(rootDir, inputFile))
+            if (path.extname(inputFilePath) !== '.tex' && !fs.existsSync(inputFilePath)) {
+                inputFilePath += '.tex'
+            }
             if (this.texFiles.indexOf(inputFilePath) < 0) {
                 this.texFiles.push(inputFilePath)
                 this.findDependentFiles(inputFilePath)
