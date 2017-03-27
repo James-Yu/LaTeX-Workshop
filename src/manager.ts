@@ -109,7 +109,7 @@ export class Manager {
         this.findDependentFiles(this.rootFile)
     }
 
-    findDependentFiles(filePath: string, tryAppendTex = true) {
+    findDependentFiles(filePath: string) {
         let content = fs.readFileSync(filePath, 'utf-8')
         let rootDir = path.dirname(this.rootFile)
 
@@ -128,18 +128,15 @@ export class Manager {
                 try {
                     this.findDependentFiles(inputFilePath)
                 } catch (err) {
-                    if (tryAppendTex && (err.code === 'ENOENT' || err.code === 'EISDIR')) {
-                        // It's possible that the filename was a .tex file with
-                        // a period in it (intro.math.tex)
-
-                        // Remove this filename from the checked list...
+                    if (err.code === 'ENOENT' || err.code === 'EISDIR') {
                         this.texFiles.delete(inputFilePath)
-                        // ...add the .tex extension...
-                        inputFilePath += '.tex'
-                        this.texFiles.add(inputFilePath)
-                        // ...and try again. If this fails, don't try appending
-                        // .tex any more.
-                        this.findDependentFiles(inputFilePath, false)
+                        if (path.extname(inputFilePath) !== '.tex') {
+                            inputFilePath += '.tex'
+                            this.texFiles.add(inputFilePath)
+                            this.findDependentFiles(inputFilePath)
+                        } else {
+                            this.extension.logger.addLogMessage(`File not found: ${inputFilePath}`)
+                        }
                     }
                 }
             }
