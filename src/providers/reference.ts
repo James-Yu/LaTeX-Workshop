@@ -20,7 +20,7 @@ export class Reference {
         this.provideRefreshTime = Date.now()
         this.extension.manager.findAllDependentFiles()
         let suggestions = {}
-        this.extension.manager.texFiles.map(filePath => {
+        this.extension.manager.texFiles.forEach(filePath => {
             let items = this.getReferencesTeX(filePath)
             Object.keys(items).map(key => {
                 if (!(key in suggestions))
