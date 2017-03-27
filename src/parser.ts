@@ -150,6 +150,10 @@ export class Parser {
             diagsCollection[item.file].push(diag)
         }
         if (createBuildLogRaw) {
+            if (this.buildLogFile) {
+                fs.unlink(this.buildLogFile.name)
+                this.extension.logger.addLogMessage(`Temp file removed: ${this.buildLogFile.name}`)
+            }
             this.buildLogFile = tmp.fileSync()
             fs.writeFileSync(this.buildLogFile.fd, this.buildLogRaw)
         }

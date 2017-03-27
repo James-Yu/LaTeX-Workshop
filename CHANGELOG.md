@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
 - (#39) LaTeX linting with `chktex`.
 
+### Changed
+- Web page title will show `[disconnected]` when the websocket is closed.
+  - Such web pages cannot communicate with the extension. Thus will not auto refresh or SyncTeX.
+- Temp files created by log parser will be automatically deleted. In most cases.
+
 ## [1.0.2] - 2017-03-26
 ### Fixed
 - (#38) Cope with typical language ids.

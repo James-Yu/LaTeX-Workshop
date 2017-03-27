@@ -23,7 +23,7 @@ export class Linter {
         if (this.currentProcess)
             this.currentProcess.kill()
         this.extension.logger.addLogMessage(`Linter start.`)
-        if (vscode.window.activeTextEditor.document.fileName === this.extension.manager.rootFile) {
+        if (vscode.window.activeTextEditor.document.fileName !== this.extension.manager.rootFile) {
             let configuration = vscode.workspace.getConfiguration('latex-workshop')
             let command = (configuration.get('linter_command') as string).replace('%DOC%', `"${this.extension.manager.rootFile}"`)
             this.lintCommand(command, this.extension.manager.rootFile)
@@ -48,6 +48,11 @@ export class Linter {
             if (!error) {
                 this.extension.parser.parseLinter(stdout.split(fileName).join(this.extension.manager.rootFile))
                 this.extension.logger.addLogMessage(`Linter finished.`)
+                if (fileName !== this.extension.manager.rootFile) {
+                    console.log(fileName)
+                    fs.unlink(fileName)
+                    this.extension.logger.addLogMessage(`Temp file removed: ${fileName}`)
+                }
                 return
             }
             this.extension.logger.addLogMessage(`Linter failed with error ${error.message}.`)
