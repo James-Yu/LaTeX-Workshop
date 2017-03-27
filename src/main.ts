@@ -37,10 +37,13 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.isTex(e.document.fileName)) {
             let configuration = vscode.workspace.getConfiguration('latex-workshop')
-            let interval = configuration.get('linter_interval') as number
-            if (extension.linter.linterTimeout)
-                clearTimeout(extension.linter.linterTimeout)
-            extension.linter.linterTimeout = setTimeout(() => extension.linter.lint(), interval)
+            let linter = configuration.get('linter') as boolean
+            if (linter) {
+                let interval = configuration.get('linter_interval') as number
+                if (extension.linter.linterTimeout)
+                    clearTimeout(extension.linter.linterTimeout)
+                extension.linter.linterTimeout = setTimeout(() => extension.linter.lint(), interval)
+            }
         }
     }))
 
