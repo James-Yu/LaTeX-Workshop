@@ -163,6 +163,7 @@ export class Parser {
             const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1), 
                                            new vscode.Position(item.line - 1, item.position - 1))
             const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
+            diag.code = item.code
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }
