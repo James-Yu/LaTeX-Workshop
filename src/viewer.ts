@@ -49,8 +49,10 @@ export class Viewer {
         if (!url)
             return
         let pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        open(url)
+        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile])
+            this.clients[pdfFile].ws.close()
         this.clients[pdfFile] = {type: 'viewer'}
+        open(url)
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
         this.extension.logger.displayStatus('repo', 'white', `Open PDF viewer for ${path.basename(pdfFile)}.`)
     }
@@ -64,8 +66,10 @@ export class Viewer {
         let column = vscode.ViewColumn.Two
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two)
             column = vscode.ViewColumn.Three
-        vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
+        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile])
+            this.clients[pdfFile].ws.close()
         this.clients[pdfFile] = {type: 'tab'}
+        vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
         this.extension.logger.displayStatus('repo', 'white', `Open PDF tab for ${path.basename(pdfFile)}.`)
     }
@@ -82,7 +86,7 @@ export class Viewer {
                         delete this.clients[key].ws
                         delete this.clients[key].type
                     }
-                        break
+                break
             case 'position':
                 for (let key in this.clients)
                     if (this.clients[key].ws == ws)
