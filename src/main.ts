@@ -30,6 +30,20 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.commander.build()
     }))
 
+    context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
+        extension.manager.findRoot()
+    }))
+
+    context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
+        if (extension.manager.isTex(e.document.fileName)) {
+            let configuration = vscode.workspace.getConfiguration('latex-workshop')
+            let interval = configuration.get('linter_interval') as number
+            if (extension.linter.linterTimeout)
+                clearTimeout(extension.linter.linterTimeout)
+            extension.linter.linterTimeout = setTimeout(() => extension.linter.lint(), interval)
+        }
+    }))
+
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
         if (!vscode.window.activeTextEditor)
             extension.logger.status.hide()
@@ -41,6 +55,8 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.logger.status.show()
         if (vscode.window.activeTextEditor)
             extension.manager.findRoot()
+        if (extension.linter.linterTimeout)
+            clearTimeout(extension.linter.linterTimeout)
     }))
 
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
