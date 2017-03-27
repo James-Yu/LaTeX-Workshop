@@ -5,6 +5,11 @@ import * as fs from 'fs'
 
 import {Extension} from './../main'
 
+const bibEntries = ['article', 'book', 'booklet', 'conference', 'inbook',
+                    'incollection', 'inproceedings', 'manual', 'mastersthesis',
+                    'misc', 'phdthesis', 'proceedings', 'techreport',
+                    'unpublished']
+
 export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
@@ -47,7 +52,7 @@ export class Citation {
         let result = itemReg.exec(content)
         let prev_result = undefined
         while (result || prev_result) {
-            if (prev_result && prev_result[1].toLowerCase() !== 'comment') {
+            if (prev_result && bibEntries.indexOf(prev_result[1].toLowerCase()) > -1) {
                 let item = content.substring(prev_result.index, result ? result.index : undefined).trim()
                 items.push(this.splitBibItem(item))
             }
