@@ -9,6 +9,7 @@ import {Extension} from './main'
 export class Builder {
     extension: Extension
     currentProcess: cp.ChildProcess
+    disableBuildAfterSave: boolean = false
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -16,6 +17,9 @@ export class Builder {
 
     build(rootFile: string) {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
+        this.disableBuildAfterSave = true
+        vscode.workspace.saveAll()
+        this.disableBuildAfterSave = false
         if (this.currentProcess)
             this.currentProcess.kill()
         let toolchain = this.createToolchain(rootFile)
