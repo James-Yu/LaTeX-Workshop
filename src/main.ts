@@ -11,6 +11,7 @@ import {Server} from './server'
 import {Locator} from './locator'
 import {Parser} from './parser'
 import {Completer} from './completer'
+import {Linter} from './linter'
 
 export async function activate(context: vscode.ExtensionContext) {
     let extension = new Extension()
@@ -55,6 +56,7 @@ export class Extension {
     locator: Locator
     parser: Parser
     completer: Completer
+    linter: Linter
 
     constructor() {
         this.logger = new Logger(this)
@@ -66,6 +68,7 @@ export class Extension {
         this.locator = new Locator(this)
         this.parser = new Parser(this)
         this.completer = new Completer(this)
+        this.linter = new Linter(this)
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
 }

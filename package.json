@@ -147,12 +147,17 @@
         "latex-workshop.toolchain": {
           "type": "array",
           "default": ["latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf %DOC%"],
-          "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the file name (without '.tex' extension), and will be replaced when executing."
+          "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the root LaTeX file name (without '.tex' extension), and will be replaced when executing."
         },
         "latex-workshop.build_after_save": {
           "type": "boolean",
           "default": true,
           "description": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
+        },
+        "latex-workshop.linter_command": {
+          "type": "string",
+          "default": "chktex -q -v0 %DOC%",
+          "description": "Linter command to check LaTeX syntax in real time.\nNow supports chktex.\nPlaceholder %DOC% is used to represent the root LaTeX file name (with extension)."
         },
         "latex-workshop.show_debug_log": {
           "type": "boolean",
