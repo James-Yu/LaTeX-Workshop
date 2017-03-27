@@ -17,7 +17,7 @@ const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkPatternNoGM = /^Latexmk:\sapplying\srule/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
-const diagnositic_severity = {
+const diagnostic_severity = {
     'typesetting': vscode.DiagnosticSeverity.Hint,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
@@ -30,7 +30,8 @@ export class Parser {
     buildLogRaw: string
     buildLogFile: any
     linterLog = []
-    diagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
+    compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
+    linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -62,7 +63,7 @@ export class Parser {
     latexmkSkipped(log: string): boolean {
         let lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         if (lines[0].match(latexmkUpToDate)) {
-            this.showDiagnostics()
+            this.showCompilerDiagnostics()
             return true
         }
         return false
@@ -99,51 +100,41 @@ export class Parser {
                 this.buildLog.push({
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
-                    file: result[1] ? path.resolve(path.dirname(this.extension.manager.rootFile), result[1]) : this.extension.manager.rootFile,
+                    file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : this.extension.manager.rootFile,
                     line: result[2] ? parseInt(result[2], 10) : undefined
                 })
                 continue
             }
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
-        this.showDiagnostics(true)
+        this.showCompilerDiagnostics(true)
     }
 
     parseLinter(log: string) {
-        let lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const re = /^(.*):(\d+):(\d+):(\d+):(.*)$/gm
         this.linterLog = []
-        for (let line of lines) {
-            let components = line.split(':')
-            if (components[0].length === 1) {
-                components[1] = components[0] + ':' + components[1]
-                components.shift()
-            }
+        let match
+        while (match = re.exec(log)) {
+            // note that the root file is reported absolutely, whilst others are reported relatively
             this.linterLog.push({
                 type: 'warning',
-                text: components.slice(4).join(': '),
-                file: components[0],
-                line: components[1],
-                position: components[2]
+                file: path.isAbsolute(match[1]) ? match[1] : path.resolve(this.extension.manager.rootDir, match[1]),
+                line: parseInt(match[2]),
+                position: parseInt(match[3]),
+                code: parseInt(match[4]),
+                text: match[5]
             })
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${this.linterLog.length} messages.`)
-        this.showDiagnostics()
+        this.showLinterDiagnostics()
     }
 
-    showDiagnostics(createBuildLogRaw: boolean = false) {
-        this.diagnostics.clear()
+    showCompilerDiagnostics(createBuildLogRaw: boolean = false) {
+        this.compilerDiagnostics.clear()
         let diagsCollection: {[key:string]:vscode.Diagnostic[]} = {}
         for (let item of this.buildLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
-            const diag = new vscode.Diagnostic(range, item.text, diagnositic_severity[item.type])
-            if (diagsCollection[item.file] === undefined) {
-                diagsCollection[item.file] = []
-            }
-            diagsCollection[item.file].push(diag)
-        }
-        for (let item of this.linterLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, item.position), new vscode.Position(item.line - 1, item.position + 1))
-            const diag = new vscode.Diagnostic(range, item.text, diagnositic_severity[item.type])
+            const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }
@@ -158,10 +149,27 @@ export class Parser {
             fs.writeFileSync(this.buildLogFile.fd, this.buildLogRaw)
         }
         if (this.buildLogFile)
-            this.diagnostics.set(vscode.Uri.file(this.buildLogFile.name),
+            this.compilerDiagnostics.set(vscode.Uri.file(this.buildLogFile.name),
                 [new vscode.Diagnostic(new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0)), 
-                                        'Click here to open log file', diagnositic_severity['typesetting'])])
+                                        'Click here to open log file', diagnostic_severity['typesetting'])])
         for (let file in diagsCollection)
-            this.diagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+            this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+    }
+
+    showLinterDiagnostics(createBuildLogRaw: boolean = false) {
+        this.linterDiagnostics.clear()
+        const diagsCollection: {[key:string]:vscode.Diagnostic[]} = {}
+        for (const item of this.linterLog) {
+            const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1), 
+                                           new vscode.Position(item.line - 1, item.position - 1))
+            const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
+            if (diagsCollection[item.file] === undefined) {
+                diagsCollection[item.file] = []
+            }
+            diagsCollection[item.file].push(diag)
+        }
+        for (const file in diagsCollection) {
+            this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+        }
     }
 }
