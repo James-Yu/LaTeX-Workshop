@@ -122,7 +122,7 @@ export class Parser {
                 line: parseInt(match[2]),
                 position: parseInt(match[3]),
                 code: parseInt(match[4]),
-                text: match[5]
+                text: `${match[4]}: ${match[5]}`
             })
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${this.linterLog.length} messages.`)
@@ -135,6 +135,7 @@ export class Parser {
         for (let item of this.buildLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
             const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
+            diag.source = 'LaTeX'
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }
@@ -164,6 +165,7 @@ export class Parser {
                                            new vscode.Position(item.line - 1, item.position - 1))
             const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
             diag.code = item.code
+            diag.source = 'ChkTeX'
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }
