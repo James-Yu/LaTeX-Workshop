@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.1] - 2017-03-28
+### Changed
+- (#45) `chktex` diagnostics separated from `latex` ones.
+- (#46) Now save all editors when building.
+- A higher-resolution new icon.
+
+### Fixed
+- (#44) `.tex` files with dot in the file name cannot get recognized in `\input`.
+- (#48) Use `.bib` entry whitelist to avoid issues by unformal entries.
+
 ## [1.1.0] - 2017-03-27
 ### Added
 - (#39) LaTeX linting with `chktex`.
