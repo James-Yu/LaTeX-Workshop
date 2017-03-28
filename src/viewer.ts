@@ -41,7 +41,9 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        return `http://${this.extension.server.address}/viewer.html?file="pdf:${encodeURIComponent(pdfFile)}`
+        let url = `http://${this.extension.server.address}/viewer.html?file=\\pdf:${encodeURIComponent(pdfFile)}`
+        this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
+        return url
     }
 
     openViewer(sourceFile: string) {
