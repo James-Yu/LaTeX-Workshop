@@ -4,6 +4,7 @@ import {Logger} from './logger'
 import {Commander} from './commander'
 import {Manager} from './manager'
 import {Builder} from './builder'
+import {CodeActions} from './codeactions'
 import {Viewer, PDFProvider} from './viewer'
 import {Server} from './server'
 import {Locator} from './locator'
@@ -21,6 +22,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
+    vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         let configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -69,7 +71,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
-
+    context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     extension.manager.findRoot()
 }
 
@@ -85,6 +87,7 @@ export class Extension {
     completer: Completer
     linter: Linter
     cleaner: Cleaner
+    codeActions: CodeActions
 
     constructor() {
         this.logger = new Logger(this)
@@ -98,6 +101,7 @@ export class Extension {
         this.completer = new Completer(this)
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
+        this.codeActions = new CodeActions(this)
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
 }
