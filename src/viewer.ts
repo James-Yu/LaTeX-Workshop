@@ -26,6 +26,7 @@ export class Viewer {
             this.clients[pdfFile].ws.send(JSON.stringify({type: "refresh"}))
             return true
         }
+        this.extension.logger.addLogMessage(`No PDF viewer connected for ${pdfFile}`)
         return false
     }
 
