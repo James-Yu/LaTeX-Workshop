@@ -4,9 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.1.2] - 2017-03-29
+### Changed
+- (#51) Now diagnostics show message sources.
+- (#56) Real-time `ChkTeX` on active editor.
+
+### Fixed
+- (#54) Web page url different from the one with tab view.
+
 ## [1.1.1] - 2017-03-28
 ### Changed
-- (#45) `chktex` diagnostics separated from `latex` ones.
+- (#45) `ChkTeX` diagnostics separated from `LateX` ones.
 - (#46) Now save all editors when building.
 - A higher-resolution new icon.
 
@@ -16,7 +24,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [1.1.0] - 2017-03-27
 ### Added
-- (#39) LaTeX linting with `chktex`.
+- (#39) LaTeX linting with `ChkTeX`.
 
 ### Changed
 - Web page title will show `[disconnected]` when the websocket is closed.
