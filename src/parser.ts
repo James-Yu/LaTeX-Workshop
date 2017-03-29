@@ -133,8 +133,8 @@ export class Parser {
                 position: parseInt(match[3]),
                 length: parseInt(match[4]),
                 type: match[5].toLowerCase(),
-                code: parseInt(match[7]),
-                text: `${match[4]}: ${match[7]}`
+                code: parseInt(match[6]),
+                text: `${match[6]}: ${match[7]}`
             })
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
