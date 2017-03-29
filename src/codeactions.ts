@@ -99,7 +99,8 @@ export class CodeActions {
             case 6:
                 replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\/')
             case 11:
-                fixString = /\\[cl]dots/.exec(message)[0]
+                // add a space after so we don't accidentally join with the following word.
+                fixString = /\\[cl]?dots/.exec(message)[0] + " "
                 replaceRangeWithString(document, range, fixString)
                 break
             case 13:
