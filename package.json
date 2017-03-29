@@ -175,12 +175,12 @@
         },
         "latex-workshop.linter_command_active_file": {
           "type": "array",
-          "default": ["chktex", "-q", "-I0", "-f%f:%l:%c:%d:%k:%n:%m\n"],
+          "default": ["chktex", "-wall", "-n22", "-n30", "-e16", "-q", "-I0", "-f%f:%l:%c:%d:%k:%n:%m\n"],
           "description": "Linter command to check LaTeX syntax of the current file state in real time with ChkTeX.\nCurrent file contents will be piped to the command through stdin.\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
         },
         "latex-workshop.linter_command_root_file": {
           "type": "array",
-          "default": ["chktex", "-q", "-f%f:%l:%c:%d:%k:%n:%m\n", "%DOC%"],
+          "default": ["chktex", "-wall", "-n22", "-n30", "-e16", "-q", "-f%f:%l:%c:%d:%k:%n:%m\n", "%DOC%"],
           "description": "Linter command to check LaTeX syntax of the entire project from the root file with ChkTeX.\nPlaceholder %DOC% is used to represent the root LaTeX file name (with extension).\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
         },
         "latex-workshop.linter_interval": {
