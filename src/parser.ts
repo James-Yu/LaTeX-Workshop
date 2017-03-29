@@ -23,13 +23,21 @@ const diagnostic_severity = {
     'error': vscode.DiagnosticSeverity.Error,
 }
 
+interface LinterLogEntry {
+    type: string
+    file: string
+    line: number
+    position: number
+    code: number
+    text: string
+}
+
 export class Parser {
     extension: Extension
     isLaTeXmkSkipped: boolean
     buildLog = []
     buildLogRaw: string
     buildLogFile: any
-    linterLog = []
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
     linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
 
@@ -110,23 +118,33 @@ export class Parser {
         this.showCompilerDiagnostics(true)
     }
 
-    parseLinter(log: string) {
+    parseLinter(log: string, singleFileOriginalPath?: string) {
         const re = /^(.*):(\d+):(\d+):(\d+):(.*)$/gm
-        this.linterLog = []
+        const linterLog: LinterLogEntry[] = []
         let match
         while (match = re.exec(log)) {
-            // note that the root file is reported absolutely, whilst others are reported relatively
-            this.linterLog.push({
+            // this log may be for a single file in memory, in which case we override the 
+            // path with what is provided
+            const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
+            linterLog.push({
                 type: 'warning',
-                file: path.isAbsolute(match[1]) ? match[1] : path.resolve(this.extension.manager.rootDir, match[1]),
+                file: path.isAbsolute(filePath) ? filePath : path.resolve(this.extension.manager.rootDir, filePath),
                 line: parseInt(match[2]),
                 position: parseInt(match[3]),
                 code: parseInt(match[4]),
                 text: `${match[4]}: ${match[5]}`
             })
         }
-        this.extension.logger.addLogMessage(`Linter log parsed with ${this.linterLog.length} messages.`)
-        this.showLinterDiagnostics()
+        this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
+        if (singleFileOriginalPath === undefined) {
+            // A full lint of the project has taken place - clear all previous results.
+            this.linterDiagnostics.clear()
+        } else if (linterLog.length === 0) {
+            // We are linting a single file and the new log is empty for it - 
+            // clean existing records.
+            this.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
+        }
+        this.showLinterDiagnostics(linterLog)
     }
 
     showCompilerDiagnostics(createBuildLogRaw: boolean = false) {
@@ -157,10 +175,9 @@ export class Parser {
             this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
     }
 
-    showLinterDiagnostics() {
-        this.linterDiagnostics.clear()
+    showLinterDiagnostics(linterLog: LinterLogEntry[]) {
         const diagsCollection: {[key:string]:vscode.Diagnostic[]} = {}
-        for (const item of this.linterLog) {
+        for (const item of linterLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1), 
                                            new vscode.Position(item.line - 1, item.position - 1))
             const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])

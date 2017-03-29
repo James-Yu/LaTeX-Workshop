@@ -26,8 +26,13 @@ export async function activate(context: vscode.ExtensionContext) {
         let configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('build_after_save') || extension.builder.disableBuildAfterSave)
             return
-        if (extension.manager.isTex(e.fileName))
+        if (extension.manager.isTex(e.fileName)) {
+            const linter = configuration.get('linter') as boolean
+            if (linter) {
+                extension.linter.lintRootFile()
+            }
             extension.commander.build()
+        }
     }))
 
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
@@ -42,7 +47,7 @@ export async function activate(context: vscode.ExtensionContext) {
                 let interval = configuration.get('linter_interval') as number
                 if (extension.linter.linterTimeout)
                     clearTimeout(extension.linter.linterTimeout)
-                extension.linter.linterTimeout = setTimeout(() => extension.linter.lint(), interval)
+                extension.linter.linterTimeout = setTimeout(() => extension.linter.lintActiveFile(), interval)
             }
         }
     }))
