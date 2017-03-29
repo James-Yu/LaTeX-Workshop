@@ -25,9 +25,7 @@ export class Manager {
     }
 
     isTex(filePath) {
-        if (path.extname(filePath) == '.tex')
-            return true
-        return false
+        return path.extname(filePath) === '.tex'
     }
 
     findRoot() : string | undefined {
