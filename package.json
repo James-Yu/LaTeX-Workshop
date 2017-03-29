@@ -157,17 +157,22 @@
         "latex-workshop.linter": {
           "type": "boolean",
           "default": false,
-          "description": "Lint LaTeX when no document changes for a defined period of time."
+          "description": "Enable linting LaTeX with ChkTeX.\nThe active document will be linted when no document changes for a defined period of time.\nThe full project will be linted from the root on file save."
         },
-        "latex-workshop.linter_command": {
-          "type": "string",
-          "default": "chktex -q -v0 %DOC%",
-          "description": "Linter command to check LaTeX syntax in real time.\nNow supports chktex.\nPlaceholder %DOC% is used to represent the root LaTeX file name (with extension)."
+        "latex-workshop.linter_command_active_file": {
+          "type": "array",
+          "default": ["chktex", "-q", "-I0", "-f%f:%l:%c:%d:%k:%n:%m\n"],
+          "description": "Linter command to check LaTeX syntax of the current file state in real time with ChkTeX.\nCurrent file contents will be piped to the command through stdin.\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
+        },
+        "latex-workshop.linter_command_root_file": {
+          "type": "array",
+          "default": ["chktex", "-q", "-f%f:%l:%c:%d:%k:%n:%m\n", "%DOC%"],
+          "description": "Linter command to check LaTeX syntax of the entire project from the root file with ChkTeX.\nPlaceholder %DOC% is used to represent the root LaTeX file name (with extension).\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
         },
         "latex-workshop.linter_interval": {
           "type": "number",
-          "default": "2000",
-          "description": "Defines the time interval in milliseconds between invoking LaTeX linter"
+          "default": 300,
+          "description": "Defines the time interval in milliseconds between invoking LaTeX linter on the active file."
         },
         "latex-workshop.show_debug_log": {
           "type": "boolean",
