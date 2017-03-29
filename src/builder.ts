@@ -51,6 +51,11 @@ export class Builder {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
         this.extension.logger.displayStatus('check', 'white', `LaTeX toolchain succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
+        let configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let clean = configuration.get('clean_after_build') as boolean
+        if (clean) {
+            this.extension.cleaner.clean()
+        }
     }
 
     processWrapper(command: string, options: any, callback: (error: Error, stdout: string, stderr: string) => void) : cp.ChildProcess {

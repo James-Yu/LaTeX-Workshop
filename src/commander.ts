@@ -55,4 +55,10 @@ export class Commander {
             return
         this.extension.locator.syncTeX()
     }
+
+    clean() {
+        this.extension.logger.addLogMessage(`CLEAN command invoked.`)
+        this.extension.manager.findRoot()
+        this.extension.cleaner.clean()
+    }
 }

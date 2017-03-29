@@ -12,6 +12,7 @@ import {Locator} from './locator'
 import {Parser} from './parser'
 import {Completer} from './completer'
 import {Linter} from './linter'
+import {Cleaner} from './cleaner'
 
 export async function activate(context: vscode.ExtensionContext) {
     let extension = new Extension()
@@ -21,6 +22,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
+    vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         let configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -84,6 +86,7 @@ export class Extension {
     parser: Parser
     completer: Completer
     linter: Linter
+    cleaner: Cleaner
 
     constructor() {
         this.logger = new Logger(this)
@@ -96,6 +99,7 @@ export class Extension {
         this.parser = new Parser(this)
         this.completer = new Completer(this)
         this.linter = new Linter(this)
+        this.cleaner = new Cleaner(this)
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
 }

@@ -138,6 +138,10 @@
       {
         "command": "latex-workshop.synctex",
         "title": "SyncTeX from LaTeX to PDF"
+      },
+      {
+        "command": "latex-workshop.clean",
+        "title": "Clean up auxillary files of LaTeX project"
       }
     ],
     "configuration": {
@@ -153,6 +157,16 @@
           "type": "boolean",
           "default": true,
           "description": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
+        },
+        "latex-workshop.clean_after_build": {
+          "type": "boolean",
+          "default": false,
+          "description": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project."
+        },
+        "latex-workshop.files_to_clean": {
+          "type": "array",
+          "default": ["*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk"],
+          "description": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
         },
         "latex-workshop.linter": {
           "type": "boolean",
@@ -202,6 +216,11 @@
           "when": "resourceLangId == latex",
           "command": "latex-workshop.synctex",
           "group": "navigation@103"
+        },
+        {
+          "when": "resourceLangId == latex",
+          "command": "latex-workshop.clean",
+          "group": "navigation@104"
         }
       ]
     }
