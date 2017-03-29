@@ -11,6 +11,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 - Syntax highlighting (colorized code) for `.tex` / `.bib` files and more.
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
+  - Code Actions (automatic fixes) are offered for many issues found by ChxTeX.
 
 ## Requirements
 
@@ -38,14 +39,21 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 
 ## Linting with ChkTeX
 
-If you have [`ChkTeX`](http://www.nongnu.org/chktex) installed as part of your LaTeX distribution, Latex Workshop can run it against your LaTeX files in order to highlight issues:
-![ChkTeX Demo](https://cloud.githubusercontent.com/assets/1312873/24448389/ec08cc26-146b-11e7-986f-a5f2494be561.gif)
+If you have [`ChkTeX`](http://www.nongnu.org/chktex) installed as part of your LaTeX distribution, Latex Workshop can run it against your LaTeX files in order to highlight issues.
 
 To enable linting, set `latex-workshop.linter: true` in settings.
 
-The current file will be linted after a brief pause in typing. The full project will be linted each time you hit save. Warnings are show in the `Problems` pane - you can click on each entry to go to the relevant position where ChkTeX has found an issue.
+The current file will be linted after a brief pause in typing. The full project will be linted upon opening VS Code for the first time, and each time you hit save. Warnings and errors are shown in the `Problems` pane - you can click on each entry to go to the relevant position where ChkTeX has found an issue.
 
 For details on how to interpret the reported issues, consult the [ChkTeX manual](http://www.nongnu.org/chktex/ChkTeX.pdf).
+
+### Code actions
+
+For many issues, LaTeX Workshop will offer **Code Actions** to help you correct your LaTeX files. If you take your mouse to a highlighted error, you will see a lightbulb in the gutter if LaTeX Workshop is able to propose a solution to the problem. 
+Alternatively, you can hit `ctrl`/`cmd` + `.` whilst the cursor is on a highlighted area to trigger the same dropdown.
+Choose the item in the menu to have LaTeX Workshop attempt to fix the issue:
+
+![Code Actions](https://cloud.githubusercontent.com/assets/1312873/24458498/0303c3ca-1491-11e7-8685-f743ddb0838c.gif)
 
 
 ## FAQ
