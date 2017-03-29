@@ -1,5 +1,3 @@
-'use strict'
-
 import * as vscode from 'vscode'
 import * as http from 'http'
 import * as ws from 'ws'
