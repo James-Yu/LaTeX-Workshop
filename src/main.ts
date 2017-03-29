@@ -95,11 +95,8 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     extension.manager.findRoot()
 
-    if (vscode.window.activeTextEditor && 
-        extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
-        lintActiveFileIfEnabled(extension)
-    }
-
+    // On startup, lint the whole project if enabled.
+    lintRootFileIfEnabled(extension)
 }
 
 export class Extension {

@@ -189,7 +189,11 @@ export class Parser {
             diagsCollection[item.file].push(diag)
         }
         for (const file in diagsCollection) {
-            this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+            if (this.extension.manager.isTex(file)) {
+                // only report ChkTeX errors on TeX files. This is done to avoid
+                // reporting errors in .sty files which for most users is irrelevant.
+                this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+            }
         }
     }
 }
