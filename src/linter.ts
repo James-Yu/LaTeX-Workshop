@@ -2,29 +2,15 @@
 
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
-import * as cp from 'child_process'
-import * as tmp from 'tmp'
+import {ChildProcess, spawn, SpawnOptions} from 'child_process'
+import {EOL} from 'os'
 
 import {Extension} from './main'
 
-function writeFile(filename: string, data: any) {
-    return new Promise((resolve, reject) => {
-        fs.writeFile(filename, data, (err, result) => {
-            if (err) {
-                reject(err);
-            } else {
-                resolve(result)
-            }
-        })
-    })
-}
-
 export class Linter {
     extension: Extension
-    linterFile: string
     linterTimeout: NodeJS.Timer
-    currentProcesses: {[linterId: string]: cp.ChildProcess} = {}
+    currentProcesses: {[linterId: string]: ChildProcess} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -34,68 +20,85 @@ export class Linter {
         if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.getText()) {
             return
         }
-        this.extension.logger.addLogMessage(`Linter for active file state started.`)
-        const content = vscode.window.activeTextEditor.document.getText()
+        this.extension.logger.addLogMessage(`Linter for active file started.`)
         const filePath = vscode.window.activeTextEditor.document.fileName
-        const tmpFilePath = tmp.fileSync()
-        try {
-            await writeFile(tmpFilePath.name, content)
-        } catch (err) {
-            this.extension.logger.addLogMessage(`Unable to write file ${tmpFilePath}`)
-            return
-        }
-        // provide the original path to the active file as the second argument.
-        // this will mean: 
-        //   1. we won't follow \input directives (lint this one file only)
-        //   2. we will report this second path in the diagnostics instead of the temporary one.
-        await this.lintFile(tmpFilePath.name, filePath)
-        tmpFilePath.removeCallback()
-        this.extension.logger.addLogMessage(`Temp file removed: ${tmpFilePath}`)
-    }
+        const content = vscode.window.activeTextEditor.document.getText()
 
-    lintRootFile() {
-        this.extension.logger.addLogMessage(`Linter for root file started.`)
-        return this.lintFile(this.extension.manager.rootFile)
-    }
-    
-    async lintFile(fileName: string, activeFileOriginalPath?: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let command = (configuration.get('linter_command') as string).replace('%DOC%', `"${fileName}"`)
-        let linterId = 'rootFile'
-        if (activeFileOriginalPath) {
-            command += ' -I0'  // Don't follow \input directives
-            linterId = 'activeFile'
-        }
+        const [command, ...args] = configuration.get('linter_command_active_file') as string[]
+
         let stdout: string
         try {
-            stdout = await this.lintCommand(linterId, command, fileName)
+            stdout = await this.processWrapper('active file', command, args, {}, content)
         } catch (err) {
-            this.extension.logger.addLogMessage(`Linter failed with error ${err.message}.`)
+            return
         }
-        this.extension.parser.parseLinter(stdout, activeFileOriginalPath)
+        // provide the original path to the active file as the second argument, so
+        // we report this second path in the diagnostics instead of the temporary one.
+        this.extension.parser.parseLinter(stdout, filePath)
     }
 
-    async lintCommand(linterId: string, command: string, fileName: string) {
-        this.extension.logger.addLogMessage(`Linter with ID '${linterId}' running with command ${command}`)
-        const stdout = await this.processWrapper(linterId, command, {cwd: path.dirname(this.extension.manager.rootFile)})
-        this.extension.logger.addLogMessage(`Linter with ID '${linterId}' successfully finished.`)
-        return stdout
+    async lintRootFile() {
+        this.extension.logger.addLogMessage(`Linter for root file started.`)
+        const filePath = this.extension.manager.rootFile
+
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const [command, ...args] = (configuration.get('linter_command_root_file') as string[]).map(s => s.replace('%DOC%', filePath))
+        let stdout: string
+        try {
+            stdout = await this.processWrapper('root file', command, args, {cwd: path.dirname(this.extension.manager.rootFile)})
+        } catch (err) {
+            return
+        }
+        this.extension.parser.parseLinter(stdout)
     }
 
-    processWrapper(linterId: string, command: string, options: any) : Promise<string> {
-        // linterId allows us to have two linters in flight simultaneously for separate jobs
-        // (i.e. a full project lint and a current working file real-time lint)
+    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string) : Promise<string> {
+        this.extension.logger.addLogMessage(`Linter for ${linterId} running command ${command} with arguments ${args}`)
         return new Promise((resolve, reject) => {
             if (this.currentProcesses[linterId]) {
                 this.currentProcesses[linterId].kill()
             }
-            this.currentProcesses[linterId] = cp.exec(command, {maxBuffer: Infinity, ...options}, (err, stdout, stderr) => {
-                if (err) {
-                    reject(err)
+            const startTime = process.hrtime()
+            this.currentProcesses[linterId] = spawn(command, args, {maxBuffer: Infinity, ...options})
+            const proc = this.currentProcesses[linterId]
+            proc.stdout.setEncoding('utf8')
+            proc.stderr.setEncoding('utf8')
+
+            let stdout = ''
+            proc.stdout.on('data', newStdout => {
+                stdout += newStdout
+            })
+
+            let stderr = ''
+            proc.stderr.on('data', newStderr => {
+                stderr += newStderr
+            })
+
+            proc.on('error', err => {
+                this.extension.logger.addLogMessage(`Linter for ${linterId} failed to spawn command, encountering error: ${err.message}`)
+                return reject(err)
+            })
+
+            proc.on('exit', exitCode => {
+                if (exitCode !== 0) {
+                    this.extension.logger.addLogMessage(`Linter for ${linterId} failed with exit code ${exitCode} and error:\n  ${stderr}`)
+                    return reject({ exitCode, stdout, stderr})
                 } else {
-                    resolve(stdout)
+                    const [s, ms] = process.hrtime(startTime)
+                    this.extension.logger.addLogMessage(`Linter for ${linterId} successfully finished in ${s}s ${Math.round(ms / 1000000)}ms`)
+                    return resolve(stdout)
                 }
             })
+
+            if (stdin !== undefined) {
+                proc.stdin.write(stdin)
+                if (!stdin.endsWith(EOL)) {
+                    // Always ensure we end with EOL otherwise ChkTeX will report line numbers as off by 1.
+                    proc.stdin.write(EOL)
+                }
+                proc.stdin.end()
+            }
         })
     }
 

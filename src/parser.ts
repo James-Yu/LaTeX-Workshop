@@ -24,10 +24,11 @@ const diagnostic_severity = {
 }
 
 interface LinterLogEntry {
-    type: string
     file: string
     line: number
     position: number
+    length: number
+    type: string
     code: number
     text: string
 }
@@ -119,7 +120,7 @@ export class Parser {
     }
 
     parseLinter(log: string, singleFileOriginalPath?: string) {
-        const re = /^(.*):(\d+):(\d+):(\d+):(.*)$/gm
+        const re = /^(.*?):(\d+):(\d+):(\d+):(.*?):(\d+):(.*?)$/gm
         const linterLog: LinterLogEntry[] = []
         let match
         while (match = re.exec(log)) {
@@ -127,12 +128,13 @@ export class Parser {
             // path with what is provided
             const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
             linterLog.push({
-                type: 'warning',
                 file: path.isAbsolute(filePath) ? filePath : path.resolve(this.extension.manager.rootDir, filePath),
                 line: parseInt(match[2]),
                 position: parseInt(match[3]),
-                code: parseInt(match[4]),
-                text: `${match[4]}: ${match[5]}`
+                length: parseInt(match[4]),
+                type: match[5].toLowerCase(),
+                code: parseInt(match[7]),
+                text: `${match[4]}: ${match[7]}`
             })
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
@@ -179,7 +181,7 @@ export class Parser {
         const diagsCollection: {[key:string]:vscode.Diagnostic[]} = {}
         for (const item of linterLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1), 
-                                           new vscode.Position(item.line - 1, item.position - 1))
+                                           new vscode.Position(item.line - 1, item.position - 1 + item.length))
             const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
             diag.code = item.code
             diag.source = 'ChkTeX'
