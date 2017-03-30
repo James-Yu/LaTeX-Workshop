@@ -85,10 +85,8 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.logger.status.show()
         if (vscode.window.activeTextEditor)
             extension.manager.findRoot()
-        let configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let linter = configuration.get('linter') as boolean
-        if (linter && extension.manager.isTex(e.document.fileName)) {
-            extension.linter.lintActiveFile()
+        if (extension.manager.isTex(e.document.fileName)) {
+            lintActiveFileIfEnabled(extension)
         }
     }))
 
