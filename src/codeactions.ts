@@ -9,6 +9,7 @@ const codesToStaticActionStrings = {
     5: "Remove extraneous italic correction(s)",
     6: "Add italic correction (\\/)",
     11: "Fix ellipsis",
+    12: "Add interword space (\\ )",
     13: "Add intersentence space (\\@)",
     18: "Replace with ` or '",
     32: "Replace with `",
@@ -102,6 +103,9 @@ export class CodeActions {
                 // add a space after so we don't accidentally join with the following word.
                 fixString = /\\[cl]?dots/.exec(message)[0] + " "
                 replaceRangeWithString(document, range, fixString)
+                break
+            case 12:
+                replaceRangeWithString(document, range, '\\ ')
                 break
             case 13:
                 replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\@')
