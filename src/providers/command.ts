@@ -38,10 +38,8 @@ export class Command {
         Object.keys(suggestions).forEach(key => {
             let item = suggestions[key]
             let command = new vscode.CompletionItem(item.command,vscode.CompletionItemKind.Keyword)
-            if (item.snippet){
-                console.log(item.command, item.snippet)
+            if (item.snippet)
                 command.insertText = new vscode.SnippetString(item.snippet)
-            }
             if (item.documentation)
                 command.documentation = item.documentation
             this.suggestions.push(command)
