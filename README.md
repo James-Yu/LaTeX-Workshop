@@ -36,8 +36,9 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
   - `latex-workshop.view`: Open a web browser window to view the PDF file.
   - `latex-workshop.tab`: Open a VS Code tab to view the PDF file.
   - `latex-workshop.synctex`: Direct synctex from cursor position.
+  - `latex-workshop.clean`: Clean up LaTeX auxillary files.
 
-## Linting with ChkTeX
+## Linting with `ChkTeX`
 
 If you have [`ChkTeX`](http://www.nongnu.org/chktex) installed as part of your LaTeX distribution, Latex Workshop can run it against your LaTeX files in order to highlight issues.
 

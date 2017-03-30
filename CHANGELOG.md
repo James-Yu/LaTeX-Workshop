@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.0] - 2017-03-30
+Let's welcome @jabooth who joins the development of LaTeX Workshop!
+
+### Added
+- Auto clean LaTeX project after building LaTeX project, or on demand.
+- (#60) Many `ChkTeX` diagnostics have code actions. See readme for more.
+- (#62) Add back the default LaTeX commands to intellisense.
+
+### Changed
+- (#57) Now `ChkTeX` reads from stdin instead of temp files.
+
 ## [1.1.2] - 2017-03-29
 ### Changed
 - (#51) Now diagnostics show message sources.
