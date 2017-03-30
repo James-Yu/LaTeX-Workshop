@@ -67,7 +67,7 @@ export class Command {
                 }
                 if (result[2]) {
                     items[result[1]].chain = true
-                    items[result[1]].snippet += `{$\{1:arg}}`
+                    items[result[1]].snippet = `${result[1]}{$\{1:arg}}`
                 }
                 if (result[3])
                     items[result[1]].snippet += `{$\{2:arg}}`
