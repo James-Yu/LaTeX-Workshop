@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.2.2] - 2017-03-31
+### Added
+- (#68) `ChkTeX` code action for `12: interword space`.
+
+### Fixed
+- (#67) `ChkTeX` ignores configuration and lints upon changing active editor.
+
 ## [1.2.1] - 2017-03-30
 ### Fixed
 - (#65) Commands with arguments incorrected inserted with `\undefined{args}`.
