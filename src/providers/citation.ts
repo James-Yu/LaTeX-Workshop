@@ -12,12 +12,16 @@ export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: any[] } = {}
+    refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     provide() : vscode.CompletionItem[] {
+        if (Date.now() - this.refreshTimer < 1000)		
+            return this.suggestions
+        this.refreshTimer = Date.now()
         let items = []
         Object.keys(this.extension.manager.bibFileTree).forEach(filePath => {
             for (let bibPath of this.extension.manager.bibFileTree[filePath]) {

@@ -7,12 +7,16 @@ export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
     referenceInTeX: { [id: string]: {} } = {}
+    refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     provide() : vscode.CompletionItem[] {
+        if (Date.now() - this.refreshTimer < 1000)		
+            return this.suggestions
+        this.refreshTimer = Date.now()
         let suggestions = {}
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.referenceInTeX) {
