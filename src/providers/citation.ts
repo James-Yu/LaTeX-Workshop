@@ -11,21 +11,21 @@ const bibEntries = ['article', 'book', 'booklet', 'conference', 'inbook',
 export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    provideRefreshTime: number
+    citationInBib: { [id: string]: any[] } = {}
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.provideRefreshTime < 1000) {
-            return this.suggestions
-        }
-        this.provideRefreshTime = Date.now()
-        this.extension.manager.findAllDependentFiles()
         let items = []
-        this.extension.manager.bibFiles.forEach(
-            bib => this.getBibItems(bib).forEach(i => items.push(i)))
+        Object.keys(this.extension.manager.bibFileTree).forEach(filePath => {
+            for (let bibPath of this.extension.manager.bibFileTree[filePath]) {
+                if (bibPath in this.citationInBib) {
+                    this.citationInBib[bibPath].forEach(item => items.push(item))
+                }
+            }
+        })
         this.suggestions = items.map(item => {
             let citation = new vscode.CompletionItem(item.key, vscode.CompletionItemKind.Reference)
             citation.detail = item.title
@@ -43,8 +43,6 @@ export class Citation {
 
     getBibItems(bib: string) {
         let items = []
-        if (!fs.existsSync(bib))
-            return items
         let content = fs.readFileSync(bib, 'utf-8').replace(/[\r\n]/g, ' ')
         let itemReg = /@(\w+){/g
         let result = itemReg.exec(content)
@@ -58,7 +56,7 @@ export class Citation {
             if (result)
                 result = itemReg.exec(content)
         }
-        return items
+        this.citationInBib[bib] = items
     }
 
     splitBibItem(item: string) {

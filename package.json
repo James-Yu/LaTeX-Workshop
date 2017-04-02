@@ -150,7 +150,9 @@
       "properties": {
         "latex-workshop.toolchain": {
           "type": "array",
-          "default": ["latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf %DOC%"],
+          "default": [
+            "latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf %DOC%"
+          ],
           "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the root LaTeX file name (without '.tex' extension), and will be replaced when executing."
         },
         "latex-workshop.build_after_save": {
@@ -165,7 +167,27 @@
         },
         "latex-workshop.files_to_clean": {
           "type": "array",
-          "default": ["*.aux", "*.bbl", "*.blg", "*.idx", "*.ind", "*.lof", "*.lot", "*.out", "*.toc", "*.acn", "*.acr", "*.alg", "*.glg", "*.glo", "*.gls", "*.ist", "*.fls", "*.log", "*.fdb_latexmk"],
+          "default": [
+            "*.aux",
+            "*.bbl",
+            "*.blg",
+            "*.idx",
+            "*.ind",
+            "*.lof",
+            "*.lot",
+            "*.out",
+            "*.toc",
+            "*.acn",
+            "*.acr",
+            "*.alg",
+            "*.glg",
+            "*.glo",
+            "*.gls",
+            "*.ist",
+            "*.fls",
+            "*.log",
+            "*.fdb_latexmk"
+          ],
           "description": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
         },
         "latex-workshop.linter": {
@@ -175,12 +197,30 @@
         },
         "latex-workshop.linter_command_active_file": {
           "type": "array",
-          "default": ["chktex", "-wall", "-n22", "-n30", "-e16", "-q", "-I0", "-f%f:%l:%c:%d:%k:%n:%m\n"],
+          "default": [
+            "chktex",
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q",
+            "-I0",
+            "-f%f:%l:%c:%d:%k:%n:%m\n"
+          ],
           "description": "Linter command to check LaTeX syntax of the current file state in real time with ChkTeX.\nCurrent file contents will be piped to the command through stdin.\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
         },
         "latex-workshop.linter_command_root_file": {
           "type": "array",
-          "default": ["chktex", "-wall", "-n22", "-n30", "-e16", "-q", "-f%f:%l:%c:%d:%k:%n:%m\n", "%DOC%"],
+          "default": [
+            "chktex",
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q",
+            "-f%f:%l:%c:%d:%k:%n:%m\n",
+            "%DOC%"
+          ],
           "description": "Linter command to check LaTeX syntax of the entire project from the root file with ChkTeX.\nPlaceholder %DOC% is used to represent the root LaTeX file name (with extension).\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
         },
         "latex-workshop.linter_interval": {
@@ -236,6 +276,7 @@
     }
   },
   "dependencies": {
+    "chokidar": "^1.6.1",
     "glob": "^7.1.1",
     "open": "^0.0.5",
     "tmp": "^0.0.31",

@@ -1,16 +1,17 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as chokidar from 'chokidar'
 
 import {Extension} from './main'
 
 export class Manager {
     extension: Extension
     rootFile: string
-    texFiles: Set<string>
-    bibFiles: Set<string>
-
-    findAllDependentFilesTime: number
+    texFileTree: { [id: string]: Set<string> } = {}
+    bibFileTree: { [id: string]: Set<string> } = {}
+    fileWatcher
+    bibWatcher
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -33,7 +34,11 @@ export class Manager {
         for (let method of findMethods) {
             let rootFile = method()
             if (rootFile !== undefined) {
-                this.rootFile = rootFile
+                if (this.rootFile !== rootFile){
+                    this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
+                    this.rootFile = rootFile
+                    this.findAllDependentFiles()
+                }
                 return rootFile
             }
         }
@@ -96,24 +101,23 @@ export class Manager {
     }
 
     findAllDependentFiles() {
-        if (Date.now() - this.findAllDependentFilesTime < 1000)
-            return
-        this.findAllDependentFilesTime = Date.now()
-        if (this.rootFile === undefined)
-            this.findRoot()
-        if (this.rootFile === undefined)
-            return
-        this.texFiles = new Set<string>()
-        this.texFiles.add(this.rootFile)
-        this.bibFiles = new Set<string>()
-        this.findDependentFiles(this.rootFile)
+        if (this.fileWatcher === undefined) {
+            this.fileWatcher = chokidar.watch(this.rootFile).on('change', path => this.findDependentFiles(path))
+            this.fileWatcher = chokidar.watch(this.rootFile).on('unlink', path => this.fileWatcher.unwatch(this.rootFile))
+            this.findDependentFiles(this.rootFile)
+        } else if (this.fileWatcher.getWatched().indexOf(this.rootFile) < 0) {
+            this.fileWatcher.add(this.rootFile)
+            this.findDependentFiles(this.rootFile)
+        }
     }
 
     findDependentFiles(filePath: string) {
+        this.extension.logger.addLogMessage(`${filePath} content changed.`)
         let content = fs.readFileSync(filePath, 'utf-8')
         let rootDir = path.dirname(this.rootFile)
 
         let inputReg = /(?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        this.texFileTree[filePath] = new Set()
         while (true) {
             let result = inputReg.exec(content)
             if (!result)
@@ -123,26 +127,20 @@ export class Manager {
             if (path.extname(inputFilePath) === '') {
                 inputFilePath += '.tex'
             }
-            if (!this.texFiles.has(inputFilePath)) {
-                this.texFiles.add(inputFilePath)
-                try {
+            if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + '.tex')) {
+                inputFilePath += '.tex'
+            }
+            if (fs.existsSync(inputFilePath)) {
+                this.texFileTree[filePath].add(inputFilePath)
+                if (this.fileWatcher.getWatched().indexOf(inputFilePath) < 0) {
+                    this.fileWatcher.add(inputFilePath)
                     this.findDependentFiles(inputFilePath)
-                } catch (err) {
-                    if (err.code === 'ENOENT' || err.code === 'EISDIR') {
-                        this.texFiles.delete(inputFilePath)
-                        if (path.extname(inputFilePath) !== '.tex') {
-                            inputFilePath += '.tex'
-                            this.texFiles.add(inputFilePath)
-                            this.findDependentFiles(inputFilePath)
-                        } else {
-                            this.extension.logger.addLogMessage(`File not found: ${inputFilePath}`)
-                        }
-                    }
                 }
             }
         }
 
         let bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^\[\]\{\}]*\])?){(.+?)}/g
+        this.bibFileTree[filePath] = new Set()
         while (true) {
             let result = bibReg.exec(content)
             if (!result)
@@ -151,11 +149,28 @@ export class Manager {
                 return bib.trim()
             })
             for (let bib of bibs) {
-                if (path.extname(bib) === '')
-                    bib += '.bib'
                 let bibPath = path.resolve(path.join(rootDir, bib))
-                this.bibFiles.add(bibPath)
+                if (path.extname(bibPath) === '') {
+                    bibPath += '.bib'
+                }
+                if (!fs.existsSync(bibPath) && fs.existsSync(bibPath + '.bib')) {
+                    bibPath += '.bib'
+                }
+                if (fs.existsSync(bibPath)) {
+                    this.bibFileTree[filePath].add(bibPath)
+                    if (this.bibWatcher === undefined) {
+                        this.bibWatcher = chokidar.watch(bibPath).on('change', path => this.extension.completer.citation.getBibItems(bibPath))
+                        this.bibWatcher = chokidar.watch(bibPath).on('unlink', path => this.bibWatcher.unwatch(bibPath))
+                        this.extension.completer.citation.getBibItems(bibPath)
+                    } else if (this.bibWatcher.getWatched().indexOf(bibPath) < 0) {
+                        this.bibWatcher.add(bibPath)
+                        this.extension.completer.citation.getBibItems(bibPath)
+                    }
+                }
             }
         }
+
+        this.extension.completer.command.getCommandsTeX(filePath)
+        this.extension.completer.reference.getReferencesTeX(filePath)
     }
 }
