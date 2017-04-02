@@ -22,14 +22,13 @@ export class Citation {
         if (Date.now() - this.refreshTimer < 1000)
             return this.suggestions
         this.refreshTimer = Date.now()
+
+        // Retrieve all Bib items for all known bib files in a flat list
         let items = []
-        Object.keys(this.extension.manager.bibFileTree).forEach(filePath => {
-            for (let bibPath of this.extension.manager.bibFileTree[filePath]) {
-                if (bibPath in this.citationInBib) {
-                    this.citationInBib[bibPath].forEach(item => items.push(item))
-                }
-            }
+        Object.keys(this.citationInBib).forEach(bibPath => {
+            this.citationInBib[bibPath].forEach(item => items.push(item))
         })
+
         this.suggestions = items.map(item => {
             let citation = new vscode.CompletionItem(item.key, vscode.CompletionItemKind.Reference)
             citation.detail = item.title
@@ -45,10 +44,10 @@ export class Citation {
         return this.suggestions
     }
 
-    getBibItems(bib: string) {
-        this.extension.logger.addLogMessage(`Parsing ${bib}`)
+    parseBibItems(bibPath: string) {
+        this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
         let items = []
-        let content = fs.readFileSync(bib, 'utf-8').replace(/[\r\n]/g, ' ')
+        let content = fs.readFileSync(bibPath, 'utf-8').replace(/[\r\n]/g, ' ')
         let itemReg = /@(\w+){/g
         let result = itemReg.exec(content)
         let prev_result = undefined
@@ -61,7 +60,13 @@ export class Citation {
             if (result)
                 result = itemReg.exec(content)
         }
-        this.citationInBib[bib] = items
+        this.extension.logger.addLogMessage(`Parsed ${items.length} .bib entries from ${bibPath}.`)
+        this.citationInBib[bibPath] = items
+    }
+
+    forgetParsedBibItems(bibPath: string) {
+        this.extension.logger.addLogMessage(`Forgetting parsed bib entries for ${bibPath}`)
+        delete this.citationInBib[bibPath]
     }
 
     splitBibItem(item: string) {
