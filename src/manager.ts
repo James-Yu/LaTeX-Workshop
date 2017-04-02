@@ -103,7 +103,7 @@ export class Manager {
     findAllDependentFiles() {
         if (this.fileWatcher === undefined) {
             this.fileWatcher = chokidar.watch(this.rootFile).on('change', path => this.findDependentFiles(path))
-            this.fileWatcher = chokidar.watch(this.rootFile).on('unlink', path => this.fileWatcher.unwatch(this.rootFile))
+            this.fileWatcher = chokidar.watch(this.rootFile).on('unlink', path => this.fileWatcher.unwatch(path))
             this.findDependentFiles(this.rootFile)
         } else if (this.fileWatcher.getWatched().indexOf(this.rootFile) < 0) {
             this.fileWatcher.add(this.rootFile)
@@ -112,7 +112,7 @@ export class Manager {
     }
 
     findDependentFiles(filePath: string) {
-        this.extension.logger.addLogMessage(`${filePath} content changed.`)
+        this.extension.logger.addLogMessage(`Parsing ${filePath}`)
         let content = fs.readFileSync(filePath, 'utf-8')
         let rootDir = path.dirname(this.rootFile)
 
@@ -159,8 +159,8 @@ export class Manager {
                 if (fs.existsSync(bibPath)) {
                     this.bibFileTree[filePath].add(bibPath)
                     if (this.bibWatcher === undefined) {
-                        this.bibWatcher = chokidar.watch(bibPath).on('change', path => this.extension.completer.citation.getBibItems(bibPath))
-                        this.bibWatcher = chokidar.watch(bibPath).on('unlink', path => this.bibWatcher.unwatch(bibPath))
+                        this.bibWatcher = chokidar.watch(bibPath).on('change', path => this.extension.completer.citation.getBibItems(path))
+                        this.bibWatcher = chokidar.watch(bibPath).on('unlink', path => this.bibWatcher.unwatch(path))
                         this.extension.completer.citation.getBibItems(bibPath)
                     } else if (this.bibWatcher.getWatched().indexOf(bibPath) < 0) {
                         this.bibWatcher.add(bibPath)

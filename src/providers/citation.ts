@@ -19,7 +19,7 @@ export class Citation {
     }
 
     provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.refreshTimer < 1000)		
+        if (Date.now() - this.refreshTimer < 1000)
             return this.suggestions
         this.refreshTimer = Date.now()
         let items = []
@@ -46,6 +46,7 @@ export class Citation {
     }
 
     getBibItems(bib: string) {
+        this.extension.logger.addLogMessage(`Parsing ${bib}`)
         let items = []
         let content = fs.readFileSync(bib, 'utf-8').replace(/[\r\n]/g, ' ')
         let itemReg = /@(\w+){/g

@@ -14,7 +14,7 @@ export class Command {
     }
 
     provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.refreshTimer < 1000)		
+        if (Date.now() - this.refreshTimer < 1000)
             return this.suggestions
         this.refreshTimer = Date.now()
         let suggestions = JSON.parse(JSON.stringify(this.defaults))
