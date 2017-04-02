@@ -1,4 +1,3 @@
-import * as vscode from 'vscode'
 import * as http from 'http'
 import * as ws from 'ws'
 import * as fs from 'fs'
@@ -17,10 +16,10 @@ export class Server {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         this.httpServer.listen(0, "localhost", undefined, (err) => {
-            if (err)
+            if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
-            else {
-                let {address, port} = this.httpServer.address();
+            } else {
+                const {address, port} = this.httpServer.address()
                 this.address = `${address}:${port}`
                 this.root = path.resolve(`${__dirname}/../../viewer`)
                 this.extension.logger.addLogMessage(`Server created on ${this.address}`)
@@ -36,9 +35,9 @@ export class Server {
 
     handler(request: http.IncomingMessage, response: http.ServerResponse) {
         if (request.url.indexOf('pdf:') >= 0 && request.url.indexOf('viewer.html') < 0) {
-            let fileName = decodeURIComponent(request.url).replace('/pdf:', '')
+            const fileName = decodeURIComponent(request.url).replace('/pdf:', '')
             try {
-                let pdfSize = fs.statSync(fileName).size
+                const pdfSize = fs.statSync(fileName).size
                 response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})
                 fs.createReadStream(fileName).pipe(response)
                 this.extension.logger.addLogMessage(`Preview PDF file: ${fileName}`)
@@ -49,33 +48,34 @@ export class Server {
             }
             return
         }
-        let fileName = path.join(this.root, request.url.split('?')[0])
+        const fileName = path.join(this.root, request.url.split('?')[0])
         let contentType = 'text/html'
         switch (path.extname(fileName)) {
             case '.js':
                 contentType = 'text/javascript'
-                break;
+                break
             case '.css':
                 contentType = 'text/css'
-                break;
+                break
             case '.json':
                 contentType = 'application/json'
-                break;
+                break
             case '.png':
                 contentType = 'image/png'
-                break;
+                break
             case '.jpg':
                 contentType = 'image/jpg'
-                break;
+                break
             default:
-                break;
+                break
         }
         fs.readFile(fileName, (err, content) => {
-            if (err){
-                if (err.code === 'ENOENT')
+            if (err) {
+                if (err.code === 'ENOENT') {
                     response.writeHead(404)
-                else
+                } else {
                     response.writeHead(500)
+                }
                 response.end()
             } else {
                 response.writeHead(200, {'Content-Type': contentType})

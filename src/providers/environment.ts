@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 
 import {Extension} from './../main'
 
@@ -12,8 +11,8 @@ export class Environment {
         this.extension = extension
         this.suggestions = []
         Object.keys(this.defaults).map(key => {
-            let item = this.defaults[key]
-            let environment = new vscode.CompletionItem(item.text,vscode.CompletionItemKind.Module)
+            const item = this.defaults[key]
+            const environment = new vscode.CompletionItem(item.text, vscode.CompletionItemKind.Module)
             this.suggestions.push(environment)
         })
     }

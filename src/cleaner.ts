@@ -16,16 +16,16 @@ export class Cleaner {
         if (this.extension.manager.rootFile !== undefined) {
             this.extension.manager.findRoot()
         }
-        let configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let globs = configuration.get('files_to_clean') as Array<string>
-        for (let globType of globs) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const globs = configuration.get('files_to_clean') as string[]
+        for (const globType of globs) {
             glob(globType, {cwd: this.extension.manager.rootDir}, (err, files) => {
                 if (err) {
                     this.extension.logger.addLogMessage(`Error identifying files with glob ${globType}: ${files}.`)
                     return
                 }
-                for (let file of files) {
-                    let fullPath = path.resolve(this.extension.manager.rootDir, file)
+                for (const file of files) {
+                    const fullPath = path.resolve(this.extension.manager.rootDir, file)
                     fs.unlinkSync(fullPath)
                 }
             })

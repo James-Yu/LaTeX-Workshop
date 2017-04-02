@@ -15,7 +15,7 @@ const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkPatternNoGM = /^Latexmk:\sapplying\srule/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
-const diagnostic_severity = {
+const DIAGNOSTIC_SEVERITY = {
     'typesetting': vscode.DiagnosticSeverity.Hint,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
@@ -46,29 +46,32 @@ export class Parser {
 
     parse(log: string) {
         this.isLaTeXmkSkipped = false
-        if (log.match(latexmkPattern))
+        if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
-        if (log.match(latexPattern) || log.match(latexFatalPattern))
+        }
+        if (log.match(latexPattern) || log.match(latexFatalPattern)) {
             this.parseLaTeX(log)
-        else if (this.latexmkSkipped(log))
+        } else if (this.latexmkSkipped(log)) {
             this.isLaTeXmkSkipped = true
+        }
     }
 
     trimLaTeXmk(log: string) : string {
         log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
-        let lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         let finalLine = -1
         for (let index = 0; index < lines.length; index++) {
-            let line = lines[index]
-            let result = line.match(latexmkPatternNoGM)
-            if (result)
+            const line = lines[index]
+            const result = line.match(latexmkPatternNoGM)
+            if (result) {
                 finalLine = index
+            }
         }
         return lines.slice(finalLine).join('\n')
     }
 
     latexmkSkipped(log: string): boolean {
-        let lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
             return true
@@ -79,9 +82,9 @@ export class Parser {
     parseLaTeX(log: string) {
         log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
         this.buildLogRaw = log
-        let lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         this.buildLog = []
-        for (let line of lines) {
+        for (const line of lines) {
             let result = line.match(latexBox)
             if (result) {
                 this.buildLog.push({
@@ -122,7 +125,7 @@ export class Parser {
         const linterLog: LinterLogEntry[] = []
         let match
         while (match = re.exec(log)) {
-            // this log may be for a single file in memory, in which case we override the 
+            // this log may be for a single file in memory, in which case we override the
             // path with what is provided
             const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
             linterLog.push({
@@ -140,7 +143,7 @@ export class Parser {
             // A full lint of the project has taken place - clear all previous results.
             this.linterDiagnostics.clear()
         } else if (linterLog.length === 0) {
-            // We are linting a single file and the new log is empty for it - 
+            // We are linting a single file and the new log is empty for it -
             // clean existing records.
             this.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
         }
@@ -149,10 +152,10 @@ export class Parser {
 
     showCompilerDiagnostics(createBuildLogRaw: boolean = false) {
         this.compilerDiagnostics.clear()
-        let diagsCollection: {[key:string]:vscode.Diagnostic[]} = {}
-        for (let item of this.buildLog) {
+        const diagsCollection: {[key: string]: vscode.Diagnostic[]} = {}
+        for (const item of this.buildLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
-            const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
+            const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.source = 'LaTeX'
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
@@ -167,20 +170,23 @@ export class Parser {
             this.buildLogFile = tmp.fileSync()
             fs.writeFileSync(this.buildLogFile.fd, this.buildLogRaw)
         }
-        if (this.buildLogFile)
+        if (this.buildLogFile) {
             this.compilerDiagnostics.set(vscode.Uri.file(this.buildLogFile.name),
-                [new vscode.Diagnostic(new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0)), 
-                                        'Click here to open log file', diagnostic_severity['typesetting'])])
-        for (let file in diagsCollection)
+                [new vscode.Diagnostic(new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0)),
+                                        'Click here to open log file', DIAGNOSTIC_SEVERITY['typesetting'])])
+        }
+
+        for (const file in diagsCollection) {
             this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+        }
     }
 
     showLinterDiagnostics(linterLog: LinterLogEntry[]) {
-        const diagsCollection: {[key:string]:vscode.Diagnostic[]} = {}
+        const diagsCollection: {[key: string]: vscode.Diagnostic[]} = {}
         for (const item of linterLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1), 
+            const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1),
                                            new vscode.Position(item.line - 1, item.position - 1 + item.length))
-            const diag = new vscode.Diagnostic(range, item.text, diagnostic_severity[item.type])
+            const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.code = item.code
             diag.source = 'ChkTeX'
             if (diagsCollection[item.file] === undefined) {

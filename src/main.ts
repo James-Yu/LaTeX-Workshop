@@ -14,34 +14,35 @@ import {Linter} from './linter'
 import {Cleaner} from './cleaner'
 
 function lintRootFileIfEnabled(extension: Extension) {
-    let configuration = vscode.workspace.getConfiguration('latex-workshop')
-    let linter = configuration.get('linter') as boolean
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const linter = configuration.get('linter') as boolean
     if (linter) {
         extension.linter.lintRootFile()
     }
 }
 
 function lintActiveFileIfEnabled(extension: Extension) {
-    let configuration = vscode.workspace.getConfiguration('latex-workshop')
-    let linter = configuration.get('linter') as boolean
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const linter = configuration.get('linter') as boolean
     if (linter) {
         extension.linter.lintActiveFile()
     }
 }
 
 function lintActiveFileIfEnabledAfterInterval(extension: Extension) {
-    let configuration = vscode.workspace.getConfiguration('latex-workshop')
-    let linter = configuration.get('linter') as boolean
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const linter = configuration.get('linter') as boolean
     if (linter) {
-        let interval = configuration.get('linter_interval') as number
-        if (extension.linter.linterTimeout)
+        const interval = configuration.get('linter_interval') as number
+        if (extension.linter.linterTimeout) {
             clearTimeout(extension.linter.linterTimeout)
+        }
         extension.linter.linterTimeout = setTimeout(() => extension.linter.lintActiveFile(), interval)
     }
 }
 
 export async function activate(context: vscode.ExtensionContext) {
-    let extension = new Extension()
+    const extension = new Extension()
     global['latex'] = extension
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
@@ -54,8 +55,8 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
             lintRootFileIfEnabled(extension)
-        }  
-        let configuration = vscode.workspace.getConfiguration('latex-workshop')
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('build_after_save') || extension.builder.disableBuildAfterSave) {
             return
         }
@@ -75,16 +76,20 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
-        if (!vscode.window.activeTextEditor)
+        if (!vscode.window.activeTextEditor) {
             extension.logger.status.hide()
-        else if (!vscode.window.activeTextEditor.document.fileName)
+        } else if (!vscode.window.activeTextEditor.document.fileName) {
             extension.logger.status.hide()
-        else if (!extension.manager.isTex(vscode.window.activeTextEditor.document.fileName))
+        } else if (!extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             extension.logger.status.hide()
-        else
+        } else {
             extension.logger.status.show()
-        if (vscode.window.activeTextEditor)
+        }
+
+        if (vscode.window.activeTextEditor) {
             extension.manager.findRoot()
+        }
+
         if (extension.manager.isTex(e.document.fileName)) {
             lintActiveFileIfEnabled(extension)
         }

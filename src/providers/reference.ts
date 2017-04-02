@@ -14,29 +14,32 @@ export class Reference {
     }
 
     provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.refreshTimer < 1000)
+        if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
+        }
         this.refreshTimer = Date.now()
-        let suggestions = {}
+        const suggestions = {}
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.referenceInTeX) {
                 Object.keys(this.referenceInTeX[filePath]).forEach(key => {
-                    if (!(key in suggestions))
+                    if (!(key in suggestions)) {
                         suggestions[key] = this.referenceInTeX[filePath][key]
+                    }
                 })
             }
         })
         if (vscode.window.activeTextEditor) {
-            let items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
+            const items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
             Object.keys(items).map(key => {
-                if (!(key in suggestions))
+                if (!(key in suggestions)) {
                     suggestions[key] = items[key]
+                }
             })
         }
         this.suggestions = []
         Object.keys(suggestions).map(key => {
-            let item = suggestions[key]
-            let command = new vscode.CompletionItem(item.reference,vscode.CompletionItemKind.Reference)
+            const item = suggestions[key]
+            const command = new vscode.CompletionItem(item.reference, vscode.CompletionItemKind.Reference)
             this.suggestions.push(command)
         })
         return this.suggestions
@@ -45,13 +48,13 @@ export class Reference {
     getReferencesTeX(filePath: string) {
         this.referenceInTeX[filePath] = this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
     }
-    
+
     getReferenceItems(content: string) {
-        var itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
-        var items = {}
+        const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        const items = {}
         while (true) {
-            let result = itemReg.exec(content);
-            if (result == null) {
+            const result = itemReg.exec(content)
+            if (result === null) {
                 break
             }
             if (!(result[1] in items)) {
