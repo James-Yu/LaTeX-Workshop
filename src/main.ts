@@ -12,6 +12,7 @@ import {Parser} from './parser'
 import {Completer} from './completer'
 import {Linter} from './linter'
 import {Cleaner} from './cleaner'
+import {Checker} from './checker'
 
 function lintRootFileIfEnabled(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -68,12 +69,18 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
             extension.manager.findRoot()
+            extension.checker.check(e)
         }
     }))
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.isTex(e.document.fileName)) {
             lintActiveFileIfEnabledAfterInterval(extension)
+            e.contentChanges.forEach(change => {
+                for (let line = change.range.start.line; line <= change.range.end.line; ++line) {
+                    extension.checker.check(e.document, line)
+                }
+            })
         }
     }))
 
@@ -94,6 +101,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
         if (extension.manager.isTex(e.document.fileName)) {
             lintActiveFileIfEnabled(extension)
+            extension.checker.check(e.document)
         }
     }))
 
@@ -119,6 +127,7 @@ export class Extension {
     linter: Linter
     cleaner: Cleaner
     codeActions: CodeActions
+    checker: Checker
 
     constructor() {
         this.logger = new Logger(this)
@@ -133,6 +142,7 @@ export class Extension {
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
         this.codeActions = new CodeActions(this)
+        this.checker = new Checker(this)
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
 }
