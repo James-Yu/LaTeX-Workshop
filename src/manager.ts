@@ -115,15 +115,16 @@ export class Manager {
     }
 
     findAllDependentFiles() {
+        let prevWatcherClosed = false
         if (this.fileWatcher !== undefined && pathNotWatched(this.fileWatcher, this.rootFile)) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
             // => the user has changed the root. Clean up the old watcher so we reform it.
             this.extension.logger.addLogMessage(`Root file changed -> cleaning up old file watcher.`)
             this.fileWatcher.close()
-            this.fileWatcher = undefined
+            prevWatcherClosed = true
         }
 
-        if (this.fileWatcher === undefined) {
+        if (prevWatcherClosed || this.fileWatcher === undefined) {
             this.extension.logger.addLogMessage(`Instatiating new file watcher for ${this.rootFile}`)
             this.fileWatcher = chokidar.watch(this.rootFile)
             this.fileWatcher.on('change', path => {
