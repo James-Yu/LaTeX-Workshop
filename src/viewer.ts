@@ -14,7 +14,7 @@ export class Viewer {
         this.extension = extension
     }
 
-    refreshExistingViewer(sourceFile: string, type: string = undefined) : boolean {
+    refreshExistingViewer(sourceFile: string, type: string | undefined = undefined) : boolean {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         if (pdfFile in this.clients &&
             (type === undefined || this.clients[pdfFile].type === type) &&
@@ -27,7 +27,7 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, type: string) : string {
+    checkViewer(sourceFile: string, type: string) : string |undefined {
         if (this.refreshExistingViewer(sourceFile, type)) {
             return
         }

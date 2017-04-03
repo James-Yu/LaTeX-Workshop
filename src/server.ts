@@ -34,6 +34,9 @@ export class Server {
     }
 
     handler(request: http.IncomingMessage, response: http.ServerResponse) {
+        if (!request.url) {
+            return
+        }
         if (request.url.indexOf('pdf:') >= 0 && request.url.indexOf('viewer.html') < 0) {
             const fileName = decodeURIComponent(request.url).replace('/pdf:', '')
             try {

@@ -39,6 +39,9 @@ export class Locator {
     }
 
     syncTeX() {
+        if (!vscode.window.activeTextEditor) {
+            return
+        }
         const filePath = vscode.window.activeTextEditor.document.uri.fsPath
         if (!this.extension.manager.isTex(filePath)) {
             this.extension.logger.addLogMessage(`${filePath} is not a valid LaTeX file.`)

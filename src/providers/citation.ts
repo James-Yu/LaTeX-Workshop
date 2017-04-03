@@ -25,7 +25,7 @@ export class Citation {
         this.refreshTimer = Date.now()
 
         // Retrieve all Bib items for all known bib files in a flat list
-        const items = []
+        const items: any[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
             this.citationInBib[bibPath].forEach(item => items.push(item))
         })
@@ -47,11 +47,11 @@ export class Citation {
 
     parseBibItems(bibPath: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
-        const items = []
+        const items: any[] = []
         const content = fs.readFileSync(bibPath, 'utf-8').replace(/[\r\n]/g, ' ')
         const itemReg = /@(\w+){/g
         let result = itemReg.exec(content)
-        let prevResult = undefined
+        let prevResult: RegExpExecArray | null = null
         while (result || prevResult) {
             if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
                 const item = content.substring(prevResult.index, result ? result.index : undefined).trim()
@@ -74,7 +74,7 @@ export class Citation {
     splitBibItem(item: string) {
         let unclosed = 0
         let lastSplit = -1
-        const segments = []
+        const segments: any[] = []
 
         for (let i = 0; i < item.length; i++) {
             const char = item[i]
@@ -89,8 +89,7 @@ export class Citation {
         }
 
         segments.push(item.substring(lastSplit + 1).trim())
-        const bibItem = {key: undefined}
-        bibItem.key = segments.shift()
+        const bibItem = { key: segments.shift() }
         bibItem.key = bibItem.key.substring(bibItem.key.indexOf('{') + 1)
 
         let last = segments[segments.length - 1]

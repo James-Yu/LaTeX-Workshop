@@ -66,7 +66,9 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
-        extension.manager.findRoot()
+        if (extension.manager.isTex(e.fileName)) {
+            extension.manager.findRoot()
+        }
     }))
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
