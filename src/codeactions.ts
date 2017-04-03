@@ -23,7 +23,7 @@ const codesToStaticActionStrings = {
     42: "Remove extraneous space"
 }
 
-function replaceWhitespaceOnLineBefore(document: vs.TextDocument, position: vs.Position, replaceWith: string): any {
+function replaceWhitespaceOnLineBefore(document: vs.TextDocument, position: vs.Position, replaceWith: string) {
     const beforePosRange = new vs.Range(new vs.Position(position.line, 0), position)
     const text = document.getText(beforePosRange)
     const regexResult = /\s*$/.exec(text)
@@ -37,13 +37,13 @@ function replaceWhitespaceOnLineBefore(document: vs.TextDocument, position: vs.P
     return vs.workspace.applyEdit(edit)
 }
 
-function replaceRangeWithString(document: vs.TextDocument, range: vs.Range, replacementString: string): any {
+function replaceRangeWithString(document: vs.TextDocument, range: vs.Range, replacementString: string) {
     const edit = new vs.WorkspaceEdit()
     edit.replace(document.uri, range, replacementString)
     return vs.workspace.applyEdit(edit)
 }
 
-function replaceRangeWithRepeatedString(document: vs.TextDocument, range: vs.Range, replacementString: string): any {
+function replaceRangeWithRepeatedString(document: vs.TextDocument, range: vs.Range, replacementString: string) {
     return replaceRangeWithString(document, range, replacementString.repeat(range.end.character - range.start.character))
 }
 
@@ -63,7 +63,7 @@ export class CodeActions {
     }
 
     // Leading underscore to avoid tslint complaint
-    provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken): vs.Command[] {
+    provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken) : vs.Command[] {
         const actions: vs.Command[] = []
         context.diagnostics.filter(d => d.source === 'ChkTeX').forEach(d => {
             const label = codesToStaticActionStrings[d.code]
@@ -79,7 +79,7 @@ export class CodeActions {
         return actions
     }
 
-    runCodeAction(document: vs.TextDocument, range: vs.Range, code: number, message: string): any {
+    runCodeAction(document: vs.TextDocument, range: vs.Range, code: number, message: string) {
         let fixString
         let regexResult
         switch (code) {

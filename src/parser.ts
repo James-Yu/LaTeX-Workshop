@@ -70,7 +70,7 @@ export class Parser {
         return lines.slice(finalLine).join('\n')
     }
 
-    latexmkSkipped(log: string): boolean {
+    latexmkSkipped(log: string) : boolean {
         const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
@@ -123,8 +123,8 @@ export class Parser {
     parseLinter(log: string, singleFileOriginalPath?: string) {
         const re = /^(.*?):(\d+):(\d+):(\d+):(.*?):(\d+):(.*?)$/gm
         const linterLog: LinterLogEntry[] = []
-        let match
-        while (match = re.exec(log)) {
+        let match = re.exec(log)
+        while (match) {
             // this log may be for a single file in memory, in which case we override the
             // path with what is provided
             const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
@@ -137,6 +137,7 @@ export class Parser {
                 code: parseInt(match[6]),
                 text: `${match[6]}: ${match[7]}`
             })
+            match = re.exec(log)
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
         if (singleFileOriginalPath === undefined) {

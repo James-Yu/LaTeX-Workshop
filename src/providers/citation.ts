@@ -8,10 +8,15 @@ const bibEntries = ['article', 'book', 'booklet', 'conference', 'inbook',
                     'misc', 'phdthesis', 'proceedings', 'techreport',
                     'unpublished']
 
+interface CitationRecord {
+    key: string
+    [key: string]: string | undefined
+}
+
 export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    citationInBib: { [id: string]: any[] } = {}
+    citationInBib: { [id: string]: CitationRecord[] } = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -25,7 +30,7 @@ export class Citation {
         this.refreshTimer = Date.now()
 
         // Retrieve all Bib items for all known bib files in a flat list
-        const items: any[] = []
+        const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
             this.citationInBib[bibPath].forEach(item => items.push(item))
         })
@@ -47,15 +52,21 @@ export class Citation {
 
     parseBibItems(bibPath: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
-        const items: any[] = []
+        const items: CitationRecord[] = []
         const content = fs.readFileSync(bibPath, 'utf-8').replace(/[\r\n]/g, ' ')
         const itemReg = /@(\w+){/g
         let result = itemReg.exec(content)
         let prevResult: RegExpExecArray | null = null
         while (result || prevResult) {
             if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
-                const item = content.substring(prevResult.index, result ? result.index : undefined).trim()
-                items.push(this.splitBibItem(item))
+                const itemString = content.substring(prevResult.index, result ? result.index : undefined).trim()
+                const item = this.splitBibItem(itemString)
+                if (item !== undefined) {
+                    items.push(item)
+                } else {
+                    // TODO we could consider adding a diagnostic for this case so the issue appears in the Problems list
+                    this.extension.logger.addLogMessage(`Warning - following .bib entry in ${bibPath} has no cite key:\n${itemString}`)
+                }
             }
             prevResult = result
             if (result) {
@@ -74,7 +85,7 @@ export class Citation {
     splitBibItem(item: string) {
         let unclosed = 0
         let lastSplit = -1
-        const segments: any[] = []
+        const segments: string[] = []
 
         for (let i = 0; i < item.length; i++) {
             const char = item[i]
@@ -89,8 +100,15 @@ export class Citation {
         }
 
         segments.push(item.substring(lastSplit + 1).trim())
-        const bibItem = { key: segments.shift() }
-        bibItem.key = bibItem.key.substring(bibItem.key.indexOf('{') + 1)
+        const firstSegment = segments.shift()
+        if (firstSegment === undefined) {
+            return undefined
+        }
+        const citeKey = firstSegment.substring(firstSegment.indexOf('{') + 1)
+        if (citeKey === undefined || citeKey === '') {
+            return undefined
+        }
+        const bibItem: CitationRecord = { key: citeKey }
 
         let last = segments[segments.length - 1]
         last = last.substring(0, last.lastIndexOf('}'))

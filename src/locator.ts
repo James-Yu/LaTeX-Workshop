@@ -4,6 +4,12 @@ import * as cp from 'child_process'
 
 import {Extension} from './main'
 
+export interface SyncTeXRecord {
+    input: string
+    line: number
+    column: number
+}
+
 export class Locator {
     extension: Extension
 
@@ -11,7 +17,7 @@ export class Locator {
         this.extension = extension
     }
 
-    parseSyncTeX(result: string) : any {
+    parseSyncTeX(result: string) {
         const record = {}
         let started = false
         for (const line of result.split('\n')) {
@@ -33,9 +39,17 @@ export class Locator {
             if (key in record) {
                 continue
             }
-            record[line.substr(0, pos).toLowerCase()] = line.substr(pos + 1)
+            let value: string | number = line.substr(pos + 1)
+            if (value ===  'column' || value === 'line') {
+                value = parseInt(value)
+            }
+            record[key] = value
         }
-        return record
+        if ('input' in record && 'column' in record && 'line' in record) {
+            return record as SyncTeXRecord
+        } else {
+            return undefined
+        }
     }
 
     syncTeX() {
@@ -73,7 +87,7 @@ export class Locator {
                 return
             }
             const record = this.parseSyncTeX(stdout)
-            if (!('input' in record)) {
+            if (record === undefined) {
                 this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
                 return
             }
