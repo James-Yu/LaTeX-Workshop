@@ -141,7 +141,11 @@
       },
       {
         "command": "latex-workshop.clean",
-        "title": "Clean up auxillary files of LaTeX project"
+        "title": "Clean up auxillary files"
+      },
+      {
+        "command": "latex-workshop.spell",
+        "title": "Check spelling"
       }
     ],
     "configuration": {
@@ -189,6 +193,11 @@
             "*.fdb_latexmk"
           ],
           "description": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
+        },
+        "latex-workshop.spellcheck": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable automatically spell check in active LaTeX document.\nThe active document will be spell-checked upon opening, changing editors, or content changes.\nYou can always manually check spellings with LaTeX Workshop command."
         },
         "latex-workshop.linter": {
           "type": "boolean",
@@ -261,6 +270,11 @@
           "when": "resourceLangId == latex",
           "command": "latex-workshop.clean",
           "group": "navigation@104"
+        },
+        {
+          "when": "resourceLangId == latex",
+          "command": "latex-workshop.spell",
+          "group": "navigation@105"
         }
       ]
     }
@@ -277,9 +291,7 @@
   },
   "dependencies": {
     "chokidar": "^1.6.1",
-    "dictionary-en-us": "^1.2.0",
     "glob": "^7.1.1",
-    "hunspell-spellchecker": "^1.0.2",
     "open": "^0.0.5",
     "simple-spellchecker": "^0.9.4",
     "tmp": "^0.0.31",

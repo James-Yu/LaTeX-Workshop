@@ -42,6 +42,14 @@ function lintActiveFileIfEnabledAfterInterval(extension: Extension) {
     }
 }
 
+function checkActiveEditorIfEnabled(extension: Extension, doc: vscode.TextDocument, line: number | undefined = undefined) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const spellcheck = configuration.get('spellcheck') as boolean
+    if (spellcheck) {
+        extension.checker.check(doc, line)
+    }
+}
+
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
     global['latex'] = extension
@@ -51,6 +59,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
+    vscode.commands.registerCommand('latex-workshop.spell', () => extension.commander.spell())
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
@@ -69,7 +78,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
             extension.manager.findRoot()
-            extension.checker.check(e)
+            checkActiveEditorIfEnabled(extension, e)
         }
     }))
 
@@ -78,7 +87,7 @@ export async function activate(context: vscode.ExtensionContext) {
             lintActiveFileIfEnabledAfterInterval(extension)
             e.contentChanges.forEach(change => {
                 for (let line = change.range.start.line; line <= change.range.end.line; ++line) {
-                    extension.checker.check(e.document, line)
+                    checkActiveEditorIfEnabled(extension, e.document, line)
                 }
             })
         }
@@ -101,7 +110,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
         if (extension.manager.isTex(e.document.fileName)) {
             lintActiveFileIfEnabled(extension)
-            extension.checker.check(e.document)
+            checkActiveEditorIfEnabled(extension, e.document)
         }
     }))
 

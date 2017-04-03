@@ -63,4 +63,12 @@ export class Commander {
         this.extension.manager.findRoot()
         this.extension.cleaner.clean()
     }
+
+    spell() {
+        this.extension.logger.addLogMessage(`SPELL command invoked.`)
+        if (!vscode.window.activeTextEditor) {
+            return
+        }
+        this.extension.checker.check(vscode.window.activeTextEditor.document)
+    }
 }
