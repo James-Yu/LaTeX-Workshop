@@ -6,26 +6,27 @@ import {Extension} from './../main'
 export class Command {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    provideRefreshTime: number
+    commandInTeX: { [id: string]: {} } = {}
+    refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.provideRefreshTime < 1000)
+        if (Date.now() - this.refreshTimer < 1000)
             return this.suggestions
-        this.provideRefreshTime = Date.now()
-        this.extension.manager.findAllDependentFiles()
+        this.refreshTimer = Date.now()
         let suggestions = JSON.parse(JSON.stringify(this.defaults))
-        this.extension.manager.texFiles.forEach(filePath => {
-            let items = this.getCommandsTeX(filePath)
-            Object.keys(items).forEach(key => {
-                if (key in suggestions)
-                    suggestions[key].count += items[key].count
-                else
-                    suggestions[key] = items[key]
-            })
+        Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
+            if (filePath in this.commandInTeX) {
+                Object.keys(this.commandInTeX[filePath]).forEach(key => {
+                    if (key in suggestions)
+                        suggestions[key].count += this.commandInTeX[filePath][key].count
+                    else
+                        suggestions[key] = this.commandInTeX[filePath][key]
+                })
+            }
         })
         if (vscode.window.activeTextEditor) {
             let items = this.getCommandItems(vscode.window.activeTextEditor.document.getText())
@@ -48,14 +49,12 @@ export class Command {
     }
 
     getCommandsTeX(filePath: string) {
-        if (!(fs.existsSync(filePath)))
-            return {}
-        return this.getCommandItems(fs.readFileSync(filePath, 'utf-8'))
+        this.commandInTeX[filePath] = this.getCommandItems(fs.readFileSync(filePath, 'utf-8'))
     }
     
     getCommandItems(content: string) {
-        var itemReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
-        var items = {}
+        let itemReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
+        let items = {}
         while (true) {
             let result = itemReg.exec(content);
             if (result == null) {

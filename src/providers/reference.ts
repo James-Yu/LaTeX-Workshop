@@ -6,24 +6,25 @@ import {Extension} from './../main'
 export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    provideRefreshTime: number
+    referenceInTeX: { [id: string]: {} } = {}
+    refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.provideRefreshTime < 1000)
+        if (Date.now() - this.refreshTimer < 1000)
             return this.suggestions
-        this.provideRefreshTime = Date.now()
-        this.extension.manager.findAllDependentFiles()
+        this.refreshTimer = Date.now()
         let suggestions = {}
-        this.extension.manager.texFiles.forEach(filePath => {
-            let items = this.getReferencesTeX(filePath)
-            Object.keys(items).map(key => {
-                if (!(key in suggestions))
-                    suggestions[key] = items[key]
-            })
+        Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
+            if (filePath in this.referenceInTeX) {
+                Object.keys(this.referenceInTeX[filePath]).forEach(key => {
+                    if (!(key in suggestions))
+                        suggestions[key] = this.referenceInTeX[filePath][key]
+                })
+            }
         })
         if (vscode.window.activeTextEditor) {
             let items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
@@ -42,9 +43,7 @@ export class Reference {
     }
 
     getReferencesTeX(filePath: string) {
-        if (!(fs.existsSync(filePath)))
-            return {}
-        return this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
+        this.referenceInTeX[filePath] = this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
     }
     
     getReferenceItems(content: string) {
