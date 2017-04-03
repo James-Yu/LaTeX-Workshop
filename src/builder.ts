@@ -65,6 +65,6 @@ export class Builder {
     createToolchain(rootFile: string) : string[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const commands = configuration.get('toolchain') as string[]
-        return commands.map(command => command.replace('%DOC%', `"${rootFile}"`))
+        return commands.map(command => command.replace('%DOC%', `"${rootFile.replace(/\.tex$/, '')}"`))
     }
 }
