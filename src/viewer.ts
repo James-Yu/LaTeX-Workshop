@@ -2,13 +2,22 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as open from 'open'
+import * as WebSocket from 'ws'
 
 import {Extension} from './main'
 import {SyncTeXRecord} from './locator'
 
+interface Position {}
+
+interface Client {
+    type: 'viewer' | 'tab'
+    ws?: WebSocket
+    position?: Position
+}
+
 export class Viewer {
     extension: Extension
-    clients = {}
+    clients: {[key: string]: Client | undefined} = {}
     positions = {}
 
     constructor(extension: Extension) {
@@ -17,11 +26,12 @@ export class Viewer {
 
     refreshExistingViewer(sourceFile: string, type?: string) : boolean {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        if (pdfFile in this.clients &&
-            (type === undefined || this.clients[pdfFile].type === type) &&
-            'ws' in this.clients[pdfFile]) {
+        const client = this.clients[pdfFile]
+        if (client !== undefined &&
+            (type === undefined || client.type === type) &&
+            client.ws !== undefined) {
             this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-            this.clients[pdfFile].ws.send(JSON.stringify({type: "refresh"}))
+            client.ws.send(JSON.stringify({type: "refresh"}))
             return true
         }
         this.extension.logger.addLogMessage(`No PDF viewer connected for ${pdfFile}`)
@@ -52,8 +62,9 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile]) {
-            this.clients[pdfFile].ws.close()
+        const client = this.clients[pdfFile]
+        if (client !== undefined && client.ws !== undefined) {
+            client.ws.close()
         }
         this.clients[pdfFile] = {type: 'viewer'}
         open(url)
@@ -67,13 +78,14 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const client = this.clients[pdfFile]
         const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
         let column = vscode.ViewColumn.Two
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two) {
             column = vscode.ViewColumn.Three
         }
-        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile]) {
-            this.clients[pdfFile].ws.close()
+        if (client !== undefined && client.ws !== undefined) {
+            client.ws.close()
         }
         this.clients[pdfFile] = {type: 'tab'}
         vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
@@ -81,31 +93,38 @@ export class Viewer {
         this.extension.logger.displayStatus('repo', 'white', `Open PDF tab for ${path.basename(pdfFile)}.`)
     }
 
-    handler(ws: object, msg: string) {
+    handler(ws: WebSocket, msg: string) {
         const data = JSON.parse(msg)
+        let client: Client | undefined
         switch (data.type) {
             case 'open':
-                this.clients[decodeURIComponent(data.path)]['ws'] = ws
+                client = this.clients[decodeURIComponent(data.path)]
+                if (client !== undefined) {
+                    client.ws = ws
+                }
                 break
             case 'close':
                 for (const key in this.clients) {
-                    if (this.clients[key].ws === ws) {
-                        delete this.clients[key].ws
-                        delete this.clients[key].type
+                    client = this.clients[key]
+                    if (client !== undefined && client.ws === ws) {
+                        delete client.ws
+                        delete client.type
                     }
                 }
                 break
             case 'position':
                 for (const key in this.clients) {
-                    if (this.clients[key].ws === ws) {
-                        this.clients[key].position = data
+                    client = this.clients[key]
+                    if (client !== undefined && client.ws === ws) {
+                        client.position = data
                     }
                 }
                 break
             case 'loaded':
                 const pdfFile = decodeURIComponent(data.path)
-                if (pdfFile in this.clients && 'position' in this.clients[pdfFile]) {
-                    this.clients[pdfFile].ws.send(JSON.stringify(this.clients[pdfFile].position))
+                client = this.clients[pdfFile]
+                if (client !== undefined && client.ws !== undefined && client.position !== undefined) {
+                    client.ws.send(JSON.stringify(client.position))
                 }
                 break
             case 'click':
@@ -118,12 +137,15 @@ export class Viewer {
     }
 
     syncTeX(pdfFile: string, record: SyncTeXRecord | undefined) {
-        if (!(pdfFile in this.clients)) {
+        const client = this.clients[pdfFile]
+        if (client === undefined) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
         }
-        this.clients[pdfFile].ws.send(JSON.stringify({type: "synctex", data: record}))
-        this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
+        if (client.ws !== undefined) {
+            client.ws.send(JSON.stringify({type: "synctex", data: record}))
+            this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
+        }
     }
 }
 

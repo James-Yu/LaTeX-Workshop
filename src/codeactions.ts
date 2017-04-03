@@ -2,7 +2,7 @@ import * as vs from 'vscode'
 
 import { Extension } from './main'
 
-const codesToStaticActionStrings = {
+const CODE_TO_ACTION_STRING: {[key: number]: string} = {
     1: "Terminate command with empty statement",
     2: "Convert to non-breaking space (~)",
     4: "Remove italic correction \\/ (not in italic buffer)",
@@ -66,7 +66,11 @@ export class CodeActions {
     provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken) : vs.Command[] {
         const actions: vs.Command[] = []
         context.diagnostics.filter(d => d.source === 'ChkTeX').forEach(d => {
-            const label = codesToStaticActionStrings[d.code]
+            let code  = d.code
+            if (typeof code === 'string') {
+                code = parseInt(code)
+            }
+            const label = CODE_TO_ACTION_STRING[code]
             if (label !== undefined) {
                 actions.push({
                     title: label,

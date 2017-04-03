@@ -15,7 +15,7 @@ export class Server {
     constructor(extension: Extension) {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
-        this.httpServer.listen(0, "localhost", undefined, (err) => {
+        this.httpServer.listen(0, "localhost", undefined, (err: Error) => {
             if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
