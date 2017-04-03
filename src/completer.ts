@@ -21,8 +21,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.reference = new Reference(extension)
     }
 
-    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken):
-        Thenable<vscode.CompletionItem[]> {
+    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
         return new Promise((resolve, _reject) => {
             const line = document.lineAt(position.line).text.substr(0, position.character)
             for (const type of ['citation', 'reference', 'environment', 'command']) {
@@ -55,6 +54,10 @@ export class Completer implements vscode.CompletionItemProvider {
                 reg = /\\([a-zA-Z]*)$/
                 provider = this.command
                 break
+            default:
+                // This shouldn't be possible, so mark as error case in log.
+                this.extension.logger.addLogMessage(`Error - trying to complete unknown type ${type}`)
+                return []
         }
         const result = line.match(reg)
         let suggestions = []

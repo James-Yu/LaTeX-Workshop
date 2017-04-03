@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as open from 'open'
 
 import {Extension} from './main'
+import {SyncTeXRecord} from './locator'
 
 export class Viewer {
     extension: Extension
@@ -14,7 +15,7 @@ export class Viewer {
         this.extension = extension
     }
 
-    refreshExistingViewer(sourceFile: string, type: string | undefined = undefined) : boolean {
+    refreshExistingViewer(sourceFile: string, type?: string) : boolean {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         if (pdfFile in this.clients &&
             (type === undefined || this.clients[pdfFile].type === type) &&
@@ -27,7 +28,7 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, type: string) : string |undefined {
+    checkViewer(sourceFile: string, type: string) : string | undefined {
         if (this.refreshExistingViewer(sourceFile, type)) {
             return
         }
@@ -116,7 +117,7 @@ export class Viewer {
         }
     }
 
-    syncTeX(pdfFile: string, record: object) {
+    syncTeX(pdfFile: string, record: SyncTeXRecord | undefined) {
         if (!(pdfFile in this.clients)) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
@@ -133,7 +134,7 @@ export class PDFProvider implements vscode.TextDocumentContentProvider {
         this.extension = extension
     }
 
-    public provideTextDocumentContent(uri: vscode.Uri): string {
+    public provideTextDocumentContent(uri: vscode.Uri) : string {
         const url = `http://${this.extension.server.address}/viewer.html?file=\\pdf:${encodeURIComponent(uri.fsPath)}`
         return `
             <!DOCTYPE html style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;"><html><head></head>
