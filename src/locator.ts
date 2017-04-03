@@ -18,7 +18,7 @@ export class Locator {
     }
 
     parseSyncTeX(result: string) {
-        const record = {}
+        const record: {[key: string]: string | number} = {}
         let started = false
         for (const line of result.split('\n')) {
             if (line.indexOf('SyncTeX result begin') > -1) {

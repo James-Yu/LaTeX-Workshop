@@ -26,11 +26,11 @@ export class Manager {
         return path.dirname(this.rootFile)
     }
 
-    tex2pdf(texPath) {
+    tex2pdf(texPath: string) {
         return `${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`
     }
 
-    isTex(filePath) {
+    isTex(filePath: string) {
         return path.extname(filePath) === '.tex'
     }
 
@@ -127,11 +127,11 @@ export class Manager {
         if (prevWatcherClosed || this.fileWatcher === undefined) {
             this.extension.logger.addLogMessage(`Instatiating new file watcher for ${this.rootFile}`)
             this.fileWatcher = chokidar.watch(this.rootFile)
-            this.fileWatcher.on('change', path => {
+            this.fileWatcher.on('change', (path: string) => {
                 this.extension.logger.addLogMessage(`File watcher: responding to change in ${path}`)
                 this.findDependentFiles(path)
             })
-            this.fileWatcher.on('unlink', path => {
+            this.fileWatcher.on('unlink', (path: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${path} deleted.`)
                 this.fileWatcher.unwatch(path)
                 if (path === this.rootFile) {
@@ -194,11 +194,11 @@ export class Manager {
                     if (this.bibWatcher === undefined) {
                         this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
                         this.bibWatcher = chokidar.watch(bibPath)
-                        this.bibWatcher.on('change', path => {
+                        this.bibWatcher.on('change', (path: string) => {
                             this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${path}`)
                             this.extension.completer.citation.parseBibItems(path)
                         })
-                        this.bibWatcher.on('unlink', path => {
+                        this.bibWatcher.on('unlink', (path: string) => {
                             this.extension.logger.addLogMessage(`Bib file watcher: ${path} deleted.`)
                             this.extension.completer.citation.forgetParsedBibItems(path)
                             this.bibWatcher.unwatch(path)

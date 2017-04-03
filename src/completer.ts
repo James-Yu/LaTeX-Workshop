@@ -60,7 +60,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 return []
         }
         const result = line.match(reg)
-        let suggestions = []
+        let suggestions: vscode.CompletionItem[] = []
         if (result) {
             suggestions = provider.provide()
         }

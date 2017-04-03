@@ -15,7 +15,8 @@ const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkPatternNoGM = /^Latexmk:\sapplying\srule/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
-const DIAGNOSTIC_SEVERITY = {
+
+const DIAGNOSTIC_SEVERITY: {[key: string]: vscode.DiagnosticSeverity} = {
     'typesetting': vscode.DiagnosticSeverity.Hint,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
