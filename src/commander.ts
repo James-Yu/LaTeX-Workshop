@@ -11,9 +11,10 @@ export class Commander {
 
     build() {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName))
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
-        let rootFile = this.extension.manager.findRoot()
+        }
+        const rootFile = this.extension.manager.findRoot()
         if (rootFile !== undefined) {
             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
             this.extension.builder.build(this.extension.manager.rootFile)
@@ -24,9 +25,10 @@ export class Commander {
 
     view() {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName))
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
-        let rootFile = this.extension.manager.findRoot()
+        }
+        const rootFile = this.extension.manager.findRoot()
         if (rootFile !== undefined) {
             this.extension.viewer.openViewer(rootFile)
         } else {
@@ -36,9 +38,10 @@ export class Commander {
 
     tab() {
         this.extension.logger.addLogMessage(`TAB command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName))
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
-        let rootFile = this.extension.manager.findRoot()
+        }
+        const rootFile = this.extension.manager.findRoot()
         if (rootFile !== undefined) {
             this.extension.viewer.openTab(rootFile)
         } else {
@@ -49,8 +52,9 @@ export class Commander {
     synctex() {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
         this.extension.manager.findRoot()
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName))
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
+        }
         this.extension.locator.syncTeX()
     }
 

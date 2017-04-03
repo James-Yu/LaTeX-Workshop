@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as open from 'open'
@@ -16,8 +15,8 @@ export class Viewer {
     }
 
     refreshExistingViewer(sourceFile: string, type: string = undefined) : boolean {
-        let pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        if (pdfFile in this.clients && 
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        if (pdfFile in this.clients &&
             (type === undefined || this.clients[pdfFile].type === type) &&
             'ws' in this.clients[pdfFile]) {
             this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
@@ -29,9 +28,10 @@ export class Viewer {
     }
 
     checkViewer(sourceFile: string, type: string) : string {
-        if (this.refreshExistingViewer(sourceFile, type))
+        if (this.refreshExistingViewer(sourceFile, type)) {
             return
-        let pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        }
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
             return
@@ -40,18 +40,20 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        let url = `http://${this.extension.server.address}/viewer.html?file=\\pdf:${encodeURIComponent(pdfFile)}`
+        const url = `http://${this.extension.server.address}/viewer.html?file=\\pdf:${encodeURIComponent(pdfFile)}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         return url
     }
 
     openViewer(sourceFile: string) {
-        let url = this.checkViewer(sourceFile, 'viewer')
-        if (!url)
+        const url = this.checkViewer(sourceFile, 'viewer')
+        if (!url) {
             return
-        let pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile])
+        }
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile]) {
             this.clients[pdfFile].ws.close()
+        }
         this.clients[pdfFile] = {type: 'viewer'}
         open(url)
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
@@ -59,16 +61,19 @@ export class Viewer {
     }
 
     openTab(sourceFile: string) {
-        let url = this.checkViewer(sourceFile, 'tab')
-        if (!url)
-            return;
-        let pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        let uri = vscode.Uri.file(pdfFile).with({scheme:'latex-workshop-pdf'})
+        const url = this.checkViewer(sourceFile, 'tab')
+        if (!url) {
+            return
+        }
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
         let column = vscode.ViewColumn.Two
-        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two)
+        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two) {
             column = vscode.ViewColumn.Three
-        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile])
+        }
+        if (pdfFile in this.clients && 'ws' in this.clients[pdfFile]) {
             this.clients[pdfFile].ws.close()
+        }
         this.clients[pdfFile] = {type: 'tab'}
         vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
@@ -76,27 +81,31 @@ export class Viewer {
     }
 
     handler(ws: object, msg: string) {
-        let data = JSON.parse(msg)
+        const data = JSON.parse(msg)
         switch (data.type) {
             case 'open':
                 this.clients[decodeURIComponent(data.path)]['ws'] = ws
                 break
             case 'close':
-                for (let key in this.clients)
-                    if (this.clients[key].ws == ws) {
+                for (const key in this.clients) {
+                    if (this.clients[key].ws === ws) {
                         delete this.clients[key].ws
                         delete this.clients[key].type
                     }
+                }
                 break
             case 'position':
-                for (let key in this.clients)
-                    if (this.clients[key].ws == ws)
+                for (const key in this.clients) {
+                    if (this.clients[key].ws === ws) {
                         this.clients[key].position = data
-                        break
+                    }
+                }
+                break
             case 'loaded':
-                let pdfFile = decodeURIComponent(data.path)
-                if (pdfFile in this.clients && 'position' in this.clients[pdfFile])
+                const pdfFile = decodeURIComponent(data.path)
+                if (pdfFile in this.clients && 'position' in this.clients[pdfFile]) {
                     this.clients[pdfFile].ws.send(JSON.stringify(this.clients[pdfFile].position))
+                }
                 break
             case 'click':
                 this.extension.locator.locate(data, decodeURIComponent(data.path))
@@ -125,12 +134,12 @@ export class PDFProvider implements vscode.TextDocumentContentProvider {
     }
 
     public provideTextDocumentContent(uri: vscode.Uri): string {
-        let url = `http://${this.extension.server.address}/viewer.html?file=\\pdf:${encodeURIComponent(uri.fsPath)}`
+        const url = `http://${this.extension.server.address}/viewer.html?file=\\pdf:${encodeURIComponent(uri.fsPath)}`
         return `
             <!DOCTYPE html style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;"><html><head></head>
             <body style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;">
             <iframe class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe></body></html>
         `
-	}
+    }
 }

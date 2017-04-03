@@ -18,9 +18,10 @@ export class Builder {
         this.disableBuildAfterSave = true
         vscode.workspace.saveAll()
         this.disableBuildAfterSave = false
-        if (this.currentProcess)
+        if (this.currentProcess) {
             this.currentProcess.kill()
-        let toolchain = this.createToolchain(rootFile)
+        }
+        const toolchain = this.createToolchain(rootFile)
         this.extension.logger.addLogMessage(`Created toolchain ${toolchain}`)
         this.buildStep(rootFile, toolchain, 0)
     }
@@ -34,7 +35,7 @@ export class Builder {
 
         this.extension.logger.addLogMessage(`Toolchain step ${index + 1}: ${toolchain[index]}`)
         this.extension.logger.displayStatus('sync', 'orange', `LaTeX build toolchain step ${index + 1}.`, 0)
-        this.currentProcess = this.processWrapper(toolchain[index], {cwd: path.dirname(rootFile)}, (error, stdout, stderr) => {
+        this.currentProcess = this.processWrapper(toolchain[index], {cwd: path.dirname(rootFile)}, (error, stdout) => {
             this.extension.parser.parse(stdout)
             if (!error) {
                 this.buildStep(rootFile, toolchain, index + 1)
@@ -49,8 +50,8 @@ export class Builder {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
         this.extension.logger.displayStatus('check', 'white', `LaTeX toolchain succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
-        let configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let clean = configuration.get('clean_after_build') as boolean
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const clean = configuration.get('clean_after_build') as boolean
         if (clean) {
             this.extension.cleaner.clean()
         }
@@ -62,8 +63,8 @@ export class Builder {
     }
 
     createToolchain(rootFile: string) : string[] {
-        let configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let commands = configuration.get('toolchain') as Array<string>
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const commands = configuration.get('toolchain') as string[]
         return commands.map(command => command.replace('%DOC%', `"${rootFile}"`))
     }
 }

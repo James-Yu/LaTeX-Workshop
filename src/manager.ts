@@ -35,11 +35,11 @@ export class Manager {
     }
 
     findRoot() : string | undefined {
-        let findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootSaved(), () => this.findRootDir()]
-        for (let method of findMethods) {
-            let rootFile = method()
+        const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootSaved(), () => this.findRootDir()]
+        for (const method of findMethods) {
+            const rootFile = method()
             if (rootFile !== undefined) {
-                if (this.rootFile !== rootFile){
+                if (this.rootFile !== rootFile) {
                     this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
                     this.rootFile = rootFile
                     this.findAllDependentFiles()
@@ -53,14 +53,15 @@ export class Manager {
     }
 
     findRootMagic() : string | undefined {
-        if (!vscode.window.activeTextEditor)
+        if (!vscode.window.activeTextEditor) {
             return undefined
-        let regex = /(?:%\s*!\s*TEX\sroot\s*=\s*([^\s]*\.tex)$)/m
-        let content = vscode.window.activeTextEditor.document.getText()
+        }
+        const regex = /(?:%\s*!\s*TEX\sroot\s*=\s*([^\s]*\.tex)$)/m
+        const content = vscode.window.activeTextEditor.document.getText()
 
-        let result = content.match(regex)
+        const result = content.match(regex)
         if (result) {
-            let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
+            const file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
             this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
             return file
         }
@@ -68,13 +69,14 @@ export class Manager {
     }
 
     findRootSelf() : string | undefined {
-        if (!vscode.window.activeTextEditor)
+        if (!vscode.window.activeTextEditor) {
             return undefined
-        let regex = /\\begin{document}/m
-        let content = vscode.window.activeTextEditor.document.getText()
-        let result = content.match(regex)
+        }
+        const regex = /\\begin{document}/m
+        const content = vscode.window.activeTextEditor.document.getText()
+        const result = content.match(regex)
         if (result) {
-            let file = vscode.window.activeTextEditor.document.fileName
+            const file = vscode.window.activeTextEditor.document.fileName
             this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
             return file
         }
@@ -86,17 +88,18 @@ export class Manager {
     }
 
     findRootDir() : string | undefined {
-        let regex = /\\begin{document}/m
+        const regex = /\\begin{document}/m
 
         try {
-            let files = fs.readdirSync(vscode.workspace.rootPath)
+            const files = fs.readdirSync(vscode.workspace.rootPath)
             for (let file of files) {
-                if (path.extname(file) != '.tex')
+                if (path.extname(file) !== '.tex') {
                     continue
+                }
                 file = path.join(vscode.workspace.rootPath, file)
-                let content = fs.readFileSync(file)
+                const content = fs.readFileSync(file)
 
-                let result = content.toString().match(regex)
+                const result = content.toString().match(regex)
                 if (result) {
                     file = path.resolve(vscode.workspace.rootPath, file)
                     this.extension.logger.addLogMessage(`Found root file in root directory: ${file}`)
@@ -126,7 +129,7 @@ export class Manager {
             this.fileWatcher.on('unlink', path => {
                 this.extension.logger.addLogMessage(`File watcher: ${path} deleted.`)
                 this.fileWatcher.unwatch(path)
-                if (path == this.rootFile) {
+                if (path === this.rootFile) {
                     this.extension.logger.addLogMessage(`Deleted ${path} was root - triggering root search`)
                     this.findRoot()
                 }
@@ -137,14 +140,15 @@ export class Manager {
 
     findDependentFiles(filePath: string) {
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
-        let content = fs.readFileSync(filePath, 'utf-8')
+        const content = fs.readFileSync(filePath, 'utf-8')
 
-        let inputReg = /(?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        const inputReg = /(?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
         this.texFileTree[filePath] = new Set()
         while (true) {
-            let result = inputReg.exec(content)
-            if (!result)
+            const result = inputReg.exec(content)
+            if (!result) {
                 break
+            }
             const inputFile = result[1]
             let inputFilePath = path.resolve(path.join(this.rootDir, inputFile))
             if (path.extname(inputFilePath) === '') {
@@ -163,15 +167,16 @@ export class Manager {
             }
         }
 
-        let bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^\[\]\{\}]*\])?){(.+?)}/g
+        const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^\[\]\{\}]*\])?){(.+?)}/g
         while (true) {
-            let result = bibReg.exec(content)
-            if (!result)
+            const result = bibReg.exec(content)
+            if (!result) {
                 break
-            let bibs = result[1].split(',').map((bib) => {
+            }
+            const bibs = result[1].split(',').map((bib) => {
                 return bib.trim()
             })
-            for (let bib of bibs) {
+            for (const bib of bibs) {
                 let bibPath = path.resolve(path.join(this.rootDir, bib))
                 if (path.extname(bibPath) === '') {
                     bibPath += '.bib'

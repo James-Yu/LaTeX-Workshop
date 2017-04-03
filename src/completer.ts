@@ -24,37 +24,39 @@ export class Completer implements vscode.CompletionItemProvider {
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken):
         Thenable<vscode.CompletionItem[]> {
         return new Promise((resolve, reject) => {
-            let line = document.lineAt(position.line).text.substr(0, position.character)
-            for (let type of ['citation', 'reference', 'environment', 'command']) {
-                let suggestions = this.completion(type, line)
-                if (suggestions.length > 0)
+            const line = document.lineAt(position.line).text.substr(0, position.character)
+            for (const type of ['citation', 'reference', 'environment', 'command']) {
+                const suggestions = this.completion(type, line)
+                if (suggestions.length > 0) {
                     resolve(suggestions)
+                }
             }
             resolve([])
         })
     }
 
     completion(type: string, line: string) : vscode.CompletionItem[] {
-        let reg, provider
+        let reg
+        let provider
         switch (type) {
             case 'citation':
                 reg = /(?:\\[a-zA-Z]*cite[a-zA-Z]*(?:\[[^\[\]]*\])?){([^}]*)$/
                 provider = this.citation
-                break;
+                break
             case 'reference':
                 reg = /(?:\\[a-zA-Z]*ref[a-zA-Z]*(?:\[[^\[\]]*\])?){([^}]*)$/
                 provider = this.reference
-                break;
+                break
             case 'environment':
                 reg = /(?:\\(?:begin|end)(?:\[[^\[\]]*\])?){([^}]*)$/
                 provider = this.environment
-                break;
+                break
             case 'command':
                 reg = /\\([a-zA-Z]*)$/
                 provider = this.command
-                break;
+                break
         }
-        let result = line.match(reg)
+        const result = line.match(reg)
         let suggestions = []
         if (result) {
             suggestions = provider.provide()
