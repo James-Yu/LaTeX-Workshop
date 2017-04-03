@@ -21,9 +21,9 @@ export class Completer implements vscode.CompletionItemProvider {
         this.reference = new Reference(extension)
     }
 
-    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken):
+    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken):
         Thenable<vscode.CompletionItem[]> {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve, _reject) => {
             const line = document.lineAt(position.line).text.substr(0, position.character)
             for (const type of ['citation', 'reference', 'environment', 'command']) {
                 const suggestions = this.completion(type, line)

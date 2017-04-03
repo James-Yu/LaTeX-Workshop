@@ -26,7 +26,11 @@ const codesToStaticActionStrings = {
 function replaceWhitespaceOnLineBefore(document: vs.TextDocument, position: vs.Position, replaceWith: string): any {
     const beforePosRange = new vs.Range(new vs.Position(position.line, 0), position)
     const text = document.getText(beforePosRange)
-    const charactersToRemove = /\s*$/.exec(text)[0].length
+    const regexResult = /\s*$/.exec(text)
+    if (!regexResult) {
+        return vs.workspace.applyEdit(new vs.WorkspaceEdit())
+    }
+    const charactersToRemove = regexResult[0].length
     const wsRange = new vs.Range(new vs.Position(position.line, position.character - charactersToRemove), position)
     const edit = new vs.WorkspaceEdit()
     edit.replace(document.uri, wsRange, replaceWith)
@@ -58,9 +62,9 @@ export class CodeActions {
         this.extension = extension
     }
 
-    provideCodeActions(document: vs.TextDocument, range: vs.Range, context: vs.CodeActionContext, token: vs.CancellationToken): vs.Command[] {
-        const actions = []
-
+    // Leading underscore to avoid tslint complaint
+    provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken): vs.Command[] {
+        const actions: vs.Command[] = []
         context.diagnostics.filter(d => d.source === 'ChkTeX').forEach(d => {
             const label = codesToStaticActionStrings[d.code]
             if (label !== undefined) {
@@ -77,6 +81,7 @@ export class CodeActions {
 
     runCodeAction(document: vs.TextDocument, range: vs.Range, code: number, message: string): any {
         let fixString
+        let regexResult
         switch (code) {
             case 24:
             case 26:
@@ -102,7 +107,11 @@ export class CodeActions {
                 break
             case 11:
                 // add a space after so we don't accidentally join with the following word.
-                fixString = /\\[cl]?dots/.exec(message)[0] + " "
+                regexResult = /\\[cl]?dots/.exec(message)
+                if (!regexResult) {
+                    break
+                }
+                fixString = regexResult[0] + " "
                 replaceRangeWithString(document, range, fixString)
                 break
             case 12:
@@ -132,7 +141,11 @@ export class CodeActions {
                 }
                 break
             case 35:
-                fixString = /`(.+)'/.exec(message)[1]
+                regexResult = /`(.+)'/.exec(message)
+                if (!regexResult) {
+                    break
+                }
+                fixString = regexResult[1]
                 replaceRangeWithString(document, range, fixString)
                 break
             default:

@@ -90,6 +90,10 @@ export class Manager {
     findRootDir() : string | undefined {
         const regex = /\\begin{document}/m
 
+        if (!vscode.workspace.rootPath) {
+            return undefined
+        }
+
         try {
             const files = fs.readdirSync(vscode.workspace.rootPath)
             for (let file of files) {

@@ -34,7 +34,7 @@ interface LinterLogEntry {
 export class Parser {
     extension: Extension
     isLaTeXmkSkipped: boolean
-    buildLog = []
+    buildLog: any[] = []
     buildLogRaw: string
     buildLogFile: any
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
