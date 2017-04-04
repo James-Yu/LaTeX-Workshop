@@ -16,15 +16,34 @@ export class Completer implements vscode.CompletionItemProvider {
 
     constructor(extension: Extension) {
         this.extension = extension
-        const defaultCommands = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`).toString())
-        const defaultSymbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
-        const defaultEnvs = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`).toString())
         this.citation = new Citation(extension)
         this.command = new Command(extension)
-        this.command.initialize(defaultCommands, defaultSymbols, defaultEnvs)
         this.environment = new Environment(extension)
-        this.environment.initialize(defaultEnvs)
         this.reference = new Reference(extension)
+        fs.readFile(`${this.extension.extensionRoot}/data/environments.json`, (err1, defaultEnvs) => {
+            if (err1) {
+                this.extension.logger.addLogMessage(`Error reading default environments: ${err1.message}`)
+                return
+            }
+            this.extension.logger.addLogMessage(`Default environments loaded`)
+            fs.readFile(`${this.extension.extensionRoot}/data/commands.json`, (err2, defaultCommands) => {
+                if (err2) {
+                    this.extension.logger.addLogMessage(`Error reading default commands: ${err2.message}`)
+                    return
+                }
+                this.extension.logger.addLogMessage(`Default commands loaded`)
+                fs.readFile(`${this.extension.extensionRoot}/data/unimathsymbols.json`, (err3, defaultSymbols) => {
+                    if (err2) {
+                        this.extension.logger.addLogMessage(`Error reading default unimathsymbols: ${err3.message}`)
+                        return
+                    }
+                    this.extension.logger.addLogMessage(`Default unimathsymbols loaded`)
+                    const env = JSON.parse(defaultEnvs.toString())
+                    this.command.initialize(JSON.parse(defaultCommands.toString()), JSON.parse(defaultSymbols.toString()), env)
+                    this.environment.initialize(env)
+                })
+            })
+        })
     }
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
