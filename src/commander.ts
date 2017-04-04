@@ -71,7 +71,7 @@ export class Commander {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
         this.extension.logger.displayFullStatus()
         if (!this.commandTitles) {
-            const packageInfo = JSON.parse(fs.readFileSync(`${__dirname}/../../package.json`).toString())
+            const packageInfo = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/package.json`).toString())
             const commands = packageInfo.contributes.commands.filter(command => {
                 if (command.command === 'latex-workshop.actions') {
                     return false

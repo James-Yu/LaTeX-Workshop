@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as path from 'path'
 
 import {Logger} from './logger'
 import {Commander} from './commander'
@@ -108,6 +109,7 @@ export async function activate(context: vscode.ExtensionContext) {
 }
 
 export class Extension {
+    extensionRoot: string
     logger: Logger
     commander: Commander
     manager: Manager
@@ -122,6 +124,7 @@ export class Extension {
     codeActions: CodeActions
 
     constructor() {
+        this.extensionRoot = path.resolve(`${__dirname}/../../`)
         this.logger = new Logger(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
