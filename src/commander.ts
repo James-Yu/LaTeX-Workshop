@@ -1,9 +1,12 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 
 import {Extension} from './main'
 
 export class Commander {
     extension: Extension
+    commandTitles: string[]
+    commands: string[]
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -62,5 +65,30 @@ export class Commander {
         this.extension.logger.addLogMessage(`CLEAN command invoked.`)
         this.extension.manager.findRoot()
         this.extension.cleaner.clean()
+    }
+
+    actions() {
+        this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
+        this.extension.logger.displayFullStatus()
+        if (!this.commandTitles) {
+            const packageInfo = JSON.parse(fs.readFileSync(`${__dirname}/../../package.json`).toString())
+            const commands = packageInfo.contributes.commands.filter(command => {
+                if (command.command === 'latex-workshop.actions') {
+                    return false
+                }
+                return true
+            })
+            this.commandTitles = commands.map(command => command.title)
+            this.commands = commands.map(command => command.command)
+        }
+        vscode.window.showQuickPick(this.commandTitles, {
+            placeHolder: "Please Select LaTeX Workshop Actions"
+        }).then(selected => {
+            if (!selected) {
+                return
+            }
+            const command = this.commands[this.commandTitles.indexOf(selected)]
+            vscode.commands.executeCommand(command)
+        })
     }
 }

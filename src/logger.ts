@@ -12,7 +12,8 @@ export class Logger {
         this.extension = extension
         this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
         this.addLogMessage('Initializing LaTeX Workshop.')
-        this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, 1)
+        this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
+        this.status.command = 'latex-workshop.actions'
         this.status.show()
         this.displayStatus('repo', 'white', 'LaTeX Workshop')
     }
@@ -33,6 +34,18 @@ export class Logger {
         this.status.color = color
         if (timeout > 0) {
             this.statusTimeout = setTimeout(() => this.status.text = `$(${icon})`, timeout)
+        }
+    }
+
+    displayFullStatus(timeout: number = 5000) {
+        if (this.statusTimeout) {
+            clearTimeout(this.statusTimeout)
+        }
+        const icon = this.status.text.split(' ')[0]
+        const message = this.status.tooltip
+        this.status.text = `${icon} Previous message: ${message}`
+        if (timeout > 0) {
+            this.statusTimeout = setTimeout(() => this.status.text = `${icon}`, timeout)
         }
     }
 }
