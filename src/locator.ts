@@ -46,7 +46,11 @@ export class Locator {
             record[key] = value
         }
         if ('input' in record && 'column' in record && 'line' in record) {
-            return record as SyncTeXRecord
+            return {
+                input: record.input,
+                line: record.line,
+                column: record.column
+            } as SyncTeXRecord
         } else {
             return undefined
         }

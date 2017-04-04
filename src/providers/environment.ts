@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 
 import {Extension} from './../main'
 
-const DEFAULT_ENIRONMENTS: {[key: string]: { text: string }} = {
+export const DEFAULT_ENVIRONMENTS: {[key: string]: { text: string }} = {
     figure: {
         text: 'figure'
     },
@@ -130,8 +130,8 @@ export class Environment {
     constructor(extension: Extension) {
         this.extension = extension
         this.suggestions = []
-        Object.keys(DEFAULT_ENIRONMENTS).forEach(key => {
-            const item = DEFAULT_ENIRONMENTS[key]
+        Object.keys(DEFAULT_ENVIRONMENTS).forEach(key => {
+            const item = DEFAULT_ENVIRONMENTS[key]
             const environment = new vscode.CompletionItem(item.text, vscode.CompletionItemKind.Module)
             this.suggestions.push(environment)
         })
