@@ -54,18 +54,25 @@ export class Command {
         this.suggestions = []
         Object.keys(suggestions).forEach(key => {
             const item = suggestions[key]
-            const command = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Keyword)
+            const command = new vscode.CompletionItem(`\\${item.command}`, vscode.CompletionItemKind.Snippet)
             if (item.snippet) {
                 command.insertText = new vscode.SnippetString(item.snippet)
+            } else {
+                command.insertText = item.command
             }
             if (item.documentation) {
                 command.documentation = item.documentation
             }
+            if (item.detail) {
+                command.detail = item.detail
+            }
             this.suggestions.push(command)
         })
+
         Object.keys(this.envSnippet).forEach(key => {
             const item = this.envSnippet[key]
-            const command = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Snippet)
+            const command = new vscode.CompletionItem(`\\begin{${item.command}} ... \\end{${item.command}}`, vscode.CompletionItemKind.Snippet)
+            command.filterText = item.command
             command.insertText = new vscode.SnippetString(item.snippet)
             this.suggestions.push(command)
         })
@@ -111,369 +118,152 @@ export class Command {
     }
 }
 
-const DEFAULT_COMMANDS = {
+interface AutocompleteEntry {
+    command: string
+    snippet?: string
+    detail?: string
+    description?: string
+}
+
+
+const DEFAULT_COMMANDS: {[key: string]: AutocompleteEntry} = {
     'begin': {
         'command': 'begin',
-        'snippet': 'begin{${1:env}}\n\t$2\n\\\\end{${1:env}}'
+        'snippet': 'begin{${1:env}}\n\t$2\n\\\\end{${1:env}}',
+        'detail': 'begin a new environment'
     },
-    'cite': {
-        'command': 'cite',
-        'snippet': 'cite{${1:key}}'
-    },
-    'ref': {
-        'command': 'ref',
-        'snippet': 'ref{${1:key}}'
-    },
-    ' ': {
-        'command': ' Press ENTER to insert a new line.',
-        'snippet': '\n',
-        'documentation': ''
-    },
-    'citeyear': {
-        'command': 'citeyear',
-        'snippet': 'citeyear{${1:key}}'
-    },
-    'Large': {
-        'command': 'Large'
-    },
-    'textsl': {
-        'command': 'textsl',
-        'snippet': 'textsl{${1:text}}'
-    },
-    'beta': {
-        'command': 'beta'
-    },
-    'phi': {
-        'command': 'phi'
-    },
-    'mu': {
-        'command': 'mu'
-    },
-    'circ': {
-        'command': 'circ'
-    },
-    'wedge': {
-        'command': 'wedge'
-    },
-    'author': {
-        'command': 'author',
-        'snippet': 'author{${1:text}}'
-    },
-    'Sigma': {
-        'command': 'Sigma'
-    },
-    'nu': {
-        'command': 'nu'
-    },
-    'rightarrow': {
-        'command': 'rightarrow'
-    },
-    'emph': {
-        'command': 'emph',
-        'snippet': 'emph{${1:text}}'
-    },
-    'hat': {
-        'command': 'hat',
-        'snippet': 'hat{${1:symbol}}'
-    },
-    'neq': {
-        'command': 'neq'
-    },
-    'forall': {
-        'command': 'forall'
-    },
-    'leq': {
-        'command': 'leq'
-    },
-    'textrm': {
-        'command': 'textrm',
-        'snippet': 'textrm{${1:text}}'
-    },
-    'cdot': {
-        'command': 'cdot'
-    },
-    'theta': {
-        'command': 'theta'
-    },
-    'textnormal': {
-        'command': 'textnormal',
-        'snippet': 'textnormal{${1:text}}'
-    },
-    'noindent': {
-        'command': 'noindent'
-    },
-    'footnote': {
-        'command': 'footnote',
-        'snippet': 'footnote{${1:text}}'
-    },
-    'textmd': {
-        'command': 'textmd',
-        'snippet': 'textmd{${1:text}}'
-    },
-    'Theta': {
-        'command': 'Theta'
-    },
-    'textsc': {
-        'command': 'textsc',
-        'snippet': 'textsc{${1:text}}'
-    },
-    'kill': {
-        'command': 'kill'
-    },
-    'cline': {
-        'command': 'cline',
-        'snippet': 'cline{${1:x}-{2:y}}'
+
+    // ------------------ DOCUMENT STRUCTURE ------------------ //
+    'title': {
+        'command': 'title',
+        'snippet': 'title{${1:text}}'
     },
     'part': {
         'command': 'part',
         'snippet': 'part{${1:title}}'
     },
-    'Psi': {
-        'command': 'Psi'
-    },
-    'pi': {
-        'command': 'pi'
-    },
-    'tiny': {
-        'command': 'tiny'
-    },
-    'pagebreak': {
-        'command': 'pagebreak'
-    },
-    'bibliographystyle': {
-        'command': 'bibliographystyle',
-        'snippet': 'bibliographystyle{${1:style}}'
-    },
-    'upsilon': {
-        'command': 'upsilon'
-    },
-    'infty': {
-        'command': 'infty'
-    },
-    'Huge': {
-        'command': 'Huge'
-    },
-    'pageref': {
-        'command': 'pageref',
-        'snippet': 'pageref{${1:key}}'
-    },
-    'supset': {
-        'command': 'supset'
-    },
-    'LARGE': {
-        'command': 'LARGE'
-    },
-    'psi': {
-        'command': 'psi'
-    },
-    'Upsilon': {
-        'command': 'Upsilon'
-    },
-    'raggedleft': {
-        'command': 'raggedleft'
-    },
-    'text': {
-        'command': 'text',
-        'snippet': 'text{${1:text}}'
-    },
-    'approx': {
-        'command': 'approx'
-    },
-    'normalsize': {
-        'command': 'normalsize'
-    },
-    'label': {
-        'command': 'label',
-        'snippet': 'label{${1:marker}}'
-    },
-    'sqrt': {
-        'command': 'sqrt',
-        'snippet': 'sqrt{${1:x}}'
-    },
-    'omega': {
-        'command': 'omega'
-    },
-    'subset': {
-        'command': 'subset'
-    },
-    'Rightarrow': {
-        'command': 'Rightarrow'
-    },
-    'today': {
-        'command': 'today'
-    },
-    'sum': {
-        'command': 'sum'
-    },
-    'eta': {
-        'command': 'eta'
-    },
-    'cap': {
-        'command': 'cap'
-    },
-    'zeta': {
-        'command': 'zeta'
-    },
     'chapter': {
         'command': 'chapter',
         'snippet': 'chapter{${1:title}}'
-    },
-    'bibliography': {
-        'command': 'bibliography',
-        'snippet': 'bibliography{${1:file}}'
-    },
-    'lambda': {
-        'command': 'lambda'
-    },
-    'xi': {
-        'command': 'xi'
-    },
-    'mid': {
-        'command': 'mid'
-    },
-    'neg': {
-        'command': 'neg'
-    },
-    'textit': {
-        'command': 'textit',
-        'snippet': 'textit{${1:text}}'
-    },
-    'delta': {
-        'command': 'delta'
-    },
-    'linespread': {
-        'command': 'linespread',
-        'snippet': 'linespread{${1:x}}'
-    },
-    'Pi': {
-        'command': 'Pi'
-    },
-    'frac': {
-        'command': 'frac',
-        'snippet': 'frac{${1:x}}{${2:y}}'
-    },
-    'bar': {
-        'command': 'bar',
-        'snippet': 'bar{${1:symbol}}'
-    },
-    'date': {
-        'command': 'date',
-        'snippet': 'date{${1:text}}'
-    },
-    'div': {
-        'command': 'div'
-    },
-    'underline': {
-        'command': 'underline',
-        'snippet': 'underline{${1:text}}'
-    },
-    'leftarrow': {
-        'command': 'leftarrow'
-    },
-    'tau': {
-        'command': 'tau'
-    },
-    'shortcite': {
-        'command': 'shortcite',
-        'snippet': 'shortcite{${1:key}}'
-    },
-    'sigma': {
-        'command': 'sigma'
-    },
-    'caption': {
-        'command': 'caption',
-        'snippet': 'caption{${1:text}}'
-    },
-    'chi': {
-        'command': 'chi'
-    },
-    'rule': {
-        'command': 'rule',
-        'snippet': 'rule{${1:w}}{${2:h}}'
-    },
-    'kappa': {
-        'command': 'kappa'
-    },
-    'footnotesize': {
-        'command': 'footnotesize'
-    },
-    'paragraph': {
-        'command': 'paragraph',
-        'snippet': 'paragraph{${1:title}}'
-    },
-    'prime': {
-        'command': 'prime'
-    },
-    'small': {
-        'command': 'small'
-    },
-    'geq': {
-        'command': 'geq'
-    },
-    'subsubsection': {
-        'command': 'subsubsection',
-        'snippet': 'subsubsection{${1:title}}'
     },
     'section': {
         'command': 'section',
         'snippet': 'section{${1:title}}'
     },
-    'centering': {
-        'command': 'centering'
-    },
-    'Gamma': {
-        'command': 'Gamma'
-    },
-    'pm': {
-        'command': 'pm'
-    },
-    'Leftrightarrow': {
-        'command': 'Leftrightarrow'
-    },
-    'varepsilon': {
-        'command': 'varepsilon'
-    },
-    'notin': {
-        'command': 'notin'
-    },
-    'times': {
-        'command': 'times'
-    },
-    'dot': {
-        'command': 'dot',
-        'snippet': 'dot{${1:symbol}}'
-    },
-    'textbf': {
-        'command': 'textbf',
-        'snippet': 'textbf{${1:text}}'
-    },
-    'vartheta': {
-        'command': 'vartheta'
-    },
-    'textup': {
-        'command': 'textup',
-        'snippet': 'textup{${1:text}}'
-    },
-    'texttt': {
-        'command': 'texttt',
-        'snippet': 'texttt{${1:text}}'
-    },
-    'exists': {
-        'command': 'exists'
-    },
-    'cdots': {
-        'command': 'cdots'
-    },
     'subsection': {
         'command': 'subsection',
         'snippet': 'subsection{${1:title}}'
+    },
+    'subsubsection': {
+        'command': 'subsubsection',
+        'snippet': 'subsubsection{${1:title}}'
+    },
+    'paragraph': {
+        'command': 'paragraph',
+        'snippet': 'paragraph{${1:title}}'
     },
     'subparagraph': {
         'command': 'subparagraph',
         'snippet': 'subparagraph{${1:title}}'
     },
-    'scriptsize': {
-        'command': 'scriptsize'
+
+    // Structure: Other
+    'bibliography': {
+        'command': 'bibliography',
+        'snippet': 'bibliography{${1:file}}'
+    },
+    'bibliographystyle': {
+        'command': 'bibliographystyle',
+        'snippet': 'bibliographystyle{${1:style}}'
+    },
+    'caption': {
+        'command': 'caption',
+        'snippet': 'caption{${1:text}}'
+    },
+    'footnote': {
+        'command': 'footnote',
+        'snippet': 'footnote{${1:text}}'
+    },
+
+    // ------------------ CITATIONS ------------------ //
+    'cite': {
+        'command': 'cite',
+        'snippet': 'cite{$1}',
+        'detail': 'reference'
+    },
+    'citeyear': {
+        'command': 'citeyear',
+        'snippet': 'citeyear{${1:key}}'
+    },
+    'shortcite': {
+        'command': 'shortcite',
+        'snippet': 'shortcite{${1:key}}'
+    },
+
+    // ------------------ TEXT STYLES ------------------ //
+    'emph': {
+        'command': 'emph',
+        'snippet': 'emph{${1:text}}'
+    },
+    'textbf': {
+        'command': 'textbf',
+        'snippet': 'textbf{${1:text}}'
+    },
+    'textit': {
+        'command': 'textit',
+        'snippet': 'textit{${1:text}}'
+    },
+    'textmd': {
+        'command': 'textmd',
+        'snippet': 'textmd{${1:text}}'
+    },
+    'textnormal': {
+        'command': 'textnormal',
+        'snippet': 'textnormal{${1:text}}'
+    },
+    'textrm': {
+        'command': 'textrm',
+        'snippet': 'textrm{${1:text}}'
+    },
+    'textsc': {
+        'command': 'textsc',
+        'snippet': 'textsc{${1:text}}'
+    },
+    'textsf': {
+        'command': 'textsf',
+        'snippet': 'textsf{${1:text}}'
+    },
+    'textsl': {
+        'command': 'textsl',
+        'snippet': 'textsl{${1:text}}',
+        'detail': 'slanted text'
+    },
+    'texttt': {
+        'command': 'texttt',
+        'snippet': 'texttt{${1:text}}'
+    },
+    'textup': {
+        'command': 'textup',
+        'snippet': 'textup{${1:text}}'
+    },
+
+    // ------------------ REFERENCES ------------------ //
+    'label': {
+        'command': 'label{...}',
+        'snippet': 'label{${1}}'
+    },
+    'ref': {
+        'command': 'ref',
+        'snippet': 'ref{${1:key}}'
+    },
+    'pageref': {
+        'command': 'pageref',
+        'snippet': 'pageref{${1:key}}'
+    },
+
+    'author': {
+        'command': 'author',
+        'snippet': 'author{${1:text}}'
     },
     'pagestyle': {
         'command': 'pagestyle',
@@ -483,32 +273,17 @@ const DEFAULT_COMMANDS = {
         'command': 'hspace',
         'snippet': 'hspace{${1:l}}'
     },
-    'usepackage': {
-        'command': 'usepackage',
-        'snippet': 'usepackage{${1:name}}'
-    },
-    'cup': {
-        'command': 'cup'
-    },
-    'Omega': {
-        'command': 'Omega'
-    },
     'vspace': {
         'command': 'vspace',
         'snippet': 'vspace{${1:l}}'
     },
+    'usepackage': {
+        'command': 'usepackage',
+        'snippet': 'usepackage{${1:name}}'
+    },
     'item': {
         'command': 'item',
-        'snippet': 'item ${1:text}'
-    },
-    'epsilon': {
-        'command': 'epsilon'
-    },
-    'Xi': {
-        'command': 'Xi'
-    },
-    'vee': {
-        'command': 'vee'
+        'snippet': 'item ${1}'
     },
     'multicolumn': {
         'command': 'multicolumn',
@@ -521,58 +296,373 @@ const DEFAULT_COMMANDS = {
     'tableofcontents': {
         'command': 'tableofcontents'
     },
-    'Phi': {
-        'command': 'Phi'
+    'linespread': {
+        'command': 'linespread',
+        'snippet': 'linespread{${1:x}}'
+    },
+    'date': {
+        'command': 'date',
+        'snippet': 'date{${1:text}}'
+    },
+    'today': {
+        'command': 'today'
+    },
+    'underline': {
+        'command': 'underline',
+        'snippet': 'underline{${1:text}}'
+    },
+    'rule': {
+        'command': 'rule',
+        'snippet': 'rule{${1:w}}{${2:h}}'
+    },
+    'pagebreak': {
+        'command': 'pagebreak'
+    },
+    ' ': {
+        'command': ' Press ENTER to insert a new line.',
+        'snippet': '\n'
+    },
+    'noindent': {
+        'command': 'noindent'
+    },
+
+    'kill': {
+        'command': 'kill'
+    },
+
+
+    // ------------------ FONT SIZING ------------------ //
+    'tiny': {
+        'command': 'tiny'
+    },
+    'scriptsize': {
+        'command': 'scriptsize'
+    },
+    'footnotesize': {
+        'command': 'footnotesize'
+    },
+    'small': {
+        'command': 'small'
+    },
+    'normalsize': {
+        'command': 'normalsize'
+    },
+    'large': {
+        'command': 'large'
+    },
+    'Large': {
+        'command': 'Large'
+    },
+    'LARGE': {
+        'command': 'LARGE'
+    },
+   'huge': {
+        'command': 'huge'
+    },
+    'Huge': {
+        'command': 'Huge'
+    },
+
+    // ------------------ ALIGNMENT COMMANDS ------------------ //
+    'raggedleft': {
+        'command': 'raggedleft'
     },
     'raggedright': {
         'command': 'raggedright'
     },
-    'Leftarrow': {
-        'command': 'Leftarrow'
+
+    'centering': {
+        'command': 'centering'
     },
-    'textsf': {
-        'command': 'textsf',
-        'snippet': 'textsf{${1:text}}'
+
+    // ------------------ TABLE COMMANDS ------------------ //
+    'cline': {
+        'command': 'cline',
+        'snippet': 'cline{${1:x}-{2:y}}'
+    },
+    'hline': {
+        'command': 'hline'
+    },
+
+    // ------------------ MATH COMMANDS ------------------ //
+    'text': {
+        'command': 'text',
+        'snippet': 'text{${1:text}}'
+    },
+    'sqrt': {
+        'command': 'sqrt',
+        'snippet': 'sqrt{${1:x}}'
+    },
+    'frac': {
+        'command': 'frac',
+        'snippet': 'frac{${1:x}}{${2:y}}'
+    },
+    'bar': {
+        'command': 'bar',
+        'snippet': 'bar{${1:symbol}}'
+    },
+
+    // ------------------ MATH SYMBOLS ------------------ //
+    // Math: Greek lowercase
+    'alpha': {
+        'command': 'alpha',
+        'detail': 'α'
+    },
+    'beta': {
+        'command': 'beta',
+        'detail': 'β'
+    },
+    'chi': {
+        'command': 'chi',
+        'detail': 'χ'
+    },
+    'delta': {
+        'command': 'delta',
+        'detail': 'δ'
+    },
+    'epsilon': {
+        'command': 'epsilon',
+        'detail': 'ε'
+    },
+    'varepsilon': {
+        'command': 'varepsilon'
+    },
+    'eta': {
+        'command': 'eta',
+        'description': 'η'
+    },
+   'gamma': {
+        'command': 'gamma',
+        'description': 'γ'
+    },
+    'iota': {
+        'command': 'iota',
+        'description': 'ι'
+    },
+    'kappa': {
+        'command': 'kappa',
+        'description': 'κ'
+    },
+    'lambda': {
+        'command': 'lambda',
+        'description': 'λ'
+    },
+    'mu': {
+        'command': 'mu',
+        'description': 'μ'
+    },
+    'nu': {
+        'command': 'nu',
+        'description': 'ν'
+    },
+    'omega': {
+        'command': 'omega'
+    },
+    'phi': {
+        'command': 'phi'
+    },
+    'pi': {
+        'command': 'pi'
+    },
+    'psi': {
+        'command': 'psi'
+    },
+    'rho': {
+        'command': 'rho'
+    },
+    'sigma': {
+        'command': 'sigma'
+    },
+    'tau': {
+        'command': 'tau'
+    },
+    'theta': {
+        'command': 'theta'
+    },
+    'vartheta': {
+        'command': 'vartheta'
+    },
+    'upsilon': {
+        'command': 'upsilon'
+    },
+    'xi': {
+        'command': 'xi'
+    },
+    'zeta': {
+        'command': 'zeta'
+    },
+
+    // Math: Greek uppercase
+    'Delta': {
+        'command': 'Delta'
+    },
+    'Gamma': {
+        'command': 'Gamma'
+    },
+    'Lambda': {
+        'command': 'Lambda'
+    },
+    'Omega': {
+        'command': 'Omega'
+    },
+    'Phi': {
+        'command': 'Phi'
+    },
+    'Pi': {
+        'command': 'Pi'
+    },
+    'Psi': {
+        'command': 'Psi'
+    },
+    'Sigma': {
+        'command': 'Sigma'
+    },
+    'Theta': {
+        'command': 'Theta'
+    },
+    'Upsilon': {
+        'command': 'Upsilon'
+    },
+    'Xi': {
+        'command': 'Xi'
+    },
+
+    // Math: sets
+    'exists': {
+        'command': 'exists',
+        'detail': '∃'
+    },
+    'in': {
+        'command': 'in',
+        'detail': '∈'
+    },
+    'notin': {
+        'command': 'notin',
+        'detail': '∉'
+    },
+    'subset': {
+        'command': 'subset'
+    },
+    'supset': {
+        'command': 'supset'
+    },
+
+    // Math: arrows
+    'leftarrow': {
+        'command': 'leftarrow',
+        'detail': '←'
+    },
+    'Leftarrow': {
+        'command': 'Leftarrow',
+        'detail': '⇐'
+    },
+    'Leftrightarrow': {
+        'command': 'Leftrightarrow',
+        'description': '⇔'
+    },
+    'rightarrow': {
+        'command': 'rightarrow',
+        'detail': '→'
+    },
+    'Rightarrow': {
+        'command': 'Rightarrow',
+        'detail': '⇒'
+    },
+
+    // Math: misc
+    'infty': {
+        'command': 'infty',
+        'detail': '∞'
+    },
+    'div': {
+        'command': 'div',
+        'detail': '∇ (divergence)'
+    },
+    'approx': {
+        'command': 'approx',
+        'detail': '≈'
+    },
+    'mid': {
+        'command': 'mid'
+    },
+    'neg': {
+        'command': 'neg',
+        'detail': '¬'
+    },
+    'sum': {
+        'command': 'sum',
+        'detail': '∑'
+    },
+    'prime': {
+        'command': 'prime',
+        'detail': '′'
+    },
+    'geq': {
+        'command': 'geq',
+        'detail': '≥'
+    },
+    'pm': {
+        'command': 'pm',
+        'detail': '±'
+    },
+    'times': {
+        'command': 'times',
+        'detail': '×'
+    },
+    'cdots': {
+        'command': 'cdots',
+        'detail': '···'
+    },
+    'cap': {
+        'command': 'cap',
+        'detail': '∩'
+    },
+    'cup': {
+        'command': 'cup',
+        'detail': '∪'
+    },
+    'vee': {
+        'command': 'vee',
+        'detail': '∨'
+    },
+    'prod': {
+        'command': 'prod',
+        'detail': '∏'
+    },
+    'circ': {
+        'command': 'circ'
+    },
+    'wedge': {
+        'command': 'wedge',
+        'detail': '∧'
+    },
+    'neq': {
+        'command': 'neq',
+        'detail': '≠'
+    },
+    'forall': {
+        'command': 'forall',
+        'detail': '∀'
+    },
+    'leq': {
+        'command': 'leq',
+        'detail': '≤'
+    },
+   'dot': {
+        'command': 'dot',
+        'snippet': 'dot{${1:symbol}}'
+    },
+    'cdot': {
+        'command': 'cdot',
+        'detail': '·'
+    },
+    'hat': {
+        'command': 'hat',
+        'snippet': 'hat{${1:symbol}}'
     },
     'tilde': {
         'command': 'tilde',
         'snippet': 'tilde{${1:symbol}}'
     },
-    'in': {
-        'command': 'in'
-    },
-    'hline': {
-        'command': 'hline'
-    },
-    'rho': {
-        'command': 'rho'
-    },
-    'Delta': {
-        'command': 'Delta'
-    },
-    'prod': {
-        'command': 'prod'
-    },
-    'huge': {
-        'command': 'huge'
-    },
-    'large': {
-        'command': 'large'
-    },
-    'Lambda': {
-        'command': 'Lambda'
-    },
-    'title': {
-        'command': 'title',
-        'snippet': 'title{${1:text}}'
-    },
-    'alpha': {
-        'command': 'alpha'
-    },
-    'iota': {
-        'command': 'iota'
-    },
-    'gamma': {
-        'command': 'gamma'
-    }
+
 }
