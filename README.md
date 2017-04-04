@@ -61,12 +61,22 @@ Choose the item in the menu to have LaTeX Workshop attempt to fix the issue:
 ### <a name="toolchain"></a>LaTeX toolchain?
 LaTeX toolchain refers to a sequence/array of commands which LaTeX Workshop will execute sequentially when building LaTeX projects. It is set in `File`>`Preferences`>`Settings`>`latex-workshop.toolchain`. By default [`latexmk`](http://personal.psu.edu/jcc8/software/latexmk/) is used. For non-perl users, the following `texify` toolchain may worth a try:
 ```
-[ "texify --synctex --tex-option=\"-interaction=nonstopmode -file-line-error\" --pdf %DOC%" ]
+[ "texify --synctex --tex-option=\"-interaction=nonstopmode -file-line-error\" --pdf %DOC%.tex" ]
 ```
 
 LaTeX toolchain must always be defined as a JSON array, even if there is only one command to execute. For multiple commands, each one is represented by a string in the array.
 
-The placeholder `%DOC%` in all strings will be replaced by the quoted LaTeX root file name on-the-fly. Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal.
+The placeholder `%DOC%` in all strings will be replaced by the quoted LaTeX root file name without `.tex` extension on-the-fly. Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal.
+
+As most LaTeX compiler accepts root file name without extension, and `bibtex` requires to do so, `%DOC%` does not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above toolchain `%DOC%` and `.tex` are concatenated for completeness. For manual toolchains as the following one, this is not a must:
+```
+[
+  "pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %DOC%",
+  "bibtex %DOC%",
+  "pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %DOC%",
+  "pdflatex -synctex=1 -interaction=nonstopmode -file-line-error %DOC%"
+]
+```
 
 ### Root file?
 While it is fine to write all contents in one `.tex` file, it is common to split things up for simplicity. For such LaTeX projects, the file with `\begin{document}` is considered as the root file, which serves as the entry point to the project. LaTeX Workshop intelligently finds the root file when a new document is opened, the active editor is changed, or any LaTeX Workshop command is executed.
@@ -77,6 +87,15 @@ To find the root file, LaTeX Workshop will follow the steps below, stopping when
 3. **Root directory check** LaTeX Workshop iterates through all `.tex` files in the root folder of the workspace. The first one with `\begin{document}` is set as root.
 
 If no root file is found, most of the features in LaTeX Workshop will not work.
+
+### Spell check?
+[Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. The following regexps are recommended to be ignored for LaTeX:
+```
+"cSpell.ignoreRegExpList": [
+  "\\\\\\w*(\\[.*?\\])?(\\{.*?\\})?",
+  "\\$.+?\\$"
+]
+```
 
 ## Contributing
 
