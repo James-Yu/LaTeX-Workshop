@@ -4,6 +4,18 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.0] - 2017-04-04
+### Added
+- (#79) Environments can be autocompleted with `\`.
+  - For example, `\begin{align}\n\n\end{align}` will show after typing `\align` or shorter.
+- (#81) A quick menu showing all LaTeX Workshop commands.
+  - It can be invoked by clicking the status bar item, right click any `LaTeX` file, or using `latex-workshop.actions` command.
+- (#84) Add many uni-math symbols to intellisense.
+
+### Changed
+- (#81) Clicking status bar item can show the previous status, as well as the quick menu.
+- (#81) Some commands are removed in the right click context menu.
+
 ## [1.3.0] - 2017-04-03
 ### Changed
 - (#71) Extension now uses `chokidar` to monitor file changes.

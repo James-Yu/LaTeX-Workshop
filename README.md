@@ -30,8 +30,10 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 ## Usage
 
 - Open a `.tex` file, right click and many features have menu entries there.
+  - For a complete list, select `LaTeX Workshop Actions` entry.
 - For reverse SyncTeX from PDF to LaTeX, `ctrl`/`cmd` + left mouse click in the PDF.
 - Alternatively, VS Code commands are provided as follows:
+  - `latex-workshop.actions`: Show a quick menu with LaTeX Workshop extension features.
   - `latex-workshop.build`: Build LaTeX project to PDF using LaTeX toolchain.
   - `latex-workshop.view`: Open a web browser window to view the PDF file.
   - `latex-workshop.tab`: Open a VS Code tab to view the PDF file.
