@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 
 import {Extension} from './../main'
-import {DEFAULT_ENVIRONMENTS} from './environment'
 
 export class Command {
     extension: Extension
@@ -10,15 +9,21 @@ export class Command {
     commandInTeX: { [id: string]: {} } = {}
     envSnippet: { [id: string]: { command: string, snippet: string}} = {}
     refreshTimer: number
+    defaultCommands: {[key: string]: AutocompleteEntry}
 
-    constructor(extension: Extension) {
+    constructor(extension: Extension,
+                defaultCommands: {[key: string]: AutocompleteEntry},
+                defaultSymbols: {[key: string]: AutocompleteEntry},
+                defaultEnvs: {[key: string]: {text: string}}) {
         this.extension = extension
-        this.prepareEnv()
+        Object.keys(defaultCommands).forEach(key => defaultSymbols[key] = defaultCommands[key])
+        this.defaultCommands = defaultSymbols
+        this.initialize(defaultEnvs)
     }
 
-    prepareEnv() {
-        Object.keys(DEFAULT_ENVIRONMENTS).forEach(env => {
-            const text = DEFAULT_ENVIRONMENTS[env].text
+    initialize(defaultEnvs: {[key: string]: {text: string}}) {
+        Object.keys(defaultEnvs).forEach(env => {
+            const text = defaultEnvs[env].text
             this.envSnippet[env] = {
                 command: text,
                 snippet: `begin{${text}}\n\t$0\n\\\\end{${text}}`
@@ -31,7 +36,7 @@ export class Command {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
-        const suggestions = JSON.parse(JSON.stringify(DEFAULT_COMMANDS)) // Deep copy
+        const suggestions = JSON.parse(JSON.stringify(this.defaultCommands)) // Deep copy
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
@@ -54,18 +59,16 @@ export class Command {
         this.suggestions = []
         Object.keys(suggestions).forEach(key => {
             const item = suggestions[key]
-            const command = new vscode.CompletionItem(`\\${item.command}`, vscode.CompletionItemKind.Snippet)
+            const backslash = key === ' ' ? '' : '\\'
+            const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Snippet)
             if (item.snippet) {
                 command.insertText = new vscode.SnippetString(item.snippet)
             } else {
                 command.insertText = item.command
             }
-            if (item.documentation) {
-                command.documentation = item.documentation
-            }
-            if (item.detail) {
-                command.detail = item.detail
-            }
+            command.documentation = item.documentation
+            command.detail = item.detail
+            command.sortText = item.sortText
             this.suggestions.push(command)
         })
 
@@ -123,10 +126,11 @@ interface AutocompleteEntry {
     snippet?: string
     detail?: string
     description?: string
+    documentation?: string
+    sortText?: string
 }
 
-
-const DEFAULT_COMMANDS: {[key: string]: AutocompleteEntry} = {
+export const _DEFAULT_COMMANDS_BAK: {[key: string]: AutocompleteEntry} = {
     'begin': {
         'command': 'begin',
         'snippet': 'begin{${1:env}}\n\t$2\n\\\\end{${1:env}}',

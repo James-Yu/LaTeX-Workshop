@@ -2,7 +2,33 @@ import * as vscode from 'vscode'
 
 import {Extension} from './../main'
 
-export const DEFAULT_ENVIRONMENTS: {[key: string]: { text: string }} = {
+export class Environment {
+    extension: Extension
+    suggestions: vscode.CompletionItem[]
+    provideRefreshTime: number
+    defaultEnvs: {[key: string]: {text: string}}
+
+    constructor(extension: Extension, defaultEnvs: {[key: string]: {text: string}}) {
+        this.extension = extension
+        this.defaultEnvs = defaultEnvs
+        this.suggestions = []
+        this.initialize()
+    }
+
+    initialize() {
+        Object.keys(this.defaultEnvs).forEach(key => {
+            const item = this.defaultEnvs[key]
+            const environment = new vscode.CompletionItem(item.text, vscode.CompletionItemKind.Module)
+            this.suggestions.push(environment)
+        })
+    }
+
+    provide() : vscode.CompletionItem[] {
+        return this.suggestions
+    }
+}
+
+export const _DEFAULT_ENVIRONMENTS_BAK: {[key: string]: { text: string }} = {
     figure: {
         text: 'figure'
     },
@@ -120,25 +146,4 @@ export const DEFAULT_ENVIRONMENTS: {[key: string]: { text: string }} = {
     titlepage: {
         text: 'titlepage'
     },
-}
-
-export class Environment {
-    extension: Extension
-    suggestions: vscode.CompletionItem[]
-    provideRefreshTime: number
-
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.suggestions = []
-        Object.keys(DEFAULT_ENVIRONMENTS).forEach(key => {
-            const item = DEFAULT_ENVIRONMENTS[key]
-            const environment = new vscode.CompletionItem(item.text, vscode.CompletionItemKind.Module)
-            this.suggestions.push(environment)
-        })
-    }
-
-    provide() : vscode.CompletionItem[] {
-        return this.suggestions
-    }
-
 }

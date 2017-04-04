@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 
 import {Extension} from './main'
 import {Citation} from './providers/citation'
@@ -15,9 +16,12 @@ export class Completer implements vscode.CompletionItemProvider {
 
     constructor(extension: Extension) {
         this.extension = extension
+        const defaultCommands = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`).toString())
+        const defaultSymbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
+        const defaultEnvs = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`).toString())
         this.citation = new Citation(extension)
-        this.command = new Command(extension)
-        this.environment = new Environment(extension)
+        this.command = new Command(extension, defaultCommands, defaultSymbols, defaultEnvs)
+        this.environment = new Environment(extension, defaultEnvs)
         this.reference = new Reference(extension)
     }
 
