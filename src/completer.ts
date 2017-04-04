@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 
 import {Extension} from './main'
 import {Citation} from './providers/citation'
@@ -19,6 +20,30 @@ export class Completer implements vscode.CompletionItemProvider {
         this.command = new Command(extension)
         this.environment = new Environment(extension)
         this.reference = new Reference(extension)
+        fs.readFile(`${this.extension.extensionRoot}/data/environments.json`, (err1, defaultEnvs) => {
+            if (err1) {
+                this.extension.logger.addLogMessage(`Error reading default environments: ${err1.message}`)
+                return
+            }
+            this.extension.logger.addLogMessage(`Default environments loaded`)
+            fs.readFile(`${this.extension.extensionRoot}/data/commands.json`, (err2, defaultCommands) => {
+                if (err2) {
+                    this.extension.logger.addLogMessage(`Error reading default commands: ${err2.message}`)
+                    return
+                }
+                this.extension.logger.addLogMessage(`Default commands loaded`)
+                fs.readFile(`${this.extension.extensionRoot}/data/unimathsymbols.json`, (err3, defaultSymbols) => {
+                    if (err2) {
+                        this.extension.logger.addLogMessage(`Error reading default unimathsymbols: ${err3.message}`)
+                        return
+                    }
+                    this.extension.logger.addLogMessage(`Default unimathsymbols loaded`)
+                    const env = JSON.parse(defaultEnvs.toString())
+                    this.command.initialize(JSON.parse(defaultCommands.toString()), JSON.parse(defaultSymbols.toString()), env)
+                    this.environment.initialize(env)
+                })
+            })
+        })
     }
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
