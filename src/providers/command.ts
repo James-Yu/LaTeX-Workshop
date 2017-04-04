@@ -60,7 +60,7 @@ export class Command {
         Object.keys(suggestions).forEach(key => {
             const item = suggestions[key]
             const backslash = key === ' ' ? '' : '\\'
-            const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Snippet)
+            const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
             if (item.snippet) {
                 command.insertText = new vscode.SnippetString(item.snippet)
             } else {
