@@ -20,8 +20,10 @@ export class Completer implements vscode.CompletionItemProvider {
         const defaultSymbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
         const defaultEnvs = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`).toString())
         this.citation = new Citation(extension)
-        this.command = new Command(extension, defaultCommands, defaultSymbols, defaultEnvs)
-        this.environment = new Environment(extension, defaultEnvs)
+        this.command = new Command(extension)
+        this.command.initialize(defaultCommands, defaultSymbols, defaultEnvs)
+        this.environment = new Environment(extension)
+        this.environment.initialize(defaultEnvs)
         this.reference = new Reference(extension)
     }
 

@@ -6,28 +6,40 @@ import {Extension} from './../main'
 export class Command {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    commandInTeX: { [id: string]: {} } = {}
-    envSnippet: { [id: string]: { command: string, snippet: string}} = {}
+    commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
-    defaultCommands: {[key: string]: AutocompleteEntry}
+    defaultCommands: {[key: string]: vscode.CompletionItem} = {}
 
-    constructor(extension: Extension,
-                defaultCommands: {[key: string]: AutocompleteEntry},
-                defaultSymbols: {[key: string]: AutocompleteEntry},
-                defaultEnvs: {[key: string]: {text: string}}) {
+    constructor(extension: Extension) {
         this.extension = extension
-        Object.keys(defaultCommands).forEach(key => defaultSymbols[key] = defaultCommands[key])
-        this.defaultCommands = defaultSymbols
-        this.initialize(defaultEnvs)
     }
 
-    initialize(defaultEnvs: {[key: string]: {text: string}}) {
+    initialize(defaultCommands: {[key: string]: AutocompleteEntry},
+               defaultSymbols: {[key: string]: AutocompleteEntry},
+               defaultEnvs: {[key: string]: {text: string}}) {
+        Object.keys(defaultCommands).forEach(key => {
+            if (!(key in defaultSymbols)) {
+                defaultSymbols[key] = defaultCommands[key]
+            }
+        })
+        const envSnippet: { [id: string]: { command: string, snippet: string}} = {}
         Object.keys(defaultEnvs).forEach(env => {
             const text = defaultEnvs[env].text
-            this.envSnippet[env] = {
+            envSnippet[env] = {
                 command: text,
                 snippet: `begin{${text}}\n\t$0\n\\\\end{${text}}`
             }
+        })
+        Object.keys(defaultSymbols).forEach(key => {
+            const item = defaultSymbols[key]
+            this.defaultCommands[key] = this.entryToCompletionItem(item)
+        })
+        Object.keys(envSnippet).forEach(key => {
+            const item = envSnippet[key]
+            const command = new vscode.CompletionItem(`\\begin{${item.command}} ... \\end{${item.command}}`, vscode.CompletionItemKind.Snippet)
+            command.filterText = item.command
+            command.insertText = new vscode.SnippetString(item.snippet)
+            this.defaultCommands[key] = command
         })
     }
 
@@ -36,14 +48,12 @@ export class Command {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
-        const suggestions = JSON.parse(JSON.stringify(this.defaultCommands)) // Deep copy
+        const suggestions = Object.assign({}, this.defaultCommands)
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
-                    if (key in suggestions) {
-                        suggestions[key].count += this.commandInTeX[filePath][key].count
-                    } else {
-                        suggestions[key] = this.commandInTeX[filePath][key]
+                    if (!(key in suggestions)) {
+                        suggestions[key] = this.entryToCompletionItem(this.commandInTeX[filePath][key])
                     }
                 })
             }
@@ -52,41 +62,33 @@ export class Command {
             const items = this.getCommandItems(vscode.window.activeTextEditor.document.getText())
             Object.keys(items).forEach(key => {
                 if (!(key in suggestions)) {
-                    suggestions[key] = items[key]
+                    suggestions[key] = this.entryToCompletionItem(items[key])
                 }
             })
         }
-        this.suggestions = []
-        Object.keys(suggestions).forEach(key => {
-            const item = suggestions[key]
-            const backslash = key === ' ' ? '' : '\\'
-            const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
-            if (item.snippet) {
-                command.insertText = new vscode.SnippetString(item.snippet)
-            } else {
-                command.insertText = item.command
-            }
-            command.documentation = item.documentation
-            command.detail = item.detail
-            command.sortText = item.sortText
-            this.suggestions.push(command)
-        })
-
-        Object.keys(this.envSnippet).forEach(key => {
-            const item = this.envSnippet[key]
-            const command = new vscode.CompletionItem(`\\begin{${item.command}} ... \\end{${item.command}}`, vscode.CompletionItemKind.Snippet)
-            command.filterText = item.command
-            command.insertText = new vscode.SnippetString(item.snippet)
-            this.suggestions.push(command)
-        })
+        this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
         return this.suggestions
+    }
+
+    entryToCompletionItem(item: AutocompleteEntry) : vscode.CompletionItem {
+        const backslash = item.command[0] === ' ' ? '' : '\\'
+        const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
+        if (item.snippet) {
+            command.insertText = new vscode.SnippetString(item.snippet)
+        } else {
+            command.insertText = item.command
+        }
+        command.documentation = item.documentation
+        command.detail = item.detail
+        command.sortText = item.sortText
+        return command
     }
 
     getCommandsTeX(filePath: string) {
         this.commandInTeX[filePath] = this.getCommandItems(fs.readFileSync(filePath, 'utf-8'))
     }
 
-    getCommandItems(content: string) {
+    getCommandItems(content: string) : { [id: string]: AutocompleteEntry } {
         const itemReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const items = {}
         while (true) {
@@ -99,7 +101,6 @@ export class Command {
                     command: result[1]
                 }
                 if (result[2]) {
-                    items[result[1]].chain = true
                     items[result[1]].snippet = `${result[1]}{$\{1:arg}}`
                 }
                 if (result[3]) {
