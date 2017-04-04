@@ -21,7 +21,7 @@ export class Server {
             } else {
                 const {address, port} = this.httpServer.address()
                 this.address = `${address}:${port}`
-                this.root = path.resolve(`${__dirname}/../../viewer`)
+                this.root = path.resolve(`${this.extension.extensionRoot}/viewer`)
                 this.extension.logger.addLogMessage(`Server created on ${this.address}`)
             }
         })
