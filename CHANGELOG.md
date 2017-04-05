@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.1] - 2017-04-05
+### Fixed
+- (#86) Forward SyncTeX from LaTeX to PDF now works properly.
+
 ## [1.4.0] - 2017-04-04
 ### Added
 - (#79) Environments can be autocompleted with `\`.
