@@ -87,10 +87,10 @@ export class Locator {
                 this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
                 return
             }
-            const row = record.line - 1
-            const col = record.column < 0 ? 0 : record.column
+            const row = record.line as number - 1
+            const col = record.column < 0 ? 0 : record.column as number
             const pos = new vscode.Position(row, col)
-            const filePath = path.resolve(record.input.replace(/(\r\n|\n|\r)/gm, ''))
+            const filePath = path.resolve((record.input as string).replace(/(\r\n|\n|\r)/gm, ''))
 
             this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
             vscode.workspace.openTextDocument(filePath).then((doc) => {

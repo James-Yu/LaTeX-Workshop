@@ -136,7 +136,7 @@ export class Viewer {
         }
     }
 
-    syncTeX(pdfFile: string, record: SyncTeXRecord | undefined) {
+    syncTeX(pdfFile: string, record: SyncTeXRecord | {[key: string]: string | number}) {
         const client = this.clients[pdfFile]
         if (client === undefined) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
