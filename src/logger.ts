@@ -48,4 +48,38 @@ export class Logger {
             this.statusTimeout = setTimeout(() => this.status.text = `${icon}`, timeout)
         }
     }
+
+    showLog() {
+        if (!this.extension.parser.buildLogRaw) {
+            return
+        }
+        const uri = vscode.Uri.file(this.extension.manager.rootFile).with({scheme: 'latex-workshop-log'})
+        let column = vscode.ViewColumn.Two
+        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two) {
+            column = vscode.ViewColumn.Three
+        }
+        vscode.commands.executeCommand("vscode.previewHtml", uri, column, 'Raw LaTeX Log')
+        this.extension.logger.addLogMessage(`Open Log tab`)
+    }
+}
+
+export class LogProvider implements vscode.TextDocumentContentProvider {
+    extension: Extension
+
+    constructor(extension: Extension) {
+        this.extension = extension
+    }
+
+    public provideTextDocumentContent(_uri: vscode.Uri) : string {
+        const dom = this.extension.parser.buildLogRaw.split('\n').map(log => `<span>${log.replace(/&/g, "&amp;")
+                                                                                         .replace(/</g, "&lt;")
+                                                                                         .replace(/>/g, "&gt;")
+                                                                                         .replace(/"/g, "&quot;")
+                                                                                         .replace(/'/g, "&#039;")}</span><br>`)
+        console.log(this.extension.parser.buildLogRaw)
+        return `
+            <!DOCTYPE html style="position:absolute; left: 0; top: 0; width: 100%; height: 100%;"><html><head></head>
+            <body style="position:absolute; left: 0; top: 0; width: 100%; height: 100%; white-space: pre;">${dom.join('')}</body></html>
+        `
+    }
 }
