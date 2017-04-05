@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 
-import {Logger} from './logger'
+import {Logger, LogProvider} from './logger'
 import {Commander} from './commander'
 import {Manager} from './manager'
 import {Builder} from './builder'
@@ -100,6 +100,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
+    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', new LogProvider(extension)))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     extension.manager.findRoot()

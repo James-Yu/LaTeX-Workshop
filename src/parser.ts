@@ -1,7 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as tmp from 'tmp'
-import * as fs from 'fs'
 
 import {Extension} from './main'
 
@@ -37,7 +35,6 @@ export class Parser {
     isLaTeXmkSkipped: boolean
     buildLog: any[] = []
     buildLogRaw: string
-    buildLogFile: any
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
     linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
 
@@ -118,7 +115,7 @@ export class Parser {
             }
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
-        this.showCompilerDiagnostics(true)
+        this.showCompilerDiagnostics()
     }
 
     parseLinter(log: string, singleFileOriginalPath?: string) {
@@ -152,7 +149,7 @@ export class Parser {
         this.showLinterDiagnostics(linterLog)
     }
 
-    showCompilerDiagnostics(createBuildLogRaw: boolean = false) {
+    showCompilerDiagnostics() {
         this.compilerDiagnostics.clear()
         const diagsCollection: {[key: string]: vscode.Diagnostic[]} = {}
         for (const item of this.buildLog) {
@@ -163,19 +160,6 @@ export class Parser {
                 diagsCollection[item.file] = []
             }
             diagsCollection[item.file].push(diag)
-        }
-        if (createBuildLogRaw) {
-            if (this.buildLogFile) {
-                fs.unlink(this.buildLogFile.name)
-                this.extension.logger.addLogMessage(`Temp file removed: ${this.buildLogFile.name}`)
-            }
-            this.buildLogFile = tmp.fileSync()
-            fs.writeFileSync(this.buildLogFile.fd, this.buildLogRaw)
-        }
-        if (this.buildLogFile) {
-            this.compilerDiagnostics.set(vscode.Uri.file(this.buildLogFile.name),
-                [new vscode.Diagnostic(new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0)),
-                                        'Click here to open log file', DIAGNOSTIC_SEVERITY['typesetting'])])
         }
 
         for (const file in diagsCollection) {
