@@ -81,14 +81,20 @@ export class Citation {
         const pickItems: vscode.QuickPickItem[] = items.map(item => {
             return {
                 label: item.title as string,
-                description: '',
-                detail: `Key: ${item.key}, authors: ${item.author?item.author:'Unknown'}`
+                description: `${item.key}`,
+                detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.publisher ? item.publisher : 'Unknown')}`
             }
         })
         vscode.window.showQuickPick(pickItems, {
             placeHolder: 'Press ENTER to insert citation key at cursor'
         }).then(selected => {
-            console.log(selected)
+            if (!selected) {
+                return
+            }
+            if (vscode.window.activeTextEditor) {
+                const editor = vscode.window.activeTextEditor
+                editor.edit(edit => edit.insert(editor.selection.start, selected.description))
+            }
         })
     }
 
