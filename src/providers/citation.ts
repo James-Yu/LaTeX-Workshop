@@ -35,10 +35,34 @@ export class Citation {
             this.citationInBib[bibPath].forEach(item => items.push(item))
         })
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.suggestions = items.map(item => {
             const citation = new vscode.CompletionItem(item.key, vscode.CompletionItemKind.Reference)
             citation.detail = item.title
-            citation.filterText = `${item.author} ${item.title} ${item.journal}`
+            switch (configuration.get('citation_intellisense_label') as string) {
+                case 'bibtex key':
+                default:
+                    citation.label = item.key
+                    break
+                case 'title':
+                    if (item.title) {
+                        citation.label = item.title as string
+                        citation.detail = undefined
+                    } else {
+                        citation.label = item.key
+                    }
+                    break
+                case 'authors':
+                    if (item.author) {
+                        citation.label = item.author as string
+                        citation.detail = undefined
+                    } else {
+                        citation.label = item.key
+                    }
+                    break
+            }
+
+            citation.filterText = `${item.key} ${item.author} ${item.title} ${item.journal}`
             citation.insertText = item.key
             citation.documentation = Object.keys(item)
                 .filter(key => (key !== 'key' && key !== 'title'))
@@ -48,6 +72,32 @@ export class Citation {
             return citation
         })
         return this.suggestions
+    }
+
+    browser() {
+        this.provide()
+        const items: CitationRecord[] = []
+        Object.keys(this.citationInBib).forEach(bibPath => {
+            this.citationInBib[bibPath].forEach(item => items.push(item))
+        })
+        const pickItems: vscode.QuickPickItem[] = items.map(item => {
+            return {
+                label: item.title as string,
+                description: `${item.key}`,
+                detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.publisher ? item.publisher : 'Unknown')}`
+            }
+        })
+        vscode.window.showQuickPick(pickItems, {
+            placeHolder: 'Press ENTER to insert citation key at cursor'
+        }).then(selected => {
+            if (!selected) {
+                return
+            }
+            if (vscode.window.activeTextEditor) {
+                const editor = vscode.window.activeTextEditor
+                editor.edit(edit => edit.insert(editor.selection.start, selected.description))
+            }
+        })
     }
 
     parseBibItems(bibPath: string) {

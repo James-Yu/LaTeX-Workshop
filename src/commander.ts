@@ -82,6 +82,7 @@ export class Commander {
             this.commands = commands.map(command => command.command)
         }
         const items = JSON.parse(JSON.stringify(this.commandTitles))
+        items.push('Open citation browser')
         if (this.extension.parser.buildLogRaw) {
             items.push('Show last LaTeX log')
         }
@@ -99,6 +100,9 @@ export class Commander {
             switch (selected) {
                 case 'Show last LaTeX log':
                     this.extension.logger.showLog()
+                    break
+                case 'Open citation browser':
+                    this.extension.completer.citation.browser()
                     break
                 default:
                     break
