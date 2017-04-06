@@ -62,8 +62,9 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot get cursor position: ${position}`)
             return
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        const cmd = `synctex view -i "${position.line + 1}:${position.character + 1}:${filePath}" -o "${pdfFile}"`
+        const cmd = `${configuration.get('synctex_command')} view -i "${position.line + 1}:${position.character + 1}:${filePath}" -o "${pdfFile}"`
         this.extension.logger.addLogMessage(`Executing ${cmd}`)
         cp.exec(cmd, {cwd: path.dirname(pdfFile)}, (err, stdout, stderr) => {
             if (err) {
@@ -75,7 +76,8 @@ export class Locator {
     }
 
     locate(data: any, pdfPath: string) {
-        const cmd = `synctex edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${pdfPath}"`
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const cmd = `${configuration.get('synctex_command')} edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${pdfPath}"`
         this.extension.logger.addLogMessage(`Executing ${cmd}`)
         cp.exec(cmd, {cwd: path.dirname(pdfPath)}, (err, stdout, stderr) => {
             if (err) {
