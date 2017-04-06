@@ -70,7 +70,6 @@ export class LogProvider implements vscode.TextDocumentContentProvider {
 
     public update(uri: vscode.Uri) {
         this.change.fire(uri)
-        console.log('change')
     }
 
     get onDidChange() : vscode.Event<vscode.Uri> {
