@@ -47,6 +47,7 @@ export class Citation {
                 case 'title':
                     if (item.title) {
                         citation.label = item.title as string
+                        citation.detail = undefined
                     } else {
                         citation.label = item.key
                     }
@@ -54,6 +55,7 @@ export class Citation {
                 case 'authors':
                     if (item.author) {
                         citation.label = item.author as string
+                        citation.detail = undefined
                     } else {
                         citation.label = item.key
                     }
