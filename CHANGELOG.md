@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.4.2] - 2017-04-06
+### Changed
+- (#88) Raw LaTeX log now displays in a separate new tab.
+  - Raw log content will refresh in real-time.
+
 ## [1.4.1] - 2017-04-05
 ### Fixed
 - (#86) Forward SyncTeX from LaTeX to PDF now works properly.

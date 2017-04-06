@@ -100,7 +100,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
-    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', new LogProvider(extension)))
+    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', extension.logProvider))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     extension.manager.findRoot()
@@ -124,6 +124,8 @@ export class Extension {
     cleaner: Cleaner
     codeActions: CodeActions
 
+    logProvider: LogProvider
+
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
         this.logger = new Logger(this)
@@ -138,6 +140,8 @@ export class Extension {
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
         this.codeActions = new CodeActions(this)
+
+        this.logProvider = new LogProvider(this)
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
 }

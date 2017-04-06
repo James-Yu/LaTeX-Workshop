@@ -79,10 +79,13 @@ export class Commander {
                 return true
             })
             this.commandTitles = commands.map(command => command.title)
-            this.commandTitles.push('Show last LaTeX log')
             this.commands = commands.map(command => command.command)
         }
-        vscode.window.showQuickPick(this.commandTitles, {
+        const items = JSON.parse(JSON.stringify(this.commandTitles))
+        if (this.extension.parser.buildLogRaw) {
+            items.push('Show last LaTeX log')
+        }
+        vscode.window.showQuickPick(items, {
             placeHolder: 'Please Select LaTeX Workshop Actions'
         }).then(selected => {
             if (!selected) {

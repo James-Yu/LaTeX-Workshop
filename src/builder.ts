@@ -37,6 +37,8 @@ export class Builder {
         this.extension.logger.displayStatus('sync', 'orange', `LaTeX build toolchain step ${index + 1}.`, 0)
         this.currentProcess = this.processWrapper(toolchain[index], {cwd: path.dirname(rootFile)}, (error, stdout) => {
             this.extension.parser.parse(stdout)
+            const uri = vscode.Uri.file(this.extension.manager.rootFile).with({scheme: 'latex-workshop-log'})
+            this.extension.logProvider.update(uri)
             if (!error) {
                 this.buildStep(rootFile, toolchain, index + 1)
                 return
