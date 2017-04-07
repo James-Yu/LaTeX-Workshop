@@ -64,11 +64,30 @@ export class Locator {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        const cmd = `${configuration.get('synctex.path')} view -i "${position.line + 1}:${position.character + 1}:${filePath}" -o "${pdfFile}"`
-        this.extension.logger.addLogMessage(`Executing ${cmd}`)
-        cp.exec(cmd, {cwd: path.dirname(pdfFile)}, (err, stdout, stderr) => {
-            if (err) {
-                this.extension.logger.addLogMessage(`Cannot synctex: ${err}, ${stderr}`)
+        const args = ['view', '-i', `${position.line + 1}:${position.character + 1}:${filePath}`, "-o", pdfFile]
+        this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
+
+        const proc = cp.spawn(configuration.get('synctex.path') as string, args)
+        proc.stdout.setEncoding('utf8')
+        proc.stderr.setEncoding('utf8')
+
+        let stdout = ''
+        proc.stdout.on('data', newStdout => {
+            stdout += newStdout
+        })
+
+        let stderr = ''
+        proc.stderr.on('data', newStderr => {
+            stderr += newStderr
+        })
+
+        proc.on('error', err => {
+            this.extension.logger.addLogMessage(`Cannot synctex: ${err.message}, ${stderr}`)
+        })
+
+        proc.on('exit', exitCode => {
+            if (exitCode !== 0) {
+                this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
             } else {
                 this.extension.viewer.syncTeX(pdfFile, this.parseSyncTeX(stdout))
             }
@@ -77,30 +96,49 @@ export class Locator {
 
     locate(data: any, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const cmd = `${configuration.get('synctex.path')} edit -o "${data.page}:${data.pos[0]}:${data.pos[1]}:${pdfPath}"`
-        this.extension.logger.addLogMessage(`Executing ${cmd}`)
-        cp.exec(cmd, {cwd: path.dirname(pdfPath)}, (err, stdout, stderr) => {
-            if (err) {
-                this.extension.logger.addLogMessage(`Cannot reverse synctex: ${err}, ${stderr}`)
-                return
-            }
-            const record = this.parseSyncTeX(stdout)
-            if (record === undefined) {
-                this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
-                return
-            }
-            const row = record.line as number - 1
-            const col = record.column < 0 ? 0 : record.column as number
-            const pos = new vscode.Position(row, col)
-            const filePath = path.resolve((record.input as string).replace(/(\r\n|\n|\r)/gm, ''))
+        const args = ['edit', '-o', `${data.page}:${data.pos[0]}:${data.pos[1]}:${pdfPath}`]
+        this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
-            this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
-            vscode.workspace.openTextDocument(filePath).then((doc) => {
-                vscode.window.showTextDocument(doc).then((editor) => {
-                    editor.selection = new vscode.Selection(pos, pos)
-                    vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'})
+        const proc = cp.spawn(configuration.get('synctex.path') as string, args)
+        proc.stdout.setEncoding('utf8')
+        proc.stderr.setEncoding('utf8')
+
+        let stdout = ''
+        proc.stdout.on('data', newStdout => {
+            stdout += newStdout
+        })
+
+        let stderr = ''
+        proc.stderr.on('data', newStderr => {
+            stderr += newStderr
+        })
+
+        proc.on('error', err => {
+            this.extension.logger.addLogMessage(`Cannot reverse synctex: ${err.message}, ${stderr}`)
+        })
+
+        proc.on('exit', exitCode => {
+            if (exitCode !== 0) {
+                this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
+            } else {
+                const record = this.parseSyncTeX(stdout)
+                if (record === undefined) {
+                    this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
+                    return
+                }
+                const row = record.line as number - 1
+                const col = record.column < 0 ? 0 : record.column as number
+                const pos = new vscode.Position(row, col)
+                const filePath = path.resolve((record.input as string).replace(/(\r\n|\n|\r)/gm, ''))
+
+                this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
+                vscode.workspace.openTextDocument(filePath).then((doc) => {
+                    vscode.window.showTextDocument(doc).then((editor) => {
+                        editor.selection = new vscode.Selection(pos, pos)
+                        vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'})
+                    })
                 })
-            })
+            }
         })
     }
 }

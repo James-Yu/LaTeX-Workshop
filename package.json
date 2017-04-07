@@ -220,14 +220,26 @@
           "description": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.linter_arguments_*` and required arguments to form a complete command of ChkTeX."
         },
         "latex-workshop.chktex.args.active": {
-          "type": "string",
-          "default": "-wall -n22 -n30 -e16 -q",
-          "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments should be seperated by one space. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
+          "type": "array",
+          "default": [
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q"
+          ],
+          "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nAdditional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
         "latex-workshop.chktex.args.root": {
-          "type": "string",
-          "default": "-wall -n22 -n30 -e16 -q",
-          "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments should be seperated by one space. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
+          "type": "array",
+          "default": [
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q"
+          ],
+          "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nAdditional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
         "latex-workshop.chktex.interval": {
           "type": "number",
