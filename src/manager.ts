@@ -56,7 +56,7 @@ export class Manager {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
-        const regex = /(?:%\s*!\s*TEX\sroot\s*=\s*([^\s]*\.tex)$)/m
+        const regex = /(?:%\s*!\s*T[Ee]X\sroot\s*=\s*([^\s]*\.tex)$)/m
         const content = vscode.window.activeTextEditor.document.getText()
 
         const result = content.match(regex)
