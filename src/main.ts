@@ -42,6 +42,25 @@ function lintActiveFileIfEnabledAfterInterval(extension: Extension) {
     }
 }
 
+function obsoleteConfigCheck() {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    function messageActions(selected) {
+        if (selected === 'Open Settings Editor') {
+            vscode.commands.executeCommand('workbench.action.openGlobalSettings')
+        }
+    }
+    if (configuration.has('linter_command_active_file')) {
+        vscode.window.showWarningMessage('Config "latex-workshop.linter_command_active_file" as been deprecated. \
+                                          Please use the new "latex-workshop.linter_arguments_active" config item.',
+                                         'Open Settings Editor').then(messageActions)
+    }
+    if (configuration.has('linter_command_root_file')) {
+        vscode.window.showWarningMessage('Config "latex-workshop.linter_command_root_file" as been deprecated. \
+                                          Please use the new "latex-workshop.linter_arguments_root" config item.',
+                                         'Open Settings Editor').then(messageActions)
+    }
+}
+
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
     global['latex'] = extension
@@ -70,6 +89,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
+            obsoleteConfigCheck()
             extension.manager.findRoot()
         }
     }))
@@ -108,6 +128,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     // On startup, lint the whole project if enabled.
     lintRootFileIfEnabled(extension)
+    obsoleteConfigCheck()
 }
 
 export class Extension {

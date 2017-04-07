@@ -11,6 +11,7 @@ interface Position {}
 
 interface Client {
     type: 'viewer' | 'tab'
+    prevType?: 'viewer' | 'tab'
     ws?: WebSocket
     position?: Position
 }
@@ -101,12 +102,16 @@ export class Viewer {
                 client = this.clients[decodeURIComponent(data.path)]
                 if (client !== undefined) {
                     client.ws = ws
+                    if (client.type === undefined && client.prevType !== undefined) {
+                        client.type = client.prevType
+                    }
                 }
                 break
             case 'close':
                 for (const key in this.clients) {
                     client = this.clients[key]
                     if (client !== undefined && client.ws === ws) {
+                        client.prevType = client.type
                         delete client.ws
                         delete client.type
                     }

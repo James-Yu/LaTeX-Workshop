@@ -23,11 +23,13 @@ export class Linter {
         const content = vscode.window.activeTextEditor.document.getText()
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const [command, ...args] = configuration.get('linter_command_active_file') as string[]
+        const command = configuration.get('linter_command') as string
+        const args = (configuration.get('linter_arguments_active') as string).split(' ')
+        const requiredArgs = ['-I0', '-f%f:%l:%c:%d:%k:%n:%m\n']
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('active file', command, args, {}, content)
+            stdout = await this.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {}, content)
         } catch (err) {
             return
         }
@@ -41,10 +43,13 @@ export class Linter {
         const filePath = this.extension.manager.rootFile
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const [command, ...args] = (configuration.get('linter_command_root_file') as string[]).map(s => s.replace('%DOC%', filePath))
+        const command = configuration.get('linter_command') as string
+        const args = (configuration.get('linter_arguments_root') as string).split(' ')
+        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', '%DOC%'.replace('%DOC%', filePath)]
+
         let stdout: string
         try {
-            stdout = await this.processWrapper('root file', command, args, {cwd: path.dirname(this.extension.manager.rootFile)})
+            stdout = await this.processWrapper('root file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(this.extension.manager.rootFile)})
         } catch (err) {
             return
         }

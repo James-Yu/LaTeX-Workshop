@@ -207,40 +207,27 @@
         "latex-workshop.synctex_command": {
           "type": "string",
           "default": "synctex",
-          "description": "Define the location of SyncTeX executive file."
+          "description": "Define the location of SyncTeX executive file.\nAdditional arguments, e.g., synctex modes and position of click, will be appended to this command."
         },
         "latex-workshop.linter": {
           "type": "boolean",
           "default": false,
           "description": "Enable linting LaTeX with ChkTeX.\nThe active document will be linted when no document changes for a defined period of time.\nThe full project will be linted from the root on file save."
         },
-        "latex-workshop.linter_command_active_file": {
-          "type": "array",
-          "default": [
-            "chktex",
-            "-wall",
-            "-n22",
-            "-n30",
-            "-e16",
-            "-q",
-            "-I0",
-            "-f%f:%l:%c:%d:%k:%n:%m\n"
-          ],
-          "description": "Linter command to check LaTeX syntax of the current file state in real time with ChkTeX.\nCurrent file contents will be piped to the command through stdin.\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
+        "latex-workshop.linter_command": {
+          "type": "string",
+          "default": "chktex",
+          "description": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.linter_arguments_*` and required arguments to form a complete command of ChkTeX."
         },
-        "latex-workshop.linter_command_root_file": {
-          "type": "array",
-          "default": [
-            "chktex",
-            "-wall",
-            "-n22",
-            "-n30",
-            "-e16",
-            "-q",
-            "-f%f:%l:%c:%d:%k:%n:%m\n",
-            "%DOC%"
-          ],
-          "description": "Linter command to check LaTeX syntax of the entire project from the root file with ChkTeX.\nPlaceholder %DOC% is used to represent the root LaTeX file name (with extension).\nThe format string should be kept as shown in the default as this is the format the parser expects for successful parsing."
+        "latex-workshop.linter_arguments_active": {
+          "type": "string",
+          "default": "-wall -n22 -n30 -e16 -q",
+          "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments should be seperated by one space. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
+        },
+        "latex-workshop.linter_arguments_root": {
+          "type": "string",
+          "default": "-wall -n22 -n30 -e16 -q",
+          "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments should be seperated by one space. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
         "latex-workshop.linter_interval": {
           "type": "number",
