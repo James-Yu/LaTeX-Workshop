@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as hasbin from 'hasbin'
 import * as chokidar from 'chokidar'
 
 import {Extension} from './main'
@@ -217,5 +218,36 @@ export class Manager {
 
         this.extension.completer.command.getCommandsTeX(filePath)
         this.extension.completer.reference.getReferencesTeX(filePath)
+    }
+
+    findBinary(config: string, candidates: string[]) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configCommand = configuration.get(config) as string
+        if (fs.existsSync(configCommand)) {
+            return
+        }
+        hasbin(configCommand, result => {
+            if (result) {
+                return
+            }
+            let found = false
+            for (const candidate of candidates) {
+                if (fs.existsSync(candidate)) {
+                    found = true
+                    vscode.window.showWarningMessage(`'latex-workshop.${config}' value '${configCommand}' is invalid. \
+                                                      LaTeX Workshop found a possible executable file at ${candidate}. \
+                                                      Do you want to set it as 'latex-workshop.${config}'?`,
+                                                     'Yes').then(msg => {
+                        if (msg === 'Yes') {
+                            configuration.update(config, candidate, true)
+                        }
+                    })
+                    break
+                }
+            }
+            if (!found) {
+                vscode.window.showErrorMessage(`'latex-workshop.${config}' value '${configCommand}' is invalid.`)
+            }
+        })
     }
 }

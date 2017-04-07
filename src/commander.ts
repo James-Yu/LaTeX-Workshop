@@ -72,6 +72,24 @@ export class Commander {
         this.extension.completer.citation.browser()
     }
 
+    binaries() {
+        function windowsPaths(command: string, disks: string[]=['C', 'D'], tlVers: string[]=['2014', '2015', '2016', '2017']) {
+            const paths: string[] = []
+            for (const disk of disks) {
+                for (const tlVer of tlVers) {
+                    paths.push(`${disk}:\\TexLive\\${tlVer}\\bin\\win32\\${command}.exe`)
+                }
+            }
+            return paths
+        }
+        function linuxPaths(command: string) {
+            return `/usr/local/texbin/${command}`
+        }
+        this.extension.logger.addLogMessage(`BINARIES command invoked.`)
+        this.extension.manager.findBinary('synctex_command', windowsPaths('synctex').concat(linuxPaths('synctex')))
+        this.extension.manager.findBinary('linter_command', windowsPaths('chktex').concat(linuxPaths('chktex')))
+    }
+
     actions() {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
         this.extension.logger.displayFullStatus()
