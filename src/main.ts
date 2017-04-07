@@ -16,7 +16,7 @@ import {Cleaner} from './cleaner'
 
 function lintRootFileIfEnabled(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const linter = configuration.get('linter') as boolean
+    const linter = configuration.get('chktex.enabled') as boolean
     if (linter) {
         extension.linter.lintRootFile()
     }
@@ -24,7 +24,7 @@ function lintRootFileIfEnabled(extension: Extension) {
 
 function lintActiveFileIfEnabled(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const linter = configuration.get('linter') as boolean
+    const linter = configuration.get('chktex.enabled') as boolean
     if (linter) {
         extension.linter.lintActiveFile()
     }
@@ -32,9 +32,9 @@ function lintActiveFileIfEnabled(extension: Extension) {
 
 function lintActiveFileIfEnabledAfterInterval(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const linter = configuration.get('linter') as boolean
+    const linter = configuration.get('chktex.enabled') as boolean
     if (linter) {
-        const interval = configuration.get('linter_interval') as number
+        const interval = configuration.get('chktex.interval') as number
         if (extension.linter.linterTimeout) {
             clearTimeout(extension.linter.linterTimeout)
         }
@@ -49,15 +49,43 @@ function obsoleteConfigCheck() {
             vscode.commands.executeCommand('workbench.action.openGlobalSettings')
         }
     }
-    if (configuration.has('linter_command_active_file')) {
-        vscode.window.showWarningMessage('Config "latex-workshop.linter_command_active_file" as been deprecated. \
-                                          Please use the new "latex-workshop.linter_arguments_active" config item.',
+    function showMessage(originalConfig: string, newConfig: string) {
+        vscode.window.showWarningMessage(`Config "${originalConfig}" as been deprecated. \
+                                          Please use the new "${newConfig}" config item.`,
                                          'Open Settings Editor').then(messageActions)
     }
+    if (configuration.has('build_after_save')) {
+        showMessage('latex-workshop.build_after_save', 'latex-workshop.building.autoBuild.enabled')
+    }
+    if (configuration.has('clean_after_build')) {
+        showMessage('latex-workshop.clean_after_build', 'latex-workshop.building.clean.enabled')
+    }
+    if (configuration.has('files_to_clean')) {
+        showMessage('latex-workshop.files_to_clean', 'latex-workshop.building.clean.fileTypes')
+    }
+    if (configuration.has('synctex_command')) {
+        showMessage('latex-workshop.synctex_command', 'latex-workshop.synctex.path')
+    }
+    if (configuration.has('linter')) {
+        showMessage('latex-workshop.linter', 'latex-workshop.chktex.enabled')
+    }
+    if (configuration.has('linter_command')) {
+        showMessage('latex-workshop.linter_command', 'latex-workshop.chktex.path')
+    }
+    if (configuration.has('linter_command_active_file')) {
+        showMessage('latex-workshop.linter_command_active_file', 'latex-workshop.chktex.args.active')
+    }
     if (configuration.has('linter_command_root_file')) {
-        vscode.window.showWarningMessage('Config "latex-workshop.linter_command_root_file" as been deprecated. \
-                                          Please use the new "latex-workshop.linter_arguments_root" config item.',
-                                         'Open Settings Editor').then(messageActions)
+        showMessage('latex-workshop.linter_command_root_file', 'latex-workshop.chktex.args.root')
+    }
+    if (configuration.has('linter_interval')) {
+        showMessage('latex-workshop.linter_interval', 'latex-workshop.chktex.interval')
+    }
+    if (configuration.has('citation_intellisense_label')) {
+        showMessage('latex-workshop.citation_intellisense_label', 'latex-workshop.intellisense.citation.label')
+    }
+    if (configuration.has('show_debug_log')) {
+        showMessage('latex-workshop.show_debug_log', 'latex-workshop.debug.showLog')
     }
 }
 
@@ -79,7 +107,7 @@ export async function activate(context: vscode.ExtensionContext) {
             lintRootFileIfEnabled(extension)
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('build_after_save') || extension.builder.disableBuildAfterSave) {
+        if (!configuration.get('building.autoBuild.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
         if (extension.manager.isTex(e.fileName)) {

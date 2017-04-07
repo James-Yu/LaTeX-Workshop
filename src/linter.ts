@@ -23,8 +23,8 @@ export class Linter {
         const content = vscode.window.activeTextEditor.document.getText()
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const command = configuration.get('linter_command') as string
-        const args = (configuration.get('linter_arguments_active') as string).split(' ')
+        const command = configuration.get('chktex.path') as string
+        const args = (configuration.get('chktex.args.active') as string).split(' ')
         const requiredArgs = ['-I0', '-f%f:%l:%c:%d:%k:%n:%m\n']
 
         let stdout: string
@@ -43,8 +43,8 @@ export class Linter {
         const filePath = this.extension.manager.rootFile
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const command = configuration.get('linter_command') as string
-        const args = (configuration.get('linter_arguments_root') as string).split(' ')
+        const command = configuration.get('chktex.path') as string
+        const args = (configuration.get('chktex.args.root') as string).split(' ')
         const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', '%DOC%'.replace('%DOC%', filePath)]
 
         let stdout: string

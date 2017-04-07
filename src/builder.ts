@@ -53,7 +53,7 @@ export class Builder {
         this.extension.logger.displayStatus('check', 'white', `LaTeX toolchain succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const clean = configuration.get('clean_after_build') as boolean
+        const clean = configuration.get('building.clean.enabled') as boolean
         if (clean) {
             this.extension.cleaner.clean()
         }

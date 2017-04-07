@@ -169,17 +169,17 @@
           ],
           "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the root LaTeX file name (without '.tex' extension), and will be replaced when executing."
         },
-        "latex-workshop.build_after_save": {
+        "latex-workshop.building.autoBuild.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
         },
-        "latex-workshop.clean_after_build": {
+        "latex-workshop.building.clean.enabled": {
           "type": "boolean",
           "default": false,
           "description": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project."
         },
-        "latex-workshop.files_to_clean": {
+        "latex-workshop.building.clean.fileTypes": {
           "type": "array",
           "default": [
             "*.aux",
@@ -204,37 +204,37 @@
           ],
           "description": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
         },
-        "latex-workshop.synctex_command": {
+        "latex-workshop.synctex.path": {
           "type": "string",
           "default": "synctex",
           "description": "Define the location of SyncTeX executive file.\nAdditional arguments, e.g., synctex modes and position of click, will be appended to this command."
         },
-        "latex-workshop.linter": {
+        "latex-workshop.chktex.enabled": {
           "type": "boolean",
           "default": false,
           "description": "Enable linting LaTeX with ChkTeX.\nThe active document will be linted when no document changes for a defined period of time.\nThe full project will be linted from the root on file save."
         },
-        "latex-workshop.linter_command": {
+        "latex-workshop.chktex.path": {
           "type": "string",
           "default": "chktex",
           "description": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.linter_arguments_*` and required arguments to form a complete command of ChkTeX."
         },
-        "latex-workshop.linter_arguments_active": {
+        "latex-workshop.chktex.args.active": {
           "type": "string",
           "default": "-wall -n22 -n30 -e16 -q",
           "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments should be seperated by one space. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
-        "latex-workshop.linter_arguments_root": {
+        "latex-workshop.chktex.args.root": {
           "type": "string",
           "default": "-wall -n22 -n30 -e16 -q",
           "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments should be seperated by one space. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
-        "latex-workshop.linter_interval": {
+        "latex-workshop.chktex.interval": {
           "type": "number",
           "default": 300,
           "description": "Defines the time interval in milliseconds between invoking LaTeX linter on the active file."
         },
-        "latex-workshop.citation_intellisense_label": {
+        "latex-workshop.intellisense.citation.label": {
           "type": "string",
           "enum": [
             "bibtex key",
@@ -244,7 +244,7 @@
           "default": "bibtex key",
           "description": "Defines what to show as suggestion labels when intellisense provides citation suggestions."
         },
-        "latex-workshop.show_debug_log": {
+        "latex-workshop.debug.showLog": {
           "type": "boolean",
           "default": true,
           "description": "Display LaTeX Workshop debug log in output panel.\nThis property defines whether LaTeX Workshop will output its debug log to the log panel."

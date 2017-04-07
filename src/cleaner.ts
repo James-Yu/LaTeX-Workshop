@@ -17,7 +17,7 @@ export class Cleaner {
             this.extension.manager.findRoot()
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const globs = configuration.get('files_to_clean') as string[]
+        const globs = configuration.get('building.clean.fileTypes') as string[]
         for (const globType of globs) {
             glob(globType, {cwd: this.extension.manager.rootDir}, (err, files) => {
                 if (err) {
