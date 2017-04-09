@@ -162,24 +162,33 @@
       "type": "object",
       "title": "LaTeX Workshop configuration",
       "properties": {
-        "latex-workshop.toolchain": {
+        "latex-workshop.latex.toolchain": {
           "type": "array",
           "default": [
-            "latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf %DOC%"
+            {
+              "command": "latexmk",
+              "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "%DOC%"
+              ]
+            }
           ],
-          "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the root LaTeX file name (without '.tex' extension), and will be replaced when executing."
+          "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the root LaTeX file name (without '.tex' extension), and will be replaced when executing.\n For a detailed explanation on how to customize your toolchain, please visit https://github.com/James-Yu/LaTeX-Workshop#toolchain."
         },
-        "latex-workshop.building.autoBuild.enabled": {
+        "latex-workshop.latex.autoBuild.enabled": {
           "type": "boolean",
           "default": true,
           "description": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
         },
-        "latex-workshop.building.clean.enabled": {
+        "latex-workshop.latex.clean.enabled": {
           "type": "boolean",
           "default": false,
           "description": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project."
         },
-        "latex-workshop.building.clean.fileTypes": {
+        "latex-workshop.latex.clean.fileTypes": {
           "type": "array",
           "default": [
             "*.aux",
@@ -228,7 +237,7 @@
             "-e16",
             "-q"
           ],
-          "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nAdditional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
+          "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
         "latex-workshop.chktex.args.root": {
           "type": "array",
@@ -239,7 +248,7 @@
             "-e16",
             "-q"
           ],
-          "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nAdditional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
+          "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
         "latex-workshop.chktex.interval": {
           "type": "number",

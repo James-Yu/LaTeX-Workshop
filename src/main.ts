@@ -54,14 +54,17 @@ function obsoleteConfigCheck() {
                                           Please use the new "${newConfig}" config item.`,
                                          'Open Settings Editor').then(messageActions)
     }
+    if (configuration.has('toolchain')) {
+        showMessage('latex-workshop.toolchain', 'latex-workshop.latex.toolchain')
+    }
     if (configuration.has('build_after_save')) {
-        showMessage('latex-workshop.build_after_save', 'latex-workshop.building.autoBuild.enabled')
+        showMessage('latex-workshop.build_after_save', 'latex-workshop.latex.autoBuild.enabled')
     }
     if (configuration.has('clean_after_build')) {
-        showMessage('latex-workshop.clean_after_build', 'latex-workshop.building.clean.enabled')
+        showMessage('latex-workshop.clean_after_build', 'latex-workshop.latex.clean.enabled')
     }
     if (configuration.has('files_to_clean')) {
-        showMessage('latex-workshop.files_to_clean', 'latex-workshop.building.clean.fileTypes')
+        showMessage('latex-workshop.files_to_clean', 'latex-workshop.latex.clean.fileTypes')
     }
     if (configuration.has('synctex_command')) {
         showMessage('latex-workshop.synctex_command', 'latex-workshop.synctex.path')
@@ -107,7 +110,7 @@ export async function activate(context: vscode.ExtensionContext) {
             lintRootFileIfEnabled(extension)
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('building.autoBuild.enabled') || extension.builder.disableBuildAfterSave) {
+        if (!configuration.get('latex.autoBuild.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
         if (extension.manager.isTex(e.fileName)) {
