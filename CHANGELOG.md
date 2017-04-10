@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.0.0] - 2017-04-10
+### Added
+- (#90) Citation intellisense display item customizable in configurations.
+- (#90) A citation browser accessible from Actions or Quick Menu.
+- (#93) SyncTeX path now configurable in configurations.
+- (#96) Alerts when obsolete configuration items are found.
+
+### Changed
+- (#92) Quick Menu items are prepended with `LaTeX Workshop` for easier access.
+- (#96) All configuration items are renamed.
+  - This is a backward incompatible change. Users are required to re-set their configurations.
+- (#96) All commands use `spawn` instead of `exec` for more stable cross-platform experience.
+
 ## [1.4.2] - 2017-04-06
 ### Changed
 - (#88) Raw LaTeX log now displays in a separate new tab.

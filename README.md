@@ -32,13 +32,8 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 - Open a `.tex` file, right click and many features have menu entries there.
   - For a complete list, select `LaTeX Workshop Actions` entry.
 - For reverse SyncTeX from PDF to LaTeX, `ctrl`/`cmd` + left mouse click in the PDF.
-- Alternatively, VS Code commands are provided as follows:
-  - `latex-workshop.actions`: Show a quick menu with LaTeX Workshop extension features.
-  - `latex-workshop.build`: Build LaTeX project to PDF using LaTeX toolchain.
-  - `latex-workshop.view`: Open a web browser window to view the PDF file.
-  - `latex-workshop.tab`: Open a VS Code tab to view the PDF file.
-  - `latex-workshop.synctex`: Direct synctex from cursor position.
-  - `latex-workshop.clean`: Clean up LaTeX auxillary files.
+- Alternatively, VS Code commands are provided in VS Code Quick Open (`ctrl`/`cmd` + `P`).
+  - Type `latex workshop` to show all related commands.
 
 ## Linting with `ChkTeX`
 
@@ -135,13 +130,6 @@ If no root file is found, most of the features in LaTeX Workshop will not work.
   "\\$.+?\\$"
 ]
 ```
-
-## Contributing
-
-- Fork it.
-- Do something.
-- Pull request.
-- Thank you and have some beer.
 
 ## License
 
