@@ -39,7 +39,7 @@ export class Citation {
         this.suggestions = items.map(item => {
             const citation = new vscode.CompletionItem(item.key, vscode.CompletionItemKind.Reference)
             citation.detail = item.title
-            switch (configuration.get('citation_intellisense_label') as string) {
+            switch (configuration.get('intellisense.citation.label') as string) {
                 case 'bibtex key':
                 default:
                     citation.label = item.key
