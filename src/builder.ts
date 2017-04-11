@@ -97,7 +97,6 @@ export class Builder {
                                                           .replace('%DOCFILE%', path.basename(rootFile, '.tex')))
             }
         }
-        console.log(commands)
         return commands
     }
 }
