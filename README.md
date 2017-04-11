@@ -65,7 +65,6 @@ By default [`latexmk`](http://personal.psu.edu/jcc8/software/latexmk/) is used. 
     "command": "texify",
     "args": [
       "--synctex",
-      "--tex-option=\"-interaction=nonstopmode -file-line-error\"",
       "--pdf",
       "%DOC%.tex"
     ]
