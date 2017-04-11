@@ -66,6 +66,8 @@ By default [`latexmk`](http://personal.psu.edu/jcc8/software/latexmk/) is used. 
     "args": [
       "--synctex",
       "--pdf",
+      "--tex-option=\"-interaction=nonstopmode\"",
+      "--tex-option=\"-file-line-error\"",
       "%DOC%.tex"
     ]
   }
