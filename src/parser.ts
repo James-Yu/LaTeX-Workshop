@@ -10,7 +10,8 @@ const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at line
 const latexWarn = /^((?:(?:Class|Package) \S+)|LaTeX) (Warning|Info):\s+(.*?)(?: on input line (\d+))?\.$/
 
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
-const latexmkPatternNoGM = /^Latexmk:\sapplying\srule/
+const latexmkLog = /^Latexmk:\sapplying\srule/
+const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
 
@@ -46,6 +47,7 @@ export class Parser {
         this.isLaTeXmkSkipped = false
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
+            console.log(log)
         }
         if (log.match(latexPattern) || log.match(latexFatalPattern)) {
             this.parseLaTeX(log)
@@ -57,15 +59,24 @@ export class Parser {
     trimLaTeXmk(log: string) : string {
         log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
         const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        let startLine = -1
         let finalLine = -1
         for (let index = 0; index < lines.length; index++) {
             const line = lines[index]
-            const result = line.match(latexmkPatternNoGM)
+            let result = line.match(latexmkLogLatex)
+            if (result) {
+                startLine = index
+            }
+            result = line.match(latexmkLog)
             if (result) {
                 finalLine = index
             }
         }
-        return lines.slice(finalLine).join('\n')
+        if (finalLine <= startLine) {
+            return lines.slice(startLine).join('\n')
+        } else {
+            return lines.slice(startLine, finalLine).join('\n')
+        }
     }
 
     latexmkSkipped(log: string) : boolean {
