@@ -53,7 +53,6 @@ export class Linter {
         } catch (err) {
             return
         }
-        this.extension.parser.parseLinter(stdout)
     }
 
     processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string) : Promise<string> {
@@ -86,10 +85,12 @@ export class Linter {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
                     this.extension.logger.addLogMessage(`Linter for ${linterId} failed with exit code ${exitCode} and error:\n  ${stderr}`)
+                    this.extension.parser.parseLinter(stdout)
                     return reject({ exitCode, stdout, stderr})
                 } else {
                     const [s, ms] = process.hrtime(startTime)
                     this.extension.logger.addLogMessage(`Linter for ${linterId} successfully finished in ${s}s ${Math.round(ms / 1000000)}ms`)
+                    this.extension.parser.parseLinter(stdout)
                     return resolve(stdout)
                 }
             })
