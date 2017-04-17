@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.4] - 2017-04-17
+### Fixed
+- (#116) Fix mis-read outputDir config.
+
 ## [2.1.3] - 2017-04-17
 ### Fixed
 - (#115) Fix reading wrong outputDir config when creating paths.
