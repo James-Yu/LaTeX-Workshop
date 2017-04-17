@@ -170,7 +170,8 @@ export class Citation {
             const eqSign = segment.indexOf('=')
             const key = segment.substring(0, eqSign).trim()
             let value = segment.substring(eqSign + 1).trim()
-            if (value[0] === '{' && value[value.length - 1] === '}') {
+            if ((value[0] === '{' && value[value.length - 1] === '}') ||
+                (value[0] === '"' && value[value.length - 1] === '"')) {
                 value = value.substring(1, value.length - 1)
             }
             value = value.replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
