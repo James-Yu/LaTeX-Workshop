@@ -47,7 +47,6 @@ export class Parser {
         this.isLaTeXmkSkipped = false
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
-            console.log(log)
         }
         if (log.match(latexPattern) || log.match(latexFatalPattern)) {
             this.parseLaTeX(log)

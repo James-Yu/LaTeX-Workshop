@@ -18,7 +18,15 @@ export class Cleaner {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const globs = configuration.get('latex.clean.fileTypes') as string[]
-        for (const globType of globs) {
+        let outdir = configuration.get('latex.outputDir') as string
+        if (!outdir.endsWith('/') && !outdir.endsWith('\\')) {
+            outdir += path.sep
+        }
+        const globOutDir: string[] = []
+        if (outdir !== './') {
+            globs.forEach(globType => globOutDir.push(outdir + globType))
+        }
+        for (const globType of globs.concat(globOutDir)) {
             glob(globType, {cwd: this.extension.manager.rootDir}, (err, files) => {
                 if (err) {
                     this.extension.logger.addLogMessage(`Error identifying files with glob ${globType}: ${files}.`)
@@ -26,7 +34,13 @@ export class Cleaner {
                 }
                 for (const file of files) {
                     const fullPath = path.resolve(this.extension.manager.rootDir, file)
-                    fs.unlinkSync(fullPath)
+                    fs.unlink(fullPath, unlinkErr => {
+                        if (unlinkErr) {
+                            this.extension.logger.addLogMessage(`Error removing file: ${fullPath}`)
+                            return
+                        }
+                        this.extension.logger.addLogMessage(`File cleaned: ${fullPath}`)
+                    })
                 }
             })
         }
