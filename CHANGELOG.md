@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.1.2] - 2017-04-17
+### Fixed
+- (#114) Clean project also clean files in outputDir.
+- (#108) Correctly parse bib entries surrounded by quotes.
+
 ## [2.1.1] - 2017-04-13
 ### Fixed
 - (#110) Temporarily solve MikTeX chktex return code 1 problem.
