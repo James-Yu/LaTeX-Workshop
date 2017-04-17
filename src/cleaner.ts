@@ -18,7 +18,7 @@ export class Cleaner {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const globs = configuration.get('latex.clean.fileTypes') as string[]
-        let outdir = configuration.get('latex.outputDir') as string
+        let outdir = configuration.get('latex.latex.outputDir') as string
         if (!outdir.endsWith('/') && !outdir.endsWith('\\')) {
             outdir += path.sep
         }
