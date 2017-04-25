@@ -84,7 +84,7 @@ export class Builder {
         // Modify a copy, instead of itself.
         const commands = JSON.parse(JSON.stringify(configuration.get('latex.toolchain'))) as ToolchainCommand[]
         for (const command of commands) {
-            if (!('command' in command)){
+            if (!('command' in command)) {
                 vscode.window.showErrorMessage('LaTeX toolchain is invalid. Each tool in the toolchain must have a "command" string.')
                 return undefined
             }
