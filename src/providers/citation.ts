@@ -80,9 +80,15 @@ export class Citation {
         Object.keys(this.citationInBib).forEach(bibPath => {
             this.citationInBib[bibPath].forEach(item => items.push(item))
         })
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const authors = configuration.get('intellisense.citation.browser.title') as string === 'title and authors'
         const pickItems: vscode.QuickPickItem[] = items.map(item => {
+            let title = item.title as string
+            if (authors && item.author) {
+                title += ` ${item.author}`
+            }
             return {
-                label: item.title as string,
+                label: title,
                 description: `${item.key}`,
                 detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.publisher ? item.publisher : 'Unknown')}`
             }
