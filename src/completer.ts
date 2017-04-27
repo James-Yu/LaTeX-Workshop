@@ -57,9 +57,11 @@ export class Completer implements vscode.CompletionItemProvider {
                         if (configuration.get('intellisense.citation.type') as string === 'browser') {
                             resolve([])
                             this.extension.completer.citation.browser()
+                            return
                         }
                     }
                     resolve(suggestions)
+                    return
                 }
             }
             resolve([])
