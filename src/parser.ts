@@ -35,7 +35,7 @@ export class Parser {
     extension: Extension
     isLaTeXmkSkipped: boolean
     buildLog: any[] = []
-    buildLogRaw: string
+    buildLogRaw: string = ''
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
     linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
 

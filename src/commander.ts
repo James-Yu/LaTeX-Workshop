@@ -72,6 +72,11 @@ export class Commander {
         this.extension.completer.citation.browser()
     }
 
+    log() {
+        this.extension.logger.addLogMessage(`LOG command invoked.`)
+        this.extension.logger.showLog()
+    }
+
     actions() {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
         this.extension.logger.displayFullStatus()
@@ -87,9 +92,6 @@ export class Commander {
             this.commands = commands.map(command => command.command)
         }
         const items = JSON.parse(JSON.stringify(this.commandTitles))
-        if (this.extension.parser.buildLogRaw) {
-            items.push('Show last LaTeX log')
-        }
         vscode.window.showQuickPick(items, {
             placeHolder: 'Please Select LaTeX Workshop Actions'
         }).then(selected => {
@@ -97,17 +99,7 @@ export class Commander {
                 return
             }
             const command = this.commands[this.commandTitles.indexOf(selected)]
-            if (command) {
-                vscode.commands.executeCommand(command)
-                return
-            }
-            switch (selected) {
-                case 'Show last LaTeX log':
-                    this.extension.logger.showLog()
-                    break
-                default:
-                    break
-            }
+            vscode.commands.executeCommand(command)
         })
     }
 }
