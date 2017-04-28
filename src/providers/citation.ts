@@ -88,7 +88,9 @@ export class Citation {
             }
         })
         vscode.window.showQuickPick(pickItems, {
-            placeHolder: 'Press ENTER to insert citation key at cursor'
+            placeHolder: 'Press ENTER to insert citation key at cursor',
+            matchOnDetail: true,
+            matchOnDescription: true
         }).then(selected => {
             if (!selected) {
                 return
