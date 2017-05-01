@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.2.1] - 2017-04-25
+### Changed
+- (#128) User configurable citation intellisense method (inline or browser).
+- (#128) Citation browser search-able by authors and citation keys.
+
 ## [2.2.0] - 2017-04-25
 ### Added
 - Default keyboard shortcuts for all LaTeX Workshop commands.
