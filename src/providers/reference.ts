@@ -60,7 +60,7 @@ export class Reference {
             }
             if (!(result[1] in items)) {
                 const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
-                const followLength = content.substring(result.index, content.length).split('\n', 3).join('\n').length
+                const followLength = content.substring(result.index, content.length).split('\n', 4).join('\n').length
                 items[result[1]] = {
                     reference: result[1],
                     text: `${content.substring(prevContent.lastIndexOf('\n'), result.index + followLength)}\n...`
