@@ -152,6 +152,19 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
+    context.subscriptions.push(vscode.workspace.createFileSystemWatcher('**/*.tex', true, false, true).onDidChange((e: vscode.Uri) => {
+        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName === e.fsPath) {
+            return
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('latex.autoBuild.enabled') || extension.builder.disableBuildAfterSave) {
+            return
+        }
+        if (extension.manager.isTex(e.fsPath)) {
+            extension.commander.build()
+        }
+    }))
+
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', extension.logProvider))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))

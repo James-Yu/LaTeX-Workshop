@@ -14,9 +14,9 @@ export class Commander {
 
     build() {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
-            return
-        }
+        // if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        //     return
+        // }
         const rootFile = this.extension.manager.findRoot()
         if (rootFile !== undefined) {
             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
