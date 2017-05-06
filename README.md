@@ -83,7 +83,7 @@ The following is an example of a typical `pdflatex`>`bibtex`>`pdflatex`>`pdflate
   {
     "command": "pdflatex",
     "args": [
-      "--synctex",
+      "-synctex=1",
       "-interaction=nonstopmode",
       "-file-line-error",
       "%DOC%"
@@ -96,7 +96,7 @@ The following is an example of a typical `pdflatex`>`bibtex`>`pdflatex`>`pdflate
   }, {
     "command": "pdflatex",
     "args": [
-      "--synctex",
+      "-synctex=1",
       "-interaction=nonstopmode",
       "-file-line-error",
       "%DOC%"
@@ -104,7 +104,7 @@ The following is an example of a typical `pdflatex`>`bibtex`>`pdflatex`>`pdflate
   }, {
     "command": "pdflatex",
     "args": [
-      "--synctex",
+      "-synctex=1",
       "-interaction=nonstopmode",
       "-file-line-error",
       "%DOC%"
