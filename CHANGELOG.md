@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.1] - 2017-05-08
+### Fixed
+- VS Code 1.12 makes pdf-viewer iframe oversize horizontally.
+
 ## [2.3.0] - 2017-05-06
 ### Added
 - (#127) Reference intellisense now provide context in completion item details.
