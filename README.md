@@ -32,7 +32,7 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 - Open a `.tex` file, right click and many features have menu entries there.
   - For a complete list, select `LaTeX Workshop Actions` entry.
 - For reverse SyncTeX from PDF to LaTeX, `ctrl`/`cmd` + left mouse click in the PDF.
-- Alternatively, VS Code commands are provided in VS Code Quick Open (`ctrl`/`cmd` + `P`).
+- Alternatively, VS Code commands are provided in VS Code Command Palette (`ctrl`/`cmd` + `shift` + `P`).
   - Type `latex workshop` to show all related commands.
 
 ## Linting with `ChkTeX`
