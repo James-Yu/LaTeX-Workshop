@@ -11,7 +11,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 - Syntax highlighting (colorized code) for `.tex` / `.bib` files and more.
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
-  - Code Actions (automatic fixes) are offered for many issues found by ChxTeX.
+  - Code Actions (automatic fixes) are offered for many issues found by ChkTeX.
 
 ## Requirements
 
