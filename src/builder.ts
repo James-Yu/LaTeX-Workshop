@@ -6,7 +6,7 @@ import {Extension} from './main'
 
 export class Builder {
     extension: Extension
-    currentProcess: cp.ChildProcess
+    currentProcess: cp.ChildProcess | undefined
     disableBuildAfterSave: boolean = false
 
     constructor(extension: Extension) {
@@ -20,6 +20,7 @@ export class Builder {
         this.disableBuildAfterSave = false
         if (this.currentProcess) {
             this.currentProcess.kill()
+            this.extension.logger.addLogMessage('Kill previous process')
         }
         const toolchain = this.createToolchain(rootFile)
         if (toolchain === undefined) {
@@ -53,18 +54,20 @@ export class Builder {
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
             this.extension.logger.displayStatus('x', 'red', `Toolchain terminated with fatal error.`)
+            this.currentProcess = undefined
         })
 
-        this.currentProcess.on('exit', exitCode => {
+        this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
             const uri = vscode.Uri.file(this.extension.manager.rootFile).with({scheme: 'latex-workshop-log'})
             this.extension.logProvider.update(uri)
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Toolchain returns with error. ${stdout}`)
+                this.extension.logger.addLogMessage(`Toolchain returns with error: ${exitCode}/${signal}.${signal ? '\n' + stdout : ''}`)
                 this.extension.logger.displayStatus('x', 'red', `LaTeX toolchain terminated with error.`)
             } else {
                 this.buildStep(rootFile, toolchain, index + 1)
             }
+            this.currentProcess = undefined
         })
     }
 
