@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.3.3] - 2017-05-25
+### Fixed
+- (#144) Typo on multline environment.
+
 ## [2.3.2] - 2017-05-17
 ### Changed
 - More debug info when killing previous building process upon saving files.
