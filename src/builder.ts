@@ -87,7 +87,7 @@ export class Builder {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         // Modify a copy, instead of itself.
         const commands = JSON.parse(JSON.stringify(configuration.get('latex.toolchain'))) as ToolchainCommand[]
-        const program = this.findProgramMagic(rootFile)
+        let program = ''
         for (const command of commands) {
             if (!('command' in command)) {
                 vscode.window.showErrorMessage('LaTeX toolchain is invalid. Each tool in the toolchain must have a "command" string.')
@@ -102,6 +102,9 @@ export class Builder {
                                                           .replace('%DOCFILE%', path.basename(rootFile, '.tex')))
             }
             if (command.command === '') {
+                if (program === '') {
+                    program = this.findProgramMagic(rootFile)
+                }
                 command.command = program
             }
         }
