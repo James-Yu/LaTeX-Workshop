@@ -157,11 +157,16 @@ export async function activate(context: vscode.ExtensionContext) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('latex.autoBuild.enabled') || extension.builder.disableBuildAfterSave) {
+        if (!configuration.get('latex.autoBuild.enabled') || !configuration.get('latex.autoBuildOnTexChange.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
-        if (extension.manager.isTex(e.fsPath)) {
-            extension.commander.build()
+        extension.logger.addLogMessage(`BUILD command invoked on TeX file change.`)
+        const rootFile = extension.manager.findRoot()
+        if (rootFile !== undefined) {
+            extension.logger.addLogMessage(`Building root file: ${rootFile}`)
+            extension.builder.build(extension.manager.rootFile)
+        } else {
+            extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
         }
     }))
 
