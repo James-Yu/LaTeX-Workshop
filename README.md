@@ -123,6 +123,27 @@ To find the root file, LaTeX Workshop will follow the steps below, stopping when
 
 If no root file is found, most of the features in LaTeX Workshop will not work.
 
+### Magic comments?
+LaTeX Workshop supports both `% !TEX root` and `% !TEX program` magic comments. The former is used to define the root file, while the latter helps select compiler program.
+
+All `command` in `toolchain` which are empty will be replaced with the program set by `% !TEX program` magic comment in the root file. Suppose there is a line `% !TEX program = xelatex` in the root file, and the toolchain is set as follows:
+```
+"latex-workshop.latex.toolchain": [
+  {
+    "command": "",
+    "args": [
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "%DOC%"
+    ]
+  }
+]
+```
+Upon building the project, LaTeX Workshop will parse the root file and figure out that `xelatex` should be used. This program will replace the empty `command` in the toolchain. Arguments are untouched.
+
+If the `command` is set empty but no `% !TEX program` magic comment is found, `pdflatex` is used.
+
 ### Spell check?
 [Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. The following regexps are recommended to be ignored for LaTeX:
 ```
