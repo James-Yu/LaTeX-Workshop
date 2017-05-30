@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as fs from 'fs'
 import * as cp from 'child_process'
 
 import {Extension} from './main'
@@ -86,6 +87,7 @@ export class Builder {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         // Modify a copy, instead of itself.
         const commands = JSON.parse(JSON.stringify(configuration.get('latex.toolchain'))) as ToolchainCommand[]
+        let program = ''
         for (const command of commands) {
             if (!('command' in command)) {
                 vscode.window.showErrorMessage('LaTeX toolchain is invalid. Each tool in the toolchain must have a "command" string.')
@@ -99,8 +101,29 @@ export class Builder {
                 command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, ''))
                                                           .replace('%DOCFILE%', path.basename(rootFile, '.tex')))
             }
+            if (command.command === '') {
+                if (program === '') {
+                    program = this.findProgramMagic(rootFile)
+                }
+                command.command = program
+            }
         }
         return commands
+    }
+
+    findProgramMagic(rootFile: string) : string {
+        const regex = /(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
+        const content = fs.readFileSync(rootFile).toString()
+
+        const result = content.match(regex)
+        let program = ''
+        if (result) {
+            program = result[1]
+            this.extension.logger.addLogMessage(`Found program by magic comment: ${program}`)
+        } else {
+            program = 'pdflatex'
+        }
+        return program
     }
 }
 
