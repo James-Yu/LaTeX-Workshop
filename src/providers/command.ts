@@ -29,6 +29,9 @@ export class Command {
                 command: text,
                 snippet: `begin{${text}}\n\t$0\n\\\\end{${text}}`
             }
+            if (['enumerate', 'itemize'].indexOf(text) > -1) {
+                envSnippet[env]['snippet'] = `begin{${text}}\n\t\\item $0\n\\\\end{${text}}`
+            }
         })
         Object.keys(defaultSymbols).forEach(key => {
             const item = defaultSymbols[key]
