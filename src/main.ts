@@ -152,6 +152,24 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
+    context.subscriptions.push(vscode.workspace.createFileSystemWatcher('**/*.tex', true, false, true).onDidChange((e: vscode.Uri) => {
+        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName === e.fsPath) {
+            return
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('latex.autoBuild.enabled') || !configuration.get('latex.autoBuildOnTexChange.enabled') || extension.builder.disableBuildAfterSave) {
+            return
+        }
+        extension.logger.addLogMessage(`BUILD command invoked on TeX file change.`)
+        const rootFile = extension.manager.findRoot()
+        if (rootFile !== undefined) {
+            extension.logger.addLogMessage(`Building root file: ${rootFile}`)
+            extension.builder.build(extension.manager.rootFile)
+        } else {
+            extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+        }
+    }))
+
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', extension.logProvider))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
