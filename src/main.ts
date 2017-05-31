@@ -54,11 +54,22 @@ function obsoleteConfigCheck() {
                                           Please use the new "${newConfig}" config item.`,
                                          'Open Settings Editor').then(messageActions)
     }
+    if (configuration.has('latex.autoBuild.enabled')) {
+        const originalSetting = configuration.inspect('latex.autoBuild.enabled')
+        if (originalSetting && originalSetting.globalValue !== undefined) {
+            configuration.update('latex.autoBuild.onSave.enabled', originalSetting.globalValue, true)
+            configuration.update('latex.autoBuild.enabled', undefined, true)
+        }
+        if (originalSetting && originalSetting.workspaceValue !== undefined) {
+            configuration.update('latex.autoBuild.onSave.enabled', originalSetting.workspaceValue, false)
+            configuration.update('latex.autoBuild.enabled', undefined, false)
+        }
+    }
     if (configuration.has('toolchain')) {
         showMessage('latex-workshop.toolchain', 'latex-workshop.latex.toolchain')
     }
     if (configuration.has('build_after_save')) {
-        showMessage('latex-workshop.build_after_save', 'latex-workshop.latex.autoBuild.enabled')
+        showMessage('latex-workshop.build_after_save', 'latex-workshop.latex.autoBuild.onSave.enabled')
     }
     if (configuration.has('clean_after_build')) {
         showMessage('latex-workshop.clean_after_build', 'latex-workshop.latex.clean.enabled')
@@ -111,7 +122,7 @@ export async function activate(context: vscode.ExtensionContext) {
             lintRootFileIfEnabled(extension)
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('latex.autoBuild.enabled') || extension.builder.disableBuildAfterSave) {
+        if (!configuration.get('latex.autoBuild.onSave.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
         if (extension.manager.isTex(e.fileName)) {
@@ -157,10 +168,10 @@ export async function activate(context: vscode.ExtensionContext) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('latex.autoBuild.enabled') || !configuration.get('latex.autoBuildOnTexChange.enabled') || extension.builder.disableBuildAfterSave) {
+        if (!configuration.get('latex.autoBuild.onTexChange.enabled')) {
             return
         }
-        extension.logger.addLogMessage(`BUILD command invoked on TeX file change.`)
+        extension.logger.addLogMessage(`${e.fsPath} changed. Auto build project.`)
         const rootFile = extension.manager.findRoot()
         if (rootFile !== undefined) {
             extension.logger.addLogMessage(`Building root file: ${rootFile}`)
