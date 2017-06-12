@@ -70,7 +70,7 @@ export class Viewer {
         this.clients[pdfFile] = {type: 'viewer'}
         open(url)
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
-        this.extension.logger.displayStatus('repo', 'white', `Open PDF viewer for ${path.basename(pdfFile)}.`)
+        this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF viewer for ${path.basename(pdfFile)}.`)
     }
 
     openTab(sourceFile: string) {
@@ -91,7 +91,7 @@ export class Viewer {
         this.clients[pdfFile] = {type: 'tab'}
         vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
-        this.extension.logger.displayStatus('repo', 'white', `Open PDF tab for ${path.basename(pdfFile)}.`)
+        this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF tab for ${path.basename(pdfFile)}.`)
     }
 
     handler(ws: WebSocket, msg: string) {

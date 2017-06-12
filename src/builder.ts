@@ -39,7 +39,7 @@ export class Builder {
         }
 
         this.extension.logger.addLogMessage(`Toolchain step ${index + 1}: ${toolchain[index].command}, ${toolchain[index].args}`)
-        this.extension.logger.displayStatus('sync', 'orange', `LaTeX build toolchain step ${index + 1}.`, 0)
+        this.extension.logger.displayStatus('sync', 'statusBar.foreground', `LaTeX build toolchain step ${index + 1}.`, 0)
         this.currentProcess = cp.spawn(toolchain[index].command, toolchain[index].args, {cwd: path.dirname(rootFile)})
 
         let stdout = ''
@@ -54,7 +54,7 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
-            this.extension.logger.displayStatus('x', 'red', `Toolchain terminated with fatal error.`)
+            this.extension.logger.displayStatus('x', 'errorForeground', `Toolchain terminated with fatal error.`)
             this.currentProcess = undefined
         })
 
@@ -64,7 +64,7 @@ export class Builder {
             this.extension.logProvider.update(uri)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Toolchain returns with error: ${exitCode}/${signal}.${signal ? '\n' + stdout : ''}`)
-                this.extension.logger.displayStatus('x', 'red', `LaTeX toolchain terminated with error.`)
+                this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error.`)
             } else {
                 this.buildStep(rootFile, toolchain, index + 1)
             }
@@ -74,7 +74,7 @@ export class Builder {
 
     buildFinished(rootFile: string) {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
-        this.extension.logger.displayStatus('check', 'white', `LaTeX toolchain succeeded.`)
+        this.extension.logger.displayStatus('check', 'statusBar.foreground', `LaTeX toolchain succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const clean = configuration.get('latex.clean.enabled') as boolean

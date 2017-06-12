@@ -15,7 +15,7 @@ export class Logger {
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
         this.status.command = 'latex-workshop.actions'
         this.status.show()
-        this.displayStatus('repo', 'white', 'LaTeX Workshop')
+        this.displayStatus('repo', 'statusBar.foreground', 'LaTeX Workshop')
     }
 
     addLogMessage(message: string) {
@@ -31,7 +31,7 @@ export class Logger {
         }
         this.status.text = `$(${icon}) ${message}`
         this.status.tooltip = message
-        this.status.color = color
+        this.status.color = new vscode.ThemeColor(color)
         if (timeout > 0) {
             this.statusTimeout = setTimeout(() => this.status.text = `$(${icon})`, timeout)
         }
