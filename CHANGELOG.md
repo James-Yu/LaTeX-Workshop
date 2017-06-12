@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.4.1] - 2017-06-12
+### Changed
+- (#158) Use theme color to colorize status bar messages.
+
+### Fixed
+- (#161) Add auto pairing for `$` and `.
+- (#155) Remove `lstlisting` specific highlight rules.
+
 ## [2.4.0] - 2017-05-30
 ### Added
 - (#154) Support `# !TeX program` magic comment.
