@@ -33,6 +33,14 @@ socket.addEventListener("message", (event) => {
             document.getElementById('viewerContainer').scrollTop = data.scrollTop
             document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
             break
+        case "params":
+            PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
+            if (data.hand) {
+                PDFViewerApplication.handTool.handTool.activate()
+            } else {
+                PDFViewerApplication.handTool.handTool.deactivate()
+            }
+            break
         default:
             break
     }

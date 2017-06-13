@@ -128,8 +128,17 @@ export class Viewer {
             case 'loaded':
                 const pdfFile = decodeURIComponent(data.path)
                 client = this.clients[pdfFile]
-                if (client !== undefined && client.ws !== undefined && client.position !== undefined) {
-                    client.ws.send(JSON.stringify(client.position))
+                if (client !== undefined && client.ws !== undefined) {
+                    if (client.position !== undefined) {
+                        client.ws.send(JSON.stringify(client.position))
+                    } else {
+                        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                        client.ws.send(JSON.stringify({
+                            type: "params",
+                            scale: configuration.get('viewer.zoom'),
+                            hand: configuration.get('viewer.hand')
+                        }))
+                    }
                 }
                 break
             case 'click':

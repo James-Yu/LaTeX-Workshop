@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.5.0] - 2017-06-13
+### Added
+- (#156) Two new config items to control the default parameters for PDF viewer.
+
 ## [2.4.1] - 2017-06-12
 ### Changed
 - (#158) Use theme color to colorize status bar messages.
