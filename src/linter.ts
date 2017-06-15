@@ -31,7 +31,11 @@ export class Linter {
         try {
             stdout = await this.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {}, content)
         } catch (err) {
-            return
+            if ('stdout' in err) {
+                stdout = err.stdout
+            } else {
+                return
+            }
         }
         // provide the original path to the active file as the second argument, so
         // we report this second path in the diagnostics instead of the temporary one.
@@ -51,8 +55,13 @@ export class Linter {
         try {
             stdout = await this.processWrapper('root file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(this.extension.manager.rootFile)})
         } catch (err) {
-            return
+            if ('stdout' in err) {
+                stdout = err.stdout
+            } else {
+                return
+            }
         }
+        this.extension.parser.parseLinter(stdout)
     }
 
     processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string) : Promise<string> {
@@ -85,12 +94,10 @@ export class Linter {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
                     this.extension.logger.addLogMessage(`Linter for ${linterId} failed with exit code ${exitCode} and error:\n  ${stderr}`)
-                    this.extension.parser.parseLinter(stdout)
                     return reject({ exitCode, stdout, stderr})
                 } else {
                     const [s, ms] = process.hrtime(startTime)
                     this.extension.logger.addLogMessage(`Linter for ${linterId} successfully finished in ${s}s ${Math.round(ms / 1000000)}ms`)
-                    this.extension.parser.parseLinter(stdout)
                     return resolve(stdout)
                 }
             })
