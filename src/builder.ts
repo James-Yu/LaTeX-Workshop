@@ -99,7 +99,8 @@ export class Builder {
             }
             if (command.args) {
                 command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, ''))
-                                                          .replace('%DOCFILE%', path.basename(rootFile, '.tex')))
+                                                          .replace('%DOCFILE%', path.basename(rootFile, '.tex'))
+                                                          .replace('%DIR%', path.dirname(rootFile)))
             }
             if (command.command === '') {
                 if (program === '') {

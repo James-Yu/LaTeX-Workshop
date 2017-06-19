@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.6.0] - 2017-06-19
+### Added
+- (#168) Add new placeholder `%DIR%` in toolchain.
+
 ## [2.5.1] - 2017-06-16
 ### Fixed
 - (#167) Linter shows no linting message if `chktex` returns warnings.

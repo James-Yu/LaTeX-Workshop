@@ -73,9 +73,17 @@ By default [`latexmk`](http://personal.psu.edu/jcc8/software/latexmk/) is used. 
   }
 ]
 ```
-LaTeX toolchain must always be defined as a JSON array, even if there is only one command to execute. The placeholder `%DOC%` in any of the strings will be replaced by the LaTeX root file name without `.tex` extension on-the-fly (other extensions are preserved). Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal. For the special commands which has problem to deal with absolute paths (yes, `bibtex`), `%DOCFILE%` can be used as a placeholder for the root file name without `.tex` extension.
+LaTeX toolchain must always be defined as a JSON array, even if there is only one command to execute. As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounded by `%` are placeholders, which are replaced with its representing string on-the-fly. LaTeX Workshop registers the following placeholders:
 
-As most LaTeX compiler accepts root file name without extension, and `bibtex` requires to do so, `%DOC%` does not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above toolchain `%DOC%` and `.tex` are concatenated for completeness.
+| Placeholder | Replaced by             |
+| ----------- | ----------------------- |
+| `%DOC%`     | The LaTeX root file path and name without `.tex` extension |
+| `%DOCFILE%` | The LaTeX root file name without `.tex` extension |
+| `%DIR%` | The LaTeX root file path |
+
+Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal. For the special commands which has problem to deal with absolute 
+
+As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above toolchain `%DOC%` and `.tex` are concatenated for completeness.
 
 The following is an example of a typical `pdflatex`>`bibtex`>`pdflatex`>`pdflatex` setting.
 ```
