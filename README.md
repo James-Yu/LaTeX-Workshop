@@ -39,7 +39,7 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 
 If you have [`ChkTeX`](http://www.nongnu.org/chktex) installed as part of your LaTeX distribution, Latex Workshop can run it against your LaTeX files in order to highlight issues.
 
-To enable linting, set `latex-workshop.linter: true` in settings.
+To enable linting, set `latex-workshop.chktex.enabled: true` in settings.
 
 The current file will be linted after a brief pause in typing. The full project will be linted upon opening VS Code for the first time, and each time you hit save. Warnings and errors are shown in the `Problems` pane - you can click on each entry to go to the relevant position where ChkTeX has found an issue.
 
