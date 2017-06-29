@@ -44,7 +44,7 @@ export class Commander {
 
         
         vscode.workspace.openTextDocument(filePath).then((doc) => {
-            vscode.window.showTextDocument(doc).then((editor) => {
+            vscode.window.showTextDocument(doc).then((_) => {
                 //editor.selection = new vscode.Selection(new vscode.Position(lineNumber,0), new vscode.Position(lineNumber,0))
                 vscode.commands.executeCommand("revealLine", {lineNumber: lineNumber, at: 'center'})
             })
