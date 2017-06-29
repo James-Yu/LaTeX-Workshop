@@ -56,7 +56,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         //console.log(`Parsing ${filePath}`)
         const content = fs.readFileSync(filePath, 'utf-8')
 
-        const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
+        const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
 
         // if it's a section elements 4 = section
         // element 6 = title.
