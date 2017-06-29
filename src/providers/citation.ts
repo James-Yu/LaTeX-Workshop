@@ -135,49 +135,52 @@ export class Citation {
     }
 
     parseBibString(item: string) {
-        let unclosed = 0
-        let lastSplit = -1
-        const segments: string[] = []
-
-        for (let i = 0; i < item.length; i++) {
-            const char = item[i]
-            if (char === '{' && item[i - 1] !== '\\') {
-                unclosed++
-            } else if (char === '}' && item[i - 1] !== '\\') {
-                unclosed--
-            } else if (char === ',' && unclosed === 1) {
-                segments.push(item.substring(lastSplit + 1, i).trim())
-                lastSplit = i
-            }
-        }
-
-        segments.push(item.substring(lastSplit + 1).trim())
-        const firstSegment = segments.shift()
-        if (firstSegment === undefined) {
+        const bibDefinitionReg = /((@)[a-zA-Z]+)\s*(\{)\s*([^\s,]*)/g
+        let regResult = bibDefinitionReg.exec(item)
+        if (!regResult) {
             return undefined
         }
-        const citeKey = firstSegment.substring(firstSegment.indexOf('{') + 1)
-        if (citeKey === undefined || citeKey === '') {
-            return undefined
-        }
-        const bibItem: CitationRecord = { key: citeKey }
-
-        let last = segments[segments.length - 1]
-        last = last.substring(0, last.lastIndexOf('}'))
-
-        segments[segments.length - 1] = last
-
-        for (let i = 0; i < segments.length; i++) {
-            const segment = segments[i]
-            const eqSign = segment.indexOf('=')
-            const key = segment.substring(0, eqSign).trim()
-            let value = segment.substring(eqSign + 1).trim()
-            if ((value[0] === '{' && value[value.length - 1] === '}') ||
-                (value[0] === '"' && value[value.length - 1] === '"')) {
-                value = value.substring(1, value.length - 1)
+        item = item.substr(bibDefinitionReg.lastIndex + 1)
+        const bibItem: CitationRecord = { key: regResult[4] }
+        const bibAttrReg = /([a-zA-Z0-9\!\$\&\*\+\-\.\/\:\;\<\>\?\[\]\^\_\`\|]+)\s*(\=)/g
+        regResult = bibAttrReg.exec(item)
+        while (regResult) {
+            const attrKey = regResult[1]
+            item = item.substr(bibAttrReg.lastIndex + 1)
+            bibAttrReg.lastIndex = 0
+            const quotePos = /\"/g.exec(item)
+            const bracePos = /{/g.exec(item)
+            let attrValue = ''
+            if (bracePos && (!quotePos || quotePos.index > bracePos.index)) {
+                // Use curly braces
+                let nested = 0
+                for (let i = bracePos.index; i < item.length; ++i) {
+                    const char = item[i]
+                    if (char === '{' && item[i - 1] !== '\\') {
+                        nested++
+                    } else if (char === '}' && item[i - 1] !== '\\') {
+                        nested--
+                    }
+                    if (nested === 0) {
+                        attrValue = item.substring(bracePos.index + 1, i)
+                                        .replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
+                        item = item.substr(i)
+                        break
+                    }
+                }
+            } else if (quotePos) {
+                // Use double quotes
+                for (let i = quotePos.index + 1; i < item.length; ++i) {
+                    if (item[i] === '"') {
+                        attrValue = item.substring(quotePos.index + 1, i)
+                                        .replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
+                        item = item.substr(i)
+                        break
+                    }
+                }
             }
-            value = value.replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
-            bibItem[key.toLowerCase()] = value
+            bibItem[attrKey.toLowerCase()] = attrValue
+            regResult = bibAttrReg.exec(item)
         }
         return bibItem
     }
