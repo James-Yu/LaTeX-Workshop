@@ -102,7 +102,7 @@ export class Citation {
         })
     }
 
-    parseBibItems(bibPath: string) {
+    parseBibFile(bibPath: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
         const items: CitationRecord[] = []
         const content = fs.readFileSync(bibPath, 'utf-8').replace(/[\r\n]/g, ' ')
@@ -112,7 +112,7 @@ export class Citation {
         while (result || prevResult) {
             if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
                 const itemString = content.substring(prevResult.index, result ? result.index : undefined).trim()
-                const item = this.splitBibItem(itemString)
+                const item = this.parseBibString(itemString)
                 if (item !== undefined) {
                     items.push(item)
                 } else {
@@ -134,7 +134,7 @@ export class Citation {
         delete this.citationInBib[bibPath]
     }
 
-    splitBibItem(item: string) {
+    parseBibString(item: string) {
         let unclosed = 0
         let lastSplit = -1
         const segments: string[] = []

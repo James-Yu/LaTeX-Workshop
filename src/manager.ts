@@ -218,7 +218,7 @@ export class Manager {
                 this.bibWatcher = chokidar.watch(bibPath)
                 this.bibWatcher.on('change', (path: string) => {
                     this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${path}`)
-                    this.extension.completer.citation.parseBibItems(path)
+                    this.extension.completer.citation.parseBibFile(path)
                 })
                 this.bibWatcher.on('unlink', (path: string) => {
                     this.extension.logger.addLogMessage(`Bib file watcher: ${path} deleted.`)
@@ -226,12 +226,12 @@ export class Manager {
                     this.bibWatcher.unwatch(path)
                     this.watched.splice(this.watched.indexOf(path), 1)
                 })
-                this.extension.completer.citation.parseBibItems(bibPath)
+                this.extension.completer.citation.parseBibFile(bibPath)
             } else if (this.watched.indexOf(bibPath) < 0) {
                 this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
                 this.bibWatcher.add(bibPath)
                 this.watched.push(bibPath)
-                this.extension.completer.citation.parseBibItems(bibPath)
+                this.extension.completer.citation.parseBibFile(bibPath)
             } else {
                 this.extension.logger.addLogMessage(`.bib file ${bibPath} is already being watched.`)
             }
