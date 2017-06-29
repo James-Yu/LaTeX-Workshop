@@ -39,6 +39,19 @@ export class Commander {
         }
     }
 
+    gotoSection(filePath : string, lineNumber : number) {
+        this.extension.logger.addLogMessage(`GOTOSECTION command invoked.`)
+
+        
+        vscode.workspace.openTextDocument(filePath).then((doc) => {
+            vscode.window.showTextDocument(doc).then((_) => {
+                //editor.selection = new vscode.Selection(new vscode.Position(lineNumber,0), new vscode.Position(lineNumber,0))
+                vscode.commands.executeCommand("revealLine", {lineNumber: lineNumber, at: 'center'})
+            })
+        })
+
+    }
+
     tab() {
         this.extension.logger.addLogMessage(`TAB command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
