@@ -174,33 +174,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         return Promise.resolve(element.children)
     }
-
-
-    // getSectionItems(content: string) : SectionDataItem[] {
-
-    //     const itemReg = /(?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
-    //     var items : SectionDataItem[] = []
-
-    //     while (true) {
-    //         const result = itemReg.exec(content)
-    //         if (result === null) {
-    //             break
-    //         }
-    //         // element 1 tells us if it is a section or a subsection
-    //         // element 3 gives us the title
-    //         if (!(result[1] in items)) {
-    //             const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
-    //             const followLength = content.substring(result.index, content.length).split('\n', 4).join('\n').length
-
-    //             // get a  line number
-    //             var count = (prevContent.match(/\n/g) || []).length;
-
-    //             items.push()
-
-    //         }
-    //     }
-    //     return items
-    // }
 }
 
 class Section extends vscode.TreeItem {
