@@ -13,6 +13,7 @@ import {Parser} from './parser'
 import {Completer} from './completer'
 import {Linter} from './linter'
 import {Cleaner} from './cleaner'
+import {SectionNodeProvider} from './providers/outline'
 
 function lintRootFileIfEnabled(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -116,6 +117,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
     vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
+    vscode.commands.registerCommand('latex-workshop.goto-section', (filePath, lineNumber) => extension.commander.gotoSection(filePath, lineNumber))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
@@ -186,6 +188,11 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     extension.manager.findRoot()
+
+    const sectionNodeProvider = new SectionNodeProvider(extension)
+
+    vscode.window.registerTreeDataProvider('outline', sectionNodeProvider)
+
 
     // On startup, lint the whole project if enabled.
     lintRootFileIfEnabled(extension)
