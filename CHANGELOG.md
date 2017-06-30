@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.8.0] - 2017-06-30
+### Added
+- (#175) Add LaTeX document outline. Credited to [`@jsinglet`](https://github.com/jsinglet).
+
 ## [2.7.1] - 2017-06-29
 ### Changed
 - (#176) Use a new bibtex parser to better handle double quoted strings in bib files.

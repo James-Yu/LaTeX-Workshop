@@ -11,7 +11,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     readonly onDidChangeTreeData: vscode.Event<Section | undefined> = this._onDidChangeTreeData.event
     private sectionDepths = { "section": 0, "subsection": 1, "subsubsection": 2 }
 
-    // our data source is a set multi-rooted set of trees 
+    // our data source is a set multi-rooted set of trees
     private ds: Section[] = []
 
     constructor(private extension: Extension) {
@@ -23,7 +23,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     }
 
-    refresh(): Section[] {
+    refresh() : Section[] {
 
         this.ds = this.buildModel(this.extension.manager.rootFile)
         this._onDidChangeTreeData.fire()
@@ -31,22 +31,22 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return this.ds
     }
 
-    buildModel(filePath: string, stack?: Section[], previousRoot?: Section): Section[] {
+    buildModel(filePath: string, stack?: Section[], previousRoot?: Section) : Section[] {
 
         let rootStack: Section[] = []
 
-        if (stack != null) {
+        if (stack) {
             rootStack = stack
         }
 
-        let currentRoot = function () {
+        const currentRoot = () => {
             return rootStack[rootStack.length - 1]
         }
-        let noRoot = function () {
-            return rootStack.length == 0
+        const noRoot = () => {
+            return rootStack.length === 0
         }
 
-        if (previousRoot != null) {
+        if (previousRoot) {
             rootStack.push(previousRoot)
         }
 
@@ -61,7 +61,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // if it's a section elements 4 = section
         // element 6 = title.
 
-        // if it's a subsection: 
+        // if it's a subsection:
         // element X = title
 
         // if it's an input, include, or subfile:
@@ -81,16 +81,16 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
                 // is it a section, a subsection, etc?
-                let heading = result[4]
-                let title = result[6]
-                let depth = this.sectionDepths[heading]
+                const heading = result[4]
+                const title = result[6]
+                const depth = this.sectionDepths[heading]
 
                 const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
 
                 // get a  line number
-                var lineNumber = (prevContent.match(/\n/g) || []).length;
+                const lineNumber = (prevContent.match(/\n/g) || []).length
 
-                let newSection = new Section(title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, filePath)
+                const newSection = new Section(title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, filePath)
 
                 // console.log("Created New Section: " + title)
                 if (noRoot()) {
@@ -101,27 +101,20 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
                 // if this is the same depth as the current root, append to the children array
                 // i.e., at this level
-                if (depth == currentRoot().depth) {
+                if (depth === currentRoot().depth) {
                     rootStack.push(newSection)
                 }
 
-                if (depth == 0) {
+                if (depth === 0) {
                     children.push(newSection)
-                }
-                // it's one level UP
-
-                else if (depth < currentRoot().depth) {
+                } else if (depth < currentRoot().depth) { // it's one level UP
                     rootStack.pop()
                     currentRoot().children.push(newSection)
-                }
-                // it's one level DOWN (add it to the children of the current node)
-                else {
+                } else { // it's one level DOWN (add it to the children of the current node)
                     currentRoot().children.push(newSection)
                 }
-            }
-            // zoom into this file 
-            else if (result[0].startsWith("\\input") || result[0].startsWith("\\include") || result[0].startsWith("\\subfile")) {
-
+            } else if (result[0].startsWith("\\input") || result[0].startsWith("\\include") || result[0].startsWith("\\subfile")) {
+                // zoom into this file
                 // resolve the path
                 let inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[2]))
 
@@ -131,7 +124,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + '.tex')) {
                     inputFilePath += '.tex'
                 }
-                if (fs.existsSync(inputFilePath) == false) {
+                if (fs.existsSync(inputFilePath) === false) {
                     this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
                     //console.log(`Could not resolve included file ${inputFilePath}`)
                     continue
@@ -148,25 +141,23 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return children
     }
 
-    getTreeItem(element: Section): vscode.TreeItem {
+    getTreeItem(element: Section) : vscode.TreeItem {
 
-
-
-        let hasChildren = element.children.length > 0
-        let treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, hasChildren ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.None);
+        const hasChildren = element.children.length > 0
+        const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, hasChildren ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.None)
 
         treeItem.command = {
             command: 'latex-workshop.goto-section',
             title: '',
             arguments: [element.fileName, element.lineNumber]
-        };
+        }
 
         return treeItem
     }
 
-    getChildren(element?: Section): Thenable<Section[]> {
+    getChildren(element?: Section) : Thenable<Section[]> {
 
-        // if the root doesn't exist, we need 
+        // if the root doesn't exist, we need
         // to explicitly build the model from disk
         if (!element) {
             return Promise.resolve(this.refresh())
