@@ -82,7 +82,7 @@ export class Citation {
         })
         const pickItems: vscode.QuickPickItem[] = items.map(item => {
             return {
-                label: item.title as string,
+                label: item.title ? item.title as string : "",
                 description: `${item.key}`,
                 detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.publisher ? item.publisher : 'Unknown')}`
             }
