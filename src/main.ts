@@ -191,7 +191,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     const sectionNodeProvider = new SectionNodeProvider(extension)
 
-    vscode.window.registerTreeDataProvider('outline', sectionNodeProvider)
+    vscode.window.registerTreeDataProvider('latex-outline', sectionNodeProvider)
 
 
     // On startup, lint the whole project if enabled.

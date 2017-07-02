@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.8.1] - 2017-07-02
+### Fixed
+- (#132, #173) Citation browser won't search if any bibtex item does not have title attribute.
+- Extension activate upon vscode start regardless of language setting.
+
 ## [2.8.0] - 2017-06-30
 ### Added
 - (#175) Add LaTeX document outline. Credited to [`@jsinglet`](https://github.com/jsinglet).
