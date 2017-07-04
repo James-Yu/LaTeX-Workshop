@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.9.0] - 2017-07-04
+### Added
+- (#177) Add a new configuration item to customize LaTeX outline structure.
+
+### Changed
+- (#178) LaTeX outline only show on LaTeX documents.
+  - This requires an API from Insider channel. Public channel users need to wait for a while.
+- Rename `latex-workshop.viewer` configs to `latex-workshop.view`, and move existing configs to `pdf` sub-domain.
+
 ## [2.8.1] - 2017-07-02
 ### Fixed
 - (#132, #173) Citation browser won't search if any bibtex item does not have title attribute.
