@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.9.1] - 2017-07-04
+### Fixed
+- Extension unable to activate due to typo in retrieving outline configuration item.
+
 ## [2.9.0] - 2017-07-04
 ### Added
 - (#177) Add a new configuration item to customize LaTeX outline structure.

@@ -17,7 +17,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     constructor(private extension: Extension) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.hierarchy = configuration.get('viewer.outline.sections') as string[]
+        this.hierarchy = configuration.get('view.outline.sections') as string[]
         this.hierarchy.forEach((section, index) => {
             this.sectionDepths[section] = index
         })
