@@ -9,12 +9,18 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined> = this._onDidChangeTreeData.event
-    private sectionDepths = { "section": 0, "subsection": 1, "subsubsection": 2 }
+    private hierarchy: string[]
+    private sectionDepths: {string?: number} = {}
 
     // our data source is a set multi-rooted set of trees
     private ds: Section[] = []
 
     constructor(private extension: Extension) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.hierarchy = configuration.get('viewer.outline.sections') as string[]
+        this.hierarchy.forEach((section, index) => {
+            this.sectionDepths[section] = index
+        })
 
         extension.manager.fileWatcher.on('change', (path: string) => {
             this.extension.logger.addLogMessage(`[outline]: responding to change in ${path}`)
@@ -31,12 +37,16 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return this.ds
     }
 
-    buildModel(filePath: string, stack?: Section[], previousRoot?: Section) : Section[] {
+    buildModel(filePath: string, parentStack?: Section[], parentChildren?: Section[]) : Section[] {
 
         let rootStack: Section[] = []
+        if (parentStack) {
+            rootStack = parentStack
+        }
 
-        if (stack) {
-            rootStack = stack
+        let children: Section[] = []
+        if (parentChildren) {
+            children = parentChildren
         }
 
         const currentRoot = () => {
@@ -46,17 +56,21 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return rootStack.length === 0
         }
 
-        if (previousRoot) {
-            rootStack.push(previousRoot)
-        }
-
-        let children: Section[] = []
-
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
         //console.log(`Parsing ${filePath}`)
         const content = fs.readFileSync(filePath, 'utf-8')
 
-        const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
+        let pattern = "^((?:\\\\(?:input|include|subfile)(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|^((?:\\\\("
+        this.hierarchy.forEach((section, index) => {
+            pattern += section
+            if (index < this.hierarchy.length - 1) {
+                pattern += '|'
+            }
+        })
+        pattern += ")(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})"
+
+        // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
+        const inputReg = RegExp(pattern, 'gm')
 
         // if it's a section elements 4 = section
         // element 6 = title.
@@ -74,15 +88,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 break
             }
 
-            if (result[4] !== undefined && result[4].endsWith("section")) {
-
-                // we don't go any further than three levels down
-                if (!(result[4] in this.sectionDepths)) {
-                    continue
-                }
+            if (result[4] in this.sectionDepths) {
                 // is it a section, a subsection, etc?
                 const heading = result[4]
-                const title = result[6]
+                const title = result[5]
                 const depth = this.sectionDepths[heading]
 
                 const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
@@ -99,20 +108,31 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
 
+                // Find the proper root section
+                while (!noRoot() && currentRoot().depth >= depth) {
+                    rootStack.pop()
+                }
+                if (noRoot()) {
+                    children.push(newSection)
+                } else {
+                    currentRoot().children.push(newSection)
+                }
+                rootStack.push(newSection)
+
                 // if this is the same depth as the current root, append to the children array
                 // i.e., at this level
-                if (depth === currentRoot().depth) {
-                    rootStack.push(newSection)
-                }
+                // if (depth === currentRoot().depth) {
+                //     rootStack.push(newSection)
+                // }
 
-                if (depth === 0) {
-                    children.push(newSection)
-                } else if (depth < currentRoot().depth) { // it's one level UP
-                    rootStack.pop()
-                    currentRoot().children.push(newSection)
-                } else { // it's one level DOWN (add it to the children of the current node)
-                    currentRoot().children.push(newSection)
-                }
+                // if (depth === 0) {
+                //     children.push(newSection)
+                // } else if (depth < currentRoot().depth) { // it's one level UP
+                //     rootStack.pop()
+                //     currentRoot().children.push(newSection)
+                // } else { // it's one level DOWN (add it to the children of the current node)
+                //     currentRoot().children.push(newSection)
+                // }
             } else if (result[0].startsWith("\\input") || result[0].startsWith("\\include") || result[0].startsWith("\\subfile")) {
                 // zoom into this file
                 // resolve the path
@@ -130,14 +150,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
 
-                if (noRoot()) {
-                    children = children.concat(this.buildModel(inputFilePath, rootStack))
-                } else {
-                    children = children.concat(this.buildModel(inputFilePath, rootStack, currentRoot()))
-                }
+                this.buildModel(inputFilePath, rootStack, children)
             }
         }
-
         return children
     }
 
