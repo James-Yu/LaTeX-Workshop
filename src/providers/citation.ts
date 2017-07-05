@@ -97,7 +97,13 @@ export class Citation {
             }
             if (vscode.window.activeTextEditor) {
                 const editor = vscode.window.activeTextEditor
-                editor.edit(edit => edit.insert(editor.selection.start, selected.description))
+                const content = editor.document.getText(new vscode.Range(new vscode.Position(0, 0), editor.selection.start))
+                let start = editor.selection.start
+                if (content.lastIndexOf('\\cite') > content.lastIndexOf('}')) {
+                    start = editor.document.positionAt(content.lastIndexOf('{') + 1)
+                }
+                editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description))
+                      .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
             }
         })
     }
