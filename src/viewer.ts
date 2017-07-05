@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as open from 'open'
+import * as opn from 'opn'
 import * as WebSocket from 'ws'
 
 import {Extension} from './main'
@@ -68,7 +68,7 @@ export class Viewer {
             client.ws.close()
         }
         this.clients[pdfFile] = {type: 'viewer'}
-        open(url)
+        opn(url)
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
         this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF viewer for ${path.basename(pdfFile)}.`)
     }

@@ -1,5 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as fs from 'fs'
+import * as opn from 'opn'
 
 import {Logger, LogProvider} from './logger'
 import {Commander} from './commander'
@@ -62,6 +64,36 @@ function obsoleteConfigCheck() {
     renameConfig('latex.autoBuild.enabled', 'latex.autoBuild.onSave.enabled')
     renameConfig('viewer.zoom', 'view.pdf.zoom')
     renameConfig('viewer.hand', 'view.pdf.hand')
+}
+
+function newVersionMessage(extensionPath: string) {
+    fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
+        if (err) {
+            return
+        }
+        const packageVersion = JSON.parse(data.toString()).version
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('version') === packageVersion) {
+            return
+        }
+        configuration.update('version', packageVersion, true)
+        vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${packageVersion}.`,
+            'Change log', 'Star the project', 'Write review')
+        .then(option => {
+            switch (option) {
+                case 'Change log':
+                    opn('https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md')
+                    break
+                case 'Star the project':
+                default:
+                    opn('https://github.com/James-Yu/LaTeX-Workshop')
+                    break
+                case 'Write review':
+                    opn('https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop#review-details')
+                    break
+            }
+        })
+    })
 }
 
 export async function activate(context: vscode.ExtensionContext) {
@@ -153,10 +185,9 @@ export async function activate(context: vscode.ExtensionContext) {
 
     vscode.window.registerTreeDataProvider('latex-outline', sectionNodeProvider)
 
-
-    // On startup, lint the whole project if enabled.
     lintRootFileIfEnabled(extension)
     obsoleteConfigCheck()
+    newVersionMessage(context.extensionPath)
 }
 
 export class Extension {

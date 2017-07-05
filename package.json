@@ -163,33 +163,33 @@
         "title": "LaTeX Workshop: All actions"
       }
     ],
-		"keybindings": [
-			{
-				"command": "latex-workshop.build",
-				"key": "ctrl+alt+b",
-				"when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
-			},
-			{
-				"command": "latex-workshop.view",
-				"key": "ctrl+alt+v",
-				"when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
-			},
-			{
-				"command": "latex-workshop.tab",
-				"key": "ctrl+alt+t",
-				"when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
-			},
-			{
-				"command": "latex-workshop.synctex",
-				"key": "ctrl+alt+s",
-				"when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
-			},
-			{
-				"command": "latex-workshop.actions",
-				"key": "ctrl+alt+l",
-				"when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
-			}
-		],
+    "keybindings": [
+      {
+        "command": "latex-workshop.build",
+        "key": "ctrl+alt+b",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.view",
+        "key": "ctrl+alt+v",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.tab",
+        "key": "ctrl+alt+t",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.synctex",
+        "key": "ctrl+alt+s",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.actions",
+        "key": "ctrl+alt+l",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      }
+    ],
     "configuration": {
       "type": "object",
       "title": "LaTeX Workshop configuration",
@@ -262,7 +262,12 @@
         },
         "latex-workshop.view.outline.sections": {
           "type": "array",
-          "default": ["chapter", "section", "subsection", "subsubsection"],
+          "default": [
+            "chapter",
+            "section",
+            "subsection",
+            "subsubsection"
+          ],
           "description": "The section names of LaTeX outline hierarchy.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, seperate the tags with `|` as delimiters, e.g., `section|alternative`."
         },
         "latex-workshop.view.pdf.zoom": {
@@ -340,6 +345,11 @@
           "type": "boolean",
           "default": true,
           "description": "Display LaTeX Workshop debug log in output panel.\nThis property defines whether LaTeX Workshop will output its debug log to the log panel."
+        },
+        "latex-workshop.version": {
+          "type": "string",
+          "default": "",
+          "description": "Extension version information."
         }
       }
     },
@@ -363,13 +373,13 @@
       ]
     },
     "views": {
-        "explorer": [
-            {
-                "id": "latex-outline",
-                "name": "LaTeX Outline",
-                "when": "resourceLangId == latex"
-            }
-        ]
+      "explorer": [
+        {
+          "id": "latex-outline",
+          "name": "LaTeX Outline",
+          "when": "resourceLangId == latex"
+        }
+      ]
     }
   },
   "scripts": {
@@ -385,7 +395,7 @@
   "dependencies": {
     "chokidar": "^1.6.1",
     "glob": "^7.1.1",
-    "open": "^0.0.5",
+    "opn": "^5.1.0",
     "ws": "^1.1.1"
   },
   "devDependencies": {
