@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
+import * as opn from 'opn'
 
 import {Extension} from './main'
 
@@ -93,8 +93,7 @@ export class Commander {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
         this.extension.logger.displayFullStatus()
         if (!this.commandTitles) {
-            const packageInfo = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/package.json`).toString())
-            const commands = packageInfo.contributes.commands.filter(command => {
+            const commands = this.extension.packageInfo.contributes.commands.filter(command => {
                 if (command.command === 'latex-workshop.actions') {
                     return false
                 }
@@ -103,6 +102,9 @@ export class Commander {
             this.commandTitles = commands.map(command => command.title)
             this.commands = commands.map(command => command.command)
         }
+        this.commandTitles.push('Open LaTeX Workshop change log')
+        this.commandTitles.push('Create an issue on Github')
+        this.commandTitles.push('Star the project')
         const items = JSON.parse(JSON.stringify(this.commandTitles))
         vscode.window.showQuickPick(items, {
             placeHolder: 'Please Select LaTeX Workshop Actions'
@@ -110,8 +112,21 @@ export class Commander {
             if (!selected) {
                 return
             }
-            const command = this.commands[this.commandTitles.indexOf(selected)]
-            vscode.commands.executeCommand(command)
+            switch (selected) {
+                case 'Open LaTeX Workshop change log':
+                    opn('https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md')
+                    break
+                case 'Create an issue on Github':
+                    opn('https://github.com/James-Yu/LaTeX-Workshop/issues/new')
+                    break
+                case 'Star the project':
+                    opn('https://github.com/James-Yu/LaTeX-Workshop')
+                    break
+                default:
+                    const command = this.commands[this.commandTitles.indexOf(selected)]
+                    vscode.commands.executeCommand(command)
+                    break
+            }
         })
     }
 }

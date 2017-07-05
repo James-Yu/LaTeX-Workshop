@@ -66,30 +66,32 @@ function obsoleteConfigCheck() {
     renameConfig('viewer.hand', 'view.pdf.hand')
 }
 
-function newVersionMessage(extensionPath: string) {
+function newVersionMessage(extensionPath: string, extension: Extension) {
     fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
         if (err) {
+            extension.logger.addLogMessage(`Cannot read package information.`)
             return
         }
-        const packageVersion = JSON.parse(data.toString()).version
+        extension.packageInfo = JSON.parse(data.toString())
+        extension.logger.addLogMessage(`LaTeX Workshop version: ${extension.packageInfo.version}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('version') === packageVersion) {
+        if (configuration.get('version') === extension.packageInfo.version) {
             return
         }
-        configuration.update('version', packageVersion, true)
-        vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${packageVersion}.`,
+        configuration.update('version', extension.packageInfo.version, true)
+        vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${extension.packageInfo.version}.`,
             'Change log', 'Star the project', 'Write review')
         .then(option => {
             switch (option) {
                 case 'Change log':
                     opn('https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md')
                     break
+                case 'Write review':
+                    opn('https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop#review-details')
+                    break
                 case 'Star the project':
                 default:
                     opn('https://github.com/James-Yu/LaTeX-Workshop')
-                    break
-                case 'Write review':
-                    opn('https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop#review-details')
                     break
             }
         })
@@ -98,7 +100,6 @@ function newVersionMessage(extensionPath: string) {
 
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
-    global['latex'] = extension
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
@@ -187,10 +188,11 @@ export async function activate(context: vscode.ExtensionContext) {
 
     lintRootFileIfEnabled(extension)
     obsoleteConfigCheck()
-    newVersionMessage(context.extensionPath)
+    newVersionMessage(context.extensionPath, extension)
 }
 
 export class Extension {
+    packageInfo
     extensionRoot: string
     logger: Logger
     commander: Commander
