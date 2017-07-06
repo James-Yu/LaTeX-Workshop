@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.10.0] - 2017-07-06
+### Added
+- (#182) Use `|` as delimiters for outline section tags (`latex-workshop.view.outline.sections`) in the same level.
+- Supporting entries in the dropdown quick menu.
+- Version update notice with small candies.
+
+### Fixed
+- (#183) Citation browser does not replace the character already input in `\cite{xxx`.
+
 ## [2.9.1] - 2017-07-04
 ### Fixed
 - Extension unable to activate due to typo in retrieving outline configuration item.
