@@ -74,11 +74,11 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
         }
         extension.packageInfo = JSON.parse(data.toString())
         extension.logger.addLogMessage(`LaTeX Workshop version: ${extension.packageInfo.version}`)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('version') === extension.packageInfo.version) {
+        if (fs.existsSync(`${extensionPath}${path.sep}VERSION`) &&
+            fs.readFileSync(`${extensionPath}${path.sep}VERSION`).toString() === extension.packageInfo.version) {
             return
         }
-        configuration.update('version', extension.packageInfo.version, true)
+        fs.writeFileSync(`${extensionPath}${path.sep}VERSION`, extension.packageInfo.version)
         vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${extension.packageInfo.version}.`,
             'Change log', 'Star the project', 'Write review')
         .then(option => {
@@ -90,8 +90,9 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
                     opn('https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop#review-details')
                     break
                 case 'Star the project':
-                default:
                     opn('https://github.com/James-Yu/LaTeX-Workshop')
+                    break
+                default:
                     break
             }
         })
