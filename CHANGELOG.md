@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [2.10.1] - 2017-07-13
+### Changed
+- (#190) Now use a standalone file under extension folder to perform version check.
+
+### Fixed
+- (#193) Duplicated entries in quick menu if Action is invoked multiple times.
+- Click `Close` on new version alert redirects to GitHub repo.
+
 ## [2.10.0] - 2017-07-06
 ### Added
 - (#182) Use `|` as delimiters for outline section tags (`latex-workshop.view.outline.sections`) in the same level.
