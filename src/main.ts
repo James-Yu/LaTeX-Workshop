@@ -64,6 +64,9 @@ function obsoleteConfigCheck() {
     renameConfig('latex.autoBuild.enabled', 'latex.autoBuild.onSave.enabled')
     renameConfig('viewer.zoom', 'view.pdf.zoom')
     renameConfig('viewer.hand', 'view.pdf.hand')
+    if (configuration.has('version')) {
+        configuration.update('version', undefined, true)
+    }
 }
 
 function newVersionMessage(extensionPath: string, extension: Extension) {
