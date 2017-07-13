@@ -101,10 +101,10 @@ export class Commander {
             })
             this.commandTitles = commands.map(command => command.title)
             this.commands = commands.map(command => command.command)
+            this.commandTitles.push('Open LaTeX Workshop change log')
+            this.commandTitles.push('Create an issue on Github')
+            this.commandTitles.push('Star the project')
         }
-        this.commandTitles.push('Open LaTeX Workshop change log')
-        this.commandTitles.push('Create an issue on Github')
-        this.commandTitles.push('Star the project')
         const items = JSON.parse(JSON.stringify(this.commandTitles))
         vscode.window.showQuickPick(items, {
             placeHolder: 'Please Select LaTeX Workshop Actions'
