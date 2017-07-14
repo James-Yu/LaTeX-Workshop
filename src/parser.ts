@@ -92,36 +92,52 @@ export class Parser {
         this.buildLogRaw = log
         const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         this.buildLog = []
+
+        let remainingEmptyLines = 0
+        let currentResult: {type: string, file: string, text: string, line: number|undefined } = {type: '', file: '', text: '', line: undefined}
         for (const line of lines) {
             let result = line.match(latexBox)
             if (result) {
-                this.buildLog.push({
+                this.buildLog.push(currentResult)
+                currentResult = {
                     type: 'typesetting',
-                    text: result[1],
                     file: this.extension.manager.rootFile,
-                    line: parseInt(result[2], 10)
-                })
+                    line: parseInt(result[2], 10),
+                    text: result[1]
+                }
+                remainingEmptyLines = 1
                 continue
             }
             result = line.match(latexWarn)
             if (result) {
-                this.buildLog.push({
+                this.buildLog.push(currentResult)
+                currentResult = {
                     type: 'warning',
-                    text: result[3],
                     file: this.extension.manager.rootFile,
-                    line: parseInt(result[4])
-                })
+                    line: parseInt(result[4], 10),
+                    text: result[3]
+                }
+                remainingEmptyLines = 1
                 continue
             }
             result = line.match(latexError)
             if (result) {
-                this.buildLog.push({
+                this.buildLog.push(currentResult)
+                currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
                     file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : this.extension.manager.rootFile,
                     line: result[2] ? parseInt(result[2], 10) : undefined
-                })
+                }
+                remainingEmptyLines = 2
                 continue
+            }
+            // append the read line, since we probably don't have anything better to do with the log output...
+            if (remainingEmptyLines > 0) {
+                currentResult.text = currentResult.text + " " + line
+                if (line === '') {
+                    remainingEmptyLines--
+                }
             }
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
