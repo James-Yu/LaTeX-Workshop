@@ -164,3 +164,7 @@ If the `command` is set empty but no `% !TEX program` magic comment is found, `p
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
+
+## GitHub
+
+The code for this extension is available on github at: https://github.com/James-Yu/LaTeX-Workshop
