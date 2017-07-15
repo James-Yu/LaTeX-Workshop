@@ -1,8 +1,9 @@
 # Change Log
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+## [2.10.2] - 2017-07-15
+### Fixed
+- (#195) `lstlisting` messes up syntax highlight.
+- (#196) Citation browser auto-complete replaces all characters in curly brackets.
 
 ## [2.10.1] - 2017-07-13
 ### Changed
