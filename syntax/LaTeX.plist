@@ -200,7 +200,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(^\s*)?(?=\\begin\{lstlisting\})</string>
+			<string>(^\s*)?(?=\\begin\{(lstlisting|minted)\})</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -223,7 +223,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting)(\})(?:(\[).*(\]))?)</string>
+					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -270,11 +270,11 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting)(\}))</string>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Java)\n?))</string>
+					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Java)\n?))</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -326,16 +326,16 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting)(\}))</string>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 					<key>name</key>
 					<string>meta.embedded.block.java</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>^(?!\\end\{lstlisting\})</string>
+							<string>^(?!\\end\{lstlisting|minted\})</string>
 							<key>end</key>
-							<string>(?=\\end\{lstlisting\})</string>
+							<string>(?=\\end\{lstlisting|minted\})</string>
 							<key>name</key>
 							<string>source.java</string>
 							<key>patterns</key>
@@ -350,7 +350,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Python)\n?))</string>
+					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Python)\n?))</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -402,16 +402,16 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting)(\}))</string>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 					<key>name</key>
 					<string>meta.embedded.block.python</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>^(?!\\end\{lstlisting\})</string>
+							<string>^(?!\\end\{(lstlisting|minted)\})</string>
 							<key>end</key>
-							<string>(?=\\end\{lstlisting\})</string>
+							<string>(?=\\end\{(lstlisting|minted)\})</string>
 							<key>name</key>
 							<string>source.python</string>
 							<key>patterns</key>
@@ -426,7 +426,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>((\\)begin)(\{)(lstlisting)(\})(?:(\[).*(\]))?(\s*%.*\n?)?</string>
+					<string>((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%.*\n?)?</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -478,7 +478,7 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting)(\}))</string>
+					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 					<key>name</key>
 					<string>meta.embedded.block.generic</string>
 				</dict>
