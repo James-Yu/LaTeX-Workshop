@@ -1,190 +1,405 @@
 {
-    "name": "latex-workshop",
-    "displayName": "LaTeX Workshop",
-    "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
-    "icon": "img/icon.png",
-    "version": "0.2.20",
-    "publisher": "James-Yu",
-    "license": "MIT",
-    "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
-    },
-    "engines": {
-        "vscode": "^1.8.0"
-    },
-    "categories": [
-        "Languages",
-        "Snippets"
-    ],
-    "keywords": [
-        "latex",
-        "tex",
-        "compile",
-        "preview",
-        "hint"
-    ],
-    "activationEvents": [
-        "onLanguage:latex"
-    ],
-    "main": "./out/src/extension",
-    "contributes": {
-        "languages": [
-            {
-                "id": "latex",
-                "aliases": [
-                    "LaTeX",
-                    "latex"
-                ],
-                "extensions": [
-                    ".tex"
-                ],
-                "configuration": "./data/lang_config.json"
-            }
+  "name": "latex-workshop",
+  "displayName": "LaTeX Workshop",
+  "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
+  "icon": "icon.png",
+  "version": "2.10.2",
+  "publisher": "James-Yu",
+  "license": "MIT",
+  "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
+  },
+  "engines": {
+    "vscode": "^1.13.0"
+  },
+  "categories": [
+    "Languages",
+    "Snippets"
+  ],
+  "keywords": [
+    "latex",
+    "tex",
+    "compile",
+    "preview",
+    "hint"
+  ],
+  "activationEvents": [
+    "onLanguage:latex"
+  ],
+  "main": "./out/src/main",
+  "contributes": {
+    "languages": [
+      {
+        "id": "tex",
+        "aliases": [
+          "TeX",
+          "tex"
         ],
-        "grammars": [
-            {
-                "language": "latex",
-                "scopeName": "text.tex.latex",
-                "path": "./data/grammar.tmLanguage"
-            }
+        "extensions": [
+          ".sty",
+          ".cls",
+          ".bbx",
+          ".cbx"
         ],
-        "commands": [
-            {
-                "command": "latex-workshop.compile",
-                "title": "Compile LaTeX to PDF"
-            },
-            {
-                "command": "latex-workshop.compile_here",
-                "title": "Compile LaTeX to PDF from active editor"
-            },
-            {
-                "command": "latex-workshop.preview",
-                "title": "Show PDF Preview",
-                "icon": "./img/pdf.svg"
-            },
-            {
-                "command": "latex-workshop.preview_browser",
-                "title": "Show In-browser Preview"
-            },
-            {
-                "command": "latex-workshop.source",
-                "title": "Locate LaTeX Column",
-                "icon": "./img/file.svg"
-            },
-            {
-                "command": "latex-workshop.synctex",
-                "title": "Find Here in Preview"
-            },
-            {
-                "command": "latex-workshop.toggle_compile_on_save",
-                "title": "Toggle LaTeX Compile-on-save"
-            }
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "latex",
+        "aliases": [
+          "LaTeX",
+          "latex"
         ],
-        "configuration": {
-            "type": "object",
-            "title": "LaTeX Workshop configuration",
-            "properties": {
-                "latex-workshop.compiler": {
-                    "type": "string",
-                    "default": "pdflatex",
-                    "description": "LaTeX compiler to use. Reload to take effect. Default: pdflatex."
-                },
-                "latex-workshop.compile_argument": {
-                    "type": "string",
-                    "default": "-synctex=1 -interaction=nonstopmode -file-line-error",
-                    "description": "Compiler options to use. Default: -synctex=1 -interaction=nonstopmode -file-line-error."
-                },
-                "latex-workshop.compile_workflow": {
-                    "type": "array",
-                    "default": [
-                        "%compiler% %arguments% %document%",
-                        "bibtex %document%",
-                        "%compiler% %arguments% %document%",
-                        "%compiler% %arguments% %document%"
-                    ],
-                    "description": "Sequence of commands to compile LaTeX to PDF. Available placeholders: %compiler%, %arguments%, %document%."
-                },
-                "latex-workshop.compile_on_save": {
-                    "type": "boolean",
-                    "default": true,
-                    "description": "Compile LaTeX when user saves LaTeX source file. Default: true."
-                },
-                "latex-workshop.main_document": {
-                    "type": "string",
-                    "default": null,
-                    "description": "Define the main document for LaTeX project. Must be the relative path from the project root folder. Set to null for auto-detection. Default: null."
-                },
-                "latex-workshop.log_level": {
-                    "type": "string",
-                    "default": "all",
-                    "description": "Define the LaTeX log parser output level. Available levels: 'all' for all log entries, 'warning' for warnings and errors, 'error' for errors only. Default: 'all'."
-                }
+        "extensions": [
+          ".tex"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "bibtex",
+        "aliases": [
+          "BibTeX",
+          "bibtex"
+        ],
+        "extensions": [
+          ".bib"
+        ]
+      },
+      {
+        "id": "latex-beamer",
+        "aliases": [
+          "LaTeX Beamer"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "latex-memoir",
+        "aliases": [
+          "LaTeX Memoir"
+        ],
+        "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "latex-log",
+        "aliases": [
+          "LaTeX Log"
+        ],
+        "extensions": [
+          ".log"
+        ]
+      }
+    ],
+    "grammars": [
+      {
+        "language": "tex",
+        "scopeName": "text.tex",
+        "path": "./syntax/TeX.plist"
+      },
+      {
+        "language": "latex",
+        "scopeName": "text.tex.latex",
+        "path": "./syntax/LaTeX.plist"
+      },
+      {
+        "language": "bibtex",
+        "scopeName": "text.bibtex",
+        "path": "./syntax/Bibtex.plist"
+      },
+      {
+        "language": "latex-beamer",
+        "scopeName": "text.tex.latex.beamer",
+        "path": "./syntax/LaTeX Beamer.plist"
+      },
+      {
+        "language": "latex-memoir",
+        "scopeName": "text.tex.latex.memoir",
+        "path": "./syntax/LaTeX Memoir.plist"
+      },
+      {
+        "language": "latex-log",
+        "scopeName": "text.log.latex",
+        "path": "./syntax/LaTeX Log.plist"
+      }
+    ],
+    "commands": [
+      {
+        "command": "latex-workshop.build",
+        "title": "Build LaTeX project",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.view",
+        "title": "View PDF file in web page",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.tab",
+        "title": "View PDF file in new tab",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.synctex",
+        "title": "SyncTeX from cursor",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.clean",
+        "title": "Clean up auxiliary files",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.citation",
+        "title": "Open citation browser",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.log",
+        "title": "Show LaTeX log",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.actions",
+        "title": "LaTeX Workshop: All actions"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "latex-workshop.build",
+        "key": "ctrl+alt+b",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.view",
+        "key": "ctrl+alt+v",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.tab",
+        "key": "ctrl+alt+t",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.synctex",
+        "key": "ctrl+alt+s",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      },
+      {
+        "command": "latex-workshop.actions",
+        "key": "ctrl+alt+l",
+        "when": "editorFocus && !replaceActive && !searchViewletVisible && !findWidgetVisible"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "LaTeX Workshop configuration",
+      "properties": {
+        "latex-workshop.latex.toolchain": {
+          "type": "array",
+          "default": [
+            {
+              "command": "latexmk",
+              "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "%DOC%"
+              ]
             }
+          ],
+          "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the root LaTeX file name (without '.tex' extension), and will be replaced when executing.\n For a detailed explanation on how to customize your toolchain, please visit https://github.com/James-Yu/LaTeX-Workshop#toolchain."
         },
-        "menus": {
-            "editor/context": [
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.compile",
-                    "group": "1_modification"
-                },
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.preview",
-                    "group": "navigation@101"
-                },
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.preview_browser",
-                    "group": "navigation@102"
-                },
-                {
-                    "when": "resourceLangId == latex",
-                    "command": "latex-workshop.synctex",
-                    "group": "navigation@103"
-                }
-            ],
-            "editor/title": [
-                {
-                    "when": "editorLangId == latex",
-                    "command": "latex-workshop.preview",
-                    "group": "navigation"
-                },
-                {
-                    "when": "resourceScheme == latex-workshop-preview",
-                    "command": "latex-workshop.source",
-                    "group": "navigation"
-                }
-            ]
+        "latex-workshop.latex.outputDir": {
+          "type": "string",
+          "default": "./",
+          "description": "The directory where output files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute pathes are supported. Relative path start from the root file location, so be ware if it is located in sub-directory."
+        },
+        "latex-workshop.latex.additionalBib": {
+          "type": "array",
+          "default": [],
+          "description": "Addition bibliography files to watch.\nBoth relative and absolute paths are supported, but absolute ones are suggested. Relative path start from the root file location, so be ware if it is located in sub-directory."
+        },
+        "latex-workshop.latex.autoBuild.onSave.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
+        },
+        "latex-workshop.latex.autoBuild.onTexChange.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Build LaTeX after a LaTeX source file has changed in the workspace.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after any LaTeX file in the workspace is saved on the disk which is not open in the active editor window."
+        },
+        "latex-workshop.latex.clean.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project."
+        },
+        "latex-workshop.latex.clean.fileTypes": {
+          "type": "array",
+          "default": [
+            "*.aux",
+            "*.bbl",
+            "*.blg",
+            "*.idx",
+            "*.ind",
+            "*.lof",
+            "*.lot",
+            "*.out",
+            "*.toc",
+            "*.acn",
+            "*.acr",
+            "*.alg",
+            "*.glg",
+            "*.glo",
+            "*.gls",
+            "*.ist",
+            "*.fls",
+            "*.log",
+            "*.fdb_latexmk"
+          ],
+          "description": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
+        },
+        "latex-workshop.view.outline.sections": {
+          "type": "array",
+          "default": [
+            "chapter",
+            "section",
+            "subsection",
+            "subsubsection"
+          ],
+          "description": "The section names of LaTeX outline hierarchy.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, seperate the tags with `|` as delimiters, e.g., `section|alternative`."
+        },
+        "latex-workshop.view.pdf.zoom": {
+          "type": "string",
+          "default": "auto",
+          "description": "The default zoom level of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `auto`, `page-actual`, `page-fit`, `page-width`, and one-based scale values (e.g., 0.5 for 50%, 2.0 for 200%)."
+        },
+        "latex-workshop.view.pdf.hand": {
+          "type": "boolean",
+          "default": false,
+          "description": "Define if the hand tool is enabled by default in the PDF viewer."
+        },
+        "latex-workshop.synctex.path": {
+          "type": "string",
+          "default": "synctex",
+          "description": "Define the location of SyncTeX executive file.\nAdditional arguments, e.g., synctex modes and position of click, will be appended to this command."
+        },
+        "latex-workshop.chktex.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable linting LaTeX with ChkTeX.\nThe active document will be linted when no document changes for a defined period of time.\nThe full project will be linted from the root on file save."
+        },
+        "latex-workshop.chktex.path": {
+          "type": "string",
+          "default": "chktex",
+          "description": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.linter_arguments_*` and required arguments to form a complete command of ChkTeX."
+        },
+        "latex-workshop.chktex.args.active": {
+          "type": "array",
+          "default": [
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q"
+          ],
+          "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
+        },
+        "latex-workshop.chktex.args.root": {
+          "type": "array",
+          "default": [
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q"
+          ],
+          "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
+        },
+        "latex-workshop.chktex.interval": {
+          "type": "number",
+          "default": 300,
+          "description": "Defines the time interval in milliseconds between invoking LaTeX linter on the active file."
+        },
+        "latex-workshop.intellisense.citation.type": {
+          "type": "string",
+          "enum": [
+            "inline",
+            "browser"
+          ],
+          "default": "inline",
+          "description": "Defines which type of hint to show when intellisense provides citation suggestions."
+        },
+        "latex-workshop.intellisense.citation.label": {
+          "type": "string",
+          "enum": [
+            "bibtex key",
+            "title",
+            "authors"
+          ],
+          "default": "bibtex key",
+          "description": "Defines what to show as suggestion labels when intellisense provides citation suggestions."
+        },
+        "latex-workshop.debug.showLog": {
+          "type": "boolean",
+          "default": true,
+          "description": "Display LaTeX Workshop debug log in output panel.\nThis property defines whether LaTeX Workshop will output its debug log to the log panel."
         }
+      }
     },
-    "scripts": {
-        "vscode:prepublish": "tsc -p ./",
-        "compile": "tsc -watch -p ./",
-        "postinstall": "node ./node_modules/vscode/bin/install"
-    },
-    "capabilities": {
-        "completionProvider": {
-            "resolveProvider": "true"
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceLangId == latex",
+          "command": "latex-workshop.build",
+          "group": "navigation@100"
+        },
+        {
+          "when": "resourceLangId == latex",
+          "command": "latex-workshop.synctex",
+          "group": "navigation@101"
+        },
+        {
+          "when": "resourceLangId == latex",
+          "command": "latex-workshop.actions",
+          "group": "navigation@102"
         }
+      ]
     },
-    "dependencies": {
-        "ws": "^1.1.1",
-        "child-process-promise": "^2.2.0",
-        "hasbin": "^1.2.3",
-        "open": "^0.0.5",
-        "amd-loader": "^0.0.5",
-        "underscore-plus": "^1.6.1",
-        "unorm": "^1.3.3",
-        "requirejs": "^2.3.2"
-    },
-    "devDependencies": {
-        "typescript": "^2.0.3",
-        "vscode": "^1.0.0",
-        "mocha": "^2.3.3",
-        "@types/node": "^6.0.40",
-        "@types/mocha": "^2.2.32"
+    "views": {
+      "explorer": [
+        {
+          "id": "latex-outline",
+          "name": "LaTeX Outline",
+          "when": "resourceLangId == latex"
+        }
+      ]
     }
+  },
+  "scripts": {
+    "vscode:prepublish": "tsc -p ./",
+    "compile": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "capabilities": {
+    "completionProvider": {
+      "resolveProvider": "true"
+    }
+  },
+  "dependencies": {
+    "chokidar": "^1.6.1",
+    "glob": "^7.1.1",
+    "opn": "^5.1.0",
+    "ws": "^1.1.1"
+  },
+  "devDependencies": {
+    "@types/chokidar": "^1.6.0",
+    "@types/glob": "^5.0.30",
+    "@types/node": "^6.0.40",
+    "@types/ws": "^0.0.39",
+    "tslint": "^5.0.0",
+    "typescript": "^2.0.3",
+    "vscode": "^1.0.0"
+  }
 }

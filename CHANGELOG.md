@@ -1,8 +1,239 @@
 # Change Log
-All notable changes to this project will be documented in this file.
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/)
-and this project adheres to [Semantic Versioning](http://semver.org/).
+## [2.10.2] - 2017-07-15
+### Fixed
+- (#195) `lstlisting` messes up syntax highlight.
+- (#196) Citation browser auto-complete replaces all characters in curly brackets.
+
+## [2.10.1] - 2017-07-13
+### Changed
+- (#190) Now use a standalone file under extension folder to perform version check.
+
+### Fixed
+- (#193) Duplicated entries in quick menu if Action is invoked multiple times.
+- Click `Close` on new version alert redirects to GitHub repo.
+
+## [2.10.0] - 2017-07-06
+### Added
+- (#182) Use `|` as delimiters for outline section tags (`latex-workshop.view.outline.sections`) in the same level.
+- Supporting entries in the dropdown quick menu.
+- Version update notice with small candies.
+
+### Fixed
+- (#183) Citation browser does not replace the character already input in `\cite{xxx`.
+
+## [2.9.1] - 2017-07-04
+### Fixed
+- Extension unable to activate due to typo in retrieving outline configuration item.
+
+## [2.9.0] - 2017-07-04
+### Added
+- (#177) Add a new configuration item to customize LaTeX outline structure.
+
+### Changed
+- (#178) LaTeX outline only show on LaTeX documents.
+  - This requires an API from Insider channel. Public channel users need to wait for a while.
+- Rename `latex-workshop.viewer` configs to `latex-workshop.view`, and move existing configs to `pdf` sub-domain.
+
+## [2.8.1] - 2017-07-02
+### Fixed
+- (#132, #173) Citation browser won't search if any bibtex item does not have title attribute.
+- Extension activate upon vscode start regardless of language setting.
+
+## [2.8.0] - 2017-06-30
+### Added
+- (#175) Add LaTeX document outline. Credited to [`@jsinglet`](https://github.com/jsinglet).
+
+## [2.7.1] - 2017-06-29
+### Changed
+- (#176) Use a new bibtex parser to better handle double quoted strings in bib files.
+
+## [2.7.0] - 2017-06-26
+### Added
+- (#169) Add new configuration entry `latex-workshop.latex.additionalBib` to auto-complete globally included `.bib` files.
+
+### Fixed
+- Chokidar watches the same file multiple times if multi-included.
+
+## [2.6.0] - 2017-06-19
+### Added
+- (#168) Add new placeholder `%DIR%` in toolchain.
+
+## [2.5.1] - 2017-06-16
+### Fixed
+- (#167) Linter shows no linting message if `chktex` returns warnings.
+
+## [2.5.0] - 2017-06-13
+### Added
+- (#156) Two new config items to control the default parameters for PDF viewer.
+
+## [2.4.1] - 2017-06-12
+### Changed
+- (#158) Use theme color to colorize status bar messages.
+
+### Fixed
+- (#161) Add auto pairing for `$` and `.
+- (#155) Remove `lstlisting` specific highlight rules.
+
+## [2.4.0] - 2017-05-30
+### Added
+- (#154) Support `# !TeX program` magic comment.
+
+### Changed
+- (#141) `itemize` and `enumerate` intellisense append an `\item`.
+
+## [2.3.3] - 2017-05-25
+### Fixed
+- (#144) Typo on multline environment.
+
+## [2.3.2] - 2017-05-17
+### Changed
+- More debug info when killing previous building process upon saving files.
+
+## [2.3.1] - 2017-05-08
+### Fixed
+- VS Code 1.12 makes pdf-viewer iframe oversize horizontally.
+
+## [2.3.0] - 2017-05-06
+### Added
+- (#127) Reference intellisense now provide context in completion item details.
+
+## [2.2.1] - 2017-04-25
+### Changed
+- (#128) User configurable citation intellisense method (inline or browser).
+- (#128) Citation browser search-able by authors and citation keys.
+
+## [2.2.0] - 2017-04-25
+### Added
+- Default keyboard shortcuts for all LaTeX Workshop commands.
+
+## [2.1.4] - 2017-04-17
+### Fixed
+- (#116) Fix mis-read outputDir config.
+
+## [2.1.3] - 2017-04-17
+### Fixed
+- (#115) Fix reading wrong outputDir config when creating paths.
+
+## [2.1.2] - 2017-04-17
+### Fixed
+- (#114) Clean project also clean files in outputDir.
+- (#108) Correctly parse bib entries surrounded by quotes.
+
+## [2.1.1] - 2017-04-13
+### Fixed
+- (#110) Temporarily solve MikTeX chktex return code 1 problem.
+- (#104) Support non-pdflatex toolchain in latexmk.
+
+## [2.1.0] - 2017-04-11
+### Added
+- (#103) Add an `outputDir` config to define the LaTeX output directory.
+
+### Fixed
+- (#105) Building multi-root project would always compile the same file.
+
+## [2.0.0] - 2017-04-10
+### Added
+- (#90) Citation intellisense display item customizable in configurations.
+- (#90) A citation browser accessible from Actions or Quick Menu.
+- (#93) SyncTeX path now configurable in configurations.
+- (#96) Alerts when obsolete configuration items are found.
+
+### Changed
+- (#92) Quick Menu items are prepended with `LaTeX Workshop` for easier access.
+- (#96) All configuration items are renamed.
+  - This is a backward incompatible change. Users are required to re-set their configurations.
+- (#96) All commands use `spawn` instead of `exec` for more stable cross-platform experience.
+
+## [1.4.2] - 2017-04-06
+### Changed
+- (#88) Raw LaTeX log now displays in a separate new tab.
+  - Raw log content will refresh in real-time.
+
+## [1.4.1] - 2017-04-05
+### Fixed
+- (#86) Forward SyncTeX from LaTeX to PDF now works properly.
+
+## [1.4.0] - 2017-04-04
+### Added
+- (#79) Environments can be autocompleted with `\`.
+  - For example, `\begin{align}\n\n\end{align}` will show after typing `\align` or shorter.
+- (#81) A quick menu showing all LaTeX Workshop commands.
+  - It can be invoked by clicking the status bar item, right click any `LaTeX` file, or using `latex-workshop.actions` command.
+- (#84) Add many uni-math symbols to intellisense.
+
+### Changed
+- (#81) Clicking status bar item can show the previous status, as well as the quick menu.
+- (#81) Some commands are removed in the right click context menu.
+
+## [1.3.0] - 2017-04-03
+### Changed
+- (#71) Extension now uses `chokidar` to monitor file changes.
+  - This change will significantly reduce disk IO when intellisense is frequently triggered.
+
+### Fixed
+- (#74) Fix `.tex` extension name not properly removed when replacing `%DOC%` in toolchains.
+
+## [1.2.2] - 2017-03-31
+### Added
+- (#68) `ChkTeX` code action for `12: interword space`.
+
+### Fixed
+- (#67) `ChkTeX` ignores configuration and lints upon changing active editor.
+
+## [1.2.1] - 2017-03-30
+### Fixed
+- (#65) Commands with arguments incorrected inserted with `\undefined{args}`.
+
+## [1.2.0] - 2017-03-30
+Let's welcome @jabooth who joins the development of LaTeX Workshop!
+
+### Added
+- Auto clean LaTeX project after building LaTeX project, or on demand.
+- (#60) Many `ChkTeX` diagnostics have code actions. See readme for more.
+- (#62) Add back the default LaTeX commands to intellisense.
+
+### Changed
+- (#57) Now `ChkTeX` reads from stdin instead of temp files.
+
+## [1.1.2] - 2017-03-29
+### Changed
+- (#51) Now diagnostics show message sources.
+- (#56) Real-time `ChkTeX` on active editor.
+
+### Fixed
+- (#54) Web page url different from the one with tab view.
+
+## [1.1.1] - 2017-03-28
+### Changed
+- (#45) `ChkTeX` diagnostics separated from `LateX` ones.
+- (#46) Now save all editors when building.
+- A higher-resolution new icon.
+
+### Fixed
+- (#44) `.tex` files with dot in the file name cannot get recognized in `\input`.
+- (#48) Use `.bib` entry whitelist to avoid issues by unformal entries.
+
+## [1.1.0] - 2017-03-27
+### Added
+- (#39) LaTeX linting with `ChkTeX`.
+
+### Changed
+- Web page title will show `[disconnected]` when the websocket is closed.
+  - Such web pages cannot communicate with the extension. Thus will not auto refresh or SyncTeX.
+- Temp files created by log parser will be automatically deleted. In most cases.
+
+## [1.0.2] - 2017-03-26
+### Fixed
+- (#38) Cope with typical language ids.
+
+## [1.0.1] - 2017-03-26
+### Fixed
+- (#37) Extension failed to activate with language id `latex` (instead of `LaTeX`).
+
+## [1.0.0] - 2017-03-26
+- Completely re-write the extension with more extensibility.
+  - Original features should be inherited. If not, please submit issues.
 
 ## [0.2.20] - 2017-03-19
 ### Changed
