@@ -3,10 +3,11 @@ import * as fs from 'fs'
 
 import {Extension} from './../main'
 
-const bibEntries = ['article', 'book', 'booklet', 'conference', 'inbook',
-                    'incollection', 'inproceedings', 'manual', 'mastersthesis',
-                    'misc', 'phdthesis', 'proceedings', 'techreport',
-                    'unpublished']
+const bibEntries = ['article', 'book', 'bookinbook', 'booklet', 'collection', 'conference', 'inbook',
+                    'incollection', 'inproceedings', 'inreference', 'manual', 'mastersthesis', 'misc',
+                    'mvbook', 'mvcollection', 'mvproceedings', 'mvreference', 'online', 'patent', 'periodical',
+                    'phdthesis', 'proceedings', 'reference', 'report', 'set', 'suppbook', 'suppcollection',
+                    'suppperiodical', 'techreport', 'thesis', 'unpublished']
 
 interface CitationRecord {
     key: string
