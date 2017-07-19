@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 
-import {Extension} from './main'
+import { Extension } from './main'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
@@ -15,7 +15,7 @@ const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
 
-const DIAGNOSTIC_SEVERITY: {[key: string]: vscode.DiagnosticSeverity} = {
+const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Hint,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
@@ -55,7 +55,7 @@ export class Parser {
         }
     }
 
-    trimLaTeXmk(log: string) : string {
+    trimLaTeXmk(log: string): string {
         log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
         const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         let startLine = -1
@@ -78,7 +78,7 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string) : boolean {
+    latexmkSkipped(log: string): boolean {
         const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
@@ -94,11 +94,23 @@ export class Parser {
         this.buildLog = []
 
         let remainingEmptyLines = 0
-        let currentResult: {type: string, file: string, text: string, line: number|undefined } = {type: '', file: '', text: '', line: undefined}
+        const emptyResult = { type: '', file: '', text: '', line: undefined }
+        let currentResult: { type: string, file: string, text: string, line: number | undefined } = emptyResult
         for (const line of lines) {
+            // append the read line, since we have a corresponding result in the making
+            if (remainingEmptyLines > 0) {
+                currentResult.text = currentResult.text + " " + line
+                if (line.trim() === '') {
+                    currentResult.text = currentResult.text + "\n"
+                    remainingEmptyLines--
+                }
+                continue
+            }
             let result = line.match(latexBox)
             if (result) {
-                this.buildLog.push(currentResult)
+                if (currentResult !== emptyResult) {
+                    this.buildLog.push(currentResult)
+                }
                 currentResult = {
                     type: 'typesetting',
                     file: this.extension.manager.rootFile,
@@ -110,7 +122,9 @@ export class Parser {
             }
             result = line.match(latexWarn)
             if (result) {
-                this.buildLog.push(currentResult)
+                if (currentResult !== emptyResult) {
+                    this.buildLog.push(currentResult)
+                }
                 currentResult = {
                     type: 'warning',
                     file: this.extension.manager.rootFile,
@@ -122,23 +136,22 @@ export class Parser {
             }
             result = line.match(latexError)
             if (result) {
-                this.buildLog.push(currentResult)
+                if (currentResult !== emptyResult) {
+                    this.buildLog.push(currentResult)
+                }
                 currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
                     file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : this.extension.manager.rootFile,
                     line: result[2] ? parseInt(result[2], 10) : undefined
                 }
-                remainingEmptyLines = 2
+                remainingEmptyLines = 1
                 continue
             }
-            // append the read line, since we probably don't have anything better to do with the log output...
-            if (remainingEmptyLines > 0) {
-                currentResult.text = currentResult.text + " " + line
-                if (line === '') {
-                    remainingEmptyLines--
-                }
-            }
+        }
+        // push final result
+        if (currentResult !== emptyResult) {
+            this.buildLog.push(currentResult)
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
         this.showCompilerDiagnostics()
@@ -177,7 +190,7 @@ export class Parser {
 
     showCompilerDiagnostics() {
         this.compilerDiagnostics.clear()
-        const diagsCollection: {[key: string]: vscode.Diagnostic[]} = {}
+        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of this.buildLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
@@ -194,10 +207,10 @@ export class Parser {
     }
 
     showLinterDiagnostics(linterLog: LinterLogEntry[]) {
-        const diagsCollection: {[key: string]: vscode.Diagnostic[]} = {}
+        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of linterLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1),
-                                           new vscode.Position(item.line - 1, item.position - 1 + item.length))
+                new vscode.Position(item.line - 1, item.position - 1 + item.length))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.code = item.code
             diag.source = 'ChkTeX'
