@@ -14,6 +14,7 @@ const latexmkLog = /^Latexmk:\sapplying\srule/
 const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
+const truncatedLine = /(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g
 
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Hint,
@@ -45,6 +46,9 @@ export class Parser {
 
     parse(log: string) {
         this.isLaTeXmkSkipped = false
+        // clean truncated lines and canonicalize line-endings
+        log = log.replace(truncatedLine, '$1').replace(/(\r\n)|\r/g, '\n')
+
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
         }
@@ -56,8 +60,7 @@ export class Parser {
     }
 
     trimLaTeXmk(log: string): string {
-        log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
-        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
         for (let index = 0; index < lines.length; index++) {
@@ -79,7 +82,7 @@ export class Parser {
     }
 
     latexmkSkipped(log: string): boolean {
-        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
             return true
@@ -88,9 +91,8 @@ export class Parser {
     }
 
     parseLaTeX(log: string) {
-        log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
         this.buildLogRaw = log
-        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const lines = log.split('\n')
         this.buildLog = []
 
         let remainingEmptyLines = 0
