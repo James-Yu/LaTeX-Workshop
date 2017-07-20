@@ -95,22 +95,21 @@ export class Parser {
         const lines = log.split('\n')
         this.buildLog = []
 
-        let remainingEmptyLines = 0
-        const emptyResult = { type: '', file: '', text: '', line: undefined }
-        let currentResult: { type: string, file: string, text: string, line: number | undefined } = emptyResult
+        let searchesEmptyLine = false
+        let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
         for (const line of lines) {
             // append the read line, since we have a corresponding result in the making
-            if (remainingEmptyLines > 0) {
+            if (searchesEmptyLine) {
                 currentResult.text = currentResult.text + " " + line
                 if (line.trim() === '') {
                     currentResult.text = currentResult.text + "\n"
-                    remainingEmptyLines--
+                    searchesEmptyLine = false
                 }
                 continue
             }
             let result = line.match(latexBox)
             if (result) {
-                if (currentResult !== emptyResult) {
+                if (currentResult.type !== '') {
                     this.buildLog.push(currentResult)
                 }
                 currentResult = {
@@ -119,12 +118,12 @@ export class Parser {
                     line: parseInt(result[2], 10),
                     text: result[1]
                 }
-                remainingEmptyLines = 1
+                searchesEmptyLine = true
                 continue
             }
             result = line.match(latexWarn)
             if (result) {
-                if (currentResult !== emptyResult) {
+                if (currentResult.type !== '') {
                     this.buildLog.push(currentResult)
                 }
                 currentResult = {
@@ -133,12 +132,12 @@ export class Parser {
                     line: parseInt(result[4], 10),
                     text: result[3]
                 }
-                remainingEmptyLines = 1
+                searchesEmptyLine = true
                 continue
             }
             result = line.match(latexError)
             if (result) {
-                if (currentResult !== emptyResult) {
+                if (currentResult.type !== '') {
                     this.buildLog.push(currentResult)
                 }
                 currentResult = {
@@ -147,12 +146,12 @@ export class Parser {
                     file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : this.extension.manager.rootFile,
                     line: result[2] ? parseInt(result[2], 10) : undefined
                 }
-                remainingEmptyLines = 1
+                searchesEmptyLine = true
                 continue
             }
         }
         // push final result
-        if (currentResult !== emptyResult) {
+        if (currentResult.type !== '') {
             this.buildLog.push(currentResult)
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
