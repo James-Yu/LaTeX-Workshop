@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 
-import {Extension} from './main'
+import { Extension } from './main'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
@@ -14,8 +14,9 @@ const latexmkLog = /^Latexmk:\sapplying\srule/
 const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
+const truncatedLine = /(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g
 
-const DIAGNOSTIC_SEVERITY: {[key: string]: vscode.DiagnosticSeverity} = {
+const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Hint,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
@@ -45,6 +46,9 @@ export class Parser {
 
     parse(log: string) {
         this.isLaTeXmkSkipped = false
+        // clean truncated lines and canonicalize line-endings
+        log = log.replace(truncatedLine, '$1').replace(/(\r\n)|\r/g, '\n')
+
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
         }
@@ -55,9 +59,8 @@ export class Parser {
         }
     }
 
-    trimLaTeXmk(log: string) : string {
-        log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
-        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+    trimLaTeXmk(log: string): string {
+        const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
         for (let index = 0; index < lines.length; index++) {
@@ -78,8 +81,8 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string) : boolean {
-        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+    latexmkSkipped(log: string): boolean {
+        const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
             return true
@@ -88,41 +91,68 @@ export class Parser {
     }
 
     parseLaTeX(log: string) {
-        log = log.replace(/(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g, '$1')
         this.buildLogRaw = log
-        const lines = log.replace(/(\r\n)|\r/g, '\n').split('\n')
+        const lines = log.split('\n')
         this.buildLog = []
+
+        let searchesEmptyLine = false
+        let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
         for (const line of lines) {
+            // append the read line, since we have a corresponding result in the making
+            if (searchesEmptyLine) {
+                currentResult.text = currentResult.text + " " + line
+                if (line.trim() === '') {
+                    currentResult.text = currentResult.text + "\n"
+                    searchesEmptyLine = false
+                }
+                continue
+            }
             let result = line.match(latexBox)
             if (result) {
-                this.buildLog.push({
+                if (currentResult.type !== '') {
+                    this.buildLog.push(currentResult)
+                }
+                currentResult = {
                     type: 'typesetting',
-                    text: result[1],
                     file: this.extension.manager.rootFile,
-                    line: parseInt(result[2], 10)
-                })
+                    line: parseInt(result[2], 10),
+                    text: result[1]
+                }
+                searchesEmptyLine = true
                 continue
             }
             result = line.match(latexWarn)
             if (result) {
-                this.buildLog.push({
+                if (currentResult.type !== '') {
+                    this.buildLog.push(currentResult)
+                }
+                currentResult = {
                     type: 'warning',
-                    text: result[3],
                     file: this.extension.manager.rootFile,
-                    line: parseInt(result[4])
-                })
+                    line: parseInt(result[4], 10),
+                    text: result[3]
+                }
+                searchesEmptyLine = true
                 continue
             }
             result = line.match(latexError)
             if (result) {
-                this.buildLog.push({
+                if (currentResult.type !== '') {
+                    this.buildLog.push(currentResult)
+                }
+                currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
                     file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : this.extension.manager.rootFile,
                     line: result[2] ? parseInt(result[2], 10) : undefined
-                })
+                }
+                searchesEmptyLine = true
                 continue
             }
+        }
+        // push final result
+        if (currentResult.type !== '') {
+            this.buildLog.push(currentResult)
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
         this.showCompilerDiagnostics()
@@ -161,7 +191,7 @@ export class Parser {
 
     showCompilerDiagnostics() {
         this.compilerDiagnostics.clear()
-        const diagsCollection: {[key: string]: vscode.Diagnostic[]} = {}
+        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of this.buildLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
@@ -178,10 +208,10 @@ export class Parser {
     }
 
     showLinterDiagnostics(linterLog: LinterLogEntry[]) {
-        const diagsCollection: {[key: string]: vscode.Diagnostic[]} = {}
+        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of linterLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1),
-                                           new vscode.Position(item.line - 1, item.position - 1 + item.length))
+                new vscode.Position(item.line - 1, item.position - 1 + item.length))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.code = item.code
             diag.source = 'ChkTeX'
