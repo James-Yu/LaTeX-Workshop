@@ -18,7 +18,7 @@ export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: CitationRecord[] } = {}
-    citationData: { [id: string]: string } = {}
+    citationData: { [id: string]: {item: {}, text: string} } = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -31,7 +31,6 @@ export class Citation {
         }
         this.refreshTimer = Date.now()
 
-        // Retrieve all Bib items for all known bib files in a flat list
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
             this.citationInBib[bibPath].forEach(item => items.push(item))
@@ -136,10 +135,13 @@ export class Citation {
         }
         this.extension.logger.addLogMessage(`Parsed ${items.length} .bib entries from ${bibPath}.`)
         items.forEach(item => {
-            this.citationData[item.key] = Object.keys(item)
-                .filter(key => (key !== 'key'))
-                .map(key => `${key}: ${item[key]}`)
-                .join('\n\n')
+            this.citationData[item.key] = {
+                item,
+                text: Object.keys(item)
+                    .filter(key => (key !== 'key'))
+                    .map(key => `${key}: ${item[key]}`)
+                    .join('\n\n')
+            }
         })
         this.citationInBib[bibPath] = items
     }

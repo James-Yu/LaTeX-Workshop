@@ -6,8 +6,7 @@ import {Extension} from '../../main'
 export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    referenceInTeX: { [id: string]: {} } = {}
-    referenceData: {[id: string]: string} = {}
+    referenceData: {[id: string]: {item: {[id: string]: any}, text: string}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -20,14 +19,8 @@ export class Reference {
         }
         this.refreshTimer = Date.now()
         const suggestions = {}
-        Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
-            if (filePath in this.referenceInTeX) {
-                Object.keys(this.referenceInTeX[filePath]).forEach(key => {
-                    if (!(key in suggestions)) {
-                        suggestions[key] = this.referenceInTeX[filePath][key]
-                    }
-                })
-            }
+        Object.keys(this.referenceData).forEach(key => {
+            suggestions[key] = this.referenceData[key].item
         })
         if (vscode.window.activeTextEditor) {
             const items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
@@ -49,26 +42,31 @@ export class Reference {
 
     getReferencesTeX(filePath: string) {
         const references = this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
-        this.referenceInTeX[filePath] = references
         Object.keys(references).forEach((key) => {
-            this.referenceData[key] = references[key].text
+            this.referenceData[key] = {
+                item: references[key],
+                text: references[key].text
+            }
+            this.referenceData[key].item.file = filePath
         })
     }
 
     getReferenceItems(content: string) {
         const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
         const items = {}
+        const noELContent = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
             const result = itemReg.exec(content)
             if (result === null) {
                 break
             }
             if (!(result[1] in items)) {
-                const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
-                const followLength = content.substring(result.index, content.length).split('\n', 4).join('\n').length
+                const prevContent = noELContent.substring(0, noELContent.substring(0, result.index).lastIndexOf('\n') - 1)
+                const followLength = noELContent.substring(result.index, noELContent.length).split('\n', 4).join('\n').length
                 items[result[1]] = {
                     reference: result[1],
-                    text: `${content.substring(prevContent.lastIndexOf('\n'), result.index + followLength)}\n...`
+                    text: `${noELContent.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength)}\n...`,
+                    index: result.index
                 }
             }
         }
