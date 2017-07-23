@@ -3,7 +3,7 @@ import * as ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
 
-import {Extension} from './main'
+import {Extension} from '../main'
 
 export class Server {
     extension: Extension

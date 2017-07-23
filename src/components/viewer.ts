@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as opn from 'opn'
 import * as WebSocket from 'ws'
 
-import {Extension} from './main'
+import {Extension} from '../main'
 import {SyncTeXRecord} from './locator'
 
 interface Position {}

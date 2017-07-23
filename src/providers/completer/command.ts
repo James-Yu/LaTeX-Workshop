@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import {Extension} from './../main'
+import {Extension} from '../../main'
 
 export class Command {
     extension: Extension

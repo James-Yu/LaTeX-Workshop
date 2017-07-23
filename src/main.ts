@@ -3,18 +3,20 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as opn from 'opn'
 
-import {Logger, LogProvider} from './logger'
 import {Commander} from './commander'
-import {Manager} from './manager'
-import {Builder} from './builder'
-import {CodeActions} from './codeactions'
-import {Viewer, PDFProvider} from './viewer'
-import {Server} from './server'
-import {Locator} from './locator'
-import {Parser} from './parser'
-import {Completer} from './completer'
-import {Linter} from './linter'
-import {Cleaner} from './cleaner'
+import {Logger} from './components/logger'
+import {Manager} from './components/manager'
+import {Builder} from './components/builder'
+import {Viewer, PDFProvider} from './components/viewer'
+import {Server} from './components/server'
+import {Locator} from './components/locator'
+import {Parser} from './components/parser'
+import {Linter} from './components/linter'
+import {Cleaner} from './components/cleaner'
+
+import {Completer} from './providers/completer'
+import {CodeActions} from './providers/codeactions'
+import {LaTeXLogProvider} from './providers/latexlog'
 import {SectionNodeProvider} from './providers/outline'
 
 function lintRootFileIfEnabled(extension: Extension) {
@@ -210,8 +212,7 @@ export class Extension {
     linter: Linter
     cleaner: Cleaner
     codeActions: CodeActions
-
-    logProvider: LogProvider
+    logProvider: LaTeXLogProvider
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -227,8 +228,8 @@ export class Extension {
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
         this.codeActions = new CodeActions(this)
+        this.logProvider = new LaTeXLogProvider(this)
 
-        this.logProvider = new LogProvider(this)
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
 }

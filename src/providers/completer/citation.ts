@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import {Extension} from './../main'
+import {Extension} from '../../main'
 
 const bibEntries = ['article', 'book', 'bookinbook', 'booklet', 'collection', 'conference', 'inbook',
                     'incollection', 'inproceedings', 'inreference', 'manual', 'mastersthesis', 'misc',

@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import {Extension} from './main'
-import {Citation} from './providers/citation'
-import {Command} from './providers/command'
-import {Environment} from './providers/environment'
-import {Reference} from './providers/reference'
+import {Extension} from '../main'
+import {Citation} from './completer/citation'
+import {Command} from './completer/command'
+import {Environment} from './completer/environment'
+import {Reference} from './completer/reference'
 
 export class Completer implements vscode.CompletionItemProvider {
     extension: Extension
@@ -56,7 +56,7 @@ export class Completer implements vscode.CompletionItemProvider {
                         const configuration = vscode.workspace.getConfiguration('latex-workshop')
                         if (configuration.get('intellisense.citation.type') as string === 'browser') {
                             resolve([])
-                            this.extension.completer.citation.browser()
+                            this.citation.browser()
                             return
                         }
                     }

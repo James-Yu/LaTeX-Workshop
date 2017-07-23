@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as glob from 'glob'
 
-import {Extension} from './main'
+import {Extension} from '../main'
 
 export class Cleaner {
     extension: Extension

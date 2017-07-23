@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as chokidar from 'chokidar'
 
-import {Extension} from './main'
+import {Extension} from '../main'
 
 export class Manager {
     extension: Extension

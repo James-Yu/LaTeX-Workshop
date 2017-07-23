@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 
-import { Extension } from './main'
+import { Extension } from '../main'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
@@ -59,7 +59,7 @@ export class Parser {
         }
     }
 
-    trimLaTeXmk(log: string): string {
+    trimLaTeXmk(log: string) : string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -81,7 +81,7 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string): boolean {
+    latexmkSkipped(log: string) : boolean {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
