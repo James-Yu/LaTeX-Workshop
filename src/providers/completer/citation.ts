@@ -18,7 +18,7 @@ export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: CitationRecord[] } = {}
-    citationData: { [id: string]: {item: {}, text: string} } = {}
+    citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -113,16 +113,27 @@ export class Citation {
     parseBibFile(bibPath: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
         const items: CitationRecord[] = []
-        const content = fs.readFileSync(bibPath, 'utf-8').replace(/[\r\n]/g, ' ')
+        const content = fs.readFileSync(bibPath, 'utf-8')
+        const contentNoNewLine = content.replace(/[\r\n]/g, ' ')
         const itemReg = /@(\w+){/g
-        let result = itemReg.exec(content)
+        let result = itemReg.exec(contentNoNewLine)
         let prevResult: RegExpExecArray | null = null
         while (result || prevResult) {
             if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
-                const itemString = content.substring(prevResult.index, result ? result.index : undefined).trim()
+                const itemString = contentNoNewLine.substring(prevResult.index, result ? result.index : undefined).trim()
                 const item = this.parseBibString(itemString)
                 if (item !== undefined) {
                     items.push(item)
+                    const positionContent = content.substring(0, prevResult.index).split('\n')
+                    this.citationData[item.key] = {
+                        item,
+                        text: Object.keys(item)
+                            .filter(key => (key !== 'key'))
+                            .map(key => `${key}: ${item[key]}`)
+                            .join('\n\n'),
+                        position: new vscode.Position(positionContent.length - 1, 0),
+                        file: bibPath
+                    }
                 } else {
                     // TODO we could consider adding a diagnostic for this case so the issue appears in the Problems list
                     this.extension.logger.addLogMessage(`Warning - following .bib entry in ${bibPath} has no cite key:\n${itemString}`)
@@ -130,19 +141,10 @@ export class Citation {
             }
             prevResult = result
             if (result) {
-                result = itemReg.exec(content)
+                result = itemReg.exec(contentNoNewLine)
             }
         }
         this.extension.logger.addLogMessage(`Parsed ${items.length} .bib entries from ${bibPath}.`)
-        items.forEach(item => {
-            this.citationData[item.key] = {
-                item,
-                text: Object.keys(item)
-                    .filter(key => (key !== 'key'))
-                    .map(key => `${key}: ${item[key]}`)
-                    .join('\n\n')
-            }
-        })
         this.citationInBib[bibPath] = items
     }
 

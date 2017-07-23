@@ -6,7 +6,7 @@ import {Extension} from '../../main'
 export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    referenceData: {[id: string]: {item: {[id: string]: any}, text: string}} = {}
+    referenceData: {[id: string]: {item: {[id: string]: any}, text: string, file: string}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -45,9 +45,9 @@ export class Reference {
         Object.keys(references).forEach((key) => {
             this.referenceData[key] = {
                 item: references[key],
-                text: references[key].text
+                text: references[key].text,
+                file: filePath
             }
-            this.referenceData[key].item.file = filePath
         })
     }
 
@@ -63,10 +63,11 @@ export class Reference {
             if (!(result[1] in items)) {
                 const prevContent = noELContent.substring(0, noELContent.substring(0, result.index).lastIndexOf('\n') - 1)
                 const followLength = noELContent.substring(result.index, noELContent.length).split('\n', 4).join('\n').length
+                const positionContent = content.substring(0, result.index).split('\n')
                 items[result[1]] = {
                     reference: result[1],
                     text: `${noELContent.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength)}\n...`,
-                    index: result.index
+                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
                 }
             }
         }
