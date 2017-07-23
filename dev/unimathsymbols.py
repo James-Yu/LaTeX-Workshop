@@ -26,5 +26,5 @@ with open('unimathsymbols.txt', encoding='utf-8') as f:
         if segments[6] is not '' and segments[6][0] is not '-':
             data[segments[3]]['detail'] += ' ("{}" command)'.format(segments[6])
 
-json.dump(data, open('unimathsymbols.json', 'w', encoding='utf-8'),
+json.dump(data, open('../data/unimathsymbols.json', 'w', encoding='utf-8'),
           indent=2, separators=(',', ': '), sort_keys=True, ensure_ascii=False)
