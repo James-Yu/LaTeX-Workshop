@@ -7,6 +7,7 @@ export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
     referenceInTeX: { [id: string]: {} } = {}
+    referenceData: {[id: string]: string} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -47,7 +48,11 @@ export class Reference {
     }
 
     getReferencesTeX(filePath: string) {
-        this.referenceInTeX[filePath] = this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
+        const references = this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
+        this.referenceInTeX[filePath] = references
+        Object.keys(references).forEach((key) => {
+            this.referenceData[key] = references[key].text
+        })
     }
 
     getReferenceItems(content: string) {

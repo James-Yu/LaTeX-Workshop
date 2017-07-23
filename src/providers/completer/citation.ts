@@ -18,6 +18,7 @@ export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: CitationRecord[] } = {}
+    citationData: { [id: string]: string } = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -66,8 +67,7 @@ export class Citation {
             citation.filterText = `${item.key} ${item.author} ${item.title} ${item.journal}`
             citation.insertText = item.key
             citation.documentation = Object.keys(item)
-                .filter(key => (key !== 'key' && key !== 'title'))
-                .sort()
+                .filter(key => (key !== 'key'))
                 .map(key => `${key}: ${item[key]}`)
                 .join('\n')
             return citation
@@ -135,6 +135,12 @@ export class Citation {
             }
         }
         this.extension.logger.addLogMessage(`Parsed ${items.length} .bib entries from ${bibPath}.`)
+        items.forEach(item => {
+            this.citationData[item.key] = Object.keys(item)
+                .filter(key => (key !== 'key'))
+                .map(key => `${key}: ${item[key]}`)
+                .join('\n\n')
+        })
         this.citationInBib[bibPath] = items
     }
 

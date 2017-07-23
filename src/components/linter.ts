@@ -71,7 +71,7 @@ export class Linter {
                 this.currentProcesses[linterId].kill()
             }
             const startTime = process.hrtime()
-            this.currentProcesses[linterId] = spawn(command, args, {maxBuffer: Infinity, ...options})
+            this.currentProcesses[linterId] = spawn(command, args, options)
             const proc = this.currentProcesses[linterId]
             proc.stdout.setEncoding('utf8')
             proc.stderr.setEncoding('utf8')

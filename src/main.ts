@@ -14,10 +14,11 @@ import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 
-import {Completer} from './providers/completer'
+import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
 import {LaTeXLogProvider} from './providers/latexlog'
 import {SectionNodeProvider} from './providers/outline'
+import {HoverProvider} from './providers/hover'
 
 function lintRootFileIfEnabled(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -182,15 +183,14 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
-    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', extension.logProvider))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
-    context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     extension.manager.findRoot()
 
-    const sectionNodeProvider = new SectionNodeProvider(extension)
-
-    vscode.window.registerTreeDataProvider('latex-outline', sectionNodeProvider)
+    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
+    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', extension.logProvider))
+    context.subscriptions.push(vscode.languages.registerHoverProvider('latex', new HoverProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
+    context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
+    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-outline', new SectionNodeProvider(extension)))
 
     lintRootFileIfEnabled(extension)
     obsoleteConfigCheck()
