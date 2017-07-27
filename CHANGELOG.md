@@ -1,5 +1,17 @@
 # Change Log
 
+## [3.0.0] - 2017-07-27 - Language Update
+### Added
+- (#184) Add LaTeX language hover and definition providers.
+- (#202) Extra biblatex entry types.
+- (#204) Basic auto-indent feature provided by VS Code.
+
+### Changed
+- (#205) Re-construct latex log parser. Credited to [`@Vogel612`](https://github.com/Vogel612).
+
+### Fixed
+- (#203) Multiple optional parameter support to `\cite`.
+
 ## [2.10.2] - 2017-07-15
 ### Fixed
 - (#195) `lstlisting` messes up syntax highlight.
@@ -132,7 +144,7 @@
 ### Fixed
 - (#105) Building multi-root project would always compile the same file.
 
-## [2.0.0] - 2017-04-10
+## [2.0.0] - 2017-04-10 - Configuration Update
 ### Added
 - (#90) Citation intellisense display item customizable in configurations.
 - (#90) A citation browser accessible from Actions or Quick Menu.
