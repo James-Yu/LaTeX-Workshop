@@ -23,12 +23,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 this.sectionDepths[sec] = index
             })
         })
-
-        extension.manager.fileWatcher.on('change', (path: string) => {
-            this.extension.logger.addLogMessage(`[outline]: responding to change in ${path}`)
-            this.refresh()
-        })
-
     }
 
     refresh() : Section[] {
@@ -174,6 +168,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     getChildren(element?: Section) : Thenable<Section[]> {
 
+        if (this.extension.manager.rootFile === undefined) {
+            return Promise.resolve([])
+        }
         // if the root doesn't exist, we need
         // to explicitly build the model from disk
         if (!element) {

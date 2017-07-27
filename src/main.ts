@@ -192,7 +192,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerDefinitionProvider('latex', new DefinitionProvider(extension)))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ','))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
-    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-outline', new SectionNodeProvider(extension)))
+    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-outline', extension.nodeProvider))
 
     lintRootFileIfEnabled(extension)
     obsoleteConfigCheck()
@@ -215,6 +215,7 @@ export class Extension {
     cleaner: Cleaner
     codeActions: CodeActions
     logProvider: LaTeXLogProvider
+    nodeProvider: SectionNodeProvider
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -231,6 +232,7 @@ export class Extension {
         this.cleaner = new Cleaner(this)
         this.codeActions = new CodeActions(this)
         this.logProvider = new LaTeXLogProvider(this)
+        this.nodeProvider = new SectionNodeProvider(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
