@@ -20,12 +20,18 @@
 
 <!-- Please describe what happens instead. -->
 
-### LaTeX Workshop log messages
+### Log messages
+
+<!-- Please paste the log messages here. It is very important to identify problems. -->
 
 <details>
-<summary>Log messages</summary>
-<!-- Please paste the log messages here. It is very important to identify problems. -->
+<summary>LaTeX Workshop Output</summary>
 <!-- To access the log, click the 'problems' icons on the statusbar, select 'OUTPUT', then select 'LaTeX Workshop' from the dropdown menu on the right. -->
+</details>
+
+<details>
+<summary>Developer Tools Console</summary>
+<!-- To access the log, click 'help' -> 'Toggle Developer Tools. Paste anything suspicious. -->
 </details>
 
 ### Additional Information
