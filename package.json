@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icon.png",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -154,6 +154,11 @@
         "category": "LaTeX Workshop"
       },
       {
+        "command": "latex-workshop.wordcount",
+        "title": "Count words in LaTeX document",
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-workshop.log",
         "title": "Show LaTeX log",
         "category": "LaTeX Workshop"
@@ -293,7 +298,7 @@
         "latex-workshop.chktex.path": {
           "type": "string",
           "default": "chktex",
-          "description": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.linter_arguments_*` and required arguments to form a complete command of ChkTeX."
+          "description": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.chktex.args.*` and required arguments to form a complete command of ChkTeX."
         },
         "latex-workshop.chktex.args.active": {
           "type": "array",
@@ -321,6 +326,18 @@
           "type": "number",
           "default": 300,
           "description": "Defines the time interval in milliseconds between invoking LaTeX linter on the active file."
+        },
+        "latex-workshop.texcount.path": {
+          "type": "string",
+          "default": "texcount",
+          "description": "Define the location of TeXCount executive file/script.\nThis command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
+        },
+        "latex-workshop.texcount.args": {
+          "type": "array",
+          "default": [
+            "-merge"
+          ],
+          "description": "TeXCount arguments to count words in LaTeX document of the entire project from the root file.\nArguments must be in separate strings in the array. Additional arguments, i.e., `%DOC%` will be appended when constructing the command."
         },
         "latex-workshop.intellisense.citation.type": {
           "type": "string",

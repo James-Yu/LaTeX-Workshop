@@ -13,6 +13,7 @@ import {Locator} from './components/locator'
 import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
+import {Counter} from './components/counter'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -116,6 +117,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
     vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
+    vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount())
     vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
     vscode.commands.registerCommand('latex-workshop.goto-section', (filePath, lineNumber) => extension.commander.gotoSection(filePath, lineNumber))
@@ -213,6 +215,7 @@ export class Extension {
     completer: Completer
     linter: Linter
     cleaner: Cleaner
+    counter: Counter
     codeActions: CodeActions
     logProvider: LaTeXLogProvider
     nodeProvider: SectionNodeProvider
@@ -230,6 +233,7 @@ export class Extension {
         this.completer = new Completer(this)
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
+        this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
         this.logProvider = new LaTeXLogProvider(this)
         this.nodeProvider = new SectionNodeProvider(this)

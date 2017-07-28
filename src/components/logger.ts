@@ -43,7 +43,7 @@ export class Logger {
         }
         const icon = this.status.text.split(' ')[0]
         const message = this.status.tooltip
-        this.status.text = `${icon} Previous message: ${message}`
+        this.status.text = `${icon} ${message}`
         if (timeout > 0) {
             this.statusTimeout = setTimeout(() => this.status.text = `${icon}`, timeout)
         }

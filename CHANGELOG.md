@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.1.0] - Prepare for release
+### Added
+- (#142) LaTeX project word counter by TeXCount.
+  - Windows users are suggested to upgrade [TeXCount](http://app.uio.no/ifi/texcount/download.html) to version 3.0.1.
+
 ## [3.0.1] - 2017-07-28
 ### Fixed
 - (#208) Extension initialization failed when no root file is found.

@@ -84,6 +84,11 @@ export class Commander {
         this.extension.completer.citation.browser()
     }
 
+    wordcount() {
+        this.extension.logger.addLogMessage(`WORDCOUNT command invoked.`)
+        this.extension.counter.count()
+    }
+
     log() {
         this.extension.logger.addLogMessage(`LOG command invoked.`)
         this.extension.logger.showLog()
