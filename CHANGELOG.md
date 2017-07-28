@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.0.1] - 2017-07-28
+### Fixed
+- (#208) Extension initialization failed when no root file is found.
+
 ## [3.0.0] - 2017-07-27 - Language Update
 ### Added
 - (#184) Add LaTeX language hover and definition providers.
