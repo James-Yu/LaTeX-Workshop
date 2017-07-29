@@ -9,6 +9,7 @@ export class Command {
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
     defaultCommands: {[key: string]: vscode.CompletionItem} = {}
+    newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -62,7 +63,7 @@ export class Command {
             }
         })
         if (vscode.window.activeTextEditor) {
-            const items = this.getCommandItems(vscode.window.activeTextEditor.document.getText())
+            const items = this.getCommandItems(vscode.window.activeTextEditor.document.getText(), vscode.window.activeTextEditor.document.fileName)
             Object.keys(items).forEach(key => {
                 if (!(key in suggestions)) {
                     suggestions[key] = this.entryToCompletionItem(items[key])
@@ -88,10 +89,10 @@ export class Command {
     }
 
     getCommandsTeX(filePath: string) {
-        this.commandInTeX[filePath] = this.getCommandItems(fs.readFileSync(filePath, 'utf-8'))
+        this.commandInTeX[filePath] = this.getCommandItems(fs.readFileSync(filePath, 'utf-8'), filePath)
     }
 
-    getCommandItems(content: string) : { [id: string]: AutocompleteEntry } {
+    getCommandItems(content: string, filePath: string) : { [id: string]: AutocompleteEntry } {
         const itemReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const items = {}
         while (true) {
@@ -118,6 +119,21 @@ export class Command {
                 } else {
                     items[result[1]].counts = 2
                 }
+            }
+        }
+
+        const newCommandReg = /\\(?:re|provide)?(?:new)?command(?:{)?\\(\w+)/g
+        while (true) {
+            const result = newCommandReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (result[1] in this.newcommandData) {
+                continue
+            }
+            this.newcommandData[result[1]] = {
+                position: new vscode.Position(content.substr(0, result.index).split('\n').length - 1, 0),
+                file: filePath
             }
         }
 

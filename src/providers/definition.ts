@@ -32,6 +32,13 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
                 ))
                 return
             }
+            if (token in this.extension.completer.command.newcommandData) {
+                const command = this.extension.completer.command.newcommandData[token]
+                resolve(new vscode.Location(
+                    vscode.Uri.file(command.file), command.position
+                ))
+                return
+            }
             resolve()
         })
     }
