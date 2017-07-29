@@ -174,6 +174,12 @@ If the `command` is set empty but no `% !TEX program` magic comment is found, `p
 
 The code for this extension is available on github at: https://github.com/James-Yu/LaTeX-Workshop
 
+## Like this work?
+
+- :smile: Star this project on GitHub and Visual Studio Marketplace
+- :blush: Leave a comment
+- :relaxed: [Spare me some coffee via Paypal](https://www.paypal.me/JamesJQYu)
+
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)

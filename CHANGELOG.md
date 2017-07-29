@@ -1,9 +1,13 @@
 # Change Log
 
-## [3.1.0] - Prepare for release
+## [3.1.0] - 2017-07-29
 ### Added
 - (#142) LaTeX project word counter by TeXCount.
   - Windows users are suggested to upgrade [TeXCount](http://app.uio.no/ifi/texcount/download.html) to version 3.0.1.
+- (#212) Add `newcommand` etc definition support.
+
+### Fixed
+- (#211) Tab viewer support UNC address
 
 ## [3.0.1] - 2017-07-28
 ### Fixed
