@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.1.1] - 2017-07-30
+### Fixed
+- (#214, #215) PDF viewer not properly registered in extension.
+
 ## [3.1.0] - 2017-07-29
 ### Added
 - (#142) LaTeX project word counter by TeXCount.
