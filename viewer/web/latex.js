@@ -4,7 +4,7 @@ let file
 for (let i = 0, ii = parts.length; i < ii; ++i) {
     let param = parts[i].split('=')
     if (param[0].toLowerCase() == "file") {
-        file = param[1].replace('\\pdf:', '')
+        file = param[1].replace('/pdf:', '')
         document.title = decodeURIComponent(file).split(/[\\/]/).pop()
     }
 }
