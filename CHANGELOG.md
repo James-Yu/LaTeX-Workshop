@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.1.2] - 2017-07-31
+### Fixed
+- (#216) Wrong status bar display when killing child processes.
+- (#217) PDF tab viewer over UNC cannot refresh.
+
 ## [3.1.1] - 2017-07-30
 ### Fixed
 - (#214, #215) PDF viewer not properly registered in extension.
