@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.2.0] - Unreleased
+### Added
+- (#219) Show all symbol definitions within a document and the project.
+
 ## [3.1.2] - 2017-07-31
 ### Fixed
 - (#216) Wrong status bar display when killing child processes.
