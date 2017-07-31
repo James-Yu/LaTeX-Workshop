@@ -27,7 +27,7 @@ export class Viewer {
 
     refreshExistingViewer(sourceFile: string, type?: string) : boolean {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        const client = this.clients[pdfFile]
+        const client = this.clients[pdfFile.toLocaleUpperCase()]
         if (client !== undefined &&
             (type === undefined || client.type === type) &&
             client.ws !== undefined) {
@@ -63,11 +63,11 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        const client = this.clients[pdfFile]
+        const client = this.clients[pdfFile.toLocaleUpperCase()]
         if (client !== undefined && client.ws !== undefined) {
             client.ws.close()
         }
-        this.clients[pdfFile] = {type: 'viewer'}
+        this.clients[pdfFile.toLocaleUpperCase()] = {type: 'viewer'}
         opn(url)
         this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
         this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF viewer for ${path.basename(pdfFile)}.`)
@@ -79,7 +79,7 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        const client = this.clients[pdfFile]
+        const client = this.clients[pdfFile.toLocaleUpperCase()]
         const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
         let column = vscode.ViewColumn.Two
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two) {
@@ -88,7 +88,7 @@ export class Viewer {
         if (client !== undefined && client.ws !== undefined) {
             client.ws.close()
         }
-        this.clients[pdfFile] = {type: 'tab'}
+        this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
         vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
         this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF tab for ${path.basename(pdfFile)}.`)
@@ -99,7 +99,7 @@ export class Viewer {
         let client: Client | undefined
         switch (data.type) {
             case 'open':
-                client = this.clients[decodeURIComponent(data.path)]
+                client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
                 if (client !== undefined) {
                     client.ws = ws
                     if (client.type === undefined && client.prevType !== undefined) {
@@ -126,8 +126,7 @@ export class Viewer {
                 }
                 break
             case 'loaded':
-                const pdfFile = decodeURIComponent(data.path)
-                client = this.clients[pdfFile]
+                client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
                 if (client !== undefined && client.ws !== undefined) {
                     if (client.position !== undefined) {
                         client.ws.send(JSON.stringify(client.position))
@@ -151,7 +150,7 @@ export class Viewer {
     }
 
     syncTeX(pdfFile: string, record: SyncTeXRecord | {[key: string]: string | number}) {
-        const client = this.clients[pdfFile]
+        const client = this.clients[pdfFile.toLocaleUpperCase()]
         if (client === undefined) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
