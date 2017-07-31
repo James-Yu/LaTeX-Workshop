@@ -9,12 +9,13 @@ export class Builder {
     extension: Extension
     currentProcess: cp.ChildProcess | undefined
     disableBuildAfterSave: boolean = false
+    nextBuildRootFile: string | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    build(rootFile: string) {
+    preprocess(rootFile: string) {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         this.disableBuildAfterSave = true
         vscode.workspace.saveAll()
@@ -22,13 +23,28 @@ export class Builder {
         if (this.currentProcess) {
             this.currentProcess.kill()
             this.extension.logger.addLogMessage('Kill previous process')
+            // Dirty wait for process killed
+            this.extension.logger.displayStatus('sync', 'statusBar.foreground', `Killing previous process.`, 0)
+            this.nextBuildRootFile = rootFile
+        } else {
+            this.nextBuildRootFile = undefined
         }
+    }
+
+    buildInitiater(rootFile: string) {
         const toolchain = this.createToolchain(rootFile)
         if (toolchain === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
             return
         }
         this.buildStep(rootFile, toolchain, 0)
+    }
+
+    build(rootFile: string) {
+        this.preprocess(rootFile)
+        if (this.nextBuildRootFile === undefined) {
+            this.buildInitiater(rootFile)
+        }
     }
 
     buildStep(rootFile: string, toolchain: ToolchainCommand[], index: number) {
@@ -69,6 +85,9 @@ export class Builder {
                 this.buildStep(rootFile, toolchain, index + 1)
             }
             this.currentProcess = undefined
+            if (this.nextBuildRootFile) {
+                this.build(this.nextBuildRootFile)
+            }
         })
     }
 
