@@ -1,8 +1,9 @@
 # Change Log
 
-## [3.2.0] - Unreleased
+## [3.2.0] - 2017-08-02
 ### Added
 - (#219) Show all symbol definitions within a document and the project.
+- (#224) Count single file words and floats when not opening the root LaTeX file.
 
 ## [3.1.2] - 2017-07-31
 ### Fixed

@@ -86,7 +86,12 @@ export class Commander {
 
     wordcount() {
         this.extension.logger.addLogMessage(`WORDCOUNT command invoked.`)
-        this.extension.counter.count()
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName) ||
+            this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
+            this.extension.counter.count(this.extension.manager.rootFile)
+        } else {
+            this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
+        }
     }
 
     log() {

@@ -52,8 +52,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return rootStack.length === 0
         }
 
-        this.extension.logger.addLogMessage(`Parsing ${filePath}`)
-        //console.log(`Parsing ${filePath}`)
+        this.extension.logger.addLogMessage(`Parsing ${filePath} for outline`)
         const content = fs.readFileSync(filePath, 'utf-8')
 
         let pattern = "^((?:\\\\(?:input|include|subfile)(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|^((?:\\\\("
