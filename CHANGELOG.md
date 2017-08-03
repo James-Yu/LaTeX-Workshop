@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.2.1] - 2017-08-03
+### Fixed
+- (#223) Multi-file LaTeX log messages point to wrong file.
+
 ## [3.2.0] - 2017-08-02
 ### Added
 - (#219) Show all symbol definitions within a document and the project.
