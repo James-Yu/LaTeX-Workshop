@@ -97,7 +97,16 @@ export class Parser {
 
         let searchesEmptyLine = false
         let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
+        const fileStack: string[] = [this.extension.manager.rootFile]
+        let nested = 0
         for (const line of lines) {
+            // Compose the current file
+            const filename = path.resolve(...fileStack.map((file, index) => {
+                if (index < fileStack.length - 1) {
+                    return path.dirname(file)
+                }
+                return file
+            }))
             // append the read line, since we have a corresponding result in the making
             if (searchesEmptyLine) {
                 currentResult.text = currentResult.text + " " + line
@@ -114,7 +123,7 @@ export class Parser {
                 }
                 currentResult = {
                     type: 'typesetting',
-                    file: this.extension.manager.rootFile,
+                    file: filename,
                     line: parseInt(result[2], 10),
                     text: result[1]
                 }
@@ -128,7 +137,7 @@ export class Parser {
                 }
                 currentResult = {
                     type: 'warning',
-                    file: this.extension.manager.rootFile,
+                    file: filename,
                     line: parseInt(result[4], 10),
                     text: result[3]
                 }
@@ -143,11 +152,15 @@ export class Parser {
                 currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
-                    file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : this.extension.manager.rootFile,
+                    file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : filename,
                     line: result[2] ? parseInt(result[2], 10) : undefined
                 }
                 searchesEmptyLine = true
                 continue
+            }
+            nested = this.parseLaTeXFileStack(line, fileStack, nested)
+            if (fileStack.length === 0) {
+                fileStack.push(this.extension.manager.rootFile)
             }
         }
         // push final result
@@ -156,6 +169,29 @@ export class Parser {
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
         this.showCompilerDiagnostics()
+    }
+
+    parseLaTeXFileStack(line: string, fileStack: string[], nested: number) : number {
+        const result = line.match(/(\(|\))/)
+        if (result && result.index !== undefined && result.index > -1) {
+            line = line.substr(result.index + 1)
+            if (result[1] === '(') {
+                const pathResult = line.match(/((?:(?:[a-zA-Z]:|\.|\/)?\/|\\\\)[\w\-. \/\\]*)/)
+                if (pathResult) {
+                    fileStack.push(pathResult[1])
+                } else {
+                    nested += 1
+                }
+            } else {
+                if (nested > 0) {
+                    nested -= 1
+                } else {
+                    fileStack.pop()
+                }
+            }
+            nested = this.parseLaTeXFileStack(line, fileStack, nested)
+        }
+        return nested
     }
 
     parseLinter(log: string, singleFileOriginalPath?: string) {
