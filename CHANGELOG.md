@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.2.2] - 2017-08-07
+### Fixed
+- (#229) Tab bar view-pdf icon is back.
+
 ## [3.2.1] - 2017-08-03
 ### Fixed
 - (#223) Multi-file LaTeX log messages point to wrong file.
