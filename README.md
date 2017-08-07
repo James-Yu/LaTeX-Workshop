@@ -170,6 +170,8 @@ If the `command` is set empty but no `% !TEX program` magic comment is found, `p
 ]
 ```
 
+Users may also find other extensions better alternatives, e.g., [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) and [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool). Especially the last one is credited for its multi-lingual support.
+
 ## GitHub
 
 The code for this extension is available on github at: https://github.com/James-Yu/LaTeX-Workshop
