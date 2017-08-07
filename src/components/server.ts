@@ -10,7 +10,6 @@ export class Server {
     httpServer: http.Server
     wsServer: ws.Server
     address: string
-    root: string
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -21,7 +20,6 @@ export class Server {
             } else {
                 const {address, port} = this.httpServer.address()
                 this.address = `${address}:${port}`
-                this.root = path.resolve(`${this.extension.extensionRoot}/viewer`)
                 this.extension.logger.addLogMessage(`Server created on ${this.address}`)
             }
         })
@@ -51,7 +49,13 @@ export class Server {
             }
             return
         }
-        const fileName = path.join(this.root, request.url.split('?')[0])
+        let root: string
+        if (request.url.startsWith('/build/') || request.url.startsWith('/web/')) {
+            root = path.resolve(`${this.extension.extensionRoot}/node_modules/pdfjs-dist`)
+        } else {
+            root = path.resolve(`${this.extension.extensionRoot}/viewer`)
+        }
+        const fileName = path.join(root, request.url.split('?')[0])
         let contentType = 'text/html'
         switch (path.extname(fileName)) {
             case '.js':

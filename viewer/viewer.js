@@ -5978,6 +5978,7 @@ var pdfjsWebLibs;
      return promise;
     },
     open: function pdfViewOpen(file, args) {
+      console.log(file)
      if (arguments.length > 2 || typeof args === 'number') {
       return Promise.reject(new Error('Call of open() with obsolete signature.'));
      }
