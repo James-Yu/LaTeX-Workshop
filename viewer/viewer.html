@@ -376,8 +376,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                                               scale:PDFViewerApplication.pdfViewer.currentScaleValue,
                                               scrollTop:document.getElementById('viewerContainer').scrollTop,
                                               scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
-                  PDFViewerApplication.close()
-                                      .then(() => PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`))
+                  PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`)
                   break
               case "position":
                   PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
