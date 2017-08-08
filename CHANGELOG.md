@@ -1,5 +1,13 @@
 # Change Log
 
+## [3.3.0] - 2017-08-08
+### Changed
+- Use `pdfjs-dist` to reduce codebase size.
+- Refresh PDF with pdf.js viewer API to reduce flashing time.
+
+### Fixed
+- (#221) Open synctex document in non-pdf-viewer column.
+
 ## [3.2.2] - 2017-08-07
 ### Fixed
 - (#229) Tab bar view-pdf icon is back.
