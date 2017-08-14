@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.3.1] - 2017-08-14
+### Fixed
+- (#220) Continuous non-stop parsing `tex` file.
+
 ## [3.3.0] - 2017-08-08
 ### Changed
 - Use `pdfjs-dist` to reduce codebase size.
