@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.3.2] - 2017-08-15
+### Fixed
+- Reverse synctex opens `tex` file in the wrong view column when bottom panel is visible.
+
 ## [3.3.1] - 2017-08-14
 ### Fixed
 - (#220) Continuous non-stop parsing `tex` file.
