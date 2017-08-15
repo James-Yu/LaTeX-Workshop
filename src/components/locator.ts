@@ -133,9 +133,12 @@ export class Locator {
 
                 this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
                 vscode.workspace.openTextDocument(filePath).then((doc) => {
-                    let viewColumn: vscode.ViewColumn | undefined = vscode.ViewColumn.One
-                    if (vscode.window.visibleTextEditors.length > 0) {
-                        viewColumn = vscode.window.visibleTextEditors[0].viewColumn
+                    let viewColumn: vscode.ViewColumn | undefined = undefined
+                    for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
+                        viewColumn = vscode.window.visibleTextEditors[index].viewColumn
+                        if (viewColumn !== undefined) {
+                            break
+                        }
                     }
                     vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
                         editor.selection = new vscode.Selection(pos, pos)
