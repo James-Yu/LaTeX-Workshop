@@ -52,7 +52,7 @@ export class Reference {
     }
 
     getReferenceItems(content: string) {
-        const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?|label=){([^}]*)}/g
         const items = {}
         const noELContent = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
