@@ -159,13 +159,13 @@ export class Citation {
         if (!regResult) {
             return undefined
         }
-        item = item.substr(bibDefinitionReg.lastIndex + 1)
+        item = item.substr(bibDefinitionReg.lastIndex)
         const bibItem: CitationRecord = { key: regResult[4] }
         const bibAttrReg = /([a-zA-Z0-9\!\$\&\*\+\-\.\/\:\;\<\>\?\[\]\^\_\`\|]+)\s*(\=)/g
         regResult = bibAttrReg.exec(item)
         while (regResult) {
             const attrKey = regResult[1]
-            item = item.substr(bibAttrReg.lastIndex + 1)
+            item = item.substr(bibAttrReg.lastIndex)
             bibAttrReg.lastIndex = 0
             const quotePos = /\"/g.exec(item)
             const bracePos = /{/g.exec(item)
