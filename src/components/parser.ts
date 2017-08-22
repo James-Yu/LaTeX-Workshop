@@ -101,12 +101,7 @@ export class Parser {
         let nested = 0
         for (const line of lines) {
             // Compose the current file
-            const filename = path.resolve(...fileStack.map((file, index) => {
-                if (index < fileStack.length - 1) {
-                    return path.dirname(file)
-                }
-                return file
-            }))
+            const filename = path.resolve(this.extension.manager.rootDir, fileStack[fileStack.length - 1])
             // append the read line, since we have a corresponding result in the making
             if (searchesEmptyLine) {
                 currentResult.text = currentResult.text + " " + line

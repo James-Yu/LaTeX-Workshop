@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.3.3] - 2017-08-22
+### Fixed
+- (#235) Add surrounding pairs for opening ` and closing '.
+- (#239) Support `label={some-label}` type reference.
+- (#242) Correct bibtex parser position offset.
+- (#245) Log parser file resolve from root instead of stack.
+
 ## [3.3.2] - 2017-08-15
 ### Fixed
 - Reverse synctex opens `tex` file in the wrong view column when bottom panel is visible.
