@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.3.4] - 2017-08-22
+### Fixed
+- (#247) Fix pdf viewer default setting won't work issue.
+
 ## [3.3.3] - 2017-08-22
 ### Fixed
 - (#235) Add surrounding pairs for opening ` and closing '.

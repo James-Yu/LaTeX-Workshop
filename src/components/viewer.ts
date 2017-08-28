@@ -134,8 +134,8 @@ export class Viewer {
                         const configuration = vscode.workspace.getConfiguration('latex-workshop')
                         client.ws.send(JSON.stringify({
                             type: "params",
-                            scale: configuration.get('viewer.zoom'),
-                            hand: configuration.get('viewer.hand')
+                            scale: configuration.get('view.pdf.zoom'),
+                            hand: configuration.get('view.pdf.hand')
                         }))
                     }
                 }

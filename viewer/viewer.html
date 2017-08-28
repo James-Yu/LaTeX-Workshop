@@ -384,7 +384,10 @@ See https://github.com/adobe-type-tools/cmap-resources
                   document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
                   break
               case "params":
-                  PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
+                  console.log(data)
+                  if (data.scale) {
+                    PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
+                  }
                   if (data.hand) {
                       PDFViewerApplication.handTool.handTool.activate()
                   } else {
