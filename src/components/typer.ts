@@ -38,11 +38,14 @@ export class Typer {
                 }
             })
             vscode.window.showQuickPick(candidate, {
-                placeHolder: 'Press ENTER to insert a \\, or select/type a command',
+                placeHolder: 'Press ENTER to insert a \\, or select a command',
                 matchOnDetail: true,
                 matchOnDescription: true
             }).then(selected => {
-                if (selected === undefined || selected === '\\') {
+                if (selected === undefined) {
+                    return
+                }
+                if (selected === '\\') {
                     vscode.commands.executeCommand('default:type', args)
                     return
                 }
