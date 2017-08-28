@@ -1,6 +1,6 @@
 # Change Log
 
-## [3.3.4] - 2017-08-22
+## [3.3.4] - 2017-08-28
 ### Fixed
 - (#247) Fix pdf viewer default setting won't work issue.
 

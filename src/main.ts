@@ -112,6 +112,10 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
 
+    vscode.commands.registerCommand('type', (args) => {
+        console.log(args)
+        vscode.commands.executeCommand('default:type', args)
+    })
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
