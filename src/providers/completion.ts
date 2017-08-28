@@ -64,7 +64,7 @@ export class Completer implements vscode.CompletionItemProvider {
                     return
                 }
             }
-            resolve([])
+            resolve()
         })
     }
 

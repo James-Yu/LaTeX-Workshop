@@ -14,6 +14,7 @@ import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
+import {Typer} from './components/typer'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -112,8 +113,10 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
 
-    vscode.commands.registerCommand('type', (args) => {
-        console.log(args)
+    vscode.commands.registerCommand('type', args => {
+        if (extension.typer.process(args)) {
+            return
+        }
         vscode.commands.executeCommand('default:type', args)
     })
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
@@ -224,6 +227,7 @@ export class Extension {
     linter: Linter
     cleaner: Cleaner
     counter: Counter
+    typer: Typer
     codeActions: CodeActions
     logProvider: LaTeXLogProvider
     nodeProvider: SectionNodeProvider
@@ -242,6 +246,7 @@ export class Extension {
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
         this.counter = new Counter(this)
+        this.typer = new Typer(this)
         this.codeActions = new CodeActions(this)
         this.logProvider = new LaTeXLogProvider(this)
         this.nodeProvider = new SectionNodeProvider(this)

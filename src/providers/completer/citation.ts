@@ -105,7 +105,6 @@ export class Citation {
                     start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
                 }
                 editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description))
-                      .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
             }
         })
     }
