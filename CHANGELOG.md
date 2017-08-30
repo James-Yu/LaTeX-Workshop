@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.4.0] - 2017-08-30
+### Added
+- (#246) Surround selection with latex command by pressing `\`.
+
+### Fixed
+- Intellisense citation browser overridden by word hint.
+
 ## [3.3.4] - 2017-08-28
 ### Fixed
 - (#247) Fix pdf viewer default setting won't work issue.
