@@ -59,6 +59,16 @@ export class Completer implements vscode.CompletionItemProvider {
                             setTimeout(() => this.citation.browser(), 10)
                             return
                         }
+                    } else if (type === 'command') {
+                        if (this.command.selection.length > 0) {
+                            resolve()
+                            setTimeout(() => {
+                                this.command.surround(this.command.selection)
+                                this.command.selection = ''
+                                this.command.shouldClearSelection = true
+                            }, 10)
+                            return
+                        }
                     }
                     resolve(suggestions)
                     return

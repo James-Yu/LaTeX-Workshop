@@ -14,7 +14,6 @@ import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
-import {Typer} from './components/typer'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -113,12 +112,6 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
 
-    vscode.commands.registerCommand('type', args => {
-        if (extension.typer.process(args)) {
-            return
-        }
-        vscode.commands.executeCommand('default:type', args)
-    })
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
@@ -141,6 +134,17 @@ export async function activate(context: vscode.ExtensionContext) {
         }
         if (extension.manager.isTex(e.fileName)) {
             extension.commander.build()
+        }
+    }))
+
+    context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
+        const editor = vscode.window.activeTextEditor
+        if (editor) {
+            const content = editor.document.getText(new vscode.Range(e.selections[0].start, e.selections[0].end))
+            if (content.length > 0 || extension.completer.command.shouldClearSelection) {
+                extension.completer.command.selection = content
+            }
+            extension.completer.command.shouldClearSelection = content.length === 0
         }
     }))
 
@@ -227,7 +231,6 @@ export class Extension {
     linter: Linter
     cleaner: Cleaner
     counter: Counter
-    typer: Typer
     codeActions: CodeActions
     logProvider: LaTeXLogProvider
     nodeProvider: SectionNodeProvider
@@ -246,7 +249,6 @@ export class Extension {
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
         this.counter = new Counter(this)
-        this.typer = new Typer(this)
         this.codeActions = new CodeActions(this)
         this.logProvider = new LaTeXLogProvider(this)
         this.nodeProvider = new SectionNodeProvider(this)

@@ -5,6 +5,8 @@ import {Extension} from '../../main'
 
 export class Command {
     extension: Extension
+    selection: string = ''
+    shouldClearSelection: boolean = true
     suggestions: vscode.CompletionItem[]
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
@@ -72,6 +74,41 @@ export class Command {
         }
         this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
         return this.suggestions
+    }
+
+    surround(content: string) {
+        if (!vscode.window.activeTextEditor) {
+            return
+        }
+        const editor = vscode.window.activeTextEditor
+        const candidate: string[] = []
+        this.provide().forEach(item => {
+            if (item.insertText === undefined) {
+                return
+            }
+            if (item.label === '\\begin') { // Causing a lot of trouble
+                return
+            }
+            const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
+            if (command.match(/(.*)(\${\d.*?})/)) {
+                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\'))
+            }
+        })
+        vscode.window.showQuickPick(candidate, {
+            placeHolder: 'Press ENTER to surround previous selection with selected command',
+            matchOnDetail: true,
+            matchOnDescription: true
+        }).then(selected => {
+            if (selected === undefined) {
+                return
+            }
+            editor.edit(edit => edit.replace(new vscode.Range(editor.selection.start, editor.selection.end),
+                                             selected.replace(/(.*)(\${\d.*?})/, `$1${content}`) // Replace text
+                                                     .replace(/\${\d:?(.*?)}/g, '$1') // Remove snippet placeholders
+                                                     .replace('\\\\', '\\') // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
+                                                     .replace(/\$\d/, ''))) // Remove $2 etc
+        })
+        return
     }
 
     entryToCompletionItem(item: AutocompleteEntry) : vscode.CompletionItem {
