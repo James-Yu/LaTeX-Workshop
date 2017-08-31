@@ -172,7 +172,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.manager.findRoot()
         }
 
-        if (extension.manager.isTex(e.document.fileName)) {
+        if (e && extension.manager.isTex(e.document.fileName)) {
             lintActiveFileIfEnabled(extension)
         }
     }))
