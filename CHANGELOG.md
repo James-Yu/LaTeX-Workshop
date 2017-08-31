@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.4.1] - 2017-08-31
+### Fixed
+- (#244) Dev console error when switching to non-editor panes.
+- (#254) Use dirty logic to replace vscode-vim-specific command for LaTeX command surrounding.
+
 ## [3.4.0] - 2017-08-30
 ### Added
 - (#246) Surround selection with latex command by pressing `\`.
