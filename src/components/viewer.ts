@@ -68,8 +68,16 @@ export class Viewer {
             client.ws.close()
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'viewer'}
-        opn(url)
-        this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
+        try {
+            opn(url)
+            this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
+        } catch (e) {
+            vscode.window.showInputBox({
+                prompt: 'Unable to open browser. Please copy and visit this link.',
+                value: url
+            })
+            this.extension.logger.addLogMessage(`Something bad happened when opening PDF viewer for ${pdfFile}: ${e}`)
+        }
         this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF viewer for ${path.basename(pdfFile)}.`)
     }
 

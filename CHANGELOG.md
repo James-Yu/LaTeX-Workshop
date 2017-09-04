@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.4.2] - 2017-09-04
+### Fixed
+- (#244) `opn` won't open web browsers for PDF viewer. Prompt instead.
+
 ## [3.4.1] - 2017-08-31
 ### Fixed
 - (#244) Dev console error when switching to non-editor panes.
