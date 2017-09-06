@@ -94,6 +94,11 @@ export class Commander {
         }
     }
 
+    compilerlog() {
+        this.extension.logger.addLogMessage(`COMPILERLOG command invoked.`)
+        this.extension.logger.showCompilerLog()
+    }
+
     log() {
         this.extension.logger.addLogMessage(`LOG command invoked.`)
         this.extension.logger.showLog()

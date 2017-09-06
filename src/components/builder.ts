@@ -54,6 +54,7 @@ export class Builder {
             return
         }
 
+        this.extension.logger.clearCompilerMessage()
         this.extension.logger.addLogMessage(`Toolchain step ${index + 1}: ${toolchain[index].command}, ${toolchain[index].args}`)
         this.extension.logger.displayStatus('sync', 'statusBar.foreground', `LaTeX build toolchain step ${index + 1}.`, 0)
         this.currentProcess = cp.spawn(toolchain[index].command, toolchain[index].args, {cwd: path.dirname(rootFile)})
@@ -61,11 +62,13 @@ export class Builder {
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
+            this.extension.logger.addCompilerMessage(newStdout.toString())
         })
 
         let stderr = ''
         this.currentProcess.stderr.on('data', newStderr => {
             stderr += newStderr
+            this.extension.logger.addCompilerMessage(newStderr.toString())
         })
 
         this.currentProcess.on('error', err => {
@@ -76,10 +79,8 @@ export class Builder {
 
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
-            const uri = vscode.Uri.file(this.extension.manager.rootFile).with({scheme: 'latex-workshop-log'})
-            this.extension.logProvider.update(uri)
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Toolchain returns with error: ${exitCode}/${signal}.${signal ? '\n' + stdout : ''}`)
+                this.extension.logger.addLogMessage(`Toolchain returns with error: ${exitCode}/${signal}.`)
                 this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error.`)
             } else {
                 this.buildStep(rootFile, toolchain, index + 1)

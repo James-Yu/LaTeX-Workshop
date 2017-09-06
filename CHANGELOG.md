@@ -1,5 +1,18 @@
 # Change Log
 
+## [3.5.1] - ?
+### Changed
+- (#261) Use dedicated output panel to display LaTeX compiler logs.
+
+## [3.5.0] - 2017-09-06
+### Added
+- (#256) `document`, `frame`, `columns` and `column` environments.
+- (#259) Expl3 colorizer.
+
+### Fixed
+- (#257) Use "editorTextFocus" as key-bind condition.
+- Wrong content surrounded by command on long lines.
+
 ## [3.4.2] - 2017-09-04
 ### Fixed
 - (#244) `opn` won't open web browsers for PDF viewer. Prompt instead.

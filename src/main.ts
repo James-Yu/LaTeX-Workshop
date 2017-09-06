@@ -17,7 +17,6 @@ import {Counter} from './components/counter'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
-import {LaTeXLogProvider} from './providers/latexlog'
 import {SectionNodeProvider} from './providers/outline'
 import {HoverProvider} from './providers/hover'
 import {DocSymbolProvider} from './providers/docsymbol'
@@ -120,6 +119,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
     vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount())
+    vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.compilerlog())
     vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
     vscode.commands.registerCommand('latex-workshop.goto-section', (filePath, lineNumber) => extension.commander.gotoSection(filePath, lineNumber))
@@ -202,7 +202,6 @@ export async function activate(context: vscode.ExtensionContext) {
     extension.manager.findRoot()
 
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
-    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-log', extension.logProvider))
     context.subscriptions.push(vscode.languages.registerHoverProvider('latex', new HoverProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDefinitionProvider('latex', new DefinitionProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider('latex', new DocSymbolProvider(extension)))
@@ -232,7 +231,6 @@ export class Extension {
     cleaner: Cleaner
     counter: Counter
     codeActions: CodeActions
-    logProvider: LaTeXLogProvider
     nodeProvider: SectionNodeProvider
 
     constructor() {
@@ -250,7 +248,6 @@ export class Extension {
         this.cleaner = new Cleaner(this)
         this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
-        this.logProvider = new LaTeXLogProvider(this)
         this.nodeProvider = new SectionNodeProvider(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)

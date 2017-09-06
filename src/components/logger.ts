@@ -5,12 +5,15 @@ import {Extension} from '../main'
 export class Logger {
     extension: Extension
     logPanel: vscode.OutputChannel
+    compilerLogPanel: vscode.OutputChannel
     status: vscode.StatusBarItem
     statusTimeout: NodeJS.Timer
 
     constructor(extension: Extension) {
         this.extension = extension
         this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
+        this.compilerLogPanel = vscode.window.createOutputChannel('LaTeX Compiler')
+        this.compilerLogPanel.append('Ready')
         this.addLogMessage('Initializing LaTeX Workshop.')
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
         this.status.command = 'latex-workshop.actions'
@@ -23,6 +26,14 @@ export class Logger {
         if (configuration.get('debug.showLog')) {
             this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', {hour12: false})}] ${message}\n`)
         }
+    }
+
+    addCompilerMessage(message: string) {
+        this.compilerLogPanel.append(message)
+    }
+
+    clearCompilerMessage() {
+        this.compilerLogPanel.clear()
     }
 
     displayStatus(icon: string, color: string, message: string, timeout: number = 5000) {
@@ -50,12 +61,10 @@ export class Logger {
     }
 
     showLog() {
-        const uri = vscode.Uri.file(this.extension.manager.rootFile).with({scheme: 'latex-workshop-log'})
-        let column = vscode.ViewColumn.Two
-        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two) {
-            column = vscode.ViewColumn.Three
-        }
-        vscode.commands.executeCommand("vscode.previewHtml", uri, column, 'Raw LaTeX Log')
-        this.extension.logger.addLogMessage(`Open Log tab`)
+        this.logPanel.show()
+    }
+
+    showCompilerLog() {
+        this.compilerLogPanel.show()
     }
 }
