@@ -139,7 +139,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
         const editor = vscode.window.activeTextEditor
-        if (editor) {
+        if (editor && e.kind) {
             const content = editor.document.getText(new vscode.Range(e.selections[0].start, e.selections[0].end))
             if (content.length > 0 || extension.completer.command.shouldClearSelection) {
                 extension.completer.command.selection = content
