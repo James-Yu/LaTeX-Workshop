@@ -11,7 +11,48 @@
 	<key>name</key>
 	<string>LaTeX Expl3</string>
 	<key>patterns</key>
-	<array>	
+	<array>
+		<dict>
+			<key>begin</key>
+			<string>\$</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.group.begin.tex</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\$</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.group.end.tex</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>string.other.math.tex</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\\$</string>
+					<key>name</key>
+					<string>constant.character.escape.tex</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#math</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$self</string>
+				</dict>
+			</array>
+		</dict>    		  	
 		<dict>
             <key>captures</key>
             <dict>
@@ -22,7 +63,7 @@
                 </dict>
             </dict>
             <key>match</key>
-            <string>(\\)\w+:\w+</string>
+            <string>(\\)[\w@]+:\w+</string>
             <key>name</key>
             <string>keyword.control.expl.latex</string>
         </dict>
@@ -36,7 +77,7 @@
                 </dict>
             </dict>
             <key>match</key>
-            <string>\.\w+:\w+</string>
+            <string>\.[\w@]+:\w+</string>
             <key>name</key>
             <string>keyword.control.expl.latex</string>
         </dict>
@@ -50,7 +91,7 @@
                 </dict>
             </dict>
             <key>match</key>
-            <string>(\\)\w+:</string>
+            <string>(\\)[\w@]+:</string>
             <key>name</key>
             <string>keyword.control.expl.latex</string>
         </dict>     
@@ -64,7 +105,7 @@
                 </dict>
             </dict>
             <key>match</key>
-            <string>(\\)\w+_\w+</string>
+            <string>(\\)[\w@]+_[\w@]+</string>
             <key>name</key>
             <string>variable.expl.latex</string>
         </dict>	
