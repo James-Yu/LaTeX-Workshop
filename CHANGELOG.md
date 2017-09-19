@@ -1,8 +1,17 @@
 # Change Log
 
-## [3.5.1] - ?
+## [3.5.3] - 2017-09-19
+### Changed
+- (#272) Consider TeX files as proper project sources.
+
+## [3.5.2] - 2017-09-11
+### Fixed
+- Better expl3 syntax highlight not shipped in `3.5.1`.
+
+## [3.5.1] - 2017-09-11
 ### Changed
 - (#261) Use dedicated output panel to display LaTeX compiler logs.
+- (#267) Better expl3 highlight with `@`.
 
 ## [3.5.0] - 2017-09-06
 ### Added

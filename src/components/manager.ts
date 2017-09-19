@@ -29,7 +29,7 @@ export class Manager {
     }
 
     isTex(filePath: string) {
-        return path.extname(filePath) === '.tex'
+        return ['.tex', '.sty', '.cls', '.bbx', '.cbx'].indexOf(path.extname(filePath)) > -1
     }
 
     findRoot() : string | undefined {
