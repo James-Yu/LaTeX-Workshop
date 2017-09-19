@@ -4,6 +4,9 @@
 ### Changed
 - (#272) Consider TeX files as proper project sources.
 
+### Fixed
+- (#268) Saving document actually changes outline.
+
 ## [3.5.2] - 2017-09-11
 ### Fixed
 - Better expl3 syntax highlight not shipped in `3.5.1`.

@@ -130,8 +130,6 @@ export class Manager {
             this.fileWatcher.on('change', (path: string) => {
                 this.extension.logger.addLogMessage(`File watcher: responding to change in ${path}`)
                 this.findDependentFiles(path)
-                this.extension.logger.addLogMessage(`Refresh outline.`)
-                this.extension.nodeProvider.refresh()
             })
             this.fileWatcher.on('unlink', (path: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${path} deleted.`)

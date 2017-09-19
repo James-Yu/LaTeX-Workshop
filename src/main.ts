@@ -134,6 +134,8 @@ export async function activate(context: vscode.ExtensionContext) {
         }
         if (extension.manager.isTex(e.fileName)) {
             extension.commander.build()
+            extension.nodeProvider.refresh()
+            extension.nodeProvider.update()
         }
     }))
 
