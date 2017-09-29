@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.5.4] - 2017-09-29
+### Changed
+- (#275) New icon @bartosz-antosik. Nice!
+
 ## [3.5.3] - 2017-09-19
 ### Changed
 - (#272) Consider TeX files as proper project sources.
