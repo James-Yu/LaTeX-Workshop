@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.5.5] - 2017-10-03
+### Fixed
+- (#284) Fix CMap URL to display CJK languages correctly @maruta.
+
 ## [3.5.4] - 2017-09-29
 ### Changed
 - (#275) New icon @bartosz-antosik. Nice!
