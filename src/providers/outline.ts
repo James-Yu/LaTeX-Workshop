@@ -8,7 +8,7 @@ import { Extension } from './../main'
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
-    // readonly onDidChangeTreeData: vscode.Event<Section | undefined> = this._onDidChangeTreeData.event
+    readonly onDidChangeTreeData: vscode.Event<Section | undefined> = this._onDidChangeTreeData.event
     private hierarchy: string[]
     private sectionDepths: {string?: number} = {}
 
@@ -32,6 +32,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     update() {
         this._onDidChangeTreeData.fire()
+        console.log('fired')
     }
 
     buildModel(filePath: string, parentStack?: Section[], parentChildren?: Section[]) : Section[] {
@@ -167,7 +168,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     getChildren(element?: Section) : Thenable<Section[]> {
-
         if (this.extension.manager.rootFile === undefined) {
             return Promise.resolve([])
         }
