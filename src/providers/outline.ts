@@ -32,7 +32,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     update() {
         this._onDidChangeTreeData.fire()
-        console.log('fired')
     }
 
     buildModel(filePath: string, parentStack?: Section[], parentChildren?: Section[]) : Section[] {
