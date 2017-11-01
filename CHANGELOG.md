@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.6.0] - 2017-11-01
+### Added
+- (#288) New `latex-workshop.intellisense.surroundCommand.enabled` config to control command surrounding feature.
+
 ## [3.5.5] - 2017-10-03
 ### Fixed
 - (#284) Fix CMap URL to display CJK languages correctly @maruta.

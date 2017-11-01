@@ -60,7 +60,8 @@ export class Completer implements vscode.CompletionItemProvider {
                             return
                         }
                     } else if (type === 'command') {
-                        if (this.command.selection.length > 0) {
+                        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                        if (configuration.get('intellisense.surroundCommand.enabled') && this.command.selection.length > 0) {
                             resolve()
                             setTimeout(() => {
                                 this.command.surround(this.command.selection)
