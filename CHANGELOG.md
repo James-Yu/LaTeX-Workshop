@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.6.1] - Unreleased
+### Fixed
+- (#297) PDF path can contain `#` now.
+
 ## [3.6.0] - 2017-11-01
 ### Added
 - (#288) New `latex-workshop.intellisense.surroundCommand.enabled` config to control command surrounding feature.
