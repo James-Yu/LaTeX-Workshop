@@ -1,6 +1,6 @@
 # Change Log
 
-## [3.6.1] - Unreleased
+## [3.6.1] - 2017-11-06
 ### Fixed
 - (#297) PDF path can contain `#` now.
 
