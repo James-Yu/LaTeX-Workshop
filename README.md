@@ -172,10 +172,9 @@ If the `command` is set empty but no `% !TEX program` magic comment is found, `p
 
 Users may also find other extensions better alternatives, e.g., [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) and [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool). Especially the last one is credited for its multi-lingual support.
 
-### Disable building on save?
+### Build on save?
 
-If you are running into slow complication and wish not to build on save,
-setting `"latex-workshop.latex.autoBuild.onSave.enabled": false,` will disable the auto build feature. 
+By default, the extension compiles the project upon saving any tex files. If you want to disable this feature, setting the configuration item `latex-workshop.latex.autoBuild.onSave.enabled` to `false` will do. 
 
 ## GitHub
 
