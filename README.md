@@ -174,7 +174,11 @@ Users may also find other extensions better alternatives, e.g., [Spell Right](ht
 
 ### Build on save?
 
-By default, the extension compiles the project upon saving any tex files. If you want to disable this feature, setting the configuration item `latex-workshop.latex.autoBuild.onSave.enabled` to `false` will do. 
+By default, the extension compiles the project upon saving any tex files. If you want to disable this feature, setting the configuration item `latex-workshop.latex.autoBuild.onSave.enabled` to `false` will do.
+
+### Docker?
+
+[@lippertmarkus](https://github.com/lippertmarkus) has a short description on how to use docker with LaTeX Workshop. You may check it out [here](https://github.com/James-Yu/LaTeX-Workshop/issues/302) and have some discussion!
 
 ## GitHub
 
