@@ -7,7 +7,8 @@ import {Extension} from '../main'
 
 export class Manager {
     extension: Extension
-    rootFile: string
+    rootFiles: object
+    workspace: string
     texFileTree: { [id: string]: Set<string> } = {}
     fileWatcher: chokidar.FSWatcher
     bibWatcher: chokidar.FSWatcher
@@ -15,11 +16,21 @@ export class Manager {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.watched = []
+        this.watched   = []
+        this.rootFiles = {}
+        this.workspace = ''
     }
 
     get rootDir() {
         return path.dirname(this.rootFile)
+    }
+
+    get rootFile() {
+        return this.rootFiles[this.workspace]
+    }
+
+    set rootFile(root: string) {
+        this.rootFiles[this.workspace] = root
     }
 
     tex2pdf(texPath: string) {
@@ -32,7 +43,24 @@ export class Manager {
         return ['.tex', '.sty', '.cls', '.bbx', '.cbx'].indexOf(path.extname(filePath)) > -1
     }
 
+    updateWorkspace() {
+        let wsroot = vscode.workspace.rootPath
+        if (vscode.window.activeTextEditor && vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri)) {
+            wsroot = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath
+        }
+        if (wsroot) {
+            if (wsroot !== this.workspace) {
+                this.workspace = wsroot
+                this.extension.nodeProvider.refresh()
+                this.extension.nodeProvider.update()
+            }
+        } else {
+            this.workspace = ''
+        }
+    }
+
     findRoot() : string | undefined {
+        this.updateWorkspace()
         const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootSaved(), () => this.findRootDir()]
         for (const method of findMethods) {
             const rootFile = method()
@@ -88,22 +116,22 @@ export class Manager {
     findRootDir() : string | undefined {
         const regex = /\\begin{document}/m
 
-        if (!vscode.workspace.rootPath) {
+        if (!this.workspace) {
             return undefined
         }
 
         try {
-            const files = fs.readdirSync(vscode.workspace.rootPath)
+            const files = fs.readdirSync(this.workspace)
             for (let file of files) {
                 if (path.extname(file) !== '.tex') {
                     continue
                 }
-                file = path.join(vscode.workspace.rootPath, file)
+                file = path.join(this.workspace, file)
                 const content = fs.readFileSync(file)
 
                 const result = content.toString().match(regex)
                 if (result) {
-                    file = path.resolve(vscode.workspace.rootPath, file)
+                    file = path.resolve(this.workspace, file)
                     this.extension.logger.addLogMessage(`Found root file in root directory: ${file}`)
                     return file
                 }
