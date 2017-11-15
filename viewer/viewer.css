@@ -235,7 +235,7 @@
 
 .pdfViewer.removePageBorders .page {
   margin: 0px auto 10px auto;
-  border: none;
+  border: 1px dashed lightgray;
 }
 
 .pdfViewer.singlePageView {
@@ -297,8 +297,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background-color: #404040;
-  background-image: url(images/texture.png);
+  background-color: white;
 }
 
 body,
@@ -506,6 +505,12 @@ html[dir='rtl'] #viewerContainer {
   right: 0;
   z-index: 9999;
   cursor: default;
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.toolbar:hover {
+  opacity: 1;
 }
 
 #toolbarContainer {
