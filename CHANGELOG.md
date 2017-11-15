@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.6.2] - 2017-11-15
+### Changed
+- (#283, #302) Update README @lippertmarkus.
+- (#305) Change PDF viewer theme to be brighter. This theme reduces eye strain when refreshing PDF @innerlee.
+
 ## [3.6.1] - 2017-11-06
 ### Fixed
 - (#297) PDF path can contain `#` now.
