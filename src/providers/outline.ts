@@ -26,8 +26,12 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     refresh() : Section[] {
-        this.ds = this.buildModel(this.extension.manager.rootFile)
-        return this.ds
+        if (this.extension.manager.rootFile) {
+            this.ds = this.buildModel(this.extension.manager.rootFile)
+            return this.ds
+        } else {
+            return []
+        }
     }
 
     update() {
