@@ -64,7 +64,12 @@ export class Locator {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        const args = ['view', '-i', `${position.line + 1}:${position.character + 1}:${filePath}`, "-o", pdfFile]
+        let line = position.line + 1
+        if (vscode.window.activeTextEditor.document.lineCount === line &&
+            vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
+                line -= 1
+        }
+        const args = ['view', '-i', `${line}:${position.character + 1}:${filePath}`, '-o', pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         const proc = cp.spawn(configuration.get('synctex.path') as string, args)
