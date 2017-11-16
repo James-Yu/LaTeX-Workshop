@@ -4,8 +4,8 @@ import * as path from 'path'
 import * as opn from 'opn'
 import * as WebSocket from 'ws'
 
-import {Extension} from '../main'
-import {SyncTeXRecord} from './locator'
+import { Extension } from '../main'
+import { SyncTeXRecord } from './locator'
 
 interface Position {}
 
@@ -32,7 +32,7 @@ export class Viewer {
             (type === undefined || client.type === type) &&
             client.ws !== undefined) {
             this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-            client.ws.send(JSON.stringify({type: "refresh"}))
+            client.ws.send(JSON.stringify({type: 'refresh'}))
             return true
         }
         this.extension.logger.addLogMessage(`No PDF viewer connected for ${pdfFile}`)
@@ -97,7 +97,7 @@ export class Viewer {
             client.ws.close()
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
-        vscode.commands.executeCommand("vscode.previewHtml", uri, column, path.basename(pdfFile))
+        vscode.commands.executeCommand('vscode.previewHtml', uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
         this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF tab for ${path.basename(pdfFile)}.`)
     }
@@ -141,7 +141,7 @@ export class Viewer {
                     } else {
                         const configuration = vscode.workspace.getConfiguration('latex-workshop')
                         client.ws.send(JSON.stringify({
-                            type: "params",
+                            type: 'params',
                             scale: configuration.get('view.pdf.zoom'),
                             hand: configuration.get('view.pdf.hand')
                         }))
@@ -164,7 +164,7 @@ export class Viewer {
             return
         }
         if (client.ws !== undefined) {
-            client.ws.send(JSON.stringify({type: "synctex", data: record}))
+            client.ws.send(JSON.stringify({type: 'synctex', data: record}))
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
     }

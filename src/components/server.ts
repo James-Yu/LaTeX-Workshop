@@ -3,7 +3,7 @@ import * as ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export class Server {
     extension: Extension
@@ -14,7 +14,7 @@ export class Server {
     constructor(extension: Extension) {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
-        this.httpServer.listen(0, "localhost", undefined, (err: Error) => {
+        this.httpServer.listen(0, 'localhost', undefined, (err: Error) => {
             if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
@@ -24,9 +24,9 @@ export class Server {
             }
         })
         this.wsServer = ws.createServer({server: this.httpServer})
-        this.wsServer.on("connection", (ws) => {
-            ws.on("message", (msg) => this.extension.viewer.handler(ws, msg))
-            ws.on("close", () => this.extension.viewer.handler(ws, '{"type": "close"}'))
+        this.wsServer.on('connection', (wsServer) => {
+            wsServer.on('message', (msg) => this.extension.viewer.handler(wsServer, msg))
+            wsServer.on('close', () => this.extension.viewer.handler(wsServer, '{"type": "close"}'))
         })
         this.extension.logger.addLogMessage(`Creating LaTeX Workshop http and websocket server.`)
     }
@@ -38,16 +38,16 @@ export class Server {
         request.url = decodeURIComponent(decodeURIComponent(request.url))
         if (request.url.indexOf('pdf:') >= 0 && request.url.indexOf('viewer.html') < 0) {
             // The second backslash was encoded as %2F, and the first one is prepended by request
-            const fileName = request.url.replace('//pdf:', '')
+            const pdfFileName = request.url.replace('//pdf:', '')
             try {
-                const pdfSize = fs.statSync(fileName).size
+                const pdfSize = fs.statSync(pdfFileName).size
                 response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})
-                fs.createReadStream(fileName).pipe(response)
-                this.extension.logger.addLogMessage(`Preview PDF file: ${fileName}`)
+                fs.createReadStream(pdfFileName).pipe(response)
+                this.extension.logger.addLogMessage(`Preview PDF file: ${pdfFileName}`)
             } catch (e) {
                 response.writeHead(404)
                 response.end()
-                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileName}`)
+                this.extension.logger.addLogMessage(`Error reading PDF file: ${pdfFileName}`)
             }
             return
         }

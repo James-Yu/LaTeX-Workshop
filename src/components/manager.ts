@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as chokidar from 'chokidar'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export class Manager {
     extension: Extension
@@ -155,16 +155,16 @@ export class Manager {
             this.extension.logger.addLogMessage(`Instatiating new file watcher for ${this.rootFile}`)
             this.fileWatcher = chokidar.watch(this.rootFile)
             this.watched.push(this.rootFile)
-            this.fileWatcher.on('change', (path: string) => {
-                this.extension.logger.addLogMessage(`File watcher: responding to change in ${path}`)
-                this.findDependentFiles(path)
+            this.fileWatcher.on('change', (filePath: string) => {
+                this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
+                this.findDependentFiles(filePath)
             })
-            this.fileWatcher.on('unlink', (path: string) => {
-                this.extension.logger.addLogMessage(`File watcher: ${path} deleted.`)
-                this.fileWatcher.unwatch(path)
-                this.watched.splice(this.watched.indexOf(path), 1)
-                if (path === this.rootFile) {
-                    this.extension.logger.addLogMessage(`Deleted ${path} was root - triggering root search`)
+            this.fileWatcher.on('unlink', (filePath: string) => {
+                this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
+                this.fileWatcher.unwatch(filePath)
+                this.watched.splice(this.watched.indexOf(filePath), 1)
+                if (filePath === this.rootFile) {
+                    this.extension.logger.addLogMessage(`Deleted ${filePath} was root - triggering root search`)
                     this.findRoot()
                 }
             })
@@ -244,15 +244,15 @@ export class Manager {
             if (this.bibWatcher === undefined) {
                 this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
                 this.bibWatcher = chokidar.watch(bibPath)
-                this.bibWatcher.on('change', (path: string) => {
-                    this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${path}`)
-                    this.extension.completer.citation.parseBibFile(path)
+                this.bibWatcher.on('change', (filePath: string) => {
+                    this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
+                    this.extension.completer.citation.parseBibFile(filePath)
                 })
-                this.bibWatcher.on('unlink', (path: string) => {
-                    this.extension.logger.addLogMessage(`Bib file watcher: ${path} deleted.`)
-                    this.extension.completer.citation.forgetParsedBibItems(path)
-                    this.bibWatcher.unwatch(path)
-                    this.watched.splice(this.watched.indexOf(path), 1)
+                this.bibWatcher.on('unlink', (filePath: string) => {
+                    this.extension.logger.addLogMessage(`Bib file watcher: ${filePath} deleted.`)
+                    this.extension.completer.citation.forgetParsedBibItems(filePath)
+                    this.bibWatcher.unwatch(filePath)
+                    this.watched.splice(this.watched.indexOf(filePath), 1)
                 })
                 this.extension.completer.citation.parseBibFile(bibPath)
             } else if (this.watched.indexOf(bibPath) < 0) {

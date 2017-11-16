@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import {Extension} from '../main'
-import {Citation} from './completer/citation'
-import {Command} from './completer/command'
-import {Environment} from './completer/environment'
-import {Reference} from './completer/reference'
+import { Extension } from '../main'
+import { Citation } from './completer/citation'
+import { Command } from './completer/command'
+import { Environment } from './completer/environment'
+import { Reference } from './completer/reference'
 
 export class Completer implements vscode.CompletionItemProvider {
     extension: Extension

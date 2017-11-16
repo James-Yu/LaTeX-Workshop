@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import {ChildProcess, spawn, SpawnOptions} from 'child_process'
-import {EOL} from 'os'
+import { ChildProcess, spawn, SpawnOptions } from 'child_process'
+import { EOL } from 'os'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export class Linter {
     extension: Extension
