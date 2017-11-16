@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as fs from 'fs'
 import {ChildProcess, spawn, SpawnOptions} from 'child_process'
 import {EOL} from 'os'
 
@@ -25,6 +26,12 @@ export class Linter {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
         const args = configuration.get('chktex.args.active') as string[]
+        if (this.extension.manager.rootDir) {
+            const rcPath = path.join(this.extension.manager.rootDir, '.chktexrc')
+            if (fs.existsSync(rcPath)) {
+                args.push('-l', rcPath)
+            }
+        }
         const requiredArgs = ['-I0', '-f%f:%l:%c:%d:%k:%n:%m\n']
 
         let stdout: string
@@ -49,6 +56,12 @@ export class Linter {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
         const args = configuration.get('chktex.args.root') as string[]
+        if (this.extension.manager.rootDir) {
+            const rcPath = path.join(this.extension.manager.rootDir, '.chktexrc')
+            if (fs.existsSync(rcPath)) {
+                args.push('-l', rcPath)
+            }
+        }
         const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', '%DOC%'.replace('%DOC%', filePath)]
 
         let stdout: string
