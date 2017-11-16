@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as opn from 'opn'
 
-import {Extension} from './main'
+import { Extension } from './main'
 
 export class Commander {
     extension: Extension
@@ -45,7 +45,7 @@ export class Commander {
         vscode.workspace.openTextDocument(filePath).then((doc) => {
             vscode.window.showTextDocument(doc).then((_) => {
                 //editor.selection = new vscode.Selection(new vscode.Position(lineNumber,0), new vscode.Position(lineNumber,0))
-                vscode.commands.executeCommand("revealLine", {lineNumber, at: 'center'})
+                vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
             })
         })
 

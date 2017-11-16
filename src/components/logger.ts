@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export class Logger {
     extension: Extension

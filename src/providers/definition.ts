@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
-import {tokenizer} from './tokenizer'
+import { Extension } from '../main'
+import { tokenizer } from './tokenizer'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
     extension: Extension

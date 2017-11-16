@@ -3,24 +3,24 @@ import * as vs from 'vscode'
 import { Extension } from '../main'
 
 const CODE_TO_ACTION_STRING: {[key: number]: string} = {
-    1: "Terminate command with empty statement",
-    2: "Convert to non-breaking space (~)",
-    4: "Remove italic correction \\/ (not in italic buffer)",
-    5: "Remove extraneous italic correction(s)",
-    6: "Add italic correction (\\/)",
-    11: "Fix ellipsis",
-    12: "Add interword space (\\ )",
-    13: "Add intersentence space (\\@)",
+    1: 'Terminate command with empty statement',
+    2: 'Convert to non-breaking space (~)',
+    4: 'Remove italic correction \\/ (not in italic buffer)',
+    5: 'Remove extraneous italic correction(s)',
+    6: 'Add italic correction (\\/)',
+    11: 'Fix ellipsis',
+    12: 'Add interword space (\\ )',
+    13: 'Add intersentence space (\\@)',
     18: "Replace with ` or '",
-    32: "Replace with `",
+    32: 'Replace with `',
     33: "Replace with '",
-    24: "Remove extraneous space",
-    28: "Remove incorrect \\/",
-    26: "Remove extraneous space",
+    24: 'Remove extraneous space',
+    28: 'Remove incorrect \\/',
+    26: 'Remove extraneous space',
     34: "Replace with ` or '",
-    35: "Use suggested alternative",
-    39: "Remove extraneous space",
-    42: "Remove extraneous space"
+    35: 'Use suggested alternative',
+    39: 'Remove extraneous space',
+    42: 'Remove extraneous space'
 }
 
 function replaceWhitespaceOnLineBefore(document: vs.TextDocument, position: vs.Position, replaceWith: string) {
@@ -98,7 +98,7 @@ export class CodeActions {
             case 5:
             case 28:
                 // In all these cases just clear what ChxTeX highlighted.
-                replaceRangeWithString(document, range, "")
+                replaceRangeWithString(document, range, '')
                 break
             case 1:
                 replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '{}')
@@ -115,7 +115,7 @@ export class CodeActions {
                 if (!regexResult) {
                     break
                 }
-                fixString = regexResult[0] + " "
+                fixString = regexResult[0] + ' '
                 replaceRangeWithString(document, range, fixString)
                 break
             case 12:
@@ -126,20 +126,20 @@ export class CodeActions {
                 break
             case 18:
                 if (isOpeningQuote(document, range)) {
-                    replaceRangeWithRepeatedString(document, range, "``")
+                    replaceRangeWithRepeatedString(document, range, '``')
                 } else {
                     replaceRangeWithRepeatedString(document, range, "''")
                 }
                 break
             case 32:
-                replaceRangeWithRepeatedString(document, range, "`")
+                replaceRangeWithRepeatedString(document, range, '`')
                 break
             case 33:
                 replaceRangeWithRepeatedString(document, range, "'")
                 break
             case 34:
                 if (isOpeningQuote(document, range)) {
-                    replaceRangeWithRepeatedString(document, range, "`")
+                    replaceRangeWithRepeatedString(document, range, '`')
                 } else {
                     replaceRangeWithRepeatedString(document, range, "'")
                 }

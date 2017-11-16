@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cp from 'child_process'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export interface SyncTeXRecord {
     input: string
@@ -64,7 +64,7 @@ export class Locator {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        const args = ['view', '-i', `${position.line + 1}:${position.character + 1}:${filePath}`, "-o", pdfFile]
+        const args = ['view', '-i', `${position.line + 1}:${position.character + 1}:${filePath}`, '-o', pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         const proc = cp.spawn(configuration.get('synctex.path') as string, args)
@@ -142,7 +142,7 @@ export class Locator {
                     }
                     vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
                         editor.selection = new vscode.Selection(pos, pos)
-                        vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'})
+                        vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
                     })
                 })
             }

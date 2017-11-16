@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as cp from 'child_process'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export class Builder {
     extension: Extension
