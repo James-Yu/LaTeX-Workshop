@@ -8,6 +8,7 @@ const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)\.?$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexWarn = /^((?:(?:Class|Package) \S+)|LaTeX) (Warning|Info):\s+(.*?)(?: on input line (\d+))?\.$/
+const bibEmpty = /^Empty `thebibliography' environment/
 
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkLog = /^Latexmk:\sapplying\srule/
@@ -159,7 +160,7 @@ export class Parser {
             }
         }
         // push final result
-        if (currentResult.type !== '') {
+        if (currentResult.type !== '' && !currentResult.text.match(bibEmpty)) {
             this.buildLog.push(currentResult)
         }
         this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
