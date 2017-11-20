@@ -48,6 +48,21 @@ export class Completer implements vscode.CompletionItemProvider {
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
         return new Promise((resolve, _reject) => {
+            if (document.lineAt(position.line).text[position.character - 1] === '(') {
+                if (position.character > 1 && document.lineAt(position.line).text[position.character - 2] === '\\') {
+                    const inlineMath = new vscode.CompletionItem('\\(', vscode.CompletionItemKind.Function)
+                    inlineMath.insertText = new vscode.SnippetString('${1}\\)${0}')
+                    inlineMath.detail = 'inline math \\( ... \\)'
+                    if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets')) {
+                        inlineMath.range = new vscode.Range(position, position.translate(0, 1))
+                    }
+                    resolve([inlineMath])
+                    return
+                } else {
+                    return
+                }
+            }
+
             const line = document.lineAt(position.line).text.substr(0, position.character)
             for (const type of ['citation', 'reference', 'environment', 'command']) {
                 const suggestions = this.completion(type, line)
