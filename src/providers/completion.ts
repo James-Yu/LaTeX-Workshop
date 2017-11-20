@@ -59,6 +59,7 @@ export class Completer implements vscode.CompletionItemProvider {
                     resolve([inlineMath])
                     return
                 } else {
+                    resolve()
                     return
                 }
             }
