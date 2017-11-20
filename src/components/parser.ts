@@ -105,9 +105,9 @@ export class Parser {
             const filename = path.resolve(this.extension.manager.rootDir, fileStack[fileStack.length - 1])
             // append the read line, since we have a corresponding result in the making
             if (searchesEmptyLine) {
-                currentResult.text = currentResult.text + " " + line
+                currentResult.text = currentResult.text + ' ' + line
                 if (line.trim() === '') {
-                    currentResult.text = currentResult.text + "\n"
+                    currentResult.text = currentResult.text + '\n'
                     searchesEmptyLine = false
                 }
                 continue

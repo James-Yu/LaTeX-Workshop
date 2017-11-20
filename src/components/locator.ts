@@ -147,7 +147,7 @@ export class Locator {
                     }
                     vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
                         editor.selection = new vscode.Selection(pos, pos)
-                        vscode.commands.executeCommand("revealLine", {lineNumber: row, at: 'center'})
+                        vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
                     })
                 })
             }
