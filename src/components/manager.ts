@@ -45,8 +45,12 @@ export class Manager {
 
     updateWorkspace() {
         let wsroot = vscode.workspace.rootPath
-        if (vscode.window.activeTextEditor && vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri)) {
-            wsroot = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri).uri.fsPath
+        const activeTextEditor = vscode.window.activeTextEditor
+        if (activeTextEditor) {
+            const wsfolder = vscode.workspace.getWorkspaceFolder(activeTextEditor.document.uri)
+            if (wsfolder) {
+                wsroot = wsfolder.uri.fsPath
+            }
         }
         if (wsroot) {
             if (wsroot !== this.workspace) {
