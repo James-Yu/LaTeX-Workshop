@@ -209,7 +209,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider('latex', new DocSymbolProvider(extension)))
     context.subscriptions.push(vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension)))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider('tex', extension.completer, '\\', '{'))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ',', '('))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ',', '(', '['))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-outline', extension.nodeProvider))
 
