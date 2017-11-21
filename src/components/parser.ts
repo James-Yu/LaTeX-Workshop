@@ -174,7 +174,7 @@ export class Parser {
             if (result[1] === '(') {
                 const pathResult = line.match(/((?:(?:[a-zA-Z]:|\.|\/)?(?:\/|\\\\?))?[\w\-. \/\\]*)/)
                 if (pathResult) {
-                    fileStack.push(pathResult[1])
+                    fileStack.push(pathResult[1].trim())
                 } else {
                     nested += 1
                 }
