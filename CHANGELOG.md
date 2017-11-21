@@ -1,5 +1,18 @@
 # Change Log
 
+## [3.7.0] - 2017-11-21
+### Added
+- (#308) Multi-root support @innerlee.
+- (#313) `chkTeX` now supports `.chktexrc` config @innerlee.
+
+### Changed
+- (#314) Empty bibliography warning is now omitted @innerlee.
+- (#320) All LaTeX Workshop commands also activate the extension despite document type.
+
+### Fixed
+- (#312) SyncTeX fails if the current position locates on last line which is empty @innerlee.
+- (#323) Irregular LaTeX log lead to trailing whitespace in file stack.
+
 ## [3.6.2] - 2017-11-15
 ### Changed
 - (#283, #302) Update README @lippertmarkus.
