@@ -114,6 +114,7 @@ export class Viewer {
                         client.type = client.prevType
                     }
                 }
+                this.extension.locator.syncTeX()
                 break
             case 'close':
                 for (const key in this.clients) {
@@ -132,6 +133,7 @@ export class Viewer {
                         client.position = data
                     }
                 }
+                this.extension.locator.syncTeX()
                 break
             case 'loaded':
                 client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
@@ -147,6 +149,7 @@ export class Viewer {
                         }))
                     }
                 }
+                this.extension.locator.syncTeX()
                 break
             case 'click':
                 this.extension.locator.locate(data, decodeURIComponent(data.path))
