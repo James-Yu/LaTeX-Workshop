@@ -48,6 +48,30 @@ export class Completer implements vscode.CompletionItemProvider {
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
         return new Promise((resolve, _reject) => {
+            const invokeChar = document.lineAt(position.line).text[position.character - 1]
+            if (['(', '['].indexOf(invokeChar) > -1) {
+                if (position.character > 1 && document.lineAt(position.line).text[position.character - 2] === '\\') {
+                    let mathSnippet
+                    if (invokeChar === '(') {
+                        mathSnippet = new vscode.CompletionItem('\\(', vscode.CompletionItemKind.Function)
+                        mathSnippet.insertText = new vscode.SnippetString('${1}\\)${0}')
+                        mathSnippet.detail = 'inline math \\( ... \\)'
+                    } else {
+                        mathSnippet = new vscode.CompletionItem('\\[', vscode.CompletionItemKind.Function)
+                        mathSnippet.insertText = new vscode.SnippetString('${1}\\]${0}')
+                        mathSnippet.detail = 'display math \\[ ... \\]'
+                    }
+                    if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets')) {
+                        mathSnippet.range = new vscode.Range(position, position.translate(0, 1))
+                    }
+                    resolve([mathSnippet])
+                    return
+                } else {
+                    resolve()
+                    return
+                }
+            }
+
             const line = document.lineAt(position.line).text.substr(0, position.character)
             for (const type of ['citation', 'reference', 'environment', 'command']) {
                 const suggestions = this.completion(type, line)
