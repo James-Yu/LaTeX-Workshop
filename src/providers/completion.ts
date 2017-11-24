@@ -49,24 +49,19 @@ export class Completer implements vscode.CompletionItemProvider {
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
         return new Promise((resolve, _reject) => {
             const invokeChar = document.lineAt(position.line).text[position.character - 1]
-            if (['(', '['].indexOf(invokeChar) > -1) {
-                if (position.character > 1 && document.lineAt(position.line).text[position.character - 2] === '\\') {
-                    let mathSnippet
-                    if (invokeChar === '(') {
-                        mathSnippet = new vscode.CompletionItem('\\(', vscode.CompletionItemKind.Function)
-                        mathSnippet.insertText = new vscode.SnippetString('${1}\\)${0}')
-                        mathSnippet.detail = 'inline math \\( ... \\)'
+            if (this.command.specialBrackets.hasOwnProperty(invokeChar)) {
+                const currentLine = document.lineAt(position.line).text
+                if (position.character > 1 && currentLine[position.character - 2] === '\\') {
+                    const mathSnippet = Object.assign({}, this.command.specialBrackets[invokeChar])
+                    if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
+                        (currentLine.length > position.character && [')', ']', '}'].indexOf(currentLine[position.character]) > 0)) {
+                        mathSnippet.range = new vscode.Range(position.translate(0, -1), position.translate(0, 1))
                     } else {
-                        mathSnippet = new vscode.CompletionItem('\\[', vscode.CompletionItemKind.Function)
-                        mathSnippet.insertText = new vscode.SnippetString('${1}\\]${0}')
-                        mathSnippet.detail = 'display math \\[ ... \\]'
-                    }
-                    if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets')) {
-                        mathSnippet.range = new vscode.Range(position, position.translate(0, 1))
+                        mathSnippet.range = new vscode.Range(position.translate(0, -1), position)
                     }
                     resolve([mathSnippet])
                     return
-                } else {
+                } else if (['(', '['].indexOf(invokeChar) > -1) {
                     resolve()
                     return
                 }
