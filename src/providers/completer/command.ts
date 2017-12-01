@@ -12,6 +12,7 @@ export class Command {
     refreshTimer: number
     defaultCommands: {[key: string]: vscode.CompletionItem} = {}
     newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
+    specialBrackets: {[key: string]: vscode.CompletionItem}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -47,6 +48,13 @@ export class Command {
             command.insertText = new vscode.SnippetString(item.snippet)
             this.defaultCommands[key] = command
         })
+        const bracketCommands = {'latexinlinemath': '(', 'latexdisplaymath': '[', 'curlybrackets': '{'}
+        this.specialBrackets = Object.keys(this.defaultCommands)
+            .filter(key => bracketCommands.hasOwnProperty(key))
+            .reduce((obj, key) => {
+                obj[bracketCommands[key]] = this.defaultCommands[key]
+                return obj
+            }, {})
     }
 
     provide() : vscode.CompletionItem[] {
