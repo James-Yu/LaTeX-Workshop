@@ -88,8 +88,12 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
             return
         }
         fs.writeFileSync(`${extensionPath}${path.sep}VERSION`, extension.packageInfo.version)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!(configuration.get('debug.showUpdateMessage') as boolean)) {
+            return
+        }
         vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${extension.packageInfo.version}.`,
-            'Change log', 'Star the project', 'Write review')
+            'Change log', 'Star the project', 'Write review', 'Disable this message')
         .then(option => {
             switch (option) {
                 case 'Change log':
@@ -100,6 +104,9 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
                     break
                 case 'Star the project':
                     opn('https://github.com/James-Yu/LaTeX-Workshop')
+                    break
+                case 'Disable this message':
+                    configuration.update('debug.showUpdateMessage', false)
                     break
                 default:
                     break

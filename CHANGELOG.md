@@ -1,5 +1,14 @@
 # Change Log
 
+## [3.8.0] - 2017-12-01
+### Added
+- (#321) LaTeX inline math completion @innerlee.
+- A new config item to disable new version message.
+
+### Fixed
+- (#325) Parse paths with hashtag.
+- (#333) PDF viewer with new theme has 2px border overflow.
+
 ## [3.7.0] - 2017-11-21
 ### Added
 - (#308) Multi-root support @innerlee.
