@@ -69,7 +69,7 @@ export class Viewer {
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'viewer'}
         try {
-            opn(url)
+            opn(url, {app: vscode.workspace.getConfiguration('latex-workshop').get('viewer')})
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
         } catch (e) {
             vscode.window.showInputBox({
