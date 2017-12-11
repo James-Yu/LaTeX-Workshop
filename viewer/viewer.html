@@ -147,7 +147,7 @@ See https://github.com/adobe-type-tools/cmap-resources
           </div>
         </div>  <!-- secondaryToolbar -->
 
-        <div class="toolbar">
+        <div class="toolbar hide">
           <div id="toolbarContainer">
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
@@ -415,6 +415,16 @@ See https://github.com/adobe-type-tools/cmap-resources
               socket.send(JSON.stringify({type:"click", path:file, pos:pos, page:page}))
           }
       }, true)
+
+      let hideToolbarTimeout = undefined
+      document.getElementById('outerContainer').onmousemove = () => {
+        if (hideToolbarTimeout) {
+          clearTimeout(hideToolbarTimeout)
+        }
+        var d = document.getElementsByClassName('toolbar')[0]
+        d.className = d.className.replace(' hide', '')
+        hideToolbarTimeout = setTimeout(() => {d.className += ' hide'}, 3000)
+      }
     </script>
   </body>
 </html>
