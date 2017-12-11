@@ -1,5 +1,15 @@
 # Change Log
 
+## [3.9.0] - 2017-12-11
+### Added
+- (#335) add an option to specify the browser used to view PDF file @Lencerf.
+
+### Changed
+- (#343) Move mouse on viewer to show toolbar, revert viewer style.
+
+### Fixed
+- (#341) Clarify `latex-workshop.latex.outputDir` usage.
+
 ## [3.8.0] - 2017-12-01
 ### Added
 - (#321) LaTeX inline math completion @innerlee.
