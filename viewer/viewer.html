@@ -418,7 +418,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 
       let hideToolbarTimeout = undefined
       document.getElementById('outerContainer').onmousemove = (e) => {
-        if (e.screenY > 100) {
+        if (e.clientY > 64) {
           return
         }
         if (hideToolbarTimeout) {
@@ -426,7 +426,7 @@ See https://github.com/adobe-type-tools/cmap-resources
         }
         var d = document.getElementsByClassName('toolbar')[0]
         d.className = d.className.replace(' hide', '')
-        hideToolbarTimeout = setTimeout(() => {d.className += ' hide'}, 1000)
+        hideToolbarTimeout = setTimeout(() => {d.className += ' hide'}, 3000)
       }
     </script>
   </body>
