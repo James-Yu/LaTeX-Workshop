@@ -1,5 +1,9 @@
 # Change Log
 
+## [3.9.1] - 2017-12-13
+### Changed
+- Tweak toolbar show/hide behavior and threshold.
+
 ## [3.9.0] - 2017-12-11
 ### Added
 - (#335) add an option to specify the browser used to view PDF file @Lencerf.
