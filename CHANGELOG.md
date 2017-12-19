@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.10.0] - 2017-12-19
+### Added
+- (#315) Highlight the location of SyncTeX in PDF viewer.
+
+### Fixed
+- Tweak SyncTeX accuracy.
+
 ## [3.9.1] - 2017-12-13
 ### Changed
 - Tweak toolbar show/hide behavior and threshold.

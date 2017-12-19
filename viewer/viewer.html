@@ -247,6 +247,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 
         <div id="viewerContainer" tabindex="0">
           <div id="viewer" class="pdfViewer"></div>
+          <div id="synctex-indicator"></div>
         </div>
 
         <div id="errorWrapper" hidden='true'>
@@ -367,9 +368,16 @@ See https://github.com/adobe-type-tools/cmap-resources
           let data = JSON.parse(event.data)
           switch (data.type) {
               case "synctex":
-                  let pos = PDFViewerApplication.pdfViewer._pages[data.data.page-1].viewport.convertToViewportPoint(data.data.x, data.data.y-72)
                   let container = document.getElementById('viewerContainer')
-                  container.scrollTop = document.getElementsByClassName('page')[0].offsetHeight * data.data.page  - pos[1]
+                  let scrollX = document.getElementsByClassName('page')[0].offsetWidth * data.data.x / 612
+                  let scrollY = document.getElementsByClassName('page')[0].offsetHeight * (data.data.page - 1 + data.data.y / 792)
+                  container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+
+                  let indicator = document.getElementById('synctex-indicator')
+                  indicator.className = 'show'
+                  indicator.style.left = `${scrollX}px`
+                  indicator.style.top = `${scrollY}px`
+                  setTimeout(() => indicator.className = 'hide', 10)
                   break
               case "refresh":
                   socket.send(JSON.stringify({type:"position",
