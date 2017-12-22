@@ -58,10 +58,7 @@ For details on how to interpret the reported issues, consult the [ChkTeX manual]
 
 For many issues, LaTeX Workshop will offer **Code Actions** to help you correct your LaTeX files. If you take your mouse to a highlighted error, you will see a lightbulb in the gutter if LaTeX Workshop is able to propose a solution to the problem. 
 Alternatively, you can hit `ctrl`/`cmd` + `.` whilst the cursor is on a highlighted area to trigger the same dropdown.
-Choose the item in the menu to have LaTeX Workshop attempt to fix the issue:
-
-![Code Actions](https://cloud.githubusercontent.com/assets/1312873/24458498/0303c3ca-1491-11e7-8685-f743ddb0838c.gif)
-
+Choose the item in the menu to have LaTeX Workshop attempt to fix the issue.
 
 ## FAQ
 ### <a name="toolchain"></a>LaTeX toolchain?
