@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.10.1] - 2017-12-26
+### Fixed
+- (#346) `\input{file.tex}` need not to be at the row start to be included in outline.
+- (#353) `\begin{comment}` syntax highlight.
+
 ## [3.10.0] - 2017-12-19
 ### Added
 - (#315) Highlight the location of SyncTeX in PDF viewer.
