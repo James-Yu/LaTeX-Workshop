@@ -133,7 +133,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // } else { // it's one level DOWN (add it to the children of the current node)
                 //     currentRoot().children.push(newSection)
                 // }
-            } else if (result[0].startsWith("\\input") || result[0].startsWith("\\include") || result[0].startsWith("\\subfile")) {
+            } else if (result[0].startsWith('\\input') || result[0].startsWith('\\include') || result[0].startsWith('\\subfile')) {
                 // zoom into this file
                 // resolve the path
                 let inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[2]))
