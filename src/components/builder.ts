@@ -24,7 +24,7 @@ export class Builder {
             this.currentProcess.kill()
             this.extension.logger.addLogMessage('Kill previous process')
             // Dirty wait for process killed
-            this.extension.logger.displayStatus('sync', 'statusBar.foreground', `Killing previous process.`, 0)
+            this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', `Killing previous process.`, 0)
             this.nextBuildRootFile = rootFile
         } else {
             this.nextBuildRootFile = undefined
@@ -56,7 +56,7 @@ export class Builder {
 
         this.extension.logger.clearCompilerMessage()
         this.extension.logger.addLogMessage(`Toolchain step ${index + 1}: ${toolchain[index].command}, ${toolchain[index].args}`)
-        this.extension.logger.displayStatus('sync', 'statusBar.foreground', `LaTeX build toolchain step ${index + 1}.`, 0)
+        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', `LaTeX build toolchain step ${index + 1}.`, 0)
         this.currentProcess = cp.spawn(toolchain[index].command, toolchain[index].args, {cwd: path.dirname(rootFile)})
 
         let stdout = ''
