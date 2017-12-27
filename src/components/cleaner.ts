@@ -36,7 +36,13 @@ export class Cleaner {
                     const fullPath = path.resolve(this.extension.manager.rootDir, file)
                     fs.unlink(fullPath, unlinkErr => {
                         if (unlinkErr) {
-                            this.extension.logger.addLogMessage(`Error removing file: ${fullPath}`)
+                            fs.rmdir(fullPath, rmdirErr => {
+                                if (rmdirErr) {
+                                    this.extension.logger.addLogMessage(`Error removing file: ${fullPath}`)
+                                    return
+                                }
+                                this.extension.logger.addLogMessage(`Folder removed: ${fullPath}`)
+                            })
                             return
                         }
                         this.extension.logger.addLogMessage(`File cleaned: ${fullPath}`)
