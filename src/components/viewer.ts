@@ -178,7 +178,7 @@ export class PDFProvider implements vscode.TextDocumentContentProvider {
     }
 
     public provideTextDocumentContent(uri: vscode.Uri) : string {
-        const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
+        const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
