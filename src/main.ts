@@ -75,6 +75,16 @@ function obsoleteConfigCheck() {
     }
 }
 
+function conflictExtensionCheck() {
+    function check(extensionID: string, name: string, suggestion: string) {
+        if (vscode.extensions.getExtension(extensionID) !== undefined) {
+            vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with extension "${name}". ${suggestion}`)
+        }
+    }
+    check('tomoki1207.pdf', 'vscode-pdf',
+          'All features of "vscode-pdf" are supported by LaTeX Workshop.')
+}
+
 function newVersionMessage(extensionPath: string, extension: Extension) {
     fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
         if (err) {
@@ -223,6 +233,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     lintRootFileIfEnabled(extension)
     obsoleteConfigCheck()
+    conflictExtensionCheck()
     newVersionMessage(context.extensionPath, extension)
 }
 
