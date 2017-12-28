@@ -64,6 +64,15 @@ export class Commander {
         }
     }
 
+    pdf(uri: vscode.Uri | undefined) {
+        this.extension.logger.addLogMessage(`PDF command invoked.`)
+        if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
+            return
+        }
+        console.log(uri)
+        this.extension.viewer.openTab(uri.fsPath)
+    }
+
     synctex() {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
         this.extension.manager.findRoot()
@@ -110,6 +119,9 @@ export class Commander {
         if (!this.commandTitles) {
             const commands = this.extension.packageInfo.contributes.commands.filter(command => {
                 if (command.command === 'latex-workshop.actions') {
+                    return false
+                }
+                if (command.command === 'latex-workshop.pdf') {
                     return false
                 }
                 return true

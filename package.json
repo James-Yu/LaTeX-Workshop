@@ -30,6 +30,7 @@
     "onCommand:latex-workshop.build",
     "onCommand:latex-workshop.view",
     "onCommand:latex-workshop.tab",
+    "onCommand:latex-workshop.pdf",
     "onCommand:latex-workshop.synctex",
     "onCommand:latex-workshop.clean",
     "onCommand:latex-workshop.citation",
@@ -105,6 +106,16 @@
         "extensions": [
           ".log"
         ]
+      },
+      {
+        "id": "pdf",
+        "aliases": [
+          "Plain Text (PDF)",
+          "pdf"
+        ],
+        "extensions": [
+          ".pdf"
+        ]
       }
     ],
     "grammars": [
@@ -152,17 +163,22 @@
       },
       {
         "command": "latex-workshop.view",
-        "title": "View PDF file in web page",
+        "title": "View LaTeX PDF file in web page",
         "category": "LaTeX Workshop"
       },
       {
         "command": "latex-workshop.tab",
-        "title": "View PDF file in new tab",
+        "title": "View LaTeX PDF file in new tab",
         "category": "LaTeX Workshop",
         "icon": {
           "light": "icons/view-pdf-light.svg",
           "dark": "icons/view-pdf-dark.svg"
         }
+      },
+      {
+        "command": "latex-workshop.pdf",
+        "title": "View PDF file",
+        "category": "LaTeX Workshop"
       },
       {
         "command": "latex-workshop.synctex",
@@ -410,6 +426,13 @@
       }
     },
     "menus": {
+      "explorer/context": [
+        {
+          "when": "resourceLangId == pdf",
+          "command": "latex-workshop.pdf",
+          "group": "navigation"
+        }
+      ],
       "editor/context": [
         {
           "when": "resourceLangId == latex",
