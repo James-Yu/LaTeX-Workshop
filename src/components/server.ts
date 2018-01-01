@@ -19,7 +19,7 @@ export class Server {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
                 const {address, port} = this.httpServer.address()
-                this.address = `${address}:${port}`
+                this.address = `[${address}]:${port}`
                 this.extension.logger.addLogMessage(`Server created on ${this.address}`)
             }
         })
