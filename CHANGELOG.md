@@ -1,5 +1,15 @@
 # Change Log
 
+## [3.11.0] - 2018-01-02
+### Added
+- Add conflict extension check.
+- (#240) View any PDF file from the context menu.
+- (#249) Clean auxiliary file now respect globs.
+- (#355) Add region markers support @Ash258.
+
+### Changed
+- (#286) Hide print buttons when PDF is viewed in vscode.
+
 ## [3.10.1] - 2017-12-26
 ### Fixed
 - (#346) `\input{file.tex}` need not to be at the row start to be included in outline.
