@@ -19,7 +19,12 @@ export class Server {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
                 const {address, port} = this.httpServer.address()
-                this.address = `[${address}]:${port}`
+                if (address.indexOf(':')>-1) {
+                    // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
+                    this.address = `[${address}]:${port}`;
+                } else {
+                    this.address = `${address}:${port}`;
+                }
                 this.extension.logger.addLogMessage(`Server created on ${this.address}`)
             }
         })
