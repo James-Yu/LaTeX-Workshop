@@ -89,15 +89,24 @@ export class LaTexFormatter {
             const indent = useSpaces ? ' '.repeat(tabSize) : '\\t'
 
             cp.exec(this.formatter + ' "' + filename + '"' + ' -y="defaultIndent: \'' + indent + '\'"',
-             (_err, stdout, _stderr) => {
+             (err, stdout, _stderr) => {
+                if (err) {
+                    this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
+                    vscode.window.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                    return resolve()
+                }
+
                 if (stdout !== '') {
                     const edit = [vscode.TextEdit.replace(fullRange(document), stdout)]
                     try {
                         fs.unlinkSync(path.dirname(filename) + path.sep + 'indent.log')
                     } catch (ignored) {
                     }
+
+                    this.extension.logger.addLogMessage('Formatted ' + document.fileName)
                     return resolve(edit)
                 }
+
                 return resolve()
             })
         })
