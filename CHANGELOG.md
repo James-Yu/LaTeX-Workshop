@@ -1,5 +1,15 @@
 # Change Log
 
+## [3.12.0] - 2018-01-05
+
+### Added
+- (#363) Integrate nfode/latex-formatter with fix for indent.log @zoehneto.
+
+### Fixed
+- (#359) Fix PDF viewing with ipv6 address @caidao22.
+- (#361) Comments may contain latex commands that should not be read @jsinglet.
+- (#365) Remove `$` auto-pairing.
+
 ## [3.11.0] - 2018-01-02
 ### Added
 - Add conflict extension check.
