@@ -37,8 +37,7 @@ export class LaTexFormatter {
     }
 
     public formatDocument(document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
-        return new Promise((resolve, reject) => {
-            const formatter = 'latexindent'
+        return new Promise((resolve, _reject) => {
             const filename = document.fileName
 
             if (this.machineOs === windows.name) {
@@ -64,8 +63,8 @@ export class LaTexFormatter {
     }
 
     private checkPath(checker: string) : Thenable<boolean> {
-        return new Promise((resolve, reject) => {
-            cp.exec(checker + ' ' + this.formatter, (err, stdout, stderr) => {
+        return new Promise((resolve, _reject) => {
+            cp.exec(checker + ' ' + this.formatter, (_err, stdout, _stderr) => {
                 if (stdout === '') {
                     this.formatter += this.currentOs.fileExt
                     this.checkPath(checker).then((res) => {
@@ -83,8 +82,8 @@ export class LaTexFormatter {
     }
 
     private format(filename: string, document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
-        return new Promise((resolve, reject) => {
-            cp.exec(this.formatter + ' "' + filename + '"', (err, stdout, stderr) => {
+        return new Promise((resolve, _reject) => {
+            cp.exec(this.formatter + ' "' + filename + '"', (_err, stdout, _stderr) => {
                 if (stdout !== '') {
                     const edit = [vscode.TextEdit.replace(fullRange(document), stdout)]
                     try {
@@ -102,14 +101,12 @@ export class LaTexFormatter {
 
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider {
     private formatter: LaTexFormatter
-    private extension: Extension
 
     constructor(extension: Extension) {
-        this.extension = extension
         this.formatter = new LaTexFormatter(extension)
     }
 
-    public provideDocumentFormattingEdits(document: vscode.TextDocument, options: vscode.FormattingOptions, token: vscode.CancellationToken) :
+    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken) :
         vscode.ProviderResult<vscode.TextEdit[]> {
             return document.save().then(() => {
                 return this.formatter.formatDocument(document)
