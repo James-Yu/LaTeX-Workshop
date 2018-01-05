@@ -83,7 +83,13 @@ export class LaTexFormatter {
 
     private format(filename: string, document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
-            cp.exec(this.formatter + ' "' + filename + '"', (_err, stdout, _stderr) => {
+            const configuration = vscode.workspace.getConfiguration('editor', document.uri)
+            const useSpaces = configuration.get<boolean>('insertSpaces')
+            const tabSize = configuration.get<number>('tabSize') || 4
+            const indent = useSpaces ? ' '.repeat(tabSize) : '\\t'
+
+            cp.exec(this.formatter + ' "' + filename + '"' + ' -y="defaultIndent: \'' + indent + '\'"',
+             (_err, stdout, _stderr) => {
                 if (stdout !== '') {
                     const edit = [vscode.TextEdit.replace(fullRange(document), stdout)]
                     try {
