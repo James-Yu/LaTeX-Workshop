@@ -60,7 +60,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.extension.logger.addLogMessage(`Parsing ${filePath} for outline`)
         const content = fs.readFileSync(filePath, 'utf-8')
 
-        let pattern = '((?:\\\\(?:input|include|subfile)(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|^((?:\\\\('
+        let pattern = '^(?!%)\s*((?:\\\\(?:input|include|subfile)(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|^((?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
