@@ -143,7 +143,8 @@ export class Viewer {
                         client.ws.send(JSON.stringify({
                             type: 'params',
                             scale: configuration.get('view.pdf.zoom'),
-                            hand: configuration.get('view.pdf.hand')
+                            hand: configuration.get('view.pdf.hand'),
+                            invert: configuration.get('view.pdf.invert'),
                         }))
                     }
                 }

@@ -405,6 +405,10 @@ See https://github.com/adobe-type-tools/cmap-resources
                   } else {
                       PDFViewerApplication.handTool.handTool.deactivate()
                   }
+                  if (data.invert > 0) {
+                    document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
+                    document.querySelector('#viewer').style.background = 'white'
+                  }
                   break
               default:
                   break
