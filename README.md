@@ -140,7 +140,7 @@ If no root file is found, most of the features in LaTeX Workshop will not work.
 ### Magic comments?
 LaTeX Workshop supports both `% !TEX root` and `% !TEX program` magic comments. The former is used to define the root file, while the latter helps select compiler program.
 
-All `command` in `toolchain` which are empty will be replaced with the program set by `% !TEX program` magic comment in the root file. Suppose there is a line `% !TEX program = xelatex` in the root file, and the toolchain is set as follows:
+All `command` in `toolchain` which are empty will be replaced with the program set by `% !TEX program` magic comment in the root file. Alternatively, if `command` is `latexmk`, an argument `pdflatex=` with magic comment program appended will be inserted into the command argument list. Suppose there is a line `% !TEX program = xelatex` in the root file, and the toolchain is set as follows:
 ```
 "latex-workshop.latex.toolchain": [
   {
@@ -155,6 +155,23 @@ All `command` in `toolchain` which are empty will be replaced with the program s
 ]
 ```
 Upon building the project, LaTeX Workshop will parse the root file and figure out that `xelatex` should be used. This program will replace the empty `command` in the toolchain. Arguments are untouched.
+
+Another possible use case: suppose there is a line `% !TEX program = lualatex` with the following configuration:
+```
+"latex-workshop.latex.toolchain": [
+  {
+    "command": "latexmk",
+    "args": [
+      "-synctex=1",
+      "-interaction=nonstopmode",
+      "-file-line-error",
+      "-pdf",
+      "%DOC%"
+    ]
+  }
+]
+```
+which is the default value. The compiled command will be `latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf main -pdflatex=lualatex`.
 
 If the `command` is set empty but no `% !TEX program` magic comment is found, `pdflatex` is used.
 

@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.12.1] - 2018-01-09
+
+### Fixed
+- (#368) Formatter now respect vscode indent settings @zoehneto.
+- (#369) The color of PDF viewer can be controlled.
+- (#371) `latexmk` uses magic command to select compiler.
+
 ## [3.12.0] - 2018-01-05
 
 ### Added
