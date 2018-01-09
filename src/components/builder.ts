@@ -107,7 +107,7 @@ export class Builder {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         // Modify a copy, instead of itself.
         const commands = JSON.parse(JSON.stringify(configuration.get('latex.toolchain'))) as ToolchainCommand[]
-        let program = ''
+
         for (const command of commands) {
             if (!('command' in command)) {
                 vscode.window.showErrorMessage('LaTeX toolchain is invalid. Each tool in the toolchain must have a "command" string.')
@@ -122,11 +122,14 @@ export class Builder {
                                                           .replace('%DOCFILE%', path.basename(rootFile, '.tex'))
                                                           .replace('%DIR%', path.dirname(rootFile)))
             }
+            const magic = this.findProgramMagic(rootFile)
+            if (magic === '') {
+                continue
+            }
             if (command.command === '') {
-                if (program === '') {
-                    program = this.findProgramMagic(rootFile)
-                }
-                command.command = program
+                command.command = magic
+            } else if (command.command === 'latexmk') {
+                command.args.push(`-pdflatex=${magic}`)
             }
         }
         return commands
