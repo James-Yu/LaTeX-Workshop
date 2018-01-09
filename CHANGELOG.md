@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.12.2] - 2018-01-09
+
+### Fixed
+- Normalize path separator to *nix-style `/` on Windows.
+
 ## [3.12.1] - 2018-01-09
 
 ### Fixed

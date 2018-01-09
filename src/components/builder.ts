@@ -118,9 +118,9 @@ export class Builder {
                 return undefined
             }
             if (command.args) {
-                command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, ''))
-                                                          .replace('%DOCFILE%', path.basename(rootFile, '.tex'))
-                                                          .replace('%DIR%', path.dirname(rootFile)))
+                command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
+                                                          .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
+                                                          .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
             }
             if (magic === '') {
                 continue
