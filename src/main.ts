@@ -128,6 +128,7 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
 
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
+    global['latex'] = extension
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())

@@ -122,7 +122,7 @@ export class Builder {
                                                           .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
                                                           .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
             }
-            if (magic === '') {
+            if (magic === 'pdflatex') {
                 continue
             }
             if (command.command === '') {
