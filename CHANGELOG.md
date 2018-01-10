@@ -1,5 +1,10 @@
 # Change Log
 
+## [3.12.3] - 2018-01-10
+
+### Fixed
+- (#373) Toolchain does not append `-pdflatex=pdflatex` to `latexmk`.
+
 ## [3.12.2] - 2018-01-09
 
 ### Fixed
