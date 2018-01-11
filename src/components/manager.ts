@@ -122,7 +122,7 @@ export class Manager {
         const content = vscode.window.activeTextEditor.document.getText()
         const result = content.match(regex)
         if (result) {
-            const file = path.join(vscode.window.activeTextEditor.document.fileName, result[1])
+            const file = path.join(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
             this.extension.logger.addLogMessage(`Found root file of this subfile from active editor: ${file}`)
             return file
         }

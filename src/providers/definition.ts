@@ -1,4 +1,6 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
+import * as path from 'path'
 
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
@@ -38,6 +40,15 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
                     vscode.Uri.file(command.file), command.position
                 ))
                 return
+            }
+            if (vscode.window.activeTextEditor && token.indexOf('.') > -1) {
+                const absolutePath = path.join(path.dirname(vscode.window.activeTextEditor.document.fileName), token)
+                if (fs.existsSync(absolutePath)) {
+                    resolve(new vscode.Location(
+                        vscode.Uri.file(absolutePath), new vscode.Position(0, 0)
+                    ))
+                    return
+                }
             }
             resolve()
         })
