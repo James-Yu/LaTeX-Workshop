@@ -12,17 +12,53 @@ export class Commander {
         this.extension = extension
     }
 
-    build() {
+    build(skipSelection: boolean = false) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
         const rootFile = this.extension.manager.findRoot()
-        if (rootFile !== undefined) {
-            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            this.extension.builder.build(this.extension.manager.rootFile)
-        } else {
+
+        if (rootFile === undefined) {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+            return
+        }
+        if (skipSelection) {
+            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
+            this.extension.builder.build(rootFile)
+        } else {
+            const subFileRoot = this.extension.manager.findSubFiles()
+            if (subFileRoot) {
+                vscode.window.showQuickPick([{
+                    label: 'Default root file',
+                    description: `Path: ${rootFile}`
+                }, {
+                    label: 'Subfiles package root file',
+                    description: `Path: ${subFileRoot}`
+                }], {
+                    placeHolder: 'Subfiles package detected. Which file to build?',
+                    matchOnDescription: true
+                }).then(selected => {
+                    if (!selected) {
+                        return
+                    }
+                    switch (selected.label) {
+                        case 'Default root file':
+                            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
+                            this.extension.builder.build(rootFile)
+                            break
+                        case 'Subfiles package root file':
+                            this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
+                            this.extension.builder.build(subFileRoot)
+                            break
+                        default:
+                            break
+                    }
+                })
+            } else {
+                this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
+                this.extension.builder.build(rootFile)
+            }
         }
     }
 

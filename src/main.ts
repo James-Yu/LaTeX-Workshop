@@ -24,34 +24,6 @@ import {ProjectSymbolProvider} from './providers/projectsymbol'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 
-function lintRootFileIfEnabled(extension: Extension) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const linter = configuration.get('chktex.enabled') as boolean
-    if (linter) {
-        extension.linter.lintRootFile()
-    }
-}
-
-function lintActiveFileIfEnabled(extension: Extension) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const linter = configuration.get('chktex.enabled') as boolean
-    if (linter) {
-        extension.linter.lintActiveFile()
-    }
-}
-
-function lintActiveFileIfEnabledAfterInterval(extension: Extension) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const linter = configuration.get('chktex.enabled') as boolean
-    if (linter) {
-        const interval = configuration.get('chktex.interval') as number
-        if (extension.linter.linterTimeout) {
-            clearTimeout(extension.linter.linterTimeout)
-        }
-        extension.linter.linterTimeout = setTimeout(() => extension.linter.lintActiveFile(), interval)
-    }
-}
-
 function obsoleteConfigCheck() {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     function renameConfig(originalConfig: string, newConfig: string) {
@@ -148,14 +120,14 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
-            lintRootFileIfEnabled(extension)
+            extension.linter.lintRootFileIfEnabled()
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('latex.autoBuild.onSave.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
         if (extension.manager.isTex(e.fileName)) {
-            extension.commander.build()
+            extension.commander.build(true)
             extension.nodeProvider.refresh()
             extension.nodeProvider.update()
         }
@@ -181,7 +153,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.isTex(e.document.fileName)) {
-            lintActiveFileIfEnabledAfterInterval(extension)
+            extension.linter.lintActiveFileIfEnabledAfterInterval()
         }
     }))
 
@@ -201,7 +173,7 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.isTex(e.document.fileName)) {
-            lintActiveFileIfEnabled(extension)
+            extension.linter.lintActiveFileIfEnabled()
         }
     }))
 
@@ -235,7 +207,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-outline', extension.nodeProvider))
 
-    lintRootFileIfEnabled(extension)
+    extension.linter.lintRootFileIfEnabled()
     obsoleteConfigCheck()
     conflictExtensionCheck()
     newVersionMessage(context.extensionPath, extension)

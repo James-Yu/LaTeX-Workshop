@@ -114,6 +114,21 @@ export class Manager {
         return undefined
     }
 
+    findSubFiles() : string | undefined {
+        if (!vscode.window.activeTextEditor) {
+            return undefined
+        }
+        const regex = /(?:\\documentclass\[(.*(?:\.tex))\]{subfiles})/
+        const content = vscode.window.activeTextEditor.document.getText()
+        const result = content.match(regex)
+        if (result) {
+            const file = path.join(vscode.window.activeTextEditor.document.fileName, result[1])
+            this.extension.logger.addLogMessage(`Found root file of this subfile from active editor: ${file}`)
+            return file
+        }
+        return undefined
+    }
+
     findRootSaved() : string | undefined {
         return this.rootFile
     }
