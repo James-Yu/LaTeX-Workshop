@@ -33,13 +33,10 @@ export class LaTexFormatter {
     constructor(extension: Extension) {
         this.extension = extension
         this.machineOs = os.platform()
-        this.formatter = 'latexindent'
     }
 
     public formatDocument(document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
-            const filename = document.fileName
-
             if (this.machineOs === windows.name) {
                 this.currentOs = windows
             } else if (this.machineOs === linux.name) {
@@ -48,50 +45,61 @@ export class LaTexFormatter {
                 this.currentOs = mac
             }
 
-            this.checkPath(this.currentOs.checker).then((latexindentPresent) => {
-                if (!latexindentPresent) {
-                    this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
-                    vscode.window.showErrorMessage('Can not find latexindent in PATH!')
-                    return resolve()
-                }
-                this.format(filename, document).then((edit) => {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop.latexindent')
+            this.formatter = configuration.get<string>('path') || 'latexindent'
+            const pathMeta = configuration.inspect('path')
+
+            if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
+                this.format(document).then((edit) => {
                     return resolve(edit)
                 })
-
-            })
+            } else {
+                this.checkPath(this.currentOs.checker).then((latexindentPresent) => {
+                    if (!latexindentPresent) {
+                        this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
+                        vscode.window.showErrorMessage('Can not find latexindent in PATH!')
+                        return resolve()
+                    }
+                    this.format(document).then((edit) => {
+                        return resolve(edit)
+                    })
+                })
+            }
         })
     }
 
     private checkPath(checker: string) : Thenable<boolean> {
         return new Promise((resolve, _reject) => {
-            cp.exec(checker + ' ' + this.formatter, (_err, stdout, _stderr) => {
-                if (stdout === '') {
+            cp.exec(checker + ' ' + this.formatter, (err, _stdout, _stderr) => {
+                if (err) {
                     this.formatter += this.currentOs.fileExt
-                    this.checkPath(checker).then((res) => {
-                        if (res) {
-                            resolve(true)
-                        } else {
+                    cp.exec(checker + ' ' + this.formatter, (err1, _stdout1, _stderr1) => {
+                        if (err1) {
                             resolve(false)
+                        } else {
+                            resolve(true)
                         }
                     })
+                } else {
+                    resolve(true)
                 }
-                resolve(true)
             })
         })
 
     }
 
-    private format(filename: string, document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
+    private format(document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('editor', document.uri)
             const useSpaces = configuration.get<boolean>('insertSpaces')
             const tabSize = configuration.get<number>('tabSize') || 4
             const indent = useSpaces ? ' '.repeat(tabSize) : '\\t'
 
-            const documentDirectory = path.dirname(filename)
+            const documentDirectory = path.dirname(document.fileName)
 
-            cp.exec(this.formatter + ' -c "' + documentDirectory + '" "' + filename + '"'
+            cp.exec(this.formatter + ' -c "' + documentDirectory + '" "' + document.fileName + '"'
              + ' -y="defaultIndent: \'' + indent + '\'"', (err, stdout, _stderr) => {
+
                 if (err) {
                     this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
                     vscode.window.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
