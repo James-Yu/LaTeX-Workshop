@@ -21,12 +21,14 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
   - Code Actions (automatic fixes) are offered for many issues found by ChkTeX.
+- LaTeX file formatting.
 
 ## Requirements
 
 - LaTeX distribution in system PATH. For example, [TeX Live](https://www.tug.org/texlive/).
   - Please note [MikTeX](https://miktex.org/) does not ship with SyncTeX. See [this link](http://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#comment877274_338117) for a possible solution.
 - _Optional_: [Set your LaTeX toolchain](#toolchain) (LaTeX Workshop should just work out of the box for users with `latexmk` installed).
+- _Optional_: Install [latexindent.pl](https://github.com/cmhughes/latexindent.pl) for formatting support if it is not provided by your LaTeX distribution.
 
 ## Installation
 
