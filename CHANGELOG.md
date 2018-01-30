@@ -1,5 +1,15 @@
 # Change Log
 
+## [3.13.0] - 2018-01-30
+
+### Added
+- (#332) Ctrl click on file name to navigate.
+- (#372) Show dropdown menu on which file to build.
+- (#383) Make path for latexindent configurable.
+
+### Fixed
+- (#381) Fix current working directory issue when formatting on windows.
+
 ## [3.12.3] - 2018-01-10
 
 ### Fixed
