@@ -28,6 +28,9 @@ export class Server {
                 this.extension.logger.addLogMessage(`Server created on ${this.address}`)
             }
         })
+        this.httpServer.on('error', (err) => {
+            this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
+        })
         this.wsServer = ws.createServer({server: this.httpServer})
         this.wsServer.on('connection', (websocket) => {
             websocket.on('message', (msg) => this.extension.viewer.handler(websocket, msg))
