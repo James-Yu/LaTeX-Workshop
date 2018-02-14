@@ -35,7 +35,7 @@ export class LaTexFormatter {
         this.machineOs = os.platform()
     }
 
-    public formatDocument(document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
+    public formatDocument(document: vscode.TextDocument, range?: vscode.Range) : Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             if (this.machineOs === windows.name) {
                 this.currentOs = windows
@@ -50,7 +50,7 @@ export class LaTexFormatter {
             const pathMeta = configuration.inspect('path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
-                this.format(document).then((edit) => {
+                this.format(document, range).then((edit) => {
                     return resolve(edit)
                 })
             } else {
@@ -60,7 +60,7 @@ export class LaTexFormatter {
                         vscode.window.showErrorMessage('Can not find latexindent in PATH!')
                         return resolve()
                     }
-                    this.format(document).then((edit) => {
+                    this.format(document, range).then((edit) => {
                         return resolve(edit)
                     })
                 })
@@ -88,7 +88,7 @@ export class LaTexFormatter {
 
     }
 
-    private format(document: vscode.TextDocument) : Thenable<vscode.TextEdit[]> {
+    private format(document: vscode.TextDocument, range?: vscode.Range) : Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('editor', document.uri)
             const useSpaces = configuration.get<boolean>('insertSpaces')
@@ -97,9 +97,14 @@ export class LaTexFormatter {
 
             const documentDirectory = path.dirname(document.fileName)
 
-            cp.exec(this.formatter + ' -c "' + documentDirectory + '" "' + document.fileName + '"'
-             + ' -y="defaultIndent: \'' + indent + '\'"', (err, stdout, _stderr) => {
+            // The version of latexindent shipped with current latex distributions doesn't support piping in the data using stdin, support was
+            // only added on 2018-01-13 with version 3.4 so we have to create a temporary file
+            const textToFormat = document.getText(range)
+            const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
+            fs.writeFileSync(temporaryFile, textToFormat)
 
+            cp.exec(this.formatter + ' -c "' + documentDirectory + '" "' + temporaryFile + '"'
+             + ' -y="defaultIndent: \'' + indent + '\'"', (err, stdout, _stderr) => {
                 if (err) {
                     this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
                     vscode.window.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
@@ -107,8 +112,9 @@ export class LaTexFormatter {
                 }
 
                 if (stdout !== '') {
-                    const edit = [vscode.TextEdit.replace(fullRange(document), stdout)]
+                    const edit = [vscode.TextEdit.replace(range ? range : fullRange(document), stdout)]
                     try {
+                        fs.unlink(temporaryFile)
                         fs.unlinkSync(documentDirectory + path.sep + 'indent.log')
                     } catch (ignored) {
                     }
@@ -124,7 +130,7 @@ export class LaTexFormatter {
     }
 }
 
-export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider {
+export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private formatter: LaTexFormatter
 
     constructor(extension: Extension) {
@@ -136,6 +142,13 @@ export class LatexFormatterProvider implements vscode.DocumentFormattingEditProv
             return document.save().then(() => {
                 return this.formatter.formatDocument(document)
             })
+    }
+
+    public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions,
+                                               _token: vscode.CancellationToken) : vscode.ProviderResult<vscode.TextEdit[]> {
+        return document.save().then(() => {
+            return this.formatter.formatDocument(document, range)
+        })
     }
 
 }

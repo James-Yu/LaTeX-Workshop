@@ -116,7 +116,9 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
     vscode.commands.registerCommand('latex-workshop.goto-section', (filePath, lineNumber) => extension.commander.gotoSection(filePath, lineNumber))
 
-    vscode.languages.registerDocumentFormattingEditProvider('latex', new LatexFormatterProvider(extension))
+    const formatter = new LatexFormatterProvider(extension)
+    vscode.languages.registerDocumentFormattingEditProvider('latex', formatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider('latex', formatter)
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
