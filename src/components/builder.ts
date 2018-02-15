@@ -86,7 +86,7 @@ export class Builder {
                 this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error.`)
                 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
+                if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled') && !configuration.get('latex.clean.enabled')) {
                     this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
                     this.disableCleanAndRetry = true
                     this.extension.commander.clean()
