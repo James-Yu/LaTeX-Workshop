@@ -182,8 +182,23 @@ export class PDFProvider implements vscode.TextDocumentContentProvider {
         const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
         return `
             <!DOCTYPE html><html><head></head>
-            <body><iframe class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
-            </iframe></body></html>
+            <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
+            </iframe>
+            <script>
+            // when the iframe loads, or when the tab gets focus again later, move the
+            // the focus to the iframe so that keyboard navigation works in the pdf.
+            //
+            // Note: this works on first load, or when navigating between groups, but not when
+            //       navigating between tabs of the same group for some reason!
+
+            let iframe = document.getElementById('preview-panel');
+            window.onfocus = iframe.onload = function() {
+                setTimeout(function() { // doesn't work immediately
+                    iframe.contentWindow.focus();
+                }, 100);
+            }
+            </script>
+            </body></html>
         `
     }
 }
