@@ -373,9 +373,12 @@ See https://github.com/adobe-type-tools/cmap-resources
           let data = JSON.parse(event.data)
           switch (data.type) {
               case "synctex":
+                  // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
                   let container = document.getElementById('viewerContainer')
-                  let scrollX = document.getElementsByClassName('page')[0].offsetWidth * data.data.x / 612
-                  let scrollY = document.getElementsByClassName('page')[0].offsetHeight * (data.data.page - 1 + data.data.y / 792)
+                  var pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
+                  let page = document.getElementsByClassName('page')[data.data.page - 1]
+                  let scrollX = page.offsetLeft + pos[0]
+                  let scrollY = page.offsetTop + page.offsetHeight - pos[1]
                   container.scrollTop = scrollY - document.body.offsetHeight * 0.4
 
                   let indicator = document.getElementById('synctex-indicator')
