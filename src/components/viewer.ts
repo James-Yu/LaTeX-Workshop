@@ -152,6 +152,9 @@ export class Viewer {
             case 'click':
                 this.extension.locator.locate(data, decodeURIComponent(data.path))
                 break
+            case 'external_link':
+                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
+                break
             default:
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
                 break
