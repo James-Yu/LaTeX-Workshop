@@ -423,6 +423,16 @@ See https://github.com/adobe-type-tools/cmap-resources
           socket.send(JSON.stringify({type:"loaded", path:file}))
       })
 
+      // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
+      if (window.parent !== window) {
+        document.addEventListener('click', (e) => {
+            if (e.target.nodeName == 'A' && !e.target.href.startsWith(window.location.href)) { // is external link
+              socket.send(JSON.stringify({type:"external_link", url:e.target.href}))
+              e.preventDefault();
+            }
+        })
+      }
+
       document.addEventListener('pagerendered', (e) => {
           let page = e.target.dataset.pageNumber
           let target = e.target
