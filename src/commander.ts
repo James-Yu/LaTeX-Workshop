@@ -118,10 +118,10 @@ export class Commander {
         this.extension.locator.syncTeX()
     }
 
-    clean() {
+    clean() : Promise<void> {
         this.extension.logger.addLogMessage(`CLEAN command invoked.`)
         this.extension.manager.findRoot()
-        this.extension.cleaner.clean()
+        return this.extension.cleaner.clean()
     }
 
     citation() {
