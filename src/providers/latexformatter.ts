@@ -90,9 +90,18 @@ export class LaTexFormatter {
 
     private format(document: vscode.TextDocument, range?: vscode.Range) : Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
+            const latexSettings = vscode.workspace.getConfiguration('[latex]', document.uri)
             const configuration = vscode.workspace.getConfiguration('editor', document.uri)
-            const useSpaces = configuration.get<boolean>('insertSpaces')
-            const tabSize = configuration.get<number>('tabSize') || 4
+
+            let useSpaces = configuration.get<boolean>('insertSpaces')
+            if (latexSettings.hasOwnProperty('editor.insertSpaces')) {
+                useSpaces = latexSettings['editor.insertSpaces']
+            }
+
+            let tabSize = configuration.get<number>('tabSize') || 4
+            if (latexSettings.hasOwnProperty('editor.tabSize')) {
+                tabSize = latexSettings['editor.tabSize']
+            }
             const indent = useSpaces ? ' '.repeat(tabSize) : '\\t'
 
             const documentDirectory = path.dirname(document.fileName)
