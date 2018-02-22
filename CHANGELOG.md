@@ -1,5 +1,22 @@
 # Change Log
 
+## [3.14.0] - 2018-02-22
+
+### Added
+- (#415) Support document range formatting @zoehneto.
+- (#424) Support latex specific formatting settings @zoehneto.
+- (#416) Clean auxillary files and retry once on build errors @schrej.
+
+### Changed
+- Disable surrounding command by default.
+
+### Fixed
+- (#401) Use `127.0.0.1` instead of `localhost`.
+- (#417) Improved synctex accuracy @chatziko.
+- (#418) Focus the iframe of the pdf viewer to enable keyboard navigation @chatziko.
+- (#419) Handle external links in the embedded viewer @chatziko.
+
+
 ## [3.13.0] - 2018-01-30
 
 ### Added
