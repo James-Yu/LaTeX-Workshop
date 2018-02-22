@@ -282,6 +282,11 @@
           "default": false,
           "description": "Build LaTeX after a LaTeX source file has changed in the workspace.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after any LaTeX file in the workspace is saved on the disk which is not open in the active editor window."
         },
+        "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Delete LaTeX auxillary files when errors occur during build and retry.\nThis property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
+        },
         "latex-workshop.latex.clean.enabled": {
           "type": "boolean",
           "default": false,
@@ -494,6 +499,7 @@
   },
   "dependencies": {
     "chokidar": "^1.6.1",
+    "fs-extra": "^5.0.0",
     "glob": "^7.1.1",
     "opn": "^5.1.0",
     "pdfjs-dist": "^1.8.609",
@@ -501,6 +507,7 @@
   },
   "devDependencies": {
     "@types/chokidar": "^1.6.0",
+    "@types/fs-extra": "^5.0.0",
     "@types/glob": "^5.0.30",
     "@types/node": "^6.0.40",
     "@types/ws": "^0.0.39",
