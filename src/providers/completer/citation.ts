@@ -114,7 +114,7 @@ export class Citation {
         const items: CitationRecord[] = []
         const content = fs.readFileSync(bibPath, 'utf-8')
         const contentNoNewLine = content.replace(/[\r\n]/g, ' ')
-        const itemReg = /@(\w+){/g
+        const itemReg = /@(\w+)\s*{/g
         let result = itemReg.exec(contentNoNewLine)
         let prevResult: RegExpExecArray | null = null
         while (result || prevResult) {
