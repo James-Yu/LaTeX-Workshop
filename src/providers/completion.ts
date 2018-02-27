@@ -1,11 +1,12 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 
 import {Extension} from '../main'
 import {Citation} from './completer/citation'
 import {Command} from './completer/command'
 import {Environment} from './completer/environment'
 import {Reference} from './completer/reference'
+import {Package} from './completer/package'
 
 export class Completer implements vscode.CompletionItemProvider {
     extension: Extension
@@ -13,6 +14,7 @@ export class Completer implements vscode.CompletionItemProvider {
     command: Command
     environment: Environment
     reference: Reference
+    package: Package
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -20,30 +22,27 @@ export class Completer implements vscode.CompletionItemProvider {
         this.command = new Command(extension)
         this.environment = new Environment(extension)
         this.reference = new Reference(extension)
-        fs.readFile(`${this.extension.extensionRoot}/data/environments.json`, (err1, defaultEnvs) => {
-            if (err1) {
-                this.extension.logger.addLogMessage(`Error reading default environments: ${err1.message}`)
-                return
-            }
-            this.extension.logger.addLogMessage(`Default environments loaded`)
-            fs.readFile(`${this.extension.extensionRoot}/data/commands.json`, (err2, defaultCommands) => {
-                if (err2) {
-                    this.extension.logger.addLogMessage(`Error reading default commands: ${err2.message}`)
-                    return
-                }
-                this.extension.logger.addLogMessage(`Default commands loaded`)
-                fs.readFile(`${this.extension.extensionRoot}/data/unimathsymbols.json`, (err3, defaultSymbols) => {
-                    if (err2) {
-                        this.extension.logger.addLogMessage(`Error reading default unimathsymbols: ${err3.message}`)
-                        return
-                    }
-                    this.extension.logger.addLogMessage(`Default unimathsymbols loaded`)
-                    const env = JSON.parse(defaultEnvs.toString())
-                    this.command.initialize(JSON.parse(defaultCommands.toString()), JSON.parse(defaultSymbols.toString()), env)
-                    this.environment.initialize(env)
-                })
+        this.package = new Package(extension)
+        let defaultEnvs: string
+        let defaultCommands: string
+        let defaultSymbols: string
+        let defaultPackages: string
+        fs.readFile(`${this.extension.extensionRoot}/data/environments.json`)
+            .then(data => {defaultEnvs = data.toString()})
+            .then(() => fs.readFile(`${this.extension.extensionRoot}/data/commands.json`))
+            .then(data => {defaultCommands = data.toString()})
+            .then(() => fs.readFile(`${this.extension.extensionRoot}/data/unimathsymbols.json`))
+            .then(data => {defaultSymbols = data.toString()})
+            .then(() => fs.readFile(`${this.extension.extensionRoot}/data/packagenames.json`))
+            .then(data => {defaultPackages = data.toString()})
+            .then(() => {
+                const env = JSON.parse(defaultEnvs)
+                this.command.initialize(JSON.parse(defaultCommands), JSON.parse(defaultSymbols), env)
+                this.environment.initialize(env)
+                this.package.initialize(JSON.parse(defaultPackages))
+                this.extension.logger.addLogMessage(`Default data loaded.`)
             })
-        })
+            .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
@@ -68,7 +67,7 @@ export class Completer implements vscode.CompletionItemProvider {
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
-            for (const type of ['citation', 'reference', 'environment', 'command']) {
+            for (const type of ['citation', 'reference', 'environment', 'command', 'package']) {
                 const suggestions = this.completion(type, line)
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
@@ -117,6 +116,10 @@ export class Completer implements vscode.CompletionItemProvider {
             case 'command':
                 reg = /\\([a-zA-Z]*)$/
                 provider = this.command
+                break
+            case 'package':
+                reg = /(?:\\usepackage(?:\[[^\[\]]*\])*){([^}]*)$/
+                provider = this.package
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.
