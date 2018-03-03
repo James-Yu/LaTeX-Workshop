@@ -446,17 +446,35 @@ See https://github.com/adobe-type-tools/cmap-resources
           }
       }, true)
 
-      let hideToolbarTimeout = undefined
-      document.getElementById('outerContainer').onmousemove = (e) => {
-        if (e.clientY > 64) {
-          return
+      // F opens find bar, cause Ctrl-F is handled by vscode
+      window.addEventListener('keydown', function(evt) {
+        if(evt.keyCode == 70 && evt.target.nodeName != 'INPUT') { // ignore F typed in the search box
+          showToolbar(false)
+          PDFViewerApplication.findBar.open()
+          evt.preventDefault()
         }
-        if (hideToolbarTimeout) {
-          clearTimeout(hideToolbarTimeout)
+      })
+
+      let hideToolbarInterval = undefined
+      function showToolbar(animate) {
+        if (hideToolbarInterval) {
+          clearInterval(hideToolbarInterval)
         }
         var d = document.getElementsByClassName('toolbar')[0]
-        d.className = d.className.replace(' hide', '')
-        hideToolbarTimeout = setTimeout(() => {d.className += ' hide'}, 3000)
+        d.className = d.className.replace(' hide', '') + (animate ? '' : ' notransition')
+
+        hideToolbarInterval = setInterval(() => {
+          if(!PDFViewerApplication.findBar.opened) {
+            d.className = d.className.replace(' notransition', '') + ' hide'
+            clearInterval(hideToolbarInterval)
+          }
+        }, 3000)
+      }
+
+      document.getElementById('outerContainer').onmousemove = (e) => {
+        if (e.clientY <= 64) {
+          showToolbar(true)
+        }
       }
     </script>
   </body>
