@@ -1834,7 +1834,7 @@ var pdfjsWebLibs;
     FIND_WRAPPED: 2,
     FIND_PENDING: 3
    };
-   var FIND_SCROLL_OFFSET_TOP = -50;
+   var FIND_SCROLL_OFFSET_TOP = -100;
    var FIND_SCROLL_OFFSET_LEFT = -400;
    var CHARACTERS_TO_NORMALIZE = {
     '\u2018': '\'',
