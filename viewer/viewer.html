@@ -400,10 +400,13 @@ See https://github.com/adobe-type-tools/cmap-resources
                   setTimeout(() => indicator.className = 'hide', 10)
                   break
               case "refresh":
+                  // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
+                  // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
                   socket.send(JSON.stringify({type:"position",
                                               scale:PDFViewerApplication.pdfViewer.currentScaleValue,
                                               scrollTop:document.getElementById('viewerContainer').scrollTop,
                                               scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
+                  PDFViewerApplication.viewerPrefs['showPreviousViewOnLoad'] = false
                   PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`)
                   break
               case "position":
