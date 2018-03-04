@@ -447,7 +447,7 @@ export const _DEFAULT_COMMANDS_BAK: {[key: string]: AutocompleteEntry} = {
     // ------------------ TABLE COMMANDS ------------------ //
     'cline': {
         'command': 'cline',
-        'snippet': 'cline{${1:x}-{2:y}}'
+        'snippet': 'cline{${1:x}-${2:y}}'
     },
     'hline': {
         'command': 'hline'
