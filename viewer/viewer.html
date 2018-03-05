@@ -154,6 +154,10 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
                   <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
                 </button>
+                <!-- History back button, useful in the embedded viewer -->
+                <button class="toolbarButton findPrevious" title="Back" id="historyBack">
+                  <span>Back</span>
+                </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button id="viewFind" class="toolbarButton group hiddenSmallView" title="Find in Document" tabindex="12" data-l10n-id="findbar">
                    <span data-l10n-id="findbar_label">Find</span>
@@ -350,6 +354,14 @@ See https://github.com/adobe-type-tools/cmap-resources
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
     <script>
+      const embedded = window.parent !== window
+
+      // PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
+      // and if so it behaves more "discretely", eg it disables its history mechanism.
+      // We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
+      //
+      pdfjsWebLibs.pdfjsWebApp.PDFViewerApplication.isViewerEmbedded = false;
+
       let query = document.location.search.substring(1)
       let parts = query.split('&')
       let file
@@ -388,10 +400,13 @@ See https://github.com/adobe-type-tools/cmap-resources
                   setTimeout(() => indicator.className = 'hide', 10)
                   break
               case "refresh":
+                  // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
+                  // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
                   socket.send(JSON.stringify({type:"position",
                                               scale:PDFViewerApplication.pdfViewer.currentScaleValue,
                                               scrollTop:document.getElementById('viewerContainer').scrollTop,
                                               scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
+                  PDFViewerApplication.viewerPrefs['showPreviousViewOnLoad'] = false
                   PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`)
                   break
               case "position":
@@ -424,7 +439,7 @@ See https://github.com/adobe-type-tools/cmap-resources
       })
 
       // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
-      if (window.parent !== window) {
+      if (embedded) {
         document.addEventListener('click', (e) => {
             if (e.target.nodeName == 'A' && !e.target.href.startsWith(window.location.href)) { // is external link
               socket.send(JSON.stringify({type:"external_link", url:e.target.href}))
@@ -446,17 +461,51 @@ See https://github.com/adobe-type-tools/cmap-resources
           }
       }, true)
 
-      let hideToolbarTimeout = undefined
-      document.getElementById('outerContainer').onmousemove = (e) => {
-        if (e.clientY > 64) {
-          return
+      // back button (mostly useful for the embedded viewer)
+      document.getElementById("historyBack").addEventListener("click", function() {
+        history.back()
+      })
+
+      // keyboard bindings
+      window.addEventListener('keydown', function(evt) {
+        // F opens find bar, cause Ctrl-F is handled by vscode
+        if(evt.keyCode == 70 && evt.target.nodeName != 'INPUT') { // ignore F typed in the search box
+          showToolbar(false)
+          PDFViewerApplication.findBar.open()
+          evt.preventDefault()
         }
-        if (hideToolbarTimeout) {
-          clearTimeout(hideToolbarTimeout)
+
+        // Chrome's usual Alt-Left/Right (Command-Left/Right on OSX) for history
+        // Back/Forward don't work in the embedded viewer, so we simulate them.
+        if (embedded && (evt.altKey || evt.metaKey)) {
+          if (evt.keyCode == 37) {
+            history.back();
+          } else if(evt.keyCode == 39) {
+            history.forward();
+          }
+        }
+      })
+
+      let hideToolbarInterval = undefined
+      function showToolbar(animate) {
+        if (hideToolbarInterval) {
+          clearInterval(hideToolbarInterval)
         }
         var d = document.getElementsByClassName('toolbar')[0]
-        d.className = d.className.replace(' hide', '')
-        hideToolbarTimeout = setTimeout(() => {d.className += ' hide'}, 3000)
+        d.className = d.className.replace(' hide', '') + (animate ? '' : ' notransition')
+
+        hideToolbarInterval = setInterval(() => {
+          if(!PDFViewerApplication.findBar.opened) {
+            d.className = d.className.replace(' notransition', '') + ' hide'
+            clearInterval(hideToolbarInterval)
+          }
+        }, 3000)
+      }
+
+      document.getElementById('outerContainer').onmousemove = (e) => {
+        if (e.clientY <= 64) {
+          showToolbar(true)
+        }
       }
     </script>
   </body>
