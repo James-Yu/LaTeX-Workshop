@@ -12,28 +12,6 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>match</key>
-			<string>%</string>
-			<key>name</key>
-			<string>punctuation.definition.comment.tex</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>\^\^A</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.comment.tex</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>$\n?</string>
-			<key>name</key>
-			<string>comment.line.percentage.tex</string>
-		</dict>
-		<dict>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -59,17 +37,17 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?:\s*)(\\begin\{macrocode\})</string>
+			<string>^%    (\\begin\{macrocode\})</string>
 			<key>captures</key>
 			<dict>
-				<key>1</key>
+				<key>0</key>
 				<dict>
 					<key>name</key>
 					<string>keyword.other.macrocode.dtx</string>
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>(\\end\{macrocode\})(?:\s*\n)?</string>
+			<string>^%    (\\end\{macrocode\})(?:\s*\n)?</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -77,6 +55,28 @@
 					<string>$base</string>
 				</dict>
 			</array>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>%</string>
+			<key>name</key>
+			<string>punctuation.definition.comment.tex</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>\^\^A</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.comment.tex</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>$\n?</string>
+			<key>name</key>
+			<string>comment.line.percentage.tex</string>
 		</dict>
 		<dict>
 			<key>include</key>
