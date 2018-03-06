@@ -58,6 +58,27 @@
 			<string>meta.function.verb.latex</string>
 		</dict>
 		<dict>
+			<key>begin</key>
+			<string>(?:\s*)(\\begin\{macrocode\})</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.other.macrocode.dtx</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\\end\{macrocode\})(?:\s*\n)?</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
 			<key>include</key>
 			<string>text.tex</string>
 		</dict>
