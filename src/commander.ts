@@ -151,7 +151,6 @@ export class Commander {
 
     actions() {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
-        this.extension.logger.displayFullStatus()
         if (!this.commandTitles) {
             const commands = this.extension.packageInfo.contributes.commands.filter(command => {
                 if (command.command === 'latex-workshop.actions') {

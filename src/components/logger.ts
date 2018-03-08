@@ -7,7 +7,6 @@ export class Logger {
     logPanel: vscode.OutputChannel
     compilerLogPanel: vscode.OutputChannel
     status: vscode.StatusBarItem
-    statusTimeout: NodeJS.Timer
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -18,7 +17,7 @@ export class Logger {
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
         this.status.command = 'latex-workshop.actions'
         this.status.show()
-        this.displayStatus('repo', 'statusBar.foreground', 'LaTeX Workshop')
+        this.displayStatus('check', 'statusBar.foreground')
     }
 
     addLogMessage(message: string) {
@@ -36,27 +35,24 @@ export class Logger {
         this.compilerLogPanel.clear()
     }
 
-    displayStatus(icon: string, color: string, message: string, timeout: number = 5000) {
-        if (this.statusTimeout) {
-            clearTimeout(this.statusTimeout)
-        }
-        this.status.text = `$(${icon}) ${message}`
+    displayStatus(icon: string, color: string, message: string | undefined = undefined, severity: string = 'info') {
+        this.status.text = `$(${icon})`
         this.status.tooltip = message
         this.status.color = new vscode.ThemeColor(color)
-        if (timeout > 0) {
-            this.statusTimeout = setTimeout(() => this.status.text = `$(${icon})`, timeout)
+        if (message === undefined) {
+            return
         }
-    }
-
-    displayFullStatus(timeout: number = 5000) {
-        if (this.statusTimeout) {
-            clearTimeout(this.statusTimeout)
-        }
-        const icon = this.status.text.split(' ')[0]
-        const message = this.status.tooltip
-        this.status.text = `${icon} ${message}`
-        if (timeout > 0) {
-            this.statusTimeout = setTimeout(() => this.status.text = `${icon}`, timeout)
+        switch (severity) {
+            case 'info':
+                vscode.window.showInformationMessage(message)
+                break
+            case 'warning':
+                vscode.window.showWarningMessage(message)
+                break
+            case 'error':
+            default:
+                vscode.window.showErrorMessage(message)
+                break
         }
     }
 

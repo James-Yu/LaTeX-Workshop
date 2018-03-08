@@ -76,14 +76,11 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
             return
         }
         vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${extension.packageInfo.version}.`,
-            'Change log', 'Star the project', 'Write review', 'Disable this message')
+            'Change log', 'Star the project')
         .then(option => {
             switch (option) {
                 case 'Change log':
                     opn('https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md')
-                    break
-                case 'Write review':
-                    opn('https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop#review-details')
                     break
                 case 'Star the project':
                     opn('https://github.com/James-Yu/LaTeX-Workshop')

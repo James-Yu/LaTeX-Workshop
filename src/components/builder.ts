@@ -24,8 +24,6 @@ export class Builder {
         if (this.currentProcess) {
             this.currentProcess.kill()
             this.extension.logger.addLogMessage('Kill previous process')
-            // Dirty wait for process killed
-            this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', `Killing previous process.`, 0)
             this.nextBuildRootFile = rootFile
         } else {
             this.nextBuildRootFile = undefined
@@ -43,6 +41,7 @@ export class Builder {
 
     build(rootFile: string) {
         this.disableCleanAndRetry = false
+        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.preprocess(rootFile)
         if (this.nextBuildRootFile === undefined) {
             this.buildInitiater(rootFile)
@@ -58,7 +57,6 @@ export class Builder {
 
         this.extension.logger.clearCompilerMessage()
         this.extension.logger.addLogMessage(`Toolchain step ${index + 1}: ${toolchain[index].command}, ${toolchain[index].args}`)
-        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', `LaTeX build toolchain step ${index + 1}.`, 0)
         this.currentProcess = cp.spawn(toolchain[index].command, toolchain[index].args, {cwd: path.dirname(rootFile)})
 
         let stdout = ''
@@ -75,7 +73,7 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
-            this.extension.logger.displayStatus('x', 'errorForeground', `Toolchain terminated with fatal error.`)
+            this.extension.logger.displayStatus('sync~spin', 'errorForeground', `LaTeX toolchain terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
         })
 
@@ -83,15 +81,17 @@ export class Builder {
             this.extension.parser.parse(stdout)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Toolchain returns with error: ${exitCode}/${signal}.`)
-                this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error.`)
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled') && !configuration.get('latex.clean.enabled')) {
+                    this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error. Retry building the project.`, 'warning')
                     this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
                     this.disableCleanAndRetry = true
                     this.extension.commander.clean().then(() => {
                         this.buildStep(rootFile, toolchain, 0)
                     })
+                } else {
+                    this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error.`, 'error')
                 }
             } else {
                 this.buildStep(rootFile, toolchain, index + 1)

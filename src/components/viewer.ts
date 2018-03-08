@@ -78,7 +78,6 @@ export class Viewer {
             })
             this.extension.logger.addLogMessage(`Something bad happened when opening PDF viewer for ${pdfFile}: ${e}`)
         }
-        this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF viewer for ${path.basename(pdfFile)}.`)
     }
 
     openTab(sourceFile: string) {
@@ -99,7 +98,6 @@ export class Viewer {
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
         vscode.commands.executeCommand('vscode.previewHtml', uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
-        this.extension.logger.displayStatus('repo', 'statusBar.foreground', `Open PDF tab for ${path.basename(pdfFile)}.`)
     }
 
     handler(ws: WebSocket, msg: string) {
