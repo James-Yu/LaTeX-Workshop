@@ -36,6 +36,12 @@
 			<string>meta.function.verb.latex</string>
 		</dict>
 		<dict>
+			<key>match</key>
+			<string>^%    \\end\{macrocode\}</string>
+			<key>name</key>
+			<string>support.class.dtx</string>
+		</dict>
+		<dict>
 			<key>begin</key>
 			<string>^%    (\\begin\{macrocode\})</string>
 			<key>captures</key>
@@ -50,6 +56,16 @@
 			<string>^%    (\\end\{macrocode\})(?:\s*\n)?</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>match</key>
+					<string>%.*$\n</string>
+					<key>name</key>
+					<string>comment.line.percentage.tex</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\^\^A.*\n$</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>$base</string>
