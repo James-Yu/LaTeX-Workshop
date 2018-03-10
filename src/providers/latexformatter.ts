@@ -49,7 +49,7 @@ export class LaTexFormatter {
             const configuration = vscode.workspace.getConfiguration('latex-workshop.latexindent')
             this.formatter = configuration.get<string>('path') || 'latexindent'
             this.formatterArgs = configuration.get<string[]>('args')
-                || [ "-c", "%DIR%", "%TMPFILE%", "-y=\"defaultIndent: '%INDENT%'\"" ]
+                || [ '-c', '%DIR%', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"' ]
             const pathMeta = configuration.inspect('path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
