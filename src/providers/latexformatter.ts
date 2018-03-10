@@ -49,7 +49,7 @@ export class LaTexFormatter {
             const configuration = vscode.workspace.getConfiguration('latex-workshop.latexindent')
             this.formatter = configuration.get<string>('path') || 'latexindent'
             this.formatterArgs = configuration.get<string[]>('args')
-                || [ '-c', '%DIR%', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"' ]
+                || [ '-c', '%DIR%/', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"' ]
             const pathMeta = configuration.inspect('path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
@@ -122,7 +122,7 @@ export class LaTexFormatter {
                 .replace('%DOCFILE%', path.basename(document.fileName, '.tex').split(path.sep).join('/'))
                 .replace('%DIR%', path.dirname(document.fileName).split(path.sep).join('/'))
                 // latexformatter.ts specific tokens
-                .replace('%TMPFILE%', temporaryFile)
+                .replace('%TMPFILE%', temporaryFile.split(path.sep).join('/'))
                 .replace('%INDENT%', indent))
 
             const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', shell: true })
