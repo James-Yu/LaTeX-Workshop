@@ -91,18 +91,8 @@
 			<string>invalid</string>
 		</dict>
 		<dict>
-			<key>begin</key>
-			<string>\^\^A</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.comment.tex</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>$\n?</string>
+			<key>match</key>
+			<string>\^\^A.*$\n?</string>
 			<key>name</key>
 			<string>comment.line.percentage.tex</string>
 		</dict>
@@ -177,16 +167,10 @@
 	<dict>
 		<key>guards</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.filename.latex</string>
-				</dict>
-			</dict>
 			<key>match</key>
 			<string>^%(\<[^\>]*\>)</string>
+			<key>name</key>
+			<string>entity.name.function.filename.latex</string>
 		</dict>
 		<key>macrocode-comments</key>
 		<dict>
@@ -194,13 +178,7 @@
 			<array>
 				<dict>
 					<key>match</key>
-					<string>^\s*%.*$\n?</string>
-					<key>name</key>
-					<string>comment.line.percentage.tex</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>%.*$\n?</string>
+					<string>(^\s*)?%.*$\n?</string>
 					<key>name</key>
 					<string>comment.line.percentage.tex</string>
 				</dict>
@@ -236,6 +214,10 @@
 			<string>meta.group.braces.tex</string>
 			<key>patterns</key>
 			<array>
+				<dict>
+					<key>include</key>
+					<string>#guards</string>
+				</dict>
 				<dict>
 					<key>include</key>
 					<string>#macrocode-comments</string>
