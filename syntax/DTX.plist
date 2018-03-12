@@ -53,7 +53,7 @@
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>^%    (\\end\{macrocode\})(?:\s*\n)?</string>
+			<string>^%    (\\end\{macrocode\})</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -61,18 +61,16 @@
 					<string>#guards</string>
 				</dict>
 				<dict>
-					<key>match</key>
-					<string>%.*$\n</string>
-					<key>name</key>
-					<string>comment.line.percentage.tex</string>
-				</dict>
-				<dict>
-					<key>match</key>
-					<string>\^\^A.*\n$</string>
+					<key>include</key>
+					<string>#macrocode-comments</string>
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>$base</string>
+					<string>#macrocode-braces</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>text.tex</string>
 				</dict>
 			</array>
 		</dict>
@@ -82,9 +80,15 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>%</string>
+			<string>^%</string>
 			<key>name</key>
 			<string>punctuation.definition.comment.tex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>([^%]+)%.*$\n?</string>
+			<key>name</key>
+			<string>invalid</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -184,6 +188,69 @@
 			<key>match</key>
 			<string>^%(\<[^\>]*\>)</string>
 		</dict>
+		<key>macrocode-comments</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>^\s*%.*$\n?</string>
+					<key>name</key>
+					<string>comment.line.percentage.tex</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>%.*$\n?</string>
+					<key>name</key>
+					<string>comment.line.percentage.tex</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\^\^A.*\n$</string>
+				</dict>
+			</array>
+		</dict>
+		<key>macrocode-braces</key>
+		<dict>
+			<key>begin</key>
+			<string>\{</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.group.begin.tex</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\})|(?=^%    (\\end\{macrocode\}))</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.section.group.end.tex</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.group.braces.tex</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#macrocode-comments</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#macrocode-braces</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
+				</dict>
+			</array>
+		</dict>
+
 	</dict>
 	<key>scopeName</key>
 	<string>text.tex.dtx</string>
