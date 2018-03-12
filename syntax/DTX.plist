@@ -57,6 +57,10 @@
 			<key>patterns</key>
 			<array>
 				<dict>
+					<key>include</key>
+					<string>#guards</string>
+				</dict>
+				<dict>
 					<key>match</key>
 					<string>%.*$\n</string>
 					<key>name</key>
@@ -73,16 +77,8 @@
 			</array>
 		</dict>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.function.filename.latex</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>^%(\<[^\>]*\>)</string>
+			<key>include</key>
+			<string>#guards</string>
 		</dict>
 		<dict>
 			<key>match</key>
@@ -173,6 +169,22 @@
 			<string>text.tex.latex</string>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>guards</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>entity.name.function.filename.latex</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>^%(\<[^\>]*\>)</string>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>text.tex.dtx</string>
 	<key>uuid</key>
