@@ -70,21 +70,21 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>^%</string>
+			<string>(^[ \t]*)%?%</string>
 			<key>name</key>
 			<string>punctuation.definition.comment.tex</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>([^%]+)%.*$\n?</string>
-			<key>name</key>
-			<string>invalid</string>
 		</dict>
 		<dict>
 			<key>match</key>
 			<string>\^\^A.*$\n?</string>
 			<key>name</key>
 			<string>comment.line.percentage.tex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>(?<=[^%\\])%</string>
+			<key>name</key>
+			<string>invalid</string>
 		</dict>
 		<dict>
 			<key>begin</key>
