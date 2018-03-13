@@ -29,6 +29,7 @@ export class LaTexFormatter {
     private machineOs: string
     private currentOs: OperatingSystem
     private formatter: string
+    private formatterArgs: string[]
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -47,6 +48,8 @@ export class LaTexFormatter {
 
             const configuration = vscode.workspace.getConfiguration('latex-workshop.latexindent')
             this.formatter = configuration.get<string>('path') || 'latexindent'
+            this.formatterArgs = configuration.get<string[]>('args')
+                || [ '-c', '%DIR%/', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"' ]
             const pathMeta = configuration.inspect('path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
@@ -112,14 +115,36 @@ export class LaTexFormatter {
             const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
             fs.writeFileSync(temporaryFile, textToFormat)
 
-            cp.exec(this.formatter + ' -c "' + documentDirectory + '" "' + temporaryFile + '"'
-             + ' -y="defaultIndent: \'' + indent + '\'"', (err, stdout, _stderr) => {
-                if (err) {
-                    this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
+            // generate command line arguments
+            const args = this.formatterArgs.map(arg => arg
+                // taken from ../components/builder.ts
+                .replace('%DOC%', document.fileName.replace(/\.tex$/, '').split(path.sep).join('/'))
+                .replace('%DOCFILE%', path.basename(document.fileName, '.tex').split(path.sep).join('/'))
+                .replace('%DIR%', path.dirname(document.fileName).split(path.sep).join('/'))
+                // latexformatter.ts specific tokens
+                .replace('%TMPFILE%', temporaryFile.split(path.sep).join('/'))
+                .replace('%INDENT%', indent))
+
+            const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', shell: true })
+            // handle stdout/stderr
+            const stdoutBuffer = [] as string[]
+            const stderrBuffer = [] as string[]
+            worker.stdout.on('data', chunk => stdoutBuffer.push(chunk.toString()))
+            worker.stderr.on('data', chunk => stderrBuffer.push(chunk.toString()))
+            worker.on('error', err => {
+                vscode.window.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
+                this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
+                resolve()
+            })
+            worker.on('close', code => {
+                if (code !== 0) {
                     vscode.window.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                    this.extension.logger.addLogMessage(`Formatting failed with exit code ${code}`)
+                    this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
                     return resolve()
                 }
-
+                const stdout = stdoutBuffer.join('')
                 if (stdout !== '') {
                     const edit = [vscode.TextEdit.replace(range ? range : fullRange(document), stdout)]
                     try {
