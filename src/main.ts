@@ -14,6 +14,7 @@ import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
+import {TeXMagician} from './components/texmagician'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -230,6 +231,7 @@ export class Extension {
     counter: Counter
     codeActions: CodeActions
     nodeProvider: SectionNodeProvider
+    texMagician: TeXMagician
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -247,6 +249,7 @@ export class Extension {
         this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
         this.nodeProvider = new SectionNodeProvider(this)
+        this.texMagician = new TeXMagician(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
