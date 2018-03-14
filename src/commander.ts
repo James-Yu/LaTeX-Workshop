@@ -132,7 +132,6 @@ export class Commander {
         this.extension.texMagician.addroot()
     }
 
-
     citation() {
         this.extension.logger.addLogMessage(`CITATION command invoked.`)
         this.extension.completer.citation.browser()
