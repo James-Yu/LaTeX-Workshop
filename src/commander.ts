@@ -126,6 +126,9 @@ export class Commander {
 
     addroot() {
         this.extension.logger.addLogMessage(`ADDROOT command invoked.`)
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+            return
+        }
         this.extension.texMagician.addroot()
     }
 
