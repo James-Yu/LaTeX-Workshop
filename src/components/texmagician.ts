@@ -9,11 +9,11 @@ export class TeXMagician {
         this.extension = extension
     }
 
-    getFileName(file: string): string {
+    getFileName(file: string) : string {
         return file.replace(/\\/g, '/').match(/([^\/]+$)/)[0]
     }
 
-    getRelativePath(file: string, currentFile: string): string {
+    getRelativePath(file: string, currentFile: string) : string {
         // replace '\' in windows paths with '/'
         file = file.replace(/\\/g, '/')
         // get path of current folder, including to the last '/'
@@ -31,7 +31,7 @@ export class TeXMagician {
         return ('./' + currentFolder + file).replace(/^\.\/\.\./, '..')
     }
 
-    addroot() {
+    addTexRoot() {
         // taken from here: https://github.com/DonJayamanne/listFilesVSCode/blob/master/src/extension.ts (MIT licensed, should be fine)
         vscode.workspace.findFiles('**/*.{tex}').then(files => {
             const displayFiles = files.map(file => {

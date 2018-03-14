@@ -124,12 +124,12 @@ export class Commander {
         return this.extension.cleaner.clean()
     }
 
-    addroot() {
-        this.extension.logger.addLogMessage(`ADDROOT command invoked.`)
+    addTexRoot() {
+        this.extension.logger.addLogMessage(`ADDTEXROOT command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
-        this.extension.texMagician.addroot()
+        this.extension.texMagician.addTexRoot()
     }
 
     citation() {
