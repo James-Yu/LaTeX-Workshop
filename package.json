@@ -27,6 +27,7 @@
   ],
   "activationEvents": [
     "onLanguage:latex",
+    "onLanguage:dtx",
     "onCommand:latex-workshop.build",
     "onCommand:latex-workshop.view",
     "onCommand:latex-workshop.tab",
@@ -55,6 +56,18 @@
           ".cbx"
         ],
         "configuration": "./syntax/syntax.json"
+      },
+      {
+        "id": "dtx",
+        "aliases": [
+          "DTX",
+          "dtx"
+        ],
+        "extensions": [
+          ".dtx",
+          ".ltx"
+        ],
+        "configuration": "./syntax/syntax-dtx.json"
       },
       {
         "id": "latex",
@@ -123,6 +136,11 @@
         "language": "tex",
         "scopeName": "text.tex",
         "path": "./syntax/TeX.plist"
+      },
+      {
+        "language": "dtx",
+        "scopeName": "text.tex.dtx",
+        "path": "./syntax/DTX.plist"
       },
       {
         "language": "latex",
