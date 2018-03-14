@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
-import {EOL} from 'os'
-import {Extension} from '../main'
+import { EOL } from 'os'
+import { Extension } from '../main'
 
 export class TeXMagician {
     extension: Extension
@@ -9,18 +9,18 @@ export class TeXMagician {
         this.extension = extension
     }
 
-    getFileName(file: string) : string {
+    getFileName(file: string): string {
         return file.replace(/\\/g, '/').match(/([^\/]+$)/)[0]
     }
 
-    getRelativePath(file: string, currentFile: string) : string {
+    getRelativePath(file: string, currentFile: string): string {
         // replace '\' in windows paths with '/'
         file = file.replace(/\\/g, '/')
         // get path of current folder, including to the last '/'
         let currentFolder = currentFile.replace(/\\/g, '/').replace(/[^\/]+$/gi, '')
         // find index up to which paths match
         let i = 0
-        while ( file.charAt(i) === currentFolder.charAt(i)) {
+        while (file.charAt(i) === currentFolder.charAt(i)) {
             i++
         }
         // select nonmatching substring
@@ -28,7 +28,7 @@ export class TeXMagician {
         currentFolder = currentFolder.substring(i)
         // replace each '/foldername/' in path with '/../'
         currentFolder = currentFolder.replace(/[^/]+/g, '..')
-        return './' + currentFolder + file
+        return ('./' + currentFolder + file).replace(/^\.\/\.\./, '..')
     }
 
     addroot() {
@@ -39,15 +39,22 @@ export class TeXMagician {
             })
             vscode.window.showQuickPick(displayFiles).then(val => {
                 const editor = vscode.window.activeTextEditor
-                if (val != null && editor != null) {
-                    const relativePath = this.getRelativePath(val.filePath, editor.document.fileName)
-                    const edits = [vscode.TextEdit.insert(new vscode.Position(0, 0), `% !TeX root = ${relativePath}${EOL}`)]
-                    // Insert the text
-                    const uri = editor.document.uri
-                    const edit = new vscode.WorkspaceEdit()
-                    edit.set(uri, edits)
-                    vscode.workspace.applyEdit(edit)
+                if (!(val && editor)) {
+                    return
                 }
+                const relativePath = this.getRelativePath(val.filePath, editor.document.fileName)
+                const magicComment = `% !TeX root = ${relativePath}`
+                const line0 = editor.document.lineAt(0).text
+                const edits = [(line0.match(/^\s*%\s*!TeX root/gmi)) ?
+                    vscode.TextEdit.replace(new vscode.Range(0, 0, 0, line0.length), magicComment)
+                :
+                    vscode.TextEdit.insert(new vscode.Position(0, 0), magicComment + EOL)
+                ]
+                // Insert the text
+                const uri = editor.document.uri
+                const edit = new vscode.WorkspaceEdit()
+                edit.set(uri, edits)
+                vscode.workspace.applyEdit(edit)
             })
         })
     }
