@@ -32,9 +32,6 @@ export class TeXMagician {
     }
 
     addroot() {
-        if (vscode.window.activeTextEditor === null) {
-            console.log('File must be opened')
-        }
         // taken from here: https://github.com/DonJayamanne/listFilesVSCode/blob/master/src/extension.ts (MIT licensed, should be fine)
         vscode.workspace.findFiles('**/*.{tex}').then(files => {
             const displayFiles = files.map(file => {
@@ -54,6 +51,4 @@ export class TeXMagician {
             })
         })
     }
-
-
 }
