@@ -7,7 +7,7 @@
 		<string>tex</string>
 	</array>
 	<key>firstLineMatch</key>
-	<string>^\\documentclass(?!.*\{beamer\})</string>
+	<string>^\\documentclass(\[.*\])?\{.*\}</string>
 	<key>keyEquivalent</key>
 	<string>^~L</string>
 	<key>name</key>
@@ -133,6 +133,7 @@
 					  | (?:sub)?paragraph
 					  | chapter|part|addpart
 					  | addchap|addsec|minisec
+					  | frametitle									# only for Beamer
 					)
 					(?:\*)?											# Optional Unnumbered
 				)
@@ -917,6 +918,50 @@
 				</dict>
 			</array>
 		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?:\s*)((\\)begin)(\{)(frame)(\})</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>((\\)end)(\{)(frame)(\})</string>
+			<key>name</key>
+			<string>meta.function.environment.frame.latex</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>$base</string>
+				</dict>
+			</array>
+		</dict>
+
 		<dict>
 			<key>begin</key>
 			<string>(?:\s*)((\\)begin)(\{)(\w+[*]?)(\})</string>
