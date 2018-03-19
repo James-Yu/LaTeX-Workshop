@@ -14,6 +14,7 @@ import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
+import {TeXMagician} from './components/texmagician'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -107,6 +108,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
     vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
+    vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot())
     vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount())
     vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.compilerlog())
     vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
@@ -229,6 +231,7 @@ export class Extension {
     counter: Counter
     codeActions: CodeActions
     nodeProvider: SectionNodeProvider
+    texMagician: TeXMagician
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -246,6 +249,7 @@ export class Extension {
         this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
         this.nodeProvider = new SectionNodeProvider(this)
+        this.texMagician = new TeXMagician(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
