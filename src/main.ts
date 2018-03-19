@@ -101,6 +101,7 @@ export async function activate(context: vscode.ExtensionContext) {
     global['latex'] = extension
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
+    vscode.commands.registerCommand('latex-workshop.recipes', () => extension.commander.recipes())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.pdf', (uri: vscode.Uri | undefined) => extension.commander.pdf(uri))
