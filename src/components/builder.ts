@@ -120,10 +120,10 @@ export class Builder {
         }
     }
 
+    static readonly RECIPE_KEY_IMPORT: string = 'Invoke latex.toolchain'  // special key; it would import toolchain from 'latex-workship.latex.toolchain'
+
     getRecipeKeys() : string[] {
-        const result = [
-            'latex-workshop' // special key; it would import toolchain from 'latex-workship.latex.toolchain'
-        ]
+        const result = [ Builder.RECIPE_KEY_IMPORT ]
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const recipes = configuration.get('latex.recipes')
         if (typeof recipes !== 'undefined') {
@@ -132,38 +132,53 @@ export class Builder {
         return result
     }
 
-    resolveRecipe(recipeKey: string) : ToolchainCommand[] | undefined {
-        const result = [] as ToolchainCommand[]
+    // tslint:disable-next-line:variable-name
+    private resolveRecipe(recipeKey: string, /* internal variable */ __recursionMap: string[] = []) : ToolchainCommand[] | undefined {
+        // detect recursion
+        if (__recursionMap.indexOf(recipeKey) !== -1) {
+            this.extension.logger.addLogMessage(`Recursion detected for recipie: ${__recursionMap.join('->')}`)
+            return undefined
+        }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const recipes = (configuration.get('latex.recipes') || {}) as RecipeCollection
+        // recipe key exists
         if (recipeKey in recipes) {
+            const result = [] as ToolchainCommand[]
             for (const item of recipes[recipeKey]) {
                 if (item.do) {
-                    const refs = this.resolveRecipe(item.do)
+                    __recursionMap.push(recipeKey)
+                    const refs = this.resolveRecipe(item.do, __recursionMap)
                     if (typeof refs === 'undefined') {
                         return undefined
                     }
                     result.push(...refs)
+                    __recursionMap.pop()
                 } else {
                     result.push(item)
                 }
             }
-        } else if (recipeKey === 'latex.toolchain') {
-            return JSON.parse(JSON.stringify(configuration.get('latex.toolchain')))
-        } else {
-            return undefined
+            return result
         }
-        return JSON.parse(JSON.stringify(result))
+        // import from latex-workshop.latex.toolchain (for backward compatibility)
+        if (recipeKey === Builder.RECIPE_KEY_IMPORT) {
+            return configuration.get('latex.toolchain') || [] as ToolchainCommand[]
+        }
+        // invalid key
+        this.extension.logger.addLogMessage(`Undefined recipe key: ${recipeKey}`)
+        return undefined
     }
 
     createToolchain(rootFile: string, recipeKey: string | undefined) : ToolchainCommand[] | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const commands = this.resolveRecipe(typeof recipeKey === 'undefined' ?
-            (configuration.get('latex.defaultRecipeKey') || 'latex.toolchain') : recipeKey)
-        if (typeof commands === 'undefined') {
-            vscode.window.showErrorMessage('Failed to resolve build recipe.')
+        // get array of commands
+        const currentToolchain = this.resolveRecipe(typeof recipeKey === 'undefined' ?
+            (configuration.get('latex.defaultRecipeKey') || Builder.RECIPE_KEY_IMPORT) : recipeKey)
+        if (typeof currentToolchain === 'undefined') {
+            vscode.window.showErrorMessage(`Failed to resolve build recipe: ${recipeKey}`)
             return undefined
         }
+        // Modify a copy, instead of itself.
+        const commands = JSON.parse(JSON.stringify(currentToolchain)) as ToolchainCommand[]
         const magic = this.findProgramMagic(rootFile)
         for (const command of commands) {
             if (!('command' in command)) {
