@@ -30,21 +30,27 @@ export class Builder {
         }
     }
 
-    buildInitiater(rootFile: string) {
-        const toolchain = this.createToolchain(rootFile)
-        if (toolchain === undefined) {
-            this.extension.logger.addLogMessage('Invalid toolchain.')
-            return
-        }
-        this.buildStep(rootFile, toolchain, 0)
-    }
+    //buildInitiater(rootFile: string) {
+    //    const toolchain = this.createToolchain(rootFile)
+    //    if (toolchain === undefined) {
+    //        this.extension.logger.addLogMessage('Invalid toolchain.')
+    //        return
+    //    }
+    //    this.buildStep(rootFile, toolchain, 0)
+    //}
 
-    build(rootFile: string) {
+    build(rootFile: string, recipeKey: string | undefined = undefined) {
         this.disableCleanAndRetry = false
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.preprocess(rootFile)
         if (this.nextBuildRootFile === undefined) {
-            this.buildInitiater(rootFile)
+            //this.buildInitiater(rootFile)
+            const toolchain = this.createToolchain(rootFile, recipeKey)
+            if (toolchain === undefined) {
+                this.extension.logger.addLogMessage('Invalid toolchain.')
+                return
+            }
+            this.buildStep(rootFile, toolchain, 0)
         }
     }
 
@@ -114,10 +120,50 @@ export class Builder {
         }
     }
 
-    createToolchain(rootFile: string) : ToolchainCommand[] | undefined  {
+    getRecipeKeys() : string[] {
+        const result = [
+            'latex-workshop' // special key; it would import toolchain from 'latex-workship.latex.toolchain'
+        ]
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        // Modify a copy, instead of itself.
-        const commands = JSON.parse(JSON.stringify(configuration.get('latex.toolchain'))) as ToolchainCommand[]
+        const recipes = configuration.get('latex.recipes')
+        if (typeof recipes !== 'undefined') {
+            result.push(...Object.keys(recipes))
+        }
+        return result
+    }
+
+    resolveRecipe(recipeKey: string) : ToolchainCommand[] | undefined {
+        const result = [] as ToolchainCommand[]
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const recipes = (configuration.get('latex.recipes') || {}) as RecipeCollection
+        if (recipeKey in recipes) {
+            for (const item of recipes[recipeKey]) {
+                if (item.do) {
+                    const refs = this.resolveRecipe(item.do)
+                    if (typeof refs === 'undefined') {
+                        return undefined
+                    }
+                    result.push(...refs)
+                } else {
+                    result.push(item)
+                }
+            }
+        } else if (recipeKey === 'latex.toolchain') {
+            return JSON.parse(JSON.stringify(configuration.get('latex.toolchain')))
+        } else {
+            return undefined
+        }
+        return JSON.parse(JSON.stringify(result))
+    }
+
+    createToolchain(rootFile: string, recipeKey: string | undefined) : ToolchainCommand[] | undefined {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const commands = this.resolveRecipe(typeof recipeKey === 'undefined' ?
+            (configuration.get('latex.defaultRecipeKey') || 'latex.toolchain') : recipeKey)
+        if (typeof commands === 'undefined') {
+            vscode.window.showErrorMessage('Failed to resolve build recipe.')
+            return undefined
+        }
         const magic = this.findProgramMagic(rootFile)
         for (const command of commands) {
             if (!('command' in command)) {
@@ -163,5 +209,11 @@ export class Builder {
 
 interface ToolchainCommand {
     command: string,
-    args?: string[]
+    args?: string[],
+    // recpie reference
+    do?: string
+}
+
+interface RecipeCollection {
+    [key: string]: ToolchainCommand[]
 }

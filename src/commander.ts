@@ -11,7 +11,7 @@ export class Commander {
         this.extension = extension
     }
 
-    build(skipSelection: boolean = false) {
+    build(skipSelection: boolean = false, recipeKey: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
@@ -24,7 +24,7 @@ export class Commander {
         }
         if (skipSelection) {
             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            this.extension.builder.build(rootFile)
+            this.extension.builder.build(rootFile, recipeKey)
         } else {
             const subFileRoot = this.extension.manager.findSubFiles()
             if (subFileRoot) {
@@ -44,11 +44,11 @@ export class Commander {
                     switch (selected.label) {
                         case 'Default root file':
                             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            this.extension.builder.build(rootFile)
+                            this.extension.builder.build(rootFile, recipeKey)
                             break
                         case 'Subfiles package root file':
                             this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
-                            this.extension.builder.build(subFileRoot)
+                            this.extension.builder.build(subFileRoot, recipeKey)
                             break
                         default:
                             break
@@ -56,9 +56,14 @@ export class Commander {
                 })
             } else {
                 this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                this.extension.builder.build(rootFile)
+                this.extension.builder.build(rootFile, recipeKey)
             }
         }
+    }
+
+    recipes() {
+        vscode.window.showQuickPick(this.extension.builder.getRecipeKeys().filter(k => !k.startsWith('@')))
+            .then(selected => selected && this.build(false, selected))
     }
 
     view() {
