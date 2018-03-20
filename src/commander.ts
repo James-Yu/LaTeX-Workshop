@@ -97,6 +97,9 @@ export class Commander {
             case 'tab':
                 this.extension.viewer.openTab(rootFile)
                 break
+            case 'external':
+                this.extension.viewer.openExternal(rootFile)
+                break
         }
     }
 

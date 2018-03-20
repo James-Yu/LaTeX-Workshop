@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as WebSocket from 'ws'
+import * as cp from 'child_process'
 
 import {Extension} from '../main'
 import {SyncTeXRecord} from './locator'
@@ -97,6 +98,17 @@ export class Viewer {
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
         vscode.commands.executeCommand('vscode.previewHtml', uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
+    }
+
+    openExternal(sourceFile: string) {
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.command'))) as ExternalCommand
+        if (command.args) {
+            command.args = command.args.map(arg => arg.replace('%PDF%', pdfFile))
+        }
+        cp.spawn(command.command, command.args, {cwd: path.dirname(sourceFile)})
+        this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 
     handler(ws: WebSocket, msg: string) {
@@ -201,4 +213,9 @@ export class PDFProvider implements vscode.TextDocumentContentProvider {
             </body></html>
         `
     }
+}
+
+interface ExternalCommand {
+    command: string,
+    args?: string[]
 }

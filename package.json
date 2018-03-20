@@ -320,9 +320,20 @@
           "enum": [
             "none",
             "browser",
-            "tab"
+            "tab",
+            "external"
           ],
           "description": "The default PDF viewer."
+        },
+        "latex-workshop.view.pdf.external.command": {
+          "type": "object",
+          "default":{
+            "command": "SumatraPDF.exe",
+            "args": [
+              "%PDF%"
+            ]
+          },
+          "description": "The command to execute when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
         },
         "latex-workshop.view.pdf.zoom": {
           "type": "string",
