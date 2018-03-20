@@ -87,7 +87,7 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
                     opn('https://github.com/James-Yu/LaTeX-Workshop')
                     break
                 case 'Disable this message':
-                    configuration.update('debug.showUpdateMessage', false)
+                    configuration.update('debug.showUpdateMessage', false, true)
                     break
                 default:
                     break
@@ -102,6 +102,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
+    vscode.commands.registerCommand('latex-workshop.browser', () => extension.commander.browser())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.pdf', (uri: vscode.Uri | undefined) => extension.commander.pdf(uri))
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())

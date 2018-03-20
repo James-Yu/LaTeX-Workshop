@@ -68,23 +68,50 @@ export class Commander {
             return
         }
         const rootFile = this.extension.manager.findRoot()
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
+            return
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        switch (configuration.get('view.pdf.viewer')) {
+            case 'none':
+            default:
+                vscode.window.showInformationMessage(`View PDF in:`, 'Browser tab', 'New VS Code tab')
+                .then(option => {
+                    switch (option) {
+                        case 'Browser tab':
+                            configuration.update('view.pdf.viewer', 'browser', true)
+                            this.extension.viewer.openViewer(rootFile)
+                            break
+                        case 'New VS Code tab':
+                            configuration.update('view.pdf.viewer', 'tab', true)
+                            this.extension.viewer.openTab(rootFile)
+                            break
+                        default:
+                            break
+                    }
+                })
+                break
+            case 'browser':
+                this.extension.viewer.openViewer(rootFile)
+                break
+            case 'tab':
+                this.extension.viewer.openTab(rootFile)
+                break
+        }
+    }
+
+    browser() {
+        this.extension.logger.addLogMessage(`BROWSER command invoked.`)
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+            return
+        }
+        const rootFile = this.extension.manager.findRoot()
         if (rootFile !== undefined) {
             this.extension.viewer.openViewer(rootFile)
         } else {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
         }
-    }
-
-    gotoSection(filePath: string, lineNumber: number) {
-        this.extension.logger.addLogMessage(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
-
-        vscode.workspace.openTextDocument(filePath).then((doc) => {
-            vscode.window.showTextDocument(doc).then((_) => {
-                //editor.selection = new vscode.Selection(new vscode.Position(lineNumber,0), new vscode.Position(lineNumber,0))
-                vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
-            })
-        })
-
     }
 
     tab() {
@@ -155,6 +182,18 @@ export class Commander {
     log() {
         this.extension.logger.addLogMessage(`LOG command invoked.`)
         this.extension.logger.showLog()
+    }
+
+    gotoSection(filePath: string, lineNumber: number) {
+        this.extension.logger.addLogMessage(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
+
+        vscode.workspace.openTextDocument(filePath).then((doc) => {
+            vscode.window.showTextDocument(doc).then((_) => {
+                //editor.selection = new vscode.Selection(new vscode.Position(lineNumber,0), new vscode.Position(lineNumber,0))
+                vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
+            })
+        })
+
     }
 
     actions() {
