@@ -10,7 +10,11 @@ export class TeXMagician {
     }
 
     getFileName(file: string) : string {
-        return file.replace(/\\/g, '/').match(/([^\/]+$)/)[0]
+        const segments = file.replace(/\\/g, '/').match(/([^\/]+$)/)
+        if (segments) {
+            return segments[0]
+        }
+        return ''
     }
 
     getRelativePath(file: string, currentFile: string) : string {

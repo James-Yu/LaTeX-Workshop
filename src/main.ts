@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-import * as opn from 'opn'
 
 import {Commander} from './commander'
 import {Logger} from './components/logger'
@@ -81,10 +80,12 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
         .then(option => {
             switch (option) {
                 case 'Change log':
-                    opn('https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md')
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
                     break
                 case 'Star the project':
-                    opn('https://github.com/James-Yu/LaTeX-Workshop')
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop'))
                     break
                 case 'Disable this message':
                     configuration.update('debug.showUpdateMessage', false, true)

@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as opn from 'opn'
 import * as WebSocket from 'ws'
 
 import {Extension} from '../main'
@@ -69,7 +68,7 @@ export class Viewer {
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'viewer'}
         try {
-            opn(url, {app: vscode.workspace.getConfiguration('latex-workshop').get('viewer')})
+            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(url))
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
         } catch (e) {
             vscode.window.showInputBox({

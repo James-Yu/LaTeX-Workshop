@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as opn from 'opn'
 
 import {Extension} from './main'
 
@@ -223,13 +222,16 @@ export class Commander {
             }
             switch (selected) {
                 case 'Open LaTeX Workshop change log':
-                    opn('https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md')
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
                     break
                 case 'Create an issue on Github':
-                    opn('https://github.com/James-Yu/LaTeX-Workshop/issues/new')
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop/issues/new'))
                     break
                 case 'Star the project':
-                    opn('https://github.com/James-Yu/LaTeX-Workshop')
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop'))
                     break
                 default:
                     const command = this.commands[this.commandTitles.indexOf(selected)]
