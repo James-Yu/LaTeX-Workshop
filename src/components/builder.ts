@@ -115,29 +115,36 @@ export class Builder {
     }
 
     createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
-        const magic = this.findProgramMagic(rootFile)
-        // TODO: Find magic
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const recipes: {name: string, tools: string[]}[] = configuration.get('latex.recipes') as {name: string, tools: string[]}[]
-        const tools: StepCommand[] = configuration.get('latex.tools') as StepCommand[]
-        if (recipes.length < 1) {
-            vscode.window.showErrorMessage(`No recipes defined.`)
-            return undefined
-        }
-        let recipe = recipes[0]
-        if (recipeName) {
-            const candidates = recipes.filter(candidate => candidate.name === recipeName)
-            if (candidates.length < 1) {
-                vscode.window.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
-            }
-            recipe = candidates[0]
-        }
-
         let steps: StepCommand[] = []
-        recipe.tools.forEach(tool => {
-            steps.push(tools.filter(candidate => candidate.name === tool)[0])
-        })
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+
+        const magic = this.findProgramMagic(rootFile)
+        if (magic) {
+            steps = [{
+                name: 'magic',
+                command: magic,
+                args: configuration.get('latex.magiccommand.args') as string[]
+            }]
+        } else {
+            const recipes: {name: string, tools: string[]}[] = configuration.get('latex.recipes') as {name: string, tools: string[]}[]
+            const tools: StepCommand[] = configuration.get('latex.tools') as StepCommand[]
+            if (recipes.length < 1) {
+                vscode.window.showErrorMessage(`No recipes defined.`)
+                return undefined
+            }
+            let recipe = recipes[0]
+            if (recipeName) {
+                const candidates = recipes.filter(candidate => candidate.name === recipeName)
+                if (candidates.length < 1) {
+                    vscode.window.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                }
+                recipe = candidates[0]
+            }
+
+            recipe.tools.forEach(tool => {
+                steps.push(tools.filter(candidate => candidate.name === tool)[0])
+            })
+        }
         steps = JSON.parse(JSON.stringify(steps))
         steps.forEach(step => {
             if (step.args) {
@@ -158,8 +165,6 @@ export class Builder {
         if (result) {
             program = result[1]
             this.extension.logger.addLogMessage(`Found program by magic comment: ${program}`)
-        } else {
-            program = 'pdflatex'
         }
         return program
     }
