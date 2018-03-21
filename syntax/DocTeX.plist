@@ -36,17 +36,22 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>^%    (\\begin\{macrocode\})</string>
+			<string>^(%)    (\\begin\{macrocode\})</string>
 			<key>captures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>comment.line.percentage.doctex</string>
+				</dict>
+				<key>2</key>
 				<dict>
 					<key>name</key>
 					<string>entity.name.tag.macrocode.doctex</string>
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>^%    (\\end\{macrocode\})</string>
+			<string>^(%)    (\\end\{macrocode\})</string>
 			<key>patterns</key>
 			<array>
 				<dict>
