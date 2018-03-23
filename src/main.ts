@@ -46,6 +46,20 @@ function obsoleteConfigCheck() {
     if (configuration.has('version')) {
         configuration.update('version', undefined, true)
     }
+    if (configuration.has('latex.toolchain')) {
+        vscode.window.showWarningMessage(`LaTeX Workshop has updated its original toolchain system to a new recipe system. Please change your "latex-workshop.latex.toolchain" setting.`,
+            'More info', 'Close')
+        .then(option => {
+            switch (option) {
+                case 'More info':
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop#recipe'))
+                    break
+                case 'Close':
+                default:
+            }
+        })
+    }
 }
 
 function conflictExtensionCheck() {
@@ -102,6 +116,7 @@ export async function activate(context: vscode.ExtensionContext) {
     global['latex'] = extension
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
+    vscode.commands.registerCommand('latex-workshop.recipes', () => extension.commander.recipes())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
     vscode.commands.registerCommand('latex-workshop.browser', () => extension.commander.browser())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())

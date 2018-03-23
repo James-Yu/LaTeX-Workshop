@@ -27,7 +27,8 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 - LaTeX distribution in system PATH. For example, [TeX Live](https://www.tug.org/texlive/).
   - Please note [MikTeX](https://miktex.org/) does not ship with SyncTeX. See [this link](http://tex.stackexchange.com/questions/338078/how-to-get-synctex-for-windows-to-allow-atom-pdf-view-to-synch#comment877274_338117) for a possible solution.
-- _Optional_: [Set your LaTeX toolchain](#toolchain) (LaTeX Workshop should just work out of the box for users with `latexmk` installed).
+- _Optional_: [Set your LaTeX recipe](#recipe) (LaTeX Workshop should just work out of the box for users with `latexmk` installed).
+- _Optional_: Install [ChkTeX](http://www.nongnu.org/chktex) to lint LaTeX projects.
 - _Optional_: Install [latexindent.pl](https://github.com/cmhughes/latexindent.pl) for formatting support if it is not provided by your LaTeX distribution.
 
 ## Installation
@@ -40,48 +41,40 @@ Alternatively, you can check out this repository and copy it to the VS Code loca
 
 ## Usage
 
-- Open a `.tex` file, right click and many features have menu entries there.
+- Open a `.tex` file, right click to build, SyncTeX, or show all features.
   - For a complete list, select `LaTeX Workshop Actions` entry.
 - For reverse SyncTeX from PDF to LaTeX, `ctrl`/`cmd` + left mouse click in the PDF.
 - Alternatively, VS Code commands are provided in VS Code Command Palette (`ctrl`/`cmd` + `shift` + `P`).
   - Type `latex workshop` to show all related commands.
-
-## Linting with `ChkTeX`
-
-If you have [`ChkTeX`](http://www.nongnu.org/chktex) installed as part of your LaTeX distribution, Latex Workshop can run it against your LaTeX files in order to highlight issues.
-
-To enable linting, set `latex-workshop.chktex.enabled: true` in settings.
-
-The current file will be linted after a brief pause in typing. The full project will be linted upon opening VS Code for the first time, and each time you hit save. Warnings and errors are shown in the `Problems` pane - you can click on each entry to go to the relevant position where ChkTeX has found an issue.
-
-For details on how to interpret the reported issues, consult the [ChkTeX manual](http://www.nongnu.org/chktex/ChkTeX.pdf).
-
-### Code actions
-
-For many issues, LaTeX Workshop will offer **Code Actions** to help you correct your LaTeX files. If you take your mouse to a highlighted error, you will see a lightbulb in the gutter if LaTeX Workshop is able to propose a solution to the problem. 
-Alternatively, you can hit `ctrl`/`cmd` + `.` whilst the cursor is on a highlighted area to trigger the same dropdown.
-Choose the item in the menu to have LaTeX Workshop attempt to fix the issue.
+- To view an arbitrary PDF file, right click on the file in the explorer and select `View PDF`.
 
 ## FAQ
-### <a name="toolchain"></a>LaTeX toolchain?
-LaTeX toolchain refers to a sequence/array of commands which LaTeX Workshop will execute sequentially when building LaTeX projects. It is set in `File`>`Preferences`>`Settings`>`latex-workshop.latex.toolchain`. This configuration item is an array of objects, which should have a `command` field and an optional `args` array field. The former defines the command that will be invoked in each step of the toolchain, while the latter defines the arguments that will be passed alongside with the command.
+### <a name="recipe"></a>LaTeX recipe?
+LaTeX recipe refers to a sequence/array of commands which LaTeX Workshop will execute sequentially when building LaTeX projects. It is set in `File`>`Preferences`>`Settings`>`latex-workshop.latex.recipes`. You can create multiple recipes with different tools. Each recipe is an object in the configuration list, consists of a `name` field and a list of `tools` to be invoked in the recipe.
 
-By default [`latexmk`](http://personal.psu.edu/jcc8/software/latexmk/) is used. This tool is bundled in most LaTeX distributions, and requires perl to execute. For non-perl users, the following `texify` toolchain from MikTeX may worth a try:
+The `tools` in recipes can be defined in `latex-workshop.latex.tools`, in which each command is a `tool`. Each tool is an object consists of a `name`, a `command` to be spawned, and its arguments (`args`). To include a tool in a recipe, the tool's `name` should be included in the recipe's `tools` list.
+
+When building the project, the first recipe is used. You can compile with another recipe by command `latex-workshop.recipes`. By default [`latexmk`](http://personal.psu.edu/jcc8/software/latexmk/) is used. This tool is bundled in most LaTeX distributions, and requires perl to execute. For non-perl users, the following `texify` toolchain from MikTeX may worth a try:
 ```
-"latex-workshop.latex.toolchain": [
-  {
-    "command": "texify",
-    "args": [
-      "--synctex",
-      "--pdf",
-      "--tex-option=\"-interaction=nonstopmode\"",
-      "--tex-option=\"-file-line-error\"",
-      "%DOC%.tex"
-    ]
-  }
-]
+"latex-workshop.latex.recipes": [{
+  "name": "texify",
+  "tools": [
+    "texify"
+  ]
+}],
+"latex-workshop.latex.tools": {
+  "name": "texify",
+  "command": "texify",
+  "args": [
+    "--synctex",
+    "--pdf",
+    "--tex-option=\"-interaction=nonstopmode\"",
+    "--tex-option=\"-file-line-error\"",
+    "%DOC%.tex"
+  ]
+}
 ```
-LaTeX toolchain must always be defined as a JSON array, even if there is only one command to execute. As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounded by `%` are placeholders, which are replaced with its representing string on-the-fly. LaTeX Workshop registers the following placeholders:
+As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounded by `%` are placeholders, which are replaced with its representing string on-the-fly. LaTeX Workshop registers the following placeholders:
 
 | Placeholder | Replaced by             |
 | ----------- | ----------------------- |
@@ -89,45 +82,8 @@ LaTeX toolchain must always be defined as a JSON array, even if there is only on
 | `%DOCFILE%` | The LaTeX root file name without `.tex` extension |
 | `%DIR%` | The LaTeX root file path |
 
-Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal. For the special commands which has problem to deal with absolute 
-
-As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above toolchain `%DOC%` and `.tex` are concatenated for completeness.
-
-The following is an example of a typical `pdflatex`>`bibtex`>`pdflatex`>`pdflatex` setting.
-```
-"latex-workshop.latex.toolchain": [
-  {
-    "command": "pdflatex",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "%DOC%"
-    ]
-  }, {
-    "command": "bibtex",
-    "args": [
-      "%DOCFILE%"
-    ]
-  }, {
-    "command": "pdflatex",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "%DOC%"
-    ]
-  }, {
-    "command": "pdflatex",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "%DOC%"
-    ]
-  }
-]
-```
+Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal.
+As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above tool `%DOC%` and `.tex` are concatenated for completeness.
 
 ### Root file?
 While it is fine to write all contents in one `.tex` file, it is common to split things up for simplicity. For such LaTeX projects, the file with `\begin{document}` is considered as the root file, which serves as the entry point to the project. LaTeX Workshop intelligently finds the root file when a new document is opened, the active editor is changed, or any LaTeX Workshop command is executed.
@@ -142,9 +98,9 @@ If no root file is found, most of the features in LaTeX Workshop will not work.
 ### Magic comments?
 LaTeX Workshop supports both `% !TEX root` and `% !TEX program` magic comments. The former is used to define the root file, while the latter helps select compiler program.
 
-All `command` in `toolchain` which are empty will be replaced with the program set by `% !TEX program` magic comment in the root file. Alternatively, if `command` is `latexmk`, an argument `pdflatex=` with magic comment program appended will be inserted into the command argument list. Suppose there is a line `% !TEX program = xelatex` in the root file, and the toolchain is set as follows:
+For `% !TEX program` magic comment, its arguments are defined in `latex-workshop.latex.magic.args`:
 ```
-"latex-workshop.latex.toolchain": [
+"latex-workshop.latex.magic.args": [
   {
     "command": "",
     "args": [
@@ -156,9 +112,9 @@ All `command` in `toolchain` which are empty will be replaced with the program s
   }
 ]
 ```
-Upon building the project, LaTeX Workshop will parse the root file and figure out that `xelatex` should be used. This program will replace the empty `command` in the toolchain. Arguments are untouched.
+Suppose there is a line `% !TEX program = xelatex` in the root file. Upon building the project, LaTeX Workshop will parse the root file and figure out that `xelatex` should be used. Arguments are included to invoke the compiler.
 
-Another possible use case: suppose there is a line `% !TEX program = lualatex` with the following configuration:
+<!-- Another possible use case: suppose there is a line `% !TEX program = lualatex` with the following configuration:
 ```
 "latex-workshop.latex.toolchain": [
   {
@@ -175,18 +131,10 @@ Another possible use case: suppose there is a line `% !TEX program = lualatex` w
 ```
 which is the default value. The compiled command will be `latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf main -pdflatex=lualatex`.
 
-If the `command` is set empty but no `% !TEX program` magic comment is found, `pdflatex` is used.
+If the `command` is set empty but no `% !TEX program` magic comment is found, `pdflatex` is used. -->
 
 ### Spell check?
-[Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. The following regexps are recommended to be ignored for LaTeX:
-```
-"cSpell.ignoreRegExpList": [
-  "\\\\\\w*(\\[.*?\\])?(\\{.*?\\})?",
-  "\\$.+?\\$"
-]
-```
-
-Users may also find other extensions better alternatives, e.g., [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) and [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool). Especially the last one is credited for its multi-lingual support.
+[Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. Users may also find other extensions better alternatives, e.g., [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) and [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool). Especially the last one is credited for its multi-lingual support.
 
 ### Build on save?
 

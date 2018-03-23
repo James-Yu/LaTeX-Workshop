@@ -30,6 +30,7 @@
     "onLanguage:latex",
     "onLanguage:doctex",
     "onCommand:latex-workshop.build",
+    "onCommand:latex-workshop.recipes",
     "onCommand:latex-workshop.view",
     "onCommand:latex-workshop.tab",
     "onCommand:latex-workshop.pdf",
@@ -154,6 +155,11 @@
         "category": "LaTeX Workshop"
       },
       {
+        "command": "latex-workshop.recipes",
+        "title": "Build with recipe",
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-workshop.view",
         "title": "View LaTeX PDF file",
         "category": "LaTeX Workshop",
@@ -233,21 +239,63 @@
       "type": "object",
       "title": "LaTeX Workshop configuration",
       "properties": {
-        "latex-workshop.latex.toolchain": {
+        "latex-workshop.latex.recipes": {
+          "type": "array",
+          "default": [{
+            "name": "latexmk",
+            "tools": [
+              "latexmk"
+            ]
+          }, {
+            "name": "pdflatex -> bibtex -> pdflatex*2",
+            "tools": [
+              "pdflatex",
+              "bibtex",
+              "pdflatex",
+              "pdflatex"
+            ]
+          }],
+          "description": "Define LaTeX compiling recipes.\nEach recipe in the list is an object declares its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop#recipe."
+        },
+        "latex-workshop.latex.tools": {
+          "type": "array",
+          "default": [{
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "-pdf",
+              "%DOC%"
+            ]
+          }, {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+              "-synctex=1",
+              "-interaction=nonstopmode",
+              "-file-line-error",
+              "%DOC%"
+            ]
+          }, {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+              "%DOCFILE%"
+            ]
+          }],
+          "description": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args`. Typically no spaces should appear in each argument unless in paths.\nPlaceholder `%DOC%`, `%DOCFILE`, and `%DIR%` is available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop#recipe."
+        },
+        "latex-workshop.latex.magic.args": {
           "type": "array",
           "default": [
-            {
-              "command": "latexmk",
-              "args": [
-                "-synctex=1",
-                "-interaction=nonstopmode",
-                "-file-line-error",
-                "-pdf",
-                "%DOC%"
-              ]
-            }
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "%DOC%"
           ],
-          "description": "LaTeX toolchain to build project.\nThis property defines the sequence of commands LaTeX Workshop will execute to build the LaTeX project. By default it tries latexmk to compile to PDF.\nPlaceholder %DOC% is used to represent the root LaTeX file name (without '.tex' extension), and will be replaced when executing.\n For a detailed explanation on how to customize your toolchain, please visit https://github.com/James-Yu/LaTeX-Workshop#toolchain."
+          "description": "Define the arguments to be input to magic command executable."
         },
         "latex-workshop.latex.outputDir": {
           "type": "string",

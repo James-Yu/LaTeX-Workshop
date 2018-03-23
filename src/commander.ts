@@ -11,7 +11,7 @@ export class Commander {
         this.extension = extension
     }
 
-    build(skipSelection: boolean = false) {
+    build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
@@ -24,7 +24,7 @@ export class Commander {
         }
         if (skipSelection) {
             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            this.extension.builder.build(rootFile)
+            this.extension.builder.build(rootFile, recipe)
         } else {
             const subFileRoot = this.extension.manager.findSubFiles()
             if (subFileRoot) {
@@ -44,11 +44,11 @@ export class Commander {
                     switch (selected.label) {
                         case 'Default root file':
                             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            this.extension.builder.build(rootFile)
+                            this.extension.builder.build(rootFile, recipe)
                             break
                         case 'Subfiles package root file':
                             this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
-                            this.extension.builder.build(subFileRoot)
+                            this.extension.builder.build(subFileRoot, recipe)
                             break
                         default:
                             break
@@ -56,9 +56,26 @@ export class Commander {
                 })
             } else {
                 this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                this.extension.builder.build(rootFile)
+                this.extension.builder.build(rootFile, recipe)
             }
         }
+    }
+
+    recipes() {
+        this.extension.logger.addLogMessage(`RECIPES command invoked.`)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const recipes = configuration.get('latex.recipes') as {name: string}[]
+        if (!recipes) {
+            return
+        }
+        vscode.window.showQuickPick(recipes.map(recipe => recipe.name), {
+            placeHolder: 'Please Select a LaTeX Recipe'
+        }).then(selected => {
+            if (!selected) {
+                return
+            }
+            this.build(false, selected)
+        })
     }
 
     view() {

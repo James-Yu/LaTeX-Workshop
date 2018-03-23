@@ -30,34 +30,34 @@ export class Builder {
         }
     }
 
-    buildInitiater(rootFile: string) {
-        const toolchain = this.createToolchain(rootFile)
-        if (toolchain === undefined) {
-            this.extension.logger.addLogMessage('Invalid toolchain.')
-            return
-        }
-        this.buildStep(rootFile, toolchain, 0)
+    buildInitiator(rootFile: string, recipe: string | undefined = undefined) {
+       const steps = this.createSteps(rootFile, recipe)
+       if (steps === undefined) {
+           this.extension.logger.addLogMessage('Invalid toolchain.')
+           return
+       }
+       this.buildStep(rootFile, steps, 0)
     }
 
-    build(rootFile: string) {
+    build(rootFile: string, recipe: string | undefined = undefined) {
         this.disableCleanAndRetry = false
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.preprocess(rootFile)
         if (this.nextBuildRootFile === undefined) {
-            this.buildInitiater(rootFile)
+            this.buildInitiator(rootFile, recipe)
         }
     }
 
-    buildStep(rootFile: string, toolchain: ToolchainCommand[], index: number) {
-        if (toolchain.length === index) {
-            this.extension.logger.addLogMessage(`Toolchain of length ${toolchain.length} finished.`)
+    buildStep(rootFile: string, steps: StepCommand[], index: number) {
+        if (steps.length === index) {
+            this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
             this.buildFinished(rootFile)
             return
         }
 
         this.extension.logger.clearCompilerMessage()
-        this.extension.logger.addLogMessage(`Toolchain step ${index + 1}: ${toolchain[index].command}, ${toolchain[index].args}`)
-        this.currentProcess = cp.spawn(toolchain[index].command, toolchain[index].args, {cwd: path.dirname(rootFile)})
+        this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
+        this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile)})
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
@@ -73,28 +73,28 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
-            this.extension.logger.displayStatus('sync~spin', 'errorForeground', `LaTeX toolchain terminated with fatal error: ${err.message}.`)
+            this.extension.logger.displayStatus('sync~spin', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Toolchain returns with error: ${exitCode}/${signal}.`)
+                this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}.`)
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled') && !configuration.get('latex.clean.enabled')) {
-                    this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error. Retry building the project.`, 'warning')
+                    this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
                     this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
                     this.disableCleanAndRetry = true
                     this.extension.commander.clean().then(() => {
-                        this.buildStep(rootFile, toolchain, 0)
+                        this.buildStep(rootFile, steps, 0)
                     })
                 } else {
-                    this.extension.logger.displayStatus('x', 'errorForeground', `LaTeX toolchain terminated with error.`, 'error')
+                    this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error.`, 'error')
                 }
             } else {
-                this.buildStep(rootFile, toolchain, index + 1)
+                this.buildStep(rootFile, steps, index + 1)
             }
             this.currentProcess = undefined
             if (this.nextBuildRootFile) {
@@ -105,7 +105,7 @@ export class Builder {
 
     buildFinished(rootFile: string) {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
-        this.extension.logger.displayStatus('check', 'statusBar.foreground', `LaTeX toolchain succeeded.`)
+        this.extension.logger.displayStatus('check', 'statusBar.foreground', `Recipe succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const clean = configuration.get('latex.clean.enabled') as boolean
@@ -114,35 +114,55 @@ export class Builder {
         }
     }
 
-    createToolchain(rootFile: string) : ToolchainCommand[] | undefined  {
+    createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
+        let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        // Modify a copy, instead of itself.
-        const commands = JSON.parse(JSON.stringify(configuration.get('latex.toolchain'))) as ToolchainCommand[]
+
         const magic = this.findProgramMagic(rootFile)
-        for (const command of commands) {
-            if (!('command' in command)) {
-                vscode.window.showErrorMessage('LaTeX toolchain is invalid. Each tool in the toolchain must have a "command" string.')
+        if (magic) {
+            steps = [{
+                name: 'magic',
+                command: magic,
+                args: configuration.get('latex.magiccommand.args') as string[]
+            }]
+        } else {
+            const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
+            const tools = configuration.get('latex.tools') as StepCommand[]
+            if (recipes.length < 1) {
+                vscode.window.showErrorMessage(`No recipes defined.`)
                 return undefined
             }
-            if (!Array.isArray(command.args)) {
-                vscode.window.showErrorMessage('LaTeX toolchain is invalid. "args" must be an array of strings.')
-                return undefined
+            let recipe = recipes[0]
+            if (recipeName) {
+                const candidates = recipes.filter(candidate => candidate.name === recipeName)
+                if (candidates.length < 1) {
+                    vscode.window.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                }
+                recipe = candidates[0]
             }
-            if (command.args) {
-                command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                                          .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
-                                                          .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
-            }
-            if (magic === 'pdflatex') {
-                continue
-            }
-            if (command.command === '') {
-                command.command = magic
-            } else if (command.command === 'latexmk') {
-                command.args.push(`-pdflatex=${magic}`)
-            }
+
+            recipe.tools.forEach(tool => {
+                if (typeof tool === 'string') {
+                    const candidates = tools.filter(candidate => candidate.name === tool)
+                    if (candidates.length < 1) {
+                        vscode.window.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
+                    } else {
+                        steps.push(candidates[0])
+                    }
+                } else {
+                    steps.push(tool)
+                }
+            })
         }
-        return commands
+        steps = JSON.parse(JSON.stringify(steps))
+        steps.forEach(step => {
+            if (step.args) {
+                step.args = step.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
+                                                    .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
+                                                    .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
+            }
+        })
+        return steps
     }
 
     findProgramMagic(rootFile: string) : string {
@@ -154,14 +174,13 @@ export class Builder {
         if (result) {
             program = result[1]
             this.extension.logger.addLogMessage(`Found program by magic comment: ${program}`)
-        } else {
-            program = 'pdflatex'
         }
         return program
     }
 }
 
-interface ToolchainCommand {
+interface StepCommand {
+    name: string,
     command: string,
     args?: string[]
 }
