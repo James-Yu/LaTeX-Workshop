@@ -126,7 +126,7 @@ export class Builder {
                 args: configuration.get('latex.magiccommand.args') as string[]
             }]
         } else {
-            const recipes: {name: string, tools: string[]}[] = configuration.get('latex.recipes') as {name: string, tools: string[]}[]
+            const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools: StepCommand[] = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
                 vscode.window.showErrorMessage(`No recipes defined.`)
@@ -141,9 +141,21 @@ export class Builder {
                 recipe = candidates[0]
             }
 
-            recipe.tools.forEach(tool => {
-                steps.push(tools.filter(candidate => candidate.name === tool)[0])
-            })
+            // resolve recipe tool array to command array
+            for (const recipeToolItem of recipe.tools) {
+                if (typeof recipeToolItem === 'string') {
+                    // tool item reference
+                    const toolSource = tools.find(candidate => candidate.name === recipeToolItem)
+                    if (typeof toolSource === 'undefined') {
+                        vscode.window.showErrorMessage(`Undefined tool "${recipeToolItem}" was used in recipe "${recipe.name}"`)
+                        return undefined
+                    }
+                    steps.push(toolSource)
+                } else {
+                    // raw command item
+                    steps.push(recipeToolItem)
+                }
+            }
         }
         steps = JSON.parse(JSON.stringify(steps))
         steps.forEach(step => {
