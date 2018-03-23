@@ -127,7 +127,7 @@ export class Builder {
             }]
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
-            const tools: StepCommand[] = configuration.get('latex.tools') as StepCommand[]
+            const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
                 vscode.window.showErrorMessage(`No recipes defined.`)
                 return undefined
@@ -141,21 +141,18 @@ export class Builder {
                 recipe = candidates[0]
             }
 
-            // resolve recipe tool array to command array
-            for (const recipeToolItem of recipe.tools) {
-                if (typeof recipeToolItem === 'string') {
-                    // tool item reference
-                    const toolSource = tools.find(candidate => candidate.name === recipeToolItem)
-                    if (typeof toolSource === 'undefined') {
-                        vscode.window.showErrorMessage(`Undefined tool "${recipeToolItem}" was used in recipe "${recipe.name}"`)
-                        return undefined
+            recipe.tools.forEach(tool => {
+                if (typeof tool === 'string') {
+                    const candidates = tools.filter(candidate => candidate.name === tool)
+                    if (candidates.length < 1) {
+                        vscode.window.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
+                    } else {
+                        steps.push(candidates[0])
                     }
-                    steps.push(toolSource)
                 } else {
-                    // raw command item
-                    steps.push(recipeToolItem)
+                    steps.push(tool)
                 }
-            }
+            })
         }
         steps = JSON.parse(JSON.stringify(steps))
         steps.forEach(step => {
