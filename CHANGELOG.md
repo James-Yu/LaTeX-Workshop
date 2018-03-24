@@ -1,5 +1,27 @@
 # Change Log
 
+## [5.0.0] - 2018-03-24 - Recipe Update
+
+### Added
+- (#426) `\usepackage` intellisense.
+- (#441) Unofficial external PDF viewer support.
+- (#441) Selectable view icon viewer target.
+- (#447) Multiple embedded PDF viewer improvements @chatziko.
+- (#459) Make arguments for latexindent configurable @project-pp.
+- (#467) Intelligently add root magic comment @oerpli.
+
+### Changed
+- Use the new notification UI of vscode.
+- (#457,#468,#471,#473,#481) Multiple LaTeX syntax highlighting improvements @jlelong.
+- (#477) Change the original toolchain system to a new recipe system.
+  - Please refer to the updated README on how to migrate.
+
+### Fixed
+- (#449) Fix a typo in snippet for 'cline' command @hy950831.
+
+### P.S.
+- Why skipping version 4? Four is sometimes considered an unlucky number in Chinese. XD
+
 ## [3.14.0] - 2018-02-22
 
 ### Added
