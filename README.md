@@ -85,6 +85,14 @@ As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounde
 Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal.
 As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above tool `%DOC%` and `.tex` are concatenated for completeness.
 
+### From toolchain to recipe?
+If you have a custom toolchain defined in pre-4.0 versions of LaTeX Workshop, you may want to migrate the existing configuration to the new recipe system. This can be easily done with the following steps:
+1. Create a tool in `latex-workshop.latex.tools` for each step in the original toolchain.
+2. Name the tools with the `name` field.
+3. Create a recipe in `latex-workshop.latex.recipes` with its `tools` field set as a list of the defined `names` in Step 2.
+4. Name the recipe with the `name` field.
+5. Happy typesetting.
+
 ### Root file?
 While it is fine to write all contents in one `.tex` file, it is common to split things up for simplicity. For such LaTeX projects, the file with `\begin{document}` is considered as the root file, which serves as the entry point to the project. LaTeX Workshop intelligently finds the root file when a new document is opened, the active editor is changed, or any LaTeX Workshop command is executed.
 
