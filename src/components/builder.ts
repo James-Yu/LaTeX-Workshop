@@ -123,7 +123,7 @@ export class Builder {
             steps = [{
                 name: 'magic',
                 command: magic,
-                args: configuration.get('latex.magiccommand.args') as string[]
+                args: configuration.get('latex.magic.args') as string[]
             }]
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]

@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.0.2] - 2018-03-25
+
+### Fixed
+- (#489) Magic comment program with undefined arguments.
+
 ## [5.0.1] - 2018-03-25
 
 ### Added
