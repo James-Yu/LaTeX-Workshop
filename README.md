@@ -62,7 +62,7 @@ When building the project, the first recipe is used. You can compile with anothe
     "texify"
   ]
 }],
-"latex-workshop.latex.tools": {
+"latex-workshop.latex.tools": [{
   "name": "texify",
   "command": "texify",
   "args": [
@@ -72,7 +72,7 @@ When building the project, the first recipe is used. You can compile with anothe
     "--tex-option=\"-file-line-error\"",
     "%DOC%.tex"
   ]
-}
+}]
 ```
 As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounded by `%` are placeholders, which are replaced with its representing string on-the-fly. LaTeX Workshop registers the following placeholders:
 
