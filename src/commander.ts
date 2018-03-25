@@ -90,27 +90,8 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         switch (configuration.get('view.pdf.viewer')) {
-            case 'none':
-            default:
-                vscode.window.showInformationMessage(`View PDF with`, 'Browser tab', 'New VS Code tab')
-                .then(option => {
-                    switch (option) {
-                        case 'Browser tab':
-                            configuration.update('view.pdf.viewer', 'browser', true)
-                            this.extension.viewer.openViewer(rootFile)
-                            vscode.window.showInformationMessage(`By default, PDF will be viewed with browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
-                            break
-                        case 'New VS Code tab':
-                            configuration.update('view.pdf.viewer', 'tab', true)
-                            this.extension.viewer.openTab(rootFile)
-                            vscode.window.showInformationMessage(`By default, PDF will be viewed with VS Code tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
-                            break
-                        default:
-                            break
-                    }
-                })
-                break
             case 'browser':
+            default:
                 this.extension.viewer.openViewer(rootFile)
                 break
             case 'tab':
@@ -219,33 +200,89 @@ export class Commander {
 
     actions() {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!this.commandTitles) {
             const commands = this.extension.packageInfo.contributes.commands.filter(command => {
-                if (command.command === 'latex-workshop.actions') {
-                    return false
-                }
-                if (command.command === 'latex-workshop.pdf') {
-                    return false
-                }
-                return true
+                return ['latex-workshop.actions', 'latex-workshop.build', 'latex-workshop.recipes',
+                        'latex-workshop.view', 'latex-workshop.pdf', 'latex-workshop.compilerlog',
+                        'latex-workshop.log'].indexOf(command.command) < 0
             })
             this.commandTitles = commands.map(command => command.title)
             this.commands = commands.map(command => command.command)
-            this.commandTitles.push('Open LaTeX Workshop change log')
-            this.commandTitles.push('Create an issue on Github')
-            this.commandTitles.push('Star the project')
         }
-        const items = JSON.parse(JSON.stringify(this.commandTitles))
-        vscode.window.showQuickPick(items, {
-            placeHolder: 'Please Select LaTeX Workshop Actions'
-        }).then(selected => {
+        vscode.window.showQuickPick(['Build LaTeX project', 'View LaTeX PDF', 'View log messages',
+                                     'Miscellaneous LaTeX functions', 'Create an issue on Github',
+                                     'Star the project']).then(selected => {
             if (!selected) {
                 return
             }
             switch (selected) {
-                case 'Open LaTeX Workshop change log':
-                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                        'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
+                case 'Build LaTeX project':
+                    this.recipes()
+                    break
+                case 'View LaTeX PDF':
+                    const options: string[] = []
+                    if (configuration.get('view.pdf.viewer') !== 'none') {
+                        options.push('View in default viewer')
+                    }
+                    vscode.window.showQuickPick([...options, 'Set default viewer', 'View in web browser', 'View in VS Code tab']).then(viewer => {
+                        switch (viewer) {
+                            case 'View in default viewer':
+                                this.view()
+                                break
+                            case 'Set default viewer':
+                            default:
+                                vscode.window.showQuickPick([`View PDF with`, 'Browser tab', 'New VS Code tab'])
+                                .then(option => {
+                                    switch (option) {
+                                        case 'Browser tab':
+                                            configuration.update('view.pdf.viewer', 'browser', true)
+                                            vscode.window.showInformationMessage(`By default, PDF will be viewed with browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                                            break
+                                        case 'New VS Code tab':
+                                            configuration.update('view.pdf.viewer', 'tab', true)
+                                            vscode.window.showInformationMessage(`By default, PDF will be viewed with VS Code tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                                            break
+                                        default:
+                                            break
+                                    }
+                                })
+                                break
+                            case 'View in web browser':
+                                this.browser()
+                                break
+                            case 'New VS Code tab':
+                                this.tab()
+                                break
+                        }
+                    })
+                    break
+                case 'View log messages':
+                    vscode.window.showQuickPick(['View LaTeX compiler log messages',
+                                                 'View LaTeX-Workshop extension messages',
+                                                 'View LaTeX-Workshop extension change log']).then(option => {
+                        switch (option) {
+                            case 'View LaTeX compiler log messages':
+                            default:
+                                this.compilerlog()
+                                break
+                            case 'View LaTeX-Workshop extension messages':
+                                this.log()
+                                break
+                            case 'View LaTeX-Workshop extension change log':
+                                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                                    'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
+                                break
+                        }
+                    })
+                    break
+                case 'Miscellaneous LaTeX functions':
+                    vscode.window.showQuickPick(this.commandTitles).then(option => {
+                        if (option === undefined) {
+                            return
+                        }
+                        vscode.commands.executeCommand(this.commands[this.commandTitles.indexOf(option)])
+                    })
                     break
                 case 'Create an issue on Github':
                     vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(

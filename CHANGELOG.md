@@ -1,5 +1,17 @@
 # Change Log
 
+## [5.0.1] - 2018-03-25
+
+### Added
+- (#482) Show info on how to change default pdf viewer.
+- (#483) Auto change toolchain to recipe.
+
+### Changed
+- Overhaul `All Actions` quickdrop menu.
+
+### Fixed
+- Correct building process fatal error status bar icon.
+
 ## [5.0.0] - 2018-03-24 - Recipe Update
 
 ### Added
