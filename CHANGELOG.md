@@ -11,6 +11,7 @@
 
 ### Fixed
 - Correct building process fatal error status bar icon.
+- (#485) Formatter works for paths with spaces.
 
 ## [5.0.0] - 2018-03-24 - Recipe Update
 
