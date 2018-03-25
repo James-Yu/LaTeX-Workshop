@@ -73,7 +73,7 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
-            this.extension.logger.displayStatus('sync~spin', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
+            this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
         })
 
