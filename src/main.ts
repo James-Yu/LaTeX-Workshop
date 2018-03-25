@@ -48,9 +48,19 @@ function obsoleteConfigCheck() {
     }
     if (configuration.has('latex.toolchain')) {
         vscode.window.showWarningMessage(`LaTeX Workshop has updated its original toolchain system to a new recipe system. Please change your "latex-workshop.latex.toolchain" setting.`,
-            'More info', 'Close')
+            'Auto-change', 'More info', 'Close')
         .then(option => {
             switch (option) {
+                case 'Auto-change':
+                    const toolchain = (configuration.get('latex.toolchain') as {name: string, command: string}[]).map((tool, idx) => {
+                        tool.name = `Step ${idx + 1}: ${tool.command}`
+                        return tool
+                    })
+                    configuration.update('latex.tools', toolchain, true)
+                    configuration.update('latex.recipes', [{name: 'toolchain', tools: toolchain.map(tool => tool.name)}], true)
+                    configuration.update('latex.toolchain', undefined, true)
+                    vscode.window.showInformationMessage(`A new recipe named "toolchain" is created. Please double check if it is correctly migrated in the configuration.`)
+                    break
                 case 'More info':
                     vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
                         'https://github.com/James-Yu/LaTeX-Workshop#recipe'))
