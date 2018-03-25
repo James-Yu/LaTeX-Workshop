@@ -92,16 +92,18 @@ export class Commander {
         switch (configuration.get('view.pdf.viewer')) {
             case 'none':
             default:
-                vscode.window.showInformationMessage(`View PDF in:`, 'Browser tab', 'New VS Code tab')
+                vscode.window.showInformationMessage(`View PDF with`, 'Browser tab', 'New VS Code tab')
                 .then(option => {
                     switch (option) {
                         case 'Browser tab':
                             configuration.update('view.pdf.viewer', 'browser', true)
                             this.extension.viewer.openViewer(rootFile)
+                            vscode.window.showInformationMessage(`By default, PDF will be viewed with browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
                             break
                         case 'New VS Code tab':
                             configuration.update('view.pdf.viewer', 'tab', true)
                             this.extension.viewer.openTab(rootFile)
+                            vscode.window.showInformationMessage(`By default, PDF will be viewed with VS Code tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
                             break
                         default:
                             break
