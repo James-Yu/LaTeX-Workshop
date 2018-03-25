@@ -125,7 +125,7 @@ export class LaTexFormatter {
                 .replace('%TMPFILE%', temporaryFile.split(path.sep).join('/'))
                 .replace('%INDENT%', indent))
 
-            const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', shell: true })
+            const worker = cp.spawn(this.formatter, args, { stdio: 'pipe' })
             // handle stdout/stderr
             const stdoutBuffer = [] as string[]
             const stderrBuffer = [] as string[]
