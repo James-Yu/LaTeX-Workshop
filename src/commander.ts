@@ -89,18 +89,21 @@ export class Commander {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        switch (configuration.get('view.pdf.viewer')) {
-            case 'browser':
-            default:
-                this.extension.viewer.openViewer(rootFile)
-                break
-            case 'tab':
-                this.extension.viewer.openTab(rootFile)
-                break
-            case 'external':
-                this.extension.viewer.openExternal(rootFile)
-                break
-        }
+        const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer() : Promise.resolve()
+        promise.then(() => {
+            switch (configuration.get('view.pdf.viewer')) {
+                case 'browser':
+                    this.extension.viewer.openViewer(rootFile)
+                    break
+                case 'tab':
+                default:
+                    this.extension.viewer.openTab(rootFile)
+                    break
+                case 'external':
+                    this.extension.viewer.openExternal(rootFile)
+                    break
+            }
+        })
     }
 
     browser() {
@@ -198,6 +201,25 @@ export class Commander {
 
     }
 
+    setViewer() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        return vscode.window.showQuickPick(['Browser tab', 'New VS Code tab'], {placeHolder: `View PDF with`})
+        .then(option => {
+            switch (option) {
+                case 'Browser tab':
+                    configuration.update('view.pdf.viewer', 'browser', true)
+                    vscode.window.showInformationMessage(`By default, PDF will be viewed with browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    break
+                case 'New VS Code tab':
+                    configuration.update('view.pdf.viewer', 'tab', true)
+                    vscode.window.showInformationMessage(`By default, PDF will be viewed with VS Code tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    break
+                default:
+                    break
+            }
+        })
+    }
+
     actions() {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -232,21 +254,7 @@ export class Commander {
                                 break
                             case 'Set default viewer':
                             default:
-                                vscode.window.showQuickPick([`View PDF with`, 'Browser tab', 'New VS Code tab'])
-                                .then(option => {
-                                    switch (option) {
-                                        case 'Browser tab':
-                                            configuration.update('view.pdf.viewer', 'browser', true)
-                                            vscode.window.showInformationMessage(`By default, PDF will be viewed with browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
-                                            break
-                                        case 'New VS Code tab':
-                                            configuration.update('view.pdf.viewer', 'tab', true)
-                                            vscode.window.showInformationMessage(`By default, PDF will be viewed with VS Code tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
-                                            break
-                                        default:
-                                            break
-                                    }
-                                })
+                                this.setViewer()
                                 break
                             case 'View in web browser':
                                 this.browser()
