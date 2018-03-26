@@ -3,7 +3,7 @@
 ## [5.0.3] - 2018-03-26
 
 ### Fixed
-- (#489) Magic comment program with undefined arguments.
+- (#494) Pick viewer in default case where 'viewer' is 'none'.
 
 ## [5.0.2] - 2018-03-25
 
