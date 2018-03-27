@@ -22,7 +22,7 @@ export class Logger {
 
     addLogMessage(message: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('debug.showLog')) {
+        if (configuration.get('message.log.show')) {
             this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', {hour12: false})}] ${message}\n`)
         }
     }
@@ -42,16 +42,23 @@ export class Logger {
         if (message === undefined) {
             return
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         switch (severity) {
             case 'info':
-                vscode.window.showInformationMessage(message)
+                if (configuration.get('message.information.show')) {
+                    vscode.window.showInformationMessage(message)
+                }
                 break
             case 'warning':
-                vscode.window.showWarningMessage(message)
+                if (configuration.get('message.warning.show')) {
+                    vscode.window.showWarningMessage(message)
+                }
                 break
             case 'error':
             default:
-                vscode.window.showErrorMessage(message)
+                if (configuration.get('message.error.show')) {
+                    vscode.window.showErrorMessage(message)
+                }
                 break
         }
     }

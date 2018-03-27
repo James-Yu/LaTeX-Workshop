@@ -43,6 +43,7 @@ function obsoleteConfigCheck() {
     renameConfig('latex.autoBuild.enabled', 'latex.autoBuild.onSave.enabled')
     renameConfig('viewer.zoom', 'view.pdf.zoom')
     renameConfig('viewer.hand', 'view.pdf.hand')
+    renameConfig('debug.showUpdateMessage', 'message.update.show')
     if (configuration.has('version')) {
         configuration.update('version', undefined, true)
     }
@@ -96,11 +97,11 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
         }
         fs.writeFileSync(`${extensionPath}${path.sep}VERSION`, extension.packageInfo.version)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!(configuration.get('debug.showUpdateMessage') as boolean)) {
+        if (!(configuration.get('message.update.show') as boolean)) {
             return
         }
         vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${extension.packageInfo.version}.`,
-            'Change log', 'Star the project')
+            'Change log', 'Star the project', 'Disable this message')
         .then(option => {
             switch (option) {
                 case 'Change log':
@@ -112,7 +113,7 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
                         'https://github.com/James-Yu/LaTeX-Workshop'))
                     break
                 case 'Disable this message':
-                    configuration.update('debug.showUpdateMessage', false, true)
+                    configuration.update('message.update.show', false, true)
                     break
                 default:
                     break
