@@ -31,12 +31,12 @@ export class Builder {
     }
 
     buildInitiator(rootFile: string, recipe: string | undefined = undefined) {
-       const steps = this.createSteps(rootFile, recipe)
-       if (steps === undefined) {
-           this.extension.logger.addLogMessage('Invalid toolchain.')
-           return
-       }
-       this.buildStep(rootFile, steps, 0)
+        const steps = this.createSteps(rootFile, recipe)
+        if (steps === undefined) {
+            this.extension.logger.addLogMessage('Invalid toolchain.')
+            return
+        }
+        this.buildStep(rootFile, steps, 0)
     }
 
     build(rootFile: string, recipe: string | undefined = undefined) {
@@ -114,17 +114,24 @@ export class Builder {
         }
     }
 
-    createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
+    createSteps(rootFile: string, recipeName: string | undefined): StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        const magic = this.findProgramMagic(rootFile)
-        if (magic) {
-            steps = [{
-                name: 'magic',
-                command: magic,
+        const magicTex = this.findProgramMagic(rootFile)
+        const magicBib = this.findBibMagic(rootFile) || 'bibtex'
+        if (recipeName === undefined && magicTex) {
+            const magicTexStep = {
+                name: 'magictex',
+                command: magicTex,
                 args: configuration.get('latex.magic.args') as string[]
-            }]
+            }
+            const magicBibStep = {
+                name: 'magicbib',
+                command: magicBib,
+                args: configuration.get('latex.magic.bib.args') as string[]
+            }
+            steps = [magicTexStep, magicBibStep, magicTexStep, magicTexStep]
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools = configuration.get('latex.tools') as StepCommand[]
@@ -165,8 +172,21 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string) : string {
+    findProgramMagic(rootFile: string): string {
         const regex = /(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
+        const content = fs.readFileSync(rootFile).toString()
+
+        const result = content.match(regex)
+        let program = ''
+        if (result) {
+            program = result[1]
+            this.extension.logger.addLogMessage(`Found program by magic comment: ${program}`)
+        }
+        return program
+    }
+
+    findBibMagic(rootFile: string): string {
+        const regex = /(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const content = fs.readFileSync(rootFile).toString()
 
         const result = content.match(regex)
