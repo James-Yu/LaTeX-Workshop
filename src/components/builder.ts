@@ -118,8 +118,7 @@ export class Builder {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        const magicTex = this.findProgramMagic(rootFile)
-        const magicBib = this.findBibMagic(rootFile) || 'bibtex'
+        const [magicTex, magicBib] = this.findProgramMagic(rootFile)
         if (recipeName === undefined && magicTex) {
             const magicTexStep = {
                 name: 'magictex',
@@ -172,30 +171,27 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string): string {
-        const regex = /(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
+    findProgramMagic(rootFile: string): [string, string] {
+        const regexTex = /(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
+        const regexBib = /(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const content = fs.readFileSync(rootFile).toString()
 
-        const result = content.match(regex)
-        let program = ''
-        if (result) {
-            program = result[1]
-            this.extension.logger.addLogMessage(`Found program by magic comment: ${program}`)
-        }
-        return program
-    }
+        const tex = content.match(regexTex)
+        const bib = content.match(regexBib)
+        let texProgram = ''
+        let bibProgram = 'bibtex'
 
-    findBibMagic(rootFile: string): string {
-        const regex = /(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
-        const content = fs.readFileSync(rootFile).toString()
-
-        const result = content.match(regex)
-        let program = ''
-        if (result) {
-            program = result[1]
-            this.extension.logger.addLogMessage(`Found program by magic comment: ${program}`)
+        if (tex) {
+            texProgram = tex[1]
+            this.extension.logger.addLogMessage(`Found TeX program by magic comment: ${texProgram}`)
         }
-        return program
+
+        if (bib) {
+            bibProgram = bib[1]
+            this.extension.logger.addLogMessage(`Found BIB program by magic comment: ${bibProgram}`)
+        }
+
+        return [texProgram, bibProgram]
     }
 }
 
