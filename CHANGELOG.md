@@ -1,5 +1,15 @@
 # Change Log
 
+## [5.0.4] - 2018-04-04
+
+### Added
+- (#496) Add options to show/hide messages with different severities.
+- (#500) Add open compiler log option to error message
+
+### Fixed
+- (#504) Respect recipe when magic comment is given @acristoffers.
+- (#507) Does not show warning after immigration to recipe system.
+
 ## [5.0.3] - 2018-03-26
 
 ### Fixed
