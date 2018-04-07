@@ -142,7 +142,11 @@ export class Builder {
                 command: magicBib,
                 args: configuration.get('latex.magic.bib.args') as string[]
             }
-            steps = [magicTexStep, magicBibStep, magicTexStep, magicTexStep]
+            if (magicBib === '') {
+                steps = [magicTexStep, magicTexStep, magicTexStep]
+            } else {
+                steps = [magicTexStep, magicBibStep, magicTexStep, magicTexStep]
+            }
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools = configuration.get('latex.tools') as StepCommand[]
@@ -191,7 +195,7 @@ export class Builder {
         const tex = content.match(regexTex)
         const bib = content.match(regexBib)
         let texProgram = ''
-        let bibProgram = 'bibtex'
+        let bibProgram = ''
 
         if (tex) {
             texProgram = tex[1]
