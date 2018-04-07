@@ -91,7 +91,19 @@ export class Builder {
                         this.buildStep(rootFile, steps, 0)
                     })
                 } else {
-                    this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error.`, 'error')
+                    this.extension.logger.displayStatus('x', 'errorForeground')
+                    if (configuration.get('message.error.show')) {
+                        vscode.window.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
+                        .then(option => {
+                            switch (option) {
+                                case 'Open compiler log':
+                                    this.extension.logger.showCompilerLog()
+                                    break
+                                default:
+                                    break
+                            }
+                        })
+                    }
                 }
             } else {
                 this.buildStep(rootFile, steps, index + 1)
@@ -114,7 +126,7 @@ export class Builder {
         }
     }
 
-    createSteps(rootFile: string, recipeName: string | undefined): StepCommand[] | undefined {
+    createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
@@ -171,7 +183,7 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string): [string, string] {
+    findProgramMagic(rootFile: string) : [string, string] {
         const regexTex = /(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const content = fs.readFileSync(rootFile).toString()

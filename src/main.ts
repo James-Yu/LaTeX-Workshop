@@ -47,7 +47,7 @@ function obsoleteConfigCheck() {
     if (configuration.has('version')) {
         configuration.update('version', undefined, true)
     }
-    if (configuration.has('latex.toolchain')) {
+    if (configuration.has('latex.toolchain') && !configuration.has('latex.recipes')) {
         vscode.window.showWarningMessage(`LaTeX Workshop has updated its original toolchain system to a new recipe system. Please change your "latex-workshop.latex.toolchain" setting.`,
             'Auto-change', 'More info', 'Close')
         .then(option => {
