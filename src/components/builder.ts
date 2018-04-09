@@ -36,7 +36,7 @@ export class Builder {
             this.extension.logger.addLogMessage('Invalid toolchain.')
             return
         }
-        this.buildStep(rootFile, steps, 0)
+        this.buildStep(rootFile, steps, 0, recipe || 'Build') // use 'Build' as default name
     }
 
     build(rootFile: string, recipe: string | undefined = undefined) {
@@ -48,13 +48,21 @@ export class Builder {
         }
     }
 
-    buildStep(rootFile: string, steps: StepCommand[], index: number) {
+    progressString(recipeName: string, steps: StepCommand[], index: number) {
+        if (steps.length < 2) {
+            return recipeName
+        } else {
+            return recipeName + `: ${index + 1}/${steps.length} (${steps[index].name})`
+        }
+    }
+
+    buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string) {
         if (steps.length === index) {
             this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
             this.buildFinished(rootFile)
             return
         }
-
+        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
         this.extension.logger.clearCompilerMessage()
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
         this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile)})
@@ -88,7 +96,7 @@ export class Builder {
                     this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
                     this.disableCleanAndRetry = true
                     this.extension.commander.clean().then(() => {
-                        this.buildStep(rootFile, steps, 0)
+                        this.buildStep(rootFile, steps, 0, recipeName)
                     })
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
@@ -106,7 +114,7 @@ export class Builder {
                     }
                 }
             } else {
-                this.buildStep(rootFile, steps, index + 1)
+                this.buildStep(rootFile, steps, index + 1, recipeName)
             }
             this.currentProcess = undefined
             if (this.nextBuildRootFile) {

@@ -35,8 +35,8 @@ export class Logger {
         this.compilerLogPanel.clear()
     }
 
-    displayStatus(icon: string, color: string, message: string | undefined = undefined, severity: string = 'info') {
-        this.status.text = `$(${icon})`
+    displayStatus(icon: string, color: string, message: string | undefined = undefined, severity: string = 'info', build: string = '') {
+        this.status.text = `$(${icon})${build}`
         this.status.tooltip = message
         this.status.color = new vscode.ThemeColor(color)
         if (message === undefined) {
