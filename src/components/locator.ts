@@ -69,6 +69,11 @@ export class Locator {
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
                 line -= 1
         }
+        if (configuration.get('view.pdf.viewer') === 'external') {
+            this.syncTeXExternal(line, pdfFile, this.extension.manager.rootFile)
+            return
+        }
+
         const args = ['view', '-i', `${line}:${position.character + 1}:${filePath}`, '-o', pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
@@ -153,4 +158,22 @@ export class Locator {
             }
         })
     }
+
+    syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.synctex'))) as ExternalCommand
+        if (command.args) {
+            command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
+                                                      .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
+                                                      .replace('%PDF%', pdfFile)
+                                                      .replace('%LINE%', line.toString()))
+        }
+        cp.spawn(command.command, command.args)
+        this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
+    }
+}
+
+interface ExternalCommand {
+    command: string,
+    args?: string[]
 }
