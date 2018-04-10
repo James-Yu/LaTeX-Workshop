@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import * as ws from 'ws'
 import * as path from 'path'
 import * as cp from 'child_process'
 
@@ -11,7 +12,7 @@ interface Position {}
 interface Client {
     type: 'viewer' | 'tab'
     prevType?: 'viewer' | 'tab'
-    ws?: WebSocket
+    websocket?: ws
     position?: Position
 }
 
@@ -29,9 +30,9 @@ export class Viewer {
         const client = this.clients[pdfFile.toLocaleUpperCase()]
         if (client !== undefined &&
             (type === undefined || client.type === type) &&
-            client.ws !== undefined) {
+            client.websocket !== undefined) {
             this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-            client.ws.send(JSON.stringify({type: 'refresh'}))
+            client.websocket.send(JSON.stringify({type: 'refresh'}))
             return true
         }
         this.extension.logger.addLogMessage(`No PDF viewer connected for ${pdfFile}`)
@@ -63,8 +64,8 @@ export class Viewer {
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         const client = this.clients[pdfFile.toLocaleUpperCase()]
-        if (client !== undefined && client.ws !== undefined) {
-            client.ws.close()
+        if (client !== undefined && client.websocket !== undefined) {
+            client.websocket.close()
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'viewer'}
         try {
@@ -91,8 +92,8 @@ export class Viewer {
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two) {
             column = vscode.ViewColumn.Three
         }
-        if (client !== undefined && client.ws !== undefined) {
-            client.ws.close()
+        if (client !== undefined && client.websocket !== undefined) {
+            client.websocket.close()
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
         vscode.commands.executeCommand('vscode.previewHtml', uri, column, path.basename(pdfFile))
@@ -110,14 +111,14 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 
-    handler(ws: WebSocket, msg: string) {
+    handler(websocket: ws, msg: string) {
         const data = JSON.parse(msg)
         let client: Client | undefined
         switch (data.type) {
             case 'open':
                 client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
                 if (client !== undefined) {
-                    client.ws = ws
+                    client.websocket = websocket
                     if (client.type === undefined && client.prevType !== undefined) {
                         client.type = client.prevType
                     }
@@ -126,9 +127,9 @@ export class Viewer {
             case 'close':
                 for (const key in this.clients) {
                     client = this.clients[key]
-                    if (client !== undefined && client.ws === ws) {
+                    if (client !== undefined && client.websocket === websocket) {
                         client.prevType = client.type
-                        delete client.ws
+                        delete client.websocket
                         delete client.type
                     }
                 }
@@ -136,19 +137,19 @@ export class Viewer {
             case 'position':
                 for (const key in this.clients) {
                     client = this.clients[key]
-                    if (client !== undefined && client.ws === ws) {
+                    if (client !== undefined && client.websocket === websocket) {
                         client.position = data
                     }
                 }
                 break
             case 'loaded':
                 client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
-                if (client !== undefined && client.ws !== undefined) {
+                if (client !== undefined && client.websocket !== undefined) {
                     if (client.position !== undefined) {
-                        client.ws.send(JSON.stringify(client.position))
+                        client.websocket.send(JSON.stringify(client.position))
                     } else {
                         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                        client.ws.send(JSON.stringify({
+                        client.websocket.send(JSON.stringify({
                             type: 'params',
                             scale: configuration.get('view.pdf.zoom'),
                             hand: configuration.get('view.pdf.hand'),
@@ -175,8 +176,8 @@ export class Viewer {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
         }
-        if (client.ws !== undefined) {
-            client.ws.send(JSON.stringify({type: 'synctex', data: record}))
+        if (client.websocket !== undefined) {
+            client.websocket.send(JSON.stringify({type: 'synctex', data: record}))
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
     }
