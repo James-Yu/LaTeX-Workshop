@@ -16,6 +16,13 @@ export class Builder {
         this.extension = extension
     }
 
+    kill() {
+        if (this.currentProcess) {
+            this.currentProcess.kill()
+            this.extension.logger.addLogMessage('Kill the current process.')
+        }
+    }
+
     preprocess(rootFile: string) {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         this.disableBuildAfterSave = true
@@ -23,7 +30,7 @@ export class Builder {
         this.disableBuildAfterSave = false
         if (this.currentProcess) {
             this.currentProcess.kill()
-            this.extension.logger.addLogMessage('Kill previous process')
+            this.extension.logger.addLogMessage('Kill previous process.')
             this.nextBuildRootFile = rootFile
         } else {
             this.nextBuildRootFile = undefined

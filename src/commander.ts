@@ -106,6 +106,11 @@ export class Commander {
         })
     }
 
+    kill() {
+        this.extension.logger.addLogMessage(`KILL command invoked.`)
+        this.extension.builder.kill()
+    }
+
     browser() {
         this.extension.logger.addLogMessage(`BROWSER command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {

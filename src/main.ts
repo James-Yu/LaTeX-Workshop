@@ -129,6 +129,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.recipes', () => extension.commander.recipes())
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
+    vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
     vscode.commands.registerCommand('latex-workshop.pdf', (uri: vscode.Uri | undefined) => extension.commander.pdf(uri))
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
