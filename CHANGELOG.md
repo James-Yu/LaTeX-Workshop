@@ -1,10 +1,24 @@
 # Change Log
 
+## [5.1.0] - 2018-04-10
+
+### Added
+- (#441) Add syncTeX to external experimental support.
+- (#512) Show recipe progress in statusbar @oerpli.
+- (#513) Add kill process function.
+
+### Fixed
+- (#520) View correct PDF with `outputDir` set.
+- (#521) No `bib` will be executed without a `%! BIB program` comment @acristoffers.
+- (#522) Fix highlighting of {\\{...\\}} blocks @jlelong.
+- (#523) Fix key/value highlighting in bib files @jlelong.
+- (#526,#527) Dependency updates @thetric.
+
 ## [5.0.4] - 2018-04-04
 
 ### Added
 - (#496) Add options to show/hide messages with different severities.
-- (#500) Add open compiler log option to error message
+- (#500) Add open compiler log option to error message.
 
 ### Fixed
 - (#504) Respect recipe when magic comment is given @acristoffers.

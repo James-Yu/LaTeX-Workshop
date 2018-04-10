@@ -160,7 +160,7 @@ export class Builder {
             if (magicBib) {
                 steps = [magicTexStep, magicBibStep, magicTexStep, magicTexStep]
             } else {
-                steps = [magicTexStep, magicTexStep, magicTexStep]
+                steps = [magicTexStep]
             }
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
