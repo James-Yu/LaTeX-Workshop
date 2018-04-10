@@ -31,9 +31,9 @@ export class Server {
         this.httpServer.on('error', (err) => {
             this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
         })
-        this.wsServer = ws.createServer({server: this.httpServer})
+        this.wsServer = new ws.Server({server: this.httpServer})
         this.wsServer.on('connection', (websocket) => {
-            websocket.on('message', (msg) => this.extension.viewer.handler(websocket, msg))
+            websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
             websocket.on('close', () => this.extension.viewer.handler(websocket, '{"type": "close"}'))
         })
         this.extension.logger.addLogMessage(`Creating LaTeX Workshop http and websocket server.`)

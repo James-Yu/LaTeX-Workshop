@@ -283,7 +283,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>\{</string>
+					<string>(?<!\\)\{</string>
 					<key>beginCaptures</key>
 					<dict>
 						<key>0</key>
@@ -293,7 +293,7 @@
 						</dict>
 					</dict>
 					<key>end</key>
-					<string>\}</string>
+					<string>(?<!\\)\}</string>
 					<key>endCaptures</key>
 					<dict>
 						<key>0</key>
@@ -428,7 +428,7 @@
 						</dict>
 					</dict>
 					<key>match</key>
-					<string>(\\)([^a-zA-Z]|[A-Za-z]+)(?=\b|\}|\]|\^|\_)</string>
+					<string>(\\)([^a-zA-Z]|[A-Za-z]+)(?=\b|\s|\}|\]|\^|\_|\\)</string>
 					<key>name</key>
 					<string>constant.other.general.math.tex</string>
 				</dict>
