@@ -133,12 +133,12 @@ export class Builder {
         const [magicTex, magicBib] = this.findProgramMagic(rootFile)
         if (recipeName === undefined && magicTex) {
             const magicTexStep = {
-                name: 'magictex',
+                name: magicTex,
                 command: magicTex,
                 args: configuration.get('latex.magic.args') as string[]
             }
             const magicBibStep = {
-                name: 'magicbib',
+                name: magicBib,
                 command: magicBib,
                 args: configuration.get('latex.magic.bib.args') as string[]
             }
