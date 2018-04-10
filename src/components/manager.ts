@@ -34,9 +34,9 @@ export class Manager {
         this.rootFiles[this.workspace] = root
     }
 
-    tex2pdf(texPath: string) {
+    tex2pdf(texPath: string, respectOutDir: boolean = true) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const outputDir = configuration.get('latex.outputDir') as string
+        const outputDir = respectOutDir ? (configuration.get('latex.outputDir') as string) : './'
         return path.resolve(path.dirname(texPath), outputDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 

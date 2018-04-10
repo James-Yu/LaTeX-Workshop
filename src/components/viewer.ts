@@ -80,12 +80,12 @@ export class Viewer {
         }
     }
 
-    openTab(sourceFile: string) {
+    openTab(sourceFile: string, respectOutDir: boolean = true) {
         const url = this.checkViewer(sourceFile, 'tab')
         if (!url) {
             return
         }
-        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         const client = this.clients[pdfFile.toLocaleUpperCase()]
         const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
         let column = vscode.ViewColumn.Two

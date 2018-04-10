@@ -138,7 +138,7 @@ export class Commander {
             return
         }
         console.log(uri)
-        this.extension.viewer.openTab(uri.fsPath)
+        this.extension.viewer.openTab(uri.fsPath, false)
     }
 
     synctex() {
