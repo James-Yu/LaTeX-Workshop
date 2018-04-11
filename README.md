@@ -22,6 +22,9 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
   - Code Actions (automatic fixes) are offered for many issues found by ChkTeX.
 - LaTeX file formatting.
+- Auto close LaTeX environments: just call _LaTeX Workshop: Close current environment_ from the **Command Palette**. You can easily assign a shortcut to this action through the **Keyboard Shortcuts** menu, search for `latex-workshop.close-env`.
+- Navigate from `\begin/\end` to the corresponding `\end/\begin`: while on the `begin` or `end` keyword, call _LaTeX Workshop: Navigate to matching begin/end_ from the **Command Palette**. To define a shortcut, search for `latex-workshop.navigate-envpair` in the **Keyboard Shortcuts** menu.
+
 
 ## Requirements
 

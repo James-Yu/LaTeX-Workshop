@@ -225,6 +225,22 @@ export class Commander {
         })
     }
 
+    navigateToEnvPair() {
+        this.extension.logger.addLogMessage(`JumpToEnvPair command invoked.`)
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+            return
+        }
+        this.extension.envPair.gotoPair()
+    }
+
+    closeEnv() {
+        this.extension.logger.addLogMessage(`CloseEnv command invoked.`)
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+            return
+        }
+        this.extension.envPair.closeEnv()
+    }
+
     actions() {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')

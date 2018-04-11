@@ -14,6 +14,7 @@ import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
 import {TeXMagician} from './components/texmagician'
+import {EnvPair} from './components/envpair'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -141,6 +142,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
     vscode.commands.registerCommand('latex-workshop.goto-section', (filePath, lineNumber) => extension.commander.gotoSection(filePath, lineNumber))
+    vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair())
+    vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
 
     const formatter = new LatexFormatterProvider(extension)
     vscode.languages.registerDocumentFormattingEditProvider('latex', formatter)
@@ -259,6 +262,7 @@ export class Extension {
     codeActions: CodeActions
     nodeProvider: SectionNodeProvider
     texMagician: TeXMagician
+    envPair: EnvPair
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -277,6 +281,7 @@ export class Extension {
         this.codeActions = new CodeActions(this)
         this.nodeProvider = new SectionNodeProvider(this)
         this.texMagician = new TeXMagician(this)
+        this.envPair = new EnvPair(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
