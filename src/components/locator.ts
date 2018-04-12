@@ -77,7 +77,7 @@ export class Locator {
         const args = ['view', '-i', `${line}:${position.character + 1}:${filePath}`, '-o', pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
-        const proc = cp.spawn(configuration.get('synctex.path') as string, args)
+        const proc = cp.spawn(configuration.get('synctex.path') as string, args, {cwd: path.dirname(pdfFile)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -109,7 +109,7 @@ export class Locator {
         const args = ['edit', '-o', `${data.page}:${data.pos[0]}:${data.pos[1]}:${pdfPath}`]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
-        const proc = cp.spawn(configuration.get('synctex.path') as string, args)
+        const proc = cp.spawn(configuration.get('synctex.path') as string, args, {cwd: path.dirname(pdfPath)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 

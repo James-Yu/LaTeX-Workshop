@@ -64,7 +64,7 @@ export class Linter {
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {}, content)
+            stdout = await this.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
         } catch (err) {
             if ('stdout' in err) {
                 stdout = err.stdout
