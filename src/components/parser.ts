@@ -15,6 +15,10 @@ const latexmkLog = /^Latexmk:\sapplying\srule/
 const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
 const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
 
+const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
+const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
+const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
+
 const truncatedLine = /(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g
 
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
@@ -52,6 +56,8 @@ export class Parser {
 
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
+        } else if (log.match(texifyPattern)) {
+            log = this.trimTexify(log)
         }
         if (log.match(latexPattern) || log.match(latexFatalPattern)) {
             this.parseLaTeX(log)
@@ -71,6 +77,28 @@ export class Parser {
                 startLine = index
             }
             result = line.match(latexmkLog)
+            if (result) {
+                finalLine = index
+            }
+        }
+        if (finalLine <= startLine) {
+            return lines.slice(startLine).join('\n')
+        } else {
+            return lines.slice(startLine, finalLine).join('\n')
+        }
+    }
+
+    trimTexify(log: string) : string {
+        const lines = log.split('\n')
+        let startLine = -1
+        let finalLine = -1
+        for (let index = 0; index < lines.length; index++) {
+            const line = lines[index]
+            let result = line.match(texifyLogLatex)
+            if (result) {
+                startLine = index
+            }
+            result = line.match(texifyLog)
             if (result) {
                 finalLine = index
             }
