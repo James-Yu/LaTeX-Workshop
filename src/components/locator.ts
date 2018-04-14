@@ -160,13 +160,18 @@ export class Locator {
     }
 
     syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
+        if (!vscode.window.activeTextEditor) {
+            return undefined
+        }
+        const texFile = vscode.window.activeTextEditor.document.uri.fsPath
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.synctex'))) as ExternalCommand
         if (command.args) {
             command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
                                                       .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
                                                       .replace('%PDF%', pdfFile)
-                                                      .replace('%LINE%', line.toString()))
+                                                      .replace('%LINE%', line.toString())
+                                                      .replace('%TEX%', texFile))
         }
         cp.spawn(command.command, command.args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
