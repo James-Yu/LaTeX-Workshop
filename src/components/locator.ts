@@ -161,7 +161,7 @@ export class Locator {
 
     syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
         if (!vscode.window.activeTextEditor) {
-            return undefined
+            return
         }
         const texFile = vscode.window.activeTextEditor.document.uri.fsPath
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
