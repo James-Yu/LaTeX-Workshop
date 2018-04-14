@@ -107,42 +107,20 @@ To find the root file, LaTeX Workshop will follow the steps below, stopping when
 If no root file is found, most of the features in LaTeX Workshop will not work.
 
 ### Magic comments?
-LaTeX Workshop supports both `% !TEX root` and `% !TEX program` magic comments. The former is used to define the root file, while the latter helps select compiler program.
+LaTeX Workshop supports both `% !TEX root` and `% !TEX program` magic comments. The former is used to define the root file, while the latter helps select compiler program. However, it is advised to use the recipe system instead of magic program to define the building process, since the latter is only implemented for backward compatibility.
 
 For `% !TEX program` magic comment, its arguments are defined in `latex-workshop.latex.magic.args`:
 ```
 "latex-workshop.latex.magic.args": [
-  {
-    "command": "",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "%DOC%"
-    ]
-  }
+  "-synctex=1",
+  "-interaction=nonstopmode",
+  "-file-line-error",
+  "%DOC%"
 ]
 ```
 Suppose there is a line `% !TEX program = xelatex` in the root file. Upon building the project, LaTeX Workshop will parse the root file and figure out that `xelatex` should be used. Arguments are included to invoke the compiler.
 
-<!-- Another possible use case: suppose there is a line `% !TEX program = lualatex` with the following configuration:
-```
-"latex-workshop.latex.toolchain": [
-  {
-    "command": "latexmk",
-    "args": [
-      "-synctex=1",
-      "-interaction=nonstopmode",
-      "-file-line-error",
-      "-pdf",
-      "%DOC%"
-    ]
-  }
-]
-```
-which is the default value. The compiled command will be `latexmk -synctex=1 -interaction=nonstopmode -file-line-error -pdf main -pdflatex=lualatex`.
-
-If the `command` is set empty but no `% !TEX program` magic comment is found, `pdflatex` is used. -->
+When using `% !TEX program` with bibliographies, a `bib` compiler must be defined with `% !BIB program` comment, e.g., `% !BIB program = bibtex`. Otherwise the extension will only run one-pass compilation with the specified LaTeX compiler.
 
 ### Spell check?
 [Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. Users may also find other extensions better alternatives, e.g., [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) and [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool). Especially the last one is credited for its multi-lingual support.
