@@ -1,5 +1,18 @@
 # Change Log
 
+## [5.2.0] - 2018-04-14
+
+### Added
+- (#441) Add `%TEX%` placeholder for external synctex.
+- (#511) Experimental texify log parsing.
+- (#529) Turns the step name into the program name @acristoffers.
+- (#532) Add Close / Navigate to environment actions @jlelong.
+- (#534) Complete \sqrt as \sqrt{x} using snippets @jlelong.
+
+### Fixed
+- (#533) Set working directory when calling LaTeX binaries @Arxisos.
+- (#539) Correct magic comment description.
+
 ## [5.1.0] - 2018-04-10
 
 ### Added

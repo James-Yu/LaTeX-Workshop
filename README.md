@@ -131,7 +131,7 @@ By default, the extension compiles the project upon saving any tex files. If you
 
 ### Docker?
 
-[@lippertmarkus](https://github.com/lippertmarkus) has a short description on how to use docker with LaTeX Workshop. You may check it out [here](https://github.com/James-Yu/LaTeX-Workshop/issues/302) and have some discussion!
+[@Arxisos](https://github.com/Arxisos) created [snippets](https://github.com/Arxisos/LaTex-Workshop-Docker) for LaTeX binaries in docker, and [@lippertmarkus](https://github.com/lippertmarkus) had another [short description](https://github.com/James-Yu/LaTeX-Workshop/issues/302) on how to use docker with LaTeX Workshop.
 
 ## GitHub
 
