@@ -48,6 +48,13 @@ export class LaTexFormatter {
 
             const configuration = vscode.workspace.getConfiguration('latex-workshop.latexindent')
             this.formatter = configuration.get<string>('path') || 'latexindent'
+            if (configuration.get('docker.enabled')) {
+                if (process.platform === 'win32') {
+                    this.formatter = path.join(this.extension.extensionRoot, 'scripts/latexindent.bat')
+                } else {
+                    this.formatter = path.join(this.extension.extensionRoot, 'scripts/latexindent')
+                }
+            }
             this.formatterArgs = configuration.get<string[]>('args')
                 || [ '-c', '%DIR%/', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"' ]
             const pathMeta = configuration.inspect('path')
@@ -115,11 +122,13 @@ export class LaTexFormatter {
             const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
             fs.writeFileSync(temporaryFile, textToFormat)
 
+            const doc = document.fileName.replace(/\.tex$/, '').split(path.sep).join('/')
+            const docfile = path.basename(document.fileName, '.tex').split(path.sep).join('/')
             // generate command line arguments
             const args = this.formatterArgs.map(arg => arg
                 // taken from ../components/builder.ts
-                .replace('%DOC%', document.fileName.replace(/\.tex$/, '').split(path.sep).join('/'))
-                .replace('%DOCFILE%', path.basename(document.fileName, '.tex').split(path.sep).join('/'))
+                .replace('%DOC%', configuration.get('docker.enabled') ? docfile : doc)
+                .replace('%DOCFILE%', docfile)
                 .replace('%DIR%', path.dirname(document.fileName).split(path.sep).join('/'))
                 // latexformatter.ts specific tokens
                 .replace('%TMPFILE%', temporaryFile.split(path.sep).join('/'))

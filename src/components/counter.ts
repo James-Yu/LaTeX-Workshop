@@ -20,7 +20,15 @@ export class Counter {
         if (merge) {
             args.push('-merge')
         }
-        const proc = cp.spawn(configuration.get('texcount.path') as string, args.concat([file]), {cwd: path.dirname(file)})
+        let command = configuration.get('texcount.path') as string
+        if (configuration.get('docker.enabled')) {
+            if (process.platform === 'win32') {
+                command = path.join(this.extension.extensionRoot, 'scripts/texcount.bat')
+            } else {
+                command = path.join(this.extension.extensionRoot, 'scripts/texcount')
+            }
+        }
+        const proc = cp.spawn(command, args.concat([path.basename(file)]), {cwd: path.dirname(file)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 

@@ -544,6 +544,11 @@
             "-y=\"defaultIndent: '%INDENT%'\""
           ],
           "description": "Define the command line arguments for latexindent. Available placeholders:\n- %DOC%, %DOCFILE%, %DIR%: same as latex-workshop.latex.toolchain args.\n- %TMPFILE%: would be replaced with the path of file which contains raw TeX source to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: would be replaced with the string which represents indent of the target document.\n\nNote: At this moment -c option requires trailing slash."
+        },
+        "latex-workshop.docker.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use `tianon/latex` and `mcandre/docker-chktex` binaries to replace `latexmk`, `synctex`, `texcount`, `latexindent` and `chktex`."
         }
       }
     },

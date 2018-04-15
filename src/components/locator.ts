@@ -74,10 +74,19 @@ export class Locator {
             return
         }
 
-        const args = ['view', '-i', `${line}:${position.character + 1}:${filePath}`, '-o', pdfFile]
+        const docker = configuration.get('docker.enabled')
+        const args = ['view', '-i', `${line}:${position.character + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
-        const proc = cp.spawn(configuration.get('synctex.path') as string, args, {cwd: path.dirname(pdfFile)})
+        let command = configuration.get('synctex.path') as string
+        if (docker) {
+            if (process.platform === 'win32') {
+                command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
+            } else {
+                command = path.join(this.extension.extensionRoot, 'scripts/synctex')
+            }
+        }
+        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -106,10 +115,20 @@ export class Locator {
 
     locate(data: any, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const args = ['edit', '-o', `${data.page}:${data.pos[0]}:${data.pos[1]}:${pdfPath}`]
+
+        const docker = configuration.get('docker.enabled')
+        const args = ['edit', '-o', `${data.page}:${data.pos[0]}:${data.pos[1]}:${docker ? path.basename(pdfPath) : pdfPath}`]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
-        const proc = cp.spawn(configuration.get('synctex.path') as string, args, {cwd: path.dirname(pdfPath)})
+        let command = configuration.get('synctex.path') as string
+        if (docker) {
+            if (process.platform === 'win32') {
+                command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
+            } else {
+                command = path.join(this.extension.extensionRoot, 'scripts/synctex')
+            }
+        }
+        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -139,7 +158,10 @@ export class Locator {
                 const row = record.line as number - 1
                 const col = record.column < 0 ? 0 : record.column as number
                 const pos = new vscode.Position(row, col)
-                const filePath = path.resolve((record.input as string).replace(/(\r\n|\n|\r)/gm, ''))
+                let filePath = path.resolve((record.input as string).replace(/(\r\n|\n|\r)/gm, ''))
+                if (docker && process.platform === 'win32') {
+                    filePath = path.join(path.dirname(pdfPath), (record.input as string).replace('/data/', ''))
+                }
 
                 this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
                 vscode.workspace.openTextDocument(filePath).then((doc) => {

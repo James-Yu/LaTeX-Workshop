@@ -192,10 +192,27 @@ export class Builder {
             })
         }
         steps = JSON.parse(JSON.stringify(steps))
+
+        const docker = configuration.get('docker.enabled')
         steps.forEach(step => {
+            if (docker) {
+                switch (step.command) {
+                    case 'latexmk':
+                        if (process.platform === 'win32') {
+                            step.command = path.join(this.extension.extensionRoot, 'scripts/latexmk.bat')
+                        } else {
+                            step.command = path.join(this.extension.extensionRoot, 'scripts/latexmk')
+                        }
+                        break
+                    default:
+                        break
+                }
+            }
             if (step.args) {
-                step.args = step.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                                    .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
+                const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
+                const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+                step.args = step.args.map(arg => arg.replace('%DOC%', docker ? docfile : doc)
+                                                    .replace('%DOCFILE%', docfile)
                                                     .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
             }
         })
