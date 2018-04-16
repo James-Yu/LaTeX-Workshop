@@ -24,7 +24,7 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 - LaTeX file formatting.
 - Auto close LaTeX environments: just call _LaTeX Workshop: Close current environment_ from the **Command Palette**. You can easily assign a shortcut to this action through the **Keyboard Shortcuts** menu, search for `latex-workshop.close-env`.
 - Navigate from `\begin/\end` to the corresponding `\end/\begin`: while on the `begin` or `end` keyword, call _LaTeX Workshop: Navigate to matching begin/end_ from the **Command Palette**. To define a shortcut, search for `latex-workshop.navigate-envpair` in the **Keyboard Shortcuts** menu.
-- Add a multicursor on the current environment name: call _LaTeX Workshop: Multicursor selection of the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.select-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments.
+- Add a multicursor to the current environment name: call _LaTeX Workshop: Multicursor selection of the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.select-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments.
 
 
 ## Requirements
