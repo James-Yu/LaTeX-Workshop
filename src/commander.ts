@@ -280,7 +280,7 @@ export class Commander {
                             case 'View in web browser':
                                 this.browser()
                                 break
-                            case 'New VS Code tab':
+                            case 'View in VS Code tab':
                                 this.tab()
                                 break
                         }
