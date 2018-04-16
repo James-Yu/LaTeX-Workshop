@@ -143,6 +143,32 @@ export class EnvPair {
         }
     }
 
+    selectEnvName() {
+        const editor = vscode.window.activeTextEditor
+        if (!editor || editor.document.languageId !== 'latex') {
+            return
+        }
+        const curPos = editor.selection.active
+        const document = editor.document
+
+        const pattern = '\\\\(begin|end)\\{[^\\{\\}]*\\}'
+        const dirUp = -1
+        const beginEnv = this.locateMatchingPair(pattern, dirUp, curPos, document)
+        if (!beginEnv) {
+            return
+        }
+        const dirDown = 1
+        const endEnv = this.locateMatchingPair(pattern, dirDown, beginEnv.pos, document)
+        if (!endEnv) {
+            return
+        }
+
+        const envStartPos = beginEnv.pos.translate(0, 'begin{'.length)
+        const envEndPos = endEnv.pos.translate(0, 'end{'.length)
+        editor.selections = [new vscode.Selection(envStartPos, envStartPos), new vscode.Selection(envEndPos, envEndPos)]
+        editor.revealRange(new vscode.Range(envStartPos, envEndPos))
+    }
+
     closeEnv() {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
