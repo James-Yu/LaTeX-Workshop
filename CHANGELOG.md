@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.3.0] - 2018-04-16
+
+### Added
+
+- Experimental docker support.
+
+### Fixed
+- (#546) More syntax highlighting adjustments @jlelong.
+
 ## [5.2.0] - 2018-04-14
 
 ### Added

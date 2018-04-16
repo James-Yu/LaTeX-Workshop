@@ -131,6 +131,8 @@ By default, the extension compiles the project upon saving any tex files. If you
 
 ### Docker?
 
+From version 5.3.0 there is an experimental implementation on docker support following the idea of [@Arxisos](https://github.com/Arxisos). You can set `latex-workshop.docker.enabled` to `true` to use `tianon/latex`. It is advised that the image is 'pre-'pulled.
+
 [@Arxisos](https://github.com/Arxisos) created [snippets](https://github.com/Arxisos/LaTex-Workshop-Docker) for LaTeX binaries in docker, and [@lippertmarkus](https://github.com/lippertmarkus) had another [short description](https://github.com/James-Yu/LaTeX-Workshop/issues/302) on how to use docker with LaTeX Workshop.
 
 ## GitHub
