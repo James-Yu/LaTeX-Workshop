@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
 
@@ -84,6 +85,7 @@ export class Locator {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
             } else {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex')
+                fs.chmodSync(command, 0o777)
             }
         }
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
@@ -126,6 +128,7 @@ export class Locator {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
             } else {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex')
+                fs.chmodSync(command, 0o777)
             }
         }
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})
