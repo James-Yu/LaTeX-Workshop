@@ -1,8 +1,23 @@
-<!-- This is a suggested template for creating general issues, but you can use whatever you like. -->
+<!-- Following contents are required for a successful issue. Not providing necessary information, specifically log messages, may render the issue closed. -->
+<!-- Sorry for being rude on the above message, yet I/we have encountered too many frustrating issues without any information. The developers are only developers, not mind-readers or remote-computer-readers. -->
 
 ### Description
 
 <!-- Please describe/summarize the issue here. -->
+
+### Log messages
+
+<!-- Please paste the log messages here. It is very important to identify problems. If you think the logs are uncorrelated, please say so. -->
+
+<details>
+<summary>LaTeX Workshop Output</summary>
+<!-- To access the log, click the 'problems' icons on the statusbar, select 'OUTPUT', then select 'LaTeX Workshop' from the dropdown menu on the right. -->
+</details>
+
+<details>
+<summary>Developer Tools Console</summary>
+<!-- To access the log, click 'help' -> 'Toggle Developer Tools. Paste anything suspicious. -->
+</details>
 
 ### How to reproduce
 
@@ -19,20 +34,6 @@
 ### Actual behavior
 
 <!-- Please describe what happens instead. -->
-
-### Log messages
-
-<!-- Please paste the log messages here. It is very important to identify problems. -->
-
-<details>
-<summary>LaTeX Workshop Output</summary>
-<!-- To access the log, click the 'problems' icons on the statusbar, select 'OUTPUT', then select 'LaTeX Workshop' from the dropdown menu on the right. -->
-</details>
-
-<details>
-<summary>Developer Tools Console</summary>
-<!-- To access the log, click 'help' -> 'Toggle Developer Tools. Paste anything suspicious. -->
-</details>
 
 ### Additional Information
 
