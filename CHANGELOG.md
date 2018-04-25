@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.3.1] - 2018-04-25
+
+### Added
+
+- (#552) Add multicursor to current environment name @jlelong.
+- (#573) Add environments and package completion @chantisnake.
+
+### Fixed
+- (#181) Correct in-tab view option.
+- (#568) Prevent completion for `\\`.
+
 ## [5.3.0] - 2018-04-16
 
 ### Added
