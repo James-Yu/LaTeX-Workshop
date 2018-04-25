@@ -48,8 +48,12 @@ export class Completer implements vscode.CompletionItemProvider {
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
         return new Promise((resolve, _reject) => {
             const invokeChar = document.lineAt(position.line).text[position.character - 1]
+            const currentLine = document.lineAt(position.line).text
+            if (position.character > 1 && currentLine[position.character - 2] === '\\') {
+                resolve()
+                return
+            }
             if (this.command.specialBrackets.hasOwnProperty(invokeChar)) {
-                const currentLine = document.lineAt(position.line).text
                 if (position.character > 1 && currentLine[position.character - 2] === '\\') {
                     const mathSnippet = Object.assign({}, this.command.specialBrackets[invokeChar])
                     if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
