@@ -49,7 +49,7 @@ export class Completer implements vscode.CompletionItemProvider {
         return new Promise((resolve, _reject) => {
             const invokeChar = document.lineAt(position.line).text[position.character - 1]
             const currentLine = document.lineAt(position.line).text
-            if (position.character > 1 && currentLine[position.character - 2] === '\\') {
+            if (position.character > 1 && currentLine[position.character - 1] === '\\' && currentLine[position.character - 2] === '\\') {
                 resolve()
                 return
             }
