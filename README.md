@@ -39,10 +39,6 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 Installing LaTeX Workshop is simple. You can find it in [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=James-Yu.latex-workshop), or simply run `ext install latex-workshop` in VS Code Quick Open (`ctrl`/`cmd` + `P`).
 
-Alternatively, you can check out this repository and copy it to the VS Code local extensions folder:
-- Windows `%USERPROFILE%\.vscode\extensions`
-- Mac/Linux `$HOME/.vscode/extensions`
-
 ## Usage
 
 - Open a `.tex` file, right click to build, SyncTeX, or show all features.
