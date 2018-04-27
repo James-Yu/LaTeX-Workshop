@@ -487,7 +487,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(?:\s*)((\\)begin)(\{)((?:fboxv|boxedv|V|v)erbatim|alltt)(\})</string>
+			<string>(?:\s*)((\\)begin)(\{)((?:fboxv|boxedv|V|v)erbatim)(\})</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -522,6 +522,61 @@
 			<string>((\\)end)(\{)(\4)(\})</string>
 			<key>name</key>
 			<string>meta.function.verbatim.latex</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>(?:\s*)((\\)begin)(\{)(alltt)(\})</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>markup.raw.verbatim.latex</string>
+			<key>end</key>
+			<string>((\\)end)(\{)(alltt)(\})</string>
+			<key>name</key>
+			<string>meta.function.alltt.latex</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.function.tex</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\\)[A-Za-z]+</string>
+					<key>name</key>
+					<string>support.function.general.tex</string>
+				</dict>
+			</array>
 		</dict>
 		<dict>
 			<key>begin</key>
