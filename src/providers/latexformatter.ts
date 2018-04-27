@@ -46,8 +46,8 @@ export class LaTexFormatter {
                 this.currentOs = mac
             }
 
-            const configuration = vscode.workspace.getConfiguration('latex-workshop.latexindent')
-            this.formatter = configuration.get<string>('path') || 'latexindent'
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            this.formatter = configuration.get<string>('latexindent.path') || 'latexindent'
             if (configuration.get('docker.enabled')) {
                 if (process.platform === 'win32') {
                     this.formatter = path.join(this.extension.extensionRoot, 'scripts/latexindent.bat')
@@ -56,9 +56,9 @@ export class LaTexFormatter {
                     fs.chmodSync(this.formatter, 0o777)
                 }
             }
-            this.formatterArgs = configuration.get<string[]>('args')
+            this.formatterArgs = configuration.get<string[]>('latexindent.args')
                 || [ '-c', '%DIR%/', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"' ]
-            const pathMeta = configuration.inspect('path')
+            const pathMeta = configuration.inspect('latexindent.path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
                 this.format(document, range).then((edit) => {
@@ -80,6 +80,10 @@ export class LaTexFormatter {
     }
 
     private checkPath(checker: string) : Thenable<boolean> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('docker.enabled')) {
+            return Promise.resolve(true)
+        }
         return new Promise((resolve, _reject) => {
             cp.exec(checker + ' ' + this.formatter, (err, _stdout, _stderr) => {
                 if (err) {
