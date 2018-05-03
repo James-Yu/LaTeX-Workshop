@@ -1,5 +1,18 @@
 # Change Log
 
+## [5.3.2] - 2018-05-03
+
+### Changed
+- (#585) Merge latex-memoir into latex @jlelong.
+
+### Fixed
+- (#575) Fix unbalanced strings in syntax highlights @jlelong.
+- (#576) Remove `set -euo` in linux docker executables.
+- (#577) Disable latexindent check when docker enabled.
+- (#579) Do not capture `{...}` groups @jlelong.
+- (#581) Fix no completion for double backslash @jlelong.
+- (#582,#583) Further LaTeX syntax re-organize @jlelong.
+
 ## [5.3.1] - 2018-04-25
 
 ### Added
