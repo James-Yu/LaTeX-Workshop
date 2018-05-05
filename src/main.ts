@@ -148,7 +148,9 @@ export async function activate(context: vscode.ExtensionContext) {
 
     const formatter = new LatexFormatterProvider(extension)
     vscode.languages.registerDocumentFormattingEditProvider('latex', formatter)
+    vscode.languages.registerDocumentFormattingEditProvider('bibtex', formatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider('latex', formatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider('bibtex', formatter)
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
