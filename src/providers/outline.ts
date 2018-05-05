@@ -60,7 +60,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.extension.logger.addLogMessage(`Parsing ${filePath} for outline`)
         let content = fs.readFileSync(filePath, 'utf-8')
         const endPos = content.search(/^(?!%)\s*\\end{document}/gm)
-        console.log(endPos)
         if (endPos > -1) {
             content = content.substr(0, endPos)
         }

@@ -52,7 +52,7 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${encodeURIComponent(pdfFile)}`
+        const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(pdfFile))}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         return url
     }
