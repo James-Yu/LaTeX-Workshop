@@ -48,7 +48,7 @@ export class Command {
             command.insertText = new vscode.SnippetString(item.snippet)
             this.defaultCommands[key] = command
         })
-        const bracketCommands = {'latexinlinemath': '(', 'latexdisplaymath': '[', 'curlybrackets': '{'}
+        const bracketCommands = {'latexinlinemath': '(', 'latexdisplaymath': '[', 'curlybrackets': '{', 'lrparen': 'left(', 'lrbrack': 'left[', 'lrcurly': 'left\\{'}
         this.specialBrackets = Object.keys(this.defaultCommands)
             .filter(key => bracketCommands.hasOwnProperty(key))
             .reduce((obj, key) => {
