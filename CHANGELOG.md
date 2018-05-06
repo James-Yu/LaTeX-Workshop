@@ -1,5 +1,22 @@
 # Change Log
 
+## [5.3.3] - 2018-05-06
+
+### Added
+- (#565) Format bibtex with formatter.
+
+### Changed
+- (#597) Do not highlight strings in .bib files @jlelong.
+- (#598) Autocomplete for `\left` command @jcmonteiro.
+- (#603) Remove double `"` matching highlight.
+
+### Fixed
+- Fix `not using scheme` warning when activating extension.
+- (#559) Double encode `&` in url to prevent browser auto-decode.
+- (#566) Recognize indented section headers in outline.
+- (#567) Remove `frame` in environment hint and add in commands.
+- (#586) Ignore sections after `\end{document}` in outline.
+
 ## [5.3.2] - 2018-05-03
 
 ### Changed
