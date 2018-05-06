@@ -146,12 +146,6 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName())
     vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
 
-    const formatter = new LatexFormatterProvider(extension)
-    vscode.languages.registerDocumentFormattingEditProvider('latex', formatter)
-    vscode.languages.registerDocumentFormattingEditProvider('bibtex', formatter)
-    vscode.languages.registerDocumentRangeFormattingEditProvider('latex', formatter)
-    vscode.languages.registerDocumentRangeFormattingEditProvider('bibtex', formatter)
-
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {
             extension.linter.lintRootFileIfEnabled()
@@ -231,15 +225,21 @@ export async function activate(context: vscode.ExtensionContext) {
 
     extension.manager.findRoot()
 
+    const formatter = new LatexFormatterProvider(extension)
+    vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'latex'}, formatter)
+    vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'latex'}, formatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
+
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerHoverProvider('latex', new HoverProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerDefinitionProvider('latex', new DefinitionProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider('latex', new DocSymbolProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerHoverProvider({ scheme: 'file', language: 'latex'}, new HoverProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerDefinitionProvider({ scheme: 'file', language: 'latex'}, new DefinitionProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider({ scheme: 'file', language: 'latex'}, new DocSymbolProvider(extension)))
     context.subscriptions.push(vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('tex', extension.completer, '\\', '{'))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('latex', extension.completer, '\\', '{', ',', '(', '['))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider('doctex', extension.completer, '\\', '{', ',', '(', '['))
-    context.subscriptions.push(vscode.languages.registerCodeActionsProvider('latex', extension.codeActions))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'latex'}, extension.completer, '\\', '{', ',', '(', '['))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'doctex'}, extension.completer, '\\', '{', ',', '(', '['))
+    context.subscriptions.push(vscode.languages.registerCodeActionsProvider({ scheme: 'file', language: 'latex'}, extension.codeActions))
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-outline', extension.nodeProvider))
 
     extension.linter.lintRootFileIfEnabled()
