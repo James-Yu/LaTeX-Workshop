@@ -24,7 +24,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((\\)(?:usepackage|documentclass))(?:(\[)([^\]]*)(\]))?(\{)</string>
+			<string>((\\)(?:usepackage|documentclass))((?:\[[^\[]*?\])*)(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -39,20 +39,15 @@
 				</dict>
 				<key>3</key>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.begin.latex</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
 				</dict>
 				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>variable.parameter.latex</string>
-				</dict>
-				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.end.latex</string>
-				</dict>
-				<key>6</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.arguments.begin.latex</string>
