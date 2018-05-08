@@ -137,9 +137,7 @@
 					)
 					(?:\*)?											# Optional Unnumbered
 				)
-				(?:
-					(\[)([^\[]*?)(\])								# Optional Title and Header-Name (the second optional argument is only valid with the memoir class
-				){0,2}?
+				((?:\[[^\[]*?\]){0,2})
 				(\{)												# Opening Bracket
 				</string>
 			<key>beginCaptures</key>
@@ -156,20 +154,15 @@
 				</dict>
 				<key>4</key>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.begin.latex</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
 				</dict>
 				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.section.latex</string>
-				</dict>
-				<key>6</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.end.latex</string>
-				</dict>
-				<key>7</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.arguments.begin.latex</string>
