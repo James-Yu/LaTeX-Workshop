@@ -24,7 +24,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((\\)(?:usepackage|documentclass))(?:(\[)([^\]]*)(\]))?(\{)</string>
+			<string>((\\)(?:usepackage|documentclass))((?:\[[^\[]*?\])*)(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -39,20 +39,15 @@
 				</dict>
 				<key>3</key>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.begin.latex</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
 				</dict>
 				<key>4</key>
-				<dict>
-					<key>name</key>
-					<string>variable.parameter.latex</string>
-				</dict>
-				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.end.latex</string>
-				</dict>
-				<key>6</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.arguments.begin.latex</string>
@@ -137,9 +132,7 @@
 					)
 					(?:\*)?											# Optional Unnumbered
 				)
-				(?:
-					(\[)([^\[]*?)(\])								# Optional Title and Header-Name (the second optional argument is only valid with the memoir class
-				){0,2}?
+				((?:\[[^\[]*?\]){0,2})
 				(\{)												# Opening Bracket
 				</string>
 			<key>beginCaptures</key>
@@ -156,20 +149,15 @@
 				</dict>
 				<key>4</key>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.begin.latex</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
 				</dict>
 				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>entity.name.section.latex</string>
-				</dict>
-				<key>6</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.end.latex</string>
-				</dict>
-				<key>7</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.arguments.begin.latex</string>
@@ -1025,7 +1013,6 @@
 				</dict>
 			</array>
 		</dict>
-
 		<dict>
 			<key>begin</key>
 			<string>(?:\s*)((\\)begin)(\{)(\w+[*]?)(\})</string>
@@ -1085,7 +1072,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((\\)marginpar)(\{)</string>
+			<string>((\\)marginpar)((?:\[[^\[]*?\])*)(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -1099,6 +1086,16 @@
 					<string>punctuation.definition.function.latex</string>
 				</dict>
 				<key>3</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
+				</dict>
+				<key>4</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.marginpar.begin.latex</string>
@@ -1148,26 +1145,8 @@
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>captures</key>
-							<dict>
-								<key>1</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.arguments.begin.latex</string>
-								</dict>
-								<key>2</key>
-								<dict>
-									<key>name</key>
-									<string>variable.parameter.latex</string>
-								</dict>
-								<key>3</key>
-								<dict>
-									<key>name</key>
-									<string>punctuation.definition.arguments.end.latex</string>
-								</dict>
-							</dict>
-							<key>match</key>
-							<string>(\[)([^\[]*?)(\])</string>
+							<key>include</key>
+							<string>#optional-arg</string>
 						</dict>
 					</array>
 				</dict>
@@ -1798,6 +1777,37 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			<string>text.tex</string>
 		</dict>
 	</array>
+	<key>repository</key>
+	<dict>
+		<key>optional-arg</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.optional.arguments.begin.latex</string>
+						</dict>
+						<key>2</key>
+						<dict>
+							<key>name</key>
+							<string>variable.parameter.latex</string>
+						</dict>
+						<key>3</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.optional.arguments.end.latex</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\[)([^\[]*?)(\])</string>
+				</dict>
+			</array>
+		</dict>
+	</dict>
 	<key>scopeName</key>
 	<string>text.tex.latex</string>
 	<key>uuid</key>
