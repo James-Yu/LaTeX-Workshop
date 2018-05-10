@@ -129,20 +129,20 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>\$\$</string>
+			<string>(\$\$|\$)</string>
 			<key>beginCaptures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.string.begin.tex</string>
 				</dict>
 			</dict>
 			<key>end</key>
-			<string>\$\$</string>
+			<string>(\1)</string>
 			<key>endCaptures</key>
 			<dict>
-				<key>0</key>
+				<key>1</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.string.end.tex</string>
@@ -150,47 +150,6 @@
 			</dict>
 			<key>name</key>
 			<string>support.class.math.block.tex</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>include</key>
-					<string>#math</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>$self</string>
-				</dict>
-			</array>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\\\\</string>
-			<key>name</key>
-			<string>constant.character.newline.tex</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>\$</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.begin.tex</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>\$</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.string.end.tex</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>support.class.math.tex</string>
 			<key>patterns</key>
 			<array>
 				<dict>
@@ -208,6 +167,12 @@
 					<string>$self</string>
 				</dict>
 			</array>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\\\\</string>
+			<key>name</key>
+			<string>constant.character.newline.tex</string>
 		</dict>
 		<dict>
 			<key>captures</key>
