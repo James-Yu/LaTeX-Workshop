@@ -238,7 +238,15 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
-        this.extension.envPair.selectEnvName()
+        this.extension.envPair.selectEnvName('selection')
+    }
+
+    multiCursorEnvName() {
+        this.extension.logger.addLogMessage(`MutliCursorEnvName command invoked.`)
+        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+            return
+        }
+        this.extension.envPair.selectEnvName('cursor')
     }
 
     closeEnv() {

@@ -27,11 +27,6 @@ function regexpAllMatches(str: string, reg: RegExp) {
     return res
 }
 
-interface MatchPair {
-    str: string
-    pos: vscode.Position
-}
-
 interface MatchEnv {
     name: string
     type: string // 'begin' or 'end'
@@ -81,7 +76,7 @@ export class EnvPair {
         return null
     }
 
-    locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument) : MatchPair | null {
+    locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument) : MatchEnv | null {
         const patRegexp = new RegExp(pattern, 'g')
         let lineNumber = pos.line
         let nested = 0
@@ -105,8 +100,9 @@ export class EnvPair {
                 if ((m[1] === 'end' && dir === 1) || (m[1] === 'begin' && dir === -1))  {
                     if (nested === 0) {
                         const matchPos = new vscode.Position(lineNumber, m.index + 1)
-                        const matchStr = m[0]
-                        return {str: matchStr, pos: matchPos}
+                        const matchName = m[2]
+                        const matchType = m[1]
+                        return {name: matchName, type: matchType, pos: matchPos}
                     }
                     nested -= 1
                 }
@@ -120,6 +116,9 @@ export class EnvPair {
         return null
     }
 
+    /**
+     * While on a 'begin' or 'end' keyword, moves the cursor to the corresponding 'end/begin'
+     */
     gotoPair() {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
@@ -143,7 +142,14 @@ export class EnvPair {
         }
     }
 
-    selectEnvName() {
+    /**
+     * Select or add a multicursor to an environment name
+     *
+     * @param selectionOrCursor  can be
+     *      - 'selection': the environment name is selected both in the begin and end part
+     *      - 'cursor': a multicursor is added at the beginning of the environment name is selected both in the begin and end part
+     */
+    selectEnvName(selectionOrCursor: string) {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
@@ -151,7 +157,7 @@ export class EnvPair {
         const curPos = editor.selection.active
         const document = editor.document
 
-        const pattern = '\\\\(begin|end)\\{[^\\{\\}]*\\}'
+        const pattern = '\\\\(begin|end)\\{([^\\{\\}]*)\\}'
         const dirUp = -1
         const beginEnv = this.locateMatchingPair(pattern, dirUp, curPos, document)
         if (!beginEnv) {
@@ -163,10 +169,22 @@ export class EnvPair {
             return
         }
 
-        const envStartPos = beginEnv.pos.translate(0, 'begin{'.length)
-        const envEndPos = endEnv.pos.translate(0, 'end{'.length)
-        editor.selections = [new vscode.Selection(envStartPos, envStartPos), new vscode.Selection(envEndPos, envEndPos)]
-        editor.revealRange(new vscode.Range(envStartPos, envEndPos))
+        const beginEnvStartPos = beginEnv.pos.translate(0, 'begin{'.length)
+        const endEnvStartPos = endEnv.pos.translate(0, 'end{'.length)
+        switch (selectionOrCursor) {
+            case 'cursor':
+                editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
+                break
+            case 'selection':
+                const envNameLength = beginEnv.name.length
+                const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
+                const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
+                editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
+                break
+            default:
+                this.extension.logger.addLogMessage(`Error - while selecting environment name`)
+        }
+        // editor.revealRange(new vscode.Range(beginEnvStartPos, endEnvStartPos))
     }
 
     closeEnv() {
@@ -177,11 +195,11 @@ export class EnvPair {
         const document = editor.document
         const curPos = editor.selection.active
 
-        const pattern = '\\\\(begin|end)\\{[^\\{\\}]*\\}'
+        const pattern = '\\\\(begin|end)\\{([^\\{\\}]*)\\}'
         const dir = -1
         const resMatchingPair = this.locateMatchingPair(pattern, dir, curPos, document)
         if (resMatchingPair) {
-            const endEnv = resMatchingPair.str.replace('begin', 'end')
+            const endEnv = '\\end{' + resMatchingPair.name + '}'
             const edits = [vscode.TextEdit.insert(curPos, endEnv)]
             const uri = document.uri
             const edit = new vscode.WorkspaceEdit()
