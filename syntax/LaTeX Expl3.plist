@@ -39,11 +39,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#variables</string>
+					<string>#latex3</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -88,11 +84,7 @@
 				</dict>
 				<dict>
 					<key>include</key>
-					<string>#functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#variables</string>
+					<string>#latex3</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -131,11 +123,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#variables</string>
+					<string>#latex3</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -174,11 +162,7 @@
 			<array>
 				<dict>
 					<key>include</key>
-					<string>#functions</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#variables</string>
+					<string>#latex3</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -192,11 +176,7 @@
 		</dict>
 		<dict>
 			<key>include</key>
-			<string>#functions</string>
-		</dict>
-		<dict>
-			<key>include</key>
-			<string>#variables</string>
+			<string>#latex3</string>
 		</dict>
 		<dict>
 			<key>include</key>
@@ -205,36 +185,40 @@
 	</array>
 	<key>repository</key>
 	<dict>
-		<key>functions</key>
+		<key>latex3</key>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
+			<key>patterns</key>
+			<array>
 				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.function.expl.latex</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\\|\.)[\w@]+:\w*</string>
 					<key>name</key>
-					<string>punctuation.definition.function.expl.latex</string>
+					<string>keyword.control.expl.latex</string>
 				</dict>
-			</dict>
-			<key>match</key>
-			<string>(\\|\.)[\w@]+:\w*</string>
-			<key>name</key>
-			<string>keyword.control.expl.latex</string>
+				<dict>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>name</key>
+							<string>punctuation.definition.variable.expl.latex</string>
+						</dict>
+					</dict>
+					<key>match</key>
+					<string>(\\)[\w@]+_[\w@]+</string>
+					<key>name</key>
+					<string>variable.expl.latex</string>
+				</dict>	
+			</array>
 		</dict>
-		<key>variables</key>
-		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.variable.expl.latex</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>(\\)[\w@]+_[\w@]+</string>
-			<key>name</key>
-			<string>variable.expl.latex</string>
-		</dict>	
 	</dict>
 	<key>scopeName</key>
 	<string>text.tex.latex.expl3</string>
