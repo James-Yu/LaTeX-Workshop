@@ -149,7 +149,7 @@ export class EnvPair {
      *      - 'selection': the environment name is selected both in the begin and end part
      *      - 'cursor': a multicursor is added at the beginning of the environment name is selected both in the begin and end part
      */
-    selectEnvName(selectionOrCursor: string) {
+    selectEnvName(selectionOrCursor: 'selection'|'cursor') {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
