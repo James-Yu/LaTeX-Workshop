@@ -837,40 +837,10 @@
 			<key>patterns</key>
 			<array>
 				<dict>
-					<key>begin</key>
-					<string>(?:^|(?&lt;=\\\\))(?!\\\\|\s*\\end\{(?:tabular|array))</string>
-					<key>end</key>
-					<string>(?=\\\\|\s*\\end\{(?:tabular|array))</string>
+					<key>match</key>
+					<string>(?<!\\)&amp;</string>
 					<key>name</key>
-					<string>meta.row.environment.tabular.latex</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>match</key>
-							<string>&amp;</string>
-							<key>name</key>
-							<string>punctuation.definition.table.cell.latex</string>
-						</dict>
-						<dict>
-							<key>begin</key>
-							<string>(?:^|(?&lt;=&amp;))((?!&amp;|\\\\|$))</string>
-							<key>end</key>
-							<string>(?=&amp;|\\\\|\s*\\end\{(?:tabular|array))</string>
-							<key>name</key>
-							<string>meta.cell.environment.tabular.latex</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>$base</string>
-								</dict>
-							</array>
-						</dict>
-						<dict>
-							<key>include</key>
-							<string>$base</string>
-						</dict>
-					</array>
+					<string>punctuation.definition.table.cell.latex</string>
 				</dict>
 				<dict>
 					<key>include</key>
