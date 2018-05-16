@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.4.0] - 2018-05-16
+
+### Added
+- (#618) Snippets with no leading `\`.
+
+### Changed
+- (#604) Ignore `"` in LaTeX syntax highlighting.
+
+### Fixed
+- (#595) Handle nested `{...}` in macro arguments.
+- (#606) Declare cases as a math environment.
+- (#609) For maths snippets, use `$0` as the placeholder for the body part.
+- (#615) Make syntax aware of optional arguments.
+- (#624) Syntax highlighting for `&` and `\\`.
+
 ## [5.3.3] - 2018-05-06
 
 ### Added
