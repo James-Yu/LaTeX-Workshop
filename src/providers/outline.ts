@@ -64,14 +64,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '^(?!%)\\s*((?:\\\\(?:input|include|subfile)(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        let pattern = '^(?!%)\\s*(?:((?:\\\\(?:input|include|subfile)(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
                 pattern += '|'
             }
         })
-        pattern += ')(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})'
+        pattern += ')(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)}))'
 
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'gm')
