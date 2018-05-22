@@ -19,9 +19,9 @@ export class Reference {
         }
         this.refreshTimer = Date.now()
         const suggestions = {}
-        Object.keys(this.referenceData).forEach(key => {
-            suggestions[key] = this.referenceData[key].item
-        })
+        // Object.keys(this.referenceData).forEach(key => {
+        //     suggestions[key] = this.referenceData[key].item
+        // })
         if (vscode.window.activeTextEditor) {
             const items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
             Object.keys(items).map(key => {
@@ -52,7 +52,7 @@ export class Reference {
     }
 
     getReferenceItems(content: string) {
-        const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?|label=){([^}]*)}/g
+        const itemReg = /^(?:(?!%).*\\label(?:\[[^\[\]\{\}]*\])?|label=){([^}]*)}/gm
         const items = {}
         const noELContent = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
