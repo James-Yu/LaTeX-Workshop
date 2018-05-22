@@ -181,10 +181,16 @@ export class Citation {
             const attrKey = regResult[1]
             item = item.substr(bibAttrReg.lastIndex)
             bibAttrReg.lastIndex = 0
+            const commaPos = /,/g.exec(item)
             const quotePos = /\"/g.exec(item)
             const bracePos = /{/g.exec(item)
             let attrValue = ''
-            if (bracePos && (!quotePos || quotePos.index > bracePos.index)) {
+            if (commaPos && ((!quotePos || (quotePos && (commaPos.index < quotePos.index)))
+                && (!bracePos || (bracePos && (commaPos.index < bracePos.index))))) {
+                // No deliminator
+                attrValue = item.substring(0, commaPos.index).trim()
+                item = item.substr(commaPos.index)
+            } else if (bracePos && (!quotePos || quotePos.index > bracePos.index)) {
                 // Use curly braces
                 let nested = 0
                 for (let i = bracePos.index; i < item.length; ++i) {
