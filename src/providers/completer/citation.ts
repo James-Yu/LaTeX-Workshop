@@ -128,6 +128,21 @@ export class Citation {
                         item,
                         text: Object.keys(item)
                             .filter(key => (key !== 'key'))
+                            .sort((a, b) => {
+                                if (a.toLowerCase() === 'title') {
+                                    return -1
+                                }
+                                if (b.toLowerCase() === 'title') {
+                                    return 1
+                                }
+                                if (a.toLowerCase() === 'author') {
+                                    return -1
+                                }
+                                if (b.toLowerCase() === 'author') {
+                                    return 1
+                                }
+                                return 0
+                            })
                             .map(key => `${key}: ${item[key]}`)
                             .join('\n\n'),
                         position: new vscode.Position(positionContent.length - 1, 0),
