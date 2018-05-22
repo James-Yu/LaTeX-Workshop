@@ -145,16 +145,19 @@ export class Viewer {
             case 'loaded':
                 client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
                 if (client !== undefined && client.websocket !== undefined) {
+                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     if (client.position !== undefined) {
                         client.websocket.send(JSON.stringify(client.position))
                     } else {
-                        const configuration = vscode.workspace.getConfiguration('latex-workshop')
                         client.websocket.send(JSON.stringify({
                             type: 'params',
                             scale: configuration.get('view.pdf.zoom'),
                             hand: configuration.get('view.pdf.hand'),
                             invert: configuration.get('view.pdf.invert'),
                         }))
+                    }
+                    if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+                        this.extension.locator.syncTeX()
                     }
                 }
                 break

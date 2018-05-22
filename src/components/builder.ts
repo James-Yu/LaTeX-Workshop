@@ -135,8 +135,7 @@ export class Builder {
         this.extension.logger.displayStatus('check', 'statusBar.foreground', `Recipe succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const clean = configuration.get('latex.clean.enabled') as boolean
-        if (clean) {
+        if (configuration.get('latex.clean.enabled') as boolean) {
             this.extension.cleaner.clean()
         }
     }
