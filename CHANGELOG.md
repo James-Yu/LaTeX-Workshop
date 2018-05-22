@@ -1,5 +1,19 @@
 # Change Log
 
+## [5.5.0] - 2018-05-22
+
+### Added
+- (#600) Provide a command to view in vscode tab.
+- (#613) Add auto synctex after build config.
+
+
+### Fixed
+- Bibtex incorrectly parse entries without delimitors.
+- (#628, #629) More fixes on syntax highlighting.
+- (#634) Ignore labels defined in comments.
+- (#637) Use detached mode when opening external viewer.
+- (#640) Prompt title and author in citation hover hint
+
 ## [5.4.0] - 2018-05-16
 
 ### Added
