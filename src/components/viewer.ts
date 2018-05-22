@@ -107,7 +107,7 @@ export class Viewer {
         if (command.args) {
             command.args = command.args.map(arg => arg.replace('%PDF%', pdfFile))
         }
-        cp.spawn(command.command, command.args, {cwd: path.dirname(sourceFile)})
+        cp.spawn(command.command, command.args, {cwd: path.dirname(sourceFile), detached: true})
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 
