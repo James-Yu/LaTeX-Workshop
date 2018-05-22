@@ -264,7 +264,7 @@ export class Commander {
             const commands = this.extension.packageInfo.contributes.commands.filter(command => {
                 return ['latex-workshop.actions', 'latex-workshop.build', 'latex-workshop.recipes',
                         'latex-workshop.view', 'latex-workshop.pdf', 'latex-workshop.compilerlog',
-                        'latex-workshop.log'].indexOf(command.command) < 0
+                        'latex-workshop.log', 'latex-workshop.tab'].indexOf(command.command) < 0
             })
             this.commandTitles = commands.map(command => command.title)
             this.commands = commands.map(command => command.command)
