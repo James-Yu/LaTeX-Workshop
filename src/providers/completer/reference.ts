@@ -19,9 +19,9 @@ export class Reference {
         }
         this.refreshTimer = Date.now()
         const suggestions = {}
-        // Object.keys(this.referenceData).forEach(key => {
-        //     suggestions[key] = this.referenceData[key].item
-        // })
+        Object.keys(this.referenceData).forEach(key => {
+            suggestions[key] = this.referenceData[key].item
+        })
         if (vscode.window.activeTextEditor) {
             const items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
             Object.keys(items).map(key => {
@@ -42,6 +42,11 @@ export class Reference {
 
     getReferencesTeX(filePath: string) {
         const references = this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
+        Object.keys(this.referenceData).forEach((key) => {
+            if (this.referenceData[key].file === filePath) {
+                delete this.referenceData[key]
+            }
+        })
         Object.keys(references).forEach((key) => {
             this.referenceData[key] = {
                 item: references[key],
