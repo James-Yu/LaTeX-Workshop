@@ -153,11 +153,12 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.linter.lintRootFileIfEnabled()
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('latex.autoBuild.onSave.enabled') || extension.builder.disableBuildAfterSave) {
-            return
+        if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
+            if (extension.manager.isTex(e.fileName)) {
+                extension.commander.build(true)
+            }
         }
         if (extension.manager.isTex(e.fileName)) {
-            extension.commander.build(true)
             extension.nodeProvider.refresh()
             extension.nodeProvider.update()
         }
