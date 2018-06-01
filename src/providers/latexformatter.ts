@@ -68,7 +68,7 @@ export class LaTexFormatter {
                 this.checkPath(this.currentOs.checker).then((latexindentPresent) => {
                     if (!latexindentPresent) {
                         this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
-                        vscode.window.showErrorMessage('Can not find latexindent in PATH!')
+                        this.extension.logger.showErrorMessage('Can not find latexindent in PATH!')
                         return resolve()
                     }
                     this.format(document, range).then((edit) => {
@@ -146,14 +146,14 @@ export class LaTexFormatter {
             worker.stdout.on('data', chunk => stdoutBuffer.push(chunk.toString()))
             worker.stderr.on('data', chunk => stderrBuffer.push(chunk.toString()))
             worker.on('error', err => {
-                vscode.window.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
                 this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
                 resolve()
             })
             worker.on('close', code => {
                 if (code !== 0) {
-                    vscode.window.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                    this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                     this.extension.logger.addLogMessage(`Formatting failed with exit code ${code}`)
                     this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
                     return resolve()

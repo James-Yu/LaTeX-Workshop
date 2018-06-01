@@ -107,9 +107,9 @@ export class Builder {
                     })
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
-                    if (configuration.get('message.error.show')) {
-                        vscode.window.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
-                        .then(option => {
+                    const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
+                    if (res) {
+                        res.then(option => {
                             switch (option) {
                                 case 'Open compiler log':
                                     this.extension.logger.showCompilerLog()
@@ -165,14 +165,14 @@ export class Builder {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
-                vscode.window.showErrorMessage(`No recipes defined.`)
+                this.extension.logger.showErrorMessage(`No recipes defined.`)
                 return undefined
             }
             let recipe = recipes[0]
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
                 if (candidates.length < 1) {
-                    vscode.window.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                    this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
                 }
                 recipe = candidates[0]
             }
@@ -181,7 +181,7 @@ export class Builder {
                 if (typeof tool === 'string') {
                     const candidates = tools.filter(candidate => candidate.name === tool)
                     if (candidates.length < 1) {
-                        vscode.window.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
+                        this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
                     } else {
                         steps.push(candidates[0])
                     }

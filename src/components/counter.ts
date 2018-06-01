@@ -46,13 +46,13 @@ export class Counter {
 
         proc.on('error', err => {
             this.extension.logger.addLogMessage(`Cannot count words: ${err.message}, ${stderr}`)
-            vscode.window.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
+            this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
         })
 
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Cannot count words, code: ${exitCode}, ${stderr}`)
-                vscode.window.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
+                this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
             } else {
                 const words = /Words in text: ([0-9]*)/g.exec(stdout)
                 const floats = /Number of floats\/tables\/figures: ([0-9]*)/g.exec(stdout)
