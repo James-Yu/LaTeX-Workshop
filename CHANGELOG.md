@@ -1,5 +1,13 @@
 # Change Log
 
+## [5.5.1] - 2018-06-06
+
+### Fixed
+- (#635) Outline update with `autoBuild.onSave` disabled.
+- (#646) Reference completion with multiple files.
+- (#648) Wrap `vscode.window.showErrorMessage` to respect the config.
+- (#652) Nested maths environment highlighting.
+
 ## [5.5.0] - 2018-05-22
 
 ### Added
