@@ -64,10 +64,7 @@ export class Completer implements vscode.CompletionItemProvider {
                     }
                     resolve([mathSnippet])
                     return
-                } else if (['(', '['].indexOf(invokeChar) > -1) {
-                    resolve()
-                    return
-                }
+                } 
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
@@ -110,7 +107,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.citation
                 break
             case 'reference':
-                reg = /(?:\\[a-zA-Z]*ref[a-zA-Z]*(?:\[[^\[\]]*\])?){([^}]*)$/
+                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*(?:\[[^\[\]]*\])?){([^}]*)$)/
                 provider = this.reference
                 break
             case 'environment':
