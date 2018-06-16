@@ -780,6 +780,12 @@
 					<string>keyword.control.equation.align.latex</string>
 				</dict>
 				<dict>
+					<key>match</key>
+					<string>\\\\</string>
+					<key>name</key>
+					<string>keyword.control.equation.newline.latex</string>
+				</dict>
+				<dict>
 					<key>include</key>
 					<string>text.tex#math</string>
 				</dict>
@@ -847,6 +853,12 @@
 					<string>(?<!\\)&amp;</string>
 					<key>name</key>
 					<string>keyword.control.table.cell.latex</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\\\</string>
+					<key>name</key>
+					<string>keyword.control.table.newline.latex</string>
 				</dict>
 				<dict>
 					<key>include</key>
@@ -1607,6 +1619,12 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			<string>((\\)(?:verb|lstinline)[\*]?)\s*((?&lt;=\s)\S|[^a-zA-Z])(.*?)(\3|$)</string>
 			<key>name</key>
 			<string>meta.function.verb.latex</string>
+		</dict>
+		<dict>
+			<key>match</key>
+			<string>\\(?:newline|pagebreak|clearpage|linebreak|pause)(?:\b)</string>
+			<key>name</key>
+			<string>keyword.control.layout.tex</string>
 		</dict>
 		<dict>
 			<key>begin</key>
