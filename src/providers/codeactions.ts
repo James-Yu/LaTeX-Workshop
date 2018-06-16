@@ -20,7 +20,9 @@ const CODE_TO_ACTION_STRING: {[key: number]: string} = {
     34: "Replace with ` or '",
     35: 'Use suggested alternative',
     39: 'Remove extraneous space',
-    42: 'Remove extraneous space'
+    42: 'Remove extraneous space',
+    45: 'Use \\[ ... \\] instead of $$ ... $$',
+    46: 'Use \\( ... \\) instead of $ ... $'
 }
 
 function replaceWhitespaceOnLineBefore(document: vs.TextDocument, position: vs.Position, replaceWith: string) {
@@ -53,6 +55,23 @@ function characterBeforeRange(document: vs.TextDocument, range: vs.Range) {
 
 function isOpeningQuote(document: vs.TextDocument, range: vs.Range) {
     return range.start.character === 0 || characterBeforeRange(document, range) === ' '
+}
+
+function replaceMathDelimitersInRange(document: vs.TextDocument, range: vs.Range, oldDelim: string, startDelim: string, endDelim: string) {
+    const oldDelimLength = oldDelim.length
+    const endRange = range.with(range.end.translate(0, - oldDelimLength), range.end)
+    const text = document.getText(endRange)
+    // Check if the end position really contains the end delimiter. This is not the cause when the opening and closing delimeters are on different lines
+    const regex = new RegExp('^' + oldDelim.replace(/\$/g, '\\$') + '$')
+    const regexResult = regex.exec(text)
+    if (!regexResult) {
+        return
+    }
+    const edit = new vs.WorkspaceEdit()
+    edit.replace(document.uri, endRange, endDelim)
+    const startRange = range.with(range.start, range.start.translate(0, oldDelimLength))
+    edit.replace(document.uri, startRange, startDelim)
+    return vs.workspace.applyEdit(edit)
 }
 
 export class CodeActions {
@@ -151,6 +170,12 @@ export class CodeActions {
                 }
                 fixString = regexResult[1]
                 replaceRangeWithString(document, range, fixString)
+                break
+            case 45:
+                replaceMathDelimitersInRange(document, range, '$$', '\\[', '\\]')
+                break
+            case 46:
+                replaceMathDelimitersInRange(document, range, '$', '\\(', '\\)')
                 break
             default:
                 break
