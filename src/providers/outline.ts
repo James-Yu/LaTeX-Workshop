@@ -64,7 +64,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '^(?!%)\\s*(?:((?:\\\\(?:input|include|subfile)(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        let pattern = '^(?!%)\\s*(?:((?:\\\\(?:input|include|subfile|(?:subimport{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
@@ -76,15 +76,20 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'gm')
 
-        // if it's a section elements 4 = section
+        // if it's a section elements 5 = section
         // element 6 = title.
 
         // if it's a subsection:
         // element X = title
 
         // if it's an input, include, or subfile:
-        // element 2 is the file (need to resolve the path)
+        // element 3 is the file (need to resolve the path)
         // element 0 starts with \input, include, or subfile
+
+        // if it's a subimport
+        // element 0 starts with \subimport
+        // element 2 is the directory part
+        // element 3 is the file
 
         while (true) {
             const result = inputReg.exec(content)
@@ -92,10 +97,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 break
             }
 
-            if (result[4] in this.sectionDepths) {
+            if (result[5] in this.sectionDepths) {
                 // is it a section, a subsection, etc?
-                const heading = result[4]
-                const title = result[5]
+                const heading = result[5]
+                const title = result[6]
                 const depth = this.sectionDepths[heading]
 
                 const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
@@ -137,10 +142,15 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // } else { // it's one level DOWN (add it to the children of the current node)
                 //     currentRoot().children.push(newSection)
                 // }
-            } else if (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile')) {
+            } else if (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport')) {
                 // zoom into this file
                 // resolve the path
-                let inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[2]))
+                let inputFilePath
+                if (result[1].startsWith('\\subimport')) {
+                    inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[2], result[3]))
+                } else {
+                    inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[3]))
+                }
 
                 if (path.extname(inputFilePath) === '') {
                     inputFilePath += '.tex'
