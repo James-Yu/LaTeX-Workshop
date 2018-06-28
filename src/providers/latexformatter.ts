@@ -36,13 +36,13 @@ export class LaTexFormatter {
         this.machineOs = os.platform()
     }
 
-    public formatDocument(document: vscode.TextDocument, range?: vscode.Range) : Thenable<vscode.TextEdit[]> {
+    public formatDocument(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             if (this.machineOs === windows.name) {
                 this.currentOs = windows
             } else if (this.machineOs === linux.name) {
                 this.currentOs = linux
-            }  else if (this.machineOs === mac.name) {
+            } else if (this.machineOs === mac.name) {
                 this.currentOs = mac
             }
 
@@ -57,7 +57,7 @@ export class LaTexFormatter {
                 }
             }
             this.formatterArgs = configuration.get<string[]>('latexindent.args')
-                || [ '-c', '%DIR%/', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"' ]
+                || ['-c', '%DIR%/', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"']
             const pathMeta = configuration.inspect('latexindent.path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
@@ -79,7 +79,7 @@ export class LaTexFormatter {
         })
     }
 
-    private checkPath(checker: string) : Thenable<boolean> {
+    private checkPath(checker: string): Thenable<boolean> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('docker.enabled')) {
             return Promise.resolve(true)
@@ -103,7 +103,7 @@ export class LaTexFormatter {
 
     }
 
-    private format(document: vscode.TextDocument, range?: vscode.Range) : Thenable<vscode.TextEdit[]> {
+    private format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('editor', document.uri)
 
@@ -136,7 +136,8 @@ export class LaTexFormatter {
                 .replace('%TMPFILE%', temporaryFile.split(path.sep).join('/'))
                 .replace('%INDENT%', indent))
 
-            const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName), shell: true })
+            this.extension.logger.addLogMessage(`Formatting with arguments ${args}`)
+            const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
             // handle stdout/stderr
             const stdoutBuffer = [] as string[]
             const stderrBuffer = [] as string[]
@@ -182,15 +183,15 @@ export class LatexFormatterProvider implements vscode.DocumentFormattingEditProv
         this.formatter = new LaTexFormatter(extension)
     }
 
-    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken) :
+    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken):
         vscode.ProviderResult<vscode.TextEdit[]> {
-            return document.save().then(() => {
-                return this.formatter.formatDocument(document)
-            })
+        return document.save().then(() => {
+            return this.formatter.formatDocument(document)
+        })
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions,
-                                               _token: vscode.CancellationToken) : vscode.ProviderResult<vscode.TextEdit[]> {
+        _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         return document.save().then(() => {
             return this.formatter.formatDocument(document, range)
         })
