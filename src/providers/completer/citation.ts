@@ -112,6 +112,12 @@ export class Citation {
     parseBibFile(bibPath: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
         const items: CitationRecord[] = []
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (fs.statSync(bibPath).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
+            this.extension.logger.addLogMessage(`${bibPath} is too large, ignoring it.`)
+            this.citationInBib[bibPath] = items
+            return
+        }
         const content = fs.readFileSync(bibPath, 'utf-8')
         const contentNoNewLine = content.replace(/[\r\n]/g, ' ')
         const itemReg = /@(\w+)\s*{/g
