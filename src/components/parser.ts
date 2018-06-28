@@ -7,6 +7,7 @@ const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)\.?$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
+const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
 const latexWarn = /^((?:(?:Class|Package) \S+)|LaTeX) (Warning|Info):\s+(.*?)(?: on input line (\d+))?\.$/
 const bibEmpty = /^Empty `thebibliography' environment/
 
@@ -22,7 +23,7 @@ const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 const truncatedLine = /(.{78}(\w|\s|\d|\\|\/))(\r\n|\n)/g
 
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
-    'typesetting': vscode.DiagnosticSeverity.Hint,
+    'typesetting': vscode.DiagnosticSeverity.Information,
     'warning': vscode.DiagnosticSeverity.Warning,
     'error': vscode.DiagnosticSeverity.Error,
 }
@@ -141,6 +142,9 @@ export class Parser {
                 continue
             }
             let result = line.match(latexBox)
+            if (!result) {
+                result = line.match(latexBoxAlt)
+            }
             if (result) {
                 if (currentResult.type !== '') {
                     this.buildLog.push(currentResult)
@@ -151,7 +155,7 @@ export class Parser {
                     line: parseInt(result[2], 10),
                     text: result[1]
                 }
-                searchesEmptyLine = true
+                searchesEmptyLine = false
                 continue
             }
             result = line.match(latexWarn)
