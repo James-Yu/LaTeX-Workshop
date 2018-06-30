@@ -99,12 +99,15 @@ export class Builder {
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled') && !configuration.get('latex.clean.enabled')) {
-                    this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
-                    this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
                     this.disableCleanAndRetry = true
-                    this.extension.commander.clean().then(() => {
-                        this.buildStep(rootFile, steps, 0, recipeName)
-                    })
+                    if (signal !== 'SIGTERM') {
+                        this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
+                        this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
+
+                        this.extension.commander.clean().then(() => {
+                            this.buildStep(rootFile, steps, 0, recipeName)
+                        })
+                    }
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
                     const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
