@@ -185,13 +185,13 @@ export class Manager {
             return true
         }
         if (updateDependent) {
-            this.findDependentFiles(root)
+            this.findDependentFiles(root, undefined, true)
         }
         if (!this.texFileTree.hasOwnProperty(root) || !this.texFileTree.hasOwnProperty(file)) {
             return false
         }
         for (const r of this.texFileTree[root]) {
-            if (this.isRoot(r, file, false)) {
+            if (this.isRoot(r, file)) {
                 return true
             }
         }
@@ -244,7 +244,7 @@ export class Manager {
         }
     }
 
-    findDependentFiles(filePath: string, rootDir: string | undefined = undefined) {
+    findDependentFiles(filePath: string, rootDir: string | undefined = undefined, fast = false) {
         if (!rootDir) {
             rootDir = path.dirname(filePath)
         }
@@ -268,13 +268,17 @@ export class Manager {
             }
             if (fs.existsSync(inputFilePath)) {
                 this.texFileTree[filePath].add(inputFilePath)
-                if (this.fileWatcher && this.watched.indexOf(inputFilePath) < 0) {
+                if (!fast && this.fileWatcher && this.watched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
                     this.fileWatcher.add(inputFilePath)
                     this.watched.push(inputFilePath)
                 }
                 this.findDependentFiles(inputFilePath, rootDir)
             }
+        }
+
+        if (fast) {
+            return
         }
 
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^\[\]\{\}]*\])?){(.+?)}/g
