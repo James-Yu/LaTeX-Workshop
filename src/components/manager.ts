@@ -148,14 +148,6 @@ export class Manager {
     }
 
     findRootSaved() : string | undefined {
-        const window = vscode.window
-        if (window && window.activeTextEditor) {
-            if (this.isRoot(this.rootFile, window.activeTextEditor.document.fileName)) {
-                return this.rootFile
-            } else {
-                return undefined
-            }
-        }
         return this.rootFile
     }
 
