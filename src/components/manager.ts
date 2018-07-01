@@ -9,6 +9,7 @@ import {Extension} from '../main'
 export class Manager {
     extension: Extension
     rootFiles: object
+    rootOfFiles: object
     workspace: string
     texFileTree: { [id: string]: Set<string> } = {}
     fileWatcher: chokidar.FSWatcher
@@ -17,8 +18,9 @@ export class Manager {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.watched   = []
+        this.watched = []
         this.rootFiles = {}
+        this.rootOfFiles = {}
         this.workspace = ''
     }
 
@@ -27,6 +29,12 @@ export class Manager {
     }
 
     get rootFile() {
+        const window = vscode.window.activeTextEditor
+        if (window && window.document && this.rootOfFiles.hasOwnProperty(window.document.fileName)) {
+            const root = this.rootOfFiles[window.document.fileName]
+            this.rootFiles[this.workspace] = root
+            return root
+        }
         return this.rootFiles[this.workspace]
     }
 
@@ -64,16 +72,17 @@ export class Manager {
         }
     }
 
-    findRoot() : string | undefined {
+    async findRoot() : Promise<string | undefined> {
         this.updateWorkspace()
         const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootSaved(), () => this.findRootDir()]
         for (const method of findMethods) {
-            const rootFile = method()
+            const rootFile = await method()
             if (rootFile !== undefined) {
                 if (this.rootFile !== rootFile) {
                     this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
                     this.rootFile = rootFile
-                    this.findAllDependentFiles()
+                    this.findAllDependentFiles(rootFile)
+                    this.updateRootOfFiles(rootFile, rootFile)
                 } else {
                     this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
                 }
@@ -81,6 +90,15 @@ export class Manager {
             }
         }
         return undefined
+    }
+
+    updateRootOfFiles(root: string, file: string) {
+        if (this.texFileTree.hasOwnProperty(file)) {
+            this.rootOfFiles[file] = root
+            for (const f of this.texFileTree[file]) {
+                this.updateRootOfFiles(root, f)
+            }
+        }
     }
 
     findRootMagic() : string | undefined {
@@ -130,10 +148,18 @@ export class Manager {
     }
 
     findRootSaved() : string | undefined {
+        const window = vscode.window
+        if (window && window.activeTextEditor) {
+            if (this.isRoot(this.rootFile, window.activeTextEditor.document.fileName)) {
+                return this.rootFile
+            } else {
+                return undefined
+            }
+        }
         return this.rootFile
     }
 
-    findRootDir() : string | undefined {
+    async findRootDir() : Promise<string | undefined> {
         const regex = /\\begin{document}/m
 
         if (!this.workspace) {
@@ -141,28 +167,50 @@ export class Manager {
         }
 
         try {
-            const files = fs.readdirSync(this.workspace)
-            for (let file of files) {
-                if (path.extname(file) !== '.tex') {
-                    continue
-                }
-                file = path.join(this.workspace, file)
-                const content = fs.readFileSync(file)
-
+            const urls = await vscode.workspace.findFiles('**/*.tex', undefined)
+            for (const url of urls) {
+                const content = fs.readFileSync(url.fsPath)
                 const result = content.toString().match(regex)
                 if (result) {
-                    file = path.resolve(this.workspace, file)
-                    this.extension.logger.addLogMessage(`Found root file in root directory: ${file}`)
-                    return file
+                    const file = url.fsPath
+                    this.extension.logger.addLogMessage(`Try root file in root directory: ${file}`)
+                    const window = vscode.window
+                    if (window && window.activeTextEditor && this.isRoot(url.fsPath, window.activeTextEditor.document.fileName)) {
+                        this.extension.logger.addLogMessage(`Found root file in root directory: ${file}`)
+                        return file
+                    }
                 }
             }
-        } catch (e) {}
+        } catch (e) {
+            console.log(e)
+        }
         return undefined
     }
 
-    findAllDependentFiles() {
+    isRoot(root: string, file: string, start = true) : boolean {
+        if (!fs.existsSync(root)) {
+            return false
+        }
+        if (root === file) {
+            return true
+        }
+        if (start) {
+            this.findDependentFiles(root)
+        }
+        if (!this.texFileTree.hasOwnProperty(root) || !this.texFileTree.hasOwnProperty(file)) {
+            return false
+        }
+        for (const r of this.texFileTree[root]) {
+            if (this.isRoot(r, file, false)) {
+                return true
+            }
+        }
+        return false
+    }
+
+    findAllDependentFiles(rootFile: string) {
         let prevWatcherClosed = false
-        if (this.fileWatcher !== undefined && this.watched.indexOf(this.rootFile) < 0) {
+        if (this.fileWatcher !== undefined && this.watched.indexOf(rootFile) < 0) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
             // => the user has changed the root. Clean up the old watcher so we reform it.
             this.extension.logger.addLogMessage(`Root file changed -> cleaning up old file watcher.`)
@@ -172,23 +220,23 @@ export class Manager {
         }
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {
-            this.extension.logger.addLogMessage(`Instatiating new file watcher for ${this.rootFile}`)
-            this.fileWatcher = chokidar.watch(this.rootFile)
-            this.watched.push(this.rootFile)
+            this.extension.logger.addLogMessage(`Instatiating new file watcher for ${rootFile}`)
+            this.fileWatcher = chokidar.watch(rootFile)
+            this.watched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
                 this.findDependentFiles(filePath)
             })
-            this.fileWatcher.on('unlink', (filePath: string) => {
+            this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
                 this.fileWatcher.unwatch(filePath)
                 this.watched.splice(this.watched.indexOf(filePath), 1)
-                if (filePath === this.rootFile) {
+                if (filePath === rootFile) {
                     this.extension.logger.addLogMessage(`Deleted ${filePath} was root - triggering root search`)
-                    this.findRoot()
+                    await this.findRoot()
                 }
             })
-            this.findDependentFiles(this.rootFile)
+            this.findDependentFiles(rootFile)
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const additionalBib = configuration.get('latex.additionalBib') as string[]
             for (const bibGlob of additionalBib) {
@@ -206,7 +254,10 @@ export class Manager {
         }
     }
 
-    findDependentFiles(filePath: string) {
+    findDependentFiles(filePath: string, rootDir: string | undefined = undefined) {
+        if (!rootDir) {
+            rootDir = path.dirname(filePath)
+        }
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
         const content = fs.readFileSync(filePath, 'utf-8')
 
@@ -218,7 +269,7 @@ export class Manager {
                 break
             }
             const inputFile = result[1]
-            let inputFilePath = path.resolve(path.join(this.rootDir, inputFile))
+            let inputFilePath = path.resolve(path.join(rootDir, inputFile))
             if (path.extname(inputFilePath) === '') {
                 inputFilePath += '.tex'
             }
@@ -227,12 +278,12 @@ export class Manager {
             }
             if (fs.existsSync(inputFilePath)) {
                 this.texFileTree[filePath].add(inputFilePath)
-                if (this.watched.indexOf(inputFilePath) < 0) {
+                if (this.fileWatcher && this.watched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
                     this.fileWatcher.add(inputFilePath)
                     this.watched.push(inputFilePath)
-                    this.findDependentFiles(inputFilePath)
                 }
+                this.findDependentFiles(inputFilePath, rootDir)
             }
         }
 

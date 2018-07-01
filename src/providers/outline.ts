@@ -10,7 +10,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined> = this._onDidChangeTreeData.event
     private hierarchy: string[]
-    private sectionDepths: {string?: number} = {}
+    private sectionDepths: { string?: number } = {}
+    public root: string = ''
 
     // our data source is a set multi-rooted set of trees
     private ds: Section[] = []

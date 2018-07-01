@@ -12,9 +12,9 @@ export class Counter {
         this.extension = extension
     }
 
-    count(file: string, merge: boolean = true) {
+    async count(file: string, merge: boolean = true) {
         if (this.extension.manager.rootFile !== undefined) {
-            this.extension.manager.findRoot()
+            await this.extension.manager.findRoot()
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const args = configuration.get('texcount.args') as string[]

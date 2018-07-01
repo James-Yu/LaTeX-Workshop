@@ -11,12 +11,12 @@ export class Commander {
         this.extension = extension
     }
 
-    build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
+    async build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
-        const rootFile = this.extension.manager.findRoot()
+        const rootFile = await this.extension.manager.findRoot()
 
         if (rootFile === undefined) {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
@@ -78,12 +78,12 @@ export class Commander {
         })
     }
 
-    view() {
+    async view() {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
-        const rootFile = this.extension.manager.findRoot()
+        const rootFile = await this.extension.manager.findRoot()
         if (rootFile === undefined) {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
             return
@@ -111,12 +111,12 @@ export class Commander {
         this.extension.builder.kill()
     }
 
-    browser() {
+    async browser() {
         this.extension.logger.addLogMessage(`BROWSER command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
-        const rootFile = this.extension.manager.findRoot()
+        const rootFile = await this.extension.manager.findRoot()
         if (rootFile !== undefined) {
             this.extension.viewer.openViewer(rootFile)
         } else {
@@ -124,12 +124,12 @@ export class Commander {
         }
     }
 
-    tab() {
+    async tab() {
         this.extension.logger.addLogMessage(`TAB command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
-        const rootFile = this.extension.manager.findRoot()
+        const rootFile = await this.extension.manager.findRoot()
         if (rootFile !== undefined) {
             this.extension.viewer.openTab(rootFile)
         } else {
@@ -146,18 +146,18 @@ export class Commander {
         this.extension.viewer.openTab(uri.fsPath, false)
     }
 
-    synctex() {
+    async synctex() {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
-        this.extension.manager.findRoot()
+        await this.extension.manager.findRoot()
         if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
             return
         }
         this.extension.locator.syncTeX()
     }
 
-    clean() : Promise<void> {
+    async clean() : Promise<void> {
         this.extension.logger.addLogMessage(`CLEAN command invoked.`)
-        this.extension.manager.findRoot()
+        await this.extension.manager.findRoot()
         return this.extension.cleaner.clean()
     }
 
