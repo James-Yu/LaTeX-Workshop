@@ -29,9 +29,8 @@ export class Manager {
     }
 
     get rootFile() {
-        const window = vscode.window.activeTextEditor
-        if (window && window.document && this.rootOfFiles.hasOwnProperty(window.document.fileName)) {
-            const root = this.rootOfFiles[window.document.fileName]
+        const root = this.documentRoot()
+        if (root) {
             this.rootFiles[this.workspace] = root
             return root
         }
@@ -40,6 +39,14 @@ export class Manager {
 
     set rootFile(root: string) {
         this.rootFiles[this.workspace] = root
+    }
+
+    documentRoot() {
+        const window = vscode.window.activeTextEditor
+        if (window && window.document && this.rootOfFiles.hasOwnProperty(window.document.fileName)) {
+            return this.rootOfFiles[window.document.fileName]
+        }
+        return undefined
     }
 
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
@@ -148,7 +155,7 @@ export class Manager {
     }
 
     findRootSaved() : string | undefined {
-        return this.rootFile
+        return this.documentRoot()
     }
 
     async findRootDir() : Promise<string | undefined> {
