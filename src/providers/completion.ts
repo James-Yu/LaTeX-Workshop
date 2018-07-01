@@ -64,7 +64,7 @@ export class Completer implements vscode.CompletionItemProvider {
                     }
                     resolve([mathSnippet])
                     return
-                } 
+                }
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)

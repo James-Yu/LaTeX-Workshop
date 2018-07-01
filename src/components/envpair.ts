@@ -19,10 +19,11 @@ function escapeRegExp(str) {
 }
 
 function regexpAllMatches(str: string, reg: RegExp) {
-    let m
     const res: any[] = []
-    while (m = reg.exec(str)) {
+    let m = reg.exec(str)
+    while (m) {
         res.push(m)
+        m = reg.exec(str)
     }
     return res
 }
@@ -93,7 +94,7 @@ export class EnvPair {
             if (dir === -1) {
                 allMatches = allMatches.reverse()
             }
-            for (let m of allMatches) {
+            for (const m of allMatches) {
                 if ((m[1] === 'begin' && dir === 1) || (m[1] === 'end' && dir === -1)) {
                     nested += 1
                 }
