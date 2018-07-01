@@ -175,7 +175,7 @@ export class Manager {
                     const file = url.fsPath
                     this.extension.logger.addLogMessage(`Try root file in root directory: ${file}`)
                     const window = vscode.window
-                    if (window && window.activeTextEditor && this.isRoot(url.fsPath, window.activeTextEditor.document.fileName)) {
+                    if (window && window.activeTextEditor && this.isRoot(url.fsPath, window.activeTextEditor.document.fileName, true)) {
                         this.extension.logger.addLogMessage(`Found root file in root directory: ${file}`)
                         return file
                     }
@@ -187,14 +187,14 @@ export class Manager {
         return undefined
     }
 
-    isRoot(root: string, file: string, start = true) : boolean {
+    isRoot(root: string, file: string, updateDependent = false) : boolean {
         if (!fs.existsSync(root)) {
             return false
         }
         if (root === file) {
             return true
         }
-        if (start) {
+        if (updateDependent) {
             this.findDependentFiles(root)
         }
         if (!this.texFileTree.hasOwnProperty(root) || !this.texFileTree.hasOwnProperty(file)) {
