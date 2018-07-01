@@ -181,9 +181,7 @@ export class Manager {
                     }
                 }
             }
-        } catch (e) {
-            console.log(e)
-        }
+        } catch (e) {}
         return undefined
     }
 
@@ -247,7 +245,7 @@ export class Manager {
                     }
                     for (const bib of files) {
                         this.extension.logger.addLogMessage(`Try to watch global bibliography file ${bib}.`)
-                        this.addBibToWatcher(bib)
+                        this.addBibToWatcher(bib, this.extension.manager.rootDir)
                     }
                 })
             }
@@ -297,7 +295,7 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                this.addBibToWatcher(bib)
+                this.addBibToWatcher(bib, rootDir)
             }
         }
 
@@ -305,12 +303,12 @@ export class Manager {
         this.extension.completer.reference.getReferencesTeX(filePath)
     }
 
-    addBibToWatcher(bib: string) {
+    addBibToWatcher(bib: string, rootDir: string) {
         let bibPath
         if (path.isAbsolute(bib)) {
             bibPath = bib
         } else {
-            bibPath = path.resolve(path.join(this.rootDir, bib))
+            bibPath = path.resolve(path.join(rootDir, bib))
         }
         if (path.extname(bibPath) === '') {
             bibPath += '.bib'
