@@ -1,5 +1,25 @@
 # Change Log
 
+## [5.6.0] - 2018-07-09
+
+### Added
+- Add a new config to ignore too large bib-files.
+- (#499) Add chktex auto-fix for `$...$` and `$$...$$`.
+- (#658) Add import package support to outline.
+- (#666) Add a new pattern for badbox warning.
+- (#668) Add `(){}[].,` to macro boundaries.
+- (#684) Support multiple root file.
+- (#686) Smart `.chktexrc` location detection.
+
+### Fixed
+- Fix a problem preventing `latexindent` working on directories with spaces.
+- (#556) Do not start build for terminated process
+- (#653) Honor insertSpaces in latexformatter.
+- (#663) Fixed documentation for `bigvee` and `bigwedge`.
+- (#667) Complete `\hyperref[]` with labels.
+- (#668) Fix math keyword highlighting followed by `_`.
+- (#682) Don't lose focus for pdf tab preview.
+
 ## [5.5.1] - 2018-06-06
 
 ### Fixed
