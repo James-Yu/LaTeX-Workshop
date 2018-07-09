@@ -88,16 +88,12 @@ export class Viewer {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         const client = this.clients[pdfFile.toLocaleUpperCase()]
         const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
-        let column = vscode.ViewColumn.Two
-        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.viewColumn === vscode.ViewColumn.Two) {
-            column = vscode.ViewColumn.Three
-        }
         if (client !== undefined && client.websocket !== undefined) {
             client.websocket.close()
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
         const editor = vscode.window.activeTextEditor
-        vscode.commands.executeCommand('vscode.previewHtml', uri, column, path.basename(pdfFile)).then(success => {
+        vscode.commands.executeCommand('vscode.previewHtml', uri, vscode.ViewColumn.Beside, path.basename(pdfFile)).then(success => {
             if (success && editor) {
                 vscode.window.showTextDocument(editor.document, editor.viewColumn)
             }
