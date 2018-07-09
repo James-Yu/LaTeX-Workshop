@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.6.1] - 2018-07-09
+
+### Fixed
+- (#692) Revert #682, remove pdf tab focus logic.
+
 ## [5.6.0] - 2018-07-09
 
 ### Added

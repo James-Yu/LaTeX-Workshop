@@ -96,13 +96,7 @@ export class Viewer {
             client.websocket.close()
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
-        const window = vscode.window.activeTextEditor
-        vscode.commands.executeCommand('vscode.previewHtml', uri, column, path.basename(pdfFile)).then(success => {
-            if (success && window) {
-                vscode.window.showTextDocument(window.document)
-            }
-            return true
-        })
+        vscode.commands.executeCommand('vscode.previewHtml', uri, column, path.basename(pdfFile))
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
