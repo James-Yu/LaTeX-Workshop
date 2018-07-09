@@ -104,7 +104,7 @@ export class Citation {
                     const commaStart = content.lastIndexOf(',') + 1
                     start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
                 }
-                editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description))
+                editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''))
             }
         })
     }

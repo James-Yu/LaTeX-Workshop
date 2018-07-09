@@ -86,6 +86,9 @@ export class CodeActions {
         const actions: vs.Command[] = []
         context.diagnostics.filter(d => d.source === 'ChkTeX').forEach(d => {
             let code  = d.code
+            if (!code) {
+                return
+            }
             if (typeof code === 'string') {
                 code = parseInt(code)
             }
