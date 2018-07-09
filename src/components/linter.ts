@@ -15,6 +15,28 @@ export class Linter {
         this.extension = extension
     }
 
+    get rcPath() {
+        let rcPath
+        // 0. root file folder
+        const root = this.extension.manager.documentRoot()
+        if (root) {
+            rcPath = path.join(path.dirname(root), '.chktexrc')
+        }
+        if (fs.existsSync(rcPath)) {
+            return rcPath
+        }
+
+        // 1. project root folder
+        const ws = vscode.workspace.workspaceFolders
+        if (ws && ws.length > 0) {
+            rcPath = path.join(ws[0].uri.fsPath, '.chktexrc')
+        }
+        if (fs.existsSync(rcPath)) {
+            return rcPath
+        }
+        return undefined
+    }
+
     lintRootFileIfEnabled() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const linter = configuration.get('chktex.enabled') as boolean
@@ -53,10 +75,10 @@ export class Linter {
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
-        const args = configuration.get('chktex.args.active') as string[]
-        if (this.extension.manager.rootDir) {
-            const rcPath = path.join(this.extension.manager.rootDir, '.chktexrc')
-            if (fs.existsSync(rcPath)) {
+        const args = [...(configuration.get('chktex.args.active') as string[])]
+        if (args.indexOf('-l') < 0) {
+            const rcPath = this.rcPath
+            if (rcPath) {
                 args.push('-l', rcPath)
             }
         }
@@ -83,10 +105,10 @@ export class Linter {
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
-        const args = configuration.get('chktex.args.root') as string[]
-        if (this.extension.manager.rootDir) {
-            const rcPath = path.join(this.extension.manager.rootDir, '.chktexrc')
-            if (fs.existsSync(rcPath)) {
+        const args = [...(configuration.get('chktex.args.active') as string[])]
+        if (args.indexOf('-l') < 0) {
+            const rcPath = this.rcPath
+            if (rcPath) {
                 args.push('-l', rcPath)
             }
         }
