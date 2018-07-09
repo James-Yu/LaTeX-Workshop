@@ -200,7 +200,13 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (vscode.window.activeTextEditor) {
-            extension.manager.findRoot()
+            extension.manager.findRoot().then(val => {
+                if (val && val !== extension.nodeProvider.root) {
+                    extension.nodeProvider.root = val
+                    extension.nodeProvider.refresh()
+                    extension.nodeProvider.update()
+                }
+            })
         }
 
         if (e && extension.manager.isTex(e.document.fileName)) {

@@ -12,9 +12,9 @@ export class Cleaner {
         this.extension = extension
     }
 
-    clean() : Promise<void> {
+    async clean() : Promise<void> {
         if (this.extension.manager.rootFile !== undefined) {
-            this.extension.manager.findRoot()
+            await this.extension.manager.findRoot()
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let globs = configuration.get('latex.clean.fileTypes') as string[]
