@@ -3,7 +3,8 @@
 ## [5.6.1] - 2018-07-09
 
 ### Fixed
-- (#692) Revert #682, remove pdf tab focus logic.
+- (#693) Correct pdf tab focus logic.
+- (#694) Adopt new grid layout.
 
 ## [5.6.0] - 2018-07-09
 
