@@ -121,6 +121,8 @@ export class Parser {
     }
 
     parseLaTeX(log: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+
         this.buildLogRaw = log
         const lines = log.split('\n')
         this.buildLog = []
@@ -145,7 +147,7 @@ export class Parser {
             if (!result) {
                 result = line.match(latexBoxAlt)
             }
-            if (result) {
+            if (result && configuration.get('message.badbox.show')) {
                 if (currentResult.type !== '') {
                     this.buildLog.push(currentResult)
                 }
