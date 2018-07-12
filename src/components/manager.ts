@@ -258,15 +258,18 @@ export class Manager {
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
         const content = fs.readFileSync(filePath, 'utf-8')
 
-        const inputReg = /(?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        const inputReg = /(?:\\(?:input|include|subfile|(?:subimport{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
         this.texFileTree[filePath] = new Set()
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
                 break
             }
-            const inputFile = result[1]
-            let inputFilePath = path.resolve(path.join(rootDir, inputFile))
+
+            let inputFilePath = result[0].startsWith('\\subimport')?
+                path.resolve(path.join(path.dirname(filePath), result[1], result[2])) :
+                path.resolve(path.join(rootDir, result[1]))
+
             if (path.extname(inputFilePath) === '') {
                 inputFilePath += '.tex'
             }
