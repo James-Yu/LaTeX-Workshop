@@ -268,7 +268,7 @@ export class Manager {
 
             let inputFilePath = result[0].startsWith('\\subimport')?
                 path.resolve(path.join(path.dirname(filePath), result[1], result[2])) :
-                path.resolve(path.join(rootDir, result[1]))
+                path.resolve(path.join(rootDir, result[2]))
 
             if (path.extname(inputFilePath) === '') {
                 inputFilePath += '.tex'
