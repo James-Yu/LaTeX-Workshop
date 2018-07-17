@@ -65,7 +65,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '^(?!%)\\s*(?:((?:\\\\(?:input|include|subfile|(?:subimport{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        let pattern = '^(?!%)\\s*(?:((?:\\\\(?:input|include|subfile|(?:import{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
@@ -87,8 +87,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // element 3 is the file (need to resolve the path)
         // element 0 starts with \input, include, or subfile
 
-        // if it's a subimport
-        // element 0 starts with \subimport
+        // if it's a import
+        // element 0 starts with \import
         // element 2 is the directory part
         // element 3 is the file
 
@@ -143,11 +143,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // } else { // it's one level DOWN (add it to the children of the current node)
                 //     currentRoot().children.push(newSection)
                 // }
-            } else if (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport')) {
+            } else if (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\import')) {
                 // zoom into this file
                 // resolve the path
                 let inputFilePath
-                if (result[1].startsWith('\\subimport')) {
+                if (result[1].startsWith('\\import')) {
                     inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[2], result[3]))
                 } else {
                     inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[3]))
