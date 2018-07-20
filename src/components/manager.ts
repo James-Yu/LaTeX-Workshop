@@ -256,7 +256,8 @@ export class Manager {
             rootDir = path.dirname(filePath)
         }
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
-        const content = fs.readFileSync(filePath, 'utf-8')
+        let content = fs.readFileSync(filePath, 'utf-8')
+        content = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
 
         const inputReg = /(?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
         this.texFileTree[filePath] = new Set()
