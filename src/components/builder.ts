@@ -223,8 +223,8 @@ export class Builder {
     }
 
     findProgramMagic(rootFile: string) : [string, string] {
-        const regexTex = /(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
-        const regexBib = /(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
+        const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
+        const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const content = fs.readFileSync(rootFile).toString()
 
         const tex = content.match(regexTex)
