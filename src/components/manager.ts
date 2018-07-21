@@ -6,6 +6,7 @@ import * as glob from 'glob'
 
 import {Extension} from '../main'
 
+
 export class Manager {
     extension: Extension
     rootFiles: object
@@ -23,6 +24,7 @@ export class Manager {
         this.rootOfFiles = {}
         this.workspace = ''
     }
+
 
     get rootDir() {
         return path.dirname(this.rootFile)
@@ -57,6 +59,13 @@ export class Manager {
 
     isTex(filePath: string) {
         return ['.tex', '.sty', '.cls', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(filePath)) > -1
+    }
+
+    // Remove all the comments
+    stripComments(text: string, commentSign: string) : string {
+        const pattern = '([^\\\\]|^)' + commentSign + '.*$'
+        const reg = RegExp(pattern, 'gm')
+        return text.replace(reg, '$1')
     }
 
     updateWorkspace() {
@@ -129,7 +138,7 @@ export class Manager {
             return undefined
         }
         const regex = /\\begin{document}/m
-        const content = vscode.window.activeTextEditor.document.getText()
+        const content = this.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
             const file = vscode.window.activeTextEditor.document.fileName
@@ -144,7 +153,7 @@ export class Manager {
             return undefined
         }
         const regex = /(?:\\documentclass\[(.*(?:\.tex))\]{subfiles})/
-        const content = vscode.window.activeTextEditor.document.getText()
+        const content = this.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
             const file = path.join(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
@@ -168,8 +177,8 @@ export class Manager {
         try {
             const urls = await vscode.workspace.findFiles('**/*.tex', undefined)
             for (const url of urls) {
-                const content = fs.readFileSync(url.fsPath)
-                const result = content.toString().match(regex)
+                const content = this.stripComments(fs.readFileSync(url.fsPath).toString(), '%')
+                const result = content.match(regex)
                 if (result) {
                     const file = url.fsPath
                     this.extension.logger.addLogMessage(`Try root file in root directory: ${file}`)
@@ -256,8 +265,7 @@ export class Manager {
             rootDir = path.dirname(filePath)
         }
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
-        let content = fs.readFileSync(filePath, 'utf-8')
-        content = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
+        const content = this.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
         const inputReg = /(?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
         this.texFileTree[filePath] = new Set()
