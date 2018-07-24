@@ -132,7 +132,6 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
-    vscode.commands.registerCommand('latex-workshop.pdf', (uri: vscode.Uri | undefined) => extension.commander.pdf(uri))
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
     vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
@@ -179,6 +178,12 @@ export async function activate(context: vscode.ExtensionContext) {
         if (extension.manager.isTex(e.fileName)) {
             obsoleteConfigCheck()
             extension.manager.findRoot()
+        }
+        // console.log(e.languageId, e.uri.scheme)
+        if (e.languageId === 'pdf' && e.uri.scheme !== 'latex-workshop-pdf') {
+            vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
+                extension.commander.pdf(e.uri)
+            })
         }
     }))
 
