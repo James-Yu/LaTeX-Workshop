@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.7.0] - 2018-07-24
+
+### Added
+- (#701) Add config to disable badbox information.
+- (#710) Add syntax support for latex fenced block in markdown.
+- (#717) Auto show PDF on left click in file explorer.
+
+### Fixed
+- Make sure to ignore all comments in Outline.
+- (#713) Make sure to ignore comments when finding dependencies.
+
 ## [5.6.1] - 2018-07-09
 
 ### Fixed
