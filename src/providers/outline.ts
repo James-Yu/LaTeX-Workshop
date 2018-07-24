@@ -4,6 +4,29 @@ import * as path from 'path'
 
 import { Extension } from './../main'
 
+/**
+ * Finding the longest substring containing balanced {...}
+ * @param s a string
+ */
+function getLongestBalancedString(s: string) : string {
+    let nested = 1
+    let i = 0
+    for (i = 0; i < s.length; i++) {
+        switch (s[i]) {
+            case '{':
+                nested++
+                break
+            case '}':
+                nested --
+                break
+            default:
+        }
+        if (nested === 0) {
+            break
+        }
+    }
+    return s.substring(0, i)
+}
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -73,7 +96,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 pattern += '|'
             }
         })
-        pattern += ')(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)}))'
+        pattern += ')(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}))'
 
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'gm')
@@ -102,8 +125,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             if (result[5] in this.sectionDepths) {
                 // is it a section, a subsection, etc?
                 const heading = result[5]
-                const title = result[6]
                 const depth = this.sectionDepths[heading]
+                const title = getLongestBalancedString(result[6])
 
                 const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
 
