@@ -55,9 +55,9 @@ Installing LaTeX Workshop is simple. You can find it in [Visual Studio Code Mark
 
 ### <a name="recipe"></a>LaTeX recipe?
 
-LaTeX recipe refers to a sequence/array of commands which LaTeX Workshop will execute sequentially when building LaTeX projects. It is set in `File`>`Preferences`>`Settings`>`latex-workshop.latex.recipes`. By default, LaTeX Workshop includes two basic recipes: one that consists of simply running the command `latexmk`, and one that performs the typical sequence of commands `pdflatex` → `bibtex` → `pdflatex` → `pdflatex`.
+LaTeX recipe refers to a sequence/array of commands which LaTeX Workshop will execute sequentially when building LaTeX projects. It is set in `File`>`Preferences`>`Settings`>`latex-workshop.latex.recipes`. By default, LaTeX Workshop includes two basic recipes: one simply running the `latexmk` command, and an other one running the typical sequence of commands `pdflatex` → `bibtex` → `pdflatex` → `pdflatex`.
 
-You can create multiple recipes with different tools. Each recipe is an object in the configuration list, consists of a `name` field and a list of `tools` to be invoked in the recipe.
+You can create multiple recipes with different tools. Each recipe is an object in the configuration list, consisting of a `name` field and a list of `tools` to be invoked in the recipe.
 
 The `tools` in recipes can be defined in `latex-workshop.latex.tools`, in which each command is a `tool`. Each tool is an object consists of a `name`, a `command` to be spawned, and its arguments (`args`). To include a tool in a recipe, the tool's `name` should be included in the recipe's `tools` list.
 
