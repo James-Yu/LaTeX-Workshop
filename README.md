@@ -30,7 +30,6 @@ One million downloads! This project won't be successful without contributions fr
 - Select the current environment name: call _LaTeX Workshop: Select the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.select-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments. **Note**: this function _does not_ work with the [Vim](https://github.com/VSCodeVim/Vim) extension.
 - Add a multicursor to the current environment name: call _LaTeX Workshop: Add a multicursor to the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.multicursor-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments.
 
-
 ## Requirements
 
 - LaTeX distribution in system PATH. For example, [TeX Live](https://www.tug.org/texlive/).
@@ -53,7 +52,9 @@ Installing LaTeX Workshop is simple. You can find it in [Visual Studio Code Mark
 - To view an arbitrary PDF file, right click on the file in the explorer and select `View PDF`.
 
 ## FAQ
+
 ### <a name="recipe"></a>LaTeX recipe?
+
 LaTeX recipe refers to a sequence/array of commands which LaTeX Workshop will execute sequentially when building LaTeX projects. It is set in `File`>`Preferences`>`Settings`>`latex-workshop.latex.recipes`. You can create multiple recipes with different tools. Each recipe is an object in the configuration list, consists of a `name` field and a list of `tools` to be invoked in the recipe.
 
 The `tools` in recipes can be defined in `latex-workshop.latex.tools`, in which each command is a `tool`. Each tool is an object consists of a `name`, a `command` to be spawned, and its arguments (`args`). To include a tool in a recipe, the tool's `name` should be included in the recipe's `tools` list.
@@ -90,6 +91,7 @@ Alternatively, you can also set your commands without the placeholder, just like
 As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above tool `%DOC%` and `.tex` are concatenated for completeness.
 
 ### From toolchain to recipe?
+
 If you have a custom toolchain defined in pre-4.0 versions of LaTeX Workshop, you may want to migrate the existing configuration to the new recipe system. This can be easily done with the following steps:
 1. Create a tool in `latex-workshop.latex.tools` for each step in the original toolchain.
 2. Name the tools with the `name` field.
@@ -98,6 +100,7 @@ If you have a custom toolchain defined in pre-4.0 versions of LaTeX Workshop, yo
 5. Happy typesetting.
 
 ### Root file?
+
 While it is fine to write all contents in one `.tex` file, it is common to split things up for simplicity. For such LaTeX projects, the file with `\begin{document}` is considered as the root file, which serves as the entry point to the project. LaTeX Workshop intelligently finds the root file when a new document is opened, the active editor is changed, or any LaTeX Workshop command is executed.
 
 To find the root file, LaTeX Workshop will follow the steps below, stopping whenever one is found:
@@ -108,6 +111,7 @@ To find the root file, LaTeX Workshop will follow the steps below, stopping when
 If no root file is found, most of the features in LaTeX Workshop will not work.
 
 ### Magic comments?
+
 LaTeX Workshop supports both `% !TEX root` and `% !TEX program` magic comments. The former is used to define the root file, while the latter helps select compiler program. However, it is advised to use the recipe system instead of magic program to define the building process, since the latter is only implemented for backward compatibility.
 
 For `% !TEX program` magic comment, its arguments are defined in `latex-workshop.latex.magic.args`:
@@ -124,6 +128,7 @@ Suppose there is a line `% !TEX program = xelatex` in the root file. Upon buildi
 When using `% !TEX program` with bibliographies, a `bib` compiler must be defined with `% !BIB program` comment, e.g., `% !BIB program = bibtex`. Otherwise the extension will only run one-pass compilation with the specified LaTeX compiler.
 
 ### Spell check?
+
 [Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. Users may also find other extensions better alternatives, e.g., [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) and [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool). Especially the last one is credited for its multi-lingual support.
 
 ### Build on save?
