@@ -89,7 +89,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '(?:((?:\\\\(?:input|include|subfile|(?:subimport{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        let pattern = '(?:((?:\\\\(?:input|include|subfile|(?:subimport\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
@@ -172,9 +172,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // resolve the path
                 let inputFilePath
                 if (result[1].startsWith('\\subimport')) {
-                    inputFilePath = path.resolve(path.join(path.dirname(filePath), result[2], result[3]))
+                    inputFilePath = this.extension.manager.resolveFile([path.dirname(filePath)], path.join(result[2], result[3]))
                 } else {
-                    inputFilePath = path.resolve(path.join(this.extension.manager.rootDir, result[3]))
+                    inputFilePath = this.extension.manager.resolveFile([path.dirname(filePath), this.extension.manager.rootDir], result[3])
                 }
 
                 if (path.extname(inputFilePath) === '') {
