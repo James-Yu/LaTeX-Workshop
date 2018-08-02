@@ -201,12 +201,9 @@ export class EnvPair {
         const resMatchingPair = this.locateMatchingPair(pattern, dir, curPos, document)
         if (resMatchingPair) {
             const endEnv = '\\end{' + resMatchingPair.name + '}'
-            const edits = [vscode.TextEdit.insert(curPos, endEnv)]
-            const uri = document.uri
-            const edit = new vscode.WorkspaceEdit()
-            edit.set(uri, edits)
-            vscode.workspace.applyEdit(edit)
+            return editor.edit(editBuilder => { editBuilder.insert(curPos, endEnv) })
         }
+        return
     }
 
 }
