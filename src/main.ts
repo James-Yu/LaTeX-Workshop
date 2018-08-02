@@ -146,6 +146,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName())
     vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => extension.commander.multiCursorEnvName())
     vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
+    vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
+    vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.isTex(e.fileName)) {

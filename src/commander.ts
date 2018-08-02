@@ -344,4 +344,60 @@ export class Commander {
             }
         })
     }
+
+    /**
+     * If the current line starts with \item or \item[], do the same for
+     * the new line when hitting enter.
+     * Note that hitting enter on a line containing only \item or \item[]
+     * actually deletes the content of the line.
+     */
+    onEnterKey(modifiers?: string) {
+        const editor = vscode.window.activeTextEditor
+        if (!editor) {
+            return
+        }
+        if (modifiers === 'alt') {
+            return vscode.commands.executeCommand('editor.action.insertLineAfter')
+        }
+
+        const cursorPos = editor.selection.active
+        const line = editor.document.lineAt(cursorPos.line)
+
+        // if the line only constists of \item or \item[], delete its content
+        if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
+            const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
+
+            return editor.edit(editBuilder => {
+                editBuilder.delete(rangeToDelete)
+            })
+        }
+
+        const matches = /^(\s*)\\item(\[[^\[\]]*\])?\s*(.*)$/.exec(line.text)
+        if (matches) {
+            let itemString = ''
+            let newCursorPos
+            // leading indent
+            if (matches[1]) {
+                itemString  += matches[1]
+            }
+            // is there an optional paramter to \item
+            if (matches[2]) {
+                itemString += '\\item[] '
+                newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length - 2)
+            } else {
+                itemString += '\\item '
+                newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length)
+            }
+            return editor.edit(editBuilder => {
+                // editBuilder.insert(cursorPos.with(line.lineNumber + 1, 0), `${itemString}\n`)
+                editBuilder.insert(cursorPos.with(line.lineNumber + 1, 0), itemString + '\n')
+                }).then(() => {
+                    editor.selection = new vscode.Selection(newCursorPos, newCursorPos)
+                }
+            ).then(() => { editor.revealRange(editor.selection) })
+        }
+        return vscode.commands.executeCommand('editor.action.insertLineAfter')
+    }
+
+
 }
