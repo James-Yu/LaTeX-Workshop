@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.8.1] - 2018-08-15
+
+### Fixed
+- (#739) Correctly insert linebreak with ENTER outside `itemize` environment.
+
 ## [5.8.0] - 2018-08-15
 
 ### Added

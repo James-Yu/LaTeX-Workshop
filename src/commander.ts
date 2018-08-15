@@ -396,7 +396,9 @@ export class Commander {
                 }
             ).then(() => { editor.revealRange(editor.selection) })
         }
-        return vscode.commands.executeCommand('editor.action.insertLineAfter')
+        return editor.edit(editBuilder => {
+            editBuilder.insert(cursorPos, editor.document.eol === 1 ? '\n' : '\r\n')
+        })//vscode.commands.executeCommand('editor.action.insertLineAfter')
     }
 
 
