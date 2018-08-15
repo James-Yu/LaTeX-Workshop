@@ -110,6 +110,9 @@ export class Builder {
                     }
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
+                    if (configuration.get('latex-workshop.latex.clean.onFailBuild.enabled') && !configuration.get('latex.clean.enabled')) {
+                        this.extension.commander.clean()
+                    }
                     const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
                     if (res) {
                         res.then(option => {

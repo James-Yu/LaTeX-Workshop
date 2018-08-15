@@ -1,5 +1,21 @@
 # Change Log
 
+## [5.8.0] - 2018-08-15
+
+### Added
+- Add config to enable file cleaning after a failed building process.
+- (#705) Support `\import` as well as `\subimport` for outline and build.
+- (#719) Supersed 'Enter' to automatically add `\item` while itemizing.
+- (#720) Support nested `subimport`s `@Moberstein`.
+
+### Fixed
+- README contents.
+- Make sure magic comments start at the beginning of the line.
+- (#696) Make outline handle title with nested braces.
+- (#723) Finding root file when using nested `subimport`.
+- (#728) Do not autocomplete `\end`.
+- (#736) Do not build upon file change if building, suppress next build within 1s.
+
 ## [5.7.0] - 2018-07-24
 
 ### Added
