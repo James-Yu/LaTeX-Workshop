@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.8.2] - 2018-08-16
+
+### Fixed
+- Temporarily remove `enter-to-insert-\item` feature.
+
 ## [5.8.1] - 2018-08-15
 
 ### Fixed
