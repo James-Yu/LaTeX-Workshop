@@ -27,7 +27,7 @@ export class Builder {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         this.disableBuildAfterSave = true
         vscode.workspace.saveAll()
-        this.disableBuildAfterSave = false
+        setTimeout(() => this.disableBuildAfterSave = false, 1000)
         if (this.currentProcess) {
             this.currentProcess.kill()
             this.extension.logger.addLogMessage('Kill previous process.')

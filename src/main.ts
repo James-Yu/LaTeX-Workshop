@@ -156,6 +156,7 @@ export async function activate(context: vscode.ExtensionContext) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
             if (extension.manager.isTex(e.fileName)) {
+                extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 extension.commander.build(true)
             }
         }
