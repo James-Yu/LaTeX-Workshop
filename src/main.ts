@@ -226,7 +226,7 @@ export async function activate(context: vscode.ExtensionContext) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('latex.autoBuild.onTexChange.enabled')) {
+        if (!configuration.get('latex.autoBuild.onTexChange.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
         extension.logger.addLogMessage(`${e.fsPath} changed. Auto build project.`)
