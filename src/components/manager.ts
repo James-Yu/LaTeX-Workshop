@@ -70,6 +70,9 @@ export class Manager {
 
     // Given an input file determine its full path using the prefixes dirs
     resolveFile(dirs: string[], inputFile: string) : string | null {
+        if (inputFile.startsWith('/')) {
+            dirs.unshift('')
+        }
         for (const d of dirs) {
             let inputFilePath = path.resolve(path.join(d, inputFile))
             if (path.extname(inputFilePath) === '') {
