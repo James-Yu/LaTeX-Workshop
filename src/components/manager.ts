@@ -25,6 +25,17 @@ export class Manager {
         this.workspace = ''
     }
 
+    getOutputDir(texPath: string) {
+        const doc = texPath.replace(/\.tex$/, '').split(path.sep).join('/')
+        const docfile = path.basename(texPath, '.tex').split(path.sep).join('/')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const docker = configuration.get('docker.enabled')
+        let outputDir = (configuration.get('latex.outputDir') as string)
+        outputDir = outputDir.replace('%DOC%', docker ? docfile : doc)
+                    .replace('%DOCFILE%', docfile)
+                    .replace('%DIR%', path.dirname(texPath).split(path.sep).join('/'))
+        return outputDir
+    }
 
     get rootDir() {
         return path.dirname(this.rootFile)
@@ -52,8 +63,10 @@ export class Manager {
     }
 
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const outputDir = respectOutDir ? (configuration.get('latex.outputDir') as string) : './'
+        let outputDir = './'
+        if (respectOutDir) {
+            outputDir = this.getOutputDir(texPath)
+        }
         return path.resolve(path.dirname(texPath), outputDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
