@@ -29,7 +29,6 @@ One million downloads! This project won't be successful without contributions fr
 - Navigate from `\begin/\end` to the corresponding `\end/\begin`: while on the `begin` or `end` keyword, call _LaTeX Workshop: Navigate to matching begin/end_ from the **Command Palette**. To define a shortcut, search for `latex-workshop.navigate-envpair` in the **Keyboard Shortcuts** menu.
 - Select the current environment name: call _LaTeX Workshop: Select the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.select-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments. **Note**: this function _does not_ work with the [Vim](https://github.com/VSCodeVim/Vim) extension.
 - Add a multicursor to the current environment name: call _LaTeX Workshop: Add a multicursor to the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.multicursor-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments.
-- When the current line starts with `\item` or `\item[]`, hitting `Enter` automatically adds a newline starting in the same way. For a better handling of the last item, hitting `Enter` on a line only containing `\item` or `\item[]` actually deletes the content of the line.
 
 ## Requirements
 
