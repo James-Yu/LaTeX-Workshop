@@ -130,6 +130,9 @@ export class Command {
         command.documentation = item.documentation
         command.detail = item.detail
         command.sortText = item.sortText
+        if (item.postAction) {
+            command.command = { title: 'Post-Action', command: item.postAction }
+        }
         return command
     }
 
@@ -193,4 +196,5 @@ interface AutocompleteEntry {
     description?: string
     documentation?: string
     sortText?: string
+    postAction?: string
 }

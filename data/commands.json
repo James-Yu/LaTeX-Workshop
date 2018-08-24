@@ -1,8 +1,9 @@
 {
   "begin":{
     "command":"begin",
-    "snippet":"begin{${1:env}}\n\t$0\n\\\\end{${1:env}}",
-    "detail":"begin a new environment"
+    "snippet":"begin{$1}\n\t$0\n\\\\end{$1}",
+    "detail":"begin a new environment",
+    "postAction":"editor.action.triggerSuggest"
   },
   "lrparen":{
     "command":"left(",
@@ -90,15 +91,19 @@
   "cite":{
     "command":"cite",
     "snippet":"cite{$1}",
-    "detail":"reference"
+    "detail":"reference",
+    "postAction":"editor.action.triggerSuggest"
+
   },
   "citeyear":{
     "command":"citeyear",
-    "snippet":"citeyear{$1}"
+    "snippet":"citeyear{$1}",
+    "postAction":"editor.action.triggerSuggest"
   },
   "shortcite":{
     "command":"shortcite",
-    "snippet":"shortcite{$1}"
+    "snippet":"shortcite{$1}",
+    "postAction":"editor.action.triggerSuggest"
   },
   "emph":{
     "command":"emph",
@@ -151,11 +156,13 @@
   },
   "ref":{
     "command":"ref",
-    "snippet":"ref{${1}}"
+    "snippet":"ref{${1}}",
+    "postAction":"editor.action.triggerSuggest"
   },
   "pageref":{
     "command":"pageref",
-    "snippet":"pageref{$1}"
+    "snippet":"pageref{$1}",
+    "postAction":"editor.action.triggerSuggest"
   },
   "author":{
     "command":"author",
@@ -175,7 +182,8 @@
   },
   "usepackage":{
     "command":"usepackage",
-    "snippet":"usepackage{$1}"
+    "snippet":"usepackage{$1}",
+    "postAction":"editor.action.triggerSuggest"
   },
   "item":{
     "command":"item",
