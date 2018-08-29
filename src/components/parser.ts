@@ -128,12 +128,18 @@ export class Parser {
         this.buildLog = []
 
         let searchesEmptyLine = false
+        let insideBoxWarn = false
         let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
         const fileStack: string[] = [this.extension.manager.rootFile]
         let nested = 0
         for (const line of lines) {
             // Compose the current file
             const filename = path.resolve(this.extension.manager.rootDir, fileStack[fileStack.length - 1])
+            // Skip the first line after a box warning, this is just garbage
+            if (insideBoxWarn) {
+                insideBoxWarn = false
+                continue
+            }
             // append the read line, since we have a corresponding result in the making
             if (searchesEmptyLine) {
                 currentResult.text = currentResult.text + ' ' + line
@@ -158,6 +164,7 @@ export class Parser {
                     text: result[1]
                 }
                 searchesEmptyLine = false
+                insideBoxWarn = true
                 continue
             }
             result = line.match(latexWarn)
