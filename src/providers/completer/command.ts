@@ -153,13 +153,17 @@ export class Command {
                     command: result[1]
                 }
                 if (result[2]) {
-                    items[result[1]].snippet = `${result[1]}{$\{1:arg}}`
+                    items[result[1]].snippet = `${result[1]}{$\{1}}`
+                    // Automatically trigger intellisense if the command matches citation, reference or ennvironment completion
+                    if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|(begin)/)) {
+                        items[result[1]].postAction = 'editor.action.triggerSuggest'
+                    }
                 }
                 if (result[3]) {
-                    items[result[1]].snippet += `{$\{2:arg}}`
+                    items[result[1]].snippet += `{$\{2}}`
                 }
                 if (result[4]) {
-                    items[result[1]].snippet += `{$\{3:arg}}`
+                    items[result[1]].snippet += `{$\{3}}`
                 }
             } else {
                 if (items[result[1]].counts) {
