@@ -150,17 +150,17 @@ export async function activate(context: vscode.ExtensionContext) {
     // vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
-        if (extension.manager.isTex(e.fileName)) {
+        if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
-            if (extension.manager.isTex(e.fileName)) {
+            if (extension.manager.hasTexId(e.languageId)) {
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 extension.commander.build(true)
             }
         }
-        if (extension.manager.isTex(e.fileName)) {
+        if (extension.manager.hasTexId(e.languageId)) {
             extension.nodeProvider.refresh()
             extension.nodeProvider.update()
         }
@@ -217,7 +217,7 @@ export async function activate(context: vscode.ExtensionContext) {
             })
         }
 
-        if (e && extension.manager.isTex(e.document.fileName)) {
+        if (e && extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabled()
         }
     }))

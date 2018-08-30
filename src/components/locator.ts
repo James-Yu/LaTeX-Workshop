@@ -54,7 +54,7 @@ export class Locator {
             return
         }
         const filePath = vscode.window.activeTextEditor.document.uri.fsPath
-        if (!this.extension.manager.isTex(filePath)) {
+        if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             this.extension.logger.addLogMessage(`${filePath} is not a valid LaTeX file.`)
             return
         }

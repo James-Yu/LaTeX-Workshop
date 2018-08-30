@@ -74,6 +74,10 @@ export class Manager {
         return ['.tex', '.sty', '.cls', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(filePath)) > -1
     }
 
+    hasTexId(id: string) {
+        return (id === 'tex' || id === 'latex' || id === 'doctex')
+    }
+
     // Remove all the comments
     stripComments(text: string, commentSign: string) : string {
         const pattern = '([^\\\\]|^)' + commentSign + '.*$'

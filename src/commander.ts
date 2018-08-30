@@ -13,7 +13,7 @@ export class Commander {
 
     async build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -80,7 +80,7 @@ export class Commander {
 
     async view() {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -113,7 +113,7 @@ export class Commander {
 
     async browser() {
         this.extension.logger.addLogMessage(`BROWSER command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -126,7 +126,7 @@ export class Commander {
 
     async tab() {
         this.extension.logger.addLogMessage(`TAB command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -149,7 +149,7 @@ export class Commander {
     async synctex() {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
         await this.extension.manager.findRoot()
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         this.extension.locator.syncTeX()
@@ -163,7 +163,7 @@ export class Commander {
 
     addTexRoot() {
         this.extension.logger.addLogMessage(`ADDTEXROOT command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         this.extension.texMagician.addTexRoot()
@@ -176,7 +176,7 @@ export class Commander {
 
     wordcount() {
         this.extension.logger.addLogMessage(`WORDCOUNT command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName) ||
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
             this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
             this.extension.counter.count(this.extension.manager.rootFile)
         } else {
@@ -227,7 +227,7 @@ export class Commander {
 
     navigateToEnvPair() {
         this.extension.logger.addLogMessage(`JumpToEnvPair command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         this.extension.envPair.gotoPair()
@@ -235,7 +235,7 @@ export class Commander {
 
     selectEnvName() {
         this.extension.logger.addLogMessage(`SelectEnvName command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         this.extension.envPair.selectEnvName('selection')
@@ -243,7 +243,7 @@ export class Commander {
 
     multiCursorEnvName() {
         this.extension.logger.addLogMessage(`MutliCursorEnvName command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         this.extension.envPair.selectEnvName('cursor')
@@ -251,7 +251,7 @@ export class Commander {
 
     closeEnv() {
         this.extension.logger.addLogMessage(`CloseEnv command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         this.extension.envPair.closeEnv()
