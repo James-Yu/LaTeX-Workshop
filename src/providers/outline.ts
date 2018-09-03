@@ -179,6 +179,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     inputFilePath = this.extension.manager.resolveFile([path.dirname(filePath), this.extension.manager.rootDir], result[3])
                 }
 
+                if (!inputFilePath) {
+                    this.extension.logger.addLogMessage(`Could not resolve included file ${filePath}`)
+                    continue
+                }
                 if (path.extname(inputFilePath) === '') {
                     inputFilePath += '.tex'
                 }
