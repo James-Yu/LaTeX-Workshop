@@ -430,7 +430,13 @@
             "tab",
             "external"
           ],
-          "description": "The default PDF viewer."
+          "description": "The default PDF viewer.",
+          "enumDescriptions": [
+            "Undetermined viewer. A viewer selector will pop up upon viewing PDF.",
+            "Open PDF with the default web browser.",
+            "Open PDF with the built-in tab viewer.",
+            "[Experimental] Open PDF with the external viewer set in \"View > Pdf > External: command\"."
+          ]
         },
         "latex-workshop.view.pdf.external.command": {
           "type": "object",
@@ -533,7 +539,11 @@
             "browser"
           ],
           "default": "inline",
-          "description": "Defines which type of hint to show when intellisense provides citation suggestions."
+          "description": "Defines which type of hint to show when intellisense provides citation suggestions.",
+          "enumDescriptions": [
+            "Use the inline intellisense to provide citation completion items.",
+            "Use a dropdown menu to provide citation completion items."
+          ]
         },
         "latex-workshop.intellisense.citation.label": {
           "type": "string",
@@ -543,7 +553,12 @@
             "authors"
           ],
           "default": "bibtex key",
-          "description": "Defines what to show as suggestion labels when intellisense provides citation suggestions."
+          "description": "Defines what to show as suggestion labels when intellisense provides citation suggestions.",
+          "enumDescriptions": [
+            "Show bibtex keys in the inline intellisense.",
+            "Show publication titles in the inline intellisense.",
+            "Show publication authors in the inline intellisense."
+          ]
         },
         "latex-workshop.intellisense.citation.maxfilesizeMB": {
           "type": "number",
