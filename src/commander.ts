@@ -262,6 +262,9 @@ export class Commander {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!this.commandTitles) {
             const commands = this.extension.packageInfo.contributes.commands.filter(command => {
+                if (command.command.indexOf('latex-workshop-dev') > -1) {
+                    return 0
+                }
                 return ['latex-workshop.actions', 'latex-workshop.build', 'latex-workshop.recipes',
                         'latex-workshop.view', 'latex-workshop.compilerlog',
                         'latex-workshop.log', 'latex-workshop.tab'].indexOf(command.command) < 0
@@ -401,5 +404,10 @@ export class Commander {
         })//vscode.commands.executeCommand('editor.action.insertLineAfter')
     }
 
-
+    devParseLog() {
+        if (vscode.window.activeTextEditor === undefined) {
+            return
+        }
+        this.extension.parser.parse(vscode.window.activeTextEditor.document.getText())
+    }
 }

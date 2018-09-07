@@ -117,6 +117,8 @@ export async function activate(context: vscode.ExtensionContext) {
     // vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
     // vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
 
+    vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
+
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
