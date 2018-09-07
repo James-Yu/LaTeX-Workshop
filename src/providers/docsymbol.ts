@@ -21,20 +21,24 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         })
     }
 
-    public provideDocumentSymbols(_document: vscode.TextDocument) : Promise<vscode.DocumentSymbol[]> {
+    public provideDocumentSymbols(_document: vscode.TextDocument) : Promise<vscode.SymbolInformation[]> {
         return new Promise((resolve, _reject) => {
             if (this.extension.manager.rootFile) {
-                resolve(this.buildTree(this.extension.manager.rootFile).children)
-            } else {
-                resolve([])
+                const tree = this.buildTree(this.extension.manager.rootFile)
+                if (tree) {
+                    const symbols = []
+                    this.flattenTree(symbols, tree)
+                    resolve(symbols)
+                }
             }
+            resolve([])
         })
     }
 
     buildTree(filePath: string, parent: Section | undefined = undefined) {
         if (parent === undefined) {
-            const tempRange = new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0))
-            parent = new Section('Root', '', vscode.SymbolKind.File, tempRange, tempRange, undefined, -1)
+            const tempLoc = new vscode.Location(vscode.Uri.parse(filePath), new vscode.Range(new vscode.Position(0, 0), new vscode.Position(0, 0)))
+            parent = new Section('Root', vscode.SymbolKind.File, tempLoc, -1, undefined)
         }
 
         this.extension.logger.addLogMessage(`Parsing ${filePath} for outline`)
@@ -89,15 +93,15 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
                 // get a  line number
                 const lineNumber = (prevContent.match(/\n/g) || []).length + 1
 
-                currentParent.range = new vscode.Range(currentParent.range.start, new vscode.Position(lineNumber - 1, 65535))
+                currentParent.location.range = new vscode.Range(currentParent.location.range.start, new vscode.Position(lineNumber - 1, 65535))
                 const range = new vscode.Range(new vscode.Position(lineNumber, 0), new vscode.Position(65535, 0))
 
                 while (currentParent.parent && currentParent.depth >= depth) {
                     currentParent = currentParent.parent
                 }
-
-                const newSection = new Section(title, '', vscode.SymbolKind.Package, range, range, currentParent, depth)
+                const newSection = new Section(title, vscode.SymbolKind.Class, new vscode.Location(vscode.Uri.parse(filePath), range), depth, currentParent)
                 currentParent.children.push(newSection)
+                newSection.name = `${this.addSectionNumber(newSection)} ${title}`
                 currentParent = newSection
 
             } else if (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') ) {
@@ -136,21 +140,42 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         return parent
     }
 
-    setRange(parent: vscode.DocumentSymbol) {
-        if (parent.children.length === 0) {
+    setRange(parent: Section | undefined) {
+        if (parent === undefined || parent.children.length === 0) {
             return
         }
-        parent.range = new vscode.Range(parent.range.start, parent.children[parent.children.length - 1].range.end)
+        parent.location.range = new vscode.Range(parent.location.range.start, parent.children[parent.children.length - 1].location.range.end)
         parent.children.forEach(child => this.setRange(child))
+    }
+
+    flattenTree(symbols: vscode.SymbolInformation[], parent: Section) {
+        parent.children.forEach(child => {
+            symbols.push(child)
+            this.flattenTree(symbols, child)
+        })
+    }
+
+    addSectionNumber(section: Section) {
+        let sectionNum = ''
+        let currentParent = section
+        while (currentParent.parent) {
+            const index = currentParent.parent.children.indexOf(currentParent)
+            sectionNum = `.${index + 1}` + sectionNum
+            currentParent = currentParent.parent
+        }
+        if (sectionNum.length === 2) {
+            sectionNum += '.'
+        }
+        return sectionNum.substr(1)
     }
 }
 
-class Section extends vscode.DocumentSymbol {
+class Section extends vscode.SymbolInformation {
     constructor(
-        name: string, detail: string, kind: vscode.SymbolKind, range: vscode.Range, selectionRange: vscode.Range,
-        public parent: Section | undefined, public readonly depth: number
+        name: string, kind: vscode.SymbolKind, location: vscode.Location,
+        public readonly depth: number, public parent: Section | undefined, public children: Section[] = []
     ) {
-        super(name, detail, kind, range, selectionRange)
+        super(name, kind, (parent ? parent.name : 'root'), location)
     }
 }
 
