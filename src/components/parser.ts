@@ -5,7 +5,7 @@ import { Extension } from '../main'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
-const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)\.?$/
+const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
 const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info):\s+(.*?)(?: on input line (\d+))?\.$/
@@ -20,7 +20,8 @@ const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
 const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
-const truncatedLine = /(.{78}(\w|\s|-|\\|\/))(\r\n|\n)/g
+const truncatedLine = /(.{77}[^\.](\w|\s|-|\\|\/))(\r\n|\n)/g
+const messageLine = /^l\.\d+\s(.*)$/
 
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Information,
@@ -129,6 +130,7 @@ export class Parser {
 
         let searchesEmptyLine = false
         let insideBoxWarn = false
+        let insideError = false
         let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
         const fileStack: string[] = [this.extension.manager.rootFile]
         let nested = 0
@@ -142,10 +144,17 @@ export class Parser {
             }
             // append the read line, since we have a corresponding result in the making
             if (searchesEmptyLine) {
-                currentResult.text = currentResult.text + ' ' + line
-                if (line.trim() === '') {
+                if (line.trim() === '' || (insideError && line.match(/^\s/))) {
                     currentResult.text = currentResult.text + '\n'
                     searchesEmptyLine = false
+                    insideError = false
+                } else {
+                    if (insideError) {
+                        const subLine = line.replace(messageLine, '$1')
+                        currentResult.text = currentResult.text + ' ' + subLine
+                    } else {
+                    currentResult.text = currentResult.text + ' ' + line
+                    }
                 }
                 continue
             }
@@ -193,6 +202,7 @@ export class Parser {
                     line: result[2] ? parseInt(result[2], 10) : undefined
                 }
                 searchesEmptyLine = true
+                insideError = true
                 continue
             }
             nested = this.parseLaTeXFileStack(line, fileStack, nested)
