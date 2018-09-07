@@ -117,8 +117,6 @@ export class Manager {
         if (wsroot) {
             if (wsroot !== this.workspace) {
                 this.workspace = wsroot
-                this.extension.nodeProvider.refresh()
-                this.extension.nodeProvider.update()
             }
         } else {
             this.workspace = ''

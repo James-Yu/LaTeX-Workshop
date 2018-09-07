@@ -18,7 +18,6 @@ import {EnvPair} from './components/envpair'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
-import {SectionNodeProvider} from './providers/outline'
 import {HoverProvider} from './providers/hover'
 import {DocSymbolProvider} from './providers/docsymbol'
 import {ProjectSymbolProvider} from './providers/projectsymbol'
@@ -160,10 +159,6 @@ export async function activate(context: vscode.ExtensionContext) {
                 extension.commander.build(true)
             }
         }
-        if (extension.manager.hasTexId(e.languageId)) {
-            extension.nodeProvider.refresh()
-            extension.nodeProvider.update()
-        }
     }))
 
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
@@ -207,16 +202,6 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.logger.status.show()
         }
 
-        if (vscode.window.activeTextEditor) {
-            extension.manager.findRoot().then(val => {
-                if (val && val !== extension.nodeProvider.root) {
-                    extension.nodeProvider.root = val
-                    extension.nodeProvider.refresh()
-                    extension.nodeProvider.update()
-                }
-            })
-        }
-
         if (e && extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabled()
         }
@@ -257,7 +242,6 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'latex'}, extension.completer, '\\', '{', ',', '(', '['))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'doctex'}, extension.completer, '\\', '{', ',', '(', '['))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider({ scheme: 'file', language: 'latex'}, extension.codeActions))
-    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-outline', extension.nodeProvider))
 
     extension.linter.lintRootFileIfEnabled()
     obsoleteConfigCheck()
@@ -281,7 +265,6 @@ export class Extension {
     cleaner: Cleaner
     counter: Counter
     codeActions: CodeActions
-    nodeProvider: SectionNodeProvider
     texMagician: TeXMagician
     envPair: EnvPair
 
@@ -300,7 +283,6 @@ export class Extension {
         this.cleaner = new Cleaner(this)
         this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
-        this.nodeProvider = new SectionNodeProvider(this)
         this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
 
