@@ -218,6 +218,15 @@ export async function activate(context: vscode.ExtensionContext) {
     obsoleteConfigCheck()
     conflictExtensionCheck()
     newVersionMessage(context.extensionPath, extension)
+
+    vscode.window.visibleTextEditors.forEach(editor => {
+        const e = editor.document
+        if (e.languageId === 'pdf' && e.uri.scheme !== 'latex-workshop-pdf') {
+            vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
+                extension.commander.pdf(e.uri)
+            })
+        }
+    })
 }
 
 export class Extension {
