@@ -182,7 +182,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.logger.status.hide()
         } else if (!vscode.window.activeTextEditor.document.fileName) {
             extension.logger.status.hide()
-        } else if (!extension.manager.isTex(vscode.window.activeTextEditor.document.fileName)) {
+        } else if (!extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             extension.logger.status.hide()
         } else {
             extension.logger.status.show()

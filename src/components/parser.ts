@@ -304,7 +304,7 @@ export class Parser {
             diagsCollection[item.file].push(diag)
         }
         for (const file in diagsCollection) {
-            if (this.extension.manager.isTex(file)) {
+            if (['.tex', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(file)) > -1) {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
                 this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])

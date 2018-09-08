@@ -70,10 +70,6 @@ export class Manager {
         return path.resolve(path.dirname(texPath), outputDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
-    isTex(filePath: string) {
-        return ['.tex', '.sty', '.cls', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(filePath)) > -1
-    }
-
     hasTexId(id: string) {
         return (id === 'tex' || id === 'latex' || id === 'doctex')
     }
