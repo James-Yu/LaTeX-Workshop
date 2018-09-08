@@ -21,6 +21,7 @@ import {CodeActions} from './providers/codeactions'
 import {HoverProvider} from './providers/hover'
 import {DocSymbolProvider} from './providers/docsymbol'
 import {ProjectSymbolProvider} from './providers/projectsymbol'
+import {SectionNodeProvider} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 
@@ -122,10 +123,12 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
-        }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
-            if (extension.manager.hasTexId(e.languageId)) {
+
+            extension.structureProvider.refresh()
+            extension.structureProvider.update()
+
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 extension.commander.build(true)
             }
@@ -144,9 +147,12 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
-        if (extension.manager.isTex(e.fileName)) {
+        if (extension.manager.hasTexId(e.languageId)) {
             obsoleteConfigCheck()
             extension.manager.findRoot()
+
+            extension.structureProvider.refresh()
+            extension.structureProvider.update()
         }
         // console.log(e.languageId, e.uri.scheme)
         if (e.languageId === 'pdf' && e.uri.scheme !== 'latex-workshop-pdf') {
@@ -157,8 +163,17 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (extension.manager.isTex(e.document.fileName)) {
+        if (extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabledAfterInterval()
+
+            const previousRoot = extension.manager.rootFile
+            extension.manager.findRoot().then(rootFile => {
+                if (rootFile === undefined || rootFile === previousRoot) {
+                    return
+                }
+                extension.structureProvider.refresh()
+                extension.structureProvider.update()
+            })
         }
     }))
 
@@ -204,6 +219,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'latex'}, formatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
 
+    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-structure', extension.structureProvider))
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
     context.subscriptions.push(vscode.languages.registerHoverProvider({ scheme: 'file', language: 'latex'}, new HoverProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDefinitionProvider({ scheme: 'file', language: 'latex'}, new DefinitionProvider(extension)))
@@ -247,6 +263,7 @@ export class Extension {
     codeActions: CodeActions
     texMagician: TeXMagician
     envPair: EnvPair
+    structureProvider: SectionNodeProvider
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -265,6 +282,7 @@ export class Extension {
         this.codeActions = new CodeActions(this)
         this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
+        this.structureProvider = new SectionNodeProvider(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
