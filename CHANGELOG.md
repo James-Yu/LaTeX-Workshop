@@ -1,5 +1,25 @@
 # Change Log
 
+## [5.9.0] - 2018-09-09
+
+### Added
+- Show LaTeX project structure in a new activity bar badge.
+- Adapt to new vscode `1.27` platform-specific keybind.
+- (#730) Log parsing improvements.
+- (#733) Make `outputDir` understand placeholders.
+- (#743) Allow any filetype extension to be declared as latex.
+- (#744) Automatically trigger intellisense after inserting a snippet and selected commands.
+- (#780) Add more `amsmath` environments to snippets.
+
+### Changed
+- Remove snippets placeholders default values.
+- Show outline of the current file in built-in `outline` view.
+
+### Fixed
+- (#752) Fix outline when using \input with a full path.
+- (#781) Handle multiline log messages.
+- (#783) Re-open all opened PDF upon activation.
+
 ## [5.8.2] - 2018-08-16
 
 ### Fixed
