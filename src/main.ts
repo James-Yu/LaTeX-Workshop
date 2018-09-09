@@ -25,22 +25,24 @@ import {SectionNodeProvider} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 
-function obsoleteConfigCheck() {
+function renameConfig(originalConfig: string, newConfig: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    function renameConfig(originalConfig: string, newConfig: string) {
-        if (!configuration.has(originalConfig)) {
-            return
-        }
-        const originalSetting = configuration.inspect(originalConfig)
-        if (originalSetting && originalSetting.globalValue !== undefined) {
-            configuration.update(newConfig, originalSetting.globalValue, true)
-            configuration.update(originalConfig, undefined, true)
-        }
-        if (originalSetting && originalSetting.workspaceValue !== undefined) {
-            configuration.update(newConfig, originalSetting.workspaceValue, false)
-            configuration.update(originalConfig, undefined, false)
-        }
+    if (!configuration.has(originalConfig)) {
+        return
     }
+    const originalSetting = configuration.inspect(originalConfig)
+    if (originalSetting && originalSetting.globalValue !== undefined) {
+        configuration.update(newConfig, originalSetting.globalValue, true)
+        configuration.update(originalConfig, undefined, true)
+    }
+    if (originalSetting && originalSetting.workspaceValue !== undefined) {
+        configuration.update(newConfig, originalSetting.workspaceValue, false)
+        configuration.update(originalConfig, undefined, false)
+    }
+}
+
+function obsoleteConfigCheck() {
+    renameConfig('placeholder', '')
 }
 
 function conflictExtensionCheck() {
