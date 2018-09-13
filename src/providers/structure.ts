@@ -62,7 +62,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire()
     }
 
-    buildModel(filePath: string, parentStack?: Section[], parentChildren?: Section[]) : Section[] {
+    buildModel(filePath: string, parentStack?: Section[], parentChildren?: Section[], imports: boolean = true) : Section[] {
 
         let rootStack: Section[] = []
         if (parentStack) {
@@ -73,6 +73,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (parentChildren) {
             children = parentChildren
         }
+
+        let prevSection: Section | undefined = undefined
+
+        const envStack: {name: string, start: number, end: number}[] = []
 
         const currentRoot = () => {
             return rootStack[rootStack.length - 1]
@@ -99,41 +103,64 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         pattern += ')(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}))'
 
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
-        const inputReg = RegExp(pattern, 'gm')
+        const inputReg = RegExp(pattern, 'm')
+        const envReg = /(?:\\(begin|end)(?:\[[^\[\]]*\])?){(?:(figure|table)\*?)}/m
 
-        // if it's a section elements 5 = section
-        // element 6 = title.
-
-        // if it's a subsection:
-        // element X = title
-
-        // if it's an input, include, or subfile:
-        // element 3 is the file (need to resolve the path)
-        // element 0 starts with \input, include, or subfile
-
-        // if it's a subimport
-        // element 0 starts with \subimport
-        // element 2 is the directory part
-        // element 3 is the file
-
-        while (true) {
-            const result = inputReg.exec(content)
-            if (!result) {
-                break
+        const lines = content.split('\n')
+        for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+            const line = lines[lineNumber]
+            envReg.lastIndex = 0
+            inputReg.lastIndex = 0
+            let result = envReg.exec(line)
+            if (result && result[1] === 'begin') {
+                envStack.push({name: result[2], start: lineNumber, end: lineNumber})
+                continue
+            } else if (result && result[2] === envStack[envStack.length - 1].name) {
+                const env = envStack.pop()
+                if (!env) {
+                    continue
+                }
+                env.end = lineNumber
+                const caption = this.getCaption(lines, env)
+                if (!caption) {
+                    continue
+                }
+                const newEnv = new Section(`${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, currentRoot().depth + 1, env.start, env.end, filePath)
+                if (noRoot()) {
+                    children.push(newEnv)
+                } else {
+                    currentRoot().children.push(newEnv)
+                }
+                continue
             }
 
-            if (result[5] in this.sectionDepths) {
+            result = inputReg.exec(line)
+
+            // if it's a section elements 5 = section
+            // element 6 = title.
+
+            // if it's a subsection:
+            // element X = title
+
+            // if it's an input, include, or subfile:
+            // element 3 is the file (need to resolve the path)
+            // element 0 starts with \input, include, or subfile
+
+            // if it's a subimport
+            // element 0 starts with \subimport
+            // element 2 is the directory part
+            // element 3 is the file
+            if (result && result[5] in this.sectionDepths) {
                 // is it a section, a subsection, etc?
                 const heading = result[5]
                 const depth = this.sectionDepths[heading]
                 const title = getLongestBalancedString(result[6])
 
-                // const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
-
-                // get a  line number
-                const lineNumber = (content.substring(0, result.index).match(/\n/g) || []).length
-
-                const newSection = new Section(title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, filePath)
+                const newSection = new Section(title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lineNumber, filePath)
+                if (prevSection) {
+                    prevSection.toLine = lineNumber - 1
+                }
+                prevSection = newSection
 
                 // console.log("Created New Section: " + title)
                 if (noRoot()) {
@@ -153,7 +180,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 rootStack.push(newSection)
 
-            } else if (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') ) {
+            } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
                 // zoom into this file
                 // resolve the path
                 let inputFilePath
@@ -215,9 +242,18 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         return Promise.resolve(element.children)
     }
+
+    getCaption(lines: string[], env: {name: string, start: number, end: number}) {
+        const content = lines.slice(env.start, env.end).join('\n')
+        const result = /(?:\\caption(?:\[[^\[\]]*\])?){(.*?)}/gm.exec(content)
+        if (result) {
+            return result[1][result[1].length - 1] === '.' ? result[1].substr(0, result[1].length - 1) : result[1]
+        }
+        return undefined
+    }
 }
 
-class Section extends vscode.TreeItem {
+export class Section extends vscode.TreeItem {
 
     public children: Section[] = []
 
@@ -226,6 +262,7 @@ class Section extends vscode.TreeItem {
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly depth: number,
         public readonly lineNumber: number,
+        public toLine: number,
         public readonly fileName: string,
         public readonly command?: vscode.Command
     ) {
