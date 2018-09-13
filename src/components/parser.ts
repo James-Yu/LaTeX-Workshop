@@ -151,9 +151,9 @@ export class Parser {
                 } else {
                     if (insideError) {
                         const subLine = line.replace(messageLine, '$1')
-                        currentResult.text = currentResult.text + ' ' + subLine
+                        currentResult.text = currentResult.text + '\n' + subLine
                     } else {
-                    currentResult.text = currentResult.text + ' ' + line
+                    currentResult.text = currentResult.text + '\n' + line
                     }
                 }
                 continue
