@@ -53,8 +53,6 @@ export class Parser {
 
     parse(log: string) {
         this.isLaTeXmkSkipped = false
-        // clean truncated lines and canonicalize line-endings
-        log = log.replace(truncatedLine, '$1').replace(/(\r\n)|\r/g, '\n')
 
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)

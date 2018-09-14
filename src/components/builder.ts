@@ -5,6 +5,8 @@ import * as cp from 'child_process'
 
 import {Extension} from '../main'
 
+const maxPrintLine = '10000'
+
 export class Builder {
     extension: Extension
     currentProcess: cp.ChildProcess | undefined
@@ -72,6 +74,7 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
         this.extension.logger.clearCompilerMessage()
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
+        process.env.max_print_line = maxPrintLine
         this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile)})
 
         let stdout = ''
