@@ -1,5 +1,18 @@
 # Change Log
 
+## [5.10.0] - 2018-09-14
+
+### Added
+- Add command view to sidebar.
+- (#768) Meaningful symbol definitions.
+- (#790) Added snippet for Greek letters to detail.
+- (#792) Enable activity bar item only on LaTeX projects.
+- (#794) Enable snippets usage on selected text.
+
+### Fixed
+- (#786) Correct file path parsing in LaTeX log.
+- (#788) Make tooltips honor message line breaks.
+
 ## [5.9.0] - 2018-09-09
 
 ### Added

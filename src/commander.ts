@@ -61,14 +61,18 @@ export class Commander {
         }
     }
 
-    recipes() {
+    recipes(recipe?: string) {
         this.extension.logger.addLogMessage(`RECIPES command invoked.`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const recipes = configuration.get('latex.recipes') as {name: string}[]
         if (!recipes) {
             return
         }
-        vscode.window.showQuickPick(recipes.map(recipe => recipe.name), {
+        if (recipe) {
+            this.build(false, recipe)
+            return
+        }
+        vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
             placeHolder: 'Please Select a LaTeX Recipe'
         }).then(selected => {
             if (!selected) {
@@ -78,7 +82,7 @@ export class Commander {
         })
     }
 
-    async view() {
+    async view(mode?: string) {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
@@ -89,6 +93,16 @@ export class Commander {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (mode === 'browser') {
+            this.extension.viewer.openViewer(rootFile)
+            return
+        } else if (mode === 'tab') {
+            this.extension.viewer.openTab(rootFile)
+            return
+        } else if (mode === 'set') {
+            this.setViewer()
+            return
+        }
         const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer() : Promise.resolve()
         promise.then(() => {
             switch (configuration.get('view.pdf.viewer')) {
@@ -184,13 +198,12 @@ export class Commander {
         }
     }
 
-    compilerlog() {
-        this.extension.logger.addLogMessage(`COMPILERLOG command invoked.`)
-        this.extension.logger.showCompilerLog()
-    }
-
-    log() {
+    log(compiler?) {
         this.extension.logger.addLogMessage(`LOG command invoked.`)
+        if (compiler) {
+            this.extension.logger.showCompilerLog()
+            return
+        }
         this.extension.logger.showLog()
     }
 
@@ -208,16 +221,16 @@ export class Commander {
 
     setViewer() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        return vscode.window.showQuickPick(['Browser tab', 'New VS Code tab'], {placeHolder: `View PDF with`})
+        return vscode.window.showQuickPick(['VSCode tab', 'Web browser'], {placeHolder: `View PDF with`})
         .then(option => {
             switch (option) {
-                case 'Browser tab':
+                case 'Web browser':
                     configuration.update('view.pdf.viewer', 'browser', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    vscode.window.showInformationMessage(`By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
                     break
-                case 'New VS Code tab':
+                case 'VSCode tab':
                     configuration.update('view.pdf.viewer', 'tab', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with VS Code tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    vscode.window.showInformationMessage(`By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
                     break
                 default:
                     break
@@ -312,7 +325,7 @@ export class Commander {
                         switch (option) {
                             case 'View LaTeX compiler log messages':
                             default:
-                                this.compilerlog()
+                                this.log(true)
                                 break
                             case 'View LaTeX-Workshop extension messages':
                                 this.log()

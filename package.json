@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icon.png",
-  "version": "5.9.0",
+  "version": "5.10.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -219,17 +219,12 @@
       },
       {
         "command": "latex-workshop.addtexroot",
-        "title": "Insert %!TeX root magic command",
+        "title": "Insert %!TeX root magic comment",
         "category": "LaTeX Workshop"
       },
       {
         "command": "latex-workshop.wordcount",
         "title": "Count words in LaTeX document",
-        "category": "LaTeX Workshop"
-      },
-      {
-        "command": "latex-workshop.compilerlog",
-        "title": "Show LaTeX compiler log",
         "category": "LaTeX Workshop"
       },
       {
@@ -628,23 +623,6 @@
       }
     },
     "menus": {
-      "editor/context": [
-        {
-          "when": "editorLangId == latex",
-          "command": "latex-workshop.build",
-          "group": "navigation@100"
-        },
-        {
-          "when": "editorLangId == latex",
-          "command": "latex-workshop.synctex",
-          "group": "navigation@101"
-        },
-        {
-          "when": "editorLangId == latex",
-          "command": "latex-workshop.actions",
-          "group": "navigation@102"
-        }
-      ],
       "editor/title": [
         {
           "when": "editorLangId == latex",
@@ -664,6 +642,11 @@
     },
     "views": {
       "latex": [
+        {
+          "id": "latex-commands",
+          "name": "Commands",
+          "when": "latex-workshop:enabled"
+        },
         {
           "id": "latex-structure",
           "name": "Structure",

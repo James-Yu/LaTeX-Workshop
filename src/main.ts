@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 import {Commander} from './commander'
+import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
 import {Manager} from './components/manager'
 import {Builder} from './components/builder'
@@ -100,8 +101,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
-    vscode.commands.registerCommand('latex-workshop.recipes', () => extension.commander.recipes())
-    vscode.commands.registerCommand('latex-workshop.view', () => extension.commander.view())
+    vscode.commands.registerCommand('latex-workshop.recipes', (recipe) => extension.commander.recipes(recipe))
+    vscode.commands.registerCommand('latex-workshop.view', (mode) => extension.commander.view(mode))
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
@@ -110,8 +111,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
     vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot())
     vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount())
-    vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.compilerlog())
-    vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
+    vscode.commands.registerCommand('latex-workshop.log', (compiler) => extension.commander.log(compiler))
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
     vscode.commands.registerCommand('latex-workshop.goto-section', (filePath, lineNumber) => extension.commander.gotoSection(filePath, lineNumber))
     vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair())
@@ -187,7 +187,8 @@ export async function activate(context: vscode.ExtensionContext) {
         } else if (!vscode.window.activeTextEditor.document.fileName) {
             extension.logger.status.hide()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
-        } else if (!extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        } else if (!extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) &&
+            vscode.window.activeTextEditor.document.languageId.toLowerCase() !== 'log') {
             extension.logger.status.hide()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         } else {
@@ -226,6 +227,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'latex'}, formatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
 
+    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-commands', new LaTeXCommander(extension)))
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-structure', extension.structureProvider))
     context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
     context.subscriptions.push(vscode.languages.registerHoverProvider({ scheme: 'file', language: 'latex'}, new HoverProvider(extension)))
