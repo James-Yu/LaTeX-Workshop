@@ -397,7 +397,17 @@
         "mac": "cmd+m cmd+c",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shorcut.mathcal"
-    }
+    },
+    {
+        "command": "latex-workshop.onEnterKey",
+        "key": "enter",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == latex && !suggestWidgetVisible &&  vim.mode != 'CommandlineInProgress'"
+     },
+     {
+        "command": "latex-workshop.onAltEnterKey",
+        "key": "alt+enter",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == latex && !suggestWidgetVisible"
+     }
     ],
     "configuration": {
       "type": "object",
