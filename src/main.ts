@@ -97,6 +97,7 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
     global['latex'] = extension
+    vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.recipes', () => extension.commander.recipes())
@@ -182,12 +183,16 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
         if (!vscode.window.activeTextEditor) {
             extension.logger.status.hide()
+            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         } else if (!vscode.window.activeTextEditor.document.fileName) {
             extension.logger.status.hide()
+            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         } else if (!extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             extension.logger.status.hide()
+            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         } else {
             extension.logger.status.show()
+            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
