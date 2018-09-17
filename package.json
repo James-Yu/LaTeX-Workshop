@@ -619,10 +619,34 @@
           "type": "boolean",
           "default": false,
           "description": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use `tianon/latex` and `mcandre/docker-chktex` binaries to replace `latexmk`, `synctex`, `texcount`, `latexindent` and `chktex`."
+        },
+        "latex-workshop.showContextMenu": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable the LaTeX contextual menu. This menu is deactived as it is available through the new LaTeX badge. Just set this variable to `true` to recover the menu."
         }
+
       }
     },
     "menus": {
+      "editor/context": [
+        {
+          "when": "config.latex-workshop.showContextMenu && editorLangId == latex",
+          "command": "latex-workshop.build",
+          "group": "navigation@100"
+        },
+        {
+          "when": "config.latex-workshop.showContextMenu && editorLangId == latex",
+          "command": "latex-workshop.synctex",
+          "group": "navigation@101"
+        },
+        {
+          "when": "config.latex-workshop.showContextMenu && editorLangId == latex",
+          "command": "latex-workshop.actions",
+          "group": "navigation@102"
+        }
+      ],
+
       "editor/title": [
         {
           "when": "editorLangId == latex",
