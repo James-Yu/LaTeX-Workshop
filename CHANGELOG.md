@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.10.1] - 2018-09-18
+
+### Fixed
+- (#796) Prevent build commands from breaking lines in output.
+- (#796) Fix wrong handle of non canonical `EOL` in log messages.
+- (#797) Fix `undefined` depth error in LaTeX structure.
+- (#798) Select line in `gotoSection`.
+- (#802) Add contextual menu back, enabled by a new configuration item.
+
 ## [5.10.0] - 2018-09-14
 
 ### Added
