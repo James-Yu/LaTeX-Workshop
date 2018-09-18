@@ -125,7 +125,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 if (!caption) {
                     continue
                 }
-                const newEnv = new Section(`${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, currentRoot().depth + 1, env.start, env.end, filePath)
+                const depth = noRoot() ? 0 : currentRoot().depth + 1
+                const newEnv = new Section(`${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
                 if (noRoot()) {
                     children.push(newEnv)
                 } else {
