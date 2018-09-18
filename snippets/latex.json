@@ -1,95 +1,172 @@
 {
-    "subscript" : {
+	"subscript": {
 		"prefix": "__",
 		"body": "_{$0}",
 		"description": "Add a subscript"
 	},
-	"superscript" : {
+	"superscript": {
 		"prefix": "**",
 		"body": "^{$0}",
 		"description": "Add a superscript"
 	},
-	"etc" : {
+	"etc": {
 		"prefix": "...",
 		"body": "\\dots",
 		"description": "Insert \\dots"
 	},
-	"cdot" : {
+	"cdot": {
 		"prefix": "@.",
 		"body": "\\cdot",
 		"description": "Insert \\cdot"
 	},
-	"infinity" : {
+	"infinity": {
 		"prefix": "@8",
 		"body": "\\infty",
 		"description": "Insert infinity symbol"
 	},
-	"equation" : {
+	"equation": {
 		"prefix": "BEQ",
 		"body": "\\begin{equation}\n\t\\label{${1:<label>}}\n\t$0\n\\end{equation}",
 		"description": "Insert an equation environment"
 	},
-	"equation*" : {
+	"equation*": {
 		"prefix": "BSEQ",
 		"body": "\\begin{equation*}\n\t$0\n\\end{equation*}",
 		"description": "Insert an equation* environment"
 	},
-	"align" : {
+	"align": {
 		"prefix": "BAL",
 		"body": "\\begin{align}\n\t\\label{${1:<label>}}\n\t$0\n\\end{align}",
 		"description": "Insert an align environment"
 	},
-	"align*" : {
+	"align*": {
 		"prefix": "BSAL",
 		"body": "\\begin{align*}\n\t$0\n\\end{align*}",
 		"description": "Insert an align* environment"
 	},
-	"itemize" : {
+	"itemize": {
 		"prefix": "BIT",
 		"body": "\\begin{itemize}\n\t\\item $0\n\\end{itemize}",
 		"description": "Insert an itemize environment"
 	},
-	"enumerate" : {
+	"enumerate": {
 		"prefix": "BEN",
 		"body": "\\begin{enumerate}\n\t\\item $0\n\\end{enumerate}",
 		"description": "Insert an enumerate environment"
 	},
-	"split" : {
+	"split": {
 		"prefix": "BSPL",
 		"body": "\\begin{split}\n\t$0\n\\end{split}",
 		"description": "Insert a split environment"
 	},
-	"cases" : {
+	"cases": {
 		"prefix": "BCAS",
 		"body": "\\begin{cases}\n\t$0\n\\end{cases}",
 		"description": "Insert a cases environment"
-    },
-	"frame" : {
+	},
+	"frame": {
 		"prefix": "BFR",
 		"body": "\\begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t$0\n\n\\end{frame}",
 		"description": "Insert a new frame"
 	},
-	"bf" : {
-		"prefix": "FBF",
-		"body": "\\textbf{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "Use a bold font"
+	/* Text Formatting */
+	"set font size": {
+		"prefix": "fontsize",
+		"body": "${1|\\Huge,\\huge,\\LARGE,\\Large,\\large,\\normalsize,\\small,\\footnotesize,\\scriptsize,\\tiny|}",
+		"description": "Select a font size"
 	},
-	"it" : {
-		"prefix": "FIT",
-		"body": "\\textit{${1:${TM_SELECTED_TEXT:text}}}",
-		"description": "Use an italic font"
+	"textnormal": {
+		"prefix": "FNO",
+		"body": "\\textnormal{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use the normal font"
 	},
-	"em" : {
+	"textrm": {
+		"prefix": "FRM",
+		"body": "\\textrm{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a roman font"
+	},
+	"textem": {
 		"prefix": "FEM",
 		"body": "\\emph{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Use an emphasis font"
 	},
-	"tt" : {
+	"textsf": {
+		"prefix": "FSF",
+		"body": "\\textsf{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a sans serif font"
+	},
+	"texttt": {
 		"prefix": "FTT",
 		"body": "\\texttt{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Use a typewriter font"
 	},
-	/* Insert Gree letter with @ + corresponding latin letter */
+	"textit": {
+		"prefix": "FIT",
+		"body": "\\textit{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use an italic font"
+	},
+	"textsl": {
+		"prefix": "FSL",
+		"body": "\\textsl{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a slanted font"
+	},
+	"textsc": {
+		"prefix": "FSC",
+		"body": "\\textsc{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a smallcaps font"
+	},
+	"underline": {
+		"prefix": "FUL",
+		"body": "\\upperline{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Underline text"
+	},
+	"uppercase": {
+		"prefix": "FUC",
+		"body": "\\uppercase{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Make text uppercase (all caps)"
+	},
+	"lowercase": {
+		"prefix": "FLC",
+		"body": "\\lowercase{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Make text lowercase (no caps)"
+	},
+	"textbf": {
+		"prefix": "FBF",
+		"body": "\\textbf{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a bold font"
+	},
+	/* Math Formatting */
+	"mathrm": {
+		"prefix": "MRM",
+		"body": "\\mathrm{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a roman font"
+	},
+	"mathbf": {
+		"prefix": "MBF",
+		"body": "\\mathbb{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a bold font"
+	},
+	"mathbb": {
+		"prefix": "MBB",
+		"body": "\\mathbb{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a blackboard font"
+	},
+	"mathcal": {
+		"prefix": "MCA",
+		"body": "\\mathcal{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use a caligraphic font"
+	},
+	"mathit": {
+		"prefix": "MIT",
+		"body": "\\mathit{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use an italic text font (good for variable names)"
+	},
+	"mathtt": {
+		"prefix": "MTT",
+		"body": "\\mathtt{${1:${TM_SELECTED_TEXT:text}}}",
+		"description": "Use an typewriter font"
+	},
+	/* Insert Greek letter with @ + corresponding latin letter */
 	"alpha": {
 		"prefix": "@a",
 		"body": "\\alpha",
