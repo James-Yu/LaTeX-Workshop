@@ -85,7 +85,7 @@ export class Locator {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
             } else {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex')
-                fs.chmodSync(command, 0o777)
+                fs.chmodSync(command, 0o755)
             }
         }
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
@@ -128,7 +128,7 @@ export class Locator {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
             } else {
                 command = path.join(this.extension.extensionRoot, 'scripts/synctex')
-                fs.chmodSync(command, 0o777)
+                fs.chmodSync(command, 0o755)
             }
         }
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})

@@ -27,7 +27,7 @@ export class Counter {
                 command = path.join(this.extension.extensionRoot, 'scripts/texcount.bat')
             } else {
                 command = path.join(this.extension.extensionRoot, 'scripts/texcount')
-                fs.chmodSync(command, 0o777)
+                fs.chmodSync(command, 0o755)
             }
         }
         const proc = cp.spawn(command, args.concat([path.basename(file)]), {cwd: path.dirname(file)})

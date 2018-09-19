@@ -53,7 +53,7 @@ export class LaTexFormatter {
                     this.formatter = path.join(this.extension.extensionRoot, 'scripts/latexindent.bat')
                 } else {
                     this.formatter = path.join(this.extension.extensionRoot, 'scripts/latexindent')
-                    fs.chmodSync(this.formatter, 0o777)
+                    fs.chmodSync(this.formatter, 0o755)
                 }
             }
             this.formatterArgs = configuration.get<string[]>('latexindent.args')

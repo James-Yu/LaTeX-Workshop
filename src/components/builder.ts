@@ -210,7 +210,7 @@ export class Builder {
                             step.command = path.join(this.extension.extensionRoot, 'scripts/latexmk.bat')
                         } else {
                             step.command = path.join(this.extension.extensionRoot, 'scripts/latexmk')
-                            fs.chmodSync(step.command, 0o777)
+                            fs.chmodSync(step.command, 0o755)
                         }
                         break
                     default:
