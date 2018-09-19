@@ -224,7 +224,7 @@ export class Parser {
             line = line.substr(result.index + 1)
             if (result[1] === '(') {
                 const pathResult = line.match(/^"?((?:(?:[a-zA-Z]:|\.|\/)?(?:\/|\\\\?))[\w\-. \/\\#]*)/)
-                const mikTeXPathResult = line.match(/([\w\-. #]*\.[a-z]{3,})/)
+                const mikTeXPathResult = line.match(/^"?([\w\-\/. #]*\.[a-z]{3,})/)
                 if (pathResult) {
                     fileStack.push(pathResult[1].trim())
                 } else if (mikTeXPathResult) {
