@@ -19,16 +19,24 @@ One million downloads! This project won't be successful without contributions fr
 - View PDF on-the-fly (in VS Code or browser).
 - Direct and reverse SyncTeX. Click to jump between location in `.tex` source and PDF and vice versa.
 - Intellisense, including completions for bibliography keys (`\cite{}`) and labels (`\ref{}`).
-- Syntax highlighting (colorized code) for `.tex` / `.bib` files and more.
+- Syntax highlighting (colorized code) for `.tex` / `.bib` files and more (`.cls`, `.dtx`, `.sty`)
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
   - Code Actions (automatic fixes) are offered for many issues found by ChkTeX.
   - Auto load `.chktexrc` configure in the following order: 1. manually configured `-l` setting in `chktex.args`; 2. `.chktexrc` file (if exists) in the same folder as the main LaTeX file; 3. `.chktexrc` file (if exists) at the project root folder.
 - LaTeX file formatting.
-- Auto close LaTeX environments: just call _LaTeX Workshop: Close current environment_ from the **Command Palette**. You can easily assign a shortcut to this action through the **Keyboard Shortcuts** menu, search for `latex-workshop.close-env`.
-- Navigate from `\begin/\end` to the corresponding `\end/\begin`: while on the `begin` or `end` keyword, call _LaTeX Workshop: Navigate to matching begin/end_ from the **Command Palette**. To define a shortcut, search for `latex-workshop.navigate-envpair` in the **Keyboard Shortcuts** menu.
-- Select the current environment name: call _LaTeX Workshop: Select the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.select-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments. **Note**: this function _does not_ work with the [Vim](https://github.com/VSCodeVim/Vim) extension.
-- Add a multicursor to the current environment name: call _LaTeX Workshop: Add a multicursor to the current environment name_ from the **Command Palette**. For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. To define a shortcut, search for `latex-workshop.multicursor-envname` in the **Keyboard Shortcuts** menu. Repeated calls result in selecting the outer environments.
+- Acting on environments
+  - To auto close LaTeX environments, call _LaTeX Workshop: Close current environment_ from the **Command Palette** (command function `latex-workshop.close-env`).
+  - To navigate from `\begin/\end` to the corresponding `\end/\begin`, while on the `begin` or `end` keywords, call _LaTeX Workshop: Navigate to matching begin/end_ from the **Command Palette** (command `latex-workshop.navigate-envpair` ).
+  - To select the current environment name, call _LaTeX Workshop: Select the current environment name_ from the **Command Palette** (command `latex-workshop.select-envname`). For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. Repeated calls result in selecting the outer environment. **Note**: this function _does not_ work with the [Vim](https://github.com/VSCodeVim/Vim) extension.
+  - To add a multi-cursor to the current environment name, call _LaTeX Workshop: Add a multi-cursor to the current environment name_ from the **Command Palette** (command `latex-workshop.multicursor-envname` ). For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. Repeated calls result in selecting the outer environments.
+- Snippets
+  - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
+  - We also provide a few other snippets mechanisms
+    - Greek letters are obtained as `@` + `letter`, see [here](snippets/snippets-doc.md#greek-letters).
+    - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](snippets/snippets-doc.md#environments).
+    - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](snippets/snippets-doc.md#font-commands).
+    - Many other maths symbols can be obtained with the `@` prefix. See [here](snippets/snippets-doc.md#mathematical-symbols).
 
 ## Requirements
 
