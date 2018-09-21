@@ -87,8 +87,8 @@
 | `@b`   | `\beta`       |
 | `@c`   | `\chi`        |
 | `@d`   | `\delta`      |
-| `@e`   | `\varepsilon` |
-| `@f`   | `\varphi`     |
+| `@e`   | `\epsilon`    |
+| `@f`   | `\phi`        |
 | `@g`   | `\gamma`      |
 | `@h`   | `\eta`        |
 | `@i`   | `\iota`       |
@@ -102,7 +102,7 @@
 | `@s`   | `\sigma`      |
 | `@t`   | `\tau`        |
 | `@u`   | `\upsilon`    |
-| `@v`   | `\varsigma`   |
+| `@s`   | `\sigma`      |
 | `@o`   | `\omega`      |
 | `@&`   | `\wedge`      |
 | `@x`   | `\xi`         |
@@ -118,3 +118,7 @@
 | `@S`   | `\Sigma`      |
 | `@U`   | `\Upsilon`    |
 | `@W`   | `\Omega`      |
+| `@ve`  | `\varepsilon` |
+| `@vf`  | `\varphi`     |
+| `@vs`  | `\varsigma`   |
+| `@vq`  | `\vartheta`   |
