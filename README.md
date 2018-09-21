@@ -33,7 +33,7 @@ One million downloads! This project won't be successful without contributions fr
 - Snippets
   - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
   - We also provide a few other snippets mechanisms
-    - Greek letters are obtained as `@` + `letter`, see [here](snippets/snippets-doc.md#greek-letters).
+    - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](snippets/snippets-doc.md#greek-letters).
     - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](snippets/snippets-doc.md#environments).
     - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](snippets/snippets-doc.md#font-commands).
     - Many other maths symbols can be obtained with the `@` prefix. See [here](snippets/snippets-doc.md#mathematical-symbols).
