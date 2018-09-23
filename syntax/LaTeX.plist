@@ -787,6 +787,10 @@
 				</dict>
 				<dict>
 					<key>include</key>
+					<string>#definition-label</string>
+				</dict>
+				<dict>
+					<key>include</key>
 					<string>text.tex#math</string>
 				</dict>
 				<dict>
@@ -1491,47 +1495,8 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			</array>
 		</dict>
 		<dict>
-			<key>begin</key>
-			<string>((\\)label)(\{)</string>
-			<key>beginCaptures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.control.label.latex</string>
-				</dict>
-				<key>2</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.keyword.latex</string>
-				</dict>
-				<key>3</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.begin.latex</string>
-				</dict>
-			</dict>
-			<key>end</key>
-			<string>\}</string>
-			<key>endCaptures</key>
-			<dict>
-				<key>0</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.end.latex</string>
-				</dict>
-			</dict>
-			<key>name</key>
-			<string>meta.definition.label.latex</string>
-			<key>patterns</key>
-			<array>
-				<dict>
-					<key>match</key>
-					<string>[a-zA-Z0-9\.,:/*!^_-]</string>
-					<key>name</key>
-					<string>variable.parameter.definition.label.latex</string>
-				</dict>
-			</array>
+			<key>include</key>
+			<string>#definition-label</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -1833,6 +1798,50 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 					</dict>
 					<key>match</key>
 					<string>(\[)([^\[]*?)(\])</string>
+				</dict>
+			</array>
+		</dict>
+		<key>definition-label</key>
+		<dict>
+			<key>begin</key>
+			<string>((\\)label)(\{)</string>
+			<key>beginCaptures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>keyword.control.label.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.keyword.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>\}</string>
+			<key>endCaptures</key>
+			<dict>
+				<key>0</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>name</key>
+			<string>meta.definition.label.latex</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>[a-zA-Z0-9\.,:/*!^_-]</string>
+					<key>name</key>
+					<string>variable.parameter.definition.label.latex</string>
 				</dict>
 			</array>
 		</dict>
