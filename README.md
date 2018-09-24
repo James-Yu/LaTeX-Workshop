@@ -57,7 +57,7 @@ Installing LaTeX Workshop is simple. You can find it in [Visual Studio Code Mark
 - For reverse SyncTeX from PDF to LaTeX, `ctrl`/`cmd` + left mouse click in the PDF.
 - Alternatively, VS Code commands are provided in VS Code Command Palette (`ctrl`/`cmd` + `shift` + `P`).
   - Type `latex workshop` to show all related commands.
-- To view an arbitrary PDF file, right click on the file in the explorer and select `View PDF`.
+- To view an arbitrary PDF file, just click on the file in the explorer.
 
 ## FAQ
 
