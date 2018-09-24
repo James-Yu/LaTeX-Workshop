@@ -19,7 +19,7 @@ One million downloads! This project won't be successful without contributions fr
 - View PDF on-the-fly (in VS Code or browser).
 - Direct and reverse SyncTeX. Click to jump between location in `.tex` source and PDF and vice versa.
 - Intellisense, including completions for bibliography keys (`\cite{}`) and labels (`\ref{}`).
-- Syntax highlighting (colorized code) for `.tex` / `.bib` files and more (`.cls`, `.dtx`, `.sty`)
+- Syntax highlighting (colorized code) for `.tex` / `.bib` files and more (`.cls`, `.dtx`, `.ltx`, `.sty`)
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
   - Code Actions (automatic fixes) are offered for many issues found by ChkTeX.
