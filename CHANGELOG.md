@@ -1,5 +1,21 @@
 # Change Log
 
+## [5.10.2] - 2018-09-25
+
+### Added
+- Add more text formatting commands to latex.json.
+- Add more math symbols as snippets.
+- (#789) Add shortcut ctrl/cmd+alt+x to activate latex badge.
+- (#809) Use `@v` + letter for variants of greek letters.
+
+### Fixed
+- (#796) Add extra file stack handling for MikTeX.
+- (#803) Use dedicated scopes for curly/round brackets.
+- (#806) Make commands available for surrounding text.
+- (#808) Chmod 755 instead of 777 for potential security flaw.
+- (#819) Associate `.ltx` with TeX filetype.
+- (#821) Make underscore excluded in `constant.character.math.tex`.
+
 ## [5.10.1] - 2018-09-18
 
 ### Fixed
