@@ -123,13 +123,16 @@ export class Citation {
         const itemReg = /@(\w+)\s*{/g
         let result = itemReg.exec(contentNoNewLine)
         let prevResult: RegExpExecArray | null = null
+        let numLines = 0
+        let prevPrevResultIndex = 0
         while (result || prevResult) {
             if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
                 const itemString = contentNoNewLine.substring(prevResult.index, result ? result.index : undefined).trim()
                 const item = this.parseBibString(itemString)
                 if (item !== undefined) {
                     items.push(item)
-                    const positionContent = content.substring(0, prevResult.index).split('\n')
+                    numLines = numLines + content.substring(prevPrevResultIndex, prevResult.index).split('\n').length
+                    prevPrevResultIndex = prevResult.index
                     this.citationData[item.key] = {
                         item,
                         text: Object.keys(item)
@@ -151,7 +154,7 @@ export class Citation {
                             })
                             .map(key => `${key}: ${item[key]}`)
                             .join('\n\n'),
-                        position: new vscode.Position(positionContent.length - 1, 0),
+                        position: new vscode.Position(numLines - 1, 0),
                         file: bibPath
                     }
                 } else {
