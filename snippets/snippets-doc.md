@@ -18,7 +18,7 @@
 
 |   Prefix   |                                           Command                                           |
 | ---------- | ------------------------------------------------------------------------------------------- |
-| `fontsize` | `${1|\Huge,\huge,\LARGE,\Large,\large,\normalsize,\small,\footnotesize,\scriptsize,\tiny|}` |
+| `fontsize` | Opens font size select |
 | `FNO`      | `\textnormal{${1}}`                                                                         |
 | `FRM`      | `\textrm{${1}}`                                                                             |
 | `FEM`      | `\emph{${1}}`                                                                               |
@@ -27,11 +27,12 @@
 | `FIT`      | `\textit{${1}}`                                                                             |
 | `FSL`      | `\textsl{${1}}`                                                                             |
 | `FSC`      | `\textsc{${1}}`                                                                             |
-| `FUL`      | `\upperline{${1}}`                                                                          |
+| `FUL`      | `\underline{${1}}`                                                                          |
 | `FUC`      | `\uppercase{${1}}`                                                                          |
 | `FLC`      | `\lowercase{${1}}`                                                                          |
 | `FBF`      | `\textbf{${1}}`                                                                             |
-
+| `FSS`      | `\textsuperscript{${1}}`                                                                    |
+| `FBS`      | `\textsubscript{${1}}`                                                                      |
 
 ## Mathematical font commands
 
