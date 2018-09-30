@@ -19,6 +19,10 @@ function getLongestBalancedString(s: string) : string {
             case '}':
                 nested --
                 break
+            case '\\':
+                // skip an escaped character
+                i++
+                break
             default:
         }
         if (nested === 0) {
