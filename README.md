@@ -30,13 +30,15 @@ One million downloads! This project won't be successful without contributions fr
   - To navigate from `\begin/\end` to the corresponding `\end/\begin`, while on the `begin` or `end` keywords, call _LaTeX Workshop: Navigate to matching begin/end_ from the **Command Palette** (command `latex-workshop.navigate-envpair` ).
   - To select the current environment name, call _LaTeX Workshop: Select the current environment name_ from the **Command Palette** (command `latex-workshop.select-envname`). For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. Repeated calls result in selecting the outer environment. **Note**: this function _does not_ work with the [Vim](https://github.com/VSCodeVim/Vim) extension.
   - To add a multi-cursor to the current environment name, call _LaTeX Workshop: Add a multi-cursor to the current environment name_ from the **Command Palette** (command `latex-workshop.multicursor-envname` ). For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. Repeated calls result in selecting the outer environments.
-- Snippets
+- [Snippets](snippets/snippets-doc.md)
   - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
   - We also provide a few other snippets mechanisms
     - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](snippets/snippets-doc.md#greek-letters).
     - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](snippets/snippets-doc.md#environments).
     - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](snippets/snippets-doc.md#font-commands).
     - Many other maths symbols can be obtained with the `@` prefix. See [here](snippets/snippets-doc.md#mathematical-symbols).
+- [Shortcuts](Shortcuts-doc.md)
+  - In addition to shortcuts that interface with the extension, the ability to easily format text (and one or two other things) is also present.
 
 ## Requirements
 
