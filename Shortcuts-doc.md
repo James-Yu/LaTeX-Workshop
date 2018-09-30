@@ -20,20 +20,18 @@ The shortcuts are given using [Emacs Key Notation](https://www.emacswiki.org/ema
 
 
 ## Font Selection
-| Shortcut #1 | Shortcut #2 | Does            |
-| ----------- | ----------- | --------------- |
-| `C-b`       | `C-l C-b`   | Bold text       |
-| `C-i`       | `C-l C-i`   | Italic Text     |
-| `C-u`       | `C-l C-u`   | Underline       |
-| `C-r`       | `C-l C-r`   | Roman Text      |
-| `C-e`       | `C-l C-e`   | Emphasised Text |
-| `C-t`       | `C-l C-t`   | Typewriter Text |
-| `C-s`       | `C-l C-s`   | Slanted Text    |
-|             | `C-l C-c`   | Small Caps Text |
-|             | `C-l C-l`   | Lowercase       |
-|             | `C-l C-u`   | Uppercase       |
-
-_NB: Shortcut #1 is only active when text is selected, Shortcut #2 works all the time_
+| Shortcut  | Does            |
+| --------- | --------------- |
+| `C-l C-b` | Bold text       |
+| `C-l C-i` | Italic Text     |
+| `C-l C-u` | Underline       |
+| `C-l C-r` | Roman Text      |
+| `C-l C-e` | Emphasised Text |
+| `C-l C-t` | Typewriter Text |
+| `C-l C-s` | Slanted Text    |
+| `C-l C-c` | Small Caps Text |
+| `C-l C-l` | Lowercase       |
+| `C-l C-u` | Uppercase       |
 
 ### Other text formatting
 
