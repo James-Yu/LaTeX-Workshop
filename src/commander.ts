@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs-extra'
 
 import {Extension} from './main'
 
@@ -6,9 +7,21 @@ export class Commander {
     extension: Extension
     commandTitles: string[]
     commands: string[]
+    snippets: {[key: string]: vscode.SnippetString} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
+        let extensionSnippets: string
+        fs.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
+            .then(data => {extensionSnippets = data.toString()})
+            .then(() => {
+                const snipObj = JSON.parse(extensionSnippets)
+                Object.keys(snipObj).forEach(key => {
+                    this.snippets[key] = new vscode.SnippetString(snipObj[key]['body'])
+                })
+                this.extension.logger.addLogMessage(`Snippet data loaded.`)
+            })
+            .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
     async build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
@@ -362,6 +375,20 @@ export class Commander {
                     break
             }
         })
+    }
+
+    /**
+     * Insert the snippet with name name.
+     * @param name  the name of a snippet contained in latex.json
+     */
+    insertSnippet(name: string) {
+        const editor = vscode.window.activeTextEditor
+        if (!editor) {
+            return
+        }
+        if (name in this.snippets) {
+            editor.insertSnippet(this.snippets[name])
+        }
     }
 
     /**

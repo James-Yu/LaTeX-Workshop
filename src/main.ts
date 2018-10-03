@@ -120,8 +120,27 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
     // vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
     // vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
-
     vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
+
+    vscode.commands.registerCommand('latex-workshop.shorcut.item', () => extension.commander.insertSnippet('item'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textbf', () => extension.commander.insertSnippet('textbf'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textit', () => extension.commander.insertSnippet('textit'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.underline', () => extension.commander.insertSnippet('underline'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textem', () => extension.commander.insertSnippet('textem'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textrm', () => extension.commander.insertSnippet('textrm'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.texttt', () => extension.commander.insertSnippet('texttt'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textsl', () => extension.commander.insertSnippet('textsl'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textsc', () => extension.commander.insertSnippet('textsc'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textnormal', () => extension.commander.insertSnippet('textnormal'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textsuperscript', () => extension.commander.insertSnippet('textsuperscript'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.textsubscript', () => extension.commander.insertSnippet('textsubscript'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.mathbf', () => extension.commander.insertSnippet('mathbf'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.mathit', () => extension.commander.insertSnippet('mathit'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.mathrm', () => extension.commander.insertSnippet('mathrm'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.mathtt', () => extension.commander.insertSnippet('mathtt'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.mathsf', () => extension.commander.insertSnippet('mathsf'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.mathbb', () => extension.commander.insertSnippet('mathbb'))
+    vscode.commands.registerCommand('latex-workshop.shorcut.mathcal', () => extension.commander.insertSnippet('mathcal'))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
