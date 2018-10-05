@@ -1,5 +1,15 @@
 # Change Log
 
+## [5.11.0] - 2018-10-05
+
+### Added
+- More keyboard shortcuts `@tecosaur`.
+- (#809) Implement keybindings for snippets.
+
+### Fixed
+- More syntax highlight improvements.
+- (#816) Ignore outputDir setting when directly viewing PDFs.
+
 ## [5.10.2] - 2018-09-25
 
 ### Added
