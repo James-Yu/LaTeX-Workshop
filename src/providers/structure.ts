@@ -167,7 +167,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 prevSection = newSection
 
-                // console.log("Created New Section: " + title)
                 if (noRoot()) {
                     children.push(newSection)
                     rootStack.push(newSection)
@@ -209,7 +208,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 if (fs.existsSync(inputFilePath) === false) {
                     this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                    //console.log(`Could not resolve included file ${inputFilePath}`)
                     continue
                 }
 

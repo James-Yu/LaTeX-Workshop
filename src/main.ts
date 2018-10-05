@@ -176,7 +176,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.refresh()
             extension.structureProvider.update()
         }
-        // console.log(e.languageId, e.uri.scheme)
+
         if (e.languageId === 'pdf' && e.uri.scheme !== 'latex-workshop-pdf') {
             vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
                 extension.commander.pdf(e.uri)

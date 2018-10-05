@@ -80,7 +80,7 @@ export class Viewer {
         }
     }
 
-    openTab(sourceFile: string, respectOutDir: boolean = true) {
+    openTab(sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) {
         const url = this.checkViewer(sourceFile, 'tab', respectOutDir)
         if (!url) {
             return
@@ -93,13 +93,7 @@ export class Viewer {
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
         const editor = vscode.window.activeTextEditor
-        // vscode.commands.executeCommand('vscode.previewHtml', uri, vscode.ViewColumn.Beside, path.basename(pdfFile)).then(success => {
-        //     if (success && editor) {
-        //         vscode.window.showTextDocument(editor.document, editor.viewColumn)
-        //     }
-        //     return true
-        // })
-        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), vscode.ViewColumn.Beside, {
+        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
             enableScripts: true,
             retainContextWhenHidden: true
         })
