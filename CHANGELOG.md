@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.11.1] - 2018-10-05
+
+### Fixed
+- (#849) Use WebView API for PDF content persistency.
+
 ## [5.11.0] - 2018-10-05
 
 ### Added
