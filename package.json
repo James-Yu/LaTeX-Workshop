@@ -401,12 +401,12 @@
     {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == latex && !suggestWidgetVisible &&  vim.mode != 'CommandlineInProgress'"
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  vim.mode != 'CommandlineInProgress'"
      },
      {
         "command": "latex-workshop.onAltEnterKey",
         "key": "alt+enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == latex && !suggestWidgetVisible"
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible"
      }
     ],
     "configuration": {
@@ -758,6 +758,11 @@
           "type": "boolean",
           "default": false,
           "description": "Enable the LaTeX contextual menu. This menu is deactived as it is available through the new LaTeX badge. Just set this variable to `true` to recover the menu."
+        },
+        "latex-workshop.bind.enter.key": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the automatic insertion of `\\item` on a newline when pressing `Enter` in a line starting in `\\item`. "
         }
       }
     },

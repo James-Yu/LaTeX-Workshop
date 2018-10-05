@@ -402,6 +402,12 @@ export class Commander {
         if (!editor) {
             return
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('bind.enter.key')) {
+            return editor.edit(() => {
+                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+            })
+        }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
         }
@@ -441,7 +447,7 @@ export class Commander {
                 }
             ).then(() => { editor.revealRange(editor.selection) })
         }
-        return editor.edit(editBuilder => {
+        return editor.edit(() => {
             vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
         })
     }
