@@ -39,11 +39,11 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, type: string) : string | undefined {
+    checkViewer(sourceFile: string, type: string, respectOutDir: boolean = true) : string | undefined {
         if (this.refreshExistingViewer(sourceFile, type)) {
             return
         }
-        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
             return
@@ -81,7 +81,7 @@ export class Viewer {
     }
 
     openTab(sourceFile: string, respectOutDir: boolean = true) {
-        const url = this.checkViewer(sourceFile, 'tab')
+        const url = this.checkViewer(sourceFile, 'tab', respectOutDir)
         if (!url) {
             return
         }
