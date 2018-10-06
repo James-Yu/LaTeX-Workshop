@@ -3,6 +3,7 @@
  */
 
 import * as vscode from 'vscode'
+import { getLongestBalancedString } from '../providers/structure'
 
 /**
  * Toggle a keyword, if the cursor is inside a keyword,
@@ -23,16 +24,19 @@ export function toggleSelectedKeyword(keyword: string, outerBraces?: boolean) : 
 
   const line = document.lineAt(selection.anchor)
 
-  const pattern = new RegExp(`\\\\${keyword}{(.*?)}`, 'g')
+  const pattern = new RegExp(`\\\\${keyword}{`, 'g')
 
   let match = pattern.exec(line.text)
 
   while (match !== null) {
 
-    const matchPosition = line.range.start.translate(0, match.index)
+    const matchStart = line.range.start.translate(0, match.index)
+    const matchEnd = matchStart.translate(0, match[0].length)
+    const searchString = document.getText(new vscode.Range(matchEnd, line.range.end))
 
-    const matchRange = new vscode.Range(matchPosition, matchPosition.translate(0, match[0].length))
-    const insideText = match[1]
+    const insideText = getLongestBalancedString(searchString)
+    const matchRange = new vscode.Range(matchStart, matchEnd.translate(0, insideText.length + 1))
+
 
     if (matchRange.contains(selection)) {
       // Remove keyword
