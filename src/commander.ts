@@ -169,8 +169,7 @@ export class Commander {
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        console.log(uri)
-        this.extension.viewer.openTab(uri.fsPath, false)
+        this.extension.viewer.openTab(uri.fsPath, false, false)
     }
 
     async synctex() {

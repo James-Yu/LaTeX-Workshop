@@ -7,7 +7,7 @@ import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
 import {Manager} from './components/manager'
 import {Builder} from './components/builder'
-import {Viewer, PDFProvider} from './components/viewer'
+import {Viewer} from './components/viewer'
 import {Server} from './components/server'
 import {Locator} from './components/locator'
 import {Parser} from './components/parser'
@@ -177,7 +177,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.refresh()
             extension.structureProvider.update()
         }
-        // console.log(e.languageId, e.uri.scheme)
+
         if (e.languageId === 'pdf' && e.uri.scheme !== 'latex-workshop-pdf') {
             vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
                 extension.commander.pdf(e.uri)
@@ -249,7 +249,6 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-commands', new LaTeXCommander(extension)))
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-structure', extension.structureProvider))
-    context.subscriptions.push(vscode.workspace.registerTextDocumentContentProvider('latex-workshop-pdf', new PDFProvider(extension)))
     context.subscriptions.push(vscode.languages.registerHoverProvider({ scheme: 'file', language: 'latex'}, new HoverProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDefinitionProvider({ scheme: 'file', language: 'latex'}, new DefinitionProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider({ scheme: 'file', language: 'latex'}, new DocSymbolProvider(extension)))

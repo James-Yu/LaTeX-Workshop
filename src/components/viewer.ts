@@ -39,11 +39,11 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, type: string) : string | undefined {
+    checkViewer(sourceFile: string, type: string, respectOutDir: boolean = true) : string | undefined {
         if (this.refreshExistingViewer(sourceFile, type)) {
             return
         }
-        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
             return
@@ -80,8 +80,8 @@ export class Viewer {
         }
     }
 
-    openTab(sourceFile: string, respectOutDir: boolean = true) {
-        const url = this.checkViewer(sourceFile, 'tab')
+    openTab(sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) {
+        const url = this.checkViewer(sourceFile, 'tab', respectOutDir)
         if (!url) {
             return
         }
@@ -93,13 +93,39 @@ export class Viewer {
         }
         this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
         const editor = vscode.window.activeTextEditor
-        vscode.commands.executeCommand('vscode.previewHtml', uri, vscode.ViewColumn.Beside, path.basename(pdfFile)).then(success => {
-            if (success && editor) {
-                vscode.window.showTextDocument(editor.document, editor.viewColumn)
-            }
-            return true
+        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
+            enableScripts: true,
+            retainContextWhenHidden: true
         })
+        panel.webview.html = this.getPDFViewerContent(uri)
+        if (editor) {
+            vscode.window.showTextDocument(editor.document, editor.viewColumn)
+        }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
+    }
+
+    getPDFViewerContent(uri: vscode.Uri) : string {
+        const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
+        return `
+            <!DOCTYPE html><html><head></head>
+            <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
+            </iframe>
+            <script>
+            // when the iframe loads, or when the tab gets focus again later, move the
+            // the focus to the iframe so that keyboard navigation works in the pdf.
+            //
+            // Note: this works on first load, or when navigating between groups, but not when
+            //       navigating between tabs of the same group for some reason!
+
+            let iframe = document.getElementById('preview-panel');
+            window.onfocus = iframe.onload = function() {
+                setTimeout(function() { // doesn't work immediately
+                    iframe.contentWindow.focus();
+                }, 100);
+            }
+            </script>
+            </body></html>
+        `
     }
 
     openExternal(sourceFile: string) {
@@ -185,38 +211,6 @@ export class Viewer {
             client.websocket.send(JSON.stringify({type: 'synctex', data: record}))
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
-    }
-}
-
-export class PDFProvider implements vscode.TextDocumentContentProvider {
-    extension: Extension
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
-    public provideTextDocumentContent(uri: vscode.Uri) : string {
-        const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
-        return `
-            <!DOCTYPE html><html><head></head>
-            <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
-            </iframe>
-            <script>
-            // when the iframe loads, or when the tab gets focus again later, move the
-            // the focus to the iframe so that keyboard navigation works in the pdf.
-            //
-            // Note: this works on first load, or when navigating between groups, but not when
-            //       navigating between tabs of the same group for some reason!
-
-            let iframe = document.getElementById('preview-panel');
-            window.onfocus = iframe.onload = function() {
-                setTimeout(function() { // doesn't work immediately
-                    iframe.contentWindow.focus();
-                }, 100);
-            }
-            </script>
-            </body></html>
-        `
     }
 }
 
