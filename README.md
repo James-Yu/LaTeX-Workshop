@@ -39,6 +39,7 @@ One million downloads! This project won't be successful without contributions fr
     - Many other maths symbols can be obtained with the `@` prefix. See [here](snippets/snippets-doc.md#mathematical-symbols).
 - [Shortcuts](Shortcuts-doc.md)
   - In addition to shortcuts that interface with the extension, the ability to easily format text (and one or two other things) is also present.
+- When the current line starts with `\item` or `\item[]`, hitting `Enter` automatically adds a newline starting in the same way. For a better handling of the last item, hitting `Enter` on a line only containing `\item` or `\item[]` actually deletes the content of the line. The `alt+Enter` is bind to the standard newline command. This automatic insertion of `\item` can be deactivated by setting `latex-workshop.bind.enter.key` to `false`.
 
 ## Requirements
 

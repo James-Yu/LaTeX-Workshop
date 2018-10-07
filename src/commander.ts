@@ -402,6 +402,12 @@ export class Commander {
         if (!editor) {
             return
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('bind.enter.key')) {
+            return editor.edit(() => {
+                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+            })
+        }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
         }
@@ -435,16 +441,15 @@ export class Commander {
                 newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length)
             }
             return editor.edit(editBuilder => {
-                // editBuilder.insert(cursorPos.with(line.lineNumber + 1, 0), `${itemString}\n`)
-                editBuilder.insert(cursorPos.with(line.lineNumber + 1, 0), itemString + '\n')
+                editBuilder.insert(cursorPos, '\n' + itemString)
                 }).then(() => {
                     editor.selection = new vscode.Selection(newCursorPos, newCursorPos)
                 }
             ).then(() => { editor.revealRange(editor.selection) })
         }
-        return editor.edit(editBuilder => {
-            editBuilder.insert(cursorPos, editor.document.eol === 1 ? '\n' : '\r\n')
-        })//vscode.commands.executeCommand('editor.action.insertLineAfter')
+        return editor.edit(() => {
+            vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+        })
     }
 
     /**
