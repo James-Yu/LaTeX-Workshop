@@ -16,7 +16,6 @@ import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
 import {TeXMagician} from './components/texmagician'
 import {EnvPair} from './components/envpair'
-import {toggleSelectedKeyword} from './components/textManipulation'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -124,24 +123,24 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
 
     vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => toggleSelectedKeyword('textbf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => toggleSelectedKeyword('textit'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => toggleSelectedKeyword('underline'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textem', () => toggleSelectedKeyword('textem'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => toggleSelectedKeyword('textrm'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => toggleSelectedKeyword('texttt'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => toggleSelectedKeyword('textsl'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => toggleSelectedKeyword('textsc'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => toggleSelectedKeyword('textnormal'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => toggleSelectedKeyword('textsuperscript'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => toggleSelectedKeyword('textsubscript'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => toggleSelectedKeyword('mathbf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => toggleSelectedKeyword('mathit'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => toggleSelectedKeyword('mathrm'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => toggleSelectedKeyword('mathtt'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => toggleSelectedKeyword('mathsf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => toggleSelectedKeyword('mathbb'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => toggleSelectedKeyword('mathcal'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => extension.commander.toggleSelectedKeyword('textbf'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => extension.commander.toggleSelectedKeyword('textit'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => extension.commander.toggleSelectedKeyword('underline'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textem', () => extension.commander.toggleSelectedKeyword('textem'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => extension.commander.toggleSelectedKeyword('textrm'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => extension.commander.toggleSelectedKeyword('texttt'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => extension.commander.toggleSelectedKeyword('textsl'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => extension.commander.toggleSelectedKeyword('textsc'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => extension.commander.toggleSelectedKeyword('textnormal'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => extension.commander.toggleSelectedKeyword('textsuperscript'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => extension.commander.toggleSelectedKeyword('textsubscript'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => extension.commander.toggleSelectedKeyword('mathbf'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => extension.commander.toggleSelectedKeyword('mathit'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => extension.commander.toggleSelectedKeyword('mathrm'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => extension.commander.toggleSelectedKeyword('mathtt'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => extension.commander.toggleSelectedKeyword('mathsf'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.toggleSelectedKeyword('mathbb'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal'))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
