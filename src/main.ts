@@ -188,14 +188,14 @@ export async function activate(context: vscode.ExtensionContext) {
         if (extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabledAfterInterval()
 
-            const previousRoot = extension.manager.rootFile
-            extension.manager.findRoot().then(rootFile => {
-                if (rootFile === undefined || rootFile === previousRoot) {
-                    return
-                }
-                extension.structureProvider.refresh()
-                extension.structureProvider.update()
-            })
+            // const previousRoot = extension.manager.rootFile
+            // extension.manager.findRoot().then(rootFile => {
+            //     if (rootFile === undefined || rootFile === previousRoot) {
+            //         return
+            //     }
+            //     extension.structureProvider.refresh()
+            //     extension.structureProvider.update()
+            // })
         }
     }))
 

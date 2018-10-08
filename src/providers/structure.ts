@@ -89,7 +89,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return rootStack.length === 0
         }
 
-        this.extension.logger.addLogMessage(`Parsing ${filePath} for outline`)
         let content = fs.readFileSync(filePath, 'utf-8')
         content = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
         const endPos = content.search(/\\end{document}/gm)
