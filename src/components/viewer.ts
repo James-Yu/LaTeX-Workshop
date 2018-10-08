@@ -95,8 +95,12 @@ export class Viewer {
         const editor = vscode.window.activeTextEditor
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
             enableScripts: true,
+            localResourceRoots: [
+                vscode.Uri.file(path.join(this.extension.extensionRoot, 'mathjax'))
+            ],
             retainContextWhenHidden: true
         })
+        this.extension.panel = panel
         panel.webview.html = this.getPDFViewerContent(uri)
         if (editor) {
             vscode.window.showTextDocument(editor.document, editor.viewColumn)
@@ -106,8 +110,34 @@ export class Viewer {
 
     getPDFViewerContent(uri: vscode.Uri) : string {
         const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
+        const scriptPathOnDisk = vscode.Uri.file(path.join(this.extension.extensionRoot, 'mathjax', 'mj.js'))
+        const scriptUri = scriptPathOnDisk.with({ scheme: 'vscode-resource' })
         return `
-            <!DOCTYPE html><html><head></head>
+            <!DOCTYPE html><html>
+            <head>
+            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; img-src data:; script-src vscode-resource: https: 'unsafe-eval'; style-src vscode-resource: 'unsafe-inline';">
+            <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_SVG'>
+             var script = document.createElement('script')
+             script.src = '${scriptUri}'
+             document.body.appendChild(script)
+            </script>
+            <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({
+                jax: ["input/TeX", "output/SVG"],
+                extensions: ["tex2jax.js", "MathMenu.js", "MathZoom.js"],
+                showMathMenu: false,
+                showProcessingMessages: false,
+                skipStartupTypeset: true,
+                messageStyle: "none",
+                SVG: {
+                    useGlobalCache: false
+                },
+                TeX: {
+                    extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"]
+                }
+            })
+            </script>
+            </head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe>
             <script>
@@ -124,7 +154,9 @@ export class Viewer {
                 }, 100);
             }
             </script>
-            </body></html>
+            <canvas id="canvas" style="display: none;" width="1" height="1"></canvas>
+            <div id="tmp00" style="visibility: hidden; width: 1px;"></div>
+          </body></html>
         `
     }
 
