@@ -14,7 +14,6 @@ export class HoverProvider implements vscode.HoverProvider  {
     Thenable<vscode.Hover> {
         return new Promise((resolve, _reject) => {
             const tok = this._tokenizer(document, position)
-            console.time('hover render: ')
             if (this.extension.panel && tok) {
                 const panel = this.extension.panel
                 const d = panel.webview.onDidReceiveMessage( message => {
@@ -22,11 +21,10 @@ export class HoverProvider implements vscode.HoverProvider  {
                     new vscode.Hover(
                         new vscode.MarkdownString( "![a](" + message.dataurl + ")" ),
                         new vscode.Range(document.lineCount, 0, document.lineCount,1) ))
-                        console.timeEnd('hover render: ')
                         d.dispose()
                     })
                 panel.webview.postMessage({
-                    text: "$$ " + tok + " $$",
+                    text: tok,
                     need_dataurl: "1"
                 })
                 return
@@ -53,20 +51,34 @@ export class HoverProvider implements vscode.HoverProvider  {
         })
     }
 
-    public _tokenizer(document: vscode.TextDocument, position: vscode.Position) : string | undefined {
+    private _tokenizer(document: vscode.TextDocument, position: vscode.Position) : string | undefined {
         const current_line = document.lineAt(position).text
         const a = current_line.match(/^(.*?)\\begin\{(.*?)\}/);
         if ( a ) {
             const envname = a[2]
             const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(envname) + '\\}'
-            console.log(a[2])
             const startPos = new vscode.Position(position.line, a[1].length)
             const endPos0 = this.extension.envPair.locateMatchingPair(pattern, 1, startPos, document)
             if ( endPos0 ) {
                 const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
                 const ret = document.getText( new vscode.Range(startPos, endPos) )
-                console.log(ret)
                 return ret
+            }
+            return undefined
+        }
+        let b : RegExpMatchArray | null
+        let s = current_line
+        let base:number = 0
+        while ( b = s.match(/\$.+\$|\\\(.+\\\)/) ) {
+            if ( b && b.index != null ) {
+                if ( base + b.index <= position.character && position.character <= base + b.index + b[0].length ) {
+                    return b[0]
+                }else{
+                    base += b[0].length
+                    s = s.substr(b[0].length)
+                }
+            }else{
+                break
             }
         }
         return undefined

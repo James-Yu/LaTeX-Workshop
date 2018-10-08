@@ -51,7 +51,6 @@ const loadImg = function (url) {
     });
 }
 
-var t0 = performance.now();
 const vscode = acquireVsCodeApi();
 
 mathjaxInitialization
@@ -67,7 +66,6 @@ const setMathInDiv = function (divid, tmpid) {
 
 window.addEventListener('message', event => {
     const message = event.data; // The JSON data our extension sent
-    t0 = performance.now();
     document.getElementById("tmp00").innerText = message.text;
     renderMathAsyncById("tmp00")
     .then( (tmpid) => {
@@ -86,8 +84,6 @@ window.addEventListener('message', event => {
                 })
             })
         }
-        const t1 = performance.now();
-        console.log("svg rendering time: " + (t1 - t0) );
     }).catch( err => {
         console.log(err.name + ": " + err.message);
     })

@@ -134,6 +134,9 @@ export class Viewer {
                 },
                 TeX: {
                     extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"]
+                },
+                tex2jax: {
+                    inlineMath: [ ['\$','\$'], ['\\\\(', '\\\\)'] ]
                 }
             })
             </script>
