@@ -13,16 +13,15 @@ export class HoverProvider implements vscode.HoverProvider  {
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
     Thenable<vscode.Hover> {
         return new Promise((resolve, _reject) => {
-            const tok = this._tokenizer(document, position)
-            if (this.extension.panel && tok) {
+            const tk = this._tokenizer(document, position)
+            if (this.extension.panel && tk) {
+                const tok = tk[0]
+                const range = tk[1]
                 const panel = this.extension.panel
                 const d = panel.webview.onDidReceiveMessage( message => {
-                resolve(
-                    new vscode.Hover(
-                        new vscode.MarkdownString( "![a](" + message.dataurl + ")" ),
-                        new vscode.Range(document.lineCount, 0, document.lineCount,1) ))
-                        d.dispose()
-                    })
+                    resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + message.dataurl + ")" ), range ) )
+                    d.dispose()
+                })
                 panel.webview.postMessage({
                     text: tok,
                     need_dataurl: "1"
@@ -51,7 +50,7 @@ export class HoverProvider implements vscode.HoverProvider  {
         })
     }
 
-    private _tokenizer(document: vscode.TextDocument, position: vscode.Position) : string | undefined {
+    private _tokenizer(document: vscode.TextDocument, position: vscode.Position) : [string, vscode.Range] | undefined {
         const current_line = document.lineAt(position).text
         const a = current_line.match(/^(.*?)\\begin\{(.*?)\}/);
         if ( a ) {
@@ -61,21 +60,25 @@ export class HoverProvider implements vscode.HoverProvider  {
             const endPos0 = this.extension.envPair.locateMatchingPair(pattern, 1, startPos, document)
             if ( endPos0 ) {
                 const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
-                const ret = document.getText( new vscode.Range(startPos, endPos) )
-                return ret
+                const range = new vscode.Range(startPos, endPos)
+                const ret = document.getText( range )
+                return [ret, range]
             }
             return undefined
         }
         let b : RegExpMatchArray | null
         let s = current_line
         let base:number = 0
-        while ( b = s.match(/\$.+\$|\\\(.+\\\)/) ) {
+        while ( b = s.match(/\$.+?\$|\\\(.+?\\\)/) ) {
             if ( b && b.index != null ) {
-                if ( base + b.index <= position.character && position.character <= base + b.index + b[0].length ) {
-                    return b[0]
+                if ( base + b.index <= position.character && position.character <= (base + b.index + b[0].length) ) {
+                    const start = new vscode.Position(position.line, base + b.index)
+                    const end = new vscode.Position(position.line, base + b.index + b[0].length)
+                    const range = new vscode.Range(start, end)
+                    return [b[0], range]
                 }else{
                     base += b[0].length
-                    s = s.substr(b[0].length)
+                    s = current_line.substring(base)
                 }
             }else{
                 break
