@@ -224,6 +224,15 @@ export class Builder {
                                                     .replace('%DOCFILE%', docfile)
                                                     .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
             }
+            if (process.platform === 'win32' && (step.command === 'latexmk' || step.command === 'pdflatex' )) {
+                const pdflatexVersion = cp.execSync('pdflatex --version')
+                if (pdflatexVersion.toString().match(/MiKTeX/)) {
+                    if (!step.args) {
+                        step.args = []
+                    }
+                    step.args.unshift('--max-print-line=' + maxPrintLine)
+                }
+            }
         })
         return steps
     }
