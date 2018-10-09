@@ -13,44 +13,60 @@ export class HoverProvider implements vscode.HoverProvider  {
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
     Thenable<vscode.Hover> {
         return new Promise((resolve, _reject) => {
-            const tk = this._tokenizer(document, position)
-            if (this.extension.panel && tk) {
-                const tok = tk[0]
-                const range = tk[1]
-                const panel = this.extension.panel
-                const d = panel.webview.onDidReceiveMessage( message => {
-                    resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + message.dataurl + ")" ), range ) )
-                    d.dispose()
-                })
-                panel.webview.postMessage({
-                    text: tok,
-                    need_dataurl: "1"
-                })
-                return
-            } else {
-                const token = tokenizer(document, position)
-                if (token === undefined) {
-                    resolve()
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const hov = configuration.get('hoverPreview.enabled') as boolean
+            if (hov && this.extension.panel) {
+                const tk = this._tokenizer(document, position)
+                if (tk) {
+                    const tok = tk[0]
+                    const range = tk[1]
+                    const panel = this.extension.panel
+                    const d = panel.webview.onDidReceiveMessage( message => {
+                        resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + message.dataurl + ")" ), range ) )
+                        d.dispose()
+                    })
+                    panel.webview.postMessage({
+                        text: tok,
+                        need_dataurl: "1"
+                    })
                     return
                 }
-                if (token in this.extension.completer.reference.referenceData) {
-                    resolve(new vscode.Hover({language: 'latex',
-                    value: this.extension.completer.reference.referenceData[token].text
-                }))
-                return
-                }
-                if (token in this.extension.completer.citation.citationData) {
-                    resolve(new vscode.Hover(
-                        this.extension.completer.citation.citationData[token].text
-                        ))
-                        return
-                    }
-                    resolve()
             }
+            const token = tokenizer(document, position)
+            if (token === undefined) {
+                resolve()
+                return
+            }
+            if (token in this.extension.completer.reference.referenceData) {
+                resolve(new vscode.Hover(
+                    {language: 'latex', value: this.extension.completer.reference.referenceData[token].text }
+                ))
+                return
+            }
+            if (token in this.extension.completer.citation.citationData) {
+                resolve(new vscode.Hover(
+                    this.extension.completer.citation.citationData[token].text
+                ))
+                return
+            }
+            resolve()
         })
     }
 
-    private _clean_tex(tex: string) : string {
+    private insert_cursor(document: vscode.TextDocument, range: vscode.Range) : string {
+        const editor = vscode.window.activeTextEditor
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const conf = configuration.get('hoverPreview.insertCursor') as boolean
+        if (editor && conf) {
+            const cursor = editor.selection.active
+            if (range.contains(cursor)) {
+                return document.getText( new vscode.Range(range.start, cursor) ) + ' \\ddagger ' + document.getText( new vscode.Range(cursor, range.end))
+            }
+        }
+        return document.getText(range)
+    }
+
+    private mathjaxify_tex(tex: string) : string {
         return tex.replace(/^\s*%.*?\r?\n/mg, '')
     }
 
@@ -65,7 +81,7 @@ export class HoverProvider implements vscode.HoverProvider  {
             if ( endPos0 ) {
                 const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
                 const range = new vscode.Range(startPos, endPos)
-                const ret = this._clean_tex( document.getText( range ) )
+                const ret = this.mathjaxify_tex( this.insert_cursor(document, range) )
                 return [ret, range]
             }
             return undefined
@@ -73,13 +89,14 @@ export class HoverProvider implements vscode.HoverProvider  {
         let b : RegExpMatchArray | null
         let s = current_line
         let base:number = 0
-        while ( b = s.match(/\$.+?\$|\\\(.+?\\\)/) ) {
-            if ( b && b.index != null ) {
+        while (b = s.match(/\$.+?\$|\\\(.+?\\\)/)) {
+            if (b && b.index != null) {
                 if ( base + b.index <= position.character && position.character <= (base + b.index + b[0].length) ) {
                     const start = new vscode.Position(position.line, base + b.index)
                     const end = new vscode.Position(position.line, base + b.index + b[0].length)
                     const range = new vscode.Range(start, end)
-                    return [b[0], range]
+                    const ret = this.mathjaxify_tex( this.insert_cursor(document, range) )
+                    return [ret, range]
                 }else{
                     base += b[0].length
                     s = current_line.substring(base)
