@@ -27,15 +27,34 @@ const svgToDataUrl = function (xml) {
     return b64Start + svg64;
 }
 
+const pickColor = function (prop) {
+   m = prop.match(/rgb\((\d+), (\d+), (\d+)\)/)
+   if (m) {
+       return [m[1], m[2], m[3]];
+   }
+   return null;
+}
+
+const getVSCodeEditorForegound = function () {
+    const s = window.getComputedStyle(document.getElementById("colorpick"));
+    return pickColor(s.color);
+}
+
+const getVSCodeHoverBackgound = function () {
+    const s = window.getComputedStyle(document.getElementById("colorpick"))
+    return pickColor(s.background);
+}
+
 const svgAsyncToPngDataUrl = function (svgdataurl) {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     return loadImg(svgdataurl)
     .then( (img) => {
+        const rgb = getVSCodeHoverBackgound();
         canvas.width = img.width;
         canvas.height = img.height;
-        //    ctx.fillStyle = "rgb(0, 0, 0)";
-        //    ctx.fillRect(0, 0, canvas.width, canvas.height);
+        ctx.fillStyle = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);
         const ret = canvas.toDataURL("image/png");
         img.src = "";
@@ -64,9 +83,16 @@ const setMathInDiv = function (divid, tmpid) {
     document.getElementById(divid).innerHTML = document.getElementById(tmpid).getElementsByTagName("svg")[0].outerHTML;
 }
 
+const setVSCodeForegroundColor = function(tex) {
+    const rgb = getVSCodeEditorForegound();
+    console.log("hoge: " + rgb[0]);
+    console.log(`${rgb[0]},${rgb[1]},${rgb[2]}`);
+    return tex.replace(/^(\$|\\\(|\\begin{.*?})/, '$1\\color[RGB]{' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + '}');
+}
+
 window.addEventListener('message', event => {
     const message = event.data; // The JSON data our extension sent
-    document.getElementById("tmp00").innerText = message.text;
+    document.getElementById("tmp00").innerText = setVSCodeForegroundColor(message.text);
     renderMathAsyncById("tmp00")
     .then( (tmpid) => {
         if (message.live_preview) {
