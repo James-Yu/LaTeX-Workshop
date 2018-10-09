@@ -53,7 +53,7 @@ export class HoverProvider implements vscode.HoverProvider  {
         })
     }
 
-    private insert_cursor(document: vscode.TextDocument, range: vscode.Range) : string {
+    private render_cursor(document: vscode.TextDocument, range: vscode.Range) : string {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const conf = configuration.get('hoverPreview.insertCursor') as boolean
@@ -66,13 +66,17 @@ export class HoverProvider implements vscode.HoverProvider  {
         return document.getText(range)
     }
 
-    private mathjaxify_tex(tex: string) : string {
-        return tex.replace(/^\s*%.*?\r?\n/mg, '')
+    private mathjaxify_tex(tex: string, envname: string) : string {
+        const ret = tex.replace(/^\s*%.*?\r?\n/mg, '')
+        if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
+            return '\\begin{equation}' + ret + '\\end{equation}'
+        }
+        return ret
     }
 
     private _tokenizer(document: vscode.TextDocument, position: vscode.Position) : [string, vscode.Range] | undefined {
         const current_line = document.lineAt(position).text
-        const a = current_line.match(/^(.*?)\\begin\{(.*?)\}/);
+        const a = current_line.match(/^(.*?)\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/);
         if ( a ) {
             const envname = a[2]
             const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(envname) + '\\}'
@@ -81,7 +85,7 @@ export class HoverProvider implements vscode.HoverProvider  {
             if ( endPos0 ) {
                 const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
                 const range = new vscode.Range(startPos, endPos)
-                const ret = this.mathjaxify_tex( this.insert_cursor(document, range) )
+                const ret = this.mathjaxify_tex( this.render_cursor(document, range), envname )
                 return [ret, range]
             }
             return undefined
@@ -95,7 +99,7 @@ export class HoverProvider implements vscode.HoverProvider  {
                     const start = new vscode.Position(position.line, base + b.index)
                     const end = new vscode.Position(position.line, base + b.index + b[0].length)
                     const range = new vscode.Range(start, end)
-                    const ret = this.mathjaxify_tex( this.insert_cursor(document, range) )
+                    const ret = this.mathjaxify_tex( this.render_cursor(document, range), '$' )
                     return [ret, range]
                 }else{
                     base += b[0].length
