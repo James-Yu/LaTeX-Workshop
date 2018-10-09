@@ -45,20 +45,18 @@ const getVSCodeHoverBackgound = function () {
     return pickColor(s.background);
 }
 
-const svgAsyncToPngDataUrl = function (svgdataurl) {
+const svgAsyncToPngDataUrl = async function (svgdataurl) {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
-    return loadImg(svgdataurl)
-    .then( (img) => {
-        const rgb = getVSCodeHoverBackgound();
-        canvas.width = img.width;
-        canvas.height = img.height;
-        ctx.fillStyle = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
-        img.src = "";
-        return canvas.toDataURL("image/png");
-    });
+    const img = await loadImg(svgdataurl);
+    const rgb = getVSCodeHoverBackgound();
+    canvas.width = img.width;
+    canvas.height = img.height;
+    ctx.fillStyle = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.drawImage(img, 0, 0);
+    img.src = "";
+    return canvas.toDataURL("image/png");
 }
 
 const loadImg = function (url) {
