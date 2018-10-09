@@ -67,9 +67,10 @@ export class HoverProvider implements vscode.HoverProvider  {
     }
 
     private mathjaxify_tex(tex: string, envname: string) : string {
-        const ret = tex.replace(/^\s*%.*?\r?\n/mg, '')
+        let ret = tex.replace(/^\s*%.*?\r?\n/mg, '')
+        ret = ret.replace(/\\label\{.*?\}/g, '')
         if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
-            return '\\begin{equation}' + ret + '\\end{equation}'
+            ret = '\\begin{equation}' + ret + '\\end{equation}'
         }
         return ret
     }

@@ -82,9 +82,10 @@ const setMathInDiv = function (divid, tmpid) {
 
 const setVSCodeForegroundColor = function(tex) {
     const rgb = getVSCodeEditorForegound();
-    const color = '\\color[RGB]{' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + '}'
-    const ret = tex.replace(/^(\$|\\\(|\\begin{.*?})/, '$1' + color);
-    return ret.replace(/(&|\\\\)/g, '$1' + color);
+    const color = '\\color[RGB]{' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + '}';
+    var ret = tex.replace(/^(\$|\\\(|\\begin{.*?}({.*?})*)/, '$1' + color);
+    ret = ret.replace(/(\\begin{CD}[\s\S]*?\\end{CD}|((?:\\[^\\]|[^&\\])*&+|\\\\))/g, '$1' + color);
+    return ret;
 }
 
 window.addEventListener('message', event => {
