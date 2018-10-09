@@ -56,7 +56,7 @@ export class HoverProvider implements vscode.HoverProvider  {
     private render_cursor(document: vscode.TextDocument, range: vscode.Range) : string {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const conf = configuration.get('hoverPreview.insertCursor') as boolean
+        const conf = configuration.get('hoverPreview.renderCursor') as boolean
         if (editor && conf) {
             const cursor = editor.selection.active
             if (range.contains(cursor)) {
