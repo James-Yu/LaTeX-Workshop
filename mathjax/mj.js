@@ -56,9 +56,8 @@ const svgAsyncToPngDataUrl = function (svgdataurl) {
         ctx.fillStyle = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(img, 0, 0);
-        const ret = canvas.toDataURL("image/png");
         img.src = "";
-        return ret;
+        return canvas.toDataURL("image/png");
     });
 }
 
@@ -85,8 +84,6 @@ const setMathInDiv = function (divid, tmpid) {
 
 const setVSCodeForegroundColor = function(tex) {
     const rgb = getVSCodeEditorForegound();
-    console.log("hoge: " + rgb[0]);
-    console.log(`${rgb[0]},${rgb[1]},${rgb[2]}`);
     return tex.replace(/^(\$|\\\(|\\begin{.*?})/, '$1\\color[RGB]{' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + '}');
 }
 
