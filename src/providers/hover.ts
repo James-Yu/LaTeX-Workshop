@@ -50,6 +50,10 @@ export class HoverProvider implements vscode.HoverProvider  {
         })
     }
 
+    private _clean_tex(tex: string) : string {
+        return tex.replace(/^\s*%.*?\r?\n/mg, '')
+    }
+
     private _tokenizer(document: vscode.TextDocument, position: vscode.Position) : [string, vscode.Range] | undefined {
         const current_line = document.lineAt(position).text
         const a = current_line.match(/^(.*?)\\begin\{(.*?)\}/);
@@ -61,7 +65,7 @@ export class HoverProvider implements vscode.HoverProvider  {
             if ( endPos0 ) {
                 const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
                 const range = new vscode.Range(startPos, endPos)
-                const ret = document.getText( range )
+                const ret = this._clean_tex( document.getText( range ) )
                 return [ret, range]
             }
             return undefined
