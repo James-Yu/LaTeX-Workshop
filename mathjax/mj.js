@@ -45,15 +45,16 @@ const getVSCodeHoverBackgound = function () {
     return pickColor(s.background);
 }
 
-const svgAsyncToPngDataUrl = async function (svgdataurl) {
+const svgAsyncToPngDataUrl = async function (svgdataurl, scale) {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
     const img = await loadImg(svgdataurl);
     const rgb = getVSCodeHoverBackgound();
-    canvas.width = img.width;
-    canvas.height = img.height;
+    canvas.width = img.width * scale;
+    canvas.height = img.height * scale;
     ctx.fillStyle = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.scale(scale, scale);
     ctx.drawImage(img, 0, 0);
     img.src = "";
     return canvas.toDataURL("image/png");
@@ -101,7 +102,7 @@ window.addEventListener('message', event => {
             const url = svgToDataUrl(xml);
             document.getElementById(tmpid).style.width = "1px";
             document.getElementById(tmpid).style.height = "1px";
-            svgAsyncToPngDataUrl(url)
+            svgAsyncToPngDataUrl(url, message.scale)
             .then( (pngdataurl) => {
                 vscode.postMessage({
                     dataurl: pngdataurl

@@ -18,6 +18,7 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov && this.extension.panel) {
                 const tk = this._tokenizer(document, position)
                 if (tk) {
+                    const scale = configuration.get('hoverPreview.scale') as number
                     const tok = tk[0]
                     const range = tk[1]
                     const panel = this.extension.panel
@@ -27,6 +28,7 @@ export class HoverProvider implements vscode.HoverProvider {
                     })
                     panel.webview.postMessage({
                         text: tok,
+                        scale: scale,
                         need_dataurl: "1"
                     })
                     return
@@ -59,8 +61,9 @@ export class HoverProvider implements vscode.HoverProvider {
         const conf = configuration.get('hoverPreview.cursor.enabled') as boolean
         if (editor && conf) {
             const cursor = editor.selection.active
+            const symbol = configuration.get('hoverPreview.cursor.symbol') as string
             if (range.contains(cursor)) {
-                return document.getText( new vscode.Range(range.start, cursor) ) + ' \\ddagger ' + document.getText( new vscode.Range(cursor, range.end))
+                return document.getText( new vscode.Range(range.start, cursor) ) + symbol + document.getText( new vscode.Range(cursor, range.end))
             }
         }
         return document.getText(range)
@@ -81,12 +84,12 @@ export class HoverProvider implements vscode.HoverProvider {
         if ( a ) {
             const envname = a[2]
             const startPos = new vscode.Position(position.line, a[1].length)
-            return this.tokenizeEnv(document, position, envname, startPos)
+            return this.tokenizeEnv(document, envname, startPos)
         }
         return this.tokenizeInline(document, position, current_line)
     }
 
-    private tokenizeEnv(document: vscode.TextDocument, position: vscode.Position, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
+    private tokenizeEnv(document: vscode.TextDocument, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
         const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(envname) + '\\}'
         const endPos0 = this.extension.envPair.locateMatchingPair(pattern, 1, startPos, document)
         if ( endPos0 ) {
