@@ -89,7 +89,7 @@ const setMathInDiv = function (divid, tmpid) {
 const setVSCodeForegroundColor = function(tex) {
     const rgb = getVSCodeEditorForegound();
     const color = '\\color[RGB]{' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + '}';
-    var ret = tex.replace(/^(\$|\\\(|\\begin{.*?}({.*?})*)/, '$1' + color);
+    var ret = tex.replace(/^(\$|\\\(|\\\[|\\begin{.*?}({.*?})*)/, '$1' + color);
     // insert \color{ } after each & and \\
     // while skipping CD env
     ret = ret.replace(/(\\begin{CD}[\s\S]*?\\end{CD}|((?:\\[^\\]|[^&\\])*&+|\\\\))/g, '$1' + color);
