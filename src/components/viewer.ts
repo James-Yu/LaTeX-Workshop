@@ -95,9 +95,6 @@ export class Viewer {
         const editor = vscode.window.activeTextEditor
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
             enableScripts: true,
-            localResourceRoots: [
-                vscode.Uri.file(path.join(this.extension.extensionRoot, 'mathjax'))
-            ],
             retainContextWhenHidden: true
         })
         this.extension.panel = panel
