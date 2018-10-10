@@ -81,7 +81,7 @@ export class HoverProvider implements vscode.HoverProvider {
     private _tokenizer(document: vscode.TextDocument, position: vscode.Position) : [string, vscode.Range] | undefined {
         const current_line = document.lineAt(position).text
         const a = current_line.match(/^(.*?)\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/);
-        if ( a ) {
+        if ( a && a[1].length <= position.character && position.character <= a[0].length ) {
             const envname = a[2]
             const startPos = new vscode.Position(position.line, a[1].length)
             return this.tokenizeEnv(document, envname, startPos)
@@ -97,6 +97,24 @@ export class HoverProvider implements vscode.HoverProvider {
             const range = new vscode.Range(startPos, endPos)
             const ret = this.mathjaxify( this.renderCursor(document, range), envname )
             return [ret, range]
+        }
+        return undefined
+    }
+
+    private tokenizeDisp(document: vscode.TextDocument, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
+        let lineNum = startPos.line + 1
+        let m : RegExpMatchArray | null
+        const reg = new RegExp(envpair.escapeRegExp(envname))
+
+        while (lineNum <= document.lineCount) {
+            m = document.lineAt(lineNum).text.match(reg)
+            if (m && m.index) {
+                const endPos = new vscode.Position(lineNum, m.index + envname.length)
+                const range = new vscode.Range(startPos, endPos)
+                const ret = this.mathjaxify( this.renderCursor(document, range), envname )
+                return [ret, range]
+            }
+            lineNum += 1
         }
         return undefined
     }
