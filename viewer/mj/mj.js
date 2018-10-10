@@ -30,7 +30,8 @@ const svgToDataUrl = function (xml) {
 // We cannot know actual colors for each theme in extension process
 // because VSCode API does not allow such operations.
 // c.f., https://github.com/Microsoft/vscode/issues/32813
-// But we can know the colors in WebView process through CSS variables.
+// But we can know the colors in WebView process through CSS variables,
+// :root { --color; --vscode-editorHoverWidget-background; }.
 const pickColor = function (prop) {
    m = prop.match(/rgb\((\d+), (\d+), (\d+)\)/)
    if (m) {
