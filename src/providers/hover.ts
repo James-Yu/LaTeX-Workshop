@@ -55,11 +55,24 @@ export class HoverProvider implements vscode.HoverProvider {
         })
     }
 
+    private isCursorInTeXCommnad(document: vscode.TextDocument) : boolean {
+        const editor = vscode.window.activeTextEditor
+        if (!editor) {
+            return false
+        }
+        const cursor = editor.selection.active
+        const r = document.getWordRangeAtPosition(cursor, /\\(?:begin|end)\{.*?\}|\\[a-zA-Z]+\{?/)
+        if (r && r.start.isBefore(cursor) && r.end.isAfter(cursor) ) {
+            return true
+        }
+        return false
+    }
+
     private renderCursor(document: vscode.TextDocument, range: vscode.Range) : string {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const conf = configuration.get('hoverPreview.cursor.enabled') as boolean
-        if (editor && conf) {
+        if (editor && conf && !this.isCursorInTeXCommnad(document)) {
             const cursor = editor.selection.active
             const symbol = configuration.get('hoverPreview.cursor.symbol') as string
             const color = configuration.get('hoverPreview.cursor.color') as string
