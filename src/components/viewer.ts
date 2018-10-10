@@ -110,15 +110,16 @@ export class Viewer {
 
     getPDFViewerContent(uri: vscode.Uri) : string {
         const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
-        const scriptPathOnDisk = vscode.Uri.file(path.join(this.extension.extensionRoot, 'mathjax', 'mj.js'))
-        const scriptUri = scriptPathOnDisk.with({ scheme: 'vscode-resource' })
+        const mathjaxurl = `http://${this.extension.server.address}/mj/MathJax/MathJax.js?config=TeX-AMS_SVG`
+        const mjurl = `http://${this.extension.server.address}/mj/mj.js`
+
         return `
             <!DOCTYPE html><html>
             <head>
-            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; img-src data:; script-src vscode-resource: https: 'unsafe-eval'; style-src vscode-resource: 'unsafe-inline';">
-            <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_SVG'>
+            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; img-src data:; script-src http://${this.extension.server.address} 'unsafe-eval' 'unsafe-inline'; style-src 'unsafe-inline';">
+            <script src='${mathjaxurl}'>
              var script = document.createElement('script')
-             script.src = '${scriptUri}'
+             script.src = '${mjurl}'
              document.body.appendChild(script)
             </script>
             <script type="text/x-mathjax-config">

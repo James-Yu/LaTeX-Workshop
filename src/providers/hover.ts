@@ -63,7 +63,7 @@ export class HoverProvider implements vscode.HoverProvider {
             const cursor = editor.selection.active
             const symbol = configuration.get('hoverPreview.cursor.symbol') as string
             const color = configuration.get('hoverPreview.cursor.color') as string
-            let sym = symbol
+            let sym = `{${symbol}}`
             if (color != 'auto') {
                 sym = `{\\color{${color}}${symbol}}`
             }
