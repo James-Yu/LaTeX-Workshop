@@ -66,10 +66,10 @@ export class HoverProvider implements vscode.HoverProvider {
         return document.getText(range)
     }
 
-    private mathjaxify(tex: string, eqname: string) : string {
+    private mathjaxify(tex: string, envname: string) : string {
         let ret = tex.replace(/^\s*%.*?\r?\n/mg, '')
         ret = ret.replace(/\\label\{.*?\}/g, '')
-        if (eqname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
+        if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
             ret = '\\begin{equation}' + ret + '\\end{equation}'
         }
         return ret
@@ -79,26 +79,26 @@ export class HoverProvider implements vscode.HoverProvider {
         const current_line = document.lineAt(position).text
         const a = current_line.match(/^(.*?)\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/);
         if ( a ) {
-            return this.tokenizeEq(document, position, a)
+            const envname = a[2]
+            const startPos = new vscode.Position(position.line, a[1].length)
+            return this.tokenizeEnv(document, position, envname, startPos)
         }
         return this.tokenizeInline(document, position, current_line)
     }
 
-    private tokenizeEq(document: vscode.TextDocument, position: vscode.Position, a: RegExpMatchArray) : [string, vscode.Range] | undefined {
-        const eqname = a[2]
-        const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(eqname) + '\\}'
-        const startPos = new vscode.Position(position.line, a[1].length)
+    private tokenizeEnv(document: vscode.TextDocument, position: vscode.Position, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
+        const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(envname) + '\\}'
         const endPos0 = this.extension.envPair.locateMatchingPair(pattern, 1, startPos, document)
         if ( endPos0 ) {
-            const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + eqname.length)
+            const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
             const range = new vscode.Range(startPos, endPos)
-            const ret = this.mathjaxify( this.renderCursor(document, range), eqname )
+            const ret = this.mathjaxify( this.renderCursor(document, range), envname )
             return [ret, range]
         }
         return undefined
     }
 
-    private tokenizeInline(document: vscode.TextDocument, position: vscode.Position, current_line :string, ) : [string, vscode.Range] | undefined {
+    private tokenizeInline(document: vscode.TextDocument, position: vscode.Position, current_line :string) : [string, vscode.Range] | undefined {
         let b : RegExpMatchArray | null
         let s = current_line
         let base:number = 0
