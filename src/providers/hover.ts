@@ -86,14 +86,45 @@ export class HoverProvider implements vscode.HoverProvider {
             const startPos = new vscode.Position(position.line, a[1].length)
             return this.tokenizeEnv(document, envname, startPos)
         }
-        return this.tokenizeInline(document, position, current_line)
+        const b = current_line.match(/^(.*?)(\\\[)/)
+        if (b && b[1].length <= position.character && position.character <= b[0].length) {
+            const envname = b[2]
+            const startPos = new vscode.Position(position.line, b[1].length)
+            return this.tokenizeDisp(document, envname, startPos)
+        }
+        return this.tokenizeInline(document, position)
+    }
+
+    private removeComment(line: string) : string {
+        return line.replace(/^((?:\\.|[^%])*)(%.*)$/, '$1')
+    }
+
+    private findEndPair(document: vscode.TextDocument, pat: RegExp, startPos: vscode.Position) : vscode.Position | undefined {
+        const current_line = document.lineAt(startPos).text.substring(startPos.character)
+        const l = this.removeComment(current_line)
+        let m  = l.match(pat)
+        if (m && m.index != null) {
+            return new vscode.Position(startPos.line, startPos.character + m.index + m[0].length)
+        }
+
+        let lineNum = startPos.line + 1
+        while (lineNum <= document.lineCount) {
+            let l = document.lineAt(lineNum).text
+            l = this.removeComment(l)
+            let m  = l.match(pat)
+            if (m && m.index != null) {
+                return new vscode.Position(lineNum, m.index + m[0].length)
+            }
+            lineNum += 1
+        }
+        return undefined
     }
 
     private tokenizeEnv(document: vscode.TextDocument, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
-        const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(envname) + '\\}'
-        const endPos0 = this.extension.envPair.locateMatchingPair(pattern, 1, startPos, document)
-        if ( endPos0 ) {
-            const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
+        const pattern = new RegExp('\\\\end\\{' + envpair.escapeRegExp(envname) + '\\}')
+        const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length + '\\begin{}'.length)
+        const endPos = this.findEndPair(document, pattern, startPos1)
+        if ( endPos ) {
             const range = new vscode.Range(startPos, endPos)
             const ret = this.mathjaxify( this.renderCursor(document, range), envname )
             return [ret, range]
@@ -102,25 +133,20 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private tokenizeDisp(document: vscode.TextDocument, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
-        let lineNum = startPos.line + 1
-        let m : RegExpMatchArray | null
-        const reg = new RegExp(envpair.escapeRegExp(envname))
-
-        while (lineNum <= document.lineCount) {
-            m = document.lineAt(lineNum).text.match(reg)
-            if (m && m.index) {
-                const endPos = new vscode.Position(lineNum, m.index + envname.length)
-                const range = new vscode.Range(startPos, endPos)
-                const ret = this.mathjaxify( this.renderCursor(document, range), envname )
-                return [ret, range]
-            }
-            lineNum += 1
+        const pattern = /\\\]/
+        const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length)
+        const endPos = this.findEndPair(document, pattern, startPos1)
+        if ( endPos ) {
+            const range = new vscode.Range(startPos, endPos)
+            const ret = this.mathjaxify( this.renderCursor(document, range), envname )
+            return [ret, range]
         }
         return undefined
     }
 
-    private tokenizeInline(document: vscode.TextDocument, position: vscode.Position, current_line :string) : [string, vscode.Range] | undefined {
+    private tokenizeInline(document: vscode.TextDocument, position: vscode.Position) : [string, vscode.Range] | undefined {
         let b : RegExpMatchArray | null
+        const current_line = document.lineAt(position.line).text
         let s = current_line
         let base:number = 0
         while (b = s.match(/\$.+?\$|\\\(.+?\\\)/)) {
