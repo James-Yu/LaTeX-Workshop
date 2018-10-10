@@ -3,7 +3,7 @@ import * as envpair from '../components/envpair'
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
 
-export class HoverProvider implements vscode.HoverProvider  {
+export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
 
     constructor(extension: Extension) {
@@ -53,10 +53,10 @@ export class HoverProvider implements vscode.HoverProvider  {
         })
     }
 
-    private render_cursor(document: vscode.TextDocument, range: vscode.Range) : string {
+    private renderCursor(document: vscode.TextDocument, range: vscode.Range) : string {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const conf = configuration.get('hoverPreview.renderCursor') as boolean
+        const conf = configuration.get('hoverPreview.cursor.enabled') as boolean
         if (editor && conf) {
             const cursor = editor.selection.active
             if (range.contains(cursor)) {
@@ -66,10 +66,10 @@ export class HoverProvider implements vscode.HoverProvider  {
         return document.getText(range)
     }
 
-    private mathjaxify_tex(tex: string, envname: string) : string {
+    private mathjaxify(tex: string, eqname: string) : string {
         let ret = tex.replace(/^\s*%.*?\r?\n/mg, '')
         ret = ret.replace(/\\label\{.*?\}/g, '')
-        if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
+        if (eqname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
             ret = '\\begin{equation}' + ret + '\\end{equation}'
         }
         return ret
@@ -79,18 +79,26 @@ export class HoverProvider implements vscode.HoverProvider  {
         const current_line = document.lineAt(position).text
         const a = current_line.match(/^(.*?)\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/);
         if ( a ) {
-            const envname = a[2]
-            const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(envname) + '\\}'
-            const startPos = new vscode.Position(position.line, a[1].length)
-            const endPos0 = this.extension.envPair.locateMatchingPair(pattern, 1, startPos, document)
-            if ( endPos0 ) {
-                const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + envname.length)
-                const range = new vscode.Range(startPos, endPos)
-                const ret = this.mathjaxify_tex( this.render_cursor(document, range), envname )
-                return [ret, range]
-            }
-            return undefined
+            return this.tokenizeEq(document, position, a)
         }
+        return this.tokenizeInline(document, position, current_line)
+    }
+
+    private tokenizeEq(document: vscode.TextDocument, position: vscode.Position, a: RegExpMatchArray) : [string, vscode.Range] | undefined {
+        const eqname = a[2]
+        const pattern = '\\\\(begin|end)\\{' + envpair.escapeRegExp(eqname) + '\\}'
+        const startPos = new vscode.Position(position.line, a[1].length)
+        const endPos0 = this.extension.envPair.locateMatchingPair(pattern, 1, startPos, document)
+        if ( endPos0 ) {
+            const endPos = new vscode.Position(endPos0.pos.line, endPos0.pos.character + 5 + eqname.length)
+            const range = new vscode.Range(startPos, endPos)
+            const ret = this.mathjaxify( this.renderCursor(document, range), eqname )
+            return [ret, range]
+        }
+        return undefined
+    }
+
+    private tokenizeInline(document: vscode.TextDocument, position: vscode.Position, current_line :string, ) : [string, vscode.Range] | undefined {
         let b : RegExpMatchArray | null
         let s = current_line
         let base:number = 0
@@ -100,7 +108,7 @@ export class HoverProvider implements vscode.HoverProvider  {
                     const start = new vscode.Position(position.line, base + b.index)
                     const end = new vscode.Position(position.line, base + b.index + b[0].length)
                     const range = new vscode.Range(start, end)
-                    const ret = this.mathjaxify_tex( this.render_cursor(document, range), '$' )
+                    const ret = this.mathjaxify( this.renderCursor(document, range), '$' )
                     return [ret, range]
                 }else{
                     base += b[0].length
@@ -112,4 +120,5 @@ export class HoverProvider implements vscode.HoverProvider  {
         }
         return undefined
     }
+
 }
