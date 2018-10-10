@@ -27,6 +27,10 @@ const svgToDataUrl = function (xml) {
     return b64Start + svg64;
 }
 
+// We cannot know actual colors for each theme in extension process
+// because VSCode API does not allow such operations.
+// c.f., https://github.com/Microsoft/vscode/issues/32813
+// But we can know the colors in WebView process through CSS variables.
 const pickColor = function (prop) {
    m = prop.match(/rgb\((\d+), (\d+), (\d+)\)/)
    if (m) {
@@ -85,6 +89,8 @@ const setVSCodeForegroundColor = function(tex) {
     const rgb = getVSCodeEditorForegound();
     const color = '\\color[RGB]{' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + '}';
     var ret = tex.replace(/^(\$|\\\(|\\begin{.*?}({.*?})*)/, '$1' + color);
+    // insert \color{ } after each & and \\
+    // while skipping CD env
     ret = ret.replace(/(\\begin{CD}[\s\S]*?\\end{CD}|((?:\\[^\\]|[^&\\])*&+|\\\\))/g, '$1' + color);
     return ret;
 }
