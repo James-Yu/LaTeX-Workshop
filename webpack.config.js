@@ -19,6 +19,10 @@ const config = {
   resolve: {
     extensions: ['tsx', '.ts', '.jsx', '.js']
   },
+  node: {
+    __dirname: false,
+    __filename: false,
+  },
   module: {
     rules: [
       {
