@@ -50,29 +50,6 @@ const getVSCodeHoverBackgound = function () {
     return pickColor(s.background);
 }
 
-const svgAsyncToPngDataUrl = async function (svgdataurl, scale) {
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
-    const img = await loadImg(svgdataurl);
-    const rgb = getVSCodeHoverBackgound();
-    canvas.width = img.width * scale;
-    canvas.height = img.height * scale;
-    ctx.fillStyle = "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.scale(scale, scale);
-    ctx.drawImage(img, 0, 0);
-    img.src = "";
-    return canvas.toDataURL("image/png");
-}
-
-const loadImg = function (url) {
-    return new Promise( resolve => {
-        const img = new Image();
-        img.onload = () => { resolve(img, url); };
-        img.src = url;
-    });
-}
-
 const vscode = acquireVsCodeApi();
 
 mathjaxInitialization
@@ -101,20 +78,12 @@ window.addEventListener('message', event => {
     document.getElementById("tmp00").innerText = setVSCodeForegroundColor(message.text);
     renderMathAsyncById("tmp00")
     .then( (tmpid) => {
-        if (message.live_preview) {
-            setMathInDiv("math00", tmpid);
-        }
         if (message.need_dataurl) {
             const xml = getSvgXmlById(tmpid);
-            const url = svgToDataUrl(xml);
+            const svgdataurl = svgToDataUrl(xml);
             document.getElementById(tmpid).style.width = "1px";
             document.getElementById(tmpid).style.height = "1px";
-            svgAsyncToPngDataUrl(url, message.scale)
-            .then( (pngdataurl) => {
-                vscode.postMessage({
-                    dataurl: pngdataurl
-                })
-            })
+            vscode.postMessage({ dataurl: svgdataurl })
         }
     }).catch( err => {
         console.log(err.name + ": " + err.message);

@@ -55,7 +55,7 @@ export class HoverProvider implements vscode.HoverProvider {
         })
     }
 
-    private isCursorInTeXCommnad(document: vscode.TextDocument) : boolean {
+    private isCursorInTeXCommand(document: vscode.TextDocument) : boolean {
         const editor = vscode.window.activeTextEditor
         if (!editor) {
             return false
@@ -72,7 +72,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const conf = configuration.get('hoverPreview.cursor.enabled') as boolean
-        if (editor && conf && !this.isCursorInTeXCommnad(document)) {
+        if (editor && conf && !this.isCursorInTeXCommand(document)) {
             const cursor = editor.selection.active
             const symbol = configuration.get('hoverPreview.cursor.symbol') as string
             const color = configuration.get('hoverPreview.cursor.color') as string

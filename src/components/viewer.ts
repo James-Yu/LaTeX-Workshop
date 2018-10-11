@@ -155,7 +155,6 @@ export class Viewer {
                 }, 100);
             }
             </script>
-            <canvas id="canvas" style="display: none;" width="1" height="1"></canvas>
             <div id="tmp00" style="visibility: hidden; width: 1px;"></div>
             <span id="colorpick" style="color: var(--color); background: var(--vscode-editorHoverWidget-background)"></span>
           </body></html>
