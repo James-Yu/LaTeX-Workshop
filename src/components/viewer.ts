@@ -113,7 +113,7 @@ export class Viewer {
         return `
             <!DOCTYPE html><html>
             <head>
-            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; img-src data:; script-src http://${this.extension.server.address} 'unsafe-eval' 'unsafe-inline'; style-src 'unsafe-inline';">
+            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; script-src http://${this.extension.server.address} 'unsafe-eval' 'unsafe-inline'; style-src 'unsafe-inline';">
             <script src='${mathjaxurl}'>
              var script = document.createElement('script')
              script.src = '${mjurl}'
