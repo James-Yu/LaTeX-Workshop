@@ -175,17 +175,17 @@ export class HoverProvider implements vscode.HoverProvider {
         let b : RegExpMatchArray | null
         const current_line = document.lineAt(position.line).text
         let s = current_line
-        let base:number = 0
-        while (b = s.match(/\$.+?\$|\\\(.+?\\\)/)) {
+        let base = 0
+        while (b = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)) {
             if (b && b.index != null) {
-                if ( base + b.index <= position.character && position.character <= (base + b.index + b[0].length) ) {
-                    const start = new vscode.Position(position.line, base + b.index)
-                    const end = new vscode.Position(position.line, base + b.index + b[0].length)
-                    const range = new vscode.Range(start, end)
+                const matchStart = base + b.index
+                const matchEnd = base + b.index + b[0].length
+                if ( matchStart <= position.character && position.character <= matchEnd ) {
+                    const range = new vscode.Range(position.line, matchStart, position.line, matchEnd)
                     const ret = this.mathjaxify( this.renderCursor(document, range), '$' )
                     return [ret, range]
                 }else{
-                    base += b[0].length
+                    base = matchEnd
                     s = current_line.substring(base)
                 }
             }else{
