@@ -89,8 +89,10 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private mathjaxify(tex: string, envname: string) : string {
+        // remove TeX comments
         let s = tex.replace(/^\s*%.*\r?\n/mg, '')
         s = s.replace(/^((?:\\.|[^%])*).*$/mg, '$1')
+        // remove \label{...}
         s = s.replace(/\\label\{.*?\}/g, '')
         if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
             s = '\\begin{equation}' + s + '\\end{equation}'
@@ -126,19 +128,22 @@ export class HoverProvider implements vscode.HoverProvider {
         return line.replace(/^((?:\\.|[^%])*).*$/, '$1')
     }
 
-    private findEndPair(document: vscode.TextDocument, pat: RegExp, startPos: vscode.Position) : vscode.Position | undefined {
-        const current_line = document.lineAt(startPos).text.substring(startPos.character)
+    //  \begin{...}                \end{...}
+    //             ^
+    //             startPos1
+    private findEndPair(document: vscode.TextDocument, endPat: RegExp, startPos1: vscode.Position) : vscode.Position | undefined {
+        const current_line = document.lineAt(startPos1).text.substring(startPos1.character)
         const l = this.removeComment(current_line)
-        let m  = l.match(pat)
+        let m  = l.match(endPat)
         if (m && m.index != null) {
-            return new vscode.Position(startPos.line, startPos.character + m.index + m[0].length)
+            return new vscode.Position(startPos1.line, startPos1.character + m.index + m[0].length)
         }
 
-        let lineNum = startPos.line + 1
+        let lineNum = startPos1.line + 1
         while (lineNum <= document.lineCount) {
             let l = document.lineAt(lineNum).text
             l = this.removeComment(l)
-            let m  = l.match(pat)
+            let m  = l.match(endPat)
             if (m && m.index != null) {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
@@ -147,6 +152,9 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
+    //  \begin{...}                \end{...}
+    //  ^
+    //  startPos
     private findHoverOnEnv(document: vscode.TextDocument, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
         const pattern = new RegExp('\\\\end\\{' + envpair.escapeRegExp(envname) + '\\}')
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length + '\\begin{}'.length)
@@ -159,6 +167,9 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
+    //  \[                \]
+    //  ^
+    //  startPos
     private findHoverOnParen(document: vscode.TextDocument, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
         const pattern = envname == '\\[' ? /\\\]/ : /\\\)/
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length)
