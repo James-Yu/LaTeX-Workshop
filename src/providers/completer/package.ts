@@ -11,10 +11,12 @@ export class Package {
         this.extension = extension
     }
 
-    initialize(defaultPackages: {[key: string]: {package: string}}) {
+    initialize(defaultPackages: {[key: string]: {command: string, detail: string, documentation: string}}) {
         Object.keys(defaultPackages).forEach(key => {
             const item = defaultPackages[key]
-            const pack = new vscode.CompletionItem(item.package, vscode.CompletionItemKind.Module)
+            const pack = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
+            pack.detail = item.detail
+            pack.documentation = item.documentation
             this.suggestions.push(pack)
         })
     }
