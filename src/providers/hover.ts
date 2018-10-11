@@ -88,7 +88,8 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private mathjaxify(tex: string, envname: string) : string {
-        let ret = tex.replace(/^\s*%.*?\r?\n/mg, '')
+        let ret = tex.replace(/((?!\\).)%.*?$/mg, '$1')
+        ret = ret.replace(/^\s*%.*?\r?\n/mg, '')
         ret = ret.replace(/\\label\{.*?\}/g, '')
         if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
             ret = '\\begin{equation}' + ret + '\\end{equation}'
@@ -114,7 +115,8 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private removeComment(line: string) : string {
-        return line.replace(/^((?:\\.|[^%])*)(%.*)$/, '$1')
+        let ret = line.replace(/((?!\\).)%.*?$/, '$1')
+        return ret.replace(/^\s*%.*?\r?\n/, '')
     }
 
     private findEndPair(document: vscode.TextDocument, pat: RegExp, startPos: vscode.Position) : vscode.Position | undefined {
