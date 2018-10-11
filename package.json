@@ -42,7 +42,7 @@
     "onCommand:latex-workshop.log",
     "onCommand:latex-workshop.actions"
   ],
-  "main": "./out/src/main",
+  "main": "./out/main.js",
   "contributes": {
     "languages": [
       {
@@ -817,8 +817,9 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
-    "compile": "tsc -watch -p ./",
+    "vscode:prepublish": "rm -rf out && webpack --mode production",
+    "compile": "webpack --mode production",
+    "compile:watch": "webpack --mode development --watch",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
   "capabilities": {
@@ -843,11 +844,13 @@
     "@types/fs-extra": "^5.0.0",
     "@types/glob": "^5.0.30",
     "@types/micromatch": "^3.0.0",
-    "@types/ws": "^4.0.2",
     "@types/node": "^7.0.59",
+    "@types/ws": "^4.0.2",
     "tslint": "^5.0.0",
+    "ts-loader": "^5.2.1",
     "typescript": "^2.0.3",
     "vscode": "^1.1.14",
-    "webpack": "^2.7.0"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }

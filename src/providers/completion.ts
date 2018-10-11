@@ -56,7 +56,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 resolve()
                 return
             }
-            if (this.command.specialBrackets.hasOwnProperty(invokeChar)) {
+            if (this.command.specialBrackets && this.command.specialBrackets.hasOwnProperty(invokeChar)) {
                 if (position.character > 1 && currentLine[position.character - 2] === '\\') {
                     const mathSnippet = Object.assign({}, this.command.specialBrackets[invokeChar])
                     if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
