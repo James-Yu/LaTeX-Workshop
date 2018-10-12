@@ -84,7 +84,11 @@ export class Command {
         return this.suggestions
     }
 
-    surround(content: string) {
+    /**
+     * @param content a string to be surrounded. If not provided, then we
+     * loop over all the selections and surround each of them
+     */
+    surround(content?: string) {
         if (!vscode.window.activeTextEditor) {
             return
         }
@@ -110,11 +114,21 @@ export class Command {
             if (selected === undefined) {
                 return
             }
-            editor.edit(edit => edit.replace(new vscode.Range(editor.selection.start, editor.selection.end),
-                                             selected.replace(/(.*)(\${\d.*?})/, `$1${content}`) // Replace text
-                                                     .replace(/\${\d:?(.*?)}/g, '$1') // Remove snippet placeholders
-                                                     .replace('\\\\', '\\') // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
-                                                     .replace(/\$\d/, ''))) // Remove $2 etc
+            editor.edit( editBuilder => {
+                let selectedCommand = selected
+                let selectedContent = content
+                for (const selection of editor.selections) {
+                    if (!content) {
+                        selectedContent = editor.document.getText(selection)
+                        selectedCommand = '\\' + selected
+                    }
+                    editBuilder.replace(new vscode.Range(selection.start, selection.end),
+                        selectedCommand.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
+                            .replace(/\${\d:?(.*?)}/g, '$1') // Remove snippet placeholders
+                            .replace('\\\\', '\\') // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
+                            .replace(/\$\d/, '')) // Remove $2 etc
+                }
+            })
         })
         return
     }
