@@ -1,5 +1,11 @@
 # Change Log
 
+## [5.12.1] - 2018-10-14
+
+### Fixed
+
+- Not able to preview maths in LaTeX environments.
+
 ## [5.12.0] - 2018-10-14
 
 ### Added
