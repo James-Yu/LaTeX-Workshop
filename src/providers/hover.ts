@@ -135,14 +135,14 @@ export class HoverProvider implements vscode.HoverProvider {
         const currentLine = document.lineAt(startPos1).text.substring(startPos1.character)
         const l = this.removeComment(currentLine)
         let m = l.match(endPat)
-        if (m && m.index) {
+        if (m && m.index !== undefined) {
             return new vscode.Position(startPos1.line, startPos1.character + m.index + m[0].length)
         }
 
         let lineNum = startPos1.line + 1
         while (lineNum <= document.lineCount) {
             m  = this.removeComment(document.lineAt(lineNum).text).match(endPat)
-            if (m && m.index) {
+            if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
             lineNum += 1
@@ -186,7 +186,7 @@ export class HoverProvider implements vscode.HoverProvider {
         let base = 0
         let m: RegExpMatchArray | null = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)
         while (m) {
-            if (m && m.index) {
+            if (m && m.index !== undefined) {
                 const matchStart = base + m.index
                 const matchEnd = base + m.index + m[0].length
                 if ( matchStart <= position.character && position.character <= matchEnd ) {
