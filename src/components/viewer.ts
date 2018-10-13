@@ -107,13 +107,13 @@ export class Viewer {
 
     getPDFViewerContent(uri: vscode.Uri) : string {
         const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
-        const mathjaxurl = `http://${this.extension.server.address}/mj/MathJax/MathJax.js?config=TeX-AMS_SVG`
-        const mjurl = `http://${this.extension.server.address}/mj/mj.js`
+        const mathjaxurl = `https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_SVG`
+        const mjurl = `http://${this.extension.server.address}/mj.js`
 
         return `
             <!DOCTYPE html><html>
             <head>
-            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; script-src http://${this.extension.server.address} 'unsafe-eval' 'unsafe-inline'; style-src 'unsafe-inline';">
+            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address}; img-src data:; script-src http: 'unsafe-inline' https: 'unsafe-inline' vscode-resource: 'unsafe-eval'; style-src vscode-resource: 'unsafe-inline';">
             <script src='${mathjaxurl}'>
              var script = document.createElement('script')
              script.src = '${mjurl}'
