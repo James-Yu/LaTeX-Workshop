@@ -22,13 +22,13 @@ export class HoverProvider implements vscode.HoverProvider {
                     const [tex, range] = tr
                     const panel = this.extension.panel
                     const d = panel.webview.onDidReceiveMessage( message => {
-                        resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + message.dataurl + ")" ), range ) )
+                        resolve( new vscode.Hover(new vscode.MarkdownString( '![equation](' + message.dataurl + ')' ), range ) )
                         d.dispose()
                     })
                     panel.webview.postMessage({
                         text: tex,
-                        scale: scale,
-                        need_dataurl: "1"
+                        scale,
+                        need_dataurl: '1'
                     })
                     return
                 }
@@ -78,7 +78,7 @@ export class HoverProvider implements vscode.HoverProvider {
             const symbol = configuration.get('hoverPreview.cursor.symbol') as string
             const color = configuration.get('hoverPreview.cursor.color') as string
             let sym = `{${symbol}}`
-            if (color != 'auto') {
+            if (color !== 'auto') {
                 sym = `{\\color{${color}}${symbol}}`
             }
             if (range.contains(cursor)) {
@@ -121,7 +121,7 @@ export class HoverProvider implements vscode.HoverProvider {
         if (m && m[1]) {
             return m[1]
         }
-        return "never return here"
+        return 'never return here'
     }
 
     private removeComment(line: string) : string {
@@ -132,19 +132,17 @@ export class HoverProvider implements vscode.HoverProvider {
     //             ^
     //             startPos1
     private findEndPair(document: vscode.TextDocument, endPat: RegExp, startPos1: vscode.Position) : vscode.Position | undefined {
-        const current_line = document.lineAt(startPos1).text.substring(startPos1.character)
-        const l = this.removeComment(current_line)
-        let m  = l.match(endPat)
-        if (m && m.index != null) {
+        const currentLine = document.lineAt(startPos1).text.substring(startPos1.character)
+        const l = this.removeComment(currentLine)
+        let m = l.match(endPat)
+        if (m && m.index) {
             return new vscode.Position(startPos1.line, startPos1.character + m.index + m[0].length)
         }
 
         let lineNum = startPos1.line + 1
         while (lineNum <= document.lineCount) {
-            let l = document.lineAt(lineNum).text
-            l = this.removeComment(l)
-            let m  = l.match(endPat)
-            if (m && m.index != null) {
+            m  = this.removeComment(document.lineAt(lineNum).text).match(endPat)
+            if (m && m.index) {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
             lineNum += 1
@@ -171,7 +169,7 @@ export class HoverProvider implements vscode.HoverProvider {
     //  ^
     //  startPos
     private findHoverOnParen(document: vscode.TextDocument, envname: string, startPos: vscode.Position) : [string, vscode.Range] | undefined {
-        const pattern = envname == '\\[' ? /\\\]/ : /\\\)/
+        const pattern = envname === '\\[' ? /\\\]/ : /\\\)/
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length)
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
@@ -183,25 +181,26 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private findHoverOnInline(document: vscode.TextDocument, position: vscode.Position) : [string, vscode.Range] | undefined {
-        let m : RegExpMatchArray | null
-        const current_line = document.lineAt(position.line).text
-        let s = current_line
+        const currentLine = document.lineAt(position.line).text
+        let s = currentLine
         let base = 0
-        while (m = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)) {
-            if (m && m.index != null) {
+        let m: RegExpMatchArray | null = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)
+        while (m) {
+            if (m && m.index) {
                 const matchStart = base + m.index
                 const matchEnd = base + m.index + m[0].length
                 if ( matchStart <= position.character && position.character <= matchEnd ) {
                     const range = new vscode.Range(position.line, matchStart, position.line, matchEnd)
                     const ret = this.mathjaxify( this.renderCursor(document, range), '$' )
                     return [ret, range]
-                }else{
+                } else {
                     base = matchEnd
-                    s = current_line.substring(base)
+                    s = currentLine.substring(base)
                 }
-            }else{
+            } else {
                 break
             }
+            m = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)
         }
         return undefined
     }
