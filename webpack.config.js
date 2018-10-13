@@ -4,7 +4,7 @@ const config = {
   target: 'node',
   entry: './src/main.ts',
   output: {
-    path: path.resolve(__dirname, 'out'),
+    path: path.resolve(__dirname, 'out', 'src'),
     filename: 'main.js',
     libraryTarget: 'commonjs2',
     devtoolModuleFilenameTemplate: 'file:///[absolute-resource-path]'

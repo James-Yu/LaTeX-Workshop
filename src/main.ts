@@ -295,7 +295,7 @@ export class Extension {
     panel: vscode.WebviewPanel
 
     constructor() {
-        this.extensionRoot = path.resolve(`${__dirname}/../`)
+        this.extensionRoot = path.resolve(`${__dirname}/../../`)
         this.logger = new Logger(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
