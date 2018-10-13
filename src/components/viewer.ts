@@ -155,7 +155,7 @@ export class Viewer {
                 }, 100);
             }
             </script>
-            <div id="tmp00" style="visibility: hidden; width: 1px;"></div>
+            <div id="tmp00" style="visibility: hidden; width: 1px; overflow: scroll;"></div>
             <span id="colorpick" style="color: var(--color); background: var(--vscode-editorHoverWidget-background)"></span>
             </body></html>
         `
