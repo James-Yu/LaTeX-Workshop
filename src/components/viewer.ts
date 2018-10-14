@@ -97,7 +97,8 @@ export class Viewer {
             enableScripts: true,
             retainContextWhenHidden: true
         })
-        this.extension.panel = panel
+        this.extension.panels.push(panel)
+        panel.onDidDispose(() => this.extension.panels.splice(this.extension.panels.indexOf(panel), 1))
         panel.webview.html = this.getPDFViewerContent(uri)
         if (editor) {
             vscode.window.showTextDocument(editor.document, editor.viewColumn)

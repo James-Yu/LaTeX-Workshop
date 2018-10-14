@@ -292,7 +292,7 @@ export class Extension {
     texMagician: TeXMagician
     envPair: EnvPair
     structureProvider: SectionNodeProvider
-    panel: vscode.WebviewPanel
+    panels: vscode.WebviewPanel[] = []
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
