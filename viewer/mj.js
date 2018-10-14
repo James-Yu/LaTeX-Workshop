@@ -15,9 +15,16 @@ const renderMathAsyncById = function(id) {
     });
 }
 
-const getSvgXmlById = function (id) {
+const getSvgXmlById = function (id, scale) {
     const svgelm = document.getElementById(id).getElementsByTagName("svg")[0];
     svgelm.setAttribute("xmlns", "http://www.w3.org/2000/svg");
+    // m0[2] and m1[2] are units, i.e., pt, ex, em, ...
+    const m0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/);
+    const m1 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/);
+    const w = scale* Number(m0[1]);
+    const h = scale * Number(m1[1]);
+    svgelm.setAttribute("width", w + m0[2]);
+    svgelm.setAttribute("height", h + m1[2]);
     return svgelm.outerHTML;
 }
 
@@ -79,7 +86,7 @@ window.addEventListener('message', event => {
     renderMathAsyncById("tmp00")
     .then( (tmpid) => {
         if (message.need_dataurl) {
-            const xml = getSvgXmlById(tmpid);
+            const xml = getSvgXmlById(tmpid, message.scale);
             const svgdataurl = svgToDataUrl(xml);
             document.getElementById(tmpid).style.width = "1px";
             document.getElementById(tmpid).style.height = "1px";
