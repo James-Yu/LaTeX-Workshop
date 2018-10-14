@@ -18,8 +18,9 @@ const renderMathAsyncById = function(id) {
 const getSvgXmlById = function (id, scale) {
     const svgelm = document.getElementById(id).getElementsByTagName("svg")[0];
     svgelm.setAttribute("xmlns", "http://www.w3.org/2000/svg");
-    const m0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w+)/);
-    const m1 = svgelm.getAttribute("height").match(/([\.\d]+)(\w+)/);
+    // m0[2] and m1[2] are units, i.e., pt, ex, em, ...
+    const m0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/);
+    const m1 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/);
     const w = scale* Number(m0[1]);
     const h = scale * Number(m1[1]);
     svgelm.setAttribute("width", w + m0[2]);
