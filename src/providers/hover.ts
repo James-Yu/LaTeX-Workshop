@@ -15,12 +15,12 @@ export class HoverProvider implements vscode.HoverProvider {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const hov = configuration.get('hoverPreview.enabled') as boolean
-            if (hov && this.extension.panels.length > 0) {
+            const panel = this.extension.panels.filter( p => p.visible )[0]
+            if (hov && panel !== undefined) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
                     const scale = configuration.get('hoverPreview.scale') as number
                     const [tex, range] = tr
-                    const panel = this.extension.panels[0]
                     const d = panel.webview.onDidReceiveMessage( message => {
                         resolve( new vscode.Hover(new vscode.MarkdownString( '![equation](' + message.dataurl + ')' ), range ) )
                         d.dispose()
