@@ -21,7 +21,8 @@ export class HoverProvider implements vscode.HoverProvider {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const h = configuration.get('hoverPreview.enabled') as boolean
-            if (h) {
+            const color = this.getVSCodeForegroundColor()
+            if (h && color !== undefined) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
                     const [tex, range] = tr
@@ -57,30 +58,34 @@ export class HoverProvider implements vscode.HoverProvider {
         return new Promise((resolve, _reject) => {
             let format = "TeX"
             let m : RegExpMatchArray | null
+            const tx = this.setVSCodeForegroundColorToTex(tex)
+            if (tx) {
+                tex = tx
+            } else {
+                _reject()
+                return
+            }
             if (m = tex.match(/^\$|\\\(/)) {
                 format = "inline-TeX"
                 tex = tex.substring(m[0].length, tex.length-m[0].length)
             } else if (m = tex.match(/^\\\[/)) {
                 tex = tex.substring(m[0].length, tex.length-m[0].length)
             }
-            let tx = this.setVSCodeForegroundColor(tex)
-            if (!tx) {
-                _reject()
-            }
             mathjax.typeset({
-                math: tx,
+                math: tex,
                 format: format,
                 svgNode:true
             },
             function (data) {
                 if (!data.errors && data.svgNode) {
                     const svgelm = data.svgNode
-                    const m0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/)
-                    const m1 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/)
-                    const w = scale* Number(m0[1])
-                    const h = scale * Number(m1[1])
-                    svgelm.setAttribute("width", w + m0[2])
-                    svgelm.setAttribute("height", h + m1[2])
+                    // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
+                    const w0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/)
+                    const h0 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/)
+                    const w = scale * Number(w0[1])
+                    const h = scale * Number(h0[1])
+                    svgelm.setAttribute("width", w + w0[2])
+                    svgelm.setAttribute("height", h + h0[2])
                     const svg = svgelm.outerHTML
                     const s = 'data:image/svg+xml;base64,' + new Buffer(svg, 'binary').toString('base64')
                     resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + s + ")" ), range ) )
@@ -89,14 +94,8 @@ export class HoverProvider implements vscode.HoverProvider {
         })
     }
 
-    private setVSCodeForegroundColor(tex: string) : string | undefined {
-        const workbench = vscode.workspace.getConfiguration('workbench')
-        const latexworkshop = vscode.workspace.getConfiguration('latex-workshop')
-        const themename = workbench.get('colorTheme') as string
-        const theme = themename ? vscodethemesdb.themes[themename] : undefined
-        const themeForeground = theme ? theme.foreground : undefined
-        const userForeground = latexworkshop.get('hoverPreview.foreground') as string
-        const foreground = userForeground == 'auto' ? themeForeground : userForeground
+    private setVSCodeForegroundColorToTex(tex: string) : string | undefined {
+        const foreground = this.getVSCodeForegroundColor()
         let m = foreground ? foreground.match(/^#(..)(..)(..)$/) : null
         if (m) {
             const color = '\\color[RGB]{' + Number('0x' + m[1]) + ',' + Number('0x' + m[2]) + ',' + Number('0x' + m[3]) + '}'
@@ -107,6 +106,17 @@ export class HoverProvider implements vscode.HoverProvider {
             return ret
         }
         return undefined
+    }
+
+    private getVSCodeForegroundColor() : string | undefined {
+        const workbench = vscode.workspace.getConfiguration('workbench')
+        const latexworkshop = vscode.workspace.getConfiguration('latex-workshop')
+        const themename = workbench.get('colorTheme') as string
+        const theme = themename ? vscodethemesdb.themes[themename] : undefined
+        const themeForeground = theme ? theme.foreground : undefined
+        const userForeground = latexworkshop.get('hoverPreview.foreground') as string
+        const foreground = userForeground === 'auto' ? themeForeground : userForeground
+        return foreground
     }
 
     // Test whether cursor is in tex command strings
