@@ -90,10 +90,13 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private setVSCodeForegroundColor(tex: string) : string | undefined {
-        const configuration = vscode.workspace.getConfiguration('workbench')
-        const themename = configuration.get('colorTheme') as string
+        const workbench = vscode.workspace.getConfiguration('workbench')
+        const latexworkshop = vscode.workspace.getConfiguration('latex-workshop')
+        const themename = workbench.get('colorTheme') as string
         const theme = themename ? vscodethemesdb.themes[themename] : undefined
-        const foreground = theme ? theme.foreground : undefined
+        const themeForeground = theme ? theme.foreground : undefined
+        const userForeground = latexworkshop.get('hoverPreview.foreground') as string
+        const foreground = userForeground == 'auto' ? themeForeground : userForeground
         let m = foreground ? foreground.match(/^#(..)(..)(..)$/) : null
         if (m) {
             const color = '\\color[RGB]{' + Number('0x' + m[1]) + ',' + Number('0x' + m[2]) + ',' + Number('0x' + m[3]) + '}'
