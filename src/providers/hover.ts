@@ -2,34 +2,37 @@ import * as vscode from 'vscode'
 import * as envpair from '../components/envpair'
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
+import * as mathjax from 'mathjax-node'
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
+        mathjax.config({
+            extensions: "TeX/AMSmath,TeX/AMSsymbols,TeX/noUndefined,TeX/autoload-all",
+            MathJax : {
+                jax: ["input/TeX", "output/SVG"],
+                tex2jax: {
+                    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+                    displayMath: [ ['$$','$$'], ['\\[','\\]'] ]
+                }
+            }
+        })
+        mathjax.start()
     }
 
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
     Thenable<vscode.Hover> {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            const hov = configuration.get('hoverPreview.enabled') as boolean
-            const panel = this.extension.panels.filter( p => p.visible )[0]
-            if (hov && panel !== undefined) {
+            const h = configuration.get('hoverPreview.enabled') as boolean
+            if (h) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
-                    const scale = configuration.get('hoverPreview.scale') as number
                     const [tex, range] = tr
-                    const d = panel.webview.onDidReceiveMessage( message => {
-                        resolve( new vscode.Hover(new vscode.MarkdownString( '![equation](' + message.dataurl + ')' ), range ) )
-                        d.dispose()
-                    })
-                    panel.webview.postMessage({
-                        text: tex,
-                        scale,
-                        need_dataurl: '1'
-                    })
+                    this.provideHoverPreview(tex, range)
+                    .then( (hover) => { resolve(hover) } )
                     return
                 }
             }
@@ -51,6 +54,32 @@ export class HoverProvider implements vscode.HoverProvider {
                 return
             }
             resolve()
+        })
+    }
+
+    private provideHoverPreview(tex: string, range: vscode.Range) : Promise<vscode.Hover> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const scale = configuration.get('hoverPreview.scale') as number
+        return new Promise((resolve, _reject) => {
+            let format = "TeX"
+            let m : RegExpMatchArray | null
+            if (m = tex.match(/^\$|\\\(/)) {
+                format = "inline-TeX"
+                tex = tex.substring(m[0].length, tex.length-m[0].length)
+            } else if (m = tex.match(/^\\\[/)) {
+                tex = tex.substring(m[0].length, tex.length-m[0].length)
+            }
+            mathjax.typeset({
+                math: tex,
+                format: format,
+                svg:true
+            },
+            function (data) {
+                if (!data.errors) {
+                    const s = 'data:image/svg+xml;base64,' + new Buffer(data.svg, 'binary').toString('base64')
+                    resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + s + ")" ), range ) )
+                }
+            })
         })
     }
 
