@@ -4,7 +4,6 @@ import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
 import * as mathjax from 'mathjax-node'
 import * as vscodethemesdb from './vscodethemesdb'
-import * as jsdom from 'jsdom'
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
@@ -92,8 +91,9 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private setVSCodeForegroundColor(tex: string) : string | undefined {
         const configuration = vscode.workspace.getConfiguration('workbench')
-        const theme = configuration.get('colorTheme') as string
-        const foreground = theme ? vscodethemesdb.themes[theme].foreground : undefined
+        const themename = configuration.get('colorTheme') as string
+        const theme = themename ? vscodethemesdb.themes[themename] : undefined
+        const foreground = theme ? theme.foreground : undefined
         let m = foreground ? foreground.match(/^#(..)(..)(..)$/) : null
         if (m) {
             const color = '\\color[RGB]{' + Number('0x' + m[1]) + ',' + Number('0x' + m[2]) + ',' + Number('0x' + m[3]) + '}'
