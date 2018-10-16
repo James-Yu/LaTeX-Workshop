@@ -3,6 +3,8 @@ import * as envpair from '../components/envpair'
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
 import * as mathjax from 'mathjax-node'
+import * as vscodethemesdb from './vscodethemesdb'
+import * as jsdom from 'jsdom'
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
@@ -10,14 +12,7 @@ export class HoverProvider implements vscode.HoverProvider {
     constructor(extension: Extension) {
         this.extension = extension
         mathjax.config({
-            extensions: "TeX/AMSmath,TeX/AMSsymbols,TeX/noUndefined,TeX/autoload-all",
-            MathJax : {
-                jax: ["input/TeX", "output/SVG"],
-                tex2jax: {
-                    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
-                    displayMath: [ ['$$','$$'], ['\\[','\\]'] ]
-                }
-            }
+            extensions: "TeX/AMSmath,TeX/AMSsymbols,TeX/noUndefined,TeX/autoload-all"
         })
         mathjax.start()
     }
@@ -69,18 +64,46 @@ export class HoverProvider implements vscode.HoverProvider {
             } else if (m = tex.match(/^\\\[/)) {
                 tex = tex.substring(m[0].length, tex.length-m[0].length)
             }
+            let tx = this.setVSCodeForegroundColor(tex)
+            if (!tx) {
+                _reject()
+            }
             mathjax.typeset({
-                math: tex,
+                math: tx,
                 format: format,
-                svg:true
+                svgNode:true
             },
             function (data) {
-                if (!data.errors) {
-                    const s = 'data:image/svg+xml;base64,' + new Buffer(data.svg, 'binary').toString('base64')
+                if (!data.errors && data.svgNode) {
+                    const svgelm = data.svgNode
+                    const m0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/)
+                    const m1 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/)
+                    const w = scale* Number(m0[1])
+                    const h = scale * Number(m1[1])
+                    svgelm.setAttribute("width", w + m0[2])
+                    svgelm.setAttribute("height", h + m1[2])
+                    const svg = svgelm.outerHTML
+                    const s = 'data:image/svg+xml;base64,' + new Buffer(svg, 'binary').toString('base64')
                     resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + s + ")" ), range ) )
                 }
             })
         })
+    }
+
+    private setVSCodeForegroundColor(tex: string) : string | undefined {
+        const configuration = vscode.workspace.getConfiguration('workbench')
+        const theme = configuration.get('colorTheme') as string
+        const foreground = theme ? vscodethemesdb.themes[theme].foreground : undefined
+        let m = foreground ? foreground.match(/^#(..)(..)(..)$/) : null
+        if (m) {
+            const color = '\\color[RGB]{' + Number('0x' + m[1]) + ',' + Number('0x' + m[2]) + ',' + Number('0x' + m[3]) + '}'
+            var ret = tex.replace(/^(\$|\\\(|\\\[|\\begin{.*?}({.*?})*)/, '$1' + color)
+            // insert \color{ } after each & and \\
+            // while skipping CD env
+            ret = ret.replace(/(\\begin{CD}[\s\S]*?\\end{CD}|((?:\\[^\\]|[^&\\])*&+|\\\\))/g, '$1' + color)
+            return ret
+        }
+        return undefined
     }
 
     // Test whether cursor is in tex command strings
