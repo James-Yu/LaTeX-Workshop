@@ -25,5 +25,9 @@ export const themes : { [theme:string]: { foreground : string} } =
     "Winter is Coming (Dark Blue)" : { foreground : "#a7dbf7" },
     "Winter is Coming (Dark)" : { foreground : "#a7dbf7" },
     "Winter is Coming (Light)" : { foreground : "#236ebf" },
-
+    "Monokai Pro" : { foreground : "#FCFCFA" },
+    "Monokai Pro (Filter Machine)" : { foreground : "#F2FFFC" },
+    "Monokai Pro (Filter Octagon)" : { foreground : "#EAF2F1" },
+    "Monokai Pro (Filter Ristretto)" : { foreground : "#FFF1F3" },
+    "Monokai Pro (Filter Spectrum)" : { foreground : "#F7F1FF" },
 }
