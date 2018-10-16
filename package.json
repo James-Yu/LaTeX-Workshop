@@ -407,7 +407,12 @@
       {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  vim.mode != 'CommandlineInProgress'"
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  vim.active && vim.mode == 'Insert'"
+      },
+      {
+        "command": "latex-workshop.onEnterKey",
+        "key": "enter",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  !vim.active"
       },
       {
         "command": "latex-workshop.onAltEnterKey",
