@@ -96,7 +96,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '(?:((?:\\\\(?:input|include|subfile|(?:(?:sub)?import\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        let pattern = '(?:((?:\\\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?import\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
@@ -183,7 +183,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 rootStack.push(newSection)
 
-            } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
+            } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\InputIfFileExists') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
                 // zoom into this file
                 // resolve the path
                 let inputFilePath
