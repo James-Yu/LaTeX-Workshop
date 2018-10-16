@@ -132,7 +132,7 @@ export class Viewer {
                     useGlobalCache: false
                 },
                 TeX: {
-                    extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js"]
+                    extensions: ["AMSmath.js", "AMSsymbols.js", "noUndefined.js", "autoload-all.js"]
                 },
                 tex2jax: {
                     inlineMath: [ ['\$','\$'], ['\\\\(', '\\\\)'] ]
