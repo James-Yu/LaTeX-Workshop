@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as mj from 'mathjax-node'
 
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
@@ -271,6 +272,21 @@ export async function activate(context: vscode.ExtensionContext) {
             })
         }
     })
+
+    mj.config({ MathJax: {
+        jax: ['input/TeX', 'output/SVG'],
+        extensions: ['tex2jax.js', 'MathMenu.js', 'MathZoom.js'],
+        showMathMenu: false,
+        showProcessingMessages: false,
+        messageStyle: 'none',
+        SVG: {
+            useGlobalCache: false
+        },
+        TeX: {
+            extensions: ['AMSmath.js', 'AMSsymbols.js', 'noUndefined.js', 'autoload-all.js']
+        }
+    } })
+    mj.start()
 }
 
 export class Extension {
@@ -292,7 +308,6 @@ export class Extension {
     texMagician: TeXMagician
     envPair: EnvPair
     structureProvider: SectionNodeProvider
-    panels: vscode.WebviewPanel[] = []
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)

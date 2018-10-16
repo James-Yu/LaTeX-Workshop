@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as envpair from '../components/envpair'
+import * as mj from 'mathjax-node'
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
 
@@ -15,21 +16,19 @@ export class HoverProvider implements vscode.HoverProvider {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const hov = configuration.get('hoverPreview.enabled') as boolean
-            const panel = this.extension.panels.filter( p => p.visible )[0]
-            if (hov && panel !== undefined) {
+            if (hov) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
                     const scale = configuration.get('hoverPreview.scale') as number
                     const [tex, range] = tr
-                    const d = panel.webview.onDidReceiveMessage( message => {
-                        resolve( new vscode.Hover(new vscode.MarkdownString( '![equation](' + message.dataurl + ')' ), range ) )
-                        d.dispose()
-                    })
-                    panel.webview.postMessage({
-                        text: tex,
-                        scale,
-                        need_dataurl: '1'
-                    })
+                    mj.typeset({
+                        math: tex,
+                        format: 'TeX',
+                        svg: true,
+                    }).then(data => this.scaleSVG(data.svg, scale))
+                        .then(xml => this.fillBackground(xml))
+                        .then(xml => this.svgToDataUrl(xml))
+                        .then(md => resolve( new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) ))
                     return
                 }
             }
@@ -52,6 +51,31 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             resolve()
         })
+    }
+
+    private scaleSVG(svg: string, scale: number) : string {
+        const widthReg = svg.match(/( width=")([\.\d]+)(\w*" )/)
+        const heightReg = svg.match(/( height=")([\.\d]+)(\w*" )/)
+        if (!widthReg || !heightReg) {
+            return svg
+        }
+        svg = svg.replace(/( width=")([\.\d]+)(\w*" )/, `${widthReg[1]}${parseFloat(widthReg[2]) * scale}${widthReg[3]}`)
+        svg = svg.replace(/( height=")([\.\d]+)(\w*" )/, `${heightReg[1]}${parseFloat(heightReg[2]) * scale}${heightReg[3]}`)
+        return svg
+    }
+
+    private svgToDataUrl(xml: string) : string {
+        const svg64 = Buffer.from(unescape(encodeURIComponent(xml))).toString('base64')
+        const b64Start = 'data:image/svg+xml;base64,'
+        return b64Start + svg64
+    }
+
+    private fillBackground(xml: string) : string {
+        const viewbox = xml.match(/viewBox="([\d.-]+) ([\d.-]+) ([\d.-]+) ([\d.-]+)"/)
+        if (!viewbox) {
+            return xml
+        }
+        return xml.replace('<defs aria-hidden="true">', `<rect x="${viewbox[1]}" y="${viewbox[2]}" width="${viewbox[3]}" height="${viewbox[4]}" fill="white" /><defs aria-hidden="true">`)
     }
 
     // Test whether cursor is in tex command strings
@@ -96,6 +120,12 @@ export class HoverProvider implements vscode.HoverProvider {
         s = s.replace(/\\label\{.*?\}/g, '')
         if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
             s = '\\begin{equation}' + s + '\\end{equation}'
+        }
+        if (s.startsWith('$') && s.endsWith('$')) {
+            s = s.slice(1, s.length - 1)
+        }
+        if (s.startsWith('\\(') && s.endsWith('\\)')) {
+            s = s.slice(2, s.length - 2)
         }
         return s
     }
