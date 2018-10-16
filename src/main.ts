@@ -118,29 +118,30 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName())
     vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => extension.commander.multiCursorEnvName())
     vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
-    // vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
-    // vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
+    vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
+    vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
     vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
 
     vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => extension.commander.insertSnippet('textbf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => extension.commander.insertSnippet('textit'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => extension.commander.insertSnippet('underline'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textem', () => extension.commander.insertSnippet('textem'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => extension.commander.insertSnippet('textrm'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => extension.commander.insertSnippet('texttt'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => extension.commander.insertSnippet('textsl'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => extension.commander.insertSnippet('textsc'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => extension.commander.insertSnippet('textnormal'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => extension.commander.insertSnippet('textsuperscript'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => extension.commander.insertSnippet('textsubscript'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => extension.commander.insertSnippet('mathbf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => extension.commander.insertSnippet('mathit'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => extension.commander.insertSnippet('mathrm'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => extension.commander.insertSnippet('mathtt'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => extension.commander.insertSnippet('mathsf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.insertSnippet('mathbb'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.insertSnippet('mathcal'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => extension.commander.toggleSelectedKeyword('emph'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => extension.commander.toggleSelectedKeyword('textbf'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => extension.commander.toggleSelectedKeyword('textit'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => extension.commander.toggleSelectedKeyword('underline'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => extension.commander.toggleSelectedKeyword('textrm'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => extension.commander.toggleSelectedKeyword('texttt'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => extension.commander.toggleSelectedKeyword('textsl'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => extension.commander.toggleSelectedKeyword('textsc'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => extension.commander.toggleSelectedKeyword('textnormal'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => extension.commander.toggleSelectedKeyword('textsuperscript'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => extension.commander.toggleSelectedKeyword('textsubscript'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => extension.commander.toggleSelectedKeyword('mathbf'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => extension.commander.toggleSelectedKeyword('mathit'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => extension.commander.toggleSelectedKeyword('mathrm'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => extension.commander.toggleSelectedKeyword('mathtt'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => extension.commander.toggleSelectedKeyword('mathsf'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.toggleSelectedKeyword('mathbb'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal'))
+    vscode.commands.registerCommand('latex-workshop.surround', () => extension.completer.command.surround())
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
@@ -188,14 +189,14 @@ export async function activate(context: vscode.ExtensionContext) {
         if (extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabledAfterInterval()
 
-            const previousRoot = extension.manager.rootFile
-            extension.manager.findRoot().then(rootFile => {
-                if (rootFile === undefined || rootFile === previousRoot) {
-                    return
-                }
-                extension.structureProvider.refresh()
-                extension.structureProvider.update()
-            })
+            // const previousRoot = extension.manager.rootFile
+            // extension.manager.findRoot().then(rootFile => {
+            //     if (rootFile === undefined || rootFile === previousRoot) {
+            //         return
+            //     }
+            //     extension.structureProvider.refresh()
+            //     extension.structureProvider.update()
+            // })
         }
     }))
 
@@ -291,6 +292,7 @@ export class Extension {
     texMagician: TeXMagician
     envPair: EnvPair
     structureProvider: SectionNodeProvider
+    panels: vscode.WebviewPanel[] = []
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)

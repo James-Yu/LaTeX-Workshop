@@ -14,7 +14,7 @@ function stripComments(line: string) : string {
     return line
 }
 
-function escapeRegExp(str) {
+export function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
 }
 

@@ -1,5 +1,24 @@
 # Change Log
 
+## [5.12.2] - 2018-10-14
+
+### Fixed
+- Bundle a minimal MathJax with the extension.
+- (#873) Enable scaling of math preview in hover.
+
+## [5.12.1] - 2018-10-14
+
+### Fixed
+- Not able to preview maths in LaTeX environments.
+
+## [5.12.0] - 2018-10-14
+
+### Added
+- Insert `\item` on enter again.
+- Auto-completion for file path.
+- (#864) Use webpack for release bundling.
+- (#867) Hover on LaTeX for math preview.
+
 ## [5.11.1] - 2018-10-05
 
 ### Fixed

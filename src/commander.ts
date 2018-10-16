@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 
 import {Extension} from './main'
+import {getLongestBalancedString} from './providers/structure'
 
 export class Commander {
     extension: Extension
@@ -401,6 +402,12 @@ export class Commander {
         if (!editor) {
             return
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('bind.enter.key')) {
+            return editor.edit(() => {
+                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+            })
+        }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
         }
@@ -434,16 +441,70 @@ export class Commander {
                 newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length)
             }
             return editor.edit(editBuilder => {
-                // editBuilder.insert(cursorPos.with(line.lineNumber + 1, 0), `${itemString}\n`)
-                editBuilder.insert(cursorPos.with(line.lineNumber + 1, 0), itemString + '\n')
+                editBuilder.insert(cursorPos, '\n' + itemString)
                 }).then(() => {
                     editor.selection = new vscode.Selection(newCursorPos, newCursorPos)
                 }
             ).then(() => { editor.revealRange(editor.selection) })
         }
-        return editor.edit(editBuilder => {
-            editBuilder.insert(cursorPos, editor.document.eol === 1 ? '\n' : '\r\n')
-        })//vscode.commands.executeCommand('editor.action.insertLineAfter')
+        return editor.edit(() => {
+            vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+        })
+    }
+
+    /**
+    * Toggle a keyword, if the cursor is inside a keyword,
+    * the keyword will be removed, otherwise a snippet will be added.
+    * @param keyword the keyword to toggle without backslash eg. textbf or underline
+    * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
+    */
+    toggleSelectedKeyword(keyword: string, outerBraces?: boolean) : undefined | 'added' | 'removed' {
+        const editor = vscode.window.activeTextEditor
+        if (editor === undefined) {
+            return
+        }
+
+        const { selection, document } = editor
+        const selectionText = document.getText(selection)
+        const line = document.lineAt(selection.anchor)
+        const pattern = new RegExp(`\\\\${keyword}{`, 'g')
+        let match = pattern.exec(line.text)
+        while (match !== null) {
+            const matchStart = line.range.start.translate(0, match.index)
+            const matchEnd = matchStart.translate(0, match[0].length)
+            const searchString = document.getText(new vscode.Range(matchEnd, line.range.end))
+            const insideText = getLongestBalancedString(searchString)
+            const matchRange = new vscode.Range(matchStart, matchEnd.translate(0, insideText.length + 1))
+
+            if (matchRange.contains(selection)) {
+                // Remove keyword
+                editor.edit(((editBuilder) => {
+                    editBuilder.replace(matchRange, insideText)
+                }))
+                return 'removed'
+            }
+            match = pattern.exec(line.text)
+        }
+
+        // Add keyword
+        if (selectionText.length > 0) {
+            editor.edit(((editBuilder) => {
+                if (outerBraces === true) {
+                    editBuilder.replace(selection, `{\\${keyword} ${selectionText}}`)
+                } else {
+                    editBuilder.replace(selection, `\\${keyword}{${selectionText}}`)
+                }
+            }))
+        } else {
+            let snippet: vscode.SnippetString
+            if (outerBraces === true) {
+                snippet = new vscode.SnippetString(`{\\${keyword} $1}`)
+            } else {
+                snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
+            }
+            editor.insertSnippet(snippet, selection.start)
+        }
+        return 'added'
     }
 
     devParseLog() {

@@ -8,7 +8,7 @@ import { Extension } from '../main'
  * Finding the longest substring containing balanced {...}
  * @param s a string
  */
-function getLongestBalancedString(s: string) : string {
+export function getLongestBalancedString(s: string) : string {
     let nested = 1
     let i = 0
     for (i = 0; i < s.length; i++) {
@@ -89,7 +89,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return rootStack.length === 0
         }
 
-        this.extension.logger.addLogMessage(`Parsing ${filePath} for outline`)
         let content = fs.readFileSync(filePath, 'utf-8')
         content = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
         const endPos = content.search(/\\end{document}/gm)

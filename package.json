@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icon.png",
-  "version": "5.11.1",
+  "version": "5.12.2",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -42,7 +42,7 @@
     "onCommand:latex-workshop.log",
     "onCommand:latex-workshop.actions"
   ],
-  "main": "./out/src/main",
+  "main": "./out/src/main.js",
   "contributes": {
     "languages": [
       {
@@ -305,109 +305,130 @@
         "mac": "cmd+l cmd+b",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textbf"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+i",
         "mac": "cmd+l cmd+i",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textit"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+u",
         "mac": "cmd+l cmd+u",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.underline"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+e",
         "mac": "cmd+l cmd+e",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
-        "command": "latex-workshop.shortcut.textem"
-    },
-    {
+        "command": "latex-workshop.shortcut.emph"
+      },
+      {
         "key": "ctrl+l ctrl+r",
         "mac": "cmd+l cmd+r",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textrm"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+t",
         "mac": "cmd+l cmd+t",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.texttt"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+s",
         "mac": "cmd+l cmd+s",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textsl"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+c",
         "mac": "cmd+l cmd+c",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textsc"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+n",
         "mac": "cmd+l cmd+n",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textnormal"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+6",
         "mac": "cmd+l cmd+6",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textsuperscript"
-    },
-    {
+      },
+      {
         "key": "ctrl+l ctrl+oem_minus",
         "mac": "cmd+l cmd+oem_minus",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.textsubscript"
-    },
-    {
+      },
+      {
         "key": "ctrl+m ctrl+b",
         "mac": "cmd+m cmd+b",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.mathbf"
-    },
-    {
+      },
+      {
         "key": "ctrl+m ctrl+i",
         "mac": "cmd+m cmd+i",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.mathit"
-    },
-    {
+      },
+      {
         "key": "ctrl+m ctrl+r",
         "mac": "cmd+m cmd+r",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.mathrm"
-    },
-    {
+      },
+      {
         "key": "ctrl+m ctrl+t",
         "mac": "cmd+m cmd+t",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.mathtt"
-    },
-    {
+      },
+      {
         "key": "ctrl+m ctrl+s",
         "mac": "cmd+m cmd+s",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.mathsf"
-    },
-    {
+      },
+      {
         "key": "ctrl+m ctrl+shift+b",
         "mac": "cmd+m cmd+shift+b",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
         "command": "latex-workshop.shortcut.mathbb"
-    },
-    {
+      },
+      {
         "key": "ctrl+m ctrl+c",
         "mac": "cmd+m cmd+c",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
-        "command": "latex-workshop.shortcut.mathcal"
-    }
+        "command": "latex-workshop.shorcut.mathcal"
+      },
+      {
+        "key": "ctrl+l ctrl+w",
+        "mac": "cmd+l cmd+w",
+        "when": "editorTextFocus && !editorReadonly && editorHasSelection && editorLangId == 'latex'",
+        "command": "latex-workshop.surround"
+      },
+      {
+        "command": "latex-workshop.onEnterKey",
+        "key": "enter",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  vim.active && vim.mode == 'Insert'"
+      },
+      {
+        "command": "latex-workshop.onEnterKey",
+        "key": "enter",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  !vim.active"
+      },
+      {
+        "command": "latex-workshop.onAltEnterKey",
+        "key": "alt+enter",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible"
+      }
     ],
     "configuration": {
       "type": "object",
@@ -758,6 +779,58 @@
           "type": "boolean",
           "default": false,
           "description": "Enable the LaTeX contextual menu. This menu is deactived as it is available through the new LaTeX badge. Just set this variable to `true` to recover the menu."
+        },
+        "latex-workshop.bind.enter.key": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable the automatic insertion of `\\item` on a newline when pressing `Enter` in a line starting in `\\item`. "
+        },
+        "latex-workshop.hoverPreview.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable Hover Preview."
+        },
+        "latex-workshop.hoverPreview.scale": {
+          "type": "number",
+          "default": 1.0,
+          "description": "Scaling of Hover Preview."
+        },
+        "latex-workshop.hoverPreview.cursor.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Render cursor in Hover Preview at the current position."
+        },
+        "latex-workshop.hoverPreview.cursor.symbol": {
+          "type": "string",
+          "default": "\\ddagger",
+          "description": "Cursor symbol in Hover Preview."
+        },
+        "latex-workshop.hoverPreview.cursor.color": {
+          "type": "string",
+          "default": "auto",
+          "enum": [
+            "auto",
+            "black",
+            "blue",
+            "brown",
+            "cyan",
+            "darkgray",
+            "gray",
+            "green",
+            "lightgray",
+            "lime",
+            "magenta",
+            "olive",
+            "orange",
+            "pink",
+            "purple",
+            "red",
+            "teal",
+            "violet",
+            "white",
+            "yellow"
+          ],
+          "description": "The color of cursor in Hover Preview."
         }
       }
     },
@@ -779,7 +852,6 @@
           "group": "navigation@102"
         }
       ],
-
       "editor/title": [
         {
           "when": "editorLangId == latex",
@@ -813,7 +885,7 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "tsc -p ./",
+    "vscode:prepublish": "rm -rf out && webpack --mode production",
     "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
@@ -830,6 +902,7 @@
     "chokidar": "^2.0.3",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.1",
+    "micromatch": "^3.0.0",
     "pdfjs-dist": "^1.8.609",
     "ws": "^5.1.1"
   },
@@ -837,11 +910,14 @@
     "@types/chokidar": "^1.6.0",
     "@types/fs-extra": "^5.0.0",
     "@types/glob": "^5.0.30",
-    "@types/ws": "^4.0.2",
+    "@types/micromatch": "^3.0.0",
     "@types/node": "^7.0.59",
+    "@types/ws": "^4.0.2",
     "tslint": "^5.0.0",
+    "ts-loader": "^5.2.1",
     "typescript": "^2.0.3",
     "vscode": "^1.1.14",
-    "webpack": "^2.7.0"
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
   }
 }

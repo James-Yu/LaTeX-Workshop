@@ -32,6 +32,8 @@ One million downloads! This project won't be successful without contributions fr
   - To add a multi-cursor to the current environment name, call _LaTeX Workshop: Add a multi-cursor to the current environment name_ from the **Command Palette** (command `latex-workshop.multicursor-envname` ). For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. Repeated calls result in selecting the outer environments.
 - [Snippets](snippets/snippets-doc.md)
   - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
+  - \[**Deprecated**\] Surround some selected text with a LaTeX command by pressing `\` after selecting some text. A new menu pops up to select the command. This feature is enabled when `latex-workshop.intellisense.surroundCommand.enabled` is set to `true`, default is `false`.
+  - Surround some selected text with a LaTeX command using <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>ctrl</kbd>+<kbd>w</kbd> (<kbd>⌘</kbd>+<kbd>l</kbd>, <kbd>⌘</kbd>+<kbd>w</kbd> on Mac). A new menu pops up to select the command. This works with multi selections. The former approach using `\` has been deprecated.
   - We also provide a few other snippets mechanisms
     - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](snippets/snippets-doc.md#greek-letters).
     - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](snippets/snippets-doc.md#environments).
@@ -39,6 +41,7 @@ One million downloads! This project won't be successful without contributions fr
     - Many other maths symbols can be obtained with the `@` prefix. See [here](snippets/snippets-doc.md#mathematical-symbols).
 - [Shortcuts](Shortcuts-doc.md)
   - In addition to shortcuts that interface with the extension, the ability to easily format text (and one or two other things) is also present.
+- When the current line starts with `\item` or `\item[]`, hitting `Enter` automatically adds a newline starting in the same way. For a better handling of the last item, hitting `Enter` on a line only containing `\item` or `\item[]` actually deletes the content of the line. The `alt+Enter` is bind to the standard newline command. This automatic insertion of `\item` can be deactivated by setting `latex-workshop.bind.enter.key` to `false`.
 
 ## Requirements
 
