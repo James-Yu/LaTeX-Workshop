@@ -1,4 +1,6 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs-extra'
+import * as path from 'path'
 import * as envpair from '../components/envpair'
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
@@ -6,6 +8,7 @@ import {tokenizer} from './tokenizer'
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
     jaxInitialized = false
+    color
     mj
 
     constructor(extension: Extension) {
@@ -23,13 +26,21 @@ export class HoverProvider implements vscode.HoverProvider {
                         useGlobalCache: false
                     },
                     TeX: {
-                        extensions: ['AMSmath.js', 'AMSsymbols.js', 'autoload-all.js', 'noUndefined.js']
+                        extensions: ['AMSmath.js', 'AMSsymbols.js', 'autoload-all.js', 'color.js', 'noUndefined.js']
                     }
                 }
             })
             mj.start()
             this.jaxInitialized = true
         })
+        const colorPath = this.getColorThemePath()
+        if (colorPath) {
+            const theme = JSON.parse(fs.readFileSync(colorPath, 'utf8'))
+            const color = this.hexToRgb(theme.colors['activityBar.foreground'])
+            if (color) {
+                this.color = `${color.r / 255}, ${color.g / 255}, ${color.b / 255}`
+            }
+        }
     }
 
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
@@ -43,11 +54,10 @@ export class HoverProvider implements vscode.HoverProvider {
                     const scale = configuration.get('hoverPreview.scale') as number
                     const [tex, range] = tr
                     this.mj.typeset({
-                        math: tex,
+                        math: this.colorTeX(tex),
                         format: 'TeX',
                         svg: true,
                     }).then(data => this.scaleSVG(data.svg, scale))
-                        .then(xml => this.fillBackground(xml))
                         .then(xml => this.svgToDataUrl(xml))
                         .then(md => resolve( new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) ))
                     return
@@ -91,12 +101,42 @@ export class HoverProvider implements vscode.HoverProvider {
         return b64Start + svg64
     }
 
-    private fillBackground(xml: string) : string {
-        const viewbox = xml.match(/viewBox="([\d.-]+) ([\d.-]+) ([\d.-]+) ([\d.-]+)"/)
-        if (!viewbox) {
-            return xml
+    private hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
+        return result ? {
+            r: parseInt(result[1], 16),
+            g: parseInt(result[2], 16),
+            b: parseInt(result[3], 16)
+        } : null
+    }
+
+    private colorTeX(tex: string) : string {
+        const color = '\\color[rgb]{' + this.color + '}'
+        tex = tex.replace(/^(\$|\\\(|\\\[|\\begin{.*?}({.*?})*)/, '$1' + color)
+        tex = tex.replace(/(\\begin{CD}[\s\S]*?\\end{CD}|((?:\\[^\\]|[^&\\])*&+|\\\\))/g, '$1' + color)
+
+        if (tex.startsWith('$') && tex.endsWith('$')) {
+            tex = tex.slice(1, tex.length - 1)
         }
-        return xml.replace('<defs aria-hidden="true">', `<rect x="${viewbox[1]}" y="${viewbox[2]}" width="${viewbox[3]}" height="${viewbox[4]}" fill="white" /><defs aria-hidden="true">`)
+        if (tex.startsWith('\\(') && tex.endsWith('\\)')) {
+            tex = tex.slice(2, tex.length - 2)
+        }
+        return tex
+    }
+
+    private getColorThemePath() : string | undefined {
+        const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme')
+        for (const extension of vscode.extensions.all) {
+            if (extension.packageJSON.contributes.themes === undefined) {
+                continue
+            }
+            const candidateThemes = extension.packageJSON.contributes.themes.filter(theme => theme.label === colorTheme)
+            if (candidateThemes.length === 0) {
+                continue
+            }
+            return path.join(extension.extensionPath, candidateThemes[0].path)
+        }
+        return
     }
 
     // Test whether cursor is in tex command strings
@@ -141,12 +181,6 @@ export class HoverProvider implements vscode.HoverProvider {
         s = s.replace(/\\label\{.*?\}/g, '')
         if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
             s = '\\begin{equation}' + s + '\\end{equation}'
-        }
-        if (s.startsWith('$') && s.endsWith('$')) {
-            s = s.slice(1, s.length - 1)
-        }
-        if (s.startsWith('\\(') && s.endsWith('\\)')) {
-            s = s.slice(2, s.length - 2)
         }
         return s
     }
