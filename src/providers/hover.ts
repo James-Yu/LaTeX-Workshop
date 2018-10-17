@@ -148,6 +148,9 @@ export class HoverProvider implements vscode.HoverProvider {
                     this.color = '1, 1, 1'
                 }
                 return
+            } else if (theme.type && theme.type === 'dark') {
+                this.color = '1, 1, 1'
+                return
             }
         }
         this.color = '0, 0, 0'
