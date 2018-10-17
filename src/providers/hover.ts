@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
+import * as stripJsonComments from 'strip-json-comments'
 import * as envpair from '../components/envpair'
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
@@ -33,18 +34,11 @@ export class HoverProvider implements vscode.HoverProvider {
             mj.start()
             this.jaxInitialized = true
         })
-        const colorPath = this.getColorThemePath()
-        if (colorPath) {
-            const theme = JSON.parse(fs.readFileSync(colorPath, 'utf8'))
-            const color = this.hexToRgb(theme.colors['activityBar.foreground'])
-            if (color) {
-                this.color = `${color.r / 255}, ${color.g / 255}, ${color.b / 255}`
-            }
-        }
     }
 
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
     Thenable<vscode.Hover> {
+        this.getColor()
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const hov = configuration.get('hoverPreview.enabled') as boolean
@@ -104,9 +98,9 @@ export class HoverProvider implements vscode.HoverProvider {
     private hexToRgb(hex) {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
         return result ? {
-            r: parseInt(result[1], 16),
-            g: parseInt(result[2], 16),
-            b: parseInt(result[3], 16)
+            r: parseInt(result[1], 16) / 255,
+            g: parseInt(result[2], 16) / 255,
+            b: parseInt(result[3], 16) / 255
         } : null
     }
 
@@ -124,19 +118,39 @@ export class HoverProvider implements vscode.HoverProvider {
         return tex
     }
 
-    private getColorThemePath() : string | undefined {
+    private getColor() {
         const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme')
         for (const extension of vscode.extensions.all) {
             if (extension.packageJSON.contributes.themes === undefined) {
                 continue
             }
-            const candidateThemes = extension.packageJSON.contributes.themes.filter(theme => theme.label === colorTheme)
+            const candidateThemes = extension.packageJSON.contributes.themes.filter(themePkg => themePkg.label === colorTheme || themePkg.id === colorTheme)
             if (candidateThemes.length === 0) {
                 continue
             }
-            return path.join(extension.extensionPath, candidateThemes[0].path)
+            const themePath = path.join(extension.extensionPath, candidateThemes[0].path)
+            let theme = JSON.parse(stripJsonComments(fs.readFileSync(themePath, 'utf8')))
+            while (theme.include) {
+                const includedTheme = JSON.parse(stripJsonComments(fs.readFileSync(path.join(path.dirname(themePath), theme.include), 'utf8')))
+                theme.include = undefined
+                theme = {... theme, ...includedTheme}
+            }
+            const bgColor = this.hexToRgb(theme.colors['editor.background'])
+            if (bgColor) {
+                // http://stackoverflow.com/a/3943023/112731
+                const r = bgColor.r <= 0.03928 ? bgColor.r / 12.92 : Math.pow((bgColor.r + 0.055) / 1.055, 2.4)
+                const g = bgColor.r <= 0.03928 ? bgColor.g / 12.92 : Math.pow((bgColor.g + 0.055) / 1.055, 2.4)
+                const b = bgColor.r <= 0.03928 ? bgColor.b / 12.92 : Math.pow((bgColor.b + 0.055) / 1.055, 2.4)
+                const L = 0.2126 * r + 0.7152 * g + 0.0722 * b
+                if (L > 0.179) {
+                    this.color = '0, 0, 0'
+                } else {
+                    this.color = '1, 1, 1'
+                }
+                return
+            }
         }
-        return
+        this.color = '0, 0, 0'
     }
 
     // Test whether cursor is in tex command strings
