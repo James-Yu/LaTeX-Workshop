@@ -2,34 +2,32 @@ import * as vscode from 'vscode'
 import * as envpair from '../components/envpair'
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
+import * as mathjax from 'mathjax-node'
+import * as vscodethemesdb from './vscodethemesdb'
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
+        mathjax.config({
+            extensions: "TeX/AMSmath,TeX/AMSsymbols,TeX/noUndefined,TeX/autoload-all"
+        })
+        mathjax.start()
     }
 
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
     Thenable<vscode.Hover> {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            const hov = configuration.get('hoverPreview.enabled') as boolean
-            const panel = this.extension.panels.filter( p => p.visible )[0]
-            if (hov && panel !== undefined) {
+            const h = configuration.get('hoverPreview.enabled') as boolean
+            const color = this.getVSCodeForegroundColor()
+            if (h && color !== undefined) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
-                    const scale = configuration.get('hoverPreview.scale') as number
                     const [tex, range] = tr
-                    const d = panel.webview.onDidReceiveMessage( message => {
-                        resolve( new vscode.Hover(new vscode.MarkdownString( '![equation](' + message.dataurl + ')' ), range ) )
-                        d.dispose()
-                    })
-                    panel.webview.postMessage({
-                        text: tex,
-                        scale,
-                        need_dataurl: '1'
-                    })
+                    this.provideHoverPreview(tex, range)
+                    .then( (hover) => { resolve(hover) } )
                     return
                 }
             }
@@ -52,6 +50,73 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             resolve()
         })
+    }
+
+    private provideHoverPreview(tex: string, range: vscode.Range) : Promise<vscode.Hover> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const scale = configuration.get('hoverPreview.scale') as number
+        return new Promise((resolve, _reject) => {
+            let format = "TeX"
+            let m : RegExpMatchArray | null
+            const tx = this.setVSCodeForegroundColorToTex(tex)
+            if (tx) {
+                tex = tx
+            } else {
+                _reject()
+                return
+            }
+            if (m = tex.match(/^\$|\\\(/)) {
+                format = "inline-TeX"
+                tex = tex.substring(m[0].length, tex.length-m[0].length)
+            } else if (m = tex.match(/^\\\[/)) {
+                tex = tex.substring(m[0].length, tex.length-m[0].length)
+            }
+            mathjax.typeset({
+                math: tex,
+                format: format,
+                svgNode:true
+            },
+            function (data) {
+                if (!data.errors && data.svgNode) {
+                    const svgelm = data.svgNode
+                    // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
+                    const w0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/)
+                    const h0 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/)
+                    const w = scale * Number(w0[1])
+                    const h = scale * Number(h0[1])
+                    svgelm.setAttribute("width", w + w0[2])
+                    svgelm.setAttribute("height", h + h0[2])
+                    const svg = svgelm.outerHTML
+                    const s = 'data:image/svg+xml;base64,' + new Buffer(svg, 'binary').toString('base64')
+                    resolve( new vscode.Hover(new vscode.MarkdownString( "![equation](" + s + ")" ), range ) )
+                }
+            })
+        })
+    }
+
+    private setVSCodeForegroundColorToTex(tex: string) : string | undefined {
+        const foreground = this.getVSCodeForegroundColor()
+        let m = foreground ? foreground.match(/^#(..)(..)(..)$/) : null
+        if (m) {
+            const color = '\\color[RGB]{' + Number('0x' + m[1]) + ',' + Number('0x' + m[2]) + ',' + Number('0x' + m[3]) + '}'
+            var ret = tex.replace(/^(\$|\\\(|\\\[|\\begin{.*?}({.*?})*)/, '$1' + color)
+            // insert \color{ } after each & and \\
+            // while skipping CD env
+            ret = ret.replace(/(\\begin{CD}[\s\S]*?\\end{CD}|((?:\\[^\\]|[^&\\])*&+|\\\\))/g, '$1' + color)
+            return ret
+        }
+        return undefined
+    }
+
+    private getVSCodeForegroundColor() : string | undefined {
+        const workbench = vscode.workspace.getConfiguration('workbench')
+        const latexworkshop = vscode.workspace.getConfiguration('latex-workshop')
+        const themename = workbench.get('colorTheme') as string
+        const theme = themename ? vscodethemesdb.themes[themename] : undefined
+        const themeForeground = theme ? theme.foreground : undefined
+        const userForeground = latexworkshop.get('hoverPreview.foreground') as string
+        const foreground = userForeground === 'auto' ? themeForeground : userForeground
+        return foreground
     }
 
     // Test whether cursor is in tex command strings

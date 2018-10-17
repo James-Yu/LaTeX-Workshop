@@ -108,37 +108,11 @@ export class Viewer {
 
     getPDFViewerContent(uri: vscode.Uri) : string {
         const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
-        const mathjaxurl = `http://${this.extension.server.address}/mathjax/MathJax.js?config=TeX-AMS_SVG`
-        const mjurl = `http://${this.extension.server.address}/mj.js`
 
         return `
             <!DOCTYPE html><html>
             <head>
-            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; script-src http://${this.extension.server.address} 'unsafe-eval' 'unsafe-inline'; style-src 'unsafe-inline';">
-            <script src='${mathjaxurl}'>
-             var script = document.createElement('script')
-             script.src = '${mjurl}'
-             document.body.appendChild(script)
-            </script>
-            <script type="text/x-mathjax-config">
-            MathJax.Hub.Config({
-                jax: ["input/TeX", "output/SVG"],
-                extensions: ["tex2jax.js", "MathMenu.js", "MathZoom.js"],
-                showMathMenu: false,
-                showProcessingMessages: false,
-                skipStartupTypeset: true,
-                messageStyle: "none",
-                SVG: {
-                    useGlobalCache: false
-                },
-                TeX: {
-                    extensions: ["AMSmath.js", "AMSsymbols.js", "noUndefined.js", "autoload-all.js"]
-                },
-                tex2jax: {
-                    inlineMath: [ ['\$','\$'], ['\\\\(', '\\\\)'] ]
-                }
-            })
-            </script>
+            <meta http-equiv="Content-Security-Policy" content="default-src http://${this.extension.server.address} ; script-src 'unsafe-eval' 'unsafe-inline'; style-src 'unsafe-inline';">
             </head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe>
@@ -156,8 +130,6 @@ export class Viewer {
                 }, 100);
             }
             </script>
-            <div id="tmp00" style="visibility: hidden; width: 1px; overflow: scroll;"></div>
-            <span id="colorpick" style="color: var(--color); background: var(--vscode-editorHoverWidget-background)"></span>
             </body></html>
         `
     }
