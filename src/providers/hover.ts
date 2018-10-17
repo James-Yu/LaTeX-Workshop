@@ -12,19 +12,21 @@ export class HoverProvider implements vscode.HoverProvider {
         this.extension = extension
         import('mathjax-node').then(mj => {
             this.mj = mj
-            mj.config({ MathJax: {
-                jax: ['input/TeX', 'output/SVG'],
-                extensions: ['tex2jax.js', 'MathZoom.js'],
-                showMathMenu: false,
-                showProcessingMessages: false,
-                messageStyle: 'none',
-                SVG: {
-                    useGlobalCache: false
-                },
-                TeX: {
-                    extensions: ['AMSmath.js', 'AMSsymbols.js', 'noUndefined.js', 'autoload-all.js']
+            mj.config({
+                MathJax: {
+                    jax: ['input/TeX', 'output/SVG'],
+                    extensions: ['tex2jax.js', 'MathZoom.js'],
+                    showMathMenu: false,
+                    showProcessingMessages: false,
+                    messageStyle: 'none',
+                    SVG: {
+                        useGlobalCache: false
+                    },
+                    TeX: {
+                        extensions: ['AMSmath.js', 'AMSsymbols.js', 'autoload-all.js', 'noUndefined.js']
+                    }
                 }
-            } })
+            })
             mj.start()
             this.jaxInitialized = true
         })
