@@ -14,7 +14,9 @@ const config = {
     vscode: 'commonjs vscode',
     fsevents: 'commonjs fsevents',
     'utf-8-validate': 'utf-8-validate',
-    'bufferutil': 'bufferutil'
+    'bufferutil': 'bufferutil',
+    'mathjax-node': 'mathjax-node',
+    'mathjax': 'mathjax'
   },
   resolve: {
     extensions: ['tsx', '.ts', '.jsx', '.js']
