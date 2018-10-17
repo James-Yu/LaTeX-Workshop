@@ -45,16 +45,10 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
-                    const scale = configuration.get('hoverPreview.scale') as number
                     const [tex, range] = tr
                     const newCommand = this.findNewCommand(document.getText())
-                    this.mj.typeset({
-                        math: newCommand + this.colorTeX(tex),
-                        format: 'TeX',
-                        svg: true,
-                    }).then(data => this.scaleSVG(data.svg, scale))
-                        .then(xml => this.svgToDataUrl(xml))
-                        .then(md => resolve( new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) ))
+                    this.provideHoverOnTex(newCommand + tex, range)
+                        .then(hover => resolve( hover ))
                     return
                 }
             }
@@ -66,8 +60,17 @@ export class HoverProvider implements vscode.HoverProvider {
             if (token in this.extension.completer.reference.referenceData) {
                 const refData = this.extension.completer.reference.referenceData[token]
                 const line = refData.item.position.line
-                const mdLink = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
-                mdLink.isTrusted = true
+                const md_link = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
+                md_link.isTrusted = true
+                if (configuration.get('hoverPreview.ref.enabled') as boolean) {
+                    const tr = this.findHoverOnRef(document, position, token, refData.item.position)
+                    if (tr) {
+                        const [tex, range] = tr
+                        this.provideHoverOnRef(tex, range)
+                            .then(hover => resolve(hover))
+                        return
+                    }
+                }
                 const md = '```latex\n' + refData.text + '\n```\n'
                 resolve( new vscode.Hover([md, mdLink]) )
                 return
@@ -97,6 +100,30 @@ export class HoverProvider implements vscode.HoverProvider {
             }
         } while (result)
         return commands.join('')
+    }
+    
+    private provideHoverOnTex(tex: string, range: vscode.Range) : Promise<vscode.Hover> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const scale = configuration.get('hoverPreview.scale') as number
+        return this.mj.typeset({
+            math: this.colorTeX(tex),
+            format: 'TeX',
+            svg: true,
+        }).then(data => this.scaleSVG(data.svg, scale))
+            .then(xml => this.svgToDataUrl(xml))
+            .then(md => new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) )
+    }
+
+    private provideHoverOnRef(tex: string, range: vscode.Range) : Promise<vscode.Hover> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const scale = configuration.get('hoverPreview.scale') as number
+        return this.mj.typeset({
+            math: this.colorTeX(tex),
+            format: 'TeX',
+            svg: true,
+        }).then(data => this.scaleSVG(data.svg, scale))
+            .then(xml => this.svgToDataUrl(xml))
+            .then(md => new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) )
     }
 
     private scaleSVG(svg: string, scale: number) : string {
@@ -255,6 +282,29 @@ export class HoverProvider implements vscode.HoverProvider {
         return this.findHoverOnInline(document, position)
     }
 
+    private findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token:string, labelPos0: vscode.Position)
+    : [string, vscode.Range] | undefined {
+        const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
+        const l = document.lineAt(labelPos0.line).text
+        const pat = new RegExp('\\\\label\\{' + envpair.escapeRegExp(token) + '\\}')
+        let m  = l.match(pat)
+        if (m && m.index !== undefined) {
+            const labelPos = new vscode.Position(labelPos0.line, m.index)
+            let beginPos = this.findBeginPair(document, envBeginPatMathMode, labelPos)
+            if (beginPos) {
+                const tr = this.findHoverOnTex(document, beginPos)
+                if (tr) {
+                    const [tex, beginEndRange] = tr
+                    const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
+                    if (refRange && beginEndRange.contains(labelPos)) {
+                        return [tex, refRange]
+                    }
+                }
+            }
+        }
+        return undefined
+    }
+
     private getFirstRmemberedSubstring(s: string, pat: RegExp) : string {
         const m = s.match(pat)
         if (m && m[1]) {
@@ -285,6 +335,31 @@ export class HoverProvider implements vscode.HoverProvider {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
             lineNum += 1
+        }
+        return undefined
+    }
+
+    //  \begin{...}                \end{...}
+    //  ^                          ^
+    //  return pos                 endPos1
+    private findBeginPair(document: vscode.TextDocument, beginPat: RegExp, endPos1: vscode.Position, limit=20) : vscode.Position | undefined {
+        const current_line = document.lineAt(endPos1).text.substr(0, endPos1.character)
+        const l = this.removeComment(current_line)
+        let m  = l.match(beginPat)
+        if (m && m.index !== undefined) {
+            return new vscode.Position(endPos1.line, m.index)
+        }
+        let lineNum = endPos1.line - 1
+        let i = 0
+        while (lineNum >=0 && i < limit) {
+            let l = document.lineAt(lineNum).text
+            l = this.removeComment(l)
+            let m  = l.match(beginPat)
+            if (m && m.index !== undefined) {
+                return new vscode.Position(lineNum, m.index)
+            }
+            lineNum -= 1
+            i += 1
         }
         return undefined
     }
