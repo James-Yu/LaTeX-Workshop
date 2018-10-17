@@ -10,6 +10,24 @@ export class HoverProvider implements vscode.HoverProvider {
 
     constructor(extension: Extension) {
         this.extension = extension
+        import('mathjax-node').then(mj => {
+            this.mj = mj
+            mj.config({ MathJax: {
+                jax: ['input/TeX', 'output/SVG'],
+                extensions: ['tex2jax.js', 'MathZoom.js'],
+                showMathMenu: false,
+                showProcessingMessages: false,
+                messageStyle: 'none',
+                SVG: {
+                    useGlobalCache: false
+                },
+                TeX: {
+                    extensions: ['AMSmath.js', 'AMSsymbols.js', 'noUndefined.js', 'autoload-all.js']
+                }
+            } })
+            mj.start()
+            this.jaxInitialized = true
+        })
     }
 
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
@@ -20,41 +38,16 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
-                    let promise
-                    if (!this.jaxInitialized) {
-                        promise = import('mathjax-node').then(mj => {
-                            this.mj = mj
-                            mj.config({ MathJax: {
-                                jax: ['input/TeX', 'output/SVG'],
-                                extensions: ['tex2jax.js', 'MathZoom.js'],
-                                showMathMenu: false,
-                                showProcessingMessages: false,
-                                messageStyle: 'none',
-                                SVG: {
-                                    useGlobalCache: false
-                                },
-                                TeX: {
-                                    extensions: ['AMSmath.js', 'AMSsymbols.js', 'noUndefined.js', 'autoload-all.js']
-                                }
-                            } })
-                            mj.start()
-                            this.jaxInitialized = true
-                        })
-                    } else {
-                        promise = Promise.resolve()
-                    }
-                    promise.then(() => {
-                        const scale = configuration.get('hoverPreview.scale') as number
-                        const [tex, range] = tr
-                        this.mj.typeset({
-                            math: tex,
-                            format: 'TeX',
-                            svg: true,
-                        }).then(data => this.scaleSVG(data.svg, scale))
-                            .then(xml => this.fillBackground(xml))
-                            .then(xml => this.svgToDataUrl(xml))
-                            .then(md => resolve( new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) ))
-                    })
+                    const scale = configuration.get('hoverPreview.scale') as number
+                    const [tex, range] = tr
+                    this.mj.typeset({
+                        math: tex,
+                        format: 'TeX',
+                        svg: true,
+                    }).then(data => this.scaleSVG(data.svg, scale))
+                        .then(xml => this.fillBackground(xml))
+                        .then(xml => this.svgToDataUrl(xml))
+                        .then(md => resolve( new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) ))
                     return
                 }
             }
