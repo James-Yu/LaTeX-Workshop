@@ -224,13 +224,15 @@ export class Builder {
                                                     .replace('%DOCFILE%', docfile)
                                                     .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
             }
-            if (process.platform === 'win32' && (step.command === 'latexmk' || step.command === 'pdflatex' )) {
-                const pdflatexVersion = cp.execSync('pdflatex --version')
-                if (pdflatexVersion.toString().match(/MiKTeX/)) {
-                    if (!step.args) {
-                        step.args = []
+            if (process.platform === 'win32') {
+                if (!step.args) {
+                    step.args = []
+                }
+                if ((step.command === 'latexmk' && step.args.indexOf('-lualatex') === -1 && step.args.indexOf('-pdflua') === -1 && step.args.indexOf('-xelatex') === -1 && step.args.indexOf('-pdfxe') === -1) || step.command === 'pdflatex') {
+                    const pdflatexVersion = cp.execSync('pdflatex --version')
+                    if (pdflatexVersion.toString().match(/MiKTeX/)) {
+                        step.args.unshift('--max-print-line=' + maxPrintLine)
                     }
-                    step.args.unshift('--max-print-line=' + maxPrintLine)
                 }
             }
         })
