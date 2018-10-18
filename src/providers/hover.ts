@@ -47,7 +47,7 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
-                    this.provideHoverOnTex(tex)
+                    this.provideHoverOnTex(document, tex)
                         .then(hover => resolve( hover ))
                     return
                 }
@@ -103,10 +103,11 @@ export class HoverProvider implements vscode.HoverProvider {
         return commands.join('')
     }
     
-    private provideHoverOnTex(tex: TexMathEnv) : Promise<vscode.Hover> {
+    private provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
-        const s = this.mathjaxify(tex.texString, tex.envname)
+        let s = this.renderCursor(document, tex.range)
+        s = this.mathjaxify(s, tex.envname)
         return this.mj.typeset({
             math: this.colorTeX(s),
             format: 'TeX',
@@ -119,17 +120,26 @@ export class HoverProvider implements vscode.HoverProvider {
     private provideHoverOnRef(tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
-        const labels = `(1) qqq  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   (2) ppp \n\n`
+        let labels = ''
         const s = this.mathjaxify(tex.texString, tex.envname, { stripLabel: false})
+        const obj = { labels : new Object, IDs: new Object, startNumber: 0 }
         return this.mj.typeset({
             width: 50,
-            equationNumbers: "AMS",
+            equationNumbers: 'AMS',
             math: this.colorTeX(s),
             format: 'TeX',
             svg: true,
-        }).then(data => this.scaleSVG(data.svg, scale))
-            .then(xml => this.svgToDataUrl(xml))
-            .then(md => new vscode.Hover(new vscode.MarkdownString( labels + `![equation](${md})`), tex.range ) )
+            state: {AMS: obj}
+        }).then(data => {
+            const svg = this.scaleSVG(data.svg, scale)
+            for( const label in obj.labels) {
+                labels += `(${obj.labels[label].tag}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+            }
+            labels += '\n\n'
+            return svg
+        })
+        .then(xml => this.svgToDataUrl(xml))
+        .then(md => new vscode.Hover(new vscode.MarkdownString( labels + `![equation](${md})`), tex.range ) )
     }
 
     private scaleSVG(svg: string, scale: number) : string {
@@ -381,8 +391,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
             const range = new vscode.Range(startPos, endPos)
-            const ret = this.renderCursor(document, range)
-            return {texString: ret, range: range, envname: envname}
+            return {texString: document.getText(range), range: range, envname: envname}
         }
         return undefined
     }
@@ -396,8 +405,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
             const range = new vscode.Range(startPos, endPos)
-            const ret = this.renderCursor(document, range)
-            return {texString: ret, range: range, envname: envname}
+            return {texString: document.getText(range), range: range, envname: envname}
         }
         return undefined
     }
@@ -413,8 +421,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 const matchEnd = base + m.index + m[0].length
                 if ( matchStart <= position.character && position.character <= matchEnd ) {
                     const range = new vscode.Range(position.line, matchStart, position.line, matchEnd)
-                    const ret = this.renderCursor(document, range)
-                    return {texString: ret, range: range, envname: '$'}
+                    return {texString: document.getText(range), range: range, envname: '$'}
                 } else {
                     base = matchEnd
                     s = currentLine.substring(base)
