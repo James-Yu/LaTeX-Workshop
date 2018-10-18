@@ -47,8 +47,7 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
-                    const newCommand = this.findNewCommand(document.getText())
-                    this.provideHoverOnTex(newCommand + tex.texString, tex.range)
+                    this.provideHoverOnTex(tex)
                         .then(hover => resolve( hover ))
                     return
                 }
@@ -61,12 +60,14 @@ export class HoverProvider implements vscode.HoverProvider {
             if (token in this.extension.completer.reference.referenceData) {
                 const refData = this.extension.completer.reference.referenceData[token]
                 const line = refData.item.position.line
-                const md_link = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
-                md_link.isTrusted = true
+                const mdLink = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
+                mdLink.isTrusted = true
                 if (configuration.get('hoverPreview.ref.enabled') as boolean) {
                     const tex = this.findHoverOnRef(document, position, token, refData.item.position)
                     if (tex) {
-                        this.provideHoverOnRef(tex.texString, tex.range)
+                        const newCommand = this.findNewCommand(document.getText())
+                        tex.texString = newCommand + tex.texString
+                        this.provideHoverOnRef(tex)
                             .then(hover => resolve(hover))
                         return
                     }
@@ -102,28 +103,33 @@ export class HoverProvider implements vscode.HoverProvider {
         return commands.join('')
     }
     
-    private provideHoverOnTex(tex: string, range: vscode.Range) : Promise<vscode.Hover> {
+    private provideHoverOnTex(tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
+        const s = this.mathjaxify(tex.texString, tex.envname)
         return this.mj.typeset({
-            math: this.colorTeX(tex),
+            math: this.colorTeX(s),
             format: 'TeX',
             svg: true,
         }).then(data => this.scaleSVG(data.svg, scale))
             .then(xml => this.svgToDataUrl(xml))
-            .then(md => new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) )
+            .then(md => new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range ) )
     }
 
-    private provideHoverOnRef(tex: string, range: vscode.Range) : Promise<vscode.Hover> {
+    private provideHoverOnRef(tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
+        const labels = `(1) qqq  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   (2) ppp \n\n`
+        const s = this.mathjaxify(tex.texString, tex.envname, { stripLabel: false})
         return this.mj.typeset({
-            math: this.colorTeX(tex),
+            width: 50,
+            equationNumbers: "AMS",
+            math: this.colorTeX(s),
             format: 'TeX',
             svg: true,
         }).then(data => this.scaleSVG(data.svg, scale))
             .then(xml => this.svgToDataUrl(xml))
-            .then(md => new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), range ) )
+            .then(md => new vscode.Hover(new vscode.MarkdownString( labels + `![equation](${md})`), tex.range ) )
     }
 
     private scaleSVG(svg: string, scale: number) : string {
@@ -254,12 +260,14 @@ export class HoverProvider implements vscode.HoverProvider {
         return document.getText(range)
     }
 
-    private mathjaxify(tex: string, envname: string) : string {
+    private mathjaxify(tex: string, envname: string, opt = { stripLabel: true }) : string {
         // remove TeX comments
         let s = tex.replace(/^\s*%.*\r?\n/mg, '')
         s = s.replace(/^((?:\\.|[^%])*).*$/mg, '$1')
         // remove \label{...}
-        s = s.replace(/\\label\{.*?\}/g, '')
+        if (opt.stripLabel) {
+            s = s.replace(/\\label\{.*?\}/g, '')
+        }
         if (envname.match(/^(aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)$/)) {
             s = '\\begin{equation}' + s + '\\end{equation}'
         }
@@ -373,7 +381,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
             const range = new vscode.Range(startPos, endPos)
-            const ret = this.mathjaxify( this.renderCursor(document, range), envname )
+            const ret = this.renderCursor(document, range)
             return {texString: ret, range: range, envname: envname}
         }
         return undefined
@@ -388,7 +396,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
             const range = new vscode.Range(startPos, endPos)
-            const ret = this.mathjaxify( this.renderCursor(document, range), envname )
+            const ret = this.renderCursor(document, range)
             return {texString: ret, range: range, envname: envname}
         }
         return undefined
@@ -405,7 +413,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 const matchEnd = base + m.index + m[0].length
                 if ( matchStart <= position.character && position.character <= matchEnd ) {
                     const range = new vscode.Range(position.line, matchStart, position.line, matchEnd)
-                    const ret = this.mathjaxify( this.renderCursor(document, range), '$' )
+                    const ret = this.renderCursor(document, range)
                     return {texString: ret, range: range, envname: '$'}
                 } else {
                     base = matchEnd
