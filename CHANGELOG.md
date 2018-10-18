@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.13.0] - 2018-10-18
+
+### Added
+- (#890) Offline math hover preview.
+
+### Fixed
+- Extension distribution size is reduced.
+- (#885) No `--max-print-line` with `xelatex` and `lualatex`.
+- (#886) Understand `\InputIfFileExists` as an `\input` command.
+- (#889) Item-on-enter issue with Vim extension.
+
 ## [5.12.2] - 2018-10-14
 
 ### Fixed
