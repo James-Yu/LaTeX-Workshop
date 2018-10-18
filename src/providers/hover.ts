@@ -48,7 +48,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
                     this.provideHoverOnTex(document, tex)
-                        .then(hover => resolve( hover ))
+                        .then(hover => resolve(hover))
                     return
                 }
             }
@@ -121,8 +121,8 @@ export class HoverProvider implements vscode.HoverProvider {
     private async provideHoverOnRef(tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
-        let labels = ''
-        const s = this.mathjaxify(tex.texString, tex.envname, { stripLabel: false})
+        let eqNumAndLabels = ''
+        const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
         const obj = { labels : new Object, IDs: new Object, startNumber: 0 }
         const data = await this.mj.typeset({
             width: 50,
@@ -134,11 +134,11 @@ export class HoverProvider implements vscode.HoverProvider {
         })
         const svg = this.scaleSVG(data.svg, scale)
         for( const label in obj.labels) {
-            labels += `(${obj.labels[label].tag}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+            eqNumAndLabels += `(${obj.labels[label].tag}) ${label}` + '&nbsp;&nbsp;&nbsp;'
         }
-        labels += '\n\n'
+        eqNumAndLabels += '\n\n'
         const md = this.svgToDataUrl(svg)
-        return new vscode.Hover(new vscode.MarkdownString( labels + `![equation](${md})`), tex.range )
+        return new vscode.Hover(new vscode.MarkdownString( eqNumAndLabels + `![equation](${md})`), tex.range )
     }
 
     private scaleSVG(svg: string, scale: number) : string {
