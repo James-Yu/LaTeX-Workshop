@@ -133,8 +133,10 @@ export class HoverProvider implements vscode.HoverProvider {
             state: {AMS: obj}
         })
         const svg = this.scaleSVG(data.svg, scale)
+        let i = 1
         for( const label in obj.labels) {
-            eqNumAndLabels += `(${obj.labels[label].tag}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+            eqNumAndLabels += `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+            i += 1
         }
         eqNumAndLabels += '\n\n'
         const md = this.svgToDataUrl(svg)
@@ -314,6 +316,7 @@ export class HoverProvider implements vscode.HoverProvider {
                     const beginEndRange = t.range
                     const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
                     if (refRange && beginEndRange.contains(labelPos)) {
+                        t.range = refRange
                         return t
                     }
                 }
