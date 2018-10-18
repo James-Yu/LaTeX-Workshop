@@ -115,6 +115,9 @@ export class HoverProvider implements vscode.HoverProvider {
         if (tex.startsWith('\\(') && tex.endsWith('\\)')) {
             tex = tex.slice(2, tex.length - 2)
         }
+        if (tex.startsWith('\\[') && tex.endsWith('\\]')) {
+            tex = tex.slice(2, tex.length - 2)
+        }
         return tex
     }
 
