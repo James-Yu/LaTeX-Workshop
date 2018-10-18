@@ -470,13 +470,13 @@ var pdfjsWebLibs;
    };
    Preferences._writeToStorage = function (prefObj) {
     return new Promise(function (resolve) {
-     localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
+    //  localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
      resolve();
     });
    };
    Preferences._readFromStorage = function (prefObj) {
     return new Promise(function (resolve) {
-     var readPrefs = JSON.parse(localStorage.getItem('pdfjs.preferences'));
+    //  var readPrefs = JSON.parse(localStorage.getItem('pdfjs.preferences'));
      resolve(readPrefs);
     });
    };
@@ -519,28 +519,29 @@ var pdfjsWebLibs;
      _writeToStorage: function ViewHistory_writeToStorage() {
       return new Promise(function (resolve) {
        var databaseStr = JSON.stringify(this.database);
-       localStorage.setItem('pdfjs.history', databaseStr);
+      //  localStorage.setItem('pdfjs.history', databaseStr);
        resolve();
       }.bind(this));
      },
      _readFromStorage: function ViewHistory_readFromStorage() {
       return new Promise(function (resolve) {
-       var value = localStorage.getItem('pdfjs.history');
-       if (!value) {
-        var databaseStr = localStorage.getItem('database');
-        if (databaseStr) {
-         try {
-          var database = JSON.parse(databaseStr);
-          if (typeof database.files[0].fingerprint === 'string') {
-           localStorage.setItem('pdfjs.history', databaseStr);
-           localStorage.removeItem('database');
-           value = databaseStr;
-          }
-         } catch (ex) {
-         }
-        }
-       }
-       resolve(value);
+      //  var value = localStorage.getItem('pdfjs.history');
+      //  if (!value) {
+      //   var databaseStr = localStorage.getItem('database');
+      //   if (databaseStr) {
+      //    try {
+      //     var database = JSON.parse(databaseStr);
+      //     if (typeof database.files[0].fingerprint === 'string') {
+      //      localStorage.setItem('pdfjs.history', databaseStr);
+      //      localStorage.removeItem('database');
+      //      value = databaseStr;
+      //     }
+      //    } catch (ex) {
+      //    }
+      //   }
+      //  }
+      //  resolve(value);
+        resolve(undefined)
       });
      },
      set: function ViewHistory_set(name, val) {
@@ -5612,7 +5613,7 @@ var pdfjsWebLibs;
    var DISABLE_AUTO_FETCH_LOADING_BAR_TIMEOUT = 5000;
    function configure(PDFJS) {
     PDFJS.imageResourcesPath = './images/';
-    PDFJS.workerSrc = '../build/pdf.worker.js';
+    PDFJS.workerSrc = '../build/pdf.worker.min.js';
     PDFJS.cMapUrl = '../cmaps/';
     PDFJS.cMapPacked = true;
    }
