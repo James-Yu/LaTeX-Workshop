@@ -792,7 +792,7 @@
         },
         "latex-workshop.hoverPreview.scale": {
           "type": "number",
-          "default": 1.0,
+          "default": 1,
           "description": "Scaling of Hover Preview."
         },
         "latex-workshop.hoverPreview.cursor.enabled": {
@@ -885,7 +885,7 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "rm -rf out && webpack --mode production",
+    "vscode:prepublish": "rm -rf node_modules/mathjax/ && cp -rf viewer/mathjax/ node_modules/mathjax/ && rm -rf out/ && webpack --mode production",
     "compile": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
@@ -902,8 +902,11 @@
     "chokidar": "^2.0.3",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.1",
+    "mathjax": "2.7.5",
+    "mathjax-node": "2.1.1",
     "micromatch": "^3.0.0",
     "pdfjs-dist": "^1.8.609",
+    "strip-json-comments": "^2.0.1",
     "ws": "^5.1.1"
   },
   "devDependencies": {
@@ -913,8 +916,8 @@
     "@types/micromatch": "^3.0.0",
     "@types/node": "^7.0.59",
     "@types/ws": "^4.0.2",
-    "tslint": "^5.0.0",
     "ts-loader": "^5.2.1",
+    "tslint": "^5.0.0",
     "typescript": "^2.0.3",
     "vscode": "^1.1.14",
     "webpack": "^4.20.2",
