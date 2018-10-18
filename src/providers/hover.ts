@@ -103,43 +103,42 @@ export class HoverProvider implements vscode.HoverProvider {
         return commands.join('')
     }
     
-    private provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv) : Promise<vscode.Hover> {
+    private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
         let s = this.renderCursor(document, tex.range)
         s = this.mathjaxify(s, tex.envname)
-        return this.mj.typeset({
+        const data = await this.mj.typeset({
             math: this.colorTeX(s),
             format: 'TeX',
             svg: true,
-        }).then(data => this.scaleSVG(data.svg, scale))
-            .then(xml => this.svgToDataUrl(xml))
-            .then(md => new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range ) )
+        })
+        const xml = this.scaleSVG(data.svg, scale)
+        const md = this.svgToDataUrl(xml)
+        return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range ) 
     }
 
-    private provideHoverOnRef(tex: TexMathEnv) : Promise<vscode.Hover> {
+    private async provideHoverOnRef(tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
         let labels = ''
         const s = this.mathjaxify(tex.texString, tex.envname, { stripLabel: false})
         const obj = { labels : new Object, IDs: new Object, startNumber: 0 }
-        return this.mj.typeset({
+        const data = await this.mj.typeset({
             width: 50,
             equationNumbers: 'AMS',
             math: this.colorTeX(s),
             format: 'TeX',
             svg: true,
             state: {AMS: obj}
-        }).then(data => {
-            const svg = this.scaleSVG(data.svg, scale)
-            for( const label in obj.labels) {
-                labels += `(${obj.labels[label].tag}) ${label}` + '&nbsp;&nbsp;&nbsp;'
-            }
-            labels += '\n\n'
-            return svg
         })
-        .then(xml => this.svgToDataUrl(xml))
-        .then(md => new vscode.Hover(new vscode.MarkdownString( labels + `![equation](${md})`), tex.range ) )
+        const svg = this.scaleSVG(data.svg, scale)
+        for( const label in obj.labels) {
+            labels += `(${obj.labels[label].tag}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+        }
+        labels += '\n\n'
+        const md = this.svgToDataUrl(svg)
+        return new vscode.Hover(new vscode.MarkdownString( labels + `![equation](${md})`), tex.range )
     }
 
     private scaleSVG(svg: string, scale: number) : string {
