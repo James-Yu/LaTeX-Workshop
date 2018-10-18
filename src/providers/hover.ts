@@ -186,7 +186,7 @@ export class HoverProvider implements vscode.HoverProvider {
             if (color !== 'auto') {
                 sym = `{\\color{${color}}${symbol}}`
             }
-            if (range.contains(cursor)) {
+            if (range.contains(cursor) && !range.start.isEqual(cursor) && !range.end.isEqual(cursor)) {
                 return document.getText( new vscode.Range(range.start, cursor) ) + sym + document.getText( new vscode.Range(cursor, range.end))
             }
         }
