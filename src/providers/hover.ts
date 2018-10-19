@@ -7,6 +7,7 @@ import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
+type LabelsStore = {labels: {[k:string] : {tag: string, id: string}}, IDs: {[k:string] : number}, startNumber : number}
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
@@ -121,9 +122,8 @@ export class HoverProvider implements vscode.HoverProvider {
     private async provideHoverOnRef(tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
-        let eqNumAndLabels = ''
         const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
-        const obj = { labels : new Object, IDs: new Object, startNumber: 0 }
+        const obj = { labels : {}, IDs: {}, startNumber: 0 }
         const data = await this.mj.typeset({
             width: 50,
             equationNumbers: 'AMS',
@@ -133,14 +133,44 @@ export class HoverProvider implements vscode.HoverProvider {
             state: {AMS: obj}
         })
         const svg = this.scaleSVG(data.svg, scale)
-        let i = 1
-        for( const label in obj.labels) {
-            eqNumAndLabels += `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
-            i += 1
-        }
-        eqNumAndLabels += '\n\n'
+        const eqNumAndLabels = this.eqNumAndLabels(obj, tex)
         const md = this.svgToDataUrl(svg)
         return new vscode.Hover(new vscode.MarkdownString( eqNumAndLabels + `![equation](${md})`), tex.range )
+    }
+
+    private eqNumAndLabels(obj: LabelsStore, tex: TexMathEnv) : string {
+        let s = ''
+        const e = "cannot get a label for each number"
+        const labels = tex.texString.match(/\\label\{.*?\}/g)
+        if (!labels) {
+            return e
+        }
+        if (labels.length == 1) {
+            `(1) ${Object.keys(obj.labels)[0]}` + '&nbsp;&nbsp;&nbsp;'
+        }
+        if (labels.length == obj.startNumber) {
+            let i = 1
+            for(const label0 of labels) {
+                const label = label0.substr(7, label0.length - 8)
+                s += `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+                i += 1
+            }
+            s += '\n\n'
+            return s
+        }
+        const ret : [number, string][] = []
+        for(const label in obj.labels) {
+            const labelNum = obj.labels[label].tag
+            if (!labelNum.match(/\d+/)) {
+                return e
+            }
+            ret.push([Number(labelNum), label])
+        }
+        const ret1 = ret.sort( (a, b) =>  a[0] - b[0]  )
+        for(const item of ret1) {
+            s += `(${item[0]}) ${item[1]}` + '&nbsp;&nbsp;&nbsp;'
+        }
+        return s
     }
 
     private scaleSVG(svg: string, scale: number) : string {
