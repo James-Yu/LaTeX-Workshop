@@ -167,7 +167,7 @@ export class HoverProvider implements vscode.HoverProvider {
             return false
         }
         const cursor = editor.selection.active
-        const r = document.getWordRangeAtPosition(cursor, /\\(?:begin|end)\{.*?\}|\\[a-zA-Z]+\{?|\\[\(\)\[\]]|\\\\/)
+        const r = document.getWordRangeAtPosition(cursor, /\\(?:begin|end|label)\{.*?\}|\\[a-zA-Z]+\{?|\\[\(\)\[\]]|\\\\/)
         if (r && r.start.isBefore(cursor) && r.end.isAfter(cursor) ) {
             return true
         }
