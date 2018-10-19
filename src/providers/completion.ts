@@ -7,6 +7,7 @@ import {Command} from './completer/command'
 import {Environment} from './completer/environment'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
+import {Input} from './completer/input'
 
 export class Completer implements vscode.CompletionItemProvider {
     extension: Extension
@@ -15,6 +16,7 @@ export class Completer implements vscode.CompletionItemProvider {
     environment: Environment
     reference: Reference
     package: Package
+    input: Input
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -23,6 +25,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.environment = new Environment(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
+        this.input = new Input(extension)
         let defaultEnvs: string
         let defaultCommands: string
         let defaultSymbols: string
@@ -53,7 +56,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 resolve()
                 return
             }
-            if (this.command.specialBrackets.hasOwnProperty(invokeChar)) {
+            if (this.command.specialBrackets && this.command.specialBrackets.hasOwnProperty(invokeChar)) {
                 if (position.character > 1 && currentLine[position.character - 2] === '\\') {
                     const mathSnippet = Object.assign({}, this.command.specialBrackets[invokeChar])
                     if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
@@ -68,7 +71,7 @@ export class Completer implements vscode.CompletionItemProvider {
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
-            for (const type of ['citation', 'reference', 'environment', 'command', 'package']) {
+            for (const type of ['citation', 'reference', 'environment', 'package', 'input', 'command']) {
                 const suggestions = this.completion(type, line)
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
@@ -101,6 +104,7 @@ export class Completer implements vscode.CompletionItemProvider {
     completion(type: string, line: string) : vscode.CompletionItem[] {
         let reg
         let provider
+        let payload
         switch (type) {
             case 'citation':
                 reg = /(?:\\[a-zA-Z]*cite[a-zA-Z]*(?:\[[^\[\]]*\])*){([^}]*)$/
@@ -122,6 +126,10 @@ export class Completer implements vscode.CompletionItemProvider {
                 reg = /(?:\\usepackage(?:\[[^\[\]]*\])*){([^}]*)$/
                 provider = this.package
                 break
+            case 'input':
+                reg = /(?:\\(input|include|subfile|includegraphics)(?:\[[^\[\]]*\])*){([^}]*)$/
+                provider = this.input
+                break
             default:
                 // This shouldn't be possible, so mark as error case in log.
                 this.extension.logger.addLogMessage(`Error - trying to complete unknown type ${type}`)
@@ -130,7 +138,13 @@ export class Completer implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = provider.provide()
+            if (type === 'input') {
+                const editor = vscode.window.activeTextEditor
+                if (editor) {
+                    payload = [result[1], editor.document.fileName, result[2]]
+                }
+            }
+            suggestions = provider.provide(payload)
         }
         return suggestions
     }

@@ -1,4 +1,9 @@
 {
+	"item": {
+		"prefix": "item",
+		"body": "\n\\item",
+		"description": "Insert \\item on a newline"
+	},
 	"subscript": {
 		"prefix": "__",
 		"body": "_{$0}",
@@ -170,7 +175,6 @@
 		"body": "\\begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t$0\n\n\\end{frame}",
 		"description": "Insert a new frame"
 	},
-	/* Text Formatting */
 	"set font size": {
 		"prefix": "fontsize",
 		"body": "${1|\\Huge,\\huge,\\LARGE,\\Large,\\large,\\normalsize,\\small,\\footnotesize,\\scriptsize,\\tiny|}",
@@ -186,7 +190,7 @@
 		"body": "\\textrm{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Use a roman font"
 	},
-	"textem": {
+	"emph": {
 		"prefix": "FEM",
 		"body": "\\emph{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Use an emphasis font"
@@ -246,7 +250,6 @@
 		"body": "\\testsubscript{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Make text a superscript"
 	},
-	/* Math Formatting */
 	"mathrm": {
 		"prefix": "MRM",
 		"body": "\\mathrm{${1:${TM_SELECTED_TEXT:text}}}",
@@ -277,7 +280,6 @@
 		"body": "\\mathtt{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Use an typewriter font"
 	},
-	/* Insert Greek letter with @ + corresponding latin letter */
 	"alpha": {
 		"prefix": "@a",
 		"body": "\\alpha",

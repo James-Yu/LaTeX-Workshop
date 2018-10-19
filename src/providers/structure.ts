@@ -8,7 +8,7 @@ import { Extension } from '../main'
  * Finding the longest substring containing balanced {...}
  * @param s a string
  */
-function getLongestBalancedString(s: string) : string {
+export function getLongestBalancedString(s: string) : string {
     let nested = 1
     let i = 0
     for (i = 0; i < s.length; i++) {
@@ -89,7 +89,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return rootStack.length === 0
         }
 
-        this.extension.logger.addLogMessage(`Parsing ${filePath} for outline`)
         let content = fs.readFileSync(filePath, 'utf-8')
         content = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
         const endPos = content.search(/\\end{document}/gm)
@@ -97,7 +96,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '(?:((?:\\\\(?:input|include|subfile|(?:(?:sub)?import\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        let pattern = '(?:((?:\\\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?import\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
@@ -167,7 +166,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 prevSection = newSection
 
-                // console.log("Created New Section: " + title)
                 if (noRoot()) {
                     children.push(newSection)
                     rootStack.push(newSection)
@@ -185,7 +183,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 rootStack.push(newSection)
 
-            } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
+            } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\InputIfFileExists') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
                 // zoom into this file
                 // resolve the path
                 let inputFilePath
@@ -209,7 +207,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 if (fs.existsSync(inputFilePath) === false) {
                     this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                    //console.log(`Could not resolve included file ${inputFilePath}`)
                     continue
                 }
 

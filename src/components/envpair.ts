@@ -14,7 +14,7 @@ function stripComments(line: string) : string {
     return line
 }
 
-function escapeRegExp(str) {
+export function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
 }
 
@@ -57,7 +57,6 @@ export class EnvPair {
         const line = stripComments(document.lineAt(pos).text)
         const ind = pos.character
         if (ind > line.length) {
-            console.log('We are in a comment')
             return null
         }
         const lineUpToInd = line.slice(0, ind + 1)
