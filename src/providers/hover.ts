@@ -146,7 +146,7 @@ export class HoverProvider implements vscode.HoverProvider {
             return e
         }
         if (labels.length == 1) {
-            `(1) ${Object.keys(obj.labels)[0]}` + '&nbsp;&nbsp;&nbsp;'
+            return `(1) ${Object.keys(obj.labels)[0]}` + '&nbsp;&nbsp;&nbsp;'
         }
         if (labels.length == obj.startNumber) {
             let i = 1
@@ -158,16 +158,16 @@ export class HoverProvider implements vscode.HoverProvider {
             s += '\n\n'
             return s
         }
-        const ret : [number, string][] = []
+        const ret0 : [number, string][] = []
         for(const label in obj.labels) {
             const labelNum = obj.labels[label].tag
             if (!labelNum.match(/\d+/)) {
                 return e
             }
-            ret.push([Number(labelNum), label])
+            ret0.push([Number(labelNum), label])
         }
-        const ret1 = ret.sort( (a, b) =>  a[0] - b[0]  )
-        for(const item of ret1) {
+        const ret = ret0.sort( (a, b) =>  a[0] - b[0]  )
+        for(const item of ret) {
             s += `(${item[0]}) ${item[1]}` + '&nbsp;&nbsp;&nbsp;'
         }
         return s
