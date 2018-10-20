@@ -68,7 +68,7 @@ export class HoverProvider implements vscode.HoverProvider {
                     if (tex) {
                         const newCommand = this.findNewCommand(document.getText())
                         tex.texString = newCommand + tex.texString
-                        this.provideHoverOnRef(tex)
+                        this.provideHoverOnRef(tex, token)
                             .then(hover => resolve(hover))
                         return
                     }
@@ -121,7 +121,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range ) 
     }
 
-    private async provideHoverOnRef(tex: TexMathEnv) : Promise<vscode.Hover> {
+    private async provideHoverOnRef(tex: TexMathEnv, refToken: string) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
         const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
@@ -137,15 +137,15 @@ export class HoverProvider implements vscode.HoverProvider {
         this.scaleSVG(data, scale)
         this.colorSVG(data)
         const xml = data.svgNode.outerHTML
-        const eqNumAndLabels = this.eqNumAndLabels(obj, tex)
+        const eqNumAndLabels = this.eqNumAndLabel(obj, tex, refToken)
         const md = this.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString( eqNumAndLabels + `![equation](${md})`), tex.range )
     }
 
-    private eqNumAndLabels(obj: LabelsStore, tex: TexMathEnv) : string {
+    private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
         let s = ''
         const horizontalLine = '\n- - -\n\n'
-        const e = "cannot get a label for each number" + horizontalLine
+        const e = "[error] fail to get equation number for label." + horizontalLine
         const labels = tex.texString.match(/\\label\{.*?\}/g)
         if (!labels) {
             return e
@@ -157,25 +157,25 @@ export class HoverProvider implements vscode.HoverProvider {
             let i = 1
             for(const label0 of labels) {
                 const label = label0.substr(7, label0.length - 8)
-                s += `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+                if (refToken === label) {
+                    s = `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+                    return s + horizontalLine
+                }
                 i += 1
             }
-            s += horizontalLine
-            return s
+            return e
         }
-        const ret0 : [number, string][] = []
         for(const label in obj.labels) {
             const labelNum = obj.labels[label].tag
             if (!labelNum.match(/\d+/)) {
                 return e
             }
-            ret0.push([Number(labelNum), label])
+            if (refToken === label) {
+                s = `(${labelNum}) ${label}` + '&nbsp;&nbsp;&nbsp;'
+                return s + horizontalLine
+            }
         }
-        const ret = ret0.sort( (a, b) =>  a[0] - b[0]  )
-        for(const item of ret) {
-            s += `(${item[0]}) ${item[1]}` + '&nbsp;&nbsp;&nbsp;'
-        }
-        return s + horizontalLine
+        return e
     }
     
     private scaleSVG(data: any, scale: number) {
