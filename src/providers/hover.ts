@@ -110,11 +110,13 @@ export class HoverProvider implements vscode.HoverProvider {
         let s = this.renderCursor(document, tex.range)
         s = this.mathjaxify(s, tex.envname)
         const data = await this.mj.typeset({
-            math: this.colorTeX(s),
+            math: this.stripTeX(s),
             format: 'TeX',
-            svg: true,
+            svgNode: true,
         })
-        const xml = this.scaleSVG(data.svg, scale)
+        this.scaleSVG(data, scale)
+        this.colorSVG(data)
+        const xml = data.svgNode.outerHTML
         const md = this.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range ) 
     }
@@ -127,14 +129,16 @@ export class HoverProvider implements vscode.HoverProvider {
         const data = await this.mj.typeset({
             width: 50,
             equationNumbers: 'AMS',
-            math: this.colorTeX(s),
+            math: this.stripTeX(s),
             format: 'TeX',
-            svg: true,
+            svgNode: true,
             state: {AMS: obj}
         })
-        const svg = this.scaleSVG(data.svg, scale)
+        this.scaleSVG(data, scale)
+        this.colorSVG(data)
+        const xml = data.svgNode.outerHTML
         const eqNumAndLabels = this.eqNumAndLabels(obj, tex)
-        const md = this.svgToDataUrl(svg)
+        const md = this.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString( eqNumAndLabels + `![equation](${md})`), tex.range )
     }
 
@@ -172,16 +176,16 @@ export class HoverProvider implements vscode.HoverProvider {
         }
         return s
     }
-
-    private scaleSVG(svg: string, scale: number) : string {
-        const widthReg = svg.match(/( width=")([\.\d]+)(\w*" )/)
-        const heightReg = svg.match(/( height=")([\.\d]+)(\w*" )/)
-        if (!widthReg || !heightReg) {
-            return svg
-        }
-        svg = svg.replace(/( width=")([\.\d]+)(\w*" )/, `${widthReg[1]}${parseFloat(widthReg[2]) * scale}${widthReg[3]}`)
-        svg = svg.replace(/( height=")([\.\d]+)(\w*" )/, `${heightReg[1]}${parseFloat(heightReg[2]) * scale}${heightReg[3]}`)
-        return svg
+    
+    private scaleSVG(data: any, scale: number) {
+        const svgelm = data.svgNode
+        // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
+        const w0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/)
+        const h0 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/)
+        const w = scale * Number(w0[1])
+        const h = scale * Number(h0[1])
+        svgelm.setAttribute("width", w + w0[2])
+        svgelm.setAttribute("height", h + h0[2])
     }
 
     private svgToDataUrl(xml: string) : string {
@@ -198,12 +202,14 @@ export class HoverProvider implements vscode.HoverProvider {
             b: parseInt(result[3], 16) / 255
         } : null
     }
-
-    private colorTeX(tex: string) : string {
-        const color = '\\color[rgb]{' + this.color + '}'
-        tex = tex.replace(/^(\$|\\\(|\\\[|\\begin{.*?}({.*?})*)/, '$1' + color)
-        tex = tex.replace(/(\\begin{CD}[\s\S]*?\\end{CD}|((?:\\[^\\]|[^&\\])*&+|\\\\))/g, '$1' + color)
-
+    
+    private colorSVG(data: any) {
+        const svgelm = data.svgNode
+        const g = svgelm.getElementsByTagName('g')[0]
+        g.setAttribute('fill', this.color)
+    }
+    
+    private stripTeX(tex: string) : string {
         if (tex.startsWith('$') && tex.endsWith('$')) {
             tex = tex.slice(1, tex.length - 1)
         }
@@ -242,13 +248,13 @@ export class HoverProvider implements vscode.HoverProvider {
                     const b = bgColor.r <= 0.03928 ? bgColor.b / 12.92 : Math.pow((bgColor.b + 0.055) / 1.055, 2.4)
                     const L = 0.2126 * r + 0.7152 * g + 0.0722 * b
                     if (L > 0.179) {
-                        this.color = '0, 0, 0'
+                        this.color = '#000000'
                     } else {
-                        this.color = '1, 1, 1'
+                        this.color = '#ffffff'
                     }
                     return
                 } else if (theme.type && theme.type === 'dark') {
-                    this.color = '1, 1, 1'
+                    this.color = '#ffffff'
                     return
                 }
             } catch (e) {
@@ -257,14 +263,14 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             const uiTheme = candidateThemes[0].uiTheme
             if (!uiTheme || uiTheme === 'vs') {
-                this.color = '0, 0, 0'
+                this.color = '#000000'
                 return
             } else {
-                this.color = '1, 1, 1'
+                this.color = '#ffffff'
                 return
             }
         }
-        this.color = '0, 0, 0'
+        this.color = '#000000'
     }
 
     // Test whether cursor is in tex command strings
