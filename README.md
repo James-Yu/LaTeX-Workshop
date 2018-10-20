@@ -17,28 +17,30 @@ One million downloads! This project won't be successful without contributions fr
 
 - Build LaTeX (including BibTeX) to PDF automatically on save.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/20903656/47231746-5ff85980-d400-11e8-9307-fdf1a19b987f.gif" alt="build process gif" height="20px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="extension demo material/build.gif" alt="build process gif" height="20px">
 
 - View PDF on-the-fly (in VS Code or browser).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/20903656/47231909-ce3d1c00-d400-11e8-9079-a978857f816e.gif" alt="demo of preview feature" height="220px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="extension demo material/preview.gif" alt="demo of preview feature" height="220px">
 
 - Direct and reverse SyncTeX. Click to jump between location in `.tex` source and PDF and vice versa.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/20903656/47231974-004e7e00-d401-11e8-8b70-41d731c5cd22.gif" alt="demo of SyncTeX" height="220px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="extension demo material/synctex.gif" alt="demo of SyncTeX" height="220px">
 
 - Intellisense, including completions for bibliography keys (`\cite{}`) and labels (`\ref{}`).
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/20903656/47232007-178d6b80-d401-11e8-8d56-ad2446161e0b.png" alt="intellisense demo" height="110px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="extension demo material/ref.gif" alt="intellisense demo" height="80px">
 
 - Syntax highlighting (colorized code) for `.tex` / `.bib` files and more (`.cls`, `.dtx`, `.ltx`, `.sty`)
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://user-images.githubusercontent.com/20903656/47232049-3c81de80-d401-11e8-8209-db8c0c3ea8c5.png" alt="intellisense demo" height="125px">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="extension demo material/errors.png" alt="error reporting demo" height="125px">
 
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
   - Code Actions (automatic fixes) are offered for many issues found by ChkTeX.
   - Auto load `.chktexrc` configure in the following order: 1. manually configured `-l` setting in `chktex.args`; 2. `.chktexrc` file (if exists) in the same folder as the main LaTeX file; 3. `.chktexrc` file (if exists) at the project root folder.
+
+  <img src="extension demo material/chktex.gif" alt="auto \item demo" height="90px">
 - LaTeX file formatting.
 - Acting on environments
   - To auto close LaTeX environments, call _LaTeX Workshop: Close current environment_ from the **Command Palette** (command function `latex-workshop.close-env`).
@@ -47,36 +49,39 @@ One million downloads! This project won't be successful without contributions fr
   - To add a multi-cursor to the current environment name, call _LaTeX Workshop: Add a multi-cursor to the current environment name_ from the **Command Palette** (command `latex-workshop.multicursor-envname` ). For this command to work, the cursor must be strictly between `\begin{...}` and `\end{...}`. Repeated calls result in selecting the outer environments.
 - [Snippets](snippets/snippets-doc.md)
   - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
+
+    <img src="extension demo material/subparagraph.gif" alt="auto \item demo" height="80px">
+
   - \[**Deprecated**\] Surround some selected text with a LaTeX command by pressing `\` after selecting some text. A new menu pops up to select the command. This feature is enabled when `latex-workshop.intellisense.surroundCommand.enabled` is set to `true`, default is `false`.
   - Surround some selected text with a LaTeX command using <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>ctrl</kbd>+<kbd>w</kbd> (<kbd>⌘</kbd>+<kbd>l</kbd>, <kbd>⌘</kbd>+<kbd>w</kbd> on Mac). A new menu pops up to select the command. This works with multi selections. The former approach using `\` has been deprecated.
 
-    <img src="https://user-images.githubusercontent.com/20903656/47232156-8074e380-d401-11e8-9a35-f050160637c3.gif" alt="wrap demo" height="140px">
+    <img src="extension demo material/wrap.gif" alt="wrap demo" height="140px">
 
   - We also provide a few other snippets mechanisms
     - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](snippets/snippets-doc.md#greek-letters).
 
-        <img src="https://user-images.githubusercontent.com/20903656/47232324-f6794a80-d401-11e8-9bbe-798da43fe186.gif" alt="greek letters demo" height="20px">
+        <img src="extension demo material/greek letter.gif" alt="greek letters demo" height="20px">
 
     - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](snippets/snippets-doc.md#environments).
 
-        <img src="https://user-images.githubusercontent.com/20903656/47232371-16a90980-d402-11e8-8c59-e38ab6afc256.gif" alt="BSAL demo" height="60px">
+        <img src="extension demo material/BSAL snippet.gif" alt="BSAL demo" height="55px">
     - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](snippets/snippets-doc.md#font-commands).
 
-        <img src="https://user-images.githubusercontent.com/20903656/47232421-3e986d00-d402-11e8-837b-50d119567ea8.gif" alt="FBF demo" height="20px">
+        <img src="extension demo material/FBF snippet.gif" alt="FBF demo" height="20px">
     - Many other maths symbols can be obtained with the `@` prefix. See [here](snippets/snippets-doc.md#mathematical-symbols).
 
-      <img src="https://user-images.githubusercontent.com/20903656/47233193-861ff880-d404-11e8-805a-4ad3a600c75f.gif" alt="\frac shortcut demo" height="20px">
-      <img src="https://user-images.githubusercontent.com/20903656/47233194-87e9bc00-d404-11e8-873c-9fe203e127cc.gif" alt="\int shortcut demo" height="20px">
+      <img src="extension demo material/frac.gif" alt="\frac shortcut demo" height="20px">
+      <img src="extension demo material/int.gif" alt="\int shortcut demo" height="20px">
 - [Shortcuts](Shortcuts-doc.md)
   - In addition to shortcuts that interface with the extension, the ability to easily format text (and one or two other things) is also present.
 
-    <img src="https://user-images.githubusercontent.com/20903656/47232468-54a62d80-d402-11e8-840f-b4126ad927b9.gif" alt="\emph{} demo" height="20px">
+    <img src="extension demo material/emph.gif" alt="\emph{} demo" height="20px">
 - When the current line starts with `\item` or `\item[]`, hitting `Enter` automatically adds a newline starting in the same way. For a better handling of the last item, hitting `Enter` on a line only containing `\item` or `\item[]` actually deletes the content of the line. The `alt+Enter` is bind to the standard newline command. This automatic insertion of `\item` can be deactivated by setting `latex-workshop.bind.enter.key` to `false`.
-  
-    <img src="https://user-images.githubusercontent.com/20903656/47232515-79020a00-d402-11e8-9dea-43ebcdfecaa2.gif" alt="auto \item demo" height="80px">
+
+    <img src="extension demo material/auto item.gif" alt="auto \item demo" height="80px">
 
 - Preview on hover. Hovering over the start or end tags of a maths environment causes a mathjax preview to pop up.
-    <img src="https://user-images.githubusercontent.com/20903656/47233199-8ae4ac80-d404-11e8-829a-b4b5d9c50051.gif" alt="auto \item demo" height="120px">
+    <img src="extension demo material/hover.gif" alt="auto \item demo" height="120px">
 
 ## Requirements
 
