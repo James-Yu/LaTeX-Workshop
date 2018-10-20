@@ -144,13 +144,14 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private eqNumAndLabels(obj: LabelsStore, tex: TexMathEnv) : string {
         let s = ''
-        const e = "cannot get a label for each number"
+        const horizontalLine = '\n- - -\n\n'
+        const e = "cannot get a label for each number" + horizontalLine
         const labels = tex.texString.match(/\\label\{.*?\}/g)
         if (!labels) {
             return e
         }
         if (labels.length == 1) {
-            return `(1) ${Object.keys(obj.labels)[0]}` + '&nbsp;&nbsp;&nbsp;'
+            return `(1) ${Object.keys(obj.labels)[0]}` + '&nbsp;&nbsp;&nbsp;' + horizontalLine
         }
         if (labels.length == obj.startNumber) {
             let i = 1
@@ -159,7 +160,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 s += `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
                 i += 1
             }
-            s += '\n\n'
+            s += horizontalLine
             return s
         }
         const ret0 : [number, string][] = []
@@ -174,7 +175,7 @@ export class HoverProvider implements vscode.HoverProvider {
         for(const item of ret) {
             s += `(${item[0]}) ${item[1]}` + '&nbsp;&nbsp;&nbsp;'
         }
-        return s
+        return s + horizontalLine
     }
     
     private scaleSVG(data: any, scale: number) {
