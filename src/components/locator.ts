@@ -122,6 +122,7 @@ export class Locator {
     syncTeXOnRef(line: number) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewer = configuration.get('view.pdf.ref.viewer') as string
+        line += 1
         if (viewer) {
             this.syncTeX(line, viewer)
         } else {
