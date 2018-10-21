@@ -73,7 +73,7 @@ One million downloads! This project won't be successful without contributions fr
       <img src="demo_media/frac.gif" alt="\frac shortcut demo" height="20px">
       <img src="demo_media/int.gif" alt="\int shortcut demo" height="20px">
 - [Shortcuts](Shortcuts-doc.md)
-  - In addition to shortcuts that interface with the extension, the ability to easily format text (and one or two other things) is also present.
+  - In addition snippets, there are shortcuts that provided by the extension that allow you to easily format text (and one or two other things).
 
     <img src="demo_media/emph.gif" alt="\emph{} demo" height="20px">
 - When the current line starts with `\item` or `\item[]`, hitting `Enter` automatically adds a newline starting in the same way. For a better handling of the last item, hitting `Enter` on a line only containing `\item` or `\item[]` actually deletes the content of the line. The `alt+Enter` is bind to the standard newline command. This automatic insertion of `\item` can be deactivated by setting `latex-workshop.bind.enter.key` to `false`.
