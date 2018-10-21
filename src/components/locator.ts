@@ -49,7 +49,7 @@ export class Locator {
         return record
     }
 
-    syncTeX(line: number | undefined = undefined) {
+    syncTeX(line: number | undefined = undefined, forced_viewer: string = 'auto') {
         let character = 0
         if (!vscode.window.activeTextEditor) {
             return
@@ -74,7 +74,7 @@ export class Locator {
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
                 line -= 1
         }
-        if (configuration.get('view.pdf.viewer') === 'external') {
+        if (forced_viewer === 'external' || (forced_viewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
             this.syncTeXExternal(line, pdfFile, this.extension.manager.rootFile)
             return
         }
@@ -117,6 +117,16 @@ export class Locator {
                 this.extension.viewer.syncTeX(pdfFile, this.parseSyncTeX(stdout))
             }
         })
+    }
+
+    syncTeXOnRef(line: number) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const viewer = configuration.get('view.pdf.ref.viewer') as string
+        if (viewer) {
+            this.syncTeX(line, viewer)
+        } else {
+            this.syncTeX(line)
+        }
     }
 
     locate(data: any, pdfPath: string) {

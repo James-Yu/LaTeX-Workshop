@@ -106,7 +106,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
-    vscode.commands.registerCommand('latex-workshop.synctexto', (line) => extension.commander.synctex(line))
+    vscode.commands.registerCommand('latex-workshop.synctexto', (line) => extension.commander.synctexonref(line))
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
     vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())

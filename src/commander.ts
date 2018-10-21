@@ -173,13 +173,22 @@ export class Commander {
         this.extension.viewer.openTab(uri.fsPath, false, false)
     }
 
-    async synctex(line: number | undefined = undefined) {
+    async synctex() {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
         await this.extension.manager.findRoot()
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.locator.syncTeX(line)
+        this.extension.locator.syncTeX()
+    }
+
+    async synctexonref(line: number) {
+        this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
+        await this.extension.manager.findRoot()
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            return
+        }
+        this.extension.locator.syncTeXOnRef(line)
     }
 
     async clean() : Promise<void> {
