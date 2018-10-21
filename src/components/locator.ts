@@ -49,7 +49,8 @@ export class Locator {
         return record
     }
 
-    syncTeX() {
+    syncTeX(line: number | undefined = undefined) {
+        let character = 0
         if (!vscode.window.activeTextEditor) {
             return
         }
@@ -58,14 +59,17 @@ export class Locator {
             this.extension.logger.addLogMessage(`${filePath} is not a valid LaTeX file.`)
             return
         }
-        const position = vscode.window.activeTextEditor.selection.active
-        if (!position) {
-            this.extension.logger.addLogMessage(`Cannot get cursor position: ${position}`)
-            return
+        if (!line) {
+            const position = vscode.window.activeTextEditor.selection.active
+            if (!position) {
+                this.extension.logger.addLogMessage(`Cannot get cursor position: ${position}`)
+                return
+            }
+            line = position.line + 1
+            character = position.character
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        let line = position.line + 1
         if (vscode.window.activeTextEditor.document.lineCount === line &&
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
                 line -= 1
@@ -76,7 +80,7 @@ export class Locator {
         }
 
         const docker = configuration.get('docker.enabled')
-        const args = ['view', '-i', `${line}:${position.character + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
+        const args = ['view', '-i', `${line}:${character + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
