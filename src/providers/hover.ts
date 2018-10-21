@@ -68,7 +68,7 @@ export class HoverProvider implements vscode.HoverProvider {
                     if (tex) {
                         const newCommand = this.findNewCommand(document.getText())
                         tex.texString = newCommand + tex.texString
-                        this.provideHoverOnRef(tex, token)
+                        this.provideHoverOnRef(tex, token, refData)
                             .then(hover => resolve(hover))
                         return
                     }
@@ -121,7 +121,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range ) 
     }
 
-    private async provideHoverOnRef(tex: TexMathEnv, refToken: string) : Promise<vscode.Hover> {
+    private async provideHoverOnRef(tex: TexMathEnv, refToken: string, refData: any) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
         const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
@@ -139,19 +139,21 @@ export class HoverProvider implements vscode.HoverProvider {
         const xml = data.svgNode.outerHTML
         const eqNumAndLabels = this.eqNumAndLabel(obj, tex, refToken)
         const md = this.svgToDataUrl(xml)
-        return new vscode.Hover(new vscode.MarkdownString( eqNumAndLabels + `![equation](${md})`), tex.range )
+        const line = refData.item.position.line
+        const md_link = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
+        md_link.isTrusted = true
+        return new vscode.Hover( [eqNumAndLabels, `![equation](${md})`, md_link], tex.range )
     }
 
     private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
         let s = ''
-        const horizontalLine = '\n- - -\n\n'
-        const e = "[error] fail to get equation number for label." + horizontalLine
+        const e = "[error] fail to get equation number for label."
         const labels = tex.texString.match(/\\label\{.*?\}/g)
         if (!labels) {
             return e
         }
-        if (labels.length == 1) {
-            return `(1) ${Object.keys(obj.labels)[0]}` + '&nbsp;&nbsp;&nbsp;' + horizontalLine
+        if (labels.length == 1 && obj.startNumber == 1) {
+            return `(1) ${Object.keys(obj.labels)[0]}`
         }
         if (labels.length == obj.startNumber) {
             let i = 1
@@ -159,7 +161,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 const label = label0.substr(7, label0.length - 8)
                 if (refToken === label) {
                     s = `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
-                    return s + horizontalLine
+                    return s
                 }
                 i += 1
             }
@@ -172,7 +174,7 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             if (refToken === label) {
                 s = `(${labelNum}) ${label}` + '&nbsp;&nbsp;&nbsp;'
-                return s + horizontalLine
+                return s
             }
         }
         return e
