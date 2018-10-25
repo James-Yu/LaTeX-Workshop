@@ -80,7 +80,8 @@ One million downloads! This project won't be successful without contributions fr
 
     <img src="demo_media/auto item.gif" alt="auto \item demo" height="80px">
 
-- Preview on hover. Hovering over the start or end tags of a maths environment causes a mathjax preview to pop up.
+- Preview on hover. Hovering over the start tag of a math environment causes a mathjax preview to pop up.
+
     <img src="demo_media/hover.gif" alt="auto \item demo" height="120px">
 
 ## Requirements
