@@ -160,17 +160,17 @@ export class Manager {
             var file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
             this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
 
-            while (true) {
+            content = fs.readFileSync(file).toString()
+            result = content.match(regex)
+
+            while (result) {
+                file = path.resolve(path.dirname(file), result[1])
+                this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
+
                 content = fs.readFileSync(file).toString()
                 result = content.match(regex)
-
-                if (result) {
-                    file = path.resolve(path.dirname(file), result[1])
-                    this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
-                } else {
-                    return file
-                }
             }
+            return file
         }
         return undefined
     }
