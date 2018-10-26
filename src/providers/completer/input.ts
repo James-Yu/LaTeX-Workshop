@@ -49,7 +49,7 @@ export class Input {
                 }
 
                 if (fs.lstatSync(filePath).isDirectory()) {
-                    const item = new vscode.CompletionItem(`${file}${path.sep}`, vscode.CompletionItemKind.Folder)
+                    const item = new vscode.CompletionItem(`${file}/`, vscode.CompletionItemKind.Folder)
                     item.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                     suggestions.push(item)
                 } else {
