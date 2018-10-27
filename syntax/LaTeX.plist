@@ -216,64 +216,24 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>((\\)begin)(\{)(minted)(\})(?:(\[).*(\]))?(\{)(java)(\})</string>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{java\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>9</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>10</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
 					</dict>
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>((\\)end)(\{)(minted)(\})</string>
+					<string>(\\end\{minted\})</string>
 					<key>name</key>
 					<string>meta.embedded.block.java</string>
 					<key>patterns</key>
@@ -282,7 +242,7 @@
 							<key>begin</key>
 							<string>^(?!\\end\{minted\})</string>
 							<key>end</key>
-							<string>(?=\\end\{(minted)\})</string>
+							<string>(?=\\end\{minted\})</string>
 							<key>name</key>
 							<string>source.java</string>
 							<key>patterns</key>
@@ -297,64 +257,24 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>((\\)begin)(\{)(minted)(\})(?:(\[).*(\]))?(\{)(python)(\})</string>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{python\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>9</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>10</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
 					</dict>
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>((\\)end)(\{)(minted)(\})</string>
+					<string>(\\end\{minted\})</string>
 					<key>name</key>
 					<string>meta.embedded.block.python</string>
 					<key>patterns</key>
@@ -1802,6 +1722,64 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 					<string>(\[)([^\[]*?)(\])</string>
 				</dict>
 			</array>
+		</dict>
+		<key>minted-env</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.optional.begin.latex</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.optional.end.latex</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>10</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>match</key>
+				<string>((\\)(?:begin|end))(\{)(minted)(\})(?:(\[).*(\]))?(?:(\{)([a-z]*)(\}))?</string>
 		</dict>
 		<key>definition-label</key>
 		<dict>
