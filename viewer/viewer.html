@@ -525,6 +525,9 @@ See https://github.com/adobe-type-tools/cmap-resources
 
       const getTrimScale = () => {
         var trimSelect = document.getElementById("trimSelect");
+        if (trimSelect.selectedIndex <= 0) {
+          return 1.0;
+        }
         var trimValue = trimSelect.options[trimSelect.selectedIndex].value;
         return 1.0/(1 - 2*trimValue);
       };
@@ -550,7 +553,7 @@ See https://github.com/adobe-type-tools/cmap-resources
         for ( o of scaleSelect.options ) {
           o.disabled = true;
         }
-        if (currentUserSelectScale == undefined) {
+        if (currentUserSelectScale === undefined) {
           currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale;
         }
         if (originalUserSelectIndex === undefined) {
@@ -563,24 +566,27 @@ See https://github.com/adobe-type-tools/cmap-resources
       });
 
       window.addEventListener("pagerendered", (ev) => {
+        var trimSelect = document.getElementById("trimSelect");
+        if (trimSelect.selectedIndex <= 0) {
+            return;
+        }
         var trimScale = getTrimScale();
         var v = document.getElementById("viewer");
         for( var page of v.getElementsByClassName("page") ){
           var textLayer = page.getElementsByClassName("textLayer") ? page.getElementsByClassName("textLayer")[0] : undefined;
           var canvasWrapper = page.getElementsByClassName("canvasWrapper") ? page.getElementsByClassName("canvasWrapper")[0] : undefined;
           var canvas = page.getElementsByTagName("canvas") ? page.getElementsByTagName("canvas")[0] : undefined;
-          if ( canvasWrapper === undefined || canvas === undefined || canvas.isTrimmed ) {
+          if ( textLayer === undefined || canvasWrapper === undefined || canvas === undefined || canvas.isTrimmed ) {
             continue;
           }
           var w = page.style.width;
           var m;
           if (m = w.match(/(\d+)/)) {
-            page.style.width = Number(m[1])/trimScale + 'px';
-            canvasWrapper.style.width = Number(m[1])/trimScale + 'px';
+            var width = Number(m[1])/trimScale + 'px';
+            page.style.width = width;
+            canvasWrapper.style.width = width;
             var offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
-            if (textLayer !== undefined) {
-              textLayer.style.left = offsetX;
-            }
+            textLayer.style.left = offsetX;
             canvas.style.left = offsetX;
             canvas.style.position = "relative";
             canvas.isTrimmed = true;
