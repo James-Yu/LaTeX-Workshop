@@ -193,7 +193,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(^\s*)?(?=\\begin\{(lstlisting|minted)\})</string>
+			<string>(^\s*)?(?=\\begin\{(minted)\})</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -216,83 +216,7 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Java)\n?))</string>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>meta.function.embedded.latex</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
-						</dict>
-						<key>9</key>
-						<dict>
-							<key>name</key>
-							<string>comment.line.percentage.latex</string>
-						</dict>
-					</dict>
-					<key>contentName</key>
-					<string>meta.function.embedded.latex</string>
-					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
-					<key>name</key>
-					<string>meta.embedded.block.java</string>
-					<key>patterns</key>
-					<array>
-						<dict>
-							<key>begin</key>
-							<string>^(?!\\end\{lstlisting|minted\})</string>
-							<key>end</key>
-							<string>(?=\\end\{lstlisting|minted\})</string>
-							<key>name</key>
-							<string>source.java</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>source.java</string>
-								</dict>
-							</array>
-						</dict>
-					</array>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\{)(java)(\})</string>
+					<string>((\\)begin)(\{)(minted)(\})(?:(\[).*(\]))?(\{)(java)(\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -349,16 +273,16 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>((\\)end)(\{)(lstlisting|minted)(\})</string>
+					<string>((\\)end)(\{)(minted)(\})</string>
 					<key>name</key>
 					<string>meta.embedded.block.java</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>^(?!\\end\{lstlisting|minted\})</string>
+							<string>^(?!\\end\{minted\})</string>
 							<key>end</key>
-							<string>(?=\\end\{(lstlisting|minted)\})</string>
+							<string>(?=\\end\{(minted)\})</string>
 							<key>name</key>
 							<string>source.java</string>
 							<key>patterns</key>
@@ -373,7 +297,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\{)(python)(\})</string>
+					<string>((\\)begin)(\{)(minted)(\})(?:(\[).*(\]))?(\{)(python)(\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -430,16 +354,16 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>((\\)end)(\{)(lstlisting|minted)(\})</string>
+					<string>((\\)end)(\{)(minted)(\})</string>
 					<key>name</key>
 					<string>meta.embedded.block.python</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>begin</key>
-							<string>^(?!\\end\{lstlisting|minted\})</string>
+							<string>^(?!\\end\{minted\})</string>
 							<key>end</key>
-							<string>(?=\\end\{(lstlisting|minted)\})</string>
+							<string>(?=\\end\{minted\})</string>
 							<key>name</key>
 							<string>source.python</string>
 							<key>patterns</key>
@@ -460,39 +384,34 @@
 						<key>1</key>
 						<dict>
 							<key>name</key>
-							<string>meta.function.embedded.latex</string>
+							<string>support.function.be.latex</string>
 						</dict>
 						<key>2</key>
 						<dict>
 							<key>name</key>
-							<string>support.function.be.latex</string>
+							<string>punctuation.definition.function.latex</string>
 						</dict>
 						<key>3</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
+							<string>punctuation.definition.arguments.begin.latex</string>
 						</dict>
 						<key>4</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
+							<string>variable.parameter.function.latex</string>
 						</dict>
 						<key>5</key>
 						<dict>
 							<key>name</key>
-							<string>variable.parameter.function.latex</string>
+							<string>punctuation.definition.arguments.end.latex</string>
 						</dict>
 						<key>6</key>
 						<dict>
 							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
 							<string>punctuation.definition.arguments.optional.begin.latex</string>
 						</dict>
-						<key>8</key>
+						<key>7</key>
 						<dict>
 							<key>name</key>
 							<string>punctuation.definition.arguments.optional.end.latex</string>
@@ -501,60 +420,9 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
+					<string>((\\)end)(\{)(lstlisting|minted)(\})</string>
 					<key>name</key>
 					<string>meta.embedded.block.generic</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?)</string>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>meta.function.embedded.latex</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
-						</dict>
-					</dict>
-					<key>contentName</key>
-					<string>meta.function.embedded.latex</string>
-					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
 				</dict>
 			</array>
 		</dict>
