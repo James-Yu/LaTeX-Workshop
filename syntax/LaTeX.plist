@@ -216,266 +216,420 @@
 			<array>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?)</string>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:cpp|c)\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>meta.function.embedded.latex</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.function.embedded.latex</string>
-					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
-				</dict>
-				<dict>
-					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Java)\n?))</string>
-					<key>captures</key>
-					<dict>
-						<key>1</key>
-						<dict>
-							<key>name</key>
-							<string>meta.function.embedded.latex</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
-						</dict>
-						<key>9</key>
-						<dict>
-							<key>name</key>
-							<string>comment.line.percentage.latex</string>
-						</dict>
-					</dict>
-					<key>contentName</key>
-					<string>meta.function.embedded.latex</string>
-					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
-					<key>name</key>
-					<string>meta.embedded.block.java</string>
+					<string>source.cpp</string>
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>begin</key>
-							<string>^(?!\\end\{lstlisting|minted\})</string>
-							<key>end</key>
-							<string>(?=\\end\{lstlisting|minted\})</string>
-							<key>name</key>
+							<key>include</key>
+							<string>source.cpp</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{css\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.css</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.css</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{html\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.html</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.html</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{java\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.java</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
 							<string>source.java</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>source.java</string>
-								</dict>
-							</array>
 						</dict>
 					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%\s*(?i:Python)\n?))</string>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:js|javascript)\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>meta.function.embedded.latex</string>
-						</dict>
-						<key>2</key>
-						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
-						</dict>
-						<key>3</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
-						</dict>
-						<key>4</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
-						</dict>
-						<key>5</key>
-						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
-						</dict>
-						<key>6</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
-						</dict>
-						<key>7</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
-						</dict>
-						<key>8</key>
-						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
-						</dict>
-						<key>9</key>
-						<dict>
-							<key>name</key>
-							<string>comment.line.percentage.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.function.embedded.latex</string>
-					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
-					<key>name</key>
-					<string>meta.embedded.block.python</string>
+					<string>source.js</string>
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>begin</key>
-							<string>^(?!\\end\{(lstlisting|minted)\})</string>
-							<key>end</key>
-							<string>(?=\\end\{(lstlisting|minted)\})</string>
-							<key>name</key>
-							<string>source.python</string>
-							<key>patterns</key>
-							<array>
-								<dict>
-									<key>include</key>
-									<string>source.python</string>
-								</dict>
-							</array>
+							<key>include</key>
+							<string>source.js</string>
 						</dict>
 					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(\s*%.*\n?)?</string>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{lua\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>meta.function.embedded.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
-						<key>2</key>
+					</dict>
+					<key>contentName</key>
+					<string>source.lua</string>
+					<key>patterns</key>
+					<array>
 						<dict>
-							<key>name</key>
-							<string>support.function.be.latex</string>
+							<key>include</key>
+							<string>source.lua</string>
 						</dict>
-						<key>3</key>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:python|py)\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>punctuation.definition.function.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
-						<key>4</key>
+					</dict>
+					<key>contentName</key>
+					<string>source.python</string>
+					<key>patterns</key>
+					<array>
 						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.begin.latex</string>
+							<key>include</key>
+							<string>source.python</string>
 						</dict>
-						<key>5</key>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{xml\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>variable.parameter.function.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
-						<key>6</key>
+					</dict>
+					<key>contentName</key>
+					<string>source.xml</string>
+					<key>patterns</key>
+					<array>
 						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.end.latex</string>
+							<key>include</key>
+							<string>source.xml</string>
 						</dict>
-						<key>7</key>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{yaml\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.begin.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
-						<key>8</key>
+					</dict>
+					<key>contentName</key>
+					<string>source.yaml</string>
+					<key>patterns</key>
+					<array>
 						<dict>
-							<key>name</key>
-							<string>punctuation.definition.arguments.optional.end.latex</string>
+							<key>include</key>
+							<string>source.yaml</string>
 						</dict>
-						<key>9</key>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict> 
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{(?:lstlisting|minted)\}(?:\[.*\])?)</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
 						<dict>
-							<key>name</key>
-							<string>comment.line.percentage.latex</string>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
 						</dict>
 					</dict>
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(((\\)end)(\{)(lstlisting|minted)(\}))</string>
+					<string>(\\end\{(?:lstlisting|minted)\})</string>
 					<key>name</key>
 					<string>meta.embedded.block.generic</string>
 				</dict>
 			</array>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((?:\s*)\\begin\{(cppcode(?:\*)?)\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>source.cpp</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.cpp</string>
+				</dict>
+			</array>
+			<key>end</key>
+			<string>(\\end\{\2\}(?:\s*\n)?)</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((?:\s*)\\begin\{(luacode(?:\*)?)\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>source.lua</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.lua</string>
+				</dict>
+			</array>
+			<key>end</key>
+			<string>(\\end\{\2\}(?:\s*\n)?)</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((?:\s*)\\begin\{(pycode(?:\*)?)\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>source.python</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.python</string>
+				</dict>
+			</array>
+			<key>end</key>
+			<string>(\\end\{\2\}(?:\s*\n)?)</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((?:\s*)\\begin\{dot2tex\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>source.dot</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.dot</string>
+				</dict>
+			</array>
+			<key>end</key>
+			<string>(\\end\{dot2tex\}(?:\s*\n)?)</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((?:\s*)\\begin\{gnuplot\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>source.gnuplot</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.gnuplot</string>
+				</dict>
+			</array>
+			<key>end</key>
+			<string>(\\end\{gnuplot\}(?:\s*\n)?)</string>
 		</dict>
 		<dict>
 			<key>begin</key>
@@ -1853,6 +2007,107 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 					<string>(\[)([^\[]*?)(\])</string>
 				</dict>
 			</array>
+		</dict>
+		<key>minted-env</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.optional.begin.latex</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.optional.end.latex</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>10</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+			</dict>
+			<key>match</key>
+				<string>((\\)(?:begin|end))(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(?:(\{)([a-z]*)(\}))?</string>
+		</dict>
+		<key>code-env</key>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.be.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>variable.parameter.function.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.end.latex</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.optional.begin.latex</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.arguments.optional.end.latex</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>(?:\s*)((\\)(?:begin|end))(\{)([a-z]*code(?:\*)?|gnuplot|dot2tex)(\})(?:(\[).*(\]))?</string>
 		</dict>
 		<key>definition-label</key>
 		<dict>
