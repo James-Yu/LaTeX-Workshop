@@ -216,6 +216,90 @@
 			<array>
 				<dict>
 					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:cpp|c)\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.cpp</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.cpp</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{css\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.css</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.css</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{html\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.html</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.html</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
 					<string>(\\begin\{minted\}(?:\[.*\])?\{java\})</string>
 					<key>captures</key>
 					<dict>
@@ -231,33 +315,76 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.function.embedded.latex</string>
-					<key>end</key>
-					<string>(\\end\{minted\})</string>
-					<key>name</key>
-					<string>meta.embedded.block.java</string>
+					<string>source.java</string>
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>begin</key>
-							<string>^(?!\\end\{minted\})</string>
-							<key>end</key>
-							<string>(?=\\end\{minted\})</string>
-							<key>name</key>
+							<key>include</key>
 							<string>source.java</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:js|javascript)\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
 							<key>patterns</key>
 							<array>
 								<dict>
 									<key>include</key>
-									<string>source.java</string>
+									<string>#minted-env</string>
 								</dict>
 							</array>
 						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.js</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.js</string>
+						</dict>
 					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\\begin\{minted\}(?:\[.*\])?\{python\})</string>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{lua\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.lua</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.lua</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:python|py)\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -285,7 +412,7 @@
 				</dict>
 				<dict>
 					<key>begin</key>
-					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:cpp|c)\})</string>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{xml\})</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -300,17 +427,45 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>source.cpp</string>
+					<string>source.xml</string>
 					<key>patterns</key>
 					<array>
 						<dict>
 							<key>include</key>
-							<string>source.cpp</string>
+							<string>source.xml</string>
 						</dict>
 					</array>
 					<key>end</key>
 					<string>(\\end\{minted\})</string>
 				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{yaml\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
+							<key>patterns</key>
+							<array>
+								<dict>
+									<key>include</key>
+									<string>#minted-env</string>
+								</dict>
+							</array>
+						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.yaml</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.yaml</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict> 
 				<dict>
 					<key>begin</key>
 					<string>((\\)begin)(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?</string>
