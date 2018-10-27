@@ -193,7 +193,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(^\s*)?(?=\\begin\{(minted)\})</string>
+			<string>(^\s*)?(?=\\begin\{(lstlisting|minted)\})</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -272,29 +272,44 @@
 						</dict>
 					</dict>
 					<key>contentName</key>
-					<string>meta.function.embedded.latex</string>
-					<key>end</key>
-					<string>(\\end\{minted\})</string>
-					<key>name</key>
-					<string>meta.embedded.block.python</string>
+					<string>source.python</string>
 					<key>patterns</key>
 					<array>
 						<dict>
-							<key>begin</key>
-							<string>^(?!\\end\{minted\})</string>
-							<key>end</key>
-							<string>(?=\\end\{minted\})</string>
-							<key>name</key>
+							<key>include</key>
 							<string>source.python</string>
+						</dict>
+					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
+				</dict>
+				<dict>
+					<key>begin</key>
+					<string>(\\begin\{minted\}(?:\[.*\])?\{(?:cpp|c)\})</string>
+					<key>captures</key>
+					<dict>
+						<key>1</key>
+						<dict>
 							<key>patterns</key>
 							<array>
 								<dict>
 									<key>include</key>
-									<string>source.python</string>
+									<string>#minted-env</string>
 								</dict>
 							</array>
 						</dict>
+					</dict>
+					<key>contentName</key>
+					<string>source.cpp</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>source.cpp</string>
+						</dict>
 					</array>
+					<key>end</key>
+					<string>(\\end\{minted\})</string>
 				</dict>
 				<dict>
 					<key>begin</key>
