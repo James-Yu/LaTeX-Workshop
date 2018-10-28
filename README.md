@@ -15,7 +15,7 @@ One million downloads! This project won't be successful without contributions fr
 
 ## Features
 
-- Build LaTeX (including BibTeX) to PDF automatically on save.
+- Build LaTeX (including BibTeX) to PDF automatically on save (see [Build on Save](#build-on-save))
 
   <img src="demo_media/build.gif" alt="build process gif" height="20px">
 
@@ -190,6 +190,10 @@ When using `% !TEX program` with bibliographies, a `bib` compiler must be define
 ### Build on save?
 
 By default, the extension compiles the project upon saving any tex files. If you want to disable this feature, setting the configuration item `latex-workshop.latex.autoBuild.onSave.enabled` to `false` will do.
+
+### Synctex after build?
+
+When using the internal PDF viewer, you can make it automatically jump after build to the location pointed out by the tex file. If you want to enable this feature, setting the configuration item `latex-workshop.synctex.afterBuild.enabled` to `true` will do.
 
 ### Docker?
 
