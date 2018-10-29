@@ -224,7 +224,7 @@ export class Builder {
                                                     .replace('%DOCFILE%', docfile)
                                                     .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
             }
-            if (process.platform === 'win32') {
+            if (configuration.get('maxPrintLine.option.enabled') && process.platform === 'win32') {
                 if (!step.args) {
                     step.args = []
                 }
