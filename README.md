@@ -155,6 +155,15 @@ If you have a custom toolchain defined in pre-4.0 versions of LaTeX Workshop, yo
 4. Name the recipe with the `name` field.
 5. Happy typesetting.
 
+### <a name="problem-pane"></a>Problem Panel and `--max-print-lines`
+
+LaTeX compilers usually produce hard wrapped log messages, which makes them really hard to parse. To hopefully deal with complex log messages, we have decided to rely on non hard wrapped log messages. This can be achieved either
+
+- by setting the environment variable `max_print_line`. This is automatically done within the extension and works for the TeXLive distribution.
+- by adding the `--max-print-line` option to the compilers. This is automatically done within the extension and works for the MiKTeX distribution. Unfortunately, some compilers such as `lualatex` or `xelatex` do not understand this option and may therefore fail. To disable the automatic addition of this option, set `latex-workshop.maxPrintLine.option.enabled` to `false`.
+
+Note that when log messages are hard wrapped, the _Problems Pane_ may be messed up.
+
 ### Root file?
 
 While it is fine to write all contents in one `.tex` file, it is common to split things up for simplicity. For such LaTeX projects, the file with `\begin{document}` is considered as the root file, which serves as the entry point to the project. LaTeX Workshop intelligently finds the root file when a new document is opened, the active editor is changed, or any LaTeX Workshop command is executed.
