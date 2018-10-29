@@ -577,6 +577,34 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>((?:\s*)\\begin\{asy\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>source.asymptote</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.asymptote</string>
+				</dict>
+			</array>
+			<key>end</key>
+			<string>(\\end\{asy\}(?:\s*\n)?)</string>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>((?:\s*)\\begin\{dot2tex\}(?:\[.*\])?)</string>
 			<key>captures</key>
 			<dict>
@@ -2107,7 +2135,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:\s*)((\\)(?:begin|end))(\{)([a-z]*code(?:\*)?|gnuplot|dot2tex)(\})(?:(\[).*(\]))?</string>
+			<string>(?:\s*)((\\)(?:begin|end))(\{)([a-z]*code(?:\*)?|gnuplot|dot2tex|asy)(\})(?:(\[).*(\]))?</string>
 		</dict>
 		<key>definition-label</key>
 		<dict>
