@@ -193,10 +193,46 @@ export class Locator {
                     vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
                         editor.selection = new vscode.Selection(pos, pos)
                         vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
+                        this.animateToNotify(editor, pos)
                     })
                 })
             }
         })
+    }
+
+    private animateToNotify(editor: vscode.TextEditor, position : vscode.Position) {
+        const decoConfig = {
+            borderWidth: '1px',
+            borderStyle: 'solid',
+            light: {
+                borderColor: 'red'
+            },
+            dark: {
+                borderColor: 'white'
+            }
+        }
+        const line = editor.document.lineAt(position.line)
+        const lineEnd = line.range.end.character
+        const cur = position.character
+        let begin = Math.max(cur - 6, 0)
+        let end = Math.min(lineEnd, cur + 6)
+        const range = new vscode.Range(position.line, begin, position.line, end)
+        setTimeout(async () => {
+            let prevDeco : vscode.TextEditorDecorationType | undefined = undefined
+            for( let i = 0; i < 10; i++ ) {
+                decoConfig.borderWidth = (10 - i) + 'px'
+                const deco = vscode.window.createTextEditorDecorationType(decoConfig)
+                if (prevDeco) {
+                    prevDeco.dispose()
+                }
+                editor.setDecorations(deco, [range])
+                prevDeco = deco
+                await (new Promise(resolve => setTimeout(resolve, 100)))
+            }
+            if (prevDeco) {
+                prevDeco.dispose()
+            }
+        }, 10);
     }
 
     syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
