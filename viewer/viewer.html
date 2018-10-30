@@ -135,6 +135,17 @@ See https://github.com/adobe-type-tools/cmap-resources
 
             <div class="horizontalToolbarSeparator"></div>
 
+            <span id="scaleSelectContainer" class="dropdownToolbarButton">
+              <select id="trimSelect" title="Trim" tabindex="23" >
+                <option title="" value="0.0" selected="selected" >trim off</option>
+                <option title="" value="0.05" >trim 5%</option>
+                <option title="" value="0.10" >trim 10%</option>
+                <option title="" value="0.15" >trim 15%</option>
+              </select>
+            </span>
+
+            <div class="horizontalToolbarSeparator"></div>
+
             <button id="toggleHandTool" class="secondaryToolbarButton handTool" title="Enable hand tool" tabindex="60" data-l10n-id="hand_tool_enable">
               <span data-l10n-id="hand_tool_enable_label">Enable hand tool</span>
             </button>
@@ -225,6 +236,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                     <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
                     <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
                     <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
+                    <option id="trimOption" title="" disabled="disabled" hidden="true"> in trim mode </option>
                   </select>
                 </span>
               </div>
@@ -507,6 +519,81 @@ See https://github.com/adobe-type-tools/cmap-resources
           showToolbar(true)
         }
       }
+
+      var currentUserSelectScale = undefined;
+      var originalUserSelectIndex = undefined;
+
+      const getTrimScale = () => {
+        var trimSelect = document.getElementById("trimSelect");
+        if (trimSelect.selectedIndex <= 0) {
+          return 1.0;
+        }
+        var trimValue = trimSelect.options[trimSelect.selectedIndex].value;
+        return 1.0/(1 - 2*trimValue);
+      };
+
+      document.getElementById("trimSelect").addEventListener("change", (ev) => {
+        var trimScale = getTrimScale();
+        var trimSelect = document.getElementById("trimSelect");
+        var scaleSelect = document.getElementById("scaleSelect");
+        var e = new Event("change");
+        var o;
+        if (trimSelect.selectedIndex === 0) {
+          for ( o of scaleSelect.options ) {
+            o.disabled = false;
+          }
+          document.getElementById("trimOption").disabled = true;
+          document.getElementById("trimOption").hidden = true;
+          scaleSelect.selectedIndex = originalUserSelectIndex;
+          scaleSelect.dispatchEvent(e);
+          currentUserSelectScale = undefined;
+          originalUserSelectIndex = undefined;
+          return;
+        }
+        for ( o of scaleSelect.options ) {
+          o.disabled = true;
+        }
+        if (currentUserSelectScale === undefined) {
+          currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale;
+        }
+        if (originalUserSelectIndex === undefined) {
+          originalUserSelectIndex = scaleSelect.selectedIndex;
+        }
+        o = document.getElementById("trimOption");
+        o.value = currentUserSelectScale * trimScale;
+        o.selected = true;
+        scaleSelect.dispatchEvent(e);
+      });
+
+      window.addEventListener("pagerendered", (ev) => {
+        var trimSelect = document.getElementById("trimSelect");
+        if (trimSelect.selectedIndex <= 0) {
+            return;
+        }
+        var trimScale = getTrimScale();
+        var v = document.getElementById("viewer");
+        for( var page of v.getElementsByClassName("page") ){
+          var textLayer = page.getElementsByClassName("textLayer") ? page.getElementsByClassName("textLayer")[0] : undefined;
+          var canvasWrapper = page.getElementsByClassName("canvasWrapper") ? page.getElementsByClassName("canvasWrapper")[0] : undefined;
+          var canvas = page.getElementsByTagName("canvas") ? page.getElementsByTagName("canvas")[0] : undefined;
+          if ( textLayer === undefined || canvasWrapper === undefined || canvas === undefined || canvas.isTrimmed ) {
+            continue;
+          }
+          var w = page.style.width;
+          var m;
+          if (m = w.match(/(\d+)/)) {
+            var width = Number(m[1])/trimScale + 'px';
+            page.style.width = width;
+            canvasWrapper.style.width = width;
+            var offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
+            textLayer.style.left = offsetX;
+            canvas.style.left = offsetX;
+            canvas.style.position = "relative";
+            canvas.isTrimmed = true;
+          }
+        }
+      });
+
     </script>
   </body>
 </html>
