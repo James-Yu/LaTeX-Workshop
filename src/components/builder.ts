@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 import * as cp from 'child_process'
 
 import {Extension} from '../main'
@@ -52,6 +52,17 @@ export class Builder {
         this.disableCleanAndRetry = false
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.preprocess(rootFile)
+
+        // Create sub directories of output directory
+        if (this.extension.manager.getOutputDir(rootFile) !== './') {
+            const directories = new Set<string>(this.extension.manager.watched
+                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, ''))))
+            const outputDir = path.join(this.extension.manager.rootDir, this.extension.manager.getOutputDir(rootFile))
+            directories.forEach(directory => {
+                fs.ensureDirSync(path.join(outputDir, directory))
+            })
+        }
+
         if (this.nextBuildRootFile === undefined) {
             this.buildInitiator(rootFile, recipe)
         }
