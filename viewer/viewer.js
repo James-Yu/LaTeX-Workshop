@@ -4039,7 +4039,7 @@ var PDFSidebar = function () {
         return;
       }
       var isViewPreserved = view === this.visibleView;
-      this.switchView(view, true);
+      this.switchView(view, false);
       if (isViewPreserved) {
         this._dispatchEvent();
       }
