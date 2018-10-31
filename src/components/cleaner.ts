@@ -23,7 +23,7 @@ export class Cleaner {
             outdir += path.sep
         }
         if (outdir !== './') {
-            globs = globs.concat(globs.map(globType => outdir + globType))
+            globs = globs.concat(globs.map(globType => outdir + globType), globs.map(globType => outdir + '**/' + globType))
         }
 
         return Promise.all(
