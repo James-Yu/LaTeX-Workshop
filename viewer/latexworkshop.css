@@ -1,3 +1,21 @@
+@media all and (max-width: 660px) {
+    .hiddenSmallView, .hiddenSmallView * {
+      display: none;
+    }
+    .visibleSmallView {
+      display: inherit;
+    }
+    .toolbarButtonSpacer {
+      width: 0;
+    }
+    html[dir='ltr'] .findbar {
+      left: 38px;
+    }
+    html[dir='rtl'] .findbar {
+      right: 38px;
+    }
+  }
+
 #synctex-indicator {
     position: absolute;
     z-index: 100000;
@@ -32,13 +50,9 @@ body {
    background-color: white;
 }
 
-html[dir='rtl'] #outerContainer.sidebarOpen > #mainContainer {
+html #outerContainer.sidebarOpen > #sidebarContainer {
     background-color: #404040;
     background-image: url(images/texture.png);
-}
-
-html[dir='rtl'] #sidebarContent {
-    top: 0;
 }
 
 .notransition {

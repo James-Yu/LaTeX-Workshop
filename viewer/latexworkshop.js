@@ -138,7 +138,8 @@ function showToolbar(animate) {
   d.className = d.className.replace(' hide', '') + (animate ? '' : ' notransition')
 
   hideToolbarInterval = setInterval(() => {
-    if(!PDFViewerApplication.findBar.opened) {
+    if(!PDFViewerApplication.findBar.opened && !PDFViewerApplication.pdfSidebar.isOpen &&
+       !PDFViewerApplication.secondaryToolbar.isOpen) {
       d.className = d.className.replace(' notransition', '') + ' hide'
       clearInterval(hideToolbarInterval)
     }

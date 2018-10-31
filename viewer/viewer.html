@@ -150,17 +150,6 @@ See https://github.com/adobe-type-tools/cmap-resources
 
             <div class="horizontalToolbarSeparator"></div>
 
-            <span id="scaleSelectContainer" class="dropdownToolbarButton">
-              <select id="trimSelect" title="Trim" tabindex="23" >
-                <option title="" value="0.0" selected="selected" >trim off</option>
-                <option title="" value="0.05" >trim 5%</option>
-                <option title="" value="0.10" >trim 10%</option>
-                <option title="" value="0.15" >trim 15%</option>
-              </select>
-            </span>
-
-            <div class="horizontalToolbarSeparator"></div>
-
             <button id="cursorSelectTool" class="secondaryToolbarButton selectTool toggled" title="Enable Text Selection Tool" tabindex="60" data-l10n-id="cursor_text_select_tool">
               <span data-l10n-id="cursor_text_select_tool_label">Text Selection Tool</span>
             </button>
@@ -278,7 +267,15 @@ See https://github.com/adobe-type-tools/cmap-resources
                     <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
                     <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
                     <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
-                    <option id="trimOption" title="" disabled="disabled" hidden="true"> in trim mode </option>
+                    <option id="trimOption" title="" disabled="disabled" hidden="true"> Trimming </option>
+                  </select>
+                </span>
+                <span id="scaleSelectContainer" class="dropdownToolbarButton">
+                  <select id="trimSelect" title="Trim" tabindex="23" >
+                    <option title="" value="0.0" selected="selected" >No page trimming</option>
+                    <option title="" value="0.05" >Trim 5% at margin</option>
+                    <option title="" value="0.10" >Trim 10% at margin</option>
+                    <option title="" value="0.15" >Trim 15% at margin</option>
                   </select>
                 </span>
               </div>
