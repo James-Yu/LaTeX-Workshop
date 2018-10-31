@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--
 Copyright 2012 Mozilla Foundation
 
@@ -20,25 +20,21 @@ Adobe CMap resources are covered by their own copyright but the same license:
 
 See https://github.com/adobe-type-tools/cmap-resources
 -->
-<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+<html dir="ltr" mozdisallowselectionprint>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="google" content="notranslate">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>PDF.js viewer</title>
 
 
     <link rel="stylesheet" href="viewer.css">
 
-    <script src="web/compatibility.js"></script>
-
-
 
 <!-- This snippet is used in production (included from viewer.html) -->
-  <link rel="resource" type="application/l10n" href="locale/locale.properties">
-<script src="l10n.js"></script>
-<script src="build/pdf.min.js"></script>
-
+<link rel="resource" type="application/l10n" href="locale/locale.properties">
+<script src="../build/pdf.js"></script>
 
 
     <script src="viewer.js"></script>
@@ -51,13 +47,13 @@ See https://github.com/adobe-type-tools/cmap-resources
       <div id="sidebarContainer">
         <div id="toolbarSidebar">
           <div class="splitToolbarButton toggled">
-            <button id="viewThumbnail" class="toolbarButton group toggled" title="Show Thumbnails" tabindex="2" data-l10n-id="thumbs">
+            <button id="viewThumbnail" class="toolbarButton toggled" title="Show Thumbnails" tabindex="2" data-l10n-id="thumbs">
                <span data-l10n-id="thumbs_label">Thumbnails</span>
             </button>
-            <button id="viewOutline" class="toolbarButton group" title="Show Document Outline (double-click to expand/collapse all items)" tabindex="3" data-l10n-id="document_outline">
+            <button id="viewOutline" class="toolbarButton" title="Show Document Outline (double-click to expand/collapse all items)" tabindex="3" data-l10n-id="document_outline">
                <span data-l10n-id="document_outline_label">Document Outline</span>
             </button>
-            <button id="viewAttachments" class="toolbarButton group" title="Show Attachments" tabindex="4" data-l10n-id="attachments">
+            <button id="viewAttachments" class="toolbarButton" title="Show Attachments" tabindex="4" data-l10n-id="attachments">
                <span data-l10n-id="attachments_label">Attachments</span>
             </button>
           </div>
@@ -70,36 +66,48 @@ See https://github.com/adobe-type-tools/cmap-resources
           <div id="attachmentsView" class="hidden">
           </div>
         </div>
+        <div id="sidebarResizer" class="hidden"></div>
       </div>  <!-- sidebarContainer -->
 
       <div id="mainContainer">
-        <div class="findbar hidden doorHanger hiddenSmallView" id="findbar">
-          <label for="findInput" class="toolbarLabel" data-l10n-id="find_label">Find:</label>
-          <input id="findInput" class="toolbarField" tabindex="91">
-          <div class="splitToolbarButton">
-            <button class="toolbarButton findPrevious" title="" id="findPrevious" tabindex="92" data-l10n-id="find_previous">
-              <span data-l10n-id="find_previous_label">Previous</span>
-            </button>
-            <div class="splitToolbarButtonSeparator"></div>
-            <button class="toolbarButton findNext" title="" id="findNext" tabindex="93" data-l10n-id="find_next">
-              <span data-l10n-id="find_next_label">Next</span>
-            </button>
+        <div class="findbar hidden doorHanger" id="findbar">
+          <div id="findbarInputContainer">
+            <input id="findInput" class="toolbarField" title="Find" placeholder="Find in document…" tabindex="91" data-l10n-id="find_input">
+            <div class="splitToolbarButton">
+              <button id="findPrevious" class="toolbarButton findPrevious" title="Find the previous occurrence of the phrase" tabindex="92" data-l10n-id="find_previous">
+                <span data-l10n-id="find_previous_label">Previous</span>
+              </button>
+              <div class="splitToolbarButtonSeparator"></div>
+              <button id="findNext" class="toolbarButton findNext" title="Find the next occurrence of the phrase" tabindex="93" data-l10n-id="find_next">
+                <span data-l10n-id="find_next_label">Next</span>
+              </button>
+            </div>
           </div>
-          <input type="checkbox" id="findHighlightAll" class="toolbarField" tabindex="94">
-          <label for="findHighlightAll" class="toolbarLabel" data-l10n-id="find_highlight">Highlight all</label>
-          <input type="checkbox" id="findMatchCase" class="toolbarField" tabindex="95">
-          <label for="findMatchCase" class="toolbarLabel" data-l10n-id="find_match_case_label">Match case</label>
-          <span id="findResultsCount" class="toolbarLabel hidden"></span>
-          <span id="findMsg" class="toolbarLabel"></span>
+
+          <div id="findbarOptionsOneContainer">
+            <input type="checkbox" id="findHighlightAll" class="toolbarField" tabindex="94">
+            <label for="findHighlightAll" class="toolbarLabel" data-l10n-id="find_highlight">Highlight all</label>
+            <input type="checkbox" id="findMatchCase" class="toolbarField" tabindex="95">
+            <label for="findMatchCase" class="toolbarLabel" data-l10n-id="find_match_case_label">Match case</label>
+          </div>
+          <div id="findbarOptionsTwoContainer">
+            <input type="checkbox" id="findEntireWord" class="toolbarField" tabindex="96">
+            <label for="findEntireWord" class="toolbarLabel" data-l10n-id="find_entire_word_label">Whole words</label>
+            <span id="findResultsCount" class="toolbarLabel hidden"></span>
+          </div>
+
+          <div id="findbarMessageContainer">
+            <span id="findMsg" class="toolbarLabel"></span>
+          </div>
         </div>  <!-- findbar -->
 
         <div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
           <div id="secondaryToolbarButtonContainer">
-            <button style="display:none" id="secondaryPresentationMode" class="secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
+            <button id="secondaryPresentationMode" class="secondaryToolbarButton presentationMode visibleLargeView" title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
               <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
             </button>
 
-            <button style="display:none" id="secondaryOpenFile" class="secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="52" data-l10n-id="open_file">
+            <button id="secondaryOpenFile" class="secondaryToolbarButton openFile visibleLargeView" title="Open File" tabindex="52" data-l10n-id="open_file">
               <span data-l10n-id="open_file_label">Open</span>
             </button>
 
@@ -107,15 +115,15 @@ See https://github.com/adobe-type-tools/cmap-resources
               <span data-l10n-id="print_label">Print</span>
             </button>
 
-            <button style="display:none" id="secondaryDownload" class="secondaryToolbarButton download visibleMediumView" title="Download" tabindex="54" data-l10n-id="download">
+            <button id="secondaryDownload" class="secondaryToolbarButton download visibleMediumView" title="Download" tabindex="54" data-l10n-id="download">
               <span data-l10n-id="download_label">Download</span>
             </button>
 
-            <a style="display:none" href="#" id="secondaryViewBookmark" class="secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="55" data-l10n-id="bookmark">
+            <a href="#" id="secondaryViewBookmark" class="secondaryToolbarButton bookmark visibleSmallView" title="Current view (copy or open in new window)" tabindex="55" data-l10n-id="bookmark">
               <span data-l10n-id="bookmark_label">Current View</span>
             </a>
 
-            <!-- <div class="horizontalToolbarSeparator visibleLargeView"></div> -->
+            <div class="horizontalToolbarSeparator visibleLargeView"></div>
 
             <button id="firstPage" class="secondaryToolbarButton firstPage" title="Go to First Page" tabindex="56" data-l10n-id="first_page">
               <span data-l10n-id="first_page_label">Go to First Page</span>
@@ -135,45 +143,57 @@ See https://github.com/adobe-type-tools/cmap-resources
 
             <div class="horizontalToolbarSeparator"></div>
 
-            <span id="scaleSelectContainer" class="dropdownToolbarButton">
-              <select id="trimSelect" title="Trim" tabindex="23" >
-                <option title="" value="0.0" selected="selected" >trim off</option>
-                <option title="" value="0.05" >trim 5%</option>
-                <option title="" value="0.10" >trim 10%</option>
-                <option title="" value="0.15" >trim 15%</option>
-              </select>
-            </span>
-
-            <div class="horizontalToolbarSeparator"></div>
-
-            <button id="toggleHandTool" class="secondaryToolbarButton handTool" title="Enable hand tool" tabindex="60" data-l10n-id="hand_tool_enable">
-              <span data-l10n-id="hand_tool_enable_label">Enable hand tool</span>
+            <button id="cursorSelectTool" class="secondaryToolbarButton selectTool toggled" title="Enable Text Selection Tool" tabindex="60" data-l10n-id="cursor_text_select_tool">
+              <span data-l10n-id="cursor_text_select_tool_label">Text Selection Tool</span>
+            </button>
+            <button id="cursorHandTool" class="secondaryToolbarButton handTool" title="Enable Hand Tool" tabindex="61" data-l10n-id="cursor_hand_tool">
+              <span data-l10n-id="cursor_hand_tool_label">Hand Tool</span>
             </button>
 
             <div class="horizontalToolbarSeparator"></div>
 
-            <button id="documentProperties" class="secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="61" data-l10n-id="document_properties">
+            <button id="scrollVertical" class="secondaryToolbarButton scrollModeButtons scrollVertical toggled" title="Use Vertical Scrolling" tabindex="62" data-l10n-id="scroll_vertical">
+              <span data-l10n-id="scroll_vertical_label">Vertical Scrolling</span>
+            </button>
+            <button id="scrollHorizontal" class="secondaryToolbarButton scrollModeButtons scrollHorizontal" title="Use Horizontal Scrolling" tabindex="63" data-l10n-id="scroll_horizontal">
+              <span data-l10n-id="scroll_horizontal_label">Horizontal Scrolling</span>
+            </button>
+            <button id="scrollWrapped" class="secondaryToolbarButton scrollModeButtons scrollWrapped" title="Use Wrapped Scrolling" tabindex="64" data-l10n-id="scroll_wrapped">
+              <span data-l10n-id="scroll_wrapped_label">Wrapped Scrolling</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator scrollModeButtons"></div>
+
+            <button id="spreadNone" class="secondaryToolbarButton spreadModeButtons spreadNone toggled" title="Do not join page spreads" tabindex="65" data-l10n-id="spread_none">
+              <span data-l10n-id="spread_none_label">No Spreads</span>
+            </button>
+            <button id="spreadOdd" class="secondaryToolbarButton spreadModeButtons spreadOdd" title="Join page spreads starting with odd-numbered pages" tabindex="66" data-l10n-id="spread_odd">
+              <span data-l10n-id="spread_odd_label">Odd Spreads</span>
+            </button>
+            <button id="spreadEven" class="secondaryToolbarButton spreadModeButtons spreadEven" title="Join page spreads starting with even-numbered pages" tabindex="67" data-l10n-id="spread_even">
+              <span data-l10n-id="spread_even_label">Even Spreads</span>
+            </button>
+
+            <div class="horizontalToolbarSeparator spreadModeButtons"></div>
+
+            <button id="documentProperties" class="secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="68" data-l10n-id="document_properties">
               <span data-l10n-id="document_properties_label">Document Properties…</span>
             </button>
           </div>
         </div>  <!-- secondaryToolbar -->
 
-        <div class="toolbar hide">
+        <div class="toolbar">
           <div id="toolbarContainer">
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
                   <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
                 </button>
-                <!-- History back button, useful in the embedded viewer -->
-                <button class="toolbarButton findPrevious" title="Back" id="historyBack">
-                  <span>Back</span>
-                </button>
                 <div class="toolbarButtonSpacer"></div>
-                <button id="viewFind" class="toolbarButton group hiddenSmallView" title="Find in Document" tabindex="12" data-l10n-id="findbar">
-                   <span data-l10n-id="findbar_label">Find</span>
+                <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">
+                  <span data-l10n-id="findbar_label">Find</span>
                 </button>
-                <div class="splitToolbarButton">
+                <div class="splitToolbarButton hiddenSmallView">
                   <button class="toolbarButton pageUp" title="Previous Page" id="previous" tabindex="13" data-l10n-id="previous">
                     <span data-l10n-id="previous_label">Previous</span>
                   </button>
@@ -186,11 +206,11 @@ See https://github.com/adobe-type-tools/cmap-resources
                 <span id="numPages" class="toolbarLabel"></span>
               </div>
               <div id="toolbarViewerRight">
-                <button style="display:none" id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
+                <button id="presentationMode" class="toolbarButton presentationMode hiddenLargeView" title="Switch to Presentation Mode" tabindex="31" data-l10n-id="presentation_mode">
                   <span data-l10n-id="presentation_mode_label">Presentation Mode</span>
                 </button>
 
-                <button style="display:none" id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
+                <button id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
                   <span data-l10n-id="open_file_label">Open</span>
                 </button>
 
@@ -198,10 +218,10 @@ See https://github.com/adobe-type-tools/cmap-resources
                   <span data-l10n-id="print_label">Print</span>
                 </button>
 
-                <button style="display:none" id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
+                <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
                   <span data-l10n-id="download_label">Download</span>
                 </button>
-                <a style="display:none" href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
+                <a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
                   <span data-l10n-id="bookmark_label">Current View</span>
                 </a>
 
@@ -225,8 +245,8 @@ See https://github.com/adobe-type-tools/cmap-resources
                   <select id="scaleSelect" title="Zoom" tabindex="23" data-l10n-id="zoom">
                     <option id="pageAutoOption" title="" value="auto" selected="selected" data-l10n-id="page_scale_auto">Automatic Zoom</option>
                     <option id="pageActualOption" title="" value="page-actual" data-l10n-id="page_scale_actual">Actual Size</option>
-                    <option id="pageFitOption" title="" value="page-fit" data-l10n-id="page_scale_fit">Fit Page</option>
-                    <option id="pageWidthOption" title="" value="page-width" data-l10n-id="page_scale_width">Full Width</option>
+                    <option id="pageFitOption" title="" value="page-fit" data-l10n-id="page_scale_fit">Page Fit</option>
+                    <option id="pageWidthOption" title="" value="page-width" data-l10n-id="page_scale_width">Page Width</option>
                     <option id="customScaleOption" title="" value="custom" disabled="disabled" hidden="true"></option>
                     <option title="" value="0.5" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 50 }'>50%</option>
                     <option title="" value="0.75" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 75 }'>75%</option>
@@ -236,7 +256,6 @@ See https://github.com/adobe-type-tools/cmap-resources
                     <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
                     <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
                     <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
-                    <option id="trimOption" title="" disabled="disabled" hidden="true"> in trim mode </option>
                   </select>
                 </span>
               </div>
@@ -263,7 +282,6 @@ See https://github.com/adobe-type-tools/cmap-resources
 
         <div id="viewerContainer" tabindex="0">
           <div id="viewer" class="pdfViewer"></div>
-          <div id="synctex-indicator"></div>
         </div>
 
         <div id="errorWrapper" hidden='true'>
@@ -293,8 +311,7 @@ See https://github.com/adobe-type-tools/cmap-resources
               <p id="passwordText" data-l10n-id="password_label">Enter the password to open this PDF file:</p>
             </div>
             <div class="row">
-              <!-- The type="password" attribute is set via script, to prevent warnings in Firefox for all http:// documents. -->
-              <input id="password" class="toolbarField">
+              <input type="password" id="password" class="toolbarField">
             </div>
             <div class="buttonRow">
               <button id="passwordCancel" class="overlayButton"><span data-l10n-id="password_cancel">Cancel</span></button>
@@ -342,6 +359,13 @@ See https://github.com/adobe-type-tools/cmap-resources
             <div class="row">
               <span data-l10n-id="document_properties_page_count">Page Count:</span> <p id="pageCountField">-</p>
             </div>
+            <div class="row">
+              <span data-l10n-id="document_properties_page_size">Page Size:</span> <p id="pageSizeField">-</p>
+            </div>
+            <div class="separator"></div>
+            <div class="row">
+              <span data-l10n-id="document_properties_linearized">Fast Web View:</span> <p id="linearizedField">-</p>
+            </div>
             <div class="buttonRow">
               <button id="documentPropertiesClose" class="overlayButton"><span data-l10n-id="document_properties_close">Close</span></button>
             </div>
@@ -365,235 +389,6 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
-    <script>
-      const embedded = window.parent !== window
-
-      // PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
-      // and if so it behaves more "discretely", eg it disables its history mechanism.
-      // We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
-      //
-      pdfjsWebLibs.pdfjsWebApp.PDFViewerApplication.isViewerEmbedded = false;
-
-      let query = document.location.search.substring(1)
-      let parts = query.split('&')
-      let file
-      for (let i = 0, ii = parts.length; i < ii; ++i) {
-          let param = parts[i].split('=')
-          if (param[0].toLowerCase() === 'file') {
-              file = param[1].replace('/pdf:', '')
-              document.title = decodeURIComponent(file).split(/[\\/]/).pop()
-          } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
-              const dom = document.getElementsByClassName('print')
-              for (let j = 0; j < dom.length; ++j) {
-                dom.item(j).style.display='none'
-              }
-          }
-      }
-      let server = `ws://${window.location.hostname}:${window.location.port}`
-
-      let socket = new WebSocket(server)
-      socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:file})))
-      socket.addEventListener("message", (event) => {
-          let data = JSON.parse(event.data)
-          switch (data.type) {
-              case "synctex":
-                  // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
-                  let container = document.getElementById('viewerContainer')
-                  var pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
-                  let page = document.getElementsByClassName('page')[data.data.page - 1]
-                  let scrollX = page.offsetLeft + pos[0]
-                  let scrollY = page.offsetTop + page.offsetHeight - pos[1]
-                  container.scrollTop = scrollY - document.body.offsetHeight * 0.4
-
-                  let indicator = document.getElementById('synctex-indicator')
-                  indicator.className = 'show'
-                  indicator.style.left = `${scrollX}px`
-                  indicator.style.top = `${scrollY}px`
-                  setTimeout(() => indicator.className = 'hide', 10)
-                  break
-              case "refresh":
-                  // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
-                  // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-                  socket.send(JSON.stringify({type:"position",
-                                              scale:PDFViewerApplication.pdfViewer.currentScaleValue,
-                                              scrollTop:document.getElementById('viewerContainer').scrollTop,
-                                              scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
-                  PDFViewerApplication.viewerPrefs['showPreviousViewOnLoad'] = false
-                  PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`)
-                  break
-              case "position":
-                  PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
-                  document.getElementById('viewerContainer').scrollTop = data.scrollTop
-                  document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
-                  break
-              case "params":
-                  if (data.scale) {
-                    PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
-                  }
-                  if (data.hand) {
-                      PDFViewerApplication.handTool.handTool.activate()
-                  } else {
-                      PDFViewerApplication.handTool.handTool.deactivate()
-                  }
-                  if (data.invert > 0) {
-                    document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
-                    document.querySelector('#viewer').style.background = 'white'
-                  }
-                  break
-              default:
-                  break
-          }
-      })
-      socket.onclose = () => { document.title = `[Disconnected] ${document.title}` }
-
-      document.addEventListener('pagesinit', (e) => {
-          socket.send(JSON.stringify({type:"loaded", path:file}))
-      })
-
-      // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
-      if (embedded) {
-        document.addEventListener('click', (e) => {
-            if (e.target.nodeName == 'A' && !e.target.href.startsWith(window.location.href)) { // is external link
-              socket.send(JSON.stringify({type:"external_link", url:e.target.href}))
-              e.preventDefault();
-            }
-        })
-      }
-
-      document.addEventListener('pagerendered', (e) => {
-          let page = e.target.dataset.pageNumber
-          let target = e.target
-          let canvas_dom = e.target.childNodes[1]
-          canvas_dom.onclick = (e) => {
-              if (!(e.ctrlKey || e.metaKey)) return
-              let left = e.pageX - target.offsetLeft + target.parentNode.parentNode.scrollLeft
-              let top = e.pageY - target.offsetTop + target.parentNode.parentNode.scrollTop
-              let pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
-              socket.send(JSON.stringify({type:"click", path:file, pos:pos, page:page}))
-          }
-      }, true)
-
-      // back button (mostly useful for the embedded viewer)
-      document.getElementById("historyBack").addEventListener("click", function() {
-        history.back()
-      })
-
-      // keyboard bindings
-      window.addEventListener('keydown', function(evt) {
-        // F opens find bar, cause Ctrl-F is handled by vscode
-        if(evt.keyCode == 70 && evt.target.nodeName != 'INPUT') { // ignore F typed in the search box
-          showToolbar(false)
-          PDFViewerApplication.findBar.open()
-          evt.preventDefault()
-        }
-
-        // Chrome's usual Alt-Left/Right (Command-Left/Right on OSX) for history
-        // Back/Forward don't work in the embedded viewer, so we simulate them.
-        if (embedded && (evt.altKey || evt.metaKey)) {
-          if (evt.keyCode == 37) {
-            history.back();
-          } else if(evt.keyCode == 39) {
-            history.forward();
-          }
-        }
-      })
-
-      let hideToolbarInterval = undefined
-      function showToolbar(animate) {
-        if (hideToolbarInterval) {
-          clearInterval(hideToolbarInterval)
-        }
-        var d = document.getElementsByClassName('toolbar')[0]
-        d.className = d.className.replace(' hide', '') + (animate ? '' : ' notransition')
-
-        hideToolbarInterval = setInterval(() => {
-          if(!PDFViewerApplication.findBar.opened) {
-            d.className = d.className.replace(' notransition', '') + ' hide'
-            clearInterval(hideToolbarInterval)
-          }
-        }, 3000)
-      }
-
-      document.getElementById('outerContainer').onmousemove = (e) => {
-        if (e.clientY <= 64) {
-          showToolbar(true)
-        }
-      }
-
-      var currentUserSelectScale = undefined;
-      var originalUserSelectIndex = undefined;
-
-      const getTrimScale = () => {
-        var trimSelect = document.getElementById("trimSelect");
-        if (trimSelect.selectedIndex <= 0) {
-          return 1.0;
-        }
-        var trimValue = trimSelect.options[trimSelect.selectedIndex].value;
-        return 1.0/(1 - 2*trimValue);
-      };
-
-      document.getElementById("trimSelect").addEventListener("change", (ev) => {
-        var trimScale = getTrimScale();
-        var trimSelect = document.getElementById("trimSelect");
-        var scaleSelect = document.getElementById("scaleSelect");
-        var e = new Event("change");
-        var o;
-        if (trimSelect.selectedIndex === 0) {
-          for ( o of scaleSelect.options ) {
-            o.disabled = false;
-          }
-          document.getElementById("trimOption").disabled = true;
-          document.getElementById("trimOption").hidden = true;
-          scaleSelect.selectedIndex = originalUserSelectIndex;
-          scaleSelect.dispatchEvent(e);
-          currentUserSelectScale = undefined;
-          originalUserSelectIndex = undefined;
-          return;
-        }
-        for ( o of scaleSelect.options ) {
-          o.disabled = true;
-        }
-        if (currentUserSelectScale === undefined) {
-          currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale;
-        }
-        if (originalUserSelectIndex === undefined) {
-          originalUserSelectIndex = scaleSelect.selectedIndex;
-        }
-        o = document.getElementById("trimOption");
-        o.value = currentUserSelectScale * trimScale;
-        o.selected = true;
-        scaleSelect.dispatchEvent(e);
-      });
-
-      window.addEventListener("pagerendered", (ev) => {
-        var trimSelect = document.getElementById("trimSelect");
-        if (trimSelect.selectedIndex <= 0) {
-            return;
-        }
-        var trimScale = getTrimScale();
-        var v = document.getElementById("viewer");
-        for( var page of v.getElementsByClassName("page") ){
-          var textLayer = page.getElementsByClassName("textLayer") ? page.getElementsByClassName("textLayer")[0] : undefined;
-          var canvasWrapper = page.getElementsByClassName("canvasWrapper") ? page.getElementsByClassName("canvasWrapper")[0] : undefined;
-          var canvas = page.getElementsByTagName("canvas") ? page.getElementsByTagName("canvas")[0] : undefined;
-          if ( textLayer === undefined || canvasWrapper === undefined || canvas === undefined || canvas.isTrimmed ) {
-            continue;
-          }
-          var w = page.style.width;
-          var m;
-          if (m = w.match(/(\d+)/)) {
-            var width = Number(m[1])/trimScale + 'px';
-            page.style.width = width;
-            canvasWrapper.style.width = width;
-            var offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
-            textLayer.style.left = offsetX;
-            canvas.style.left = offsetX;
-            canvas.style.position = "relative";
-            canvas.isTrimmed = true;
-          }
-        }
-      });
-
-    </script>
   </body>
 </html>
+
