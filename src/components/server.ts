@@ -46,7 +46,7 @@ export class Server {
         request.url = decodeURIComponent(decodeURIComponent(request.url))
         if (request.url.indexOf('pdf:') >= 0 && request.url.indexOf('viewer.html') < 0) {
             // The second backslash was encoded as %2F, and the first one is prepended by request
-            const fileName = request.url.replace('//pdf:', '')
+            const fileName = request.url.replace('/pdf:', '')
             try {
                 const pdfSize = fs.statSync(fileName).size
                 response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})

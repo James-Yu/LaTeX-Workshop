@@ -28,8 +28,14 @@ See https://github.com/adobe-type-tools/cmap-resources
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>PDF.js viewer</title>
 
-
+    <!--
+      Because latexworkshop.css is loaded after viewer.css,
+      we can override viewer.css by editing latexworkshop.css.
+      DONT EDIT viewer.css. EDIT latexworkshop.css instead.
+    -->
     <link rel="stylesheet" href="viewer.css">
+
+    <link rel="stylesheet" href="latexworkshop.css">
 
 
 <!-- This snippet is used in production (included from viewer.html) -->
@@ -39,6 +45,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     <script src="viewer.js"></script>
 
+    <script src="latexworkshop.js" async></script>
   </head>
 
   <body tabindex="1" class="loadingInProgress">
@@ -143,6 +150,17 @@ See https://github.com/adobe-type-tools/cmap-resources
 
             <div class="horizontalToolbarSeparator"></div>
 
+            <span id="scaleSelectContainer" class="dropdownToolbarButton">
+              <select id="trimSelect" title="Trim" tabindex="23" >
+                <option title="" value="0.0" selected="selected" >trim off</option>
+                <option title="" value="0.05" >trim 5%</option>
+                <option title="" value="0.10" >trim 10%</option>
+                <option title="" value="0.15" >trim 15%</option>
+              </select>
+            </span>
+
+            <div class="horizontalToolbarSeparator"></div>
+
             <button id="cursorSelectTool" class="secondaryToolbarButton selectTool toggled" title="Enable Text Selection Tool" tabindex="60" data-l10n-id="cursor_text_select_tool">
               <span data-l10n-id="cursor_text_select_tool_label">Text Selection Tool</span>
             </button>
@@ -182,12 +200,16 @@ See https://github.com/adobe-type-tools/cmap-resources
           </div>
         </div>  <!-- secondaryToolbar -->
 
-        <div class="toolbar">
+        <div class="toolbar hide">
           <div id="toolbarContainer">
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
                   <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
+                </button>
+                <!-- History back button, useful in the embedded viewer -->
+                <button class="toolbarButton findPrevious" title="Back" id="historyBack">
+                  <span>Back</span>
                 </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">
@@ -256,6 +278,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                     <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
                     <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
                     <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
+                    <option id="trimOption" title="" disabled="disabled" hidden="true"> in trim mode </option>
                   </select>
                 </span>
               </div>
@@ -282,6 +305,7 @@ See https://github.com/adobe-type-tools/cmap-resources
 
         <div id="viewerContainer" tabindex="0">
           <div id="viewer" class="pdfViewer"></div>
+          <div id="synctex-indicator"></div>
         </div>
 
         <div id="errorWrapper" hidden='true'>

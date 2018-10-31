@@ -833,7 +833,7 @@ var PDFViewerApplication = {
         title = url;
       }
     }
-    this.setTitle(title);
+//    this.setTitle(title);
   },
   setTitle: function setTitle(title) {
     if (this.isViewerEmbedded) {
@@ -4438,7 +4438,7 @@ var defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: '../web/cmaps/',
+    value: './cmaps/',
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -8800,7 +8800,7 @@ var BaseViewer = function () {
     this.linkService = options.linkService || new _pdf_link_service.SimpleLinkService();
     this.downloadManager = options.downloadManager || null;
     this.findController = options.findController || null;
-    this.removePageBorders = options.removePageBorders || false;
+    this.removePageBorders = options.removePageBorders || true;
     this.textLayerMode = Number.isInteger(options.textLayerMode) ? options.textLayerMode : _ui_utils.TextLayerMode.ENABLE;
     this.imageResourcesPath = options.imageResourcesPath || '';
     this.renderInteractiveForms = options.renderInteractiveForms || false;
@@ -10338,7 +10338,7 @@ var _ui_utils = __webpack_require__(6);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var EXPAND_DIVS_TIMEOUT = 300;
-var MATCH_SCROLL_OFFSET_TOP = -50;
+var MATCH_SCROLL_OFFSET_TOP = -100;
 var MATCH_SCROLL_OFFSET_LEFT = -400;
 
 var TextLayerBuilder = function () {
