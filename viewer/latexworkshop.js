@@ -47,6 +47,8 @@ socket.addEventListener("message", (event) => {
             // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
             socket.send(JSON.stringify({type:"position",
                                         scale:PDFViewerApplication.pdfViewer.currentScaleValue,
+                                        scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
+                                        spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
                                         scrollTop:document.getElementById('viewerContainer').scrollTop,
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
@@ -54,12 +56,20 @@ socket.addEventListener("message", (event) => {
             break
         case "position":
             PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
+            PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
+            PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
             document.getElementById('viewerContainer').scrollTop = data.scrollTop
             document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
             break
         case "params":
             if (data.scale) {
               PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
+            }
+            if (data.scrollMode) {
+              PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
+            }
+            if (data.spreadMode) {
+              PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
             }
             if (data.hand) {
                 PDFViewerApplication.pdfCursorTools.handTool.activate()
