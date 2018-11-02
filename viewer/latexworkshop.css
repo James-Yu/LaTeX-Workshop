@@ -108,3 +108,35 @@ html #outerContainer.sidebarOpen > #sidebarContainer {
 #secondaryPresentationMode {
     display: none  !important;
 }
+
+@media all and (max-width: 750px) {
+    .hiddenSmallView, .hiddenSmallView * {
+        display: none;
+    }
+}
+
+@media all and (max-width: 650px) {
+    #scaleSelectContainer {
+      display: none;
+    }
+}
+
+@media all and (max-width: 450px) {
+    #trimSelectContainer {
+      display: none;
+    }
+}
+
+.dropdownToolbarButton {
+    max-width: none ! important;
+}
+
+#trimSelectContainer {
+    width: auto !important;
+}
+
+#trimSelectContainer > select {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+}
