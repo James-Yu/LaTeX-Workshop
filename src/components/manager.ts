@@ -153,12 +153,23 @@ export class Manager {
             return undefined
         }
         const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*([^\s]*\.tex)$)/m
-        const content = vscode.window.activeTextEditor.document.getText()
+        var content = vscode.window.activeTextEditor.document.getText()
 
-        const result = content.match(regex)
+        var result = content.match(regex)
         if (result) {
-            const file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
+            var file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
             this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
+
+            content = fs.readFileSync(file).toString()
+            result = content.match(regex)
+
+            while (result) {
+                file = path.resolve(path.dirname(file), result[1])
+                this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
+
+                content = fs.readFileSync(file).toString()
+                result = content.match(regex)
+            }
             return file
         }
         return undefined
