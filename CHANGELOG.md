@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.14.0] - 2018-11-03
+
+### Added
+- (#909) Add [View on pdf] link in hover on \ref.
+- (#922) Add highlighting support for `VerbatimOut`.
+- (#935) Upgrade `pdfjs` to 2.0.943.
+
+### Changed
+- (#901) Hover preview not render cursor at the beginning and at the end.
+- (#933) Clean output directory recursively.
+
+### Fixed
+- (#894) Use '/' as the path separator for file completion.
+- (#905) Hover preview stop rendering cursor in label.
+
 ## [5.13.0] - 2018-10-18
 
 ### Added
