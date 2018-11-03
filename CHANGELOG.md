@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.14.1] - 2018-11-03
+
+### Fixed
+- (#941) PDFJS library not bundled correctly.
+
 ## [5.14.0] - 2018-11-03
 
 ### Added
