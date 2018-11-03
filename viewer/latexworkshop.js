@@ -219,21 +219,21 @@ window.addEventListener("pagerendered", (ev) => {
     var textLayer = page.getElementsByClassName("textLayer")[0];
     var canvasWrapper = page.getElementsByClassName("canvasWrapper")[0];
     var canvas = page.getElementsByTagName("canvas")[0];
-    if (canvasWrapper === undefined || canvas === undefined) {
+    if ( !canvasWrapper || !canvas ) {
       page.style.width = "250px";
       continue;
     }
     var w = canvas.style.width;
     var m;
     if (m = w.match(/(\d+)/)) {
-      var width = (Math.floor(Number(m[1])/trimScale)-2)  + 'px';
+      var width = (Math.floor(Number(m[1])/trimScale)-4)  + 'px';
       page.style.width = width;
       canvasWrapper.style.width = width;
       var offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
       canvas.style.left = offsetX;
       canvas.style.position = "relative";
       canvas.isTrimmed = true;
-      if (textLayer !== undefined && !textLayer.isTrimmed) {
+      if ( textLayer && !textLayer.isTrimmed ) {
         textLayer.style.width = width;
         textLayer.style.left = offsetX;
         textLayer.isTrimmed = true;
