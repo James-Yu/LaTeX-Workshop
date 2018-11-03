@@ -52,7 +52,8 @@ socket.addEventListener("message", (event) => {
                                         scrollTop:document.getElementById('viewerContainer').scrollTop,
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
-            PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`)
+            PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`);
+            window.dispatchEvent(new Event("pagerendered"));
             break
         case "position":
             PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
@@ -215,23 +216,28 @@ window.addEventListener("pagerendered", (ev) => {
   var trimScale = getTrimScale();
   var v = document.getElementById("viewer");
   for( var page of v.getElementsByClassName("page") ){
-    var textLayer = page.getElementsByClassName("textLayer") ? page.getElementsByClassName("textLayer")[0] : undefined;
-    var canvasWrapper = page.getElementsByClassName("canvasWrapper") ? page.getElementsByClassName("canvasWrapper")[0] : undefined;
-    var canvas = page.getElementsByTagName("canvas") ? page.getElementsByTagName("canvas")[0] : undefined;
-    if ( textLayer === undefined || canvasWrapper === undefined || canvas === undefined || canvas.isTrimmed ) {
+    var textLayer = page.getElementsByClassName("textLayer")[0];
+    var canvasWrapper = page.getElementsByClassName("canvasWrapper")[0];
+    var canvas = page.getElementsByTagName("canvas")[0];
+    if (canvasWrapper === undefined || canvas === undefined) {
+      page.style.width = "250px";
       continue;
     }
-    var w = page.style.width;
+    var w = canvas.style.width;
     var m;
     if (m = w.match(/(\d+)/)) {
-      var width = Number(m[1])/trimScale + 'px';
+      var width = (Math.floor(Number(m[1])/trimScale)-2)  + 'px';
       page.style.width = width;
       canvasWrapper.style.width = width;
       var offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
-      textLayer.style.left = offsetX;
       canvas.style.left = offsetX;
       canvas.style.position = "relative";
       canvas.isTrimmed = true;
+      if (textLayer !== undefined && !textLayer.isTrimmed) {
+        textLayer.style.width = width;
+        textLayer.style.left = offsetX;
+        textLayer.isTrimmed = true;
+      }
     }
   }
 });
