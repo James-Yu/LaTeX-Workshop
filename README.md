@@ -17,30 +17,30 @@ One million downloads! This project won't be successful without contributions fr
 
 - Build LaTeX (including BibTeX) to PDF automatically on save (see [Build on Save](#build-on-save))
 
-  <img src="demo_media/build.gif" alt="build process gif" height="20px">
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/build.gif" alt="build process gif" height="20px">
 
 - View PDF on-the-fly (in VS Code or browser).
 
-  <img src="demo_media/preview.gif" alt="demo of preview feature" height="220px">
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/preview.gif" alt="demo of preview feature" height="220px">
 
 - Direct and reverse SyncTeX. Click to jump between location in `.tex` source and PDF and vice versa.
 
-  <img src="demo_media/synctex.gif" alt="demo of SyncTeX" height="220px">
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/synctex.gif" alt="demo of SyncTeX" height="220px">
 
 - Intellisense, including completions for bibliography keys (`\cite{}`) and labels (`\ref{}`).
 
-  <img src="demo_media/ref.gif" alt="intellisense demo" height="80px">
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/ref.gif" alt="intellisense demo" height="80px">
 
 - Syntax highlighting (colorized code) for `.tex` / `.bib` files and more (`.cls`, `.dtx`, `.ltx`, `.sty`)
 - LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
 
-  <img src="demo_media/errors.png" alt="error reporting demo" height="125px">
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/errors.png" alt="error reporting demo" height="125px">
 
 - Real-time linting of LaTeX with ChkTeX to pick up common LaTeX issues as you type.
   - Code Actions (automatic fixes) are offered for many issues found by ChkTeX.
   - Auto load `.chktexrc` configure in the following order: 1. manually configured `-l` setting in `chktex.args`; 2. `.chktexrc` file (if exists) in the same folder as the main LaTeX file; 3. `.chktexrc` file (if exists) at the project root folder.
 
-  <img src="demo_media/chktex.gif" alt="auto \item demo" height="90px">
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/chktex.gif" alt="auto \item demo" height="90px">
 - LaTeX file formatting.
 - Acting on environments
   - To auto close LaTeX environments, call _LaTeX Workshop: Close current environment_ from the **Command Palette** (command function `latex-workshop.close-env`).
@@ -51,39 +51,39 @@ One million downloads! This project won't be successful without contributions fr
 - [Snippets](snippets/snippets-doc.md)
   - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
 
-    <img src="demo_media/subparagraph.gif" alt="auto \item demo" height="80px">
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/subparagraph.gif" alt="auto \item demo" height="80px">
 
   - \[**Deprecated**\] Surround some selected text with a LaTeX command by pressing `\` after selecting some text. A new menu pops up to select the command. This feature is enabled when `latex-workshop.intellisense.surroundCommand.enabled` is set to `true`, default is `false`.
   - Surround some selected text with a LaTeX command using <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>ctrl</kbd>+<kbd>w</kbd> (<kbd>⌘</kbd>+<kbd>l</kbd>, <kbd>⌘</kbd>+<kbd>w</kbd> on Mac). A new menu pops up to select the command. This works with multi selections. The former approach using `\` has been deprecated.
 
-    <img src="demo_media/wrap.gif" alt="wrap demo" height="140px">
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/wrap.gif" alt="wrap demo" height="140px">
 
   - We also provide a few other snippets mechanisms
     - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](snippets/snippets-doc.md#greek-letters).
 
-        <img src="demo_media/greek letter.gif" alt="greek letters demo" height="20px">
+        <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/greek letter.gif" alt="greek letters demo" height="20px">
 
     - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](snippets/snippets-doc.md#environments).
 
-        <img src="demo_media/BSAL snippet.gif" alt="BSAL demo" height="55px">
+        <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/BSAL snippet.gif" alt="BSAL demo" height="55px">
     - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](snippets/snippets-doc.md#font-commands).
 
-        <img src="demo_media/FBF snippet.gif" alt="FBF demo" height="20px">
+        <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/FBF snippet.gif" alt="FBF demo" height="20px">
     - Many other maths symbols can be obtained with the `@` prefix. See [here](snippets/snippets-doc.md#mathematical-symbols).
 
-      <img src="demo_media/frac.gif" alt="\frac shortcut demo" height="20px">
-      <img src="demo_media/int.gif" alt="\int shortcut demo" height="20px">
+      <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/frac.gif" alt="\frac shortcut demo" height="20px">
+      <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/int.gif" alt="\int shortcut demo" height="20px">
 - [Shortcuts](Shortcuts-doc.md)
   - In addition snippets, there are shortcuts that provided by the extension that allow you to easily format text (and one or two other things).
 
-    <img src="demo_media/emph.gif" alt="\emph{} demo" height="20px">
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/emph.gif" alt="\emph{} demo" height="20px">
 - When the current line starts with `\item` or `\item[]`, hitting `Enter` automatically adds a newline starting in the same way. For a better handling of the last item, hitting `Enter` on a line only containing `\item` or `\item[]` actually deletes the content of the line. The `alt+Enter` is bind to the standard newline command. This automatic insertion of `\item` can be deactivated by setting `latex-workshop.bind.enter.key` to `false`.
 
-    <img src="demo_media/auto item.gif" alt="auto \item demo" height="80px">
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/auto item.gif" alt="auto \item demo" height="80px">
 
 - Preview on hover. Hovering over the start tag of a math environment causes a mathjax preview to pop up.
 
-    <img src="demo_media/hover.gif" alt="auto \item demo" height="120px">
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/tree/master/demo_media/hover.gif" alt="auto \item demo" height="120px">
 
 ## Requirements
 
