@@ -25,6 +25,7 @@ import {ProjectSymbolProvider} from './providers/projectsymbol'
 import {SectionNodeProvider} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
+import {FoldingProvider} from './providers/folding';
 
 function renameConfig(originalConfig: string, newConfig: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -259,6 +260,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'latex'}, extension.completer, '\\', '{', ',', '(', '['))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'doctex'}, extension.completer, '\\', '{', ',', '(', '['))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider({ scheme: 'file', language: 'latex'}, extension.codeActions))
+    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider({ scheme: 'file', language: 'latex'}, new FoldingProvider()))
 
     extension.linter.lintRootFileIfEnabled()
     obsoleteConfigCheck()
