@@ -53,7 +53,10 @@ socket.addEventListener("message", (event) => {
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
             PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
-              window.dispatchEvent(new Event("pagerendered"))
+              // ensure that trimming is invoked if needed.
+              setTimeout(() => {
+                window.dispatchEvent( new Event("pagerendered") );
+              }, 1000);
             });
             break
         case "position":
@@ -182,13 +185,15 @@ document.getElementById("trimSelect").addEventListener("change", (ev) => {
   const scaleSelect = document.getElementById("scaleSelect");
   const e = new Event("change");
   let o;
-  if (trimSelect.selectedIndex === 0) {
+  if (trimSelect.selectedIndex <= 0) {
     for ( o of scaleSelect.options ) {
       o.disabled = false;
     }
     document.getElementById("trimOption").disabled = true;
     document.getElementById("trimOption").hidden = true;
-    scaleSelect.selectedIndex = originalUserSelectIndex;
+    if (originalUserSelectIndex) {
+      scaleSelect.selectedIndex = originalUserSelectIndex;
+    }
     scaleSelect.dispatchEvent(e);
     currentUserSelectScale = undefined;
     originalUserSelectIndex = undefined;
@@ -221,7 +226,8 @@ const trimPage = (page) => {
   const w = canvas.style.width;
   const m = w.match(/(\d+)/);
   if (m) {
-    const width = (Math.floor(Number(m[1])/trimScale)-4)  + 'px';
+    // add -4px to ensure that no horizontal scroll bar appears.
+    const width = ( Math.floor(Number(m[1])/trimScale) - 4 )  + 'px';
     page.style.width = width;
     canvasWrapper.style.width = width;
     const offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
