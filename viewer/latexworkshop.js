@@ -52,8 +52,9 @@ socket.addEventListener("message", (event) => {
                                         scrollTop:document.getElementById('viewerContainer').scrollTop,
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
-            PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`);
-            window.dispatchEvent(new Event("pagerendered"));
+            PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
+              window.dispatchEvent(new Event("pagerendered"))
+            });
             break
         case "position":
             PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
@@ -176,11 +177,11 @@ const getTrimScale = () => {
 };
 
 document.getElementById("trimSelect").addEventListener("change", (ev) => {
-  var trimScale = getTrimScale();
-  var trimSelect = document.getElementById("trimSelect");
-  var scaleSelect = document.getElementById("scaleSelect");
-  var e = new Event("change");
-  var o;
+  const trimScale = getTrimScale();
+  const trimSelect = document.getElementById("trimSelect");
+  const scaleSelect = document.getElementById("scaleSelect");
+  const e = new Event("change");
+  let o;
   if (trimSelect.selectedIndex === 0) {
     for ( o of scaleSelect.options ) {
       o.disabled = false;
@@ -208,36 +209,57 @@ document.getElementById("trimSelect").addEventListener("change", (ev) => {
   scaleSelect.dispatchEvent(e);
 });
 
-window.addEventListener("pagerendered", (ev) => {
-  var trimSelect = document.getElementById("trimSelect");
+const trimPage = (page) => {
+  const trimScale = getTrimScale();
+  const textLayer = page.getElementsByClassName("textLayer")[0];
+  const canvasWrapper = page.getElementsByClassName("canvasWrapper")[0];
+  const canvas = page.getElementsByTagName("canvas")[0];
+  if ( !canvasWrapper || !canvas ) {
+    page.style.width = "250px";
+    return;
+  }
+  const w = canvas.style.width;
+  const m = w.match(/(\d+)/);
+  if (m) {
+    const width = (Math.floor(Number(m[1])/trimScale)-4)  + 'px';
+    page.style.width = width;
+    canvasWrapper.style.width = width;
+    const offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
+    canvas.style.left = offsetX;
+    canvas.style.position = "relative";
+    canvas.isTrimmed = true;
+    if ( textLayer && !textLayer.isTrimmed ) {
+      textLayer.style.width = width;
+      textLayer.style.left = offsetX;
+      textLayer.isTrimmed = true;
+    }
+  }
+}
+
+window.addEventListener("pagerendered", () => {
+  const trimSelect = document.getElementById("trimSelect");
   if (trimSelect.selectedIndex <= 0) {
       return;
   }
-  var trimScale = getTrimScale();
-  var v = document.getElementById("viewer");
-  for( var page of v.getElementsByClassName("page") ){
-    var textLayer = page.getElementsByClassName("textLayer")[0];
-    var canvasWrapper = page.getElementsByClassName("canvasWrapper")[0];
-    var canvas = page.getElementsByTagName("canvas")[0];
-    if ( !canvasWrapper || !canvas ) {
-      page.style.width = "250px";
-      continue;
-    }
-    var w = canvas.style.width;
-    var m;
-    if (m = w.match(/(\d+)/)) {
-      var width = (Math.floor(Number(m[1])/trimScale)-4)  + 'px';
-      page.style.width = width;
-      canvasWrapper.style.width = width;
-      var offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
-      canvas.style.left = offsetX;
-      canvas.style.position = "relative";
-      canvas.isTrimmed = true;
-      if ( textLayer && !textLayer.isTrimmed ) {
-        textLayer.style.width = width;
-        textLayer.style.left = offsetX;
-        textLayer.isTrimmed = true;
-      }
-    }
+  const viewer = document.getElementById("viewer");
+  for( let page of viewer.getElementsByClassName("page") ){
+    trimPage(page);
   }
 });
+
+window.addEventListener("pagerendered", () => {
+  const observer = new MutationObserver(records => {
+    const trimSelect = document.getElementById("trimSelect");
+    if (trimSelect.selectedIndex <= 0) {
+        return;
+    }
+    records.forEach(record => {
+      const page = record.target;
+      trimPage(page);
+    })
+  })
+  const viewer = document.getElementById("viewer");
+  for( let page of viewer.getElementsByClassName("page") ){
+    observer.observe(page, {attributes: true, childList: true});
+  }
+}, {once: true});
