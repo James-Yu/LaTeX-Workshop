@@ -65,10 +65,10 @@ export class HoverProvider implements vscode.HoverProvider {
             if (token in this.extension.completer.reference.referenceData) {
                 const refData = this.extension.completer.reference.referenceData[token]
                 const line = refData.item.position.line
-                const md_link = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
-                md_link.isTrusted = true
+                const mdLink = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
+                mdLink.isTrusted = true
                 const md = '```latex\n' + refData.text + '\n```\n'
-                resolve( new vscode.Hover([md, md_link]) )
+                resolve( new vscode.Hover([md, mdLink]) )
                 return
             }
             if (token in this.extension.completer.citation.citationData) {

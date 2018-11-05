@@ -25,7 +25,7 @@ import {ProjectSymbolProvider} from './providers/projectsymbol'
 import {SectionNodeProvider} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
-import {FoldingProvider} from './providers/folding';
+import {FoldingProvider} from './providers/folding'
 
 function renameConfig(originalConfig: string, newConfig: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
