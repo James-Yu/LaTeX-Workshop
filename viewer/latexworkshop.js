@@ -191,7 +191,7 @@ document.getElementById("trimSelect").addEventListener("change", (ev) => {
     }
     document.getElementById("trimOption").disabled = true;
     document.getElementById("trimOption").hidden = true;
-    if (originalUserSelectIndex) {
+    if (originalUserSelectIndex !== undefined) {
       scaleSelect.selectedIndex = originalUserSelectIndex;
     }
     scaleSelect.dispatchEvent(e);
