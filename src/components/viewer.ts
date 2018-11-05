@@ -52,7 +52,7 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(pdfFile))}`
+        const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(encodeURIComponent(pdfFile)))}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         return url
     }
@@ -105,7 +105,7 @@ export class Viewer {
     }
 
     getPDFViewerContent(uri: vscode.Uri) : string {
-        const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(uri.fsPath)}`
+        const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
@@ -145,7 +145,8 @@ export class Viewer {
         let client: Client | undefined
         switch (data.type) {
             case 'open':
-                client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
+                console.log(decodeURIComponent(decodeURIComponent(data.path)))
+                client = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
                 if (client !== undefined) {
                     client.websocket = websocket
                     if (client.type === undefined && client.prevType !== undefined) {
@@ -172,7 +173,8 @@ export class Viewer {
                 }
                 break
             case 'loaded':
-                client = this.clients[decodeURIComponent(data.path).toLocaleUpperCase()]
+            console.log(decodeURIComponent(decodeURIComponent(data.path)))
+                client = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
                 if (client !== undefined && client.websocket !== undefined) {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     if (client.position !== undefined) {
