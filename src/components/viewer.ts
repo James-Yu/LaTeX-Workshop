@@ -52,6 +52,9 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
+        // vscode.URI.parse and pdfjs viewer automatically call decodeURIComponent.
+        // So, to pass the encoded path of a pdf file to the http server,
+        // we have to call encodeURIComponent three times! 3 - 2 = 1 !
         const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(encodeURIComponent(pdfFile)))}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         return url
@@ -105,6 +108,9 @@ export class Viewer {
     }
 
     getPDFViewerContent(uri: vscode.Uri) : string {
+        // pdfjs viewer automatically call decodeURIComponent.
+        // So, to pass the encoded path of a pdf file to the http server,
+        // we have to call encodeURIComponent two times! 2 - 1 = 1 !
         const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
         return `
             <!DOCTYPE html><html><head></head>
@@ -145,7 +151,6 @@ export class Viewer {
         let client: Client | undefined
         switch (data.type) {
             case 'open':
-                console.log(decodeURIComponent(decodeURIComponent(data.path)))
                 client = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
                 if (client !== undefined) {
                     client.websocket = websocket
@@ -173,7 +178,6 @@ export class Viewer {
                 }
                 break
             case 'loaded':
-            console.log(decodeURIComponent(decodeURIComponent(data.path)))
                 client = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
                 if (client !== undefined && client.websocket !== undefined) {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
