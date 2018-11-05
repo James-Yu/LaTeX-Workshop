@@ -61,7 +61,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             const newTextToMatch: { text: string, offset: number }[] = []
             textToMatch.forEach(textObj => {
                 const envRegex = /(\\begin{(.*?)})([\w\W]*)\\end{\2}/g
-                const match = envRegex.exec(textObj.text)
+                let match = envRegex.exec(textObj.text)
                 while (match) {
                     ranges.push(
                         new vscode.FoldingRange(
@@ -73,6 +73,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                         text: match[3],
                         offset: textObj.offset + envRegex.lastIndex - match[0].length + match[1].length
                     })
+                    match = envRegex.exec(textObj.text)
                 }
             })
             textToMatch = newTextToMatch
