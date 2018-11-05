@@ -1,5 +1,16 @@
 # Change Log
 
+## [5.15.0] - 2018-11-05
+
+### Added
+- (#944) Add content folding.
+
+### Changed
+- (#947) Change the displayed name of this extension to `LaTeX`.
+
+### Fixed
+- (#945) De-indent `\documentclass{}`.
+
 ## [5.14.2] - 2018-11-03
 
 ### Fixed
