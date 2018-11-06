@@ -29,7 +29,9 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         return sections.filter(section => section['level']).map((section, index, allSections) => {
             const startLine = section['lineNumber']
             let endLine
-            if (index < allSections.length - 1) { // Not the last section
+
+            // Not the last section
+            if (allSections.filter((element, elementIndex) => index < elementIndex && element['level'] <= section['level']).length > 0) {
                 for (let siblingSectionIndex = index + 1; siblingSectionIndex < allSections.length; siblingSectionIndex++) {
                     if (section['level'] >= allSections[siblingSectionIndex]['level']) {
                         endLine = allSections[siblingSectionIndex]['lineNumber'] - 1
@@ -38,9 +40,10 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                 }
             } else {
                 endLine = document.lineCount - 1
-                for (; endLine > startLine; endLine--) {
-                    if (/\\end{document}/.test(document.lineAt(endLine).text)) {
-                        endLine--
+                // Handle included files which don't contain \end{document}
+                for (let endLineCopy = endLine; endLineCopy > startLine; endLineCopy--) {
+                    if (/\\end{document}/.test(document.lineAt(endLineCopy).text)) {
+                        endLine = endLineCopy--
                         break
                     }
                 }
