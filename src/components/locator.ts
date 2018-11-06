@@ -193,7 +193,11 @@ export class Locator {
                     vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
                         editor.selection = new vscode.Selection(pos, pos)
                         vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
-                        this.animateToNotify(editor, pos)
+                        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                        const flag = configuration.get('synctex.pdfToTex.animation') as boolean
+                        if (flag) {
+                            this.animateToNotify(editor, pos)
+                        }
                     })
                 })
             }
