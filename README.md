@@ -195,7 +195,7 @@ When using `% !TEX program` with bibliographies, a `bib` compiler must be define
 
 ### Spell check?
 
-[Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. Users may also find other extensions better alternatives, e.g., [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright) and [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool). Especially the last one is credited for its multi-lingual support.
+[Code Spellchecker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) did a great job. Users may also find other extensions better alternatives, e.g., [LanguageTool](https://marketplace.visualstudio.com/items?itemName=adamvoss.vscode-languagetool) credited for its multi-lingual support.
 
 ### Build on save?
 
