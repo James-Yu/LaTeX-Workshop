@@ -134,27 +134,40 @@ export class HoverProvider implements vscode.HoverProvider {
             if (candidateThemes.length === 0) {
                 continue
             }
-            const themePath = path.join(extension.extensionPath, candidateThemes[0].path)
-            let theme = JSON.parse(stripJsonComments(fs.readFileSync(themePath, 'utf8')))
-            while (theme.include) {
-                const includedTheme = JSON.parse(stripJsonComments(fs.readFileSync(path.join(path.dirname(themePath), theme.include), 'utf8')))
-                theme.include = undefined
-                theme = {... theme, ...includedTheme}
-            }
-            const bgColor = this.hexToRgb(theme.colors['editor.background'])
-            if (bgColor) {
-                // http://stackoverflow.com/a/3943023/112731
-                const r = bgColor.r <= 0.03928 ? bgColor.r / 12.92 : Math.pow((bgColor.r + 0.055) / 1.055, 2.4)
-                const g = bgColor.r <= 0.03928 ? bgColor.g / 12.92 : Math.pow((bgColor.g + 0.055) / 1.055, 2.4)
-                const b = bgColor.r <= 0.03928 ? bgColor.b / 12.92 : Math.pow((bgColor.b + 0.055) / 1.055, 2.4)
-                const L = 0.2126 * r + 0.7152 * g + 0.0722 * b
-                if (L > 0.179) {
-                    this.color = '0, 0, 0'
-                } else {
-                    this.color = '1, 1, 1'
+            try {
+                const themePath = path.join(extension.extensionPath, candidateThemes[0].path)
+                let theme = JSON.parse(stripJsonComments(fs.readFileSync(themePath, 'utf8')))
+                while (theme.include) {
+                    const includedTheme = JSON.parse(stripJsonComments(fs.readFileSync(path.join(path.dirname(themePath), theme.include), 'utf8')))
+                    theme.include = undefined
+                    theme = {... theme, ...includedTheme}
                 }
+                const bgColor = this.hexToRgb(theme.colors['editor.background'])
+                if (bgColor) {
+                    // http://stackoverflow.com/a/3943023/112731
+                    const r = bgColor.r <= 0.03928 ? bgColor.r / 12.92 : Math.pow((bgColor.r + 0.055) / 1.055, 2.4)
+                    const g = bgColor.r <= 0.03928 ? bgColor.g / 12.92 : Math.pow((bgColor.g + 0.055) / 1.055, 2.4)
+                    const b = bgColor.r <= 0.03928 ? bgColor.b / 12.92 : Math.pow((bgColor.b + 0.055) / 1.055, 2.4)
+                    const L = 0.2126 * r + 0.7152 * g + 0.0722 * b
+                    if (L > 0.179) {
+                        this.color = '0, 0, 0'
+                    } else {
+                        this.color = '1, 1, 1'
+                    }
+                    return
+                } else if (theme.type && theme.type === 'dark') {
+                    this.color = '1, 1, 1'
+                    return
+                }
+            } catch(e) {
+                console.log("Error when JSON.parse theme files.")
+                console.log(e.message)
+            }
+            const uiTheme = candidateThemes[0].uiTheme
+            if (!uiTheme || uiTheme === 'vs') {
+                this.color = '0, 0, 0'
                 return
-            } else if (theme.type && theme.type === 'dark') {
+            } else {
                 this.color = '1, 1, 1'
                 return
             }
