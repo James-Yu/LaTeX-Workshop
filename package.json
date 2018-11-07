@@ -931,7 +931,8 @@
   "scripts": {
     "vscode:prepublish": "sh minify.sh && rm -rf out/ && webpack --mode production",
     "compile": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
   },
   "capabilities": {
     "completionProvider": {
@@ -958,8 +959,10 @@
     "@types/fs-extra": "^5.0.0",
     "@types/glob": "^5.0.30",
     "@types/micromatch": "^3.0.0",
+    "@types/mocha": "^5.2.5",
     "@types/node": "^7.0.59",
     "@types/ws": "^4.0.2",
+    "mocha": "^5.2.0",
     "ts-loader": "^5.2.1",
     "tslint": "^5.0.0",
     "typescript": "^2.0.3",
