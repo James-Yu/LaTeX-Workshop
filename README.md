@@ -106,6 +106,13 @@ Installing LaTeX Workshop is simple. You can find it in [Visual Studio Code Mark
   - Type `latex workshop` to show all related commands.
 - To view an arbitrary PDF file, just click on the file in the explorer.
 
+## Known Extension Incompatibilities
+The following extensions are known to cause issues when active at the same time, namely a significant delay when using the Enter key.
+
+ - [Spell Right](https://marketplace.visualstudio.com/items?itemName=ban.spellright)
+ - [Brackets Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2)
+ - [Prettify Symbols Mode](https://marketplace.visualstudio.com/items?itemName=siegebell.prettify-symbols-mode)
+
 ## FAQ
 
 ### <a name="recipe"></a>LaTeX recipe?
