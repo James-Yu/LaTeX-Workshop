@@ -1,5 +1,11 @@
 # Change Log
 
+## [5.15.1] - 2018-11-07
+
+### Fixed
+- Catch error when parsing theme files.
+- (#956) Hang when magic comments form a loop.
+
 ## [5.15.0] - 2018-11-05
 
 ### Added
