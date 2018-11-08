@@ -9,6 +9,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
 import {Extension} from '../src/main'
+import {HoverProvider} from '../src/providers/hover'
 
 
 const extension = new Extension()
@@ -31,11 +32,11 @@ suite("Extension Tests", function () {
         if (fs.existsSync(pdfPath)) {
             fs.unlinkSync(pdfPath)
         }
-        this.timeout(5000)
+        this.timeout(30000)
         const document = await vscode.workspace.openTextDocument(texPath)
         await vscode.window.showTextDocument(document)
         await extension.commander.build()
-        await sleep(2000)
+        await sleep(5000)
         if (!fs.existsSync(pdfPath)) {
             assert.fail("build fail.")
         }
@@ -47,13 +48,45 @@ suite("Extension Tests", function () {
         if (fs.existsSync(pdfPath)) {
             fs.unlinkSync(pdfPath)
         }
-        this.timeout(5000)
+        this.timeout(30000)
         const document = await vscode.workspace.openTextDocument(texPath)
         await vscode.window.showTextDocument(document)
         await extension.commander.build()
-        await sleep(2000)
+        await sleep(5000)
         if (!fs.existsSync(pdfPath)) {
             assert.fail("build fail.")
         }
     })
+
+    test("test hover preview.", async function() {
+        const pdfPath = path.join(workspaceRoot, 'test/texfiles/hoverPreview/t.pdf')
+        const texPath = path.join(workspaceRoot, 'test/texfiles/hoverPreview/t.tex')
+        if (fs.existsSync(pdfPath)) {
+            fs.unlinkSync(pdfPath)
+        }
+        this.timeout(30000)
+        const document = await vscode.workspace.openTextDocument(texPath)
+        await vscode.window.showTextDocument(document)
+        const editor = vscode.window.activeTextEditor
+        if (editor) {
+            const selection = new vscode.Selection(3,1,3,1)
+            editor.selection = selection
+            vscode.commands.executeCommand("editor.action.showHover")
+        } else {
+            assert.fail("activeTextEditor not found.")
+        }
+
+        const hoveProvider = new HoverProvider(extension)
+        await sleep(5000)
+        const pos = new vscode.Position(3,1)
+        const s = new vscode.CancellationTokenSource()
+        await hoveProvider.provideHover(document, pos, s.token)
+
+        const configuration = vscode.workspace.getConfiguration('workbench')
+        const originalTheme = configuration.get<string>('colorTheme')
+        configuration.update('workbench.colorTheme', "Better Solarized Dark")
+        await hoveProvider.provideHover(document, pos, s.token)
+        configuration.update('workbench.colorTheme', originalTheme)
+    })
+
 })
