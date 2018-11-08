@@ -57,7 +57,10 @@ export class Builder {
         if (this.extension.manager.getOutputDir(rootFile) !== './') {
             const directories = new Set<string>(this.extension.manager.watched
                 .map(file => path.dirname(file.replace(this.extension.manager.rootDir, ''))))
-            const outputDir = path.join(this.extension.manager.rootDir, this.extension.manager.getOutputDir(rootFile))
+            let outputDir = this.extension.manager.getOutputDir(rootFile)
+            if (!path.isAbsolute(outputDir)) {
+                outputDir = path.join(this.extension.manager.rootDir, this.extension.manager.getOutputDir(rootFile))
+            }
             directories.forEach(directory => {
                 fs.ensureDirSync(path.join(outputDir, directory))
             })
