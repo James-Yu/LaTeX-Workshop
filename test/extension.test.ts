@@ -72,11 +72,13 @@ suite("Extension Tests", function () {
         this.timeout(30000)
         const document = await vscode.workspace.openTextDocument(texPath)
         await vscode.window.showTextDocument(document)
+        await sleep(5000)
         const editor = vscode.window.activeTextEditor
         if (editor) {
             const selection = new vscode.Selection(3,1,3,1)
             editor.selection = selection
             await vscode.commands.executeCommand("editor.action.showHover")
+            await sleep(2000)
         } else {
             assert.fail("activeTextEditor not found.")
         }
