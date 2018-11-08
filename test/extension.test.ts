@@ -5,15 +5,20 @@
 
 // The module 'assert' provides assertion methods from node
 import * as assert from 'assert'
-import * as vscode from 'vscode'
+import * as path from 'path'
+// import * as vscode from 'vscode'
 import {Extension} from '../src/main'
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("Extension Tests", function () {
     const extension = new Extension()
     // Defines a Mocha unit test
-    test("Something 1", function() {
-        assert.equal(-1, [1, 2, 3].indexOf(5))
-        assert.equal(-1, [1, 2, 3].indexOf(0))
+    test("build a tex file whose root is self.", function() {
+        const workspaceRoot = process.env.CODE_WORKSPACE_ROOT || process.env.PWD
+        if (workspaceRoot === undefined) {
+            assert.fail("workspaceRoot path must be set.")
+            return
+        }
+        extension.builder.build(path.join(workspaceRoot, 'test/texfiles/rootToSelf/t.tex'))
     })
 })
