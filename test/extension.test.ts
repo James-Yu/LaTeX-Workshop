@@ -9,8 +9,6 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
 import {Extension} from '../src/main'
-import {HoverProvider} from '../src/providers/hover'
-
 
 const extension = new Extension()
 const workspaceRoot = process.env.CODE_WORKSPACE_ROOT || process.env.PWD || ''
@@ -73,37 +71,29 @@ suite("Extension Tests", function () {
         const document = await vscode.workspace.openTextDocument(texPath)
         await vscode.window.showTextDocument(document)
         await sleep(5000)
-        const editor = vscode.window.activeTextEditor
-        if (editor) {
-            const selection = new vscode.Selection(3,1,3,1)
-            editor.selection = selection
-            await vscode.commands.executeCommand("editor.action.showHover")
-            await sleep(2000)
-        } else {
-            assert.fail("activeTextEditor not found.")
-        }
-
-        const hoveProvider = new HoverProvider(extension)
-        await sleep(5000)
-        const pos = new vscode.Position(3,1)
-        const s = new vscode.CancellationTokenSource()
-        await hoveProvider.provideHover(document, pos, s.token)
-        
         const betterSolarizedDark = "Better Solarized Dark"
-        let ret = false
+        let isFound = false
         for (const ext of vscode.extensions.all) {
             if (ext.packageJSON.contributes.themes === undefined) {
                 continue
             }
             const candidateThemes = ext.packageJSON.contributes.themes.filter(themePkg => themePkg.label === betterSolarizedDark || themePkg.id === betterSolarizedDark)
             if (candidateThemes.length > 0) {
-                ret = true
+                isFound = true
             }
         }
-        if (ret) {
+        if (isFound) {
             await configuration.update('colorTheme', betterSolarizedDark, true)
             await vscode.commands.executeCommand("editor.action.showHover")
-            await hoveProvider.provideHover(document, pos, s.token)
+            const editor = vscode.window.activeTextEditor
+            if (editor) {
+                const selection = new vscode.Selection(3,1,3,1)
+                editor.selection = selection
+                await vscode.commands.executeCommand("editor.action.showHover")
+                await sleep(2000)
+            } else {
+                assert.fail("activeTextEditor not found.")
+            }
         } else {
             assert.fail(betterSolarizedDark + " not found.")
         }
