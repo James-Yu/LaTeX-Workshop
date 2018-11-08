@@ -24,7 +24,12 @@ function sleep(ms) {
 
 // Defines a Mocha test suite to group tests of similar kind together
 suite("Extension Tests", function () {
+    const configuration = vscode.workspace.getConfiguration('workbench')
+    const originalTheme = configuration.get<string>('colorTheme')
 
+    suiteTeardown("", async () => {
+        await configuration.update('colorTheme', originalTheme, true)
+    })
 
     test("build a tex file.", async function() {
         const pdfPath = path.join(workspaceRoot, 'test/texfiles/latex/t.pdf')
@@ -58,7 +63,7 @@ suite("Extension Tests", function () {
         }
     })
 
-    test("test hover preview.", async function() {
+    test("test hover preview for a broken theme.", async function() {
         const pdfPath = path.join(workspaceRoot, 'test/texfiles/hoverPreview/t.pdf')
         const texPath = path.join(workspaceRoot, 'test/texfiles/hoverPreview/t.tex')
         if (fs.existsSync(pdfPath)) {
@@ -71,7 +76,7 @@ suite("Extension Tests", function () {
         if (editor) {
             const selection = new vscode.Selection(3,1,3,1)
             editor.selection = selection
-            vscode.commands.executeCommand("editor.action.showHover")
+            await vscode.commands.executeCommand("editor.action.showHover")
         } else {
             assert.fail("activeTextEditor not found.")
         }
@@ -81,12 +86,25 @@ suite("Extension Tests", function () {
         const pos = new vscode.Position(3,1)
         const s = new vscode.CancellationTokenSource()
         await hoveProvider.provideHover(document, pos, s.token)
-
-        const configuration = vscode.workspace.getConfiguration('workbench')
-        const originalTheme = configuration.get<string>('colorTheme')
-        configuration.update('workbench.colorTheme', "Better Solarized Dark")
-        await hoveProvider.provideHover(document, pos, s.token)
-        configuration.update('workbench.colorTheme', originalTheme)
+        
+        const betterSolarizedDark = "Better Solarized Dark"
+        let ret = false
+        for (const ext of vscode.extensions.all) {
+            if (ext.packageJSON.contributes.themes === undefined) {
+                continue
+            }
+            const candidateThemes = ext.packageJSON.contributes.themes.filter(themePkg => themePkg.label === betterSolarizedDark || themePkg.id === betterSolarizedDark)
+            if (candidateThemes.length > 0) {
+                ret = true
+            }
+        }
+        if (ret) {
+            await configuration.update('colorTheme', betterSolarizedDark, true)
+            await vscode.commands.executeCommand("editor.action.showHover")
+            await hoveProvider.provideHover(document, pos, s.token)
+        } else {
+            assert.fail(betterSolarizedDark + " not found.")
+        }
     })
 
 })
