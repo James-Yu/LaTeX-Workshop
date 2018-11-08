@@ -9,6 +9,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
 import {Extension} from '../src/main'
+import {HoverProvider} from '../src/providers/hover'
 
 const extension = new Extension()
 const workspaceRoot = process.env.CODE_WORKSPACE_ROOT || process.env.PWD || ''
@@ -61,12 +62,21 @@ suite("Extension Tests", function () {
         }
     })
 
-    test("test hover preview for a broken theme.", async function() {
-        const pdfPath = path.join(workspaceRoot, 'test/texfiles/hoverPreview/t.pdf')
+    test("test hover preview.", async function() {
         const texPath = path.join(workspaceRoot, 'test/texfiles/hoverPreview/t.tex')
-        if (fs.existsSync(pdfPath)) {
-            fs.unlinkSync(pdfPath)
-        }
+        this.timeout(30000)
+        const document = await vscode.workspace.openTextDocument(texPath)
+        await vscode.window.showTextDocument(document)
+        await sleep(5000)
+        const hoveProvider = new HoverProvider(extension)
+        await sleep(5000)
+        const pos = new vscode.Position(3,1)
+        const s = new vscode.CancellationTokenSource()
+        await hoveProvider.provideHover(document, pos, s.token)
+    })
+
+    test("test hover preview for a broken theme.", async function() {
+        const texPath = path.join(workspaceRoot, 'test/texfiles/hoverPreview/t.tex')
         this.timeout(30000)
         const document = await vscode.workspace.openTextDocument(texPath)
         await vscode.window.showTextDocument(document)
