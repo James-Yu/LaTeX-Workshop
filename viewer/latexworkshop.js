@@ -277,3 +277,17 @@ window.addEventListener("pagerendered", () => {
     observer.observe(page, {attributes: true, childList: true});
   }
 }, {once: true});
+
+document.getElementById("colorSelect").addEventListener("change", (ev) => {
+  const colorSelect = document.getElementById("colorSelect");
+  if (colorSelect.selectedIndex === 0) {
+    document.body.style.backgroundColor = "white";
+    document.getElementById("viewer").style.filter = "none";
+    return
+  }
+  if (colorSelect.selectedIndex === 1) {
+    document.body.style.backgroundColor = "black";
+    document.getElementById("viewer").style.filter = "invert(1)";
+    return
+  }
+});
