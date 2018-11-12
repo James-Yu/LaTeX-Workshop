@@ -208,6 +208,8 @@ When using `% !TEX program` with bibliographies, a `bib` compiler must be define
 
 By default, the extension compiles the project upon saving any tex files. If you want to disable this feature, setting the configuration item `latex-workshop.latex.autoBuild.onSave.enabled` to `false` will do.
 
+Note that the formatting program `latexindent` actually modifies the file on disk. So if you use `editor.formatOnPaste: true`, a build will be triggered each time you paste something. More importantly, if you set `editor.formatOnSave: true` along with `latex-workshop.latex.autoBuild.onSave.enable: true`, you may trigger two builds at a time. All this can lead to messing up your file, hence we advise not to use `latex-workshop.latex.autoBuild.onSave.enable: true` with any other auto formatting options for LaTeX filetypes.
+
 ### Synctex after build?
 
 When using the internal PDF viewer, you can make it automatically jump after build to the location pointed out by the tex file. If you want to enable this feature, setting the configuration item `latex-workshop.synctex.afterBuild.enabled` to `true` will do.
