@@ -424,6 +424,13 @@ export class Commander {
         const cursorPos = editor.selection.active
         const line = editor.document.lineAt(cursorPos.line)
 
+        // if the line is not at the end of the line, insert a plain newline
+        if (line.range.end.character !== cursorPos.character) {
+            return editor.edit(() => {
+                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+            })
+        }
+
         // if the line only constists of \item or \item[], delete its content
         if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
             const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
