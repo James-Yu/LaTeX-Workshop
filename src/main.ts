@@ -204,7 +204,9 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
-        if (!vscode.window.activeTextEditor) {
+        if (vscode.window.visibleTextEditors.filter(editor => editor.document.languageId === 'latex').length > 0) {
+            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
+        } else if (!vscode.window.activeTextEditor) {
             extension.logger.status.hide()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         } else if (!vscode.window.activeTextEditor.document.fileName) {
