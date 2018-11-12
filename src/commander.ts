@@ -424,8 +424,8 @@ export class Commander {
         const cursorPos = editor.selection.active
         const line = editor.document.lineAt(cursorPos.line)
 
-        // if the line is not at the end of the line, insert a plain newline
-        if (line.range.end.character !== cursorPos.character) {
+        // if the cursor is not followed by only spaces/eol, insert a plain newline
+        if (line.text.substr(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
             return editor.edit(() => {
                 vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
             })
