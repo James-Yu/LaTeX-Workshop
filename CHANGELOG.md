@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.15.3] - 2018-11-12
+
+### Fixed
+- Retain TeX sidebar badge when focusing PDF viewer.
+
 ## [5.15.2] - 2018-11-12
 
 ### Fixed
