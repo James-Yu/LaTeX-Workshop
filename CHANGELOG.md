@@ -1,5 +1,12 @@
 # Change Log
 
+## [5.15.2] - 2018-11-12
+
+### Fixed
+- Unified PDF viewer dropdown menu style.
+- (#957) Allow `latex-workshop.latex.outputDir` to be an absolute path.
+- (#972) Add space after `\item` in snippets.
+
 ## [5.15.1] - 2018-11-07
 
 ### Fixed
