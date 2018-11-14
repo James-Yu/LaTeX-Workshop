@@ -243,8 +243,16 @@ const trimPage = (page) => {
 }
 
 window.addEventListener("pagerendered", () => {
-  const trimSelect = document.getElementById("trimSelect");
-  if (trimSelect.selectedIndex <= 0) {
+  const container = document.getElementById("trimSelectContainer");
+  const select = document.getElementById("trimSelect");
+  container.setAttribute('style', 'display: inherit;');
+  if (container.clientWidth > 0) {
+    select.setAttribute('style', 'min-width: inherit;');
+    var width = select.clientWidth + 8;
+    select.setAttribute('style', 'min-width: ' + (width + 22) + 'px;');
+    container.setAttribute('style', 'min-width: ' + width + 'px; ' + 'max-width: ' + width + 'px;');
+  }
+  if (select.selectedIndex <= 0) {
       return;
   }
   const viewer = document.getElementById("viewer");
