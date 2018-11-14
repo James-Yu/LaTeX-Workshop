@@ -265,53 +265,59 @@
     ],
     "keybindings": [
       {
-        "command": "latex-workshop.build",
-        "key": "cmd+alt+b",
-        "when": "isMac && editorTextFocus"
-      },
-      {
-        "command": "latex-workshop.build",
         "key": "ctrl+alt+b",
-        "when": "!isMac && editorTextFocus"
+        "mac": "cmd+alt+b",
+        "command": "latex-workshop.build",
+        "when": "editorTextFocus && !latex-workshop:altkeymap"
       },
       {
-        "command": "latex-workshop.clean",
-        "key": "cmd+alt+c",
-        "when": "isMac && editorTextFocus"
-      },
-      {
-        "command": "latex-workshop.clean",
         "key": "ctrl+alt+c",
-        "when": "!isMac && editorTextFocus"
+        "mac": "cmd+alt+c",
+        "command": "latex-workshop.clean",
+        "when": "editorTextFocus && !latex-workshop:altkeymap"
       },
       {
-        "command": "latex-workshop.view",
-        "key": "cmd+alt+v",
-        "when": "isMac && editorTextFocus"
-      },
-      {
-        "command": "latex-workshop.view",
         "key": "ctrl+alt+v",
-        "when": "!isMac && editorTextFocus"
+        "mac": "cmd+alt+v",
+        "command": "latex-workshop.view",
+        "when": "editorTextFocus && !latex-workshop:altkeymap"
       },
       {
-        "command": "latex-workshop.synctex",
-        "key": "cmd+alt+j",
-        "when": "isMac && editorTextFocus"
-      },
-      {
-        "command": "latex-workshop.synctex",
         "key": "ctrl+alt+j",
-        "when": "!isMac && editorTextFocus"
+        "mac": "cmd+alt+j",
+        "command": "latex-workshop.synctex",
+        "when": "editorTextFocus && !latex-workshop:altkeymap"
       },
       {
+        "key": "ctrl+alt+x",
+        "mac": "cmd+alt+x",
         "command": "workbench.view.extension.latex",
-        "key": "cmd+alt+x",
-        "when": "isMac"
+        "when": "editorTextFocus && !latex-workshop:altkeymap"
       },
       {
+        "key": "shift+alt+b",
+        "command": "latex-workshop.build",
+        "when": "editorTextFocus && latex-workshop:altkeymap"
+      },
+      {
+        "key": "shift+alt+c",
+        "command": "latex-workshop.clean",
+        "when": "editorTextFocus && latex-workshop:altkeymap"
+      },
+      {
+        "key": "shift+alt+v",
+        "command": "latex-workshop.view",
+        "when": "editorTextFocus && latex-workshop:altkeymap"
+      },
+      {
+        "key": "shift+alt+j",
+        "command": "latex-workshop.synctex",
+        "when": "editorTextFocus && latex-workshop:altkeymap"
+      },
+      {
+        "key": "shift+alt+x",
         "command": "workbench.view.extension.latex",
-        "key": "ctrl+alt+x"
+        "when": "editorTextFocus && latex-workshop:altkeymap"
       },
       {
         "key": "ctrl+l ctrl+enter",
@@ -827,7 +833,12 @@
         "latex-workshop.bind.enter.key": {
           "type": "boolean",
           "default": true,
-          "description": "Enable the automatic insertion of `\\item` on a newline when pressing `Enter` in a line starting in `\\item`. "
+          "description": "Enable the automatic insertion of `\\item` on a newline when pressing `Enter` in a line starting in `\\item`."
+        },
+        "latex-workshop.bind.altKeymap.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Use alternative keymap combo, i.e., shift+alt, to replace the default ctrl/cmd+alt shortcuts.\nReload vscode to make this configuration effective."
         },
         "latex-workshop.hoverPreview.enabled": {
           "type": "boolean",
