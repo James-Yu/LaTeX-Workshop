@@ -123,6 +123,7 @@ export class Parser {
 
     parseLaTeX(log: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
 
         this.buildLogRaw = log
         const lines = log.split('\n')
@@ -156,6 +157,16 @@ export class Parser {
                     currentResult.text = currentResult.text + '\n' + line
                     }
                 }
+                continue
+            }
+            let excluded = false
+            for (const regexp of excludeRegexp) {
+                if (line.match(regexp)) {
+                    excluded = true
+                    break
+                }
+            }
+            if (excluded) {
                 continue
             }
             let result = line.match(latexBox)

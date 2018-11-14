@@ -160,7 +160,6 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.refresh()
             extension.structureProvider.update()
 
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
             if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 extension.commander.build(true)
@@ -233,7 +232,6 @@ export async function activate(context: vscode.ExtensionContext) {
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName === e.fsPath) {
             return
         }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('latex.autoBuild.onTexChange.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
