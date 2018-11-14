@@ -47,8 +47,9 @@ export class HoverProvider implements vscode.HoverProvider {
                 if (tr) {
                     const scale = configuration.get('hoverPreview.scale') as number
                     const [tex, range] = tr
+                    const newCommand = this.findNewCommand(document.getText())
                     this.mj.typeset({
-                        math: this.colorTeX(tex),
+                        math: newCommand + this.colorTeX(tex),
                         format: 'TeX',
                         svg: true,
                     }).then(data => this.scaleSVG(data.svg, scale))
@@ -79,6 +80,19 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             resolve()
         })
+    }
+
+    private findNewCommand(content: string) : string {
+        const regex = /(\\(?:(?:re)?new|provide)command(?:\*)?(?:\[[^\[\]\{\}]*\])*{.*})/gm
+        const commands: string[] = []
+        let result
+        do {
+            result = regex.exec(content)
+            if (result) {
+                commands.push(result[1])
+            }
+        } while (result)
+        return commands.join('')
     }
 
     private scaleSVG(svg: string, scale: number) : string {
@@ -159,8 +173,8 @@ export class HoverProvider implements vscode.HoverProvider {
                     this.color = '1, 1, 1'
                     return
                 }
-            } catch(e) {
-                console.log("Error when JSON.parse theme files.")
+            } catch (e) {
+                console.log('Error when JSON.parse theme files.')
                 console.log(e.message)
             }
             const uiTheme = candidateThemes[0].uiTheme
