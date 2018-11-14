@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as cp from 'child_process'
+import * as tmp from 'tmp'
 
 import {Extension} from '../main'
 
@@ -9,6 +10,7 @@ const maxPrintLine = '10000'
 
 export class Builder {
     extension: Extension
+    tmpDir: string
     currentProcess: cp.ChildProcess | undefined
     disableBuildAfterSave: boolean = false
     nextBuildRootFile: string | undefined
@@ -16,6 +18,7 @@ export class Builder {
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.tmpDir = tmp.dirSync().name.split(path.sep).join('/')
     }
 
     kill() {
@@ -236,7 +239,8 @@ export class Builder {
                 const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
                 step.args = step.args.map(arg => arg.replace('%DOC%', docker ? docfile : doc)
                                                     .replace('%DOCFILE%', docfile)
-                                                    .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/')))
+                                                    .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
+                                                    .replace('%TMPDIR%', this.tmpDir))
             }
             if (configuration.get('maxPrintLine.option.enabled') && process.platform === 'win32') {
                 if (!step.args) {

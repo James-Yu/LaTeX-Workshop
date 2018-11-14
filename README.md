@@ -150,6 +150,7 @@ As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounde
 | `%DOC%`     | The LaTeX root file path and name without `.tex` extension |
 | `%DOCFILE%` | The LaTeX root file name without `.tex` extension          |
 | `%DIR%`     | The LaTeX root file path                                   |
+| `%TMPDIR%`  | A temporary folder for storing ancillary files             |
 
 Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal.
 As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above tool `%DOC%` and `.tex` are concatenated for completeness.
