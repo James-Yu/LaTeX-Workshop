@@ -6,13 +6,15 @@ All commands are listed as <kbd>ctrl</kbd>+<kbd>some key</kbd>. If you're on Mac
 
 ## Extension Commands
 
-| Shortcut                                    | Does                               |
-| ------------------------------------------- | ---------------------------------- |
-| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>b</kbd> | Builds current file                |
-| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>c</kbd> | clean latex build files            |
-| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>v</kbd> | Opens corresponding PDF            |
-| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>j</kbd> | Synctex from cursor (windows only) |
-| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>x</kbd> | Open Extension Sidebar             |
+By default, the shortcuts are set according to the first column. You may switch to an alternative keymap by setting `latex-workshop.bind.altKeymap.enabled` to `true` and reload/reopen vscode.
+
+| Shortcut                                    | Alternative                                               | Does                               |
+| ------------------------------------------- | --------------------------------------------------------- | ---------------------------------- |
+| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>b</kbd> | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>alt</kbd>+<kbd>b</kbd> | Builds current file                |
+| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>c</kbd> | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>alt</kbd>+<kbd>c</kbd> | clean latex build files            |
+| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>v</kbd> | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>alt</kbd>+<kbd>v</kbd> | Opens corresponding PDF            |
+| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>j</kbd> | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>alt</kbd>+<kbd>j</kbd> | Synctex from cursor (windows only) |
+| <kbd>ctrl</kbd>+<kbd>alt</kbd>+<kbd>x</kbd> | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>alt</kbd>+<kbd>x</kbd> | Open Extension Sidebar             |
 
 ## Miscellaneous Action
 

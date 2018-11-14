@@ -73,7 +73,7 @@ One million downloads! This project won't be successful without contributions fr
 
       <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/frac.gif" alt="\frac shortcut demo" height="20px">
       <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/int.gif" alt="\int shortcut demo" height="20px">
-- [Shortcuts](Shortcuts-doc.md)
+- [Shortcuts](SHORTCUT.md)
   - In addition snippets, there are shortcuts that provided by the extension that allow you to easily format text (and one or two other things).
 
     <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/emph.gif" alt="\emph{} demo" height="20px">
