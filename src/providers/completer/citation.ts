@@ -123,7 +123,7 @@ export class Citation {
         const itemReg = /@(\w+)\s*{/g
         let result = itemReg.exec(contentNoNewLine)
         let prevResult: RegExpExecArray | null = null
-        let numLines = 0
+        let numLines = 1
         let prevPrevResultIndex = 0
         while (result || prevResult) {
             if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
@@ -131,7 +131,7 @@ export class Citation {
                 const item = this.parseBibString(itemString)
                 if (item !== undefined) {
                     items.push(item)
-                    numLines = numLines + content.substring(prevPrevResultIndex, prevResult.index).split('\n').length
+                    numLines = numLines + content.substring(prevPrevResultIndex, prevResult.index).split('\n').length - 1
                     prevPrevResultIndex = prevResult.index
                     this.citationData[item.key] = {
                         item,
