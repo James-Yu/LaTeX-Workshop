@@ -63,9 +63,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             }
         }
 
-        return sections.map(section => {
-            return new vscode.FoldingRange(section.from, section.to)
-        })
+        return sections.map(section => new vscode.FoldingRange(section.from, section.to))
     }
 
     private getEnvironmentFoldingRanges(document: vscode.TextDocument) {
