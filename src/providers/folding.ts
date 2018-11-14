@@ -59,28 +59,33 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
 
     private getEnvironmentFoldingRanges(document: vscode.TextDocument) {
         const ranges: vscode.FoldingRange[] = []
-        let textToMatch = [{ text: document.getText(), offset: 0 }]
-        while (textToMatch.length > 0) {
-            const newTextToMatch: { text: string, offset: number }[] = []
-            textToMatch.forEach(textObj => {
-                const envRegex = /(\\begin{(.*?)})([\w\W]*)\\end{\2}/g
-                let match = envRegex.exec(textObj.text)
-                while (match) {
-                    ranges.push(
-                        new vscode.FoldingRange(
-                            document.positionAt(textObj.offset + envRegex.lastIndex - match[0].length).line,
-                            document.positionAt(textObj.offset + envRegex.lastIndex).line - 1
-                        )
-                    )
-                    newTextToMatch.push({
-                        text: match[3],
-                        offset: textObj.offset + envRegex.lastIndex - match[0].length + match[1].length
-                    })
-                    match = envRegex.exec(textObj.text)
-                }
-            })
-            textToMatch = newTextToMatch
+        const opStack: { keyword: string, index: number }[] = []
+        const text: string =  document.getText()
+        const envRegex: RegExp = /(\\(begin){(.*?)})|(\\(end){(.*?)})/g //to match one 'begin' OR 'end'
+
+        let match = envRegex.exec(text) // init regex search
+        while (match) {
+            //for 'begin': match[2] contains 'begin', match[3] contains keyword
+            //fro 'end':   match[5] contains 'end',   match[6] contains keyword
+            const item = {
+                keyword: match[2] ? match[3] : match[6],
+                index: match.index
+            }
+            const lastItem = opStack[opStack.length - 1]
+
+            if (match[5] && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+                opStack.pop()
+                ranges.push(new vscode.FoldingRange(
+                    document.positionAt(lastItem.index).line,
+                    document.positionAt(item.index).line - 1
+                ))
+            } else {
+                opStack.push(item)
+            }
+
+            match = envRegex.exec(text) //iterate regex search
         }
+        //TODO: if opStack still not empty
         return ranges
     }
 }
