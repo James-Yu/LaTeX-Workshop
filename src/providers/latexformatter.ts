@@ -137,6 +137,7 @@ export class LaTexFormatter {
                 .replace('%INDENT%', indent))
 
             this.extension.logger.addLogMessage(`Formatting with arguments ${args}`)
+            this.extension.manager.setEnvVar()
             const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
             // handle stdout/stderr
             const stdoutBuffer = [] as string[]

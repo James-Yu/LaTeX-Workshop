@@ -406,4 +406,9 @@ export class Manager {
             }
         }
     }
+
+    setEnvVar() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        process.env['LATEXWORKSHOP_DOCKER_LATEX'] = configuration.get('docker.image.latex') as string
+    }
 }

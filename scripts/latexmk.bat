@@ -1,1 +1,1 @@
-docker run -i --rm -w /data -v "%cd%:/data" tianon/latex latexmk %*
+docker run -i --rm -w /data -v "%cd%:/data" %LATEXWORKSHOP_DOCKER_LATEX% latexmk %*

@@ -812,7 +812,12 @@
         "latex-workshop.docker.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use `tianon/latex` and `mcandre/docker-chktex` binaries to replace `latexmk`, `synctex`, `texcount`, `latexindent` and `chktex`."
+          "description": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use the images defined in `latex-workshop.docker.image.latex` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
+        },
+        "latex-workshop.docker.image.latex": {
+          "type": "string",
+          "default": "tianon/latex",
+          "description": "Define the image for `latexmk`, `synctex`, `texcount`, and `latexindent`."
         },
         "latex-workshop.showContextMenu": {
           "type": "boolean",
