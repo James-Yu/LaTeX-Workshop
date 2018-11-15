@@ -1,6 +1,16 @@
 import * as vscode from 'vscode'
 
+import {Extension} from '../main'
+
 export class FoldingProvider implements vscode.FoldingRangeProvider {
+    extension: Extension
+    sectionRegex: RegExp[] = []
+
+    constructor(extension: Extension) {
+        this.extension = extension
+        const sections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
+        this.sectionRegex = sections.map(section => RegExp(`\\\\${section}(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+    }
 
     public provideFoldingRanges(
         document: vscode.TextDocument,
@@ -11,50 +21,49 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
     }
 
     private getSectionFoldingRanges(document: vscode.TextDocument) {
+        const startingIndices: number[] = this.sectionRegex.map(_ => -1)
         const lines = document.getText().split(/\r?\n/g)
 
-        const sections = lines.map((lineText, lineNumber) => {
-            const sectionRegex = /^\\((?:sub)*)section{.*}/
-            const matches = sectionRegex.exec(lineText)
-            if (matches) {
-                const section = {}
-                section['level'] = matches[1].length / 3 + 1
-                section['lineNumber'] = lineNumber
-                return section
-            } else {
-                return {}
-            }
-        })
-
-        return sections.filter(section => section['level']).map((section, index, allSections) => {
-            const startLine = section['lineNumber']
-            let endLine
-
-            // Not the last section
-            if (allSections.filter((element, elementIndex) => index < elementIndex && element['level'] <= section['level']).length > 0) {
-                for (let siblingSectionIndex = index + 1; siblingSectionIndex < allSections.length; siblingSectionIndex++) {
-                    if (section['level'] >= allSections[siblingSectionIndex]['level']) {
-                        endLine = allSections[siblingSectionIndex]['lineNumber'] - 1
-                        break
-                    }
+        const sections: {level: number, from: number, to: number}[] = []
+        for (const line of lines) {
+            const index = lines.indexOf(line)
+            for (const regex of this.sectionRegex) {
+                const result = regex.exec(line)
+                if (!result) {
+                    continue
                 }
-            } else {
-                endLine = document.lineCount - 1
-                // Handle included files which don't contain \end{document}
-                for (let endLineCopy = endLine; endLineCopy > startLine; endLineCopy--) {
-                    if (/\\end{document}/.test(document.lineAt(endLineCopy).text)) {
-                        endLine = endLineCopy--
-                        break
-                    }
+                const regIndex = this.sectionRegex.indexOf(regex)
+                const originalIndex = startingIndices[regIndex]
+                if (originalIndex === -1) {
+                    startingIndices[regIndex] = index
+                    continue
+                }
+                let i = regIndex
+                while (i < this.sectionRegex.length) {
+                    sections.push({
+                        level: i,
+                        from: startingIndices[i],
+                        to: index - 1
+                    })
+                    startingIndices[i] = regIndex === i ? index : -1
+                    ++i
                 }
             }
-
-            if (document.lineAt(endLine).isEmptyOrWhitespace && endLine >= section['lineNumber'] + 1) {
-                endLine = endLine - 1
+            if (/\\end{document}/.exec(line) || index === lines.length - 1) {
+                for (let i = 0; i < startingIndices.length; ++i) {
+                    if (startingIndices[i] === -1) {
+                        continue
+                    }
+                    sections.push({
+                        level: i,
+                        from: startingIndices[i],
+                        to: index - 1
+                    })
+                }
             }
+        }
 
-            return new vscode.FoldingRange(startLine, endLine)
-        })
+        return sections.map(section => new vscode.FoldingRange(section.from, section.to))
     }
 
     private getEnvironmentFoldingRanges(document: vscode.TextDocument) {
