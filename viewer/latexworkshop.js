@@ -12,7 +12,7 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
     let param = parts[i].split('=')
     if (param[0].toLowerCase() === 'file') {
         file = param[1].replace('/pdf:', '')
-        document.title = decodeURIComponent(file).split(/[\\/]/).pop()
+        document.title = decodeURIComponent(decodeURIComponent(file)).split(/[\\/]/).pop()
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
         const dom = document.getElementsByClassName('print')
         for (let j = 0; j < dom.length; ++j) {
