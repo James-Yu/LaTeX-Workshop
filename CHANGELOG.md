@@ -1,5 +1,22 @@
 # Change Log
 
+## [5.16.0] - 2018-11-15
+
+### Added
+- (#673) Customizable docker image.
+- (#813) `message.latexlog.exclude` to exclude compiler messages.
+- (#875) Hover preview includes all `(re)newcommands`.
+- (#975) Provide `bind.altKeymap.enabled` config to use alternative `ctrl`+`l` `alt`+ keymap.
+- (#982) Add `%TMPDIR%` placeholder to tools.
+
+### Fixed
+- Better section and LaTeX environment folding.
+- Show status bar icon when switching back from non-tex files.
+- Consistent viewer trimming selector.
+- Wrong bib file definition location.
+- (#765) `syncTeX` upon build finished, beside viewer loaded.
+- (#976) Only insert `\item` when cursor is at the end of an line or followed by only spaces.
+
 ## [5.15.3] - 2018-11-12
 
 ### Fixed

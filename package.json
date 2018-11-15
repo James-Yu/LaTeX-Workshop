@@ -3,7 +3,7 @@
   "displayName": "LaTeX",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icon.png",
-  "version": "5.15.3",
+  "version": "5.16.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -460,9 +460,15 @@
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible"
       }
     ],
+    "configurationDefaults": {
+        "[latex]": {
+            "editor.formatOnPaste": false,
+            "editor.formatOnSave": false
+        }
+    },
     "configuration": {
       "type": "object",
-      "title": "LaTeX Workshop configuration",
+      "title": "LaTeX",
       "properties": {
         "latex-workshop.latex.recipes": {
           "type": "array",
@@ -483,7 +489,7 @@
               ]
             }
           ],
-          "description": "Define LaTeX compiling recipes.\nEach recipe in the list is an object declares its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop#recipe."
+          "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object declares its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop#recipe."
         },
         "latex-workshop.latex.tools": {
           "type": "array",
@@ -517,7 +523,7 @@
               ]
             }
           ],
-          "description": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args`. Typically no spaces should appear in each argument unless in paths.\nPlaceholder `%DOC%`, `%DOCFILE`, `%DIR%`, and `%TMPDIR%` is available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop#recipe."
+          "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args`. Typically no spaces should appear in each argument unless in paths.\nPlaceholder `%DOC%`, `%DOCFILE`, `%DIR%`, and `%TMPDIR%` is available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop#recipe."
         },
         "latex-workshop.latex.magic.args": {
           "type": "array",
@@ -527,49 +533,49 @@
             "-file-line-error",
             "%DOC%"
           ],
-          "description": "Define the arguments to be input to magic command executable."
+          "markdownDescription": "Define the arguments to be input to magic command executable."
         },
         "latex-workshop.latex.magic.bib.args": {
           "type": "array",
           "default": [
             "%DOCFILE%"
           ],
-          "description": "Define the arguments to be input to BIB magic command executable."
+          "markdownDescription": "Define the arguments to be input to BIB magic command executable."
         },
         "latex-workshop.latex.outputDir": {
           "type": "string",
           "default": "./",
-          "description": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory.\nThe LaTeX toolchain should output files to this path."
+          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory.\nThe LaTeX toolchain should output files to this path."
         },
         "latex-workshop.latex.additionalBib": {
           "type": "array",
           "default": [],
-          "description": "Addition bibliography files to watch.\nBoth relative and absolute paths/globs are supported, but absolute ones are suggested. Relative path start from the root file location, so be ware if it is located in sub-directory."
+          "markdownDescription": "Addition bibliography files to watch.\nBoth relative and absolute paths/globs are supported, but absolute ones are suggested. Relative path start from the root file location, so be ware if it is located in sub-directory."
         },
         "latex-workshop.latex.autoBuild.onSave.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
+          "markdownDescription": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
         },
         "latex-workshop.latex.autoBuild.onTexChange.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Build LaTeX after a LaTeX source file has changed in the workspace.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after any LaTeX file in the workspace is saved on the disk which is not open in the active editor window."
+          "markdownDescription": "Build LaTeX after a LaTeX source file has changed in the workspace.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after any LaTeX file in the workspace is saved on the disk which is not open in the active editor window."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Delete LaTeX auxillary files when errors occur during build and retry.\nThis property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
+          "markdownDescription": "Delete LaTeX auxillary files when errors occur during build and retry.\nThis property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
         },
         "latex-workshop.latex.clean.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project."
+          "markdownDescription": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project."
         },
         "latex-workshop.latex.clean.onFailBuild.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Delete LaTeX auxillary files after a failed building process.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files upon building errors."
+          "markdownDescription": "Delete LaTeX auxillary files after a failed building process.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files upon building errors."
         },
         "latex-workshop.latex.clean.fileTypes": {
           "type": "array",
@@ -594,7 +600,12 @@
             "*.log",
             "*.fdb_latexmk"
           ],
-          "description": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
+          "markdownDescription": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
+        },
+        "latex-workshop.latex.option.maxPrintLine.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Add `--max-print-line` option to LaTeX build commands. This flag tells some MikTeX compilers to produce non hard wrapped log messages. Non hard wrapped log messages are required for the _Problem_ Pane to properly display messages."
         },
         "latex-workshop.view.outline.sections": {
           "type": "array",
@@ -604,7 +615,7 @@
             "subsection",
             "subsubsection"
           ],
-          "description": "The section names of LaTeX outline hierarchy.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`."
+          "markdownDescription": "The section names of LaTeX outline hierarchy.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`."
         },
         "latex-workshop.view.pdf.viewer": {
           "type": "string",
@@ -615,7 +626,7 @@
             "tab",
             "external"
           ],
-          "description": "The default PDF viewer.",
+          "markdownDescription": "The default PDF viewer.",
           "enumDescriptions": [
             "Undetermined viewer. A viewer selector will pop up upon viewing PDF.",
             "Open PDF with the default web browser.",
@@ -631,7 +642,7 @@
             "tabOrBrowser",
             "external"
           ],
-          "description": "PDF viewer used for [View on PDF] link on \\ref."
+          "markdownDescription": "PDF viewer used for [View on PDF] link on \\ref."
         },
         "latex-workshop.view.pdf.external.command": {
           "type": "object",
@@ -641,7 +652,7 @@
               "%PDF%"
             ]
           },
-          "description": "The command to execute when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+          "markdownDescription": "The command to execute when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
         },
         "latex-workshop.view.pdf.external.synctex": {
           "type": "object",
@@ -653,52 +664,52 @@
               "%TEX%"
             ]
           },
-          "description": "The command to execute when forward synctex to external viewer.\nThis function is not officially supported. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
+          "markdownDescription": "The command to execute when forward synctex to external viewer.\nThis function is not officially supported. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
         },
         "latex-workshop.view.pdf.zoom": {
           "type": "string",
           "default": "auto",
-          "description": "The default zoom level of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `auto`, `page-actual`, `page-fit`, `page-width`, and one-based scale values (e.g., 0.5 for 50%, 2.0 for 200%)."
+          "markdownDescription": "The default zoom level of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `auto`, `page-actual`, `page-fit`, `page-width`, and one-based scale values (e.g., 0.5 for 50%, 2.0 for 200%)."
         },
         "latex-workshop.view.pdf.scrollMode": {
           "type": "number",
           "default": 0,
-          "description": "The default scroll mode of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `0` (vertical), `1`(horizontal) and `2` (wrapped)."
+          "markdownDescription": "The default scroll mode of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `0` (vertical), `1`(horizontal) and `2` (wrapped)."
         },
         "latex-workshop.view.pdf.spreadMode": {
           "type": "number",
           "default": 0,
-          "description": "The default spread mode of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `0` (none), `1` (odd) and `2` (even)."
+          "markdownDescription": "The default spread mode of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `0` (none), `1` (odd) and `2` (even)."
         },
         "latex-workshop.view.pdf.hand": {
           "type": "boolean",
           "default": false,
-          "description": "Define if the hand tool is enabled by default in the PDF viewer."
+          "markdownDescription": "Define if the hand tool is enabled by default in the PDF viewer."
         },
         "latex-workshop.view.pdf.invert": {
           "type": "number",
           "default": 0,
-          "description": "Define the CSS invert filter level of the PDF viewer.\nThis config can invert the color of PDF. Possible values are from 0 to 1."
+          "markdownDescription": "Define the CSS invert filter level of the PDF viewer.\nThis config can invert the color of PDF. Possible values are from 0 to 1."
         },
         "latex-workshop.synctex.path": {
           "type": "string",
           "default": "synctex",
-          "description": "Define the location of SyncTeX executive file.\nAdditional arguments, e.g., synctex modes and position of click, will be appended to this command."
+          "markdownDescription": "Define the location of SyncTeX executive file.\nAdditional arguments, e.g., synctex modes and position of click, will be appended to this command."
         },
         "latex-workshop.synctex.afterBuild.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Execute forward synctex at cursor position after compiling LaTeX project."
+          "markdownDescription": "Execute forward synctex at cursor position after compiling LaTeX project."
         },
         "latex-workshop.chktex.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Enable linting LaTeX with ChkTeX.\nThe active document will be linted when no document changes for a defined period of time.\nThe full project will be linted from the root on file save."
+          "markdownDescription": "Enable linting LaTeX with ChkTeX.\nThe active document will be linted when no document changes for a defined period of time.\nThe full project will be linted from the root on file save."
         },
         "latex-workshop.chktex.path": {
           "type": "string",
           "default": "chktex",
-          "description": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.chktex.args.*` and required arguments to form a complete command of ChkTeX."
+          "markdownDescription": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.chktex.args.*` and required arguments to form a complete command of ChkTeX."
         },
         "latex-workshop.chktex.args.active": {
           "type": "array",
@@ -709,7 +720,7 @@
             "-e16",
             "-q"
           ],
-          "description": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
+          "markdownDescription": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
         "latex-workshop.chktex.args.root": {
           "type": "array",
@@ -720,22 +731,22 @@
             "-e16",
             "-q"
           ],
-          "description": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
+          "markdownDescription": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
         "latex-workshop.chktex.interval": {
           "type": "number",
           "default": 300,
-          "description": "Defines the time interval in milliseconds between invoking LaTeX linter on the active file."
+          "markdownDescription": "Defines the time interval in milliseconds between invoking LaTeX linter on the active file."
         },
         "latex-workshop.texcount.path": {
           "type": "string",
           "default": "texcount",
-          "description": "Define the location of TeXCount executive file/script.\nThis command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
+          "markdownDescription": "Define the location of TeXCount executive file/script.\nThis command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
         },
         "latex-workshop.texcount.args": {
           "type": "array",
           "default": [],
-          "description": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
+          "markdownDescription": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
         },
         "latex-workshop.intellisense.citation.type": {
           "type": "string",
@@ -744,7 +755,7 @@
             "browser"
           ],
           "default": "inline",
-          "description": "Defines which type of hint to show when intellisense provides citation suggestions.",
+          "markdownDescription": "Defines which type of hint to show when intellisense provides citation suggestions.",
           "enumDescriptions": [
             "Use the inline intellisense to provide citation completion items.",
             "Use a dropdown menu to provide citation completion items."
@@ -758,7 +769,7 @@
             "authors"
           ],
           "default": "bibtex key",
-          "description": "Defines what to show as suggestion labels when intellisense provides citation suggestions.",
+          "markdownDescription": "Defines what to show as suggestion labels when intellisense provides citation suggestions.",
           "enumDescriptions": [
             "Show bibtex keys in the inline intellisense.",
             "Show publication titles in the inline intellisense.",
@@ -768,52 +779,52 @@
         "latex-workshop.intellisense.citation.maxfilesizeMB": {
           "type": "number",
           "default": 5,
-          "description": "Defines the maximum bibtex file size for the extension to parse in MB."
+          "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB."
         },
         "latex-workshop.intellisense.surroundCommand.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "When `\\` is typed with text selected, surround the selection with LaTeX command."
+          "markdownDescription": "When `\\` is typed with text selected, surround the selection with LaTeX command."
         },
         "latex-workshop.message.badbox.show": {
           "type": "boolean",
           "default": true,
-          "description": "Show badbox information in the problems panel."
+          "markdownDescription": "Show badbox information in the problems panel."
         },
         "latex-workshop.message.latexlog.exclude": {
           "type": "array",
           "default": [],
-          "description": "Exclude log messages that matches the given regexp from the problems panel."
+          "markdownDescription": "Exclude log messages that matches the given regexp from the problems panel."
         },
         "latex-workshop.message.information.show": {
           "type": "boolean",
           "default": false,
-          "description": "Display information messages in popup notifications."
+          "markdownDescription": "Display information messages in popup notifications."
         },
         "latex-workshop.message.warning.show": {
           "type": "boolean",
           "default": true,
-          "description": "Display warning messages in popup notifications."
+          "markdownDescription": "Display warning messages in popup notifications."
         },
         "latex-workshop.message.error.show": {
           "type": "boolean",
           "default": true,
-          "description": "Display error messages in popup notifications."
+          "markdownDescription": "Display error messages in popup notifications."
         },
         "latex-workshop.message.update.show": {
           "type": "boolean",
           "default": true,
-          "description": "Display LaTeX Workshop update message on new versions."
+          "markdownDescription": "Display LaTeX Workshop update message on new versions."
         },
         "latex-workshop.message.log.show": {
           "type": "boolean",
           "default": true,
-          "description": "Display LaTeX Workshop debug log in output panel.\nThis property defines whether LaTeX Workshop will output its debug log to the log panel."
+          "markdownDescription": "Display LaTeX Workshop debug log in output panel.\nThis property defines whether LaTeX Workshop will output its debug log to the log panel."
         },
         "latex-workshop.latexindent.path": {
           "type": "string",
           "default": "latexindent",
-          "description": "Define the location of the latexindent executable file."
+          "markdownDescription": "Define the location of the latexindent executable file."
         },
         "latex-workshop.latexindent.args": {
           "type": "array",
@@ -823,52 +834,52 @@
             "%TMPFILE%",
             "-y=\"defaultIndent: '%INDENT%'\""
           ],
-          "description": "Define the command line arguments for latexindent. Available placeholders:\n- %DOC%, %DOCFILE%, %DIR%: same as latex-workshop.latex.toolchain args.\n- %TMPFILE%: would be replaced with the path of file which contains raw TeX source to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: would be replaced with the string which represents indent of the target document.\n\nNote: At this moment -c option requires trailing slash."
+          "markdownDescription": "Define the command line arguments for latexindent. Available placeholders:\n- %DOC%, %DOCFILE%, %DIR%: same as latex-workshop.latex.toolchain args.\n- %TMPFILE%: would be replaced with the path of file which contains raw TeX source to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: would be replaced with the string which represents indent of the target document.\n\nNote: At this moment -c option requires trailing slash."
         },
         "latex-workshop.docker.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use the images defined in `latex-workshop.docker.image.latex` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
+          "markdownDescription": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use the images defined in `latex-workshop.docker.image.latex` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
         },
         "latex-workshop.docker.image.latex": {
           "type": "string",
           "default": "tianon/latex",
-          "description": "Define the image for `latexmk`, `synctex`, `texcount`, and `latexindent`."
+          "markdownDescription": "Define the image for `latexmk`, `synctex`, `texcount`, and `latexindent`."
         },
         "latex-workshop.showContextMenu": {
           "type": "boolean",
           "default": false,
-          "description": "Enable the LaTeX contextual menu. This menu is deactived as it is available through the new LaTeX badge. Just set this variable to `true` to recover the menu."
+          "markdownDescription": "Enable the LaTeX contextual menu. This menu is deactived as it is available through the new LaTeX badge. Just set this variable to `true` to recover the menu."
         },
         "latex-workshop.bind.enter.key": {
           "type": "boolean",
           "default": true,
-          "description": "Enable the automatic insertion of `\\item` on a newline when pressing `Enter` in a line starting in `\\item`."
+          "markdownDescription": "Enable the automatic insertion of `\\item` on a newline when pressing `Enter` in a line starting in `\\item`."
         },
         "latex-workshop.bind.altKeymap.enabled": {
           "type": "boolean",
           "default": false,
-          "description": "Use alternative keymap combo, i.e., shift+alt, to replace the default ctrl/cmd+alt shortcuts.\nReload vscode to make this configuration effective."
+          "markdownDescription": "Use alternative keymap combo, i.e., `ctrl`+`l` `alt`+key, to replace the default `ctrl`/`cmd`+`alt` shortcuts.\nReload vscode to make this configuration effective."
         },
         "latex-workshop.hoverPreview.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Enable Hover Preview."
+          "markdownDescription": "Enable Hover Preview."
         },
         "latex-workshop.hoverPreview.scale": {
           "type": "number",
           "default": 1,
-          "description": "Scaling of Hover Preview."
+          "markdownDescription": "Scaling of Hover Preview."
         },
         "latex-workshop.hoverPreview.cursor.enabled": {
           "type": "boolean",
           "default": true,
-          "description": "Render cursor in Hover Preview at the current position."
+          "markdownDescription": "Render cursor in Hover Preview at the current position."
         },
         "latex-workshop.hoverPreview.cursor.symbol": {
           "type": "string",
           "default": "\\ddagger",
-          "description": "Cursor symbol in Hover Preview."
+          "markdownDescription": "Cursor symbol in Hover Preview."
         },
         "latex-workshop.hoverPreview.cursor.color": {
           "type": "string",
@@ -895,12 +906,7 @@
             "white",
             "yellow"
           ],
-          "description": "The color of cursor in Hover Preview."
-        },
-        "latex-workshop.maxPrintLine.option.enabled": {
-          "type": "boolean",
-          "default": true,
-          "description": "Add `--max-print-line` option to LaTeX build commands. This flag tells some MikTeX compilers to produce non hard wrapped log messages. Non hard wrapped log messages are required for the _Problem_ Pane to properly display messages."
+          "markdownDescription": "The color of cursor in Hover Preview."
         }
       }
     },

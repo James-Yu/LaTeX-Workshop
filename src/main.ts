@@ -44,7 +44,7 @@ function renameConfig(originalConfig: string, newConfig: string) {
 }
 
 function obsoleteConfigCheck() {
-    renameConfig('placeholder', '')
+    renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
 }
 
 function conflictExtensionCheck() {

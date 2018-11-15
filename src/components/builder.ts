@@ -246,7 +246,7 @@ export class Builder {
                                                     .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
                                                     .replace('%TMPDIR%', this.tmpDir))
             }
-            if (configuration.get('maxPrintLine.option.enabled') && process.platform === 'win32') {
+            if (configuration.get('latex.option.maxPrintLine.enabled') && process.platform === 'win32') {
                 if (!step.args) {
                     step.args = []
                 }
