@@ -220,7 +220,9 @@ const trimPage = (page) => {
   const canvasWrapper = page.getElementsByClassName("canvasWrapper")[0];
   const canvas = page.getElementsByTagName("canvas")[0];
   if ( !canvasWrapper || !canvas ) {
-    page.style.width = "250px";
+    if (page.style.width !== "250px") {
+      page.style.width = "250px";
+    }
     return;
   }
   const w = canvas.style.width;
@@ -274,6 +276,9 @@ window.addEventListener("pagerendered", () => {
   })
   const viewer = document.getElementById("viewer");
   for( let page of viewer.getElementsByClassName("page") ){
-    observer.observe(page, {attributes: true, childList: true});
+    if (!page.isObserved) {
+      observer.observe(page, {attributes: true, childList: true, attributeFilter: ['style']});
+      page.isObserved = true;
+    }
   }
-}, {once: true});
+});
