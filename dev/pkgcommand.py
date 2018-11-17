@@ -55,7 +55,11 @@ for cwl_file in cwl_files:
             command = command[:-1]
         if command in commands:
             continue
-        command_dict = { 'command': command, 'detail': f'Provided by `{cwl_file[:-4]}`.' }
+        command_dict = {
+            'command': command,
+            'detail': f'Provided by `{cwl_file[:-4]}`.',
+            'package': cwl_file[:-4]
+        }
         if line.count('{') > 0:
             command_dict['snippet'] = command + \
                 ''.join(['{${' + str(index + 1) + '}}' for index in range(line.count('{'))])

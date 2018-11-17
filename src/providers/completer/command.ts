@@ -13,6 +13,7 @@ export class Command {
     defaultCommands: {[key: string]: vscode.CompletionItem} = {}
     newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
     specialBrackets: {[key: string]: vscode.CompletionItem}
+    usedPackages: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -61,7 +62,14 @@ export class Command {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
-        const suggestions = Object.assign({}, this.defaultCommands)
+        const suggestions = {}
+        Object.keys(this.defaultCommands).forEach(key => {
+            if (this.defaultCommands[key].sortText === undefined) {
+                suggestions[key] = this.defaultCommands[key]
+            } else if (this.usedPackages.indexOf(this.defaultCommands[key].sortText || '') > -1) {
+                suggestions[key] = this.defaultCommands[key]
+            }
+        })
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
@@ -142,11 +150,29 @@ export class Command {
         }
         command.documentation = item.documentation
         command.detail = item.detail
-        command.sortText = item.sortText
+        command.sortText = item.package // Here we abuse the sortText field
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
         }
         return command
+    }
+
+    getPackage(filePath: string) {
+        const content = fs.readFileSync(filePath, 'utf-8')
+        const regex = /\\usepackage(?:\[[^\[\]\{\}]*\])?{(.*)}/g
+        let result
+        do {
+            result = regex.exec(content)
+            if (result) {
+                for (const pkg of result[1].split(',')) {
+                    if (this.usedPackages.indexOf(pkg.trim()) > -1) {
+                        continue
+                    }
+                    this.usedPackages.push(pkg.trim())
+                }
+            }
+        } while (result)
+        console.log(this.usedPackages)
     }
 
     getCommandsTeX(filePath: string) {
@@ -206,4 +232,5 @@ interface AutocompleteEntry {
     documentation?: string
     sortText?: string
     postAction?: string
+    package?: string
 }
