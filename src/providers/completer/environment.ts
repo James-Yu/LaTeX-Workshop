@@ -11,10 +11,9 @@ export class Environment {
         this.extension = extension
     }
 
-    initialize(defaultEnvs: {[key: string]: {text: string}}) {
-        Object.keys(defaultEnvs).forEach(key => {
-            const item = defaultEnvs[key]
-            const environment = new vscode.CompletionItem(item.text, vscode.CompletionItemKind.Module)
+    initialize(defaultEnvs: string[]) {
+        defaultEnvs.forEach(env => {
+            const environment = new vscode.CompletionItem(env, vscode.CompletionItemKind.Module)
             this.suggestions.push(environment)
         })
     }

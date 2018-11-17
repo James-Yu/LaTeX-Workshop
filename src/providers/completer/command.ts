@@ -20,21 +20,20 @@ export class Command {
 
     initialize(defaultCommands: {[key: string]: AutocompleteEntry},
                defaultSymbols: {[key: string]: AutocompleteEntry},
-               defaultEnvs: {[key: string]: {text: string}}) {
+               defaultEnvs: string[]) {
         Object.keys(defaultCommands).forEach(key => {
             if (!(key in defaultSymbols)) {
                 defaultSymbols[key] = defaultCommands[key]
             }
         })
         const envSnippet: { [id: string]: { command: string, snippet: string}} = {}
-        Object.keys(defaultEnvs).forEach(env => {
-            const text = defaultEnvs[env].text
+        defaultEnvs.forEach(env => {
             envSnippet[env] = {
-                command: text,
-                snippet: `begin{${text}}\n\t$0\n\\\\end{${text}}`
+                command: env,
+                snippet: `begin{${env}}\n\t$0\n\\\\end{${env}}`
             }
-            if (['enumerate', 'itemize'].indexOf(text) > -1) {
-                envSnippet[env]['snippet'] = `begin{${text}}\n\t\\item $0\n\\\\end{${text}}`
+            if (['enumerate', 'itemize'].indexOf(env) > -1) {
+                envSnippet[env]['snippet'] = `begin{${env}}\n\t\\item $0\n\\\\end{${env}}`
             }
         })
         Object.keys(defaultSymbols).forEach(key => {
