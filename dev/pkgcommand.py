@@ -4,8 +4,9 @@ import zipfile
 from os import listdir, remove
 from os.path import isfile, join
 
-commands = json.load(open('../data/commands.json'))
-envs = json.load(open('../data/environments.json'))
+commands = json.load(open('../data/commands.json', encoding='utf8'))
+pkgcmds = {}
+envs = json.load(open('../data/environments.json', encoding='utf8'))
 urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', 'cwl.zip')
 zip_ref = zipfile.ZipFile('cwl.zip', 'r')
 zip_ref.extractall('cwl/')
@@ -20,7 +21,7 @@ for f in listdir('cwl/LaTeX-cwl-master'):
         remove(join('cwl/LaTeX-cwl-master', f))
 
 for cwl_file in cwl_files:
-    with open(join('cwl/LaTeX-cwl-master', cwl_file)) as f:
+    with open(join('cwl/LaTeX-cwl-master', cwl_file), encoding='utf8') as f:
         lines = f.readlines()
     for line in lines:
         if line[0] == '#':
@@ -54,13 +55,13 @@ for cwl_file in cwl_files:
             command = command[:-1]
         if command in commands:
             continue
-        command_dict = { 'command': command }
+        command_dict = { 'command': command, 'detail': f'Provided by `{cwl_file[:-4]}`.' }
         if line.count('{') > 0:
             command_dict['snippet'] = command + \
                 ''.join(['{${' + str(index + 1) + '}}' for index in range(line.count('{'))])
-        commands[command] = command_dict
+        pkgcmds[command] = command_dict
 
     remove(join('cwl/LaTeX-cwl-master', cwl_file))
 
-json.dump(envs, open('../data/environments.json', 'w'), indent=2)
-json.dump(commands, open('../data/commands.json', 'w'), indent=2)
+json.dump(envs, open('../data/environments.json', 'w', encoding='utf8'), indent=2)
+json.dump(pkgcmds, open('../data/packagecommands.json', 'w', encoding='utf8'), indent=2)
