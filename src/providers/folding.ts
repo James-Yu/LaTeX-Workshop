@@ -23,6 +23,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
     private getSectionFoldingRanges(document: vscode.TextDocument) {
         const startingIndices: number[] = this.sectionRegex.map(_ => -1)
         const lines = document.getText().split(/\r?\n/g)
+        let  documentClassLine = -1
 
         const sections: {level: number, from: number, to: number}[] = []
         for (const line of lines) {
@@ -48,6 +49,16 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                     startingIndices[i] = regIndex === i ? index : -1
                     ++i
                 }
+            }
+            if (/\\documentclass/.exec(line)) {
+                documentClassLine = index
+            }
+            if (/\\begin{document}/.exec(line) && documentClassLine > -1) {
+                sections.push({
+                    level: 0,
+                    from: documentClassLine,
+                    to: index - 1
+                })
             }
             if (/\\end{document}/.exec(line) || index === lines.length - 1) {
                 for (let i = 0; i < startingIndices.length; ++i) {
