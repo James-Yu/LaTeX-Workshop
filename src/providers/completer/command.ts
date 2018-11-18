@@ -65,7 +65,7 @@ export class Command {
         this.refreshTimer = Date.now()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let suggestions
-        if (configuration.get('intellisense.command.unimathsymbols.enabled')) {
+        if (configuration.get('intellisense.unimathsymbols.enabled')) {
             suggestions = Object.assign({}, {...this.defaultCommands, ...this.defaultSymbols})
         } else {
             suggestions = Object.assign({}, this.defaultCommands)
@@ -160,6 +160,10 @@ export class Command {
     }
 
     insertPkgCmds(pkg: string, suggestions) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!(configuration.get('intellisense.package.enabled'))) {
+            return
+        }
         if (!(pkg in this.packageCmds)) {
             const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
             if (fs.existsSync(filePath)) {

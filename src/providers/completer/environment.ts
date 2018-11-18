@@ -33,6 +33,10 @@ export class Environment {
     }
 
     insertPkgEnvs(pkg: string, suggestions) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!(configuration.get('intellisense.package.enabled'))) {
+            return
+        }
         if (!(pkg in this.packageEnvs)) {
             const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_env.json`
             if (fs.existsSync(filePath)) {
