@@ -55,8 +55,11 @@ socket.addEventListener("message", (event) => {
             PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
               // ensure that trimming is invoked if needed.
               setTimeout(() => {
-                window.dispatchEvent( new Event("pagerendered") );
-              }, 1000);
+                window.dispatchEvent( new Event('pagerendered') );
+              }, 2000);
+              setTimeout(() => {
+                window.dispatchEvent( new Event('refreshed') );
+              }, 2000);
             });
             break
         case "position":
@@ -220,7 +223,9 @@ const trimPage = (page) => {
   const canvasWrapper = page.getElementsByClassName("canvasWrapper")[0];
   const canvas = page.getElementsByTagName("canvas")[0];
   if ( !canvasWrapper || !canvas ) {
-    page.style.width = "250px";
+    if (page.style.width !== "250px") {
+      page.style.width = "250px";
+    }
     return;
   }
   const w = canvas.style.width;
@@ -233,11 +238,11 @@ const trimPage = (page) => {
     const offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
     canvas.style.left = offsetX;
     canvas.style.position = "relative";
-    canvas.isTrimmed = true;
-    if ( textLayer && !textLayer.isTrimmed ) {
+    canvas.setAttribute('data-is-trimmed', 'trimmed');
+    if ( textLayer && textLayer.dataset.isTrimmed !== 'trimmed' ) {
       textLayer.style.width = width;
       textLayer.style.left = offsetX;
-      textLayer.isTrimmed = true;
+      textLayer.setAttribute('data-is-trimmed', 'trimmed');
     }
   }
 }
@@ -261,7 +266,7 @@ window.addEventListener("pagerendered", () => {
   }
 });
 
-window.addEventListener("pagerendered", () => {
+const setObserverToTrim = () => {
   const observer = new MutationObserver(records => {
     const trimSelect = document.getElementById("trimSelect");
     if (trimSelect.selectedIndex <= 0) {
@@ -274,6 +279,14 @@ window.addEventListener("pagerendered", () => {
   })
   const viewer = document.getElementById("viewer");
   for( let page of viewer.getElementsByClassName("page") ){
-    observer.observe(page, {attributes: true, childList: true});
+    if (page.dataset.isObserved !== 'observed') {
+      observer.observe(page, {attributes: true, childList: true, attributeFilter: ['style']});
+      page.setAttribute('data-is-observed', 'observed');
+    }
   }
-}, {once: true});
+}
+
+// Set observers after a pdf file is loaded in the first time.
+window.addEventListener('pagerendered', setObserverToTrim, {once: true});
+// Set observers each time a pdf file is refresed.
+window.addEventListener('refreshed', setObserverToTrim);
