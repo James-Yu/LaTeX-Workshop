@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 
 import {Extension} from '../../main'
 
@@ -15,7 +15,7 @@ export class Command {
     newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
     specialBrackets: {[key: string]: vscode.CompletionItem}
     usedPackages: string[] = []
-    packageCmds: {[pkg: string]: any} = {}
+    packageCmds: {[pkg: string]: {[key: string]: vscode.CompletionItem}} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -25,9 +25,12 @@ export class Command {
                defaultSymbols: {[key: string]: AutocompleteEntry},
                defaultEnvs: string[]) {
         Object.keys(defaultCommands).forEach(key => {
-            if (!(key in defaultSymbols)) {
-                defaultSymbols[key] = defaultCommands[key]
-            }
+            const item = defaultCommands[key]
+            this.defaultCommands[key] = this.entryToCompletionItem(item)
+        })
+        Object.keys(defaultSymbols).forEach(key => {
+            const item = defaultSymbols[key]
+            this.defaultSymbols[key] = this.entryToCompletionItem(item)
         })
         const envSnippet: { [id: string]: { command: string, snippet: string}} = {}
         defaultEnvs.forEach(env => {
@@ -38,10 +41,6 @@ export class Command {
             if (['enumerate', 'itemize'].indexOf(env) > -1) {
                 envSnippet[env]['snippet'] = `begin{${env}}\n\t\\item $0\n\\\\end{${env}}`
             }
-        })
-        Object.keys(defaultSymbols).forEach(key => {
-            const item = defaultSymbols[key]
-            this.defaultSymbols[key] = this.entryToCompletionItem(item)
         })
         Object.keys(envSnippet).forEach(key => {
             const item = envSnippet[key]
@@ -71,21 +70,24 @@ export class Command {
         } else {
             suggestions = Object.assign({}, this.defaultCommands)
         }
+        this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
-                    if (!(key in suggestions)) {
-                        suggestions[key] = this.entryToCompletionItem(this.commandInTeX[filePath][key])
+                    if (key in suggestions) {
+                        return
                     }
+                    suggestions[key] = this.entryToCompletionItem(this.commandInTeX[filePath][key])
                 })
             }
         })
         if (vscode.window.activeTextEditor) {
             const items = this.getCommandItems(vscode.window.activeTextEditor.document.getText(), vscode.window.activeTextEditor.document.fileName)
             Object.keys(items).forEach(key => {
-                if (!(key in suggestions)) {
-                    suggestions[key] = this.entryToCompletionItem(items[key])
+                if (key in suggestions) {
+                    return
                 }
+                suggestions[key] = this.entryToCompletionItem(items[key])
             })
         }
         this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
@@ -155,6 +157,27 @@ export class Command {
             command.command = { title: 'Post-Action', command: item.postAction }
         }
         return command
+    }
+
+    insertPkgCmds(pkg: string, suggestions) {
+        if (!(pkg in this.packageCmds)) {
+            const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
+            if (fs.existsSync(filePath)) {
+                this.packageCmds[pkg] = {}
+                const cmds = JSON.parse(fs.readFileSync(filePath).toString())
+                Object.keys(cmds).forEach(cmd => {
+                    if (cmd in suggestions) {
+                        return
+                    }
+                    this.packageCmds[pkg][cmd] = this.entryToCompletionItem(cmds[cmd])
+                })
+            }
+        }
+        if (pkg in this.packageCmds) {
+            Object.keys(this.packageCmds[pkg]).forEach(cmd => {
+                suggestions[cmd] = this.packageCmds[pkg][cmd]
+            })
+        }
     }
 
     getPackage(filePath: string) {
