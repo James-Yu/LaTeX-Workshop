@@ -286,5 +286,7 @@ const setObserverToTrim = () => {
   }
 }
 
+// Set observers after a pdf file is loaded in the first time.
 window.addEventListener('pagerendered', setObserverToTrim, {once: true});
+// Set observers each time a pdf file is refresed.
 window.addEventListener('refreshed', setObserverToTrim);
