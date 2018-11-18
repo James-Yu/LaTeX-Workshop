@@ -5,7 +5,6 @@ from os import listdir, remove
 from os.path import isfile, join
 
 commands = json.load(open('../data/commands.json', encoding='utf8'))
-pkgcmds = {}
 envs = json.load(open('../data/environments.json', encoding='utf8'))
 urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', 'cwl.zip')
 zip_ref = zipfile.ZipFile('cwl.zip', 'r')
@@ -23,6 +22,8 @@ for f in listdir('cwl/LaTeX-cwl-master'):
 for cwl_file in cwl_files:
     with open(join('cwl/LaTeX-cwl-master', cwl_file), encoding='utf8') as f:
         lines = f.readlines()
+    pkgcmds = {}
+    pkgenvs = []
     for line in lines:
         if line[0] == '#':
             continue
@@ -30,7 +31,7 @@ for cwl_file in cwl_files:
             env = line[line.index('{') + 1:line.index('}')]
             if env in envs:
                 continue
-            envs.append(env)
+            pkgenvs.append(env)
         if line[:5] == '\\end{':
             continue
         if line[0] != '\\':
@@ -55,11 +56,7 @@ for cwl_file in cwl_files:
             command = command[:-1]
         if command in commands:
             continue
-        command_dict = {
-            'command': command,
-            'detail': f'Provided by `{cwl_file[:-4]}`.',
-            'package': cwl_file[:-4]
-        }
+        command_dict = { 'command': command }
         if line.count('{') > 0:
             command_dict['snippet'] = command + \
                 ''.join(['{${' + str(index + 1) + '}}' for index in range(line.count('{'))])
@@ -67,5 +64,7 @@ for cwl_file in cwl_files:
 
     remove(join('cwl/LaTeX-cwl-master', cwl_file))
 
-json.dump(envs, open('../data/environments.json', 'w', encoding='utf8'), indent=2)
-json.dump(pkgcmds, open('../data/packagecommands.json', 'w', encoding='utf8'), indent=2)
+    if len(pkgenvs) > 0:
+        json.dump(pkgenvs, open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'), indent=2)
+    if pkgcmds != {}:
+        json.dump(pkgcmds, open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'), indent=2)
