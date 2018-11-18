@@ -11,9 +11,11 @@ export class Command {
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
     defaultCommands: {[key: string]: vscode.CompletionItem} = {}
+    defaultSymbols: {[key: string]: vscode.CompletionItem} = {}
     newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
     specialBrackets: {[key: string]: vscode.CompletionItem}
     usedPackages: string[] = []
+    packageCmds: {[pkg: string]: any} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -39,7 +41,7 @@ export class Command {
         })
         Object.keys(defaultSymbols).forEach(key => {
             const item = defaultSymbols[key]
-            this.defaultCommands[key] = this.entryToCompletionItem(item)
+            this.defaultSymbols[key] = this.entryToCompletionItem(item)
         })
         Object.keys(envSnippet).forEach(key => {
             const item = envSnippet[key]
@@ -62,14 +64,13 @@ export class Command {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
-        const suggestions = {}
-        Object.keys(this.defaultCommands).forEach(key => {
-            if (this.defaultCommands[key].sortText === undefined) {
-                suggestions[key] = this.defaultCommands[key]
-            } else if (this.usedPackages.indexOf(this.defaultCommands[key].sortText || '') > -1) {
-                suggestions[key] = this.defaultCommands[key]
-            }
-        })
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let suggestions
+        if (configuration.get('intellisense.command.unimathsymbols.enabled')) {
+            suggestions = Object.assign({}, {...this.defaultCommands, ...this.defaultSymbols})
+        } else {
+            suggestions = Object.assign({}, this.defaultCommands)
+        }
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
@@ -150,7 +151,6 @@ export class Command {
         }
         command.documentation = item.documentation
         command.detail = item.detail
-        command.sortText = item.package // Here we abuse the sortText field
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
         }
@@ -172,7 +172,6 @@ export class Command {
                 }
             }
         } while (result)
-        console.log(this.usedPackages)
     }
 
     getCommandsTeX(filePath: string) {
