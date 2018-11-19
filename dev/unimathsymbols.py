@@ -21,7 +21,7 @@ with open('unimathsymbols.txt', encoding='utf-8') as f:
         data[segments[3]] = {
             'command': segments[3],
             'detail': segments[1],
-            'documentation': segments[7].strip()
+            'documentation': segments[7].strip().capitalize()
         }
         if segments[6] is not '' and segments[6][0] is not '-':
             data[segments[3]]['detail'] += ' ("{}" command)'.format(segments[6])
