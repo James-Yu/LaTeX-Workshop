@@ -28,22 +28,14 @@ export class Completer implements vscode.CompletionItemProvider {
         this.input = new Input(extension)
         let defaultEnvs: string
         let defaultCommands: string
-        let defaultSymbols: string
-        let defaultPackages: string
         fs.readFile(`${this.extension.extensionRoot}/data/environments.json`)
             .then(data => {defaultEnvs = data.toString()})
             .then(() => fs.readFile(`${this.extension.extensionRoot}/data/commands.json`))
             .then(data => {defaultCommands = data.toString()})
-            .then(() => fs.readFile(`${this.extension.extensionRoot}/data/unimathsymbols.json`))
-            .then(data => {defaultSymbols = data.toString()})
-            .then(() => fs.readFile(`${this.extension.extensionRoot}/data/packagenames.json`))
-            .then(data => {defaultPackages = data.toString()})
             .then(() => {
                 const env = JSON.parse(defaultEnvs)
-                this.command.initialize(JSON.parse(defaultCommands), JSON.parse(defaultSymbols), env)
+                this.command.initialize(JSON.parse(defaultCommands), env)
                 this.environment.initialize(env)
-                this.package.initialize(JSON.parse(defaultPackages))
-                this.extension.logger.addLogMessage(`Default data loaded.`)
             })
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }

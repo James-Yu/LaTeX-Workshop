@@ -22,15 +22,10 @@ export class Command {
     }
 
     initialize(defaultCommands: {[key: string]: AutocompleteEntry},
-               defaultSymbols: {[key: string]: AutocompleteEntry},
                defaultEnvs: string[]) {
         Object.keys(defaultCommands).forEach(key => {
             const item = defaultCommands[key]
             this.defaultCommands[key] = this.entryToCompletionItem(item)
-        })
-        Object.keys(defaultSymbols).forEach(key => {
-            const item = defaultSymbols[key]
-            this.defaultSymbols[key] = this.entryToCompletionItem(item)
         })
         const envSnippet: { [id: string]: { command: string, snippet: string}} = {}
         defaultEnvs.forEach(env => {
@@ -66,6 +61,9 @@ export class Command {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let suggestions
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
+            if (this.defaultSymbols === {}) {
+                this.loadSymbols()
+            }
             suggestions = Object.assign({}, {...this.defaultCommands, ...this.defaultSymbols})
         } else {
             suggestions = Object.assign({}, this.defaultCommands)
@@ -141,6 +139,14 @@ export class Command {
             })
         })
         return
+    }
+
+    loadSymbols() {
+        const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
+        Object.keys(symbols).forEach(key => {
+            const item = symbols[key]
+            this.defaultSymbols[key] = this.entryToCompletionItem(item)
+        })
     }
 
     entryToCompletionItem(item: AutocompleteEntry) : vscode.CompletionItem {
