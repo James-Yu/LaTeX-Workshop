@@ -159,6 +159,7 @@ export class Command {
         }
         command.documentation = item.documentation
         command.detail = item.detail
+        command.sortText = item.command.toLowerCase()
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
         }
