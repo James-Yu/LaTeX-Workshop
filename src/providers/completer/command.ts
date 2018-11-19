@@ -61,7 +61,7 @@ export class Command {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let suggestions
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
-            if (this.defaultSymbols === {}) {
+            if (Object.keys(this.defaultSymbols).length === 0) {
                 this.loadSymbols()
             }
             suggestions = Object.assign({}, {...this.defaultCommands, ...this.defaultSymbols})
