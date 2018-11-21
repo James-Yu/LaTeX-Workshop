@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 
 import {Extension} from '../../main'
 
@@ -11,35 +11,31 @@ export class Command {
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
     defaultCommands: {[key: string]: vscode.CompletionItem} = {}
+    defaultSymbols: {[key: string]: vscode.CompletionItem} = {}
     newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
     specialBrackets: {[key: string]: vscode.CompletionItem}
+    usedPackages: string[] = []
+    packageCmds: {[pkg: string]: {[key: string]: vscode.CompletionItem}} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     initialize(defaultCommands: {[key: string]: AutocompleteEntry},
-               defaultSymbols: {[key: string]: AutocompleteEntry},
-               defaultEnvs: {[key: string]: {text: string}}) {
+               defaultEnvs: string[]) {
         Object.keys(defaultCommands).forEach(key => {
-            if (!(key in defaultSymbols)) {
-                defaultSymbols[key] = defaultCommands[key]
-            }
+            const item = defaultCommands[key]
+            this.defaultCommands[key] = this.entryToCompletionItem(item)
         })
         const envSnippet: { [id: string]: { command: string, snippet: string}} = {}
-        Object.keys(defaultEnvs).forEach(env => {
-            const text = defaultEnvs[env].text
+        defaultEnvs.forEach(env => {
             envSnippet[env] = {
-                command: text,
-                snippet: `begin{${text}}\n\t$0\n\\\\end{${text}}`
+                command: env,
+                snippet: `begin{${env}}\n\t$0\n\\\\end{${env}}`
             }
-            if (['enumerate', 'itemize'].indexOf(text) > -1) {
-                envSnippet[env]['snippet'] = `begin{${text}}\n\t\\item $0\n\\\\end{${text}}`
+            if (['enumerate', 'itemize'].indexOf(env) > -1) {
+                envSnippet[env]['snippet'] = `begin{${env}}\n\t\\item $0\n\\\\end{${env}}`
             }
-        })
-        Object.keys(defaultSymbols).forEach(key => {
-            const item = defaultSymbols[key]
-            this.defaultCommands[key] = this.entryToCompletionItem(item)
         })
         Object.keys(envSnippet).forEach(key => {
             const item = envSnippet[key]
@@ -62,22 +58,34 @@ export class Command {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
-        const suggestions = Object.assign({}, this.defaultCommands)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let suggestions
+        if (configuration.get('intellisense.unimathsymbols.enabled')) {
+            if (Object.keys(this.defaultSymbols).length === 0) {
+                this.loadSymbols()
+            }
+            suggestions = Object.assign({}, {...this.defaultCommands, ...this.defaultSymbols})
+        } else {
+            suggestions = Object.assign({}, this.defaultCommands)
+        }
+        this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
-                    if (!(key in suggestions)) {
-                        suggestions[key] = this.entryToCompletionItem(this.commandInTeX[filePath][key])
+                    if (key in suggestions) {
+                        return
                     }
+                    suggestions[key] = this.entryToCompletionItem(this.commandInTeX[filePath][key])
                 })
             }
         })
         if (vscode.window.activeTextEditor) {
             const items = this.getCommandItems(vscode.window.activeTextEditor.document.getText(), vscode.window.activeTextEditor.document.fileName)
             Object.keys(items).forEach(key => {
-                if (!(key in suggestions)) {
-                    suggestions[key] = this.entryToCompletionItem(items[key])
+                if (key in suggestions) {
+                    return
                 }
+                suggestions[key] = this.entryToCompletionItem(items[key])
             })
         }
         this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
@@ -133,6 +141,14 @@ export class Command {
         return
     }
 
+    loadSymbols() {
+        const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
+        Object.keys(symbols).forEach(key => {
+            const item = symbols[key]
+            this.defaultSymbols[key] = this.entryToCompletionItem(item)
+        })
+    }
+
     entryToCompletionItem(item: AutocompleteEntry) : vscode.CompletionItem {
         const backslash = item.command[0] === ' ' ? '' : '\\'
         const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
@@ -143,11 +159,53 @@ export class Command {
         }
         command.documentation = item.documentation
         command.detail = item.detail
-        command.sortText = item.sortText
+        command.sortText = item.command.toLowerCase()
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
         }
         return command
+    }
+
+    insertPkgCmds(pkg: string, suggestions) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!(configuration.get('intellisense.package.enabled'))) {
+            return
+        }
+        if (!(pkg in this.packageCmds)) {
+            const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
+            if (fs.existsSync(filePath)) {
+                this.packageCmds[pkg] = {}
+                const cmds = JSON.parse(fs.readFileSync(filePath).toString())
+                Object.keys(cmds).forEach(cmd => {
+                    if (cmd in suggestions) {
+                        return
+                    }
+                    this.packageCmds[pkg][cmd] = this.entryToCompletionItem(cmds[cmd])
+                })
+            }
+        }
+        if (pkg in this.packageCmds) {
+            Object.keys(this.packageCmds[pkg]).forEach(cmd => {
+                suggestions[cmd] = this.packageCmds[pkg][cmd]
+            })
+        }
+    }
+
+    getPackage(filePath: string) {
+        const content = fs.readFileSync(filePath, 'utf-8')
+        const regex = /\\usepackage(?:\[[^\[\]\{\}]*\])?{(.*)}/g
+        let result
+        do {
+            result = regex.exec(content)
+            if (result) {
+                for (const pkg of result[1].split(',')) {
+                    if (this.usedPackages.indexOf(pkg.trim()) > -1) {
+                        continue
+                    }
+                    this.usedPackages.push(pkg.trim())
+                }
+            }
+        } while (result)
     }
 
     getCommandsTeX(filePath: string) {
@@ -207,4 +265,5 @@ interface AutocompleteEntry {
     documentation?: string
     sortText?: string
     postAction?: string
+    package?: string
 }

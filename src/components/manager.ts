@@ -363,7 +363,12 @@ export class Manager {
             }
         }
 
+        this.onFileChange(filePath)
+    }
+
+    onFileChange(filePath: string) {
         this.extension.completer.command.getCommandsTeX(filePath)
+        this.extension.completer.command.getPackage(filePath)
         this.extension.completer.reference.getReferencesTeX(filePath)
     }
 
