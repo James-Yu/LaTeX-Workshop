@@ -118,7 +118,7 @@ document.addEventListener('pagerendered', (e) => {
         let left = e.pageX - target.offsetLeft + target.parentNode.parentNode.scrollLeft
         let top = e.pageY - target.offsetTop + target.parentNode.parentNode.scrollTop
         let pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
-        socket.send(JSON.stringify({type:"click", path:file, pos:pos, page:page}))
+        socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page}))
     }
 }, true)
 
