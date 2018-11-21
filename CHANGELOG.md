@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.17.1] - 2018-11-21
+
+### Fixed
+- A better view switching logic between tex files and git-diffs of them.
+
 ## [5.17.0] - 2018-11-21
 
 ### Added
