@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.17.2] - 2018-11-21
+
+### Fixed
+- Reverse synctex not working due to encoded file path.
+
 ## [5.17.1] - 2018-11-21
 
 ### Fixed
