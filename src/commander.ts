@@ -357,7 +357,7 @@ export class Commander {
                                 break
                             case 'View LaTeX-Workshop extension change log':
                                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                                    'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
+                                    'https://inspiring-bohr-ceec26.netlify.com/'))
                                 break
                         }
                     })
