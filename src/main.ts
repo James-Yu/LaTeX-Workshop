@@ -216,8 +216,11 @@ export async function activate(context: vscode.ExtensionContext) {
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
-                if (configuration.get('view.autoActivateLatex.enabled') && !isLaTeXActive) {
+                const gits = vscode.window.visibleTextEditors.filter(editor => editor.document.uri.scheme === 'git')
+                if (configuration.get('view.autoActivateLatex.enabled') && !isLaTeXActive && gits.length === 0) {
                     vscode.commands.executeCommand('workbench.view.extension.latex')
+                } else if (gits.length > 0) {
+                    vscode.commands.executeCommand('workbench.view.scm')
                 }
                 isLaTeXActive = true
             })
