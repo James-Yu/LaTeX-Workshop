@@ -101,7 +101,7 @@ export async function activate(context: vscode.ExtensionContext) {
     global['latex'] = extension
     vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    let configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (configuration.get('bind.altKeymap.enabled')) {
         vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', true)
     } else {
@@ -160,6 +160,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.refresh()
             extension.structureProvider.update()
 
+            configuration = vscode.workspace.getConfiguration('latex-workshop')
             if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 extension.commander.build(true)
@@ -209,22 +210,29 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
+    let isLaTeXActive = false
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
-        if (vscode.window.visibleTextEditors.filter(editor => editor.document.languageId === 'latex').length > 0) {
+        configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
+            extension.logger.status.show()
+            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
+                if (configuration.get('view.autoActivateLatex.enabled') && !isLaTeXActive) {
+                    vscode.commands.executeCommand('workbench.view.extension.latex')
+                }
+                isLaTeXActive = true
+            })
+        } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
-        } else if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.fileName ||
-                   (!extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) &&
-                    vscode.window.activeTextEditor.document.languageId.toLowerCase() !== 'log')) {
+        } else if (!configuration.get('view.autoActivateLatex.enabled')) {
             extension.logger.status.hide()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
-        } else {
-            extension.logger.status.show()
-            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabled()
+        } else {
+            isLaTeXActive = false
         }
     }))
 
@@ -232,6 +240,7 @@ export async function activate(context: vscode.ExtensionContext) {
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName === e.fsPath) {
             return
         }
+        configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('latex.autoBuild.onTexChange.enabled') || extension.builder.disableBuildAfterSave) {
             return
         }
