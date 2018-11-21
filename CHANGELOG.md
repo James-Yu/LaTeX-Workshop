@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.17.0] - 2018-11-21
+
+### Added
+- (#992) Provide command intellisense for selected packages.
+  - Two new config items are included, namely `intellisense.unimathsymbols.enabled` and `intellisense.package.enabled`, defaulted `false`.
+  - For command and environment intellisense of particular contents, enable the corresponding config.
+  - Please report if you experienced significant delay when activating the extension.
+- (#1002) Add a `view.autoActivateLatex.enabled` config to auto-show latex view when switching back from non-tex files.
+
+### Fixed
+- (#987) Fix error loading pdf paths with `#`.
+- (#990) Add `documentclass` preamble folding
+- (#994) Restore trimming option upon pdf refresh.
+- (#997) Hover preview accepts `(re)newcommands*` with the star.
+
 ## [5.16.0] - 2018-11-15
 
 ### Added
