@@ -1835,32 +1835,57 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 				<key>3</key>
 				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.begin.latex</string>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
 				</dict>
 				<key>4</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.arguments.end.latex</string>
+					<string>punctuation.definition.arguments.begin.latex</string>
 				</dict>
 				<key>5</key>
 				<dict>
 					<key>name</key>
-					<string>punctuation.definition.verb.latex</string>
+					<string>punctuation.definition.arguments.end.latex</string>
 				</dict>
 				<key>6</key>
 				<dict>
 					<key>name</key>
-					<string>markup.raw.verb.latex</string>
+					<string>punctuation.definition.verb.latex</string>
 				</dict>
 				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>markup.raw.verb.latex</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.verb.latex</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.verb.latex</string>
+				</dict>
+				<key>10</key>
+				<dict>
+					<key>name</key>
+					<string>markup.raw.verb.latex</string>
+				</dict>
+				<key>11</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.verb.latex</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>((\\)mint)(\{)[a-zA-Z]*(\})([^a-zA-Z])(.*?)(\5)</string>
+			<string>((\\)(?:mint|(?:mintinline((?:\[[^\[]*?\])?))))(\{)[a-zA-Z]*(\})(?:(?:([^a-zA-Z])(.*?)(\6))|(?:(\{)(.*?)(\})))</string>
 			<key>name</key>
 			<string>meta.function.verb.latex</string>
 		</dict>
