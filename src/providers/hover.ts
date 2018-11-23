@@ -142,9 +142,9 @@ export class HoverProvider implements vscode.HoverProvider {
         const eqNumAndLabels = this.eqNumAndLabel(obj, tex, refToken)
         const md = this.svgToDataUrl(xml)
         const line = refData.item.position.line
-        const md_link = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
-        md_link.isTrusted = true
-        return new vscode.Hover( [eqNumAndLabels, `![equation](${md})`, md_link], tex.range )
+        const mdLink = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
+        mdLink.isTrusted = true
+        return new vscode.Hover( [eqNumAndLabels, `![equation](${md})`, mdLink], tex.range )
     }
 
     private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
