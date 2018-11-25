@@ -161,7 +161,7 @@ export class LaTexFormatter {
                 if (stdout !== '') {
                     const edit = [vscode.TextEdit.replace(range ? range : fullRange(document), stdout)]
                     try {
-                        fs.unlink(temporaryFile)
+                        fs.unlinkSync(temporaryFile)
                         fs.unlinkSync(documentDirectory + path.sep + 'indent.log')
                     } catch (ignored) {
                     }
