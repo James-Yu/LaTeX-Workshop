@@ -145,7 +145,7 @@ export class HoverProvider implements vscode.HoverProvider {
     private getColor() {
         const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme')
         for (const extension of vscode.extensions.all) {
-            if (extension.packageJSON.contributes.themes === undefined) {
+            if (extension.packageJSON === undefined || extension.packageJSON.contributes === undefined || extension.packageJSON.contributes.themes === undefined) {
                 continue
             }
             const candidateThemes = extension.packageJSON.contributes.themes.filter(themePkg => themePkg.label === colorTheme || themePkg.id === colorTheme)
