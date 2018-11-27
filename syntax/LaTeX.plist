@@ -193,7 +193,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>(^\s*)?(?=\\begin\{(lstlisting|minted)\})</string>
+			<string>(^\s*)?(?=\\begin\{(lstlisting|minted|pyglist)\})</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>0</key>
@@ -468,7 +468,7 @@
 				</dict> 
 				<dict>
 					<key>begin</key>
-					<string>(\\begin\{(?:lstlisting|minted)\}(?:\[.*\])?)</string>
+					<string>(\\begin\{(?:lstlisting|minted|pyglist)\}(?:\[.*\])?)</string>
 					<key>captures</key>
 					<dict>
 						<key>1</key>
@@ -485,7 +485,7 @@
 					<key>contentName</key>
 					<string>meta.function.embedded.latex</string>
 					<key>end</key>
-					<string>(\\end\{(?:lstlisting|minted)\})</string>
+					<string>(\\end\{(?:lstlisting|minted|pyglist)\})</string>
 					<key>name</key>
 					<string>meta.embedded.block.generic</string>
 				</dict>
@@ -2161,7 +2161,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 			</dict>
 			<key>match</key>
-				<string>((\\)(?:begin|end))(\{)(lstlisting|minted)(\})(?:(\[).*(\]))?(?:(\{)([a-z]*)(\}))?</string>
+				<string>((\\)(?:begin|end))(\{)(lstlisting|minted|pyglist)(\})(?:(\[).*(\]))?(?:(\{)([a-z]*)(\}))?</string>
 		</dict>
 		<key>code-env</key>
 		<dict>
