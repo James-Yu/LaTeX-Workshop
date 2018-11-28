@@ -159,7 +159,7 @@ export class Locator {
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
             } else {
-                this.extension.viewer.syncTeX(pdfFile, this.parseSyncTeX(stdout))
+                this.extension.viewer.syncTeX(pdfFile, this.parseSyncTeXForward(stdout))
             }
         })
     }
