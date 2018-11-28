@@ -81,19 +81,21 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         const ranges: vscode.FoldingRange[] = []
         const opStack: { keyword: string, index: number }[] = []
         const text: string =  document.getText()
-        const envRegex: RegExp = /(\\(begin){(.*?)})|(\\(end){(.*?)})/g //to match one 'begin' OR 'end'
+        const envRegex: RegExp = /(?:\\(begin){(.*?)})|(?:\\(begingroup)(?=$|%|\s|\\))|(?:\\(end){(.*?)})|(?:\\(endgroup)(?=$|%|\s|\\))/g //to match one 'begin' OR 'end'
 
         let match = envRegex.exec(text) // init regex search
         while (match) {
-            //for 'begin': match[2] contains 'begin', match[3] contains keyword
-            //fro 'end':   match[5] contains 'end',   match[6] contains keyword
+            //for 'begin': match[1] contains 'begin', match[2] contains keyword
+            //for 'end':   match[4] contains 'end',   match[5] contains keyword
+            //for 'begingroup': match[3] contains 'begingroup', keyword is 'group'
+            //for 'endgroup': match[6] contains 'begingroup', keyword is 'group'
             const item = {
-                keyword: match[2] ? match[3] : match[6],
+                keyword: match[1] ? match[2] : (match[3] ? 'group' : (match[4] ? match[5] : 'group')),
                 index: match.index
             }
             const lastItem = opStack[opStack.length - 1]
 
-            if (match[5] && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+            if ((match[4] || match[6])  && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
                 opStack.pop()
                 ranges.push(new vscode.FoldingRange(
                     document.positionAt(lastItem.index).line,
