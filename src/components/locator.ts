@@ -2,13 +2,20 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
+import * as syncTexJs from './synctexParser'
 
 import {Extension} from '../main'
 
-export interface SyncTeXRecord {
-    input: string
-    line: number
-    column: number
+export type SyncTeXRecordForward = {
+    page: number;
+    x: number;
+    y: number;
+}
+
+export type SyncTeXRecordBackward = {
+    input: string;
+    line: number;
+    column: number;
 }
 
 export class Locator {
@@ -18,8 +25,8 @@ export class Locator {
         this.extension = extension
     }
 
-    parseSyncTeX(result: string) {
-        const record: {[key: string]: string | number} = {}
+    parseSyncTeXForward(result: string) : SyncTeXRecordForward {
+        const record: { page?: number, x?: number, y?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
             if (line.indexOf('SyncTeX result begin') > -1) {
@@ -37,16 +44,53 @@ export class Locator {
                 continue
             }
             const key = line.substr(0, pos).toLowerCase()
-            if (key in record) {
+            if (key !== 'page' && key !== 'x' && key !== 'y' ) {
                 continue
             }
-            let value: string | number = line.substr(pos + 1)
-            if (value ===  'column' || value === 'line') {
-                value = parseInt(value)
+            const value = line.substr(pos + 1)
+            record[key] = Number(value)
+        }
+        if (record.page !== undefined && record.x !== undefined && record.y !== undefined) {
+            return { page: record.page, x: record.x, y: record.y, }
+        } else {
+            throw(new Error('parse error when parsing the result of synctex forward.'))
+        }
+    }
+
+    parseSyncTeXBackward(result: string) : SyncTeXRecordBackward {
+        const record: { input?: string, line?: number, column?: number } = {}
+        let started = false
+        for (const line of result.split('\n')) {
+            if (line.indexOf('SyncTeX result begin') > -1) {
+                started = true
+                continue
+            }
+            if (line.indexOf('SyncTeX result end') > -1) {
+                break
+            }
+            if (!started) {
+                continue
+            }
+            const pos = line.indexOf(':')
+            if (pos < 0) {
+                continue
+            }
+            const key = line.substr(0, pos).toLowerCase()
+            if (key !== 'input' && key !== 'line' && key !== 'column' ) {
+                continue
+            }
+            const value = line.substr(pos + 1)
+            if (key === 'line' || key === 'column') {
+                record[key] = Number(value)
+                continue
             }
             record[key] = value
         }
-        return record
+        if (record.input !== undefined && record.line !== undefined && record.column !== undefined) {
+            return { input: record.input, line: record.line, column: record.column }
+        } else {
+            throw(new Error('parse error when parsing the result of synctex backward.'))
+        }
     }
 
     syncTeX(line: number | undefined = undefined, forcedViewer: string = 'auto') {
@@ -170,7 +214,7 @@ export class Locator {
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
             } else {
-                const record = this.parseSyncTeX(stdout)
+                const record = this.parseSyncTeXBackward(stdout)
                 if (record === undefined) {
                     this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
                     return
