@@ -31,7 +31,7 @@ https://durieux.me/synctex-js/
 import * as fs from 'fs'
 import * as path from 'path'
 import * as zlib from 'zlib'
-import { SyncTeXRecordForward } from './locator';
+import { SyncTeXRecordForward } from './locator'
 
 type Block = {
   type: string,
@@ -88,20 +88,16 @@ type PdfSyncObject = {
   numberPages: number;
 }
 
-type SyncTexJsError = {
-  line?: number;
-  message: string;
+class SyncTexJsError extends Error {
+  public name = 'SyncTexJsError'
+
+  toString() {
+    return this.name + ': ' + this.message
+  }
+
 }
 
-export function isSyncTexJsError(a: SyncTeXRecordForward | SyncTexJsError) : a is SyncTexJsError {
-  return (a as SyncTexJsError).message !== undefined
-}
-
-function isPdfSyncObject(e: PdfSyncObject | SyncTexJsError) : e is PdfSyncObject {
-  return (e as PdfSyncObject).offset !== undefined
-}
-
-function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | SyncTexJsError {
+function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
   const unit = 65781.76
   let numberPages = 0
   let currentPage: Page | undefined
@@ -163,7 +159,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | SyncTexJsError {
         pdfsyncObject.offset.y = parseInt(match[2]) / unit
       } else {
         // Never occur. match[1] is equal to 'X' or 'Y'.
-        return { line: i, message: '' }
+        throw new SyncTexJsError('never occur.')
       }
       continue
     }
@@ -195,7 +191,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | SyncTexJsError {
     match = line.match(verticalBlockPattern)
     if (match) {
       if (currentPage === undefined || currentElement === undefined) {
-        return { line: i, message: 'Error: parse error at line ${i}. A new V block is not allowed here.' }
+        throw new SyncTexJsError('Error: parse error at line ${i}. A new V block is not allowed here.')
       }
       const s1 = [Number(match[3]) / unit, Number(match[4]) / unit]
       const s2 = [Number(match[5]) / unit, Number(match[6]) / unit]
@@ -232,7 +228,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | SyncTexJsError {
     match = line.match(horizontalBlockPattern)
     if (match) {
       if (currentPage === undefined || currentElement === undefined) {
-        return {line: i, message: 'Error: parse error at line ${i}. A new H block is not allowed here.' }
+        throw new SyncTexJsError('Error: parse error at line ${i}. A new H block is not allowed here.')
       }
       const s1 = [Number(match[3]) / unit, Number(match[4]) / unit]
       const s2 = [Number(match[5]) / unit, Number(match[6]) / unit]
@@ -269,7 +265,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | SyncTexJsError {
     match = line.match(elementBlockPattern)
     if (match) {
       if (currentPage === undefined || currentElement === undefined || !isBlock(currentElement)) {
-        return { line: i, message: 'Error: parse error at line ${i}. A new element is not allowed here.' }
+        throw new SyncTexJsError('Error: parse error at line ${i}. A new element is not allowed here.')
       }
       const type = match[1]
       const fileNumber = parseInt(match[2])
@@ -314,7 +310,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject | SyncTexJsError {
   return pdfsyncObject
 }
 
-export function parseSyncTexForPdf(pdfFile: string) {
+export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
   const filename = path.basename(pdfFile, path.extname(pdfFile))
   const dir = path.dirname(pdfFile)
   const synctexFile = path.join(dir, filename + '.synctex')
@@ -332,33 +328,30 @@ export function parseSyncTexForPdf(pdfFile: string) {
     return parseSyncTex(s)
   }
 
-  return { message: 'SyncTex file not found.' }
+  throw new SyncTexJsError('SyncTex file not found.')
 }
 
-export function syncTexJsForward(line: number, col: number, filePath: string, pdfFile: string) : SyncTeXRecordForward | SyncTexJsError {
+export function syncTexJsForward(line: number, col: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
   const pdfSyncObject = parseSyncTexForPdf(pdfFile)
-  if (!isPdfSyncObject(pdfSyncObject)) {
-    return pdfSyncObject
-  }
 
   const lines = pdfSyncObject.blockNumberLine[filePath]
-  let b : Block | undefined
+  let b: Block | undefined
   let objs: { [page: number]: Block[] } | undefined
-  for(const currentLine in lines) {
-    if(Number(currentLine) < line) {
+  for (const currentLine in lines) {
+    if (Number(currentLine) < line) {
       objs = lines[currentLine]
     } else {
       break
     }
   }
   if (objs === undefined) {
-    return { message: 'page not found in pdf file.' }
+    throw new SyncTexJsError('page not found in pdf file.')
   }
-  for(const page in objs) {
+  for (const page in objs) {
     b = objs[page][0]
   }
   if ( b === undefined ) {
-    return { message: 'page not found in pdf file.' }
+    throw new SyncTexJsError('page not found in pdf file.')
   }
   return { page: b.page, x: b.left + pdfSyncObject.offset.x, y: b.bottom + pdfSyncObject.offset.y }
 }
