@@ -122,12 +122,23 @@ export class Locator {
             this.syncTeXExternal(line, pdfFile, this.extension.manager.rootFile)
             return
         }
-        this.invokeSyncTeXCommand(line, character, filePath, pdfFile).then( (record) => {
+        this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
             this.extension.viewer.syncTeX(pdfFile, record)
         })
     }
 
-    invokeSyncTeXCommand(line: number, col: number, filePath: string, pdfFile: string) : Thenable<SyncTeXRecordForward> {
+    syncTeXOnRef(line: number) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const viewer = configuration.get('view.pdf.ref.viewer') as string
+        line += 1
+        if (viewer) {
+            this.syncTeX(line, viewer)
+        } else {
+            this.syncTeX(line)
+        }
+    }
+
+    invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string) : Thenable<SyncTeXRecordForward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
@@ -172,22 +183,11 @@ export class Locator {
         })
     }
 
-    syncTeXOnRef(line: number) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const viewer = configuration.get('view.pdf.ref.viewer') as string
-        line += 1
-        if (viewer) {
-            this.syncTeX(line, viewer)
-        } else {
-            this.syncTeX(line)
-        }
-    }
-
-    locate(data: any, pdfPath: string) {
+    invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string) : Thenable<SyncTeXRecordBackward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const docker = configuration.get('docker.enabled')
-        const args = ['edit', '-o', `${data.page}:${data.pos[0]}:${data.pos[1]}:${docker ? path.basename(pdfPath) : pdfPath}`]
+        const args = ['edit', '-o', `${page}:${x}:${y}:${docker ? path.basename(pdfPath) : pdfPath}`]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
@@ -218,39 +218,45 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot reverse synctex: ${err.message}, ${stderr}`)
         })
 
-        proc.on('exit', exitCode => {
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
-            } else {
-                const record = this.parseSyncTeXBackward(stdout)
-                if (record === undefined) {
-                    this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
-                    return
+        return new Promise( (resolve) => {
+            proc.on('exit', exitCode => {
+                if (exitCode !== 0) {
+                    this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
+                } else {
+                    const record = this.parseSyncTeXBackward(stdout)
+                    resolve(record)
                 }
-                const row = record.line - 1
-                const col = record.column < 0 ? 0 : record.column
-                const pos = new vscode.Position(row, col)
-                let filePath = path.resolve( record.input.replace(/(\r\n|\n|\r)/gm, '') )
-                if (docker && process.platform === 'win32') {
-                    filePath = path.join(path.dirname(pdfPath), (record.input as string).replace('/data/', ''))
-                }
+            })
+        })
+    }
 
-                this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
-                vscode.workspace.openTextDocument(filePath).then((doc) => {
-                    let viewColumn: vscode.ViewColumn | undefined = undefined
-                    for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
-                        viewColumn = vscode.window.visibleTextEditors[index].viewColumn
-                        if (viewColumn !== undefined) {
-                            break
-                        }
-                    }
-                    vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
-                        editor.selection = new vscode.Selection(pos, pos)
-                        vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
-                        this.animateToNotify(editor, pos)
-                    })
-                })
+    async locate(data: any, pdfPath: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const docker = configuration.get('docker.enabled')
+
+        const record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+        const row = record.line - 1
+        const col = record.column < 0 ? 0 : record.column
+        const pos = new vscode.Position(row, col)
+        let filePath = path.resolve( record.input.replace(/(\r\n|\n|\r)/gm, '') )
+        if (docker && process.platform === 'win32') {
+            filePath = path.join(path.dirname(pdfPath), (record.input as string).replace('/data/', ''))
+        }
+
+        this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
+        vscode.workspace.openTextDocument(filePath).then((doc) => {
+            let viewColumn: vscode.ViewColumn | undefined = undefined
+            for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
+                viewColumn = vscode.window.visibleTextEditors[index].viewColumn
+                if (viewColumn !== undefined) {
+                    break
+                }
             }
+            vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
+                editor.selection = new vscode.Selection(pos, pos)
+                vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
+                this.animateToNotify(editor, pos)
+            })
         })
     }
 
