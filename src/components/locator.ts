@@ -122,9 +122,15 @@ export class Locator {
             this.syncTeXExternal(line, pdfFile, this.extension.manager.rootFile)
             return
         }
+        this.invokeSyncTeXCommand(line, character, filePath, pdfFile).then( (record) => {
+            this.extension.viewer.syncTeX(pdfFile, record)
+        })
+    }
 
+    invokeSyncTeXCommand(line: number, col: number, filePath: string, pdfFile: string) : Thenable<SyncTeXRecordForward> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        const args = ['view', '-i', `${line}:${character + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
+        const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
@@ -155,12 +161,14 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot synctex: ${err.message}, ${stderr}`)
         })
 
-        proc.on('exit', exitCode => {
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
-            } else {
-                this.extension.viewer.syncTeX(pdfFile, this.parseSyncTeXForward(stdout))
-            }
+        return new Promise( (resolve) => {
+            proc.on('exit', exitCode => {
+                if (exitCode !== 0) {
+                    this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
+                } else {
+                    resolve(this.parseSyncTeXForward(stdout))
+                }
+            })
         })
     }
 
