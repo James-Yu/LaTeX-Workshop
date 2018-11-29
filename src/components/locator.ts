@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
-import * as syncTexJs from './synctexjs'
+import * as synctexjs from './synctexjs'
 
 import {Extension} from '../main'
 
@@ -227,10 +227,10 @@ export class Locator {
                     this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
                     return
                 }
-                const row = record.line as number - 1
-                const col = record.column < 0 ? 0 : record.column as number
+                const row = record.line - 1
+                const col = record.column < 0 ? 0 : record.column
                 const pos = new vscode.Position(row, col)
-                let filePath = path.resolve((record.input as string).replace(/(\r\n|\n|\r)/gm, ''))
+                let filePath = path.resolve( record.input.replace(/(\r\n|\n|\r)/gm, '') )
                 if (docker && process.platform === 'win32') {
                     filePath = path.join(path.dirname(pdfPath), (record.input as string).replace('/data/', ''))
                 }
