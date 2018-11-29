@@ -122,9 +122,16 @@ export class Locator {
             this.syncTeXExternal(line, pdfFile, this.extension.manager.rootFile)
             return
         }
-        this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
-            this.extension.viewer.syncTeX(pdfFile, record)
-        })
+
+        const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
+
+        if (useSyncTexJs) {
+            this.extension.viewer.syncTeX( pdfFile, synctexjs.syncTexJsForward(line, filePath, pdfFile) )
+        } else {
+            this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
+                this.extension.viewer.syncTeX(pdfFile, record)
+            })
+        }
     }
 
     syncTeXOnRef(line: number) {

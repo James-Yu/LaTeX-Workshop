@@ -331,14 +331,14 @@ export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
   throw new SyncTexJsError('SyncTex file not found.')
 }
 
-export function syncTexJsForward(line: number, col: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
+export function syncTexJsForward(line: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
   const pdfSyncObject = parseSyncTexForPdf(pdfFile)
 
   const lines = pdfSyncObject.blockNumberLine[filePath]
   let b: Block | undefined
   let objs: { [page: number]: Block[] } | undefined
   for (const currentLine in lines) {
-    if (Number(currentLine) < line) {
+    if (Number(currentLine) <= line) {
       objs = lines[currentLine]
     } else {
       break
