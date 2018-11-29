@@ -334,24 +334,54 @@ export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
 export function syncTexJsForward(line: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
   const pdfSyncObject = parseSyncTexForPdf(pdfFile)
 
-  const lines = pdfSyncObject.blockNumberLine[filePath]
-  let b: Block | undefined
-  let objs: { [page: number]: Block[] } | undefined
-  for (const currentLine in lines) {
-    if (Number(currentLine) <= line) {
-      objs = lines[currentLine]
-    } else {
-      break
+  const linePageBlocks = pdfSyncObject.blockNumberLine[filePath]
+  const lineNums = Object.keys(linePageBlocks).map(x => Number(x)).sort( (a, b) => { return (a - b) } )
+  const i = lineNums.findIndex( x => x >= line )
+  if (i === 0 || lineNums[i] === line) {
+    const line = lineNums[i]
+    const pageBlocks = linePageBlocks[line]
+    const page = Object.keys(pageBlocks)[0]
+    const blocks = pageBlocks[Number(page)]
+    const c = getCoveringRectangle(blocks)
+    return { page: blocks[0].page, x: c.left + pdfSyncObject.offset.x, y: c.bottom + pdfSyncObject.offset.y }
+  }
+  const line0 = lineNums[i-1]
+  const pageBlocks0 = linePageBlocks[line0]
+  const page0 = Object.keys(pageBlocks0)[0]
+  const blocks0 = pageBlocks0[Number(page0)]
+  const c0 = getCoveringRectangle(blocks0)
+  const line1 = lineNums[i]
+  const pageBlocks1 = linePageBlocks[line1]
+  const page1 = Object.keys(pageBlocks1)[0]
+  const blocks1 = pageBlocks1[Number(page1)]
+  const c1 = getCoveringRectangle(blocks1)
+  const bottom = c0.bottom * (line1 - line)/(line1 - line0) + c1.bottom * (line - line0)/(line1 - line0)
+  return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
+}
+
+function getCoveringRectangle(blocks: Block[]) {
+  let cTop = 2e16
+  let cBottom = 0
+  let cLeft = 2e16
+  let cRight = 0
+
+  for (let b of blocks) {
+    if (b.bottom > cBottom) {
+      cBottom = b.bottom
+    }
+    const top = b.bottom - b.height
+    if (top < cTop) {
+      cTop = top
+    }
+    if (b.left < cLeft) {
+      cLeft = b.left
+    }
+    if (b.width !== undefined) {
+      const right = b.left + b.width
+      if (right > cRight) {
+        cRight = right
+      }
     }
   }
-  if (objs === undefined) {
-    throw new SyncTexJsError('page not found in pdf file.')
-  }
-  for (const page in objs) {
-    b = objs[page][0]
-  }
-  if ( b === undefined ) {
-    throw new SyncTexJsError('page not found in pdf file.')
-  }
-  return { page: b.page, x: b.left + pdfSyncObject.offset.x, y: b.bottom + pdfSyncObject.offset.y }
+  return { top: cTop, bottom: cBottom, left: cLeft, right: cRight }
 }
