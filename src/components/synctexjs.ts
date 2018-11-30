@@ -386,9 +386,8 @@ function getCoveringRectangle(blocks: Block[]) {
   return { top: cTop, bottom: cBottom, left: cLeft, right: cRight }
 }
 
-export function syncTexJsBackward(page: string, x: number, y: number, pdfPath: string) : SyncTeXRecordBackward {
+export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: string) : SyncTeXRecordBackward {
   const pdfSyncObject = parseSyncTexForPdf(pdfPath)
-  const page0 = Number(page)
   const x0 = x - pdfSyncObject.offset.x
   const y0 = y - pdfSyncObject.offset.y
   const fileNames = Object.keys(pdfSyncObject.blockNumberLine)
@@ -413,7 +412,7 @@ export function syncTexJsBackward(page: string, x: number, y: number, pdfPath: s
       const pageBlocks = linePageBlocks[lineNum]
       const pageNums = Object.keys(pageBlocks)
       for (const pageNum of pageNums) {
-        if (page0 === Number(pageNum)) {
+        if (page === Number(pageNum)) {
           const blocks = pageBlocks[pageNum]
           const box = getCoveringRectangle(blocks)
           if ( box.bottom <= y0 && y0 <= box.top && box.left <= x0 && x0 <= box.right) {

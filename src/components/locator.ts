@@ -253,7 +253,7 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
-                record = synctexjs.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+                record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch ( e ) {
                 if (e.message !== undefined) {
                     this.extension.logger.addLogMessage(e.message)
