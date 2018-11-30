@@ -34,6 +34,7 @@ export class Manager {
         outputDir = outputDir.replace('%DOC%', docker ? docfile : doc)
                     .replace('%DOCFILE%', docfile)
                     .replace('%DIR%', path.dirname(texPath).split(path.sep).join('/'))
+                    .replace('%TMPDIR%', this.extension.builder.tmpDir)
         return outputDir
     }
 
