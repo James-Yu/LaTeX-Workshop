@@ -162,6 +162,9 @@ export class Command {
         command.sortText = item.command.toLowerCase()
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
+        } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*/.exec(item.command)) {
+            // Automatically trigger completion if the command is for citation or reference
+            command.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
         }
         return command
     }
