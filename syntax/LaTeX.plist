@@ -1735,7 +1735,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((\\)(?:verb|lstinline)[\*]?)\s*((\\)scantokens)(\{)</string>
+			<string>((\\)verb[\*]?)\s*((\\)scantokens)(\{)</string>
 			<key>beginCaptures</key>
 			<dict>
 				<key>1</key>
@@ -1816,7 +1816,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>((\\)(?:verb|lstinline)[\*]?)\s*((?&lt;=\s)\S|[^a-zA-Z])(.*?)(\3|$)</string>
+			<string>((\\)verb[\*]?)\s*((?&lt;=\s)\S|[^a-zA-Z])(.*?)(\3|$)</string>
 			<key>name</key>
 			<string>meta.function.verb.latex</string>
 		</dict>
@@ -1886,6 +1886,65 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 			</dict>
 			<key>match</key>
 			<string>((\\)(?:mint|mintinline))((?:\[[^\[]*?\])?)(\{)[a-zA-Z]*(\})(?:(?:([^a-zA-Z\{])(.*?)(\6))|(?:(\{)(.*?)(\})))</string>
+			<key>name</key>
+			<string>meta.function.verb.latex</string>
+		</dict>
+		<dict>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.verb.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#optional-arg</string>
+						</dict>
+					</array>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.verb.latex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>markup.raw.verb.latex</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.verb.latex</string>
+				</dict>
+				<key>7</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.verb.latex</string>
+				</dict>
+				<key>8</key>
+				<dict>
+					<key>name</key>
+					<string>markup.raw.verb.latex</string>
+				</dict>
+				<key>9</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.verb.latex</string>
+				</dict>
+			</dict>
+			<key>match</key>
+			<string>((\\)(?:lstinline))((?:\[[^\[]*?\])?)(?:(?:([^a-zA-Z\{])(.*?)(\4))|(?:(\{)(.*?)(\})))</string>
 			<key>name</key>
 			<string>meta.function.verb.latex</string>
 		</dict>
