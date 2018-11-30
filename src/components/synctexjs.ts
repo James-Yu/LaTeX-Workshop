@@ -377,21 +377,13 @@ class Rectangle {
     let cRight = 0
 
     for (const b of blocks) {
-      if (b.bottom > cBottom) {
-        cBottom = b.bottom
-      }
+      cBottom = Math.max(b.bottom, cBottom)
       const top = b.bottom - b.height
-      if (top < cTop) {
-        cTop = top
-      }
-      if (b.left < cLeft) {
-        cLeft = b.left
-      }
+      cTop = Math.min(top, cTop)
+      cLeft = Math.min(b.left, cLeft)
       if (b.width !== undefined) {
         const right = b.left + b.width
-        if (right > cRight) {
-          cRight = right
-        }
+        cRight = Math.max(right, cRight)
       }
     }
     return new Rectangle({ top: cTop, bottom: cBottom, left: cLeft, right: cRight })
@@ -445,7 +437,9 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
           const box = Rectangle.coveringRectangle(blocks)
           const distXY = box.distanceXY(x0, y0)
           const distY = box.distanceY(y0)
-          if ( (Number(lineNum) - record.line) < 10 ? distY < record.distanceY : distXY < record.distanceXY ) {
+          // To compare lines close to each other, we use only the y coordinate value.
+          // Otherwise, we use the both values. This works well for two column styles.
+          if ( (Number(lineNum) - record.line) < 20 ? distY < record.distanceY : distXY < record.distanceXY ) {
             record.input = fileName
             record.line = Number(lineNum)
             record.distanceXY = distXY
