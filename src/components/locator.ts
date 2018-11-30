@@ -126,7 +126,15 @@ export class Locator {
         const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
 
         if (useSyncTexJs) {
-            this.extension.viewer.syncTeX( pdfFile, synctexjs.syncTexJsForward(line, filePath, pdfFile) )
+            try {
+                this.extension.viewer.syncTeX( pdfFile, synctexjs.syncTexJsForward(line, filePath, pdfFile) )
+            } catch (e) {
+                if (e.message !== undefined) {
+                    this.extension.logger.addLogMessage(e.message)
+                }
+                console.log(e)
+                throw(e)
+            }
         } else {
             this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
                 this.extension.viewer.syncTeX(pdfFile, record)
@@ -240,8 +248,22 @@ export class Locator {
     async locate(data: any, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
+        const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
+        let record: SyncTeXRecordBackward
 
-        const record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+        if (useSyncTexJs) {
+            try {
+                record = synctexjs.syncTexJsBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+            } catch ( e ) {
+                if (e.message !== undefined) {
+                    this.extension.logger.addLogMessage(e.message)
+                }
+                console.log(e)
+                throw(e)
+            }
+        } else {
+            record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+        }
         const row = record.line - 1
         const col = record.column < 0 ? 0 : record.column
         const pos = new vscode.Position(row, col)

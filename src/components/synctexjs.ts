@@ -31,7 +31,7 @@ https://durieux.me/synctex-js/
 import * as fs from 'fs'
 import * as path from 'path'
 import * as zlib from 'zlib'
-import { SyncTeXRecordForward } from './locator'
+import { SyncTeXRecordForward, SyncTeXRecordBackward } from './locator'
 
 type Block = {
   type: string,
@@ -338,14 +338,14 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
   const lineNums = Object.keys(linePageBlocks).map(x => Number(x)).sort( (a, b) => { return (a - b) } )
   const i = lineNums.findIndex( x => x >= line )
   if (i === 0 || lineNums[i] === line) {
-    const line = lineNums[i]
-    const pageBlocks = linePageBlocks[line]
+    const l = lineNums[i]
+    const pageBlocks = linePageBlocks[l]
     const page = Object.keys(pageBlocks)[0]
     const blocks = pageBlocks[Number(page)]
     const c = getCoveringRectangle(blocks)
     return { page: blocks[0].page, x: c.left + pdfSyncObject.offset.x, y: c.bottom + pdfSyncObject.offset.y }
   }
-  const line0 = lineNums[i-1]
+  const line0 = lineNums[i - 1]
   const pageBlocks0 = linePageBlocks[line0]
   const page0 = Object.keys(pageBlocks0)[0]
   const blocks0 = pageBlocks0[Number(page0)]
@@ -355,7 +355,7 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
   const page1 = Object.keys(pageBlocks1)[0]
   const blocks1 = pageBlocks1[Number(page1)]
   const c1 = getCoveringRectangle(blocks1)
-  const bottom = c0.bottom * (line1 - line)/(line1 - line0) + c1.bottom * (line - line0)/(line1 - line0)
+  const bottom = c0.bottom * (line1 - line) / (line1 - line0) + c1.bottom * (line - line0) / (line1 - line0)
   return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
 }
 
@@ -365,7 +365,7 @@ function getCoveringRectangle(blocks: Block[]) {
   let cLeft = 2e16
   let cRight = 0
 
-  for (let b of blocks) {
+  for (const b of blocks) {
     if (b.bottom > cBottom) {
       cBottom = b.bottom
     }
@@ -384,4 +384,56 @@ function getCoveringRectangle(blocks: Block[]) {
     }
   }
   return { top: cTop, bottom: cBottom, left: cLeft, right: cRight }
+}
+
+export function syncTexJsBackward(page: string, x: number, y: number, pdfPath: string) : SyncTeXRecordBackward {
+  const pdfSyncObject = parseSyncTexForPdf(pdfPath)
+  const page0 = Number(page)
+  const x0 = x - pdfSyncObject.offset.x
+  const y0 = y - pdfSyncObject.offset.y
+  const fileNames = Object.keys(pdfSyncObject.blockNumberLine)
+
+  if (fileNames.length === 0) {
+    throw new SyncTexJsError('no entry of tex file found in the synctex file.')
+  }
+
+  const record = {
+    input: '',
+    line: 0,
+    distance: 2e16
+  }
+
+  for (const fileName of fileNames) {
+    const linePageBlocks = pdfSyncObject.blockNumberLine[fileName]
+    const lineNums = Object.keys(linePageBlocks)
+    if (lineNums.length === 0) {
+      continue
+    }
+    for (const lineNum of lineNums) {
+      const pageBlocks = linePageBlocks[lineNum]
+      const pageNums = Object.keys(pageBlocks)
+      for (const pageNum of pageNums) {
+        if (page0 === Number(pageNum)) {
+          const blocks = pageBlocks[pageNum]
+          const box = getCoveringRectangle(blocks)
+          if ( box.bottom <= y0 && y0 <= box.top && box.left <= x0 && x0 <= box.right) {
+            return {input: fileName, line: Number(lineNum), column: 0}
+          } else {
+            const dist = Math.max(box.bottom - y0, y0 - box.top, box.left - x0, x0 - box.right)
+            if (dist < record.distance) {
+              record.input = fileName
+              record.line = Number(lineNum)
+              record.distance = dist
+            }
+          }
+        }
+      }
+    }
+  }
+
+  if (record.input === '') {
+    throw new SyncTexJsError('cannot find any line to jump to.')
+  }
+
+  return { input: record.input, line: record.line, column: 0 }
 }
