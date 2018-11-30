@@ -129,7 +129,7 @@ export class Locator {
             try {
                 this.extension.viewer.syncTeX( pdfFile, synctexjs.syncTexJsForward(line, filePath, pdfFile) )
             } catch (e) {
-                if (e.message !== undefined) {
+                if (e instanceof Error) {
                     this.extension.logger.addLogMessage(e.message)
                 }
                 console.log(e)
@@ -255,7 +255,7 @@ export class Locator {
             try {
                 record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch ( e ) {
-                if (e.message !== undefined) {
+                if (e instanceof Error) {
                     this.extension.logger.addLogMessage(e.message)
                 }
                 console.log(e)

@@ -68,9 +68,9 @@ type Page = {
 type Pages = { [k: string]: Page; }
 
 type BlockNumberLine = {
-  [fileName: string]: {
-    [lineNum: number]: {
-      [page: number]: Block[];
+  [inputFileFullPath: string]: {
+    [inputLineNum: number]: {
+      [pageNum: number]: Block[];
     };
   };
 }
@@ -339,57 +339,80 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
   const i = lineNums.findIndex( x => x >= line )
   if (i === 0 || lineNums[i] === line) {
     const l = lineNums[i]
-    const pageBlocks = linePageBlocks[l]
-    const page = Object.keys(pageBlocks)[0]
-    const blocks = pageBlocks[Number(page)]
-    const c = getCoveringRectangle(blocks)
+    const blocks = getBlocks(linePageBlocks, l)
+    const c = Rectangle.coveringRectangle(blocks)
     return { page: blocks[0].page, x: c.left + pdfSyncObject.offset.x, y: c.bottom + pdfSyncObject.offset.y }
   }
   const line0 = lineNums[i - 1]
-  const pageBlocks0 = linePageBlocks[line0]
-  const page0 = Object.keys(pageBlocks0)[0]
-  const blocks0 = pageBlocks0[Number(page0)]
-  const c0 = getCoveringRectangle(blocks0)
+  const blocks0 = getBlocks(linePageBlocks, line0)
+  const c0 = Rectangle.coveringRectangle(blocks0)
   const line1 = lineNums[i]
-  const pageBlocks1 = linePageBlocks[line1]
-  const page1 = Object.keys(pageBlocks1)[0]
-  const blocks1 = pageBlocks1[Number(page1)]
-  const c1 = getCoveringRectangle(blocks1)
+  const blocks1 = getBlocks(linePageBlocks, line1)
+  const c1 = Rectangle.coveringRectangle(blocks1)
   const bottom = c0.bottom * (line1 - line) / (line1 - line0) + c1.bottom * (line - line0) / (line1 - line0)
   return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
 }
 
-function getCoveringRectangle(blocks: Block[]) {
-  let cTop = 2e16
-  let cBottom = 0
-  let cLeft = 2e16
-  let cRight = 0
+function getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]: Block[]; } },
+                   lineNum: number ) : Block[] {
+  const pageBlocks = linePageBlocks[lineNum]
+  const pageNums = Object.keys(pageBlocks)
+  if (pageNums.length === 0) {
+    throw new SyncTexJsError('cannot find any page number.')
+  }
+  const page = pageNums[0]
+  return pageBlocks[Number(page)]
+}
 
-  for (const b of blocks) {
-    if (b.bottom > cBottom) {
-      cBottom = b.bottom
-    }
-    const top = b.bottom - b.height
-    if (top < cTop) {
-      cTop = top
-    }
-    if (b.left < cLeft) {
-      cLeft = b.left
-    }
-    if (b.width !== undefined) {
-      const right = b.left + b.width
-      if (right > cRight) {
-        cRight = right
+class Rectangle {
+  top: number
+  bottom: number
+  left: number
+  right: number
+
+  static coveringRectangle(blocks: Block[]) {
+    let cTop = 2e16
+    let cBottom = 0
+    let cLeft = 2e16
+    let cRight = 0
+
+    for (const b of blocks) {
+      if (b.bottom > cBottom) {
+        cBottom = b.bottom
+      }
+      const top = b.bottom - b.height
+      if (top < cTop) {
+        cTop = top
+      }
+      if (b.left < cLeft) {
+        cLeft = b.left
+      }
+      if (b.width !== undefined) {
+        const right = b.left + b.width
+        if (right > cRight) {
+          cRight = right
+        }
       }
     }
+    return new Rectangle({ top: cTop, bottom: cBottom, left: cLeft, right: cRight })
   }
-  return { top: cTop, bottom: cBottom, left: cLeft, right: cRight }
+
+  constructor( {top, bottom, left, right}: { top: number; bottom: number; left: number; right: number; } ) {
+    this.top = top
+    this.bottom = bottom
+    this.left = left
+    this.right = right
+  }
+
+  public distance(x: number, y: number) : number {
+    return Math.sqrt( Math.abs(this.bottom - y) * Math.abs(this.top - y) )
+  }
 }
 
 export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: string) : SyncTeXRecordBackward {
   const pdfSyncObject = parseSyncTexForPdf(pdfPath)
-  const x0 = x - pdfSyncObject.offset.x
   const y0 = y - pdfSyncObject.offset.y
+  const x0 = x - pdfSyncObject.offset.x
   const fileNames = Object.keys(pdfSyncObject.blockNumberLine)
 
   if (fileNames.length === 0) {
@@ -414,16 +437,12 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
       for (const pageNum of pageNums) {
         if (page === Number(pageNum)) {
           const blocks = pageBlocks[pageNum]
-          const box = getCoveringRectangle(blocks)
-          if ( box.bottom <= y0 && y0 <= box.top && box.left <= x0 && x0 <= box.right) {
-            return {input: fileName, line: Number(lineNum), column: 0}
-          } else {
-            const dist = Math.max(box.bottom - y0, y0 - box.top, box.left - x0, x0 - box.right)
-            if (dist < record.distance) {
-              record.input = fileName
-              record.line = Number(lineNum)
-              record.distance = dist
-            }
+          const box = Rectangle.coveringRectangle(blocks)
+          const dist = box.distance(x0, y0)
+          if (dist < record.distance) {
+            record.input = fileName
+            record.line = Number(lineNum)
+            record.distance = dist
           }
         }
       }
