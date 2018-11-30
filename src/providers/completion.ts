@@ -103,7 +103,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.citation
                 break
             case 'reference':
-                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*(?:\[[^\[\]]*\])?){([^}]*)$)/
+                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^\[\]]*\])?){([^}]*)$)/
                 provider = this.reference
                 break
             case 'environment':
