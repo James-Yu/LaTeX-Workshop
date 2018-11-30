@@ -404,8 +404,12 @@ class Rectangle {
     this.right = right
   }
 
-  public distance(x: number, y: number) : number {
+  public distanceY(y: number) : number {
     return Math.sqrt( Math.abs(this.bottom - y) * Math.abs(this.top - y) )
+  }
+
+  public distanceXY(x: number, y: number) : number {
+    return Math.sqrt( Math.abs(this.bottom - y) * Math.abs(this.top - y) ) + Math.sqrt( Math.abs(this.left - x) * Math.abs(this.right - x) )
   }
 }
 
@@ -422,7 +426,8 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
   const record = {
     input: '',
     line: 0,
-    distance: 2e16
+    distanceXY: 2e16,
+    distanceY: 2e16
   }
 
   for (const fileName of fileNames) {
@@ -432,17 +437,19 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
       continue
     }
     for (const lineNum of lineNums) {
-      const pageBlocks = linePageBlocks[lineNum]
+      const pageBlocks = linePageBlocks[Number(lineNum)]
       const pageNums = Object.keys(pageBlocks)
       for (const pageNum of pageNums) {
         if (page === Number(pageNum)) {
-          const blocks = pageBlocks[pageNum]
+          const blocks = pageBlocks[Number(pageNum)]
           const box = Rectangle.coveringRectangle(blocks)
-          const dist = box.distance(x0, y0)
-          if (dist < record.distance) {
+          const distXY = box.distanceXY(x0, y0)
+          const distY = box.distanceY(y0)
+          if ( (Number(lineNum) - record.line) < 10 ? distY < record.distanceY : distXY < record.distanceXY ) {
             record.input = fileName
             record.line = Number(lineNum)
-            record.distance = dist
+            record.distanceXY = distXY
+            record.distanceY = distY
           }
         }
       }
