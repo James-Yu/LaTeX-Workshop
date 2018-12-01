@@ -397,11 +397,11 @@ class Rectangle {
   }
 
   public distanceY(y: number) : number {
-    return Math.sqrt( Math.abs(this.bottom - y) * Math.abs(this.top - y) )
+    return Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) )
   }
 
   public distanceXY(x: number, y: number) : number {
-    return Math.sqrt( Math.abs(this.bottom - y) * Math.abs(this.top - y) ) + Math.sqrt( Math.abs(this.left - x) * Math.abs(this.right - x) )
+    return Math.sqrt(Math.pow(Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) ), 2) + Math.pow(Math.min( Math.abs(this.left - x), Math.abs(this.right - x) ), 2))
   }
 }
 
