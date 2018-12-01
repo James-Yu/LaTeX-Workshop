@@ -159,7 +159,10 @@ export class Command {
         }
         command.documentation = item.documentation
         command.detail = item.detail
-        command.sortText = item.command.toLowerCase()
+        command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16) : c
+        })
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
         } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*/.exec(item.command)) {
