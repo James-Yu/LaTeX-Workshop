@@ -16,7 +16,7 @@ export class Input {
         this.extension = extension
     }
 
-    provide(payload) : vscode.CompletionItem[] {
+    provide(payload: string[]) : vscode.CompletionItem[] {
         const mode = payload[0]
         const currentFile = payload[1]
         const typedFolder = payload[2]
