@@ -8,7 +8,6 @@ import {Environment} from './completer/environment'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input} from './completer/input'
-import { posix } from 'path';
 
 export class Completer implements vscode.CompletionItemProvider {
     extension: Extension
@@ -98,32 +97,32 @@ export class Completer implements vscode.CompletionItemProvider {
         if (type === 'citation') {
             const reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\[[^\[\]]*\])*){([^}]*)$/
             const result = line.match(reg)
-            return result ? this.citation.provide() : []
+            return result !== null ? this.citation.provide() : []
         }
         if (type === 'reference') {
             const reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^\[\]]*\])?){([^}]*)$)/
             const result = line.match(reg)
-            return result ? this.reference.provide(args) : []
+            return result !== null ? this.reference.provide(args) : []
         }
         if (type === 'environment') {
             const reg = /(?:\\begin(?:\[[^\[\]]*\])?){([^}]*)$/
             const result = line.match(reg)
-            return result ? this.environment.provide() : []
+            return result !== null ? this.environment.provide() : []
         }
         if (type === 'command') {
             const reg = /\\([a-zA-Z]*)$/
             const result = line.match(reg)
-            return result ? this.command.provide() : []
+            return result !== null ? this.command.provide() : []
         }
         if (type === 'package') {
             const reg = /(?:\\usepackage(?:\[[^\[\]]*\])*){([^}]*)$/
             const result = line.match(reg)
-            return result ? this.package.provide() : []
+            return result !== null ? this.package.provide() : []
         }
         if (type === 'input') {
             const reg = /(?:\\(input|include|subfile|includegraphics)(?:\[[^\[\]]*\])*){([^}]*)$/
             const result = line.match(reg)
-            if (result) {
+            if (result !== null) {
                 const editor = vscode.window.activeTextEditor
                 if (editor) {
                     const payload = [result[1], editor.document.fileName, result[2]]
