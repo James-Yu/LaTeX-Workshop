@@ -215,6 +215,11 @@ Note that the formatting program `latexindent` actually modifies the file on dis
 
 When using the internal PDF viewer, you can make it automatically jump after build to the location pointed out by the tex file. If you want to enable this feature, setting the configuration item `latex-workshop.synctex.afterBuild.enabled` to `true` will do.
 
+### Internal viewer keybindings
+
+The PDF viewer provided with extension internally uses [pdf.js](https://github.com/mozilla/pdf.js). The keybindings support by pdf.js are documented [here](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#faq-shortcuts).
+
+
 ### Docker?
 
 From version 5.3.0 there is an experimental implementation on docker support following the idea of [@Arxisos](https://github.com/Arxisos). You can set `latex-workshop.docker.enabled` to `true` to use `tianon/latex`. It is advised that the image is 'pre-'pulled.
