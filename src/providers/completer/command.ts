@@ -159,17 +159,9 @@ export class Command {
         }
         command.documentation = item.documentation
         command.detail = item.detail
-        command.sortText = item.command.replace(/[a-zA-Z]/g, c => {
-            let n: number | undefined
-            if (c.match(/[a-z]/)) {
-                n = c.toUpperCase().codePointAt(0)
-            } else {
-                n = c.toLowerCase().codePointAt(0)
-            }
-            if (n !== undefined) {
-                return n < 100 ? '0' + n.toString() : n.toString()
-            }
-            return c
+        command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16) : c
         })
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
