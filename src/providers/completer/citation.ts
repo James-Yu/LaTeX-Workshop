@@ -25,7 +25,7 @@ export class Citation {
         this.extension = extension
     }
 
-    provide() : vscode.CompletionItem[] {
+    provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
@@ -69,13 +69,14 @@ export class Citation {
                 .filter(key => (key !== 'key'))
                 .map(key => `${key}: ${item[key]}`)
                 .join('\n')
+            citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
             return citation
         })
         return this.suggestions
     }
 
-    browser() {
-        this.provide()
+    browser(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        this.provide(args)
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
             this.citationInBib[bibPath].forEach(item => items.push(item))
