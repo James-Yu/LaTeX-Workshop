@@ -191,7 +191,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
     match = line.match(verticalBlockPattern)
     if (match) {
       if (currentPage === undefined || currentElement === undefined) {
-        throw new SyncTexJsError('Error: parse error at line ${i}. A new V block is not allowed here.')
+        throw new SyncTexJsError(`Error: parse error at line ${i}. A new V block is not allowed here.`)
       }
       const s1 = [Number(match[3]) / unit, Number(match[4]) / unit]
       const s2 = [Number(match[5]) / unit, Number(match[6]) / unit]
@@ -228,7 +228,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
     match = line.match(horizontalBlockPattern)
     if (match) {
       if (currentPage === undefined || currentElement === undefined) {
-        throw new SyncTexJsError('Error: parse error at line ${i}. A new H block is not allowed here.')
+        throw new SyncTexJsError(`Error: parse error at line ${i}. A new H block is not allowed here.`)
       }
       const s1 = [Number(match[3]) / unit, Number(match[4]) / unit]
       const s2 = [Number(match[5]) / unit, Number(match[6]) / unit]
@@ -265,7 +265,7 @@ function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
     match = line.match(elementBlockPattern)
     if (match) {
       if (currentPage === undefined || currentElement === undefined || !isBlock(currentElement)) {
-        throw new SyncTexJsError('Error: parse error at line ${i}. A new element is not allowed here.')
+        throw new SyncTexJsError(`Error: parse error at line ${i}. A new element is not allowed here.`)
       }
       const type = match[1]
       const fileNumber = parseInt(match[2])
