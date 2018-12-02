@@ -94,45 +94,52 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 
     completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
-        if (type === 'citation') {
-            const reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\[[^\[\]]*\])*){([^}]*)$/
-            const result = line.match(reg)
-            return result !== null ? this.citation.provide() : []
+        let reg
+        let provider
+        let payload
+        switch (type) {
+            case 'citation':
+                reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\[[^\[\]]*\])*){([^}]*)$/
+                provider = this.citation
+                break
+            case 'reference':
+                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^\[\]]*\])?){([^}]*)$)/
+                provider = this.reference
+                break
+            case 'environment':
+                reg = /(?:\\begin(?:\[[^\[\]]*\])?){([^}]*)$/
+                provider = this.environment
+                break
+            case 'command':
+                reg = /\\([a-zA-Z]*)$/
+                provider = this.command
+                break
+            case 'package':
+                reg = /(?:\\usepackage(?:\[[^\[\]]*\])*){([^}]*)$/
+                provider = this.package
+                break
+            case 'input':
+                reg = /(?:\\(input|include|subfile|includegraphics)(?:\[[^\[\]]*\])*){([^}]*)$/
+                provider = this.input
+                break
+            default:
+                // This shouldn't be possible, so mark as error case in log.
+                this.extension.logger.addLogMessage(`Error - trying to complete unknown type ${type}`)
+                return []
         }
-        if (type === 'reference') {
-            const reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^\[\]]*\])?){([^}]*)$)/
-            const result = line.match(reg)
-            return result !== null ? this.reference.provide(args) : []
-        }
-        if (type === 'environment') {
-            const reg = /(?:\\begin(?:\[[^\[\]]*\])?){([^}]*)$/
-            const result = line.match(reg)
-            return result !== null ? this.environment.provide() : []
-        }
-        if (type === 'command') {
-            const reg = /\\([a-zA-Z]*)$/
-            const result = line.match(reg)
-            return result !== null ? this.command.provide() : []
-        }
-        if (type === 'package') {
-            const reg = /(?:\\usepackage(?:\[[^\[\]]*\])*){([^}]*)$/
-            const result = line.match(reg)
-            return result !== null ? this.package.provide() : []
-        }
-        if (type === 'input') {
-            const reg = /(?:\\(input|include|subfile|includegraphics)(?:\[[^\[\]]*\])*){([^}]*)$/
-            const result = line.match(reg)
-            if (result !== null) {
+        const result = line.match(reg)
+        let suggestions: vscode.CompletionItem[] = []
+        if (result) {
+            if (type === 'input') {
                 const editor = vscode.window.activeTextEditor
                 if (editor) {
-                    const payload = [result[1], editor.document.fileName, result[2]]
-                    return this.input.provide(payload)
+                    payload = [result[1], editor.document.fileName, result[2]]
                 }
+            } else if (type === 'reference') {
+                payload = args
             }
-            return []
+            suggestions = provider.provide(payload)
         }
-        // This shouldn't be possible, so mark as error case in log.
-        this.extension.logger.addLogMessage(`Error - trying to complete unknown type ${type}`)
-        return []
+        return suggestions
     }
 }
