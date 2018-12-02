@@ -7,7 +7,7 @@ import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
-type LabelsStore = {labels: {[k:string] : {tag: string, id: string}}, IDs: {[k:string] : number}, startNumber : number}
+type LabelsStore = {labels: {[k: string]: {tag: string, id: string}}, IDs: {[k: string]: number}, startNumber: number}
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
@@ -105,7 +105,7 @@ export class HoverProvider implements vscode.HoverProvider {
         } while (result)
         return commands.join('')
     }
-    
+
     private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
@@ -120,7 +120,7 @@ export class HoverProvider implements vscode.HoverProvider {
         this.colorSVG(data)
         const xml = data.svgNode.outerHTML
         const md = this.svgToDataUrl(xml)
-        return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range ) 
+        return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range )
     }
 
     private async provideHoverOnRef(tex: TexMathEnv, refToken: string, refData: any) : Promise<vscode.Hover> {
@@ -149,17 +149,17 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
         let s = ''
-        const e = "[error] fail to get equation number for label."
+        const e = '[error] fail to get equation number for label.'
         const labels = tex.texString.match(/\\label\{.*?\}/g)
         if (!labels) {
             return e
         }
-        if (labels.length == 1 && obj.startNumber == 1) {
+        if (labels.length === 1 && obj.startNumber === 1) {
             return `(1) ${Object.keys(obj.labels)[0]}`
         }
-        if (labels.length == obj.startNumber) {
+        if (labels.length === obj.startNumber) {
             let i = 1
-            for(const label0 of labels) {
+            for (const label0 of labels) {
                 const label = label0.substr(7, label0.length - 8)
                 if (refToken === label) {
                     s = `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
@@ -169,7 +169,7 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             return e
         }
-        for(const label in obj.labels) {
+        for (const label in obj.labels) {
             const labelNum = obj.labels[label].tag
             if (!labelNum.match(/\d+/)) {
                 return e
@@ -181,16 +181,16 @@ export class HoverProvider implements vscode.HoverProvider {
         }
         return e
     }
-    
+
     private scaleSVG(data: any, scale: number) {
         const svgelm = data.svgNode
         // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
-        const w0 = svgelm.getAttribute("width").match(/([\.\d]+)(\w*)/)
-        const h0 = svgelm.getAttribute("height").match(/([\.\d]+)(\w*)/)
+        const w0 = svgelm.getAttribute('width').match(/([\.\d]+)(\w*)/)
+        const h0 = svgelm.getAttribute('height').match(/([\.\d]+)(\w*)/)
         const w = scale * Number(w0[1])
         const h = scale * Number(h0[1])
-        svgelm.setAttribute("width", w + w0[2])
-        svgelm.setAttribute("height", h + h0[2])
+        svgelm.setAttribute('width', w + w0[2])
+        svgelm.setAttribute('height', h + h0[2])
     }
 
     private svgToDataUrl(xml: string) : string {
@@ -207,13 +207,13 @@ export class HoverProvider implements vscode.HoverProvider {
             b: parseInt(result[3], 16) / 255
         } : null
     }
-    
+
     private colorSVG(data: any) {
         const svgelm = data.svgNode
         const g = svgelm.getElementsByTagName('g')[0]
         g.setAttribute('fill', this.color)
     }
-    
+
     private stripTeX(tex: string) : string {
         if (tex.startsWith('$') && tex.endsWith('$')) {
             tex = tex.slice(1, tex.length - 1)
@@ -342,15 +342,15 @@ export class HoverProvider implements vscode.HoverProvider {
         return this.findHoverOnInline(document, position)
     }
 
-    private findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token:string, labelPos0: vscode.Position)
+    private findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token: string, labelPos0: vscode.Position)
     : TexMathEnv | undefined {
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         const l = document.lineAt(labelPos0.line).text
         const pat = new RegExp('\\\\label\\{' + envpair.escapeRegExp(token) + '\\}')
-        let m  = l.match(pat)
+        const m  = l.match(pat)
         if (m && m.index !== undefined) {
             const labelPos = new vscode.Position(labelPos0.line, m.index)
-            let beginPos = this.findBeginPair(document, envBeginPatMathMode, labelPos)
+            const beginPos = this.findBeginPair(document, envBeginPatMathMode, labelPos)
             if (beginPos) {
                 const t = this.findHoverOnTex(document, beginPos)
                 if (t) {
@@ -403,19 +403,19 @@ export class HoverProvider implements vscode.HoverProvider {
     //  \begin{...}                \end{...}
     //  ^                          ^
     //  return pos                 endPos1
-    private findBeginPair(document: vscode.TextDocument, beginPat: RegExp, endPos1: vscode.Position, limit=20) : vscode.Position | undefined {
-        const current_line = document.lineAt(endPos1).text.substr(0, endPos1.character)
-        const l = this.removeComment(current_line)
+    private findBeginPair(document: vscode.TextDocument, beginPat: RegExp, endPos1: vscode.Position, limit= 20) : vscode.Position | undefined {
+        const currentLine = document.lineAt(endPos1).text.substr(0, endPos1.character)
+        let l = this.removeComment(currentLine)
         let m  = l.match(beginPat)
         if (m && m.index !== undefined) {
             return new vscode.Position(endPos1.line, m.index)
         }
         let lineNum = endPos1.line - 1
         let i = 0
-        while (lineNum >=0 && i < limit) {
-            let l = document.lineAt(lineNum).text
+        while (lineNum >= 0 && i < limit) {
+            l = document.lineAt(lineNum).text
             l = this.removeComment(l)
-            let m  = l.match(beginPat)
+            m = l.match(beginPat)
             if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index)
             }
@@ -434,7 +434,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
             const range = new vscode.Range(startPos, endPos)
-            return {texString: document.getText(range), range: range, envname: envname}
+            return {texString: document.getText(range), range, envname}
         }
         return undefined
     }
@@ -448,7 +448,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
             const range = new vscode.Range(startPos, endPos)
-            return {texString: document.getText(range), range: range, envname: envname}
+            return {texString: document.getText(range), range, envname}
         }
         return undefined
     }
@@ -464,7 +464,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 const matchEnd = base + m.index + m[0].length
                 if ( matchStart <= position.character && position.character <= matchEnd ) {
                     const range = new vscode.Range(position.line, matchStart, position.line, matchEnd)
-                    return {texString: document.getText(range), range: range, envname: '$'}
+                    return {texString: document.getText(range), range, envname: '$'}
                 } else {
                     base = matchEnd
                     s = currentLine.substring(base)
