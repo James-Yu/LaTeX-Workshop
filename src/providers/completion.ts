@@ -70,7 +70,7 @@ export class Completer implements vscode.CompletionItemProvider {
                         const configuration = vscode.workspace.getConfiguration('latex-workshop')
                         if (configuration.get('intellisense.citation.type') as string === 'browser') {
                             resolve()
-                            setTimeout(() => this.citation.browser(), 10)
+                            setTimeout(() => this.citation.browser({document, position, token, context}), 10)
                             return
                         }
                     } else if (type === 'command') {
@@ -135,7 +135,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 if (editor) {
                     payload = [result[1], editor.document.fileName, result[2]]
                 }
-            } else if (type === 'reference') {
+            } else if (type === 'reference' || type === 'citation') {
                 payload = args
             }
             suggestions = provider.provide(payload)
