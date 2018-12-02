@@ -178,7 +178,16 @@ export class Command {
             return
         }
         if (!(pkg in this.packageCmds)) {
-            const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
+            let filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
+            if (!fs.existsSync(filePath)) {
+                // Many package with names like toppackage-config.sty are just wrappers around
+                // the general package toppacke.sty and do not define commands on their own.
+                const indexDash = pkg.lastIndexOf('-')
+                if (indexDash > - 1) {
+                    const generalPkg = pkg.substring(0, indexDash)
+                    filePath = `${this.extension.extensionRoot}/data/packages/${generalPkg}_cmd.json`
+                }
+            }
             if (fs.existsSync(filePath)) {
                 this.packageCmds[pkg] = {}
                 const cmds = JSON.parse(fs.readFileSync(filePath).toString())
