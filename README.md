@@ -145,12 +145,12 @@ When building the project, the first recipe is used. You can compile with anothe
 ```
 As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounded by `%` are placeholders, which are replaced with its representing string on-the-fly. LaTeX Workshop registers the following placeholders:
 
-| Placeholder | Replaced by                                                |
-| ----------- | ---------------------------------------------------------- |
-| `%DOC%`     | The LaTeX root file path and name without `.tex` extension |
-| `%DOCFILE%` | The LaTeX root file name without `.tex` extension          |
-| `%DIR%`     | The LaTeX root file path                                   |
-| `%TMPDIR%`  | A temporary folder for storing ancillary files             |
+| Placeholder | Replaced by                                                                         |
+| ----------- | ----------------------------------------------------------------------------------- |
+| `%DOC%`     | The LaTeX root file path and name without `.tex` extension                          |
+| `%DOCFILE%` | The LaTeX root file name without `.tex` extension                                   |
+| `%DIR%`     | The LaTeX root file path                                                            |
+| `%TMPDIR%`  | A temporary folder for storing ancillary files, and will be auto-removed when exit. |
 
 Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal.
 As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above tool `%DOC%` and `.tex` are concatenated for completeness.
