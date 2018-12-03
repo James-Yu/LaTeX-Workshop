@@ -292,6 +292,11 @@ export async function activate(context: vscode.ExtensionContext) {
     })
 }
 
+export async function deactivate() {
+    const extension = global['latex']
+    extension.commander.removeTmpDir()           // WARN: no error will be throwned if failed
+}
+
 export class Extension {
     packageInfo
     extensionRoot: string

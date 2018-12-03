@@ -200,6 +200,20 @@ export class Commander {
         return this.extension.cleaner.clean()
     }
 
+    /**
+     * this method is for auto remove the TmpDir
+     */
+    async removeTmpDir() {
+        this.extension.logger.addLogMessage(`Remove ${this.extension.builder.tmpDir}`)
+        fs.access(this.extension.builder.tmpDir, (err: Error) => {
+            if (!err) {
+                fs.remove(this.extension.builder.tmpDir, (err: Error) => {
+                    this.extension.logger.addLogMessage(`Remove tmpDir error: ${err}`)
+                })
+            }
+        })
+    }
+
     addTexRoot() {
         this.extension.logger.addLogMessage(`ADDTEXROOT command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
