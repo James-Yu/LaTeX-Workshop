@@ -5,6 +5,7 @@ import * as stripJsonComments from 'strip-json-comments'
 import * as envpair from '../components/envpair'
 import {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
+import {ReferenceEntry} from './completer/reference'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 type LabelsStore = {labels: {[k: string]: {tag: string, id: string}}, IDs: {[k: string]: number}, startNumber: number}
@@ -177,7 +178,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range )
     }
 
-    private async provideHoverOnRef(tex: TexMathEnv, refToken: string, refData: any) : Promise<vscode.Hover> {
+    private async provideHoverOnRef(tex: TexMathEnv, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
         const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})

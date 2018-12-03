@@ -3,10 +3,20 @@ import * as fs from 'fs'
 
 import {Extension} from '../../main'
 
+export type ReferenceEntry = {
+    item: {
+        reference: string,
+        text: string,
+        position: vscode.Position
+    },
+    text: string,
+    file: string
+}
+
 export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    referenceData: {[id: string]: {item: {reference: string, text: string, position: vscode.Position}, text: string, file: string}} = {}
+    referenceData: {[id: string]: ReferenceEntry} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -18,7 +28,7 @@ export class Reference {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
-        const suggestions = {}
+        const suggestions: {[key: string]: ReferenceEntry['item']} = {}
         Object.keys(this.referenceData).forEach(key => {
             suggestions[key] = this.referenceData[key].item
         })
@@ -59,7 +69,7 @@ export class Reference {
 
     getReferenceItems(content: string) {
         const itemReg = /^(?:(?!%).*\\label(?:\[[^\[\]\{\}]*\])?|label=){([^}]*)}/gm
-        const items = {}
+        const items: {[key: string]: ReferenceEntry['item']} = {}
         const noELContent = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
             const result = itemReg.exec(content)
