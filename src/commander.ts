@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
+import * as path from 'path'
 
 import {Extension} from './main'
 import {getLongestBalancedString} from './providers/structure'
@@ -73,6 +74,15 @@ export class Commander {
                 this.extension.builder.build(rootFile, recipe)
             }
         }
+    }
+
+    async revealOutputDir() {
+        var outputDir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
+        if (!path.isAbsolute(outputDir)) {
+            outputDir = path.join(this.extension.manager.rootDir, this.extension.manager.getOutputDir(this.extension.manager.rootFile))
+        }
+        this.extension.logger.addLogMessage(`Reveal ${vscode.Uri.file(outputDir)}`)
+        await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outputDir))
     }
 
     recipes(recipe?: string) {
