@@ -58,7 +58,7 @@ export class Cleaner {
             glob(pattern, options, (err, files) => {
                 if (err) {
                     reject(err)
-                } else {
+                } else {
                     resolve(files)
                 }
             })
