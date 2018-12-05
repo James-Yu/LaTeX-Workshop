@@ -26,7 +26,7 @@ class TextDocumentLike {
         if (this.lineCount <= startLineNum) {
             return ''
         }
-        if (startLineNum == endLineNum) {
+        if (startLineNum === endLineNum) {
             line = this._lines[startLineNum]
             return line.slice(range.start.character, range.end.character)
         }
@@ -39,7 +39,7 @@ class TextDocumentLike {
         return ret
     }
 
-    getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!\@@#\%\^\&*()-\=+[{]}\|\;\:\'\"\,.\<>\/\?\s]+)/g): vscode.Range | undefined {
+    getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!\@@#\%\^\&*()-\=+[{]}\|\;\:\'\"\,.\<>\/\?\s]+)/g) : vscode.Range | undefined {
         if (position.line > this.lineCount) {
             return undefined
         }
