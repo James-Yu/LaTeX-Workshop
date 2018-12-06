@@ -1,17 +1,19 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import { isNumber } from 'util'
 
-class TextDocumentLike {
+export class TextDocumentLike {
     private _lines: string[]
     readonly lineCount: number
     readonly eol: vscode.EndOfLine
+    private _eol: string
 
     static load(filePath: string) : TextDocumentLike | vscode.TextDocument {
         const uri = vscode.Uri.parse(filePath)
         if (vscode.workspace.name === undefined) {
             return new TextDocumentLike(fs.readFileSync(filePath).toString())
         }
-        for( const doc of vscode.workspace.textDocuments ) {
+        for ( const doc of vscode.workspace.textDocuments ) {
             if (doc.uri.fsPath === uri.fsPath) {
                 return doc
             }
@@ -20,28 +22,30 @@ class TextDocumentLike {
     }
 
     constructor(s: string) {
-        let eol: string
         if (s.match(/\r\n/)) {
             this.eol = vscode.EndOfLine.CRLF
-            eol = '\r\n'
+            this._eol = '\r\n'
         } else if (s.match(/\n/)) {
             this.eol = vscode.EndOfLine.LF
-            eol = '\n'
+            this._eol = '\n'
         } else {
             const editor = vscode.window.activeTextEditor
             if (editor === undefined || editor.document.eol === vscode.EndOfLine.LF) {
                 this.eol = vscode.EndOfLine.LF
-                eol = '\n'
+                this._eol = '\n'
             } else {
                 this.eol = vscode.EndOfLine.CRLF
-                eol = '\r\n'
+                this._eol = '\r\n'
             }
         }
-        this._lines = s.split(eol)
+        this._lines = s.split(this._eol)
         this.lineCount = this._lines.length
     }
 
-    getText(range: vscode.Range) : string {
+    getText(range?: vscode.Range) : string {
+        if (range === undefined) {
+            return this._lines.join(this._eol)
+        }
         let ret = ''
         let line
         const startLineNum = range.start.line
@@ -56,9 +60,9 @@ class TextDocumentLike {
         line = this._lines[startLineNum]
         ret += line.slice(range.start.character)
         for (let i = startLineNum + 1; i < endLineNum; i++) {
-            ret += this._lines[i]
+            ret += this._eol + this._lines[i]
         }
-        ret += this._lines[endLineNum].slice(0, range.end.character)
+        ret += this._eol + this._lines[endLineNum].slice(0, range.end.character)
         return ret
     }
 
@@ -77,7 +81,23 @@ class TextDocumentLike {
         return undefined
     }
 
-    lineAt(lineNum: number) : string {
-        return this._lines[lineNum]
+    lineAt(lineNum: number) : TextLineLike
+    lineAt(position: vscode.Position) : TextLineLike
+    lineAt(lineNum: number | vscode.Position) {
+        if (isNumber(lineNum)) {
+            return new TextLineLike(this._lines[lineNum])
+        } else {
+            return new TextLineLike(this._lines[lineNum.line])
+        }
     }
+
+}
+
+class TextLineLike {
+    readonly text: string
+
+    constructor(s: string) {
+        this.text = s
+    }
+
 }
