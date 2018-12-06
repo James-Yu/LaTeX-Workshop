@@ -13,6 +13,8 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 One million downloads! This project won't be successful without contributions from the community, especially project maintainers Jerome Lelong [`@jlelong`](https://github.com/jlelong), James Booth [`@jabooth`](https://github.com/jabooth), and all code [contributors](https://github.com/James-Yu/LaTeX-Workshop/graphs/contributors)! Thank you!
 
+**For a comprehensive documentation, see the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki).** This is still work in progress, so contributions are welcome.
+
 ## Features
 
 - Build LaTeX (including BibTeX) to PDF automatically on save (see [Build on Save](#build-on-save))
