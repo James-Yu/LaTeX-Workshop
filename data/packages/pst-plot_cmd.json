@@ -1,74 +1,138 @@
 {
   "dataplot": {
     "command": "dataplot",
-    "snippet": "dataplot{${1}}"
+    "snippet": "dataplot{${1:commands}}"
   },
   "dataplot*": {
     "command": "dataplot*",
-    "snippet": "dataplot*{${1}}"
+    "snippet": "dataplot*{${1:commands}}"
+  },
+  "dataplot[]{}": {
+    "command": "dataplot[par]{commands}",
+    "snippet": "dataplot[${2:par}]{${1:commands}}"
+  },
+  "dataplot*[]{}": {
+    "command": "dataplot*[par]{commands}",
+    "snippet": "dataplot*[${2:par}]{${1:commands}}"
   },
   "fileplot": {
     "command": "fileplot",
-    "snippet": "fileplot{${1}}"
+    "snippet": "fileplot{${1:file}}"
   },
   "fileplot*": {
     "command": "fileplot*",
-    "snippet": "fileplot*{${1}}"
+    "snippet": "fileplot*{${1:file}}"
+  },
+  "fileplot[]{}": {
+    "command": "fileplot[par]{file}",
+    "snippet": "fileplot[${2:par}]{${1:file}}"
+  },
+  "fileplot*[]{}": {
+    "command": "fileplot*[par]{file}",
+    "snippet": "fileplot*[${2:par}]{${1:file}}"
   },
   "listplot": {
     "command": "listplot",
-    "snippet": "listplot{${1}}"
+    "snippet": "listplot{${1:list}}"
   },
   "listplot*": {
     "command": "listplot*",
-    "snippet": "listplot*{${1}}"
+    "snippet": "listplot*{${1:list}}"
+  },
+  "listplot[]{}": {
+    "command": "listplot[par]{list}",
+    "snippet": "listplot[${2:par}]{${1:list}}"
+  },
+  "listplot*[]{}": {
+    "command": "listplot*[par]{list}",
+    "snippet": "listplot*[${2:par}]{${1:list}}"
+  },
+  "parametricplot[]{}{}{}": {
+    "command": "parametricplot[par]{tmin}{tmax}{function}",
+    "snippet": "parametricplot[${4:par}]{${1:tmin}}{${2:tmax}}{${3:function}}"
+  },
+  "parametricplot*[]{}{}{}": {
+    "command": "parametricplot*[par]{tmin}{tmax}{function}",
+    "snippet": "parametricplot*[${4:par}]{${1:tmin}}{${2:tmax}}{${3:function}}"
   },
   "parametricplot": {
     "command": "parametricplot",
-    "snippet": "parametricplot{${1}}{${2}}{${3}}"
+    "snippet": "parametricplot{${1:tmin}}{${2:tmax}}{${3:function}}"
   },
   "parametricplot*": {
     "command": "parametricplot*",
-    "snippet": "parametricplot*{${1}}{${2}}{${3}}"
+    "snippet": "parametricplot*{${1:tmin}}{${2:tmax}}{${3:function}}"
   },
   "psaxes": {
-    "command": "psaxes"
+    "command": "psaxes",
+    "snippet": "psaxes{${1:arrows}}(x0,y0)(x1,y1)(x2,y2)"
   },
   "psaxes*": {
-    "command": "psaxes*"
+    "command": "psaxes*",
+    "snippet": "psaxes*{${1:arrows}}(x0,y0)(x1,y1)(x2,y2)"
+  },
+  "psaxes[]{}(x0,y0)(x1,y1)(x2,y2)": {
+    "command": "psaxes[par]{arrows}(x0,y0)(x1,y1)(x2,y2)",
+    "snippet": "psaxes[${2:par}]{${1:arrows}}(x0,y0)(x1,y1)(x2,y2)"
+  },
+  "psaxes*[]{}(x0,y0)(x1,y1)(x2,y2)": {
+    "command": "psaxes*[par]{arrows}(x0,y0)(x1,y1)(x2,y2)",
+    "snippet": "psaxes*[${2:par}]{${1:arrows}}(x0,y0)(x1,y1)(x2,y2)"
+  },
+  "psaxes[](x0,y0)(x1,y1)(x2,y2)": {
+    "command": "psaxes[par](x0,y0)(x1,y1)(x2,y2)",
+    "snippet": "psaxes[${1:par}](x0,y0)(x1,y1)(x2,y2)"
+  },
+  "psaxes*[](x0,y0)(x1,y1)(x2,y2)": {
+    "command": "psaxes*[par](x0,y0)(x1,y1)(x2,y2)",
+    "snippet": "psaxes*[${1:par}](x0,y0)(x1,y1)(x2,y2)"
   },
   "psaxes(x0,y0)(x1,y1)(x2,y2)": {
-    "command": "psaxes(x0,y0)(x1,y1)(x2,y2)"
+    "command": "psaxes(x0,y0)(x1,y1)(x2,y2)",
+    "snippet": "psaxes(x0,y0)(x1,y1)(x2,y2)"
   },
   "psaxes*(x0,y0)(x1,y1)(x2,y2)": {
-    "command": "psaxes*(x0,y0)(x1,y1)(x2,y2)"
+    "command": "psaxes*(x0,y0)(x1,y1)(x2,y2)",
+    "snippet": "psaxes*(x0,y0)(x1,y1)(x2,y2)"
   },
   "pshlabel": {
-    "command": "pshlabel"
+    "command": "pshlabel",
+    "snippet": "pshlabel"
+  },
+  "psplot[]{}{}{}": {
+    "command": "psplot[par]{xmin}{xmax}{function}",
+    "snippet": "psplot[${4:par}]{${1:xmin}}{${2:xmax}}{${3:function}}"
+  },
+  "psplot*[]{}{}{}": {
+    "command": "psplot*[par]{xmin}{xmax}{function}",
+    "snippet": "psplot*[${4:par}]{${1:xmin}}{${2:xmax}}{${3:function}}"
   },
   "psplot": {
     "command": "psplot",
-    "snippet": "psplot{${1}}{${2}}{${3}}"
+    "snippet": "psplot{${1:xmin}}{${2:xmax}}{${3:function}}"
   },
   "psplot*": {
     "command": "psplot*",
-    "snippet": "psplot*{${1}}{${2}}{${3}}"
+    "snippet": "psplot*{${1:xmin}}{${2:xmax}}{${3:function}}"
   },
   "psvlabel": {
-    "command": "psvlabel"
+    "command": "psvlabel",
+    "snippet": "psvlabel"
   },
   "psxlabel": {
-    "command": "psxlabel"
+    "command": "psxlabel",
+    "snippet": "psxlabel"
   },
   "psylabel": {
-    "command": "psylabel"
+    "command": "psylabel",
+    "snippet": "psylabel"
   },
   "readdata": {
     "command": "readdata",
-    "snippet": "readdata{${1}}{${2}}"
+    "snippet": "readdata{${1:command}}{${2:file}}"
   },
-  "savedata": {
-    "command": "savedata",
-    "snippet": "savedata{${1}}"
+  "savedata{}[]": {
+    "command": "savedata{command}[data]",
+    "snippet": "savedata{${1:command}}[${2:data}]"
   }
 }

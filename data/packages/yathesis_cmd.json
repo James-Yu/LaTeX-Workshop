@@ -1,177 +1,350 @@
 {
   "yadsetup": {
     "command": "yadsetup",
-    "snippet": "yadsetup{${1}}"
+    "snippet": "yadsetup{${1:%<options%>}}"
+  },
+  "author[]{}{}": {
+    "command": "author[%<email%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "author[${3:%<email%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "title[]{}": {
+    "command": "title[titre dans la langue secondaire%text]{titre dans la langue principale%text}",
+    "snippet": "title[${2:titre dans la langue secondaire%text}]{${1:titre dans la langue principale%text}}"
+  },
+  "subtitle[]{}": {
+    "command": "subtitle[sous-titre dans la langue secondaire%text]{sous-titre dans la langue principale%text}",
+    "snippet": "subtitle[${2:sous-titre dans la langue secondaire%text}]{${1:sous-titre dans la langue principale%text}}"
+  },
+  "academicfield[]{}": {
+    "command": "academicfield[discipline dans la langue secondaire%text]{discipline dans la langue principale%text}",
+    "snippet": "academicfield[${2:discipline dans la langue secondaire%text}]{${1:discipline dans la langue principale%text}}"
+  },
+  "speciality[]{}": {
+    "command": "speciality[sp\u00e9cialit\u00e9 dans la langue secondaire%text]{sp\u00e9cialit\u00e9 dans la langue principale%text}",
+    "snippet": "speciality[${2:sp\u00e9cialit\u00e9 dans la langue secondaire%text}]{${1:sp\u00e9cialit\u00e9 dans la langue principale%text}}"
+  },
+  "subject[]{}": {
+    "command": "subject[sujet dans la langue secondaire%text]{sujet dans la langue principale%text}",
+    "snippet": "subject[${2:sujet dans la langue secondaire%text}]{${1:sujet dans la langue principale%text}}"
   },
   "subtitle": {
     "command": "subtitle",
-    "snippet": "subtitle{${1}}"
+    "snippet": "subtitle{${1:sous-titre%text}}"
   },
   "academicfield": {
     "command": "academicfield",
-    "snippet": "academicfield{${1}}"
+    "snippet": "academicfield{${1:discipline%text}}"
   },
   "speciality": {
     "command": "speciality",
-    "snippet": "speciality{${1}}"
+    "snippet": "speciality{${1:sp\u00e9cialit\u00e9%text}}"
   },
   "subject": {
     "command": "subject",
-    "snippet": "subject{${1}}"
+    "snippet": "subject{${1:sujet%text}}"
   },
   "submissiondate": {
     "command": "submissiondate",
-    "snippet": "submissiondate{${1}}{${2}}{${3}}"
+    "snippet": "submissiondate{${1:%<jour%>}}{${2:%<mois%>}}{${3:%<ann\u00e9e%>}}"
   },
   "pres": {
     "command": "pres",
-    "snippet": "pres{${1}}"
+    "snippet": "pres{${1:%<nom du PRES%>}}"
   },
   "comue": {
     "command": "comue",
-    "snippet": "comue{${1}}"
+    "snippet": "comue{${1:%<nom de la ComUE%>}}"
   },
   "institute": {
     "command": "institute",
-    "snippet": "institute{${1}}"
+    "snippet": "institute{${1:nom de l'institut%text}}"
   },
   "coinstitute": {
     "command": "coinstitute",
-    "snippet": "coinstitute{${1}}"
+    "snippet": "coinstitute{${1:nom de l'institut de cotutelle%text}}"
   },
   "company": {
     "command": "company",
-    "snippet": "company{${1}}"
+    "snippet": "company{${1:%<nom de l'entreprise%>}}"
   },
   "doctoralschool": {
     "command": "doctoralschool",
-    "snippet": "doctoralschool{${1}}"
+    "snippet": "doctoralschool{${1:nom de l'\u00e9cole doctorale%text}}"
   },
   "laboratory": {
     "command": "laboratory",
-    "snippet": "laboratory{${1}}{${2}}"
+    "snippet": "laboratory{${1:%<nom du laboratoire%>}}{${2:%<adresse du laboratoire%>}}"
+  },
+  "pres[]{}": {
+    "command": "pres[%<pr\u00e9cision(s)%>]{%<nom du PRES%>}",
+    "snippet": "pres[${2:%<pr\u00e9cision(s)%>}]{${1:%<nom du PRES%>}}"
+  },
+  "comue[]{}": {
+    "command": "comue[%<pr\u00e9cision(s)%>]{%<nom de la ComUE%>}",
+    "snippet": "comue[${2:%<pr\u00e9cision(s)%>}]{${1:%<nom de la ComUE%>}}"
+  },
+  "institute[]{}": {
+    "command": "institute[%<pr\u00e9cision(s)%>]{nom de l'institut%text}",
+    "snippet": "institute[${2:%<pr\u00e9cision(s)%>}]{${1:nom de l'institut%text}}"
+  },
+  "coinstitute[]{}": {
+    "command": "coinstitute[%<pr\u00e9cision(s)%>]{nom de l'institut de cotutelle%text}",
+    "snippet": "coinstitute[${2:%<pr\u00e9cision(s)%>}]{${1:nom de l'institut de cotutelle%text}}"
+  },
+  "company[]{}": {
+    "command": "company[%<pr\u00e9cision(s)%>]{%<nom de l'entreprise%>}",
+    "snippet": "company[${2:%<pr\u00e9cision(s)%>}]{${1:%<nom de l'entreprise%>}}"
+  },
+  "doctoralschool[]{}": {
+    "command": "doctoralschool[%<pr\u00e9cision(s)%>]{nom de l'\u00e9cole doctorale%text}",
+    "snippet": "doctoralschool[${2:%<pr\u00e9cision(s)%>}]{${1:nom de l'\u00e9cole doctorale%text}}"
+  },
+  "laboratory[]{}{}": {
+    "command": "laboratory[%<pr\u00e9cision(s)%>]{%<nom du laboratoire%>}{%<adresse du laboratoire%>}",
+    "snippet": "laboratory[${3:%<pr\u00e9cision(s)%>}]{${1:%<nom du laboratoire%>}}{${2:%<adresse du laboratoire%>}}"
   },
   "supervisor": {
     "command": "supervisor",
-    "snippet": "supervisor{${1}}{${2}}"
+    "snippet": "supervisor{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
   },
   "cosupervisor": {
     "command": "cosupervisor",
-    "snippet": "cosupervisor{${1}}{${2}}"
+    "snippet": "cosupervisor{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
   },
   "comonitor": {
     "command": "comonitor",
-    "snippet": "comonitor{${1}}{${2}}"
+    "snippet": "comonitor{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
   },
   "referee": {
     "command": "referee",
-    "snippet": "referee{${1}}{${2}}"
+    "snippet": "referee{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
   },
   "examiner": {
     "command": "examiner",
-    "snippet": "examiner{${1}}{${2}}"
+    "snippet": "examiner{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
   },
   "committeepresident": {
     "command": "committeepresident",
-    "snippet": "committeepresident{${1}}{${2}}"
+    "snippet": "committeepresident{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
   },
   "guest": {
     "command": "guest",
-    "snippet": "guest{${1}}{${2}}"
+    "snippet": "guest{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "supervisor[]{}{}": {
+    "command": "supervisor[%<pr\u00e9cision(s)%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "supervisor[${3:%<pr\u00e9cision(s)%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "cosupervisor[]{}{}": {
+    "command": "cosupervisor[%<pr\u00e9cision(s)%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "cosupervisor[${3:%<pr\u00e9cision(s)%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "comonitor[]{}{}": {
+    "command": "comonitor[%<pr\u00e9cision(s)%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "comonitor[${3:%<pr\u00e9cision(s)%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "referee[]{}{}": {
+    "command": "referee[%<pr\u00e9cision(s)%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "referee[${3:%<pr\u00e9cision(s)%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "examiner[]{}{}": {
+    "command": "examiner[%<pr\u00e9cision(s)%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "examiner[${3:%<pr\u00e9cision(s)%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "committeepresident[]{}{}": {
+    "command": "committeepresident[%<pr\u00e9cision(s)%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "committeepresident[${3:%<pr\u00e9cision(s)%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "guest[]{}{}": {
+    "command": "guest[%<pr\u00e9cision(s)%>]{%<pr\u00e9nom%>}{%<nom%>}",
+    "snippet": "guest[${3:%<pr\u00e9cision(s)%>}]{${1:%<pr\u00e9nom%>}}{${2:%<nom%>}}"
+  },
+  "ordernumber[]": {
+    "command": "ordernumber[%<num\u00e9ro d'ordre%>]",
+    "snippet": "ordernumber[${1:%<num\u00e9ro d'ordre%>}]"
   },
   "ordernumber": {
-    "command": "ordernumber"
+    "command": "ordernumber",
+    "snippet": "ordernumber"
   },
   "disclaimer": {
     "command": "disclaimer",
-    "snippet": "disclaimer{${1}}"
+    "snippet": "disclaimer{${1:clause%text}}"
   },
   "makedisclaimer": {
-    "command": "makedisclaimer"
+    "command": "makedisclaimer",
+    "snippet": "makedisclaimer"
   },
   "makedisclaimer*": {
-    "command": "makedisclaimer*"
+    "command": "makedisclaimer*",
+    "snippet": "makedisclaimer*"
   },
   "keywords": {
     "command": "keywords",
-    "snippet": "keywords{${1}}{${2}}"
+    "snippet": "keywords{${1:mots cl\u00e9s dans la langue principale%text}}{${2:mots cl\u00e9s dans la langue secondaire%text}}"
   },
   "makekeywords": {
-    "command": "makekeywords"
+    "command": "makekeywords",
+    "snippet": "makekeywords"
   },
   "makekeywords*": {
-    "command": "makekeywords*"
+    "command": "makekeywords*",
+    "snippet": "makekeywords*"
   },
   "makelaboratory": {
-    "command": "makelaboratory"
+    "command": "makelaboratory",
+    "snippet": "makelaboratory"
   },
   "makelaboratory*": {
-    "command": "makelaboratory*"
+    "command": "makelaboratory*",
+    "snippet": "makelaboratory*"
   },
   "dedication": {
     "command": "dedication",
-    "snippet": "dedication{${1}}"
+    "snippet": "dedication{${1:d\u00e9dicace%text}}"
   },
   "makededications": {
-    "command": "makededications"
+    "command": "makededications",
+    "snippet": "makededications"
   },
   "makededications*": {
-    "command": "makededications*"
+    "command": "makededications*",
+    "snippet": "makededications*"
   },
   "frontepigraph": {
     "command": "frontepigraph",
-    "snippet": "frontepigraph{${1}}{${2}}"
+    "snippet": "frontepigraph{${1:\u00e9pigraphe%text}}{${2:%<auteur%>}}"
+  },
+  "frontepigraph[]{}{}": {
+    "command": "frontepigraph[%<langue%>]{\u00e9pigraphe%text}{%<auteur%>}",
+    "snippet": "frontepigraph[${3:%<langue%>}]{${1:\u00e9pigraphe%text}}{${2:%<auteur%>}}"
   },
   "makefrontepigraphs": {
-    "command": "makefrontepigraphs"
+    "command": "makefrontepigraphs",
+    "snippet": "makefrontepigraphs"
   },
   "makefrontepigraphs*": {
-    "command": "makefrontepigraphs*"
+    "command": "makefrontepigraphs*",
+    "snippet": "makefrontepigraphs*"
   },
   "makeabstract": {
-    "command": "makeabstract"
+    "command": "makeabstract",
+    "snippet": "makeabstract"
   },
   "newglssymbol": {
     "command": "newglssymbol",
-    "snippet": "newglssymbol{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "newglssymbol{${1:%<label%>}}{${2:%<symbole%>}}{${3:%<nom%>}}{${4:description%text}}"
+  },
+  "newglssymbol[]{}{}{}{}": {
+    "command": "newglssymbol[%<classement%>]{%<label%>}{%<symbole%>}{%<nom%>}{description%text}",
+    "snippet": "newglssymbol[${5:%<classement%>}]{${1:%<label%>}}{${2:%<symbole%>}}{${3:%<nom%>}}{${4:description%text}}"
+  },
+  "tableofcontents[]": {
+    "command": "tableofcontents[%<pr\u00e9cision(s)%>]",
+    "snippet": "tableofcontents[${1:%<pr\u00e9cision(s)%>}]"
   },
   "chapter*": {
     "command": "chapter*",
-    "snippet": "chapter*{${1}}"
+    "snippet": "chapter*{${1:titre%title}}"
+  },
+  "chapter[]{}": {
+    "command": "chapter[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "chapter[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "chapter*[]{}": {
+    "command": "chapter*[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "chapter*[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "chapter[][]{}": {
+    "command": "chapter[titre alt. pour TdM%short title][titre alt. pour ent\u00eate%short title]{titre%title}",
+    "snippet": "chapter[${2:titre alt. pour TdM%short title}][${3:titre alt. pour ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "chapter*[][]{}": {
+    "command": "chapter*[titre alt. pour TdM%short title][titre alt. pour ent\u00eate%short title]{titre%title}",
+    "snippet": "chapter*[${2:titre alt. pour TdM%short title}][${3:titre alt. pour ent\u00eate%short title}]{${1:titre%title}}"
   },
   "section*": {
     "command": "section*",
-    "snippet": "section*{${1}}"
+    "snippet": "section*{${1:titre%title}}"
+  },
+  "section[]{}": {
+    "command": "section[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "section[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "section*[]{}": {
+    "command": "section*[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "section*[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "section[][]{}": {
+    "command": "section[titre alt. pour TdM%short title][titre alt. pour ent\u00eate%short title]{titre%title}",
+    "snippet": "section[${2:titre alt. pour TdM%short title}][${3:titre alt. pour ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "section*[][]{}": {
+    "command": "section*[titre alt. pour TdM%short title][titre alt. pour ent\u00eate%short title]{titre%title}",
+    "snippet": "section*[${2:titre alt. pour TdM%short title}][${3:titre alt. pour ent\u00eate%short title}]{${1:titre%title}}"
   },
   "subsection*": {
     "command": "subsection*",
-    "snippet": "subsection*{${1}}"
+    "snippet": "subsection*{${1:titre%title}}"
+  },
+  "subsection[]{}": {
+    "command": "subsection[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "subsection[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "subsection*[]{}": {
+    "command": "subsection*[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "subsection*[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
   },
   "subsubsection*": {
     "command": "subsubsection*",
-    "snippet": "subsubsection*{${1}}"
+    "snippet": "subsubsection*{${1:titre%title}}"
+  },
+  "subsubsection[]{}": {
+    "command": "subsubsection[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "subsubsection[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "subsubsection*[]{}": {
+    "command": "subsubsection*[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "subsubsection*[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
   },
   "paragraph*": {
     "command": "paragraph*",
-    "snippet": "paragraph*{${1}}"
+    "snippet": "paragraph*{${1:titre%title}}"
+  },
+  "paragraph[]{}": {
+    "command": "paragraph[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "paragraph[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "paragraph*[]{}": {
+    "command": "paragraph*[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "paragraph*[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
+  },
+  "subparagraph[]{}": {
+    "command": "subparagraph[titre alt. pour TdM et ent\u00eate%short title]{titre%title}",
+    "snippet": "subparagraph[${2:titre alt. pour TdM et ent\u00eate%short title}]{${1:titre%title}}"
   },
   "makebackcover": {
-    "command": "makebackcover"
+    "command": "makebackcover",
+    "snippet": "makebackcover"
   },
   "startlocaltocs": {
-    "command": "startlocaltocs"
+    "command": "startlocaltocs",
+    "snippet": "startlocaltocs"
   },
   "stoplocaltocs": {
-    "command": "stoplocaltocs"
+    "command": "stoplocaltocs",
+    "snippet": "stoplocaltocs"
   },
   "nextwithlocaltoc": {
-    "command": "nextwithlocaltoc"
+    "command": "nextwithlocaltoc",
+    "snippet": "nextwithlocaltoc"
   },
   "nextwithoutlocaltoc": {
-    "command": "nextwithoutlocaltoc"
+    "command": "nextwithoutlocaltoc",
+    "snippet": "nextwithoutlocaltoc"
   },
   "expression": {
     "command": "expression",
-    "snippet": "expression{${1}}{${2}}{${3}}"
+    "snippet": "expression{${1:%<label%>}}{${2:valeur (en fran\u00e7ais)%text}}{${3:valeur (en anglais)%text}}"
   }
 }

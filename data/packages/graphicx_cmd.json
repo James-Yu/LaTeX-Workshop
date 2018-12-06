@@ -1,62 +1,90 @@
 {
   "color": {
     "command": "color",
-    "snippet": "color{${1}}"
+    "snippet": "color{${1:specification}}"
+  },
+  "color[]{}": {
+    "command": "color[model]{specification}",
+    "snippet": "color[${2:model}]{${1:specification}}"
   },
   "colorbox": {
     "command": "colorbox",
-    "snippet": "colorbox{${1}}{${2}}"
+    "snippet": "colorbox{${1:name}}{${2:text}}"
+  },
+  "colorbox[]{}{}": {
+    "command": "colorbox[model]{specification}{text}",
+    "snippet": "colorbox[${3:model}]{${1:specification}}{${2:text}}"
   },
   "DeclareGraphicsExtensions": {
     "command": "DeclareGraphicsExtensions",
-    "snippet": "DeclareGraphicsExtensions{${1}}"
+    "snippet": "DeclareGraphicsExtensions{${1:ext-list}}"
   },
   "DeclareGraphicsRule": {
     "command": "DeclareGraphicsRule",
-    "snippet": "DeclareGraphicsRule{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "DeclareGraphicsRule{${1:ext}}{${2:type}}{${3:read-file}}{${4:command}}"
   },
   "definecolor": {
     "command": "definecolor",
-    "snippet": "definecolor{${1}}{${2}}{${3}}"
+    "snippet": "definecolor{${1:name}}{${2:model}}{${3:colour specification}}"
   },
   "fcolorbox": {
     "command": "fcolorbox",
-    "snippet": "fcolorbox{${1}}{${2}}{${3}}"
+    "snippet": "fcolorbox{${1:name1}}{${2:name2}}{${3:text}}"
+  },
+  "fcolorbox[]{}{}{}": {
+    "command": "fcolorbox[model]{specification1}{specification2}{text}",
+    "snippet": "fcolorbox[${4:model}]{${1:specification1}}{${2:specification2}}{${3:text}}"
   },
   "graphicspath": {
     "command": "graphicspath",
-    "snippet": "graphicspath{${1}}"
+    "snippet": "graphicspath{${1:dir-list}}"
   },
-  "includegraphics*": {
-    "command": "includegraphics*",
-    "snippet": "includegraphics*{${1}}"
+  "includegraphics*[]{}": {
+    "command": "includegraphics*[key val list]{file}",
+    "snippet": "includegraphics*[${2:key val list}]{${1:file}}"
+  },
+  "includegraphics[]{}": {
+    "command": "includegraphics[key val list]{file}",
+    "snippet": "includegraphics[${2:key val list}]{${1:file}}"
   },
   "pagecolor": {
     "command": "pagecolor",
-    "snippet": "pagecolor{${1}}"
+    "snippet": "pagecolor{${1:name}}"
+  },
+  "pagecolor[]{}": {
+    "command": "pagecolor[model]{specification}",
+    "snippet": "pagecolor[${2:model}]{${1:specification}}"
   },
   "reflectbox": {
     "command": "reflectbox",
-    "snippet": "reflectbox{${1}}"
+    "snippet": "reflectbox{${1:text}}"
   },
   "resizebox*": {
     "command": "resizebox*",
-    "snippet": "resizebox*{${1}}{${2}}{${3}}"
+    "snippet": "resizebox*{${1:h-length}}{${2:v-length}}{${3:text}}"
   },
-  "rotatebox": {
-    "command": "rotatebox",
-    "snippet": "rotatebox{${1}}{${2}}"
+  "rotatebox[]{}{}": {
+    "command": "rotatebox[key val list]{angle}{text}",
+    "snippet": "rotatebox[${3:key val list}]{${1:angle}}{${2:text}}"
   },
   "scalebox": {
     "command": "scalebox",
-    "snippet": "scalebox{${1}}{${2}}"
+    "snippet": "scalebox{${1:h-scale}}{${2:text}}"
+  },
+  "scalebox{}[]{}": {
+    "command": "scalebox{h-scale}[v-scale]{text}",
+    "snippet": "scalebox{${1:h-scale}}[${2:v-scale}]{${3:text}}"
   },
   "setkeys": {
     "command": "setkeys",
-    "snippet": "setkeys{${1}}{${2}}"
+    "snippet": "setkeys{${1:Gin}}{${2:key val}}"
   },
   "textcolor": {
     "command": "textcolor",
-    "snippet": "textcolor{${1}}{${2}}"
+    "snippet": "textcolor{${1:name}}{${2:text}}"
+  },
+  "textcolor[]{}{}": {
+    "command": "textcolor[model]{specification}{text}",
+    "snippet": "textcolor[${3:model}]{${1:specification}}{${2:text}}"
   }
 }

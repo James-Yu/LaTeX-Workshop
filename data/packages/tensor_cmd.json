@@ -1,22 +1,30 @@
 {
   "indices": {
     "command": "indices",
-    "snippet": "indices{${1}}"
+    "snippet": "indices{${1:indices}}"
   },
   "indices*": {
     "command": "indices*",
-    "snippet": "indices*{${1}}"
+    "snippet": "indices*{${1:indices}}"
   },
   "tensor": {
     "command": "tensor",
-    "snippet": "tensor{${1}}{${2}}"
+    "snippet": "tensor{${1:tensor}}{${2:indices}}"
   },
   "tensor*": {
     "command": "tensor*",
-    "snippet": "tensor*{${1}}{${2}}"
+    "snippet": "tensor*{${1:tensor}}{${2:indices}}"
   },
-  "nuclide": {
-    "command": "nuclide",
-    "snippet": "nuclide{${1}}"
+  "tensor[]{}{}": {
+    "command": "tensor[indices]{tensor}{indices}",
+    "snippet": "tensor[${3:indices}]{${1:tensor}}{${2:indices}}"
+  },
+  "tensor*[]{}{}": {
+    "command": "tensor*[indices]{tensor}{indices}",
+    "snippet": "tensor*[${3:indices}]{${1:tensor}}{${2:indices}}"
+  },
+  "nuclide[][]{}": {
+    "command": "nuclide[mass][atomic]{symbol}",
+    "snippet": "nuclide[${2:mass}][${3:atomic}]{${1:symbol}}"
   }
 }
