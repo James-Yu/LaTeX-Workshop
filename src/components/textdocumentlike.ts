@@ -1,18 +1,41 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 
 class TextDocumentLike {
     private _lines: string[]
     readonly lineCount: number
     readonly eol: vscode.EndOfLine
 
+    static load(filePath: string) : TextDocumentLike | vscode.TextDocument {
+        const uri = vscode.Uri.parse(filePath)
+        if (vscode.workspace.name === undefined) {
+            return new TextDocumentLike(fs.readFileSync(filePath).toString())
+        }
+        for( const doc of vscode.workspace.textDocuments ) {
+            if (doc.uri.fsPath === uri.fsPath) {
+                return doc
+            }
+        }
+        return new TextDocumentLike(fs.readFileSync(filePath).toString())
+    }
+
     constructor(s: string) {
         let eol: string
         if (s.match(/\r\n/)) {
             this.eol = vscode.EndOfLine.CRLF
             eol = '\r\n'
-        } else {
+        } else if (s.match(/\n/)) {
             this.eol = vscode.EndOfLine.LF
             eol = '\n'
+        } else {
+            const editor = vscode.window.activeTextEditor
+            if (editor === undefined || editor.document.eol === vscode.EndOfLine.LF) {
+                this.eol = vscode.EndOfLine.LF
+                eol = '\n'
+            } else {
+                this.eol = vscode.EndOfLine.CRLF
+                eol = '\r\n'
+            }
         }
         this._lines = s.split(eol)
         this.lineCount = this._lines.length
