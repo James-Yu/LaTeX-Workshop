@@ -177,6 +177,8 @@ export class Command {
         if (!(configuration.get('intellisense.package.enabled'))) {
             return
         }
+        const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
+        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         if (!(pkg in this.packageCmds)) {
             let filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
             if (!fs.existsSync(filePath)) {
@@ -194,6 +196,12 @@ export class Command {
                 Object.keys(cmds).forEach(cmd => {
                     if (cmd in suggestions) {
                         return
+                    }
+                    if (!useOptionalArgsEntries && cmd.indexOf('[') > -1) {
+                        return
+                    }
+                    if (useTabStops) {
+                        cmds[cmd].snippet = cmds[cmd].snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$$$1')
                     }
                     this.packageCmds[pkg][cmd] = this.entryToCompletionItem(cmds[cmd])
                 })
