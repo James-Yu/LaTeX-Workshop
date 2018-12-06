@@ -9,9 +9,10 @@ export class TextDocumentLike {
     private _eol: string
 
     static load(filePath: string) : TextDocumentLike | vscode.TextDocument {
-        const uri = vscode.Uri.parse(filePath)
-        if (vscode.workspace.name === undefined) {
-            return new TextDocumentLike(fs.readFileSync(filePath).toString())
+        const uri = vscode.Uri.file(filePath)
+        const editor = vscode.window.activeTextEditor
+        if (editor !== undefined && editor.document.uri.fsPath === uri.fsPath) {
+            return editor.document
         }
         for ( const doc of vscode.workspace.textDocuments ) {
             if (doc.uri.fsPath === uri.fsPath) {
