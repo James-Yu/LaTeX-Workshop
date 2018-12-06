@@ -1,32 +1,50 @@
 {
   "captionsetup": {
     "command": "captionsetup",
-    "snippet": "captionsetup{${1}}"
+    "snippet": "captionsetup{${1:kv-list}}"
+  },
+  "captionsetup[]{}": {
+    "command": "captionsetup[variable]{kv-list}",
+    "snippet": "captionsetup[${2:variable}]{${1:kv-list}}"
   },
   "ContinuedFloat": {
-    "command": "ContinuedFloat"
+    "command": "ContinuedFloat",
+    "snippet": "ContinuedFloat"
   },
   "DeclareCaptionListOfFormat": {
     "command": "DeclareCaptionListOfFormat",
-    "snippet": "DeclareCaptionListOfFormat{${1}}{${2}}"
+    "snippet": "DeclareCaptionListOfFormat{${1:keyword}}{${2:code}}"
   },
   "listsubcaptions": {
-    "command": "listsubcaptions"
+    "command": "listsubcaptions",
+    "snippet": "listsubcaptions"
   },
   "newsubfloat": {
     "command": "newsubfloat",
-    "snippet": "newsubfloat{${1}}"
+    "snippet": "newsubfloat{${1:floatname}}"
+  },
+  "newsubfloat[]{}": {
+    "command": "newsubfloat[kv-list]{floatname}",
+    "snippet": "newsubfloat[${2:kv-list}]{${1:floatname}}"
   },
   "subfloat": {
     "command": "subfloat",
-    "snippet": "subfloat{${1}}"
+    "snippet": "subfloat{${1:body}}"
+  },
+  "subfloat[][]{}": {
+    "command": "subfloat[listentry][subcaption]{body}",
+    "snippet": "subfloat[${2:listentry}][${3:subcaption}]{${1:body}}"
+  },
+  "subfloat[]{}": {
+    "command": "subfloat[subcaption]{body}",
+    "snippet": "subfloat[${2:subcaption}]{${1:body}}"
   },
   "subref": {
     "command": "subref",
-    "snippet": "subref{${1}}"
+    "snippet": "subref{${1:label}}"
   },
   "subref*": {
     "command": "subref*",
-    "snippet": "subref*{${1}}"
+    "snippet": "subref*{${1:label}}"
   }
 }

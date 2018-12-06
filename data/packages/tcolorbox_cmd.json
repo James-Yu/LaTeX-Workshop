@@ -1,645 +1,970 @@
 {
   "tcbuselibrary": {
     "command": "tcbuselibrary",
-    "snippet": "tcbuselibrary{${1}}"
+    "snippet": "tcbuselibrary{${1:%<library%>%keys}}"
   },
   "tcblower": {
-    "command": "tcblower"
+    "command": "tcblower",
+    "snippet": "tcblower"
   },
   "tcbset": {
     "command": "tcbset",
-    "snippet": "tcbset{${1}}"
+    "snippet": "tcbset{${1:%<options%>}}"
   },
   "tcbsetforeverylayer": {
     "command": "tcbsetforeverylayer",
-    "snippet": "tcbsetforeverylayer{${1}}"
+    "snippet": "tcbsetforeverylayer{${1:%<options%>}}"
   },
-  "tcbox": {
-    "command": "tcbox",
-    "snippet": "tcbox{${1}}"
+  "tcbox[]{}": {
+    "command": "tcbox[%<options%>]{%<box content%>}",
+    "snippet": "tcbox[${2:%<options%>}]{${1:%<box content%>}}"
   },
   "newtcolorbox": {
     "command": "newtcolorbox",
-    "snippet": "newtcolorbox{${1}}{${2}}"
+    "snippet": "newtcolorbox{${1:envname}}{${2:options%keyvals}}"
+  },
+  "newtcolorbox[]{}[][]{}": {
+    "command": "newtcolorbox[init options%keyvals]{envname}[number][default]{options%keyvals}",
+    "snippet": "newtcolorbox[${3:init options%keyvals}]{${1:envname}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "renewtcolorbox": {
     "command": "renewtcolorbox",
-    "snippet": "renewtcolorbox{${1}}{${2}}"
+    "snippet": "renewtcolorbox{${1:envname}}{${2:options%keyvals}}"
+  },
+  "renewtcolorbox[]{}[][]{}": {
+    "command": "renewtcolorbox[init options%keyvals]{envname}[number][default]{options%keyvals}",
+    "snippet": "renewtcolorbox[${3:init options%keyvals}]{${1:envname}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "newtcbox": {
     "command": "newtcbox",
-    "snippet": "newtcbox{${1}}{${2}}"
+    "snippet": "newtcbox{${1:\\name}}{${2:options%keyvals}}"
+  },
+  "newtcbox[]{}[][]{}": {
+    "command": "newtcbox[init options%keyvals]{\\name}[number][default]{options%keyvals}",
+    "snippet": "newtcbox[${3:init options%keyvals}]{${1:\\name}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "renewtcbox": {
     "command": "renewtcbox",
-    "snippet": "renewtcbox{${1}}{${2}}"
+    "snippet": "renewtcbox{${1:\\name}}{${2:options%keyvals}}"
+  },
+  "renewtcbox[]{}[][]{}": {
+    "command": "renewtcbox[init options%keyvals]{\\name}[number][default]{options%keyvals}",
+    "snippet": "renewtcbox[${3:init options%keyvals}]{${1:\\name}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "tcolorboxenvironment": {
     "command": "tcolorboxenvironment",
-    "snippet": "tcolorboxenvironment{${1}}{${2}}"
+    "snippet": "tcolorboxenvironment{${1:envname}}{${2:options%keyvals}}"
   },
-  "tcbsubtitle": {
-    "command": "tcbsubtitle",
-    "snippet": "tcbsubtitle{${1}}"
+  "tcbsubtitle[]{}": {
+    "command": "tcbsubtitle[options%keyvals]{text}",
+    "snippet": "tcbsubtitle[${2:options%keyvals}]{${1:text}}"
   },
   "tcbheightfromgroup": {
     "command": "tcbheightfromgroup",
-    "snippet": "tcbheightfromgroup{${1}}{${2}}"
+    "snippet": "tcbheightfromgroup{${1:macro}}{${2:id}}"
   },
   "tcbsetmanagedlayers": {
     "command": "tcbsetmanagedlayers",
-    "snippet": "tcbsetmanagedlayers{${1}}"
+    "snippet": "tcbsetmanagedlayers{${1:number}}"
   },
   "tcbifoddpage": {
     "command": "tcbifoddpage",
-    "snippet": "tcbifoddpage{${1}}{${2}}"
+    "snippet": "tcbifoddpage{${1:odd code}}{${2:even code}}"
   },
   "tcbifoddpageoroneside": {
     "command": "tcbifoddpageoroneside",
-    "snippet": "tcbifoddpageoroneside{${1}}{${2}}"
+    "snippet": "tcbifoddpageoroneside{${1:odd code}}{${2:even code}}"
   },
   "thetcolorboxnumber": {
-    "command": "thetcolorboxnumber"
+    "command": "thetcolorboxnumber",
+    "snippet": "thetcolorboxnumber"
   },
   "thetcolorboxpage": {
-    "command": "thetcolorboxpage"
+    "command": "thetcolorboxpage",
+    "snippet": "thetcolorboxpage"
   },
   "thetcbcounter": {
-    "command": "thetcbcounter"
+    "command": "thetcbcounter",
+    "snippet": "thetcbcounter"
   },
   "tcbcounter": {
-    "command": "tcbcounter"
+    "command": "tcbcounter",
+    "snippet": "tcbcounter"
   },
   "tcblistof": {
     "command": "tcblistof",
-    "snippet": "tcblistof{${1}}{${2}}"
+    "snippet": "tcblistof{${1:name}}{${2:title text}}"
+  },
+  "tcblistof[]{}{}": {
+    "command": "tcblistof[macro]{name}{title text}",
+    "snippet": "tcblistof[${3:macro}]{${1:name}}{${2:title text}}"
   },
   "tcbsidebyside": {
     "command": "tcbsidebyside",
-    "snippet": "tcbsidebyside{${1}}{${2}}"
+    "snippet": "tcbsidebyside{${1:left-handed content}}{${2:right-handed content}}"
+  },
+  "tcbsidebyside[]{}{}": {
+    "command": "tcbsidebyside[options%keyvals]{left-handed content}{right-handed content}",
+    "snippet": "tcbsidebyside[${3:options%keyvals}]{${1:left-handed content}}{${2:right-handed content}}"
   },
   "tcbverbatimwrite": {
-    "command": "tcbverbatimwrite"
+    "command": "tcbverbatimwrite",
+    "snippet": "tcbverbatimwrite"
   },
   "endtcbverbatimwrite": {
-    "command": "endtcbverbatimwrite"
+    "command": "endtcbverbatimwrite",
+    "snippet": "endtcbverbatimwrite"
   },
   "tcbusetemp": {
-    "command": "tcbusetemp"
+    "command": "tcbusetemp",
+    "snippet": "tcbusetemp"
   },
   "tcbstartrecording": {
-    "command": "tcbstartrecording"
+    "command": "tcbstartrecording",
+    "snippet": "tcbstartrecording"
+  },
+  "tcbstartrecording[]": {
+    "command": "tcbstartrecording[%<file%>]",
+    "snippet": "tcbstartrecording[${1:%<file%>}]"
   },
   "tcbrecord": {
     "command": "tcbrecord",
-    "snippet": "tcbrecord{${1}}"
+    "snippet": "tcbrecord{${1:content}}"
   },
   "tcbstoprecording": {
-    "command": "tcbstoprecording"
+    "command": "tcbstoprecording",
+    "snippet": "tcbstoprecording"
   },
   "tcbinputrecords": {
-    "command": "tcbinputrecords"
+    "command": "tcbinputrecords",
+    "snippet": "tcbinputrecords"
+  },
+  "tcbinputrecords[]": {
+    "command": "tcbinputrecords[%<file%>]",
+    "snippet": "tcbinputrecords[${1:%<file%>}]"
   },
   "tcbsubskin": {
     "command": "tcbsubskin",
-    "snippet": "tcbsubskin{${1}}{${2}}{${3}}"
+    "snippet": "tcbsubskin{${1:name}}{${2:base skin}}{${3:options%keyvals}}"
   },
   "tcbheightspace": {
-    "command": "tcbheightspace"
+    "command": "tcbheightspace",
+    "snippet": "tcbheightspace"
   },
   "tcbtextwidth": {
-    "command": "tcbtextwidth"
+    "command": "tcbtextwidth",
+    "snippet": "tcbtextwidth"
   },
   "tcbtextheight": {
-    "command": "tcbtextheight"
+    "command": "tcbtextheight",
+    "snippet": "tcbtextheight"
   },
   "tcbsegmentstate": {
-    "command": "tcbsegmentstate"
+    "command": "tcbsegmentstate",
+    "snippet": "tcbsegmentstate"
   },
   "tcbstartdraftmode": {
-    "command": "tcbstartdraftmode"
+    "command": "tcbstartdraftmode",
+    "snippet": "tcbstartdraftmode"
   },
   "tcbstopdraftmode": {
-    "command": "tcbstopdraftmode"
+    "command": "tcbstopdraftmode",
+    "snippet": "tcbstopdraftmode"
   },
   "tcbinterruptdraftmode": {
-    "command": "tcbinterruptdraftmode"
+    "command": "tcbinterruptdraftmode",
+    "snippet": "tcbinterruptdraftmode"
   },
   "tcbcontinuedraftmode": {
-    "command": "tcbcontinuedraftmode"
+    "command": "tcbcontinuedraftmode",
+    "snippet": "tcbcontinuedraftmode"
   },
   "tcbline": {
-    "command": "tcbline"
+    "command": "tcbline",
+    "snippet": "tcbline"
   },
   "tcbline*": {
-    "command": "tcbline*"
+    "command": "tcbline*",
+    "snippet": "tcbline*"
   },
   "tcbincludegraphics": {
     "command": "tcbincludegraphics",
-    "snippet": "tcbincludegraphics{${1}}"
+    "snippet": "tcbincludegraphics{${1:file}}"
+  },
+  "tcbincludegraphics[]{}": {
+    "command": "tcbincludegraphics[options%keyvals]{file}",
+    "snippet": "tcbincludegraphics[${2:options%keyvals}]{${1:file}}"
   },
   "imagename": {
-    "command": "imagename"
+    "command": "imagename",
+    "snippet": "imagename"
   },
   "tcbincludepdf": {
     "command": "tcbincludepdf",
-    "snippet": "tcbincludepdf{${1}}"
+    "snippet": "tcbincludepdf{${1:file}}"
+  },
+  "tcbincludepdf[]{}": {
+    "command": "tcbincludepdf[options%keyvals]{file}",
+    "snippet": "tcbincludepdf[${2:options%keyvals}]{${1:file}}"
   },
   "imagepage": {
-    "command": "imagepage"
+    "command": "imagepage",
+    "snippet": "imagepage"
   },
   "pdfpages": {
-    "command": "pdfpages"
+    "command": "pdfpages",
+    "snippet": "pdfpages"
   },
   "tcbpatcharcangular": {
-    "command": "tcbpatcharcangular"
+    "command": "tcbpatcharcangular",
+    "snippet": "tcbpatcharcangular"
   },
   "tcbpatcharcround": {
-    "command": "tcbpatcharcround"
+    "command": "tcbpatcharcround",
+    "snippet": "tcbpatcharcround"
   },
   "tcbsettowidthofnode": {
     "command": "tcbsettowidthofnode",
-    "snippet": "tcbsettowidthofnode{${1}}{${2}}"
+    "snippet": "tcbsettowidthofnode{${1:register}}{${2:node}}"
   },
   "tcbsetmacrotowidthofnode": {
     "command": "tcbsetmacrotowidthofnode",
-    "snippet": "tcbsetmacrotowidthofnode{${1}}{${2}}"
+    "snippet": "tcbsetmacrotowidthofnode{${1:macro}}{${2:node}}"
   },
   "tcbsettoheightofnode": {
     "command": "tcbsettoheightofnode",
-    "snippet": "tcbsettoheightofnode{${1}}{${2}}"
+    "snippet": "tcbsettoheightofnode{${1:register}}{${2:node}}"
   },
   "tcbsetmacrotoheightofnode": {
     "command": "tcbsetmacrotoheightofnode",
-    "snippet": "tcbsetmacrotoheightofnode{${1}}{${2}}"
+    "snippet": "tcbsetmacrotoheightofnode{${1:macro}}{${2:node}}"
   },
   "tcbhypernode": {
     "command": "tcbhypernode",
-    "snippet": "tcbhypernode{${1}}{${2}}"
+    "snippet": "tcbhypernode{${1:macro}}{${2:node}}"
   },
   "tcbvignette": {
     "command": "tcbvignette",
-    "snippet": "tcbvignette{${1}}"
+    "snippet": "tcbvignette{${1:options%keyvals}}"
   },
   "thetcbrasternum": {
-    "command": "thetcbrasternum"
+    "command": "thetcbrasternum",
+    "snippet": "thetcbrasternum"
   },
   "tcbitem": {
-    "command": "tcbitem"
+    "command": "tcbitem",
+    "snippet": "tcbitem"
+  },
+  "tcbitem[]": {
+    "command": "tcbitem[options%keyvals]",
+    "snippet": "tcbitem[${1:options%keyvals}]"
   },
   "tcbinputlisting": {
     "command": "tcbinputlisting",
-    "snippet": "tcbinputlisting{${1}}"
+    "snippet": "tcbinputlisting{${1:options%keyvals}}"
   },
   "tcbuselistingtext": {
-    "command": "tcbuselistingtext"
+    "command": "tcbuselistingtext",
+    "snippet": "tcbuselistingtext"
   },
   "tcbuselistinglisting": {
-    "command": "tcbuselistinglisting"
+    "command": "tcbuselistinglisting",
+    "snippet": "tcbuselistinglisting"
   },
   "tcbusetemplisting": {
-    "command": "tcbusetemplisting"
+    "command": "tcbusetemplisting",
+    "snippet": "tcbusetemplisting"
   },
   "newtcblisting": {
     "command": "newtcblisting",
-    "snippet": "newtcblisting{${1}}{${2}}"
+    "snippet": "newtcblisting{${1:envname}}{${2:options%keyvals}}"
+  },
+  "newtcblisting[]{}[][]{}": {
+    "command": "newtcblisting[init options%keyvals]{envname}[number][default]{options%keyvals}",
+    "snippet": "newtcblisting[${3:init options%keyvals}]{${1:envname}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "renewtcblisting": {
     "command": "renewtcblisting",
-    "snippet": "renewtcblisting{${1}}{${2}}"
+    "snippet": "renewtcblisting{${1:envname}}{${2:options%keyvals}}"
+  },
+  "renewtcblisting[]{}[][]{}": {
+    "command": "renewtcblisting[init options%keyvals]{envname}[number][default]{options%keyvals}",
+    "snippet": "renewtcblisting[${3:init options%keyvals}]{${1:envname}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "newtcbinputlisting": {
     "command": "newtcbinputlisting",
-    "snippet": "newtcbinputlisting{${1}}{${2}}"
+    "snippet": "newtcbinputlisting{${1:\\name}}{${2:options%keyvals}}"
+  },
+  "newtcbinputlisting[]{}[][]{}": {
+    "command": "newtcbinputlisting[init options%keyvals]{\\name}[number][default]{options%keyvals}",
+    "snippet": "newtcbinputlisting[${3:init options%keyvals}]{${1:\\name}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "newtcbtheorem": {
     "command": "newtcbtheorem",
-    "snippet": "newtcbtheorem{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "newtcbtheorem{${1:envname}}{${2:display name}}{${3:options%keyvals}}{${4:prefix}}"
+  },
+  "newtcbtheorem[]{}{}{}{}": {
+    "command": "newtcbtheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}",
+    "snippet": "newtcbtheorem[${5:init options%keyvals}]{${1:envname}}{${2:display name}}{${3:options%keyvals}}{${4:prefix}}"
   },
   "renewtcbtheorem": {
     "command": "renewtcbtheorem",
-    "snippet": "renewtcbtheorem{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "renewtcbtheorem{${1:envname}}{${2:display name}}{${3:options%keyvals}}{${4:prefix}}"
+  },
+  "renewtcbtheorem[]{}{}{}{}": {
+    "command": "renewtcbtheorem[init options%keyvals]{envname}{display name}{options%keyvals}{prefix}",
+    "snippet": "renewtcbtheorem[${5:init options%keyvals}]{${1:envname}}{${2:display name}}{${3:options%keyvals}}{${4:prefix}}"
   },
   "tcbmaketheorem": {
     "command": "tcbmaketheorem",
-    "snippet": "tcbmaketheorem{${1}}{${2}}{${3}}{${4}}{${5}}"
+    "snippet": "tcbmaketheorem{${1:name}}{${2:display name}}{${3:options%keyvals}}{${4:counter}}{${5:prefix}}"
   },
-  "tcboxmath": {
-    "command": "tcboxmath",
-    "snippet": "tcboxmath{${1}}"
+  "tcboxmath[]{}": {
+    "command": "tcboxmath[options%keyvals]{mathematical box content}",
+    "snippet": "tcboxmath[${2:options%keyvals}]{${1:mathematical box content}}"
   },
-  "tcbhighmath": {
-    "command": "tcbhighmath",
-    "snippet": "tcbhighmath{${1}}"
+  "tcbhighmath[]{}": {
+    "command": "tcbhighmath[options%keyvals]{mathematical box content}",
+    "snippet": "tcbhighmath[${2:options%keyvals}]{${1:mathematical box content}}"
   },
   "tcbbreak": {
-    "command": "tcbbreak"
+    "command": "tcbbreak",
+    "snippet": "tcbbreak"
   },
   "newboxarray": {
     "command": "newboxarray",
-    "snippet": "newboxarray{${1}}"
+    "snippet": "newboxarray{${1:name}}"
   },
   "boxarrayreset": {
-    "command": "boxarrayreset"
+    "command": "boxarrayreset",
+    "snippet": "boxarrayreset"
+  },
+  "boxarrayreset[]": {
+    "command": "boxarrayreset[%<name%>]",
+    "snippet": "boxarrayreset[${1:%<name%>}]"
   },
   "boxarrayclear": {
-    "command": "boxarrayclear"
+    "command": "boxarrayclear",
+    "snippet": "boxarrayclear"
+  },
+  "boxarrayclear[]": {
+    "command": "boxarrayclear[%<name%>]",
+    "snippet": "boxarrayclear[${1:%<name%>}]"
   },
   "boxarraygetsize": {
     "command": "boxarraygetsize",
-    "snippet": "boxarraygetsize{${1}}"
+    "snippet": "boxarraygetsize{${1:macro}}"
+  },
+  "boxarraygetsize[]{}": {
+    "command": "boxarraygetsize[name]{macro}",
+    "snippet": "boxarraygetsize[${2:name}]{${1:macro}}"
   },
   "useboxarray": {
     "command": "useboxarray",
-    "snippet": "useboxarray{${1}}"
+    "snippet": "useboxarray{${1:index}}"
+  },
+  "useboxarray[]{}": {
+    "command": "useboxarray[name]{index}",
+    "snippet": "useboxarray[${2:name}]{${1:index}}"
   },
   "usetcboxarray": {
     "command": "usetcboxarray",
-    "snippet": "usetcboxarray{${1}}{${2}}"
+    "snippet": "usetcboxarray{${1:index}}{${2:options%keyvals}}"
+  },
+  "usetcboxarray[]{}{}": {
+    "command": "usetcboxarray[name]{index}{options%keyvals}",
+    "snippet": "usetcboxarray[${3:name}]{${1:index}}{${2:options%keyvals}}"
   },
   "consumeboxarray": {
     "command": "consumeboxarray",
-    "snippet": "consumeboxarray{${1}}"
+    "snippet": "consumeboxarray{${1:index}}"
+  },
+  "consumeboxarray[]{}": {
+    "command": "consumeboxarray[name]{index}",
+    "snippet": "consumeboxarray[${2:name}]{${1:index}}"
   },
   "consumetcboxarray": {
     "command": "consumetcboxarray",
-    "snippet": "consumetcboxarray{${1}}{${2}}"
+    "snippet": "consumetcboxarray{${1:index}}{${2:options%keyvals}}"
+  },
+  "consumetcboxarray[]{}{}": {
+    "command": "consumetcboxarray[name]{index}{options%keyvals}",
+    "snippet": "consumetcboxarray[${3:name}]{${1:index}}{${2:options%keyvals}}"
   },
   "boxarraygetbox": {
     "command": "boxarraygetbox",
-    "snippet": "boxarraygetbox{${1}}{${2}}"
+    "snippet": "boxarraygetbox{${1:macro}}{${2:index}}"
+  },
+  "boxarraygetbox[]{}{}": {
+    "command": "boxarraygetbox[name]{macro}{index}",
+    "snippet": "boxarraygetbox[${3:name}]{${1:macro}}{${2:index}}"
   },
   "ifboxarrayempty": {
     "command": "ifboxarrayempty",
-    "snippet": "ifboxarrayempty{${1}}{${2}}{${3}}"
+    "snippet": "ifboxarrayempty{${1:index}}{${2:true}}{${3:false}}"
+  },
+  "ifboxarrayempty[]{}{}{}": {
+    "command": "ifboxarrayempty[name]{index}{true}{false}",
+    "snippet": "ifboxarrayempty[${4:name}]{${1:index}}{${2:true}}{${3:false}}"
   },
   "boxarraygetwidth": {
     "command": "boxarraygetwidth",
-    "snippet": "boxarraygetwidth{${1}}{${2}}"
+    "snippet": "boxarraygetwidth{${1:macro}}{${2:index}}"
+  },
+  "boxarraygetwidth[]{}{}": {
+    "command": "boxarraygetwidth[name]{macro}{index}",
+    "snippet": "boxarraygetwidth[${3:name}]{${1:macro}}{${2:index}}"
   },
   "boxarraygetheight": {
     "command": "boxarraygetheight",
-    "snippet": "boxarraygetheight{${1}}{${2}}"
+    "snippet": "boxarraygetheight{${1:macro}}{${2:index}}"
+  },
+  "boxarraygetheight[]{}{}": {
+    "command": "boxarraygetheight[name]{macro}{index}",
+    "snippet": "boxarraygetheight[${3:name}]{${1:macro}}{${2:index}}"
   },
   "boxarraygetdepth": {
     "command": "boxarraygetdepth",
-    "snippet": "boxarraygetdepth{${1}}{${2}}"
+    "snippet": "boxarraygetdepth{${1:macro}}{${2:index}}"
+  },
+  "boxarraygetdepth[]{}{}": {
+    "command": "boxarraygetdepth[name]{macro}{index}",
+    "snippet": "boxarraygetdepth[${3:name}]{${1:macro}}{${2:index}}"
   },
   "boxarraygettotalheight": {
     "command": "boxarraygettotalheight",
-    "snippet": "boxarraygettotalheight{${1}}{${2}}"
+    "snippet": "boxarraygettotalheight{${1:macro}}{${2:index}}"
+  },
+  "boxarraygettotalheight[]{}{}": {
+    "command": "boxarraygettotalheight[name]{macro}{index}",
+    "snippet": "boxarraygettotalheight[${3:name}]{${1:macro}}{${2:index}}"
   },
   "tcbposterwidth": {
-    "command": "tcbposterwidth"
+    "command": "tcbposterwidth",
+    "snippet": "tcbposterwidth"
   },
   "tcbposterheight": {
-    "command": "tcbposterheight"
+    "command": "tcbposterheight",
+    "snippet": "tcbposterheight"
   },
   "tcbpostercolspacing": {
-    "command": "tcbpostercolspacing"
+    "command": "tcbpostercolspacing",
+    "snippet": "tcbpostercolspacing"
   },
   "tcbposterrowspacing": {
-    "command": "tcbposterrowspacing"
+    "command": "tcbposterrowspacing",
+    "snippet": "tcbposterrowspacing"
   },
   "tcbpostercolumns": {
-    "command": "tcbpostercolumns"
+    "command": "tcbpostercolumns",
+    "snippet": "tcbpostercolumns"
   },
   "tcbposterrows": {
-    "command": "tcbposterrows"
+    "command": "tcbposterrows",
+    "snippet": "tcbposterrows"
   },
   "tcbpostercolwidth": {
-    "command": "tcbpostercolwidth"
+    "command": "tcbpostercolwidth",
+    "snippet": "tcbpostercolwidth"
   },
   "tcbposterrowheight": {
-    "command": "tcbposterrowheight"
+    "command": "tcbposterrowheight",
+    "snippet": "tcbposterrowheight"
   },
   "tcbposterset": {
     "command": "tcbposterset",
-    "snippet": "tcbposterset{${1}}"
+    "snippet": "tcbposterset{${1:options%keyvals}}"
   },
   "posterbox": {
     "command": "posterbox",
-    "snippet": "posterbox{${1}}{${2}}"
+    "snippet": "posterbox{${1:placement}}{${2:box content}}"
+  },
+  "posterbox[]{}{}": {
+    "command": "posterbox[options%keyvals]{placement}{box content}",
+    "snippet": "posterbox[${3:options%keyvals}]{${1:placement}}{${2:box content}}"
   },
   "tcboxfit": {
     "command": "tcboxfit",
-    "snippet": "tcboxfit{${1}}"
+    "snippet": "tcboxfit{${1:box content}}"
+  },
+  "tcboxfit[]{}": {
+    "command": "tcboxfit[options%keyvals]{box content}",
+    "snippet": "tcboxfit[${2:options%keyvals}]{${1:box content}}"
   },
   "newtcboxfit": {
     "command": "newtcboxfit",
-    "snippet": "newtcboxfit{${1}}{${2}}"
+    "snippet": "newtcboxfit{${1:\\name}}{${2:options%keyvals}}"
+  },
+  "newtcboxfit[]{}[][]{}": {
+    "command": "newtcboxfit[init options%keyvals]{\\name}[number][default]{options%keyvals}",
+    "snippet": "newtcboxfit[${3:init options%keyvals}]{${1:\\name}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "renewtcboxfit": {
     "command": "renewtcboxfit",
-    "snippet": "renewtcboxfit{${1}}{${2}}"
+    "snippet": "renewtcboxfit{${1:\\name}}{${2:options%keyvals}}"
+  },
+  "renewtcboxfit[]{}[][]{}": {
+    "command": "renewtcboxfit[init options%keyvals]{\\name}[number][default]{options%keyvals}",
+    "snippet": "renewtcboxfit[${3:init options%keyvals}]{${1:\\name}}[${4:number}][${5:default}]{${2:options%keyvals}}"
   },
   "tcbfontsize": {
     "command": "tcbfontsize",
-    "snippet": "tcbfontsize{${1}}"
+    "snippet": "tcbfontsize{${1:factor}}"
   },
   "tcbfitdim": {
-    "command": "tcbfitdim"
+    "command": "tcbfitdim",
+    "snippet": "tcbfitdim"
   },
   "tcbfitsteps": {
-    "command": "tcbfitsteps"
+    "command": "tcbfitsteps",
+    "snippet": "tcbfitsteps"
   },
   "DeclareTColorBox": {
     "command": "DeclareTColorBox",
-    "snippet": "DeclareTColorBox{${1}}{${2}}{${3}}"
+    "snippet": "DeclareTColorBox{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "DeclareTColorBox[]{}{}{}": {
+    "command": "DeclareTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "DeclareTColorBox[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "NewTColorBox": {
     "command": "NewTColorBox",
-    "snippet": "NewTColorBox{${1}}{${2}}{${3}}"
+    "snippet": "NewTColorBox{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "NewTColorBox[]{}{}{}": {
+    "command": "NewTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "NewTColorBox[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "RenewTColorBox": {
     "command": "RenewTColorBox",
-    "snippet": "RenewTColorBox{${1}}{${2}}{${3}}"
+    "snippet": "RenewTColorBox{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "RenewTColorBox[]{}{}{}": {
+    "command": "RenewTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "RenewTColorBox[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "ProvideTColorBox": {
     "command": "ProvideTColorBox",
-    "snippet": "ProvideTColorBox{${1}}{${2}}{${3}}"
+    "snippet": "ProvideTColorBox{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "ProvideTColorBox[]{}{}{}": {
+    "command": "ProvideTColorBox[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "ProvideTColorBox[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "DeclareTotalTColorBox": {
     "command": "DeclareTotalTColorBox",
-    "snippet": "DeclareTotalTColorBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "DeclareTotalTColorBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "DeclareTotalTColorBox[]{}{}{}{}": {
+    "command": "DeclareTotalTColorBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "DeclareTotalTColorBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "NewTotalTColorBox": {
     "command": "NewTotalTColorBox",
-    "snippet": "NewTotalTColorBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "NewTotalTColorBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "NewTotalTColorBox[]{}{}{}{}": {
+    "command": "NewTotalTColorBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "NewTotalTColorBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "RenewTotalTColorBox": {
     "command": "RenewTotalTColorBox",
-    "snippet": "RenewTotalTColorBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "RenewTotalTColorBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "RenewTotalTColorBox[]{}{}{}{}": {
+    "command": "RenewTotalTColorBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "RenewTotalTColorBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "ProvideTotalTColorBox": {
     "command": "ProvideTotalTColorBox",
-    "snippet": "ProvideTotalTColorBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "ProvideTotalTColorBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "ProvideTotalTColorBox[]{}{}{}{}": {
+    "command": "ProvideTotalTColorBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "ProvideTotalTColorBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "DeclareTCBox": {
     "command": "DeclareTCBox",
-    "snippet": "DeclareTCBox{${1}}{${2}}{${3}}"
+    "snippet": "DeclareTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "DeclareTCBox[]{}{}{}": {
+    "command": "DeclareTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "DeclareTCBox[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "NewTCBox": {
     "command": "NewTCBox",
-    "snippet": "NewTCBox{${1}}{${2}}{${3}}"
+    "snippet": "NewTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "NewTCBox[]{}{}{}": {
+    "command": "NewTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "NewTCBox[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "RenewTCBox": {
     "command": "RenewTCBox",
-    "snippet": "RenewTCBox{${1}}{${2}}{${3}}"
+    "snippet": "RenewTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "RenewTCBox[]{}{}{}": {
+    "command": "RenewTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "RenewTCBox[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "ProvideTCBox": {
     "command": "ProvideTCBox",
-    "snippet": "ProvideTCBox{${1}}{${2}}{${3}}"
+    "snippet": "ProvideTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "ProvideTCBox[]{}{}{}": {
+    "command": "ProvideTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "ProvideTCBox[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "DeclareTotalTCBox": {
     "command": "DeclareTotalTCBox",
-    "snippet": "DeclareTotalTCBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "DeclareTotalTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "DeclareTotalTCBox[]{}{}{}{}": {
+    "command": "DeclareTotalTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "DeclareTotalTCBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "NewTotalTCBox": {
     "command": "NewTotalTCBox",
-    "snippet": "NewTotalTCBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "NewTotalTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "NewTotalTCBox[]{}{}{}{}": {
+    "command": "NewTotalTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "NewTotalTCBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "RenewTotalTCBox": {
     "command": "RenewTotalTCBox",
-    "snippet": "RenewTotalTCBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "RenewTotalTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "RenewTotalTCBox[]{}{}{}{}": {
+    "command": "RenewTotalTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "RenewTotalTCBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "ProvideTotalTCBox": {
     "command": "ProvideTotalTCBox",
-    "snippet": "ProvideTotalTCBox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "ProvideTotalTCBox{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "ProvideTotalTCBox[]{}{}{}{}": {
+    "command": "ProvideTotalTCBox[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "ProvideTotalTCBox[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "tcboxverb": {
     "command": "tcboxverb",
-    "snippet": "tcboxverb{${1}}"
+    "snippet": "tcboxverb{${1:verbatim box content}}"
+  },
+  "tcboxverb[]{}": {
+    "command": "tcboxverb[options%keyvals]{verbatim box content}",
+    "snippet": "tcboxverb[${2:options%keyvals}]{${1:verbatim box content}}"
   },
   "DeclareTCBListing": {
     "command": "DeclareTCBListing",
-    "snippet": "DeclareTCBListing{${1}}{${2}}{${3}}"
+    "snippet": "DeclareTCBListing{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "DeclareTCBListing[]{}{}{}": {
+    "command": "DeclareTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "DeclareTCBListing[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "NewTCBListing": {
     "command": "NewTCBListing",
-    "snippet": "NewTCBListing{${1}}{${2}}{${3}}"
+    "snippet": "NewTCBListing{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "NewTCBListing[]{}{}{}": {
+    "command": "NewTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "NewTCBListing[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "RenewTCBListing": {
     "command": "RenewTCBListing",
-    "snippet": "RenewTCBListing{${1}}{${2}}{${3}}"
+    "snippet": "RenewTCBListing{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "RenewTCBListing[]{}{}{}": {
+    "command": "RenewTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "RenewTCBListing[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "ProvideTCBListing": {
     "command": "ProvideTCBListing",
-    "snippet": "ProvideTCBListing{${1}}{${2}}{${3}}"
+    "snippet": "ProvideTCBListing{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "ProvideTCBListing[]{}{}{}": {
+    "command": "ProvideTCBListing[init options%keyvals]{envname}{specification}{options%keyvals}",
+    "snippet": "ProvideTCBListing[${4:init options%keyvals}]{${1:envname}}{${2:specification}}{${3:options%keyvals}}"
   },
   "DeclareTCBInputListing": {
     "command": "DeclareTCBInputListing",
-    "snippet": "DeclareTCBInputListing{${1}}{${2}}{${3}}"
+    "snippet": "DeclareTCBInputListing{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "DeclareTCBInputListing[]{}{}{}": {
+    "command": "DeclareTCBInputListing[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "DeclareTCBInputListing[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "NewTCBInputListing": {
     "command": "NewTCBInputListing",
-    "snippet": "NewTCBInputListing{${1}}{${2}}{${3}}"
+    "snippet": "NewTCBInputListing{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "NewTCBInputListing[]{}{}{}": {
+    "command": "NewTCBInputListing[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "NewTCBInputListing[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "RenewTCBInputListing": {
     "command": "RenewTCBInputListing",
-    "snippet": "RenewTCBInputListing{${1}}{${2}}{${3}}"
+    "snippet": "RenewTCBInputListing{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "RenewTCBInputListing[]{}{}{}": {
+    "command": "RenewTCBInputListing[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "RenewTCBInputListing[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "ProvideTCBInputListing": {
     "command": "ProvideTCBInputListing",
-    "snippet": "ProvideTCBInputListing{${1}}{${2}}{${3}}"
+    "snippet": "ProvideTCBInputListing{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "ProvideTCBInputListing[]{}{}{}": {
+    "command": "ProvideTCBInputListing[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "ProvideTCBInputListing[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "DeclareTCBoxFit": {
     "command": "DeclareTCBoxFit",
-    "snippet": "DeclareTCBoxFit{${1}}{${2}}{${3}}"
+    "snippet": "DeclareTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "DeclareTCBoxFit[]{}{}{}": {
+    "command": "DeclareTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "DeclareTCBoxFit[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "NewTCBoxFit": {
     "command": "NewTCBoxFit",
-    "snippet": "NewTCBoxFit{${1}}{${2}}{${3}}"
+    "snippet": "NewTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "NewTCBoxFit[]{}{}{}": {
+    "command": "NewTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "NewTCBoxFit[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "RenewTCBoxFit": {
     "command": "RenewTCBoxFit",
-    "snippet": "RenewTCBoxFit{${1}}{${2}}{${3}}"
+    "snippet": "RenewTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "RenewTCBoxFit[]{}{}{}": {
+    "command": "RenewTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "RenewTCBoxFit[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "ProvideTCBoxFit": {
     "command": "ProvideTCBoxFit",
-    "snippet": "ProvideTCBoxFit{${1}}{${2}}{${3}}"
+    "snippet": "ProvideTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
+  },
+  "ProvideTCBoxFit[]{}{}{}": {
+    "command": "ProvideTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}",
+    "snippet": "ProvideTCBoxFit[${4:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}"
   },
   "DeclareTotalTCBoxFit": {
     "command": "DeclareTotalTCBoxFit",
-    "snippet": "DeclareTotalTCBoxFit{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "DeclareTotalTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "DeclareTotalTCBoxFit[]{}{}{}{}": {
+    "command": "DeclareTotalTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "DeclareTotalTCBoxFit[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "NewTotalTCBoxFit": {
     "command": "NewTotalTCBoxFit",
-    "snippet": "NewTotalTCBoxFit{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "NewTotalTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "NewTotalTCBoxFit[]{}{}{}{}": {
+    "command": "NewTotalTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "NewTotalTCBoxFit[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "RenewTotalTCBoxFit": {
     "command": "RenewTotalTCBoxFit",
-    "snippet": "RenewTotalTCBoxFit{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "RenewTotalTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "RenewTotalTCBoxFit[]{}{}{}{}": {
+    "command": "RenewTotalTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "RenewTotalTCBoxFit[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "ProvideTotalTCBoxFit": {
     "command": "ProvideTotalTCBoxFit",
-    "snippet": "ProvideTotalTCBoxFit{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "ProvideTotalTCBoxFit{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
+  },
+  "ProvideTotalTCBoxFit[]{}{}{}{}": {
+    "command": "ProvideTotalTCBoxFit[init options%keyvals]{\\name}{specification}{options%keyvals}{content}",
+    "snippet": "ProvideTotalTCBoxFit[${5:init options%keyvals}]{${1:\\name}}{${2:specification}}{${3:options%keyvals}}{${4:content}}"
   },
   "tcbEXTERNALIZE": {
-    "command": "tcbEXTERNALIZE"
+    "command": "tcbEXTERNALIZE",
+    "snippet": "tcbEXTERNALIZE"
   },
   "tcbifexternal": {
     "command": "tcbifexternal",
-    "snippet": "tcbifexternal{${1}}{${2}}"
+    "snippet": "tcbifexternal{${1:true}}{${2:false}}"
   },
   "newtcbexternalizeenvironment": {
     "command": "newtcbexternalizeenvironment",
-    "snippet": "newtcbexternalizeenvironment{${1}}{${2}}{${3}}{${4}}{${5}}"
+    "snippet": "newtcbexternalizeenvironment{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begin}}{${5:end}}"
   },
   "renewtcbexternalizeenvironment": {
     "command": "renewtcbexternalizeenvironment",
-    "snippet": "renewtcbexternalizeenvironment{${1}}{${2}}{${3}}{${4}}{${5}}"
+    "snippet": "renewtcbexternalizeenvironment{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begin}}{${5:end}}"
   },
   "newtcbexternalizetcolorbox": {
     "command": "newtcbexternalizetcolorbox",
-    "snippet": "newtcbexternalizetcolorbox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "newtcbexternalizetcolorbox{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begin end options}}"
   },
   "renewtcbexternalizetcolorbox": {
     "command": "renewtcbexternalizetcolorbox",
-    "snippet": "renewtcbexternalizetcolorbox{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "renewtcbexternalizetcolorbox{${1:newenv%envname}}{${2:env}}{${3:options%keyvals}}{${4:begin end options}}"
   },
   "tcbiffileprocess": {
     "command": "tcbiffileprocess",
-    "snippet": "tcbiffileprocess{${1}}{${2}}{${3}}{${4}}{${5}}{${6}}"
+    "snippet": "tcbiffileprocess{${1:condition}}{${2:source}}{${3:md5-file}}{${4:target}}{${5:true}}{${6:false}}"
   },
   "docValue": {
     "command": "docValue",
-    "snippet": "docValue{${1}}"
+    "snippet": "docValue{${1:name}}"
   },
   "docValue*": {
     "command": "docValue*",
-    "snippet": "docValue*{${1}}"
+    "snippet": "docValue*{${1:name}}"
   },
   "docAuxCommand": {
     "command": "docAuxCommand",
-    "snippet": "docAuxCommand{${1}}"
+    "snippet": "docAuxCommand{${1:name}}"
   },
   "docAuxCommand*": {
     "command": "docAuxCommand*",
-    "snippet": "docAuxCommand*{${1}}"
+    "snippet": "docAuxCommand*{${1:name}}"
   },
   "docAuxEnvironment": {
     "command": "docAuxEnvironment",
-    "snippet": "docAuxEnvironment{${1}}"
+    "snippet": "docAuxEnvironment{${1:name}}"
   },
   "docAuxEnvironment*": {
     "command": "docAuxEnvironment*",
-    "snippet": "docAuxEnvironment*{${1}}"
+    "snippet": "docAuxEnvironment*{${1:name}}"
+  },
+  "docAuxEnvironment*[]{}": {
+    "command": "docAuxEnvironment*[key path]{name}",
+    "snippet": "docAuxEnvironment*[${2:key path}]{${1:name}}"
   },
   "docAuxKey": {
     "command": "docAuxKey",
-    "snippet": "docAuxKey{${1}}"
+    "snippet": "docAuxKey{${1:name}}"
+  },
+  "docAuxKey[]{}": {
+    "command": "docAuxKey[key path]{name}",
+    "snippet": "docAuxKey[${2:key path}]{${1:name}}"
   },
   "docAuxKey*": {
     "command": "docAuxKey*",
-    "snippet": "docAuxKey*{${1}}"
+    "snippet": "docAuxKey*{${1:name}}"
+  },
+  "docAuxKey*[]{}": {
+    "command": "docAuxKey*[key path]{name}",
+    "snippet": "docAuxKey*[${2:key path}]{${1:name}}"
   },
   "docCounter": {
     "command": "docCounter",
-    "snippet": "docCounter{${1}}"
+    "snippet": "docCounter{${1:name}}"
   },
   "docCounter*": {
     "command": "docCounter*",
-    "snippet": "docCounter*{${1}}"
+    "snippet": "docCounter*{${1:name}}"
   },
   "docLength": {
     "command": "docLength",
-    "snippet": "docLength{${1}}"
+    "snippet": "docLength{${1:name}}"
   },
   "docLength*": {
     "command": "docLength*",
-    "snippet": "docLength*{${1}}"
+    "snippet": "docLength*{${1:name}}"
   },
   "docColor": {
     "command": "docColor",
-    "snippet": "docColor{${1}}"
+    "snippet": "docColor{${1:name}}"
   },
   "docColor*": {
     "command": "docColor*",
-    "snippet": "docColor*{${1}}"
+    "snippet": "docColor*{${1:name}}"
   },
   "cs": {
     "command": "cs",
-    "snippet": "cs{${1}}"
+    "snippet": "cs{${1:name}}"
   },
   "meta": {
     "command": "meta",
-    "snippet": "meta{${1}}"
+    "snippet": "meta{${1:text}}"
   },
   "marg": {
     "command": "marg",
-    "snippet": "marg{${1}}"
+    "snippet": "marg{${1:text}}"
   },
   "oarg": {
     "command": "oarg",
-    "snippet": "oarg{${1}}"
+    "snippet": "oarg{${1:text}}"
   },
   "brackets": {
     "command": "brackets",
-    "snippet": "brackets{${1}}"
+    "snippet": "brackets{${1:text}}"
   },
   "begin*": {
     "command": "begin*",
-    "snippet": "begin*{${1}}{${2}}"
+    "snippet": "begin*{${1:dispListing}}{${2:options%keyvals}}"
   },
   "end*": {
     "command": "end*",
-    "snippet": "end*{${1}}"
+    "snippet": "end*{${1:dispListing}}"
   },
   "tcbmakedocSubKey": {
     "command": "tcbmakedocSubKey",
-    "snippet": "tcbmakedocSubKey{${1}}{${2}}"
+    "snippet": "tcbmakedocSubKey{${1:name}}{${2:key path}}"
   },
   "refCom": {
     "command": "refCom",
-    "snippet": "refCom{${1}}"
+    "snippet": "refCom{${1:name}}"
   },
   "refCom*": {
     "command": "refCom*",
-    "snippet": "refCom*{${1}}"
+    "snippet": "refCom*{${1:name}}"
   },
   "refEnv": {
     "command": "refEnv",
-    "snippet": "refEnv{${1}}"
+    "snippet": "refEnv{${1:name}}"
   },
   "refEnv*": {
     "command": "refEnv*",
-    "snippet": "refEnv*{${1}}"
+    "snippet": "refEnv*{${1:name}}"
   },
   "refKey": {
     "command": "refKey",
-    "snippet": "refKey{${1}}"
+    "snippet": "refKey{${1:name}}"
   },
   "refKey*": {
     "command": "refKey*",
-    "snippet": "refKey*{${1}}"
+    "snippet": "refKey*{${1:name}}"
   },
   "refAux": {
     "command": "refAux",
-    "snippet": "refAux{${1}}"
+    "snippet": "refAux{${1:name}}"
   },
   "refAuxcs": {
     "command": "refAuxcs",
-    "snippet": "refAuxcs{${1}}"
+    "snippet": "refAuxcs{${1:name}}"
   },
   "colDef": {
     "command": "colDef",
-    "snippet": "colDef{${1}}"
+    "snippet": "colDef{${1:text}}"
   },
   "col0pt": {
     "command": "col0pt",
-    "snippet": "col0pt{${1}}"
+    "snippet": "col0pt{${1:text}}"
   },
   "tcbdocmarginnote": {
     "command": "tcbdocmarginnote",
-    "snippet": "tcbdocmarginnote{${1}}"
+    "snippet": "tcbdocmarginnote{${1:text}}"
+  },
+  "tcbdocmarginnote[]{}": {
+    "command": "tcbdocmarginnote[options%keyvals]{text}",
+    "snippet": "tcbdocmarginnote[${2:options%keyvals}]{${1:text}}"
   },
   "tcbdocnew": {
     "command": "tcbdocnew",
-    "snippet": "tcbdocnew{${1}}"
+    "snippet": "tcbdocnew{${1:date}}"
   },
   "tcbdocupdated": {
     "command": "tcbdocupdated",
-    "snippet": "tcbdocupdated{${1}}"
+    "snippet": "tcbdocupdated{${1:date}}"
   }
 }
