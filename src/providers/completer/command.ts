@@ -21,9 +21,14 @@ export class Command {
         this.extension = extension
     }
 
-    initialize(defaultCommands: {[key: string]: AutocompleteEntry},
-               defaultEnvs: string[]) {
+    initialize(defaultCommands: {[key: string]: AutocompleteEntry}, defaultEnvs: string[]) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
+
         Object.keys(defaultCommands).forEach(key => {
+            if (!useOptionalArgsEntries && key.indexOf('[') > -1) {
+                return
+            }
             const item = defaultCommands[key]
             this.defaultCommands[key] = this.entryToCompletionItem(item)
         })
@@ -150,9 +155,14 @@ export class Command {
     }
 
     entryToCompletionItem(item: AutocompleteEntry) : vscode.CompletionItem {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command[0] === ' ' ? '' : '\\'
         const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
         if (item.snippet) {
+            if (useTabStops) {
+                item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$$$1')
+            }
             command.insertText = new vscode.SnippetString(item.snippet)
         } else {
             command.insertText = item.command
@@ -178,7 +188,6 @@ export class Command {
             return
         }
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
-        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         if (!(pkg in this.packageCmds)) {
             let filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
             if (!fs.existsSync(filePath)) {
@@ -199,9 +208,6 @@ export class Command {
                     }
                     if (!useOptionalArgsEntries && cmd.indexOf('[') > -1) {
                         return
-                    }
-                    if (useTabStops) {
-                        cmds[cmd].snippet = cmds[cmd].snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$$$1')
                     }
                     this.packageCmds[pkg][cmd] = this.entryToCompletionItem(cmds[cmd])
                 })
