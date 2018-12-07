@@ -115,8 +115,19 @@ document.addEventListener('pagerendered', (e) => {
     let canvas_dom = e.target.childNodes[1]
     canvas_dom.onclick = (e) => {
         if (!(e.ctrlKey || e.metaKey)) return
-        let left = e.pageX - target.offsetLeft + target.parentNode.parentNode.scrollLeft
-        let top = e.pageY - target.offsetTop + target.parentNode.parentNode.scrollTop
+
+        let viewerContainer = null
+        // no spread
+        if(PDFViewerApplication.pdfViewer.spreadMode === 0){
+          viewerContainer = target.parentNode.parentNode
+        } 
+        // odd and even spread add an extra spread container
+        else {
+          viewerContainer = target.parentNode.parentNode.parentNode
+        }
+
+        let left = e.pageX - target.offsetLeft + viewerContainer.scrollLeft
+        let top = e.pageY - target.offsetTop + viewerContainer.scrollTop
         let pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
         socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page}))
     }
