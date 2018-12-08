@@ -371,6 +371,7 @@ export class Manager {
         this.extension.completer.command.getCommandsTeX(filePath)
         this.extension.completer.command.getPackage(filePath)
         this.extension.completer.reference.getReferencesTeX(filePath)
+        this.extension.completer.citation.getTheBibliographyTeX(filePath)
     }
 
     addBibToWatcher(bib: string, rootDir: string) {
