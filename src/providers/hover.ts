@@ -78,6 +78,12 @@ export class HoverProvider implements vscode.HoverProvider {
                 ))
                 return
             }
+            if (token in this.extension.completer.citation.theBibliographyData) {
+                resolve(new vscode.Hover(
+                    this.extension.completer.citation.theBibliographyData[token].text
+                ))
+                return
+            }
             resolve()
         })
     }
