@@ -6,7 +6,7 @@ import {Extension} from '../../main'
 export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    referenceData: {[id: string]: {item: {[id: string]: any}, text: string, file: string}} = {}
+    referenceData: {[id: string]: {item: {reference: string, text: string, position: vscode.Position}, text: string, file: string}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {

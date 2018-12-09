@@ -19,7 +19,7 @@ export class Citation {
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: CitationRecord[] } = {}
     citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
-    theBibliographyData: {[id: string]: {item: {[id: string]: any}, text: string, file: string}} = {}
+    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -92,7 +92,7 @@ export class Citation {
         }
         Object.keys(suggestions).map(key => {
             const item = suggestions[key]
-            const citation = new vscode.CompletionItem(item.reference, vscode.CompletionItemKind.Reference)
+            const citation = new vscode.CompletionItem(item.citation, vscode.CompletionItemKind.Reference)
             citation.detail = item.text
             if (args) {
                 citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
@@ -289,7 +289,7 @@ export class Citation {
                 const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
                 const positionContent = content.substring(0, result.index).split('\n')
                 items[result[1]] = {
-                    reference: result[1],
+                    citation: result[1],
                     text: `${postContent}\n...`,
                     position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
                 }
