@@ -34,6 +34,13 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
                 ))
                 return
             }
+            if (token in this.extension.completer.citation.theBibliographyData) {
+                const cite = this.extension.completer.citation.theBibliographyData[token]
+                resolve(new vscode.Location(
+                    vscode.Uri.file(cite.file), cite.item.position
+                ))
+                return
+            }
             if (token in this.extension.completer.command.newcommandData) {
                 const command = this.extension.completer.command.newcommandData[token]
                 resolve(new vscode.Location(
