@@ -42,6 +42,8 @@ export class HoverProvider implements vscode.HoverProvider {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const hov = configuration.get('hoverPreview.enabled') as boolean
+            const hovReference = configuration.get('hoverReference.enabled') as boolean
+            const hovCitation = configuration.get('hoverCitation.enabled') as boolean
             if (hov) {
                 const tr = this.findHoverOnTex(document, position)
                 if (tr) {
@@ -63,7 +65,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve()
                 return
             }
-            if (token in this.extension.completer.reference.referenceData) {
+            if (hovReference && token in this.extension.completer.reference.referenceData) {
                 const refData = this.extension.completer.reference.referenceData[token]
                 const line = refData.item.position.line
                 const mdLink = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
@@ -72,13 +74,13 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve( new vscode.Hover([md, mdLink]) )
                 return
             }
-            if (token in this.extension.completer.citation.citationData) {
+            if (hovCitation && token in this.extension.completer.citation.citationData) {
                 resolve(new vscode.Hover(
                     this.extension.completer.citation.citationData[token].text
                 ))
                 return
             }
-            if (token in this.extension.completer.citation.theBibliographyData) {
+            if (hovCitation && token in this.extension.completer.citation.theBibliographyData) {
                 resolve(new vscode.Hover(
                     this.extension.completer.citation.theBibliographyData[token].text
                 ))
