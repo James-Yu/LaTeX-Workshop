@@ -1,501 +1,678 @@
 {
   "AtBeginDocument": {
     "command": "AtBeginDocument",
-    "snippet": "AtBeginDocument{${1}}"
+    "snippet": "AtBeginDocument{${1:code}}"
   },
   "AtEndDocument": {
     "command": "AtEndDocument",
-    "snippet": "AtEndDocument{${1}}"
+    "snippet": "AtEndDocument{${1:code}}"
   },
   "AtEndOfClass": {
     "command": "AtEndOfClass",
-    "snippet": "AtEndOfClass{${1}}"
+    "snippet": "AtEndOfClass{${1:code}}"
   },
   "AtEndOfPackage": {
     "command": "AtEndOfPackage",
-    "snippet": "AtEndOfPackage{${1}}"
+    "snippet": "AtEndOfPackage{${1:code}}"
+  },
+  "CheckCommand{}[][]{}": {
+    "command": "CheckCommand{cmd}[args][default]{def}",
+    "snippet": "CheckCommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+  },
+  "CheckCommand{}[]{}": {
+    "command": "CheckCommand{cmd}[args]{def}",
+    "snippet": "CheckCommand{${1:cmd}}[${2:args}]{${3:def}}"
   },
   "CheckCommand": {
     "command": "CheckCommand",
-    "snippet": "CheckCommand{${1}}{${2}}"
+    "snippet": "CheckCommand{${1:cmd}}{${2:def}}"
   },
   "CurrentOption": {
-    "command": "CurrentOption"
+    "command": "CurrentOption",
+    "snippet": "CurrentOption"
   },
   "DeclareOption*": {
     "command": "DeclareOption*",
-    "snippet": "DeclareOption*{${1}}"
+    "snippet": "DeclareOption*{${1:code}}"
   },
   "DeclareOption": {
     "command": "DeclareOption",
-    "snippet": "DeclareOption{${1}}{${2}}"
+    "snippet": "DeclareOption{${1:option}}{${2:code}}"
   },
   "DeclareRobustCommand": {
-    "command": "DeclareRobustCommand"
+    "command": "DeclareRobustCommand",
+    "snippet": "DeclareRobustCommand"
   },
   "ExecuteOptions": {
     "command": "ExecuteOptions",
-    "snippet": "ExecuteOptions{${1}}"
+    "snippet": "ExecuteOptions{${1:optionlist}}"
   },
   "IfFileExists": {
     "command": "IfFileExists",
-    "snippet": "IfFileExists{${1}}{${2}}{${3}}"
+    "snippet": "IfFileExists{${1:file}}{${2:then}}{${3:else}}"
   },
   "InputIfFileExists": {
     "command": "InputIfFileExists",
-    "snippet": "InputIfFileExists{${1}}{${2}}{${3}}"
+    "snippet": "InputIfFileExists{${1:file}}{${2:then}}{${3:else}}"
+  },
+  "LoadClass[]{}": {
+    "command": "LoadClass[optionlist]{class}",
+    "snippet": "LoadClass[${2:optionlist}]{${1:class}}"
+  },
+  "LoadClass[]{}[]": {
+    "command": "LoadClass[optionlist]{class}[release]",
+    "snippet": "LoadClass[${2:optionlist}]{${1:class}}[${3:release}]"
   },
   "LoadClass": {
     "command": "LoadClass",
-    "snippet": "LoadClass{${1}}"
+    "snippet": "LoadClass{${1:class}}"
+  },
+  "LoadClass{}[]": {
+    "command": "LoadClass{class}[release]",
+    "snippet": "LoadClass{${1:class}}[${2:release}]"
   },
   "NeedsTeXFormat": {
     "command": "NeedsTeXFormat",
-    "snippet": "NeedsTeXFormat{${1}}"
+    "snippet": "NeedsTeXFormat{${1:format}}"
+  },
+  "NeedsTeXFormat{}[]": {
+    "command": "NeedsTeXFormat{format}[release]",
+    "snippet": "NeedsTeXFormat{${1:format}}[${2:release}]"
   },
   "OptionNotUsed": {
-    "command": "OptionNotUsed"
+    "command": "OptionNotUsed",
+    "snippet": "OptionNotUsed"
   },
   "PackageError": {
     "command": "PackageError",
-    "snippet": "PackageError{${1}}"
+    "snippet": "PackageError{${1:text}}"
   },
   "PackageInfo": {
     "command": "PackageInfo",
-    "snippet": "PackageInfo{${1}}"
+    "snippet": "PackageInfo{${1:text}}"
   },
   "PackageWarning": {
     "command": "PackageWarning",
-    "snippet": "PackageWarning{${1}}"
+    "snippet": "PackageWarning{${1:text}}"
   },
   "PackageWarningNoLine": {
     "command": "PackageWarningNoLine",
-    "snippet": "PackageWarningNoLine{${1}}"
+    "snippet": "PackageWarningNoLine{${1:text}}"
   },
   "PassOptionsToClass": {
     "command": "PassOptionsToClass",
-    "snippet": "PassOptionsToClass{${1}}{${2}}"
+    "snippet": "PassOptionsToClass{${1:optionlist}}{${2:class}}"
   },
   "PassOptionsToPackage": {
     "command": "PassOptionsToPackage",
-    "snippet": "PassOptionsToPackage{${1}}{${2}}"
+    "snippet": "PassOptionsToPackage{${1:optionlist}}{${2:package}}"
   },
   "ProcessOptions": {
-    "command": "ProcessOptions"
+    "command": "ProcessOptions",
+    "snippet": "ProcessOptions"
   },
   "ProcessOptions*": {
-    "command": "ProcessOptions*"
+    "command": "ProcessOptions*",
+    "snippet": "ProcessOptions*"
   },
   "ProvidesClass": {
     "command": "ProvidesClass",
-    "snippet": "ProvidesClass{${1}}"
+    "snippet": "ProvidesClass{${1:name}}"
+  },
+  "ProvidesClass{}[]": {
+    "command": "ProvidesClass{name}[release]",
+    "snippet": "ProvidesClass{${1:name}}[${2:release}]"
   },
   "ProvidesFile": {
     "command": "ProvidesFile",
-    "snippet": "ProvidesFile{${1}}{${2}}"
+    "snippet": "ProvidesFile{${1:name}}{${2:release}}"
   },
   "ProvidesPackage": {
     "command": "ProvidesPackage",
-    "snippet": "ProvidesPackage{${1}}"
+    "snippet": "ProvidesPackage{${1:name}}"
+  },
+  "ProvidesPackage{}[]": {
+    "command": "ProvidesPackage{name}[release]",
+    "snippet": "ProvidesPackage{${1:name}}[${2:release}]"
+  },
+  "RequirePackage[]{}": {
+    "command": "RequirePackage[optionlist]{package}",
+    "snippet": "RequirePackage[${2:optionlist}]{${1:package}}"
+  },
+  "RequirePackage[]{}[]": {
+    "command": "RequirePackage[optionlist]{package}[release]",
+    "snippet": "RequirePackage[${2:optionlist}]{${1:package}}[${3:release}]"
   },
   "RequirePackage": {
     "command": "RequirePackage",
-    "snippet": "RequirePackage{${1}}"
+    "snippet": "RequirePackage{${1:package}}"
+  },
+  "RequirePackage{}[]": {
+    "command": "RequirePackage{package}[release]",
+    "snippet": "RequirePackage{${1:package}}[${2:release}]"
   },
   "setcounter": {
     "command": "setcounter",
-    "snippet": "setcounter{${1}}{${2}}"
+    "snippet": "setcounter{${1:counter}}{${2:value}}"
   },
   "setlanguage": {
     "command": "setlanguage",
-    "snippet": "setlanguage{${1}}"
+    "snippet": "setlanguage{${1:language}}"
   },
   "setlength": {
     "command": "setlength",
-    "snippet": "setlength{${1}}{${2}}"
+    "snippet": "setlength{${1:\\gnat}}{${2:length}}"
   },
   "setpapersize": {
     "command": "setpapersize",
-    "snippet": "setpapersize{${1}}"
+    "snippet": "setpapersize{${1:layout}}"
   },
   "settodepth": {
     "command": "settodepth",
-    "snippet": "settodepth{${1}}{${2}}"
+    "snippet": "settodepth{${1:\\gnat}}{${2:text}}"
   },
   "settoheight": {
     "command": "settoheight",
-    "snippet": "settoheight{${1}}{${2}}"
+    "snippet": "settoheight{${1:\\gnat}}{${2:text}}"
   },
   "settowidth": {
     "command": "settowidth",
-    "snippet": "settowidth{${1}}{${2}}"
+    "snippet": "settowidth{${1:\\gnat}}{${2:text}}"
   },
   "addto": {
-    "command": "addto"
+    "command": "addto",
+    "snippet": "addto"
   },
   "addtocontents": {
     "command": "addtocontents",
-    "snippet": "addtocontents{${1}}{${2}}"
+    "snippet": "addtocontents{${1:file}}{${2:text}}"
   },
   "addtocounter": {
     "command": "addtocounter",
-    "snippet": "addtocounter{${1}}{${2}}"
+    "snippet": "addtocounter{${1:counter}}{${2:value}}"
   },
   "addtolength": {
     "command": "addtolength",
-    "snippet": "addtolength{${1}}{${2}}"
+    "snippet": "addtolength{${1:\\gnat}}{${2:length}}"
   },
   "addtoversion": {
-    "command": "addtoversion"
+    "command": "addtoversion",
+    "snippet": "addtoversion"
   },
   "addvspace": {
     "command": "addvspace",
-    "snippet": "addvspace{${1}}"
+    "snippet": "addvspace{${1:length}}"
   },
-  "deffootnote": {
-    "command": "deffootnote",
-    "snippet": "deffootnote{${1}}{${2}}{${3}}"
+  "deffootnote[}{}{}{}": {
+    "command": "deffootnote[width}{indention}{par indention}{definition}",
+    "snippet": "deffootnote[width}{${1:indention}}{${2:par indention}}{${3:definition}}"
   },
   "newcounter": {
     "command": "newcounter",
-    "snippet": "newcounter{${1}}"
+    "snippet": "newcounter{${1:foo}}"
+  },
+  "newcounter{}[]": {
+    "command": "newcounter{foo}[counter]",
+    "snippet": "newcounter{${1:foo}}[${2:counter}]"
   },
   "refstepcounter": {
     "command": "refstepcounter",
-    "snippet": "refstepcounter{${1}}"
+    "snippet": "refstepcounter{${1:counter}}"
   },
   "restorecr": {
-    "command": "restorecr"
+    "command": "restorecr",
+    "snippet": "restorecr"
   },
   "reversemarginpar": {
-    "command": "reversemarginpar"
+    "command": "reversemarginpar",
+    "snippet": "reversemarginpar"
   },
   "stepcounter": {
     "command": "stepcounter",
-    "snippet": "stepcounter{${1}}"
+    "snippet": "stepcounter{${1:counter}}"
   },
   "stretch": {
     "command": "stretch",
-    "snippet": "stretch{${1}}"
+    "snippet": "stretch{${1:number}}"
   },
   "usecounter": {
     "command": "usecounter",
-    "snippet": "usecounter{${1}}"
+    "snippet": "usecounter{${1:counter}}"
   },
   "usefont": {
     "command": "usefont",
-    "snippet": "usefont{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "usefont{${1:enc}}{${2:family}}{${3:series}}{${4:shape}}"
   },
   "value": {
     "command": "value",
-    "snippet": "value{${1}}"
+    "snippet": "value{${1:counter}}"
   },
   "newfont": {
     "command": "newfont",
-    "snippet": "newfont{${1}}{${2}}"
+    "snippet": "newfont{${1:cmd}}{${2:fontname}}"
   },
   "thechapter": {
-    "command": "thechapter"
+    "command": "thechapter",
+    "snippet": "thechapter"
   },
   "theenumi": {
-    "command": "theenumi"
+    "command": "theenumi",
+    "snippet": "theenumi"
   },
   "theenumiv": {
-    "command": "theenumiv"
+    "command": "theenumiv",
+    "snippet": "theenumiv"
   },
   "theequation": {
-    "command": "theequation"
+    "command": "theequation",
+    "snippet": "theequation"
   },
   "thefigure": {
-    "command": "thefigure"
+    "command": "thefigure",
+    "snippet": "thefigure"
   },
   "thefootnote": {
-    "command": "thefootnote"
+    "command": "thefootnote",
+    "snippet": "thefootnote"
   },
   "thefootnotemark": {
-    "command": "thefootnotemark"
+    "command": "thefootnotemark",
+    "snippet": "thefootnotemark"
   },
   "thehours": {
-    "command": "thehours"
+    "command": "thehours",
+    "snippet": "thehours"
   },
   "theminutes": {
-    "command": "theminutes"
+    "command": "theminutes",
+    "snippet": "theminutes"
   },
   "thempfn": {
-    "command": "thempfn"
+    "command": "thempfn",
+    "snippet": "thempfn"
   },
   "thempfootnote": {
-    "command": "thempfootnote"
+    "command": "thempfootnote",
+    "snippet": "thempfootnote"
   },
   "thepage": {
-    "command": "thepage"
+    "command": "thepage",
+    "snippet": "thepage"
   },
   "theparagraph": {
-    "command": "theparagraph"
+    "command": "theparagraph",
+    "snippet": "theparagraph"
   },
   "thepart": {
-    "command": "thepart"
+    "command": "thepart",
+    "snippet": "thepart"
   },
   "thesection": {
-    "command": "thesection"
+    "command": "thesection",
+    "snippet": "thesection"
   },
   "thesubparagraph": {
-    "command": "thesubparagraph"
+    "command": "thesubparagraph",
+    "snippet": "thesubparagraph"
   },
   "thesubsection": {
-    "command": "thesubsection"
+    "command": "thesubsection",
+    "snippet": "thesubsection"
   },
   "thesubsubsection": {
-    "command": "thesubsubsection"
+    "command": "thesubsubsection",
+    "snippet": "thesubsubsection"
   },
   "thetable": {
-    "command": "thetable"
+    "command": "thetable",
+    "snippet": "thetable"
+  },
+  "savebox{}[][]{}": {
+    "command": "savebox{cmd}[width][pos]{text}",
+    "snippet": "savebox{${1:cmd}}[${2:width}][${3:pos}]{${4:text}}"
+  },
+  "savebox{}[]{}": {
+    "command": "savebox{cmd}[width]{text}",
+    "snippet": "savebox{${1:cmd}}[${2:width}]{${3:text}}"
   },
   "savebox": {
     "command": "savebox",
-    "snippet": "savebox{${1}}{${2}}"
+    "snippet": "savebox{${1:cmd}}{${2:text}}"
+  },
+  "dashbox{}(width,height)[]{}": {
+    "command": "dashbox{dashlength}(width,height)[position]{text}",
+    "snippet": "dashbox{${1:dashlength}}(width,height)[${2:position}]{${3:text}}"
   },
   "dashbox": {
     "command": "dashbox",
-    "snippet": "dashbox{${1}}{${2}}"
+    "snippet": "dashbox{${1:dashlength}}(width,height){${2:text}}"
+  },
+  "makebox(width,height)[]{}": {
+    "command": "makebox(width,height)[position]{text}",
+    "snippet": "makebox(width,height)[${2:position}]{${1:text}}"
   },
   "makebox(width,height)": {
     "command": "makebox(width,height)",
-    "snippet": "makebox(width,height){${1}}"
+    "snippet": "makebox(width,height){${1:text}}"
   },
-  "makebox": {
-    "command": "makebox",
-    "snippet": "makebox{${1}}"
+  "makebox[][]{}": {
+    "command": "makebox[width][position]{text}",
+    "snippet": "makebox[${2:width}][${3:position}]{${1:text}}"
+  },
+  "makebox[]{}": {
+    "command": "makebox[width]{text}",
+    "snippet": "makebox[${2:width}]{${1:text}}"
   },
   "usebox": {
     "command": "usebox",
-    "snippet": "usebox{${1}}"
+    "snippet": "usebox{${1:\\box}}"
+  },
+  "raisebox{}[][]{}": {
+    "command": "raisebox{distance}[extendabove][extendbelow]{text}",
+    "snippet": "raisebox{${1:distance}}[${2:extendabove}][${3:extendbelow}]{${4:text}}"
+  },
+  "raisebox{}[]{}": {
+    "command": "raisebox{distance}[extendabove]{text}",
+    "snippet": "raisebox{${1:distance}}[${2:extendabove}]{${3:text}}"
   },
   "raisebox": {
     "command": "raisebox",
-    "snippet": "raisebox{${1}}{${2}}"
+    "snippet": "raisebox{${1:distance}}{${2:text}}"
   },
   "newsavebox": {
     "command": "newsavebox",
-    "snippet": "newsavebox{${1}}"
+    "snippet": "newsavebox{${1:\\box}}"
   },
   "belowcaptionskip": {
-    "command": "belowcaptionskip"
+    "command": "belowcaptionskip",
+    "snippet": "belowcaptionskip"
   },
   "binoppenalty": {
-    "command": "binoppenalty"
+    "command": "binoppenalty",
+    "snippet": "binoppenalty"
   },
   "bottomfraction": {
-    "command": "bottomfraction"
+    "command": "bottomfraction",
+    "snippet": "bottomfraction"
   },
   "bottomnumber": {
-    "command": "bottomnumber"
+    "command": "bottomnumber",
+    "snippet": "bottomnumber"
   },
   "dblfigrule": {
-    "command": "dblfigrule"
+    "command": "dblfigrule",
+    "snippet": "dblfigrule"
   },
   "dblfloatpagefraction": {
-    "command": "dblfloatpagefraction"
+    "command": "dblfloatpagefraction",
+    "snippet": "dblfloatpagefraction"
   },
   "dblfloatsep": {
-    "command": "dblfloatsep"
+    "command": "dblfloatsep",
+    "snippet": "dblfloatsep"
   },
   "dbltextfloatsep": {
-    "command": "dbltextfloatsep"
+    "command": "dbltextfloatsep",
+    "snippet": "dbltextfloatsep"
   },
   "dbltopfraction": {
-    "command": "dbltopfraction"
+    "command": "dbltopfraction",
+    "snippet": "dbltopfraction"
   },
   "dbltopnumber": {
-    "command": "dbltopnumber"
+    "command": "dbltopnumber",
+    "snippet": "dbltopnumber"
   },
   "defaultscriptratio": {
-    "command": "defaultscriptratio"
+    "command": "defaultscriptratio",
+    "snippet": "defaultscriptratio"
   },
   "defaultscriptscriptratio": {
-    "command": "defaultscriptscriptratio"
+    "command": "defaultscriptscriptratio",
+    "snippet": "defaultscriptscriptratio"
   },
   "doublerulesep": {
-    "command": "doublerulesep"
+    "command": "doublerulesep",
+    "snippet": "doublerulesep"
   },
   "emergencystretch": {
-    "command": "emergencystretch"
+    "command": "emergencystretch",
+    "snippet": "emergencystretch"
   },
   "footnotesep": {
-    "command": "footnotesep"
+    "command": "footnotesep",
+    "snippet": "footnotesep"
   },
   "footskip": {
-    "command": "footskip"
+    "command": "footskip",
+    "snippet": "footskip"
   },
   "intextsep": {
-    "command": "intextsep"
+    "command": "intextsep",
+    "snippet": "intextsep"
   },
   "itemindent": {
-    "command": "itemindent"
+    "command": "itemindent",
+    "snippet": "itemindent"
   },
   "itemsep": {
-    "command": "itemsep"
+    "command": "itemsep",
+    "snippet": "itemsep"
   },
   "labelenumi": {
-    "command": "labelenumi"
+    "command": "labelenumi",
+    "snippet": "labelenumi"
   },
   "labelitemi": {
-    "command": "labelitemi"
+    "command": "labelitemi",
+    "snippet": "labelitemi"
   },
   "labelitemii": {
-    "command": "labelitemii"
+    "command": "labelitemii",
+    "snippet": "labelitemii"
   },
   "labelitemiii": {
-    "command": "labelitemiii"
+    "command": "labelitemiii",
+    "snippet": "labelitemiii"
   },
   "labelitemiv": {
-    "command": "labelitemiv"
+    "command": "labelitemiv",
+    "snippet": "labelitemiv"
   },
   "labelsep": {
-    "command": "labelsep"
+    "command": "labelsep",
+    "snippet": "labelsep"
   },
   "labelwidth": {
-    "command": "labelwidth"
+    "command": "labelwidth",
+    "snippet": "labelwidth"
   },
   "leftmargin": {
-    "command": "leftmargin"
+    "command": "leftmargin",
+    "snippet": "leftmargin"
   },
   "leftmargini": {
-    "command": "leftmargini"
+    "command": "leftmargini",
+    "snippet": "leftmargini"
   },
   "leftmarginii": {
-    "command": "leftmarginii"
+    "command": "leftmarginii",
+    "snippet": "leftmarginii"
   },
   "leftmarginiii": {
-    "command": "leftmarginiii"
+    "command": "leftmarginiii",
+    "snippet": "leftmarginiii"
   },
   "leftmarginiv": {
-    "command": "leftmarginiv"
+    "command": "leftmarginiv",
+    "snippet": "leftmarginiv"
   },
   "leftmarginv": {
-    "command": "leftmarginv"
+    "command": "leftmarginv",
+    "snippet": "leftmarginv"
   },
   "leftmarginvi": {
-    "command": "leftmarginvi"
+    "command": "leftmarginvi",
+    "snippet": "leftmarginvi"
   },
   "leftmark": {
-    "command": "leftmark"
+    "command": "leftmark",
+    "snippet": "leftmark"
   },
   "marginparpush": {
-    "command": "marginparpush"
+    "command": "marginparpush",
+    "snippet": "marginparpush"
   },
   "marginparsep": {
-    "command": "marginparsep"
+    "command": "marginparsep",
+    "snippet": "marginparsep"
   },
   "marginparwidth": {
-    "command": "marginparwidth"
+    "command": "marginparwidth",
+    "snippet": "marginparwidth"
   },
   "paperheight": {
-    "command": "paperheight"
+    "command": "paperheight",
+    "snippet": "paperheight"
   },
   "paperwidth": {
-    "command": "paperwidth"
+    "command": "paperwidth",
+    "snippet": "paperwidth"
   },
   "tabbingsep": {
-    "command": "tabbingsep"
+    "command": "tabbingsep",
+    "snippet": "tabbingsep"
   },
   "tabcolsep": {
-    "command": "tabcolsep"
+    "command": "tabcolsep",
+    "snippet": "tabcolsep"
   },
   "topfigrule": {
-    "command": "topfigrule"
+    "command": "topfigrule",
+    "snippet": "topfigrule"
   },
   "topfraction": {
-    "command": "topfraction"
+    "command": "topfraction",
+    "snippet": "topfraction"
   },
   "topmargin": {
-    "command": "topmargin"
+    "command": "topmargin",
+    "snippet": "topmargin"
   },
   "topnumber": {
-    "command": "topnumber"
+    "command": "topnumber",
+    "snippet": "topnumber"
   },
   "topsep": {
-    "command": "topsep"
+    "command": "topsep",
+    "snippet": "topsep"
   },
   "totalheight": {
-    "command": "totalheight"
+    "command": "totalheight",
+    "snippet": "totalheight"
   },
   "totalnumber": {
-    "command": "totalnumber"
+    "command": "totalnumber",
+    "snippet": "totalnumber"
   },
   "textfloatsep": {
-    "command": "textfloatsep"
+    "command": "textfloatsep",
+    "snippet": "textfloatsep"
   },
   "textfraction": {
-    "command": "textfraction"
+    "command": "textfraction",
+    "snippet": "textfraction"
   },
   "abovecaptionskip": {
-    "command": "abovecaptionskip"
+    "command": "abovecaptionskip",
+    "snippet": "abovecaptionskip"
   },
   "addpenalty": {
-    "command": "addpenalty"
+    "command": "addpenalty",
+    "snippet": "addpenalty"
   },
   "arraycolsep": {
-    "command": "arraycolsep"
+    "command": "arraycolsep",
+    "snippet": "arraycolsep"
   },
   "arrayrulewidth": {
-    "command": "arrayrulewidth"
+    "command": "arrayrulewidth",
+    "snippet": "arrayrulewidth"
   },
   "arraystretch": {
-    "command": "arraystretch"
+    "command": "arraystretch",
+    "snippet": "arraystretch"
   },
   "badness": {
-    "command": "badness"
+    "command": "badness",
+    "snippet": "badness"
   },
   "baselinestretch": {
-    "command": "baselinestretch"
+    "command": "baselinestretch",
+    "snippet": "baselinestretch"
   },
   "columnsep": {
-    "command": "columnsep"
+    "command": "columnsep",
+    "snippet": "columnsep"
   },
   "columnseprule": {
-    "command": "columnseprule"
+    "command": "columnseprule",
+    "snippet": "columnseprule"
   },
   "columnwidth": {
-    "command": "columnwidth"
+    "command": "columnwidth",
+    "snippet": "columnwidth"
   },
   "evensidemargin": {
-    "command": "evensidemargin"
+    "command": "evensidemargin",
+    "snippet": "evensidemargin"
   },
   "extracolsep": {
-    "command": "extracolsep"
+    "command": "extracolsep",
+    "snippet": "extracolsep"
   },
   "fboxrule": {
-    "command": "fboxrule"
+    "command": "fboxrule",
+    "snippet": "fboxrule"
   },
   "fboxsep": {
-    "command": "fboxsep"
+    "command": "fboxsep",
+    "snippet": "fboxsep"
   },
   "floatpagefraction": {
-    "command": "floatpagefraction"
+    "command": "floatpagefraction",
+    "snippet": "floatpagefraction"
   },
   "floatsep": {
-    "command": "floatsep"
+    "command": "floatsep",
+    "snippet": "floatsep"
   },
   "headheight": {
-    "command": "headheight"
+    "command": "headheight",
+    "snippet": "headheight"
   },
   "headsep": {
-    "command": "headsep"
+    "command": "headsep",
+    "snippet": "headsep"
   },
   "height": {
-    "command": "height"
+    "command": "height",
+    "snippet": "height"
   },
   "partopsep": {
-    "command": "partopsep"
+    "command": "partopsep",
+    "snippet": "partopsep"
   },
   "parsep": {
-    "command": "parsep"
+    "command": "parsep",
+    "snippet": "parsep"
   },
   "lineskiplimits": {
-    "command": "lineskiplimits"
+    "command": "lineskiplimits",
+    "snippet": "lineskiplimits"
   },
   "footheight": {
-    "command": "footheight"
+    "command": "footheight",
+    "snippet": "footheight"
   }
 }

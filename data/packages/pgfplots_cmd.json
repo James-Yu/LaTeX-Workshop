@@ -1,32 +1,34 @@
 {
   "addplot": {
-    "command": "addplot"
+    "command": "addplot",
+    "snippet": "addplot"
   },
   "addplot ": {
     "command": "addplot ",
-    "snippet": "addplot {${1}}"
+    "snippet": "addplot {${1:%|}};"
   },
-  "addplot table": {
-    "command": "addplot table",
-    "snippet": "addplot table{${1}}"
+  "addplot table[] {};": {
+    "command": "addplot table[x=%<column header%>,y=%<column header%>] {%<file%>};",
+    "snippet": "addplot table[${2:x=%<column header%>,y=%<column header%>}] {${1:%<file%>}};"
   },
   "addplot coordinates ": {
     "command": "addplot coordinates ",
-    "snippet": "addplot coordinates {${1}}"
+    "snippet": "addplot coordinates {${1:%|}};"
   },
   "addplot gnuplot ": {
     "command": "addplot gnuplot ",
-    "snippet": "addplot gnuplot {${1}}"
+    "snippet": "addplot gnuplot {${1:%<gnuplot code%>}};"
   },
   "addplot file ": {
     "command": "addplot file ",
-    "snippet": "addplot file {${1}}"
+    "snippet": "addplot file {${1:%<file%>}};"
   },
   "legend": {
-    "command": "legend"
+    "command": "legend",
+    "snippet": "legend"
   },
   "pgfplotsset": {
     "command": "pgfplotsset",
-    "snippet": "pgfplotsset{${1}}"
+    "snippet": "pgfplotsset{${1:compat=%<version number%>,%<other settings%>}}"
   }
 }

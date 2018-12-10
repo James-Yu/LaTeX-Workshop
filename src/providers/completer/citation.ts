@@ -19,18 +19,20 @@ export class Citation {
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: CitationRecord[] } = {}
     citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
+    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    provide() : vscode.CompletionItem[] {
+    provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
 
+        // First, we deal with citation items from bib files
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
             this.citationInBib[bibPath].forEach(item => items.push(item))
@@ -69,13 +71,39 @@ export class Citation {
                 .filter(key => (key !== 'key'))
                 .map(key => `${key}: ${item[key]}`)
                 .join('\n')
+            if (args) {
+                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
+            }
             return citation
+        })
+
+        // Second, we deal with the items from thebibliography
+        const suggestions = {}
+        Object.keys(this.theBibliographyData).forEach(key => {
+            suggestions[key] = this.theBibliographyData[key].item
+        })
+        if (vscode.window.activeTextEditor) {
+            const thebibliographyItems = this.getTheBibliographyItems(vscode.window.activeTextEditor.document.getText())
+            Object.keys(thebibliographyItems).map(key => {
+                if (!(key in suggestions)) {
+                    suggestions[key] = thebibliographyItems[key]
+                }
+            })
+        }
+        Object.keys(suggestions).map(key => {
+            const item = suggestions[key]
+            const citation = new vscode.CompletionItem(item.citation, vscode.CompletionItemKind.Reference)
+            citation.detail = item.text
+            if (args) {
+                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
+            }
+            this.suggestions.push(citation)
         })
         return this.suggestions
     }
 
-    browser() {
-        this.provide()
+    browser(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        this.provide(args)
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
             this.citationInBib[bibPath].forEach(item => items.push(item))
@@ -231,5 +259,42 @@ export class Citation {
             regResult = bibAttrReg.exec(item)
         }
         return bibItem
+    }
+
+    getTheBibliographyTeX(filePath: string) {
+        const bibitems = this.getTheBibliographyItems(fs.readFileSync(filePath, 'utf-8'))
+        Object.keys(this.theBibliographyData).forEach((key) => {
+            if (this.theBibliographyData[key].file === filePath) {
+                delete this.theBibliographyData[key]
+            }
+        })
+        Object.keys(bibitems).forEach((key) => {
+            this.theBibliographyData[key] = {
+                item: bibitems[key],
+                text: bibitems[key].text,
+                file: filePath
+            }
+        })
+    }
+
+    getTheBibliographyItems(content: string) {
+        const itemReg = /^(?!%).*\\bibitem(?:\[[^\[\]\{\}]*\])?{([^}]*)}/gm
+        const items = {}
+        while (true) {
+            const result = itemReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (!(result[1] in items)) {
+                const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
+                const positionContent = content.substring(0, result.index).split('\n')
+                items[result[1]] = {
+                    citation: result[1],
+                    text: `${postContent}\n...`,
+                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
+                }
+            }
+        }
+        return items
     }
 }

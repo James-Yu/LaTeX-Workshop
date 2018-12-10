@@ -6,14 +6,14 @@ import {Extension} from '../../main'
 export class Reference {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    referenceData: {[id: string]: {item: {[id: string]: any}, text: string, file: string}} = {}
+    referenceData: {[id: string]: {item: {reference: string, text: string, position: vscode.Position}, text: string, file: string}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    provide() : vscode.CompletionItem[] {
+    provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
@@ -35,6 +35,7 @@ export class Reference {
             const item = suggestions[key]
             const command = new vscode.CompletionItem(item.reference, vscode.CompletionItemKind.Reference)
             command.documentation = item.text
+            command.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
             this.suggestions.push(command)
         })
         return this.suggestions

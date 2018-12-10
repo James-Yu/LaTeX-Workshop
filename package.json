@@ -1,9 +1,9 @@
 {
   "name": "latex-workshop",
-  "displayName": "LaTeX",
+  "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icon.png",
-  "version": "5.17.2",
+  "version": "5.17.3",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -611,16 +611,17 @@
         "latex-workshop.view.outline.sections": {
           "type": "array",
           "default": [
+            "part",
             "chapter",
             "section",
             "subsection",
             "subsubsection"
           ],
-          "markdownDescription": "The section names of LaTeX outline hierarchy.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`."
+          "markdownDescription": "The section names of LaTeX outline hierarchy. It is also used by he folding mechanism.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`."
         },
         "latex-workshop.view.autoActivateLatex.enabled": {
           "type": "boolean",
-          "default": true,
+          "default": false,
           "markdownDescription": "Auto activate the LaTeX view when switching from non-tex to tex files.\nThis will cause the view to appear consistently upon activating the extension."
         },
         "latex-workshop.view.pdf.viewer": {
@@ -848,7 +849,7 @@
             "-c",
             "%DIR%/",
             "%TMPFILE%",
-            "-y=\"defaultIndent: '%INDENT%'\""
+            "-y=defaultIndent: '%INDENT%'"
           ],
           "markdownDescription": "Define the command line arguments for latexindent. Available placeholders:\n- %DOC%, %DOCFILE%, %DIR%: same as latex-workshop.latex.toolchain args.\n- %TMPFILE%: would be replaced with the path of file which contains raw TeX source to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: would be replaced with the string which represents indent of the target document.\n\nNote: At this moment -c option requires trailing slash."
         },
@@ -876,6 +877,16 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "Use alternative keymap combo, i.e., `ctrl`+`l` `alt`+key, to replace the default `ctrl`/`cmd`+`alt` shortcuts.\nReload vscode to make this configuration effective."
+        },
+        "latex-workshop.hoverReference.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable Hover on References."
+        },
+        "latex-workshop.hoverCitation.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable Hover on Citations."
         },
         "latex-workshop.hoverPreview.enabled": {
           "type": "boolean",
@@ -928,6 +939,16 @@
           "type": "boolean",
           "default": true,
           "markdownDdescription": "Render Hover Preview on \\ref."
+        },
+        "latex-workshop.intellisense.optionalArgsEntries.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Some LaTeX commands can have several forms, each with different arguments. If set to True, the intellisense completion list will have one entry for each form of a given command. Default is true.\nReload vscode to make this configuration effective."
+        },
+        "latex-workshop.intellisense.useTabStops.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Many snippets use PlaceHolders of the form ${\\d:some_text} for their argument. You may prefer to use TabStops ${\\d} instead, which allows for direct call to intellisense again. Default is true.\nReload vscode to make this configuration effective."
         }
       }
     },

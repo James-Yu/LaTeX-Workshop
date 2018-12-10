@@ -34,6 +34,7 @@ export class Manager {
         outputDir = outputDir.replace('%DOC%', docker ? docfile : doc)
                     .replace('%DOCFILE%', docfile)
                     .replace('%DIR%', path.dirname(texPath).split(path.sep).join('/'))
+                    .replace('%TMPDIR%', this.extension.builder.tmpDir)
         return outputDir
     }
 
@@ -370,6 +371,7 @@ export class Manager {
         this.extension.completer.command.getCommandsTeX(filePath)
         this.extension.completer.command.getPackage(filePath)
         this.extension.completer.reference.getReferencesTeX(filePath)
+        this.extension.completer.citation.getTheBibliographyTeX(filePath)
     }
 
     addBibToWatcher(bib: string, rootDir: string) {

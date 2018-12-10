@@ -21,9 +21,14 @@ export class Command {
         this.extension = extension
     }
 
-    initialize(defaultCommands: {[key: string]: AutocompleteEntry},
-               defaultEnvs: string[]) {
+    initialize(defaultCommands: {[key: string]: AutocompleteEntry}, defaultEnvs: string[]) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
+
         Object.keys(defaultCommands).forEach(key => {
+            if (!useOptionalArgsEntries && key.indexOf('[') > -1) {
+                return
+            }
             const item = defaultCommands[key]
             this.defaultCommands[key] = this.entryToCompletionItem(item)
         })
@@ -150,18 +155,29 @@ export class Command {
     }
 
     entryToCompletionItem(item: AutocompleteEntry) : vscode.CompletionItem {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command[0] === ' ' ? '' : '\\'
         const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
         if (item.snippet) {
+            if (useTabStops) {
+                item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$$$1')
+            }
             command.insertText = new vscode.SnippetString(item.snippet)
         } else {
             command.insertText = item.command
         }
         command.documentation = item.documentation
         command.detail = item.detail
-        command.sortText = item.command.toLowerCase()
+        command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16) : c
+        })
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
+        } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*/.exec(item.command)) {
+            // Automatically trigger completion if the command is for citation or reference
+            command.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
         }
         return command
     }
@@ -171,13 +187,26 @@ export class Command {
         if (!(configuration.get('intellisense.package.enabled'))) {
             return
         }
+        const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         if (!(pkg in this.packageCmds)) {
-            const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
+            let filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
+            if (!fs.existsSync(filePath)) {
+                // Many package with names like toppackage-config.sty are just wrappers around
+                // the general package toppacke.sty and do not define commands on their own.
+                const indexDash = pkg.lastIndexOf('-')
+                if (indexDash > - 1) {
+                    const generalPkg = pkg.substring(0, indexDash)
+                    filePath = `${this.extension.extensionRoot}/data/packages/${generalPkg}_cmd.json`
+                }
+            }
             if (fs.existsSync(filePath)) {
                 this.packageCmds[pkg] = {}
                 const cmds = JSON.parse(fs.readFileSync(filePath).toString())
                 Object.keys(cmds).forEach(cmd => {
                     if (cmd in suggestions) {
+                        return
+                    }
+                    if (!useOptionalArgsEntries && cmd.indexOf('[') > -1) {
                         return
                     }
                     this.packageCmds[pkg][cmd] = this.entryToCompletionItem(cmds[cmd])

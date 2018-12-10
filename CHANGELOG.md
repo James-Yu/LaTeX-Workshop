@@ -1,5 +1,14 @@
 # Change Log
 
+## [5.17.3] - 2018-11-24
+
+### Fixed
+- Hide the sidebar notification green dot of pdf viewer.
+- (#995) Add syntax support for `mintinline`.
+- (#995) curly braces vs pair of same delimiters.
+- (#1006) Focus on active editor after switching to latex view.
+- (#1009) By default disable auto showing the side bar view.
+
 ## [5.17.2] - 2018-11-21
 
 ### Fixed

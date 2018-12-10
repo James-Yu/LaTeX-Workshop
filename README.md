@@ -13,6 +13,8 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 One million downloads! This project won't be successful without contributions from the community, especially project maintainers Jerome Lelong [`@jlelong`](https://github.com/jlelong), James Booth [`@jabooth`](https://github.com/jabooth), and all code [contributors](https://github.com/James-Yu/LaTeX-Workshop/graphs/contributors)! Thank you!
 
+**For a comprehensive documentation, see the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki).** This is still work in progress, so contributions are welcome.
+
 ## Features
 
 - Build LaTeX (including BibTeX) to PDF automatically on save (see [Build on Save](#build-on-save))
@@ -214,6 +216,11 @@ Note that the formatting program `latexindent` actually modifies the file on dis
 ### Synctex after build?
 
 When using the internal PDF viewer, you can make it automatically jump after build to the location pointed out by the tex file. If you want to enable this feature, setting the configuration item `latex-workshop.synctex.afterBuild.enabled` to `true` will do.
+
+### Internal viewer keybindings
+
+The PDF viewer provided with extension internally uses [pdf.js](https://github.com/mozilla/pdf.js). The keybindings support by pdf.js are documented [here](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#faq-shortcuts).
+
 
 ### Docker?
 

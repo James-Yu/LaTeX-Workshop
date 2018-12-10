@@ -246,6 +246,10 @@
   "noindent":{
     "command":"noindent"
   },
+  "nonumber":{
+    "command":"nonumber",
+    "detail":"Insert nonumber, shortcut @,"
+  },
   "kill":{
     "command":"kill"
   },
@@ -371,6 +375,10 @@
     "command":"phi",
     "detail":"ϕ, shortcut @f"
   },
+  "varphi":{
+    "command":"varphi",
+    "detail":"ᵠ, shortcut @vf"
+  },
   "pi":{
     "command":"pi",
     "detail":"π, shortcut @p"
@@ -386,6 +394,10 @@
   "sigma":{
     "command":"sigma",
     "detail":"σ, shortcut @s"
+  },
+  "varsigma":{
+    "command":"varsigma",
+    "detail":"ς, shortcut @vs"
   },
   "tau":{
     "command":"tau",
@@ -512,6 +524,10 @@
     "command":"neg",
     "detail":"¬"
   },
+  "setminus":{
+    "command":"setminus",
+    "detail":"∖, shortcut @\\"
+  },
   "sum":{
     "command":"sum",
     "detail":"∑"
@@ -523,6 +539,10 @@
   "geq":{
     "command":"geq",
     "detail":"≥"
+  },
+  "partial": {
+    "command":"partial",
+    "detail":"∂, shortcut @6"
   },
   "pm":{
     "command":"pm",
@@ -540,9 +560,17 @@
     "command":"cap",
     "detail":"∩"
   },
+  "bigcap":{
+    "command":"bigcap",
+    "detail":"∩, shortcut @-"
+  },
   "cup":{
     "command":"cup",
     "detail":"∪"
+  },
+  "bigcup":{
+    "command":"bigcup",
+    "detail":"∪, shortcut @+"
   },
   "vee":{
     "command":"vee",
@@ -570,6 +598,10 @@
   "leq":{
     "command":"leq",
     "detail":"≤"
+  },
+  "equiv":{
+    "command":"equiv",
+    "detail":"≡, shortcut @="
   },
   "dot":{
     "command":"dot",
@@ -610,5 +642,399 @@
     "command":"includegraphics",
     "snippet":"includegraphics{$1}",
     "postAction":"editor.action.triggerSuggest"
+  },
+  "addcontentsline": {
+    "command": "addcontentsline",
+    "snippet": "addcontentsline{${1:file}}{${2:secunit}}{${3:entry}}"
+  },
+  "appendix": {
+    "command": "appendix",
+    "snippet": "appendix"
+  },
+  "appendixname": {
+    "command": "appendixname",
+    "snippet": "appendixname"
+  },
+  "arabic": {
+    "command": "arabic",
+    "snippet": "arabic{${1:counter}}"
+  },
+  "ensuremath": {
+    "command": "ensuremath",
+    "snippet": "ensuremath{${1:text}}"
+  },
+  "bibitem": {
+    "command": "bibitem",
+    "snippet": "bibitem{${1:citekey}}"
+  },
+  "bibitem[]{}": {
+    "command": "bibitem[label]{citekey}",
+    "snippet": "bibitem[${2:label}]{${1:citekey}}"
+  },
+  "caption[]{}": {
+    "command": "caption[short]{title}",
+    "snippet": "caption[${2:short}]{${1:title}}"
+  },
+  "chapter*": {
+    "command": "chapter*",
+    "snippet": "chapter*{${1:title}}"
+  },
+  "chapter[]{}": {
+    "command": "chapter[short]{title}",
+    "snippet": "chapter[${2:short}]{${1:title}}"
+  },
+  "chaptermark": {
+    "command": "chaptermark",
+    "snippet": "chaptermark{${1:code}}"
+  },
+  "chaptername": {
+    "command": "chaptername",
+    "snippet": "chaptername{${1:name}}"
+  },
+  "cite[]{}": {
+    "command": "cite[text]{keylist}",
+    "snippet": "cite[${2:text}]{${1:keylist}}"
+  },
+  "cleardoublepage": {
+    "command": "cleardoublepage",
+    "snippet": "cleardoublepage"
+  },
+  "clearpage": {
+    "command": "clearpage",
+    "snippet": "clearpage"
+  },
+  "contentsline": {
+    "command": "contentsline",
+    "snippet": "contentsline{${1:type}}{${2:text}}{${3:page}}"
+  },
+  "contentsname": {
+    "command": "contentsname",
+    "snippet": "contentsname{${1:name}}"
+  },
+  "ddots": {
+    "command": "ddots",
+    "snippet": "ddots"
+  },
+  "documentclass[]{}": {
+    "command": "documentclass[options]{style}",
+    "snippet": "documentclass[${2:options}]{${1:style}}"
+  },
+  "fbox": {
+    "command": "fbox",
+    "snippet": "fbox{${1:text}}"
+  },
+  "figurename": {
+    "command": "figurename",
+    "snippet": "figurename{${1:name}}"
+  },
+  "footnotemark": {
+    "command": "footnotemark",
+    "snippet": "footnotemark"
+  },
+  "footnotemark[]": {
+    "command": "footnotemark[number]",
+    "snippet": "footnotemark[${1:number}]"
+  },
+  "footnotetext[]{}": {
+    "command": "footnotetext[number]{text}",
+    "snippet": "footnotetext[${2:number}]{${1:text}}"
+  },
+  "footnotetext": {
+    "command": "footnotetext",
+    "snippet": "footnotetext{${1:text}}"
+  },
+  "footnote[]{}": {
+    "command": "footnote[number]{text}",
+    "snippet": "footnote[${2:number}]{${1:text}}"
+  },
+  "glossaryentry": {
+    "command": "glossaryentry",
+    "snippet": "glossaryentry{${1:text}}{${2:pagenum}}"
+  },
+  "glossary": {
+    "command": "glossary",
+    "snippet": "glossary{${1:text}}"
+  },
+  "hlinefill": {
+    "command": "hlinefill",
+    "snippet": "hlinefill"
+  },
+  "hspace*": {
+    "command": "hspace*",
+    "snippet": "hspace*{${1:length}}"
+  },
+  "includegraphics[]{}": {
+    "command": "includegraphics[options]{name}",
+    "snippet": "includegraphics[${2:options}]{${1:name}}",
+    "postAction":"editor.action.triggerSuggest"
+  },
+  "includeonly": {
+    "command": "includeonly",
+    "snippet": "includeonly{${1:filelist}}"
+  },
+  "indexname": {
+    "command": "indexname",
+    "snippet": "indexname{${1:name}}"
+  },
+  "index": {
+    "command": "index",
+    "snippet": "index{${1:entry}}"
+  },
+  "inputlineno": {
+    "command": "inputlineno",
+    "snippet": "inputlineno"
+  },
+  "item[]": {
+    "command": "item[label]",
+    "snippet": "item[${1:label}]"
+  },
+  "itshape": {
+    "command": "itshape",
+    "snippet": "itshape"
+  },
+  "LaTeX": {
+    "command": "LaTeX",
+    "snippet": "LaTeX"
+  },
+  "ldots": {
+    "command": "ldots",
+    "snippet": "ldots"
+  },
+  "linebreak": {
+    "command": "linebreak",
+    "snippet": "linebreak"
+  },
+  "linebreak[]": {
+    "command": "linebreak[number]",
+    "snippet": "linebreak[${1:number}]"
+  },
+  "makeatletter": {
+    "command": "makeatletter",
+    "snippet": "makeatletter"
+  },
+  "makeatother": {
+    "command": "makeatother",
+    "snippet": "makeatother"
+  },
+  "maketitle": {
+    "command": "maketitle",
+    "snippet": "maketitle"
+  },
+  "marginpar[]{}": {
+    "command": "marginpar[left]{right}",
+    "snippet": "marginpar[${2:left}]{${1:right}}"
+  },
+  "marginpar": {
+    "command": "marginpar",
+    "snippet": "marginpar{${1:right}}"
+  },
+  "markboth": {
+    "command": "markboth",
+    "snippet": "markboth{${1:lefthead}}{${2:righthead}}"
+  },
+  "markright": {
+    "command": "markright",
+    "snippet": "markright{${1:righthead}}"
+  },
+  "mbox": {
+    "command": "mbox",
+    "snippet": "mbox{${1:text}}"
+  },
+  "newline": {
+    "command": "newline",
+    "snippet": "newline"
+  },
+  "newpage": {
+    "command": "newpage",
+    "snippet": "newpage"
+  },
+  "newtheorem{}[]{}": {
+    "command": "newtheorem{envname}[numberedlike]{caption}",
+    "snippet": "newtheorem{${1:envname}}[${2:numberedlike}]{${3:caption}}"
+  },
+  "newtheorem": {
+    "command": "newtheorem",
+    "snippet": "newtheorem{${1:envname}}{${2:caption}}"
+  },
+  "newtheorem{}{}[]": {
+    "command": "newtheorem{envname}{caption}[within]",
+    "snippet": "newtheorem{${1:envname}}{${2:caption}}[${3:within}]"
+  },
+  "nocite": {
+    "command": "nocite",
+    "snippet": "nocite{${1:keylist}}"
+  },
+  "nolinebreak": {
+    "command": "nolinebreak",
+    "snippet": "nolinebreak"
+  },
+  "nolinebreak[]": {
+    "command": "nolinebreak[number]",
+    "snippet": "nolinebreak[${1:number}]"
+  },
+  "nopagebreak": {
+    "command": "nopagebreak",
+    "snippet": "nopagebreak"
+  },
+  "nopagebreak[]": {
+    "command": "nopagebreak[number]",
+    "snippet": "nopagebreak[${1:number}]"
+  },
+  "overbrace": {
+    "command": "overbrace",
+    "snippet": "overbrace{${1:text}}"
+  },
+  "overline": {
+    "command": "overline",
+    "snippet": "overline{${1:text}}"
+  },
+  "pagebreak[]": {
+    "command": "pagebreak[number]",
+    "snippet": "pagebreak[${1:number}]"
+  },
+  "pagename": {
+    "command": "pagename",
+    "snippet": "pagename"
+  },
+  "pagenumbering": {
+    "command": "pagenumbering",
+    "snippet": "pagenumbering{${1:numstyle}}"
+  },
+  "paragraph*": {
+    "command": "paragraph*",
+    "snippet": "paragraph*{${1:title}}"
+  },
+  "paragraph[]{}": {
+    "command": "paragraph[short]{title}",
+    "snippet": "paragraph[${2:short}]{${1:title}}"
+  },
+  "parbox[]{}{}": {
+    "command": "parbox[position]{width}{text}",
+    "snippet": "parbox[${3:position}]{${1:width}}{${2:text}}"
+  },
+  "parbox": {
+    "command": "parbox",
+    "snippet": "parbox{${1:width}}{${2:text}}"
+  },
+  "part*": {
+    "command": "part*",
+    "snippet": "part*{${1:title}}"
+  },
+  "part[]{}": {
+    "command": "part[short]{title}",
+    "snippet": "part[${2:short}]{${1:title}}"
+  },
+  "rule[]{}{}": {
+    "command": "rule[lift]{width}{thickness}",
+    "snippet": "rule[${3:lift}]{${1:width}}{${2:thickness}}"
+  },
+  "section*": {
+    "command": "section*",
+    "snippet": "section*{${1:title}}"
+  },
+  "section[]{}": {
+    "command": "section[short]{title}",
+    "snippet": "section[${2:short}]{${1:title}}"
+  },
+  "stackrel": {
+    "command": "stackrel",
+    "snippet": "stackrel{${1:above}}{${2:under}}"
+  },
+  "subparagraph*": {
+    "command": "subparagraph*",
+    "snippet": "subparagraph*{${1:title}}"
+  },
+  "subparagraph[]{}": {
+    "command": "subparagraph[short]{title}",
+    "snippet": "subparagraph[${2:short}]{${1:title}}"
+  },
+  "subsection*": {
+    "command": "subsection*",
+    "snippet": "subsection*{${1:title}}"
+  },
+  "subsection[]{}": {
+    "command": "subsection[short]{title}",
+    "snippet": "subsection[${2:short}]{${1:title}}"
+  },
+  "subsubsection*": {
+    "command": "subsubsection*",
+    "snippet": "subsubsection*{${1:title}}"
+  },
+  "subsubsection[]{}": {
+    "command": "subsubsection[short]{title}",
+    "snippet": "subsubsection[${2:short}]{${1:title}}"
+  },
+  "thanks": {
+    "command": "thanks",
+    "snippet": "thanks{${1:text}}"
+  },
+  "thispagestyle": {
+    "command": "thispagestyle",
+    "snippet": "thispagestyle{${1:empty/plain/headings/myheadings}}"
+  },
+  "usepackage[]{}": {
+    "command": "usepackage[options]{package}",
+    "snippet": "usepackage[${2:options}]{${1:package}}"
+  },
+  "newcommand{}[][]{}": {
+    "command": "newcommand{cmd}[args][default]{def}",
+    "snippet": "newcommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+  },
+  "newcommand{}[]{}": {
+    "command": "newcommand{cmd}[args]{def}",
+    "snippet": "newcommand{${1:cmd}}[${2:args}]{${3:def}}"
+  },
+  "newcommand": {
+    "command": "newcommand",
+    "snippet": "newcommand{${1:cmd}}{${2:def}}"
+  },
+  "providecommand{}[][]{}": {
+    "command": "providecommand{cmd}[args][default]{def}",
+    "snippet": "providecommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+  },
+  "providecommand{}[]{}": {
+    "command": "providecommand{cmd}[args]{def}",
+    "snippet": "providecommand{${1:cmd}}[${2:args}]{${3:def}}"
+  },
+  "providecommand": {
+    "command": "providecommand",
+    "snippet": "providecommand{${1:cmd}}{${2:def}}"
+  },
+  "newenvironment{}[][]{}{}": {
+    "command": "newenvironment{nam}[args][default]{begdef}{enddef}",
+    "snippet": "newenvironment{${1:nam}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+  },
+  "newenvironment{}[]{}{}": {
+    "command": "newenvironment{nam}[args]{begdef}{enddef}",
+    "snippet": "newenvironment{${1:nam}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+  },
+  "newenvironment": {
+    "command": "newenvironment",
+    "snippet": "newenvironment{${1:nam}}{${2:begdef}}{${3:enddef}}"
+  },
+  "renewcommand{}[][]{}": {
+    "command": "renewcommand{cmd}[args][default]{def}",
+    "snippet": "renewcommand{${1:cmd}}[${2:args}][${3:default}]{${4:def}}"
+  },
+  "renewcommand{}[]{}": {
+    "command": "renewcommand{cmd}[args]{def}",
+    "snippet": "renewcommand{${1:cmd}}[${2:args}]{${3:def}}"
+  },
+  "renewcommand": {
+    "command": "renewcommand",
+    "snippet": "renewcommand{${1:cmd}}{${2:def}}"
+  },
+  "renewenvironment{}[][]{}{}": {
+    "command": "renewenvironment{nam}[args][default]{begdef}{enddef}",
+    "snippet": "renewenvironment{${1:nam}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+  },
+  "renewenvironment{}[]{}{}": {
+    "command": "renewenvironment{nam}[args]{begdef}{enddef}",
+    "snippet": "renewenvironment{${1:nam}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+  },
+  "renewenvironment": {
+    "command": "renewenvironment",
+    "snippet": "renewenvironment{${1:nam}}{${2:begdef}}{${3:enddef}}"
   }
+
 }

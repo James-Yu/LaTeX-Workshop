@@ -115,8 +115,19 @@ document.addEventListener('pagerendered', (e) => {
     let canvas_dom = e.target.childNodes[1]
     canvas_dom.onclick = (e) => {
         if (!(e.ctrlKey || e.metaKey)) return
-        let left = e.pageX - target.offsetLeft + target.parentNode.parentNode.scrollLeft
-        let top = e.pageY - target.offsetTop + target.parentNode.parentNode.scrollTop
+
+        let viewerContainer = null
+        // no spread
+        if(PDFViewerApplication.pdfViewer.spreadMode === 0){
+          viewerContainer = target.parentNode.parentNode
+        } 
+        // odd and even spread add an extra spread container
+        else {
+          viewerContainer = target.parentNode.parentNode.parentNode
+        }
+
+        let left = e.pageX - target.offsetLeft + viewerContainer.scrollLeft
+        let top = e.pageY - target.offsetTop + viewerContainer.scrollTop
         let pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
         socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page}))
     }
@@ -200,6 +211,16 @@ document.getElementById("trimSelect").addEventListener("change", (ev) => {
     scaleSelect.dispatchEvent(e);
     currentUserSelectScale = undefined;
     originalUserSelectIndex = undefined;
+    const viewer = document.getElementById('viewer');
+    for ( const page of viewer.getElementsByClassName('page') ) {
+      for ( const layer of page.getElementsByClassName('annotationLayer') ) {
+        for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
+          if (secionOfAnnotation.dataset.originalLeft !== undefined) {
+            secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft;
+          }
+        }
+      }
+    }
     return;
   }
   for ( o of scaleSelect.options ) {
@@ -235,14 +256,27 @@ const trimPage = (page) => {
     const width = ( Math.floor(Number(m[1])/trimScale) - 4 )  + 'px';
     page.style.width = width;
     canvasWrapper.style.width = width;
-    const offsetX = '-' + Number(m[1]) * (1 - 1/trimScale) / 2 + "px";
-    canvas.style.left = offsetX;
-    canvas.style.position = "relative";
+    const offsetX = - Number(m[1]) * (1 - 1/trimScale) / 2;
+    canvas.style.left = offsetX + 'px';
+    canvas.style.position = 'relative';
     canvas.setAttribute('data-is-trimmed', 'trimmed');
     if ( textLayer && textLayer.dataset.isTrimmed !== 'trimmed' ) {
       textLayer.style.width = width;
-      textLayer.style.left = offsetX;
+      textLayer.style.left = offsetX + 'px';
       textLayer.setAttribute('data-is-trimmed', 'trimmed');
+    }
+    const secionOfAnnotationArray = page.getElementsByTagName('section');
+    for ( const secionOfAnnotation of secionOfAnnotationArray ) {
+      let originalLeft = secionOfAnnotation.style.left;
+      if (secionOfAnnotation.dataset.originalLeft === undefined) {
+        secionOfAnnotation.setAttribute('data-original-left', secionOfAnnotation.style.left);
+      } else {
+        originalLeft = secionOfAnnotation.dataset.originalLeft;
+      }
+      const mat = originalLeft.match(/(\d+)/)
+      if (mat) {
+        secionOfAnnotation.style.left = (Number(mat[1]) + offsetX) + 'px'
+      }
     }
   }
 }

@@ -30,6 +30,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         this.commands.push(viewCommand)
         viewCommand.children.push(new LaTeXCommand(`View in VSCode tab`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['tab']}))
         viewCommand.children.push(new LaTeXCommand(`View in web browser`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['browser']}))
+        viewCommand.children.push(new LaTeXCommand(`View in external viewer`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['external']}))
         viewCommand.children.push(new LaTeXCommand(`Set default viewer`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['set']}))
 
         const logCommand = new LaTeXCommand('View Log messages', vscode.TreeItemCollapsibleState.Collapsed, {command: 'latex-workshop.log', title: ''})

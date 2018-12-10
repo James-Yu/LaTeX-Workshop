@@ -1,78 +1,102 @@
 {
   "fontspec": {
     "command": "fontspec",
-    "snippet": "fontspec{${1}}"
+    "snippet": "fontspec{${1:fontname}}"
+  },
+  "fontspec[]{}": {
+    "command": "fontspec[fontfeature=option,fontfeature=option]{fontname}",
+    "snippet": "fontspec[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}"
   },
   "setmainfont": {
     "command": "setmainfont",
-    "snippet": "setmainfont{${1}}"
+    "snippet": "setmainfont{${1:fontname}}"
+  },
+  "setmainfont[]{}": {
+    "command": "setmainfont[fontfeature=option,fontfeature=option]{fontname}",
+    "snippet": "setmainfont[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}"
   },
   "setsansfont": {
     "command": "setsansfont",
-    "snippet": "setsansfont{${1}}"
+    "snippet": "setsansfont{${1:fontname}}"
+  },
+  "setsansfont[]{}": {
+    "command": "setsansfont[fontfeature=option,fontfeature=option]{fontname}",
+    "snippet": "setsansfont[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}"
   },
   "setmonofont": {
     "command": "setmonofont",
-    "snippet": "setmonofont{${1}}"
+    "snippet": "setmonofont{${1:fontname}}"
+  },
+  "setmonofont[]{}": {
+    "command": "setmonofont[fontfeature=option,fontfeature=option]{fontname}",
+    "snippet": "setmonofont[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}"
   },
   "newfontfamily<fontinstance>": {
     "command": "newfontfamily<fontinstance>",
-    "snippet": "newfontfamily<fontinstance>{${1}}"
+    "snippet": "newfontfamily<fontinstance>{${1:fontname}}"
   },
   "newfontface<fontface>": {
     "command": "newfontface<fontface>",
-    "snippet": "newfontface<fontface>{${1}}"
+    "snippet": "newfontface<fontface>{${1:fontname}}"
+  },
+  "newfontface<fontface>[]{}": {
+    "command": "newfontface<fontface>[fontfeature=option,fontfeature=option]{fontname}",
+    "snippet": "newfontface<fontface>[${2:fontfeature=option,fontfeature=option}]{${1:fontname}}"
   },
   "setmathrm": {
-    "command": "setmathrm"
+    "command": "setmathrm",
+    "snippet": "setmathrm"
   },
   "setboldmathrm": {
-    "command": "setboldmathrm"
+    "command": "setboldmathrm",
+    "snippet": "setboldmathrm"
   },
   "setmathsf": {
-    "command": "setmathsf"
+    "command": "setmathsf",
+    "snippet": "setmathsf"
   },
   "setmathtt": {
-    "command": "setmathtt"
+    "command": "setmathtt",
+    "snippet": "setmathtt"
   },
   "defaultfontfeatures": {
     "command": "defaultfontfeatures",
-    "snippet": "defaultfontfeatures{${1}}"
+    "snippet": "defaultfontfeatures{${1:fontfeature=option,fontfeature=option}}"
   },
   "addfontfeatures": {
     "command": "addfontfeatures",
-    "snippet": "addfontfeatures{${1}}"
+    "snippet": "addfontfeatures{${1:fontfeature=option,fontfeature=option}}"
   },
   "newfontscript": {
     "command": "newfontscript",
-    "snippet": "newfontscript{${1}}{${2}}"
+    "snippet": "newfontscript{${1:fontspecname}}{${2:OpenTypedefinition}}"
   },
   "newfontlanguage": {
     "command": "newfontlanguage",
-    "snippet": "newfontlanguage{${1}}{${2}}"
+    "snippet": "newfontlanguage{${1:fontspecname}}{${2:OpenTypedefinition}}"
   },
   "newAATfeature": {
     "command": "newAATfeature",
-    "snippet": "newAATfeature{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "newAATfeature{${1:feature}}{${2:option}}{${3:featurecode}}{${4:selectorcode}}"
   },
   "newfeaturecode": {
     "command": "newfeaturecode",
-    "snippet": "newfeaturecode{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "newfeaturecode{${1:feature}}{${2:option}}{${3:featurecode}}{${4:selectorcode}}"
   },
   "newICUfeature": {
     "command": "newICUfeature",
-    "snippet": "newICUfeature{${1}}{${2}}{${3}}"
+    "snippet": "newICUfeature{${1:feature}}{${2:option}}{${3:featuretag}}"
   },
   "newfontfeature": {
     "command": "newfontfeature",
-    "snippet": "newfontfeature{${1}}{${2}}"
+    "snippet": "newfontfeature{${1:name}}{${2:inputstring}}"
   },
   "aliasfontfeature": {
     "command": "aliasfontfeature",
-    "snippet": "aliasfontfeature{${1}}{${2}}"
+    "snippet": "aliasfontfeature{${1:existingname}}{${2:newname}}"
   },
   "aliasfontfeatureoption": {
     "command": "aliasfontfeatureoption",
-    "snippet": "aliasfontfeatureoption{${1}}{${2}}{${3}}"
+    "snippet": "aliasfontfeatureoption{${1:fontfeature}}{${2:existingname}}{${3:newname}}"
   }
 }

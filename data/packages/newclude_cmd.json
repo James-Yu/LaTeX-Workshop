@@ -1,73 +1,82 @@
 {
-  "include*": {
-    "command": "include*",
-    "snippet": "include*{${1}}"
+  "include*[]{}[]": {
+    "command": "include*[prehook]{file}[posthook]",
+    "snippet": "include*[${2:prehook}]{${1:file}}[${3:posthook}]"
   },
   "IncludeSurround": {
-    "command": "IncludeSurround"
+    "command": "IncludeSurround",
+    "snippet": "IncludeSurround"
   },
   "DefaultIncludeSurround": {
-    "command": "DefaultIncludeSurround"
+    "command": "DefaultIncludeSurround",
+    "snippet": "DefaultIncludeSurround"
+  },
+  "include[]{}[]": {
+    "command": "include[prehook]{file}[posthook]",
+    "snippet": "include[${2:prehook}]{${1:file}}[${3:posthook}]"
   },
   "AtBeginInclude": {
     "command": "AtBeginInclude",
-    "snippet": "AtBeginInclude{${1}}"
+    "snippet": "AtBeginInclude{${1:tokens}}"
   },
   "AtEndInclude": {
     "command": "AtEndInclude",
-    "snippet": "AtEndInclude{${1}}"
-  },
-  "includeonly": {
-    "command": "includeonly",
-    "snippet": "includeonly{${1}}"
+    "snippet": "AtEndInclude{${1:tokens}}"
   },
   "includeall": {
-    "command": "includeall"
+    "command": "includeall",
+    "snippet": "includeall"
   },
-  "includeenv": {
-    "command": "includeenv",
-    "snippet": "includeenv{${1}}{${2}}{${3}}"
+  "includeenv[]{}{}{}[]": {
+    "command": "includeenv[prehook]{file}{envname}{instance}[posthook]",
+    "snippet": "includeenv[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]"
   },
-  "includeenv*": {
-    "command": "includeenv*",
-    "snippet": "includeenv*{${1}}{${2}}{${3}}"
+  "includeenv*[]{}{}{}[]": {
+    "command": "includeenv*[prehook]{file}{envname}{instance}[posthook]",
+    "snippet": "includeenv*[${4:prehook}]{${1:file}}{${2:envname}}{${3:instance}}[${5:posthook}]"
   },
-  "includedoc": {
-    "command": "includedoc",
-    "snippet": "includedoc{${1}}"
+  "includedoc[]{}[]": {
+    "command": "includedoc[prehook]{file}[posthook]",
+    "snippet": "includedoc[${2:prehook}]{${1:file}}[${3:posthook}]"
   },
-  "includedoc*": {
-    "command": "includedoc*",
-    "snippet": "includedoc*{${1}}"
+  "includedoc*[]{}[]": {
+    "command": "includedoc*[prehook]{file}[posthook]",
+    "snippet": "includedoc*[${2:prehook}]{${1:file}}[${3:posthook}]"
   },
   "IfAllowed ": {
     "command": "IfAllowed ",
-    "snippet": "IfAllowed {${1}}{${2}}{${3}}"
+    "snippet": "IfAllowed {${1:part}}{${2:true}}{${3:false}}"
   },
   "IncludeName": {
-    "command": "IncludeName"
+    "command": "IncludeName",
+    "snippet": "IncludeName"
   },
   "ParentName": {
-    "command": "ParentName"
+    "command": "ParentName",
+    "snippet": "ParentName"
   },
   "DeclareFormattingPackage": {
     "command": "DeclareFormattingPackage",
-    "snippet": "DeclareFormattingPackage{${1}}"
+    "snippet": "DeclareFormattingPackage{${1:packagename}}"
   },
   "ifSkipPreamble": {
-    "command": "ifSkipPreamble"
+    "command": "ifSkipPreamble",
+    "snippet": "ifSkipPreamble"
   },
   "SkipPreambletrue": {
-    "command": "SkipPreambletrue"
+    "command": "SkipPreambletrue",
+    "snippet": "SkipPreambletrue"
   },
   "SkipPreamblefalse": {
-    "command": "SkipPreamblefalse"
+    "command": "SkipPreamblefalse",
+    "snippet": "SkipPreamblefalse"
   },
   "Disable": {
     "command": "Disable",
-    "snippet": "Disable{${1}}"
+    "snippet": "Disable{${1:tokens}}"
   },
   "DisableAll": {
-    "command": "DisableAll"
+    "command": "DisableAll",
+    "snippet": "DisableAll"
   }
 }

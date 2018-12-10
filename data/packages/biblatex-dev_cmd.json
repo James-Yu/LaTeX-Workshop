@@ -1,912 +1,1230 @@
 {
   "RequireBibliographyStyle": {
     "command": "RequireBibliographyStyle",
-    "snippet": "RequireBibliographyStyle{${1}}"
+    "snippet": "RequireBibliographyStyle{${1:style}}"
   },
   "InitializeBibliographyStyle": {
     "command": "InitializeBibliographyStyle",
-    "snippet": "InitializeBibliographyStyle{${1}}"
+    "snippet": "InitializeBibliographyStyle{${1:code}}"
   },
   "DeclareBibliographyDriver": {
     "command": "DeclareBibliographyDriver",
-    "snippet": "DeclareBibliographyDriver{${1}}{${2}}"
+    "snippet": "DeclareBibliographyDriver{${1:type}}{${2:code}}"
   },
   "DeclareBibliographyAlias": {
     "command": "DeclareBibliographyAlias",
-    "snippet": "DeclareBibliographyAlias{${1}}{${2}}"
+    "snippet": "DeclareBibliographyAlias{${1:alias}}{${2:type}}"
   },
   "DeclareBibliographyOption": {
     "command": "DeclareBibliographyOption",
-    "snippet": "DeclareBibliographyOption{${1}}{${2}}"
+    "snippet": "DeclareBibliographyOption{${1:key}}{${2:code}}"
+  },
+  "DeclareBibliographyOption{}[]{}": {
+    "command": "DeclareBibliographyOption{key}[value]{code}",
+    "snippet": "DeclareBibliographyOption{${1:key}}[${2:value}]{${3:code}}"
   },
   "DeclareEntryOption": {
     "command": "DeclareEntryOption",
-    "snippet": "DeclareEntryOption{${1}}{${2}}"
+    "snippet": "DeclareEntryOption{${1:key}}{${2:code}}"
+  },
+  "DeclareEntryOption{}[]{}": {
+    "command": "DeclareEntryOption{key}[value]{code}",
+    "snippet": "DeclareEntryOption{${1:key}}[${2:value}]{${3:code}}"
   },
   "RequireCitationStyle": {
     "command": "RequireCitationStyle",
-    "snippet": "RequireCitationStyle{${1}}"
+    "snippet": "RequireCitationStyle{${1:style}}"
   },
   "InitializeCitationStyle": {
     "command": "InitializeCitationStyle",
-    "snippet": "InitializeCitationStyle{${1}}"
+    "snippet": "InitializeCitationStyle{${1:code}}"
   },
   "OnManualCitation": {
     "command": "OnManualCitation",
-    "snippet": "OnManualCitation{${1}}"
+    "snippet": "OnManualCitation{${1:code}}"
   },
   "DeclareCiteCommand": {
     "command": "DeclareCiteCommand",
-    "snippet": "DeclareCiteCommand{${1}}{${2}}{${3}}{${4}}{${5}}"
+    "snippet": "DeclareCiteCommand{${1:command}}{${2:precode}}{${3:loopcode}}{${4:sepcode}}{${5:postcode}}"
+  },
+  "DeclareCiteCommand{}[]{}{}{}{}": {
+    "command": "DeclareCiteCommand{command}[wrapper]{precode}{loopcode}{sepcode}{postcode}",
+    "snippet": "DeclareCiteCommand{${1:command}}[${2:wrapper}]{${3:precode}}{${4:loopcode}}{${5:sepcode}}{${6:postcode}}"
   },
   "DeclareCiteCommand*": {
     "command": "DeclareCiteCommand*",
-    "snippet": "DeclareCiteCommand*{${1}}{${2}}{${3}}{${4}}{${5}}"
+    "snippet": "DeclareCiteCommand*{${1:command}}{${2:precode}}{${3:loopcode}}{${4:sepcode}}{${5:postcode}}"
+  },
+  "DeclareCiteCommand*{}[]{}{}{}{}": {
+    "command": "DeclareCiteCommand*{command}[wrapper]{precode}{loopcode}{sepcode}{postcode}",
+    "snippet": "DeclareCiteCommand*{${1:command}}[${2:wrapper}]{${3:precode}}{${4:loopcode}}{${5:sepcode}}{${6:postcode}}"
   },
   "DeclareMultiCiteCommand": {
     "command": "DeclareMultiCiteCommand",
-    "snippet": "DeclareMultiCiteCommand{${1}}{${2}}{${3}}"
+    "snippet": "DeclareMultiCiteCommand{${1:command}}{${2:cite}}{${3:delimiter}}"
+  },
+  "DeclareMultiCiteCommand{}[]{}{}": {
+    "command": "DeclareMultiCiteCommand{command}[wrapper]{cite}{delimiter}",
+    "snippet": "DeclareMultiCiteCommand{${1:command}}[${2:wrapper}]{${3:cite}}{${4:delimiter}}"
   },
   "DeclareAutoCiteCommand": {
     "command": "DeclareAutoCiteCommand",
-    "snippet": "DeclareAutoCiteCommand{${1}}{${2}}{${3}}"
+    "snippet": "DeclareAutoCiteCommand{${1:name}}{${2:cite}}{${3:multicite}}"
+  },
+  "DeclareAutoCiteCommand{}[]{}{}": {
+    "command": "DeclareAutoCiteCommand{name}[position]{cite}{multicite}",
+    "snippet": "DeclareAutoCiteCommand{${1:name}}[${2:position}]{${3:cite}}{${4:multicite}}"
   },
   "printfield": {
     "command": "printfield",
-    "snippet": "printfield{${1}}"
+    "snippet": "printfield{${1:\ufb01eld}}"
+  },
+  "printfield[]{}": {
+    "command": "printfield[format]{\ufb01eld}",
+    "snippet": "printfield[${2:format}]{${1:\ufb01eld}}"
   },
   "printlist": {
     "command": "printlist",
-    "snippet": "printlist{${1}}"
+    "snippet": "printlist{${1:literal list}}"
+  },
+  "printlist[]{}": {
+    "command": "printlist[format]{literal list}",
+    "snippet": "printlist[${2:format}]{${1:literal list}}"
+  },
+  "printlist[][]{}": {
+    "command": "printlist[format][start \u2013 stop]{literal list}",
+    "snippet": "printlist[${2:format}][${3:start \u2013 stop}]{${1:literal list}}"
   },
   "printnames": {
     "command": "printnames",
-    "snippet": "printnames{${1}}"
+    "snippet": "printnames{${1:name list}}"
+  },
+  "printnames[]{}": {
+    "command": "printnames[format]{name list}",
+    "snippet": "printnames[${2:format}]{${1:name list}}"
+  },
+  "printnames[][]{}": {
+    "command": "printnames[format][start \u2013 stop]{name list}",
+    "snippet": "printnames[${2:format}][${3:start \u2013 stop}]{${1:name list}}"
   },
   "printtext": {
     "command": "printtext",
-    "snippet": "printtext{${1}}"
+    "snippet": "printtext{${1:text}}"
+  },
+  "printtext[]{}": {
+    "command": "printtext[format]{text}",
+    "snippet": "printtext[${2:format}]{${1:text}}"
   },
   "printfile": {
     "command": "printfile",
-    "snippet": "printfile{${1}}"
+    "snippet": "printfile{${1:\ufb01le}}"
+  },
+  "printfile[]{}": {
+    "command": "printfile[format]{\ufb01le}",
+    "snippet": "printfile[${2:format}]{${1:\ufb01le}}"
   },
   "indexfield": {
     "command": "indexfield",
-    "snippet": "indexfield{${1}}"
+    "snippet": "indexfield{${1:\ufb01eld}}"
+  },
+  "indexfield[]{}": {
+    "command": "indexfield[format]{\ufb01eld}",
+    "snippet": "indexfield[${2:format}]{${1:\ufb01eld}}"
   },
   "indexlist": {
     "command": "indexlist",
-    "snippet": "indexlist{${1}}"
+    "snippet": "indexlist{${1:literal list}}"
+  },
+  "indexlist[]{}": {
+    "command": "indexlist[format]{literal list}",
+    "snippet": "indexlist[${2:format}]{${1:literal list}}"
+  },
+  "indexlist[][]{}": {
+    "command": "indexlist[format][start \u2013 stop]{literal list}",
+    "snippet": "indexlist[${2:format}][${3:start \u2013 stop}]{${1:literal list}}"
   },
   "indexnames": {
     "command": "indexnames",
-    "snippet": "indexnames{${1}}"
+    "snippet": "indexnames{${1:literal list}}"
+  },
+  "indexnames[]{}": {
+    "command": "indexnames[format]{literal list}",
+    "snippet": "indexnames[${2:format}]{${1:literal list}}"
+  },
+  "indexnames[][]{}": {
+    "command": "indexnames[format][start \u2013 stop]{literal list}",
+    "snippet": "indexnames[${2:format}][${3:start \u2013 stop}]{${1:literal list}}"
   },
   "entrydata": {
     "command": "entrydata",
-    "snippet": "entrydata{${1}}{${2}}"
+    "snippet": "entrydata{${1:key}}{${2:code}}"
   },
   "entryset": {
     "command": "entryset",
-    "snippet": "entryset{${1}}{${2}}"
+    "snippet": "entryset{${1:precode}}{${2:postcode}}"
   },
   "DeclareFieldFormat": {
     "command": "DeclareFieldFormat",
-    "snippet": "DeclareFieldFormat{${1}}{${2}}"
+    "snippet": "DeclareFieldFormat{${1:format}}{${2:code}}"
+  },
+  "DeclareFieldFormat[]{}{}": {
+    "command": "DeclareFieldFormat[entry type]{format}{code}",
+    "snippet": "DeclareFieldFormat[${3:entry type}]{${1:format}}{${2:code}}"
   },
   "DeclareListFormat": {
     "command": "DeclareListFormat",
-    "snippet": "DeclareListFormat{${1}}{${2}}"
+    "snippet": "DeclareListFormat{${1:format}}{${2:code}}"
+  },
+  "DeclareListFormat[]{}{}": {
+    "command": "DeclareListFormat[entry type]{format}{code}",
+    "snippet": "DeclareListFormat[${3:entry type}]{${1:format}}{${2:code}}"
   },
   "DeclareNameFormat": {
     "command": "DeclareNameFormat",
-    "snippet": "DeclareNameFormat{${1}}{${2}}"
+    "snippet": "DeclareNameFormat{${1:format}}{${2:code}}"
+  },
+  "DeclareNameFormat[]{}{}": {
+    "command": "DeclareNameFormat[entry type]{format}{code}",
+    "snippet": "DeclareNameFormat[${3:entry type}]{${1:format}}{${2:code}}"
   },
   "DeclareIndexFieldFormat": {
     "command": "DeclareIndexFieldFormat",
-    "snippet": "DeclareIndexFieldFormat{${1}}{${2}}"
+    "snippet": "DeclareIndexFieldFormat{${1:format}}{${2:code}}"
+  },
+  "DeclareIndexFieldFormat[]{}{}": {
+    "command": "DeclareIndexFieldFormat[entry type]{format}{code}",
+    "snippet": "DeclareIndexFieldFormat[${3:entry type}]{${1:format}}{${2:code}}"
   },
   "DeclareIndexListFormat": {
     "command": "DeclareIndexListFormat",
-    "snippet": "DeclareIndexListFormat{${1}}{${2}}"
+    "snippet": "DeclareIndexListFormat{${1:format}}{${2:code}}"
+  },
+  "DeclareIndexListFormat[]{}{}": {
+    "command": "DeclareIndexListFormat[entry type]{format}{code}",
+    "snippet": "DeclareIndexListFormat[${3:entry type}]{${1:format}}{${2:code}}"
   },
   "DeclareIndexNameFormat": {
     "command": "DeclareIndexNameFormat",
-    "snippet": "DeclareIndexNameFormat{${1}}{${2}}"
+    "snippet": "DeclareIndexNameFormat{${1:format}}{${2:code}}"
+  },
+  "DeclareIndexNameFormat[]{}{}": {
+    "command": "DeclareIndexNameFormat[entry type]{format}{code}",
+    "snippet": "DeclareIndexNameFormat[${3:entry type}]{${1:format}}{${2:code}}"
   },
   "DeclareFieldAlias": {
     "command": "DeclareFieldAlias",
-    "snippet": "DeclareFieldAlias{${1}}{${2}}"
+    "snippet": "DeclareFieldAlias{${1:alias}}{${2:format}}"
+  },
+  "DeclareFieldAlias[]{}{}": {
+    "command": "DeclareFieldAlias[entry type]{alias}{format}",
+    "snippet": "DeclareFieldAlias[${3:entry type}]{${1:alias}}{${2:format}}"
+  },
+  "DeclareFieldAlias{}[]{}": {
+    "command": "DeclareFieldAlias{alias}[format entry type]{format}",
+    "snippet": "DeclareFieldAlias{${1:alias}}[${2:format entry type}]{${3:format}}"
+  },
+  "DeclareFieldAlias[]{}[]{}": {
+    "command": "DeclareFieldAlias[entry type]{alias}[format entry type]{format}",
+    "snippet": "DeclareFieldAlias[${3:entry type}]{${1:alias}}[${4:format entry type}]{${2:format}}"
   },
   "DeclareListAlias": {
     "command": "DeclareListAlias",
-    "snippet": "DeclareListAlias{${1}}{${2}}"
+    "snippet": "DeclareListAlias{${1:alias}}{${2:format}}"
+  },
+  "DeclareListAlias[]{}{}": {
+    "command": "DeclareListAlias[entry type]{alias}{format}",
+    "snippet": "DeclareListAlias[${3:entry type}]{${1:alias}}{${2:format}}"
+  },
+  "DeclareListAlias{}[]{}": {
+    "command": "DeclareListAlias{alias}[format entry type]{format}",
+    "snippet": "DeclareListAlias{${1:alias}}[${2:format entry type}]{${3:format}}"
+  },
+  "DeclareListAlias[]{}[]{}": {
+    "command": "DeclareListAlias[entry type]{alias}[format entry type]{format}",
+    "snippet": "DeclareListAlias[${3:entry type}]{${1:alias}}[${4:format entry type}]{${2:format}}"
   },
   "DeclareNameAlias": {
     "command": "DeclareNameAlias",
-    "snippet": "DeclareNameAlias{${1}}{${2}}"
+    "snippet": "DeclareNameAlias{${1:alias}}{${2:format}}"
+  },
+  "DeclareNameAlias[]{}{}": {
+    "command": "DeclareNameAlias[entry type]{alias}{format}",
+    "snippet": "DeclareNameAlias[${3:entry type}]{${1:alias}}{${2:format}}"
+  },
+  "DeclareNameAlias{}[]{}": {
+    "command": "DeclareNameAlias{alias}[format entry type]{format}",
+    "snippet": "DeclareNameAlias{${1:alias}}[${2:format entry type}]{${3:format}}"
+  },
+  "DeclareNameAlias[]{}[]{}": {
+    "command": "DeclareNameAlias[entry type]{alias}[format entry type]{format}",
+    "snippet": "DeclareNameAlias[${3:entry type}]{${1:alias}}[${4:format entry type}]{${2:format}}"
   },
   "DeclareIndexFieldAlias": {
     "command": "DeclareIndexFieldAlias",
-    "snippet": "DeclareIndexFieldAlias{${1}}{${2}}"
+    "snippet": "DeclareIndexFieldAlias{${1:alias}}{${2:format}}"
+  },
+  "DeclareIndexFieldAlias[]{}{}": {
+    "command": "DeclareIndexFieldAlias[entry type]{alias}{format}",
+    "snippet": "DeclareIndexFieldAlias[${3:entry type}]{${1:alias}}{${2:format}}"
+  },
+  "DeclareIndexFieldAlias{}[]{}": {
+    "command": "DeclareIndexFieldAlias{alias}[format entry type]{format}",
+    "snippet": "DeclareIndexFieldAlias{${1:alias}}[${2:format entry type}]{${3:format}}"
+  },
+  "DeclareIndexFieldAlias[]{}[]{}": {
+    "command": "DeclareIndexFieldAlias[entry type]{alias}[format entry type]{format}",
+    "snippet": "DeclareIndexFieldAlias[${3:entry type}]{${1:alias}}[${4:format entry type}]{${2:format}}"
   },
   "DeclareIndexListAlias": {
     "command": "DeclareIndexListAlias",
-    "snippet": "DeclareIndexListAlias{${1}}{${2}}"
+    "snippet": "DeclareIndexListAlias{${1:alias}}{${2:format}}"
+  },
+  "DeclareIndexListAlias[]{}{}": {
+    "command": "DeclareIndexListAlias[entry type]{alias}{format}",
+    "snippet": "DeclareIndexListAlias[${3:entry type}]{${1:alias}}{${2:format}}"
+  },
+  "DeclareIndexListAlias{}[]{}": {
+    "command": "DeclareIndexListAlias{alias}[format entry type]{format}",
+    "snippet": "DeclareIndexListAlias{${1:alias}}[${2:format entry type}]{${3:format}}"
+  },
+  "DeclareIndexListAlias[]{}[]{}": {
+    "command": "DeclareIndexListAlias[entry type]{alias}[format entry type]{format}",
+    "snippet": "DeclareIndexListAlias[${3:entry type}]{${1:alias}}[${4:format entry type}]{${2:format}}"
   },
   "DeclareIndexNameAlias": {
     "command": "DeclareIndexNameAlias",
-    "snippet": "DeclareIndexNameAlias{${1}}{${2}}"
+    "snippet": "DeclareIndexNameAlias{${1:alias}}{${2:format}}"
+  },
+  "DeclareIndexNameAlias[]{}{}": {
+    "command": "DeclareIndexNameAlias[entry type]{alias}{format}",
+    "snippet": "DeclareIndexNameAlias[${3:entry type}]{${1:alias}}{${2:format}}"
+  },
+  "DeclareIndexNameAlias{}[]{}": {
+    "command": "DeclareIndexNameAlias{alias}[format entry type]{format}",
+    "snippet": "DeclareIndexNameAlias{${1:alias}}[${2:format entry type}]{${3:format}}"
+  },
+  "DeclareIndexNameAlias[]{}[]{}": {
+    "command": "DeclareIndexNameAlias[entry type]{alias}[format entry type]{format}",
+    "snippet": "DeclareIndexNameAlias[${3:entry type}]{${1:alias}}[${4:format entry type}]{${2:format}}"
   },
   "thefield": {
     "command": "thefield",
-    "snippet": "thefield{${1}}"
+    "snippet": "thefield{${1:\ufb01eld}}"
   },
   "strfield": {
     "command": "strfield",
-    "snippet": "strfield{${1}}"
+    "snippet": "strfield{${1:\ufb01eld}}"
   },
   "thelist": {
     "command": "thelist",
-    "snippet": "thelist{${1}}"
+    "snippet": "thelist{${1:literal list}}"
   },
   "thename": {
     "command": "thename",
-    "snippet": "thename{${1}}"
+    "snippet": "thename{${1:name list}}"
   },
   "savefield": {
     "command": "savefield",
-    "snippet": "savefield{${1}}{${2}}"
+    "snippet": "savefield{${1:\ufb01eld}}{${2:macro}}"
   },
   "savefield*": {
     "command": "savefield*",
-    "snippet": "savefield*{${1}}{${2}}"
+    "snippet": "savefield*{${1:\ufb01eld}}{${2:macro}}"
   },
   "savename": {
     "command": "savename",
-    "snippet": "savename{${1}}{${2}}"
+    "snippet": "savename{${1:name list}}{${2:macro}}"
   },
   "savename*": {
     "command": "savename*",
-    "snippet": "savename*{${1}}{${2}}"
+    "snippet": "savename*{${1:name list}}{${2:macro}}"
   },
   "savefieldcs": {
     "command": "savefieldcs",
-    "snippet": "savefieldcs{${1}}{${2}}"
+    "snippet": "savefieldcs{${1:\ufb01eld}}{${2:csname}}"
   },
   "savefieldcs*": {
     "command": "savefieldcs*",
-    "snippet": "savefieldcs*{${1}}{${2}}"
+    "snippet": "savefieldcs*{${1:\ufb01eld}}{${2:csname}}"
   },
   "savelistcs": {
     "command": "savelistcs",
-    "snippet": "savelistcs{${1}}{${2}}"
+    "snippet": "savelistcs{${1:literal list}}{${2:csname}}"
   },
   "savelistcs*": {
     "command": "savelistcs*",
-    "snippet": "savelistcs*{${1}}{${2}}"
+    "snippet": "savelistcs*{${1:literal list}}{${2:csname}}"
   },
   "savenamecs": {
     "command": "savenamecs",
-    "snippet": "savenamecs{${1}}{${2}}"
+    "snippet": "savenamecs{${1:name list}}{${2:csname}}"
   },
   "savenamecs*": {
     "command": "savenamecs*",
-    "snippet": "savenamecs*{${1}}{${2}}"
+    "snippet": "savenamecs*{${1:name list}}{${2:csname}}"
   },
   "restorefield": {
     "command": "restorefield",
-    "snippet": "restorefield{${1}}{${2}}"
+    "snippet": "restorefield{${1:\ufb01eld}}{${2:macro}}"
   },
   "restorelist": {
     "command": "restorelist",
-    "snippet": "restorelist{${1}}{${2}}"
+    "snippet": "restorelist{${1:literal list}}{${2:macro}}"
   },
   "restorename": {
     "command": "restorename",
-    "snippet": "restorename{${1}}{${2}}"
+    "snippet": "restorename{${1:name list}}{${2:macro}}"
   },
   "clearfield": {
     "command": "clearfield",
-    "snippet": "clearfield{${1}}"
+    "snippet": "clearfield{${1:\ufb01eld}}"
   },
   "clearlist": {
     "command": "clearlist",
-    "snippet": "clearlist{${1}}"
+    "snippet": "clearlist{${1:literal list}}"
   },
   "clearname": {
     "command": "clearname",
-    "snippet": "clearname{${1}}"
+    "snippet": "clearname{${1:name list}}"
   },
   "iffieldundef": {
     "command": "iffieldundef",
-    "snippet": "iffieldundef{${1}}{${2}}{${3}}"
+    "snippet": "iffieldundef{${1:\ufb01eld}}{${2:true}}{${3:false}}"
   },
   "iflistundef": {
     "command": "iflistundef",
-    "snippet": "iflistundef{${1}}{${2}}{${3}}"
+    "snippet": "iflistundef{${1:literal list}}{${2:true}}{${3:false}}"
   },
   "ifnameundef": {
     "command": "ifnameundef",
-    "snippet": "ifnameundef{${1}}{${2}}{${3}}"
+    "snippet": "ifnameundef{${1:name list}}{${2:true}}{${3:false}}"
   },
   "iffieldsequal": {
     "command": "iffieldsequal",
-    "snippet": "iffieldsequal{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "iffieldsequal{${1:\ufb01eld 1}}{${2:\ufb01eld 2}}{${3:true}}{${4:false}}"
   },
   "iflistsequal": {
     "command": "iflistsequal",
-    "snippet": "iflistsequal{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "iflistsequal{${1:literal list 1}}{${2:literal list 2}}{${3:true}}{${4:false}}"
   },
   "ifnamesequal": {
     "command": "ifnamesequal",
-    "snippet": "ifnamesequal{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "ifnamesequal{${1:name list 1}}{${2:name list 2}}{${3:true}}{${4:false}}"
   },
   "iffieldequals": {
     "command": "iffieldequals",
-    "snippet": "iffieldequals{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "iffieldequals{${1:\ufb01eld}}{${2:macro}}{${3:true}}{${4:false}}"
   },
   "iflistequals": {
     "command": "iflistequals",
-    "snippet": "iflistequals{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "iflistequals{${1:literal list}}{${2:macro}}{${3:true}}{${4:false}}"
   },
   "ifnameequals": {
     "command": "ifnameequals",
-    "snippet": "ifnameequals{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "ifnameequals{${1:name list}}{${2:macro}}{${3:true}}{${4:false}}"
   },
   "iffieldequalcs": {
     "command": "iffieldequalcs",
-    "snippet": "iffieldequalcs{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "iffieldequalcs{${1:\ufb01eld}}{${2:csname}}{${3:true}}{${4:false}}"
   },
   "iflistequalcs": {
     "command": "iflistequalcs",
-    "snippet": "iflistequalcs{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "iflistequalcs{${1:literal list}}{${2:csname}}{${3:true}}{${4:false}}"
   },
   "ifnameequalcs": {
     "command": "ifnameequalcs",
-    "snippet": "ifnameequalcs{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "ifnameequalcs{${1:name list}}{${2:csname}}{${3:true}}{${4:false}}"
   },
   "iffieldequalstr": {
     "command": "iffieldequalstr",
-    "snippet": "iffieldequalstr{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "iffieldequalstr{${1:\ufb01eld}}{${2:string}}{${3:true}}{${4:false}}"
   },
   "iffieldxref": {
     "command": "iffieldxref",
-    "snippet": "iffieldxref{${1}}{${2}}{${3}}"
+    "snippet": "iffieldxref{${1:\ufb01eld}}{${2:true}}{${3:false}}"
   },
   "iflistxref": {
     "command": "iflistxref",
-    "snippet": "iflistxref{${1}}{${2}}{${3}}"
+    "snippet": "iflistxref{${1:literal list}}{${2:true}}{${3:false}}"
   },
   "ifnamexref": {
     "command": "ifnamexref",
-    "snippet": "ifnamexref{${1}}{${2}}{${3}}"
+    "snippet": "ifnamexref{${1:name list}}{${2:true}}{${3:false}}"
   },
   "ifcurrentfield": {
     "command": "ifcurrentfield",
-    "snippet": "ifcurrentfield{${1}}{${2}}{${3}}"
+    "snippet": "ifcurrentfield{${1:\ufb01eld}}{${2:true}}{${3:false}}"
   },
   "ifcurrentlist": {
     "command": "ifcurrentlist",
-    "snippet": "ifcurrentlist{${1}}{${2}}{${3}}"
+    "snippet": "ifcurrentlist{${1:literal list}}{${2:true}}{${3:false}}"
   },
   "ifcurrentname": {
     "command": "ifcurrentname",
-    "snippet": "ifcurrentname{${1}}{${2}}{${3}}"
+    "snippet": "ifcurrentname{${1:name list}}{${2:true}}{${3:false}}"
   },
   "ifuseprefix": {
     "command": "ifuseprefix",
-    "snippet": "ifuseprefix{${1}}{${2}}"
+    "snippet": "ifuseprefix{${1:true}}{${2:false}}"
   },
   "ifuseauthor": {
     "command": "ifuseauthor",
-    "snippet": "ifuseauthor{${1}}{${2}}"
+    "snippet": "ifuseauthor{${1:true}}{${2:false}}"
   },
   "ifuseeditor": {
     "command": "ifuseeditor",
-    "snippet": "ifuseeditor{${1}}{${2}}"
+    "snippet": "ifuseeditor{${1:true}}{${2:false}}"
   },
   "ifsingletitle": {
     "command": "ifsingletitle",
-    "snippet": "ifsingletitle{${1}}{${2}}"
+    "snippet": "ifsingletitle{${1:true}}{${2:false}}"
   },
   "ifandothers": {
     "command": "ifandothers",
-    "snippet": "ifandothers{${1}}{${2}}{${3}}"
+    "snippet": "ifandothers{${1:list}}{${2:true}}{${3:false}}"
   },
   "ifmorenames": {
     "command": "ifmorenames",
-    "snippet": "ifmorenames{${1}}{${2}}"
+    "snippet": "ifmorenames{${1:true}}{${2:false}}"
   },
   "ifmoreitems": {
     "command": "ifmoreitems",
-    "snippet": "ifmoreitems{${1}}{${2}}"
+    "snippet": "ifmoreitems{${1:true}}{${2:false}}"
   },
   "iffirstinits": {
     "command": "iffirstinits",
-    "snippet": "iffirstinits{${1}}{${2}}"
+    "snippet": "iffirstinits{${1:true}}{${2:false}}"
   },
   "ifciteseen": {
     "command": "ifciteseen",
-    "snippet": "ifciteseen{${1}}{${2}}"
+    "snippet": "ifciteseen{${1:true}}{${2:false}}"
   },
   "ifciteibid": {
     "command": "ifciteibid",
-    "snippet": "ifciteibid{${1}}{${2}}"
+    "snippet": "ifciteibid{${1:true}}{${2:false}}"
   },
   "ifopcit": {
     "command": "ifopcit",
-    "snippet": "ifopcit{${1}}{${2}}"
+    "snippet": "ifopcit{${1:true}}{${2:false}}"
   },
   "ifloccit": {
     "command": "ifloccit",
-    "snippet": "ifloccit{${1}}{${2}}"
+    "snippet": "ifloccit{${1:true}}{${2:false}}"
   },
   "iffirstonpage": {
     "command": "iffirstonpage",
-    "snippet": "iffirstonpage{${1}}{${2}}"
+    "snippet": "iffirstonpage{${1:true}}{${2:false}}"
   },
   "ifsamepage": {
     "command": "ifsamepage",
-    "snippet": "ifsamepage{${1}}{${2}}{${3}}{${4}}"
+    "snippet": "ifsamepage{${1:instance 1}}{${2:instance 2}}{${3:true}}{${4:false}}"
   },
   "ifinteger": {
     "command": "ifinteger",
-    "snippet": "ifinteger{${1}}{${2}}{${3}}"
+    "snippet": "ifinteger{${1:string}}{${2:true}}{${3:false}}"
   },
   "ifnumeral": {
     "command": "ifnumeral",
-    "snippet": "ifnumeral{${1}}{${2}}{${3}}"
+    "snippet": "ifnumeral{${1:string}}{${2:true}}{${3:false}}"
   },
   "ifnumerals": {
     "command": "ifnumerals",
-    "snippet": "ifnumerals{${1}}{${2}}{${3}}"
+    "snippet": "ifnumerals{${1:string}}{${2:true}}{${3:false}}"
   },
   "ifbibstring": {
     "command": "ifbibstring",
-    "snippet": "ifbibstring{${1}}{${2}}{${3}}"
+    "snippet": "ifbibstring{${1:string}}{${2:true}}{${3:false}}"
   },
   "iffieldbibstring": {
     "command": "iffieldbibstring",
-    "snippet": "iffieldbibstring{${1}}{${2}}{${3}}"
+    "snippet": "iffieldbibstring{${1:\ufb01eld}}{${2:true}}{${3:false}}"
   },
   "ifcapital": {
     "command": "ifcapital",
-    "snippet": "ifcapital{${1}}{${2}}"
+    "snippet": "ifcapital{${1:true}}{${2:false}}"
   },
   "ifcitation": {
     "command": "ifcitation",
-    "snippet": "ifcitation{${1}}{${2}}"
+    "snippet": "ifcitation{${1:true}}{${2:false}}"
   },
   "ifbibliography": {
     "command": "ifbibliography",
-    "snippet": "ifbibliography{${1}}{${2}}"
+    "snippet": "ifbibliography{${1:true}}{${2:false}}"
   },
   "iffootnote": {
     "command": "iffootnote",
-    "snippet": "iffootnote{${1}}{${2}}"
+    "snippet": "iffootnote{${1:true}}{${2:false}}"
   },
   "ifthenelse": {
     "command": "ifthenelse",
-    "snippet": "ifthenelse{${1}}{${2}}{${3}}"
+    "snippet": "ifthenelse{${1:tests}}{${2:true}}{${3:false}}"
   },
   "newbibmacro": {
     "command": "newbibmacro",
-    "snippet": "newbibmacro{${1}}{${2}}"
+    "snippet": "newbibmacro{${1:name}}{${2:de\ufb01nition}}"
+  },
+  "newbibmacro{}[]{}": {
+    "command": "newbibmacro{name}[arguments]{de\ufb01nition}",
+    "snippet": "newbibmacro{${1:name}}[${2:arguments}]{${3:de\ufb01nition}}"
+  },
+  "newbibmacro{}[][]{}": {
+    "command": "newbibmacro{name}[arguments][optional]{de\ufb01nition}",
+    "snippet": "newbibmacro{${1:name}}[${2:arguments}][${3:optional}]{${4:de\ufb01nition}}"
   },
   "newbibmacro*": {
     "command": "newbibmacro*",
-    "snippet": "newbibmacro*{${1}}{${2}}"
+    "snippet": "newbibmacro*{${1:name}}{${2:de\ufb01nition}}"
+  },
+  "newbibmacro*{}[]{}": {
+    "command": "newbibmacro*{name}[arguments]{de\ufb01nition}",
+    "snippet": "newbibmacro*{${1:name}}[${2:arguments}]{${3:de\ufb01nition}}"
+  },
+  "newbibmacro*{}[][]{}": {
+    "command": "newbibmacro*{name}[arguments][optional]{de\ufb01nition}",
+    "snippet": "newbibmacro*{${1:name}}[${2:arguments}][${3:optional}]{${4:de\ufb01nition}}"
   },
   "renewbibmacro": {
     "command": "renewbibmacro",
-    "snippet": "renewbibmacro{${1}}{${2}}"
+    "snippet": "renewbibmacro{${1:name}}{${2:de\ufb01nition}}"
+  },
+  "renewbibmacro{}[]{}": {
+    "command": "renewbibmacro{name}[arguments]{de\ufb01nition}",
+    "snippet": "renewbibmacro{${1:name}}[${2:arguments}]{${3:de\ufb01nition}}"
+  },
+  "renewbibmacro{}[][]{}": {
+    "command": "renewbibmacro{name}[arguments][optional]{de\ufb01nition}",
+    "snippet": "renewbibmacro{${1:name}}[${2:arguments}][${3:optional}]{${4:de\ufb01nition}}"
   },
   "renewbibmacro*": {
     "command": "renewbibmacro*",
-    "snippet": "renewbibmacro*{${1}}{${2}}"
+    "snippet": "renewbibmacro*{${1:name}}{${2:de\ufb01nition}}"
+  },
+  "renewbibmacro*{}[]{}": {
+    "command": "renewbibmacro*{name}[arguments]{de\ufb01nition}",
+    "snippet": "renewbibmacro*{${1:name}}[${2:arguments}]{${3:de\ufb01nition}}"
+  },
+  "renewbibmacro*{}[][]{}": {
+    "command": "renewbibmacro*{name}[arguments][optional]{de\ufb01nition}",
+    "snippet": "renewbibmacro*{${1:name}}[${2:arguments}][${3:optional}]{${4:de\ufb01nition}}"
   },
   "usebibmacro": {
     "command": "usebibmacro",
-    "snippet": "usebibmacro{${1}}"
+    "snippet": "usebibmacro{${1:name}}"
   },
   "savecommand": {
     "command": "savecommand",
-    "snippet": "savecommand{${1}}"
+    "snippet": "savecommand{${1:command}}"
   },
   "restorecommand": {
     "command": "restorecommand",
-    "snippet": "restorecommand{${1}}"
+    "snippet": "restorecommand{${1:command}}"
   },
   "savebibmacro": {
     "command": "savebibmacro",
-    "snippet": "savebibmacro{${1}}"
+    "snippet": "savebibmacro{${1:name}}"
   },
   "restorebibmacro": {
     "command": "restorebibmacro",
-    "snippet": "restorebibmacro{${1}}"
+    "snippet": "restorebibmacro{${1:name}}"
   },
   "savefieldformat": {
     "command": "savefieldformat",
-    "snippet": "savefieldformat{${1}}"
+    "snippet": "savefieldformat{${1:format}}"
+  },
+  "savefieldformat[]{}": {
+    "command": "savefieldformat[entry type]{format}",
+    "snippet": "savefieldformat[${2:entry type}]{${1:format}}"
   },
   "restorefieldformat": {
     "command": "restorefieldformat",
-    "snippet": "restorefieldformat{${1}}"
+    "snippet": "restorefieldformat{${1:format}}"
+  },
+  "restorefieldformat[]{}": {
+    "command": "restorefieldformat[entry type]{format}",
+    "snippet": "restorefieldformat[${2:entry type}]{${1:format}}"
   },
   "savelistformat": {
     "command": "savelistformat",
-    "snippet": "savelistformat{${1}}"
+    "snippet": "savelistformat{${1:format}}"
+  },
+  "savelistformat[]{}": {
+    "command": "savelistformat[entry type]{format}",
+    "snippet": "savelistformat[${2:entry type}]{${1:format}}"
   },
   "restorelistformat": {
     "command": "restorelistformat",
-    "snippet": "restorelistformat{${1}}"
+    "snippet": "restorelistformat{${1:format}}"
+  },
+  "restorelistformat[]{}": {
+    "command": "restorelistformat[entry type]{format}",
+    "snippet": "restorelistformat[${2:entry type}]{${1:format}}"
   },
   "savenameformat": {
     "command": "savenameformat",
-    "snippet": "savenameformat{${1}}"
+    "snippet": "savenameformat{${1:format}}"
+  },
+  "savenameformat[]{}": {
+    "command": "savenameformat[entry type]{format}",
+    "snippet": "savenameformat[${2:entry type}]{${1:format}}"
   },
   "restorenameformat": {
     "command": "restorenameformat",
-    "snippet": "restorenameformat{${1}}"
+    "snippet": "restorenameformat{${1:format}}"
+  },
+  "restorenameformat[]{}": {
+    "command": "restorenameformat[entry type]{format}",
+    "snippet": "restorenameformat[${2:entry type}]{${1:format}}"
   },
   "usedriver": {
     "command": "usedriver",
-    "snippet": "usedriver{${1}}{${2}}"
+    "snippet": "usedriver{${1:code}}{${2:type}}"
   },
   "bibhypertarget": {
     "command": "bibhypertarget",
-    "snippet": "bibhypertarget{${1}}{${2}}"
+    "snippet": "bibhypertarget{${1:name}}{${2:text}}"
   },
   "bibhyperlink": {
     "command": "bibhyperlink",
-    "snippet": "bibhyperlink{${1}}{${2}}"
+    "snippet": "bibhyperlink{${1:name}}{${2:text}}"
   },
   "bibhyperref": {
     "command": "bibhyperref",
-    "snippet": "bibhyperref{${1}}"
+    "snippet": "bibhyperref{${1:text}}"
+  },
+  "bibhyperref[]{}": {
+    "command": "bibhyperref[entrykey]{text}",
+    "snippet": "bibhyperref[${2:entrykey}]{${1:text}}"
   },
   "ifhyperref": {
     "command": "ifhyperref",
-    "snippet": "ifhyperref{${1}}{${2}}"
+    "snippet": "ifhyperref{${1:true}}{${2:false}}"
   },
   "docsvfield": {
     "command": "docsvfield",
-    "snippet": "docsvfield{${1}}"
+    "snippet": "docsvfield{${1:\ufb01eld}}"
   },
   "MakeCapital": {
     "command": "MakeCapital",
-    "snippet": "MakeCapital{${1}}"
+    "snippet": "MakeCapital{${1:text}}"
   },
   "MakeSentenceCase": {
     "command": "MakeSentenceCase",
-    "snippet": "MakeSentenceCase{${1}}"
+    "snippet": "MakeSentenceCase{${1:text}}"
   },
   "MakeSentenceCase*": {
     "command": "MakeSentenceCase*",
-    "snippet": "MakeSentenceCase*{${1}}"
+    "snippet": "MakeSentenceCase*{${1:text}}"
   },
   "mkpageprefix": {
     "command": "mkpageprefix",
-    "snippet": "mkpageprefix{${1}}"
+    "snippet": "mkpageprefix{${1:text}}"
+  },
+  "mkpageprefix[]{}": {
+    "command": "mkpageprefix[pagination]{text}",
+    "snippet": "mkpageprefix[${2:pagination}]{${1:text}}"
   },
   "mkpagetotal": {
     "command": "mkpagetotal",
-    "snippet": "mkpagetotal{${1}}"
+    "snippet": "mkpagetotal{${1:text}}"
+  },
+  "mkpagetotal[]{}": {
+    "command": "mkpagetotal[pagination]{text}",
+    "snippet": "mkpagetotal[${2:pagination}]{${1:text}}"
   },
   "DeclareNumChars": {
     "command": "DeclareNumChars",
-    "snippet": "DeclareNumChars{${1}}"
+    "snippet": "DeclareNumChars{${1:characters}}"
   },
   "DeclareNumChars*": {
     "command": "DeclareNumChars*",
-    "snippet": "DeclareNumChars*{${1}}"
+    "snippet": "DeclareNumChars*{${1:characters}}"
   },
   "DeclareRangeChars": {
     "command": "DeclareRangeChars",
-    "snippet": "DeclareRangeChars{${1}}"
+    "snippet": "DeclareRangeChars{${1:characters}}"
   },
   "DeclareRangeChars*": {
     "command": "DeclareRangeChars*",
-    "snippet": "DeclareRangeChars*{${1}}"
+    "snippet": "DeclareRangeChars*{${1:characters}}"
   },
   "DeclareRangeCommands": {
     "command": "DeclareRangeCommands",
-    "snippet": "DeclareRangeCommands{${1}}"
+    "snippet": "DeclareRangeCommands{${1:commands}}"
   },
   "DeclareRangeCommands*": {
     "command": "DeclareRangeCommands*",
-    "snippet": "DeclareRangeCommands*{${1}}"
+    "snippet": "DeclareRangeCommands*{${1:commands}}"
   },
   "NumCheckSetup": {
     "command": "NumCheckSetup",
-    "snippet": "NumCheckSetup{${1}}"
+    "snippet": "NumCheckSetup{${1:code}}"
   },
   "DeclareCaseLangs": {
     "command": "DeclareCaseLangs",
-    "snippet": "DeclareCaseLangs{${1}}"
+    "snippet": "DeclareCaseLangs{${1:languages}}"
   },
   "DeclareCaseLangs*": {
     "command": "DeclareCaseLangs*",
-    "snippet": "DeclareCaseLangs*{${1}}"
+    "snippet": "DeclareCaseLangs*{${1:languages}}"
   },
   "BibliographyWarning": {
     "command": "BibliographyWarning",
-    "snippet": "BibliographyWarning{${1}}"
+    "snippet": "BibliographyWarning{${1:message}}"
   },
   "pagetrackertrue": {
-    "command": "pagetrackertrue"
+    "command": "pagetrackertrue",
+    "snippet": "pagetrackertrue"
   },
   "pagetrackerfalse": {
-    "command": "pagetrackerfalse"
+    "command": "pagetrackerfalse",
+    "snippet": "pagetrackerfalse"
   },
   "citetrackertrue": {
-    "command": "citetrackertrue"
+    "command": "citetrackertrue",
+    "snippet": "citetrackertrue"
   },
   "citetrackerfalse": {
-    "command": "citetrackerfalse"
+    "command": "citetrackerfalse",
+    "snippet": "citetrackerfalse"
   },
   "newblock": {
-    "command": "newblock"
+    "command": "newblock",
+    "snippet": "newblock"
   },
   "newunit": {
-    "command": "newunit"
+    "command": "newunit",
+    "snippet": "newunit"
   },
   "finentry": {
-    "command": "finentry"
+    "command": "finentry",
+    "snippet": "finentry"
   },
   "setunit": {
     "command": "setunit",
-    "snippet": "setunit{${1}}"
+    "snippet": "setunit{${1:punctuation}}"
   },
   "setunit*": {
     "command": "setunit*",
-    "snippet": "setunit*{${1}}"
+    "snippet": "setunit*{${1:punctuation}}"
   },
   "setpunctfont": {
     "command": "setpunctfont",
-    "snippet": "setpunctfont{${1}}"
+    "snippet": "setpunctfont{${1:command}}"
   },
   "resetpunctfont": {
-    "command": "resetpunctfont"
+    "command": "resetpunctfont",
+    "snippet": "resetpunctfont"
   },
   "ifpunct": {
     "command": "ifpunct",
-    "snippet": "ifpunct{${1}}{${2}}"
+    "snippet": "ifpunct{${1:true}}{${2:false}}"
   },
   "ifterm": {
     "command": "ifterm",
-    "snippet": "ifterm{${1}}{${2}}"
+    "snippet": "ifterm{${1:true}}{${2:false}}"
   },
   "ifpunctmark": {
     "command": "ifpunctmark",
-    "snippet": "ifpunctmark{${1}}{${2}}{${3}}"
+    "snippet": "ifpunctmark{${1:character}}{${2:true}}{${3:false}}"
   },
   "adddot": {
-    "command": "adddot"
+    "command": "adddot",
+    "snippet": "adddot"
   },
   "addcomma": {
-    "command": "addcomma"
+    "command": "addcomma",
+    "snippet": "addcomma"
   },
   "addsemicolon": {
-    "command": "addsemicolon"
+    "command": "addsemicolon",
+    "snippet": "addsemicolon"
   },
   "addcolon": {
-    "command": "addcolon"
+    "command": "addcolon",
+    "snippet": "addcolon"
   },
   "addperiod": {
-    "command": "addperiod"
+    "command": "addperiod",
+    "snippet": "addperiod"
   },
   "addexclam": {
-    "command": "addexclam"
+    "command": "addexclam",
+    "snippet": "addexclam"
   },
   "addquestion": {
-    "command": "addquestion"
+    "command": "addquestion",
+    "snippet": "addquestion"
   },
   "isdot": {
-    "command": "isdot"
+    "command": "isdot",
+    "snippet": "isdot"
   },
   "nopunct": {
-    "command": "nopunct"
+    "command": "nopunct",
+    "snippet": "nopunct"
   },
   "unspace": {
-    "command": "unspace"
+    "command": "unspace",
+    "snippet": "unspace"
   },
   "addspace": {
-    "command": "addspace"
+    "command": "addspace",
+    "snippet": "addspace"
   },
   "addnbspace": {
-    "command": "addnbspace"
+    "command": "addnbspace",
+    "snippet": "addnbspace"
   },
   "addthinspace": {
-    "command": "addthinspace"
+    "command": "addthinspace",
+    "snippet": "addthinspace"
   },
   "addnbthinspace": {
-    "command": "addnbthinspace"
+    "command": "addnbthinspace",
+    "snippet": "addnbthinspace"
   },
   "addlowpenspace": {
-    "command": "addlowpenspace"
+    "command": "addlowpenspace",
+    "snippet": "addlowpenspace"
   },
   "addhighpenspace": {
-    "command": "addhighpenspace"
+    "command": "addhighpenspace",
+    "snippet": "addhighpenspace"
   },
   "addlpthinspace": {
-    "command": "addlpthinspace"
+    "command": "addlpthinspace",
+    "snippet": "addlpthinspace"
   },
   "addhpthinspace": {
-    "command": "addhpthinspace"
+    "command": "addhpthinspace",
+    "snippet": "addhpthinspace"
   },
   "addabbrvspace": {
-    "command": "addabbrvspace"
+    "command": "addabbrvspace",
+    "snippet": "addabbrvspace"
   },
   "adddotspace": {
-    "command": "adddotspace"
+    "command": "adddotspace",
+    "snippet": "adddotspace"
   },
   "addslash": {
-    "command": "addslash"
+    "command": "addslash",
+    "snippet": "addslash"
   },
   "DeclareAutoPunctuation": {
     "command": "DeclareAutoPunctuation",
-    "snippet": "DeclareAutoPunctuation{${1}}"
+    "snippet": "DeclareAutoPunctuation{${1:characters}}"
   },
   "DeclareCapitalPunctuation": {
     "command": "DeclareCapitalPunctuation",
-    "snippet": "DeclareCapitalPunctuation{${1}}"
+    "snippet": "DeclareCapitalPunctuation{${1:characters}}"
   },
   "DeclarePunctuationPairs": {
     "command": "DeclarePunctuationPairs",
-    "snippet": "DeclarePunctuationPairs{${1}}{${2}}"
+    "snippet": "DeclarePunctuationPairs{${1:identi\ufb01er}}{${2:characters}}"
   },
   "DeclareQuotePunctuation": {
     "command": "DeclareQuotePunctuation",
-    "snippet": "DeclareQuotePunctuation{${1}}"
+    "snippet": "DeclareQuotePunctuation{${1:characters}}"
   },
   "bibsentence": {
-    "command": "bibsentence"
+    "command": "bibsentence",
+    "snippet": "bibsentence"
   },
   "midsentence": {
-    "command": "midsentence"
+    "command": "midsentence",
+    "snippet": "midsentence"
   },
   "bibstring": {
     "command": "bibstring",
-    "snippet": "bibstring{${1}}"
+    "snippet": "bibstring{${1:key}}"
+  },
+  "bibstring[]{}": {
+    "command": "bibstring[wrapper]{key}",
+    "snippet": "bibstring[${2:wrapper}]{${1:key}}"
   },
   "bibcpstring": {
     "command": "bibcpstring",
-    "snippet": "bibcpstring{${1}}"
+    "snippet": "bibcpstring{${1:key}}"
+  },
+  "bibcpstring[]{}": {
+    "command": "bibcpstring[wrapper]{key}",
+    "snippet": "bibcpstring[${2:wrapper}]{${1:key}}"
   },
   "biblcstring": {
     "command": "biblcstring",
-    "snippet": "biblcstring{${1}}"
+    "snippet": "biblcstring{${1:key}}"
+  },
+  "biblcstring[]{}": {
+    "command": "biblcstring[wrapper]{key}",
+    "snippet": "biblcstring[${2:wrapper}]{${1:key}}"
   },
   "bibxstring": {
     "command": "bibxstring",
-    "snippet": "bibxstring{${1}}"
+    "snippet": "bibxstring{${1:key}}"
   },
   "DeclareBibliographyStrings": {
     "command": "DeclareBibliographyStrings",
-    "snippet": "DeclareBibliographyStrings{${1}}"
+    "snippet": "DeclareBibliographyStrings{${1:de\ufb01nitions}}"
   },
   "InheritBibliographyStrings": {
     "command": "InheritBibliographyStrings",
-    "snippet": "InheritBibliographyStrings{${1}}"
+    "snippet": "InheritBibliographyStrings{${1:language}}"
   },
   "DeclareBibliographyExtras": {
     "command": "DeclareBibliographyExtras",
-    "snippet": "DeclareBibliographyExtras{${1}}"
+    "snippet": "DeclareBibliographyExtras{${1:code}}"
   },
   "UndeclareBibliographyExtras": {
     "command": "UndeclareBibliographyExtras",
-    "snippet": "UndeclareBibliographyExtras{${1}}"
+    "snippet": "UndeclareBibliographyExtras{${1:code}}"
   },
   "InheritBibliographyExtras": {
     "command": "InheritBibliographyExtras",
-    "snippet": "InheritBibliographyExtras{${1}}"
+    "snippet": "InheritBibliographyExtras{${1:language}}"
   },
   "DeclareHyphenationExceptions": {
     "command": "DeclareHyphenationExceptions",
-    "snippet": "DeclareHyphenationExceptions{${1}}"
+    "snippet": "DeclareHyphenationExceptions{${1:text}}"
   },
   "DeclareLanguageMapping": {
     "command": "DeclareLanguageMapping",
-    "snippet": "DeclareLanguageMapping{${1}}{${2}}"
+    "snippet": "DeclareLanguageMapping{${1:language}}{${2:\ufb01le}}"
   },
   "NewBibliographyString": {
     "command": "NewBibliographyString",
-    "snippet": "NewBibliographyString{${1}}"
+    "snippet": "NewBibliographyString{${1:key}}"
   },
   "bibleftparen": {
-    "command": "bibleftparen"
+    "command": "bibleftparen",
+    "snippet": "bibleftparen"
   },
   "bibrightparen": {
-    "command": "bibrightparen"
+    "command": "bibrightparen",
+    "snippet": "bibrightparen"
   },
   "bibleftbracket": {
-    "command": "bibleftbracket"
+    "command": "bibleftbracket",
+    "snippet": "bibleftbracket"
   },
   "bibrightbracket": {
-    "command": "bibrightbracket"
+    "command": "bibrightbracket",
+    "snippet": "bibrightbracket"
   },
   "bibnamedash": {
-    "command": "bibnamedash"
+    "command": "bibnamedash",
+    "snippet": "bibnamedash"
   },
   "labelnamepunct": {
-    "command": "labelnamepunct"
+    "command": "labelnamepunct",
+    "snippet": "labelnamepunct"
   },
   "subtitlepunct": {
-    "command": "subtitlepunct"
+    "command": "subtitlepunct",
+    "snippet": "subtitlepunct"
   },
   "bibpagespunct": {
-    "command": "bibpagespunct"
+    "command": "bibpagespunct",
+    "snippet": "bibpagespunct"
   },
   "multinamedelim": {
-    "command": "multinamedelim"
+    "command": "multinamedelim",
+    "snippet": "multinamedelim"
   },
   "finalnamedelim": {
-    "command": "finalnamedelim"
+    "command": "finalnamedelim",
+    "snippet": "finalnamedelim"
   },
   "revsdnamedelim": {
-    "command": "revsdnamedelim"
+    "command": "revsdnamedelim",
+    "snippet": "revsdnamedelim"
   },
   "andothersdelim": {
-    "command": "andothersdelim"
+    "command": "andothersdelim",
+    "snippet": "andothersdelim"
   },
   "multilistdelim": {
-    "command": "multilistdelim"
+    "command": "multilistdelim",
+    "snippet": "multilistdelim"
   },
   "finallistdelim": {
-    "command": "finallistdelim"
+    "command": "finallistdelim",
+    "snippet": "finallistdelim"
   },
   "andmoredelim": {
-    "command": "andmoredelim"
+    "command": "andmoredelim",
+    "snippet": "andmoredelim"
   },
   "multicitedelim": {
-    "command": "multicitedelim"
+    "command": "multicitedelim",
+    "snippet": "multicitedelim"
   },
   "supercitedelim": {
-    "command": "supercitedelim"
+    "command": "supercitedelim",
+    "snippet": "supercitedelim"
   },
   "compcitedelim": {
-    "command": "compcitedelim"
+    "command": "compcitedelim",
+    "snippet": "compcitedelim"
   },
   "nameyeardelim": {
-    "command": "nameyeardelim"
+    "command": "nameyeardelim",
+    "snippet": "nameyeardelim"
   },
   "prenotedelim": {
-    "command": "prenotedelim"
+    "command": "prenotedelim",
+    "snippet": "prenotedelim"
   },
   "postnotedelim": {
-    "command": "postnotedelim"
+    "command": "postnotedelim",
+    "snippet": "postnotedelim"
   },
   "mkbibnamelast": {
     "command": "mkbibnamelast",
-    "snippet": "mkbibnamelast{${1}}"
+    "snippet": "mkbibnamelast{${1:text}}"
   },
   "mkbibnamefirst": {
     "command": "mkbibnamefirst",
-    "snippet": "mkbibnamefirst{${1}}"
+    "snippet": "mkbibnamefirst{${1:text}}"
   },
   "mkbibnameaffix": {
     "command": "mkbibnameaffix",
-    "snippet": "mkbibnameaffix{${1}}"
+    "snippet": "mkbibnameaffix{${1:text}}"
   },
   "bibrangedash": {
-    "command": "bibrangedash"
+    "command": "bibrangedash",
+    "snippet": "bibrangedash"
   },
   "bibdatelong": {
-    "command": "bibdatelong"
+    "command": "bibdatelong",
+    "snippet": "bibdatelong"
   },
   "bibdateshort": {
-    "command": "bibdateshort"
+    "command": "bibdateshort",
+    "snippet": "bibdateshort"
   },
   "biburldatelong": {
-    "command": "biburldatelong"
+    "command": "biburldatelong",
+    "snippet": "biburldatelong"
   },
   "biburldateshort": {
-    "command": "biburldateshort"
+    "command": "biburldateshort",
+    "snippet": "biburldateshort"
   },
   "finalandcomma": {
-    "command": "finalandcomma"
+    "command": "finalandcomma",
+    "snippet": "finalandcomma"
   },
   "mkbibordinal": {
     "command": "mkbibordinal",
-    "snippet": "mkbibordinal{${1}}"
+    "snippet": "mkbibordinal{${1:integer}}"
   },
   "mkbibmascord": {
     "command": "mkbibmascord",
-    "snippet": "mkbibmascord{${1}}"
+    "snippet": "mkbibmascord{${1:integer}}"
   },
   "mkbibfemord": {
     "command": "mkbibfemord",
-    "snippet": "mkbibfemord{${1}}"
+    "snippet": "mkbibfemord{${1:integer}}"
   },
   "mkbibemph": {
     "command": "mkbibemph",
-    "snippet": "mkbibemph{${1}}"
+    "snippet": "mkbibemph{${1:text}}"
   },
   "mkbibquote": {
     "command": "mkbibquote",
-    "snippet": "mkbibquote{${1}}"
+    "snippet": "mkbibquote{${1:text}}"
   },
   "mkbibparens": {
     "command": "mkbibparens",
-    "snippet": "mkbibparens{${1}}"
+    "snippet": "mkbibparens{${1:text}}"
   },
   "mkbibbrackets": {
     "command": "mkbibbrackets",
-    "snippet": "mkbibbrackets{${1}}"
+    "snippet": "mkbibbrackets{${1:text}}"
   },
   "mkbibfootnote": {
     "command": "mkbibfootnote",
-    "snippet": "mkbibfootnote{${1}}"
+    "snippet": "mkbibfootnote{${1:text}}"
   },
   "mkbibsuperscript": {
     "command": "mkbibsuperscript",
-    "snippet": "mkbibsuperscript{${1}}"
+    "snippet": "mkbibsuperscript{${1:text}}"
   },
   "mkbibmonth": {
     "command": "mkbibmonth",
-    "snippet": "mkbibmonth{${1}}"
+    "snippet": "mkbibmonth{${1:integer}}"
   },
   "bibdate": {
-    "command": "bibdate"
+    "command": "bibdate",
+    "snippet": "bibdate"
   },
   "biburldate": {
-    "command": "biburldate"
+    "command": "biburldate",
+    "snippet": "biburldate"
   },
   "shorthandwidth": {
-    "command": "shorthandwidth"
+    "command": "shorthandwidth",
+    "snippet": "shorthandwidth"
   },
   "labelnumberwidth": {
-    "command": "labelnumberwidth"
+    "command": "labelnumberwidth",
+    "snippet": "labelnumberwidth"
   },
   "labelalphawidth": {
-    "command": "labelalphawidth"
+    "command": "labelalphawidth",
+    "snippet": "labelalphawidth"
   },
   "currentfield": {
-    "command": "currentfield"
+    "command": "currentfield",
+    "snippet": "currentfield"
   },
   "currentlist": {
-    "command": "currentlist"
+    "command": "currentlist",
+    "snippet": "currentlist"
   },
   "currentname": {
-    "command": "currentname"
+    "command": "currentname",
+    "snippet": "currentname"
   },
   "AtBeginBibliography": {
     "command": "AtBeginBibliography",
-    "snippet": "AtBeginBibliography{${1}}"
+    "snippet": "AtBeginBibliography{${1:code}}"
   },
   "AtBeginShorthands": {
     "command": "AtBeginShorthands",
-    "snippet": "AtBeginShorthands{${1}}"
+    "snippet": "AtBeginShorthands{${1:code}}"
   },
   "AtEveryBibitem": {
     "command": "AtEveryBibitem",
-    "snippet": "AtEveryBibitem{${1}}"
+    "snippet": "AtEveryBibitem{${1:code}}"
   },
   "AtEveryLositem": {
     "command": "AtEveryLositem",
-    "snippet": "AtEveryLositem{${1}}"
+    "snippet": "AtEveryLositem{${1:code}}"
   },
   "AtEveryCite": {
     "command": "AtEveryCite",
-    "snippet": "AtEveryCite{${1}}"
+    "snippet": "AtEveryCite{${1:code}}"
   },
   "AtEveryCitekey": {
     "command": "AtEveryCitekey",
-    "snippet": "AtEveryCitekey{${1}}"
+    "snippet": "AtEveryCitekey{${1:code}}"
   },
   "AtNextCite": {
     "command": "AtNextCite",
-    "snippet": "AtNextCite{${1}}"
+    "snippet": "AtNextCite{${1:code}}"
   },
   "AtNextCitekey": {
     "command": "AtNextCitekey",
-    "snippet": "AtNextCitekey{${1}}"
+    "snippet": "AtNextCitekey{${1:code}}"
   },
   "AtDataInput": {
     "command": "AtDataInput",
-    "snippet": "AtDataInput{${1}}"
+    "snippet": "AtDataInput{${1:code}}"
+  },
+  "AtDataInput[]{}": {
+    "command": "AtDataInput[type]{code}",
+    "snippet": "AtDataInput[${2:type}]{${1:code}}"
   }
 }

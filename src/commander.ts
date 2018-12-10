@@ -113,6 +113,9 @@ export class Commander {
         } else if (mode === 'tab') {
             this.extension.viewer.openTab(rootFile)
             return
+        } else if (mode === 'external') {
+            this.extension.viewer.openExternal(rootFile)
+            return
         } else if (mode === 'set') {
             this.setViewer()
             return
@@ -246,7 +249,7 @@ export class Commander {
 
     setViewer() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        return vscode.window.showQuickPick(['VSCode tab', 'Web browser'], {placeHolder: `View PDF with`})
+        return vscode.window.showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], {placeHolder: `View PDF with`})
         .then(option => {
             switch (option) {
                 case 'Web browser':
@@ -256,6 +259,10 @@ export class Commander {
                 case 'VSCode tab':
                     configuration.update('view.pdf.viewer', 'tab', true)
                     vscode.window.showInformationMessage(`By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    break
+                case 'External viewer':
+                    configuration.update('view.pdf.viewer', 'external', true)
+                    vscode.window.showInformationMessage(`By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
                     break
                 default:
                     break

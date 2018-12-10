@@ -40,7 +40,7 @@ export class Completer implements vscode.CompletionItemProvider {
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
-    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) : Promise<vscode.CompletionItem[]> {
+    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) : Promise<vscode.CompletionItem[]> {
         return new Promise((resolve, _reject) => {
             const invokeChar = document.lineAt(position.line).text[position.character - 1]
             const currentLine = document.lineAt(position.line).text
@@ -64,13 +64,13 @@ export class Completer implements vscode.CompletionItemProvider {
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
             for (const type of ['citation', 'reference', 'environment', 'package', 'input', 'command']) {
-                const suggestions = this.completion(type, line)
+                const suggestions = this.completion(type, line, {document, position, token, context})
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
                         const configuration = vscode.workspace.getConfiguration('latex-workshop')
                         if (configuration.get('intellisense.citation.type') as string === 'browser') {
                             resolve()
-                            setTimeout(() => this.citation.browser(), 10)
+                            setTimeout(() => this.citation.browser({document, position, token, context}), 10)
                             return
                         }
                     } else if (type === 'command') {
@@ -93,17 +93,17 @@ export class Completer implements vscode.CompletionItemProvider {
         })
     }
 
-    completion(type: string, line: string) : vscode.CompletionItem[] {
+    completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
         let reg
         let provider
         let payload
         switch (type) {
             case 'citation':
-                reg = /(?:\\[a-zA-Z]*cite[a-zA-Z]*(?:\[[^\[\]]*\])*){([^}]*)$/
+                reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\[[^\[\]]*\])*){([^}]*)$/
                 provider = this.citation
                 break
             case 'reference':
-                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*(?:\[[^\[\]]*\])?){([^}]*)$)/
+                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^\[\]]*\])?){([^}]*)$)/
                 provider = this.reference
                 break
             case 'environment':
@@ -135,6 +135,8 @@ export class Completer implements vscode.CompletionItemProvider {
                 if (editor) {
                     payload = [result[1], editor.document.fileName, result[2]]
                 }
+            } else if (type === 'reference' || type === 'citation') {
+                payload = args
             }
             suggestions = provider.provide(payload)
         }

@@ -45,6 +45,8 @@ export class HoverProvider implements vscode.HoverProvider {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const hov = configuration.get('hoverPreview.enabled') as boolean
+            const hovReference = configuration.get('hoverReference.enabled') as boolean
+            const hovCitation = configuration.get('hoverCitation.enabled') as boolean
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
@@ -60,7 +62,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve()
                 return
             }
-            if (token in this.extension.completer.reference.referenceData) {
+            if (hovReference && token in this.extension.completer.reference.referenceData) {
                 const refData = this.extension.completer.reference.referenceData[token]
                 const line = refData.item.position.line
                 const mdLink = new vscode.MarkdownString(`[View on pdf](command:latex-workshop.synctexto?${line})`)
@@ -79,9 +81,15 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve( new vscode.Hover([md, mdLink]) )
                 return
             }
-            if (token in this.extension.completer.citation.citationData) {
+            if (hovCitation && token in this.extension.completer.citation.citationData) {
                 resolve(new vscode.Hover(
                     this.extension.completer.citation.citationData[token].text
+                ))
+                return
+            }
+            if (hovCitation && token in this.extension.completer.citation.theBibliographyData) {
+                resolve(new vscode.Hover(
+                    this.extension.completer.citation.theBibliographyData[token].text
                 ))
                 return
             }
@@ -230,7 +238,7 @@ export class HoverProvider implements vscode.HoverProvider {
     private getColor() {
         const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme')
         for (const extension of vscode.extensions.all) {
-            if (extension.packageJSON.contributes.themes === undefined) {
+            if (extension.packageJSON === undefined || extension.packageJSON.contributes === undefined || extension.packageJSON.contributes.themes === undefined) {
                 continue
             }
             const candidateThemes = extension.packageJSON.contributes.themes.filter(themePkg => themePkg.label === colorTheme || themePkg.id === colorTheme)

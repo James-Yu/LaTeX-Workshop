@@ -57,7 +57,7 @@ export class LaTexFormatter {
                 }
             }
             this.formatterArgs = configuration.get<string[]>('latexindent.args')
-                || ['-c', '%DIR%/', '%TMPFILE%', '-y="defaultIndent: \'%INDENT%\'"']
+                || ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\'']
             const pathMeta = configuration.inspect('latexindent.path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
