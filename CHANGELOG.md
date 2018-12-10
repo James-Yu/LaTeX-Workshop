@@ -1,5 +1,30 @@
 # Change Log
 
+## [5.18.0] - 2018-12-10
+
+### Added
+- Comprehensive `cite` and `ref` intellisense improvements.
+- (#1018) Add placeholder `%TMPDIR%` to `latex-workshop.latex.outputDir`.
+- (#1022) Add documentation for `pdf.js` shortcuts.
+- (#1024) Add support for `pyglist` env (`verbments` package).
+- (#1028) Add command `view in external viewer` to menu.
+- (#1034) Add intellisense for wrapper packages.
+- (#1036) Intellisense: Add one entry per command signature.
+- (#1051) Add entries from thebibliography to citation intellisense.
+
+### Fixed
+- Fix missing argument in citation.browser.
+- (#1015) Fix formatter not respecting tab and space settings due to wrong option.
+- (#1025) Fold `\part`.
+- (#1026) Collapse `\begingroup`...`\endgroup`.
+- (#1027) Syntax for `lstinline`.
+- (#1031) Fix sorting `completionItems` of commands in dropdown.
+- (#1032) Fix citation completion for keys containing : - _ and .
+- (#1041) Display current file hierarchy in vs code outline.
+- (#1046) Do not capture strings ```...''`.
+- (#1048) Fix reverse synctex for odd and even spread mode.
+- (#1054) Fix trim mode with annotations.
+
 ## [5.17.3] - 2018-11-24
 
 ### Fixed
