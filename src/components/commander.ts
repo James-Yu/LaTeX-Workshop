@@ -50,6 +50,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         this.commands.push(miscCommand)
         miscCommand.children.push(new LaTeXCommand('Open citation browser', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.citation', title: ''}))
         miscCommand.children.push(new LaTeXCommand('Count words in LaTeX project', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.wordcount', title: ''}))
+        miscCommand.children.push(new LaTeXCommand('Reveal output folder in OS', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.revealOutputDir', title: ''}))
     }
 
     getTreeItem(element: LaTeXCommand) : vscode.TreeItem {

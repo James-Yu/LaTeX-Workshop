@@ -18,7 +18,7 @@ export class Builder {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.tmpDir = tmp.dirSync().name.split(path.sep).join('/')
+        this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
     }
 
     kill() {

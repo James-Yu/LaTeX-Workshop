@@ -130,6 +130,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.wrap-env', () => extension.commander.insertSnippet('wrapEnv'))
     vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
     vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
+    vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => extension.commander.revealOutputDir())
     vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
 
     vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item'))
