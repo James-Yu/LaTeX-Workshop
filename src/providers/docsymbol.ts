@@ -18,20 +18,23 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
     public provideDocumentSymbols(document: vscode.TextDocument) : Promise<vscode.DocumentSymbol[]> {
         return new Promise((resolve, _reject) => {
-            const symbols: vscode.DocumentSymbol[] = []
-            this.sectionToSymbols(symbols, this.extension.structureProvider.buildModel(document.fileName, undefined, undefined, false))
-            resolve(symbols)
+            resolve(this.sectionToSymbols(this.extension.structureProvider.buildModel(document.fileName, undefined, undefined, false)))
         })
     }
 
-    sectionToSymbols(symbols: vscode.DocumentSymbol[], sections: Section[]) {
+    sectionToSymbols(sections: Section[]) : vscode.DocumentSymbol[] {
+        const symbols: vscode.DocumentSymbol[] = []
+
         sections.forEach(section => {
             const range = new vscode.Range(section.lineNumber, 0, section.toLine, 65535)
-            symbols.push(new vscode.DocumentSymbol(section.label, '', vscode.SymbolKind.String, range, range))
+            const symbol = new vscode.DocumentSymbol(section.label, '', vscode.SymbolKind.String, range, range)
+            symbols.push(symbol)
             if (section.children.length > 0) {
-                this.sectionToSymbols(symbols, section.children)
+                symbol.children = this.sectionToSymbols(section.children)
             }
         })
+
+        return symbols
     }
 
 }
