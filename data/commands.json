@@ -211,7 +211,7 @@
     "snippet":"item $0"
   },
   "multicolumn":{
-    "command":"multicolumn",
+    "command":"multicolumn{n}{cols}{text}",
     "snippet":"multicolumn{${1:n}}{${2:cols}}{${3:text}}"
   },
   "documentclass":{
@@ -237,8 +237,8 @@
     "snippet":"underline{${1}}"
   },
   "rule":{
-    "command":"rule",
-    "snippet":"rule{${1:w}}{${2:h}}"
+    "command":"rule{width}{height}",
+    "snippet":"rule{${1:width}}{${2:height}}"
   },
   "pagebreak":{
     "command":"pagebreak"
@@ -644,7 +644,7 @@
     "postAction":"editor.action.triggerSuggest"
   },
   "addcontentsline": {
-    "command": "addcontentsline",
+    "command": "addcontentsline{file}{secunit}{entry}",
     "snippet": "addcontentsline{${1:file}}{${2:secunit}}{${3:entry}}"
   },
   "appendix": {
@@ -704,7 +704,7 @@
     "snippet": "clearpage"
   },
   "contentsline": {
-    "command": "contentsline",
+    "command": "contentsline{type}{text}{page}",
     "snippet": "contentsline{${1:type}}{${2:text}}{${3:page}}"
   },
   "contentsname": {
@@ -748,7 +748,7 @@
     "snippet": "footnote[${2:number}]{${1:text}}"
   },
   "glossaryentry": {
-    "command": "glossaryentry",
+    "command": "glossaryentry{text}{pagenum}",
     "snippet": "glossaryentry{${1:text}}{${2:pagenum}}"
   },
   "glossary": {
@@ -825,15 +825,15 @@
     "snippet": "marginpar[${2:left}]{${1:right}}"
   },
   "marginpar": {
-    "command": "marginpar",
+    "command": "marginpar{right}",
     "snippet": "marginpar{${1:right}}"
   },
   "markboth": {
-    "command": "markboth",
+    "command": "markboth{lefthead}{righthead}",
     "snippet": "markboth{${1:lefthead}}{${2:righthead}}"
   },
   "markright": {
-    "command": "markright",
+    "command": "markright{righthead}",
     "snippet": "markright{${1:righthead}}"
   },
   "mbox": {
@@ -853,7 +853,7 @@
     "snippet": "newtheorem{${1:envname}}[${2:numberedlike}]{${3:caption}}"
   },
   "newtheorem": {
-    "command": "newtheorem",
+    "command": "newtheorem{envname}{caption}",
     "snippet": "newtheorem{${1:envname}}{${2:caption}}"
   },
   "newtheorem{}{}[]": {
@@ -913,7 +913,7 @@
     "snippet": "parbox[${3:position}]{${1:width}}{${2:text}}"
   },
   "parbox": {
-    "command": "parbox",
+    "command": "parbox{width}{text}",
     "snippet": "parbox{${1:width}}{${2:text}}"
   },
   "part*": {
@@ -937,7 +937,7 @@
     "snippet": "section[${2:short}]{${1:title}}"
   },
   "stackrel": {
-    "command": "stackrel",
+    "command": "stackrel{above}{under}",
     "snippet": "stackrel{${1:above}}{${2:under}}"
   },
   "subparagraph*": {
@@ -985,7 +985,7 @@
     "snippet": "newcommand{${1:cmd}}[${2:args}]{${3:def}}"
   },
   "newcommand": {
-    "command": "newcommand",
+    "command": "newcommand{cmd}{def}",
     "snippet": "newcommand{${1:cmd}}{${2:def}}"
   },
   "providecommand{}[][]{}": {
@@ -1009,8 +1009,8 @@
     "snippet": "newenvironment{${1:nam}}[${2:args}]{${3:begdef}}{${4:enddef}}"
   },
   "newenvironment": {
-    "command": "newenvironment",
-    "snippet": "newenvironment{${1:nam}}{${2:begdef}}{${3:enddef}}"
+    "command": "newenvironment{name}{begdef}{enddef}",
+    "snippet": "newenvironment{${1:name}}{${2:begdef}}{${3:enddef}}"
   },
   "renewcommand{}[][]{}": {
     "command": "renewcommand{cmd}[args][default]{def}",
@@ -1021,20 +1021,20 @@
     "snippet": "renewcommand{${1:cmd}}[${2:args}]{${3:def}}"
   },
   "renewcommand": {
-    "command": "renewcommand",
+    "command": "renewcommand{cmd}{def}",
     "snippet": "renewcommand{${1:cmd}}{${2:def}}"
   },
   "renewenvironment{}[][]{}{}": {
     "command": "renewenvironment{nam}[args][default]{begdef}{enddef}",
-    "snippet": "renewenvironment{${1:nam}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
+    "snippet": "renewenvironment{${1:name}}[${2:args}][${3:default}]{${4:begdef}}{${5:enddef}}"
   },
   "renewenvironment{}[]{}{}": {
     "command": "renewenvironment{nam}[args]{begdef}{enddef}",
-    "snippet": "renewenvironment{${1:nam}}[${2:args}]{${3:begdef}}{${4:enddef}}"
+    "snippet": "renewenvironment{${1:name}}[${2:args}]{${3:begdef}}{${4:enddef}}"
   },
   "renewenvironment": {
-    "command": "renewenvironment",
-    "snippet": "renewenvironment{${1:nam}}{${2:begdef}}{${3:enddef}}"
+    "command": "renewenvironment{name}{begdef}{enddef}",
+    "snippet": "renewenvironment{${1:name}}{${2:begdef}}{${3:enddef}}"
   }
 
 }
