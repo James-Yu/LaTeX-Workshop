@@ -92,6 +92,14 @@ export class Command {
                 suggestions[key] = this.entryToCompletionItem(items[key])
             })
         }
+        Object.keys(this.newcommandData).forEach(key => {
+           if (key in suggestions) {
+               return
+           }
+           const item = new vscode.CompletionItem(`\\${key}`, vscode.CompletionItemKind.Function)
+           item.insertText = key
+           suggestions[key] = item
+       })
         this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
         return this.suggestions
     }
