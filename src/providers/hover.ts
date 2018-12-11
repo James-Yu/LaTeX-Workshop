@@ -47,6 +47,7 @@ export class HoverProvider implements vscode.HoverProvider {
             const hov = configuration.get('hoverPreview.enabled') as boolean
             const hovReference = configuration.get('hoverReference.enabled') as boolean
             const hovCitation = configuration.get('hoverCitation.enabled') as boolean
+            const hovCommand = configuration.get('hoverCommandDoc.enabled') as boolean
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
@@ -91,6 +92,21 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve(new vscode.Hover(
                     this.extension.completer.citation.theBibliographyData[token].text
                 ))
+                return
+            }
+            if (hovCommand) {
+                const signatures: string[] = []
+                Object.keys(this.extension.completer.command.defaultCommands).forEach( key => {
+                    if (key.startsWith(token) && ((key.length === token.length) || (key.charAt(token.length) === '['))) {
+                        if (this.extension.completer.command.defaultCommands[key].documentation !== undefined ) {
+                            const doc = this.extension.completer.command.defaultCommands[key].documentation as string
+                            signatures.push('`' + doc + '`')
+                        }
+                    }
+                })
+                if (signatures) {
+                    resolve(new vscode.Hover(signatures.join('  \n'))) // We need two spaces to ensure md newline
+                }
                 return
             }
             resolve()
