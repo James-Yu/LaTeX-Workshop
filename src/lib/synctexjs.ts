@@ -31,7 +31,7 @@ https://durieux.me/synctex-js/
 import * as fs from 'fs'
 import * as path from 'path'
 import * as zlib from 'zlib'
-import { SyncTeXRecordForward, SyncTeXRecordBackward } from './locator'
+import { SyncTeXRecordForward, SyncTeXRecordBackward } from '../components/locator'
 
 type Block = {
   type: string,
