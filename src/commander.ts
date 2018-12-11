@@ -77,7 +77,7 @@ export class Commander {
     }
 
     async revealOutputDir() {
-        var outputDir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
+        let outputDir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
         if (!path.isAbsolute(outputDir)) {
             outputDir = path.join(this.extension.manager.rootDir, this.extension.manager.getOutputDir(this.extension.manager.rootFile))
         }
