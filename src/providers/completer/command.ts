@@ -22,13 +22,7 @@ export class Command {
     }
 
     initialize(defaultCommands: {[key: string]: AutocompleteEntry}, defaultEnvs: string[]) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
-
         Object.keys(defaultCommands).forEach(key => {
-            if (!useOptionalArgsEntries && key.indexOf('[') > -1) {
-                return
-            }
             const item = defaultCommands[key]
             this.defaultCommands[key] = this.entryToCompletionItem(item)
         })
@@ -64,14 +58,19 @@ export class Command {
         }
         this.refreshTimer = Date.now()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let suggestions
+        const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
+        let suggestions = {}
+        Object.keys(this.defaultCommands).forEach(key => {
+            if (!useOptionalArgsEntries && key.indexOf('[') > -1) {
+                return
+            }
+            suggestions[key] = this.defaultCommands[key]
+        })
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
             if (Object.keys(this.defaultSymbols).length === 0) {
                 this.loadSymbols()
             }
-            suggestions = Object.assign({}, {...this.defaultCommands, ...this.defaultSymbols})
-        } else {
-            suggestions = Object.assign({}, this.defaultCommands)
+            suggestions = Object.assign(suggestions, this.defaultSymbols)
         }
         this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
@@ -167,7 +166,7 @@ export class Command {
         } else {
             command.insertText = item.command
         }
-        command.documentation = item.documentation
+        command.documentation = item.documentation ? item.documentation : item.command
         command.detail = item.detail
         command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
@@ -206,15 +205,15 @@ export class Command {
                     if (cmd in suggestions) {
                         return
                     }
-                    if (!useOptionalArgsEntries && cmd.indexOf('[') > -1) {
-                        return
-                    }
                     this.packageCmds[pkg][cmd] = this.entryToCompletionItem(cmds[cmd])
                 })
             }
         }
         if (pkg in this.packageCmds) {
             Object.keys(this.packageCmds[pkg]).forEach(cmd => {
+                if (!useOptionalArgsEntries && cmd.indexOf('[') > -1) {
+                    return
+                }
                 suggestions[cmd] = this.packageCmds[pkg][cmd]
             })
         }
