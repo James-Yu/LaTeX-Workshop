@@ -13,3 +13,12 @@ export function tokenizer(document: vscode.TextDocument, position: vscode.Positi
         new vscode.Position(position.line, position.character + endResult.index)
     ))
 }
+
+export function onAPackage(document: vscode.TextDocument, position: vscode.Position, token: string) : boolean {
+    const line = document.lineAt(position.line).text
+    const regex = new RegExp(`\\\\usepackage(?:\\[[^\\[\\]\\{\\}]*\\])?\\{[\\w,]*${token}[\\w,]*\\}`)
+    if (line.match(regex)) {
+        return true
+    }
+    return false
+}

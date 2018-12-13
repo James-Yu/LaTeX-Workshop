@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as stripJsonComments from 'strip-json-comments'
 import * as envpair from '../components/envpair'
 import {Extension} from '../main'
-import {tokenizer} from './tokenizer'
+import {tokenizer, onAPackage} from './tokenizer'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 type LabelsStore = {labels: {[k: string]: {tag: string, id: string}}, IDs: {[k: string]: number}, startNumber: number}
@@ -63,6 +63,14 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve()
                 return
             }
+            if (onAPackage(document, position, token)) {
+                const pkg = encodeURIComponent(JSON.stringify(token))
+                const md = `Package **${token}** \n\n`
+                const mdLink = new vscode.MarkdownString(`[View documentation](command:latex-workshop.texdoc?${pkg})`)
+                mdLink.isTrusted = true
+                resolve(new vscode.Hover([md, mdLink]))
+                return
+            }
             if (hovReference && token in this.extension.completer.reference.referenceData) {
                 const refData = this.extension.completer.reference.referenceData[token]
                 const line = refData.item.position.line
@@ -104,10 +112,10 @@ export class HoverProvider implements vscode.HoverProvider {
                         }
                     }
                 })
-                if (signatures) {
+                if (signatures.length > 0) {
                     resolve(new vscode.Hover(signatures.join('  \n'))) // We need two spaces to ensure md newline
+                    return
                 }
-                return
             }
             resolve()
         })

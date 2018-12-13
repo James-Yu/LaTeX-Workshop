@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
+import * as cp from 'child_process'
 
 import {Extension} from './main'
 import {getLongestBalancedString} from './providers/structure'
@@ -545,5 +546,11 @@ export class Commander {
             return
         }
         this.extension.parser.parse(vscode.window.activeTextEditor.document.getText())
+    }
+
+    async texdoc(pkg: number) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const texdocPath = configuration.get('texdoc.path') as string
+        cp.spawn(texdocPath, [String(pkg)])
     }
 }
