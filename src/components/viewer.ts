@@ -102,7 +102,8 @@ export class Viewer {
         })
         panel.webview.html = this.getPDFViewerContent(uri)
         if (editor) {
-            vscode.window.showTextDocument(editor.document, editor.viewColumn)
+            // We need a delay here. VS Code bug?
+            setTimeout( () => { vscode.window.showTextDocument(editor.document, editor.viewColumn) }, 1000)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
