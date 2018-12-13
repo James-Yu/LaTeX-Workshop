@@ -59,7 +59,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 }
             }
             const token = tokenizer(document, position)
-            if (token === undefined) {
+            if (!token) {
                 resolve()
                 return
             }
