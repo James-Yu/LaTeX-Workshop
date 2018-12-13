@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
-import * as synctexjs from '../lib/synctexjs'
+import * as synctexjs from './synctex'
 
 import {Extension} from '../main'
 
