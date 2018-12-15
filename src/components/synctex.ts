@@ -83,6 +83,14 @@ class Rectangle {
       return new Rectangle({ top: cTop, bottom: cBottom, left: cLeft, right: cRight })
     }
 
+    static fromBlock(block: Block) : Rectangle {
+      const top = block.bottom - block.height
+      const bottom = block.bottom
+      const left = block.left
+      const right = block.width ? block.left + block.width : block.left
+      return new Rectangle({top, bottom, left, right})
+    }
+
     constructor( {top, bottom, left, right}: { top: number; bottom: number; left: number; right: number; } ) {
       this.top = top
       this.bottom = bottom
@@ -90,12 +98,20 @@ class Rectangle {
       this.right = right
     }
 
-    public distanceY(y: number) : number {
+    include(rect: Rectangle) : boolean {
+      return this.left <= rect.left && this.right >= rect.right && this.bottom >= rect.bottom && this.top <= rect.top
+    }
+
+    distanceY(y: number) : number {
       return Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) )
     }
 
-    public distanceXY(x: number, y: number) : number {
+    distanceXY(x: number, y: number) : number {
       return Math.sqrt(Math.pow(Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) ), 2) + Math.pow(Math.min( Math.abs(this.left - x), Math.abs(this.right - x) ), 2))
+    }
+
+    distanceFromCenter(x: number, y: number) : number {
+      return Math.sqrt(Math.pow((this.left + this.right) / 2 - x, 2) + Math.pow((this.bottom + this.top) / 2 - y, 2))
     }
   }
 
@@ -113,31 +129,30 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
       input: '',
       line: 0,
       distanceXY: 2e16,
-      distanceY: 2e16
+      distanceFromCenter: 2e16,
+      rect: new Rectangle({top: 0, bottom: 2e16, left: 0, right: 2e16})
     }
 
     for (const fileName of fileNames) {
       const linePageBlocks = pdfSyncObject.blockNumberLine[fileName]
-      const lineNums = Object.keys(linePageBlocks)
-      if (lineNums.length === 0) {
-        continue
-      }
-      for (const lineNum of lineNums) {
+      for (const lineNum in linePageBlocks) {
         const pageBlocks = linePageBlocks[Number(lineNum)]
-        const pageNums = Object.keys(pageBlocks)
-        for (const pageNum of pageNums) {
-          if (page === Number(pageNum)) {
-            const blocks = pageBlocks[Number(pageNum)]
-            const box = Rectangle.coveringRectangle(blocks)
-            const distXY = box.distanceXY(x0, y0)
-            const distY = box.distanceY(y0)
-            // To compare lines close to each other, we use only the y coordinate value.
-            // Otherwise, we use the both values. This works well for two column styles.
-            if ( (Number(lineNum) - record.line) < 20 ? distY < record.distanceY : distXY < record.distanceXY ) {
+        for (const pageNum in pageBlocks) {
+          if (page !== Number(pageNum)) {
+            continue
+          }
+          const blocks = pageBlocks[Number(pageNum)]
+          for (const block of blocks) {
+            if (block.elements !== undefined) {
+              continue
+            }
+            const rect = Rectangle.fromBlock(block)
+            const distFromCenter = rect.distanceFromCenter(x0, y0)
+            if ( record.rect.include(rect) || (distFromCenter < record.distanceFromCenter && !rect.include(record.rect)) ) {
               record.input = fileName
               record.line = Number(lineNum)
-              record.distanceXY = distXY
-              record.distanceY = distY
+              record.distanceFromCenter = distFromCenter
+              record.rect = rect
             }
           }
         }
