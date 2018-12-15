@@ -29,19 +29,19 @@ https://durieux.me/synctex-js/
 */
 
 export type Block = {
-  type: string,
-  parent: Block | Page,
-  fileNumber: number,
-  file: InputFile,
-  line: number,
-  left: number,
-  bottom: number,
-  width: number | undefined,
-  height: number,
-  depth?: number,
-  blocks?: Block[],
-  elements?: Block[],
-  page: number
+  type: string;
+  parent: Block | Page;
+  fileNumber: number;
+  file: InputFile;
+  line: number;
+  left: number;
+  bottom: number;
+  width: number | undefined;
+  height: number;
+  depth?: number;
+  blocks?: Block[];
+  elements?: Block[];
+  page: number;
 }
 
 function isBlock(b: Block | Page) : b is Block {
@@ -52,15 +52,15 @@ type InputFile = {
   path: string;
 }
 
-type InputFiles = { [k: string]: InputFile; }
+type InputFiles = { [fileNumber: string]: InputFile; }
 
 type Page = {
   page: number;
   blocks: Block[];
-  type: string
+  type: string;
 }
 
-type Pages = { [k: string]: Page; }
+type Pages = { [pageNum: string]: Page; }
 
 type BlockNumberLine = {
   [inputFileFullPath: string]: {
