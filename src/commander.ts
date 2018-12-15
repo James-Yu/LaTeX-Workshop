@@ -551,6 +551,36 @@ export class Commander {
     async texdoc(pkg: number) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
-        cp.spawn(texdocPath, [String(pkg)])
+        const proc = cp.spawn(texdocPath, [String(pkg)])
+
+        let stdout = ''
+        proc.stdout.on('data', newStdout => {
+            stdout += newStdout
+        })
+
+        let stderr = ''
+        proc.stderr.on('data', newStderr => {
+            stderr += newStderr
+        })
+
+        proc.on('error', err => {
+            this.extension.logger.addLogMessage(`Cannot run texdoc: ${err.message}, ${stderr}`)
+            this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+        })
+
+        proc.on('exit', exitCode => {
+            if (exitCode !== 0) {
+                this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
+                this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+            } else {
+                const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
+                if (stdout.match(regex)) {
+                    this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
+                    this.extension.logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
+                } else {
+                    this.extension.logger.addLogMessage(`Opening documentation for ${pkg}.`)
+                }
+            }
+        })
     }
 }
