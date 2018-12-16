@@ -2,7 +2,7 @@ import json
 import urllib.request
 import zipfile
 from os import listdir, remove
-from os.path import isfile, join
+from os.path import isfile, join, basename, splitext
 import re
 
 
@@ -75,7 +75,8 @@ def parse_cwl_file(file):
         # else:
         command = line
         name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
-        command_dict = {'command': command}
+        package = splitext(basename(file))[0]
+        command_dict = {'command': command, 'package': package}
         snippet = line
         if name in commands:
             continue
