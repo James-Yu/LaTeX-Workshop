@@ -69,11 +69,11 @@ def parse_cwl_file(file):
         line = line[1:]  # Remove leading '\'
         curly_index = line.find('{')
         square_index = line.find('[')
-        if square_index == -1 and curly_index > -1:
-            # If there is no optional argument, do not put the arguments in the snippet command
-            command = line[:curly_index]
-        else:
-            command = line
+        # if square_index == -1 and curly_index > -1:
+        #     # If there is no optional argument, do not put the arguments in the snippet command
+        #     command = line[:curly_index]
+        # else:
+        command = line
         name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
         command_dict = {'command': command}
         snippet = line
