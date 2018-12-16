@@ -281,6 +281,9 @@ export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
         width,
         page: currentPage.page
       }
+      if (elem.file === undefined) {
+        continue
+      }
       if (blockNumberLine[elem.file.path] === undefined) {
         blockNumberLine[elem.file.path] = {}
       }
