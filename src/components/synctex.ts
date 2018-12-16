@@ -27,8 +27,17 @@ export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
 
 export function syncTexJsForward(line: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
     const pdfSyncObject = parseSyncTexForPdf(pdfFile)
+    let filePath0 = ''
+    for (const inputFilePath in pdfSyncObject.blockNumberLine) {
+      if (path.resolve(inputFilePath) === filePath) {
+        filePath0 = inputFilePath
+      }
+    }
+    if (filePath0 === '') {
+      throw new SyncTexJsError('no relevant tex file found in the synctex file.')
+    }
 
-    const linePageBlocks = pdfSyncObject.blockNumberLine[filePath]
+    const linePageBlocks = pdfSyncObject.blockNumberLine[filePath0]
     const lineNums = Object.keys(linePageBlocks).map(x => Number(x)).sort( (a, b) => { return (a - b) } )
     const i = lineNums.findIndex( x => x >= line )
     if (i === 0 || lineNums[i] === line) {
