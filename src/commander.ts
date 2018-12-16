@@ -548,10 +548,10 @@ export class Commander {
         this.extension.parser.parse(vscode.window.activeTextEditor.document.getText())
     }
 
-    async texdoc(pkg: number) {
+    async texdoc(pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
-        const proc = cp.spawn(texdocPath, [String(pkg)])
+        const proc = cp.spawn(texdocPath, ['--view', pkg])
 
         let stdout = ''
         proc.stdout.on('data', newStdout => {
@@ -574,7 +574,7 @@ export class Commander {
                 this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
             } else {
                 const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
-                if (stdout.match(regex)) {
+                if (stdout.match(regex) || stderr.match(regex)) {
                     this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
                     this.extension.logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
                 } else {
