@@ -7,7 +7,7 @@ export class Command {
     extension: Extension
     selection: string = ''
     shouldClearSelection: boolean = true
-    suggestions: vscode.CompletionItem[]
+    suggestions: vscode.CompletionItem[] = []
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
     defaultCommands: {[key: string]: vscode.CompletionItem} = {}
@@ -73,32 +73,43 @@ export class Command {
             suggestions = Object.assign(suggestions, this.defaultSymbols)
         }
         this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
+        const suggestionsAsciiKeys: string[] = []
+        Object.keys(suggestions).forEach(key => {
+            const i = key.search(/[\[\{]/)
+            const k = i > -1 ? key.substr(0, i) : key
+            if (suggestionsAsciiKeys.indexOf(k) === -1) {
+                suggestionsAsciiKeys.push(k)
+            }
+        })
         Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
-                    if (key in suggestions) {
+                    if (suggestionsAsciiKeys.indexOf(key) > - 1) {
                         return
                     }
                     suggestions[key] = this.entryToCompletionItem(this.commandInTeX[filePath][key])
+                    suggestionsAsciiKeys.push(key)
                 })
             }
         })
         if (vscode.window.activeTextEditor) {
             const items = this.getCommandItems(vscode.window.activeTextEditor.document.getText(), vscode.window.activeTextEditor.document.fileName)
             Object.keys(items).forEach(key => {
-                if (key in suggestions) {
+                if (suggestionsAsciiKeys.indexOf(key) > - 1) {
                     return
                 }
                 suggestions[key] = this.entryToCompletionItem(items[key])
+                suggestionsAsciiKeys.push(key)
             })
         }
         Object.keys(this.newcommandData).forEach(key => {
-           if (key in suggestions) {
+            if (suggestionsAsciiKeys.indexOf(key) > - 1) {
                return
-           }
-           const item = new vscode.CompletionItem(`\\${key}`, vscode.CompletionItemKind.Function)
-           item.insertText = key
-           suggestions[key] = item
+            }
+            const item = new vscode.CompletionItem(`\\${key}`, vscode.CompletionItemKind.Function)
+            item.insertText = key
+            suggestions[key] = item
+            suggestionsAsciiKeys.push(key)
        })
         this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
         return this.suggestions
