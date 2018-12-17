@@ -1,4 +1,5 @@
 import * as fs from 'fs'
+import * as iconv from 'iconv-lite'
 import * as path from 'path'
 import * as zlib from 'zlib'
 import { SyncTeXRecordForward, SyncTeXRecordBackward } from './locator'
@@ -11,33 +12,51 @@ export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
     const synctexFileGz = synctexFile + '.gz'
 
     if (fs.existsSync(synctexFile)) {
-      const s = fs.readFileSync(synctexFile, {encoding: 'utf8'})
+      const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
       return parseSyncTex(s)
     }
 
     if (fs.existsSync(synctexFileGz)) {
       const data = fs.readFileSync(synctexFileGz)
       const b = zlib.gunzipSync(data)
-      const s = b.toString('utf8')
+      const s = b.toString('binary')
       return parseSyncTex(s)
     }
 
     throw new SyncTexJsError('SyncTex file not found.')
   }
 
-export function syncTexJsForward(line: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
-    const pdfSyncObject = parseSyncTexForPdf(pdfFile)
-    let filePath0 = ''
-    for (const inputFilePath in pdfSyncObject.blockNumberLine) {
-      if (path.resolve(inputFilePath) === filePath) {
-        filePath0 = inputFilePath
+const iconvLiteSupportedEncodings = ['utf8', 'utf16le', 'UTF-16BE', 'UTF-16', 'Shift_JIS', 'Windows-31j', 'Windows932', 'EUC-JP', 'GB2312', 'GBK', 'GB18030', 'Windows936', 'EUC-CN', 'KS_C_5601', 'Windows949', 'EUC-KR', 'Big5', 'Big5-HKSCS', 'Windows950', 'ISO-8859-1', 'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5', 'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10', 'ISO-8859-11', 'ISO-8859-12', 'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'ISO-8859-16', 'windows-874', 'windows-1250', 'windows-1251', 'windows-1252', 'windows-1253', 'windows-1254', 'windows-1255', 'windows-1256', 'windows-1257', 'windows-1258']
+
+function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject) : string | undefined {
+  for (const inputFilePath in pdfSyncObject.blockNumberLine) {
+    if (path.resolve(inputFilePath) === filePath) {
+       return inputFilePath
+    }
+  }
+  for (const inputFilePath in pdfSyncObject.blockNumberLine) {
+    for (const enc of iconvLiteSupportedEncodings) {
+      try {
+        const s = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
+        if (path.resolve(s) === filePath) {
+          return inputFilePath
+        }
+      } catch (e) {
+
       }
     }
-    if (filePath0 === '') {
+  }
+  return undefined
+}
+
+export function syncTexJsForward(line: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
+    const pdfSyncObject = parseSyncTexForPdf(pdfFile)
+    const inputFilePath = findInputFilePathForward(filePath, pdfSyncObject)
+    if (inputFilePath === undefined) {
       throw new SyncTexJsError('no relevant tex file found in the synctex file.')
     }
 
-    const linePageBlocks = pdfSyncObject.blockNumberLine[filePath0]
+    const linePageBlocks = pdfSyncObject.blockNumberLine[inputFilePath]
     const lineNums = Object.keys(linePageBlocks).map(x => Number(x)).sort( (a, b) => { return (a - b) } )
     const i = lineNums.findIndex( x => x >= line )
     if (i === 0 || lineNums[i] === line) {
@@ -172,6 +191,23 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
       throw new SyncTexJsError('cannot find any line to jump to.')
     }
 
-    return { input: record.input, line: record.line, column: 0 }
+    return { input: convInputFilePath(record.input), line: record.line, column: 0 }
   }
 
+function convInputFilePath(inputFilePath: string) : string {
+  if (fs.existsSync(inputFilePath)) {
+    return inputFilePath
+  }
+  for (const enc of iconvLiteSupportedEncodings) {
+    try {
+      const s = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
+      if (fs.existsSync(s)) {
+        return s
+      }
+    } catch (e) {
+
+    }
+  }
+
+  throw new SyncTexJsError('input file does not exist.')
+}
