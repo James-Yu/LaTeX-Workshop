@@ -10,6 +10,7 @@ export class Command {
     suggestions: vscode.CompletionItem[] = []
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
+    allCommands: {[key: string]: vscode.CompletionItem} = {}
     defaultCommands: {[key: string]: vscode.CompletionItem} = {}
     defaultSymbols: {[key: string]: vscode.CompletionItem} = {}
     newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
@@ -73,6 +74,7 @@ export class Command {
             suggestions = Object.assign(suggestions, this.defaultSymbols)
         }
         this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
+        this.allCommands = suggestions
         const suggestionsAsciiKeys: string[] = []
         Object.keys(suggestions).forEach(key => {
             const i = key.search(/[\[\{]/)
@@ -185,8 +187,11 @@ export class Command {
         } else {
             command.insertText = item.command
         }
-        command.documentation = item.documentation ? item.documentation : item.command
-        command.detail = item.detail
+        command.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
+        if (item.package) {
+            const pkg = item.package
+            command.documentation += `WLPackage: ${pkg}`
+        }
         command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
             return n !== undefined ? n.toString(16) : c

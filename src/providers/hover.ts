@@ -104,16 +104,38 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             if (hovCommand) {
                 const signatures: string[] = []
-                Object.keys(this.extension.completer.command.defaultCommands).forEach( key => {
-                    if (key.startsWith(token) && ((key.length === token.length) || (key.charAt(token.length) === '['))) {
-                        if (this.extension.completer.command.defaultCommands[key].documentation !== undefined ) {
-                            const doc = this.extension.completer.command.defaultCommands[key].documentation as string
-                            signatures.push('`' + doc + '`')
+                const pkgs: string[] = []
+                Object.keys(this.extension.completer.command.allCommands).forEach( key => {
+                    if (key.startsWith(token) && ((key.length === token.length) || (key.charAt(token.length) === '[') || (key.charAt(token.length) === '{'))) {
+                        if (this.extension.completer.command.allCommands[key].documentation === undefined ) {
+                            return
                         }
+                        let doc = this.extension.completer.command.allCommands[key].documentation as string
+                        const execObj = /(.*)WLPackage:(.*)$/.exec(doc)
+                        if (execObj) {
+                            doc = execObj[1]
+                            const pkg = execObj[2]
+                            if (pkgs.indexOf(pkg) === -1) {
+                                pkgs.push(pkg)
+                            }
+                        }
+                        signatures.push(doc)
                     }
                 })
+                let pkgLink = ''
+                if (pkgs.length > 0) {
+                    pkgLink = '\n\nView documentation for package(s) '
+                    pkgs.forEach(p => {
+                        const pkg = encodeURIComponent(JSON.stringify(p))
+                        pkgLink += `[${p}](command:latex-workshop.texdoc?${pkg}),`
+                    })
+                    pkgLink = pkgLink.substr(0, pkgLink.lastIndexOf(',')) + '.'
+                }
                 if (signatures.length > 0) {
-                    resolve(new vscode.Hover(signatures.join('  \n'))) // We need two spaces to ensure md newline
+                    const mdLink = new vscode.MarkdownString(signatures.join('  \n')) // We need two spaces to ensure md newline
+                    mdLink.appendMarkdown(pkgLink)
+                    mdLink.isTrusted = true
+                    resolve(new vscode.Hover(mdLink))
                     return
                 }
             }
