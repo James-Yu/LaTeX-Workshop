@@ -43,6 +43,7 @@ export class Builder {
     }
 
     buildInitiator(rootFile: string, recipe: string | undefined = undefined) {
+        this.extension.logger.clearCompilerMessage()
         const steps = this.createSteps(rootFile, recipe)
         if (steps === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
@@ -89,8 +90,14 @@ export class Builder {
             return
         }
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
-        this.extension.logger.clearCompilerMessage()
+        // this.extension.logger.clearCompilerMessage()
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
+        this.extension.logger.addCompilerMessage('\n------------------------------------------------------------\n')
+        this.extension.logger.addCompilerMessage('------------------------------------------------------------\n')
+        this.extension.logger.addCompilerMessage(`Recipe step ${index + 1}: ${steps[index].command}\n`)
+        this.extension.logger.addCompilerMessage(`${steps[index].args}\n`) // wrote by Tanaka
+        this.extension.logger.addCompilerMessage('------------------------------------------------------------\n')
+        this.extension.logger.addCompilerMessage('------------------------------------------------------------\n')
         this.extension.manager.setEnvVar()
         process.env.max_print_line = maxPrintLine
         this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile)})
