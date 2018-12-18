@@ -23,7 +23,7 @@ export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
       return parseSyncTex(s)
     }
 
-    throw new SyncTexJsError('SyncTex file not found.')
+    throw new SyncTexJsError('synctex file, .synctex and .synctex.gz, not found in the file system.')
   }
 
 const iconvLiteSupportedEncodings = ['utf8', 'utf16le', 'UTF-16BE', 'UTF-16', 'Shift_JIS', 'Windows-31j', 'Windows932', 'EUC-JP', 'GB2312', 'GBK', 'GB18030', 'Windows936', 'EUC-CN', 'KS_C_5601', 'Windows949', 'EUC-KR', 'Big5', 'Big5-HKSCS', 'Windows950', 'ISO-8859-1', 'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5', 'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10', 'ISO-8859-11', 'ISO-8859-12', 'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'ISO-8859-16', 'windows-874', 'windows-1250', 'windows-1251', 'windows-1252', 'windows-1253', 'windows-1254', 'windows-1255', 'windows-1256', 'windows-1257', 'windows-1258', 'koi8-r', 'koi8-u', 'koi8-ru', 'koi8-t']
@@ -53,7 +53,7 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     const pdfSyncObject = parseSyncTexForPdf(pdfFile)
     const inputFilePath = findInputFilePathForward(filePath, pdfSyncObject)
     if (inputFilePath === undefined) {
-      throw new SyncTexJsError('no relevant tex file found in the synctex file.')
+      throw new SyncTexJsError('no relevant entry of tex file found in the synctex file.')
     }
 
     const linePageBlocks = pdfSyncObject.blockNumberLine[inputFilePath]
@@ -80,7 +80,7 @@ function getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]
     const pageBlocks = linePageBlocks[lineNum]
     const pageNums = Object.keys(pageBlocks)
     if (pageNums.length === 0) {
-      throw new SyncTexJsError('cannot find any page number.')
+      throw new SyncTexJsError('no page number found in the synctex file.')
     }
     const page = pageNums[0]
     return pageBlocks[Number(page)]
