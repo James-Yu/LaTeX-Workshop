@@ -16,14 +16,8 @@ interface Client {
     position?: Position
 }
 
-export class Viewer {
-    extension: Extension
-    positions = {}
+class ViewerState {
     private clients: {[key: string]: Client[] | undefined} = {}
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
 
     getClientByWebsocket(websocket: ws) : Client | null {
         for (const key in this.clients) {
@@ -62,10 +56,20 @@ export class Viewer {
             }
         }
     }
+}
+
+export class Viewer {
+    extension: Extension
+    positions = {}
+    viewerState = new ViewerState()
+
+    constructor(extension: Extension) {
+        this.extension = extension
+    }
 
     refreshExistingViewer(sourceFile: string, type?: string) : boolean {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        const clients = this.getClients(pdfFile)
+        const clients = this.viewerState.getClients(pdfFile)
 
         let clientsRefreshed = false
         clients.forEach(client => {
@@ -111,7 +115,7 @@ export class Viewer {
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
 
-        this.addClient(pdfFile, {type: 'viewer'})
+        this.viewerState.addClient(pdfFile, {type: 'viewer'})
         try {
             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(url))
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
@@ -131,7 +135,7 @@ export class Viewer {
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
 
-        this.addClient(pdfFile, {type: 'tab'})
+        this.viewerState.addClient(pdfFile, {type: 'tab'})
         const editor = vscode.window.activeTextEditor
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
             enableScripts: true,
@@ -188,7 +192,7 @@ export class Viewer {
         const data = JSON.parse(msg)
         switch (data.type) {
             case 'open': {
-                const clients = this.getClients(decodeURIComponent(decodeURIComponent(data.path)))
+                const clients = this.viewerState.getClients(decodeURIComponent(decodeURIComponent(data.path)))
                 clients.filter(client => client.websocket === undefined).forEach(client => {
                     client.websocket = websocket
                     if (client.type === undefined && client.prevType !== undefined) {
@@ -198,21 +202,21 @@ export class Viewer {
                 break
             }
             case 'close': {
-                const client = this.getClientByWebsocket(websocket)
+                const client = this.viewerState.getClientByWebsocket(websocket)
                 if (client !== null) {
-                    this.removeClient(client)
+                    this.viewerState.removeClient(client)
                 }
                 break
             }
             case 'position': {
-                const client = this.getClientByWebsocket(websocket)
+                const client = this.viewerState.getClientByWebsocket(websocket)
                 if (client !== null) {
                     client.position = data
                 }
                 break
             }
             case 'loaded': {
-                const client = this.getClientByWebsocket(websocket)
+                const client = this.viewerState.getClientByWebsocket(websocket)
                 if (client !== null && client.websocket !== undefined) {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     if (client.position !== undefined) {
@@ -249,7 +253,7 @@ export class Viewer {
     }
 
     syncTeX(pdfFile: string, record: SyncTeXRecordForward) {
-        const clients = this.getClients(pdfFile)
+        const clients = this.viewerState.getClients(pdfFile)
         if (clients.length === 0) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
