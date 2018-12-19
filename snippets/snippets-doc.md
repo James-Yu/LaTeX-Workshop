@@ -39,7 +39,7 @@
 | Prefix |     Command      |
 | ------ | ---------------- |
 | `MRM`  | `\mathrm{${1}}`  |
-| `MBF`  | `\mathbb{${1}}`  |
+| `MBF`  | `\mathbf{${1}}`  |
 | `MBB`  | `\mathbb{${1}}`  |
 | `MCA`  | `\mathcal{${1}}` |
 | `MIT`  | `\mathit{${1}}`  |
