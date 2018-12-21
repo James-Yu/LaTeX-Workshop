@@ -1,4 +1,5 @@
 const embedded = window.parent !== window
+let documentTitle = ''
 
 // PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
 // and if so it behaves more "discretely", eg it disables its history mechanism.
@@ -12,7 +13,8 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
     let param = parts[i].split('=')
     if (param[0].toLowerCase() === 'file') {
         file = param[1].replace('/pdf:', '')
-        document.title = decodeURIComponent(decodeURIComponent(file)).split(/[\\/]/).pop()
+        documentTitle = decodeURIComponent(decodeURIComponent(file)).split(/[\\/]/).pop()
+        document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
         const dom = document.getElementsByClassName('print')
         for (let j = 0; j < dom.length; ++j) {
@@ -53,6 +55,9 @@ socket.addEventListener("message", (event) => {
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
             PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
+              // reset the document title to the original value to avoid duplication
+              document.title = documentTitle
+
               // ensure that trimming is invoked if needed.
               setTimeout(() => {
                 window.dispatchEvent( new Event('pagerendered') );
