@@ -1,5 +1,23 @@
 # Change Log
 
+## [5.19.0] - 2018-12-21
+
+### Added
+- Add arguments to command definition.
+- Hover on a command to access the package documentation.
+- (#625) Hover on a package name to access his documentation.
+- (#1030) Support a builtin `synctex` functionality.
+- (#1056) Support math preview on `\ref` with multiple input files.
+- (#1058) Add commands of `intcalc` package.
+
+### Fixed
+- Avoid duplicates in command intellisense.
+- (#609,#669,#801,#837,#857,#883,#1059) Define `wordPattern` of LaTeX.
+- (#970,#1059) Tab out of snippets.
+- (#1060) Hilghlight `xltabular` as `tabular`.
+- (#1061) Scan `newcommand`s for intellisense.
+- (#1074) Avoid viewer title duplication.
+
 ## [5.18.0] - 2018-12-10
 
 ### Added
