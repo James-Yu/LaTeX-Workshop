@@ -153,6 +153,7 @@ As you may notice, there is a mystic `%DOC%` in the arguments. Symbols surrounde
 | `%DOCFILE%` | The LaTeX root file name without `.tex` extension                                   |
 | `%DIR%`     | The LaTeX root file path                                                            |
 | `%TMPDIR%`  | A temporary folder for storing ancillary files, and will be auto-removed when exit. |
+| `%OUTDIR%`  | The output directory configured in `latex-workshop.latex.outputDir`                 |
 
 Alternatively, you can also set your commands without the placeholder, just like what you may input in a terminal.
 As most LaTeX compiler accepts root file name without extension, `%DOC%` and `%DOCFILE%` do not include `.tex` extension. Meanwhile, `texify` requires the extension. So in the above tool `%DOC%` and `.tex` are concatenated for completeness.

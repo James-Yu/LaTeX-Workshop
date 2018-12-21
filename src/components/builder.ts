@@ -244,7 +244,8 @@ export class Builder {
                 step.args = step.args.map(arg => arg.replace('%DOC%', docker ? docfile : doc)
                                                     .replace('%DOCFILE%', docfile)
                                                     .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
-                                                    .replace('%TMPDIR%', this.tmpDir))
+                                                    .replace('%TMPDIR%', this.tmpDir)
+                                                    .replace('%OUTDIR%', this.extension.manager.getOutputDir(rootFile)))
             }
             if (configuration.get('latex.option.maxPrintLine.enabled') && process.platform === 'win32') {
                 if (!step.args) {
