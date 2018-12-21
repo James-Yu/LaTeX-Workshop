@@ -5,7 +5,7 @@ import * as path from 'path'
 import * as cp from 'child_process'
 
 import {Extension} from '../main'
-import {SyncTeXRecord} from './locator'
+import {SyncTeXRecordForward} from './locator'
 
 interface Position {}
 
@@ -210,7 +210,7 @@ export class Viewer {
         }
     }
 
-    syncTeX(pdfFile: string, record: SyncTeXRecord | {[key: string]: string | number}) {
+    syncTeX(pdfFile: string, record: SyncTeXRecordForward) {
         const client = this.clients[pdfFile.toLocaleUpperCase()]
         if (client === undefined) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)

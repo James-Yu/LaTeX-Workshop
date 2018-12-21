@@ -2,13 +2,20 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
+import * as synctexjs from './synctex'
 
 import {Extension} from '../main'
 
-export interface SyncTeXRecord {
-    input: string
-    line: number
-    column: number
+export type SyncTeXRecordForward = {
+    page: number;
+    x: number;
+    y: number;
+}
+
+export type SyncTeXRecordBackward = {
+    input: string;
+    line: number;
+    column: number;
 }
 
 export class Locator {
@@ -18,8 +25,8 @@ export class Locator {
         this.extension = extension
     }
 
-    parseSyncTeX(result: string) {
-        const record: {[key: string]: string | number} = {}
+    parseSyncTeXForward(result: string) : SyncTeXRecordForward {
+        const record: { page?: number, x?: number, y?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
             if (line.indexOf('SyncTeX result begin') > -1) {
@@ -37,16 +44,53 @@ export class Locator {
                 continue
             }
             const key = line.substr(0, pos).toLowerCase()
-            if (key in record) {
+            if (key !== 'page' && key !== 'x' && key !== 'y' ) {
                 continue
             }
-            let value: string | number = line.substr(pos + 1)
-            if (value ===  'column' || value === 'line') {
-                value = parseInt(value)
+            const value = line.substr(pos + 1)
+            record[key] = Number(value)
+        }
+        if (record.page !== undefined && record.x !== undefined && record.y !== undefined) {
+            return { page: record.page, x: record.x, y: record.y, }
+        } else {
+            throw(new Error('parse error when parsing the result of synctex forward.'))
+        }
+    }
+
+    parseSyncTeXBackward(result: string) : SyncTeXRecordBackward {
+        const record: { input?: string, line?: number, column?: number } = {}
+        let started = false
+        for (const line of result.split('\n')) {
+            if (line.indexOf('SyncTeX result begin') > -1) {
+                started = true
+                continue
+            }
+            if (line.indexOf('SyncTeX result end') > -1) {
+                break
+            }
+            if (!started) {
+                continue
+            }
+            const pos = line.indexOf(':')
+            if (pos < 0) {
+                continue
+            }
+            const key = line.substr(0, pos).toLowerCase()
+            if (key !== 'input' && key !== 'line' && key !== 'column' ) {
+                continue
+            }
+            const value = line.substr(pos + 1)
+            if (key === 'line' || key === 'column') {
+                record[key] = Number(value)
+                continue
             }
             record[key] = value
         }
-        return record
+        if (record.input !== undefined && record.line !== undefined && record.column !== undefined) {
+            return { input: record.input, line: record.line, column: record.column }
+        } else {
+            throw(new Error('parse error when parsing the result of synctex backward.'))
+        }
     }
 
     syncTeX(line: number | undefined = undefined, forcedViewer: string = 'auto') {
@@ -79,8 +123,40 @@ export class Locator {
             return
         }
 
+        const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
+
+        if (useSyncTexJs) {
+            try {
+                this.extension.viewer.syncTeX( pdfFile, synctexjs.syncTexJsForward(line, filePath, pdfFile) )
+            } catch (e) {
+                if (e instanceof Error) {
+                    this.extension.logger.addLogMessage(e.message)
+                }
+                console.log(e)
+                throw(e)
+            }
+        } else {
+            this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
+                this.extension.viewer.syncTeX(pdfFile, record)
+            })
+        }
+    }
+
+    syncTeXOnRef(line: number) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const viewer = configuration.get('view.pdf.ref.viewer') as string
+        line += 1
+        if (viewer) {
+            this.syncTeX(line, viewer)
+        } else {
+            this.syncTeX(line)
+        }
+    }
+
+    invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string) : Thenable<SyncTeXRecordForward> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        const args = ['view', '-i', `${line}:${character + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
+        const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
@@ -111,31 +187,22 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot synctex: ${err.message}, ${stderr}`)
         })
 
-        proc.on('exit', exitCode => {
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
-            } else {
-                this.extension.viewer.syncTeX(pdfFile, this.parseSyncTeX(stdout))
-            }
+        return new Promise( (resolve) => {
+            proc.on('exit', exitCode => {
+                if (exitCode !== 0) {
+                    this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
+                } else {
+                    resolve(this.parseSyncTeXForward(stdout))
+                }
+            })
         })
     }
 
-    syncTeXOnRef(line: number) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const viewer = configuration.get('view.pdf.ref.viewer') as string
-        line += 1
-        if (viewer) {
-            this.syncTeX(line, viewer)
-        } else {
-            this.syncTeX(line)
-        }
-    }
-
-    locate(data: any, pdfPath: string) {
+    invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string) : Thenable<SyncTeXRecordBackward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const docker = configuration.get('docker.enabled')
-        const args = ['edit', '-o', `${data.page}:${data.pos[0]}:${data.pos[1]}:${docker ? path.basename(pdfPath) : pdfPath}`]
+        const args = ['edit', '-o', `${page}:${x}:${y}:${docker ? path.basename(pdfPath) : pdfPath}`]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
@@ -166,39 +233,59 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot reverse synctex: ${err.message}, ${stderr}`)
         })
 
-        proc.on('exit', exitCode => {
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
-            } else {
-                const record = this.parseSyncTeX(stdout)
-                if (record === undefined) {
-                    this.extension.logger.addLogMessage(`Reverse synctex returned null file: ${record}`)
-                    return
+        return new Promise( (resolve) => {
+            proc.on('exit', exitCode => {
+                if (exitCode !== 0) {
+                    this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
+                } else {
+                    const record = this.parseSyncTeXBackward(stdout)
+                    resolve(record)
                 }
-                const row = record.line as number - 1
-                const col = record.column < 0 ? 0 : record.column as number
-                const pos = new vscode.Position(row, col)
-                let filePath = path.resolve((record.input as string).replace(/(\r\n|\n|\r)/gm, ''))
-                if (docker && process.platform === 'win32') {
-                    filePath = path.join(path.dirname(pdfPath), (record.input as string).replace('/data/', ''))
-                }
+            })
+        })
+    }
 
-                this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
-                vscode.workspace.openTextDocument(filePath).then((doc) => {
-                    let viewColumn: vscode.ViewColumn | undefined = undefined
-                    for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
-                        viewColumn = vscode.window.visibleTextEditors[index].viewColumn
-                        if (viewColumn !== undefined) {
-                            break
-                        }
-                    }
-                    vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
-                        editor.selection = new vscode.Selection(pos, pos)
-                        vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
-                        this.animateToNotify(editor, pos)
-                    })
-                })
+    async locate(data: any, pdfPath: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const docker = configuration.get('docker.enabled')
+        const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
+        let record: SyncTeXRecordBackward
+
+        if (useSyncTexJs) {
+            try {
+                record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
+            } catch ( e ) {
+                if (e instanceof Error) {
+                    this.extension.logger.addLogMessage(e.message)
+                }
+                console.log(e)
+                throw(e)
             }
+        } else {
+            record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+        }
+        const row = record.line - 1
+        const col = record.column < 0 ? 0 : record.column
+        const pos = new vscode.Position(row, col)
+        let filePath = path.resolve( record.input.replace(/(\r\n|\n|\r)/gm, '') )
+        if (docker && process.platform === 'win32') {
+            filePath = path.join(path.dirname(pdfPath), (record.input as string).replace('/data/', ''))
+        }
+
+        this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
+        vscode.workspace.openTextDocument(filePath).then((doc) => {
+            let viewColumn: vscode.ViewColumn | undefined = undefined
+            for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
+                viewColumn = vscode.window.visibleTextEditors[index].viewColumn
+                if (viewColumn !== undefined) {
+                    break
+                }
+            }
+            vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
+                editor.selection = new vscode.Selection(pos, pos)
+                vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
+                this.animateToNotify(editor, pos)
+            })
         })
     }
 
