@@ -83,6 +83,9 @@ export class Server {
                 case '.jpg':
                     contentType = 'image/jpg'
                     break
+                case '.ico':
+                    contentType = 'image/x-icon'
+                    break
                 default:
                     break
             }
