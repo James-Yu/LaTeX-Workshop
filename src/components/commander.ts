@@ -44,6 +44,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         navCommand.children.push(new LaTeXCommand('Navigate to matching begin/end', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.navigate-envpair', title: ''}))
         navCommand.children.push(new LaTeXCommand('Select current environment name', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.select-envname', title: ''}))
         navCommand.children.push(new LaTeXCommand('Close current environment', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.close-env', title: ''}))
+        navCommand.children.push(new LaTeXCommand('Surround with begin{}...\\end{}', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.wrap-env', title: ''}))
         navCommand.children.push(new LaTeXCommand('Insert %!TeX root magic comment', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.addtexroot', title: ''}))
 
         const miscCommand = new LaTeXCommand('Miscellaneous', vscode.TreeItemCollapsibleState.Collapsed)
