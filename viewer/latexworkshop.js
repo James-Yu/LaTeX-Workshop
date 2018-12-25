@@ -114,16 +114,18 @@ if (embedded) {
   })
 }
 
-document.addEventListener('pagerendered', (e) => {
-    let page = e.target.dataset.pageNumber
-    let target = e.target
-    let canvas_dom = e.target.childNodes[1]
+document.addEventListener('pagerendered', (evPageRendered) => {
+    const page = evPageRendered.target.dataset.pageNumber
+    const target = evPageRendered.target
+    const canvas_dom = evPageRendered.target.childNodes[1]
     canvas_dom.onclick = (e) => {
-        if (!(e.ctrlKey || e.metaKey)) return
+        if (!(e.ctrlKey || e.metaKey)) {
+          return
+        }
 
         let viewerContainer = null
         // no spread
-        if(PDFViewerApplication.pdfViewer.spreadMode === 0){
+        if (PDFViewerApplication.pdfViewer.spreadMode === 0) {
           viewerContainer = target.parentNode.parentNode
         } 
         // odd and even spread add an extra spread container
@@ -131,9 +133,15 @@ document.addEventListener('pagerendered', (e) => {
           viewerContainer = target.parentNode.parentNode.parentNode
         }
 
+        const trimSelect = document.getElementById('trimSelect')
         let left = e.pageX - target.offsetLeft + viewerContainer.scrollLeft
-        let top = e.pageY - target.offsetTop + viewerContainer.scrollTop
-        let pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
+        const top = e.pageY - target.offsetTop + viewerContainer.scrollTop
+        if (trimSelect.selectedIndex > 0) {
+          const m = canvas_dom.style.left.match(/-(.*)px/)
+          const offsetLeft = m ? Number(m[1]) : 0
+          left += offsetLeft
+        }
+        const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
         socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page}))
     }
 }, true)
