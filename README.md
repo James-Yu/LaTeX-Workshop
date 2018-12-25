@@ -16,6 +16,10 @@ This project won't be successful without contributions from the community, espec
 
 - [Home](https://github.com/James-Yu/LaTeX-Workshop/wiki/Home)
 - [Installation and basic settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install)
+  - [Requirements](https://github.com/James-Yu/LaTeX-Workshop/wiki/#requirements)
+  - [Installation](https://github.com/James-Yu/LaTeX-Workshop/wiki/#installation)
+  - [Usage](https://github.com/James-Yu/LaTeX-Workshop/wiki/#usage)
+  - [Using Docker](https://github.com/James-Yu/LaTeX-Workshop/wiki/#using-docker)
 - [Compiling](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile)
   - [Building the document](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#building-the-document)
   - [Cleaning generated files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files)
@@ -51,7 +55,6 @@ This project won't be successful without contributions from the community, espec
   - [Closing the current environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Closing-the-current-environment)
   - [Surrounding selection with an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Surrounding-selection-with-an-environment)
 - [FAQ and common issues](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ)
-
 
 ## GitHub
 
