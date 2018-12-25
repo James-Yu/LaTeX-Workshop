@@ -12,11 +12,10 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 This project won't be successful without contributions from the community, especially project maintainers Jerome Lelong [`@jlelong`](https://github.com/jlelong), James Booth [`@jabooth`](https://github.com/jabooth), and all code [contributors](https://github.com/James-Yu/LaTeX-Workshop/graphs/contributors)! Thank you!
 
-## Features
+## Manual
 
-### The comprehensive list
+The manual of the extension is maintained as a [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki)
 
-- [Home](https://github.com/James-Yu/LaTeX-Workshop/wiki/Home)
 - [Installation and basic settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install)
   - [Requirements](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#requirements)
   - [Installation](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
@@ -58,7 +57,9 @@ This project won't be successful without contributions from the community, espec
   - [Surrounding selection with an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Surrounding-selection-with-an-environment)
 - [FAQ and common issues](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ)
 
-### A glimpse of some features
+## Features (Taster)
+
+This is not a complete list but rather a preview of some of the coolest features.
 
 - Build LaTeX (including BibTeX) to PDF automatically on save.
 
