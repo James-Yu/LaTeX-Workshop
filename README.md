@@ -14,6 +14,8 @@ This project won't be successful without contributions from the community, espec
 
 ## Features
 
+### The comprehensive list
+
 - [Home](https://github.com/James-Yu/LaTeX-Workshop/wiki/Home)
 - [Installation and basic settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install)
   - [Requirements](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#requirements)
@@ -55,6 +57,68 @@ This project won't be successful without contributions from the community, espec
   - [Closing the current environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Closing-the-current-environment)
   - [Surrounding selection with an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Surrounding-selection-with-an-environment)
 - [FAQ and common issues](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ)
+
+### A glimpse of some features
+
+- Build LaTeX (including BibTeX) to PDF automatically on save.
+
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/build.gif" alt="build process gif" height="20px">
+
+- View PDF on-the-fly (in VS Code or browser).
+
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/preview.gif" alt="demo of preview feature" height="220px">
+
+- Direct and reverse SyncTeX. Click to jump between location in `.tex` source and PDF and vice versa.
+
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/synctex.gif" alt="demo of SyncTeX" height="220px">
+
+- Intellisense, including completions for bibliography keys (`\cite{}`) and labels (`\ref{}`).
+
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/ref.gif" alt="intellisense demo" height="80px">
+
+- LaTeX log parser, with errors and warnings in LaTeX build automatically reported in VS Code.
+
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/errors.png" alt="error reporting demo" height="125px">
+
+  - Linting
+
+  <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/chktex.gif" alt="auto \item demo" height="90px">
+
+- [Snippets](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets)
+  - A lot of LaTeX commands can be typed using snippets starting in `\`, then type part of the command to narrow the search.
+
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/subparagraph.gif" alt="auto \item demo" height="80px">
+
+  - Surround some selected text with a LaTeX command using <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>ctrl</kbd>+<kbd>w</kbd> (<kbd>⌘</kbd>+<kbd>l</kbd>, <kbd>⌘</kbd>+<kbd>w</kbd> on Mac). A new menu pops up to select the command. This works with multi selections. The former approach using `\` has been deprecated.
+
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/wrap.gif" alt="wrap demo" height="140px">
+
+  - We also provide a few other snippets mechanisms
+    - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Inserting-Greek-letters).
+
+        <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/greek letter.gif" alt="greek letters demo" height="20px">
+
+    - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Environments).
+
+        <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/BSAL snippet.gif" alt="BSAL demo" height="55px">
+    - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Mathematical-font-commands).
+
+        <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/FBF snippet.gif" alt="FBF demo" height="20px">
+    - Many other maths symbols can be obtained with the `@` prefix. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Handy-mathematical-snippets).
+
+      <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/frac.gif" alt="\frac shortcut demo" height="20px">
+      <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/int.gif" alt="\int shortcut demo" height="20px">
+- [Shortcuts](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Font-commands)
+  - In addition to snippets, there are shortcuts provided by the extension that allow you to easily format text (and one or two other things).
+
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/emph.gif" alt="\emph{} demo" height="20px">
+- When the current line starts with `\item` or `\item[]`, hitting `Enter` automatically adds a newline starting in the same way. For a better handling of the last item, hitting `Enter` on a line only containing `\item` or `\item[]` actually deletes the content of the line. The `alt+Enter` is bind to the standard newline command. This automatic insertion of `\item` can be deactivated by setting `latex-workshop.bind.enter.key` to `false`.
+
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/auto item.gif" alt="auto \item demo" height="80px">
+
+- Preview on hover. Hovering over the start tag of a math environment causes a mathjax preview to pop up.
+
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/hover.gif" alt="auto \item demo" height="120px">
 
 ## GitHub
 
