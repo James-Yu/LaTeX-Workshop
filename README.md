@@ -21,6 +21,7 @@ This project won't be successful without contributions from the community, espec
   - [Cleaning generated files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files)
   - [LaTeX recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)
   - [Magic comments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#magic-comments)
+  - [Catching errors](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#catching-errors-and-warnings)
 - [Linting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters)
 - [Viewing & synctex](https://github.com/James-Yu/LaTeX-Workshop/wiki/View)
 - [Formatting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format)
