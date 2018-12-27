@@ -45,7 +45,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Miscellaneous actions](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Miscellaneous-Actions)
 - [Hovering features](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover)
   - [Documentation of a package](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#documentation-of-a-package)
-  - [Previewing equations](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previeingw-equations)
+  - [Previewing equations](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-equations)
   - [Previewing citation details](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-citation-details)
   - [Previewing references](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-references)
   - [Documentation of a command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#documentation-of-a-command)
