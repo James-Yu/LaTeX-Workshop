@@ -187,6 +187,7 @@ export class Command {
         } else {
             command.insertText = item.command
         }
+        command.detail = item.detail
         command.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
         if (item.package) {
             const pkg = item.package
