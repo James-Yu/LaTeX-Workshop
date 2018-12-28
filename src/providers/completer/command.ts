@@ -3,20 +3,28 @@ import * as fs from 'fs-extra'
 
 import {Extension} from '../../main'
 
+export class CommandCompletionItem extends vscode.CompletionItem {
+    packageName: string | undefined = undefined
+
+    constructor(label: string, kind?: vscode.CompletionItemKind | undefined) {
+        super(label, kind)
+    }
+}
+
 export class Command {
     extension: Extension
     selection: string = ''
     shouldClearSelection: boolean = true
-    suggestions: vscode.CompletionItem[] = []
+    suggestions: CommandCompletionItem[] = []
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
-    allCommands: {[key: string]: vscode.CompletionItem} = {}
-    defaultCommands: {[key: string]: vscode.CompletionItem} = {}
-    defaultSymbols: {[key: string]: vscode.CompletionItem} = {}
+    allCommands: {[key: string]: CommandCompletionItem} = {}
+    defaultCommands: {[key: string]: CommandCompletionItem} = {}
+    defaultSymbols: {[key: string]: CommandCompletionItem} = {}
     newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
     specialBrackets: {[key: string]: vscode.CompletionItem}
     usedPackages: string[] = []
-    packageCmds: {[pkg: string]: {[key: string]: vscode.CompletionItem}} = {}
+    packageCmds: {[pkg: string]: {[key: string]: CommandCompletionItem}} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -39,7 +47,7 @@ export class Command {
         })
         Object.keys(envSnippet).forEach(key => {
             const item = envSnippet[key]
-            const command = new vscode.CompletionItem(`\\begin{${item.command}} ... \\end{${item.command}}`, vscode.CompletionItemKind.Snippet)
+            const command = new CommandCompletionItem(`\\begin{${item.command}} ... \\end{${item.command}}`, vscode.CompletionItemKind.Snippet)
             command.filterText = item.command
             command.insertText = new vscode.SnippetString(item.snippet)
             this.defaultCommands[key] = command
@@ -174,11 +182,11 @@ export class Command {
         })
     }
 
-    entryToCompletionItem(item: AutocompleteEntry) : vscode.CompletionItem {
+    entryToCompletionItem(item: AutocompleteEntry) : CommandCompletionItem {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command[0] === ' ' ? '' : '\\'
-        const command = new vscode.CompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
+        const command = new CommandCompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
         if (item.snippet) {
             if (useTabStops) {
                 item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$$$1')
@@ -189,10 +197,7 @@ export class Command {
         }
         command.detail = item.detail
         command.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
-        if (item.package) {
-            const pkg = item.package
-            command.documentation += `WLPackage: ${pkg}`
-        }
+        command.packageName = item.package
         command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
             return n !== undefined ? n.toString(16) : c

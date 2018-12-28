@@ -110,17 +110,14 @@ export class HoverProvider implements vscode.HoverProvider {
                 const pkgs: string[] = []
                 Object.keys(this.extension.completer.command.allCommands).forEach( key => {
                     if (key.startsWith(token) && ((key.length === token.length) || (key.charAt(token.length) === '[') || (key.charAt(token.length) === '{'))) {
-                        if (this.extension.completer.command.allCommands[key].documentation === undefined ) {
+                        const command = this.extension.completer.command.allCommands[key]
+                        if (command.documentation === undefined) {
                             return
                         }
-                        let doc = this.extension.completer.command.allCommands[key].documentation as string
-                        const execObj = /(.*)WLPackage:(.*)$/.exec(doc)
-                        if (execObj) {
-                            doc = execObj[1]
-                            const pkg = execObj[2]
-                            if (pkgs.indexOf(pkg) === -1) {
-                                pkgs.push(pkg)
-                            }
+                        const doc = command.documentation as string
+                        const packageName = command.packageName
+                        if (packageName && (pkgs.indexOf(packageName) === -1)) {
+                            pkgs.push(packageName)
                         }
                         signatures.push(doc)
                     }
