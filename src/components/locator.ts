@@ -103,7 +103,7 @@ export class Locator {
         }
     }
 
-    syncTeX(arg?: {line: number, filePath: string}, forcedViewer: string = 'auto') {
+    syncTeX(args?: {line: number, filePath: string}, forcedViewer: string = 'auto') {
         let line: number
         let filePath: string
         let character = 0
@@ -111,7 +111,7 @@ export class Locator {
             return
         }
 
-        if (arg === undefined) {
+        if (args === undefined) {
             filePath = vscode.window.activeTextEditor.document.uri.fsPath
             if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
                 this.extension.logger.addLogMessage(`${filePath} is not a valid LaTeX file.`)
@@ -125,8 +125,8 @@ export class Locator {
             line = position.line + 1
             character = position.character
         } else {
-            line = arg.line
-            filePath = arg.filePath
+            line = args.line
+            filePath = args.filePath
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
@@ -203,14 +203,14 @@ export class Locator {
         })
     }
 
-    syncTeXOnRef(arg: {line: number, filePath: string}) {
+    syncTeXOnRef(args: {line: number, filePath: string}) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewer = configuration.get('view.pdf.ref.viewer') as string
-        arg.line += 1
+        args.line += 1
         if (viewer) {
-            this.syncTeX(arg, viewer)
+            this.syncTeX(args, viewer)
         } else {
-            this.syncTeX(arg)
+            this.syncTeX(args)
         }
     }
 
