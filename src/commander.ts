@@ -196,13 +196,13 @@ export class Commander {
         this.extension.locator.syncTeX()
     }
 
-    async synctexonref(line: number) {
+    async synctexonref(line: number, filePath: string) {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
         await this.extension.manager.findRoot()
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.locator.syncTeXOnRef(line)
+        this.extension.locator.syncTeXOnRef({line, filePath})
     }
 
     async clean() : Promise<void> {
