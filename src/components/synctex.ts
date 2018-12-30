@@ -71,7 +71,12 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     const line1 = lineNums[i]
     const blocks1 = getBlocks(linePageBlocks, line1)
     const c1 = Rectangle.coveringRectangle(blocks1)
-    const bottom = c0.bottom * (line1 - line) / (line1 - line0) + c1.bottom * (line - line0) / (line1 - line0)
+    let bottom: number
+    if (c0.bottom < c1.bottom) {
+      bottom = c0.bottom * (line1 - line) / (line1 - line0) + c1.bottom * (line - line0) / (line1 - line0)
+    } else {
+      bottom = c1.bottom
+    }
     return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
   }
 
@@ -99,6 +104,11 @@ class Rectangle {
       let cRight = 0
 
       for (const b of blocks) {
+        // Skip a block if they have boxes inside, or their type is kern or rule.
+        // See also https://github.com/jlaurens/synctex/blob/2017/synctex_parser.c#L4655 for types.
+        if (b.elements !== undefined || b.type === 'k' || b.type === 'r') {
+          continue
+        }
         cBottom = Math.max(b.bottom, cBottom)
         const top = b.bottom - b.height
         cTop = Math.min(top, cTop)
@@ -171,7 +181,9 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
           }
           const blocks = pageBlocks[Number(pageNum)]
           for (const block of blocks) {
-            if (block.elements !== undefined) {
+            // Skip a block if they have boxes inside, or their type is kern or rule.
+            // See also https://github.com/jlaurens/synctex/blob/2017/synctex_parser.c#L4655 for types.
+            if (block.elements !== undefined || block.type === 'k' || block.type === 'r') {
               continue
             }
             const rect = Rectangle.fromBlock(block)
