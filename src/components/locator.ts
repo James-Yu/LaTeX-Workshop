@@ -87,16 +87,6 @@ export class Locator {
             record[key] = value
         }
         if (record.input !== undefined && record.line !== undefined && record.column !== undefined) {
-            // kpathsea/SyncTeX follow symlinks.
-            // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
-            // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
-            Object.keys(this.extension.manager.texFileTree).some(ed => {
-                if (fs.realpathSync(record.input as string) === fs.realpathSync(ed)) {
-                    record.input = ed
-                    return true
-                }
-                return false
-            })
             return { input: record.input, line: record.line, column: record.column }
         } else {
             throw(new Error('parse error when parsing the result of synctex backward.'))
@@ -279,6 +269,15 @@ export class Locator {
             }
         } else {
             record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
+        }
+        // kpathsea/SyncTeX follow symlinks.
+        // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
+        // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
+        for (const ed of Object.keys(this.extension.manager.texFileTree)) {
+            if (fs.realpathSync(record.input) === fs.realpathSync(ed)) {
+                record.input = ed
+                break
+            }
         }
         const row = record.line - 1
         const col = record.column < 0 ? 0 : record.column
