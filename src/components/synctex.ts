@@ -104,6 +104,11 @@ class Rectangle {
       let cRight = 0
 
       for (const b of blocks) {
+        // Skip a block if they have boxes inside, or their type is kern or rule.
+        // See also https://github.com/jlaurens/synctex/blob/2017/synctex_parser.c#L4655 for types.
+        if (b.elements !== undefined || b.type === 'k' || b.type === 'r') {
+          continue
+        }
         cBottom = Math.max(b.bottom, cBottom)
         const top = b.bottom - b.height
         cTop = Math.min(top, cTop)
@@ -176,6 +181,8 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
           }
           const blocks = pageBlocks[Number(pageNum)]
           for (const block of blocks) {
+            // Skip a block if they have boxes inside, or their type is kern or rule.
+            // See also https://github.com/jlaurens/synctex/blob/2017/synctex_parser.c#L4655 for types.
             if (block.elements !== undefined || block.type === 'k' || block.type === 'r') {
               continue
             }
