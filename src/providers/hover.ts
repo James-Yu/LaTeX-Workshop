@@ -65,6 +65,15 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve()
                 return
             }
+            // Test if we are on a command
+            if (token.charAt(0) === '\\') {
+                if (!hovCommand) {
+                    resolve()
+                    return
+                }
+                this.provideHoverOnCommand(token).then(hover => resolve(hover))
+                return
+            }
             if (onAPackage(document, position, token)) {
                 const pkg = encodeURIComponent(JSON.stringify(token))
                 const md = `Package **${token}** \n\n`
@@ -105,40 +114,6 @@ export class HoverProvider implements vscode.HoverProvider {
                 ))
                 return
             }
-            if (hovCommand) {
-                const signatures: string[] = []
-                const pkgs: string[] = []
-                Object.keys(this.extension.completer.command.allCommands).forEach( key => {
-                    if (key.startsWith(token) && ((key.length === token.length) || (key.charAt(token.length) === '[') || (key.charAt(token.length) === '{'))) {
-                        const command = this.extension.completer.command.allCommands[key]
-                        if (command.documentation === undefined) {
-                            return
-                        }
-                        const doc = command.documentation as string
-                        const packageName = command.packageName
-                        if (packageName && (pkgs.indexOf(packageName) === -1)) {
-                            pkgs.push(packageName)
-                        }
-                        signatures.push(doc)
-                    }
-                })
-                let pkgLink = ''
-                if (pkgs.length > 0) {
-                    pkgLink = '\n\nView documentation for package(s) '
-                    pkgs.forEach(p => {
-                        const pkg = encodeURIComponent(JSON.stringify(p))
-                        pkgLink += `[${p}](command:latex-workshop.texdoc?${pkg}),`
-                    })
-                    pkgLink = pkgLink.substr(0, pkgLink.lastIndexOf(',')) + '.'
-                }
-                if (signatures.length > 0) {
-                    const mdLink = new vscode.MarkdownString(signatures.join('  \n')) // We need two spaces to ensure md newline
-                    mdLink.appendMarkdown(pkgLink)
-                    mdLink.isTrusted = true
-                    resolve(new vscode.Hover(mdLink))
-                    return
-                }
-            }
             resolve()
         })
     }
@@ -158,6 +133,42 @@ export class HoverProvider implements vscode.HoverProvider {
             }
         } while (result)
         return commands.join('')
+    }
+
+    private async provideHoverOnCommand(token: string) : Promise<vscode.Hover | undefined> {
+        const signatures: string[] = []
+        const pkgs: string[] = []
+        const tokenWithoutSlash = token.substring(1)
+        Object.keys(this.extension.completer.command.allCommands).forEach( key => {
+            if (key.startsWith(tokenWithoutSlash) && ((key.length === tokenWithoutSlash.length) || (key.charAt(tokenWithoutSlash.length) === '[') || (key.charAt(tokenWithoutSlash.length) === '{'))) {
+                const command = this.extension.completer.command.allCommands[key]
+                if (command.documentation === undefined) {
+                    return
+                }
+                const doc = command.documentation as string
+                const packageName = command.packageName
+                if (packageName && (pkgs.indexOf(packageName) === -1)) {
+                    pkgs.push(packageName)
+                }
+                signatures.push(doc)
+            }
+        })
+        let pkgLink = ''
+        if (pkgs.length > 0) {
+            pkgLink = '\n\nView documentation for package(s) '
+            pkgs.forEach(p => {
+                const pkg = encodeURIComponent(JSON.stringify(p))
+                pkgLink += `[${p}](command:latex-workshop.texdoc?${pkg}),`
+            })
+            pkgLink = pkgLink.substr(0, pkgLink.lastIndexOf(',')) + '.'
+        }
+        if (signatures.length > 0) {
+            const mdLink = new vscode.MarkdownString(signatures.join('  \n')) // We need two spaces to ensure md newline
+            mdLink.appendMarkdown(pkgLink)
+            mdLink.isTrusted = true
+            return new vscode.Hover(mdLink)
+        }
+        return undefined
     }
 
     private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv) : Promise<vscode.Hover> {
