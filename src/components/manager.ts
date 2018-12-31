@@ -337,7 +337,7 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                this.addBibToWatcher(bib, rootDir)
+                this.addBibToWatcher(bib, rootDir, this.extension.manager.rootFile)
             }
         }
 
@@ -351,7 +351,7 @@ export class Manager {
         this.extension.completer.citation.getTheBibliographyTeX(filePath)
     }
 
-    addBibToWatcher(bib: string, rootDir: string) {
+    addBibToWatcher(bib: string, rootDir: string, rootFile: string | undefined = undefined) {
         let bibPath
         if (path.isAbsolute(bib)) {
             bibPath = bib
@@ -380,13 +380,17 @@ export class Manager {
                     this.bibWatcher.unwatch(filePath)
                     this.bibsWatched.splice(this.bibsWatched.indexOf(filePath), 1)
                 })
-                this.extension.completer.citation.parseBibFile(bibPath)
+                this.extension.completer.citation.parseBibFile(bibPath, rootFile)
             } else if (this.bibsWatched.indexOf(bibPath) < 0) {
                 this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
                 this.bibWatcher.add(bibPath)
                 this.bibsWatched.push(bibPath)
-                this.extension.completer.citation.parseBibFile(bibPath)
+                this.extension.completer.citation.parseBibFile(bibPath, rootFile)
             } else {
+                const texFiles = this.extension.completer.citation.citationInBib[bibPath].rootFiles
+                if (rootFile && texFiles.indexOf(rootFile) < 0) {
+                    texFiles.push(rootFile)
+                }
                 this.extension.logger.addLogMessage(`.bib file ${bibPath} is already being watched.`)
             }
         }
