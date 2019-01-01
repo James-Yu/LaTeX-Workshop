@@ -53,9 +53,7 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
-                    const newCommand = this.findNewCommand(document.getText())
-                    tex.texString = newCommand + tex.texString
-                    this.provideHoverOnTex(document, tex)
+                    this.provideHoverOnTex(document, tex, this.findNewCommand(document.getText()))
                         .then(hover => resolve(hover))
                     return
                 }
@@ -91,9 +89,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 if (configuration.get('hoverPreview.ref.enabled') as boolean) {
                     const tex = this.findHoverOnRef(document, position, token, refData)
                     if (tex) {
-                        const newCommand = this.findNewCommand(document.getText())
-                        tex.texString = newCommand + tex.texString
-                        this.provideHoverOnRef(tex, token, refData)
+                        this.provideHoverOnRef(tex, this.findNewCommand(document.getText()), token, refData)
                             .then(hover => resolve(hover))
                         return
                     }
@@ -171,13 +167,13 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
-    private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv) : Promise<vscode.Hover> {
+    private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
         let s = this.renderCursor(document, tex.range)
         s = this.mathjaxify(s, tex.envname)
         const data = await this.mj.typeset({
-            math: this.stripTeX(s),
+            math: newCommand + this.stripTeX(s),
             format: 'TeX',
             svgNode: true,
         })
@@ -188,7 +184,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range )
     }
 
-    private async provideHoverOnRef(tex: TexMathEnv, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
+    private async provideHoverOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hoverPreview.scale') as number
         const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
@@ -196,7 +192,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const data = await this.mj.typeset({
             width: 50,
             equationNumbers: 'AMS',
-            math: this.stripTeX(s),
+            math: newCommand + this.stripTeX(s),
             format: 'TeX',
             svgNode: true,
             state: {AMS: obj}
