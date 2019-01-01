@@ -53,8 +53,7 @@ function conflictExtensionCheck() {
             vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with extension "${name}". ${suggestion}`)
         }
     }
-    check('tomoki1207.pdf', 'vscode-pdf',
-          'All features of "vscode-pdf" are supported by LaTeX Workshop.')
+    check('tomoki1207.pdf', 'vscode-pdf', 'Please consider disabling either extension.')
 }
 
 function newVersionMessage(extensionPath: string, extension: Extension) {
