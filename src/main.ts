@@ -226,6 +226,9 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
+            extension.manager.findRoot()
+            extension.structureProvider.refresh()
+            extension.structureProvider.update()
             extension.linter.lintActiveFileIfEnabled()
         } else {
             isLaTeXActive = false
