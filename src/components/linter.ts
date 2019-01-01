@@ -18,7 +18,7 @@ export class Linter {
     get rcPath() {
         let rcPath
         // 0. root file folder
-        const root = this.extension.manager.documentRoot()
+        const root = this.extension.manager.rootFile
         if (root) {
             rcPath = path.join(path.dirname(root), '.chktexrc')
         }

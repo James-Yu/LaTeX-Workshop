@@ -181,6 +181,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
+        // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
         if (extension.manager.hasTexId(e.languageId)) {
             obsoleteConfigCheck()
             extension.manager.findRoot()
@@ -199,15 +200,6 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabledAfterInterval()
-
-            // const previousRoot = extension.manager.rootFile
-            // extension.manager.findRoot().then(rootFile => {
-            //     if (rootFile === undefined || rootFile === previousRoot) {
-            //         return
-            //     }
-            //     extension.structureProvider.refresh()
-            //     extension.structureProvider.update()
-            // })
         }
     }))
 

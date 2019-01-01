@@ -10,7 +10,6 @@ import {Extension} from '../main'
 export class Manager {
     extension: Extension
     rootFiles: object
-    rootOfFiles: object
     workspace: string
     texFileTree: { [id: string]: Set<string> } = {}
     fileWatcher: chokidar.FSWatcher
@@ -21,7 +20,6 @@ export class Manager {
         this.extension = extension
         this.watched = []
         this.rootFiles = {}
-        this.rootOfFiles = {}
         this.workspace = ''
     }
 
@@ -43,24 +41,11 @@ export class Manager {
     }
 
     get rootFile() {
-        const root = this.documentRoot()
-        if (root) {
-            this.rootFiles[this.workspace] = root
-            return root
-        }
         return this.rootFiles[this.workspace]
     }
 
     set rootFile(root: string) {
         this.rootFiles[this.workspace] = root
-    }
-
-    documentRoot() {
-        const window = vscode.window.activeTextEditor
-        if (window && window.document && this.rootOfFiles.hasOwnProperty(window.document.fileName)) {
-            return this.rootOfFiles[window.document.fileName]
-        }
-        return undefined
     }
 
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
@@ -122,7 +107,7 @@ export class Manager {
 
     async findRoot() : Promise<string | undefined> {
         this.updateWorkspace()
-        const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootSaved(), () => this.findRootDir()]
+        const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootDir()]
         for (const method of findMethods) {
             const rootFile = await method()
             if (rootFile !== undefined) {
@@ -130,7 +115,6 @@ export class Manager {
                     this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
                     this.rootFile = rootFile
                     this.findAllDependentFiles(rootFile)
-                    this.updateRootOfFiles(rootFile, rootFile)
                 } else {
                     this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
                 }
@@ -138,15 +122,6 @@ export class Manager {
             }
         }
         return undefined
-    }
-
-    updateRootOfFiles(root: string, file: string) {
-        if (this.texFileTree.hasOwnProperty(file)) {
-            this.rootOfFiles[file] = root
-            for (const f of this.texFileTree[file]) {
-                this.updateRootOfFiles(root, f)
-            }
-        }
     }
 
     findRootMagic() : string | undefined {
@@ -212,10 +187,6 @@ export class Manager {
             return file
         }
         return undefined
-    }
-
-    findRootSaved() : string | undefined {
-        return this.documentRoot()
     }
 
     async findRootDir() : Promise<string | undefined> {
