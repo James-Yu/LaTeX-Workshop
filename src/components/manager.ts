@@ -245,6 +245,9 @@ export class Manager {
             this.fileWatcher.close()
             this.watched = []
             prevWatcherClosed = true
+            // We also clean the completions from the old project
+            this.extension.completer.reference.reset()
+            this.extension.completer.command.reset()
         }
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {

@@ -30,6 +30,15 @@ export class Command {
         this.extension = extension
     }
 
+    reset() {
+        this.suggestions = []
+        this.commandInTeX = {}
+        this.allCommands = {}
+        this.newcommandData = {}
+        this.usedPackages = []
+        this.packageCmds = {}
+    }
+
     initialize(defaultCommands: {[key: string]: AutocompleteEntry}, defaultEnvs: string[]) {
         Object.keys(defaultCommands).forEach(key => {
             const item = defaultCommands[key]

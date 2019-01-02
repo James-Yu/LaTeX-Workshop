@@ -23,6 +23,12 @@ export class Reference {
         this.extension = extension
     }
 
+    reset() {
+        this.suggestions = []
+        this.referenceData = {}
+        this.refreshTimer = 0
+    }
+
     provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
