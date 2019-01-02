@@ -226,15 +226,16 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
-            const previousRoot = extension.manager.rootFile
-            extension.manager.findRoot().then(rootFile => {
-                if (rootFile === undefined || rootFile === previousRoot) {
-                    extension.logger.addLogMessage('OnChangeActiveEditor: Root file remains unchanged.')
-                    return
-                }
-                extension.structureProvider.refresh()
-                extension.structureProvider.update()
-            })
+            if (extension.manager.fileWatcher &&  extension.manager.watched.indexOf(e.document.fileName) < 0) {
+                const previousRoot = extension.manager.rootFile
+                extension.manager.findRoot().then(rootFile => {
+                    if (rootFile === undefined || rootFile === previousRoot) {
+                        return
+                    }
+                    extension.structureProvider.refresh()
+                    extension.structureProvider.update()
+                })
+            }
             extension.linter.lintActiveFileIfEnabled()
         } else {
             isLaTeXActive = false
