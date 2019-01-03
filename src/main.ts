@@ -226,7 +226,7 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
-            if (extension.manager.fileWatcher &&  extension.manager.watched.indexOf(e.document.fileName) < 0) {
+            if (extension.manager.fileWatcher &&  extension.manager.filesWatched.indexOf(e.document.fileName) < 0) {
                 const previousRoot = extension.manager.rootFile
                 extension.manager.findRoot().then(rootFile => {
                     if (rootFile === undefined || rootFile === previousRoot) {

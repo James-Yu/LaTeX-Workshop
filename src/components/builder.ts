@@ -58,7 +58,7 @@ export class Builder {
 
         // Create sub directories of output directory
         if (this.extension.manager.getOutputDir(rootFile) !== './') {
-            const directories = new Set<string>(this.extension.manager.watched
+            const directories = new Set<string>(this.extension.manager.filesWatched
                 .map(file => path.dirname(file.replace(this.extension.manager.rootDir, ''))))
             let outputDir = this.extension.manager.getOutputDir(rootFile)
             if (!path.isAbsolute(outputDir)) {
