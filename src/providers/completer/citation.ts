@@ -26,6 +26,12 @@ export class Citation {
         this.extension = extension
     }
 
+    reset() {
+        this.suggestions = []
+        this.theBibliographyData = {}
+        this.refreshTimer = 0
+    }
+
     provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions

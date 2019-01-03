@@ -250,6 +250,7 @@ export class Manager {
             // We also clean the completions from the old project
             this.extension.completer.reference.reset()
             this.extension.completer.command.reset()
+            this.extension.completer.citation.reset()
         }
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {
