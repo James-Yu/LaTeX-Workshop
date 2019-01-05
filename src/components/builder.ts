@@ -88,8 +88,16 @@ export class Builder {
             this.buildFinished(rootFile)
             return
         }
+        if (index === 0) {
+            this.extension.logger.clearCompilerMessage()
+        }
+        if (index > 0) {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            if (configuration.get('latex.build.clearLog.everyRecipeStep.enabled')) {
+                this.extension.logger.clearCompilerMessage()
+            }
+        }
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
-        this.extension.logger.clearCompilerMessage()
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
         this.extension.manager.setEnvVar()
         process.env.max_print_line = maxPrintLine
