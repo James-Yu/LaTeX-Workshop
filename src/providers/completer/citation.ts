@@ -17,13 +17,19 @@ interface CitationRecord {
 export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    citationInBib: { [id: string]: CitationRecord[] } = {}
+    citationInBib: { [id: string]: {citations: CitationRecord[], rootFiles: string[] }} = {}
     citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
-    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string}} = {}
+    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string, rootFile: string}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
+    }
+
+    reset() {
+        this.suggestions = []
+        this.theBibliographyData = {}
+        this.refreshTimer = 0
     }
 
     provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
@@ -32,13 +38,16 @@ export class Citation {
         }
         this.refreshTimer = Date.now()
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const rootFile = this.extension.manager.rootFile
         // First, we deal with citation items from bib files
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
-            this.citationInBib[bibPath].forEach(item => items.push(item))
+            if (this.citationInBib[bibPath].rootFiles.length === 0 || this.citationInBib[bibPath].rootFiles.indexOf(rootFile) > -1) {
+                this.citationInBib[bibPath].citations.forEach(item => items.push(item))
+            }
         })
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.suggestions = items.map(item => {
             const citation = new vscode.CompletionItem(item.key, vscode.CompletionItemKind.Reference)
             citation.detail = item.title
@@ -80,6 +89,9 @@ export class Citation {
         // Second, we deal with the items from thebibliography
         const suggestions = {}
         Object.keys(this.theBibliographyData).forEach(key => {
+            if (! (this.theBibliographyData[key].rootFile === rootFile)) {
+               return
+            }
             suggestions[key] = this.theBibliographyData[key].item
         })
         if (vscode.window.activeTextEditor) {
@@ -106,7 +118,7 @@ export class Citation {
         this.provide(args)
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
-            this.citationInBib[bibPath].forEach(item => items.push(item))
+            this.citationInBib[bibPath].citations.forEach(item => items.push(item))
         })
         const pickItems: vscode.QuickPickItem[] = items.map(item => {
             return {
@@ -137,13 +149,13 @@ export class Citation {
         })
     }
 
-    parseBibFile(bibPath: string) {
+    parseBibFile(bibPath: string, texFile: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
         const items: CitationRecord[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (fs.statSync(bibPath).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`${bibPath} is too large, ignoring it.`)
-            this.citationInBib[bibPath] = items
+            this.citationInBib[bibPath] = { citations: items, rootFiles: [] }
             return
         }
         const content = fs.readFileSync(bibPath, 'utf-8')
@@ -196,7 +208,15 @@ export class Citation {
             }
         }
         this.extension.logger.addLogMessage(`Parsed ${items.length} .bib entries from ${bibPath}.`)
-        this.citationInBib[bibPath] = items
+
+        let rootFilesList: string[] = []
+        if (bibPath in this.citationInBib) {
+            rootFilesList = this.citationInBib[bibPath].rootFiles
+        }
+        if (texFile && rootFilesList.indexOf(texFile) === -1) {
+            rootFilesList.push(texFile)
+        }
+        this.citationInBib[bibPath] = { citations: items, rootFiles: rootFilesList }
     }
 
     forgetParsedBibItems(bibPath: string) {
@@ -272,7 +292,8 @@ export class Citation {
             this.theBibliographyData[key] = {
                 item: bibitems[key],
                 text: bibitems[key].text,
-                file: filePath
+                file: filePath,
+                rootFile: this.extension.manager.rootFile
             }
         })
     }
