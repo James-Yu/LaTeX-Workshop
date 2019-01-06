@@ -46,6 +46,7 @@ export class Viewer {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
+            this.extension.logger.showErrorMessage(`Cannot find PDF file ${pdfFile}`)
             return
         }
         if (this.extension.server.address === undefined) {
