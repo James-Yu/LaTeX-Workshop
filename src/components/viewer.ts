@@ -16,10 +16,52 @@ interface Client {
     position?: Position
 }
 
+class ViewerState {
+    private clients: {[key: string]: Client[] | undefined} = {}
+
+    getClientByWebsocket(websocket: ws) : Client | null {
+        for (const key in this.clients) {
+            const clients = this.clients[key]
+            if (clients) {
+                for (const client of clients) {
+                    if (client.websocket === websocket) {
+                        return client
+                    }
+                }
+            }
+        }
+        return null
+    }
+
+    getClients(url: string) : Client[] {
+        const clients = this.clients[url.toLocaleUpperCase()]
+        return clients ? [...clients] : []
+    }
+
+    addClient(url: string, client: Client) {
+        const clients = this.clients[url.toLocaleUpperCase()]
+        if (clients) {
+            clients.push(client)
+        } else {
+            this.clients[url.toLocaleUpperCase()] = [client]
+        }
+    }
+
+    removeClient(client: Client) {
+        for (const key in this.clients) {
+            const clients = this.clients[key]
+            if (clients && clients.indexOf(client) > -1) {
+                clients.splice(clients.indexOf(client), 1)
+                return
+            }
+        }
+    }
+}
+
 export class Viewer {
     extension: Extension
-    clients: {[key: string]: Client | undefined} = {}
     positions = {}
+    viewerState = new ViewerState()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -27,22 +69,28 @@ export class Viewer {
 
     refreshExistingViewer(sourceFile: string, type?: string) : boolean {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        const client = this.clients[pdfFile.toLocaleUpperCase()]
-        if (client !== undefined &&
-            (type === undefined || client.type === type) &&
-            client.websocket !== undefined) {
+        const clients = this.viewerState.getClients(pdfFile)
+
+        let clientsRefreshed = false
+        clients.forEach(client => {
+            if ((type === undefined || client.type === type) && client.websocket !== undefined) {
+                client.websocket.send(JSON.stringify({type: 'refresh'}))
+                clientsRefreshed = true
+            }
+        })
+
+        if (clientsRefreshed) {
             this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-            client.websocket.send(JSON.stringify({type: 'refresh'}))
             return true
         }
+
         this.extension.logger.addLogMessage(`No PDF viewer connected for ${pdfFile}`)
         return false
     }
 
     checkViewer(sourceFile: string, type: string, respectOutDir: boolean = true) : string | undefined {
-        if (this.refreshExistingViewer(sourceFile, type)) {
-            return
-        }
+        this.refreshExistingViewer(sourceFile, type)
+
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
@@ -67,11 +115,8 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        const client = this.clients[pdfFile.toLocaleUpperCase()]
-        if (client !== undefined && client.websocket !== undefined) {
-            client.websocket.close()
-        }
-        this.clients[pdfFile.toLocaleUpperCase()] = {type: 'viewer'}
+
+        this.viewerState.addClient(pdfFile, {type: 'viewer'})
         try {
             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(url))
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
@@ -90,17 +135,14 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
-        const client = this.clients[pdfFile.toLocaleUpperCase()]
-        const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
-        if (client !== undefined && client.websocket !== undefined) {
-            client.websocket.close()
-        }
-        this.clients[pdfFile.toLocaleUpperCase()] = {type: 'tab'}
+
+        this.viewerState.addClient(pdfFile, {type: 'tab'})
         const editor = vscode.window.activeTextEditor
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
             enableScripts: true,
             retainContextWhenHidden: true
         })
+        const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
         panel.webview.html = this.getPDFViewerContent(uri)
         if (editor) {
             vscode.window.showTextDocument(editor.document, editor.viewColumn)
@@ -164,38 +206,34 @@ export class Viewer {
 
     handler(websocket: ws, msg: string) {
         const data = JSON.parse(msg)
-        let client: Client | undefined
         switch (data.type) {
-            case 'open':
-                client = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
-                if (client !== undefined) {
+            case 'open': {
+                const clients = this.viewerState.getClients(decodeURIComponent(decodeURIComponent(data.path)))
+                clients.filter(client => client.websocket === undefined).forEach(client => {
                     client.websocket = websocket
                     if (client.type === undefined && client.prevType !== undefined) {
                         client.type = client.prevType
                     }
+                })
+                break
+            }
+            case 'close': {
+                const client = this.viewerState.getClientByWebsocket(websocket)
+                if (client !== null) {
+                    this.viewerState.removeClient(client)
                 }
                 break
-            case 'close':
-                for (const key in this.clients) {
-                    client = this.clients[key]
-                    if (client !== undefined && client.websocket === websocket) {
-                        client.prevType = client.type
-                        delete client.websocket
-                        delete client.type
-                    }
+            }
+            case 'position': {
+                const client = this.viewerState.getClientByWebsocket(websocket)
+                if (client !== null) {
+                    client.position = data
                 }
                 break
-            case 'position':
-                for (const key in this.clients) {
-                    client = this.clients[key]
-                    if (client !== undefined && client.websocket === websocket) {
-                        client.position = data
-                    }
-                }
-                break
-            case 'loaded':
-                client = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
-                if (client !== undefined && client.websocket !== undefined) {
+            }
+            case 'loaded': {
+                const client = this.viewerState.getClientByWebsocket(websocket)
+                if (client !== null && client.websocket !== undefined) {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     if (client.position !== undefined) {
                         client.websocket.send(JSON.stringify(client.position))
@@ -214,28 +252,34 @@ export class Viewer {
                     }
                 }
                 break
-            case 'click':
+            }
+            case 'click': {
                 this.extension.locator.locate(data, decodeURIComponent(data.path))
                 break
-            case 'external_link':
+            }
+            case 'external_link': {
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
                 break
-            default:
+            }
+            default: {
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
                 break
+            }
         }
     }
 
     syncTeX(pdfFile: string, record: SyncTeXRecordForward) {
-        const client = this.clients[pdfFile.toLocaleUpperCase()]
-        if (client === undefined) {
+        const clients = this.viewerState.getClients(pdfFile)
+        if (clients.length === 0) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
         }
-        if (client.websocket !== undefined) {
-            client.websocket.send(JSON.stringify({type: 'synctex', data: record}))
-            this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
-        }
+        clients.forEach(client => {
+            if (client.websocket !== undefined) {
+                client.websocket.send(JSON.stringify({type: 'synctex', data: record}))
+                this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
+            }
+        })
     }
 }
 
