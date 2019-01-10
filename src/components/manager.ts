@@ -70,17 +70,17 @@ export class Manager {
     }
 
     // Given an input file determine its full path using the prefixes dirs
-    resolveFile(dirs: string[], inputFile: string) : string | null {
+    resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex') : string | null {
         if (inputFile.startsWith('/')) {
             dirs.unshift('')
         }
         for (const d of dirs) {
             let inputFilePath = path.resolve(path.join(d, inputFile))
             if (path.extname(inputFilePath) === '') {
-                inputFilePath += '.tex'
+                inputFilePath += suffix
             }
-            if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + '.tex')) {
-                inputFilePath += '.tex'
+            if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + suffix)) {
+                inputFilePath += suffix
             }
             if (fs.existsSync(inputFilePath)) {
                 return inputFilePath
@@ -352,19 +352,15 @@ export class Manager {
     }
 
     addBibToWatcher(bib: string, rootDir: string, rootFile: string | undefined = undefined) {
-        let bibPath
-        if (path.isAbsolute(bib)) {
-            bibPath = bib
-        } else {
-            bibPath = path.resolve(path.join(rootDir, bib))
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const bibDirs = configuration.get('latex.bibDirs') as string[]
+        const bibPath = this.resolveFile([rootDir, ...bibDirs], bib, '.bib')
+
+        if (!bibPath) {
+            this.extension.logger.addLogMessage(`Cannot find .bib file ${bib}`)
+            return
         }
-        if (path.extname(bibPath) === '') {
-            bibPath += '.bib'
-        }
-        if (!fs.existsSync(bibPath) && fs.existsSync(bibPath + '.bib')) {
-            bibPath += '.bib'
-        }
-        if (fs.existsSync(bibPath)) {
+        if (bibPath) {
             this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
             if (this.bibWatcher === undefined) {
                 this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
