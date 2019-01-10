@@ -47,6 +47,25 @@ function obsoleteConfigCheck() {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
 }
 
+function checkDeprecatedFeatures(extension: Extension) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if ((configuration.get('latex.additionalBib') as string[]).length > 0) {
+        const msg = '"latex-workshop.latex.additionalBib" has been deprected in favor of "latex-workshop.latex.bibDirs". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.'
+        const markdownMsg = '`latex-workshop.latex.additionalBibs` has been deprected in favor of  `latex-workshop.latex.bibDirs`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.)'
+
+        extension.logger.addLogMessage(msg)
+        extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
+    }
+
+    if (configuration.get('intellisense.surroundCommand.enabled')) {
+        const msg = 'Using "\\" to surround selected text with a LaTeX command is deprecated, use ctrl+l,ctrl+w instead. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#with-a-command.'
+        const markdownMsg ='Using `\\` to surround selected text with a LaTeX command is deprecated, use `ctrl+l`,`ctrl+w` instead. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#with-a-command).'
+
+        extension.logger.addLogMessage(msg)
+        extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
+    }
+}
+
 function conflictExtensionCheck() {
     function check(extensionID: string, name: string, suggestion: string) {
         if (vscode.extensions.getExtension(extensionID) !== undefined) {
@@ -283,6 +302,7 @@ export async function activate(context: vscode.ExtensionContext) {
     extension.linter.lintRootFileIfEnabled()
     obsoleteConfigCheck()
     conflictExtensionCheck()
+    checkDeprecatedFeatures(extension)
     newVersionMessage(context.extensionPath, extension)
 
     vscode.window.visibleTextEditors.forEach(editor => {
