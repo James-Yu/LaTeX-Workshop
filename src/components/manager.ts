@@ -303,7 +303,7 @@ export class Manager {
                 break
             }
 
-            let inputFilePath
+            let inputFilePath: string | null
             if (result[0].startsWith('\\subimport')) {
                 inputFilePath = this.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
             } else if (result[0].startsWith('\\import')) {
@@ -312,7 +312,7 @@ export class Manager {
                 inputFilePath = this.resolveFile([path.dirname(filePath), rootDir], result[2])
             }
 
-            if (fs.existsSync(inputFilePath)) {
+            if (inputFilePath && fs.existsSync(inputFilePath)) {
                 this.texFileTree[filePath].add(inputFilePath)
                 if (!fast && this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
@@ -360,35 +360,33 @@ export class Manager {
             this.extension.logger.addLogMessage(`Cannot find .bib file ${bib}`)
             return
         }
-        if (bibPath) {
-            this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
-            if (this.bibWatcher === undefined) {
-                this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
-                this.bibWatcher = chokidar.watch(bibPath)
-                this.bibsWatched.push(bibPath)
-                this.bibWatcher.on('change', (filePath: string) => {
-                    this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
-                    this.extension.completer.citation.parseBibFile(filePath)
-                })
-                this.bibWatcher.on('unlink', (filePath: string) => {
-                    this.extension.logger.addLogMessage(`Bib file watcher: ${filePath} deleted.`)
-                    this.extension.completer.citation.forgetParsedBibItems(filePath)
-                    this.bibWatcher.unwatch(filePath)
-                    this.bibsWatched.splice(this.bibsWatched.indexOf(filePath), 1)
-                })
-                this.extension.completer.citation.parseBibFile(bibPath, rootFile)
-            } else if (this.bibsWatched.indexOf(bibPath) < 0) {
-                this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
-                this.bibWatcher.add(bibPath)
-                this.bibsWatched.push(bibPath)
-                this.extension.completer.citation.parseBibFile(bibPath, rootFile)
-            } else {
-                const texFiles = this.extension.completer.citation.citationInBib[bibPath].rootFiles
-                if (rootFile && texFiles.indexOf(rootFile) < 0) {
-                    texFiles.push(rootFile)
-                }
-                this.extension.logger.addLogMessage(`.bib file ${bibPath} is already being watched.`)
+        this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
+        if (this.bibWatcher === undefined) {
+            this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
+            this.bibWatcher = chokidar.watch('')
+            this.bibWatcher.on('change', (filePath: string) => {
+                this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
+                this.extension.completer.citation.parseBibFile(filePath)
+            })
+            this.bibWatcher.on('unlink', (filePath: string) => {
+                this.extension.logger.addLogMessage(`Bib file watcher: ${filePath} deleted.`)
+                this.extension.completer.citation.forgetParsedBibItems(filePath)
+                this.bibWatcher.unwatch(filePath)
+                this.bibsWatched.splice(this.bibsWatched.indexOf(filePath), 1)
+            })
+        }
+
+        if (this.bibsWatched.indexOf(bibPath) < 0) {
+            this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
+            this.bibWatcher.add(bibPath)
+            this.bibsWatched.push(bibPath)
+            this.extension.completer.citation.parseBibFile(bibPath, rootFile)
+        } else {
+            const texFiles = this.extension.completer.citation.citationInBib[bibPath].rootFiles
+            if (rootFile && texFiles.indexOf(rootFile) < 0) {
+                texFiles.push(rootFile)
             }
+            this.extension.logger.addLogMessage(`.bib file ${bibPath} is already being watched.`)
         }
     }
 
