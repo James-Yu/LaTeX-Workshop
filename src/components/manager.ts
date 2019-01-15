@@ -333,7 +333,7 @@ export class Manager {
             if (!result) {
                 break
             }
-            const bibs = result[1].split(',').map((bib) => {
+            const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
                 return bib.trim()
             })
             for (const bib of bibs) {
