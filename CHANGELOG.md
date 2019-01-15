@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.20.1] - 2019-01-15
+
+### Fixed
+- Correctly parse `putbib` bib-files.
+
 ## [5.20.0] - 2019-01-15
 
 ### Added
