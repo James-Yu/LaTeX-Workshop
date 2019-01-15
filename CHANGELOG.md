@@ -1,5 +1,32 @@
 # Change Log
 
+## [5.20.0] - 2019-01-15
+
+### Added
+- Parse bib files provided by `putbib`.
+- (#1063) Allow multiple viewers for the same document.
+- (#1079) Improve `outdir` handling. A new placeholder `%OUTDIR%` is included.
+- (#1096) A new config to clear Compiler logs before each step of recipe.
+- (#1102) A new config to specify additional directories to look for .bib files.
+
+### Changed
+- Enable synctexjs by default.
+- Make command and reference completion local to the LaTeX project.
+- (#1085) Make intellisense local to a root file.
+
+### Fixed
+- (#1070) Synctex to the already opened tex file when using symlinks.
+- (#1071) New command definitions inserted at incorrect position.
+- (#1077) Set the default external PDF viewer based on the OS.
+- (#1082) Only latex id at the beginning of a fenced block.
+- (#1084) Backward synctex when trim mode.
+- (#1089) Improve the accuracy of synctex.
+- (#1092) A command must start with `\`.
+- (#1095) Remove unnecessary workspace root of file caching.
+- (#1095) Call findRoot when active editor changes.
+- (#1100) Raise an error when viewing a non existing PDF file.
+- (#1109) Clear selection after inserting citation from browser.
+
 ## [5.19.0] - 2018-12-21
 
 ### Added
