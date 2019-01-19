@@ -1,5 +1,10 @@
 # Change Log
 
+## [5.20.2] - 2019-01-20
+
+### Fixed
+- (#1114) No trailing slash in `outpurDir`.
+
 ## [5.20.1] - 2019-01-15
 
 ### Fixed
