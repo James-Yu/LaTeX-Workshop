@@ -143,7 +143,22 @@ export class Viewer {
     openExternal(sourceFile: string) {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.command'))) as ExternalCommand
+        let command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.command'))) as ExternalCommand
+        if (!command.command) {
+            switch (process.platform) {
+                case 'win32':
+                    command = {'command': 'SumatraPDF.exe', 'args': ['%PDF%'] }
+                    break
+                case 'linux':
+                    command = {'command': 'xdg-open', 'args': ['%PDF%'] }
+                    break
+                case 'darwin':
+                    command = {'command': 'open', 'args': ['%PDF%'] }
+                    break
+                default:
+                    break
+            }
+        }
         if (command.args) {
             command.args = command.args.map(arg => arg.replace('%PDF%', pdfFile))
         }
