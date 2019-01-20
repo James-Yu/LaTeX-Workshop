@@ -73,7 +73,7 @@ export class Viewer {
     }
 
     openBrowser(sourceFile: string, newViewer: boolean = false) {
-        const url = this.checkViewer(sourceFile, 'browser', newViewer = newViewer)
+        const url = this.checkViewer(sourceFile, 'browser', true, newViewer)
         if (!url) {
             return
         }
@@ -93,7 +93,7 @@ export class Viewer {
     }
 
     openTab(sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true, newViewer: boolean = false) {
-        const url = this.checkViewer(sourceFile, 'tab', respectOutDir, newViewer = newViewer)
+        const url = this.checkViewer(sourceFile, 'tab', respectOutDir, newViewer)
         if (!url) {
             return
         }
