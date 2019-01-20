@@ -107,7 +107,7 @@ export class Commander {
         })
     }
 
-    async view(mode?: string) {
+    async view(mode?: string, newViewer: boolean = false) {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
@@ -119,10 +119,10 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (mode === 'browser') {
-            this.extension.viewer.openViewer(rootFile)
+            this.extension.viewer.openBrowser(rootFile, newViewer)
             return
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(rootFile)
+            this.extension.viewer.openTab(rootFile, true, true, newViewer)
             return
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(rootFile)
@@ -135,11 +135,11 @@ export class Commander {
         promise.then(() => {
             switch (configuration.get('view.pdf.viewer')) {
                 case 'browser':
-                    this.extension.viewer.openViewer(rootFile)
+                    this.extension.viewer.openBrowser(rootFile, newViewer)
                     break
                 case 'tab':
                 default:
-                    this.extension.viewer.openTab(rootFile)
+                    this.extension.viewer.openTab(rootFile, true, true, newViewer)
                     break
                 case 'external':
                     this.extension.viewer.openExternal(rootFile)
@@ -160,7 +160,7 @@ export class Commander {
         }
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile !== undefined) {
-            this.extension.viewer.openViewer(rootFile)
+            this.extension.viewer.openBrowser(rootFile)
         } else {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
         }

@@ -25,7 +25,7 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
 let server = `ws://${window.location.hostname}:${window.location.port}`
 
 let socket = new WebSocket(server)
-socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:file})))
+socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:file, viewer:(embedded ? "tab" : "browser")})))
 socket.addEventListener("message", (event) => {
     let data = JSON.parse(event.data)
     switch (data.type) {
@@ -47,7 +47,7 @@ socket.addEventListener("message", (event) => {
         case "refresh":
             // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
             // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-            socket.send(JSON.stringify({type:"position",
+            socket.send(JSON.stringify({type:"position", path:file,
                                         scale:PDFViewerApplication.pdfViewer.currentScaleValue,
                                         scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
                                         spreadMode:PDFViewerApplication.pdfViewer.spreadMode,

@@ -59,7 +59,7 @@ function checkDeprecatedFeatures(extension: Extension) {
 
     if (configuration.get('intellisense.surroundCommand.enabled')) {
         const msg = 'Using "\\" to surround selected text with a LaTeX command is deprecated, use ctrl+l,ctrl+w instead. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#with-a-command.'
-        const markdownMsg ='Using `\\` to surround selected text with a LaTeX command is deprecated, use `ctrl+l`,`ctrl+w` instead. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#with-a-command).'
+        const markdownMsg = 'Using `\\` to surround selected text with a LaTeX command is deprecated, use `ctrl+l`,`ctrl+w` instead. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#with-a-command).'
 
         extension.logger.addLogMessage(msg)
         extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
@@ -129,6 +129,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
     vscode.commands.registerCommand('latex-workshop.recipes', (recipe) => extension.commander.recipes(recipe))
     vscode.commands.registerCommand('latex-workshop.view', (mode) => extension.commander.view(mode))
+    vscode.commands.registerCommand('latex-workshop.view-new', (mode) => extension.commander.view(mode, true))
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
     vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
