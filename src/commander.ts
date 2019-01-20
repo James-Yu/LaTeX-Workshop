@@ -107,7 +107,7 @@ export class Commander {
         })
     }
 
-    async view(mode?: string, newViewer: boolean = false) {
+    async view(mode?: string) {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
@@ -119,10 +119,10 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (mode === 'browser') {
-            this.extension.viewer.openBrowser(rootFile, newViewer)
+            this.extension.viewer.openBrowser(rootFile)
             return
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(rootFile, true, true, newViewer)
+            this.extension.viewer.openTab(rootFile)
             return
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(rootFile)
@@ -135,17 +135,22 @@ export class Commander {
         promise.then(() => {
             switch (configuration.get('view.pdf.viewer')) {
                 case 'browser':
-                    this.extension.viewer.openBrowser(rootFile, newViewer)
+                    this.extension.viewer.openBrowser(rootFile)
                     break
                 case 'tab':
                 default:
-                    this.extension.viewer.openTab(rootFile, true, true, newViewer)
+                    this.extension.viewer.openTab(rootFile)
                     break
                 case 'external':
                     this.extension.viewer.openExternal(rootFile)
                     break
             }
         })
+    }
+
+    refresh() {
+        this.extension.logger.addLogMessage(`REFRESH command invoked.`)
+        this.extension.viewer.refreshExistingViewer()
     }
 
     kill() {

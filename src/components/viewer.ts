@@ -24,7 +24,15 @@ export class Viewer {
         this.extension = extension
     }
 
-    refreshExistingViewer(sourceFile: string, viewer?: string) : boolean {
+    refreshExistingViewer(sourceFile?: string, viewer?: string) : boolean {
+        if (!sourceFile) {
+            Object.keys(this.clients).forEach(key => {
+                this.clients[key].forEach(client => {
+                    client.websocket.send(JSON.stringify({type: 'refresh'}))
+                })
+            })
+            return true
+        }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         const clients = this.clients[pdfFile.toLocaleUpperCase()]
         if (clients !== undefined) {
@@ -51,10 +59,7 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, type: string, respectOutDir: boolean = true, newViewer: boolean = false) : string | undefined {
-        if (!newViewer && this.refreshExistingViewer(sourceFile, type)) {
-            return
-        }
+    checkViewer(sourceFile: string, respectOutDir: boolean = true) : string | undefined {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
@@ -72,8 +77,8 @@ export class Viewer {
         return url
     }
 
-    openBrowser(sourceFile: string, newViewer: boolean = false) {
-        const url = this.checkViewer(sourceFile, 'browser', true, newViewer)
+    openBrowser(sourceFile: string) {
+        const url = this.checkViewer(sourceFile, true)
         if (!url) {
             return
         }
@@ -92,8 +97,8 @@ export class Viewer {
         }
     }
 
-    openTab(sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true, newViewer: boolean = false) {
-        const url = this.checkViewer(sourceFile, 'tab', respectOutDir, newViewer)
+    openTab(sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) {
+        const url = this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
             return
         }

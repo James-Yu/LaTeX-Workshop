@@ -28,11 +28,11 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
         const viewCommand = new LaTeXCommand('View LaTeX PDF', vscode.TreeItemCollapsibleState.Collapsed, {command: 'latex-workshop.view', title: ''})
         this.commands.push(viewCommand)
-        viewCommand.children.push(new LaTeXCommand(`View in a new viewer`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view-new', title: '', arguments: ['tab', true]}))
         viewCommand.children.push(new LaTeXCommand(`View in VSCode tab`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['tab']}))
         viewCommand.children.push(new LaTeXCommand(`View in web browser`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['browser']}))
         viewCommand.children.push(new LaTeXCommand(`View in external viewer`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['external']}))
         viewCommand.children.push(new LaTeXCommand(`Set default viewer`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['set']}))
+        viewCommand.children.push(new LaTeXCommand(`Refresh all viewers`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.refresh-viewer', title: ''}))
 
         const logCommand = new LaTeXCommand('View Log messages', vscode.TreeItemCollapsibleState.Collapsed, {command: 'latex-workshop.log', title: ''})
         this.commands.push(logCommand)
