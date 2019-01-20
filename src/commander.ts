@@ -119,7 +119,7 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (mode === 'browser') {
-            this.extension.viewer.openViewer(rootFile)
+            this.extension.viewer.openBrowser(rootFile)
             return
         } else if (mode === 'tab') {
             this.extension.viewer.openTab(rootFile)
@@ -135,7 +135,7 @@ export class Commander {
         promise.then(() => {
             switch (configuration.get('view.pdf.viewer')) {
                 case 'browser':
-                    this.extension.viewer.openViewer(rootFile)
+                    this.extension.viewer.openBrowser(rootFile)
                     break
                 case 'tab':
                 default:
@@ -146,6 +146,11 @@ export class Commander {
                     break
             }
         })
+    }
+
+    refresh() {
+        this.extension.logger.addLogMessage(`REFRESH command invoked.`)
+        this.extension.viewer.refreshExistingViewer()
     }
 
     kill() {
@@ -160,7 +165,7 @@ export class Commander {
         }
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile !== undefined) {
-            this.extension.viewer.openViewer(rootFile)
+            this.extension.viewer.openBrowser(rootFile)
         } else {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
         }
