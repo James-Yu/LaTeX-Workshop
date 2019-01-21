@@ -39,25 +39,25 @@ export class Linter {
 
     lintRootFileIfEnabled() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const linter = configuration.get('chktex.enabled') as boolean
-        if (linter) {
+        const linter = configuration.get('chktex.run') as string
+        if (linter !== 'never') {
             this.lintRootFile()
         }
     }
 
     lintActiveFileIfEnabled() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const linter = configuration.get('chktex.enabled') as boolean
-        if (linter) {
+        const linter = configuration.get('chktex.run') as string
+        if (linter === 'onType') {
             this.lintActiveFile()
         }
     }
 
     lintActiveFileIfEnabledAfterInterval() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const linter = configuration.get('chktex.enabled') as boolean
-        if (linter) {
-            const interval = configuration.get('chktex.interval') as number
+        const linter = configuration.get('chktex.run') as string
+        if (linter === 'onType') {
+            const interval = configuration.get('chktex.delay') as number
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
             }
