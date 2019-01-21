@@ -44,6 +44,7 @@ function renameConfig(originalConfig: string, newConfig: string) {
 }
 
 function obsoleteConfigCheck() {
+    renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
 }
 
@@ -60,14 +61,6 @@ function checkDeprecatedFeatures(extension: Extension) {
     if (configuration.get('intellisense.surroundCommand.enabled')) {
         const msg = 'Using "\\" to surround selected text with a LaTeX command is deprecated, use ctrl+l,ctrl+w instead. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#with-a-command.'
         const markdownMsg = 'Using `\\` to surround selected text with a LaTeX command is deprecated, use `ctrl+l`,`ctrl+w` instead. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#with-a-command).'
-
-        extension.logger.addLogMessage(msg)
-        extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
-    }
-
-    if ((configuration.get('chktex.enabled') as boolean)) {
-        const msg = '"latex-workshop.chktex.enabled" has been deprecated in favor of "latex-workshop.chktex.run". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters#overview.'
-        const markdownMsg = '`latex-workshop.chktex.enabled` has been deprecated in favor of  `latex-workshop.chktex.run`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters#overview.)'
 
         extension.logger.addLogMessage(msg)
         extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')

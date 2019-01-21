@@ -727,11 +727,16 @@
           "default": true,
           "markdownDescription": "Enable using a builtin synctex function. The command set in latex-workshop.synctex.path will not be used."
         },
+        "latex-workshop.chktex.enabled": {
+          "type": "boolean",
+          "default": false,	
+          "markdownDescription": "Enable linting LaTeX with ChkTeX.\nCheck `latex-workshop.chktex.run` to control when the linting is executed if this config is set to `true`."
+        },
         "latex-workshop.chktex.run": {
           "type": "string",
-          "enum": ["never", "onSave", "onType"],
-          "default": "never",
-          "markdownDescription": "When LaTeX should be linted by ChkTeX.\nIf set to `onSave`, the root file will be linted upon saving.\nIf set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
+          "enum": ["onSave", "onType"],
+          "default": "onSave",
+          "markdownDescription": "When LaTeX should be linted by ChkTeX.\nIf set to `onSave`, the whole LaTeX project will be linted upon saving.\nIf set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
         },
         "latex-workshop.chktex.path": {
           "type": "string",
