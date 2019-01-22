@@ -729,8 +729,14 @@
         },
         "latex-workshop.chktex.enabled": {
           "type": "boolean",
-          "default": false,
-          "markdownDescription": "Enable linting LaTeX with ChkTeX.\nThe active document will be linted when no document changes for a defined period of time.\nThe full project will be linted from the root on file save."
+          "default": false,	
+          "markdownDescription": "Enable linting LaTeX with ChkTeX.\nCheck `latex-workshop.chktex.run` to control when the linting is executed if this config is set to `true`."
+        },
+        "latex-workshop.chktex.run": {
+          "type": "string",
+          "enum": ["onSave", "onType"],
+          "default": "onSave",
+          "markdownDescription": "When LaTeX should be linted by ChkTeX.\nIf set to `onSave`, the whole LaTeX project will be linted upon saving.\nIf set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
         },
         "latex-workshop.chktex.path": {
           "type": "string",
@@ -759,10 +765,10 @@
           ],
           "markdownDescription": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
-        "latex-workshop.chktex.interval": {
+        "latex-workshop.chktex.delay": {
           "type": "number",
-          "default": 300,
-          "markdownDescription": "Defines the time interval in milliseconds between invoking LaTeX linter on the active file."
+          "default": 500,
+          "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing.\nThis config only matters when `latex-workshop.chktex.run` is set to `onType`."
         },
         "latex-workshop.texcount.path": {
           "type": "string",

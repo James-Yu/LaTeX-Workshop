@@ -45,13 +45,14 @@ function renameConfig(originalConfig: string, newConfig: string) {
 
 function obsoleteConfigCheck() {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
+    renameConfig('chktex.interval', 'chktex.delay')
 }
 
 function checkDeprecatedFeatures(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if ((configuration.get('latex.additionalBib') as string[]).length > 0) {
-        const msg = '"latex-workshop.latex.additionalBib" has been deprected in favor of "latex-workshop.latex.bibDirs". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.'
-        const markdownMsg = '`latex-workshop.latex.additionalBibs` has been deprected in favor of  `latex-workshop.latex.bibDirs`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.)'
+        const msg = '"latex-workshop.latex.additionalBib" has been deprecated in favor of "latex-workshop.latex.bibDirs". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.'
+        const markdownMsg = '`latex-workshop.latex.additionalBibs` has been deprecated in favor of  `latex-workshop.latex.bibDirs`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.)'
 
         extension.logger.addLogMessage(msg)
         extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
