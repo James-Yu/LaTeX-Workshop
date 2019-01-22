@@ -65,7 +65,7 @@ export class Server {
             } else {
                 root = path.resolve(`${this.extension.extensionRoot}/viewer`)
             }
-            const fileName = path.join(root, request.url.split('?')[0]) // The second argument starts with a `/`, so cannot path.resolve
+            const fileName = path.resolve(root, '.' + request.url.split('?')[0])
             let contentType = 'text/html'
             switch (path.extname(fileName)) {
                 case '.js':
