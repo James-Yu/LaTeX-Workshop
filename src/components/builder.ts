@@ -57,15 +57,15 @@ export class Builder {
         this.preprocess(rootFile)
 
         // Create sub directories of output directory
-        if (this.extension.manager.getOutputDir(rootFile) !== './') {
+        let outputDir = this.extension.manager.getOutputDir(rootFile)
+        if (outputDir !== './') { // && outputDir !== '.') {
             const directories = new Set<string>(this.extension.manager.filesWatched
-                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, ''))))
-            let outputDir = this.extension.manager.getOutputDir(rootFile)
+                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
             if (!path.isAbsolute(outputDir)) {
-                outputDir = path.join(this.extension.manager.rootDir, this.extension.manager.getOutputDir(rootFile))
+                outputDir = path.resolve(this.extension.manager.rootDir, outputDir)
             }
             directories.forEach(directory => {
-                fs.ensureDirSync(path.join(outputDir, directory))
+                fs.ensureDirSync(path.resolve(outputDir, directory))
             })
         }
 
@@ -236,9 +236,9 @@ export class Builder {
                 switch (step.command) {
                     case 'latexmk':
                         if (process.platform === 'win32') {
-                            step.command = path.join(this.extension.extensionRoot, 'scripts/latexmk.bat')
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk.bat')
                         } else {
-                            step.command = path.join(this.extension.extensionRoot, 'scripts/latexmk')
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk')
                             fs.chmodSync(step.command, 0o755)
                         }
                         break

@@ -157,9 +157,9 @@ export class Locator {
         let command = configuration.get('synctex.path') as string
         if (docker) {
             if (process.platform === 'win32') {
-                command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
+                command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
-                command = path.join(this.extension.extensionRoot, 'scripts/synctex')
+                command = path.resolve(this.extension.extensionRoot, './scripts/synctex')
                 fs.chmodSync(command, 0o755)
             }
         }
@@ -214,9 +214,9 @@ export class Locator {
         let command = configuration.get('synctex.path') as string
         if (docker) {
             if (process.platform === 'win32') {
-                command = path.join(this.extension.extensionRoot, 'scripts/synctex.bat')
+                command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
-                command = path.join(this.extension.extensionRoot, 'scripts/synctex')
+                command = path.resolve(this.extension.extensionRoot, './scripts/synctex')
                 fs.chmodSync(command, 0o755)
             }
         }
@@ -284,7 +284,7 @@ export class Locator {
         const pos = new vscode.Position(row, col)
         let filePath = path.resolve( record.input.replace(/(\r\n|\n|\r)/gm, '') )
         if (docker && process.platform === 'win32') {
-            filePath = path.join(path.dirname(pdfPath), (record.input as string).replace('/data/', ''))
+            filePath = path.resolve(path.dirname(pdfPath), record.input as string)
         }
 
         this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)

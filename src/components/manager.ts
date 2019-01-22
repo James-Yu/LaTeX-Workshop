@@ -75,7 +75,7 @@ export class Manager {
             dirs.unshift('')
         }
         for (const d of dirs) {
-            let inputFilePath = path.resolve(path.join(d, inputFile))
+            let inputFilePath = path.resolve(d, inputFile)
             if (path.extname(inputFilePath) === '') {
                 inputFilePath += suffix
             }
@@ -130,7 +130,7 @@ export class Manager {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
-        const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*([^\s]*\.tex)$)/m
+        const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.tex)$)/m
         let content = vscode.window.activeTextEditor.document.getText()
 
         let result = content.match(regex)
@@ -184,7 +184,7 @@ export class Manager {
         const content = this.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
-            const file = path.join(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
+            const file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
             this.extension.logger.addLogMessage(`Found root file of this subfile from active editor: ${file}`)
             return file
         }
@@ -305,7 +305,7 @@ export class Manager {
 
             let inputFilePath: string | null
             if (result[0].startsWith('\\subimport')) {
-                inputFilePath = this.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
+                inputFilePath = this.resolveFile([path.dirname(filePath)], path.resolve(result[1], result[2]))
             } else if (result[0].startsWith('\\import')) {
                 inputFilePath = this.extension.manager.resolveFile([result[1]], result[2])
             } else {

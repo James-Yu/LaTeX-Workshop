@@ -20,7 +20,7 @@ export class Linter {
         // 0. root file folder
         const root = this.extension.manager.rootFile
         if (root) {
-            rcPath = path.join(path.dirname(root), '.chktexrc')
+            rcPath = path.resolve(path.dirname(root), './.chktexrc')
         }
         if (fs.existsSync(rcPath)) {
             return rcPath
@@ -29,7 +29,7 @@ export class Linter {
         // 1. project root folder
         const ws = vscode.workspace.workspaceFolders
         if (ws && ws.length > 0) {
-            rcPath = path.join(ws[0].uri.fsPath, '.chktexrc')
+            rcPath = path.resolve(ws[0].uri.fsPath, './.chktexrc')
         }
         if (fs.existsSync(rcPath)) {
             return rcPath

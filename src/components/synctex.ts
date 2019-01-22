@@ -8,7 +8,7 @@ import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../lib/synct
 export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
     const filename = path.basename(pdfFile, path.extname(pdfFile))
     const dir = path.dirname(pdfFile)
-    const synctexFile = path.join(dir, filename + '.synctex')
+    const synctexFile = path.resolve(dir, filename + '.synctex')
     const synctexFileGz = synctexFile + '.gz'
 
     if (fs.existsSync(synctexFile)) {

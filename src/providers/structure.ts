@@ -188,7 +188,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // resolve the path
                 let inputFilePath
                 if (result[1].startsWith('\\subimport')) {
-                    inputFilePath = this.extension.manager.resolveFile([path.dirname(filePath)], path.join(result[2], result[3]))
+                    inputFilePath = this.extension.manager.resolveFile([path.dirname(filePath)], path.resolve(result[2], result[3]))
                 } else if (result[1].startsWith('\\import')) {
                     inputFilePath = this.extension.manager.resolveFile([result[2]], result[3])
                 } else {
@@ -269,14 +269,5 @@ export class Section extends vscode.TreeItem {
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState)
-
     }
-
-    iconPath = {
-        light: path.join(__filename, '..', '..', '..', 'resources', 'light', 'Section.svg'),
-        dark: path.join(__filename, '..', '..', '..', 'resources', 'dark', 'Section.svg')
-    }
-
-    contextValue = 'Section'
-
 }

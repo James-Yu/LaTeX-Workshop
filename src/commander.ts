@@ -80,7 +80,7 @@ export class Commander {
     async revealOutputDir() {
         let outputDir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
         if (!path.isAbsolute(outputDir)) {
-            outputDir = path.join(this.extension.manager.rootDir, this.extension.manager.getOutputDir(this.extension.manager.rootFile))
+            outputDir = path.resolve(this.extension.manager.rootDir, this.extension.manager.getOutputDir(this.extension.manager.rootFile))
         }
         this.extension.logger.addLogMessage(`Reveal ${vscode.Uri.file(outputDir)}`)
         await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outputDir))

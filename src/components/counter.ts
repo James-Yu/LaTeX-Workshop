@@ -24,9 +24,9 @@ export class Counter {
         let command = configuration.get('texcount.path') as string
         if (configuration.get('docker.enabled')) {
             if (process.platform === 'win32') {
-                command = path.join(this.extension.extensionRoot, 'scripts/texcount.bat')
+                command = path.resolve(this.extension.extensionRoot, './scripts/texcount.bat')
             } else {
-                command = path.join(this.extension.extensionRoot, 'scripts/texcount')
+                command = path.resolve(this.extension.extensionRoot, './scripts/texcount')
                 fs.chmodSync(command, 0o755)
             }
         }

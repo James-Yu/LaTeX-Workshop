@@ -50,9 +50,9 @@ export class LaTexFormatter {
             this.formatter = configuration.get<string>('latexindent.path') || 'latexindent'
             if (configuration.get('docker.enabled')) {
                 if (process.platform === 'win32') {
-                    this.formatter = path.join(this.extension.extensionRoot, 'scripts/latexindent.bat')
+                    this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
                 } else {
-                    this.formatter = path.join(this.extension.extensionRoot, 'scripts/latexindent')
+                    this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent')
                     fs.chmodSync(this.formatter, 0o755)
                 }
             }

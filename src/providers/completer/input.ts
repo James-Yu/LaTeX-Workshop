@@ -28,7 +28,7 @@ export class Input {
             baseDir = path.dirname(this.extension.manager.rootFile)
         }
         if (typedFolder !== '') {
-            baseDir = path.join(baseDir, typedFolder)
+            baseDir = path.resolve(baseDir, typedFolder)
         }
         try {
             const files = fs.readdirSync(baseDir)
@@ -42,7 +42,7 @@ export class Input {
             }
 
             files.forEach(file => {
-                const filePath = path.join(baseDir, file)
+                const filePath = path.resolve(baseDir, file)
                 /* Check if the file should be ignored */
                 if ((gitIgnoredFiles.indexOf(file) > -1) || micromatch.any(filePath, excludeGlob, {basename: true})) {
                     return

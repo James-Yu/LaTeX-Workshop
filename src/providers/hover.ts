@@ -300,10 +300,10 @@ export class HoverProvider implements vscode.HoverProvider {
                 continue
             }
             try {
-                const themePath = path.join(extension.extensionPath, candidateThemes[0].path)
+                const themePath = path.resolve(extension.extensionPath, candidateThemes[0].path)
                 let theme = JSON.parse(stripJsonComments(fs.readFileSync(themePath, 'utf8')))
                 while (theme.include) {
-                    const includedTheme = JSON.parse(stripJsonComments(fs.readFileSync(path.join(path.dirname(themePath), theme.include), 'utf8')))
+                    const includedTheme = JSON.parse(stripJsonComments(fs.readFileSync(path.resolve(path.dirname(themePath), theme.include), 'utf8')))
                     theme.include = undefined
                     theme = {... theme, ...includedTheme}
                 }
