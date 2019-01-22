@@ -49,6 +49,12 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
                 return
             }
             if (vscode.window.activeTextEditor && token.indexOf('.') > -1) {
+                // We skip graphics files
+                const graphicsExtensions = ['.pdf', '.eps', '.jpg', '.jpeg', '.JPG', '.JPEG', '.gif', '.png']
+                const ext = path.extname(token)
+                if (graphicsExtensions.indexOf(ext) > -1) {
+                    resolve()
+                }
                 const absolutePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), token)
                 if (fs.existsSync(absolutePath)) {
                     resolve(new vscode.Location(
