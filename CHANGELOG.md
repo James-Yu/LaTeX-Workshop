@@ -1,5 +1,20 @@
 # Change Log
 
+## [5.21.0] - 2019-01-24
+
+### Added
+- (#1131) A new config `chktex.run` to define upon which events `chktex` should execute.
+
+### Changed
+- Rename `latex.outputDir` to `latex.outDir` for consistency with LaTeX compiler arguments.
+- (#1131) Rename `chktex.interval` to `chktex.delay` for a better summary.
+
+### Fixed
+- (#1127) Not throw when a parse error occurs in `synctexjs`.
+- (#1132) Do not provide 'Definition' for graphics files.
+- (#1134) Use `path.resolve` to replace `path.join` when applicable.
+- (#1137) Use `%DIR%` as the default value for `latex-workshop.latex.outDir`.
+
 ## [5.20.2] - 2019-01-20
 
 ### Fixed
