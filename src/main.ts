@@ -46,6 +46,7 @@ function renameConfig(originalConfig: string, newConfig: string) {
 function obsoleteConfigCheck() {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
+    renameConfig('latex.outputDir', 'latex.outDir')
 }
 
 function checkDeprecatedFeatures(extension: Extension) {

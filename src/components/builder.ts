@@ -57,17 +57,15 @@ export class Builder {
         this.preprocess(rootFile)
 
         // Create sub directories of output directory
-        let outputDir = this.extension.manager.getOutputDir(rootFile)
-        if (outputDir !== './' && outputDir !== '.') {
-            const directories = new Set<string>(this.extension.manager.filesWatched
-                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
-            if (!path.isAbsolute(outputDir)) {
-                outputDir = path.resolve(this.extension.manager.rootDir, outputDir)
-            }
-            directories.forEach(directory => {
-                fs.ensureDirSync(path.resolve(outputDir, directory))
-            })
+        let outDir = this.extension.manager.getOutputDir(rootFile)
+        const directories = new Set<string>(this.extension.manager.filesWatched
+            .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
+        if (!path.isAbsolute(outDir)) {
+            outDir = path.resolve(this.extension.manager.rootDir, outDir)
         }
+        directories.forEach(directory => {
+            fs.ensureDirSync(path.resolve(outDir, directory))
+        })
 
         if (this.nextBuildRootFile === undefined) {
             this.buildInitiator(rootFile, recipe)
