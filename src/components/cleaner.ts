@@ -18,22 +18,25 @@ export class Cleaner {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let globs = configuration.get('latex.clean.fileTypes') as string[]
-        let outdir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
-        if (!outdir.endsWith('/') && !outdir.endsWith('\\')) {
-            outdir += path.sep
-        }
-        if (outdir !== './' && outdir !== '.') {
-            globs = globs.concat(globs.map(globType => outdir + globType), globs.map(globType => outdir + '**/' + globType))
+        const outdir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
+        // if (!outdir.endsWith('/') && !outdir.endsWith('\\')) {
+        //     outdir += path.sep
+        // }
+        // if (outdir !== './' && outdir !== '.') {
+        //     globs = globs.concat(globs.map(globType => outdir + globType), globs.map(globType => outdir + '**/' + globType))
+        // }
+        if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
+            globs = globs.concat(globs.map(globType => './**/' + globType))
         }
 
         return Promise.all(
             // Get an array of arrays containing all the files found by the globs
-            globs.map(g => this.globP(g, {cwd: this.extension.manager.rootDir}))
+            globs.map(g => this.globP(g, {cwd: outdir}))
         ).then(files => files
             // Reduce the array of arrays to a single array containing all the files that should be delted
             .reduce((all, curr) => all.concat(curr), [])
             // Resolve the absoulte filepath for every file
-            .map(file => path.resolve(this.extension.manager.rootDir, file))
+            .map(file => path.resolve(outdir, file))
         ).then(files => Promise.all(
             // Try to unlink the files, returning a Promise for every file
             files.map(file => fs.unlink(file).then(() => {
