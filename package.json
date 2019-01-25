@@ -589,20 +589,16 @@
           "default": true,
           "markdownDescription": "Clear the LaTeX Compiler logs before every step of a recipe.\nSet this property to false to keep the logs of all tools in a recipe."
         },
-        "latex-workshop.latex.clean.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project. The folder to be cleaned is defined in `latex-workshop.latex.outDir`."
+        "latex-workshop.latex.clean.run": {
+          "type": "string",
+          "enum": ["never", "onFailed", "onBuilt"],
+          "default": "never",
+          "markdownDescription": "When LaTeX auxillary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` clean the project when compilation is failed. `onBuilt` clean the project when compilation is terminated, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Delete LaTeX auxillary files recursively in sub-folders of `latex-workshop.latex.outDir`."
-        },
-        "latex-workshop.latex.clean.onFailBuild.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Delete LaTeX auxillary files after a failed building process.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files upon building errors."
         },
         "latex-workshop.latex.clean.fileTypes": {
           "type": "array",

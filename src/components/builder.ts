@@ -81,11 +81,6 @@ export class Builder {
     }
 
     buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string) {
-        if (steps.length === index) {
-            this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
-            this.buildFinished(rootFile)
-            return
-        }
         if (index === 0) {
             this.extension.logger.clearCompilerMessage()
         }
@@ -125,7 +120,7 @@ export class Builder {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}.`)
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled') && !configuration.get('latex.clean.enabled')) {
+                if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
                     this.disableCleanAndRetry = true
                     if (signal !== 'SIGTERM') {
                         this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
@@ -137,7 +132,7 @@ export class Builder {
                     }
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
-                    if (configuration.get('latex-workshop.latex.clean.onFailBuild.enabled') && !configuration.get('latex.clean.enabled')) {
+                    if (configuration.get('latex.clean.run') as string === 'onFailed') {
                         this.extension.commander.clean()
                     }
                     const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
@@ -154,7 +149,12 @@ export class Builder {
                     }
                 }
             } else {
-                this.buildStep(rootFile, steps, index + 1, recipeName)
+                if (index === steps.length - 1) {
+                    this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
+                    this.buildFinished(rootFile)
+                } else {
+                    this.buildStep(rootFile, steps, index + 1, recipeName)
+                }
             }
             this.currentProcess = undefined
             if (this.nextBuildRootFile) {
@@ -171,7 +171,7 @@ export class Builder {
         if (configuration.get('synctex.afterBuild.enabled') as boolean) {
             this.extension.locator.syncTeX()
         }
-        if (configuration.get('latex.clean.enabled') as boolean) {
+        if (configuration.get('latex.clean.run') as string === 'onBuilt') {
             this.extension.cleaner.clean()
         }
     }
