@@ -546,6 +546,74 @@ export class Commander {
         return 'added'
     }
 
+    /**
+     * Shift the level sectioning in the selection by one (up or down)
+     * @param change
+     */
+    shiftSectioningLevel(change: 'increment' | 'decrement') {
+        if (change !== 'increment' && change !== 'decrement') {
+            throw TypeError(
+            `Invalid value of function parameter 'change' (=${change})`
+            )
+        }
+
+        const editor = vscode.window.activeTextEditor
+        if (editor === undefined) {
+            return
+        }
+
+        const document = editor.document
+        let selection = editor.selection
+        if (selection.isEmpty) {
+            const line = document.lineAt(selection.anchor)
+            selection = new vscode.Selection(line.range.start, line.range.end)
+        }
+
+        const selectionText = document.getText(selection)
+
+        const increments = {
+            part: 'part',
+            chapter: 'part',
+            section: 'chapter',
+            subsection: 'section',
+            subsubsection: 'subsection',
+            paragraph: 'subsubsection',
+            subparagraph: 'paragraph'
+        }
+        const decrements = {
+            part: 'chapter',
+            chapter: 'section',
+            section: 'subsection',
+            subsection: 'subsubsection',
+            subsubsection: 'paragraph',
+            paragraph: 'subparagraph',
+            subparagraph: 'subparagraph'
+        }
+
+        function replacer(
+            _match: string,
+            sectionName: string,
+            options: string,
+            contents: string
+        ) {
+            if (change === 'increment') {
+            return '\\' + increments[sectionName] + (options ? options : '') + contents
+            } else {
+            // if (change === 'decrement')
+            return '\\' + decrements[sectionName] + (options ? options : '') + contents
+            }
+        }
+
+        // when supported, negative lookbehind at start would be nice --- (?<!\\)
+        const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\[.+?\])?(\{.+?\})/g
+
+        const newText = selectionText.replace(pattern, replacer)
+
+        const edit = new vscode.WorkspaceEdit()
+        edit.replace(document.uri, selection, newText)
+        return vscode.workspace.applyEdit(edit)
+    }
+
     devParseLog() {
         if (vscode.window.activeTextEditor === undefined) {
             return
