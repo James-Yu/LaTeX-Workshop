@@ -43,10 +43,41 @@ function renameConfig(originalConfig: string, newConfig: string) {
     }
 }
 
-function obsoleteConfigCheck() {
+function combineConfig(extension: Extension, originalConfig1: string, originalConfig2: string, newConfig: string, truthTable: {[key: string]: any}) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (!configuration.has(originalConfig1) && !configuration.has(originalConfig2)) {
+        return
+    }
+    const config1 = configuration.get(originalConfig1, false)
+    const config2 = configuration.get(originalConfig2, false)
+    if (config1 === undefined || config2 === undefined) {
+        return
+    }
+    const key = config1.toString() + config2.toString()
+    configuration.update(newConfig, truthTable[key], true)
+
+    const msg = `"latex-workshop.latex.clean.enabled" and "latex-workshop.latex.clean.onFailBuild.enabled" have been replaced by "latex-workshop.latex.clean.run", which is set to "${truthTable[key]}". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files.`
+    const markdownMsg = `\`latex-workshop.latex.clean.enabled\` and \`latex-workshop.latex.clean.onFailBuild.enabled\` have been replaced by \`latex-workshop.latex.clean.run\`, which is set to \`${truthTable[key]}\`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files).`
+
+    extension.logger.addLogMessage(msg)
+    extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
+
+    configuration.update(originalConfig1, undefined, true)
+    configuration.update(originalConfig1, undefined, false)
+    configuration.update(originalConfig2, undefined, true)
+    configuration.update(originalConfig2, undefined, false)
+}
+
+function obsoleteConfigCheck(extension: Extension) {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
     renameConfig('latex.outputDir', 'latex.outDir')
+    combineConfig(extension, 'latex.clean.enabled', 'latex.clean.onFailBuild.enabled', 'latex.clean.run', {
+        'falsefalse': 'never',
+        'falsetrue': 'onFailed',
+        'truefalse': 'onBuilt',
+        'truetrue': 'onBuilt'
+    })
 }
 
 function checkDeprecatedFeatures(extension: Extension) {
@@ -205,7 +236,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
         // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
         if (extension.manager.hasTexId(e.languageId)) {
-            obsoleteConfigCheck()
+            obsoleteConfigCheck(extension)
             extension.manager.findRoot()
 
             extension.structureProvider.refresh()
@@ -303,7 +334,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider({ scheme: 'file', language: 'latex'}, new FoldingProvider(extension)))
 
     extension.linter.lintRootFileIfEnabled()
-    obsoleteConfigCheck()
+    obsoleteConfigCheck(extension)
     conflictExtensionCheck()
     checkDeprecatedFeatures(extension)
     newVersionMessage(context.extensionPath, extension)
