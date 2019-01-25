@@ -553,7 +553,7 @@ export class Commander {
         this.extension.parser.parse(vscode.window.activeTextEditor.document.getText())
     }
 
-    async texdoc(pkg: string) {
+    async runTexdoc(pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
         const proc = cp.spawn(texdocPath, ['--view', pkg])
@@ -586,6 +586,19 @@ export class Commander {
                     this.extension.logger.addLogMessage(`Opening documentation for ${pkg}.`)
                 }
             }
+        })
+    }
+
+    texdoc(pkg?: string) {
+        if (pkg) {
+            this.runTexdoc(pkg)
+            return
+        }
+        vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
+            if (!selectedPkg) {
+                return
+            }
+            this.runTexdoc(selectedPkg)
         })
     }
 }

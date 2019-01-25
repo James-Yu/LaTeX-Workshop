@@ -10,6 +10,7 @@ const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at line
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
 const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info):\s+(.*?)(?: on input line (\d+))?\.$/
 const bibEmpty = /^Empty `thebibliography' environment/
+const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkLog = /^Latexmk:\sapplying\srule/
@@ -201,6 +202,21 @@ export class Parser {
                 searchesEmptyLine = true
                 continue
             }
+            result = line.match(biberWarn)
+            if (result) {
+                if (currentResult.type !== '') {
+                    this.buildLog.push(currentResult)
+                }
+                currentResult = {
+                    type: 'warning',
+                    file: '',
+                    line: 1,
+                    text: `No bib entry found for '${result[1]}'`
+                }
+                searchesEmptyLine = false
+                continue
+            }
+
             result = line.match(latexError)
             if (result) {
                 if (currentResult.type !== '') {
