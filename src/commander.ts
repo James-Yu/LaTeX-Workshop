@@ -602,19 +602,6 @@ export class Commander {
             const lines = someText.split(/\n/)
             return lines.slice(lines.length - 1, lines.length)[0].length
         }
-        function sortPositions(position1: vscode.Position, position2: vscode.Position) {
-            if (position1.line < position2.line) {
-                return [position1, position2]
-            } else if (position1.line > position2.line) {
-                return [position2, position1]
-            } else {
-                if (position2.character < position1.character) {
-                    return [position2, position1]
-                } else {
-                    return [position1, position2]
-                }
-            }
-        }
 
         const document = editor.document
         const selections = editor.selections
@@ -633,11 +620,10 @@ export class Commander {
             edit.replace(document.uri, selection, newText)
 
             const changeInEndCharacterPosition = getLastLineLength(newText) - getLastLineLength(selectionText)
-            const [selectionStart, selectionEnd] = sortPositions(selection.anchor, selection.active)
             newSelections.push(
-                new vscode.Selection(selectionStart,
-                    new vscode.Position(selectionEnd.line,
-                        selectionEnd.character + changeInEndCharacterPosition
+                new vscode.Selection(selection.start,
+                    new vscode.Position(selection.end.line,
+                        selection.end.character + changeInEndCharacterPosition
                     )
                 )
             )
