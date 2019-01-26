@@ -337,13 +337,25 @@
       {
         "key": "ctrl+alt+]",
         "mac": "cmd+alt+]",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !latex-workshop:altkeymap",
         "command": "latex-workshop.increment-sectioning"
       },
       {
         "key": "ctrl+alt+[",
         "mac": "cmd+alt+[",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'&& !latex-workshop:altkeymap",
+        "command": "latex-workshop.decrement-sectioning"
+      },
+      {
+        "key": "ctrl+l ctrl+]",
+        "mac": "cmd+l cmd+]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && latex-workshop:altkeymap",
+        "command": "latex-workshop.increment-sectioning"
+      },
+      {
+        "key": "ctrl+l ctrl+[",
+        "mac": "cmd+l cmd+[",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'&& latex-workshop:altkeymap",
         "command": "latex-workshop.decrement-sectioning"
       },
       {
@@ -693,7 +705,9 @@
           "type": "object",
           "default": {
             "command": "",
-            "args": [ "" ]
+            "args": [
+              ""
+            ]
           },
           "markdownDescription": "The command to execute when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
         },
@@ -744,19 +758,22 @@
           "default": false,
           "markdownDescription": "Execute forward synctex at cursor position after compiling LaTeX project."
         },
-        "latex-workshop.synctex.synctexjs.enabled" : {
+        "latex-workshop.synctex.synctexjs.enabled": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Enable using a builtin synctex function. The command set in latex-workshop.synctex.path will not be used."
         },
         "latex-workshop.chktex.enabled": {
           "type": "boolean",
-          "default": false,	
+          "default": false,
           "markdownDescription": "Enable linting LaTeX with ChkTeX.\nCheck `latex-workshop.chktex.run` to control when the linting is executed if this config is set to `true`."
         },
         "latex-workshop.chktex.run": {
           "type": "string",
-          "enum": ["onSave", "onType"],
+          "enum": [
+            "onSave",
+            "onType"
+          ],
           "default": "onSave",
           "markdownDescription": "When LaTeX should be linted by ChkTeX.\nIf set to `onSave`, the whole LaTeX project will be linted upon saving.\nIf set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
         },
