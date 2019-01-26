@@ -547,9 +547,9 @@ export class Commander {
     }
 
     /**
-     * Shift the level sectioning in the selection by one (up or down)
-     * @param change
-     */
+   * Shift the level sectioning in the selection by one (up or down)
+   * @param change
+   */
     shiftSectioningLevel(change: 'increment' | 'decrement') {
         if (change !== 'increment' && change !== 'decrement') {
             throw TypeError(
@@ -561,15 +561,6 @@ export class Commander {
         if (editor === undefined) {
             return
         }
-
-        const document = editor.document
-        let selection = editor.selection
-        if (selection.isEmpty) {
-            const line = document.lineAt(selection.anchor)
-            selection = new vscode.Selection(line.range.start, line.range.end)
-        }
-
-        const selectionText = document.getText(selection)
 
         const increments = {
             part: 'part',
@@ -597,21 +588,33 @@ export class Commander {
             contents: string
         ) {
             if (change === 'increment') {
-            return '\\' + increments[sectionName] + (options ? options : '') + contents
+                return '\\' + increments[sectionName] + (options ? options : '') + contents
             } else {
-            // if (change === 'decrement')
-            return '\\' + decrements[sectionName] + (options ? options : '') + contents
+                // if (change === 'decrement')
+                return '\\' + decrements[sectionName] + (options ? options : '') + contents
             }
         }
 
         // when supported, negative lookbehind at start would be nice --- (?<!\\)
         const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\[.+?\])?(\{.+?\})/g
 
-        const newText = selectionText.replace(pattern, replacer)
+        const document = editor.document
+        const selections = editor.selections
 
         const edit = new vscode.WorkspaceEdit()
-        edit.replace(document.uri, selection, newText)
-        return vscode.workspace.applyEdit(edit)
+
+        for (let selection of selections) {
+            if (selection.isEmpty) {
+            const line = document.lineAt(selection.anchor)
+            selection = new vscode.Selection(line.range.start, line.range.end)
+            }
+
+            const selectionText = document.getText(selection)
+            const newText = selectionText.replace(pattern, replacer)
+            edit.replace(document.uri, selection, newText)
+        }
+
+        vscode.workspace.applyEdit(edit)
     }
 
     devParseLog() {
