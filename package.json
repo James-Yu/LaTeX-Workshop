@@ -569,15 +569,11 @@
           "default": [],
           "markdownDescription": "List of directories where to look for `.bib` files.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
-        "latex-workshop.latex.autoBuild.onSave.enabled": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
-        },
-        "latex-workshop.latex.autoBuild.onTexChange.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Build LaTeX after a LaTeX source file has changed in the workspace.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after any LaTeX file in the workspace is saved on the disk which is not open in the active editor window."
+        "latex-workshop.latex.autoBuild.run": {
+          "type": "string",
+          "enum": ["never", "onSave", "onFileChange"],
+          "default": "onSave",
+          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n`onSave` builds the project upon saving a `tex` file in vscode. `onFileChange` builds the project upon detecting a `tex` file change, even modified by other applications."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",

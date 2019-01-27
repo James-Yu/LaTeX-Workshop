@@ -78,6 +78,12 @@ function obsoleteConfigCheck(extension: Extension) {
         'truefalse': 'onBuilt',
         'truetrue': 'onBuilt'
     })
+    combineConfig(extension, 'latex.autoBuild.onSave.enabled', 'latex.autoBuild.onTexChange.enabled', 'latex.autoBuild.run', {
+        'falsefalse': 'never',
+        'falsetrue': 'onFileChange',
+        'truefalse': 'onSave',
+        'truetrue': 'onFileChange'
+    })
 }
 
 function checkDeprecatedFeatures(extension: Extension) {
@@ -215,7 +221,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.update()
 
             configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
+            if (configuration.get('latex.autoBuild.run') as string === 'onSave' && !extension.builder.disableBuildAfterSave) {
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 extension.commander.build(true)
             }
@@ -300,7 +306,7 @@ export async function activate(context: vscode.ExtensionContext) {
             return
         }
         configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('latex.autoBuild.onTexChange.enabled') || extension.builder.disableBuildAfterSave) {
+        if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange' || extension.builder.disableBuildAfterSave) {
             return
         }
         extension.logger.addLogMessage(`${e.fsPath} changed. Auto build project.`)
