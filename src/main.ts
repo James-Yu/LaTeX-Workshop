@@ -43,15 +43,62 @@ function renameConfig(originalConfig: string, newConfig: string) {
     }
 }
 
-function obsoleteConfigCheck() {
+function combineConfig(extension: Extension, originalConfig1: string, originalConfig2: string, newConfig: string, truthTable: {[key: string]: any}) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (!configuration.has(originalConfig1) && !configuration.has(originalConfig2)) {
+        return
+    }
+    const config1 = configuration.get(originalConfig1, false)
+    const config2 = configuration.get(originalConfig2, false)
+    if (config1 === undefined || config2 === undefined) {
+        return
+    }
+    const key = config1.toString() + config2.toString()
+    configuration.update(newConfig, truthTable[key], true)
+
+    const msg = `"latex-workshop.latex.clean.enabled" and "latex-workshop.latex.clean.onFailBuild.enabled" have been replaced by "latex-workshop.latex.autoClean.run", which is set to "${truthTable[key]}". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files.`
+    const markdownMsg = `\`latex-workshop.latex.clean.enabled\` and \`latex-workshop.latex.clean.onFailBuild.enabled\` have been replaced by \`latex-workshop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files).`
+
+    extension.logger.addLogMessage(msg)
+    extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
+
+    configuration.update(originalConfig1, undefined, true)
+    configuration.update(originalConfig1, undefined, false)
+    configuration.update(originalConfig2, undefined, true)
+    configuration.update(originalConfig2, undefined, false)
+}
+
+function obsoleteConfigCheck(extension: Extension) {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
     renameConfig('latex.outputDir', 'latex.outDir')
+    renameConfig('view.autoActivateLatex.enabled', 'view.autoFocus.enabled')
+    renameConfig('hoverPreview.enabled', 'hover.preview.enabled')
+    renameConfig('hoverReference.enabled', 'hover.ref.enabled')
+    renameConfig('hoverCitation.enabled', 'hover.citation.enabled')
+    renameConfig('hoverCommandDoc.enabled', 'hover.command.enabled')
+    renameConfig('hoverPreview.scale', 'hover.preview.scale')
+    renameConfig('hoverPreview.cursor.enabled', 'hover.preview.cursor.enabled')
+    renameConfig('hoverPreview.cursor.symbol', 'hover.preview.cursor.symbol')
+    renameConfig('hoverPreview.cursor.color', 'hover.preview.cursor.color')
+    renameConfig('hoverPreview.ref.enabled', 'hover.preview.ref.enabled')
+    combineConfig(extension, 'latex.clean.enabled', 'latex.clean.onFailBuild.enabled', 'latex.autoClean.run', {
+        'falsefalse': 'never',
+        'falsetrue': 'onFailed',
+        'truefalse': 'onBuilt',
+        'truetrue': 'onBuilt'
+    })
+    combineConfig(extension, 'latex.autoBuild.onSave.enabled', 'latex.autoBuild.onTexChange.enabled', 'latex.autoBuild.run', {
+        'falsefalse': 'never',
+        'falsetrue': 'onFileChange',
+        'truefalse': 'onSave',
+        'truetrue': 'onFileChange'
+    })
 }
 
 function checkDeprecatedFeatures(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    if ((configuration.get('latex.additionalBib') as string[]).length > 0) {
+    if (configuration.get('latex.additionalBib') && (configuration.get('latex.additionalBib') as string[]).length > 0) {
         const msg = '"latex-workshop.latex.additionalBib" has been deprecated in favor of "latex-workshop.latex.bibDirs". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.'
         const markdownMsg = '`latex-workshop.latex.additionalBibs` has been deprecated in favor of  `latex-workshop.latex.bibDirs`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.)'
 
@@ -184,7 +231,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.update()
 
             configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (configuration.get('latex.autoBuild.onSave.enabled') && !extension.builder.disableBuildAfterSave) {
+            if (configuration.get('latex.autoBuild.run') as string === 'onSave' && !extension.builder.disableBuildAfterSave) {
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 extension.commander.build(true)
             }
@@ -205,7 +252,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
         // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
         if (extension.manager.hasTexId(e.languageId)) {
-            obsoleteConfigCheck()
+            obsoleteConfigCheck(extension)
             extension.manager.findRoot()
 
             extension.structureProvider.refresh()
@@ -232,7 +279,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
                 const gits = vscode.window.visibleTextEditors.filter(editor => editor.document.uri.scheme === 'git')
-                if (configuration.get('view.autoActivateLatex.enabled') && !isLaTeXActive && gits.length === 0) {
+                if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive && gits.length === 0) {
                     vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
                 } else if (gits.length > 0) {
                     vscode.commands.executeCommand('workbench.view.scm').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
@@ -242,7 +289,7 @@ export async function activate(context: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
-        } else if (!configuration.get('view.autoActivateLatex.enabled')) {
+        } else if (!configuration.get('view.autoFocus.enabled')) {
             extension.logger.status.hide()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         }
@@ -269,7 +316,7 @@ export async function activate(context: vscode.ExtensionContext) {
             return
         }
         configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('latex.autoBuild.onTexChange.enabled') || extension.builder.disableBuildAfterSave) {
+        if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange' || extension.builder.disableBuildAfterSave) {
             return
         }
         extension.logger.addLogMessage(`${e.fsPath} changed. Auto build project.`)
@@ -303,7 +350,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider({ scheme: 'file', language: 'latex'}, new FoldingProvider(extension)))
 
     extension.linter.lintRootFileIfEnabled()
-    obsoleteConfigCheck()
+    obsoleteConfigCheck(extension)
     conflictExtensionCheck()
     checkDeprecatedFeatures(extension)
     newVersionMessage(context.extensionPath, extension)

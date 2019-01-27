@@ -559,25 +559,16 @@
           "default": "%DIR%",
           "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash.\nThe LaTeX toolchain should output files to this path.\nPlaceholders `%DOC%`, `%DOCFILE%`, `%DIR%` and `%TMPDIR%` are available."
         },
-        "latex-workshop.latex.additionalBib": {
-          "type": "array",
-          "default": [],
-          "markdownDescription": "Addition bibliography files to watch.\nBoth relative and absolute paths/globs are supported, but absolute ones are suggested. Relative path start from the root file location, so be ware if it is located in sub-directory.\n**This setting has been deprecated in favor of `latex-workshop.latex.bibDirs`."
-        },
         "latex-workshop.latex.bibDirs": {
           "type": "array",
           "default": [],
           "markdownDescription": "List of directories where to look for `.bib` files.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
-        "latex-workshop.latex.autoBuild.onSave.enabled": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Build LaTeX after saving LaTeX source file.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after new LaTeX contents are saved."
-        },
-        "latex-workshop.latex.autoBuild.onTexChange.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Build LaTeX after a LaTeX source file has changed in the workspace.\nThis property defines whether LaTeX Workshop will execute the LaTeX toolchain command(s) to build the project after any LaTeX file in the workspace is saved on the disk which is not open in the active editor window."
+        "latex-workshop.latex.autoBuild.run": {
+          "type": "string",
+          "enum": ["never", "onSave", "onFileChange"],
+          "default": "onSave",
+          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n`onSave` builds the project upon saving a `tex` file in vscode. `onFileChange` builds the project upon detecting a `tex` file change, even modified by other applications."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",
@@ -589,20 +580,16 @@
           "default": true,
           "markdownDescription": "Clear the LaTeX Compiler logs before every step of a recipe.\nSet this property to false to keep the logs of all tools in a recipe."
         },
-        "latex-workshop.latex.clean.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Delete LaTeX auxillary files after building project.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files after building the project. The folder to be cleaned is defined in `latex-workshop.latex.outDir`."
+        "latex-workshop.latex.autoClean.run": {
+          "type": "string",
+          "enum": ["never", "onFailed", "onBuilt"],
+          "default": "never",
+          "markdownDescription": "When LaTeX auxillary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` clean the project when compilation is failed. `onBuilt` clean the project when compilation is terminated, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "type": "boolean",
           "default": false,
           "markdownDescription": "Delete LaTeX auxillary files recursively in sub-folders of `latex-workshop.latex.outDir`."
-        },
-        "latex-workshop.latex.clean.onFailBuild.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Delete LaTeX auxillary files after a failed building process.\nThis property defines whether LaTeX Workshop will clean up all unnecessary files upon building errors."
         },
         "latex-workshop.latex.clean.fileTypes": {
           "type": "array",
@@ -645,10 +632,10 @@
           ],
           "markdownDescription": "The section names of LaTeX outline hierarchy. It is also used by the folding mechanism.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`."
         },
-        "latex-workshop.view.autoActivateLatex.enabled": {
+        "latex-workshop.view.autoFocus.enabled": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Auto activate the LaTeX view when switching from non-tex to tex files.\nThis will cause the view to appear consistently upon activating the extension."
+          "markdownDescription": "Auto focus the LaTeX view when switching from non-tex to tex files.\nThis will cause the view to appear consistently upon activating the extension."
         },
         "latex-workshop.view.pdf.viewer": {
           "type": "string",
@@ -823,11 +810,6 @@
           "default": 5,
           "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB."
         },
-        "latex-workshop.intellisense.surroundCommand.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "When `\\` is typed with text selected, surround the selection with LaTeX command.\n**This feature is deprecated, use `ctrl+l`,`ctrl+w`."
-        },
         "latex-workshop.intellisense.unimathsymbols.enabled": {
           "type": "boolean",
           "default": false,
@@ -913,42 +895,42 @@
           "default": false,
           "markdownDescription": "Use alternative keymap combo, i.e., `ctrl`+`l` `alt`+key, to replace the default `ctrl`/`cmd`+`alt` shortcuts.\nReload vscode to make this configuration effective."
         },
-        "latex-workshop.hoverReference.enabled": {
+        "latex-workshop.hover.ref.enabled": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Enable Hover on References."
         },
-        "latex-workshop.hoverCitation.enabled": {
+        "latex-workshop.hover.citation.enabled": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Enable Hover on Citations."
         },
-        "latex-workshop.hoverCommandDoc.enabled": {
+        "latex-workshop.hover.command.enabled": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Enable Hover on Commands to show the possible signatures."
         },
-        "latex-workshop.hoverPreview.enabled": {
+        "latex-workshop.hover.preview.enabled": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Enable Hover Preview."
         },
-        "latex-workshop.hoverPreview.scale": {
+        "latex-workshop.hover.preview.scale": {
           "type": "number",
           "default": 1,
           "markdownDescription": "Scaling of Hover Preview."
         },
-        "latex-workshop.hoverPreview.cursor.enabled": {
+        "latex-workshop.hover.preview.cursor.enabled": {
           "type": "boolean",
           "default": true,
           "markdownDescription": "Render cursor in Hover Preview at the current position."
         },
-        "latex-workshop.hoverPreview.cursor.symbol": {
+        "latex-workshop.hover.preview.cursor.symbol": {
           "type": "string",
           "default": "\\ddagger",
           "markdownDescription": "Cursor symbol in Hover Preview."
         },
-        "latex-workshop.hoverPreview.cursor.color": {
+        "latex-workshop.hover.preview.cursor.color": {
           "type": "string",
           "default": "auto",
           "enum": [
@@ -975,7 +957,7 @@
           ],
           "markdownDescription": "The color of cursor in Hover Preview."
         },
-        "latex-workshop.hoverPreview.ref.enabled": {
+        "latex-workshop.hover.preview.ref.enabled": {
           "type": "boolean",
           "default": true,
           "markdownDdescription": "Render Hover Preview on \\ref."
