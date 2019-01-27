@@ -56,8 +56,8 @@ function combineConfig(extension: Extension, originalConfig1: string, originalCo
     const key = config1.toString() + config2.toString()
     configuration.update(newConfig, truthTable[key], true)
 
-    const msg = `"latex-workshop.latex.clean.enabled" and "latex-workshop.latex.clean.onFailBuild.enabled" have been replaced by "latex-workshop.latex.clean.run", which is set to "${truthTable[key]}". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files.`
-    const markdownMsg = `\`latex-workshop.latex.clean.enabled\` and \`latex-workshop.latex.clean.onFailBuild.enabled\` have been replaced by \`latex-workshop.latex.clean.run\`, which is set to \`${truthTable[key]}\`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files).`
+    const msg = `"latex-workshop.latex.clean.enabled" and "latex-workshop.latex.clean.onFailBuild.enabled" have been replaced by "latex-workshop.latex.autoClean.run", which is set to "${truthTable[key]}". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files.`
+    const markdownMsg = `\`latex-workshop.latex.clean.enabled\` and \`latex-workshop.latex.clean.onFailBuild.enabled\` have been replaced by \`latex-workshop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files).`
 
     extension.logger.addLogMessage(msg)
     extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
@@ -72,7 +72,7 @@ function obsoleteConfigCheck(extension: Extension) {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
     renameConfig('latex.outputDir', 'latex.outDir')
-    combineConfig(extension, 'latex.clean.enabled', 'latex.clean.onFailBuild.enabled', 'latex.clean.run', {
+    combineConfig(extension, 'latex.clean.enabled', 'latex.clean.onFailBuild.enabled', 'latex.autoClean.run', {
         'falsefalse': 'never',
         'falsetrue': 'onFailed',
         'truefalse': 'onBuilt',

@@ -132,7 +132,7 @@ export class Builder {
                     }
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
-                    if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.clean.run') as string) > -1) {
+                    if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
                         this.extension.commander.clean()
                     }
                     const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
@@ -171,7 +171,7 @@ export class Builder {
         if (configuration.get('synctex.afterBuild.enabled') as boolean) {
             this.extension.locator.syncTeX()
         }
-        if (configuration.get('latex.clean.run') as string === 'onBuilt') {
+        if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             this.extension.cleaner.clean()
         }
     }
