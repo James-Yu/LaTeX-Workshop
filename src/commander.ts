@@ -610,7 +610,11 @@ export class Commander {
         const edit = new vscode.WorkspaceEdit()
 
         for (let selection of selections) {
+            let mode: 'selection' | 'cursor' = 'selection'
+            let oldSelection: any = null
             if (selection.isEmpty) {
+                mode = 'cursor'
+                oldSelection = selection
                 const line = document.lineAt(selection.anchor)
                 selection = new vscode.Selection(line.range.start, line.range.end)
             }
@@ -620,13 +624,22 @@ export class Commander {
             edit.replace(document.uri, selection, newText)
 
             const changeInEndCharacterPosition = getLastLineLength(newText) - getLastLineLength(selectionText)
-            newSelections.push(
-                new vscode.Selection(selection.start,
-                    new vscode.Position(selection.end.line,
-                        selection.end.character + changeInEndCharacterPosition
+            if (mode === 'selection') {
+                newSelections.push(
+                    new vscode.Selection(selection.start,
+                        new vscode.Position(selection.end.line,
+                            selection.end.character + changeInEndCharacterPosition
+                        )
                     )
                 )
-            )
+            } else { // mode === 'cursor'
+                newSelections.push(
+                    new vscode.Selection(
+                        new vscode.Position(oldSelection.anchor.line, oldSelection.anchor.character + changeInEndCharacterPosition),
+                        new vscode.Position(oldSelection.active.line, oldSelection.active.character + changeInEndCharacterPosition)
+                    )
+                )
+            }
         }
 
         vscode.workspace.applyEdit(edit).then(success => {
