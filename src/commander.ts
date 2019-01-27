@@ -546,6 +546,109 @@ export class Commander {
         return 'added'
     }
 
+    /**
+     * Shift the level sectioning in the selection by one (up or down)
+     * @param change
+     */
+    shiftSectioningLevel(change: 'increment' | 'decrement') {
+        if (change !== 'increment' && change !== 'decrement') {
+            throw TypeError(
+            `Invalid value of function parameter 'change' (=${change})`
+            )
+        }
+
+        const editor = vscode.window.activeTextEditor
+        if (editor === undefined) {
+            return
+        }
+
+        const increments = {
+            part: 'part',
+            chapter: 'part',
+            section: 'chapter',
+            subsection: 'section',
+            subsubsection: 'subsection',
+            paragraph: 'subsubsection',
+            subparagraph: 'paragraph'
+        }
+        const decrements = {
+            part: 'chapter',
+            chapter: 'section',
+            section: 'subsection',
+            subsection: 'subsubsection',
+            subsubsection: 'paragraph',
+            paragraph: 'subparagraph',
+            subparagraph: 'subparagraph'
+        }
+
+        function replacer(
+            _match: string,
+            sectionName: string,
+            options: string,
+            contents: string
+        ) {
+            if (change === 'increment') {
+                return '\\' + increments[sectionName] + (options ? options : '') + contents
+            } else {
+                // if (change === 'decrement')
+                return '\\' + decrements[sectionName] + (options ? options : '') + contents
+            }
+        }
+
+        // when supported, negative lookbehind at start would be nice --- (?<!\\)
+        const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\[.+?\])?(\{.+?\})/g
+
+        function getLastLineLength(someText: string) {
+            const lines = someText.split(/\n/)
+            return lines.slice(lines.length - 1, lines.length)[0].length
+        }
+
+        const document = editor.document
+        const selections = editor.selections
+        const newSelections: vscode.Selection[] = []
+
+        const edit = new vscode.WorkspaceEdit()
+
+        for (let selection of selections) {
+            let mode: 'selection' | 'cursor' = 'selection'
+            let oldSelection: any = null
+            if (selection.isEmpty) {
+                mode = 'cursor'
+                oldSelection = selection
+                const line = document.lineAt(selection.anchor)
+                selection = new vscode.Selection(line.range.start, line.range.end)
+            }
+
+            const selectionText = document.getText(selection)
+            const newText = selectionText.replace(pattern, replacer)
+            edit.replace(document.uri, selection, newText)
+
+            const changeInEndCharacterPosition = getLastLineLength(newText) - getLastLineLength(selectionText)
+            if (mode === 'selection') {
+                newSelections.push(
+                    new vscode.Selection(selection.start,
+                        new vscode.Position(selection.end.line,
+                            selection.end.character + changeInEndCharacterPosition
+                        )
+                    )
+                )
+            } else { // mode === 'cursor'
+                newSelections.push(
+                    new vscode.Selection(
+                        new vscode.Position(oldSelection.anchor.line, oldSelection.anchor.character + changeInEndCharacterPosition),
+                        new vscode.Position(oldSelection.active.line, oldSelection.active.character + changeInEndCharacterPosition)
+                    )
+                )
+            }
+        }
+
+        vscode.workspace.applyEdit(edit).then(success => {
+            if (success) {
+                editor.selections = newSelections
+            }
+        })
+    }
+
     devParseLog() {
         if (vscode.window.activeTextEditor === undefined) {
             return
