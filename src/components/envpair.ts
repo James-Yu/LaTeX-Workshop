@@ -1,22 +1,7 @@
 import * as vscode from 'vscode'
+import * as utils from '../utils'
 import { Extension } from '../main'
 
-/**
- * Remove the comments if any
- * @param line
- */
-function stripComments(line: string) : string {
-    let commentPos = line.search(/(?!\\)%/)
-    if (commentPos !== -1) {
-        commentPos++
-        return line.slice(0, commentPos)
-    }
-    return line
-}
-
-export function escapeRegExp(str) {
-    return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
-}
 
 function regexpAllMatches(str: string, reg: RegExp) {
     const res: any[] = []
@@ -54,7 +39,7 @@ export class EnvPair {
     }
 
     tokenizeLine(document: vscode.TextDocument, pos: vscode.Position) : MatchEnv | null {
-        const line = stripComments(document.lineAt(pos).text)
+        const line = utils.stripComments(document.lineAt(pos).text)
         const ind = pos.character
         if (ind > line.length) {
             return null
@@ -88,7 +73,7 @@ export class EnvPair {
             line = line.slice(0, pos.character)
         }
         while (true) {
-            line = stripComments(line)
+            line = utils.stripComments(line)
             let allMatches = regexpAllMatches(line, patRegexp)
             if (dir === -1) {
                 allMatches = allMatches.reverse()
@@ -132,7 +117,7 @@ export class EnvPair {
             return
         }
         const startPos = tokens.pos
-        const pattern = '\\\\(begin|end)\\{' + escapeRegExp(tokens.name) + '\\}'
+        const pattern = '\\\\(begin|end)\\{' + utils.escapeRegExp(tokens.name) + '\\}'
         const dir = (tokens.type ===  'begin') ? 1 : -1
         const resMatchingPair = this.locateMatchingPair(pattern, dir, startPos, document)
         if (resMatchingPair) {

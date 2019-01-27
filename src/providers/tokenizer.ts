@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as utils from '../utils'
 
 export function tokenizer(document: vscode.TextDocument, position: vscode.Position) : string | undefined {
     const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(/[\\{,\s](?=[^\\{,\s]*$)/)
@@ -17,7 +18,8 @@ export function tokenizer(document: vscode.TextDocument, position: vscode.Positi
 
 export function onAPackage(document: vscode.TextDocument, position: vscode.Position, token: string) : boolean {
     const line = document.lineAt(position.line).text
-    const regex = new RegExp(`\\\\usepackage(?:\\[[^\\[\\]\\{\\}]*\\])?\\{[\\w,]*${token}[\\w,]*\\}`)
+    const escapedToken = utils.escapeRegExp(token)
+    const regex = new RegExp(`\\\\usepackage(?:\\[[^\\[\\]\\{\\}]*\\])?\\{[\\w,]*${escapedToken}[\\w,]*\\}`)
     if (line.match(regex)) {
         return true
     }

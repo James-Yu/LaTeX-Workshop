@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as stripJsonComments from 'strip-json-comments'
-import * as envpair from '../components/envpair'
+import * as utils from '../utils'
 import {TextDocumentLike} from '../components/textdocumentlike'
 import {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
@@ -409,7 +409,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const docOfRef = TextDocumentLike.load(refData.file)
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         const l = docOfRef.lineAt(refData.item.position.line).text
-        const pat = new RegExp('\\\\label\\{' + envpair.escapeRegExp(token) + '\\}')
+        const pat = new RegExp('\\\\label\\{' + utils.escapeRegExp(token) + '\\}')
         const m  = l.match(pat)
         if (m && m.index !== undefined) {
             const labelPos = new vscode.Position(refData.item.position.line, m.index)
@@ -492,7 +492,7 @@ export class HoverProvider implements vscode.HoverProvider {
     //  ^
     //  startPos
     private findHoverOnEnv(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position) : TexMathEnv | undefined {
-        const pattern = new RegExp('\\\\end\\{' + envpair.escapeRegExp(envname) + '\\}')
+        const pattern = new RegExp('\\\\end\\{' + utils.escapeRegExp(envname) + '\\}')
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length + '\\begin{}'.length)
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
