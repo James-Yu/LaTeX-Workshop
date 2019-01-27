@@ -33,7 +33,7 @@ export class Manager {
         let outDir = (configuration.get('latex.outDir') as string)
         outDir = outDir.replace('%DOC%', docker ? docfile : doc)
                     .replace('%DOCFILE%', docfile)
-                    .replace('%DIR%', path.dirname(texPath).split(path.sep).join('/'))
+                    .replace('%DIR%', docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
                     .replace('%TMPDIR%', this.extension.builder.tmpDir)
         return outDir
     }
