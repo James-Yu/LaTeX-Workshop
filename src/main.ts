@@ -72,6 +72,16 @@ function obsoleteConfigCheck(extension: Extension) {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
     renameConfig('latex.outputDir', 'latex.outDir')
+    renameConfig('view.autoActivateLatex.enabled', 'view.autoFocus.enabled')
+    renameConfig('hoverPreview.enabled', 'hover.preview.enabled')
+    renameConfig('hoverReference.enabled', 'hover.ref.enabled')
+    renameConfig('hoverCitation.enabled', 'hover.citation.enabled')
+    renameConfig('hoverCommandDoc.enabled', 'hover.command.enabled')
+    renameConfig('hoverPreview.scale', 'hover.preview.scale')
+    renameConfig('hoverPreview.cursor.enabled', 'hover.preview.cursor.enabled')
+    renameConfig('hoverPreview.cursor.symbol', 'hover.preview.cursor.symbol')
+    renameConfig('hoverPreview.cursor.color', 'hover.preview.cursor.color')
+    renameConfig('hoverPreview.ref.enabled', 'hover.preview.ref.enabled')
     combineConfig(extension, 'latex.clean.enabled', 'latex.clean.onFailBuild.enabled', 'latex.autoClean.run', {
         'falsefalse': 'never',
         'falsetrue': 'onFailed',
@@ -88,7 +98,7 @@ function obsoleteConfigCheck(extension: Extension) {
 
 function checkDeprecatedFeatures(extension: Extension) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    if ((configuration.get('latex.additionalBib') as string[]).length > 0) {
+    if (configuration.get('latex.additionalBib') && (configuration.get('latex.additionalBib') as string[]).length > 0) {
         const msg = '"latex-workshop.latex.additionalBib" has been deprecated in favor of "latex-workshop.latex.bibDirs". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.'
         const markdownMsg = '`latex-workshop.latex.additionalBibs` has been deprecated in favor of  `latex-workshop.latex.bibDirs`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations.)'
 
@@ -269,7 +279,7 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
                 const gits = vscode.window.visibleTextEditors.filter(editor => editor.document.uri.scheme === 'git')
-                if (configuration.get('view.autoActivateLatex.enabled') && !isLaTeXActive && gits.length === 0) {
+                if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive && gits.length === 0) {
                     vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
                 } else if (gits.length > 0) {
                     vscode.commands.executeCommand('workbench.view.scm').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
@@ -279,7 +289,7 @@ export async function activate(context: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
-        } else if (!configuration.get('view.autoActivateLatex.enabled')) {
+        } else if (!configuration.get('view.autoFocus.enabled')) {
             extension.logger.status.hide()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         }

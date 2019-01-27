@@ -46,10 +46,10 @@ export class HoverProvider implements vscode.HoverProvider {
         this.getColor()
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            const hov = configuration.get('hoverPreview.enabled') as boolean
-            const hovReference = configuration.get('hoverReference.enabled') as boolean
-            const hovCitation = configuration.get('hoverCitation.enabled') as boolean
-            const hovCommand = configuration.get('hoverCommandDoc.enabled') as boolean
+            const hov = configuration.get('hover.preview.enabled') as boolean
+            const hovReference = configuration.get('hover.ref.enabled') as boolean
+            const hovCitation = configuration.get('hover.citation.enabled') as boolean
+            const hovCommand = configuration.get('hover.command.enabled') as boolean
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
@@ -86,7 +86,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
                 const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
                 mdLink.isTrusted = true
-                if (configuration.get('hoverPreview.ref.enabled') as boolean) {
+                if (configuration.get('hover.preview.ref.enabled') as boolean) {
                     const tex = this.findHoverOnRef(document, position, token, refData)
                     if (tex) {
                         this.provideHoverOnRef(tex, this.findNewCommand(document.getText()), token, refData)
@@ -169,7 +169,7 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const scale = configuration.get('hoverPreview.scale') as number
+        const scale = configuration.get('hover.preview.scale') as number
         let s = this.renderCursor(document, tex.range)
         s = this.mathjaxify(s, tex.envname)
         const data = await this.mj.typeset({
@@ -186,7 +186,7 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private async provideHoverOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const scale = configuration.get('hoverPreview.scale') as number
+        const scale = configuration.get('hover.preview.scale') as number
         const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
         const obj = { labels : {}, IDs: {}, startNumber: 0 }
         const data = await this.mj.typeset({
@@ -358,11 +358,11 @@ export class HoverProvider implements vscode.HoverProvider {
     private renderCursor(document: vscode.TextDocument, range: vscode.Range) : string {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const conf = configuration.get('hoverPreview.cursor.enabled') as boolean
+        const conf = configuration.get('hover.preview.cursor.enabled') as boolean
         if (editor && conf && !this.isCursorInTeXCommand(document)) {
             const cursor = editor.selection.active
-            const symbol = configuration.get('hoverPreview.cursor.symbol') as string
-            const color = configuration.get('hoverPreview.cursor.color') as string
+            const symbol = configuration.get('hover.preview.cursor.symbol') as string
+            const color = configuration.get('hover.preview.cursor.color') as string
             let sym = `{\\color{${this.color}}${symbol}}`
             if (color !== 'auto') {
                 sym = `{\\color{${color}}${symbol}}`
