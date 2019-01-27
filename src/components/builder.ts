@@ -132,7 +132,7 @@ export class Builder {
                     }
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
-                    if (configuration.get('latex.clean.run') as string === 'onFailed') {
+                    if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.clean.run') as string) > -1) {
                         this.extension.commander.clean()
                     }
                     const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
