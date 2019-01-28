@@ -30,6 +30,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
 - [Linting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters)
 - [Viewing & synctex](https://github.com/James-Yu/LaTeX-Workshop/wiki/View)
 - [Formatting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format)
+- [Sectioning](https://github.com/James-Yu/LaTeX-Workshop/wiki/Sectioning)
 - [Multi file projects](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)
 - [Intellisense](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense)
   - [Citations](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations)
