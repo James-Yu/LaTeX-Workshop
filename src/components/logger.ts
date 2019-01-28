@@ -7,6 +7,7 @@ export class Logger {
     logPanel: vscode.OutputChannel
     compilerLogPanel: vscode.OutputChannel
     status: vscode.StatusBarItem
+    status2: vscode.StatusBarItem
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -15,8 +16,11 @@ export class Logger {
         this.compilerLogPanel.append('Ready')
         this.addLogMessage('Initializing LaTeX Workshop.')
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
+        this.status2 = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10001)
         this.status.command = 'latex-workshop.actions'
+        this.status2.command = 'latex-workshop.actions'
         this.status.show()
+        this.status2.show()
         this.displayStatus('check', 'statusBar.foreground')
     }
 
@@ -33,6 +37,11 @@ export class Logger {
 
     clearCompilerMessage() {
         this.compilerLogPanel.clear()
+    }
+
+    displayStatus2(text: string, tooltip?: string | undefined) {
+        this.status2.text = text
+        this.status2.tooltip = tooltip
     }
 
     displayStatus(icon: string, color: string, message: string | undefined = undefined, severity: string = 'info', build: string = '') {

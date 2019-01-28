@@ -97,9 +97,17 @@ export class Builder {
         this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile)})
 
         let stdout = ''
+        let pageNo = 0
+        this.extension.logger.displayStatus2('Preamble')
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
+
+            if (stdout.match(/\[(\d+)\s*\]$/)) {
+                // @ts-ignore
+                pageNo = parseInt(stdout.match(/\[(\d+)\s*\]$/)[1])
+                this.extension.logger.displayStatus2('Page ' + pageNo)
+            }
         })
 
         let stderr = ''
@@ -116,6 +124,7 @@ export class Builder {
 
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
+            this.extension.logger.displayStatus2('')
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}.`)
 
