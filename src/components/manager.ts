@@ -305,7 +305,7 @@ export class Manager {
 
             let inputFilePath: string | null
             if (result[0].startsWith('\\subimport')) {
-                inputFilePath = this.resolveFile([path.dirname(filePath)], path.resolve(result[1], result[2]))
+                inputFilePath = this.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
             } else if (result[0].startsWith('\\import')) {
                 inputFilePath = this.extension.manager.resolveFile([result[1]], result[2])
             } else {
