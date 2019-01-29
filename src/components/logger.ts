@@ -39,10 +39,64 @@ export class Logger {
         this.compilerLogPanel.clear()
     }
 
-    displayStatus2(text: string, tooltip?: string | undefined) {
-        this.status2.text = text
+    displayProgress(
+        current: number,
+        knownEndpoint?: number,
+        tooltip: string = ''
+      ) {
+        if (current === 0) {
+          if (knownEndpoint === 0) {
+            this.status2.text = ''
+            this.status2.tooltip = ''
+            return
+          } else {
+            this.status2.text = 'Preamble'
+            this.status2.tooltip = ''
+            return
+          }
+        }
+
+        const generateProgressBar = (proportion: number, length: number) => {
+          const wholeCharacters = Math.trunc(length * proportion)
+          const extraEights = Math.round(
+            (length * proportion - wholeCharacters) * 8
+          )
+          const eights = {
+            0: ' ',
+            1: '▏',
+            2: '▎',
+            3: '▍',
+            4: '▌',
+            5: '▋',
+            6: '▊',
+            7: '▉',
+            8: '█'
+          }
+          return (
+            '█'.repeat(wholeCharacters) +
+            (eights[extraEights] !== ' ' ? eights[extraEights] : '') +
+            '░'.repeat(Math.max(0, length - wholeCharacters - 1))
+          )
+        }
+        const padRight = (str: string, desiredMinLength: number) => {
+          if (str.length < desiredMinLength) {
+            str = str + '   '.repeat(desiredMinLength - str.length)
+          }
+          return str
+        }
+
+        const currentAsString = current.toString()
+        const endpointAsString = knownEndpoint ? knownEndpoint.toString() : '?'
+        const barAsString = knownEndpoint
+          ? generateProgressBar(current / knownEndpoint, 15)
+          : ''
+
+        this.status2.text = `Page ${padRight(
+          currentAsString + '/' + endpointAsString,
+          5
+        )} ${barAsString}`
         this.status2.tooltip = tooltip
-    }
+      }
 
     displayStatus(icon: string, color: string, message: string | undefined = undefined, severity: string = 'info', build: string = '') {
         this.status.text = `$(${icon})${build}`
