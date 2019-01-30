@@ -86,13 +86,13 @@ export class Logger {
         }
 
         const currentAsString = current.toString()
-        const endpointAsString = knownEndpoint ? knownEndpoint.toString() : '?'
+        const endpointAsString = knownEndpoint ? '/' + knownEndpoint.toString() : ''
         const barAsString = knownEndpoint
           ? generateProgressBar(current / knownEndpoint, 15)
           : ''
 
         this.status2.text = `Page ${padRight(
-          currentAsString + '/' + endpointAsString,
+          currentAsString + endpointAsString,
           5
         )} ${barAsString}`
         this.status2.tooltip = tooltip

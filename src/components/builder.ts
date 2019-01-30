@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as cp from 'child_process'
 import * as tmp from 'tmp'
+import * as pdfjsLib from 'pdfjs-dist'
 
 import {Extension} from '../main'
 
@@ -15,6 +16,7 @@ export class Builder {
     disableBuildAfterSave: boolean = false
     nextBuildRootFile: string | undefined
     disableCleanAndRetry: boolean = false
+    pageTotal: number | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -55,6 +57,12 @@ export class Builder {
         this.disableCleanAndRetry = false
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.preprocess(rootFile)
+
+        this.pageTotal = undefined
+        // @ts-ignore
+        pdfjsLib.getDocument(rootFile.replace(/\.tex$/, '.pdf')).promise.then(doc => {
+            this.pageTotal = doc.numPages
+        })
 
         // Create sub directories of output directory
         let outDir = this.extension.manager.getOutputDir(rootFile)
@@ -106,7 +114,7 @@ export class Builder {
             if (stdout.match(/\[(\d+)\s*\]$/)) {
                 // @ts-ignore
                 pageNo = parseInt(stdout.match(/\[(\d+)\s*\]$/)[1])
-                this.extension.logger.displayProgress(pageNo, 18)
+                this.extension.logger.displayProgress(pageNo, this.pageTotal)
             }
         })
 
