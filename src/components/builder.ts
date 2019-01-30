@@ -5,6 +5,7 @@ import * as cp from 'child_process'
 import * as tmp from 'tmp'
 
 import {Extension} from '../main'
+import {ExternalCommand} from '../utils'
 
 const maxPrintLine = '10000'
 
@@ -40,6 +41,52 @@ export class Builder {
         } else {
             this.nextBuildRootFile = undefined
         }
+    }
+
+    buildWithExternalCommand(command: ExternalCommand, pwd: string) {
+        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
+        this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
+        this.currentProcess = cp.spawn(command.command, command.args, {cwd: pwd})
+
+        let stdout = ''
+        this.currentProcess.stdout.on('data', newStdout => {
+            stdout += newStdout
+            this.extension.logger.addCompilerMessage(newStdout.toString())
+        })
+
+        let stderr = ''
+        this.currentProcess.stderr.on('data', newStderr => {
+            stderr += newStderr
+            this.extension.logger.addCompilerMessage(newStderr.toString())
+        })
+
+        this.currentProcess.on('error', err => {
+            this.extension.logger.addLogMessage(`Build fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
+            this.extension.logger.displayStatus('x', 'errorForeground', `Build terminated with fatal error: ${err.message}.`)
+        })
+
+        this.currentProcess.on('exit', (exitCode, signal) => {
+            this.extension.parser.parse(stdout)
+            if (exitCode !== 0) {
+                this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}.`)
+                this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error')
+                const res = this.extension.logger.showErrorMessage('Build terminated with error.', 'Open compiler log')
+                if (res) {
+                    res.then(option => {
+                        switch (option) {
+                            case 'Open compiler log':
+                                this.extension.logger.showCompilerLog()
+                                break
+                            default:
+                                break
+                        }
+                    })
+                }
+            } else {
+                this.extension.logger.displayStatus('check', 'statusBar.foreground', `Build succeeded.`)
+            }
+        })
+        this.currentProcess = undefined
     }
 
     buildInitiator(rootFile: string, recipe: string | undefined = undefined) {

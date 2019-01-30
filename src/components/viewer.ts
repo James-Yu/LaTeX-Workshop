@@ -6,6 +6,7 @@ import * as cp from 'child_process'
 
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
+import {ExternalCommand} from '../utils'
 
 interface Position {}
 
@@ -256,9 +257,4 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
     }
-}
-
-interface ExternalCommand {
-    command: string,
-    args?: string[]
 }
