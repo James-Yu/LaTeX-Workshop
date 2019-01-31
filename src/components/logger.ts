@@ -58,10 +58,10 @@ export class Logger {
 
         const generateProgressBar = (proportion: number, length: number) => {
           const wholeCharacters = Math.trunc(length * proportion)
-          const extraEights = Math.round(
+          const extraEighths = Math.round(
             (length * proportion - wholeCharacters) * 8
           )
-          const eights = {
+          const eighths = {
             0: ' ',
             1: '▏',
             2: '▎',
@@ -74,7 +74,7 @@ export class Logger {
           }
           return (
             '█'.repeat(wholeCharacters) +
-            (eights[extraEights] !== ' ' ? eights[extraEights] : '') +
+            (eighths[extraEighths] !== ' ' ? eighths[extraEighths] : '') +
             '░'.repeat(Math.max(0, length - wholeCharacters - 1))
           )
         }

@@ -60,7 +60,7 @@ export class Builder {
 
         this.pageTotal = undefined
         // @ts-ignore
-        pdfjsLib.getDocument(rootFile.replace(/\.tex$/, '.pdf')).promise.then(doc => {
+        pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
             this.pageTotal = doc.numPages
         })
 
