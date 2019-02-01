@@ -279,9 +279,7 @@ export class Locator {
                 break
             }
         }
-        const row = record.line - 1
-        const col = record.column < 0 ? 0 : record.column
-        const pos = new vscode.Position(row, col)
+
         let filePath = path.resolve( record.input.replace(/(\r\n|\n|\r)/gm, '') )
         if (docker && process.platform === 'win32') {
             filePath = path.resolve(path.dirname(pdfPath), record.input as string)
@@ -296,6 +294,20 @@ export class Locator {
                     break
                 }
             }
+
+            const row = record.line - 1
+            let col = record.column < 0 ? 0 : record.column
+            // columns are typically not supplied by SyncTex, this could change in the future for some engines though
+            if (col === 0) {
+                const line = doc.lineAt(row)
+                if (line.text.indexOf(data.textBeforeSelection) > -1) {
+                    col = line.text.indexOf(data.textBeforeSelection) + data.textBeforeSelection.length
+                } else if (line.text.indexOf(data.textAfterSelection) > -1) {
+                    col = line.text.indexOf(data.textAfterSelection)
+                }
+            }
+            const pos = new vscode.Position(row, col)
+
             vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
                 editor.selection = new vscode.Selection(pos, pos)
                 vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})

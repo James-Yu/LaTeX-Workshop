@@ -123,6 +123,15 @@ document.addEventListener('pagerendered', (evPageRendered) => {
           return
         }
 
+        const selection = window.getSelection();
+        let textBeforeSelection = ""
+        let textAfterSelection = ""
+        if(selection.anchorNode.nodeName === '#text'){
+          const text = selection.anchorNode.textContent;
+          textBeforeSelection = text.substring(selection.anchorOffset - 10, selection.anchorOffset);
+          textAfterSelection = text.substring(selection.anchorOffset, selection.anchorOffset + 10);
+        }
+
         let viewerContainer = null
         // no spread
         if (PDFViewerApplication.pdfViewer.spreadMode === 0) {
@@ -142,7 +151,8 @@ document.addEventListener('pagerendered', (evPageRendered) => {
           left += offsetLeft
         }
         const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
-        socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page}))
+        socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page,
+         textBeforeSelection:textBeforeSelection, textAfterSelection:textAfterSelection}))
     }
 }, true)
 
