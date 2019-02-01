@@ -4,7 +4,7 @@ import * as fs from 'fs'
 
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
-import {Logger} from './components/logger'
+import {Logger, BuildInfo} from './components/logger'
 import {Manager} from './components/manager'
 import {Builder} from './components/builder'
 import {Viewer} from './components/viewer'
@@ -372,6 +372,7 @@ export class Extension {
     packageInfo
     extensionRoot: string
     logger: Logger
+    buildInfo: BuildInfo
     commander: Commander
     manager: Manager
     builder: Builder
@@ -391,6 +392,7 @@ export class Extension {
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
         this.logger = new Logger(this)
+        this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
         this.builder = new Builder(this)

@@ -16,7 +16,6 @@ export class Builder {
     disableBuildAfterSave: boolean = false
     nextBuildRootFile: string | undefined
     disableCleanAndRetry: boolean = false
-    pageTotal: number | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -58,10 +57,10 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.preprocess(rootFile)
 
-        this.pageTotal = undefined
+        this.extension.buildInfo.buildStarted()
         // @ts-ignore
         pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
-            this.pageTotal = doc.numPages
+            this.extension.buildInfo.setPageTotal(doc.numPages)
         })
 
         // Create sub directories of output directory
@@ -105,17 +104,11 @@ export class Builder {
         this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile)})
 
         let stdout = ''
-        let pageNo = 0
-        this.extension.logger.displayProgress(0)
+        this.extension.buildInfo.buildStarted()
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
-
-            if (stdout.match(/\[(\d+)\s*\]$/)) {
-                // @ts-ignore
-                pageNo = parseInt(stdout.match(/\[(\d+)\s*\]$/)[1])
-                this.extension.logger.displayProgress(pageNo, this.pageTotal)
-            }
+            this.extension.buildInfo.newStdoutLine(newStdout.toString())
         })
 
         let stderr = ''
@@ -132,7 +125,7 @@ export class Builder {
 
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
-            this.extension.logger.displayProgress(0, 0)
+            this.extension.buildInfo.buildEnded()
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}.`)
 
