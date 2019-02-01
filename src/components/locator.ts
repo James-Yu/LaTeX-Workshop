@@ -300,9 +300,9 @@ export class Locator {
             // columns are typically not supplied by SyncTex, this could change in the future for some engines though
             if (col === 0) {
                 const line = doc.lineAt(row)
-                if (line.text.indexOf(data.textBeforeSelection) > -1) {
+                if (data.textBeforeSelection !== '' && line.text.indexOf(data.textBeforeSelection) > -1) {
                     col = line.text.indexOf(data.textBeforeSelection) + data.textBeforeSelection.length
-                } else if (line.text.indexOf(data.textAfterSelection) > -1) {
+                } else if (data.textAfterSelection !== '' && line.text.indexOf(data.textAfterSelection) > -1) {
                     col = line.text.indexOf(data.textAfterSelection)
                 }
             }
