@@ -140,20 +140,18 @@ export class BuildInfo {
         }
         this.currentBuild.stdout += line
 
-        console.log(line)
-
         this.checkStdoutForInfo()
     }
 
     private checkStdoutForInfo() {
         const pageNumberRegex = /\n\[(\d+)[\s\w\{\}\.\/\-]*\]$/
-        const latexRuleStartedRegex = /Latexmk: applying rule '[A-z]+'\.\.\.\n$/
+        const latexmkRuleStartedRegex = /Latexmk: applying rule '[A-z]+'\.\.\.\n$/
 
         if (this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
             const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
             this.extension.buildInfo.displayProgress(pageNo)
-        } else if (this.currentBuild.stdout.match(latexRuleStartedRegex)) {
+        } else if (this.currentBuild.stdout.match(latexmkRuleStartedRegex)) {
             this.currentBuild.ruleNumber++
             this.currentBuild.pageTimes.push({})
             this.extension.buildInfo.displayProgress(0)
@@ -181,11 +179,11 @@ export class BuildInfo {
             1: '▏',
             2: '▎',
             3: '▍',
-            4: '▌',
+            4: '▌ ',
             5: '▋',
             6: '▊',
             7: '▉',
-            8: '█'
+            8: '█ '
           }
           return (
             '█'.repeat(wholeCharacters) +
@@ -229,7 +227,7 @@ export class BuildInfo {
           ? generateProgressBar(current / this.currentBuild.pageTotal, 15)
           : ''
 
-        this.status.text = `${parenthasisedNumbers[this.currentBuild.ruleNumber]}  Page ${padRight(
+        this.status.text = `${parenthasisedNumbers[this.currentBuild.ruleNumber]}  Page ${padRight(
           currentAsString + endpointAsString,
           5
         )} ${barAsString}`
