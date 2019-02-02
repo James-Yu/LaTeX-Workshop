@@ -175,7 +175,7 @@ export class BuildInfo {
             (length * proportion - wholeCharacters) * 8
           )
           const eighths = {
-            0: ' ',
+            0: '',
             1: '▏',
             2: '▎',
             3: '▍',
@@ -187,8 +187,8 @@ export class BuildInfo {
           }
           return (
             '█'.repeat(wholeCharacters) +
-            (eighths[extraEighths] !== ' ' ? eighths[extraEighths] : '') +
-            '░'.repeat(Math.max(0, length - wholeCharacters - 1))
+            eighths[extraEighths] +
+            '░'.repeat(Math.max(0, length - wholeCharacters - eighths[extraEighths].length))
           )
         }
         const parenthasisedNumbers = {
