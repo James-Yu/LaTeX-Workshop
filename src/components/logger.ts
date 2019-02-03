@@ -88,6 +88,7 @@ export class Logger {
 export class BuildInfo {
     extension: Extension
     status: vscode.StatusBarItem
+    configuration: vscode.WorkspaceConfiguration
     currentBuild: {
         buildStart: number
         pageTotal?: number | undefined
@@ -111,7 +112,7 @@ export class BuildInfo {
             lastPageTime: +new Date(),
             pageTimes: [{}],
             stdout: '',
-            ruleNumber: 0
+            ruleNumber: 0,
         }
         this.status.text = ''
     }
@@ -134,7 +135,7 @@ export class BuildInfo {
         }
     }
 
-    public newStdoutLine(line: string) {
+    public async newStdoutLine(line: string) {
         if (!this.currentBuild) {
             throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
         }
@@ -160,63 +161,155 @@ export class BuildInfo {
 
     private displayProgress(
         current: number,
-        tooltip: string = ''
       ) {
         if (!this.currentBuild) {
             throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
         }
 
+        this.configuration = vscode.workspace.getConfiguration('latex-workshop')
+
         this.currentBuild.pageTimes[this.currentBuild.ruleNumber][current] = +new Date() - this.currentBuild.lastPageTime
         this.currentBuild.lastPageTime = +new Date()
 
         const generateProgressBar = (proportion: number, length: number) => {
-          const wholeCharacters = Math.trunc(length * proportion)
-          const extraEighths = Math.round(
-            (length * proportion - wholeCharacters) * 8
-          )
-          const eighths = {
-            0: '',
-            1: '▏',
-            2: '▎',
-            3: '▍',
-            4: '▌ ',
-            5: '▋',
-            6: '▊',
-            7: '▉',
-            8: '█ '
-          }
-          return (
-            '█'.repeat(wholeCharacters) +
-            eighths[extraEighths] +
-            '░'.repeat(Math.max(0, length - wholeCharacters - eighths[extraEighths].length))
-          )
+            const wholeCharacters = Math.trunc(length * proportion)
+
+            interface IProgressBarCharacterSets {
+                [settingsName: string]: {
+                    wholeCharacter: string
+                    partialCharacters: string[]
+                    blankCharacter: string
+                }
+            }
+
+            const characterSets: IProgressBarCharacterSets = {
+                'Block Width': {
+                    wholeCharacter: '█',
+                    partialCharacters: ['', '▏', '▎', '▍', '▌ ', '▋', '▊', '▉', '█ '],
+                    blankCharacter: '░'
+                },
+                'Block Shading': {
+                    wholeCharacter: '█',
+                    partialCharacters: ['', '░', '▒', '▓'],
+                    blankCharacter: '░'
+                },
+                'Block Quadrants': {
+                    wholeCharacter: '█',
+                    partialCharacters: ['', '▖', '▚', '▙'],
+                    blankCharacter: '░'
+                }
+            }
+
+            const selectedCharacerSet = this.configuration.get('progress.barStyle') as string
+
+            const wholeCharacter = characterSets[selectedCharacerSet].wholeCharacter
+            const partialCharacter = characterSets[selectedCharacerSet].partialCharacters[Math.round((length * proportion - wholeCharacters) * (characterSets[selectedCharacerSet].partialCharacters.length - 1))]
+            const blankCharacter = characterSets[selectedCharacerSet].blankCharacter
+
+            return (
+                wholeCharacter.repeat(wholeCharacters) +
+                partialCharacter +
+                blankCharacter.repeat(Math.max(0, length - wholeCharacters - partialCharacter.length))
+            )
         }
-        const parenthasisedNumbers = {
-            0: '⒪',
-            1: '⑴',
-            2: '⑵',
-            3: '⑶',
-            4: '⑷',
-            5: '⑸',
-            6: '⑹',
-            7: '⑺',
-            8: '⑻',
-            9: '⑼',
-            10: '⑽',
-            11: '⑾',
-            12: '⑿',
-            13: '⒀',
-            14: '⒁',
-            15: '⒂',
-            16: '⒃',
-            17: '⒄',
-            18: '⒅',
-            19: '⒆',
-            20: '⒇',
+
+        const enclosedNumbers = {
+            'Parenthesised': {
+                0: '⒪',
+                1: '⑴',
+                2: '⑵',
+                3: '⑶',
+                4: '⑷',
+                5: '⑸',
+                6: '⑹',
+                7: '⑺',
+                8: '⑻',
+                9: '⑼',
+                10: '⑽',
+                11: '⑾',
+                12: '⑿',
+                13: '⒀',
+                14: '⒁',
+                15: '⒂',
+                16: '⒃',
+                17: '⒄',
+                18: '⒅',
+                19: '⒆',
+                20: '⒇',
+            },
+            'Circled': {
+                0: '⓪',
+                1: '①',
+                2: '②',
+                3: '③',
+                4: '④',
+                5: '⑤',
+                6: '⑥',
+                7: '⑦',
+                8: '⑧',
+                9: '⑨',
+                10: '⑩',
+                11: '⑪',
+                12: '⑫',
+                13: '⑬',
+                14: '⑭',
+                15: '⑮',
+                16: '⑯',
+                17: '⑰',
+                18: '⑱',
+                19: '⑲',
+                20: '⑳',
+            },
+            'Solid Circled': {
+                0: '⓿',
+                1: '❶',
+                2: '❷',
+                3: '❸',
+                4: '❹',
+                5: '❺',
+                6: '❻',
+                7: '❼',
+                8: '❽',
+                9: '❾',
+                10: '❿',
+                11: '⓫',
+                12: '⓬',
+                13: '⓭',
+                14: '⓮',
+                15: '⓯',
+                16: '⓰',
+                17: '⓱',
+                18: '⓲',
+                19: '⓳',
+                20: '⓴',
+            },
+            'Full Stop': {
+                0: '0.',
+                1: '⒈',
+                2: '⒉',
+                3: '⒊',
+                4: '⒋',
+                5: '⒌',
+                6: '⒍',
+                7: '⒎',
+                8: '⒏',
+                9: '⒐',
+                10: '⒑',
+                11: '⒒',
+                12: '⒓',
+                13: '⒔',
+                14: '⒕',
+                15: '⒖',
+                16: '⒗',
+                17: '⒘',
+                18: '⒙',
+                19: '⒚',
+                20: '⒛',
+            }
         }
         const padRight = (str: string, desiredMinLength: number) => {
           if (str.length < desiredMinLength) {
-            str = str + '   '.repeat(desiredMinLength - str.length)
+            str = str + ' '.repeat(desiredMinLength - str.length)
           }
           return str
         }
@@ -224,13 +317,15 @@ export class BuildInfo {
         const currentAsString = current.toString()
         const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString() : ''
         const barAsString = this.currentBuild.pageTotal
-          ? generateProgressBar(current / this.currentBuild.pageTotal, 15)
+          ? generateProgressBar(current / this.currentBuild.pageTotal,
+            this.configuration.get('progress.barLength') as number)
           : ''
 
-        this.status.text = `${parenthasisedNumbers[this.currentBuild.ruleNumber]}  Page ${padRight(
+        const runIcon: string = enclosedNumbers[this.configuration.get('progress.runIconType') as string][this.currentBuild.ruleNumber]
+        this.status.text = `${runIcon}  Page ${padRight(
           currentAsString + endpointAsString,
-          5
+          this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
         )} ${barAsString}`
-        this.status.tooltip = tooltip
+        this.status.tooltip = 'WIP'
       }
 }
