@@ -151,27 +151,35 @@ export class BuildInfo {
             throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
         }
 
-        const newlines = lines.indexOf('\n') !== -1
+        // const newlines = lines.indexOf('\n') !== -1
         for (const line of lines.split('\n')) {
-            this.currentBuild.stdout += line + (newlines ? '\n' : '')
+            this.currentBuild.stdout += '\n' + line
             this.checkStdoutForInfo()
         }
     }
 
     private checkStdoutForInfo() {
-        const pageNumberRegex = /\n\[(\d+)[\s\w\{\}\.\/\-]*\]$/
-        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z]+)'\.\.\.\n$/
-
+        const pageNumberRegex = /\[(\d+)[\s\w\{\}\.\/\-]*\]$/
+        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
+        // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
         if (this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
             const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
-            this.extension.buildInfo.displayProgress(pageNo)
+            console.log('page no: ' + pageNo + ' rn: ' + this.currentBuild.ruleNumber + ' Dtime: ' + (+new Date() - this.currentBuild.lastPageTime))
+            this.displayProgress(pageNo)
         } else if (this.currentBuild.stdout.match(latexmkRuleStartedRegex)) {
             // @ts-ignore
             this.currentBuild.ruleName = this.currentBuild.stdout.match(latexmkRuleStartedRegex)[1]
             this.currentBuild.pageTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.extension.buildInfo.displayProgress(0)
+            this.displayProgress(0)
+            this.currentBuild.lastPageTime = +new Date()
+            vscode.window.showInformationMessage('Preamble Start')
         }
+        // else if (this.currentBuild.stdout.match(auxOutfileReference)) {
+        //     // @ts-ignore
+        //     this.displayProgress(0)
+        //     vscode.window.showInformationMessage('Preamble End?')
+        // }
     }
 
     public showPanel() {
@@ -189,29 +197,30 @@ export class BuildInfo {
             this.panel = undefined
         })
 
+        // #region webview html
         this.panel.webview.html = `
         <!DOCTYPE html>
         <html>
-            <head>
+        <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
             <style>
-                #pageTimes div.column {
+            #pageTimes div.column {
                 display: inline-block;
                 padding: 0;
                 margin: 0;
                 vertical-align: top;
                 margin-right: 1.5rem;
-                }
+            }
 
-                #pageTimes ul {
+            #pageTimes ul {
                 list-style: none;
                 padding-inline-start: 0;
                 -webkit-padding-start: 0;
-                }
+            }
 
-                #pageTimes h3 {
+            #pageTimes h3 {
                 font-size: 1.25rem;
                 background: var(--vscode-editor-foreground);
                 color: var(--vscode-editor-background);
@@ -219,109 +228,109 @@ export class BuildInfo {
                 margin: -0.25em 0 -0.25em 0;
                 width: 11em;
                 border-radius: 0.5em;
-                }
+            }
 
-                #pageTimes ul li {
+            #pageTimes ul li {
                 font-size: 1rem;
                 border-radius: 0.5em;
                 padding: 0;
                 margin: 0 0 0.2em 1em;
                 width: 12.5em;
-                }
+            }
 
-                #pageTimes ul li span.pageNo {
+            #pageTimes ul li span.pageNo {
                 margin: 0 0.5em 0 0;
                 padding: 0;
                 font-weight: 700;
                 /* position: relative;
                 float: left; */
-                }
+            }
 
-                #pageTimes ul li span.pageTime {
+            #pageTimes ul li span.pageTime {
                 position: relative;
                 float: right;
-                }
+            }
 
-                #timeInfo {
+            #timeInfo {
                 padding: 0 0 1rem 0.5rem;
                 width: calc(30rem - 1rem);
-                }
+            }
 
-                #timeInfo #total {
+            #timeInfo #total {
                 font-size: 1.5rem;
                 display: inline-block;
                 width: 6em;
-                }
-                #timeInfo #total::after {
+            }
+            #timeInfo #total::after {
                 content: "s";
-                margin-left: 0.5rem;
+                margin-left: 0.25rem;
                 text-transform: none;
                 letter-spacing: initial;
                 display: inline-block;
-                }
+            }
 
-                #timeInfo #eta {
+            #timeInfo #eta {
                 font-size: 1.5rem;
                 float: right;
-                }
-                #timeInfo #eta::before {
+            }
+            #timeInfo #eta::before {
                 content: "Eta";
                 margin-right: 0.5em;
-                }
+            }
 
-                #compilationSpeed {
+            #compilationSpeed {
                 height: 15rem;
                 width: 30rem;
-                }
+            }
             </style>
-            </head>
-            <body>
+        </head>
+        <body>
             <h1>LaTeX Compilation Live Info</h1>
 
             <div style="display: none">
-                <span id="1rem" style="width: 1rem; padding: 0"></span>
-                <span id="color0" style="color: var(--vscode-editor-foreground)"></span>
-                <span id="color1" style="color: var(--vscode-terminal-ansiBlue)"></span>
-                <span id="color2" style="color: var(--vscode-terminal-ansiCyan)"></span>
-                <span id="color3" style="color: var(--vscode-terminal-ansiGreen)"></span>
-                <span
+            <span id="1rem" style="width: 1rem; padding: 0"></span>
+            <span id="color0" style="color: var(--vscode-editor-foreground)"></span>
+            <span id="color1" style="color: var(--vscode-terminal-ansiBlue)"></span>
+            <span id="color2" style="color: var(--vscode-terminal-ansiCyan)"></span>
+            <span id="color3" style="color: var(--vscode-terminal-ansiGreen)"></span>
+            <span
                 id="color4"
                 style="color: var(--vscode-terminal-ansiMagenta)"
-                ></span>
-                <span id="color5" style="color: var(--vscode-terminal-ansiRed)"></span>
-                <span id="color6" style="color: var(--vscode-terminal-ansiWhite)"></span>
-                <span id="color7" style="color: var(--vscode-terminal-ansiYellow)"></span>
+            ></span>
+            <span id="color5" style="color: var(--vscode-terminal-ansiRed)"></span>
+            <span id="color6" style="color: var(--vscode-terminal-ansiWhite)"></span>
+            <span id="color7" style="color: var(--vscode-terminal-ansiYellow)"></span>
             </div>
 
             <canvas id="compilationSpeed"></canvas>
 
             <div id="timeInfo">
-                <span id="total"></span>
-                <span id="eta"></span>
+            <span id="total">Total</span>
+            <span id="eta"></span>
             </div>
             <div id="pageTimes"></div>
 
             <script>
-                window.addEventListener("message", event => {
+            window.addEventListener("message", event => {
                 const data = event.data;
 
                 if (data.type === "init") {
-                    progressManager.startTime = data.startTime;
-                    progressManager.pageTotal = data.pageTotal;
+                progressManager.startTime = data.startTime;
+                progressManager.pageTotal = data.pageTotal;
 
-                    progressManager.start(10);
+                progressManager.start(10);
                 } else if (data.type === "finished") {
-                    progressManager.stop();
+                progressManager.stop();
                 } else if (data.type === "update") {
-                    progressManager.pageTimes = data.pageTimes;
-                    progressManager.pageTotal = data.pageTotal;
+                progressManager.pageTimes = data.pageTimes;
+                progressManager.pageTotal = data.pageTotal;
 
-                    progressManager.updatePageTimesUl();
-                    progressManager.drawGraph();
+                progressManager.updatePageTimesUl();
+                progressManager.drawGraph();
                 }
-                });
+            });
 
-                const progressManager = {
+            const progressManager = {
                 startTime: null,
                 pageTimes: null,
                 pageTotal: null,
@@ -330,182 +339,185 @@ export class BuildInfo {
                 etaSpan: document.getElementById("eta"),
                 updateTimesInterval: null,
                 colours: [
-                    window.getComputedStyle(document.getElementById("color0")).color,
-                    window.getComputedStyle(document.getElementById("color1")).color,
-                    window.getComputedStyle(document.getElementById("color2")).color,
-                    window.getComputedStyle(document.getElementById("color3")).color,
-                    window.getComputedStyle(document.getElementById("color4")).color,
-                    window.getComputedStyle(document.getElementById("color5")).color,
-                    window.getComputedStyle(document.getElementById("color6")).color,
-                    window.getComputedStyle(document.getElementById("color7")).color
+                window.getComputedStyle(document.getElementById("color0")).color,
+                window.getComputedStyle(document.getElementById("color1")).color,
+                window.getComputedStyle(document.getElementById("color2")).color,
+                window.getComputedStyle(document.getElementById("color3")).color,
+                window.getComputedStyle(document.getElementById("color4")).color,
+                window.getComputedStyle(document.getElementById("color5")).color,
+                window.getComputedStyle(document.getElementById("color6")).color,
+                window.getComputedStyle(document.getElementById("color7")).color
                 ],
                 rem: parseFloat(
-                    window
+                window
                     .getComputedStyle(document.getElementById("1rem"))
                     .width.replace("px", "")
                 ),
                 graph: {
-                    canvas: document.getElementById("compilationSpeed"),
-                    context: document.getElementById("compilationSpeed").getContext("2d"),
-                    resolutionMultiplier: window.devicePixelRatio * 2,
-                    points: {},
-                    maxMouseRadiusForTooltip: 10,
-                    circleRadius: 5,
-                    hoverHandlerAdded: false,
-                    textMargin: 5
+                canvas: document.getElementById("compilationSpeed"),
+                context: document.getElementById("compilationSpeed").getContext("2d"),
+                resolutionMultiplier: window.devicePixelRatio * 2,
+                points: {},
+                maxMouseRadiusForTooltip: 10,
+                circleRadius: 5,
+                hoverHandlerAdded: false,
+                textMargin: 5
                 },
 
                 updatePageTimesUl: function() {
-                    this.pageTimesDiv.innerHTML = "";
+                this.pageTimesDiv.innerHTML = "";
 
-                    for (const runName in this.pageTimes) {
+                for (const runName in this.pageTimes) {
                     const column = document.createElement("div");
                     column.classList.add("column");
 
                     const runInfo = document.createElement("h3");
                     runInfo.innerHTML = runName.replace(
-                        /(\\d+)\-(\\w+)/,
-                        "$2 \\u2014 Run $1"
+                    /(\\d+)\\-(\\w+)/,
+                    "$2 \\u2014 Rule $1"
                     );
                     column.appendChild(runInfo);
                     const ul = document.createElement("ul");
                     for (const pageNo in this.pageTimes[runName]) {
-                        const li = document.createElement("li");
-                        li.innerHTML =
+                    const li = document.createElement("li");
+                    li.innerHTML =
                         '<span class="pageNo">' +
                         (pageNo != 0 ? "Page " + pageNo : "Preamble") +
                         '</span> <span class="pageTime">' +
                         this.pageTimes[runName][pageNo] +
                         " <i>ms</i></span>";
-                        ul.appendChild(li);
+                    ul.appendChild(li);
                     }
                     column.appendChild(ul);
                     this.pageTimesDiv.appendChild(column);
-                    }
+                }
                 },
 
                 start: function(updateGap = 10) {
-                    this.stop();
-                    this.updateTimesInterval = setInterval(() => {
+                this.stop();
+                this.pageTimes = {}
+                this.pageTimesDiv.innerHTML = "";
+                this.drawGraph()
+                this.updateTimesInterval = setInterval(() => {
                     this.updateTimingInfo();
-                    }, updateGap);
-                    if (!this.graph.hoverHandlerAdded) {
+                }, updateGap);
+                if (!this.graph.hoverHandlerAdded) {
                     this.graph.hoverHandlerAdded = true;
                     this.graph.canvas.addEventListener(
-                        "mousemove",
-                        this.graphHoverHandler.bind(this)
+                    "mousemove",
+                    this.graphHoverHandler.bind(this)
                     );
                     this.graph.canvas.addEventListener(
-                        "mouseleave",
-                        this.graphHoverHandler.bind(this)
+                    "mouseleave",
+                    this.graphHoverHandler.bind(this)
                     );
-                    }
+                }
                 },
                 stop: function() {
-                    clearInterval(this.updateTimesInterval);
+                clearInterval(this.updateTimesInterval);
                 },
 
                 updateTimingInfo: function() {
-                    this.totalSpan.innerHTML = (
+                this.totalSpan.innerHTML = (
                     (+new Date() - this.startTime) /
                     1000
-                    ).toFixed(2);
-                    this.etaSpan.innerHTML = "\\u2014";
+                ).toFixed(2);
+                this.etaSpan.innerHTML = "\\u2014";
                 },
 
                 drawGraph: function() {
-                    const width =
+                const width =
                     Math.max(
-                        ...Object.values(this.pageTimes).map(
+                    ...Object.values(this.pageTimes).map(
                         pt => Object.values(pt).length
-                        ),
-                        this.pageTotal ? this.pageTotal : 0
+                    ),
+                    this.pageTotal ? this.pageTotal : 0
                     ) - 1;
-                    const height = Math.max(
+                const height = Math.max(
                     ...Array.prototype.concat(
-                        ...Object.values(this.pageTimes).map(pt => Object.values(pt))
+                    ...Object.values(this.pageTimes).map(pt => Object.values(pt))
                     )
-                    );
-                    this.graph.canvas.width =
+                );
+                this.graph.canvas.width =
                     this.graph.canvas.clientWidth * this.graph.resolutionMultiplier;
-                    this.graph.canvas.height =
+                this.graph.canvas.height =
                     this.graph.canvas.clientHeight * this.graph.resolutionMultiplier;
-                    const ctx = this.graph.canvas.getContext("2d");
-                    ctx.width = this.graph.canvas.width;
-                    ctx.height = this.graph.canvas.height;
+                const ctx = this.graph.canvas.getContext("2d");
+                ctx.width = this.graph.canvas.width;
+                ctx.height = this.graph.canvas.height;
 
-                    ctx.clearRect(0, 0, ctx.width, ctx.height);
+                ctx.clearRect(0, 0, ctx.width, ctx.height);
 
-                    this.graph.margins = {
+                this.graph.margins = {
                     bottom:
-                        (this.rem * 2 + this.graph.textMargin) *
-                        this.graph.resolutionMultiplier,
+                    (this.rem * 2 + this.graph.textMargin) *
+                    this.graph.resolutionMultiplier,
                     top: this.graph.circleRadius * this.graph.resolutionMultiplier,
                     left:
-                        (this.rem * 2.25 + this.graph.textMargin) *
-                        this.graph.resolutionMultiplier,
+                    (this.rem * 2.25 + this.graph.textMargin) *
+                    this.graph.resolutionMultiplier,
                     right: this.graph.circleRadius * this.graph.resolutionMultiplier
-                    };
+                };
 
-                    // draw axes
-                    ctx.lineWidth = 0.5 * this.graph.resolutionMultiplier;
-                    ctx.strokeStyle = this.colours[0];
-                    ctx.beginPath();
-                    ctx.moveTo(
+                // draw axes
+                ctx.lineWidth = 0.5 * this.graph.resolutionMultiplier;
+                ctx.strokeStyle = this.colours[0];
+                ctx.beginPath();
+                ctx.moveTo(
                     this.graph.margins.left - ctx.lineWidth,
                     this.graph.margins.top
-                    );
-                    ctx.lineTo(
+                );
+                ctx.lineTo(
                     this.graph.margins.left - ctx.lineWidth,
                     ctx.height - this.graph.margins.bottom + ctx.lineWidth
-                    );
-                    ctx.lineTo(
+                );
+                ctx.lineTo(
                     ctx.width - this.graph.margins.right,
                     ctx.height - this.graph.margins.bottom + ctx.lineWidth
-                    );
-                    ctx.stroke();
-                    ctx.closePath();
-                    // axis labels
+                );
+                ctx.stroke();
+                ctx.closePath();
+                // axis labels
 
-                    ctx.fillStyle = this.colours[0];
-                    ctx.font = 0.8 * this.graph.resolutionMultiplier + "rem serif";
-                    ctx.textAlign = "center";
-                    ctx.textBaseline = "top";
-                    ctx.fillText(
+                ctx.fillStyle = this.colours[0];
+                ctx.font = 0.8 * this.graph.resolutionMultiplier + "rem serif";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "top";
+                ctx.fillText(
                     "Page Number",
                     (ctx.width + this.graph.margins.left - this.graph.margins.right) /
-                        2,
+                    2,
                     ctx.height -
-                        this.graph.margins.bottom +
-                        1.2 * this.graph.resolutionMultiplier * this.rem
-                    );
+                    this.graph.margins.bottom +
+                    1.2 * this.graph.resolutionMultiplier * this.rem
+                );
 
-                    this.graph.points = {};
+                this.graph.points = {};
 
-                    // draw data
-                    ctx.lineWidth = 1.5 * this.graph.resolutionMultiplier;
-                    let colourIndex = 1;
-                    for (const runName in this.pageTimes) {
+                // draw data
+                ctx.lineWidth = 1.5 * this.graph.resolutionMultiplier;
+                let colourIndex = 1;
+                for (const runName in this.pageTimes) {
                     const points = [];
                     for (const pageNo in this.pageTimes[runName]) {
-                        points.push({
+                    points.push({
                         x:
-                            this.graph.margins.left +
-                            ctx.width *
+                        this.graph.margins.left +
+                        ctx.width *
                             (1 -
-                                (this.graph.margins.left + this.graph.margins.right) /
+                            (this.graph.margins.left + this.graph.margins.right) /
                                 ctx.width) *
                             (pageNo / width),
                         y:
-                            this.graph.margins.top +
-                            ctx.height *
+                        this.graph.margins.top +
+                        ctx.height *
                             (1 -
-                                (this.graph.margins.bottom + this.graph.margins.top) /
+                            (this.graph.margins.bottom + this.graph.margins.top) /
                                 ctx.height) *
                             (1 - this.pageTimes[runName][pageNo] / height),
                         pageNo: pageNo,
                         time: this.pageTimes[runName][pageNo]
-                        });
+                    });
                     }
                     this.graph.points[runName] = points;
 
@@ -517,10 +529,10 @@ export class BuildInfo {
                     ctx.beginPath();
 
                     if (points.length > 0) {
-                        ctx.moveTo(points[0].x, points[0].y);
+                    ctx.moveTo(points[0].x, points[0].y);
                     }
                     for (const point of points) {
-                        ctx.lineTo(point.x, point.y);
+                    ctx.lineTo(point.x, point.y);
                     }
 
                     ctx.globalAlpha = 0.8;
@@ -531,61 +543,61 @@ export class BuildInfo {
 
                     ctx.beginPath();
                     ctx.moveTo(
-                        this.graph.margins.left,
-                        ctx.height - this.graph.margins.bottom
+                    this.graph.margins.left,
+                    ctx.height - this.graph.margins.bottom
                     );
                     for (const point of points) {
-                        ctx.lineTo(point.x, point.y);
+                    ctx.lineTo(point.x, point.y);
                     }
                     if (points.length > 0) {
-                        ctx.lineTo(
+                    ctx.lineTo(
                         points[points.length - 1].x,
                         ctx.height - this.graph.margins.bottom
-                        );
+                    );
                     }
                     ctx.lineTo(
-                        this.graph.margins.left,
-                        ctx.height - this.graph.margins.bottom
+                    this.graph.margins.left,
+                    ctx.height - this.graph.margins.bottom
                     );
 
                     ctx.globalAlpha = 0.1;
                     ctx.fill();
-                    }
+                }
                 },
 
                 graphHoverHandler: function(e) {
-                    const mouseX =
+                const mouseX =
                     e.clientX + window.scrollX - this.graph.canvas.offsetLeft;
-                    const mouseY =
+                const mouseY =
                     e.clientY + window.scrollY - this.graph.canvas.offsetTop;
 
-                    let closestPoint = { r2: +Infinity };
-                    let runCount = 0;
-                    for (const runName in this.graph.points) {
+                let closestPoint = { r2: +Infinity };
+                let runCount = 0;
+                for (const runName in this.graph.points) {
                     for (const point of this.graph.points[runName]) {
-                        const r2 =
+                    const r2 =
                         (point.x / this.graph.resolutionMultiplier - mouseX) ** 2 +
                         (point.y / this.graph.resolutionMultiplier - mouseY) ** 2;
-                        if (r2 < closestPoint.r2) {
+                    if (r2 < closestPoint.r2) {
                         closestPoint = {
-                            r2,
-                            x: point.x,
-                            y: point.y,
-                            pageNo: point.pageNo,
-                            time: point.time,
-                            runName,
-                            runCount
+                        r2,
+                        x: point.x,
+                        y: point.y,
+                        pageNo: point.pageNo,
+                        time: point.time,
+                        runName,
+                        runCount
                         };
-                        }
+                    }
                     }
                     runCount++;
-                    }
+                }
 
-                    if (
+                if (
                     closestPoint.r2 <=
                     this.graph.maxMouseRadiusForTooltip ** 2 *
-                        this.graph.resolutionMultiplier
-                    ) {
+                    this.graph.resolutionMultiplier
+                ) {
                     this.drawGraph();
                     const ctx = this.graph.canvas.getContext("2d");
                     ctx.strokeStyle = this.colours[closestPoint.runCount + 1];
@@ -593,11 +605,11 @@ export class BuildInfo {
                     ctx.globalAlpha = 0.5;
                     ctx.beginPath();
                     ctx.arc(
-                        closestPoint.x,
-                        closestPoint.y,
-                        this.graph.circleRadius * this.graph.resolutionMultiplier,
-                        0,
-                        2 * Math.PI
+                    closestPoint.x,
+                    closestPoint.y,
+                    this.graph.circleRadius * this.graph.resolutionMultiplier,
+                    0,
+                    2 * Math.PI
                     );
                     ctx.stroke();
                     ctx.globalAlpha = 0.1;
@@ -609,63 +621,68 @@ export class BuildInfo {
 
                     ctx.globalAlpha = 1;
                     ctx.fillText(
-                        closestPoint.pageNo,
-                        closestPoint.x,
-                        ctx.height -
+                    closestPoint.pageNo,
+                    closestPoint.x,
+                    ctx.height -
                         this.graph.margins.bottom +
                         this.graph.textMargin * this.graph.resolutionMultiplier
                     );
 
                     ctx.textAlign = "right";
                     ctx.fillText(
-                        closestPoint.time,
-                        this.graph.margins.left -
+                    closestPoint.time,
+                    this.graph.margins.left -
                         this.graph.textMargin * this.graph.resolutionMultiplier,
-                        closestPoint.y
+                    closestPoint.y
                     );
                     ctx.font = 0.8 * this.graph.resolutionMultiplier + "rem serif";
                     ctx.fillText(
-                        "ms",
-                        this.graph.margins.left -
+                    "ms",
+                    this.graph.margins.left -
                         this.graph.textMargin * this.graph.resolutionMultiplier,
-                        closestPoint.y + this.rem * this.graph.resolutionMultiplier * 0.8
+                    closestPoint.y + this.rem * this.graph.resolutionMultiplier * 0.8
                     );
 
                     ctx.font = 1.2 * this.graph.resolutionMultiplier + "rem serif";
                     ctx.textAlign = "center";
                     ctx.textBaseline = "top";
                     ctx.fillText(
-                        closestPoint.runName,
-                        (ctx.width + this.graph.margins.left - this.graph.margins.right) /
+                    closestPoint.runName.replace(
+                    /(\\d+)\\-(\\w+)/,
+                    "$2 (rule $1)"
+                    ),
+                    (ctx.width + this.graph.margins.left - this.graph.margins.right) /
                         2,
-                        this.graph.margins.top
+                    this.graph.margins.top
                     );
-                    } else {
+                } else {
                     this.drawGraph();
-                    }
                 }
-                };
+                }
+            };
 
-                dummyPageTimes = {
+            dummyPageTimes = {
                 "1-thing": {
-                    0: 340,
-                    1: 64,
-                    2: 123,
-                    3: 41
+                0: 340,
+                1: 64,
+                2: 123,
+                3: 41
                 },
                 "2-thing": {
-                    0: 273,
-                    1: 46,
-                    2: 82,
-                    3: 33
+                0: 273,
+                1: 46,
+                2: 82,
+                3: 33
                 }
-                };
+            };
             </script>
-            </body>
+        </body>
         </html>
         `
+        // #endregion
 
         if (this.currentBuild) {
+            this.panel.reveal(vscode.ViewColumn.Beside)
             this.panel.webview.postMessage({
                 type: 'init',
                 startTime: this.currentBuild.buildStart,
@@ -682,6 +699,10 @@ export class BuildInfo {
         }
 
         this.configuration = vscode.workspace.getConfiguration('latex-workshop')
+
+        this.currentBuild.pageTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][current] = +new Date() - this.currentBuild.lastPageTime
+        this.currentBuild.lastPageTime = +new Date()
+
         if (this.panel) {
             this.panel.webview.postMessage({
                 type: 'update',
@@ -689,9 +710,6 @@ export class BuildInfo {
                 pageTotal: this.currentBuild.pageTotal
             })
         }
-
-        this.currentBuild.pageTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][current] = +new Date() - this.currentBuild.lastPageTime
-        this.currentBuild.lastPageTime = +new Date()
 
         const generateProgressBar = (proportion: number, length: number) => {
             const wholeCharacters = Math.trunc(length * proportion)
