@@ -173,7 +173,6 @@ export class BuildInfo {
             this.currentBuild.pageTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
             this.displayProgress(0)
             this.currentBuild.lastPageTime = +new Date()
-            vscode.window.showInformationMessage('Preamble Start')
         }
         // else if (this.currentBuild.stdout.match(auxOutfileReference)) {
         //     // @ts-ignore
@@ -382,7 +381,7 @@ export class BuildInfo {
                     const li = document.createElement("li");
                     li.innerHTML =
                         '<span class="pageNo">' +
-                        (pageNo != 0 ? "Page " + pageNo : "Preamble") +
+                        (pageNo != 0 ? "Page " + pageNo : "Rule Startup") +
                         '</span> <span class="pageTime">' +
                         this.pageTimes[runName][pageNo] +
                         " <i>ms</i></span>";
