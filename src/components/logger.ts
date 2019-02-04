@@ -225,7 +225,7 @@ export class BuildInfo {
                 color: var(--vscode-editor-background);
                 padding: 0.1em 0.5em;
                 margin: -0.25em 0 -0.25em 0;
-                width: 11em;
+                width: 12em;
                 border-radius: 0.5em;
             }
 
@@ -234,7 +234,7 @@ export class BuildInfo {
                 border-radius: 0.5em;
                 padding: 0;
                 margin: 0 0 0.2em 1em;
-                width: 12.5em;
+                width: 13.5em;
             }
 
             #pageTimes ul li span.pageNo {
@@ -381,7 +381,7 @@ export class BuildInfo {
                     const li = document.createElement("li");
                     li.innerHTML =
                         '<span class="pageNo">' +
-                        (pageNo != 0 ? "Page " + pageNo : "Rule Startup") +
+                        (pageNo != 0 ? "Page " + (pageNo != 1 ? pageNo : pageNo + ' + Preamble') : "Rule Startup") +
                         '</span> <span class="pageTime">' +
                         this.pageTimes[runName][pageNo] +
                         " <i>ms</i></span>";
