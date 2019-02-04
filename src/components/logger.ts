@@ -705,6 +705,11 @@ export class BuildInfo {
             }
 
             const characterSets: IProgressBarCharacterSets = {
+                'none': {
+                    wholeCharacter: '',
+                    partialCharacters: [''],
+                    blankCharacter: ''
+                },
                 'Block Width': {
                     wholeCharacter: '█',
                     partialCharacters: ['', '▏', '▎', '▍', '▌ ', '▋', '▊', '▉', '█ '],
