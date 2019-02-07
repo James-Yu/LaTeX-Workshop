@@ -41,7 +41,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     public root: string = ''
 
     // our data source is a set multi-rooted set of trees
-    private ds: Section[] = []
+    public ds: Section[] = []
 
     constructor(private extension: Extension) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -160,7 +160,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 const depth = this.sectionDepths[heading]
                 const title = getLongestBalancedString(result[6])
 
-                const newSection = new Section(title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lineNumber, filePath)
+                const newSection = new Section(title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
                 if (prevSection) {
                     prevSection.toLine = lineNumber - 1
                 }
@@ -177,8 +177,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     rootStack.pop()
                 }
                 if (noRoot()) {
+                    newSection.parent = undefined
                     children.push(newSection)
                 } else {
+                    newSection.parent = currentRoot()
                     currentRoot().children.push(newSection)
                 }
                 rootStack.push(newSection)
@@ -209,7 +211,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
                     continue
                 }
-
+                if (prevSection) {
+                    prevSection.subfiles.push(inputFilePath)
+                }
                 this.buildModel(inputFilePath, rootStack, children)
             }
         }
@@ -245,6 +249,13 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return Promise.resolve(element.children)
     }
 
+    getParent(element?: Section) : Thenable<Section | undefined> {
+        if (this.extension.manager.rootFile === undefined || !element) {
+            return Promise.resolve(undefined)
+        }
+        return Promise.resolve(element.parent)
+    }
+
     getCaption(lines: string[], env: {name: string, start: number, end: number}) {
         const content = lines.slice(env.start, env.end).join('\n')
         const result = /(?:\\caption(?:\[[^\[\]]*\])?){(.*?)}/gm.exec(content)
@@ -258,6 +269,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 export class Section extends vscode.TreeItem {
 
     public children: Section[] = []
+    public parent: Section | undefined = undefined // The parent of a toplevel section must be undefined
+    public subfiles: string[] = []
 
     constructor(
         public readonly label: string,
@@ -269,5 +282,52 @@ export class Section extends vscode.TreeItem {
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState)
+    }
+}
+
+export class StructureTreeView {
+    private _viewer: vscode.TreeView<Section | undefined>
+    private _treeDataProvider: SectionNodeProvider
+    private _followCursor: boolean = true
+
+
+    constructor(private extension: Extension) {
+        this._treeDataProvider = this.extension.structureProvider
+        this._viewer = vscode.window.createTreeView('latex-structure', { treeDataProvider: this._treeDataProvider })
+        vscode.commands.registerCommand('latex-structure.toggle-follow-cursor', () => {
+           this._followCursor = ! this._followCursor
+        })
+    }
+
+    private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number) {
+        for (const node of sections) {
+            if (node.fileName !== fileName) {
+                continue
+            }
+            if (node.lineNumber <= lineNumber && node.toLine >= lineNumber) {
+                return node
+            }
+            if (node.subfiles.length > 0 && node.subfiles.indexOf(fileName) > -1) {
+                return node
+            }
+            const res = this.traverseSectionTree(node.children, fileName, lineNumber)
+            if (res) {
+                return res
+            }
+        }
+        return undefined
+
+    }
+
+    showCursorIteme(e: vscode.TextEditorSelectionChangeEvent) {
+        if (! this._followCursor) {
+            return
+        }
+        const line = e.selections[0].active.line
+        const f = e.textEditor.document.fileName
+        const currentNode = this.traverseSectionTree(this._treeDataProvider.ds, f, line)
+        if (currentNode) {
+            this._viewer.reveal(currentNode, {select: true})
+        }
     }
 }
