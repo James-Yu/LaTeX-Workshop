@@ -292,15 +292,12 @@ export class BuildInfo {
                 <span id="1rem" style="width: 1rem; padding: 0"></span>
                 <span id="color0" style="color: var(--vscode-editor-foreground)"></span>
                 <span id="color1" style="color: var(--vscode-terminal-ansiBlue)"></span>
-                <span id="color2" style="color: var(--vscode-terminal-ansiCyan)"></span>
-                <span id="color3" style="color: var(--vscode-terminal-ansiGreen)"></span>
-                <span
-                id="color4"
-                style="color: var(--vscode-terminal-ansiMagenta)"
-                ></span>
-                <span id="color5" style="color: var(--vscode-terminal-ansiRed)"></span>
-                <span id="color6" style="color: var(--vscode-terminal-ansiWhite)"></span>
-                <span id="color7" style="color: var(--vscode-terminal-ansiYellow)"></span>
+                <span id="color2" style="color: var(--vscode-terminal-ansiGreen)"></span>
+                <span id="color3" style="color: var(--vscode-terminal-ansiRed)"></span>
+                <span id="color4" style="color: var(--vscode-terminal-ansiYellow)"></span>
+                <span id="color5" style="color: var(--vscode-terminal-ansiCyan)"></span>
+                <span id="color6" style="color: var(--vscode-terminal-ansiMagenta)"></span>
+                <span id="color7" style="color: var(--vscode-terminal-ansiWhite)"></span>
             </div>
 
             <canvas id="compilationSpeed"></canvas>
