@@ -440,7 +440,7 @@ export class BuildInfo {
                             pt => Object.values(pt).length
                         ),
                         this.pageTotal ? this.pageTotal : 0
-                        ) - 1;
+                        );
                     const height = Math.max(
                         ...Array.prototype.concat(
                         ...Object.values(this.pageTimes).map(pt => Object.values(pt))
