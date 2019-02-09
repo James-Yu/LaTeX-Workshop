@@ -279,9 +279,7 @@ export class BuildInfo {
 
                 #compilationSpeed {
                 height: 15rem;
-                width: 30rem;
-                max-width: calc(95vw - 3rem);
-                min-width: 50vw;
+                width: calc(95vw - 3rem);
                 }
             </style>
             </head>
