@@ -159,14 +159,16 @@ export class BuildInfo {
     }
 
     private checkStdoutForInfo() {
-        const pageNumberRegex = /\[(\d+)[\s\n\w\{\}\<\>\(\)\.\/\-]*\]$/
+        const pageNumberRegex = /\[(\d+)[^\[\]]*\]$/
         const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
         if (this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
             const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
             // console.log('page no: ' + pageNo + ' rn: ' + this.currentBuild.ruleNumber + ' Dtime: ' + (+new Date() - this.currentBuild.lastPageTime))
-            this.displayProgress(pageNo)
+            if (!isNaN(pageNo)) {
+                this.displayProgress(pageNo)
+            }
         } else if (this.currentBuild.stdout.match(latexmkRuleStartedRegex)) {
             // @ts-ignore
             this.currentBuild.ruleName = this.currentBuild.stdout.match(latexmkRuleStartedRegex)[1]
