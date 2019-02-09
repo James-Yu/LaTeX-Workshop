@@ -240,7 +240,7 @@ export class BuildInfo {
                 #pageTimes ul li span.pageNo {
                 margin: 0 0.5em 0 0;
                 padding: 0;
-                font-weight: 700;
+                /* font-weight: 600; */
                 /* position: relative;
                 float: left; */
                 }
@@ -280,6 +280,8 @@ export class BuildInfo {
                 #compilationSpeed {
                 height: 15rem;
                 width: 30rem;
+                max-width: calc(95vw - 3rem);
+                min-width: 50vw;
                 }
             </style>
             </head>
@@ -316,12 +318,11 @@ export class BuildInfo {
                 if (data.type === "init") {
                     progressManager.startTime = data.startTime;
                     progressManager.pageTotal = data.pageTotal;
-
                     progressManager.start(10);
                 } else if (data.type === "finished") {
                     progressManager.stop();
                 } else if (data.type === "update") {
-                    progressManager.pageTimes = data.pageTimes;
+                    progressManager.pageTimes = data.pageTimes ? data.pageTimes : {};
                     progressManager.pageTotal = data.pageTotal;
 
                     progressManager.updatePageTimesUl();
@@ -331,7 +332,7 @@ export class BuildInfo {
 
                 const progressManager = {
                 startTime: null,
-                pageTimes: null,
+                pageTimes: {},
                 pageTotal: null,
                 pageTimesDiv: document.getElementById("pageTimes"),
                 totalSpan: document.getElementById("total"),
@@ -359,8 +360,9 @@ export class BuildInfo {
                     points: {},
                     maxMouseRadiusForTooltip: 10,
                     circleRadius: 5,
-                    hoverHandlerAdded: false,
-                    textMargin: 5
+                    doneSetup: false,
+                    textMargin: 5,
+                    lastResize: +new Date()
                 },
 
                 updatePageTimesUl: function() {
@@ -372,8 +374,8 @@ export class BuildInfo {
 
                     const runInfo = document.createElement("h3");
                     runInfo.innerHTML = runName.replace(
-                        /(\d+)\-(\w+)/,
-                        "$2 \u2014 Rule $1"
+                        /(\\d+)\\-(\\w+)/,
+                        "$2 \\u2014 Rule $1"
                     );
                     column.appendChild(runInfo);
                     const ul = document.createElement("ul");
@@ -396,14 +398,14 @@ export class BuildInfo {
 
                 start: function(updateGap = 10) {
                     this.stop();
-                    this.pageTimes = {};
                     this.pageTimesDiv.innerHTML = "";
                     this.drawGraph();
                     this.updateTimesInterval = setInterval(() => {
                     this.updateTimingInfo();
                     }, updateGap);
-                    if (!this.graph.hoverHandlerAdded) {
-                    this.graph.hoverHandlerAdded = true;
+
+                    if (!this.graph.doneSetup) {
+                    this.graph.doneSetup = true;
                     this.graph.canvas.addEventListener(
                         "mousemove",
                         this.graphHoverHandler.bind(this)
@@ -412,6 +414,14 @@ export class BuildInfo {
                         "mouseleave",
                         this.graphHoverHandler.bind(this)
                     );
+                    window.onresize = () => {
+                        this.lastResize = +new Date();
+                        setTimeout(() => {
+                        if (+new Date() - this.lastResize > 200) {
+                            this.drawGraph();
+                        }
+                        }, 210);
+                    };
                     }
                 },
                 stop: function() {
@@ -423,7 +433,7 @@ export class BuildInfo {
                     (+new Date() - this.startTime) /
                     1000
                     ).toFixed(2);
-                    this.etaSpan.innerHTML = "\u2014";
+                    this.etaSpan.innerHTML = "\\u2014";
                 },
 
                 drawGraph: function() {
@@ -538,7 +548,7 @@ export class BuildInfo {
                         ctx.lineTo(point.x, point.y);
                     }
 
-                    ctx.globalAlpha = 0.8;
+                    ctx.globalAlpha = 0.6;
                     ctx.stroke();
                     ctx.closePath();
 
@@ -651,7 +661,7 @@ export class BuildInfo {
                     ctx.textAlign = "center";
                     ctx.textBaseline = "top";
                     ctx.fillText(
-                        closestPoint.runName.replace(/(\d+)\-(\w+)/, "$2 (rule $1)"),
+                        closestPoint.runName.replace(/(\\d+)\\-(\\w+)/, "$2 (rule $1)"),
                         (ctx.width + this.graph.margins.left - this.graph.margins.right) /
                         2,
                         this.graph.margins.top
