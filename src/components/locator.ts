@@ -299,12 +299,7 @@ export class Locator {
             let col = record.column < 0 ? 0 : record.column
             // columns are typically not supplied by SyncTex, this could change in the future for some engines though
             if (col === 0) {
-                const line = doc.lineAt(row)
-                if (data.textBeforeSelection !== '' && line.text.indexOf(data.textBeforeSelection) > -1) {
-                    col = line.text.indexOf(data.textBeforeSelection) + data.textBeforeSelection.length
-                } else if (data.textAfterSelection !== '' && line.text.indexOf(data.textAfterSelection) > -1) {
-                    col = line.text.indexOf(data.textAfterSelection)
-                }
+                col = this.getColumnBySurroundingText(doc.lineAt(row).text, data.textBeforeSelection, data.textAfterSelection)
             }
             const pos = new vscode.Position(row, col)
 
@@ -314,6 +309,36 @@ export class Locator {
                 this.animateToNotify(editor, pos)
             })
         })
+    }
+
+    private getColumnBySurroundingText(line: string, textBeforeSelection: string, textAfterSelection: string) {
+        const columns: number[] = []
+
+        // Get all indexes for the before and after text
+        if (textBeforeSelection !== '') {
+            columns.push(...this.indexes(line, textBeforeSelection).map(index => index + textBeforeSelection.length))
+        }
+        if (textAfterSelection !== '') {
+            columns.push(...this.indexes(line, textAfterSelection))
+        }
+
+        // Sort column indexes by number of occurrences
+        columns.sort((a, b) =>
+            columns.filter(v => v === a).length
+            - columns.filter(v => v === b).length
+        )
+
+        return columns.length === 0 ? 0 : columns[columns.length - 1]
+    }
+
+    private indexes(source: string, find: string) {
+        const result: number[] = []
+        for (let i = 0; i < source.length; ++i) {
+            if (source.substring(i, i + find.length) === find) {
+                result.push(i)
+            }
+        }
+        return result
     }
 
     private animateToNotify(editor: vscode.TextEditor, position: vscode.Position) {
