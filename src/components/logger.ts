@@ -159,7 +159,7 @@ export class BuildInfo {
     }
 
     private checkStdoutForInfo() {
-        const pageNumberRegex = /\[(\d+)[\s\w\{\}\.\/\-]*\]$/
+        const pageNumberRegex = /\[(\d+)[\s\n\w\{\}\.\/\-]*\]$/
         const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
         if (this.currentBuild.stdout.match(pageNumberRegex)) {
