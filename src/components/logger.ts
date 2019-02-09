@@ -165,7 +165,7 @@ export class BuildInfo {
         if (this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
             const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
-            console.log('page no: ' + pageNo + ' rn: ' + this.currentBuild.ruleNumber + ' Dtime: ' + (+new Date() - this.currentBuild.lastPageTime))
+            // console.log('page no: ' + pageNo + ' rn: ' + this.currentBuild.ruleNumber + ' Dtime: ' + (+new Date() - this.currentBuild.lastPageTime))
             this.displayProgress(pageNo)
         } else if (this.currentBuild.stdout.match(latexmkRuleStartedRegex)) {
             // @ts-ignore
@@ -435,36 +435,53 @@ export class BuildInfo {
 
                 drawGraph: function() {
                     const width =
-                    Math.max(
+                        Math.max(
                         ...Object.values(this.pageTimes).map(
-                        pt => Object.values(pt).length
+                            pt => Object.values(pt).length
                         ),
                         this.pageTotal ? this.pageTotal : 0
-                    ) - 1;
+                        ) - 1;
                     const height = Math.max(
-                    ...Array.prototype.concat(
+                        ...Array.prototype.concat(
                         ...Object.values(this.pageTimes).map(pt => Object.values(pt))
-                    )
+                        )
                     );
                     this.graph.canvas.width =
-                    this.graph.canvas.clientWidth * this.graph.resolutionMultiplier;
+                        this.graph.canvas.clientWidth * this.graph.resolutionMultiplier;
                     this.graph.canvas.height =
-                    this.graph.canvas.clientHeight * this.graph.resolutionMultiplier;
+                        this.graph.canvas.clientHeight * this.graph.resolutionMultiplier;
                     const ctx = this.graph.canvas.getContext("2d");
                     ctx.width = this.graph.canvas.width;
                     ctx.height = this.graph.canvas.height;
 
+                    const xCoordFromVal = (xVal) => (
+                        this.graph.margins.left +
+                        ctx.width *
+                            (1 -
+                            (this.graph.margins.left + this.graph.margins.right) /
+                                ctx.width) *
+                            (xVal / width)
+                    )
+                    const yCoordFromVal = (yVal) => (
+                        this.graph.margins.top +
+                        ctx.height *
+                            (1 -
+                            (this.graph.margins.bottom + this.graph.margins.top) /
+                                ctx.height) *
+                            (1 - yVal / height)
+                    )
+
                     ctx.clearRect(0, 0, ctx.width, ctx.height);
 
                     this.graph.margins = {
-                    bottom:
+                        bottom:
                         (this.rem * 2 + this.graph.textMargin) *
                         this.graph.resolutionMultiplier,
-                    top: this.graph.circleRadius * this.graph.resolutionMultiplier + 2,
-                    left:
+                        top: this.graph.circleRadius * this.graph.resolutionMultiplier + 2,
+                        left:
                         (this.rem * 2.25 + this.graph.textMargin) *
                         this.graph.resolutionMultiplier,
-                    right:
+                        right:
                         this.graph.circleRadius * this.graph.resolutionMultiplier +
                         0.5 * this.rem * this.graph.resolutionMultiplier
                     };
@@ -473,22 +490,38 @@ export class BuildInfo {
                     ctx.lineWidth = 0.5 * this.graph.resolutionMultiplier;
                     ctx.strokeStyle = this.colours[0];
                     ctx.beginPath();
-                    ctx.moveTo(
-                    this.graph.margins.left - ctx.lineWidth,
-                    this.graph.margins.top
+                    ctx.moveTo( // top left
+                        this.graph.margins.left - ctx.lineWidth,
+                        this.graph.margins.top
                     );
-                    ctx.lineTo(
-                    this.graph.margins.left - ctx.lineWidth,
-                    ctx.height - this.graph.margins.bottom + ctx.lineWidth
+                    ctx.lineTo( // bottom left
+                        this.graph.margins.left - ctx.lineWidth,
+                        ctx.height - this.graph.margins.bottom + ctx.lineWidth
                     );
-                    ctx.lineTo(
-                    ctx.width - this.graph.margins.right,
-                    ctx.height - this.graph.margins.bottom + ctx.lineWidth
+                    ctx.lineTo( // bottom right
+                        ctx.width - this.graph.margins.right,
+                        ctx.height - this.graph.margins.bottom + ctx.lineWidth
                     );
+
+                    // axis ticks (x-axis)
+                    const xTicksStep = 10 ** Math.trunc(Math.log10(width * 5) - 1)
+                    for (let x = 1; x < width; x++) {
+                        if (x % xTicksStep === 0) {
+                        ctx.moveTo(
+                            xCoordFromVal(x),
+                            ctx.height - this.graph.margins.bottom + ctx.lineWidth
+                        )
+                        ctx.lineTo(
+                            xCoordFromVal(x),
+                            ctx.height - this.graph.margins.bottom + ctx.lineWidth + 0.3 * this.rem * this.graph.resolutionMultiplier,
+                        )
+                        }
+                    }
+
                     ctx.stroke();
                     ctx.closePath();
-                    // axis labels
 
+                    // axis labels
                     ctx.fillStyle = this.colours[0];
                     ctx.font = 0.8 * this.graph.resolutionMultiplier + "rem serif";
                     ctx.textAlign = "center";
@@ -511,20 +544,8 @@ export class BuildInfo {
                     const points = [];
                     for (const pageNo in this.pageTimes[runName]) {
                         points.push({
-                        x:
-                            this.graph.margins.left +
-                            ctx.width *
-                            (1 -
-                                (this.graph.margins.left + this.graph.margins.right) /
-                                ctx.width) *
-                            (pageNo / width),
-                        y:
-                            this.graph.margins.top +
-                            ctx.height *
-                            (1 -
-                                (this.graph.margins.bottom + this.graph.margins.top) /
-                                ctx.height) *
-                            (1 - this.pageTimes[runName][pageNo] / height),
+                        x: xCoordFromVal(pageNo),
+                        y: yCoordFromVal(this.pageTimes[runName][pageNo]),
                         pageNo: pageNo,
                         time: this.pageTimes[runName][pageNo]
                         });
