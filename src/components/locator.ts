@@ -311,24 +311,49 @@ export class Locator {
         })
     }
 
-    private getColumnBySurroundingText(line: string, textBeforeSelection: string, textAfterSelection: string) {
-        const columns: number[] = []
+    private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
+        let previousColumnMatches = {}
 
-        // Get all indexes for the before and after text
-        if (textBeforeSelection !== '') {
-            columns.push(...this.indexes(line, textBeforeSelection).map(index => index + textBeforeSelection.length))
+        for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
+            const columns: number[] = []
+            const textBeforeSelection = textBeforeSelectionFull.substring(textBeforeSelectionFull.length - length, textBeforeSelectionFull.length)
+            const textAfterSelection = textAfterSelectionFull.substring(0, length)
+
+            // Get all indexes for the before and after text
+            if (textBeforeSelection !== '') {
+                columns.push(...this.indexes(line, textBeforeSelection).map(index => index + textBeforeSelection.length))
+            }
+            if (textAfterSelection !== '') {
+                columns.push(...this.indexes(line, textAfterSelection))
+            }
+
+            // Get number or occurrences for each column
+            const columnMatches = {}
+            columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
+            const values = Object.values(columnMatches).sort()
+
+            // At least two matches with equal fit
+            if (values.length > 1 && values[0] === values[1]) {
+                previousColumnMatches = columnMatches
+                continue
+            }
+            // Only one match or one best match
+            if (values.length >= 1) {
+                return parseInt(Object.keys(columnMatches).reduce((a, b) => {
+                    return columnMatches[a] > columnMatches[b] ? a : b
+                }))
+            }
+            // No match in current iteration, return first best match from previous run or 0
+            if (Object.keys(previousColumnMatches).length > 0) {
+                return parseInt(Object.keys(previousColumnMatches).reduce((a, b) => {
+                    return previousColumnMatches[a] > previousColumnMatches[b] ? a : b
+                }))
+            } else {
+                return 0
+            }
         }
-        if (textAfterSelection !== '') {
-            columns.push(...this.indexes(line, textAfterSelection))
-        }
-
-        // Sort column indexes by number of occurrences
-        columns.sort((a, b) =>
-            columns.filter(v => v === a).length
-            - columns.filter(v => v === b).length
-        )
-
-        return columns.length === 0 ? 0 : columns[columns.length - 1]
+        // Should never be reached
+        return 0
     }
 
     private indexes(source: string, find: string) {

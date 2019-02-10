@@ -124,12 +124,12 @@ document.addEventListener('pagerendered', (evPageRendered) => {
         }
 
         const selection = window.getSelection();
-        let textBeforeSelection = ""
-        let textAfterSelection = ""
+        let textBeforeSelection = ''
+        let textAfterSelection = ''
         if(selection.anchorNode.nodeName === '#text'){
           const text = selection.anchorNode.textContent;
-          textBeforeSelection = text.substring(selection.anchorOffset - 10, selection.anchorOffset);
-          textAfterSelection = text.substring(selection.anchorOffset, selection.anchorOffset + 10);
+          textBeforeSelection = text.substring(0, selection.anchorOffset);
+          textAfterSelection = text.substring(selection.anchorOffset);
         }
 
         let viewerContainer = null
