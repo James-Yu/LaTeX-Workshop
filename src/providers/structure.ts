@@ -320,7 +320,7 @@ export class StructureTreeView {
     }
 
     showCursorIteme(e: vscode.TextEditorSelectionChangeEvent) {
-        if (! this._followCursor) {
+        if (!this._followCursor || !this._viewer.visible) {
             return
         }
         const line = e.selections[0].active.line
