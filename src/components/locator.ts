@@ -295,11 +295,11 @@ export class Locator {
                 }
             }
 
-            const row = record.line - 1
+            let row = record.line - 1
             let col = record.column < 0 ? 0 : record.column
             // columns are typically not supplied by SyncTex, this could change in the future for some engines though
             if (col === 0) {
-                col = this.getColumnBySurroundingText(doc.lineAt(row).text, data.textBeforeSelection, data.textAfterSelection)
+                [row, col] = this.getRowAndColumn(doc, row, data.textBeforeSelection, data.textAfterSelection)
             }
             const pos = new vscode.Position(row, col)
 
@@ -309,6 +309,29 @@ export class Locator {
                 this.animateToNotify(editor, pos)
             })
         })
+    }
+
+    private getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
+        let tempCol = this.getColumnBySurroundingText(doc.lineAt(row).text, textBeforeSelectionFull, textAfterSelectionFull)
+        if (tempCol !== null) {
+            return [row, tempCol]
+        }
+
+        if (row - 1 >= 0) {
+            tempCol = this.getColumnBySurroundingText(doc.lineAt(row - 1).text, textBeforeSelectionFull, textAfterSelectionFull)
+            if (tempCol !== null) {
+                return [row - 1, tempCol]
+            }
+        }
+
+        if (row + 1 < doc.lineCount) {
+            tempCol = this.getColumnBySurroundingText(doc.lineAt(row + 1).text, textBeforeSelectionFull, textAfterSelectionFull)
+            if (tempCol !== null) {
+                return [row + 1, tempCol]
+            }
+        }
+
+        return [row, 0]
     }
 
     private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
@@ -349,11 +372,11 @@ export class Locator {
                     return previousColumnMatches[a] > previousColumnMatches[b] ? a : b
                 }))
             } else {
-                return 0
+                return null
             }
         }
         // Should never be reached
-        return 0
+        return null
     }
 
     private indexes(source: string, find: string) {
