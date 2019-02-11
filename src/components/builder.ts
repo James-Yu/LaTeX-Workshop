@@ -140,8 +140,14 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
         this.extension.manager.setEnvVar()
-        process.env.max_print_line = maxPrintLine
-        this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile)})
+        const envVars: ProcessEnv = {}
+        Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
+        if (steps[index].env) {
+            const currentEnv = steps[index].env as ProcessEnv
+            Object.keys(currentEnv).forEach(key => envVars[key] = currentEnv[key])
+        }
+        envVars['max_print_line'] = maxPrintLine
+        this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
@@ -291,14 +297,26 @@ export class Builder {
                         break
                 }
             }
+            const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
+            const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
             if (step.args) {
-                const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
-                const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
                 step.args = step.args.map(arg => arg.replace('%DOC%', docker ? docfile : doc)
                                                     .replace('%DOCFILE%', docfile)
                                                     .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
                                                     .replace('%TMPDIR%', this.tmpDir)
                                                     .replace('%OUTDIR%', this.extension.manager.getOutputDir(rootFile)))
+            }
+            if (step.env) {
+                Object.keys(step.env).forEach( v => {
+                    if (step.env && step.env[v]) {
+                        const e = step.env[v] as string
+                        step.env[v] = e.replace('%DOC%', docker ? docfile : doc)
+                                                 .replace('%DOCFILE%', docfile)
+                                                 .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
+                                                 .replace('%TMPDIR%', this.tmpDir)
+                                                 .replace('%OUTDIR%', this.extension.manager.getOutputDir(rootFile))
+                    }
+                })
             }
             if (configuration.get('latex.option.maxPrintLine.enabled') && process.platform === 'win32') {
                 if (!step.args) {
@@ -339,8 +357,13 @@ export class Builder {
     }
 }
 
+interface ProcessEnv {
+    [key: string]: string | undefined
+}
+
 interface StepCommand {
     name: string,
     command: string,
-    args?: string[]
+    args?: string[],
+    env?: ProcessEnv
 }
