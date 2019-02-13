@@ -8,6 +8,8 @@ import {Extension} from '../main'
 import {ExternalCommand} from '../utils'
 
 const maxPrintLine = '10000'
+const texMagicProgramName = 'TeXMagicProgram'
+const bibMagicProgramName = 'BibMagicProgram'
 
 export class Builder {
     extension: Extension
@@ -147,7 +149,16 @@ export class Builder {
             Object.keys(currentEnv).forEach(key => envVars[key] = currentEnv[key])
         }
         envVars['max_print_line'] = maxPrintLine
-        this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
+        if (steps[index].name === texMagicProgramName || steps[index].name === bibMagicProgramName) {
+            // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
+            let command = steps[index].command
+            if (steps[index].args) {
+                command += ' ' + (steps[index].args as string[])[0]
+            }
+            this.currentProcess = cp.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
+        } else {
+            this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
+        }
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
@@ -235,20 +246,18 @@ export class Builder {
 
         const [magicTex, magicBib] = this.findProgramMagic(rootFile)
         if (recipeName === undefined && magicTex) {
-            const magicTexStep = {
-                name: magicTex,
-                command: magicTex,
-                args: configuration.get('latex.magic.args') as string[]
-            }
-            const magicBibStep = {
-                name: magicBib,
-                command: magicBib,
-                args: configuration.get('latex.magic.bib.args') as string[]
+            if (! magicTex.args) {
+                magicTex.args = configuration.get('latex.magic.args') as string[]
+                magicTex.name = texMagicProgramName + 'WithArgs'
             }
             if (magicBib) {
-                steps = [magicTexStep, magicBibStep, magicTexStep, magicTexStep]
+                if (! magicBib.args) {
+                    magicBib.args = configuration.get('latex.magic.bib.args') as string[]
+                    magicBib.name = bibMagicProgramName + 'WithArgs'
+                }
+                steps = [magicTex, magicBib, magicTex, magicTex]
             } else {
-                steps = [magicTexStep]
+                steps = [magicTex]
             }
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
@@ -333,27 +342,45 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string) : [string, string] {
+    findProgramMagic(rootFile: string) : [StepCommand | undefined,  StepCommand | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
+        const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
+        const regexBibOptions = /^(?:%\s*!\s*BIB\s(?:TS-)?options\s*=\s*(.*)$)/m
         const content = fs.readFileSync(rootFile).toString()
 
         const tex = content.match(regexTex)
         const bib = content.match(regexBib)
-        let texProgram = ''
-        let bibProgram = ''
+        let texCommand: StepCommand | undefined = undefined
+        let bibCommand: StepCommand | undefined = undefined
 
         if (tex) {
-            texProgram = tex[1]
-            this.extension.logger.addLogMessage(`Found TeX program by magic comment: ${texProgram}`)
+            texCommand = {
+                name: texMagicProgramName,
+                command: tex[1]
+            }
+            this.extension.logger.addLogMessage(`Found TeX program by magic comment: ${texCommand.command}`)
+            const res = content.match(regexTexOptions)
+            if (res) {
+                texCommand.args = [res[1]]
+                this.extension.logger.addLogMessage(`Found TeX options by magic comment: ${texCommand.args}`)
+            }
         }
 
         if (bib) {
-            bibProgram = bib[1]
-            this.extension.logger.addLogMessage(`Found BIB program by magic comment: ${bibProgram}`)
+            bibCommand = {
+                name: bibMagicProgramName,
+                command: bib[1]
+            }
+            this.extension.logger.addLogMessage(`Found BIB program by magic comment: ${bibCommand.command}`)
+            const res = content.match(regexBibOptions)
+            if (res) {
+                bibCommand.args = [res[1]]
+                this.extension.logger.addLogMessage(`Found BIB options by magic comment: ${bibCommand.args}`)
+            }
         }
 
-        return [texProgram, bibProgram]
+        return [texCommand, bibCommand]
     }
 }
 
