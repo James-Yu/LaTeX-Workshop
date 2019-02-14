@@ -366,7 +366,7 @@ export class BuildInfo {
                                 column.classList.add('column');
 
                                 const runInfo = document.createElement('h3');
-                                runInfo.innerHTML = runName.replace(/(\d+)\-(\w+)/, '$2 \u2014 Rule $1');
+                                runInfo.innerHTML = runName.replace(/(\\d+)\\-(\\w+)/, '$2 \\u2014 Rule $1');
                                 column.appendChild(runInfo);
                                 const ul = document.createElement('ul');
                                 for (const pageNo in this.pageTimes[runName]) {
@@ -412,7 +412,7 @@ export class BuildInfo {
 
                         updateTimingInfo: function() {
                             this.totalSpan.innerHTML = ((+new Date() - this.startTime) / 1000).toFixed(2);
-                            // this.etaSpan.innerHTML = "\u2014";
+                            // this.etaSpan.innerHTML = "\\u2014";
                         },
 
                         drawGraph: function() {
@@ -608,7 +608,7 @@ export class BuildInfo {
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'top';
                                 ctx.fillText(
-                                    closestPoint.runName.replace(/(\d+)\-(\w+)/, '$2 (rule $1)'),
+                                    closestPoint.runName.replace(/(\\d+)\\-(\\w+)/, '$2 (rule $1)'),
                                     (ctx.width + this.graph.margins.left - this.graph.margins.right) / 2,
                                     this.graph.margins.top
                                 );
