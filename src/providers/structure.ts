@@ -3,34 +3,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import { Extension } from '../main'
+import { getLongestBalancedString } from '../utils'
 
-/**
- * Finding the longest substring containing balanced {...}
- * @param s a string
- */
-export function getLongestBalancedString(s: string) : string {
-    let nested = 1
-    let i = 0
-    for (i = 0; i < s.length; i++) {
-        switch (s[i]) {
-            case '{':
-                nested++
-                break
-            case '}':
-                nested --
-                break
-            case '\\':
-                // skip an escaped character
-                i++
-                break
-            default:
-        }
-        if (nested === 0) {
-            break
-        }
-    }
-    return s.substring(0, i)
-}
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 

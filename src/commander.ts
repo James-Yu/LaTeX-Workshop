@@ -4,8 +4,7 @@ import * as path from 'path'
 import * as cp from 'child_process'
 
 import {Extension} from './main'
-import {getLongestBalancedString} from './providers/structure'
-import {ExternalCommand} from './utils'
+import { ExternalCommand, getLongestBalancedString } from './utils'
 
 
 export class Commander {
