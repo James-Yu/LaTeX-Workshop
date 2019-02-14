@@ -5,6 +5,8 @@ import * as cp from 'child_process'
 
 import {Extension} from './main'
 import {getLongestBalancedString} from './providers/structure'
+import {ExternalCommand} from './utils'
+
 
 export class Commander {
     extension: Extension
@@ -30,6 +32,14 @@ export class Commander {
     async build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            return
+        }
+
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const externalBuildCommand = configuration.get('latex.external.build.command') as ExternalCommand
+        if (externalBuildCommand.command) {
+            const pwd  = path.dirname(vscode.window.activeTextEditor.document.fileName)
+            this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
             return
         }
         const rootFile = await this.extension.manager.findRoot()
