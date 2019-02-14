@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import {Extension} from '../main'
+import {AddressInfo} from 'net'
 
 export class Server {
     extension: Extension
@@ -18,7 +19,7 @@ export class Server {
             if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
-                const {address, port} = this.httpServer.address()
+                const {address, port} = this.httpServer.address() as AddressInfo
                 if (address.indexOf(':') > -1) {
                     // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
                     this.address = `[${address}]:${port}`
