@@ -23,7 +23,7 @@ import {CodeActions} from './providers/codeactions'
 import {HoverProvider} from './providers/hover'
 import {DocSymbolProvider} from './providers/docsymbol'
 import {ProjectSymbolProvider} from './providers/projectsymbol'
-import {SectionNodeProvider} from './providers/structure'
+import {SectionNodeProvider, StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
@@ -344,7 +344,13 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
 
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-commands', new LaTeXCommander(extension)))
-    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-structure', extension.structureProvider))
+    context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
+        if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
+            return
+        }
+        extension.structureViewer.showCursorIteme(e)
+    }))
+
     context.subscriptions.push(vscode.languages.registerHoverProvider({ scheme: 'file', language: 'latex'}, new HoverProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDefinitionProvider({ scheme: 'file', language: 'latex'}, new DefinitionProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider({ scheme: 'file', language: 'latex'}, new DocSymbolProvider(extension)))
@@ -391,6 +397,7 @@ export class Extension {
     texMagician: TeXMagician
     envPair: EnvPair
     structureProvider: SectionNodeProvider
+    structureViewer: StructureTreeView
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -411,6 +418,7 @@ export class Extension {
         this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
         this.structureProvider = new SectionNodeProvider(this)
+        this.structureViewer = new StructureTreeView(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }

@@ -279,9 +279,7 @@ export class Locator {
                 break
             }
         }
-        const row = record.line - 1
-        const col = record.column < 0 ? 0 : record.column
-        const pos = new vscode.Position(row, col)
+
         let filePath = path.resolve( record.input.replace(/(\r\n|\n|\r)/gm, '') )
         if (docker && process.platform === 'win32') {
             filePath = path.resolve(path.dirname(pdfPath), record.input as string)
@@ -296,12 +294,99 @@ export class Locator {
                     break
                 }
             }
+
+            let row = record.line - 1
+            let col = record.column < 0 ? 0 : record.column
+            // columns are typically not supplied by SyncTex, this could change in the future for some engines though
+            if (col === 0) {
+                [row, col] = this.getRowAndColumn(doc, row, data.textBeforeSelection, data.textAfterSelection)
+            }
+            const pos = new vscode.Position(row, col)
+
             vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
                 editor.selection = new vscode.Selection(pos, pos)
                 vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
                 this.animateToNotify(editor, pos)
             })
         })
+    }
+
+    private getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
+        let tempCol = this.getColumnBySurroundingText(doc.lineAt(row).text, textBeforeSelectionFull, textAfterSelectionFull)
+        if (tempCol !== null) {
+            return [row, tempCol]
+        }
+
+        if (row - 1 >= 0) {
+            tempCol = this.getColumnBySurroundingText(doc.lineAt(row - 1).text, textBeforeSelectionFull, textAfterSelectionFull)
+            if (tempCol !== null) {
+                return [row - 1, tempCol]
+            }
+        }
+
+        if (row + 1 < doc.lineCount) {
+            tempCol = this.getColumnBySurroundingText(doc.lineAt(row + 1).text, textBeforeSelectionFull, textAfterSelectionFull)
+            if (tempCol !== null) {
+                return [row + 1, tempCol]
+            }
+        }
+
+        return [row, 0]
+    }
+
+    private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
+        let previousColumnMatches = {}
+
+        for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
+            const columns: number[] = []
+            const textBeforeSelection = textBeforeSelectionFull.substring(textBeforeSelectionFull.length - length, textBeforeSelectionFull.length)
+            const textAfterSelection = textAfterSelectionFull.substring(0, length)
+
+            // Get all indexes for the before and after text
+            if (textBeforeSelection !== '') {
+                columns.push(...this.indexes(line, textBeforeSelection).map(index => index + textBeforeSelection.length))
+            }
+            if (textAfterSelection !== '') {
+                columns.push(...this.indexes(line, textAfterSelection))
+            }
+
+            // Get number or occurrences for each column
+            const columnMatches = {}
+            columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
+            const values = Object.values(columnMatches).sort()
+
+            // At least two matches with equal fit
+            if (values.length > 1 && values[0] === values[1]) {
+                previousColumnMatches = columnMatches
+                continue
+            }
+            // Only one match or one best match
+            if (values.length >= 1) {
+                return parseInt(Object.keys(columnMatches).reduce((a, b) => {
+                    return columnMatches[a] > columnMatches[b] ? a : b
+                }))
+            }
+            // No match in current iteration, return first best match from previous run or 0
+            if (Object.keys(previousColumnMatches).length > 0) {
+                return parseInt(Object.keys(previousColumnMatches).reduce((a, b) => {
+                    return previousColumnMatches[a] > previousColumnMatches[b] ? a : b
+                }))
+            } else {
+                return null
+            }
+        }
+        // Should never be reached
+        return null
+    }
+
+    private indexes(source: string, find: string) {
+        const result: number[] = []
+        for (let i = 0; i < source.length; ++i) {
+            if (source.substring(i, i + find.length) === find) {
+                result.push(i)
+            }
+        }
+        return result
     }
 
     private animateToNotify(editor: vscode.TextEditor, position: vscode.Position) {

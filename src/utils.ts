@@ -15,3 +15,8 @@ export function stripComments(line: string) : string {
     }
     return line
 }
+
+export interface ExternalCommand {
+    command: string,
+    args?: string[]
+}

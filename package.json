@@ -276,6 +276,11 @@
         "command": "latex-workshop.showCompilationPanel",
         "title": "Show LaTeX Compilation Info",
         "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-structure.toggle-follow-cursor",
+        "title": "Toggle follow cursor",
+        "category": "LaTeX Workshop"
       }
     ],
     "keybindings": [
@@ -529,7 +534,7 @@
               ]
             }
           ],
-          "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object declares its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
+          "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
         },
         "latex-workshop.latex.tools": {
           "type": "array",
@@ -544,7 +549,10 @@
                 "-pdf",
                 "-outdir=%OUTDIR%",
                 "%DOC%"
-              ]
+              ],
+              "env": {
+
+              }
             },
             {
               "name": "pdflatex",
@@ -554,17 +562,23 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "%DOC%"
-              ]
+              ],
+              "env": {
+
+              }
             },
             {
               "name": "bibtex",
               "command": "bibtex",
               "args": [
                 "%DOCFILE%"
-              ]
+              ],
+              "env": {
+
+              }
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOCFILE%`, `%DIR%`, `%TMPDIR%` and `%OUTDIR%` are available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
+          "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOCFILE%`, `%DIR%`, `%TMPDIR%` and `%OUTDIR%` are available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
         },
         "latex-workshop.latex.magic.args": {
           "type": "array",
@@ -574,14 +588,24 @@
             "-file-line-error",
             "%DOC%"
           ],
-          "markdownDescription": "Define the arguments to be input to magic command executable."
+          "markdownDescription": "Define the arguments to be input to magic command executable. This can be overriden by using \"% !TeX options\"."
         },
         "latex-workshop.latex.magic.bib.args": {
           "type": "array",
           "default": [
             "%DOCFILE%"
           ],
-          "markdownDescription": "Define the arguments to be input to BIB magic command executable."
+          "markdownDescription": "Define the arguments to be input to BIB magic command executable. This can be overriden by using \"% !BIB options\"."
+        },
+        "latex-workshop.latex.external.build.command": {
+          "type": "object",
+          "default": {
+            "command": "",
+            "args": [
+              ""
+            ]
+          },
+          "markdownDescription": "The external command to execute when calling latex-workshop.build.\nThis is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism"
         },
         "latex-workshop.latex.outDir": {
           "type": "string",
@@ -1082,6 +1106,12 @@
           "when": "editorLangId == latex",
           "command": "latex-workshop.view",
           "group": "navigation"
+        }
+      ],
+      "view/title": [
+        {
+          "when": "view == latex-structure",
+          "command": "latex-structure.toggle-follow-cursor"
         }
       ]
     },
