@@ -11,10 +11,11 @@ export class BuildInfo {
         buildStart: number;
         pageTotal?: number | undefined;
         lastPageTime: number;
-        pageTimes: { [runName: string]: { [pageNo: number]: number } };
+        stepTimes: { [runName: string]: { [pageNo: number]: number } };
         stdout: string;
         ruleNumber: number;
         ruleName: string;
+        ruleProducesPages: boolean | undefined;
     } // | undefined
 
     constructor(extension: Extension) {
@@ -30,10 +31,11 @@ export class BuildInfo {
             buildStart: +new Date(),
             pageTotal: undefined,
             lastPageTime: +new Date(),
-            pageTimes: {},
+            stepTimes: {},
             stdout: '',
             ruleNumber: 0,
-            ruleName: ''
+            ruleName: '',
+            ruleProducesPages: undefined
         }
         this.status.text = ''
         if (this.panel) {
@@ -85,6 +87,10 @@ export class BuildInfo {
         const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
         const pdftexStartedRegex = /This is pdfTeX, Version [\d\.\-]+[^\n]*$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
+
+        const hardcodedRulesPageProducing = ['pdflatex', 'pdftex']
+        const hardcodedRulesOther = ['sage']
+
         if (this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
             const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
@@ -96,15 +102,17 @@ export class BuildInfo {
             // @ts-ignore
             const ruleName = this.currentBuild.stdout.match(latexmkRuleStartedRegex)[1]
             // if rule name does not have own entry
-            if (['pdflatex'].indexOf(ruleName) === -1) {
+            if ([...hardcodedRulesPageProducing, ...hardcodedRulesOther].indexOf(ruleName) === -1) {
                 this.currentBuild.ruleName = ruleName
-                this.currentBuild.pageTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
+                this.currentBuild.ruleProducesPages = undefined
+                this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
                 this.displayProgress(0)
                 this.currentBuild.lastPageTime = +new Date()
             }
         } else if (this.currentBuild.stdout.match(pdftexStartedRegex)) {
             this.currentBuild.ruleName = 'pdfLaTeX'
-            this.currentBuild.pageTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
+            this.currentBuild.ruleProducesPages = true
+            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
             this.displayProgress(0)
             this.currentBuild.lastPageTime = +new Date()
         }
@@ -136,7 +144,7 @@ export class BuildInfo {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
                 <style>
-                    #pageTimes div.column {
+                    #stepTimes div.column {
                         display: inline-block;
                         padding: 0;
                         margin: 0;
@@ -144,13 +152,13 @@ export class BuildInfo {
                         margin-right: 1.5rem;
                     }
 
-                    #pageTimes ul {
+                    #stepTimes ul {
                         list-style: none;
                         padding-inline-start: 0;
                         -webkit-padding-start: 0;
                     }
 
-                    #pageTimes h3 {
+                    #stepTimes h3 {
                         font-size: 1.25rem;
                         background: var(--vscode-editor-foreground);
                         color: var(--vscode-editor-background);
@@ -160,7 +168,7 @@ export class BuildInfo {
                         border-radius: 0.5em;
                     }
 
-                    #pageTimes ul li {
+                    #stepTimes ul li {
                         font-size: 1rem;
                         border-radius: 0.5em;
                         padding: 0;
@@ -168,15 +176,15 @@ export class BuildInfo {
                         width: 13.5em;
                     }
 
-                    #pageTimes ul li span.pageNo {
+                    #stepTimes ul li span.item {
                         margin: 0 0.5em 0 0;
                         padding: 0;
                         /* font-weight: 600; */
                         /* position: relative;
-                        float: left; */
+                                float: left; */
                     }
 
-                    #pageTimes ul li span.pageTime {
+                    #stepTimes ul li span.pageTime {
                         position: relative;
                         float: right;
                     }
@@ -200,7 +208,7 @@ export class BuildInfo {
                     }
 
                     /* #timeInfo #eta {
-                    font-size: 1.5rem;
+                        font-size: 1.5rem;
                         float: right;
                     }
                     #timeInfo #eta::before {
@@ -213,28 +221,35 @@ export class BuildInfo {
                         width: calc(95vw - 3rem);
                     }
 
-                    .tex, .latex {
+                    .tex,
+                    .latex {
                         line-height: 1;
                         margin-left: 0.02em;
                     }
 
-                    .tex sub, .latex sub, .latex sup {
+                    .tex sub,
+                    .latex sub,
+                    .latex sup {
                         text-transform: uppercase;
                     }
 
-                    .tex sub, .latex sub {
+                    .tex sub,
+                    .latex sub {
                         vertical-align: -0.28ex;
                         margin-left: -0.1667em;
                         margin-right: -0.1em;
                     }
 
-                    .tex, .latex, .tex sub, .latex sub {
+                    .tex,
+                    .latex,
+                    .tex sub,
+                    .latex sub {
                         font-size: 1em;
                     }
 
                     .latex sup {
                         font-size: 0.85em;
-                        vertical-align: 0.20em;
+                        vertical-align: 0.2em;
                         margin-left: -0.32em;
                         margin-right: -0.15em;
                     }
@@ -261,11 +276,12 @@ export class BuildInfo {
                     <span id="total">Total</span>
                     <!-- <span id="eta"></span> -->
                 </div>
-                <div id="pageTimes"></div>
+                <div id="stepTimes"></div>
 
                 <script>
                     window.addEventListener('message', event => {
                         const data = event.data;
+                        console.log(data)
 
                         if (data.type === 'init') {
                             progressManager.startTime = data.startTime;
@@ -274,23 +290,25 @@ export class BuildInfo {
                         } else if (data.type === 'finished') {
                             progressManager.stop();
                         } else if (data.type === 'update') {
-                            progressManager.pageTimes = data.pageTimes ? data.pageTimes : {};
+                            progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
 
-                            progressManager.updatePageTimesUl();
+                            progressManager.updatestepTimesUl();
                             progressManager.drawGraph();
                         }
                     });
 
                     function styliseTeX(str) {
-                        return str.replace(/LaTeX/g, '<span class="latex">L<sup>A</sup>T<sub>E</sub>X</span>').replace(/TeX/g, '<span class="tex">T<sub>e</sub>X</span>');
+                        return str
+                            .replace(/LaTeX/g, '<span class="latex">L<sup>A</sup>T<sub>E</sub>X</span>')
+                            .replace(/TeX/g, '<span class="tex">T<sub>e</sub>X</span>');
                     }
 
                     const progressManager = {
                         startTime: null,
-                        pageTimes: {},
+                        stepTimes: {},
                         pageTotal: null,
-                        pageTimesDiv: document.getElementById('pageTimes'),
+                        stepTimesDiv: document.getElementById('stepTimes'),
                         totalSpan: document.getElementById('total'),
                         // etaSpan: document.getElementById("eta"),
                         updateTimesInterval: null,
@@ -317,10 +335,10 @@ export class BuildInfo {
                             lastResize: +new Date()
                         },
 
-                        updatePageTimesUl: function() {
-                            this.pageTimesDiv.innerHTML = '';
+                        updatestepTimesUl: function() {
+                            this.stepTimesDiv.innerHTML = '';
 
-                            for (const runName in this.pageTimes) {
+                            for (const runName in this.stepTimes) {
                                 const column = document.createElement('div');
                                 column.classList.add('column');
 
@@ -328,24 +346,28 @@ export class BuildInfo {
                                 runInfo.innerHTML = styliseTeX(runName.replace(/(\\d+)\\-(\\w+)/, '$2 \\u2014 Rule $1'));
                                 column.appendChild(runInfo);
                                 const ul = document.createElement('ul');
-                                for (const pageNo in this.pageTimes[runName]) {
+                                for (const item in this.stepTimes[runName]) {
                                     const li = document.createElement('li');
+                                    let itemText = item;
+                                    if (typeof item === 'number') {
+                                        item = item !== 0 ? 'Page ' + (item != 1 ? item : item + ' + Preamble') : 'Rule Startup';
+                                    }
                                     li.innerHTML =
-                                        '<span class="pageNo">' +
-                                        (pageNo != 0 ? 'Page ' + (pageNo != 1 ? pageNo : pageNo + ' + Preamble') : 'Rule Startup') +
+                                        '<span class="item">' +
+                                        item +
                                         '</span> <span class="pageTime">' +
-                                        this.pageTimes[runName][pageNo] +
+                                        this.stepTimes[runName][item] +
                                         ' <i>ms</i></span>';
                                     ul.appendChild(li);
                                 }
                                 column.appendChild(ul);
-                                this.pageTimesDiv.appendChild(column);
+                                this.stepTimesDiv.appendChild(column);
                             }
                         },
 
                         start: function(updateGap = 10) {
                             this.stop();
-                            this.pageTimesDiv.innerHTML = '';
+                            this.stepTimesDiv.innerHTML = '';
                             this.drawGraph();
                             this.updateTimesInterval = setInterval(() => {
                                 this.updateTimingInfo();
@@ -375,11 +397,12 @@ export class BuildInfo {
                         },
 
                         drawGraph: function() {
-                            const width = Math.max(
-                                ...Object.values(this.pageTimes).map(pt => Object.values(pt).length),
-                                this.pageTotal ? this.pageTotal : 0
-                            ) + 1;
-                            const height = Math.max(...Array.prototype.concat(...Object.values(this.pageTimes).map(pt => Object.values(pt))));
+                            const width =
+                                Math.max(
+                                    ...Object.values(this.stepTimes).map(pt => Object.values(pt).length),
+                                    this.pageTotal ? this.pageTotal : 0
+                                ) + 1;
+                            const height = Math.max(...Array.prototype.concat(...Object.values(this.stepTimes).map(pt => Object.values(pt))));
                             this.graph.canvas.width = this.graph.canvas.clientWidth * this.graph.resolutionMultiplier;
                             this.graph.canvas.height = this.graph.canvas.clientHeight * this.graph.resolutionMultiplier;
                             const ctx = this.graph.canvas.getContext('2d');
@@ -453,14 +476,20 @@ export class BuildInfo {
                             // draw data
                             ctx.lineWidth = 1.5 * this.graph.resolutionMultiplier;
                             let colourIndex = 1;
-                            for (const runName in this.pageTimes) {
+                            for (const runName in this.stepTimes) {
+                                // only draw runs which produce pages (signified by INT step type)
+                                const firstItem = this.stepTimes[runName][Object.keys(this.stepTimes[runName])[0]];
+                                if (typeof firstItem !== 'number') {
+                                    continue;
+                                }
+
                                 const points = [];
-                                for (const pageNo in this.pageTimes[runName]) {
+                                for (const item in this.stepTimes[runName]) {
                                     points.push({
-                                        x: xCoordFromVal(pageNo),
-                                        y: yCoordFromVal(this.pageTimes[runName][pageNo]),
-                                        pageNo: pageNo,
-                                        time: this.pageTimes[runName][pageNo]
+                                        x: xCoordFromVal(item),
+                                        y: yCoordFromVal(this.stepTimes[runName][item]),
+                                        item: item,
+                                        time: this.stepTimes[runName][item]
                                     });
                                 }
                                 this.graph.points[runName] = points;
@@ -516,7 +545,7 @@ export class BuildInfo {
                                             r2,
                                             x: point.x,
                                             y: point.y,
-                                            pageNo: point.pageNo,
+                                            item: point.item,
                                             time: point.time,
                                             runName,
                                             runCount
@@ -544,7 +573,7 @@ export class BuildInfo {
 
                                 ctx.globalAlpha = 1;
                                 ctx.fillText(
-                                    closestPoint.pageNo,
+                                    closestPoint.item,
                                     closestPoint.x,
                                     ctx.height - this.graph.margins.bottom + this.graph.textMargin * this.graph.resolutionMultiplier
                                 );
@@ -577,7 +606,7 @@ export class BuildInfo {
                         }
                     };
 
-                    dummyPageTimes = {
+                    dummystepTimes = {
                         '1-thing': {
                             0: 340,
                             1: 64,
@@ -607,21 +636,28 @@ export class BuildInfo {
         }
     }
 
-    private displayProgress(current: number) {
+    private displayProgress(current: string | number) {
         if (!this.currentBuild) {
             throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
         }
 
         this.configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        this.currentBuild.pageTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][current] =
+        this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][current] =
             +new Date() - this.currentBuild.lastPageTime
         this.currentBuild.lastPageTime = +new Date()
 
+        if (this.currentBuild.ruleProducesPages) {
+            const pagesProducedByCurrentRule = Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).length
+            this.currentBuild.pageTotal = Math.max(
+                pagesProducedByCurrentRule,
+                this.currentBuild.pageTotal !== undefined ? this.currentBuild.pageTotal : 0
+            )
+        }
         if (this.panel) {
             this.panel.webview.postMessage({
                 type: 'update',
-                pageTimes: this.currentBuild.pageTimes,
+                stepTimes: this.currentBuild.stepTimes,
                 pageTotal: this.currentBuild.pageTotal
             })
         }
@@ -777,16 +813,26 @@ export class BuildInfo {
             return str
         }
 
-        const currentAsString = current.toString()
-        const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString() : ''
-        const barAsString = this.currentBuild.pageTotal
-            ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get('progress.barLength') as number)
-            : ''
-
         const runIcon: string = enclosedNumbers[this.configuration.get('progress.runIconType') as string][this.currentBuild.ruleNumber]
-        this.status.text = `${runIcon}  Page ${padRight(
-            currentAsString + endpointAsString,
-            this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
-        )} ${barAsString}`
+        if (this.currentBuild.ruleProducesPages) {
+            if (typeof current === 'string') {
+                current = parseInt(current)
+            }
+            const currentAsString = current.toString()
+            const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString() : ''
+            const barAsString = this.currentBuild.pageTotal
+                ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get('progress.barLength') as number)
+                : ''
+            this.status.text = `${runIcon}  Page ${padRight(
+                currentAsString + endpointAsString,
+                this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
+            )} ${barAsString}`
+        } else {
+            const currentRuleStages = Object.keys(this.currentBuild.stepTimes[this.currentBuild.ruleName])
+            const currentStageInfo = this.currentBuild.stepTimes[this.currentBuild.ruleName][
+                currentRuleStages[currentRuleStages.length - 1]
+            ]
+            this.status.text = `${runIcon} ${currentStageInfo}`
+        }
     }
 }
