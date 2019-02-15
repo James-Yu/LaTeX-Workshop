@@ -661,15 +661,22 @@ export class BuildInfo {
                 +new Date() - this.currentBuild.lastStepTime
         } else {
             if (this.currentBuild.ruleProducesPages) {
-                this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
-                    `T${+new Date()}-PAGE:${current}`
-                ] = +new Date() - this.currentBuild.lastStepTime
+                // if page already exists, add times instead of making new entry
+                const pageAlreadyExistsRegex = new RegExp(`^T\d+-PAGE:${current}`)
+                const pageMatchArray = Object.keys(this.currentBuild.stepTimes).map(pageLabel => Boolean(pageLabel.match(pageAlreadyExistsRegex)));
+                if (pageMatchArray.indexOf(true) !== -1) {
+                    this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][Object.keys(this.currentBuild.stepTimes)[pageMatchArray.indexOf(true)]] += +new Date() - this.currentBuild.lastStepTime
+                } else {
+                    this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
+                        `T${+new Date()}-PAGE:${current}`
+                    ] = +new Date() - this.currentBuild.lastStepTime
 
-                const pagesProducedByCurrentRule =
-                    Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).length - 1
+                    const pagesProducedByCurrentRule =
+                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).length - 1
 
-                if (typeof this.currentBuild.pageTotal !== 'number' || pagesProducedByCurrentRule > this.currentBuild.pageTotal) {
-                    this.currentBuild.pageTotal = pagesProducedByCurrentRule
+                    if (typeof this.currentBuild.pageTotal !== 'number' || pagesProducedByCurrentRule > this.currentBuild.pageTotal) {
+                        this.currentBuild.pageTotal = pagesProducedByCurrentRule
+                    }
                 }
             } else {
                 this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][`T${+new Date()}-${current}`] =
