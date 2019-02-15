@@ -168,6 +168,7 @@ export class Builder {
         }
 
         let stdout = ''
+        this.extension.buildInfo.buildStarted()
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
@@ -188,7 +189,6 @@ export class Builder {
 
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
-            this.extension.buildInfo.buildEnded()
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}.`)
 
@@ -237,6 +237,7 @@ export class Builder {
     }
 
     buildFinished(rootFile: string) {
+        this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', `Recipe succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
