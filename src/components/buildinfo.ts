@@ -75,7 +75,7 @@ export class BuildInfo {
         }
 
         for (const line of lines.split('\n')) {
-            // console.log(line)
+            console.log(line)
             this.currentBuild.stdout += '\n' + line
             this.checkStdoutForInfo()
         }
@@ -89,8 +89,11 @@ export class BuildInfo {
         const hardcodedRulesPageProducing = ['pdflatex', 'pdftex']
         const hardcodedRulesOther = ['sage']
 
-        const ruleSageStart = /Processing Sage code for [\w\.\- \"]+\.\.\.$/
         const rulePdfLatexStart = /This is pdfTeX, Version [\d\.\-]+[^\n]*$/
+        const ruleSageStart = /Processing Sage code for [\w\.\- \"]+\.\.\.$/
+        const ruleBibtexStart = /This is BibTeX[\w\.\- \"\,\(\)]+$/
+
+        // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
 
         if (this.currentBuild.ruleProducesPages && this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
@@ -113,6 +116,12 @@ export class BuildInfo {
         } else if (this.currentBuild.stdout.match(rulePdfLatexStart)) {
             this.currentBuild.ruleName = 'pdfLaTeX'
             this.currentBuild.ruleProducesPages = true
+            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
+            this.displayProgress(0)
+            this.currentBuild.lastStepTime = +new Date()
+        } else if (this.currentBuild.stdout.match(ruleBibtexStart)) {
+            this.currentBuild.ruleName = 'BibTeX'
+            this.currentBuild.ruleProducesPages = false
             this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
             this.displayProgress(0)
             this.currentBuild.lastStepTime = +new Date()
