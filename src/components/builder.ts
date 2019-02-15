@@ -168,7 +168,6 @@ export class Builder {
         }
 
         let stdout = ''
-        this.extension.buildInfo.buildStarted()
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())

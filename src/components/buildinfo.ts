@@ -74,6 +74,7 @@ export class BuildInfo {
 
         // const newlines = lines.indexOf('\n') !== -1
         for (const line of lines.split('\n')) {
+            console.log(line)
             this.currentBuild.stdout += '\n' + line
             this.checkStdoutForInfo()
         }
@@ -82,6 +83,7 @@ export class BuildInfo {
     private checkStdoutForInfo() {
         const pageNumberRegex = /\[(\d+)[^\[\]]*\]$/
         const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
+        const pdftexStartedRegex = /This is pdfTeX, Version [\d\.\-]+[^\n]*$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
         if (this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
@@ -92,7 +94,16 @@ export class BuildInfo {
             }
         } else if (this.currentBuild.stdout.match(latexmkRuleStartedRegex)) {
             // @ts-ignore
-            this.currentBuild.ruleName = this.currentBuild.stdout.match(latexmkRuleStartedRegex)[1]
+            const ruleName = this.currentBuild.stdout.match(latexmkRuleStartedRegex)[1]
+            // if rule name does not have own entry
+            if (['pdflatex'].indexOf(ruleName) === -1) {
+                this.currentBuild.ruleName = ruleName
+                this.currentBuild.pageTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
+                this.displayProgress(0)
+                this.currentBuild.lastPageTime = +new Date()
+            }
+        } else if (this.currentBuild.stdout.match(pdftexStartedRegex)) {
+            this.currentBuild.ruleName = 'pdfLaTeX'
             this.currentBuild.pageTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
             this.displayProgress(0)
             this.currentBuild.lastPageTime = +new Date()
@@ -162,7 +173,7 @@ export class BuildInfo {
                         padding: 0;
                         /* font-weight: 600; */
                         /* position: relative;
-                float: left; */
+                        float: left; */
                     }
 
                     #pageTimes ul li span.pageTime {
@@ -189,17 +200,38 @@ export class BuildInfo {
                     }
 
                     /* #timeInfo #eta {
-                font-size: 1.5rem;
-                float: right;
-                }
-                #timeInfo #eta::before {
-                content: "Eta";
-                margin-right: 0.5em;
-                } */
+                    font-size: 1.5rem;
+                        float: right;
+                    }
+                    #timeInfo #eta::before {
+                        content: "Eta";
+                        margin-right: 0.5em;
+                    } */
 
                     #compilationSpeed {
                         height: 15rem;
                         width: calc(95vw - 3rem);
+                    }
+
+                    .tex sub, .latex sub, .latex sup {
+                        text-transform: uppercase;
+                    }
+
+                    .tex sub, .latex sub {
+                        vertical-align: -0.5ex;
+                        margin-left: -0.1667em;
+                        margin-right: -0.125em;
+                    }
+
+                    .tex, .latex, .tex sub, .latex sub {
+                        font-size: 1em;
+                    }
+
+                    .latex sup {
+                        font-size: 0.85em;
+                        vertical-align: 0.15em;
+                        margin-left: -0.36em;
+                        margin-right: -0.15em;
                     }
                 </style>
             </head>
@@ -245,6 +277,10 @@ export class BuildInfo {
                         }
                     });
 
+                    function styliseTeX(str) {
+                        return str.replace(/LaTeX/g, '<span class="latex">L<sup>A</sup>T<sub>E</sub>X</span>').replace(/TeX/g, '<span class="tex">T<sub>e</sub>X</span>');
+                    }
+
                     const progressManager = {
                         startTime: null,
                         pageTimes: {},
@@ -284,7 +320,7 @@ export class BuildInfo {
                                 column.classList.add('column');
 
                                 const runInfo = document.createElement('h3');
-                                runInfo.innerHTML = runName.replace(/(\\d+)\\-(\\w+)/, '$2 \\u2014 Rule $1');
+                                runInfo.innerHTML = styliseTeX(runName.replace(/(\\d+)\\-(\\w+)/, '$2 \\u2014 Rule $1'));
                                 column.appendChild(runInfo);
                                 const ul = document.createElement('ul');
                                 for (const pageNo in this.pageTimes[runName]) {
@@ -337,7 +373,7 @@ export class BuildInfo {
                             const width = Math.max(
                                 ...Object.values(this.pageTimes).map(pt => Object.values(pt).length),
                                 this.pageTotal ? this.pageTotal : 0
-                            );
+                            ) + 1;
                             const height = Math.max(...Array.prototype.concat(...Object.values(this.pageTimes).map(pt => Object.values(pt))));
                             this.graph.canvas.width = this.graph.canvas.clientWidth * this.graph.resolutionMultiplier;
                             this.graph.canvas.height = this.graph.canvas.clientHeight * this.graph.resolutionMultiplier;
