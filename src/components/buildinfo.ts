@@ -301,7 +301,9 @@ export class BuildInfo {
 
                         if (data.type === 'init') {
                             progressManager.startTime = data.startTime;
+                            progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
+
                             progressManager.start(10);
                         } else if (data.type === 'finished') {
                             progressManager.stop();
@@ -641,6 +643,7 @@ export class BuildInfo {
             this.panel.webview.postMessage({
                 type: 'init',
                 startTime: this.currentBuild.buildStart,
+                stepTimes: this.currentBuild.stepTimes,
                 pageTotal: this.currentBuild.pageTotal
             })
         }
