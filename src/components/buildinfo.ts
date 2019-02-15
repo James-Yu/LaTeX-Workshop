@@ -213,14 +213,19 @@ export class BuildInfo {
                         width: calc(95vw - 3rem);
                     }
 
+                    .tex, .latex {
+                        line-height: 1;
+                        margin-left: 0.02em;
+                    }
+
                     .tex sub, .latex sub, .latex sup {
                         text-transform: uppercase;
                     }
 
                     .tex sub, .latex sub {
-                        vertical-align: -0.5ex;
+                        vertical-align: -0.28ex;
                         margin-left: -0.1667em;
-                        margin-right: -0.125em;
+                        margin-right: -0.1em;
                     }
 
                     .tex, .latex, .tex sub, .latex sub {
@@ -229,14 +234,14 @@ export class BuildInfo {
 
                     .latex sup {
                         font-size: 0.85em;
-                        vertical-align: 0.15em;
-                        margin-left: -0.36em;
+                        vertical-align: 0.20em;
+                        margin-left: -0.32em;
                         margin-right: -0.15em;
                     }
                 </style>
             </head>
             <body>
-                <h1>LaTeX Compilation Live Info</h1>
+                <h1><span class="latex">L<sup>A</sup>T<sub>E</sub>X</span> Compilation Live Info</h1>
 
                 <div style="display: none">
                     <span id="1rem" style="width: 1rem; padding: 0"></span>
