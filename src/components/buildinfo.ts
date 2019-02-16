@@ -663,7 +663,7 @@ export class BuildInfo {
             if (this.currentBuild.ruleProducesPages) {
                 // if page already exists, add times instead of making new entry
                 const pageAlreadyExistsRegex = new RegExp(`^T\d+-PAGE:${current}`)
-                const pageMatchArray = Object.keys(this.currentBuild.stepTimes).map(pageLabel => Boolean(pageLabel.match(pageAlreadyExistsRegex)));
+                const pageMatchArray = Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).map(pageLabel => Boolean(pageLabel.match(pageAlreadyExistsRegex)));
                 if (pageMatchArray.indexOf(true) !== -1) {
                     this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][Object.keys(this.currentBuild.stepTimes)[pageMatchArray.indexOf(true)]] += +new Date() - this.currentBuild.lastStepTime
                 } else {
