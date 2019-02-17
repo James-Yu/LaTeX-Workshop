@@ -75,7 +75,6 @@ export class BuildInfo {
         }
 
         for (const line of lines.split('\n')) {
-            console.log(line)
             this.currentBuild.stdout += '\n' + line
             this.checkStdoutForInfo()
         }
@@ -98,7 +97,6 @@ export class BuildInfo {
         if (this.currentBuild.ruleProducesPages && this.currentBuild.stdout.match(pageNumberRegex)) {
             // @ts-ignore
             const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
-            // console.log('page no: ' + pageNo + ' rn: ' + this.currentBuild.ruleNumber + ' Dtime: ' + (+new Date() - this.currentBuild.lastPageTime))
             if (!isNaN(pageNo)) {
                 this.displayProgress(pageNo)
             }
@@ -132,11 +130,6 @@ export class BuildInfo {
             this.displayProgress(0)
             this.currentBuild.lastStepTime = +new Date()
         }
-        // else if (this.currentBuild.stdout.match(auxOutfileReference)) {
-        //     // @ts-ignore
-        //     this.displayProgress(0)
-        //     vscode.window.showInformationMessage('Preamble End?')
-        // }
     }
 
     public showPanel() {
@@ -297,7 +290,6 @@ export class BuildInfo {
                 <script>
                     window.addEventListener('message', event => {
                         const data = event.data;
-                        console.log(data)
 
                         if (data.type === 'init') {
                             progressManager.startTime = data.startTime;
@@ -333,7 +325,6 @@ export class BuildInfo {
                         pageTotal: null,
                         stepTimesDiv: document.getElementById('stepTimes'),
                         totalSpan: document.getElementById('total'),
-                        // etaSpan: document.getElementById("eta"),
                         updateTimesInterval: null,
                         colours: [
                             window.getComputedStyle(document.getElementById('color0')).color,
@@ -419,7 +410,6 @@ export class BuildInfo {
 
                         updateTimingInfo: function() {
                             this.totalSpan.innerHTML = ((+new Date() - this.startTime) / 1000).toFixed(2);
-                            // this.etaSpan.innerHTML = "\\u2014";
                         },
 
                         drawGraph: function() {
@@ -506,7 +496,6 @@ export class BuildInfo {
                                 // only draw runs which produce pages (signified by INT step type)
                                 const lastItemName = Object.keys(this.stepTimes[runName])[Object.keys(this.stepTimes[runName]).length - 1]
                                 if (lastItemName.replace(/^T\\d+\\-/, '').indexOf('PAGE:') !== 0) {
-                                    console.log('run', runName, 'skipped')
                                     continue;
                                 }
 
@@ -514,7 +503,6 @@ export class BuildInfo {
                                 for (const item in this.stepTimes[runName]) {
                                     const pageNo = parseInt(item.replace(/^T\\d+\\-PAGE:/, ''))
                                     if (isNaN(pageNo)) {
-                                        console.log('item', item, 'skipped')
                                         continue;
                                     }
                                     points.push({
