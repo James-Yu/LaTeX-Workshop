@@ -4,6 +4,7 @@ import * as fs from 'fs-extra'
 import * as cp from 'child_process'
 import * as tmp from 'tmp'
 import * as pdfjsLib from 'pdfjs-dist'
+import {Mutex} from 'await-semaphore'
 
 import {Extension} from '../main'
 import {ExternalCommand} from '../utils'
@@ -17,12 +18,15 @@ export class Builder {
     tmpDir: string
     currentProcess: cp.ChildProcess | undefined
     disableBuildAfterSave: boolean = false
-    nextBuildRootFile: string | undefined
     disableCleanAndRetry: boolean = false
+    buildMutex: Mutex
+    buildWaitMutex: Mutex
 
     constructor(extension: Extension) {
         this.extension = extension
         this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
+        this.buildMutex = new Mutex()
+        this.buildWaitMutex = new Mutex()
     }
 
     kill() {
@@ -32,18 +36,15 @@ export class Builder {
         }
     }
 
-    preprocess(rootFile: string) {
+    async preprocess(rootFile: string) : Promise<() => void> {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         this.disableBuildAfterSave = true
         vscode.workspace.saveAll()
         setTimeout(() => this.disableBuildAfterSave = false, 1000)
-        if (this.currentProcess) {
-            this.currentProcess.kill()
-            this.extension.logger.addLogMessage('Kill previous process.')
-            this.nextBuildRootFile = rootFile
-        } else {
-            this.nextBuildRootFile = undefined
-        }
+        const waitRelease = await this.buildWaitMutex.acquire()
+        const release = await this.buildMutex.acquire()
+        waitRelease()
+        return release
     }
 
     buildWithExternalCommand(command: ExternalCommand, pwd: string) {
@@ -92,19 +93,22 @@ export class Builder {
         this.currentProcess = undefined
     }
 
-    buildInitiator(rootFile: string, recipe: string | undefined = undefined) {
+    buildInitiator(rootFile: string, recipe: string | undefined = undefined, release: () => void) {
         const steps = this.createSteps(rootFile, recipe)
         if (steps === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
             return
         }
-        this.buildStep(rootFile, steps, 0, recipe || 'Build') // use 'Build' as default name
+        this.buildStep(rootFile, steps, 0, recipe || 'Build', release) // use 'Build' as default name
     }
 
-    build(rootFile: string, recipe: string | undefined = undefined) {
+    async build(rootFile: string, recipe: string | undefined = undefined) {
         this.disableCleanAndRetry = false
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        this.preprocess(rootFile)
+        if (this.buildWaitMutex.count < 1) {
+            return
+        }
+        const release = await this.preprocess(rootFile)
 
         this.extension.buildInfo.buildStarted()
         // @ts-ignore
@@ -123,9 +127,7 @@ export class Builder {
             fs.ensureDirSync(path.resolve(outDir, directory))
         })
 
-        if (this.nextBuildRootFile === undefined) {
-            this.buildInitiator(rootFile, recipe)
-        }
+        this.buildInitiator(rootFile, recipe, release)
     }
 
     progressString(recipeName: string, steps: StepCommand[], index: number) {
@@ -136,7 +138,7 @@ export class Builder {
         }
     }
 
-    buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string) {
+    buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string, release?: () => void) {
         if (index === 0) {
             this.extension.logger.clearCompilerMessage()
         }
@@ -184,6 +186,9 @@ export class Builder {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
+            if (release) {
+                release()
+            }
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
@@ -220,18 +225,21 @@ export class Builder {
                         })
                     }
                 }
+                if (release) {
+                    release()
+                }
             } else {
                 if (index === steps.length - 1) {
                     this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
                     this.buildFinished(rootFile)
+                    if (release) {
+                        release()
+                    }
                 } else {
-                    this.buildStep(rootFile, steps, index + 1, recipeName)
+                    this.buildStep(rootFile, steps, index + 1, recipeName, release)
                 }
             }
             this.currentProcess = undefined
-            if (this.nextBuildRootFile) {
-                this.build(this.nextBuildRootFile)
-            }
         })
     }
 

@@ -229,7 +229,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
 
-    context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
+    context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(async (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
 
@@ -239,7 +239,7 @@ export async function activate(context: vscode.ExtensionContext) {
             configuration = vscode.workspace.getConfiguration('latex-workshop')
             if (configuration.get('latex.autoBuild.run') as string === 'onSave' && !extension.builder.disableBuildAfterSave) {
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
-                extension.commander.build(true)
+                await extension.commander.build(true)
             }
         }
     }))
@@ -317,7 +317,7 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    context.subscriptions.push(vscode.workspace.createFileSystemWatcher('**/*.tex', true, false, true).onDidChange((e: vscode.Uri) => {
+    context.subscriptions.push(vscode.workspace.createFileSystemWatcher('**/*.tex', true, false, true).onDidChange(async (e: vscode.Uri) => {
         if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName === e.fsPath) {
             return
         }
@@ -329,7 +329,7 @@ export async function activate(context: vscode.ExtensionContext) {
         const rootFile = extension.manager.findRoot()
         if (rootFile !== undefined) {
             extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            extension.builder.build(extension.manager.rootFile)
+            await extension.builder.build(extension.manager.rootFile)
         } else {
             extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
         }
