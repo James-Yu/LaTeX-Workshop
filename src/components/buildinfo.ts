@@ -311,8 +311,13 @@ export class BuildInfo {
                             progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
 
-                            progressManager.updateStepTimesUl();
-                            progressManager.drawGraph();
+                            if (!progressManager.graph.doneSetup) {
+                                progressManager.startTime = data.startTime ? data.startTime : +new Date();
+                                progressManager.start(10);
+                            } else {
+                                progressManager.updateStepTimesUl();
+                                progressManager.drawGraph();
+                            }
                         }
                     });
 
@@ -661,23 +666,37 @@ export class BuildInfo {
                 +new Date() - this.currentBuild.lastStepTime
         } else {
             if (this.currentBuild.ruleProducesPages) {
-                // if page already exists, add times instead of making new entry
-                const pageAlreadyExistsRegex = new RegExp(`^T\d+-PAGE:${current}`)
-                const pageMatchArray = Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).map(pageLabel => Boolean(pageLabel.match(pageAlreadyExistsRegex)));
-                if (pageMatchArray.indexOf(true) !== -1) {
-                    this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][Object.keys(this.currentBuild.stepTimes)[pageMatchArray.indexOf(true)]] += +new Date() - this.currentBuild.lastStepTime
-                } else {
-                    this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
-                        `T${+new Date()}-PAGE:${current}`
-                    ] = +new Date() - this.currentBuild.lastStepTime
+                // if page already exists, add times and remove old entry
+                const pageAlreadyExistsRegex = new RegExp(`^T\\d+-PAGE:${current}`)
+                const pageMatchArray = Object.keys(
+                    this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]
+                ).map(pageLabel => Boolean(pageLabel.match(pageAlreadyExistsRegex)))
 
+                let extraTime = 0
+                if (pageMatchArray.indexOf(true) !== -1) {
+                    extraTime = this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
+                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`])[
+                            pageMatchArray.indexOf(true)
+                        ]
+                    ]
+                    delete this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
+                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`])[
+                            pageMatchArray.indexOf(true)
+                        ]
+                    ]
+                } else {
                     const pagesProducedByCurrentRule =
-                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).length - 1
+                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).length -
+                        1
 
                     if (typeof this.currentBuild.pageTotal !== 'number' || pagesProducedByCurrentRule > this.currentBuild.pageTotal) {
                         this.currentBuild.pageTotal = pagesProducedByCurrentRule
                     }
                 }
+
+                this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
+                    `T${+new Date()}-PAGE:${current}`
+                ] = +new Date() - this.currentBuild.lastStepTime + extraTime
             } else {
                 this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][`T${+new Date()}-${current}`] =
                     +new Date() - this.currentBuild.lastStepTime
@@ -728,14 +747,14 @@ export class BuildInfo {
                 }
             }
 
-            const selectedCharacerSet = this.configuration.get('progress.barStyle') as string
+            const selectedCharacterSet = this.configuration.get('progress.barStyle') as string
 
-            const wholeCharacter = characterSets[selectedCharacerSet].wholeCharacter
+            const wholeCharacter = characterSets[selectedCharacterSet].wholeCharacter
             const partialCharacter =
-                characterSets[selectedCharacerSet].partialCharacters[
-                    Math.round((length * proportion - wholeCharacters) * (characterSets[selectedCharacerSet].partialCharacters.length - 1))
+                characterSets[selectedCharacterSet].partialCharacters[
+                    Math.round((length * proportion - wholeCharacters) * (characterSets[selectedCharacterSet].partialCharacters.length - 1))
                 ]
-            const blankCharacter = characterSets[selectedCharacerSet].blankCharacter
+            const blankCharacter = characterSets[selectedCharacterSet].blankCharacter
 
             return (
                 wholeCharacter.repeat(wholeCharacters) +
