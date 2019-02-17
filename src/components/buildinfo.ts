@@ -130,6 +130,7 @@ export class BuildInfo {
             this.displayProgress(0)
             this.currentBuild.lastStepTime = +new Date()
         }
+        // TODO: Add more rules
     }
 
     public showPanel() {
