@@ -38,7 +38,7 @@ export class Commander {
         const externalBuildCommand = configuration.get('latex.external.build.command') as ExternalCommand
         if (externalBuildCommand.command) {
             const pwd  = path.dirname(vscode.window.activeTextEditor.document.fileName)
-            this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
+            await this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
             return
         }
         const rootFile = await this.extension.manager.findRoot()

@@ -36,14 +36,13 @@ export class Builder {
         }
     }
 
-    isWaitingBuildToFisish() : boolean {
+    isWaitingForBuildToFinish() : boolean {
         return this.waitingForBuildToFinishMutex.count < 1
     }
 
-    async preprocess(rootFile: string) : Promise<() => void> {
-        this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
+    async preprocess() : Promise<() => void> {
         this.disableBuildAfterSave = true
-        vscode.workspace.saveAll()
+        await vscode.workspace.saveAll()
         setTimeout(() => this.disableBuildAfterSave = false, 1000)
         const waitRelease = await this.waitingForBuildToFinishMutex.acquire()
         const releaseBuildMutex = await this.buildMutex.acquire()
@@ -51,7 +50,11 @@ export class Builder {
         return releaseBuildMutex
     }
 
-    buildWithExternalCommand(command: ExternalCommand, pwd: string) {
+    async buildWithExternalCommand(command: ExternalCommand, pwd: string) {
+        if (this.isWaitingForBuildToFinish()) {
+            return
+        }
+        const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
         this.currentProcess = cp.spawn(command.command, command.args, {cwd: pwd})
@@ -71,6 +74,8 @@ export class Builder {
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`Build fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Build terminated with fatal error: ${err.message}.`)
+            this.currentProcess = undefined
+            releaseBuildMutex()
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
@@ -93,8 +98,9 @@ export class Builder {
             } else {
                 this.extension.logger.displayStatus('check', 'statusBar.foreground', `Build succeeded.`)
             }
+            this.currentProcess = undefined
+            releaseBuildMutex()
         })
-        this.currentProcess = undefined
     }
 
     buildInitiator(rootFile: string, recipe: string | undefined = undefined, releaseBuildMutex: () => void) {
@@ -107,31 +113,35 @@ export class Builder {
     }
 
     async build(rootFile: string, recipe: string | undefined = undefined) {
-        this.disableCleanAndRetry = false
-        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        if (this.isWaitingBuildToFisish()) {
+        if (this.isWaitingForBuildToFinish()) {
+            this.extension.logger.addLogMessage(`Another LaTeX build proccesing already waits for the current LaTeX build to finish.`)
             return
         }
-        const releaseBuildMutex = await this.preprocess(rootFile)
-
-        this.extension.buildInfo.buildStarted()
-        // @ts-ignore
-        pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
-            this.extension.buildInfo.setPageTotal(doc.numPages)
-        })
-
-        // Create sub directories of output directory
-        let outDir = this.extension.manager.getOutputDir(rootFile)
-        const directories = new Set<string>(this.extension.manager.filesWatched
-            .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
-        if (!path.isAbsolute(outDir)) {
-            outDir = path.resolve(this.extension.manager.rootDir, outDir)
+        const releaseBuildMutex = await this.preprocess()
+        this.disableCleanAndRetry = false
+        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
+        this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
+        try {
+            this.extension.buildInfo.buildStarted()
+            // @ts-ignore
+            pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
+                this.extension.buildInfo.setPageTotal(doc.numPages)
+            })
+            // Create sub directories of output directory
+            let outDir = this.extension.manager.getOutputDir(rootFile)
+            const directories = new Set<string>(this.extension.manager.filesWatched
+                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
+            if (!path.isAbsolute(outDir)) {
+                outDir = path.resolve(this.extension.manager.rootDir, outDir)
+            }
+            directories.forEach(directory => {
+                fs.ensureDirSync(path.resolve(outDir, directory))
+            })
+            this.buildInitiator(rootFile, recipe, releaseBuildMutex)
+        } catch (e) {
+            releaseBuildMutex()
+            throw(e)
         }
-        directories.forEach(directory => {
-            fs.ensureDirSync(path.resolve(outDir, directory))
-        })
-
-        this.buildInitiator(rootFile, recipe, releaseBuildMutex)
     }
 
     progressString(recipeName: string, steps: StepCommand[], index: number) {
@@ -233,8 +243,11 @@ export class Builder {
             } else {
                 if (index === steps.length - 1) {
                     this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
-                    this.buildFinished(rootFile)
-                    releaseBuildMutex()
+                    try {
+                        this.buildFinished(rootFile)
+                    } finally {
+                        releaseBuildMutex()
+                    }
                 } else {
                     this.buildStep(rootFile, steps, index + 1, recipeName, releaseBuildMutex)
                 }
