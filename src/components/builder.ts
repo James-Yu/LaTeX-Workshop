@@ -138,7 +138,7 @@ export class Builder {
         }
     }
 
-    buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string, release?: () => void) {
+    buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string, release: () => void) {
         if (index === 0) {
             this.extension.logger.clearCompilerMessage()
         }
@@ -186,9 +186,7 @@ export class Builder {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
-            if (release) {
-                release()
-            }
+            release()
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
@@ -204,8 +202,10 @@ export class Builder {
                         this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
 
                         this.extension.commander.clean().then(() => {
-                            this.buildStep(rootFile, steps, 0, recipeName)
+                            this.buildStep(rootFile, steps, 0, recipeName, release)
                         })
+                    } else {
+                        release()
                     }
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
@@ -224,17 +224,13 @@ export class Builder {
                             }
                         })
                     }
-                }
-                if (release) {
                     release()
                 }
             } else {
                 if (index === steps.length - 1) {
                     this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
                     this.buildFinished(rootFile)
-                    if (release) {
-                        release()
-                    }
+                    release()
                 } else {
                     this.buildStep(rootFile, steps, index + 1, recipeName, release)
                 }
