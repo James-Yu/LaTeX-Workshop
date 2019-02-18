@@ -292,6 +292,9 @@ export class Manager {
         if (!rootDir) {
             rootDir = path.dirname(filePath)
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const texDirs = configuration.get('latex.texDirs') as string[]
+
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
         const content = this.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
@@ -309,7 +312,7 @@ export class Manager {
             } else if (result[0].startsWith('\\import')) {
                 inputFilePath = this.extension.manager.resolveFile([result[1]], result[2])
             } else {
-                inputFilePath = this.resolveFile([path.dirname(filePath), rootDir], result[2])
+                inputFilePath = this.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
             }
 
             if (inputFilePath && fs.existsSync(inputFilePath)) {

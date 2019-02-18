@@ -606,6 +606,11 @@
           "default": "%DIR%",
           "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash.\nThe LaTeX toolchain should output files to this path.\nPlaceholders `%DOC%`, `%DOCFILE%`, `%DIR%` and `%TMPDIR%` are available."
         },
+        "latex-workshop.latex.texDirs": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "List of directories where to look for extra input `.tex/sty` files. The files found in these directories are only take into account by intellisense and not parsed for building the outline.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `TEXINPUTS` properly for the LaTeX compiler to find the `.tex/sty` files, see the `env` parameter of [recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)."
+        },
         "latex-workshop.latex.bibDirs": {
           "type": "array",
           "default": [],
