@@ -4,7 +4,7 @@ import * as fs from 'fs-extra'
 import * as cp from 'child_process'
 import * as tmp from 'tmp'
 import * as pdfjsLib from 'pdfjs-dist'
-import {Mutex} from 'await-semaphore'
+import {Mutex} from '../lib/await-semaphore'
 
 import {Extension} from '../main'
 import {ExternalCommand} from '../utils'
