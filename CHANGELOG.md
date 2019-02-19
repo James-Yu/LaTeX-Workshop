@@ -1,5 +1,29 @@
 # Change Log
 
+## [6.0.0] - 2019-02-19 - QoL Update
+
+### Added
+- (#484) Add support for [magic TEX or BIB options](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#magic-comments).
+- (#1141) Add a `texdoc` interactive command.
+- (#1157) LaTeX compilation progress monitor.
+- (#1161) Word-based reverse synctex.
+- (#1178) Add a new config `latex.texDirs` to search for input TeX in extra directories.
+
+### Changed
+- Remove deprecated configs.
+- Rename `hoverPreview` configs to `hover.preview`.
+- Rename `latex.clean.run` to `latex.autoClean.run`.
+- Combine `latex.clean.enabled` and `latex.clean.onFailBuild.enabled`.
+- Combine `latex.autoBuild.onSave.enabled` and `latex.autoBuild.onTexChange.enabled` as `latex.autoBuild.run`.
+- Add `latex.clean.subfolder.enabled` to determine whether subfolders should be cleared.
+
+### Fixed
+- (#1135) Parse `biber` warning.
+- (#1137) `%DIR%` in `outDir` works with docker.
+- (#1155) Define an [external build command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#external-build-command).
+- (#1156) Follow cursor in TeX structure panel.
+- (#1162) Include environment variables to building tools.
+
 ## [5.21.0] - 2019-01-24
 
 ### Added
