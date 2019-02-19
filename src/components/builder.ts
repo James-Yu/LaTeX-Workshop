@@ -31,8 +31,9 @@ export class Builder {
 
     kill() {
         if (this.currentProcess) {
+            const pid = this.currentProcess.pid
             this.currentProcess.kill()
-            this.extension.logger.addLogMessage('Kill the current process.')
+            this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
         }
     }
 
@@ -58,6 +59,8 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
         this.currentProcess = cp.spawn(command.command, command.args, {cwd: pwd})
+        const pid = this.currentProcess.pid
+        this.extension.logger.addLogMessage(`LaTeX buid process as an external command spawned. PID: ${pid}.`)
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
@@ -72,7 +75,7 @@ export class Builder {
         })
 
         this.currentProcess.on('error', err => {
-            this.extension.logger.addLogMessage(`Build fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
+            this.extension.logger.addLogMessage(`Build fatal error: ${err.message}, ${stderr}. PID: ${pid}. Does the executable exist?`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Build terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
             releaseBuildMutex()
@@ -81,7 +84,7 @@ export class Builder {
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}.`)
+                this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
                 this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error')
                 const res = this.extension.logger.showErrorMessage('Build terminated with error.', 'Open compiler log')
                 if (res) {
@@ -114,7 +117,7 @@ export class Builder {
 
     async build(rootFile: string, recipe: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
-            this.extension.logger.addLogMessage(`Another LaTeX build proccesing already waits for the current LaTeX build to finish.`)
+            this.extension.logger.addLogMessage(`Another LaTeX build proccesing is already waiting for the current LaTeX build to finish. Exit.`)
             return
         }
         const releaseBuildMutex = await this.preprocess()
@@ -182,6 +185,8 @@ export class Builder {
         } else {
             this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
         }
+        const pid = this.currentProcess.pid
+        this.extension.logger.addLogMessage(`LaTeX buid process spawned. PID: ${pid}.`)
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
@@ -197,7 +202,7 @@ export class Builder {
         })
 
         this.currentProcess.on('error', err => {
-            this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. Does the executable exist?`)
+            this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}. Does the executable exist?`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
             releaseBuildMutex()
@@ -206,7 +211,7 @@ export class Builder {
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}.`)
+                this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
@@ -219,6 +224,7 @@ export class Builder {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
                         })
                     } else {
+                        this.currentProcess = undefined
                         releaseBuildMutex()
                     }
                 } else {
@@ -226,7 +232,7 @@ export class Builder {
                     if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
                         this.extension.commander.clean()
                     }
-                    const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
+                    const res = this.extension.logger.showErrorMessage(`Recipe terminated with error.`, 'Open compiler log')
                     if (res) {
                         res.then(option => {
                             switch (option) {
@@ -238,27 +244,30 @@ export class Builder {
                             }
                         })
                     }
+                    this.currentProcess = undefined
                     releaseBuildMutex()
                 }
             } else {
                 if (index === steps.length - 1) {
-                    this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished.`)
+                    this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished. PID: ${pid}.`)
                     try {
                         this.buildFinished(rootFile)
                     } finally {
+                        this.currentProcess = undefined
                         releaseBuildMutex()
                     }
                 } else {
+                    this.extension.logger.addLogMessage(`A step in recipe finished. PID: ${pid}.`)
                     this.buildStep(rootFile, steps, index + 1, recipeName, releaseBuildMutex)
                 }
             }
-            this.currentProcess = undefined
         })
     }
 
     buildFinished(rootFile: string) {
+        const pid = this.currentProcess !== undefined ? this.currentProcess.pid : undefined
         this.extension.buildInfo.buildEnded()
-        this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
+        this.extension.logger.addLogMessage(`Successfully built ${rootFile}. PID: ${pid}`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', `Recipe succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
