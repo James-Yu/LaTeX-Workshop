@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export class Logger {
     extension: Extension
@@ -23,7 +23,7 @@ export class Logger {
     addLogMessage(message: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('message.log.show')) {
-            this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', {hour12: false})}] ${message}\n`)
+            this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${message}\n`)
         }
     }
 

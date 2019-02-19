@@ -273,8 +273,14 @@
         "category": "LaTeX Workshop"
       },
       {
+        "command": "latex-workshop.showCompilationPanel",
+        "title": "Show LaTeX Compilation Info",
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-structure.toggle-follow-cursor",
-        "title": "Toggle follow cursor"
+        "title": "Toggle follow cursor",
+        "category": "LaTeX Workshop"
       }
     ],
     "keybindings": [
@@ -618,7 +624,11 @@
         },
         "latex-workshop.latex.autoBuild.run": {
           "type": "string",
-          "enum": ["never", "onSave", "onFileChange"],
+          "enum": [
+            "never",
+            "onSave",
+            "onFileChange"
+          ],
           "default": "onSave",
           "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n`onSave` builds the project upon saving a `tex` file in vscode. `onFileChange` builds the project upon detecting a `tex` file change, even modified by other applications."
         },
@@ -634,7 +644,11 @@
         },
         "latex-workshop.latex.autoClean.run": {
           "type": "string",
-          "enum": ["never", "onFailed", "onBuilt"],
+          "enum": [
+            "never",
+            "onFailed",
+            "onBuilt"
+          ],
           "default": "never",
           "markdownDescription": "When LaTeX auxillary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` clean the project when compilation is failed. `onBuilt` clean the project when compilation is terminated, whether successful or failed."
         },
@@ -1033,6 +1047,44 @@
           "type": "string",
           "default": "texdoc",
           "markdownDescription": "Define the location of texdoc executable.\nThis command is used to show a package documentation."
+        },
+        "latex-workshop.progress.runIconType": {
+          "type": "string",
+          "default": "Parenthesised",
+          "enum": [
+            "Parenthesised",
+            "Circled",
+            "Solid Circled",
+            "Full Stop"
+          ],
+          "enumDescriptions": [
+            "⑴ ⑵ ⑶ …",
+            "① ② ③ …",
+            "❶ ❷ ❸ …",
+            "⒈ ⒉ ⒊ …"
+          ],
+          "markdownDescription": "The style of number to use to inidcate the run number"
+        },
+        "latex-workshop.progress.barLength": {
+          "type": "integer",
+          "default": 15,
+          "markdownDescription": "How many characters long the progress bar should be"
+        },
+        "latex-workshop.progress.barStyle": {
+          "type": "string",
+          "default": "Block Shading",
+          "enum": [
+            "Block Width",
+            "Block Shading",
+            "Block Quadrants",
+            "none"
+          ],
+          "enumDescriptions": [
+            "█████▋░░░ (8 levels per block)",
+            "█████▓░░░ (4 levels per block)",
+            "█████▙░░░ (4 levels per block)",
+            "No Bar"
+          ]
         }
       }
     },

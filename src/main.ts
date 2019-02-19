@@ -5,6 +5,7 @@ import * as fs from 'fs'
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
+import {BuildInfo} from './components/buildinfo'
 import {Manager} from './components/manager'
 import {Builder} from './components/builder'
 import {Viewer} from './components/viewer'
@@ -226,6 +227,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.increment-sectioning', () => extension.commander.shiftSectioningLevel('increment'))
     vscode.commands.registerCommand('latex-workshop.decrement-sectioning', () => extension.commander.shiftSectioningLevel('decrement'))
 
+    vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
+
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
@@ -378,6 +381,7 @@ export class Extension {
     packageInfo
     extensionRoot: string
     logger: Logger
+    buildInfo: BuildInfo
     commander: Commander
     manager: Manager
     builder: Builder
@@ -398,6 +402,7 @@ export class Extension {
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
         this.logger = new Logger(this)
+        this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
         this.builder = new Builder(this)

@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as cp from 'child_process'
 import * as tmp from 'tmp'
+import * as pdfjsLib from 'pdfjs-dist'
 
 import {Extension} from '../main'
 import {ExternalCommand} from '../utils'
@@ -105,6 +106,12 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.preprocess(rootFile)
 
+        this.extension.buildInfo.buildStarted()
+        // @ts-ignore
+        pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
+            this.extension.buildInfo.setPageTotal(doc.numPages)
+        })
+
         // Create sub directories of output directory
         let outDir = this.extension.manager.getOutputDir(rootFile)
         const directories = new Set<string>(this.extension.manager.filesWatched
@@ -164,6 +171,7 @@ export class Builder {
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
+            this.extension.buildInfo.newStdoutLine(newStdout.toString())
         })
 
         let stderr = ''
@@ -228,6 +236,7 @@ export class Builder {
     }
 
     buildFinished(rootFile: string) {
+        this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', `Recipe succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
