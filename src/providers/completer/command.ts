@@ -196,7 +196,7 @@ export class Command {
         const command = new CommandCompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
         if (item.snippet) {
             if (useTabStops) {
-                item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$$$1')
+                item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$${$1}')
             }
             command.insertText = new vscode.SnippetString(item.snippet)
         } else {
