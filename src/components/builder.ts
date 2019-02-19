@@ -99,6 +99,7 @@ export class Builder {
                     })
                 }
             } else {
+                this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
                 this.extension.logger.displayStatus('check', 'statusBar.foreground', `Build succeeded.`)
             }
             this.currentProcess = undefined
@@ -265,9 +266,8 @@ export class Builder {
     }
 
     buildFinished(rootFile: string) {
-        const pid = this.currentProcess !== undefined ? this.currentProcess.pid : undefined
         this.extension.buildInfo.buildEnded()
-        this.extension.logger.addLogMessage(`Successfully built ${rootFile}. PID: ${pid}`)
+        this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', `Recipe succeeded.`)
         this.extension.viewer.refreshExistingViewer(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
