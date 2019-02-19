@@ -244,17 +244,6 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        const editor = vscode.window.activeTextEditor
-        if (editor && e.kind) {
-            const content = editor.document.getText(new vscode.Range(e.selections[0].start, e.selections[0].end))
-            if (content.length > 0 || extension.completer.command.shouldClearSelection) {
-                extension.completer.command.selection = content
-            }
-            extension.completer.command.shouldClearSelection = content.length === 0
-        }
-    }))
-
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
         // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
         if (extension.manager.hasTexId(e.languageId)) {

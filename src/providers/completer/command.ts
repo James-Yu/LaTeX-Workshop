@@ -13,8 +13,6 @@ export class CommandCompletionItem extends vscode.CompletionItem {
 
 export class Command {
     extension: Extension
-    selection: string = ''
-    shouldClearSelection: boolean = true
     suggestions: CommandCompletionItem[] = []
     commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
     refreshTimer: number
