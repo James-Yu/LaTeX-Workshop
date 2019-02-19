@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as chokidar from 'chokidar'
-import * as glob from 'glob'
 
 import {Extension} from '../main'
 
@@ -271,20 +270,6 @@ export class Manager {
                 }
             })
             this.findDependentFiles(rootFile)
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            const additionalBib = configuration.get('latex.additionalBib') as string[]
-            for (const bibGlob of additionalBib) {
-                glob(bibGlob, {cwd: this.extension.manager.rootDir}, (err, files) => {
-                    if (err) {
-                        this.extension.logger.addLogMessage(`Error identifying additional bibfile with glob ${bibGlob}: ${files}.`)
-                        return
-                    }
-                    for (const bib of files) {
-                        this.extension.logger.addLogMessage(`Try to watch global bibliography file ${bib}.`)
-                        this.addBibToWatcher(bib, this.extension.manager.rootDir)
-                    }
-                })
-            }
         }
     }
 

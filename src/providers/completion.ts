@@ -73,17 +73,6 @@ export class Completer implements vscode.CompletionItemProvider {
                             setTimeout(() => this.citation.browser({document, position, token, context}), 10)
                             return
                         }
-                    } else if (type === 'command') {
-                        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                        if (configuration.get('intellisense.surroundCommand.enabled') && this.command.selection.length > 0) {
-                            resolve()
-                            setTimeout(() => {
-                                this.command.surround(this.command.selection)
-                                this.command.selection = ''
-                                this.command.shouldClearSelection = true
-                            }, 10)
-                            return
-                        }
                     }
                     resolve(suggestions)
                     return
