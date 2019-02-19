@@ -30,9 +30,10 @@ export class Builder {
     }
 
     kill() {
-        if (this.currentProcess) {
-            const pid = this.currentProcess.pid
-            this.currentProcess.kill()
+        const proc = this.currentProcess
+        if (proc) {
+            const pid = proc.pid
+            proc.kill()
             this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
         }
     }
@@ -45,9 +46,9 @@ export class Builder {
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
         setTimeout(() => this.disableBuildAfterSave = false, 1000)
-        const waitRelease = await this.waitingForBuildToFinishMutex.acquire()
+        const releaseWaiting = await this.waitingForBuildToFinishMutex.acquire()
         const releaseBuildMutex = await this.buildMutex.acquire()
-        waitRelease()
+        releaseWaiting()
         return releaseBuildMutex
     }
 
