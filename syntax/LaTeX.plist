@@ -577,6 +577,25 @@
 		</dict>
 		<dict>
 			<key>begin</key>
+			<string>((?:\s*)\\begin\{(code(?:\*)?)\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>end</key>
+			<string>(\\end\{\2\}(?:\s*\n)?)</string>
+		</dict>
+		<dict>
+			<key>begin</key>
 			<string>((?:\s*)\\begin\{asy\}(?:\[.*\])?)</string>
 			<key>captures</key>
 			<dict>
@@ -1944,7 +1963,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>((\\)(?:lstinline))((?:\[[^\[]*?\])?)(?:(?:([^a-zA-Z\{])(.*?)(\4))|(?:(\{)(.*?)(\})))</string>
+			<string>((\\)(?:lstinline|inlinecode))((?:\[[^\[]*?\])?)(?:(?:([^a-zA-Z\{])(.*?)(\4))|(?:(\{)(.*?)(\})))</string>
 			<key>name</key>
 			<string>meta.function.verb.latex</string>
 		</dict>
