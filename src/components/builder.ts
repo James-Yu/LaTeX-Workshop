@@ -59,7 +59,12 @@ export class Builder {
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
-        this.currentProcess = cp.spawn(command.command, command.args, {cwd: pwd})
+        let wd = pwd
+        const ws = vscode.workspace.workspaceFolders
+        if (ws && ws.length > 0) {
+            wd = ws[0].uri.fsPath
+        }
+        this.currentProcess = cp.spawn(command.command, command.args, {cwd: wd})
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`LaTeX buid process as an external command spawned. PID: ${pid}.`)
 
