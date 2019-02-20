@@ -38,7 +38,7 @@ export class Commander {
         const externalBuildCommand = configuration.get('latex.external.build.command') as ExternalCommand
         if (externalBuildCommand.command) {
             const pwd  = path.dirname(vscode.window.activeTextEditor.document.fileName)
-            this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
+            await this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -49,7 +49,7 @@ export class Commander {
         }
         if (skipSelection) {
             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            this.extension.builder.build(rootFile, recipe)
+            await this.extension.builder.build(rootFile, recipe)
         } else {
             const subFileRoot = this.extension.manager.findSubFiles()
             if (subFileRoot) {
@@ -62,18 +62,18 @@ export class Commander {
                 }], {
                     placeHolder: 'Subfiles package detected. Which file to build?',
                     matchOnDescription: true
-                }).then(selected => {
+                }).then(async selected => {
                     if (!selected) {
                         return
                     }
                     switch (selected.label) {
                         case 'Default root file':
                             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            this.extension.builder.build(rootFile, recipe)
+                            await this.extension.builder.build(rootFile, recipe)
                             break
                         case 'Subfiles package root file':
                             this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
-                            this.extension.builder.build(subFileRoot, recipe)
+                            await this.extension.builder.build(subFileRoot, recipe)
                             break
                         default:
                             break
@@ -81,7 +81,7 @@ export class Commander {
                 })
             } else {
                 this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                this.extension.builder.build(rootFile, recipe)
+                await this.extension.builder.build(rootFile, recipe)
             }
         }
     }
