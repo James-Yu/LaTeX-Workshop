@@ -35,6 +35,8 @@ export class Builder {
             const pid = proc.pid
             proc.kill()
             this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
+        } else {
+            this.extension.logger.addLogMessage('LaTeX build process to kill is not found.')
         }
     }
 
@@ -275,7 +277,7 @@ export class Builder {
     buildFinished(rootFile: string) {
         this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
-        this.extension.logger.displayStatus('check', 'statusBar.foreground', `Recipe succeeded.`)
+        this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         this.extension.viewer.refreshExistingViewer(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('synctex.afterBuild.enabled') as boolean) {
