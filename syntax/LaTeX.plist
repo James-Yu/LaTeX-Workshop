@@ -549,7 +549,7 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((?:\s*)\\begin\{(pycode(?:\*)?)\}(?:\[.*\])?)</string>
+			<string>((?:\s*)\\begin\{((?:pycode|sageblock|sagesilent|sageverbatim|sageexample|sagecommandline)(?:\*)?)\}(?:\[.*\])?)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
@@ -2251,7 +2251,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(?:\s*)((\\)(?:begin|end))(\{)([a-z]*code(?:\*)?|gnuplot|dot2tex|asy)(\})(?:(\[).*(\]))?</string>
+			<string>(?:\s*)((\\)(?:begin|end))(\{)([a-z]*code(?:\*)?|gnuplot|dot2tex|asy|sage[a-z]*)(\})(?:(\[).*(\]))?</string>
 		</dict>
 		<key>definition-label</key>
 		<dict>
