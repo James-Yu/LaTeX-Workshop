@@ -57,8 +57,8 @@ function combineConfig(extension: Extension, originalConfig1: string, originalCo
     const key = config1.toString() + config2.toString()
     configuration.update(newConfig, truthTable[key], true)
 
-    const msg = `"latex-workshop.latex.clean.enabled" and "latex-workshop.latex.clean.onFailBuild.enabled" have been replaced by "latex-workshop.latex.autoClean.run", which is set to "${truthTable[key]}". See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files.`
-    const markdownMsg = `\`latex-workshop.latex.clean.enabled\` and \`latex-workshop.latex.clean.onFailBuild.enabled\` have been replaced by \`latex-workshop.latex.autoClean.run\`, which is set to \`${truthTable[key]}\`. See the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files).`
+    const msg = `"latex-workshop.${originalConfig1}" and "latex-workshop.${originalConfig2}" have been replaced by "latex-workshop.${newConfig}", which is set to "${truthTable[key]}". Please manually remove the deprecated configs from your settings.`
+    const markdownMsg = `\`latex-workshop.${originalConfig1}\` and \`latex-workshop.${originalConfig2}\` have been replaced by \`latex-workshop.${newConfig}\`, which is set to \`${truthTable[key]}\`.  Please manually remove the deprecated configs from your \`settings.json\``
 
     extension.logger.addLogMessage(msg)
     extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
