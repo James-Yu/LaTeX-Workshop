@@ -115,7 +115,7 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private findNewCommand(content: string) : string {
-        const regex = /(\\(?:(?:re)?new|provide)command(\*)?(?:\[[^\[\]\{\}]*\])*{.*})/gm
+        const regex = /(\\(?:(?:(?:re)?new|provide)command(\*)?(?:\[[^\[\]\{\}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
         const commands: string[] = []
         let result
         do {
