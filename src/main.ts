@@ -237,11 +237,11 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.update()
 
             configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (extension.builder.disableBuildAfterSave) {
-                extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-                return
-            }
             if (configuration.get('latex.autoBuild.run') as string === 'onSave') {
+                if (extension.builder.disableBuildAfterSave) {
+                    extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+                    return
+                }
                 extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
                 await extension.commander.build(true)
             }
@@ -315,11 +315,11 @@ export async function activate(context: vscode.ExtensionContext) {
             return
         }
         configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (extension.builder.disableBuildAfterSave) {
-            extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-            return
-        }
         if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+            if (extension.builder.disableBuildAfterSave) {
+                extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+                return
+            }
             return
         }
         extension.logger.addLogMessage(`${e.fsPath} changed. Auto build project.`)
