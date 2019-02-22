@@ -316,10 +316,10 @@ export async function activate(context: vscode.ExtensionContext) {
         }
         configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
-            if (extension.builder.disableBuildAfterSave) {
-                extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-                return
-            }
+            return
+        }
+        if (extension.builder.disableBuildAfterSave) {
+            extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
             return
         }
         extension.logger.addLogMessage(`${e.fsPath} changed. Auto build project.`)
