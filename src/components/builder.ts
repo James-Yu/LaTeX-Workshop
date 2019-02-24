@@ -21,12 +21,17 @@ export class Builder {
     disableCleanAndRetry: boolean = false
     buildMutex: Mutex
     waitingForBuildToFinishMutex: Mutex
+    isMiktex: boolean = false
 
     constructor(extension: Extension) {
         this.extension = extension
         this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
         this.buildMutex = new Mutex()
         this.waitingForBuildToFinishMutex = new Mutex()
+        const pdflatexVersion = cp.execSync('pdflatex --version')
+        if (pdflatexVersion.toString().match(/MiKTeX/)) {
+            this.isMiktex = true
+        }
     }
 
     kill() {
@@ -375,13 +380,12 @@ export class Builder {
                     }
                 })
             }
-            if (configuration.get('latex.option.maxPrintLine.enabled') && process.platform === 'win32') {
+            if (configuration.get('latex.option.maxPrintLine.enabled')) {
                 if (!step.args) {
                     step.args = []
                 }
-                if ((step.command === 'latexmk' && step.args.indexOf('-lualatex') === -1 && step.args.indexOf('-pdflua') === -1 && step.args.indexOf('-xelatex') === -1 && step.args.indexOf('-pdfxe') === -1) || step.command === 'pdflatex') {
-                    const pdflatexVersion = cp.execSync('pdflatex --version')
-                    if (pdflatexVersion.toString().match(/MiKTeX/)) {
+                if ((step.command === 'latexmk' && step.args.indexOf('-lualatex') === -1 && step.args.indexOf('-pdflua') === -1) || step.command === 'pdflatex') {
+                    if (this.isMiktex) {
                         step.args.unshift('--max-print-line=' + maxPrintLine)
                     }
                 }
