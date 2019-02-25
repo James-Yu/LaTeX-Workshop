@@ -230,6 +230,7 @@ export class Manager {
         }
         if (updateDependent) {
             this.findDependentFiles(root, undefined, true)
+            this.findAdditionalDependentFilesFromFls(root, true)
         }
         if (!this.texFileTree.hasOwnProperty(root) || !this.texFileTree.hasOwnProperty(file)) {
             return false
@@ -264,6 +265,7 @@ export class Manager {
             this.fileWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
                 this.findDependentFiles(filePath)
+                this.findAdditionalDependentFilesFromFls(filePath)
             })
             this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
@@ -274,7 +276,6 @@ export class Manager {
                     await this.findRoot()
                 }
             })
-            this.texFileTree[rootFile] = new Set()
             this.findDependentFiles(rootFile)
             this.findAdditionalDependentFilesFromFls(rootFile)
         }
@@ -291,6 +292,7 @@ export class Manager {
         const content = this.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?import\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        this.texFileTree[filePath] = new Set()
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
@@ -338,11 +340,12 @@ export class Manager {
         this.onFileChange(filePath)
     }
 
-    findAdditionalDependentFilesFromFls(rootFile: string) {
+    findAdditionalDependentFilesFromFls(rootFile: string, fast: boolean = false) {
         const rootDir = path.dirname(rootFile)
         const outDir = this.getOutputDir(rootFile)
         const flsFile = path.join(outDir, path.basename(rootFile, '.tex') + '.fls')
         if (! fs.existsSync(flsFile)) {
+            this.extension.logger.addLogMessage(`Cannot find file ${flsFile}.`)
             return
         }
         const flsContent = fs.readFileSync(flsFile).toString()
@@ -368,7 +371,8 @@ export class Manager {
                     this.fileWatcher.add(inputFilePath)
                     this.filesWatched.push(inputFilePath)
                 }
-            } else if (result[5]) {
+                this.findDependentFiles(inputFilePath, rootDir)
+            } else if (result[5] && !fast) {
                 const auxFilePath = path.resolve(pwd, result[6])
                 this.findBibFileFromAux(auxFilePath, rootDir, outDir)
             }
