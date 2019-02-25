@@ -26,7 +26,7 @@ export class Manager {
 
     getOutputDir(texPath: string) {
         const doc = texPath.replace(/\.tex$/, '').split(path.sep).join('/')
-        const docfile = path.basename(texPath, '.tex').split(path.sep).join('/')
+        const docfile = path.basename(texPath, '.tex')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         let outDir = (configuration.get('latex.outDir') as string)
@@ -274,7 +274,9 @@ export class Manager {
                     await this.findRoot()
                 }
             })
+            this.texFileTree[rootFile] = new Set()
             this.findDependentFiles(rootFile)
+            this.findAdditionalDependentFilesFromFls(rootFile)
         }
     }
 
@@ -289,7 +291,6 @@ export class Manager {
         const content = this.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?import\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
-        this.texFileTree[filePath] = new Set()
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
@@ -335,6 +336,61 @@ export class Manager {
         }
 
         this.onFileChange(filePath)
+    }
+
+    findAdditionalDependentFilesFromFls(rootFile: string) {
+        const rootDir = path.dirname(rootFile)
+        const outDir = this.getOutputDir(rootFile)
+        const flsFile = path.join(outDir, path.basename(rootFile, '.tex') + '.fls')
+        if (! fs.existsSync(flsFile)) {
+            return
+        }
+        const flsContent = fs.readFileSync(flsFile).toString()
+        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*\.tex))|(?:(OUTPUT)\s*(.*\.aux))$/gm
+        // regex groups
+        // #1: a PWD entry --> #2 gives the path
+        // #3: an INPUT entry --> #4: input file path
+        // #5: an OUPUT entry --> #6: output file path
+        let pwd
+        while (true) {
+            const result = regex.exec(flsContent)
+            if (! result) {
+                break
+            }
+            if (result[1]) {
+                pwd = result[2]
+            } else if (result[3]) {
+                const inputFilePath = path.resolve(rootDir, result[4])
+                // ! Handle full vs relative path
+                this.texFileTree[rootFile].add(inputFilePath)
+                if (this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
+                    this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
+                    this.fileWatcher.add(inputFilePath)
+                    this.filesWatched.push(inputFilePath)
+                }
+            } else if (result[5]) {
+                const auxFilePath = path.resolve(pwd, result[6])
+                this.findBibFileFromAux(auxFilePath, rootDir, outDir)
+            }
+        }
+    }
+
+    findBibFileFromAux(auxFilePath: string, rootDir: string, outDir: string) {
+        const regex = /^\\bibdata{(.*)}$/gm
+        const auxContent = fs.readFileSync(auxFilePath).toString()
+        const srcDir = path.dirname(auxFilePath).replace(outDir, rootDir)
+        while (true) {
+            const result = regex.exec(auxContent)
+            if (!result) {
+                return
+            }
+            const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
+                return bib.trim()
+            })
+            for (const bib of bibs) {
+                this.addBibToWatcher(bib, srcDir, this.extension.manager.rootFile)
+            }
+        }
     }
 
     onFileChange(filePath: string) {
