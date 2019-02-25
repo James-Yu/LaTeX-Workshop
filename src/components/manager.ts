@@ -364,7 +364,9 @@ export class Manager {
                 pwd = result[2]
             } else if (result[3]) {
                 const inputFilePath = path.resolve(rootDir, result[4])
-                // ! Handle full vs relative path
+                if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
+                    continue
+                }
                 this.texFileTree[rootFile].add(inputFilePath)
                 if (this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
