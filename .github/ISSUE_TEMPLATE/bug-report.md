@@ -8,6 +8,9 @@ labels:
 <!-- Following contents are required for a successful issue. Not providing necessary information, specifically log messages, may render the issue closed. -->
 <!-- Sorry for being rude on the above message, yet I/we have encountered too many frustrating issues without any information. The developers are only developers, not mind-readers or remote-computer-readers. -->
 
+**Make sure to visit the [wiki FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) before filling an issue.**
+
+
 **Describe the bug**
 A clear and concise description of what the bug is.
 
