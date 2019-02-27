@@ -181,7 +181,9 @@ export class HoverProvider implements vscode.HoverProvider {
         this.colorSVG(data)
         const xml = data.svgNode.outerHTML
         const md = this.svgToDataUrl(xml)
-        return new vscode.Hover(new vscode.MarkdownString( `![equation](${md})`), tex.range )
+        // We need a dummy code block in hover to make the width of hover larger.
+        const dummyCodeBlock = '```\n```'
+        return new vscode.Hover(new vscode.MarkdownString(dummyCodeBlock + '\n' + `![equation](${md})`+ '\n' + dummyCodeBlock), tex.range )
     }
 
     private async provideHoverOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
@@ -206,7 +208,9 @@ export class HoverProvider implements vscode.HoverProvider {
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
-        return new vscode.Hover( [eqNumAndLabels, `![equation](${md})`, mdLink], tex.range )
+        // We need a dummy code block in hover to make the width of hover larger.
+        const dummyCodeBlock = '```\n```'
+        return new vscode.Hover( [eqNumAndLabels, dummyCodeBlock + '\n' + `![equation](${md})` + '\n' + dummyCodeBlock, mdLink], tex.range )
     }
 
     private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
