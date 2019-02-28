@@ -167,6 +167,12 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
+    addDummyCodeBlock(md: string) : string {
+        // We need a dummy code block in hover to make the width of hover larger.
+        const dummyCodeBlock = '```\n```'
+        return dummyCodeBlock + '\n' + md + '\n' + dummyCodeBlock
+    }
+
     private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
@@ -181,9 +187,7 @@ export class HoverProvider implements vscode.HoverProvider {
         this.colorSVG(data)
         const xml = data.svgNode.outerHTML
         const md = this.svgToDataUrl(xml)
-        // We need a dummy code block in hover to make the width of hover larger.
-        const dummyCodeBlock = '```\n```'
-        return new vscode.Hover(new vscode.MarkdownString(dummyCodeBlock + '\n' + `![equation](${md})`+ '\n' + dummyCodeBlock), tex.range )
+        return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
 
     private async provideHoverOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
@@ -208,9 +212,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
-        // We need a dummy code block in hover to make the width of hover larger.
-        const dummyCodeBlock = '```\n```'
-        return new vscode.Hover( [eqNumAndLabels, dummyCodeBlock + '\n' + `![equation](${md})` + '\n' + dummyCodeBlock, mdLink], tex.range )
+        return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
     }
 
     private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
