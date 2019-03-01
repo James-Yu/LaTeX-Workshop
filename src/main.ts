@@ -310,28 +310,6 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    context.subscriptions.push(vscode.workspace.createFileSystemWatcher('**/*.tex', true, false, true).onDidChange(async (e: vscode.Uri) => {
-        if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.fileName === e.fsPath) {
-            return
-        }
-        configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
-            return
-        }
-        if (extension.builder.disableBuildAfterSave) {
-            extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-            return
-        }
-        extension.logger.addLogMessage(`${e.fsPath} changed. Auto build project.`)
-        const rootFile = extension.manager.findRoot()
-        if (rootFile !== undefined) {
-            extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            await extension.builder.build(extension.manager.rootFile)
-        } else {
-            extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
-        }
-    }))
-
     extension.manager.findRoot()
 
     const formatter = new LatexFormatterProvider(extension)

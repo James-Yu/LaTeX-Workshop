@@ -243,7 +243,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 export class Section extends vscode.TreeItem {
 
     public children: Section[] = []
-    public parent: Section | undefined = undefined // The parent of a toplevel section must be undefined
+    public parent: Section | undefined = undefined // The parent of a top level section must be undefined
     public subfiles: string[] = []
 
     constructor(

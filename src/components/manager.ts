@@ -263,9 +263,24 @@ export class Manager {
             this.fileWatcher = chokidar.watch(rootFile)
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
-                this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
                 this.findDependentFiles(filePath)
                 this.findAdditionalDependentFilesFromFls(filePath)
+                this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
+                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+                    return
+                }
+                if (this.extension.builder.disableBuildAfterSave) {
+                    this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+                    return
+                }
+                this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
+                if (this.rootFile !== undefined) {
+                    this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
+                    this.extension.builder.build(this.rootFile)
+                } else {
+                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+                }
             })
             this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
