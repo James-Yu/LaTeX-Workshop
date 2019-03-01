@@ -353,7 +353,7 @@ export class Manager {
         // regex groups
         // #1: a PWD entry --> #2 gives the path
         // #3: an INPUT entry --> #4: input file path
-        // #5: an OUPUT entry --> #6: output file path
+        // #5: an OUTPUT entry --> #6: output file path
         let pwd
         while (true) {
             const result = regex.exec(flsContent)
