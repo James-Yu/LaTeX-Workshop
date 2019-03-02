@@ -263,8 +263,12 @@ export class Manager {
             this.fileWatcher = chokidar.watch(rootFile)
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
-                this.findDependentFiles(filePath)
-                this.findAdditionalDependentFilesFromFls(filePath)
+                if (path.extname(filePath) === 'tex') {
+                    this.findDependentFiles(filePath)
+                }
+                if (filePath === rootFile) {
+                    this.findAdditionalDependentFilesFromFls(filePath)
+                }
                 this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
@@ -364,11 +368,11 @@ export class Manager {
             return
         }
         const flsContent = fs.readFileSync(flsFile).toString()
-        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*\.tex))|(?:(OUTPUT)\s*(.*\.aux))$/gm
+        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*\.(tex|sty|cls)))|(?:(OUTPUT)\s*(.*\.aux))$/gm
         // regex groups
         // #1: a PWD entry --> #2 gives the path
-        // #3: an INPUT entry --> #4: input file path
-        // #5: an OUTPUT entry --> #6: output file path
+        // #3: an INPUT entry --> #4: input file path, #5: extension of the input file
+        // #6: an OUTPUT entry --> #7: output file path
         let pwd
         while (true) {
             const result = regex.exec(flsContent)
@@ -382,15 +386,17 @@ export class Manager {
                 if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
                     continue
                 }
-                this.texFileTree[rootFile].add(inputFilePath)
+                if (result[5] === 'tex') {
+                    this.texFileTree[rootFile].add(inputFilePath)
+                    this.findDependentFiles(inputFilePath, rootDir)
+                }
                 if (this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
                     this.fileWatcher.add(inputFilePath)
                     this.filesWatched.push(inputFilePath)
                 }
-                this.findDependentFiles(inputFilePath, rootDir)
-            } else if (result[5] && !fast) {
-                const auxFilePath = path.resolve(pwd, result[6])
+            } else if (result[6] && !fast) {
+                const auxFilePath = path.resolve(pwd, result[7])
                 this.findBibFileFromAux(auxFilePath, rootDir, outDir)
             }
         }
@@ -437,6 +443,20 @@ export class Manager {
             this.bibWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
                 this.extension.completer.citation.parseBibFile(filePath)
+                if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+                    return
+                }
+                if (this.extension.builder.disableBuildAfterSave) {
+                    this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+                    return
+                }
+                this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
+                if (this.rootFile !== undefined) {
+                    this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
+                    this.extension.builder.build(this.rootFile)
+                } else {
+                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+                }
             })
             this.bibWatcher.on('unlink', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher: ${filePath} deleted.`)
