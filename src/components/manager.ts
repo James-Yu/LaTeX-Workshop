@@ -368,11 +368,11 @@ export class Manager {
             return
         }
         const flsContent = fs.readFileSync(flsFile).toString()
-        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*\.(tex|sty|cls)))|(?:(OUTPUT)\s*(.*\.aux))$/gm
+        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*\.aux))$/gm
         // regex groups
         // #1: a PWD entry --> #2 gives the path
-        // #3: an INPUT entry --> #4: input file path, #5: extension of the input file
-        // #6: an OUTPUT entry --> #7: output file path
+        // #3: an INPUT entry --> #4: input file path
+        // #5: an OUTPUT entry --> #6: output file path
         let pwd
         while (true) {
             const result = regex.exec(flsContent)
@@ -386,7 +386,7 @@ export class Manager {
                 if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
                     continue
                 }
-                if (result[5] === 'tex') {
+                if (path.extname(result[5]) === 'tex') {
                     this.texFileTree[rootFile].add(inputFilePath)
                     this.findDependentFiles(inputFilePath, rootDir)
                 }
@@ -395,8 +395,8 @@ export class Manager {
                     this.fileWatcher.add(inputFilePath)
                     this.filesWatched.push(inputFilePath)
                 }
-            } else if (result[6] && !fast) {
-                const auxFilePath = path.resolve(pwd, result[7])
+            } else if (result[5] && !fast) {
+                const auxFilePath = path.resolve(pwd, result[6])
                 this.findBibFileFromAux(auxFilePath, rootDir, outDir)
             }
         }
