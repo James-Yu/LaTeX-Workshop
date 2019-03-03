@@ -33,9 +33,9 @@ export class Cleaner {
             // Get an array of arrays containing all the files found by the globs
             globs.map(g => this.globP(g, {cwd: outdir}))
         ).then(files => files
-            // Reduce the array of arrays to a single array containing all the files that should be delted
+            // Reduce the array of arrays to a single array containing all the files that should be deleted
             .reduce((all, curr) => all.concat(curr), [])
-            // Resolve the absoulte filepath for every file
+            // Resolve the absolute filepath for every file
             .map(file => path.resolve(outdir, file))
         ).then(files => Promise.all(
             // Try to unlink the files, returning a Promise for every file

@@ -253,7 +253,7 @@ export class Manager {
         }
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {
-            this.extension.logger.addLogMessage(`Instatiating new file watcher for ${rootFile}`)
+            this.extension.logger.addLogMessage(`Instantiating a new file watcher for ${rootFile}`)
             this.fileWatcher = chokidar.watch(rootFile)
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
