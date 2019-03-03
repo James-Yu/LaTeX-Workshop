@@ -197,8 +197,13 @@ export class Manager {
             return undefined
         }
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
+        const rootFilesIncludeGlob = '{' + rootFilesIncludePatterns.join(',') + '}'
+        const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
+        const rootFilesExcludeGlob = rootFilesExcludePatterns.length > 0 ? '{' + rootFilesExcludePatterns.join(',') + '}' : undefined
         try {
-            const urls = await vscode.workspace.findFiles('**/*.tex', undefined)
+            const urls = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             for (const url of urls) {
                 const content = this.stripComments(fs.readFileSync(url.fsPath).toString(), '%')
                 const result = content.match(regex)

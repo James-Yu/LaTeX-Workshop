@@ -622,6 +622,16 @@
           "default": [],
           "markdownDescription": "List of directories where to look for `.bib` files.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
+        "latex-workshop.latex.search.rootFiles.include": {
+          "type": "array",
+          "default": [ "**/*.tex" ],
+          "markdownDescription": "Patterns of files to consider for the root detection mechanism.\nRelative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here.\nIf you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
+        },
+        "latex-workshop.latex.search.rootFiles.exclude": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "Patterns of files to exclude from the root detection mechanism.\nSee also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
+        },
         "latex-workshop.latex.autoBuild.run": {
           "type": "string",
           "enum": [
