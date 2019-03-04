@@ -263,7 +263,7 @@ export class Manager {
             this.fileWatcher = chokidar.watch(rootFile)
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
-                if (path.extname(filePath) === 'tex') {
+                if (path.extname(filePath) === '.tex') {
                     this.findDependentFiles(filePath)
                 }
                 if (filePath === rootFile) {
@@ -386,7 +386,7 @@ export class Manager {
                 if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
                     continue
                 }
-                if (path.extname(result[5]) === 'tex') {
+                if (path.extname(result[4]) === '.tex') {
                     this.texFileTree[rootFile].add(inputFilePath)
                     this.findDependentFiles(inputFilePath, rootDir)
                 }
