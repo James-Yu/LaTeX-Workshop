@@ -26,7 +26,7 @@ export class Cleaner {
         //     globs = globs.concat(globs.map(globType => outdir + globType), globs.map(globType => outdir + '**/' + globType))
         // }
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
-            globs = globs.concat(globs.map(globType => './**/' + globType))
+            globs = globs.map(globType => './**/' + globType)
         }
 
         return Promise.all(
