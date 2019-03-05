@@ -364,11 +364,17 @@ export class Manager {
         const outDir = this.getOutputDir(rootFile)
         const flsFile = path.join(outDir, path.basename(rootFile, '.tex') + '.fls')
         if (! fs.existsSync(flsFile)) {
-            this.extension.logger.addLogMessage(`Cannot find file ${flsFile}.`)
+            this.extension.logger.addLogMessage(`Cannot find file ${flsFile}`)
             return
+        } else {
+            this.extension.logger.addLogMessage(`Parsing ${flsFile} to compute dependencies`)
+
         }
+
+        const inputFiles = new Set()
+        const outputFiles = new Set()
         const flsContent = fs.readFileSync(flsFile).toString()
-        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*\.aux))$/gm
+        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
         // regex groups
         // #1: a PWD entry --> #2 gives the path
         // #3: an INPUT entry --> #4: input file path
@@ -382,24 +388,42 @@ export class Manager {
             if (result[1]) {
                 pwd = result[2]
             } else if (result[3]) {
-                const inputFilePath = path.resolve(rootDir, result[4])
-                if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
-                    continue
-                }
-                if (path.extname(result[4]) === '.tex') {
-                    this.texFileTree[rootFile].add(inputFilePath)
-                    this.findDependentFiles(inputFilePath, rootDir)
-                }
-                if (this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
-                    this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
-                    this.fileWatcher.add(inputFilePath)
-                    this.filesWatched.push(inputFilePath)
-                }
-            } else if (result[5] && !fast) {
-                const auxFilePath = path.resolve(pwd, result[6])
-                this.findBibFileFromAux(auxFilePath, rootDir, outDir)
+                inputFiles.add(result[4])
+            } else if (result[5]) {
+                outputFiles.add(result[6])
             }
         }
+
+        // Remove any INPUT file that is also in OUTPUT
+        outputFiles.forEach((key) => {
+            if (inputFiles.has(key)) {
+                inputFiles.delete(key)
+            }
+        })
+
+        inputFiles.forEach(inputFile => {
+            const inputFilePath = path.resolve(rootDir, inputFile)
+            if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
+                return
+            }
+            const ext = path.extname(inputFile)
+            if (ext === '.tex') {
+                this.texFileTree[rootFile].add(inputFilePath)
+                this.findDependentFiles(inputFilePath, rootDir)
+            }
+            if (this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
+                this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
+                this.fileWatcher.add(inputFilePath)
+                this.filesWatched.push(inputFilePath)
+            }
+        })
+
+        outputFiles.forEach(outputFile => {
+            if (!fast && path.extname(outputFile) === '.aux' ) {
+                const auxFilePath = path.resolve(pwd, outputFile)
+                this.findBibFileFromAux(auxFilePath, rootDir, outDir)
+            }
+        })
     }
 
     findBibFileFromAux(auxFilePath: string, rootDir: string, outDir: string) {
