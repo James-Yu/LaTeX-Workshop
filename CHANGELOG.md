@@ -1,5 +1,26 @@
 # Change Log
 
+## [6.1.0] - 2019-03-05
+
+### Added
+- Support `\def` in addition to `\newcommand` in mathjax preview.
+- (#731) Narrow search of root file with two new settings to include or exclude files from the root file search mechanism
+  - `latex-workshop.latex.search.rootFiles.include`
+  - `latex-workshop.latex.search.rootFiles.exclude`
+- (#1188) Add support for sage environments.
+- (#1191) QoL changes to make log messages better.
+- (#1192) Literate haskell.
+
+### Changed
+- (#1180) A complete rework of killing LaTeX mechanism.
+- (#1155) Use workspace directory as `cwd` in external build command.
+
+### Fixed
+- Fix list of suggestions for surrounding text.
+- Capture footnote content as `entity.name.footnote.latex`.
+- (#1185) Declare `\inlinecode` and code environment as `verbatim`.
+- (#1206) Make the width of math preview on hover larger.
+
 ## [6.0.0] - 2019-02-19 - QoL Update
 
 ### Added
