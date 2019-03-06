@@ -34,7 +34,7 @@ export class Viewer {
             })
             return true
         }
-        const pdfFile = this.extension.manager.tex2pdf(sourceFile)
+        const pdfFile = this.extension.manager.tex2pdf(sourceFile, true)
         const clients = this.clients[pdfFile.toLocaleUpperCase()]
         if (clients !== undefined) {
             let refreshed = false
