@@ -28,9 +28,14 @@ export class Builder {
         this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
         this.buildMutex = new Mutex()
         this.waitingForBuildToFinishMutex = new Mutex()
-        const pdflatexVersion = cp.execSync('pdflatex --version')
-        if (pdflatexVersion.toString().match(/MiKTeX/)) {
-            this.isMiktex = true
+        try {
+            const pdflatexVersion = cp.execSync('pdflatex --version')
+            if (pdflatexVersion.toString().match(/MiKTeX/)) {
+                this.isMiktex = true
+                this.extension.logger.addLogMessage('pdflatex is provided by MiKTeX')
+            }
+        } catch (e) {
+            this.extension.logger.addLogMessage('Cannot run pdflatex to determine if we are using MiKTeX')
         }
     }
 
