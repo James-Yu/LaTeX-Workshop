@@ -284,6 +284,7 @@ export class Builder {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         this.extension.viewer.refreshExistingViewer(rootFile)
+        this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('synctex.afterBuild.enabled') as boolean) {
             this.extension.locator.syncTeX()
