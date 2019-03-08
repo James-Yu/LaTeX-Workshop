@@ -136,7 +136,7 @@ export class Builder {
 
     async build(rootFile: string, recipe: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
-            this.extension.logger.addLogMessage(`Another LaTeX build proccesing is already waiting for the current LaTeX build to finish. Exit.`)
+            this.extension.logger.addLogMessage(`Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.`)
             return
         }
         const releaseBuildMutex = await this.preprocess()
@@ -205,7 +205,7 @@ export class Builder {
             this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
         }
         const pid = this.currentProcess.pid
-        this.extension.logger.addLogMessage(`LaTeX buid process spawned. PID: ${pid}.`)
+        this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${pid}.`)
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
@@ -289,6 +289,7 @@ export class Builder {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         this.extension.viewer.refreshExistingViewer(rootFile)
+        this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('synctex.afterBuild.enabled') as boolean) {
             this.extension.locator.syncTeX()

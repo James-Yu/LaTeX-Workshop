@@ -632,15 +632,31 @@
           "default": [],
           "markdownDescription": "Patterns of files to exclude from the root detection mechanism.\nSee also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
+        "latex-workshop.latex.watch.files.ignore": {
+          "type": "array",
+          "default": [
+            "**/*.bbx",
+            "**/*.cbx",
+            "**/*.cfg",
+            "**/*.clo",
+            "**/*.cnf",
+            "**/*.def",
+            "**/*.fmt",
+            "**/*.lbx",
+            "**/*.map",
+            "**/*.pfb",
+            "**/*.tfm"
+          ],
+          "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild.\nThis property must be an array of globs pattern. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
+        },
         "latex-workshop.latex.autoBuild.run": {
           "type": "string",
           "enum": [
             "never",
-            "onSave",
             "onFileChange"
           ],
-          "default": "onSave",
-          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n`onSave` builds the project upon saving a `tex` file in vscode. `onFileChange` builds the project upon detecting a `tex` file change, even modified by other applications."
+          "default": "onFileChange",
+          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",

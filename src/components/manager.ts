@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as chokidar from 'chokidar'
+import * as micromatch from 'micromatch'
 
 import {Extension} from '../main'
 
@@ -26,7 +27,7 @@ export class Manager {
 
     getOutputDir(texPath: string) {
         const doc = texPath.replace(/\.tex$/, '').split(path.sep).join('/')
-        const docfile = path.basename(texPath, '.tex').split(path.sep).join('/')
+        const docfile = path.basename(texPath, '.tex')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         let outDir = (configuration.get('latex.outDir') as string)
@@ -230,6 +231,7 @@ export class Manager {
         }
         if (updateDependent) {
             this.findDependentFiles(root, undefined, true)
+            this.findAdditionalDependentFilesFromFls(root, true)
         }
         if (!this.texFileTree.hasOwnProperty(root) || !this.texFileTree.hasOwnProperty(file)) {
             return false
@@ -262,8 +264,28 @@ export class Manager {
             this.fileWatcher = chokidar.watch(rootFile)
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
+                if (path.extname(filePath) === '.tex') {
+                    this.findDependentFiles(filePath)
+                }
+                if (filePath === rootFile) {
+                    this.findAdditionalDependentFilesFromFls(filePath)
+                }
                 this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
-                this.findDependentFiles(filePath)
+                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+                    return
+                }
+                if (this.extension.builder.disableBuildAfterSave) {
+                    this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+                    return
+                }
+                this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
+                if (this.rootFile !== undefined) {
+                    this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
+                    this.extension.builder.build(this.rootFile)
+                } else {
+                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+                }
             })
             this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
@@ -275,6 +297,7 @@ export class Manager {
                 }
             })
             this.findDependentFiles(rootFile)
+            this.findAdditionalDependentFilesFromFls(rootFile)
         }
     }
 
@@ -337,6 +360,96 @@ export class Manager {
         this.onFileChange(filePath)
     }
 
+    findAdditionalDependentFilesFromFls(rootFile: string, fast: boolean = false) {
+        const rootDir = path.dirname(rootFile)
+        const outDir = this.getOutputDir(rootFile)
+        const flsFile = path.join(outDir, path.basename(rootFile, '.tex') + '.fls')
+        if (! fs.existsSync(flsFile)) {
+            this.extension.logger.addLogMessage(`Cannot find file ${flsFile}`)
+            return
+        } else {
+            this.extension.logger.addLogMessage(`Parsing ${flsFile} to compute dependencies`)
+
+        }
+
+        const inputFiles = new Set()
+        const outputFiles = new Set()
+        const flsContent = fs.readFileSync(flsFile).toString()
+        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
+        // regex groups
+        // #1: a PWD entry --> #2 gives the path
+        // #3: an INPUT entry --> #4: input file path
+        // #5: an OUTPUT entry --> #6: output file path
+        let pwd
+        while (true) {
+            const result = regex.exec(flsContent)
+            if (! result) {
+                break
+            }
+            if (result[1]) {
+                pwd = result[2]
+            } else if (result[3]) {
+                inputFiles.add(result[4])
+            } else if (result[5]) {
+                outputFiles.add(result[6])
+            }
+        }
+
+        // Remove any INPUT file that is also in OUTPUT
+        outputFiles.forEach((key) => {
+            if (inputFiles.has(key)) {
+                inputFiles.delete(key)
+            }
+        })
+
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const globsToIgnore = configuration.get('latex.watch.files.ignore') as string[]
+        inputFiles.forEach(inputFile => {
+            const inputFilePath = path.resolve(rootDir, inputFile)
+            if (micromatch.some(inputFile, globsToIgnore)) {
+                return
+            }
+            if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
+                return
+            }
+            const ext = path.extname(inputFile)
+            if (ext === '.tex') {
+                this.texFileTree[rootFile].add(inputFilePath)
+                this.findDependentFiles(inputFilePath, rootDir)
+            }
+            if (this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
+                this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
+                this.fileWatcher.add(inputFilePath)
+                this.filesWatched.push(inputFilePath)
+            }
+        })
+
+        outputFiles.forEach(outputFile => {
+            if (!fast && path.extname(outputFile) === '.aux' ) {
+                const auxFilePath = path.resolve(pwd, outputFile)
+                this.findBibFileFromAux(auxFilePath, rootDir, outDir)
+            }
+        })
+    }
+
+    findBibFileFromAux(auxFilePath: string, rootDir: string, outDir: string) {
+        const regex = /^\\bibdata{(.*)}$/gm
+        const auxContent = fs.readFileSync(auxFilePath).toString()
+        const srcDir = path.dirname(auxFilePath).replace(outDir, rootDir)
+        while (true) {
+            const result = regex.exec(auxContent)
+            if (!result) {
+                return
+            }
+            const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
+                return bib.trim()
+            })
+            for (const bib of bibs) {
+                this.addBibToWatcher(bib, srcDir, this.extension.manager.rootFile)
+            }
+        }
+    }
+
     onFileChange(filePath: string) {
         this.extension.completer.command.getCommandsTeX(filePath)
         this.extension.completer.command.getPackage(filePath)
@@ -360,6 +473,20 @@ export class Manager {
             this.bibWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
                 this.extension.completer.citation.parseBibFile(filePath)
+                if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+                    return
+                }
+                if (this.extension.builder.disableBuildAfterSave) {
+                    this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+                    return
+                }
+                this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
+                if (this.rootFile !== undefined) {
+                    this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
+                    this.extension.builder.build(this.rootFile)
+                } else {
+                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+                }
             })
             this.bibWatcher.on('unlink', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher: ${filePath} deleted.`)
