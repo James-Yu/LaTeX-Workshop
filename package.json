@@ -636,11 +636,10 @@
           "type": "string",
           "enum": [
             "never",
-            "onSave",
             "onFileChange"
           ],
-          "default": "onSave",
-          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n`onSave` builds the project upon saving a `tex` file in vscode. `onFileChange` builds the project upon detecting a `tex` file change, even modified by other applications."
+          "default": "onFileChange",
+          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",

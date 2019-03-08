@@ -28,6 +28,20 @@ import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 
+function renameValue(config: string, oldValue: string, newValue: string) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (!configuration.has(config)) {
+        return
+    }
+    const originalSetting = configuration.inspect(config)
+    if (originalSetting && originalSetting.globalValue === oldValue) {
+        configuration.update(config, newValue, true)
+    }
+    if (originalSetting && originalSetting.workspaceValue === oldValue) {
+        configuration.update(config, newValue, false)
+    }
+}
+
 function renameConfig(originalConfig: string, newConfig: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (!configuration.has(originalConfig)) {
@@ -92,9 +106,10 @@ function obsoleteConfigCheck(extension: Extension) {
     combineConfig(extension, 'latex.autoBuild.onSave.enabled', 'latex.autoBuild.onTexChange.enabled', 'latex.autoBuild.run', {
         'falsefalse': 'never',
         'falsetrue': 'onFileChange',
-        'truefalse': 'onSave',
+        'truefalse': 'onFileChange',
         'truetrue': 'onFileChange'
     })
+    renameValue('latex.autoBuild.run', 'onSave', 'onFileChange')
 }
 
 function checkDeprecatedFeatures(extension: Extension) {
@@ -235,16 +250,6 @@ export async function activate(context: vscode.ExtensionContext) {
 
             extension.structureProvider.refresh()
             extension.structureProvider.update()
-
-            configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (configuration.get('latex.autoBuild.run') as string === 'onSave') {
-                if (extension.builder.disableBuildAfterSave) {
-                    extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-                    return
-                }
-                extension.logger.addLogMessage(`Auto-build ${e.fileName} upon save.`)
-                await extension.commander.build(true)
-            }
         }
     }))
 
