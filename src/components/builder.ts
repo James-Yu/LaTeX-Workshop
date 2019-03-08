@@ -25,7 +25,12 @@ export class Builder {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
+        try {
+            this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
+        } catch (e) {
+            vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
+            throw e
+        }
         this.buildMutex = new Mutex()
         this.waitingForBuildToFinishMutex = new Mutex()
         try {
