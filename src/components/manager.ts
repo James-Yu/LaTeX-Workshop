@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as chokidar from 'chokidar'
+import * as micromatch from 'micromatch'
 
 import {Extension} from '../main'
 
@@ -401,8 +402,13 @@ export class Manager {
             }
         })
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const globsToIgnore = configuration.get('latex.watch.files.ignore') as string[]
         inputFiles.forEach(inputFile => {
             const inputFilePath = path.resolve(rootDir, inputFile)
+            if (micromatch.some(inputFile, globsToIgnore)) {
+                return
+            }
             if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
                 return
             }
