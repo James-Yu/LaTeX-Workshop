@@ -375,59 +375,53 @@ export class Manager {
         const inputFiles = new Set()
         const outputFiles = new Set()
         const flsContent = fs.readFileSync(flsFile).toString()
-        const regex = /^(?:(PWD)\s*(.*))|(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
+        const regex = /^(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
         // regex groups
-        // #1: a PWD entry --> #2 gives the path
-        // #3: an INPUT entry --> #4: input file path
-        // #5: an OUTPUT entry --> #6: output file path
-        let pwd
+        // #1: an INPUT entry --> #2 input file path
+        // #3: an OUTPUT entry --> #4: output file path
         while (true) {
             const result = regex.exec(flsContent)
             if (! result) {
                 break
             }
             if (result[1]) {
-                pwd = result[2]
+                const inputFilePath = path.resolve(rootDir, result[2])
+                if (inputFilePath) {
+                    inputFiles.add(inputFilePath)
+                }
             } else if (result[3]) {
-                inputFiles.add(result[4])
-            } else if (result[5]) {
-                outputFiles.add(result[6])
+                const outputFilePath = path.resolve(rootDir, result[4])
+                if (outputFilePath) {
+                    outputFiles.add(outputFilePath)
+                }
             }
         }
-
-        // Remove any INPUT file that is also in OUTPUT
-        outputFiles.forEach((key) => {
-            if (inputFiles.has(key)) {
-                inputFiles.delete(key)
-            }
-        })
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const globsToIgnore = configuration.get('latex.watch.files.ignore') as string[]
         inputFiles.forEach(inputFile => {
-            const inputFilePath = path.resolve(rootDir, inputFile)
-            if (micromatch.some(inputFile, globsToIgnore)) {
+            // Drop files that are also listed as OUTPUT or should be ignored
+            if (outputFiles.has(inputFile) || micromatch.some(inputFile, globsToIgnore)) {
                 return
             }
-            if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFilePath)) {
+            if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile)) {
                 return
             }
             const ext = path.extname(inputFile)
             if (ext === '.tex') {
-                this.texFileTree[rootFile].add(inputFilePath)
-                this.findDependentFiles(inputFilePath, rootDir)
+                this.texFileTree[rootFile].add(inputFile)
+                this.findDependentFiles(inputFile, rootDir)
             }
-            if (this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
-                this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
-                this.fileWatcher.add(inputFilePath)
-                this.filesWatched.push(inputFilePath)
+            if (this.fileWatcher && this.filesWatched.indexOf(inputFile) < 0) {
+                this.extension.logger.addLogMessage(`Adding ${inputFile} to file watcher.`)
+                this.fileWatcher.add(inputFile)
+                this.filesWatched.push(inputFile)
             }
         })
 
         outputFiles.forEach(outputFile => {
             if (!fast && path.extname(outputFile) === '.aux' ) {
-                const auxFilePath = path.resolve(pwd, outputFile)
-                this.findBibFileFromAux(auxFilePath, rootDir, outDir)
+                this.findBibFileFromAux(outputFile, rootDir, outDir)
             }
         })
     }
