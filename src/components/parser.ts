@@ -250,7 +250,7 @@ export class Parser {
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substr(result.index + 1)
             if (result[1] === '(') {
-                const pathResult = line.match(/^"?((?:(?:[a-zA-Z]:|\.|\/)?(?:\/|\\\\?))[\w\-. \/\\#]*)/)
+                const pathResult = line.match(/^"?((?:(?:[a-zA-Z]:|\.|\/)?(?:\/|\\\\?))[\w\u00a1-\uffff\-. \/\\#]*)/)
                 const mikTeXPathResult = line.match(/^"?([\w\-\/. #]*\.[a-z]{3,})/)
                 if (pathResult) {
                     fileStack.push(pathResult[1].trim())
