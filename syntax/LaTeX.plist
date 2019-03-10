@@ -1330,13 +1330,36 @@
 				<key>1</key>
 				<dict>
 					<key>name</key>
+					<string>storage.type.function.latex</string>
+				</dict>
+				<key>2</key>
+				<dict>
+					<key>name</key>
 					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>3</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.begin.latex</string>
+				</dict>
+				<key>4</key>
+				<dict>
+					<key>name</key>
+					<string>support.function.general.tex</string>
+				</dict>
+				<key>5</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.function.latex</string>
+				</dict>
+				<key>6</key>
+				<dict>
+					<key>name</key>
+					<string>punctuation.definition.end.latex</string>
 				</dict>
 			</dict>
 			<key>match</key>
-			<string>(\\)(newcommand|renewcommand)\b</string>
-			<key>name</key>
-			<string>storage.type.function.latex</string>
+			<string>((\\)(?:newcommand|renewcommand|(?:re)?newrobustcmd|DeclareRobustCommand))\*?({)((\\)[^}]*)(})</string>
 		</dict>
 		<dict>
 			<key>begin</key>
