@@ -1,5 +1,21 @@
 # Change Log
 
+## [6.2.0] - 2019-03-12
+
+### Added
+- (#1199) Use the last compilation to find and watch all the dependencies.
+- (#1218) Syntax highlighting in `doctex`.
+
+### Fixed
+- (#1210) Respect output dir when refreshing viewer.
+- (#1211) Accept utf8 chars in paths.
+- (#1212) Try/catch the call to `pdflatex` at init.
+- (#1216) Do not inject commented `def` in mathjax.
+- (#1221) Do no parse the command paren inside `newcommand`.
+- (#1222) Use `ctrl+l` `ctrl+l` for `expandLineSelection`.
+- (#1222) Use `ctrl+l` `ctrl+m` for `editor.action.toggleTabFocusMode`.
+- (#1224) Highlight more citation commands.
+
 ## [6.1.0] - 2019-03-05
 
 ### Added
