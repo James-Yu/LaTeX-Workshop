@@ -1,7 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as fs from 'fs'
 
 import { Extension } from '../main'
+import * as filenameEncoding from './filenameencoding'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
@@ -316,7 +318,15 @@ export class Parser {
         }
 
         for (const file in diagsCollection) {
-            this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+            if (fs.existsSync(file)) {
+                this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+            } else {
+                const f = filenameEncoding.guessAndConvertFilenameEncoding(file)
+                if (f !== undefined) {
+                    this.compilerDiagnostics.set(vscode.Uri.file(f), diagsCollection[file])
+                }
+            }
+
         }
     }
 
@@ -337,7 +347,14 @@ export class Parser {
             if (['.tex', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(file)) > -1) {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
-                this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+                if (fs.existsSync(file)) {
+                    this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+                } else {
+                    const f = filenameEncoding.guessAndConvertFilenameEncoding(file)
+                    if (f !== undefined) {
+                        this.linterDiagnostics.set(vscode.Uri.file(f), diagsCollection[file])
+                    }
+                }
             }
         }
     }
