@@ -401,7 +401,7 @@ export class Manager {
         const globsToIgnore = configuration.get('latex.watch.files.ignore') as string[]
         inputFiles.forEach(inputFile => {
             // Drop files that are also listed as OUTPUT or should be ignored
-            if (outputFiles.has(inputFile) || micromatch.some(inputFile, globsToIgnore)) {
+            if (outputFiles.has(inputFile) || micromatch.some(inputFile, globsToIgnore) || !fs.existsSync(inputFile)) {
                 return
             }
             if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile)) {
