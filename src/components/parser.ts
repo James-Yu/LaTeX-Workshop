@@ -317,16 +317,17 @@ export class Parser {
             diagsCollection[item.file].push(diag)
         }
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const guessEncoding = configuration.get('message.convertFilenameEncoding') as boolean
         for (const file in diagsCollection) {
-            if (fs.existsSync(file)) {
-                this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
-            } else {
-                const f = filenameEncoding.guessAndConvertFilenameEncoding(file)
+            let file1 = file
+            if (!fs.existsSync(file1) && guessEncoding) {
+                const f = filenameEncoding.guessAndConvertFilenameEncoding(file1)
                 if (f !== undefined) {
-                    this.compilerDiagnostics.set(vscode.Uri.file(f), diagsCollection[file])
+                    file1 = f
                 }
             }
-
+            this.compilerDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
         }
     }
 
@@ -343,18 +344,20 @@ export class Parser {
             }
             diagsCollection[item.file].push(diag)
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const guessEncoding = configuration.get('message.convertFilenameEncoding') as boolean
         for (const file in diagsCollection) {
+            let file1 = file
             if (['.tex', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(file)) > -1) {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
-                if (fs.existsSync(file)) {
-                    this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
-                } else {
+                if (!fs.existsSync(file1) && guessEncoding) {
                     const f = filenameEncoding.guessAndConvertFilenameEncoding(file)
                     if (f !== undefined) {
-                        this.linterDiagnostics.set(vscode.Uri.file(f), diagsCollection[file])
+                        file1 = f
                     }
                 }
+                this.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
             }
         }
     }
