@@ -1,5 +1,10 @@
 # Change Log
 
+## [6.2.1] - 2019-03-13
+
+### Fixed
+- (#1228) Check if depending files exist before watching them.
+
 ## [6.2.0] - 2019-03-12
 
 ### Added
