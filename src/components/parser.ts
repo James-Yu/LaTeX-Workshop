@@ -318,10 +318,10 @@ export class Parser {
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const guessEncoding = configuration.get('message.convertFilenameEncoding') as boolean
+        const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
         for (const file in diagsCollection) {
             let file1 = file
-            if (!fs.existsSync(file1) && guessEncoding) {
+            if (!fs.existsSync(file1) && convEnc) {
                 const f = filenameEncoding.convertFilenameEncoding(file1)
                 if (f !== undefined) {
                     file1 = f
@@ -345,13 +345,13 @@ export class Parser {
             diagsCollection[item.file].push(diag)
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const guessEncoding = configuration.get('message.convertFilenameEncoding') as boolean
+        const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
         for (const file in diagsCollection) {
             let file1 = file
             if (['.tex', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(file)) > -1) {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
-                if (!fs.existsSync(file1) && guessEncoding) {
+                if (!fs.existsSync(file1) && convEnc) {
                     const f = filenameEncoding.convertFilenameEncoding(file1)
                     if (f !== undefined) {
                         file1 = f
