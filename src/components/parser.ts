@@ -322,7 +322,7 @@ export class Parser {
         for (const file in diagsCollection) {
             let file1 = file
             if (!fs.existsSync(file1) && guessEncoding) {
-                const f = filenameEncoding.guessAndConvertFilenameEncoding(file1)
+                const f = filenameEncoding.convertFilenameEncoding(file1)
                 if (f !== undefined) {
                     file1 = f
                 }
@@ -352,7 +352,7 @@ export class Parser {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
                 if (!fs.existsSync(file1) && guessEncoding) {
-                    const f = filenameEncoding.guessAndConvertFilenameEncoding(file1)
+                    const f = filenameEncoding.convertFilenameEncoding(file1)
                     if (f !== undefined) {
                         file1 = f
                     }
