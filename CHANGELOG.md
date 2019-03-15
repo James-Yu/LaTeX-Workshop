@@ -1,5 +1,10 @@
 # Change Log
 
+## [6.2.2] - 2019-03-15
+
+### Fixed
+- (#1231) Never watch `/dev/null`.
+
 ## [6.2.1] - 2019-03-13
 
 ### Fixed
