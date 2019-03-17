@@ -713,4 +713,13 @@ export class Commander {
             this.runTexdoc(selectedPkg)
         })
     }
+
+    async saveWithoutBuilding() {
+        if (vscode.window.activeTextEditor === undefined) {
+            return
+        }
+        this.extension.builder.disableBuildAfterSave = true
+        await vscode.window.activeTextEditor.document.save()
+        setTimeout(() => this.extension.builder.disableBuildAfterSave = false, 1000)
+    }
 }
