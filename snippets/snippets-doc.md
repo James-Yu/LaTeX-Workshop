@@ -2,17 +2,18 @@
 
 ## Environments
 
-| Prefix |                          Command                           |
-| ------ | ---------------------------------------------------------- |
-| `BEQ`  | `\begin{equation}\n  \label{${1}}\n  $0\n\end{equation}`   |
-| `BSEQ` | `\begin{equation*}\n  $0\n\end{equation*}`                 |
-| `BAL`  | `\begin{align}\n  \label{${1}}\n  $0\n\end{align}`         |
-| `BSAL` | `\begin{align*}\n  $0\n\end{align*}`                       |
-| `BIT`  | `\begin{itemize}\n  \item $0\n\end{itemize}`               |
-| `BEN`  | `\begin{enumerate}\n  \item $0\n\end{enumerate}`           |
-| `BSPL` | `\begin{split}\n  $0\n\end{split}`                         |
-| `BCAS` | `\begin{cases}\n  $0\n\end{cases}`                         |
-| `BFR`  | `\begin{frame}\n  \frametitle{${1}\n\n  $0\n\n\end{frame}` |
+| Prefix |                                      Command                                               |
+| ------ | ------------------------------------------------------------------------------------------ |
+| `BEQ`  | `\begin{equation}\n  \label{${1}}\n  $0\n\end{equation}`                                   |
+| `BSEQ` | `\begin{equation*}\n  $0\n\end{equation*}`                                                 |
+| `BAL`  | `\begin{align}\n  \label{${1}}\n  $0\n\end{align}`                                         |
+| `BSAL` | `\begin{align*}\n  $0\n\end{align*}`                                                       |
+| `BIT`  | `\begin{itemize}\n  \item $0\n\end{itemize}`                                               |
+| `BEN`  | `\begin{enumerate}\n  \item $0\n\end{enumerate}`                                           |
+| `BSPL` | `\begin{split}\n  $0\n\end{split}`                                                         |
+| `BCAS` | `\begin{cases}\n  $0\n\end{cases}`                                                         |
+| `BFR`  | `\begin{frame}\n  \frametitle{${1}\n\n  $0\n\n\end{frame}`                                 |
+| `BFI`  | `\begin{figure}[${1}]\n  \label{$2}\n  \centering\n  $0\n  \caption{${3}}\n  \end{figure}` |
 
 ## Font commands
 
