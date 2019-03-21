@@ -17,16 +17,11 @@ export class Input {
     }
 
     provide(payload: string[]) : vscode.CompletionItem[] {
-        const mode = payload[0]
-        const currentFile = payload[1]
+        // const mode = payload[0]
+        // const currentFile = payload[1]
         const typedFolder = payload[2]
         const suggestions: vscode.CompletionItem[] = []
-        let baseDir
-        if (mode === 'include') {
-            baseDir = path.dirname(currentFile)
-        } else {
-            baseDir = path.dirname(this.extension.manager.rootFile)
-        }
+        let baseDir = path.dirname(this.extension.manager.rootFile)
         if (typedFolder !== '') {
             baseDir = path.resolve(baseDir, typedFolder)
         }
