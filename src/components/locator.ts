@@ -269,11 +269,11 @@ export class Locator {
             }
         } else {
             record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
-            record.input = record.input.replace(/(\r\n|\n|\r)/gm, '')
             if (docker && process.platform === 'win32') {
                 record.input = path.join(path.dirname(pdfPath), record.input.replace('/data/', ''))
             }
         }
+        record.input = record.input.replace(/(\r\n|\n|\r)/gm, '')
 
         // kpathsea/SyncTeX follow symlinks.
         // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
@@ -285,7 +285,7 @@ export class Locator {
             }
         }
 
-        let filePath = path.resolve(record.input)
+        const filePath = path.resolve(record.input)
         this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
         vscode.workspace.openTextDocument(filePath).then((doc) => {
             let viewColumn: vscode.ViewColumn | undefined = undefined
