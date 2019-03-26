@@ -390,7 +390,7 @@ export class Manager {
                     inputFiles.add(inputFilePath)
                 }
             } else if (result[3]) {
-                const outputFilePath = path.resolve(rootDir, result[4])
+                const outputFilePath = path.resolve(outDir, result[4])
                 if (outputFilePath) {
                     outputFiles.add(outputFilePath)
                 }
