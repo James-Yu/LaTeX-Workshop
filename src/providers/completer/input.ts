@@ -16,6 +16,26 @@ export class Input {
         this.extension = extension
     }
 
+    filterIgnoredFiles(files: string[], baseDir: string) : string[] {
+        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(ignoreFiles)
+        let gitIgnoredFiles: string[] = []
+        /* Check .gitignore if needed */
+        if (vscode.workspace.getConfiguration('search', null).get('useIgnoreFiles')) {
+            try {
+                gitIgnoredFiles = (cp.execSync('git check-ignore ' + files.join(' '), {cwd: baseDir})).toString().split('\n')
+            } catch (ex) { }
+        }
+        return files.filter(file => {
+            const filePath = path.resolve(baseDir, file)
+            /* Check if the file should be ignored */
+            if ((gitIgnoredFiles.indexOf(file) > -1) || micromatch.any(filePath, excludeGlob, {basename: true})) {
+                return false
+            } else {
+                return true
+            }
+        })
+    }
+
     provide(payload: string[]) : vscode.CompletionItem[] {
         // const mode = payload[0]
         // const currentFile = payload[1]
@@ -26,22 +46,11 @@ export class Input {
             baseDir = path.resolve(baseDir, typedFolder)
         }
         try {
-            const files = fs.readdirSync(baseDir)
-            const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(ignoreFiles)
-            let gitIgnoredFiles: string[] = []
-            /* Check .gitignore if needed */
-            if (vscode.workspace.getConfiguration('search', null).get('useIgnoreFiles')) {
-                try {
-                    gitIgnoredFiles = (cp.execSync('git check-ignore ' + files.join(' '), {cwd: baseDir})).toString().split('\n')
-                } catch (ex) { }
-            }
+            let files = fs.readdirSync(baseDir)
+            files = this.filterIgnoredFiles(files, baseDir)
 
             files.forEach(file => {
                 const filePath = path.resolve(baseDir, file)
-                /* Check if the file should be ignored */
-                if ((gitIgnoredFiles.indexOf(file) > -1) || micromatch.any(filePath, excludeGlob, {basename: true})) {
-                    return
-                }
 
                 if (fs.lstatSync(filePath).isDirectory()) {
                     const item = new vscode.CompletionItem(`${file}/`, vscode.CompletionItemKind.Folder)
