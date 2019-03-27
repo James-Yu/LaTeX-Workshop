@@ -37,11 +37,27 @@ export class Input {
     }
 
     provide(payload: string[]) : vscode.CompletionItem[] {
-        // const mode = payload[0]
-        // const currentFile = payload[1]
-        const typedFolder = payload[2]
+        let baseDir: string = ''
+        const mode = payload[0]
+        const currentFile = payload[1]
+        const importfromDir = payload[2]
+        const typedFolder = payload[3]
+        if (mode.match(/^(?:import|includefrom|inputfrom)\*?$/)) {
+            if(importfromDir) {
+                baseDir = importfromDir
+            } else {
+                baseDir = '/'
+            }
+        } else if (mode.match(/^(?:sub)(?:import|includefrom|inputfrom)\*?$/)) {
+            if(importfromDir) {
+                baseDir = path.join(path.dirname(currentFile), importfromDir)
+            } else {
+                baseDir = path.dirname(currentFile)
+            }
+        } else if (mode.match(/^(?:input|include|subfile|includegraphics)$/)) {
+            baseDir = path.dirname(this.extension.manager.rootFile)
+        }
         const suggestions: vscode.CompletionItem[] = []
-        let baseDir = path.dirname(this.extension.manager.rootFile)
         if (typedFolder !== '') {
             baseDir = path.resolve(baseDir, typedFolder)
         }
@@ -51,6 +67,10 @@ export class Input {
 
             files.forEach(file => {
                 const filePath = path.resolve(baseDir, file)
+                if (baseDir === '/') {
+                    // Keep the leading '/' to have an absolute path
+                    file = '/' + file
+                }
 
                 if (fs.lstatSync(filePath).isDirectory()) {
                     const item = new vscode.CompletionItem(`${file}/`, vscode.CompletionItemKind.Folder)

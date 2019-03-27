@@ -108,7 +108,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.package
                 break
             case 'input':
-                reg = /(?:\\(input|include|subfile|includegraphics|(?:sub)?(?:import|includefrom|inputfrom)\*?(?:{[^}]*})?)(?:\[[^\[\]]*\])*){([^}]*)$/
+                reg = /(?:\\(input|include|subfile|includegraphics|(?:sub)?(?:import|includefrom|inputfrom)\*?(?:{([^}]*)})?)(?:\[[^\[\]]*\])*){([^}]*)$/
                 provider = this.input
                 break
             default:
@@ -122,7 +122,11 @@ export class Completer implements vscode.CompletionItemProvider {
             if (type === 'input') {
                 const editor = vscode.window.activeTextEditor
                 if (editor) {
-                    payload = [result[1], editor.document.fileName, result[2]]
+                    if (result[2]) {
+                        // Remove the first arg {fromPath} from the command name
+                        result[1] = result[1].substring(0, result[1].indexOf('{'))
+                    }
+                    payload = [result[1], editor.document.fileName, result[2], result[3]]
                 }
             } else if (type === 'reference' || type === 'citation') {
                 payload = args
