@@ -40,7 +40,7 @@ export class Input {
      * Provide file name intellissense
      *
      * @param payload an array of string
-     *      payload[0]: the input command name
+     *      payload[0]: the input command type  (input, import, subimport)
      *      payload[1]: the current file name
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
@@ -50,29 +50,36 @@ export class Input {
         let baseDir: string = ''
         const mode = payload[0]
         const currentFile = payload[1]
-        const importfromDir = payload[2]
-        const typedFolder = payload[3]
-        if (mode.match(/^(?:import|includefrom|inputfrom)\*?$/)) {
-            if(importfromDir) {
-                baseDir = importfromDir
-            } else {
-                baseDir = '/'
-                provideDirOnly = true
-            }
-        } else if (mode.match(/^(?:sub)(?:import|includefrom|inputfrom)\*?$/)) {
-            if(importfromDir) {
-                baseDir = path.join(path.dirname(currentFile), importfromDir)
-            } else {
-                baseDir = path.dirname(currentFile)
-                provideDirOnly = true
-            }
-        } else if (mode.match(/^(?:input|include|subfile|includegraphics)$/)) {
-            if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.relative.enabled')) {
-                baseDir = path.dirname(currentFile)
-            } else {
-                baseDir = path.dirname(this.extension.manager.rootFile)
-            }
+        const typedFolder = payload[2]
+        const importfromDir = payload[3]
+        switch (mode) {
+            case 'import':
+                if(importfromDir) {
+                    baseDir = importfromDir
+                } else {
+                    baseDir = '/'
+                    provideDirOnly = true
+                }
+                break
+            case 'subimport':
+                if(importfromDir) {
+                    baseDir = path.join(path.dirname(currentFile), importfromDir)
+                } else {
+                    baseDir = path.dirname(currentFile)
+                    provideDirOnly = true
+                }
+                break
+            case 'input':
+                if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.relative.enabled')) {
+                    baseDir = path.dirname(currentFile)
+                } else {
+                    baseDir = path.dirname(this.extension.manager.rootFile)
+                }
+                break
+            default:
+                return []
         }
+
         const suggestions: vscode.CompletionItem[] = []
         if (typedFolder !== '') {
             baseDir = path.resolve(baseDir, typedFolder)
