@@ -252,6 +252,7 @@ export class Manager {
             this.extension.completer.reference.reset()
             this.extension.completer.command.reset()
             this.extension.completer.citation.reset()
+            this.extension.completer.environment.reset()
             this.extension.completer.input.reset()
         }
 
@@ -443,6 +444,7 @@ export class Manager {
     onFileChange(filePath: string) {
         this.extension.completer.command.getCommandsTeX(filePath)
         this.extension.completer.command.getPackage(filePath)
+        this.extension.completer.environment.getEnvironmentsTeX(filePath)
         this.extension.completer.reference.getReferencesTeX(filePath)
         this.extension.completer.citation.getTheBibliographyTeX(filePath)
         this.extension.completer.input.getGraphicsPath(filePath)
