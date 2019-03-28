@@ -5,15 +5,11 @@ export function escapeRegExp(str) {
 
 /**
  * Remove the comments if any
- * @param line
  */
-export function stripComments(line: string) : string {
-    let commentPos = line.search(/(?!\\)%/)
-    if (commentPos !== -1) {
-        commentPos++
-        return line.slice(0, commentPos)
-    }
-    return line
+export function stripComments(text: string, commentSign: string) : string {
+    const pattern = '([^\\\\]|^)' + commentSign + '.*$'
+    const reg = RegExp(pattern, 'gm')
+    return text.replace(reg, '$1')
 }
 
 /**

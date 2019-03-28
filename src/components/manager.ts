@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
+import * as utils from '../utils'
 
 import {Extension} from '../main'
 
@@ -62,12 +63,6 @@ export class Manager {
         return (id === 'tex' || id === 'latex' || id === 'doctex')
     }
 
-    // Remove all the comments
-    stripComments(text: string, commentSign: string) : string {
-        const pattern = '([^\\\\]|^)' + commentSign + '.*$'
-        const reg = RegExp(pattern, 'gm')
-        return text.replace(reg, '$1')
-    }
 
     // Given an input file determine its full path using the prefixes dirs
     resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex') : string | null {
@@ -166,7 +161,7 @@ export class Manager {
             return undefined
         }
         const regex = /\\begin{document}/m
-        const content = this.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
+        const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
             const file = vscode.window.activeTextEditor.document.fileName
@@ -181,7 +176,7 @@ export class Manager {
             return undefined
         }
         const regex = /(?:\\documentclass\[(.*(?:\.tex))\]{subfiles})/
-        const content = this.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
+        const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
             const file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
@@ -206,7 +201,7 @@ export class Manager {
         try {
             const urls = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             for (const url of urls) {
-                const content = this.stripComments(fs.readFileSync(url.fsPath).toString(), '%')
+                const content = utils.stripComments(fs.readFileSync(url.fsPath).toString(), '%')
                 const result = content.match(regex)
                 if (result) {
                     const file = url.fsPath
@@ -310,7 +305,7 @@ export class Manager {
         const texDirs = configuration.get('latex.texDirs') as string[]
 
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
-        const content = this.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
+        const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
         this.texFileTree[filePath] = new Set()
