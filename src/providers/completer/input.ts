@@ -3,6 +3,7 @@ import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 import * as cp from 'child_process'
+import * as utils from '../../utils'
 
 import {Extension} from '../../main'
 
@@ -38,7 +39,7 @@ export class Input {
     }
 
     getGraphicsPath(filePath: string) {
-        const content = fs.readFileSync(filePath, 'utf-8')
+        const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
         const regex = /\\graphicspath{(.*)}/g
         let result: string[]|null
         do {
@@ -92,15 +93,23 @@ export class Input {
                 }
                 break
             case 'input':
+                const rootDir = path.dirname(this.extension.manager.rootFile)
                 const command = payload[2]
                 if (command === 'includegraphics' && this.graphicsPath.length > 0) {
-                    const rootDir = path.dirname(this.extension.manager.rootFile)
                     baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
                 } else {
-                    if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.relative.enabled')) {
-                        baseDir = [path.dirname(currentFile)]
-                    } else {
-                        baseDir = [path.dirname(this.extension.manager.rootFile)]
+                    const baseConfig = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.base')
+                    switch (baseConfig) {
+                        case 'root relative':
+                            baseDir = [rootDir]
+                            break
+                        case 'file relative':
+                            baseDir = [path.dirname(currentFile)]
+                            break
+                        case 'both':
+                            baseDir = [path.dirname(currentFile), rootDir]
+                            break
+                        default:
                     }
                 }
                 break

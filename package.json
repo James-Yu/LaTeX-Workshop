@@ -955,10 +955,20 @@
           ],
           "markdownDescription": "Patterns to ignore in file completion"
         },
-        "latex-workshop.intellisense.file.relative.enabled": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Instead of starting the completion from the rootFile directory, use the current file directory."
+        "latex-workshop.intellisense.file.base": {
+          "type": "string",
+          "enum": [
+            "root relative",
+            "file relative",
+            "both"
+          ],
+          "default": "root relative",
+          "markdownDescription": "Specify the base directory for file completion",
+          "enumDescriptions": [
+            "Completion from the root file directory",
+            "Completion from the current file directory",
+            "both"
+          ]
         },
         "latex-workshop.intellisense.unimathsymbols.enabled": {
           "type": "boolean",
