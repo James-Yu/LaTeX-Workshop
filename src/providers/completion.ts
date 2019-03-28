@@ -108,15 +108,15 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.package
                 break
             case 'input':
-                reg = /\\(?:input|include|subfile|includegraphics)(?:\[[^\[\]]*\])*{([^}]*)$/
+                reg = /\\(input|include|subfile|includegraphics)\*?(?:\[[^\[\]]*\])*{([^}]*)$/
                 provider = this.input
                 break
             case 'import':
-                reg = /\\(?:import|includefrom|inputfrom)\*?(?:{([^}]*)})?{([^}]*)$/
+                reg = /\\(import|includefrom|inputfrom)\*?(?:{([^}]*)})?{([^}]*)$/
                 provider = this.input
                 break
             case 'subimport':
-                reg = /\\(?:sub(?:import|includefrom|inputfrom))\*?(?:{([^}]*)})?{([^}]*)$/
+                reg = /\\(sub(?:import|includefrom|inputfrom))\*?(?:{([^}]*)})?{([^}]*)$/
                 provider = this.input
                 break
             default:
@@ -129,9 +129,9 @@ export class Completer implements vscode.CompletionItemProvider {
         if (result) {
             if (type === 'input' || type === 'import' || type === 'subimport') {
                 const editor = vscode.window.activeTextEditor
-                // Make sure to pass the args always in the same order [type, filename, typedFolder, importFromDir]
+                // Make sure to pass the args always in the same order [type, filename, command, typedFolder, importFromDir]
                 if (editor) {
-                    payload = [type, editor.document.fileName, ...result.slice(1).reverse()]
+                    payload = [type, editor.document.fileName, result[1], ...result.slice(2).reverse()]
                 }
             } else if (type === 'reference' || type === 'citation') {
                 payload = args

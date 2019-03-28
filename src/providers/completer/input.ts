@@ -11,12 +11,13 @@ const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 export class Input {
     extension: Extension
     provideRefreshTime: number
+    graphicsPath: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    filterIgnoredFiles(files: string[], baseDir: string) : string[] {
+    private filterIgnoredFiles(files: string[], baseDir: string) : string[] {
         const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         let gitIgnoredFiles: string[] = []
         /* Check .gitignore if needed */
@@ -36,6 +37,27 @@ export class Input {
         })
     }
 
+    getGraphicsPath(filePath: string) {
+        const content = fs.readFileSync(filePath, 'utf-8')
+        const regex = /\\graphicspath{(.*)}/g
+        let result: string[]|null
+        do {
+            result = regex.exec(content)
+            if (result) {
+                for (const dir of result[1].split(/\{|\}/).filter(s => s)) {
+                    if (this.graphicsPath.indexOf(dir) > -1) {
+                        continue
+                    }
+                    this.graphicsPath.push(dir)
+                }
+            }
+        } while (result)
+    }
+
+    reset() {
+        this.graphicsPath = []
+    }
+
     /**
      * Provide file name intellissense
      *
@@ -47,33 +69,39 @@ export class Input {
      */
     provide(payload: string[]) : vscode.CompletionItem[] {
         let provideDirOnly = false
-        let baseDir: string = ''
+        let baseDir: string[] = []
         const mode = payload[0]
         const currentFile = payload[1]
-        const typedFolder = payload[2]
-        const importfromDir = payload[3]
+        const typedFolder = payload[3]
+        const importfromDir = payload[4]
         switch (mode) {
             case 'import':
                 if(importfromDir) {
-                    baseDir = importfromDir
+                    baseDir = [importfromDir]
                 } else {
-                    baseDir = '/'
+                    baseDir = ['/']
                     provideDirOnly = true
                 }
                 break
             case 'subimport':
                 if(importfromDir) {
-                    baseDir = path.join(path.dirname(currentFile), importfromDir)
+                    baseDir = [path.join(path.dirname(currentFile), importfromDir)]
                 } else {
-                    baseDir = path.dirname(currentFile)
+                    baseDir = [path.dirname(currentFile)]
                     provideDirOnly = true
                 }
                 break
             case 'input':
-                if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.relative.enabled')) {
-                    baseDir = path.dirname(currentFile)
+                const command = payload[2]
+                if (command === 'includegraphics' && this.graphicsPath.length > 0) {
+                    const rootDir = path.dirname(this.extension.manager.rootFile)
+                    baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
                 } else {
-                    baseDir = path.dirname(this.extension.manager.rootFile)
+                    if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.relative.enabled')) {
+                        baseDir = [path.dirname(currentFile)]
+                    } else {
+                        baseDir = [path.dirname(this.extension.manager.rootFile)]
+                    }
                 }
                 break
             default:
@@ -81,29 +109,34 @@ export class Input {
         }
 
         const suggestions: vscode.CompletionItem[] = []
-        if (typedFolder !== '') {
-            baseDir = path.resolve(baseDir, typedFolder)
-        }
-        try {
-            let files = fs.readdirSync(baseDir)
-            files = this.filterIgnoredFiles(files, baseDir)
+        baseDir.forEach(dir => {
+            if (typedFolder !== '') {
+                dir = path.resolve(dir, typedFolder)
+            }
+            try {
+                let files = fs.readdirSync(dir)
+                files = this.filterIgnoredFiles(files, dir)
 
-            files.forEach(file => {
-                const filePath = path.resolve(baseDir, file)
-                if (baseDir === '/') {
-                    // Keep the leading '/' to have an absolute path
-                    file = '/' + file
-                }
+                files.forEach(file => {
+                    const filePath = path.resolve(dir, file)
+                    if (dir === '/') {
+                        // Keep the leading '/' to have an absolute path
+                        file = '/' + file
+                    }
 
-                if (fs.lstatSync(filePath).isDirectory()) {
-                    const item = new vscode.CompletionItem(`${file}/`, vscode.CompletionItemKind.Folder)
-                    item.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
-                    suggestions.push(item)
-                } else if (! provideDirOnly) {
-                    suggestions.push(new vscode.CompletionItem(file, vscode.CompletionItemKind.File))
-                }
-            })
-        } catch (error) {}
+                    if (fs.lstatSync(filePath).isDirectory()) {
+                        const item = new vscode.CompletionItem(`${file}/`, vscode.CompletionItemKind.Folder)
+                        item.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+                        item.detail = dir
+                        suggestions.push(item)
+                    } else if (! provideDirOnly) {
+                        const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
+                        item.detail = dir
+                        suggestions.push(item)
+                    }
+                })
+            } catch (error) {}
+        })
         return suggestions
     }
 }

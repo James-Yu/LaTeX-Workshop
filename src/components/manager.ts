@@ -257,6 +257,7 @@ export class Manager {
             this.extension.completer.reference.reset()
             this.extension.completer.command.reset()
             this.extension.completer.citation.reset()
+            this.extension.completer.input.reset()
         }
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {
@@ -449,6 +450,7 @@ export class Manager {
         this.extension.completer.command.getPackage(filePath)
         this.extension.completer.reference.getReferencesTeX(filePath)
         this.extension.completer.citation.getTheBibliographyTeX(filePath)
+        this.extension.completer.input.getGraphicsPath(filePath)
     }
 
     addBibToWatcher(bib: string, rootDir: string, rootFile: string | undefined = undefined) {
