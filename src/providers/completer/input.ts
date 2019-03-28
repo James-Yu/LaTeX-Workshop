@@ -17,7 +17,7 @@ export class Input {
     }
 
     filterIgnoredFiles(files: string[], baseDir: string) : string[] {
-        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(ignoreFiles)
+        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         let gitIgnoredFiles: string[] = []
         /* Check .gitignore if needed */
         if (vscode.workspace.getConfiguration('search', null).get('useIgnoreFiles')) {
@@ -36,7 +36,17 @@ export class Input {
         })
     }
 
+    /**
+     * Provide file name intellissense
+     *
+     * @param payload an array of string
+     *      payload[0]: the input command name
+     *      payload[1]: the current file name
+     *      payload[2]: When defined, the path from which completion is triggered
+     *      payload[3]: The already typed path
+     */
     provide(payload: string[]) : vscode.CompletionItem[] {
+        let provideDirOnly = false
         let baseDir: string = ''
         const mode = payload[0]
         const currentFile = payload[1]
@@ -47,15 +57,21 @@ export class Input {
                 baseDir = importfromDir
             } else {
                 baseDir = '/'
+                provideDirOnly = true
             }
         } else if (mode.match(/^(?:sub)(?:import|includefrom|inputfrom)\*?$/)) {
             if(importfromDir) {
                 baseDir = path.join(path.dirname(currentFile), importfromDir)
             } else {
                 baseDir = path.dirname(currentFile)
+                provideDirOnly = true
             }
         } else if (mode.match(/^(?:input|include|subfile|includegraphics)$/)) {
-            baseDir = path.dirname(this.extension.manager.rootFile)
+            if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.relative.enabled')) {
+                baseDir = path.dirname(currentFile)
+            } else {
+                baseDir = path.dirname(this.extension.manager.rootFile)
+            }
         }
         const suggestions: vscode.CompletionItem[] = []
         if (typedFolder !== '') {
@@ -76,7 +92,7 @@ export class Input {
                     const item = new vscode.CompletionItem(`${file}/`, vscode.CompletionItemKind.Folder)
                     item.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                     suggestions.push(item)
-                } else {
+                } else if (! provideDirOnly) {
                     suggestions.push(new vscode.CompletionItem(file, vscode.CompletionItemKind.File))
                 }
             })
