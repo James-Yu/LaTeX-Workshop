@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
+import * as utils from '../utils'
 
 import {Extension} from '../main'
 
@@ -62,12 +63,6 @@ export class Manager {
         return (id === 'tex' || id === 'latex' || id === 'doctex')
     }
 
-    // Remove all the comments
-    stripComments(text: string, commentSign: string) : string {
-        const pattern = '([^\\\\]|^)' + commentSign + '.*$'
-        const reg = RegExp(pattern, 'gm')
-        return text.replace(reg, '$1')
-    }
 
     // Given an input file determine its full path using the prefixes dirs
     resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex') : string | null {
@@ -166,7 +161,7 @@ export class Manager {
             return undefined
         }
         const regex = /\\begin{document}/m
-        const content = this.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
+        const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
             const file = vscode.window.activeTextEditor.document.fileName
@@ -181,7 +176,7 @@ export class Manager {
             return undefined
         }
         const regex = /(?:\\documentclass\[(.*(?:\.tex))\]{subfiles})/
-        const content = this.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
+        const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
             const file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
@@ -206,7 +201,7 @@ export class Manager {
         try {
             const urls = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             for (const url of urls) {
-                const content = this.stripComments(fs.readFileSync(url.fsPath).toString(), '%')
+                const content = utils.stripComments(fs.readFileSync(url.fsPath).toString(), '%')
                 const result = content.match(regex)
                 if (result) {
                     const file = url.fsPath
@@ -257,6 +252,7 @@ export class Manager {
             this.extension.completer.reference.reset()
             this.extension.completer.command.reset()
             this.extension.completer.citation.reset()
+            this.extension.completer.input.reset()
         }
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {
@@ -309,9 +305,9 @@ export class Manager {
         const texDirs = configuration.get('latex.texDirs') as string[]
 
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
-        const content = this.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
+        const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
-        const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?import\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
         this.texFileTree[filePath] = new Set()
         while (true) {
             const result = inputReg.exec(content)
@@ -320,9 +316,9 @@ export class Manager {
             }
 
             let inputFilePath: string | null
-            if (result[0].startsWith('\\subimport')) {
+            if (result[0].startsWith('\\subimport') || result[0].startsWith('\\subinputfrom') || result[0].startsWith('\\subincludefrom')) {
                 inputFilePath = this.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
-            } else if (result[0].startsWith('\\import')) {
+            } else if (result[0].startsWith('\\import') || result[0].startsWith('\\inputfrom') || result[0].startsWith('\\includefrom')) {
                 inputFilePath = this.extension.manager.resolveFile([result[1]], result[2])
             } else {
                 inputFilePath = this.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
@@ -449,6 +445,7 @@ export class Manager {
         this.extension.completer.command.getPackage(filePath)
         this.extension.completer.reference.getReferencesTeX(filePath)
         this.extension.completer.citation.getTheBibliographyTeX(filePath)
+        this.extension.completer.input.getGraphicsPath(filePath)
     }
 
     addBibToWatcher(bib: string, rootDir: string, rootFile: string | undefined = undefined) {

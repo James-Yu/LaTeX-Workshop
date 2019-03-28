@@ -211,8 +211,8 @@ export class Command {
         })
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
-        } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*/.exec(item.command)) {
-            // Automatically trigger completion if the command is for citation or reference
+        } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
+            // Automatically trigger completion if the command is for citation, filename or reference
             command.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
         }
         return command
@@ -290,8 +290,8 @@ export class Command {
             }
             if (result[2]) {
                 items[result[1]].snippet = `${result[1]}{$\{1}}`
-                // Automatically trigger intellisense if the command matches citation, reference or ennvironment completion
-                if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|(begin)/)) {
+                // Automatically trigger intellisense if the command matches citation, reference or environment completion
+                if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|begin/)) {
                     items[result[1]].postAction = 'editor.action.triggerSuggest'
                 }
             }

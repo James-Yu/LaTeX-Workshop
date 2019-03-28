@@ -927,6 +927,49 @@
           "default": 5,
           "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB."
         },
+        "latex-workshop.intellisense.file.exclude": {
+          "type": "array",
+          "default": [
+            "**/*.aux",
+            "**/*.bbl",
+            "**/*.bcf",
+            "**/*.blg",
+            "**/*.idx",
+            "**/*.ind",
+            "**/*.lof",
+            "**/*.lot",
+            "**/*.out",
+            "**/*.toc",
+            "**/*.acn",
+            "**/*.acr",
+            "**/*.alg",
+            "**/*.glg",
+            "**/*.glo",
+            "**/*.gls",
+            "**/*.ist",
+            "**/*.fls",
+            "**/*.log",
+            "**/*.fdb_latexmk",
+            "**/*.synctex.gz",
+            "**/*.run.xml"
+          ],
+          "markdownDescription": "Patterns to ignore in file completion"
+        },
+        "latex-workshop.intellisense.file.base": {
+          "type": "string",
+          "enum": [
+            "root relative",
+            "file relative",
+            "both"
+          ],
+          "default": "root relative",
+          "markdownDescription": "Specify the base directory for file completion",
+          "enumDescriptions": [
+            "Completion from the root file directory",
+            "Completion from the current file directory",
+            "both"
+          ]
+        },
         "latex-workshop.intellisense.unimathsymbols.enabled": {
           "type": "boolean",
           "default": false,

@@ -63,7 +63,7 @@ export class Completer implements vscode.CompletionItemProvider {
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
-            for (const type of ['citation', 'reference', 'environment', 'package', 'input', 'command']) {
+            for (const type of ['citation', 'reference', 'environment', 'package', 'input', 'subimport', 'import', 'command']) {
                 const suggestions = this.completion(type, line, {document, position, token, context})
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
@@ -108,7 +108,15 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.package
                 break
             case 'input':
-                reg = /(?:\\(input|include|subfile|includegraphics)(?:\[[^\[\]]*\])*){([^}]*)$/
+                reg = /\\(input|include|subfile|includegraphics)\*?(?:\[[^\[\]]*\])*{([^}]*)$/
+                provider = this.input
+                break
+            case 'import':
+                reg = /\\(import|includefrom|inputfrom)\*?(?:{([^}]*)})?{([^}]*)$/
+                provider = this.input
+                break
+            case 'subimport':
+                reg = /\\(sub(?:import|includefrom|inputfrom))\*?(?:{([^}]*)})?{([^}]*)$/
                 provider = this.input
                 break
             default:
@@ -119,10 +127,11 @@ export class Completer implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            if (type === 'input') {
+            if (type === 'input' || type === 'import' || type === 'subimport') {
                 const editor = vscode.window.activeTextEditor
+                // Make sure to pass the args always in the same order [type, filename, command, typedFolder, importFromDir]
                 if (editor) {
-                    payload = [result[1], editor.document.fileName, result[2]]
+                    payload = [type, editor.document.fileName, result[1], ...result.slice(2).reverse()]
                 }
             } else if (type === 'reference' || type === 'citation') {
                 payload = args
