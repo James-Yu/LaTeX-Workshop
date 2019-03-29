@@ -64,26 +64,6 @@ export class Manager {
     }
 
 
-    // Given an input file determine its full path using the prefixes dirs
-    resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex') : string | null {
-        if (inputFile.startsWith('/')) {
-            dirs.unshift('')
-        }
-        for (const d of dirs) {
-            let inputFilePath = path.resolve(d, inputFile)
-            if (path.extname(inputFilePath) === '') {
-                inputFilePath += suffix
-            }
-            if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + suffix)) {
-                inputFilePath += suffix
-            }
-            if (fs.existsSync(inputFilePath)) {
-                return inputFilePath
-            }
-        }
-        return null
-    }
-
     updateWorkspace() {
         let wsroot = vscode.workspace.rootPath
         const activeTextEditor = vscode.window.activeTextEditor
@@ -318,11 +298,11 @@ export class Manager {
 
             let inputFilePath: string | null
             if (result[0].startsWith('\\subimport') || result[0].startsWith('\\subinputfrom') || result[0].startsWith('\\subincludefrom')) {
-                inputFilePath = this.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
+                inputFilePath = utils.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
             } else if (result[0].startsWith('\\import') || result[0].startsWith('\\inputfrom') || result[0].startsWith('\\includefrom')) {
-                inputFilePath = this.extension.manager.resolveFile([result[1]], result[2])
+                inputFilePath = utils.resolveFile([result[1]], result[2])
             } else {
-                inputFilePath = this.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
+                inputFilePath = utils.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
             }
 
             if (inputFilePath && fs.existsSync(inputFilePath)) {
@@ -453,7 +433,7 @@ export class Manager {
     addBibToWatcher(bib: string, rootDir: string, rootFile: string | undefined = undefined) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const bibDirs = configuration.get('latex.bibDirs') as string[]
-        const bibPath = this.resolveFile([rootDir, ...bibDirs], bib, '.bib')
+        const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file ${bib}`)

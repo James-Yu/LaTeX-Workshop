@@ -1,3 +1,11 @@
+import * as path from 'path'
+import * as fs from 'fs'
+
+
+export interface ExternalCommand {
+    command: string,
+    args?: string[]
+}
 
 export function escapeRegExp(str) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
@@ -40,8 +48,22 @@ export function getLongestBalancedString(s: string) : string {
     return s.substring(0, i)
 }
 
-
-export interface ExternalCommand {
-    command: string,
-    args?: string[]
+// Given an input file determine its full path using the prefixes dirs
+export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex') : string | null {
+    if (inputFile.startsWith('/')) {
+        dirs.unshift('')
+    }
+    for (const d of dirs) {
+        let inputFilePath = path.resolve(d, inputFile)
+        if (path.extname(inputFilePath) === '') {
+            inputFilePath += suffix
+        }
+        if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + suffix)) {
+            inputFilePath += suffix
+        }
+        if (fs.existsSync(inputFilePath)) {
+            return inputFilePath
+        }
+    }
+    return null
 }

@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import { Extension } from '../main'
-import { getLongestBalancedString } from '../utils'
+import * as utils from '../utils'
 
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
@@ -132,7 +132,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // is it a section, a subsection, etc?
                 const heading = result[5]
                 const depth = this.sectionDepths[heading]
-                const title = getLongestBalancedString(result[6])
+                const title = utils.getLongestBalancedString(result[6])
 
                 const newSection = new Section(title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
                 if (prevSection) {
@@ -164,11 +164,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // resolve the path
                 let inputFilePath
                 if (result[1].startsWith('\\subimport')) {
-                    inputFilePath = this.extension.manager.resolveFile([path.dirname(filePath)], path.resolve(result[2], result[3]))
+                    inputFilePath = utils.resolveFile([path.dirname(filePath)], path.resolve(result[2], result[3]))
                 } else if (result[1].startsWith('\\import')) {
-                    inputFilePath = this.extension.manager.resolveFile([result[2]], result[3])
+                    inputFilePath = utils.resolveFile([result[2]], result[3])
                 } else {
-                    inputFilePath = this.extension.manager.resolveFile([path.dirname(filePath), this.extension.manager.rootDir], result[3])
+                    inputFilePath = utils.resolveFile([path.dirname(filePath), this.extension.manager.rootDir], result[3])
                 }
 
                 if (!inputFilePath) {
