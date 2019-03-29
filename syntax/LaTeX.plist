@@ -605,7 +605,35 @@
 		</dict>
 		<dict>
 			<key>begin</key>
-			<string>((?:\s*)\\begin\{(code(?:\*)?)\}(?:\[.*\])?)</string>
+			<string>((?:\s*)\\begin\{(scalacode(?:\*)?)\}(?:\[.*\])?)</string>
+			<key>captures</key>
+			<dict>
+				<key>1</key>
+				<dict>
+					<key>patterns</key>
+					<array>
+						<dict>
+							<key>include</key>
+							<string>#code-env</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>contentName</key>
+			<string>source.scala</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>source.scala</string>
+				</dict>
+			</array>
+			<key>end</key>
+			<string>(\\end\{\2\}(?:\s*\n)?)</string>
+		</dict>
+		<dict>
+			<key>begin</key>
+			<string>((?:\s*)\\begin\{([a-z]*code(?:\*)?)\}(?:\[.*\])?)</string>
 			<key>captures</key>
 			<dict>
 				<key>1</key>
