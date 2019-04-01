@@ -1,5 +1,23 @@
 # Change Log
 
+## [6.3.0] - 2019-04-01
+
+### Added
+- Add intellisense for the figure environment.
+- Support file completion for import package.
+- (#1234) Add `Save without Building`.
+
+### Fixed
+- Fix external reverse synctex on Windows.
+- (#922) Use scala syntax inside `scalacode` environment.
+- (#1235) Declare `[a-zA-Z]*` matrix as array environments.
+- (#1249) Intellisense for custom environments.
+- (#1250) Support Ctrl+click to open an included file.
+- (#1237) Support `graphicspath` for `includegraphics` completion.
+- (#1252) Highlight `IEEEeqnarray`.
+- (#1254) Look for output files in `outDir` instead of `rootDir`.
+- (#1259) Highlight `begin`...`end` inside `macrocode` (doctex).
+
 ## [6.2.2] - 2019-03-15
 
 ### Fixed
