@@ -20,15 +20,29 @@
     "snippet":"left\\{${1}\\right\\\\}",
     "detail":"\\left\\{ ... \\right\\}"
   },
+  "equation":{
+    "command":"equation",
+    "snippet":"begin{equation}\n\t\\label{${1:<label>}}\n\t$0\n\\end{equation}",
+    "detail":"Insert an equation environment",
+    "label": "\\begin{equation} ... \\end{equation}"
+  },
+  "align":{
+    "command":"align",
+    "snippet":"begin{align}\n\t\\label{${1:<label>}}\n\t$0\n\\end{align}",
+    "detail":"Insert an align environment",
+    "label": "\\begin{align} ... \\end{align}"
+  },
   "frame":{
     "command":"frame",
-    "snippet":"begin{frame}{$1}\n\t$0\n\\\\end{frame}",
-    "description":"input a frame"
+    "snippet":"begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t$0\n\n\\end{frame}",
+    "detail":"input a frame",
+    "label": "\\begin{frame} ... \\end{frame}"
   },
   "figure":{
     "command": "figure",
     "snippet": "begin{figure}[${1:htbp}]\n\t\\centering\n\t$0\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{figure}",
-		"description": "Insert a new figure"
+    "detail": "Insert a new figure",
+    "label": "\\begin{figure} ... \\end{figure}"
   },
   "latexinlinemath":{
     "command":"(",

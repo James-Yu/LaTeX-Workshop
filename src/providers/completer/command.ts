@@ -193,7 +193,8 @@ export class Command {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command[0] === ' ' ? '' : '\\'
-        const command = new CommandCompletionItem(`${backslash}${item.command}`, vscode.CompletionItemKind.Function)
+        const label = item.label ? `${item.label}` : `${backslash}${item.command}`
+        const command = new CommandCompletionItem(label, vscode.CompletionItemKind.Function)
         if (item.snippet) {
             if (useTabStops) {
                 item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$${$1}')
@@ -202,6 +203,7 @@ export class Command {
         } else {
             command.insertText = item.command
         }
+        if (item.label) { command.filterText = item.command }
         command.detail = item.detail
         command.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
         command.packageName = item.package
@@ -326,6 +328,7 @@ interface AutocompleteEntry {
     command: string
     snippet?: string
     detail?: string
+    label?: string
     description?: string
     documentation?: string
     sortText?: string
