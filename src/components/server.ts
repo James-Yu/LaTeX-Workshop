@@ -2,6 +2,7 @@ import * as http from 'http'
 import * as ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
+import * as vscode from 'vscode'
 
 import {Extension} from '../main'
 import {AddressInfo} from 'net'
@@ -15,7 +16,9 @@ export class Server {
     constructor(extension: Extension) {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
-        this.httpServer.listen(0, '127.0.0.1', undefined, (err: Error) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const viewerPort = configuration.get('viewer.pdf.internal.port') as number
+        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, (err: Error) => {
             if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
