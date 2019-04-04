@@ -127,11 +127,12 @@ export class Commander {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useActiveGroup = configuration.get('view.pdf.tab.useNewGroup') as boolean
         if (mode === 'browser') {
             this.extension.viewer.openBrowser(rootFile)
             return
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(rootFile)
+            this.extension.viewer.openTab(rootFile, true, useActiveGroup)
             return
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(rootFile)
@@ -148,7 +149,7 @@ export class Commander {
                     break
                 case 'tab':
                 default:
-                    this.extension.viewer.openTab(rootFile)
+                    this.extension.viewer.openTab(rootFile, true, useActiveGroup)
                     break
                 case 'external':
                     this.extension.viewer.openExternal(rootFile)
@@ -187,7 +188,8 @@ export class Commander {
         }
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile !== undefined) {
-            this.extension.viewer.openTab(rootFile)
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            this.extension.viewer.openTab(rootFile, true, configuration.get('view.pdf.tab.useNewGroup'))
         } else {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
         }

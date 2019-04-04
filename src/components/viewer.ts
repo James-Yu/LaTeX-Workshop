@@ -113,7 +113,7 @@ export class Viewer {
             retainContextWhenHidden: true
         })
         panel.webview.html = this.getPDFViewerContent(uri)
-        if (editor) {
+        if (editor && sideColumn) {
             vscode.window.showTextDocument(editor.document, editor.viewColumn)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
