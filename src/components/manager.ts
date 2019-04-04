@@ -257,12 +257,7 @@ export class Manager {
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
-                if (this.rootFile !== undefined) {
-                    this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
-                    this.extension.builder.build(this.rootFile)
-                } else {
-                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
-                }
+                this.extension.commander.build(true)
             })
             this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
