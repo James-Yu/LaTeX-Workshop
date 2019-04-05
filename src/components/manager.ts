@@ -84,7 +84,7 @@ export class Manager {
 
     async findRoot() : Promise<string | undefined> {
         this.updateWorkspace()
-        const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootDir()]
+        const findMethods = [() => this.findRootConfig(), () => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootDir()]
         for (const method of findMethods) {
             const rootFile = await method()
             if (rootFile !== undefined) {
@@ -99,6 +99,10 @@ export class Manager {
             }
         }
         return undefined
+    }
+
+    findRootConfig() : string | undefined {
+      return vscode.workspace.getConfiguration('latex-workshop').get('rootFile')
     }
 
     findRootMagic() : string | undefined {

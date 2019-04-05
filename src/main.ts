@@ -239,6 +239,20 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.toggleSelectedKeyword('mathbb'))
     vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal'))
     vscode.commands.registerCommand('latex-workshop.surround', () => extension.completer.command.surround())
+    vscode.commands.registerCommand('latex-workshop.configureRootfile', async () => {
+      if (vscode.workspace.workspaceFolders === null) {
+        return
+      }
+      const dir = (vscode.workspace.workspaceFolders as vscode.WorkspaceFolder[])[0].uri.fsPath
+      const files = (await vscode.workspace.findFiles('**/*.{tex,latex}'))
+        .map(f => path.relative(dir, f.fsPath))
+      const file = await vscode.window.showQuickPick(files, {
+        placeHolder: 'Select Document RootFile'
+      })
+      if (file !== null) {
+        vscode.workspace.getConfiguration('latex-workshop').update('rootFile', path.resolve(dir, file as string), vscode.ConfigurationTarget.Workspace);
+      }
+    })
 
     vscode.commands.registerCommand('latex-workshop.increment-sectioning', () => extension.commander.shiftSectioningLevel('increment'))
     vscode.commands.registerCommand('latex-workshop.decrement-sectioning', () => extension.commander.shiftSectioningLevel('decrement'))
