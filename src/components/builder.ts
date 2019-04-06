@@ -22,6 +22,7 @@ export class Builder {
     buildMutex: Mutex
     waitingForBuildToFinishMutex: Mutex
     isMiktex: boolean = false
+    previouslyUsedRecipe: {name: string, tools: (string | StepCommand)[]} | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -330,7 +331,7 @@ export class Builder {
                 this.extension.logger.showErrorMessage(`No recipes defined.`)
                 return undefined
             }
-            let recipe = recipes[0]
+            let recipe = (this.previouslyUsedRecipe === undefined) ? recipes[0] : this.previouslyUsedRecipe
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
                 if (candidates.length < 1) {
@@ -338,6 +339,7 @@ export class Builder {
                 }
                 recipe = candidates[0]
             }
+            this.previouslyUsedRecipe = recipe
 
             recipe.tools.forEach(tool => {
                 if (typeof tool === 'string') {
