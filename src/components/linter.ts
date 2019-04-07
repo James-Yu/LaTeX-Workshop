@@ -135,8 +135,8 @@ export class Linter {
             const startTime = process.hrtime()
             this.currentProcesses[linterId] = spawn(command, args, options)
             const proc = this.currentProcesses[linterId]
-            proc.stdout.setEncoding('utf8')
-            proc.stderr.setEncoding('utf8')
+            proc.stdout.setEncoding('binary')
+            proc.stderr.setEncoding('binary')
 
             let stdout = ''
             proc.stdout.on('data', newStdout => {
