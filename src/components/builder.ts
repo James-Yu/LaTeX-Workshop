@@ -331,7 +331,10 @@ export class Builder {
                 this.extension.logger.showErrorMessage(`No recipes defined.`)
                 return undefined
             }
-            let recipe = (this.previouslyUsedRecipe === undefined) ? recipes[0] : this.previouslyUsedRecipe
+            let recipe = recipes[0]
+            if (configuration.get('latex.build.usePreviousRecipe') as boolean && (this.previouslyUsedRecipe !== undefined)) {
+                recipe = this.previouslyUsedRecipe
+            }
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
                 if (candidates.length < 1) {
