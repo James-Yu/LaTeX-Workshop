@@ -60,9 +60,10 @@ export class Builder {
     }
 
     async preprocess() : Promise<() => void> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
-        setTimeout(() => this.disableBuildAfterSave = false, 1000)
+        setTimeout(() => this.disableBuildAfterSave = false, configuration.get('latex.autoBuild.interval', 1000) as number)
         const releaseWaiting = await this.waitingForBuildToFinishMutex.acquire()
         const releaseBuildMutex = await this.buildMutex.acquire()
         releaseWaiting()
