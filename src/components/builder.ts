@@ -294,6 +294,9 @@ export class Builder {
         this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
+        if (this.extension.parser.isLaTeXmkSkipped) {
+            return
+        }
         this.extension.viewer.refreshExistingViewer(rootFile)
         this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
