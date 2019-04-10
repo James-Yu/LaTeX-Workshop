@@ -17,6 +17,11 @@ export class Manager {
     bibWatcher: chokidar.FSWatcher
     filesWatched: string[]
     bibsWatched: string[]
+    watcherOptions: chokidar.WatchOptions = {
+        usePolling: true,
+        interval: 300,
+        binaryInterval: 1000
+    }
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -238,7 +243,7 @@ export class Manager {
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {
             this.extension.logger.addLogMessage(`Instantiating a new file watcher for ${rootFile}`)
-            this.fileWatcher = chokidar.watch(rootFile)
+            this.fileWatcher = chokidar.watch(rootFile, this.watcherOptions)
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
                 if (path.extname(filePath) === '.tex') {
@@ -437,7 +442,7 @@ export class Manager {
         this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
         if (this.bibWatcher === undefined) {
             this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
-            this.bibWatcher = chokidar.watch('')
+            this.bibWatcher = chokidar.watch('', this.watcherOptions)
             this.bibWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
                 this.extension.completer.citation.parseBibFile(filePath)
