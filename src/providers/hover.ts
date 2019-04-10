@@ -525,9 +525,10 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private findHoverOnInline(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position) : TexMathEnv | undefined {
         const currentLine = document.lineAt(position.line).text
+        const regex = /(?<!\$|\\)\$(?!\$)(?:\\.|[^\\])+?\$|\\\(.+?\\\)/
         let s = currentLine
         let base = 0
-        let m: RegExpMatchArray | null = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)
+        let m: RegExpMatchArray | null = s.match(regex)
         while (m) {
             if (m && m.index !== undefined) {
                 const matchStart = base + m.index
@@ -542,7 +543,7 @@ export class HoverProvider implements vscode.HoverProvider {
             } else {
                 break
             }
-            m = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)
+            m = s.match(regex)
         }
         return undefined
     }
