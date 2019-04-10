@@ -284,13 +284,13 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private stripTeX(tex: string) : string {
-        if (tex.startsWith('$') && tex.endsWith('$')) {
-            tex = tex.slice(1, tex.length - 1)
-        }
-        if (tex.startsWith('\\(') && tex.endsWith('\\)')) {
+        if (tex.startsWith('$$') && tex.endsWith('$$')) {
             tex = tex.slice(2, tex.length - 2)
-        }
-        if (tex.startsWith('\\[') && tex.endsWith('\\]')) {
+        } else if (tex.startsWith('$') && tex.endsWith('$')) {
+            tex = tex.slice(1, tex.length - 1)
+        } else if (tex.startsWith('\\(') && tex.endsWith('\\)')) {
+            tex = tex.slice(2, tex.length - 2)
+        } else if (tex.startsWith('\\[') && tex.endsWith('\\]')) {
             tex = tex.slice(2, tex.length - 2)
         }
         return tex
@@ -402,7 +402,7 @@ export class HoverProvider implements vscode.HoverProvider {
             const envname = this.getFirstRmemberedSubstring(document.getText(r), envBeginPat)
             return this.findHoverOnEnv(document, envname, r.start)
         }
-        const parenBeginPat = /(\\\[|\\\()/
+        const parenBeginPat = /(\\\[|\\\(|\$\$)/
         r = document.getWordRangeAtPosition(position, parenBeginPat)
         if (r) {
             const paren = this.getFirstRmemberedSubstring(document.getText(r), parenBeginPat)
@@ -513,7 +513,7 @@ export class HoverProvider implements vscode.HoverProvider {
     //  ^
     //  startPos
     private findHoverOnParen(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position) : TexMathEnv | undefined {
-        const pattern = envname === '\\[' ? /\\\]/ : /\\\)/
+        const pattern = envname === '\\[' ? /\\\]/ : envname === '\\(' ? /\\\)/ : /\$\$/
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length)
         const endPos = this.findEndPair(document, pattern, startPos1)
         if ( endPos ) {
@@ -525,9 +525,10 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private findHoverOnInline(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position) : TexMathEnv | undefined {
         const currentLine = document.lineAt(position.line).text
+        const regex = /(?<!\$|\\)\$(?!\$)(?:\\.|[^\\])+?\$|\\\(.+?\\\)/
         let s = currentLine
         let base = 0
-        let m: RegExpMatchArray | null = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)
+        let m: RegExpMatchArray | null = s.match(regex)
         while (m) {
             if (m && m.index !== undefined) {
                 const matchStart = base + m.index
@@ -542,7 +543,7 @@ export class HoverProvider implements vscode.HoverProvider {
             } else {
                 break
             }
-            m = s.match(/\$(?:\\.|[^\\])+?\$|\\\(.+?\\\)/)
+            m = s.match(regex)
         }
         return undefined
     }
