@@ -382,21 +382,21 @@ export class Builder {
             const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
             const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
             if (step.args) {
-                step.args = step.args.map(arg => arg.replace('%DOC%', docker ? docfile : doc)
-                                                    .replace('%DOCFILE%', docfile)
-                                                    .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
-                                                    .replace('%TMPDIR%', this.tmpDir)
-                                                    .replace('%OUTDIR%', this.extension.manager.getOutputDir(rootFile)))
+                step.args = step.args.map(arg => arg.replace(/%DOC%/g, docker ? docfile : doc)
+                                                    .replace(/%DOCFILE%/g, docfile)
+                                                    .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
+                                                    .replace(/%TMPDIR%/g, this.tmpDir)
+                                                    .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile)))
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
                     if (step.env && step.env[v]) {
                         const e = step.env[v] as string
-                        step.env[v] = e.replace('%DOC%', docker ? docfile : doc)
-                                                 .replace('%DOCFILE%', docfile)
-                                                 .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
-                                                 .replace('%TMPDIR%', this.tmpDir)
-                                                 .replace('%OUTDIR%', this.extension.manager.getOutputDir(rootFile))
+                        step.env[v] = e.replace(/%DOC%/g, docker ? docfile : doc)
+                                                 .replace(/%DOCFILE%/g, docfile)
+                                                 .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
+                                                 .replace(/%TMPDIR%/g, this.tmpDir)
+                                                 .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile))
                     }
                 })
             }

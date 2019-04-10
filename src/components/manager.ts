@@ -37,10 +37,10 @@ export class Manager {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         let outDir = (configuration.get('latex.outDir') as string)
-        outDir = outDir.replace('%DOC%', docker ? docfile : doc)
-                    .replace('%DOCFILE%', docfile)
-                    .replace('%DIR%', docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
-                    .replace('%TMPDIR%', this.extension.builder.tmpDir)
+        outDir = outDir.replace(/%DOC%/g, docker ? docfile : doc)
+                    .replace(/%DOCFILE%/g, docfile)
+                    .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
+                    .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
         return outDir
     }
 

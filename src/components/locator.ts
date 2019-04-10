@@ -415,11 +415,11 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.synctex'))) as ExternalCommand
         if (command.args) {
-            command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                                      .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
-                                                      .replace('%PDF%', pdfFile)
-                                                      .replace('%LINE%', line.toString())
-                                                      .replace('%TEX%', texFile))
+            command.args = command.args.map(arg => arg.replace(/%DOC%/g, rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
+                                                      .replace(/%DOCFILE%/g, path.basename(rootFile, '.tex').split(path.sep).join('/'))
+                                                      .replace(/%PDF%/g, pdfFile)
+                                                      .replace(/%LINE%/g, line.toString())
+                                                      .replace(/%TEX%/g, texFile))
         }
         this.extension.manager.setEnvVar()
         cp.spawn(command.command, command.args)

@@ -129,12 +129,12 @@ export class LaTexFormatter {
             // generate command line arguments
             const args = this.formatterArgs.map(arg => arg
                 // taken from ../components/builder.ts
-                .replace('%DOC%', configuration.get('docker.enabled') ? docfile : doc)
-                .replace('%DOCFILE%', docfile)
-                .replace('%DIR%', path.dirname(document.fileName).split(path.sep).join('/'))
+                .replace(/%DOC%/g, configuration.get('docker.enabled') ? docfile : doc)
+                .replace(/%DOCFILE%/g, docfile)
+                .replace(/%DIR%/g, path.dirname(document.fileName).split(path.sep).join('/'))
                 // latexformatter.ts specific tokens
-                .replace('%TMPFILE%', temporaryFile.split(path.sep).join('/'))
-                .replace('%INDENT%', indent))
+                .replace(/%TMPFILE%/g, temporaryFile.split(path.sep).join('/'))
+                .replace(/%INDENT%/g, indent))
 
             this.extension.logger.addLogMessage(`Formatting with arguments ${args}`)
             this.extension.manager.setEnvVar()

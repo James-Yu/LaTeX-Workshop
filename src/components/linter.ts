@@ -111,7 +111,7 @@ export class Linter {
                 args.push('-l', rcPath)
             }
         }
-        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', '%DOC%'.replace('%DOC%', filePath)]
+        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', filePath]
 
         let stdout: string
         try {
