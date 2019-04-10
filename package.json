@@ -554,6 +554,19 @@
           ],
           "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
         },
+        "latex-workshop.latex.recipe.default": {
+          "type": "string",
+          "enum": [
+            "first",
+            "lastUsed"
+          ],
+          "markdownEnumDescription": [
+            "Use the first recipe",
+            "Use the last run recipe"
+          ],
+          "default": "first",
+          "markdownDescription": "Define which recipe auto build uses."
+        },
         "latex-workshop.latex.tools": {
           "type": "array",
           "default": [
@@ -688,16 +701,6 @@
           "type": "boolean",
           "default": true,
           "markdownDescription": "Delete LaTeX auxillary files when errors occur during build and retry.\nThis property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
-        },
-        "latex-workshop.latex.autoBuild.recipe": {
-          "type": "string",
-          "enum": [
-            "first",
-            "lastUsed"
-          ],
-          "markdownEnumDescription": ["Use the first recipe", "Use the last run recipe"],
-          "default": "first",
-          "markdownDescription": "Define which recipe auto build uses."
         },
         "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": {
           "type": "boolean",

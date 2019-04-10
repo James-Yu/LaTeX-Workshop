@@ -336,7 +336,7 @@ export class Builder {
                 return undefined
             }
             let recipe = recipes[0]
-            if ((configuration.get('latex.autoBuild.recipe') as string === 'lastUsed') && (this.previouslyUsedRecipe !== undefined)) {
+            if ((configuration.get('latex.recipe.default') as string === 'lastUsed') && (this.previouslyUsedRecipe !== undefined)) {
                 recipe = this.previouslyUsedRecipe
             }
             if (recipeName) {
