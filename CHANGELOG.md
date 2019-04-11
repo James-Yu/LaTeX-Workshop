@@ -1,5 +1,26 @@
 # Change Log
 
+## [6.4.0] - 2019-04-01
+
+### Added
+- (#1263) Add accent commands.
+- (#1265) Make port of viewer configurable.
+- (#1267) Add label field to `AutocompleteEntry`.
+- (#1273) Configure the editor group for the tab viewer with `latex-workshop.view.pdf.tab.useNewGroup`.
+
+### Changed
+- Deprecate the old action dropdown, replace with side view.
+
+### Fixed
+- Improve regex for hovering on inline maths.
+- Make auto build interval configurable, not 1000ms.
+- Skip postprocessing (e.g., refresh viewer) if latexmk is skipped, i.e., no change.
+- (#1272) Root file detection with auto build and `subfiles` package.
+- (#1278) Support preview for `$$...$$`.
+- (#1281) Allow using previous recipe by default, configurable at `latex-workshop.latex.recipe.default`.
+- (#1288) Use file pooling for `chokidar` watch.
+- (#1290) Expand all placeholders.
+
 ## [6.3.0] - 2019-04-01
 
 ### Added
