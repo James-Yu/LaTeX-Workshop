@@ -1,6 +1,6 @@
 # Change Log
 
-## [6.4.0] - 2019-04-01
+## [6.4.0] - 2019-04-11
 
 ### Added
 - (#1263) Add accent commands.
