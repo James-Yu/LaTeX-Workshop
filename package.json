@@ -560,7 +560,7 @@
             "first",
             "lastUsed"
           ],
-          "markdownEnumDescription": [
+          "enumDescriptions": [
             "Use the first recipe",
             "Use the last run recipe"
           ],
@@ -689,6 +689,10 @@
             "never",
             "onFileChange"
           ],
+          "enumDescriptions": [
+            "Never run auto build",
+            "Auto build whenever a dependency file changes on disk"
+          ],
           "default": "onFileChange",
           "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications."
         },
@@ -714,8 +718,13 @@
             "onFailed",
             "onBuilt"
           ],
+          "enumDescriptions": [
+            "Never clean the project",
+            "Clean compilation fails",
+            "Clean after build, be it successful or not"
+          ],
           "default": "never",
-          "markdownDescription": "When LaTeX auxillary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` clean the project when compilation is failed. `onBuilt` clean the project when compilation is terminated, whether successful or failed."
+          "markdownDescription": "When LaTeX auxillary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` cleans the project when compilation fails. `onBuilt` cleans the project when compilation is terminated, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "type": "boolean",
