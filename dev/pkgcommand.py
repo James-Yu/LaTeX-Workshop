@@ -150,6 +150,7 @@ for cwl_file in cwl_files:
     if pkgCmds != {}:
         json.dump(pkgCmds,
                   open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'),
-                  indent=2)
+                  indent=2,
+                  ensure_ascii=False)
     # for cmd in pkgCmds:
     #     print(cmd, ': ', pkgCmds[cmd], sep = '')
