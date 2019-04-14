@@ -26,18 +26,21 @@ export class Completer implements vscode.CompletionItemProvider {
         this.reference = new Reference(extension)
         this.package = new Package(extension)
         this.input = new Input(extension)
-        let defaultEnvs: string
-        let defaultCommands: string
-        fs.readFile(`${this.extension.extensionRoot}/data/environments.json`)
-            .then(data => {defaultEnvs = data.toString()})
-            .then(() => fs.readFile(`${this.extension.extensionRoot}/data/commands.json`))
-            .then(data => {defaultCommands = data.toString()})
-            .then(() => {
-                const env = JSON.parse(defaultEnvs)
-                this.command.initialize(JSON.parse(defaultCommands), env)
-                this.environment.initialize(env)
-            })
+        this.loadDefaultItems()
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
+    }
+
+    async loadDefaultItems() {
+        const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
+        const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
+        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`,
+                                                        {encoding: 'utf8'})
+        const env = JSON.parse(defaultEnvs)
+        const cmds = JSON.parse(defaultCommands)
+        const maths = JSON.parse(defaultLaTeXMathSymbols)
+        cmds.assign(maths)
+        this.command.initialize(cmds, env)
+        this.environment.initialize(env)
     }
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) : Promise<vscode.CompletionItem[]> {
