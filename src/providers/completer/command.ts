@@ -48,7 +48,7 @@ export class Command {
             const art = ['a', 'e', 'i', 'o', 'u'].indexOf(`${env}`.charAt(0)) >= 0 ? 'an' : 'a'
             envSnippet[env] = {
                 command: env,
-                detail: `insert ${art} ${env} environment`,
+                detail: `Insert ${art} ${env} environment.`,
                 snippet: `begin{${env}}\n\t$0\n\\\\end{${env}}`
             }
             if (['enumerate', 'itemize'].indexOf(env) > -1) {
