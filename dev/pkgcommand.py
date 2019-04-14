@@ -42,16 +42,19 @@ def parse_unimathsymbols_file() -> Dict[str, Dict[str, str]]:
         lines = f.readlines()
     unimath_dict: Dict[str, Dict[str, str]] = {}
     for line in lines:
+        cmds: List[str] = []
         if line[0] == '#':
             continue
         line = line.strip()
         arry = line.split('^')
-        cmd0 = re.sub(r'^\\', '', arry[2])
-        cmd1 = re.sub(r'^\\', '', arry[3])
+        cmds.append(re.sub(r'^\\', '', arry[2]))
+        cmds.append(re.sub(r'^\\', '', arry[3]))
+        for m in re.finditer(r'= \\(\w+)[ ,]', arry[-1]):
+            cmds.append(m.group(1))
         doc = re.sub(r'\s*[\=#xt]\s*\\\w+(\{.*?\})?\s*(\(.*?\))?\s*,', '', arry[-1])
         doc = re.sub(r'\s*[\=#xt]\s*\S+\s*,', '', doc)
         doc = doc.strip()
-        for c in [cmd0, cmd1]:
+        for c in cmds:
             if c == '' or re.search('{', c):
                 continue
             unimath_dict[c] = {'detail': arry[1], 'documentation': doc}
@@ -76,12 +79,14 @@ def get_cwl_files() -> List[str]:
     return files
 
 
-def parse_cwl_file(file: str) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
+def parse_cwl_file(
+        file: str,
+        unimath_dict: Dict[str, Dict[str, str]]
+) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
     with open(join('cwl/LaTeX-cwl-master', file), encoding='utf8') as f:
         lines = f.readlines()
     pkgcmds: Dict[str, Dict[str, str]] = {}
     pkgenvs: List[str] = []
-    unimath_dict = parse_unimathsymbols_file()
     for line in lines:
         line = line.rstrip()
         if not line:
@@ -134,9 +139,10 @@ def parse_cwl_file(file: str) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
     return (pkgcmds, pkgenvs)
 
 
+unimath_dict = parse_unimathsymbols_file()
 cwl_files = get_cwl_files()
 for cwl_file in cwl_files:
-    (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file)
+    (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict)
     if pkgEnvs:
         json.dump(pkgEnvs,
                   open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
