@@ -51,8 +51,8 @@ def parse_unimathsymbols_file() -> Dict[str, Dict[str, str]]:
         cmds.append(re.sub(r'^\\', '', arry[3]))
         for m in re.finditer(r'= \\(\w+)[ ,]', arry[-1]):
             cmds.append(m.group(1))
-        doc = re.sub(r'\s*[\=#xt]\s*\\\w+(\{.*?\})?\s*(\(.*?\))?\s*,', '', arry[-1])
-        doc = re.sub(r'\s*[\=#xt]\s*\S+\s*,', '', doc)
+        doc = re.sub(r'\s*[=#xt]\s*\\\w+(\{.*?\})?\s*(\(.*?\))?\s*,', '', arry[-1])
+        doc = re.sub(r'\s*[=#xt]\s*\S+\s*,', '', doc)
         doc = doc.strip()
         for c in cmds:
             if c == '' or re.search('{', c):
