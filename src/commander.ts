@@ -118,7 +118,12 @@ export class Commander {
 
     async view(mode?: string) {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (!vscode.window.activeTextEditor) {
+            this.extension.logger.addLogMessage('Cannot find active TextEditor.')
+            return
+        }
+        if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            this.extension.logger.addLogMessage('Active document is not a TeX file.')
             return
         }
         const rootFile = await this.extension.manager.findRoot()
