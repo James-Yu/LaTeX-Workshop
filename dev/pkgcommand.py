@@ -1,16 +1,20 @@
 import json
+import os.path
 import urllib.request
 import zipfile
 from os import listdir, remove
 from os.path import isfile, join, basename, splitext
 import re
-
+from typing import List, Set, Dict, Tuple, Union, Optional
 
 commands = json.load(open('../data/commands.json', encoding='utf8'))
 envs = json.load(open('../data/environments.json', encoding='utf8'))
 
 
 class PlaceHolder:
+    count: int
+    usePlaceHolders: bool
+
     def __init__(self):
         self.count = 0
         self.usePlaceHolders = True
@@ -18,20 +22,51 @@ class PlaceHolder:
     def setUsePlaceHolders(self, trueOrFalse):
         self.usePlaceHolders = trueOrFalse
 
-    def sub(self, matchObject):
+    def sub(self, matchObject) -> str:
         self.count += 1
         name = ''
         if self.usePlaceHolders:
             name = ':' + matchObject.group(2)
-        return  matchObject.group(1) + '${' + str(self.count) + name + '}' + matchObject.group(3)
+        return matchObject.group(1) + '${' + str(self.count) + name + '}' + matchObject.group(3)
 
-def get_cwl_files():
+
+def get_unimathsymbols_file():
+    if not os.path.exists('unimathsymbols.txt'):
+        urllib.request.urlretrieve('http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt', # noqa
+                                   'unimathsymbols.txt')
+
+
+def parse_unimathsymbols_file() -> Dict[str, Dict[str, str]]:
+    get_unimathsymbols_file()
+    with open(join('unimathsymbols.txt'), encoding='utf8') as f:
+        lines = f.readlines()
+    unimath_dict: Dict[str, Dict[str, str]] = {}
+    for line in lines:
+        if line[0] == '#':
+            continue
+        line = line.strip()
+        arry = line.split('^')
+        cmd0 = re.sub(r'^\\', '', arry[2])
+        cmd1 = re.sub(r'^\\', '', arry[3])
+        doc = re.sub(r'\s*[\=#xt]\s*\\\w+(\{.*?\})?\s*(\(.*?\))?\s*,', '', arry[-1])
+        doc = re.sub(r'\s*[\=#xt]\s*\S+\s*,', '', doc)
+        doc = doc.strip()
+        for c in [cmd0, cmd1]:
+            if c == '' or re.search('{', c):
+                continue
+            unimath_dict[c] = {'detail': arry[1], 'documentation': doc}
+    return unimath_dict
+
+
+def get_cwl_files() -> List[str]:
     """ Get the list of cwl files from github """
-    urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', 'cwl.zip')
+    if not os.path.exists('cwl.zip'):
+        urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip',
+                                   'cwl.zip')
     zip_ref = zipfile.ZipFile('cwl.zip', 'r')
     zip_ref.extractall('cwl/')
     zip_ref.close()
-    remove('cwl.zip')
+#    remove('cwl.zip')
     files = []
     for f in listdir('cwl/LaTeX-cwl-master'):
         if isfile(join('cwl/LaTeX-cwl-master', f)) and f[-4:] == '.cwl':
@@ -41,11 +76,12 @@ def get_cwl_files():
     return files
 
 
-def parse_cwl_file(file):
+def parse_cwl_file(file: str) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
     with open(join('cwl/LaTeX-cwl-master', file), encoding='utf8') as f:
         lines = f.readlines()
-    pkgcmds = {}
-    pkgenvs = []
+    pkgcmds: Dict[str, Dict[str, str]] = {}
+    pkgenvs: List[str] = []
+    unimath_dict = parse_unimathsymbols_file()
     for line in lines:
         line = line.rstrip()
         if not line:
@@ -76,7 +112,7 @@ def parse_cwl_file(file):
         command = line
         name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
         package = splitext(basename(file))[0]
-        command_dict = {'command': command, 'package': package}
+        command_dict: Dict[str, str] = {'command': command, 'package': package}
         snippet = line
         if name in commands:
             continue
@@ -90,18 +126,24 @@ def parse_cwl_file(file):
             snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
 
         command_dict['snippet'] = snippet
+        if unimath_dict.get(name):
+            command_dict['detail'] = unimath_dict[name]['detail']
+            command_dict['documentation'] = unimath_dict[name]['documentation']
         pkgcmds[name] = command_dict
     remove(join('cwl/LaTeX-cwl-master', file))
     return (pkgcmds, pkgenvs)
-
 
 
 cwl_files = get_cwl_files()
 for cwl_file in cwl_files:
     (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file)
     if pkgEnvs:
-        json.dump(pkgEnvs, open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'), indent=2)
+        json.dump(pkgEnvs,
+                  open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
+                  indent=2)
     if pkgCmds != {}:
-        json.dump(pkgCmds, open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'), indent=2)
+        json.dump(pkgCmds,
+                  open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'),
+                  indent=2)
     # for cmd in pkgCmds:
     #     print(cmd, ': ', pkgCmds[cmd], sep = '')
