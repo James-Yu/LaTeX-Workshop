@@ -38,8 +38,8 @@ export class Completer implements vscode.CompletionItemProvider {
         const env = JSON.parse(defaultEnvs)
         const cmds = JSON.parse(defaultCommands)
         const maths = JSON.parse(defaultLaTeXMathSymbols)
-        cmds.assign(maths)
-        this.command.initialize(cmds, env)
+        Object.assign(maths, cmds)
+        this.command.initialize(maths, env)
         this.environment.initialize(env)
     }
 
