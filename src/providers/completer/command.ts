@@ -42,10 +42,13 @@ export class Command {
             const item = defaultCommands[key]
             this.defaultCommands[key] = this.entryToCompletionItem(item)
         })
-        const envSnippet: { [id: string]: { command: string, snippet: string}} = {}
+        const envSnippet: { [id: string]: { command: string, detail: string, snippet: string}} = {}
         defaultEnvs.forEach(env => {
+            // Use 'an' or 'a' depending on the first letter
+            const art = ['a', 'e', 'i', 'o', 'u'].indexOf(`${env}`.charAt(0)) >= 0 ? 'an' : 'a'
             envSnippet[env] = {
                 command: env,
+                detail: `Insert ${art} ${env} environment.`,
                 snippet: `begin{${env}}\n\t$0\n\\\\end{${env}}`
             }
             if (['enumerate', 'itemize'].indexOf(env) > -1) {
@@ -56,6 +59,7 @@ export class Command {
             const item = envSnippet[key]
             const command = new CommandCompletionItem(`\\begin{${item.command}} ... \\end{${item.command}}`, vscode.CompletionItemKind.Snippet)
             command.filterText = item.command
+            command.detail = item.detail
             command.insertText = new vscode.SnippetString(item.snippet)
             this.defaultCommands[key] = command
         })
