@@ -289,7 +289,9 @@ export class Manager {
         const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
-        this.texFileTree[filePath] = new Set()
+        if (!this.texFileTree.hasOwnProperty(filePath)) {
+            this.texFileTree[filePath] = new Set()
+        }
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
@@ -305,7 +307,8 @@ export class Manager {
                 inputFilePath = utils.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
             }
 
-            if (inputFilePath && fs.existsSync(inputFilePath)) {
+            // Test if we are facing circular inclusion
+            if (inputFilePath && fs.existsSync(inputFilePath) && inputFilePath !== filePath && !this.texFileTree[filePath].has(inputFilePath)) {
                 this.texFileTree[filePath].add(inputFilePath)
                 if (!fast && this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
