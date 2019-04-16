@@ -82,31 +82,23 @@ export class HoverProvider implements vscode.HoverProvider {
             }
             if (hovReference && token in this.extension.completer.reference.referenceData) {
                 const refData = this.extension.completer.reference.referenceData[token]
-                const line = refData.item.position.line
-                const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
-                const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
-                mdLink.isTrusted = true
-                if (configuration.get('hover.preview.ref.enabled') as boolean) {
-                    const tex = this.findHoverOnRef(document, position, token, refData)
-                    if (tex) {
-                        this.provideHoverOnRef(tex, this.findNewCommand(document.getText()), token, refData)
-                            .then(hover => resolve(hover))
-                        return
-                    }
-                }
-                const md = '```latex\n' + refData.text + '\n```\n'
-                resolve( new vscode.Hover([md, mdLink]) )
+                this.provideHoverOnRef(document, position, refData, token)
+                .then( hover => resolve(hover))
                 return
             }
             if (hovCitation && token in this.extension.completer.citation.citationData) {
+                const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
                 resolve(new vscode.Hover(
-                    this.extension.completer.citation.citationData[token].text
+                    this.extension.completer.citation.citationData[token].text,
+                    range
                 ))
                 return
             }
             if (hovCitation && token in this.extension.completer.citation.theBibliographyData) {
+                const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
                 resolve(new vscode.Hover(
-                    this.extension.completer.citation.theBibliographyData[token].text
+                    this.extension.completer.citation.theBibliographyData[token].text,
+                    range
                 ))
                 return
             }
@@ -191,7 +183,24 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
 
-    private async provideHoverOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
+    private async provideHoverOnRef(document: vscode.TextDocument, position: vscode.Position, refData: ReferenceEntry, token: string) : Promise<vscode.Hover> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const line = refData.item.position.line
+        const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
+        const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
+        mdLink.isTrusted = true
+        if (configuration.get('hover.preview.ref.enabled') as boolean) {
+            const tex = this.findHoverOnRef(document, position, token, refData)
+            if (tex) {
+                return this.provideHoverPreviewOnRef(tex, this.findNewCommand(document.getText()), token, refData)
+            }
+        }
+        const md = '```latex\n' + refData.text + '\n```\n'
+        const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
+        return new vscode.Hover([md, mdLink], refRange)
+    }
+
+    private async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
         const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
