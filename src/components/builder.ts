@@ -251,6 +251,7 @@ export class Builder {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
                         })
                     } else {
+                        this.extension.logger.displayStatus('x', 'errorForeground')
                         this.currentProcess = undefined
                         releaseBuildMutex()
                     }
