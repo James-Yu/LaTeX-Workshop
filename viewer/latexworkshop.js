@@ -6,6 +6,14 @@ let documentTitle = ''
 // We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
 //
 PDFViewerApplication.isViewerEmbedded = false;
+let viewerHistory = []
+
+const pushViewerHistory = (currentScroll) => {
+  if (viewerHistory.length == 0 || viewerHistory[viewerHistory.length-1] !== currentScroll) {
+    viewerHistory.push(currentScroll)
+  }
+}
+
 let query = document.location.search.substring(1)
 let parts = query.split('&')
 let file
@@ -36,7 +44,9 @@ socket.addEventListener("message", (event) => {
             let page = document.getElementsByClassName('page')[data.data.page - 1]
             let scrollX = page.offsetLeft + pos[0]
             let scrollY = page.offsetTop + page.offsetHeight - pos[1]
+            pushViewerHistory(container.scrollTop)
             container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+            pushViewerHistory(container.scrollTop)
 
             let indicator = document.getElementById('synctex-indicator')
             indicator.className = 'show'
@@ -158,7 +168,18 @@ document.addEventListener('pagerendered', (evPageRendered) => {
 
 // back button (mostly useful for the embedded viewer)
 document.getElementById("historyBack").addEventListener("click", function() {
-  history.back()
+  const container = document.getElementById('viewerContainer')
+  const prevScroll = viewerHistory.pop()
+  if (prevScroll !== undefined) {
+    if (prevScroll !== container.scrollTop) {
+      container.scrollTop = prevScroll
+    } else {
+      const scrl = viewerHistory.pop()
+      if (scrl !== undefined) {
+        container.scrollTop = scrl
+      }
+    }
+  }
 })
 
 // keyboard bindings
