@@ -166,6 +166,11 @@ document.addEventListener('pagerendered', (evPageRendered) => {
     }
 }, true)
 
+document.getElementById('viewerContainer').addEventListener("click", function() {
+  const container = document.getElementById('viewerContainer')
+  pushViewerHistory(container.scrollTop)
+})
+
 // back button (mostly useful for the embedded viewer)
 document.getElementById("historyBack").addEventListener("click", function() {
   const container = document.getElementById('viewerContainer')
