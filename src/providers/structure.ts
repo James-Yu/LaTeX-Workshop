@@ -185,6 +185,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
                     continue
                 }
+                // Avoid circular inclusion
+                if (inputFilePath === filePath || rootStack.some(s => { return s.fileName === inputFilePath })) {
+                    continue
+                }
                 if (prevSection) {
                     prevSection.subfiles.push(inputFilePath)
                 }
