@@ -29,7 +29,7 @@ class ViewerHistory {
     return this._history.length
   }
 
-  push(scroll) {
+  set(scroll, force = false) {
     if (this._history.length === 0) {
       this._history.push({scroll: scroll, temporary: false})
       this._current = this._history.length - 1
@@ -41,7 +41,7 @@ class ViewerHistory {
     }
 
     const curScroll = this._history[this._current].scroll
-    if (curScroll !== scroll) {
+    if (curScroll !== scroll || force) {
       this._history = this._history.slice(0, this._current + 1)
       if (this.last()) {
         this.last().temporary = false
@@ -58,7 +58,6 @@ class ViewerHistory {
     const container = document.getElementById('viewerContainer')
     let cur = this._current
     let prevScroll = this._history[cur].scroll
-    console.log({length: this.length(), cur: this._current, v: this._history[cur].scroll})
     if (this.length() > 0 && prevScroll !== container.scrollTop) {
       if (this._current === this.lastIndex() && this.last()) {
         if (this.last().temporary) {
@@ -68,14 +67,7 @@ class ViewerHistory {
         } else {
           this._history.push({scroll: container.scrollTop, temporary: true})
         }
-      } /* else if (this._history[cur+1] !== undefined && this._history[cur+1].temporary) {
-        this._history[cur+1] = {scroll: container.scrollTop, temporary: true}
-      }  else {
-        const ha = this._history.split(0, cur+1)
-        const hb = this._history.split(cur+1, this.length())
-        const c = {scroll: container.scrollTop, temporary: true}
-        this._history = ha.concat([c], hb)
-      }*/
+      }
     }
     if (prevScroll !== container.scrollTop) {
       this._current = cur
@@ -143,9 +135,9 @@ socket.addEventListener("message", (event) => {
             let page = document.getElementsByClassName('page')[data.data.page - 1]
             let scrollX = page.offsetLeft + pos[0]
             let scrollY = page.offsetTop + page.offsetHeight - pos[1]
-            viewerHistory.push(container.scrollTop)
+            viewerHistory.set(container.scrollTop)
             container.scrollTop = scrollY - document.body.offsetHeight * 0.4
-            viewerHistory.push(container.scrollTop)
+            viewerHistory.set(container.scrollTop)
 
             let indicator = document.getElementById('synctex-indicator')
             indicator.className = 'show'
@@ -267,7 +259,7 @@ document.addEventListener('pagerendered', (evPageRendered) => {
 
 document.getElementById('viewerContainer').addEventListener("click", function() {
   const container = document.getElementById('viewerContainer')
-  viewerHistory.push(container.scrollTop)
+  viewerHistory.set(container.scrollTop, true)
 })
 
 // back button (mostly useful for the embedded viewer)
