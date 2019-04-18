@@ -136,6 +136,8 @@ socket.addEventListener("message", (event) => {
             let page = document.getElementsByClassName('page')[data.data.page - 1]
             let scrollX = page.offsetLeft + pos[0]
             let scrollY = page.offsetTop + page.offsetHeight - pos[1]
+
+            // set positions before and after SyncTeX to viewerHistory
             viewerHistory.set(container.scrollTop)
             container.scrollTop = scrollY - document.body.offsetHeight * 0.4
             viewerHistory.set(container.scrollTop)
@@ -154,7 +156,8 @@ socket.addEventListener("message", (event) => {
                                         scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
                                         spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
                                         scrollTop:document.getElementById('viewerContainer').scrollTop,
-                                        scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
+                                        scrollLeft:document.getElementById('viewerContainer').scrollLeft,
+                                        viewerHistory:{history: viewerHistory._history, current: viewerHistory._current}}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
             PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
               // reset the document title to the original value to avoid duplication
@@ -175,6 +178,9 @@ socket.addEventListener("message", (event) => {
             PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
             document.getElementById('viewerContainer').scrollTop = data.scrollTop
             document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
+            viewerHistory = new ViewerHistory()
+            viewerHistory._history = data.viewerHistory.history
+            viewerHistory._current = data.viewerHistory.current
             break
         case "params":
             if (data.scale) {
@@ -261,7 +267,7 @@ document.addEventListener('pagerendered', (evPageRendered) => {
 const setHistory = () => {
   console.log('history click')
   const container = document.getElementById('viewerContainer')
-  // set positions before and after clicking to history
+  // set positions before and after clicking to viewerHistory
   viewerHistory.set(container.scrollTop)
   setTimeout(() => {viewerHistory.set(container.scrollTop)}, 500)
 }
