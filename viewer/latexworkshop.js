@@ -32,12 +32,12 @@ class ViewerHistory {
   set(scroll, force = false) {
     if (this._history.length === 0) {
       this._history.push({scroll: scroll, temporary: false})
-      this._current = this._history.length - 1
+      this._current = 0
       return
     }
 
     if (this._current === undefined) {
-      console.log('this._current === undefined never happen.')
+      console.log('this._current === undefined never happens here.')
     }
 
     const curScroll = this._history[this._current].scroll
