@@ -258,12 +258,16 @@ document.addEventListener('pagerendered', (evPageRendered) => {
     }
 }, true)
 
-document.getElementById('viewerContainer').addEventListener("click", function() {
+const setHistory = () => {
+  console.log('history click')
   const container = document.getElementById('viewerContainer')
   // set positions before and after clicking to history
   viewerHistory.set(container.scrollTop)
   setTimeout(() => {viewerHistory.set(container.scrollTop)}, 500)
-})
+}
+
+document.getElementById('viewerContainer').addEventListener("click", setHistory)
+document.getElementById('sidebarContainer').addEventListener("click", setHistory)
 
 // back button (mostly useful for the embedded viewer)
 document.getElementById("historyBack").addEventListener("click", function() {
