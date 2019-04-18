@@ -47,8 +47,8 @@ class ViewerHistory {
         this.last().temporary = false
       }
       this._history.push({scroll: scroll, temporary: false})
+      this._current = this.lastIndex()
     }
-    this._current = this.lastIndex()
   }
 
   back() {
