@@ -17,6 +17,14 @@ class ViewerHistory {
     return this._history[this._history.length-1]
   }
 
+  lastIndex() {
+    if (this._history.length === 0) {
+      return undefined
+    } else {
+      return this._history.length - 1
+    }
+  }
+
   length() {
     return this._history.length
   }
@@ -35,20 +43,23 @@ class ViewerHistory {
     const curScroll = this._history[this._current].scroll
     if (curScroll !== scroll) {
       this._history = this._history.slice(0, this._current + 1)
-      if (flag && this._history[this._history.length-1].temporary) {
+      if (flag && this.last().temporary) {
         this._history[this._history.length-1] = {scroll: scroll, temporary: flag}
       } else {
         this._history.push({scroll: scroll, temporary: flag})
       }
-      this._current = this._history.length - 1
+      this._current = this.lastIndex()
     }
   }
 
   back() {
+    if (this.length() === 0) {
+      return
+    }
     const container = document.getElementById('viewerContainer')
     const cur = this._current
     const prevScroll = this._history[cur].scroll
-    if (this._current === this._history.length - 1) {
+    if (this.length() > 0 && this._current === this.lastIndex()) {
       viewerHistory.push(container.scrollTop, true)
       this._current = cur
     }
@@ -66,7 +77,7 @@ class ViewerHistory {
   }
 
   forward() {
-    if (this._current === this._history.length - 1) {
+    if (this._current === this.lastIndex()) {
       return
     }
     const container = document.getElementById('viewerContainer')
@@ -76,7 +87,7 @@ class ViewerHistory {
       this._current = cur + 1
       container.scrollTop = nextScroll
     } else {
-      if (cur === this._history.length - 2) {
+      if (cur >= this._history.length - 2) {
         return
       }
       const scrl = this._history[cur+2].scroll
