@@ -65,7 +65,8 @@ class ViewerHistory {
           cur = cur - 1
           prevScroll = this._history[cur].scroll
         } else {
-          this._history.push({scroll: container.scrollTop, temporary: true})
+          const tmp = {scroll: container.scrollTop, temporary: true};
+          this._history.push(tmp);
         }
       }
     }
