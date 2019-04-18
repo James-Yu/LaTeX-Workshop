@@ -29,9 +29,9 @@ class ViewerHistory {
     return this._history.length
   }
 
-  push(scroll, flag = false) {
+  push(scroll) {
     if (this._history.length === 0) {
-      this._history.push({scroll: scroll, temporary: flag})
+      this._history.push({scroll: scroll, temporary: false})
       this._current = this._history.length - 1
       return
     }
@@ -43,13 +43,12 @@ class ViewerHistory {
     const curScroll = this._history[this._current].scroll
     if (curScroll !== scroll) {
       this._history = this._history.slice(0, this._current + 1)
-      if (flag && this.last().temporary) {
-        this._history[this._history.length-1] = {scroll: scroll, temporary: flag}
-      } else {
-        this._history.push({scroll: scroll, temporary: flag})
+      if (this.last()) {
+        this.last().temporary = false
       }
-      this._current = this.lastIndex()
+      this._history.push({scroll: scroll, temporary: false})
     }
+    this._current = this.lastIndex()
   }
 
   back() {
@@ -57,11 +56,26 @@ class ViewerHistory {
       return
     }
     const container = document.getElementById('viewerContainer')
-    const cur = this._current
-    const prevScroll = this._history[cur].scroll
-    if (this.length() > 0 && this._current === this.lastIndex()) {
-      viewerHistory.push(container.scrollTop, true)
-      this._current = cur
+    let cur = this._current
+    let prevScroll = this._history[cur].scroll
+    console.log({length: this.length(), cur: this._current, v: this._history[cur].scroll})
+    if (this.length() > 0 && prevScroll !== container.scrollTop) {
+      if (this._current === this.lastIndex() && this.last()) {
+        if (this.last().temporary) {
+          this.last().scroll = container.scrollTop
+          cur = cur - 1
+          prevScroll = this._history[cur].scroll
+        } else {
+          this._history.push({scroll: container.scrollTop, temporary: true})
+        }
+      } /* else if (this._history[cur+1] !== undefined && this._history[cur+1].temporary) {
+        this._history[cur+1] = {scroll: container.scrollTop, temporary: true}
+      }  else {
+        const ha = this._history.split(0, cur+1)
+        const hb = this._history.split(cur+1, this.length())
+        const c = {scroll: container.scrollTop, temporary: true}
+        this._history = ha.concat([c], hb)
+      }*/
     }
     if (prevScroll !== container.scrollTop) {
       this._current = cur
