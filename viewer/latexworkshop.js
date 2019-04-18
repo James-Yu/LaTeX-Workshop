@@ -6,13 +6,87 @@ let documentTitle = ''
 // We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
 //
 PDFViewerApplication.isViewerEmbedded = false;
-let viewerHistory = []
 
-const pushViewerHistory = (currentScroll) => {
-  if (viewerHistory.length == 0 || viewerHistory[viewerHistory.length-1] !== currentScroll) {
-    viewerHistory.push(currentScroll)
+class ViewerHistory {
+  constructor() {
+    this._history = []
+    this._current = undefined
+  }
+
+  last() {
+    return this._history[this._history.length-1]
+  }
+
+  length() {
+    return this._history.length
+  }
+
+  push(scroll, flag = false) {
+    if (this._history.length === 0) {
+      this._history.push({scroll: scroll, temporary: flag})
+      this._current = this._history.length - 1
+      return
+    }
+
+    if (this._current === undefined) {
+      console.log('this._current === undefined never happen.')
+    }
+
+    const curScroll = this._history[this._current].scroll
+    if (curScroll !== scroll) {
+      this._history = this._history.slice(0, this._current + 1)
+      if (flag && this._history[this._history.length-1].temporary) {
+        this._history[this._history.length-1] = {scroll: scroll, temporary: flag}
+      } else {
+        this._history.push({scroll: scroll, temporary: flag})
+      }
+      this._current = this._history.length - 1
+    }
+  }
+
+  back() {
+    const container = document.getElementById('viewerContainer')
+    const cur = this._current
+    const prevScroll = this._history[cur].scroll
+    if (this._current === this._history.length - 1) {
+      viewerHistory.push(container.scrollTop, true)
+      this._current = cur
+    }
+    if (prevScroll !== container.scrollTop) {
+      this._current = cur
+      container.scrollTop = prevScroll
+    } else {
+      if (cur === 0) {
+        return
+      }
+      const scrl = this._history[cur-1].scroll
+      this._current = cur - 1
+      container.scrollTop = scrl
+    }
+  }
+
+  forward() {
+    if (this._current === this._history.length - 1) {
+      return
+    }
+    const container = document.getElementById('viewerContainer')
+    const cur = this._current
+    const nextScroll = this._history[cur+1].scroll
+    if (nextScroll !== container.scrollTop) {
+      this._current = cur + 1
+      container.scrollTop = nextScroll
+    } else {
+      if (cur === this._history.length - 2) {
+        return
+      }
+      const scrl = this._history[cur+2].scroll
+      this._current = cur + 2
+      container.scrollTop = scrl
+    }
   }
 }
+
+let viewerHistory = new ViewerHistory()
 
 let query = document.location.search.substring(1)
 let parts = query.split('&')
@@ -44,9 +118,9 @@ socket.addEventListener("message", (event) => {
             let page = document.getElementsByClassName('page')[data.data.page - 1]
             let scrollX = page.offsetLeft + pos[0]
             let scrollY = page.offsetTop + page.offsetHeight - pos[1]
-            pushViewerHistory(container.scrollTop)
+            viewerHistory.push(container.scrollTop)
             container.scrollTop = scrollY - document.body.offsetHeight * 0.4
-            pushViewerHistory(container.scrollTop)
+            viewerHistory.push(container.scrollTop)
 
             let indicator = document.getElementById('synctex-indicator')
             indicator.className = 'show'
@@ -168,23 +242,16 @@ document.addEventListener('pagerendered', (evPageRendered) => {
 
 document.getElementById('viewerContainer').addEventListener("click", function() {
   const container = document.getElementById('viewerContainer')
-  pushViewerHistory(container.scrollTop)
+  viewerHistory.push(container.scrollTop)
 })
 
 // back button (mostly useful for the embedded viewer)
 document.getElementById("historyBack").addEventListener("click", function() {
-  const container = document.getElementById('viewerContainer')
-  const prevScroll = viewerHistory.pop()
-  if (prevScroll !== undefined) {
-    if (prevScroll !== container.scrollTop) {
-      container.scrollTop = prevScroll
-    } else {
-      const scrl = viewerHistory.pop()
-      if (scrl !== undefined) {
-        container.scrollTop = scrl
-      }
-    }
-  }
+  viewerHistory.back()
+})
+
+document.getElementById("historyForward").addEventListener("click", function() {
+  viewerHistory.forward()
 })
 
 // keyboard bindings
@@ -200,9 +267,9 @@ window.addEventListener('keydown', function(evt) {
   // Back/Forward don't work in the embedded viewer, so we simulate them.
   if (embedded && (evt.altKey || evt.metaKey)) {
     if (evt.keyCode == 37) {
-      history.back();
+      viewerHistory.back();
     } else if(evt.keyCode == 39) {
-      history.forward();
+      viewerHistory.forward();
     }
   }
 })
