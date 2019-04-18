@@ -260,7 +260,9 @@ document.addEventListener('pagerendered', (evPageRendered) => {
 
 document.getElementById('viewerContainer').addEventListener("click", function() {
   const container = document.getElementById('viewerContainer')
-  viewerHistory.set(container.scrollTop, true)
+  // set positions before and after clicking to history
+  viewerHistory.set(container.scrollTop)
+  setTimeout(() => {viewerHistory.set(container.scrollTop)}, 500)
 })
 
 // back button (mostly useful for the embedded viewer)
