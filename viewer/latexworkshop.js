@@ -269,7 +269,6 @@ document.addEventListener('pagerendered', (evPageRendered) => {
 }, true)
 
 const setHistory = () => {
-  console.log('history click')
   const container = document.getElementById('viewerContainer')
   // set positions before and after clicking to viewerHistory
   viewerHistory.set(container.scrollTop)
