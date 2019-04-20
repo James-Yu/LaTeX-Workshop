@@ -47,6 +47,9 @@ class ViewerHistory {
         this.last().temporary = false
       }
       this._history.push({scroll: scroll, temporary: false})
+      if (this.length() > 30) {
+        this._history = this._history.slice(this.length() - 30)
+      }
       this._current = this.lastIndex()
     }
   }
