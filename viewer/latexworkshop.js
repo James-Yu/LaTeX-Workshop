@@ -10,7 +10,7 @@ PDFViewerApplication.isViewerEmbedded = false;
 class ViewerHistory {
   constructor() {
     this._history = []
-    this._current = undefined
+    this._currentIndex = undefined
   }
 
   last() {
@@ -32,17 +32,18 @@ class ViewerHistory {
   set(scroll, force = false) {
     if (this._history.length === 0) {
       this._history.push({scroll: scroll, temporary: false})
-      this._current = 0
+      this._currentIndex = 0
       return
     }
 
-    if (this._current === undefined) {
+    if (this._currentIndex === undefined) {
       console.log('this._current === undefined never happens here.')
+      return
     }
 
-    const curScroll = this._history[this._current].scroll
+    const curScroll = this._history[this._currentIndex].scroll
     if (curScroll !== scroll || force) {
-      this._history = this._history.slice(0, this._current + 1)
+      this._history = this._history.slice(0, this._currentIndex + 1)
       if (this.last()) {
         this.last().temporary = false
       }
@@ -50,7 +51,7 @@ class ViewerHistory {
       if (this.length() > 30) {
         this._history = this._history.slice(this.length() - 30)
       }
-      this._current = this.lastIndex()
+      this._currentIndex = this.lastIndex()
     }
   }
 
@@ -59,10 +60,10 @@ class ViewerHistory {
       return
     }
     const container = document.getElementById('viewerContainer')
-    let cur = this._current
+    let cur = this._currentIndex
     let prevScroll = this._history[cur].scroll
     if (this.length() > 0 && prevScroll !== container.scrollTop) {
-      if (this._current === this.lastIndex() && this.last()) {
+      if (this._currentIndex === this.lastIndex() && this.last()) {
         if (this.last().temporary) {
           this.last().scroll = container.scrollTop
           cur = cur - 1
@@ -74,34 +75,34 @@ class ViewerHistory {
       }
     }
     if (prevScroll !== container.scrollTop) {
-      this._current = cur
+      this._currentIndex = cur
       container.scrollTop = prevScroll
     } else {
       if (cur === 0) {
         return
       }
       const scrl = this._history[cur-1].scroll
-      this._current = cur - 1
+      this._currentIndex = cur - 1
       container.scrollTop = scrl
     }
   }
 
   forward() {
-    if (this._current === this.lastIndex()) {
+    if (this._currentIndex === this.lastIndex()) {
       return
     }
     const container = document.getElementById('viewerContainer')
-    const cur = this._current
+    const cur = this._currentIndex
     const nextScroll = this._history[cur+1].scroll
     if (nextScroll !== container.scrollTop) {
-      this._current = cur + 1
+      this._currentIndex = cur + 1
       container.scrollTop = nextScroll
     } else {
       if (cur >= this._history.length - 2) {
         return
       }
       const scrl = this._history[cur+2].scroll
-      this._current = cur + 2
+      this._currentIndex = cur + 2
       container.scrollTop = scrl
     }
   }
@@ -160,7 +161,7 @@ socket.addEventListener("message", (event) => {
                                         spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
                                         scrollTop:document.getElementById('viewerContainer').scrollTop,
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft,
-                                        viewerHistory:{history: viewerHistory._history, current: viewerHistory._current}}))
+                                        viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
             PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
               // reset the document title to the original value to avoid duplication
@@ -183,7 +184,7 @@ socket.addEventListener("message", (event) => {
             document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
             viewerHistory = new ViewerHistory()
             viewerHistory._history = data.viewerHistory.history
-            viewerHistory._current = data.viewerHistory.current
+            viewerHistory._currentIndex = data.viewerHistory.currentIndex
             break
         case "params":
             if (data.scale) {
