@@ -300,6 +300,7 @@ export class Builder {
             return
         }
         this.extension.viewer.refreshExistingViewer(rootFile)
+        this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
         this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('synctex.afterBuild.enabled') as boolean) {

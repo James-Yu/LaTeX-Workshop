@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import * as path from 'path'
 
 import {Extension} from '../../main'
 
@@ -7,7 +8,8 @@ export type ReferenceEntry = {
     item: {
         reference: string,
         text: string,
-        position: vscode.Position
+        position: vscode.Position,
+        atLastCompilation?: {refNumber: string, pageNumber: string}
     },
     text: string,
     file: string
@@ -95,4 +97,30 @@ export class Reference {
         }
         return items
     }
+
+    setNumbersFromAuxFile(rootFile: string) {
+        const outDir = this.extension.manager.getOutputDir(rootFile)
+        const auxFile = path.join(outDir, path.basename(rootFile, '.tex') + '.aux')
+        const refKeys = Object.keys(this.referenceData)
+        if (!fs.existsSync(auxFile)) {
+            return
+        }
+        for (const key of refKeys) {
+            const refData = this.referenceData[key]
+            refData.item.atLastCompilation = undefined
+        }
+        const newLabelReg = /^\\newlabel\{(.*?)\}\{\{(.*?)\}\{(.*?)\}/gm
+        const auxContent = fs.readFileSync(auxFile, {encoding: 'utf8'})
+        while (true) {
+            const result = newLabelReg.exec(auxContent)
+            if (result === null) {
+                break
+            }
+            if (result[1] in refKeys) {
+                const refData = this.referenceData[result[1]]
+                refData.item.atLastCompilation = {refNumber: result[2], pageNumber: result[3]}
+            }
+        }
+    }
+
 }
