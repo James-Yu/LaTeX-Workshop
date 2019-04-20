@@ -116,7 +116,7 @@ export class Reference {
             if (result === null) {
                 break
             }
-            if (result[1] in refKeys) {
+            if (result[1] in this.referenceData) {
                 const refData = this.referenceData[result[1]]
                 refData.item.atLastCompilation = {refNumber: result[2], pageNumber: result[3]}
             }

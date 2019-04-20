@@ -197,6 +197,10 @@ export class HoverProvider implements vscode.HoverProvider {
         }
         const md = '```latex\n' + refData.text + '\n```\n'
         const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
+        const refMessage = this.refNumberMessage(refData)
+        if (refMessage !== undefined) {
+            return new vscode.Hover([md, refMessage, mdLink], refRange)
+        }
         return new vscode.Hover([md, mdLink], refRange)
     }
 
@@ -222,7 +226,20 @@ export class HoverProvider implements vscode.HoverProvider {
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
+        const refMessage = this.refNumberMessage(refData)
+        if (refMessage !== undefined) {
+            return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), refMessage, mdLink], tex.range )
+        }
         return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+    }
+
+    refNumberMessage(refData: ReferenceEntry) : string | undefined {
+        if (refData.item.atLastCompilation) {
+            const refNum = refData.item.atLastCompilation.refNumber
+            const refMessage = `numbered ${refNum} at last compilation`
+            return refMessage
+        }
+        return undefined
     }
 
     private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
