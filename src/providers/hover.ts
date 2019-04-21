@@ -207,7 +207,15 @@ export class HoverProvider implements vscode.HoverProvider {
     private async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
-        const s = this.mathjaxify(tex.texString, tex.envname, {stripLabel: false})
+
+        let tag : string
+        if (refData.item.atLastCompilation !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
+            tag = refData.item.atLastCompilation.refNumber
+        } else {
+            tag = refData.item.reference
+        }
+        const newTex = this.replaceLabelWithTag(tex.texString, refData.item.reference, tag)
+        const s = this.mathjaxify(newTex, tex.envname, {stripLabel: false})
         const obj = { labels : {}, IDs: {}, startNumber: 0 }
         const data = await this.mj.typeset({
             width: 50,
@@ -220,17 +228,12 @@ export class HoverProvider implements vscode.HoverProvider {
         this.scaleSVG(data, scale)
         this.colorSVG(data)
         const xml = data.svgNode.outerHTML
-        const eqNumAndLabels = this.eqNumAndLabel(obj, tex, refToken)
         const md = this.svgToDataUrl(xml)
         const line = refData.item.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
-        const refNumberMessage = this.refNumberMessage(refData)
-        if (refNumberMessage !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
-            return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), refNumberMessage, mdLink], tex.range )
-        }
-        return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+        return new vscode.Hover( [this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
     }
 
     refNumberMessage(refData: ReferenceEntry) : string | undefined {
@@ -240,6 +243,28 @@ export class HoverProvider implements vscode.HoverProvider {
             return refMessage
         }
         return undefined
+    }
+
+    replaceLabelWithTag(tex: string, refLabel?: string, tag?: string) : string {
+        let newTex = tex.replace(/\\label\{(.*?)\}/g, (matchString, p1, offset, s) => {
+            if (refLabel) {
+                if (refLabel === p1) {
+                    if (tag) {
+                        return `\\tag{${tag}}`
+                    } else {
+                        return `\\tag{${p1}}`
+                    }
+                }
+                return '\\notag'
+            } else {
+                return `\\tag{${p1}}`
+            }
+        })
+        newTex = newTex.replace(/^$/g, '')
+        newTex = newTex.replace(/(\\tag\{.*?\})([\r\n\s]*)(\\begin\{(split|aligned||alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}[^]*?\\end\{\4\})/gm, '$3$2$1')
+        newTex = newTex.replace(/^\\begin\{(\w+)*?\}/, '\\begin{$1*}')
+        newTex = newTex.replace(/\\end\{(\w+)*?\}$/, '\\end{$1*}')
+        return newTex
     }
 
     private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
