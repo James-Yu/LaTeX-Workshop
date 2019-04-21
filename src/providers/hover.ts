@@ -192,7 +192,7 @@ export class HoverProvider implements vscode.HoverProvider {
         if (configuration.get('hover.preview.ref.enabled') as boolean) {
             const tex = this.findHoverOnRef(document, position, token, refData)
             if (tex) {
-                return this.provideHoverPreviewOnRef(tex, this.findNewCommand(document.getText()), token, refData)
+                return this.provideHoverPreviewOnRef(tex, this.findNewCommand(document.getText()), refData)
             }
         }
         const md = '```latex\n' + refData.text + '\n```\n'
@@ -204,11 +204,11 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover([md, mdLink], refRange)
     }
 
-    private async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refToken: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
+    private async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
 
-        let tag : string
+        let tag: string
         if (refData.item.atLastCompilation !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
             tag = refData.item.atLastCompilation.refNumber
         } else {
