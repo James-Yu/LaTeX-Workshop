@@ -9,7 +9,6 @@ import {tokenizer, onAPackage} from './tokenizer'
 import {ReferenceEntry} from './completer/reference'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
-type LabelsStore = {labels: {[k: string]: {tag: string, id: string}}, IDs: {[k: string]: number}, startNumber: number}
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
@@ -246,18 +245,18 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     replaceLabelWithTag(tex: string, refLabel?: string, tag?: string) : string {
-        let newTex = tex.replace(/\\label\{(.*?)\}/g, (matchString, p1, offset, s) => {
+        let newTex = tex.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
             if (refLabel) {
-                if (refLabel === p1) {
+                if (refLabel === matchLabel) {
                     if (tag) {
                         return `\\tag{${tag}}`
                     } else {
-                        return `\\tag{${p1}}`
+                        return `\\tag{${matchLabel}}`
                     }
                 }
                 return '\\notag'
             } else {
-                return `\\tag{${p1}}`
+                return `\\tag{${matchLabel}}`
             }
         })
         newTex = newTex.replace(/^$/g, '')
@@ -265,44 +264,9 @@ export class HoverProvider implements vscode.HoverProvider {
         // we have to put \tag after the environments.
         // See https://github.com/mathjax/MathJax/issues/1020
         newTex = newTex.replace(/(\\tag\{.*?\})([\r\n\s]*)(\\begin\{(aligned|alignedat|gathered|split)\}[^]*?\\end\{\4\})/gm, '$3$2$1')
-        newTex = newTex.replace(/^\\begin\{(\w+)\}/, '\\begin{$1*}')
-        newTex = newTex.replace(/\\end\{(\w+)\}$/, '\\end{$1*}')
+        newTex = newTex.replace(/^\\begin\{(\w+?)\}/, '\\begin{$1*}')
+        newTex = newTex.replace(/\\end\{(\w+?)\}$/, '\\end{$1*}')
         return newTex
-    }
-
-    private eqNumAndLabel(obj: LabelsStore, tex: TexMathEnv, refToken: string) : string {
-        let s = ''
-        const e = '[error] fail to get equation number for label.'
-        const labels = tex.texString.match(/\\label\{.*?\}/g)
-        if (!labels) {
-            return e
-        }
-        if (labels.length === 1 && obj.startNumber === 1) {
-            return `(1) ${Object.keys(obj.labels)[0]}`
-        }
-        if (labels.length === obj.startNumber) {
-            let i = 1
-            for (const label0 of labels) {
-                const label = label0.substr(7, label0.length - 8)
-                if (refToken === label) {
-                    s = `(${i}) ${label}` + '&nbsp;&nbsp;&nbsp;'
-                    return s
-                }
-                i += 1
-            }
-            return e
-        }
-        for (const label in obj.labels) {
-            const labelNum = obj.labels[label].tag
-            if (!labelNum.match(/\d+/)) {
-                return e
-            }
-            if (refToken === label) {
-                s = `(${labelNum}) ${label}` + '&nbsp;&nbsp;&nbsp;'
-                return s
-            }
-        }
-        return e
     }
 
     private scaleSVG(data: any, scale: number) {
