@@ -102,12 +102,12 @@ export class Reference {
         const outDir = this.extension.manager.getOutputDir(rootFile)
         const auxFile = path.join(outDir, path.basename(rootFile, '.tex') + '.aux')
         const refKeys = Object.keys(this.referenceData)
-        if (!fs.existsSync(auxFile)) {
-            return
-        }
         for (const key of refKeys) {
             const refData = this.referenceData[key]
             refData.item.atLastCompilation = undefined
+        }
+        if (!fs.existsSync(auxFile)) {
+            return
         }
         const newLabelReg = /^\\newlabel\{(.*?)\}\{\{(.*?)\}\{(.*?)\}/gm
         const auxContent = fs.readFileSync(auxFile, {encoding: 'utf8'})

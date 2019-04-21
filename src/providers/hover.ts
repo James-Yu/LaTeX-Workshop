@@ -197,9 +197,9 @@ export class HoverProvider implements vscode.HoverProvider {
         }
         const md = '```latex\n' + refData.text + '\n```\n'
         const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
-        const refMessage = this.refNumberMessage(refData)
-        if (refMessage !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
-            return new vscode.Hover([md, refMessage, mdLink], refRange)
+        const refNumberMessage = this.refNumberMessage(refData)
+        if (refNumberMessage !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
+            return new vscode.Hover([md, refNumberMessage, mdLink], refRange)
         }
         return new vscode.Hover([md, mdLink], refRange)
     }
@@ -226,9 +226,9 @@ export class HoverProvider implements vscode.HoverProvider {
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
-        const refMessage = this.refNumberMessage(refData)
-        if (refMessage !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
-            return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), refMessage, mdLink], tex.range )
+        const refNumberMessage = this.refNumberMessage(refData)
+        if (refNumberMessage !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
+            return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), refNumberMessage, mdLink], tex.range )
         }
         return new vscode.Hover( [eqNumAndLabels, this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
     }
