@@ -261,6 +261,9 @@ export class HoverProvider implements vscode.HoverProvider {
             }
         })
         newTex = newTex.replace(/^$/g, '')
+        // To work around a bug of \tag with multi-line environments,
+        // we have to put \tag after the environments.
+        // See https://github.com/mathjax/MathJax/issues/1020
         newTex = newTex.replace(/(\\tag\{.*?\})([\r\n\s]*)(\\begin\{(split|aligned||alignedat|array|Bmatrix|bmatrix|cases|CD|gathered|matrix|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}[^]*?\\end\{\4\})/gm, '$3$2$1')
         newTex = newTex.replace(/^\\begin\{(\w+)*?\}/, '\\begin{$1*}')
         newTex = newTex.replace(/\\end\{(\w+)*?\}$/, '\\end{$1*}')
