@@ -650,10 +650,12 @@ export class Commander {
                     )
                 )
             } else { // mode === 'cursor'
+                const anchorPosition = oldSelection.anchor.character + changeInEndCharacterPosition
+                const activePosition = oldSelection.active.character + changeInEndCharacterPosition
                 newSelections.push(
                     new vscode.Selection(
-                        new vscode.Position(oldSelection.anchor.line, oldSelection.anchor.character + changeInEndCharacterPosition),
-                        new vscode.Position(oldSelection.active.line, oldSelection.active.character + changeInEndCharacterPosition)
+                        new vscode.Position(oldSelection.anchor.line, anchorPosition < 0 ? 0 : anchorPosition),
+                        new vscode.Position(oldSelection.active.line, activePosition < 0 ? 0 : activePosition)
                     )
                 )
             }
