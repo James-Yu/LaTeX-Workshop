@@ -355,6 +355,12 @@ export class Manager {
         const inputFiles = new Set()
         const outputFiles = new Set()
         const flsContent = fs.readFileSync(flsFile).toString()
+        let pwd = rootDir
+        const pwdRes = /^PWD\s*(.*)$/m.exec(flsContent)
+        if (pwdRes) {
+            pwd = pwdRes[1]
+        }
+
         const regex = /^(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
         // regex groups
         // #1: an INPUT entry --> #2 input file path
@@ -365,12 +371,12 @@ export class Manager {
                 break
             }
             if (result[1]) {
-                const inputFilePath = path.resolve(rootDir, result[2])
+                const inputFilePath = path.resolve(pwd, result[2])
                 if (inputFilePath) {
                     inputFiles.add(inputFilePath)
                 }
             } else if (result[3]) {
-                const outputFilePath = path.resolve(outDir, result[4])
+                const outputFilePath = path.resolve(pwd, result[4])
                 if (outputFilePath) {
                     outputFiles.add(outputFilePath)
                 }
