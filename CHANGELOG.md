@@ -1,5 +1,19 @@
 # Change Log
 
+## [6.5.0] - 2019-04-25
+
+### Added
+- (#1307) Add some details into `commands.json`.
+- (#1310) Provide details for `environments.json`.
+- (#1321) Make go back and forward buttons on pdf viewer work with SyncTeX.
+
+### Fixed
+- (#710) Highlight fenced code block with extra `{ }` argument.
+- (#1298) Prevent circular dependencies in manager.
+- (#1302) Remove label from `equation` and `align`.
+- (#1313) Load `latex-mathsymbols_cmd.json` by default.
+- (#1322) Less escapes in wordpattern.
+
 ## [6.4.0] - 2019-04-11
 
 ### Added
