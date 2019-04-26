@@ -133,13 +133,18 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
-                this.extension.viewer.syncTeX( pdfFile, synctexjs.syncTexJsForward(line, filePath, pdfFile) )
+                const record = synctexjs.syncTexJsForward(line, filePath, pdfFile)
+                this.extension.viewer.syncTeX(pdfFile, record)
             } catch (e) {
+                this.extension.logger.addLogMessage('SyncTeX failed.')
                 if (e instanceof Error) {
-                    this.extension.logger.addLogMessage(e.message)
+                    if (e.stack !== undefined) {
+                        this.extension.logger.addLogMessage(e.stack)
+                    } else {
+                        this.extension.logger.addLogMessage(e.message)
+                    }
                 }
                 console.log(e)
-                throw(e)
             }
         } else {
             this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
