@@ -247,6 +247,7 @@ export class Manager {
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
                 if (path.extname(filePath) === '.tex') {
+                    this.clearTexFileTree(filePath)
                     this.findDependentFiles(filePath)
                 }
                 if (filePath === rootFile) {
@@ -273,6 +274,7 @@ export class Manager {
                     await this.findRoot()
                 }
             })
+            this.clearTexFileTree(rootFile)
             this.findDependentFiles(rootFile)
             this.findAdditionalDependentFilesFromFls(rootFile)
         }
@@ -315,7 +317,7 @@ export class Manager {
                     this.fileWatcher.add(inputFilePath)
                     this.filesWatched.push(inputFilePath)
                 }
-                this.findDependentFiles(inputFilePath, rootDir)
+                this.findDependentFiles(inputFilePath, rootDir, fast)
             }
         }
 
@@ -390,13 +392,14 @@ export class Manager {
             if (outputFiles.has(inputFile) || micromatch.some(inputFile, globsToIgnore) || !fs.existsSync(inputFile)) {
                 return
             }
-            if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile)) {
+            // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
+            if (rootFile === inputFile || (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile))) {
                 return
             }
             const ext = path.extname(inputFile)
             if (ext === '.tex') {
                 this.texFileTree[rootFile].add(inputFile)
-                this.findDependentFiles(inputFile, rootDir)
+                this.findDependentFiles(inputFile, rootDir, fast)
             }
             if (this.fileWatcher && this.filesWatched.indexOf(inputFile) < 0) {
                 this.extension.logger.addLogMessage(`Adding ${inputFile} to file watcher.`)
@@ -495,5 +498,21 @@ export class Manager {
     setEnvVar() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         process.env['LATEXWORKSHOP_DOCKER_LATEX'] = configuration.get('docker.image.latex') as string
+    }
+
+    /**
+     * Delete the whole dependency structure from texFileTree for file
+     * @param file
+     */
+    clearTexFileTree(file: string) {
+        if (!this.texFileTree.hasOwnProperty(file)) {
+            return
+        }
+        for (const f of this.texFileTree[file]) {
+            if (f !== file) {
+                this.clearTexFileTree(f)
+            }
+        }
+        delete this.texFileTree[file]
     }
 }
