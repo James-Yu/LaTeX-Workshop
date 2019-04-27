@@ -40,7 +40,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire()
     }
 
-    buildModel(filePath: string, parentStack?: Section[], parentChildren?: Section[], imports: boolean = true) : Section[] {
+    buildModel(filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], imports: boolean = true) : Section[] {
 
         let rootStack: Section[] = []
         if (parentStack) {
@@ -51,6 +51,12 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (parentChildren) {
             children = parentChildren
         }
+
+        let newFileStack: string[] = []
+        if (fileStack) {
+            newFileStack = fileStack
+        }
+        newFileStack.push(filePath)
 
         let prevSection: Section | undefined = undefined
 
@@ -186,13 +192,13 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
                 // Avoid circular inclusion
-                if (inputFilePath === filePath || rootStack.some(s => { return s.fileName === inputFilePath })) {
+                if (inputFilePath === filePath || newFileStack.indexOf(inputFilePath) > -1) {
                     continue
                 }
                 if (prevSection) {
                     prevSection.subfiles.push(inputFilePath)
                 }
-                this.buildModel(inputFilePath, rootStack, children)
+                this.buildModel(inputFilePath, newFileStack, rootStack, children)
             }
         }
         return children
