@@ -508,11 +508,13 @@ export class Manager {
         if (!this.texFileTree.hasOwnProperty(file)) {
             return
         }
-        for (const f of this.texFileTree[file]) {
+        // We need to first delete the node before deleting the leaves because of cycles.
+        const dependencies = this.texFileTree[file]
+        delete this.texFileTree[file]
+        for (const f of dependencies) {
             if (f !== file) {
                 this.clearTexFileTree(f)
             }
         }
-        delete this.texFileTree[file]
     }
 }
