@@ -1,5 +1,15 @@
 # Change Log
 
+## [6.5.1] - 2019-04-28
+
+### Fixed
+- (#1298,#1333) Fix structure analyzer with inclusion cycle.
+- (#1319) Use `PWD` to resolve paths in `.fls` files.
+- (#1331) Keep cursor >= 0 when shifting section.
+- (#1333) Auto build from imported files work again.
+- (#1334) Don't throw error when `synctexjs` fails.
+- (#1341) Handle cycle in `clearTeXFileTree`.
+
 ## [6.5.0] - 2019-04-25
 
 ### Added
