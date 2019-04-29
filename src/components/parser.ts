@@ -10,7 +10,8 @@ const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
-const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info):\s+(.*?)(?: on input line (\d+))?\.$/
+const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?\.?$/
+const latexFontWarnSecondLine = /^\(Font\)\s+(.*?)(?: on input line (\d+))?\.$/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
@@ -153,7 +154,12 @@ export class Parser {
                     searchesEmptyLine = false
                     insideError = false
                 } else {
-                    if (insideError) {
+                    const fontResult = line.match(latexFontWarnSecondLine)
+                    if (fontResult) {
+                        currentResult.text += '\n' + fontResult[1] + '.'
+                        currentResult.line = parseInt(fontResult[2], 10)
+                        searchesEmptyLine = false
+                    } else if (insideError) {
                         const subLine = line.replace(messageLine, '$1')
                         currentResult.text = currentResult.text + '\n' + subLine
                     } else {
