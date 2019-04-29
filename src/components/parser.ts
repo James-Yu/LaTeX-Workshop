@@ -10,8 +10,7 @@ const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
-const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?\.$/
-const latexFontWarnFirstLine = /^LaTeX Font Warning:\s+([^.]*?)$/
+const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?\.?$/
 const latexFontWarnSecondLine = /^\(Font\)\s+(.*?)(?: on input line (\d+))?\.$/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
@@ -155,7 +154,12 @@ export class Parser {
                     searchesEmptyLine = false
                     insideError = false
                 } else {
-                    if (insideError) {
+                    const fontResult = line.match(latexFontWarnSecondLine)
+                    if (fontResult) {
+                        currentResult.text += '\n' + fontResult[1] + '.'
+                        currentResult.line = parseInt(fontResult[2], 10)
+                        searchesEmptyLine = false
+                    } else if (insideError) {
                         const subLine = line.replace(messageLine, '$1')
                         currentResult.text = currentResult.text + '\n' + subLine
                     } else {
@@ -192,7 +196,6 @@ export class Parser {
                 insideBoxWarn = true
                 continue
             }
-            // Also matches single-line Font Warnings
             result = line.match(latexWarn)
             if (result) {
                 if (currentResult.type !== '') {
@@ -205,27 +208,6 @@ export class Parser {
                     text: result[3]
                 }
                 searchesEmptyLine = true
-                continue
-            }
-            result = line.match(latexFontWarnFirstLine)
-            if (result) {
-                if (currentResult.type !== '') {
-                    this.buildLog.push(currentResult)
-                }
-                currentResult = {
-                    type: 'warning',
-                    file: filename,
-                    line: NaN,
-                    text: result[1]
-                }
-                searchesEmptyLine = false
-                continue
-            }
-            result = line.match(latexFontWarnSecondLine)
-            if (result) {
-                currentResult.text += '\n' + result[1] + '.'
-                currentResult.line = parseInt(result[2], 10)
-                searchesEmptyLine = false
                 continue
             }
             result = line.match(biberWarn)
