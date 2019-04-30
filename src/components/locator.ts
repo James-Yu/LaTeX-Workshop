@@ -267,10 +267,14 @@ export class Locator {
                 record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch ( e ) {
                 if (e instanceof Error) {
-                    this.extension.logger.addLogMessage(e.message)
+                    if (e.stack !== undefined) {
+                        this.extension.logger.addLogMessage(e.stack)
+                    } else {
+                        this.extension.logger.addLogMessage(e.message)
+                    }
                 }
                 console.log(e)
-                throw(e)
+                return
             }
         } else {
             record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
