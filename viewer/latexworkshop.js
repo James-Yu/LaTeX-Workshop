@@ -238,7 +238,8 @@ document.addEventListener('pagerendered', (evPageRendered) => {
         const selection = window.getSelection();
         let textBeforeSelection = ''
         let textAfterSelection = ''
-        if(selection.anchorNode.nodeName === '#text'){
+        // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
+        if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
           const text = selection.anchorNode.textContent;
           textBeforeSelection = text.substring(0, selection.anchorOffset);
           textAfterSelection = text.substring(selection.anchorOffset);
