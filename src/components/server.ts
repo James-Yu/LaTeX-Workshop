@@ -12,13 +12,20 @@ export class Server {
     httpServer: http.Server
     wsServer: ws.Server
     address: string
+    viewerIPAll: string
 
     constructor(extension: Extension) {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
-        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, (err: Error) => {
+        const viewerIP = configuration.get('viewer.pdf.internal.ip') as string
+        if (viewerIP == '0.0.0.0') {
+            this.viewerIPAll = '127.0.0.1' + ':' + viewerPort ;
+        } else {
+            this.viewerIPAll = viewerIP + ':' + viewerPort
+        }
+        this.httpServer.listen(viewerPort, viewerIP, undefined, (err: Error) => {
             if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {

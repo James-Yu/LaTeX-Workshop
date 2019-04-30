@@ -73,7 +73,7 @@ export class Viewer {
         // vscode.URI.parse and pdfjs viewer automatically call decodeURIComponent.
         // So, to pass the encoded path of a pdf file to the http server,
         // we have to call encodeURIComponent three times! 3 - 2 = 1 !
-        const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(encodeURIComponent(pdfFile)))}`
+        const url = `http://${this.extension.server.viewerIPAll}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(encodeURIComponent(pdfFile)))}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         return url
     }
