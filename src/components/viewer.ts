@@ -176,6 +176,7 @@ export class Viewer {
     handler(websocket: ws, msg: string) {
         const data = JSON.parse(msg)
         let clients: Client[] | undefined
+        this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
         switch (data.type) {
             case 'open':
                 clients = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
