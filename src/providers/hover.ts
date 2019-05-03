@@ -43,7 +43,7 @@ export class HoverProvider implements vscode.HoverProvider {
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
     Thenable<vscode.Hover> {
         this.getColor()
-        return new Promise((resolve, _reject) => {
+        return new Promise( async (resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const hov = configuration.get('hover.preview.enabled') as boolean
             const hovReference = configuration.get('hover.ref.enabled') as boolean
@@ -52,7 +52,8 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
-                    this.provideHoverOnTex(document, tex, this.findNewCommand(document.getText()))
+                    const newCommands = await this.findNewCommand(document.getText())
+                    this.provideHoverOnTex(document, tex, newCommands)
                         .then(hover => resolve(hover))
                     return
                 }
@@ -105,7 +106,30 @@ export class HoverProvider implements vscode.HoverProvider {
         })
     }
 
-    private findNewCommand(content: string) : string {
+    private async findNewCommand(content: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let commandsString = ''
+        const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
+        if (newCommandFile !== '') {
+            if (path.isAbsolute(newCommandFile)) {
+                if (fs.existsSync(newCommandFile)) {
+                    commandsString = fs.readFileSync(newCommandFile, {encoding: 'utf8'})
+                }
+            } else {
+                if (this.extension.manager.rootFile === undefined) {
+                    await this.extension.manager.findRoot()
+                }
+                const rootDir = this.extension.manager.rootDir
+                const newCommandFileAbs = path.join(rootDir, newCommandFile)
+                if (fs.existsSync(newCommandFileAbs)) {
+                    commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})
+                }
+            }
+        }
+        commandsString = commandsString.replace(/^\s*$/gm, '')
+        if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled') as boolean) {
+            return commandsString
+        }
         const regex = /(\\(?:(?:(?:re)?new|provide)command(\*)?(?:\[[^\[\]\{\}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
         const commands: string[] = []
         const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
@@ -120,7 +144,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 commands.push(command)
             }
         } while (result)
-        return commands.join('')
+        return commandsString + commands.join('')
     }
 
     private async provideHoverOnCommand(token: string) : Promise<vscode.Hover | undefined> {
@@ -191,7 +215,8 @@ export class HoverProvider implements vscode.HoverProvider {
         if (configuration.get('hover.preview.ref.enabled') as boolean) {
             const tex = this.findHoverOnRef(document, position, token, refData)
             if (tex) {
-                return this.provideHoverPreviewOnRef(tex, this.findNewCommand(document.getText()), refData)
+                const newCommands = await this.findNewCommand(document.getText())
+                return this.provideHoverPreviewOnRef(tex, newCommands, refData)
             }
         }
         const md = '```latex\n' + refData.text + '\n```\n'
