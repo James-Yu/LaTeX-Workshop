@@ -110,7 +110,8 @@ export class Viewer {
         const editor = vscode.window.activeTextEditor
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
             enableScripts: true,
-            retainContextWhenHidden: true
+            retainContextWhenHidden: true,
+            portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
         })
         panel.webview.html = this.getPDFViewerContent(uri)
         if (editor && sideColumn) {
@@ -123,7 +124,7 @@ export class Viewer {
         // pdfjs viewer automatically call decodeURIComponent.
         // So, to pass the encoded path of a pdf file to the http server,
         // we have to call encodeURIComponent two times! 2 - 1 = 1 !
-        const url = `http://${this.extension.server.address}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
