@@ -70,10 +70,10 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        // vscode.URI.parse and pdfjs viewer automatically call decodeURIComponent.
+        // pdfjs viewer automatically call decodeURIComponent.
         // So, to pass the encoded path of a pdf file to the http server,
-        // we have to call encodeURIComponent three times! 3 - 2 = 1 !
-        const url = `http://${this.extension.server.address}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(encodeURIComponent(pdfFile)))}`
+        // we have to call encodeURIComponent two times! 2 - 1 = 1 !
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(pdfFile))}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         return url
     }
@@ -87,7 +87,7 @@ export class Viewer {
         this.clients[pdfFile.toLocaleUpperCase()] = this.clients[pdfFile.toLocaleUpperCase()] || []
 
         try {
-            vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(url))
+            vscode.env.openExternal(vscode.Uri.parse(url))
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
         } catch (e) {
             vscode.window.showInputBox({
