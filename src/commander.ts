@@ -28,21 +28,22 @@ export class Commander {
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
-    async build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
+    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (!vscode.window.activeTextEditor) {
             return
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as ExternalCommand
         if (externalBuildCommand.command) {
-            const pwd  = path.dirname(vscode.window.activeTextEditor.document.fileName)
+            const pwd  = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
             await this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
             return
         }
-        const rootFile = await this.extension.manager.findRoot()
-
+        if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            rootFile = await this.extension.manager.findRoot()
+        }
         if (rootFile === undefined) {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
             return
@@ -69,7 +70,7 @@ export class Commander {
                     switch (selected.label) {
                         case 'Default root file':
                             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            await this.extension.builder.build(rootFile, recipe)
+                            await this.extension.builder.build(rootFile as string, recipe)
                             break
                         case 'Subfiles package root file':
                             this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
@@ -103,7 +104,7 @@ export class Commander {
             return
         }
         if (recipe) {
-            this.build(false, recipe)
+            this.build(false, undefined, recipe)
             return
         }
         vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
@@ -112,7 +113,7 @@ export class Commander {
             if (!selected) {
                 return
             }
-            this.build(false, selected)
+            this.build(false, undefined, selected)
         })
     }
 
