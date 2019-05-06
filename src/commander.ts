@@ -679,7 +679,7 @@ export class Commander {
             return
         }
 
-        // Environment names should look like '(begintext) ... (endtext)' to handled properly
+        // Environment names should look like '(begintext) ... (endtext)' to be handled properly
         const equationEnvironments = [
             '\\[ ... \\]',
             '\\begin{equation} ... \\end{equation}',
