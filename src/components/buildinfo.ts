@@ -32,7 +32,7 @@ export class BuildInfo {
             pageTotal: undefined,
             lastStepTime: +new Date(),
             stepTimes: {},
-            stdout: '',
+            stdout: '\n'.repeat(50),
             ruleNumber: 0,
             ruleName: '',
             ruleProducesPages: undefined
@@ -75,7 +75,7 @@ export class BuildInfo {
         }
 
         for (const line of lines.split('\n')) {
-            this.currentBuild.stdout += '\n' + line
+            this.currentBuild.stdout = this.currentBuild.stdout.substring(this.currentBuild.stdout.indexOf('\n') + 1) + '\n' + line
             this.checkStdoutForInfo()
         }
     }
