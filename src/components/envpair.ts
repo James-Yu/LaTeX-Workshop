@@ -61,6 +61,19 @@ export class EnvPair {
         return null
     }
 
+    /**
+     * Searches upwards or downwards for a begin or end environment captured by `pattern`.
+     * Begin environment can also be `\[` and end environment can also be `\]`
+     *
+     * @param pattern A regex that matches begin or end environments.
+     *
+     * Note: the regex must capture (`begin` or `[`) or (`end` or `]`) in the first
+     * capturing group. If nesting is possible, the pattern must capture *both* `begin` and `end`.
+     * If `dir` is -1, regex must capture `begin` and/or `[` and likewise if `dir` is +1.
+     * @param dir +1 to search downwards, -1 to search upwards
+     * @param pos starting position (e.g. cursor position)
+     * @param doc the document in which the search is performed
+     */
     locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument) : MatchEnv | null {
         const patRegexp = new RegExp(pattern, 'g')
         let lineNumber = pos.line
@@ -79,10 +92,10 @@ export class EnvPair {
                 allMatches = allMatches.reverse()
             }
             for (const m of allMatches) {
-                if ((m[1] === 'begin' && dir === 1) || (m[1] === 'end' && dir === -1)) {
+                if ((dir === 1 && (m[1] === 'begin' || m[1] === '[')) || (dir === -1 && (m[1] === 'end' || m[1] === ']'))) {
                     nested += 1
                 }
-                if ((m[1] === 'end' && dir === 1) || (m[1] === 'begin' && dir === -1))  {
+                if ((dir === 1 && (m[1] === 'end' || m[1] === ']')) || (dir === -1 && (m[1] === 'begin' || m[1] === '[')))  {
                     if (nested === 0) {
                         const matchPos = new vscode.Position(lineNumber, m.index + 1)
                         const matchName = m[2]

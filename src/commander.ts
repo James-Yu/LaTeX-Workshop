@@ -669,6 +669,75 @@ export class Commander {
         })
     }
 
+    /**
+     * Switches between \\[ ... \\] and \\begin{align/equation(*)} environments.
+     * Prompts user for which environment to switch to.
+     */
+    switchEquationEnvironment() {
+        const editor = vscode.window.activeTextEditor
+        if (!editor || editor.document.languageId !== 'latex') {
+            return
+        }
+
+        // Environment names should look like '(begintext) ... (endtext)' to be handled properly
+        const equationEnvironments = [
+            '\\[ ... \\]',
+            '\\begin{equation} ... \\end{equation}',
+            '\\begin{equation*} ... \\end{equation*}',
+            '\\begin{align} ... \\end{align}',
+            '\\begin{align*} ... \\end{align*}',
+            '\\begin{flalign} ... \\end{flalign}',
+            '\\begin{flalign*} ... \\end{flalign*}'
+        ]
+
+        // Equation environments shouldn't be nested so we use two separate patterns
+        // This ensures that locateMatchingPair won't catch the first '\[' when matching downwards
+        const upPattern = '\\\\(\\[|begin(?={(?:equation|(?:fl)?align)\\*?}))'
+        const downPattern = '\\\\(\\]|end(?={(?:equation|(?:fl)?align)\\*?}))'
+        const document = editor.document
+
+        const startSelection = editor.selection
+        const startPos = document.lineAt(startSelection.active).range.end
+        const upPair = this.extension.envPair.locateMatchingPair(upPattern, -1, startPos, document)
+        if (!upPair) { return }
+
+        const downPair = this.extension.envPair.locateMatchingPair(downPattern, 1, upPair.pos, document)
+        if (!downPair) { return }
+
+        // Translate 1 char left to catch the backslash
+        const upBegin = upPair.pos.translate(0, -1)
+        let upEnd = new vscode.Position(upBegin.line, upBegin.character + 2)
+        if (upPair.type === 'begin') {
+            const line = document.lineAt(upBegin.line).text
+            upEnd = upEnd.translate(0, line.indexOf('}', upBegin.character) - 1)
+        }
+        const upRange = new vscode.Range(upBegin, upEnd)
+
+        const downBegin = downPair.pos.translate(0, -1)
+        let downEnd = new vscode.Position(downBegin.line, downBegin.character + 2)
+        if (downPair.type === 'end') {
+            const line = document.lineAt(downBegin.line).text
+            downEnd = downEnd.translate(0, line.indexOf('}', downBegin.character) - 1)
+        }
+        const downRange = new vscode.Range(downBegin, downEnd)
+
+        vscode.window.showQuickPick(equationEnvironments, {
+            placeHolder: 'Select an equation environment'
+        }).then(selected => {
+            if (!selected) {
+                return
+            }
+            const edit = new vscode.WorkspaceEdit()
+            edit.replace(document.uri, upRange, selected.replace(/ \.\.\. .*/, ''))
+            edit.replace(document.uri, downRange, selected.replace(/.* \.\.\. /, ''))
+            vscode.workspace.applyEdit(edit).then(success => {
+                if (success) {
+                    editor.selection = startSelection
+                }
+            })
+        })
+    }
+
     devParseLog() {
         if (vscode.window.activeTextEditor === undefined) {
             return
