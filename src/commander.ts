@@ -669,6 +669,78 @@ export class Commander {
         })
     }
 
+    /**
+     * Switches between \\[ ... \\] and \\begin{align/equation(*)} environments.
+     * Prompts user for which environment to switch to.
+     */
+    switchEquationEnvironment() {
+        const editor = vscode.window.activeTextEditor
+        if (!editor || editor.document.languageId !== 'latex') {
+            return
+        }
+
+        // Environment names should look like '(begintext) ... (endtext)' to handled properly
+        const equationEnvironments = [
+            '\\[ ... \\]',
+            '\\begin{equation} ... \\end{equation}',
+            '\\begin{equation*} ... \\end{equation*}',
+            '\\begin{align} ... \\end{align}',
+            '\\begin{align*} ... \\end{align*}',
+            '\\begin{flalign} ... \\end{flalign}',
+            '\\begin{flalign*} ... \\end{flalign*}'
+        ]
+        const equationBeginPattern = /\\\[|\\begin{(?:equation|(?:fl)?align)\*?}/
+        const equationEndPattern = /\\\]|\\end{(?:equation|(?:fl)?align)\*?}/
+
+        const startPos = editor.selection.active
+        const document = editor.document
+
+        let beginLineNumber = startPos.line
+        let endLineNumber = startPos.line
+        let line = document.lineAt(beginLineNumber).text
+        let beginMatch = line.match(equationBeginPattern)
+        let endMatch = line.match(equationEndPattern)
+
+        while (!beginMatch) {
+            beginLineNumber -= 1
+            if (beginLineNumber < 0) {
+                this.extension.logger.addLogMessage(`Error - not inside an equation environment`)
+                return
+            }
+            line = document.lineAt(beginLineNumber).text
+            beginMatch = line.match(equationBeginPattern)
+        }
+        while (!endMatch) {
+            endLineNumber += 1
+            if (endLineNumber >= document.lineCount) {
+                this.extension.logger.addLogMessage(`Error - not inside an equation environment`)
+                return
+            }
+            line = document.lineAt(endLineNumber).text
+            endMatch = line.match(equationEndPattern)
+        }
+
+        const selection = new vscode.Selection(document.lineAt(beginLineNumber).range.start, document.lineAt(endLineNumber).range.end)
+        const selectionText = document.getText(selection)
+
+        vscode.window.showQuickPick(equationEnvironments, {
+            placeHolder: 'Select an equation environment'
+        }).then(selected => {
+            if (!selected) {
+                return
+            }
+            const newText = selectionText.replace(equationBeginPattern, selected.replace(/ \.\.\. .*/, ''))
+                                         .replace(equationEndPattern, selected.replace(/.* \.\.\. /, ''))
+            const edit = new vscode.WorkspaceEdit()
+            edit.replace(document.uri, selection, newText)
+            vscode.workspace.applyEdit(edit).then(success => {
+                if (success) {
+                    editor.selection = new vscode.Selection(startPos, startPos)
+                }
+            })
+        })
+    }
+
     devParseLog() {
         if (vscode.window.activeTextEditor === undefined) {
             return

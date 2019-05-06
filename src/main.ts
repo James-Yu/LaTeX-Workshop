@@ -242,6 +242,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     vscode.commands.registerCommand('latex-workshop.increment-sectioning', () => extension.commander.shiftSectioningLevel('increment'))
     vscode.commands.registerCommand('latex-workshop.decrement-sectioning', () => extension.commander.shiftSectioningLevel('decrement'))
+    vscode.commands.registerCommand('latex-workshop.switch-equation-environment', () => extension.commander.switchEquationEnvironment())
 
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
 
