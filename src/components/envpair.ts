@@ -66,11 +66,20 @@ export class EnvPair {
         let lineNumber = pos.line
         let nested = 0
         let line = doc.lineAt(lineNumber).text
+        let startCol
         /* Drop the pattern on the current line */
-        if (dir === 1) {
-            line = line.slice(line.indexOf('}', pos.character) + 1)
-        } else if (dir === -1) {
-            line = line.slice(0, pos.character)
+        switch (dir) {
+            case 1:
+                startCol = line.indexOf('}', pos.character) + 1
+                line = line.slice(startCol)
+                break
+            case -1:
+                startCol = 0
+                line = line.slice(startCol, pos.character)
+                break
+            default:
+                this.extension.logger.addLogMessage('Direction error in locateMatchingPair')
+                return null
         }
         while (true) {
             line = utils.stripComments(line, '%')
@@ -84,7 +93,8 @@ export class EnvPair {
                 }
                 if ((m[1] === 'end' && dir === 1) || (m[1] === 'begin' && dir === -1))  {
                     if (nested === 0) {
-                        const matchPos = new vscode.Position(lineNumber, m.index + 1)
+                        const col = m.index + 1 + startCol
+                        const matchPos = new vscode.Position(lineNumber, col)
                         const matchName = m[2]
                         const matchType = m[1]
                         return {name: matchName, type: matchType, pos: matchPos}
@@ -97,6 +107,7 @@ export class EnvPair {
                 break
             }
             line = doc.lineAt(lineNumber).text
+            startCol = 0
         }
         return null
     }
