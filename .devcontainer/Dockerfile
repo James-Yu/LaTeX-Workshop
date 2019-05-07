@@ -29,10 +29,10 @@ RUN npm install -g tslint typescript
 
 # Install Tex Live
 RUN apt-get update && apt-get -y upgrade
-RUN apt-get -y install texlive-base texlive-latex-base texlive-math-extra
-RUN apt-get -y install biber latexmk make
-RUN apt-get -y install texlive-lang-chinese
-RUN apt-get -y install texlive-lang-japanese
+RUN apt-get -y install --no-install-recommends texlive-base texlive-latex-base texlive-math-extra
+RUN apt-get -y install --no-install-recommends biber latexmk make
+RUN apt-get -y install --no-install-recommends texlive-lang-chinese
+RUN apt-get -y install --no-install-recommends texlive-lang-japanese
 
 # Clean up
 RUN apt-get autoremove -y \
