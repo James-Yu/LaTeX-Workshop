@@ -728,13 +728,9 @@ export class Commander {
                 return
             }
             const edit = new vscode.WorkspaceEdit()
-            edit.replace(document.uri, upRange, selected.replace(/ \.\.\. .*/, ''))
             edit.replace(document.uri, downRange, selected.replace(/.* \.\.\. /, ''))
-            vscode.workspace.applyEdit(edit).then(success => {
-                if (success) {
-                    editor.selection = startSelection
-                }
-            })
+            edit.replace(document.uri, upRange, selected.replace(/ \.\.\. .*/, ''))
+            vscode.workspace.applyEdit(edit)
         })
     }
 
