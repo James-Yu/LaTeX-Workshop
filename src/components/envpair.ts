@@ -175,12 +175,12 @@ export class EnvPair {
         if (!editor || editor.document.languageId !== 'latex') {
             return
         }
-        const curPos = editor.selection.active
+        let startingPos = editor.selection.active
         const document = editor.document
 
         const pattern = '\\\\(\\[|\\]|(?:begin|end)(?=\\{([^\\{\\}]*)\\}))'
         const dirUp = -1
-        const beginEnv = this.locateMatchingPair(pattern, dirUp, curPos, document)
+        const beginEnv = this.locateMatchingPair(pattern, dirUp, startingPos, document)
         if (!beginEnv) {
             return
         }
@@ -192,7 +192,7 @@ export class EnvPair {
 
         let envNameLength: number
         const beginEnvStartPos = beginEnv.pos.translate(0, 'begin{'.length)
-        const endEnvStartPos = endEnv.pos.translate(0, 'end{'.length)
+        let endEnvStartPos = endEnv.pos.translate(0, 'end{'.length)
         const edit = new vscode.WorkspaceEdit()
 
         if (beginEnv.type === '[' && endEnv.type === ']') {
@@ -202,6 +202,11 @@ export class EnvPair {
             envNameLength = eqText.length
             edit.replace(document.uri, endRange, `end{${eqText}}`)
             edit.replace(document.uri, beginRange, `begin{${eqText}}`)
+            if (startingPos.line === beginEnv.pos.line) {
+                const diff = 'begin{}'.length + envNameLength - '['.length
+                startingPos = startingPos.translate(0, diff)
+                endEnvStartPos = endEnvStartPos.translate(0, diff)
+            }
         } else if (beginEnv.type === 'begin' && endEnv.type === 'end') {
             envNameLength = beginEnv.name.length
             if (endEnv.name.length !== envNameLength) {
@@ -212,6 +217,10 @@ export class EnvPair {
                 const endRange = new vscode.Range(endEnv.pos, endEnv.pos.translate(0, envNameLength + 'end{}'.length))
                 edit.replace(document.uri, endRange, ']')
                 edit.replace(document.uri, beginRange, '[')
+                if (startingPos.line === beginEnv.pos.line) {
+                    const diff = Math.max('['.length - 'begin{}'.length - envNameLength, -startingPos.character)
+                    startingPos = startingPos.translate(0, diff)
+                }
             }
         } else {
             return // bad match
@@ -229,7 +238,7 @@ export class EnvPair {
                         editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
                         break
                     case 'equationToggle':
-                        editor.selection = new vscode.Selection(curPos, curPos)
+                        editor.selection = new vscode.Selection(startingPos, startingPos)
                         break
                     default:
                         this.extension.logger.addLogMessage(`Error - while selecting environment name`)
