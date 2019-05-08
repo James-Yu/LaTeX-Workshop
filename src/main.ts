@@ -212,6 +212,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair())
     vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName())
     vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => extension.commander.multiCursorEnvName())
+    vscode.commands.registerCommand('latex-workshop.toggle-equation-envname', () => extension.commander.toggleEquationEnv())
     vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
     vscode.commands.registerCommand('latex-workshop.wrap-env', () => extension.commander.insertSnippet('wrapEnv'))
     vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
