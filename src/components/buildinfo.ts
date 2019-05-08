@@ -32,7 +32,7 @@ export class BuildInfo {
             pageTotal: undefined,
             lastStepTime: +new Date(),
             stepTimes: {},
-            stdout: '',
+            stdout: '\n'.repeat(50),
             ruleNumber: 0,
             ruleName: '',
             ruleProducesPages: undefined
@@ -75,7 +75,7 @@ export class BuildInfo {
         }
 
         for (const line of lines.split('\n')) {
-            this.currentBuild.stdout += '\n' + line
+            this.currentBuild.stdout = this.currentBuild.stdout.substring(this.currentBuild.stdout.indexOf('\n') + 1) + '\n' + line
             this.checkStdoutForInfo()
         }
     }
@@ -327,16 +327,7 @@ export class BuildInfo {
                         stepTimesDiv: document.getElementById('stepTimes'),
                         totalSpan: document.getElementById('total'),
                         updateTimesInterval: null,
-                        colours: [
-                            window.getComputedStyle(document.getElementById('color0')).color,
-                            window.getComputedStyle(document.getElementById('color1')).color,
-                            window.getComputedStyle(document.getElementById('color2')).color,
-                            window.getComputedStyle(document.getElementById('color3')).color,
-                            window.getComputedStyle(document.getElementById('color4')).color,
-                            window.getComputedStyle(document.getElementById('color5')).color,
-                            window.getComputedStyle(document.getElementById('color6')).color,
-                            window.getComputedStyle(document.getElementById('color7')).color
-                        ],
+                        colours: [],
                         rem: parseFloat(window.getComputedStyle(document.getElementById('1rem')).width.replace('px', '')),
                         graph: {
                             canvas: document.getElementById('compilationSpeed'),
@@ -348,6 +339,19 @@ export class BuildInfo {
                             doneSetup: false,
                             textMargin: 5,
                             lastResize: +new Date()
+                        },
+
+                        init: function() {
+                            this.colours = [
+                                window.getComputedStyle(document.getElementById('color0')).color,
+                                window.getComputedStyle(document.getElementById('color1')).color,
+                                window.getComputedStyle(document.getElementById('color2')).color,
+                                window.getComputedStyle(document.getElementById('color3')).color,
+                                window.getComputedStyle(document.getElementById('color4')).color,
+                                window.getComputedStyle(document.getElementById('color5')).color,
+                                window.getComputedStyle(document.getElementById('color6')).color,
+                                window.getComputedStyle(document.getElementById('color7')).color
+                            ];
                         },
 
                         updateStepTimesUl: function() {
@@ -479,7 +483,7 @@ export class BuildInfo {
 
                             // axis labels
                             ctx.fillStyle = this.colours[0];
-                            ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem serif';
+                            ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem sans-serif';
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'top';
                             ctx.fillText(
@@ -588,7 +592,7 @@ export class BuildInfo {
                                 ctx.globalAlpha = 0.1;
                                 ctx.fill();
 
-                                ctx.font = this.graph.resolutionMultiplier + 'rem serif';
+                                ctx.font = this.graph.resolutionMultiplier + 'rem sans-serif';
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'top';
 
@@ -605,7 +609,7 @@ export class BuildInfo {
                                     this.graph.margins.left - this.graph.textMargin * this.graph.resolutionMultiplier,
                                     closestPoint.y
                                 );
-                                ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem serif';
+                                ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem sans-serif';
                                 ctx.fillText(
                                     'ms',
                                     this.graph.margins.left - this.graph.textMargin * this.graph.resolutionMultiplier,
@@ -613,7 +617,7 @@ export class BuildInfo {
                                 );
 
                                 ctx.globalAlpha = 0.7;
-                                ctx.font = 1.2 * this.graph.resolutionMultiplier + 'rem serif';
+                                ctx.font = 1.2 * this.graph.resolutionMultiplier + 'rem sans-serif';
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'top';
                                 ctx.fillText(
@@ -626,6 +630,8 @@ export class BuildInfo {
                             }
                         }
                     };
+
+                    window.onload = () => {progressManager.init()};
                 </script>
             </body>
         </html>
