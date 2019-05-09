@@ -178,7 +178,13 @@ export class EnvPair {
         let startingPos = editor.selection.active
         const document = editor.document
 
-        const pattern = '\\\\(\\[|\\]|(?:begin|end)(?=\\{([^\\{\\}]*)\\}))'
+        let searchEnvs = '[^\\{\\}]*'
+
+        if (action === 'equationToggle') {
+            searchEnvs = '(?:equation|align|flalign|alignat|gather|multline|eqnarray)\\*?'
+        }
+
+        const pattern = `(?<!\\\\)\\\\(\\[|\\]|(?:begin|end)(?=\\{(${searchEnvs})\\}))`
         const dirUp = -1
         const beginEnv = this.locateMatchingPair(pattern, dirUp, startingPos, document)
         if (!beginEnv) {
@@ -202,9 +208,12 @@ export class EnvPair {
             envNameLength = eqText.length
             edit.replace(document.uri, endRange, `end{${eqText}}`)
             edit.replace(document.uri, beginRange, `begin{${eqText}}`)
+
+            const diff = 'begin{}'.length + envNameLength - '['.length
             if (startingPos.line === beginEnv.pos.line) {
-                const diff = 'begin{}'.length + envNameLength - '['.length
                 startingPos = startingPos.translate(0, diff)
+            }
+            if (beginEnv.pos.line === endEnv.pos.line) {
                 endEnvStartPos = endEnvStartPos.translate(0, diff)
             }
         } else if (beginEnv.type === 'begin' && endEnv.type === 'end') {
