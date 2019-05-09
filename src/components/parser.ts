@@ -10,8 +10,8 @@ const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
-const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?\.?$/
-const latexFontWarnSecondLine = /^\(Font\)\s+(.*?)(?: on input line (\d+))?\.$/
+const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?(\.|\?|)$/
+const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: on input line (\d+))?(\.)?$/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
@@ -154,11 +154,10 @@ export class Parser {
                     searchesEmptyLine = false
                     insideError = false
                 } else {
-                    const fontResult = line.match(latexFontWarnSecondLine)
-                    if (fontResult) {
-                        currentResult.text += '\n' + fontResult[1] + '.'
-                        currentResult.line = parseInt(fontResult[2], 10)
-                        searchesEmptyLine = false
+                    const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
+                    if (packageExtraLineResult) {
+                        currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + packageExtraLineResult[4]
+                        currentResult.line = parseInt(packageExtraLineResult[3], 10)
                     } else if (insideError) {
                         const subLine = line.replace(messageLine, '$1')
                         currentResult.text = currentResult.text + '\n' + subLine
@@ -205,7 +204,7 @@ export class Parser {
                     type: 'warning',
                     file: filename,
                     line: parseInt(result[4], 10),
-                    text: result[3]
+                    text: result[3] + result[5]
                 }
                 searchesEmptyLine = true
                 continue
