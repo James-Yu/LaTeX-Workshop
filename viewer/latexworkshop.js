@@ -470,6 +470,20 @@ const setObserverToTrim = () => {
   }
 }
 
+// We need to recaluculate scale and left offset for trim mode on each resize event.
+window.addEventListener('resize', () =>{
+  const trimSelect = document.getElementById("trimSelect");
+  const ind = trimSelect.selectedIndex;
+  if (ind <= 0) {
+    return;
+  }
+  trimSelect.selectedIndex = 0;
+  const e = new Event('change');
+  trimSelect.dispatchEvent(e);
+  trimSelect.selectedIndex = ind;
+  trimSelect.dispatchEvent(e);
+})
+
 // Set observers after a pdf file is loaded in the first time.
 window.addEventListener('pagerendered', setObserverToTrim, {once: true});
 // Set observers each time a pdf file is refresed.
