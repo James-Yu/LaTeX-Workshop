@@ -316,7 +316,7 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.selectEnvName('selection')
+        this.extension.envPair.envAction('selection')
     }
 
     multiCursorEnvName() {
@@ -324,7 +324,15 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.selectEnvName('cursor')
+        this.extension.envPair.envAction('cursor')
+    }
+
+    toggleEquationEnv() {
+        this.extension.logger.addLogMessage(`toggleEquationEnv command invoked.`)
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            return
+        }
+        this.extension.envPair.envAction('equationToggle')
     }
 
     closeEnv() {
