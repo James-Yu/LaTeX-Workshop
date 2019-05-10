@@ -224,6 +224,7 @@ export class Viewer {
                         client.websocket.send(JSON.stringify({
                             type: 'params',
                             scale: configuration.get('view.pdf.zoom'),
+                            trim: configuration.get('view.pdf.trim'),
                             scrollMode: configuration.get('view.pdf.scrollMode'),
                             spreadMode: configuration.get('view.pdf.spreadMode'),
                             hand: configuration.get('view.pdf.hand'),

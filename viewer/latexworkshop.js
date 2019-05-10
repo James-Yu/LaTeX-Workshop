@@ -201,6 +201,12 @@ socket.addEventListener("message", (event) => {
             } else {
                 PDFViewerApplication.pdfCursorTools.handTool.deactivate()
             }
+            if (data.trim) {
+              const trimSelect = document.getElementById('trimSelect')
+              const e = new Event('change')
+              trimSelect.selectedIndex = data.trim
+              trimSelect.dispatchEvent(e)
+            }
             if (data.invert > 0) {
               document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
               document.querySelector('#viewer').style.background = 'white'
