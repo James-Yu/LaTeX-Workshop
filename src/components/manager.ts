@@ -309,6 +309,9 @@ export class Manager {
                 inputFilePath = utils.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
             }
 
+            if (inputFilePath && !fs.existsSync(inputFilePath)) {
+                this.extension.logger.addLogMessage(`Cannot find ${inputFilePath}`)
+            }
             // Test if we are facing circular inclusion
             if (inputFilePath && fs.existsSync(inputFilePath) && inputFilePath !== filePath && !this.texFileTree[filePath].has(inputFilePath)) {
                 this.texFileTree[filePath].add(inputFilePath)
