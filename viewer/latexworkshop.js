@@ -201,6 +201,14 @@ socket.addEventListener("message", (event) => {
             } else {
                 PDFViewerApplication.pdfCursorTools.handTool.deactivate()
             }
+            if (data.trim) {
+              const trimSelect = document.getElementById('trimSelect')
+              const e = new Event('change')
+              if (trimSelect) {
+                trimSelect.selectedIndex = data.trim
+                trimSelect.dispatchEvent(e)
+              }
+            }
             if (data.invert > 0) {
               document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
               document.querySelector('#viewer').style.background = 'white'
@@ -469,6 +477,20 @@ const setObserverToTrim = () => {
     }
   }
 }
+
+// We need to recaluculate scale and left offset for trim mode on each resize event.
+window.addEventListener('resize', () =>{
+  const trimSelect = document.getElementById("trimSelect");
+  const ind = trimSelect.selectedIndex;
+  if (!trimSelect || ind <= 0) {
+    return;
+  }
+  trimSelect.selectedIndex = 0;
+  const e = new Event('change');
+  trimSelect.dispatchEvent(e);
+  trimSelect.selectedIndex = ind;
+  trimSelect.dispatchEvent(e);
+})
 
 // Set observers after a pdf file is loaded in the first time.
 window.addEventListener('pagerendered', setObserverToTrim, {once: true});
