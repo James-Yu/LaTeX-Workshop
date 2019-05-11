@@ -204,8 +204,10 @@ socket.addEventListener("message", (event) => {
             if (data.trim) {
               const trimSelect = document.getElementById('trimSelect')
               const e = new Event('change')
-              trimSelect.selectedIndex = data.trim
-              trimSelect.dispatchEvent(e)
+              if (trimSelect) {
+                trimSelect.selectedIndex = data.trim
+                trimSelect.dispatchEvent(e)
+              }
             }
             if (data.invert > 0) {
               document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
@@ -480,7 +482,7 @@ const setObserverToTrim = () => {
 window.addEventListener('resize', () =>{
   const trimSelect = document.getElementById("trimSelect");
   const ind = trimSelect.selectedIndex;
-  if (ind <= 0) {
+  if (!trimSelect || ind <= 0) {
     return;
   }
   trimSelect.selectedIndex = 0;
