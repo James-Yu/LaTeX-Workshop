@@ -12,6 +12,7 @@ export class Server {
     httpServer: http.Server
     wsServer: ws.Server
     address: string
+    port: number
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -23,6 +24,7 @@ export class Server {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
                 const {address, port} = this.httpServer.address() as AddressInfo
+                this.port = port
                 if (address.indexOf(':') > -1) {
                     // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
                     this.address = `[${address}]:${port}`
