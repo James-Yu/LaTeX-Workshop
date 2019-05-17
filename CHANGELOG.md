@@ -1,5 +1,19 @@
 # Change Log
 
+## [7.0.0] - 2019-05-17 - Work in the Cloud Update
+
+### Added
+- (#1326) Show label or given number to ref in hover on the ref.
+- (#1345) Support single and double line font warnings.
+- (#1357) Enable LaTeX Workshop to work with VSCode Remote Dev.
+
+### Fixed
+- (#1343) Make `buildOnFileChange` work regardless of the activeTextEditor.
+- (#1354) Add new command defs from an input file to hover preview.
+- (#1355) Add default trim mode setting.
+- (#1363) Extend font warning second line to other warnings.
+- (#1363) Locate matching pair for inline environments.
+
 ## [6.5.1] - 2019-04-28
 
 ### Fixed
