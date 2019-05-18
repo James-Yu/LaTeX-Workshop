@@ -6,8 +6,9 @@ import { Extension } from '../main'
 import * as filenameEncoding from './filenameencoding'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
+const latexVersionPattern = /^This is \S+TeX, Version /gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
-const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
+const latexError = /^(?:(.*):(\d+):)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
 const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?(\.|\?|)$/
@@ -65,8 +66,11 @@ export class Parser {
         } else if (log.match(texifyPattern)) {
             log = this.trimTexify(log)
         }
-        if (log.match(latexPattern) || log.match(latexFatalPattern)) {
+        if (log.match(latexPattern) || log.match(latexFatalPattern) || log.match(latexVersionPattern)) {
             this.parseLaTeX(log)
+            this.parseLaTeXExclamationError(log)
+            this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
+            this.showCompilerDiagnostics()
         } else if (this.latexmkSkipped(log)) {
             this.isLaTeXmkSkipped = true
         }
@@ -162,7 +166,7 @@ export class Parser {
                         const subLine = line.replace(messageLine, '$1')
                         currentResult.text = currentResult.text + '\n' + subLine
                     } else {
-                    currentResult.text = currentResult.text + '\n' + line
+                        currentResult.text = currentResult.text + '\n' + line
                     }
                 }
                 continue
@@ -248,8 +252,20 @@ export class Parser {
         if (currentResult.type !== '' && !currentResult.text.match(bibEmpty)) {
             this.buildLog.push(currentResult)
         }
-        this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
-        this.showCompilerDiagnostics()
+    }
+
+    parseLaTeXExclamationError(log: string) {
+        const exclamationErrorRegex = /^!([^]*?)^l.(\d+?)\s+?(\\input{(.*?)})?/m
+        const result = log.match(exclamationErrorRegex)
+        if (result) {
+            const currentResult = {
+                type: 'error',
+                text: result[1],
+                file: result[4] ? path.resolve(this.extension.manager.rootDir, result[4]) : this.extension.manager.rootFile,
+                line: Number(result[2])
+            }
+            this.buildLog.push(currentResult)
+        }
     }
 
     parseLaTeXFileStack(line: string, fileStack: string[], nested: number) : number {
