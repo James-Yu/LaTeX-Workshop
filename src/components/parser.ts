@@ -254,8 +254,9 @@ export class Parser {
         }
     }
 
+    // find a LaTeX error message beginning with '!' and parse it.
     parseLaTeXExclamationError(log: string) {
-        const exclamationErrorRegex = /^!([^]*?)^l.(\d+?)\s+?(\\input{(.*?)})?/m
+        const exclamationErrorRegex = /^!([^]*?)^l\.(\d+?)\s+?(\\input{(.*?)})?/m
         const result = log.match(exclamationErrorRegex)
         if (result) {
             const currentResult = {
