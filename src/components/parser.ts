@@ -256,13 +256,13 @@ export class Parser {
 
     // find a LaTeX error message beginning with '!' and parse it.
     parseLaTeXExclamationError(log: string) {
-        const exclamationErrorRegex = /^!([^]*?)^l\.(\d+?)\s+?(\\input{(.*?)})?/m
+        const exclamationErrorRegex = /^!([^]*?)^l\.(\d+)/m
         const result = log.match(exclamationErrorRegex)
         if (result) {
             const currentResult = {
                 type: 'error',
                 text: result[1],
-                file: result[4] ? path.resolve(this.extension.manager.rootDir, result[4]) : this.extension.manager.rootFile,
+                file: this.extension.manager.rootFile,
                 line: Number(result[2])
             }
             this.buildLog.push(currentResult)
