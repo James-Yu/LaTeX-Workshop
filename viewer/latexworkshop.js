@@ -220,8 +220,15 @@ socket.addEventListener("message", (event) => {
 })
 socket.onclose = () => { document.title = `[Disconnected] ${document.title}` }
 
-document.addEventListener('pagesinit', (e) => {
+document.addEventListener('pagesinit', () => {
+  // check whether WebSocket is open (readyState === 1).
+  if (socket.readyState === 1) {
     socket.send(JSON.stringify({type:"loaded", path:file}))
+  } else {
+    socket.addEventListener("open", () => {
+      socket.send(JSON.stringify({type:"loaded", path:file}))
+    }, {once: true})
+  }
 })
 
 // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
