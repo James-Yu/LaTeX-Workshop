@@ -220,7 +220,8 @@ socket.addEventListener("message", (event) => {
 })
 socket.onclose = () => { document.title = `[Disconnected] ${document.title}` }
 
-document.addEventListener('pagesinit', (e) => {
+document.addEventListener('pagesinit', () => {
+  // check whether WebSocket is open (readyState === 1).
   if (socket.readyState === 1) {
     socket.send(JSON.stringify({type:"loaded", path:file}))
   } else {
