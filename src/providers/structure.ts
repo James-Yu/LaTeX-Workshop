@@ -242,9 +242,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     getCaption(lines: string[], env: {name: string, start: number, end: number}) {
         const content = lines.slice(env.start, env.end).join('\n')
-        const result = /(?:\\caption(?:\[[^\[\]]*\])?){(.*?)}/gm.exec(content)
+        const result = /(?:\\caption(?:\[[^\[\]]*\])?){(.*?)}/gsm.exec(content)
         if (result) {
-            return result[1][result[1].length - 1] === '.' ? result[1].substr(0, result[1].length - 1) : result[1]
+            // Remove indentation, newlines and the final '.'
+            return result[1].replace(/^ */gm, ' ').replace(/\r|\n/g, '').replace(/\.$/, '')
         }
         return undefined
     }
