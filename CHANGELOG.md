@@ -1,5 +1,15 @@
 # Change Log
 
+## [7.0.1] - 2019-05-24
+
+### Fixed
+- (#1389) Highlight `\verb` in math mode.
+- (#1390) Update alternate keyboard selection.
+- (#1397) Allow multi-line captions.
+- (#1397) Allow one level of `{...}` inside caption.
+- (#1399) Declare `displaymath` as a math environment.
+- (#1395,#1402) Wait for Web Socket to open.
+
 ## [7.0.0] - 2019-05-17 - Work in the Cloud Update
 
 ### Added
