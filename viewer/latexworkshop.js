@@ -244,6 +244,7 @@ if (embedded) {
 document.addEventListener('pagerendered', (evPageRendered) => {
     const page = evPageRendered.target.dataset.pageNumber
     const target = evPageRendered.target
+    // textLayer
     const canvas_dom = evPageRendered.target.childNodes[1]
     canvas_dom.onclick = (e) => {
         if (!(e.ctrlKey || e.metaKey)) {
@@ -418,7 +419,7 @@ const trimPage = (page) => {
   const m = w.match(/(\d+)/);
   if (m) {
     // add -4px to ensure that no horizontal scroll bar appears.
-    const widthNum = Math.floor(Number(m[1])/trimScale) - 4
+    const widthNum = Math.floor(Number(m[1])/trimScale) - 4;
     const width = widthNum  + 'px';
     page.style.width = width;
     canvasWrapper.style.width = width;
