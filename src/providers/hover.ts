@@ -144,7 +144,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 commands.push(command)
             }
         } while (result)
-        return commandsString + commands.join('')
+        return commandsString + '\n' + commands.join('')
     }
 
     private async provideHoverOnCommand(token: string) : Promise<vscode.Hover | undefined> {
