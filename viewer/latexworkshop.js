@@ -244,6 +244,7 @@ if (embedded) {
 document.addEventListener('pagerendered', (evPageRendered) => {
     const page = evPageRendered.target.dataset.pageNumber
     const target = evPageRendered.target
+    // textLayer
     const canvas_dom = evPageRendered.target.childNodes[1]
     canvas_dom.onclick = (e) => {
         if (!(e.ctrlKey || e.metaKey)) {
@@ -418,7 +419,8 @@ const trimPage = (page) => {
   const m = w.match(/(\d+)/);
   if (m) {
     // add -4px to ensure that no horizontal scroll bar appears.
-    const width = ( Math.floor(Number(m[1])/trimScale) - 4 )  + 'px';
+    const widthNum = Math.floor(Number(m[1])/trimScale) - 4;
+    const width = widthNum  + 'px';
     page.style.width = width;
     canvasWrapper.style.width = width;
     const offsetX = - Number(m[1]) * (1 - 1/trimScale) / 2;
@@ -426,7 +428,7 @@ const trimPage = (page) => {
     canvas.style.position = 'relative';
     canvas.setAttribute('data-is-trimmed', 'trimmed');
     if ( textLayer && textLayer.dataset.isTrimmed !== 'trimmed' ) {
-      textLayer.style.width = width;
+      textLayer.style.width = widthNum - offsetX + 'px';
       textLayer.style.left = offsetX + 'px';
       textLayer.setAttribute('data-is-trimmed', 'trimmed');
     }
