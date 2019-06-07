@@ -1,5 +1,15 @@
 # Change Log
 
+## [7.0.2] - 2019-06-07
+
+### Changed
+- (#1417) Change default math preview cursor symbol.
+
+### Fixed
+- (#1405) Add eol to `newcommand` file for mathjax.
+- (#1412) Fix the width of textLayer on pdf viewer.
+- (#1413) Fixed the menu of pdf viewer.
+
 ## [7.0.1] - 2019-05-24
 
 ### Fixed
