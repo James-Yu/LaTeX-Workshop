@@ -586,9 +586,7 @@
                 "-outdir=%OUTDIR%",
                 "%DOC%"
               ],
-              "env": {
-
-              }
+              "env": {}
             },
             {
               "name": "pdflatex",
@@ -599,9 +597,7 @@
                 "-file-line-error",
                 "%DOC%"
               ],
-              "env": {
-
-              }
+              "env": {}
             },
             {
               "name": "bibtex",
@@ -609,9 +605,7 @@
               "args": [
                 "%DOCFILE%"
               ],
-              "env": {
-
-              }
+              "env": {}
             }
           ],
           "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOCFILE%`, `%DIR%`, `%TMPDIR%` and `%OUTDIR%` are available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
@@ -660,7 +654,9 @@
         },
         "latex-workshop.latex.search.rootFiles.include": {
           "type": "array",
-          "default": [ "**/*.tex" ],
+          "default": [
+            "**/*.tex"
+          ],
           "markdownDescription": "Patterns of files to consider for the root detection mechanism.\nRelative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here.\nIf you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
@@ -800,7 +796,7 @@
           ]
         },
         "latex-workshop.view.pdf.tab.useNewGroup": {
-          "type":"boolean",
+          "type": "boolean",
           "default": true,
           "markdownDescription": "When set to true, the viewer is opened in a new editor group, otherwise the current one is used."
         },
