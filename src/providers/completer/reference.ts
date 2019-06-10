@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
+import { stripComments } from "../../utils"
 
 import {Extension} from '../../main'
 
@@ -76,8 +77,9 @@ export class Reference {
     }
 
     getReferenceItems(content: string) {
-        const itemReg = /^(?:(?!%).*\\label(?:\[[^\[\]\{\}]*\])?|label=){([^}]*)}/gm
+        const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
         const items: {[key: string]: ReferenceEntry['item']} = {}
+        content = stripComments(content, '%')
         const noELContent = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
             const result = itemReg.exec(content)
