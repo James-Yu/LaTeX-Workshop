@@ -269,6 +269,7 @@ export class Manager {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
                 this.fileWatcher.unwatch(filePath)
                 this.filesWatched.splice(this.filesWatched.indexOf(filePath), 1)
+                this.clearTexFileTree(filePath)
                 if (filePath === rootFile) {
                     this.extension.logger.addLogMessage(`Deleted ${filePath} was root - triggering root search`)
                     await this.findRoot()
