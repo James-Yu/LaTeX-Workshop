@@ -390,7 +390,7 @@ export class Manager {
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const globsToIgnore = configuration.get('latex.watch.files.ignore') as string[]
-        inputFiles.forEach(inputFile => {
+        inputFiles.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (outputFiles.has(inputFile) || micromatch.some(inputFile, globsToIgnore) || !fs.existsSync(inputFile)) {
                 return
@@ -411,7 +411,7 @@ export class Manager {
             }
         })
 
-        outputFiles.forEach(outputFile => {
+        outputFiles.forEach((outputFile: string) => {
             if (!fast && path.extname(outputFile) === '.aux' ) {
                 this.findBibFileFromAux(outputFile, rootDir, outDir)
             }
