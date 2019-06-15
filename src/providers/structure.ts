@@ -128,10 +128,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
             // if it's an input, include, or subfile:
             // element 3 is the file (need to resolve the path)
-            // element 0 starts with \input, include, or subfile
+            // element 1 starts with \input, include, or subfile
 
-            // if it's a subimport
-            // element 0 starts with \subimport
+            // if it's a subimport or an import
+            // element 1 starts with \subimport or \import
             // element 2 is the directory part
             // element 3 is the file
             if (result && result[5] in this.sectionDepths) {
@@ -174,7 +174,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 } else if (result[1].startsWith('\\import')) {
                     inputFilePath = utils.resolveFile([result[2]], result[3])
                 } else {
-                    inputFilePath = utils.resolveFile([path.dirname(filePath), this.extension.manager.rootDir], result[3])
+                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                    const texDirs = configuration.get('latex.texDirs') as string[]
+                    inputFilePath = utils.resolveFile([...texDirs, path.dirname(filePath), this.extension.manager.rootDir], result[3])
                 }
 
                 if (!inputFilePath) {
