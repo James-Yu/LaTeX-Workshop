@@ -349,7 +349,7 @@ export class Manager {
     findAdditionalDependentFilesFromFls(rootFile: string, fast: boolean = false) {
         const rootDir = path.dirname(rootFile)
         const outDir = this.getOutputDir(rootFile)
-        const flsFile = path.join(outDir, path.basename(rootFile, '.tex') + '.fls')
+        const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.fls'))
         if (! fs.existsSync(flsFile)) {
             this.extension.logger.addLogMessage(`Cannot find file ${flsFile}`)
             return
