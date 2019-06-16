@@ -168,6 +168,7 @@ export class Builder {
             })
             this.buildInitiator(rootFile, recipe, releaseBuildMutex)
         } catch (e) {
+            this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
             throw(e)
         }
@@ -232,6 +233,7 @@ export class Builder {
             this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${process.env.PATH}`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
+            this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
         })
 
@@ -239,6 +241,7 @@ export class Builder {
             this.extension.parser.parse(stdout)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
+                this.extension.buildInfo.buildEnded()
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
