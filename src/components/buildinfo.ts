@@ -315,6 +315,7 @@ export class BuildInfo {
                             }
                             progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
+                            progressManager.maxTime = 0;
 
                             progressManager.start(10);
                         } else if (data.type === 'finished') {
