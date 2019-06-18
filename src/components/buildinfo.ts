@@ -307,7 +307,7 @@ export class BuildInfo {
 
                         if (data.type === 'init') {
                             if (progressManager.startTime) {
-                                progressManager.backupStartTime = progressManager.startTime;
+                                progressManager.backupTimeElapsed = progressManager.totalSpan.innerHTML;
                             }
                             progressManager.startTime = data.startTime;
                             if (progressManager.stepTimes) {
@@ -319,17 +319,18 @@ export class BuildInfo {
                             progressManager.start(10);
                         } else if (data.type === 'finished') {
                             console.log('finished');
+                            progressManager.stop();
 
                             // if nothing happened i.e. latexmk ran and did nothing, keep the old data
                             if (Object.keys(progressManager.stepTimes).length === 0) {
                                 console.log('restoring to previous state');
                                 progressManager.stepTimes = progressManager.backupStepTimes;
-                                progressManager.startTime = progressManager.backupStartTime;
                                 progressManager.updateStepTimesUl();
                                 progressManager.drawGraph();
-                                progressManager.updateTimingInfo();
+                                if (progressManager.backupTimeElapsed) {
+                                    progressManager.totalSpan.innerHTML = progressManager.backupTimeElapsed;
+                                }
                             }
-                            progressManager.stop();
                         } else if (data.type === 'update') {
                             console.log('update');
                             progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
