@@ -182,7 +182,7 @@ export class BuildInfo {
                         font-size: 1rem;
                         border-radius: 0.5em;
                         padding: 0;
-                        margin: 0 0 0.2em 1em;
+                        margin: 0 0 0.0em 1em;
                         width: 13.5em;
                     }
 
@@ -229,6 +229,19 @@ export class BuildInfo {
                     #compilationSpeed {
                         height: 15rem;
                         width: calc(95vw - 3rem);
+                    }
+
+                    .timeBar {
+                        opacity: 0.2;
+                        height: 1.1em;
+                        position: relative;
+                        margin-top: 0.1em;
+                        margin-bottom: -1.2em;
+                        box-sizing: border-box;
+                        margin-left: -0.3em;
+                        border-radius: 0.2em;
+                        transition-property: width;
+                        transition-duration: 400ms;
                     }
 
                     .tex,
@@ -293,7 +306,6 @@ export class BuildInfo {
                         const data = event.data;
 
                         if (data.type === 'init') {
-                            console.log("initialising")
                             if (progressManager.startTime) {
                                 progressManager.backupStartTime = progressManager.startTime;
                             }
@@ -306,7 +318,9 @@ export class BuildInfo {
 
                             progressManager.start(10);
                         } else if (data.type === 'finished') {
-                            console.log("finished")
+                            console.log('finished');
+
+                            // if nothing happened i.e. latexmk ran and did nothing, keep the old data
                             if (Object.keys(progressManager.stepTimes).length === 0) {
                                 console.log('restoring to previous state');
                                 progressManager.stepTimes = progressManager.backupStepTimes;
@@ -347,6 +361,7 @@ export class BuildInfo {
                         totalSpan: document.getElementById('total'),
                         updateTimesInterval: null,
                         colours: [],
+                        maxTime: 0,
                         rem: parseFloat(window.getComputedStyle(document.getElementById('1rem')).width.replace('px', '')),
                         graph: {
                             canvas: document.getElementById('compilationSpeed'),
@@ -375,8 +390,11 @@ export class BuildInfo {
 
                         updateStepTimesUl: function() {
                             this.stepTimesDiv.innerHTML = '';
+                            let colourIndex = 1;
 
                             for (const runName in this.stepTimes) {
+                                colourIndex++;
+
                                 const column = document.createElement('div');
                                 column.classList.add('column');
 
@@ -392,7 +410,16 @@ export class BuildInfo {
                                         itemLabel = 'Page ' + (itemLabel !== '1' ? itemLabel : itemLabel + ' + Preamble');
                                     }
                                     const li = document.createElement('li');
+                                    const timeBar = \`<div class="timeBar" style="
+                                        background: \${progressManager.colours[colourIndex]};
+                                        width: \${100 * this.stepTimes[runName][item] / this.maxTime}%;
+                                    " data-time="\${this.stepTimes[runName][item]}"></div>\`;
+                                    if (this.stepTimes[runName][item] > this.maxTime) {
+                                        this.maxTime = this.stepTimes[runName][item];
+                                        this.recalculateTimeBars();
+                                    }
                                     li.innerHTML =
+                                        timeBar +
                                         '<span class="item">' +
                                         itemLabel +
                                         '</span> <span class="pageTime">' +
@@ -403,6 +430,13 @@ export class BuildInfo {
                                 column.appendChild(ul);
                                 this.stepTimesDiv.appendChild(column);
                             }
+                        },
+
+                        recalculateTimeBars: function() {
+                            const bars = document.querySelectorAll('.timeBar');
+                            bars.forEach(bar => {
+                                bar.style.width = (100 * parseInt(bar.getAttribute('data-time')) / this.maxTime) + '%';
+                            });
                         },
 
                         start: function(updateGap = 10) {
