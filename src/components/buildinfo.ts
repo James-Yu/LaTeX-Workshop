@@ -191,7 +191,7 @@ export class BuildInfo {
                         padding: 0;
                         /* font-weight: 600; */
                         /* position: relative;
-                                float: left; */
+                        float: left; */
                     }
 
                     #stepTimes ul li span.pageTime {
@@ -293,14 +293,31 @@ export class BuildInfo {
                         const data = event.data;
 
                         if (data.type === 'init') {
+                            console.log("initialising")
+                            if (progressManager.startTime) {
+                                progressManager.backupStartTime = progressManager.startTime;
+                            }
                             progressManager.startTime = data.startTime;
+                            if (progressManager.stepTimes) {
+                                progressManager.backupStepTimes = progressManager.stepTimes;
+                            }
                             progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
 
                             progressManager.start(10);
                         } else if (data.type === 'finished') {
+                            console.log("finished")
+                            if (Object.keys(progressManager.stepTimes).length === 0) {
+                                console.log('restoring to previous state');
+                                progressManager.stepTimes = progressManager.backupStepTimes;
+                                progressManager.startTime = progressManager.backupStartTime;
+                                progressManager.updateStepTimesUl();
+                                progressManager.drawGraph();
+                                progressManager.updateTimingInfo();
+                            }
                             progressManager.stop();
                         } else if (data.type === 'update') {
+                            console.log('update');
                             progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
 
@@ -322,7 +339,9 @@ export class BuildInfo {
 
                     const progressManager = {
                         startTime: null,
+                        backupStartTime: null,
                         stepTimes: {},
+                        backupStepTimes: {},
                         pageTotal: null,
                         stepTimesDiv: document.getElementById('stepTimes'),
                         totalSpan: document.getElementById('total'),
@@ -418,12 +437,13 @@ export class BuildInfo {
                         },
 
                         drawGraph: function() {
-                            const width =
-                                Math.max(
-                                    ...Object.values(this.stepTimes).map(pt => Object.values(pt).length - 1),
-                                    this.pageTotal ? this.pageTotal : 0
-                                );
-                            const height = Math.max(...Array.prototype.concat(...Object.values(this.stepTimes).map(pt => Object.values(pt).slice(1))));
+                            const width = Math.max(
+                                ...Object.values(this.stepTimes).map(pt => Object.values(pt).length - 1),
+                                this.pageTotal ? this.pageTotal : 0
+                            );
+                            const height = Math.max(
+                                ...Array.prototype.concat(...Object.values(this.stepTimes).map(pt => Object.values(pt).slice(1)))
+                            );
                             this.graph.canvas.width = this.graph.canvas.clientWidth * this.graph.resolutionMultiplier;
                             this.graph.canvas.height = this.graph.canvas.clientHeight * this.graph.resolutionMultiplier;
                             const ctx = this.graph.canvas.getContext('2d');
@@ -499,14 +519,14 @@ export class BuildInfo {
                             let colourIndex = 1;
                             for (const runName in this.stepTimes) {
                                 // only draw runs which produce pages (signified by INT step type)
-                                const lastItemName = Object.keys(this.stepTimes[runName])[Object.keys(this.stepTimes[runName]).length - 1]
+                                const lastItemName = Object.keys(this.stepTimes[runName])[Object.keys(this.stepTimes[runName]).length - 1];
                                 if (lastItemName.replace(/^T\\d+\\-/, '').indexOf('PAGE:') !== 0) {
                                     continue;
                                 }
 
                                 const points = [];
                                 for (const item in this.stepTimes[runName]) {
-                                    const pageNo = parseInt(item.replace(/^T\\d+\\-PAGE:/, ''))
+                                    const pageNo = parseInt(item.replace(/^T\\d+\\-PAGE:/, ''));
                                     if (isNaN(pageNo)) {
                                         continue;
                                     }
@@ -631,7 +651,9 @@ export class BuildInfo {
                         }
                     };
 
-                    window.onload = () => {progressManager.init()};
+                    window.onload = () => {
+                        progressManager.init();
+                    };
                 </script>
             </body>
         </html>
