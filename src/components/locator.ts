@@ -133,13 +133,18 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
-                this.extension.viewer.syncTeX( pdfFile, synctexjs.syncTexJsForward(line, filePath, pdfFile) )
+                const record = synctexjs.syncTexJsForward(line, filePath, pdfFile)
+                this.extension.viewer.syncTeX(pdfFile, record)
             } catch (e) {
+                this.extension.logger.addLogMessage('SyncTeX failed.')
                 if (e instanceof Error) {
-                    this.extension.logger.addLogMessage(e.message)
+                    if (e.stack !== undefined) {
+                        this.extension.logger.addLogMessage(e.stack)
+                    } else {
+                        this.extension.logger.addLogMessage(e.message)
+                    }
                 }
                 console.log(e)
-                throw(e)
             }
         } else {
             this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
@@ -262,10 +267,14 @@ export class Locator {
                 record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch ( e ) {
                 if (e instanceof Error) {
-                    this.extension.logger.addLogMessage(e.message)
+                    if (e.stack !== undefined) {
+                        this.extension.logger.addLogMessage(e.stack)
+                    } else {
+                        this.extension.logger.addLogMessage(e.message)
+                    }
                 }
                 console.log(e)
-                throw(e)
+                return
             }
         } else {
             record = await this.invokeSyncTeXCommandBackward(data.page, data.pos[0], data.pos[1], pdfPath)
@@ -415,11 +424,11 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.synctex'))) as ExternalCommand
         if (command.args) {
-            command.args = command.args.map(arg => arg.replace('%DOC%', rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                                      .replace('%DOCFILE%', path.basename(rootFile, '.tex').split(path.sep).join('/'))
-                                                      .replace('%PDF%', pdfFile)
-                                                      .replace('%LINE%', line.toString())
-                                                      .replace('%TEX%', texFile))
+            command.args = command.args.map(arg => arg.replace(/%DOC%/g, rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
+                                                      .replace(/%DOCFILE%/g, path.basename(rootFile, '.tex').split(path.sep).join('/'))
+                                                      .replace(/%PDF%/g, pdfFile)
+                                                      .replace(/%LINE%/g, line.toString())
+                                                      .replace(/%TEX%/g, texFile))
         }
         this.extension.manager.setEnvVar()
         cp.spawn(command.command, command.args)

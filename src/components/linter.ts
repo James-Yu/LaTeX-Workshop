@@ -111,7 +111,7 @@ export class Linter {
                 args.push('-l', rcPath)
             }
         }
-        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', '%DOC%'.replace('%DOC%', filePath)]
+        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', filePath]
 
         let stdout: string
         try {
@@ -135,8 +135,8 @@ export class Linter {
             const startTime = process.hrtime()
             this.currentProcesses[linterId] = spawn(command, args, options)
             const proc = this.currentProcesses[linterId]
-            proc.stdout.setEncoding('utf8')
-            proc.stderr.setEncoding('utf8')
+            proc.stdout.setEncoding('binary')
+            proc.stderr.setEncoding('binary')
 
             let stdout = ''
             proc.stdout.on('data', newStdout => {

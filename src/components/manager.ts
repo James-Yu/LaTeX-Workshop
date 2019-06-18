@@ -17,6 +17,11 @@ export class Manager {
     bibWatcher: chokidar.FSWatcher
     filesWatched: string[]
     bibsWatched: string[]
+    watcherOptions: chokidar.WatchOptions = {
+        usePolling: true,
+        interval: 300,
+        binaryInterval: 1000
+    }
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -32,10 +37,10 @@ export class Manager {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         let outDir = (configuration.get('latex.outDir') as string)
-        outDir = outDir.replace('%DOC%', docker ? docfile : doc)
-                    .replace('%DOCFILE%', docfile)
-                    .replace('%DIR%', docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
-                    .replace('%TMPDIR%', this.extension.builder.tmpDir)
+        outDir = outDir.replace(/%DOC%/g, docker ? docfile : doc)
+                    .replace(/%DOCFILE%/g, docfile)
+                    .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
+                    .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
         return outDir
     }
 
@@ -238,10 +243,11 @@ export class Manager {
 
         if (prevWatcherClosed || this.fileWatcher === undefined) {
             this.extension.logger.addLogMessage(`Instantiating a new file watcher for ${rootFile}`)
-            this.fileWatcher = chokidar.watch(rootFile)
+            this.fileWatcher = chokidar.watch(rootFile, this.watcherOptions)
             this.filesWatched.push(rootFile)
             this.fileWatcher.on('change', (filePath: string) => {
                 if (path.extname(filePath) === '.tex') {
+                    this.clearTexFileTree(filePath)
                     this.findDependentFiles(filePath)
                 }
                 if (filePath === rootFile) {
@@ -257,22 +263,19 @@ export class Manager {
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
-                if (this.rootFile !== undefined) {
-                    this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
-                    this.extension.builder.build(this.rootFile)
-                } else {
-                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
-                }
+                this.extension.commander.build(true, rootFile)
             })
             this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
                 this.fileWatcher.unwatch(filePath)
                 this.filesWatched.splice(this.filesWatched.indexOf(filePath), 1)
+                this.clearTexFileTree(filePath)
                 if (filePath === rootFile) {
                     this.extension.logger.addLogMessage(`Deleted ${filePath} was root - triggering root search`)
                     await this.findRoot()
                 }
             })
+            this.clearTexFileTree(rootFile)
             this.findDependentFiles(rootFile)
             this.findAdditionalDependentFilesFromFls(rootFile)
         }
@@ -289,7 +292,9 @@ export class Manager {
         const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
-        this.texFileTree[filePath] = new Set()
+        if (!this.texFileTree.hasOwnProperty(filePath)) {
+            this.texFileTree[filePath] = new Set()
+        }
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
@@ -305,14 +310,18 @@ export class Manager {
                 inputFilePath = utils.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
             }
 
-            if (inputFilePath && fs.existsSync(inputFilePath)) {
+            if (inputFilePath && !fs.existsSync(inputFilePath)) {
+                this.extension.logger.addLogMessage(`Cannot find ${inputFilePath}`)
+            }
+            // Test if we are facing circular inclusion
+            if (inputFilePath && fs.existsSync(inputFilePath) && inputFilePath !== filePath && !this.texFileTree[filePath].has(inputFilePath)) {
                 this.texFileTree[filePath].add(inputFilePath)
                 if (!fast && this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
                     this.fileWatcher.add(inputFilePath)
                     this.filesWatched.push(inputFilePath)
                 }
-                this.findDependentFiles(inputFilePath, rootDir)
+                this.findDependentFiles(inputFilePath, rootDir, fast)
             }
         }
 
@@ -340,7 +349,7 @@ export class Manager {
     findAdditionalDependentFilesFromFls(rootFile: string, fast: boolean = false) {
         const rootDir = path.dirname(rootFile)
         const outDir = this.getOutputDir(rootFile)
-        const flsFile = path.join(outDir, path.basename(rootFile, '.tex') + '.fls')
+        const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.fls'))
         if (! fs.existsSync(flsFile)) {
             this.extension.logger.addLogMessage(`Cannot find file ${flsFile}`)
             return
@@ -352,6 +361,12 @@ export class Manager {
         const inputFiles = new Set()
         const outputFiles = new Set()
         const flsContent = fs.readFileSync(flsFile).toString()
+        let pwd = rootDir
+        const pwdRes = /^PWD\s*(.*)$/m.exec(flsContent)
+        if (pwdRes) {
+            pwd = pwdRes[1]
+        }
+
         const regex = /^(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
         // regex groups
         // #1: an INPUT entry --> #2 input file path
@@ -362,12 +377,12 @@ export class Manager {
                 break
             }
             if (result[1]) {
-                const inputFilePath = path.resolve(rootDir, result[2])
+                const inputFilePath = path.resolve(pwd, result[2])
                 if (inputFilePath) {
                     inputFiles.add(inputFilePath)
                 }
             } else if (result[3]) {
-                const outputFilePath = path.resolve(outDir, result[4])
+                const outputFilePath = path.resolve(pwd, result[4])
                 if (outputFilePath) {
                     outputFiles.add(outputFilePath)
                 }
@@ -376,18 +391,19 @@ export class Manager {
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const globsToIgnore = configuration.get('latex.watch.files.ignore') as string[]
-        inputFiles.forEach(inputFile => {
+        inputFiles.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (outputFiles.has(inputFile) || micromatch.some(inputFile, globsToIgnore) || !fs.existsSync(inputFile)) {
                 return
             }
-            if (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile)) {
+            // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
+            if (rootFile === inputFile || (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile))) {
                 return
             }
             const ext = path.extname(inputFile)
             if (ext === '.tex') {
                 this.texFileTree[rootFile].add(inputFile)
-                this.findDependentFiles(inputFile, rootDir)
+                this.findDependentFiles(inputFile, rootDir, fast)
             }
             if (this.fileWatcher && this.filesWatched.indexOf(inputFile) < 0) {
                 this.extension.logger.addLogMessage(`Adding ${inputFile} to file watcher.`)
@@ -396,7 +412,7 @@ export class Manager {
             }
         })
 
-        outputFiles.forEach(outputFile => {
+        outputFiles.forEach((outputFile: string) => {
             if (!fast && path.extname(outputFile) === '.aux' ) {
                 this.findBibFileFromAux(outputFile, rootDir, outDir)
             }
@@ -442,7 +458,7 @@ export class Manager {
         this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
         if (this.bibWatcher === undefined) {
             this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
-            this.bibWatcher = chokidar.watch('')
+            this.bibWatcher = chokidar.watch('', this.watcherOptions)
             this.bibWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
                 this.extension.completer.citation.parseBibFile(filePath)
@@ -486,5 +502,23 @@ export class Manager {
     setEnvVar() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         process.env['LATEXWORKSHOP_DOCKER_LATEX'] = configuration.get('docker.image.latex') as string
+    }
+
+    /**
+     * Delete the whole dependency structure from texFileTree for file
+     * @param file
+     */
+    clearTexFileTree(file: string) {
+        if (!this.texFileTree.hasOwnProperty(file)) {
+            return
+        }
+        // We need to first delete the node before deleting the leaves because of cycles.
+        const dependencies = this.texFileTree[file]
+        delete this.texFileTree[file]
+        for (const f of dependencies) {
+            if (f !== file) {
+                this.clearTexFileTree(f)
+            }
+        }
     }
 }

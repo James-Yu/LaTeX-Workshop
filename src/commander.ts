@@ -28,21 +28,22 @@ export class Commander {
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
-    async build(skipSelection: boolean = false, recipe: string | undefined = undefined) {
+    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (!vscode.window.activeTextEditor) {
             return
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as ExternalCommand
         if (externalBuildCommand.command) {
-            const pwd  = path.dirname(vscode.window.activeTextEditor.document.fileName)
+            const pwd  = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
             await this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
             return
         }
-        const rootFile = await this.extension.manager.findRoot()
-
+        if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            rootFile = await this.extension.manager.findRoot()
+        }
         if (rootFile === undefined) {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
             return
@@ -69,7 +70,7 @@ export class Commander {
                     switch (selected.label) {
                         case 'Default root file':
                             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            await this.extension.builder.build(rootFile, recipe)
+                            await this.extension.builder.build(rootFile as string, recipe)
                             break
                         case 'Subfiles package root file':
                             this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
@@ -103,7 +104,7 @@ export class Commander {
             return
         }
         if (recipe) {
-            this.build(false, recipe)
+            this.build(false, undefined, recipe)
             return
         }
         vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
@@ -112,13 +113,18 @@ export class Commander {
             if (!selected) {
                 return
             }
-            this.build(false, selected)
+            this.build(false, undefined, selected)
         })
     }
 
     async view(mode?: string) {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (!vscode.window.activeTextEditor) {
+            this.extension.logger.addLogMessage('Cannot find active TextEditor.')
+            return
+        }
+        if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            this.extension.logger.addLogMessage('Active document is not a TeX file.')
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -127,11 +133,12 @@ export class Commander {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useActiveGroup = configuration.get('view.pdf.tab.useNewGroup') as boolean
         if (mode === 'browser') {
             this.extension.viewer.openBrowser(rootFile)
             return
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(rootFile)
+            this.extension.viewer.openTab(rootFile, true, useActiveGroup)
             return
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(rootFile)
@@ -148,7 +155,7 @@ export class Commander {
                     break
                 case 'tab':
                 default:
-                    this.extension.viewer.openTab(rootFile)
+                    this.extension.viewer.openTab(rootFile, true, useActiveGroup)
                     break
                 case 'external':
                     this.extension.viewer.openExternal(rootFile)
@@ -187,7 +194,8 @@ export class Commander {
         }
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile !== undefined) {
-            this.extension.viewer.openTab(rootFile)
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            this.extension.viewer.openTab(rootFile, true, configuration.get('view.pdf.tab.useNewGroup'))
         } else {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
         }
@@ -308,7 +316,7 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.selectEnvName('selection')
+        this.extension.envPair.envAction('selection')
     }
 
     multiCursorEnvName() {
@@ -316,7 +324,15 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.selectEnvName('cursor')
+        this.extension.envPair.envAction('cursor')
+    }
+
+    toggleEquationEnv() {
+        this.extension.logger.addLogMessage(`toggleEquationEnv command invoked.`)
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            return
+        }
+        this.extension.envPair.envAction('equationToggle')
     }
 
     closeEnv() {
@@ -329,93 +345,94 @@ export class Commander {
 
     actions() {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!this.commandTitles) {
-            const commands = this.extension.packageInfo.contributes.commands.filter(command => {
-                if (command.command.indexOf('latex-workshop-dev') > -1) {
-                    return 0
-                }
-                return ['latex-workshop.actions', 'latex-workshop.build', 'latex-workshop.recipes',
-                        'latex-workshop.view', 'latex-workshop.compilerlog',
-                        'latex-workshop.log', 'latex-workshop.tab'].indexOf(command.command) < 0
-            })
-            this.commandTitles = commands.map(command => command.title)
-            this.commands = commands.map(command => command.command)
-        }
-        vscode.window.showQuickPick(['Build LaTeX project', 'View LaTeX PDF', 'View log messages',
-                                     'Miscellaneous LaTeX functions', 'Create an issue on Github',
-                                     'Star the project']).then(selected => {
-            if (!selected) {
-                return
-            }
-            switch (selected) {
-                case 'Build LaTeX project':
-                    this.recipes()
-                    break
-                case 'View LaTeX PDF':
-                    const options: string[] = []
-                    if (configuration.get('view.pdf.viewer') !== 'none') {
-                        options.push('View in default viewer')
-                    }
-                    vscode.window.showQuickPick([...options, 'Set default viewer', 'View in web browser', 'View in VS Code tab']).then(viewer => {
-                        switch (viewer) {
-                            case 'View in default viewer':
-                                this.view()
-                                break
-                            case 'Set default viewer':
-                            default:
-                                this.setViewer()
-                                break
-                            case 'View in web browser':
-                                this.browser()
-                                break
-                            case 'View in VS Code tab':
-                                this.tab()
-                                break
-                        }
-                    })
-                    break
-                case 'View log messages':
-                    vscode.window.showQuickPick(['View LaTeX compiler log messages',
-                                                 'View LaTeX-Workshop extension messages',
-                                                 'View LaTeX-Workshop extension change log']).then(option => {
-                        switch (option) {
-                            case 'View LaTeX compiler log messages':
-                            default:
-                                this.log(true)
-                                break
-                            case 'View LaTeX-Workshop extension messages':
-                                this.log()
-                                break
-                            case 'View LaTeX-Workshop extension change log':
-                                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                                    'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
-                                break
-                        }
-                    })
-                    break
-                case 'Miscellaneous LaTeX functions':
-                    vscode.window.showQuickPick(this.commandTitles).then(option => {
-                        if (option === undefined) {
-                            return
-                        }
-                        vscode.commands.executeCommand(this.commands[this.commandTitles.indexOf(option)])
-                    })
-                    break
-                case 'Create an issue on Github':
-                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                        'https://github.com/James-Yu/LaTeX-Workshop/issues/new'))
-                    break
-                case 'Star the project':
-                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                        'https://github.com/James-Yu/LaTeX-Workshop'))
-                    break
-                default:
-                    const command = this.commands[this.commandTitles.indexOf(selected)]
-                    vscode.commands.executeCommand(command)
-                    break
-            }
-        })
+        vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+        // const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        // if (!this.commandTitles) {
+        //     const commands = this.extension.packageInfo.contributes.commands.filter(command => {
+        //         if (command.command.indexOf('latex-workshop-dev') > -1) {
+        //             return 0
+        //         }
+        //         return ['latex-workshop.actions', 'latex-workshop.build', 'latex-workshop.recipes',
+        //                 'latex-workshop.view', 'latex-workshop.compilerlog',
+        //                 'latex-workshop.log', 'latex-workshop.tab'].indexOf(command.command) < 0
+        //     })
+        //     this.commandTitles = commands.map(command => command.title)
+        //     this.commands = commands.map(command => command.command)
+        // }
+        // vscode.window.showQuickPick(['Build LaTeX project', 'View LaTeX PDF', 'View log messages',
+        //                              'Miscellaneous LaTeX functions', 'Create an issue on Github',
+        //                              'Star the project']).then(selected => {
+        //     if (!selected) {
+        //         return
+        //     }
+        //     switch (selected) {
+        //         case 'Build LaTeX project':
+        //             this.recipes()
+        //             break
+        //         case 'View LaTeX PDF':
+        //             const options: string[] = []
+        //             if (configuration.get('view.pdf.viewer') !== 'none') {
+        //                 options.push('View in default viewer')
+        //             }
+        //             vscode.window.showQuickPick([...options, 'Set default viewer', 'View in web browser', 'View in VS Code tab']).then(viewer => {
+        //                 switch (viewer) {
+        //                     case 'View in default viewer':
+        //                         this.view()
+        //                         break
+        //                     case 'Set default viewer':
+        //                     default:
+        //                         this.setViewer()
+        //                         break
+        //                     case 'View in web browser':
+        //                         this.browser()
+        //                         break
+        //                     case 'View in VS Code tab':
+        //                         this.tab()
+        //                         break
+        //                 }
+        //             })
+        //             break
+        //         case 'View log messages':
+        //             vscode.window.showQuickPick(['View LaTeX compiler log messages',
+        //                                          'View LaTeX-Workshop extension messages',
+        //                                          'View LaTeX-Workshop extension change log']).then(option => {
+        //                 switch (option) {
+        //                     case 'View LaTeX compiler log messages':
+        //                     default:
+        //                         this.log(true)
+        //                         break
+        //                     case 'View LaTeX-Workshop extension messages':
+        //                         this.log()
+        //                         break
+        //                     case 'View LaTeX-Workshop extension change log':
+        //                         vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+        //                             'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
+        //                         break
+        //                 }
+        //             })
+        //             break
+        //         case 'Miscellaneous LaTeX functions':
+        //             vscode.window.showQuickPick(this.commandTitles).then(option => {
+        //                 if (option === undefined) {
+        //                     return
+        //                 }
+        //                 vscode.commands.executeCommand(this.commands[this.commandTitles.indexOf(option)])
+        //             })
+        //             break
+        //         case 'Create an issue on Github':
+        //             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+        //                 'https://github.com/James-Yu/LaTeX-Workshop/issues/new'))
+        //             break
+        //         case 'Star the project':
+        //             vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+        //                 'https://github.com/James-Yu/LaTeX-Workshop'))
+        //             break
+        //         default:
+        //             const command = this.commands[this.commandTitles.indexOf(selected)]
+        //             vscode.commands.executeCommand(command)
+        //             break
+        //     }
+        // })
     }
 
     /**
@@ -642,10 +659,12 @@ export class Commander {
                     )
                 )
             } else { // mode === 'cursor'
+                const anchorPosition = oldSelection.anchor.character + changeInEndCharacterPosition
+                const activePosition = oldSelection.active.character + changeInEndCharacterPosition
                 newSelections.push(
                     new vscode.Selection(
-                        new vscode.Position(oldSelection.anchor.line, oldSelection.anchor.character + changeInEndCharacterPosition),
-                        new vscode.Position(oldSelection.active.line, oldSelection.active.character + changeInEndCharacterPosition)
+                        new vscode.Position(oldSelection.anchor.line, anchorPosition < 0 ? 0 : anchorPosition),
+                        new vscode.Position(oldSelection.active.line, activePosition < 0 ? 0 : activePosition)
                     )
                 )
             }

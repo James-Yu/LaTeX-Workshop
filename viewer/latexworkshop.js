@@ -6,6 +6,110 @@ let documentTitle = ''
 // We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
 //
 PDFViewerApplication.isViewerEmbedded = false;
+
+class ViewerHistory {
+  constructor() {
+    this._history = []
+    this._currentIndex = undefined
+  }
+
+  last() {
+    return this._history[this._history.length-1]
+  }
+
+  lastIndex() {
+    if (this._history.length === 0) {
+      return undefined
+    } else {
+      return this._history.length - 1
+    }
+  }
+
+  length() {
+    return this._history.length
+  }
+
+  set(scroll, force = false) {
+    if (this._history.length === 0) {
+      this._history.push({scroll: scroll, temporary: false})
+      this._currentIndex = 0
+      return
+    }
+
+    if (this._currentIndex === undefined) {
+      console.log('this._current === undefined never happens here.')
+      return
+    }
+
+    const curScroll = this._history[this._currentIndex].scroll
+    if (curScroll !== scroll || force) {
+      this._history = this._history.slice(0, this._currentIndex + 1)
+      if (this.last()) {
+        this.last().temporary = false
+      }
+      this._history.push({scroll: scroll, temporary: false})
+      if (this.length() > 30) {
+        this._history = this._history.slice(this.length() - 30)
+      }
+      this._currentIndex = this.lastIndex()
+    }
+  }
+
+  back() {
+    if (this.length() === 0) {
+      return
+    }
+    const container = document.getElementById('viewerContainer')
+    let cur = this._currentIndex
+    let prevScroll = this._history[cur].scroll
+    if (this.length() > 0 && prevScroll !== container.scrollTop) {
+      if (this._currentIndex === this.lastIndex() && this.last()) {
+        if (this.last().temporary) {
+          this.last().scroll = container.scrollTop
+          cur = cur - 1
+          prevScroll = this._history[cur].scroll
+        } else {
+          const tmp = {scroll: container.scrollTop, temporary: true};
+          this._history.push(tmp);
+        }
+      }
+    }
+    if (prevScroll !== container.scrollTop) {
+      this._currentIndex = cur
+      container.scrollTop = prevScroll
+    } else {
+      if (cur === 0) {
+        return
+      }
+      const scrl = this._history[cur-1].scroll
+      this._currentIndex = cur - 1
+      container.scrollTop = scrl
+    }
+  }
+
+  forward() {
+    if (this._currentIndex === this.lastIndex()) {
+      return
+    }
+    const container = document.getElementById('viewerContainer')
+    const cur = this._currentIndex
+    const nextScroll = this._history[cur+1].scroll
+    if (nextScroll !== container.scrollTop) {
+      this._currentIndex = cur + 1
+      container.scrollTop = nextScroll
+    } else {
+      if (cur >= this._history.length - 2) {
+        return
+      }
+      const scrl = this._history[cur+2].scroll
+      this._currentIndex = cur + 2
+      container.scrollTop = scrl
+    }
+  }
+}
+
+let viewerHistory = new ViewerHistory()
+
 let query = document.location.search.substring(1)
 let parts = query.split('&')
 let file
@@ -36,7 +140,11 @@ socket.addEventListener("message", (event) => {
             let page = document.getElementsByClassName('page')[data.data.page - 1]
             let scrollX = page.offsetLeft + pos[0]
             let scrollY = page.offsetTop + page.offsetHeight - pos[1]
+
+            // set positions before and after SyncTeX to viewerHistory
+            viewerHistory.set(container.scrollTop)
             container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+            viewerHistory.set(container.scrollTop)
 
             let indicator = document.getElementById('synctex-indicator')
             indicator.className = 'show'
@@ -52,7 +160,8 @@ socket.addEventListener("message", (event) => {
                                         scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
                                         spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
                                         scrollTop:document.getElementById('viewerContainer').scrollTop,
-                                        scrollLeft:document.getElementById('viewerContainer').scrollLeft}))
+                                        scrollLeft:document.getElementById('viewerContainer').scrollLeft,
+                                        viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
             PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
               // reset the document title to the original value to avoid duplication
@@ -73,6 +182,9 @@ socket.addEventListener("message", (event) => {
             PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
             document.getElementById('viewerContainer').scrollTop = data.scrollTop
             document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
+            viewerHistory = new ViewerHistory()
+            viewerHistory._history = data.viewerHistory.history
+            viewerHistory._currentIndex = data.viewerHistory.currentIndex
             break
         case "params":
             if (data.scale) {
@@ -89,6 +201,14 @@ socket.addEventListener("message", (event) => {
             } else {
                 PDFViewerApplication.pdfCursorTools.handTool.deactivate()
             }
+            if (data.trim) {
+              const trimSelect = document.getElementById('trimSelect')
+              const e = new Event('change')
+              if (trimSelect) {
+                trimSelect.selectedIndex = data.trim
+                trimSelect.dispatchEvent(e)
+              }
+            }
             if (data.invert > 0) {
               document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
               document.querySelector('#viewer').style.background = 'white'
@@ -100,8 +220,15 @@ socket.addEventListener("message", (event) => {
 })
 socket.onclose = () => { document.title = `[Disconnected] ${document.title}` }
 
-document.addEventListener('pagesinit', (e) => {
+document.addEventListener('pagesinit', () => {
+  // check whether WebSocket is open (readyState === 1).
+  if (socket.readyState === 1) {
     socket.send(JSON.stringify({type:"loaded", path:file}))
+  } else {
+    socket.addEventListener("open", () => {
+      socket.send(JSON.stringify({type:"loaded", path:file}))
+    }, {once: true})
+  }
 })
 
 // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
@@ -117,6 +244,7 @@ if (embedded) {
 document.addEventListener('pagerendered', (evPageRendered) => {
     const page = evPageRendered.target.dataset.pageNumber
     const target = evPageRendered.target
+    // textLayer
     const canvas_dom = evPageRendered.target.childNodes[1]
     canvas_dom.onclick = (e) => {
         if (!(e.ctrlKey || e.metaKey)) {
@@ -126,7 +254,8 @@ document.addEventListener('pagerendered', (evPageRendered) => {
         const selection = window.getSelection();
         let textBeforeSelection = ''
         let textAfterSelection = ''
-        if(selection.anchorNode.nodeName === '#text'){
+        // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
+        if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
           const text = selection.anchorNode.textContent;
           textBeforeSelection = text.substring(0, selection.anchorOffset);
           textAfterSelection = text.substring(selection.anchorOffset);
@@ -156,9 +285,23 @@ document.addEventListener('pagerendered', (evPageRendered) => {
     }
 }, true)
 
+const setHistory = () => {
+  const container = document.getElementById('viewerContainer')
+  // set positions before and after clicking to viewerHistory
+  viewerHistory.set(container.scrollTop)
+  setTimeout(() => {viewerHistory.set(container.scrollTop)}, 500)
+}
+
+document.getElementById('viewerContainer').addEventListener("click", setHistory)
+document.getElementById('sidebarContainer').addEventListener("click", setHistory)
+
 // back button (mostly useful for the embedded viewer)
 document.getElementById("historyBack").addEventListener("click", function() {
-  history.back()
+  viewerHistory.back()
+})
+
+document.getElementById("historyForward").addEventListener("click", function() {
+  viewerHistory.forward()
 })
 
 // keyboard bindings
@@ -174,9 +317,9 @@ window.addEventListener('keydown', function(evt) {
   // Back/Forward don't work in the embedded viewer, so we simulate them.
   if (embedded && (evt.altKey || evt.metaKey)) {
     if (evt.keyCode == 37) {
-      history.back();
+      viewerHistory.back();
     } else if(evt.keyCode == 39) {
-      history.forward();
+      viewerHistory.forward();
     }
   }
 })
@@ -276,7 +419,8 @@ const trimPage = (page) => {
   const m = w.match(/(\d+)/);
   if (m) {
     // add -4px to ensure that no horizontal scroll bar appears.
-    const width = ( Math.floor(Number(m[1])/trimScale) - 4 )  + 'px';
+    const widthNum = Math.floor(Number(m[1])/trimScale) - 4;
+    const width = widthNum  + 'px';
     page.style.width = width;
     canvasWrapper.style.width = width;
     const offsetX = - Number(m[1]) * (1 - 1/trimScale) / 2;
@@ -284,7 +428,7 @@ const trimPage = (page) => {
     canvas.style.position = 'relative';
     canvas.setAttribute('data-is-trimmed', 'trimmed');
     if ( textLayer && textLayer.dataset.isTrimmed !== 'trimmed' ) {
-      textLayer.style.width = width;
+      textLayer.style.width = widthNum - offsetX + 'px';
       textLayer.style.left = offsetX + 'px';
       textLayer.setAttribute('data-is-trimmed', 'trimmed');
     }
@@ -342,6 +486,20 @@ const setObserverToTrim = () => {
     }
   }
 }
+
+// We need to recaluculate scale and left offset for trim mode on each resize event.
+window.addEventListener('resize', () =>{
+  const trimSelect = document.getElementById("trimSelect");
+  const ind = trimSelect.selectedIndex;
+  if (!trimSelect || ind <= 0) {
+    return;
+  }
+  trimSelect.selectedIndex = 0;
+  const e = new Event('change');
+  trimSelect.dispatchEvent(e);
+  trimSelect.selectedIndex = ind;
+  trimSelect.dispatchEvent(e);
+})
 
 // Set observers after a pdf file is loaded in the first time.
 window.addEventListener('pagerendered', setObserverToTrim, {once: true});

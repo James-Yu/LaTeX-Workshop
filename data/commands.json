@@ -2,7 +2,7 @@
   "begin":{
     "command":"begin",
     "snippet":"begin{$1}\n\t$0\n\\\\end{$1}",
-    "detail":"begin a new environment",
+    "detail":"Begin a new environment",
     "postAction":"editor.action.triggerSuggest"
   },
   "lrparen":{
@@ -20,22 +20,10 @@
     "snippet":"left\\{${1}\\right\\\\}",
     "detail":"\\left\\{ ... \\right\\}"
   },
-  "equation":{
-    "command":"equation",
-    "snippet":"begin{equation}\n\t\\label{${1:<label>}}\n\t$0\n\\end{equation}",
-    "detail":"Insert an equation environment",
-    "label": "\\begin{equation} ... \\end{equation}"
-  },
-  "align":{
-    "command":"align",
-    "snippet":"begin{align}\n\t\\label{${1:<label>}}\n\t$0\n\\end{align}",
-    "detail":"Insert an align environment",
-    "label": "\\begin{align} ... \\end{align}"
-  },
   "frame":{
     "command":"frame",
     "snippet":"begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t$0\n\n\\end{frame}",
-    "detail":"input a frame",
+    "detail":"Insert a frame",
     "label": "\\begin{frame} ... \\end{frame}"
   },
   "figure":{
@@ -253,7 +241,9 @@
   },
   "underline":{
     "command":"underline",
-    "snippet":"underline{${1}}"
+    "snippet":"underline{${1}}",
+    "detail":" ̲",
+    "documentation":"COMBINING LOW LINE"
   },
   "rule":{
     "command":"rule{width}{height}",
@@ -499,10 +489,12 @@
     "detail":"∉"
   },
   "subset":{
-    "command":"subset"
+    "command":"subset",
+    "detail":"⊂"
   },
   "supset":{
-    "command":"supset"
+    "command":"supset",
+    "detail":"⊃"
   },
   "leftarrow":{
     "command":"leftarrow",
@@ -537,7 +529,8 @@
     "detail":"≈"
   },
   "mid":{
-    "command":"mid"
+    "command":"mid",
+    "detail":"∣"
   },
   "neg":{
     "command":"neg",
@@ -629,14 +622,6 @@
   "ddot":{
     "command":"ddot",
     "snippet":"ddot{$1}"
-  },
-  "dddot":{
-    "command":"dddot",
-    "snippet":"dddot{$1}"
-  },
-  "ddddot":{
-    "command":"ddddot",
-    "snippet":"ddddot{$1}"
   },
   "cdot":{
     "command":"cdot",
@@ -784,7 +769,8 @@
   },
   "ddots": {
     "command": "ddots",
-    "snippet": "ddots"
+    "snippet": "ddots",
+    "detail":"⋱"
   },
   "documentclass[]{}": {
     "command": "documentclass[options]{style}",
@@ -953,11 +939,15 @@
   },
   "overbrace": {
     "command": "overbrace",
-    "snippet": "overbrace{${1:text}}"
+    "snippet": "overbrace{${1:text}}",
+    "detail": "⏞",
+    "documentation": "TOP CURLY BRACKET"
   },
   "overline": {
     "command": "overline",
-    "snippet": "overline{${1:text}}"
+    "snippet": "overline{${1:text}}",
+    "detail": " ̅",
+    "documentation": "overbar embellishment"
   },
   "pagebreak[]": {
     "command": "pagebreak[number]",

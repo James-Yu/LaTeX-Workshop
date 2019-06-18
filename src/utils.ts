@@ -7,7 +7,7 @@ export interface ExternalCommand {
     args?: string[]
 }
 
-export function escapeRegExp(str) {
+export function escapeRegExp(str: string) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
 }
 

@@ -2,6 +2,7 @@ import * as http from 'http'
 import * as ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
+import * as vscode from 'vscode'
 
 import {Extension} from '../main'
 import {AddressInfo} from 'net'
@@ -11,15 +12,19 @@ export class Server {
     httpServer: http.Server
     wsServer: ws.Server
     address: string
+    port: number
 
     constructor(extension: Extension) {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
-        this.httpServer.listen(0, '127.0.0.1', undefined, (err: Error) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const viewerPort = configuration.get('viewer.pdf.internal.port') as number
+        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, (err: Error) => {
             if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
                 const {address, port} = this.httpServer.address() as AddressInfo
+                this.port = port
                 if (address.indexOf(':') > -1) {
                     // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
                     this.address = `[${address}]:${port}`
@@ -36,6 +41,7 @@ export class Server {
         this.wsServer.on('connection', (websocket) => {
             websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
             websocket.on('close', () => this.extension.viewer.handler(websocket, '{"type": "close"}'))
+            websocket.on('error', () => this.extension.logger.addLogMessage('Error on WebSocket connection.'))
         })
         this.extension.logger.addLogMessage(`Creating LaTeX Workshop http and websocket server.`)
     }

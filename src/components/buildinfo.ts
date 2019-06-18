@@ -32,7 +32,7 @@ export class BuildInfo {
             pageTotal: undefined,
             lastStepTime: +new Date(),
             stepTimes: {},
-            stdout: '',
+            stdout: '\n'.repeat(50),
             ruleNumber: 0,
             ruleName: '',
             ruleProducesPages: undefined
@@ -75,7 +75,7 @@ export class BuildInfo {
         }
 
         for (const line of lines.split('\n')) {
-            this.currentBuild.stdout += '\n' + line
+            this.currentBuild.stdout = this.currentBuild.stdout.substring(this.currentBuild.stdout.indexOf('\n') + 1) + '\n' + line
             this.checkStdoutForInfo()
         }
     }
@@ -189,7 +189,7 @@ export class BuildInfo {
                         font-size: 1rem;
                         border-radius: 0.5em;
                         padding: 0;
-                        margin: 0 0 0.2em 1em;
+                        margin: 0 0 0.0em 1em;
                         width: 13.5em;
                     }
 
@@ -198,7 +198,7 @@ export class BuildInfo {
                         padding: 0;
                         /* font-weight: 600; */
                         /* position: relative;
-                                float: left; */
+                        float: left; */
                     }
 
                     #stepTimes ul li span.pageTime {
@@ -236,6 +236,19 @@ export class BuildInfo {
                     #compilationSpeed {
                         height: 15rem;
                         width: calc(95vw - 3rem);
+                    }
+
+                    .timeBar {
+                        opacity: 0.2;
+                        height: 1.1em;
+                        position: relative;
+                        margin-top: 0.1em;
+                        margin-bottom: -1.2em;
+                        box-sizing: border-box;
+                        margin-left: -0.3em;
+                        border-radius: 0.2em;
+                        transition-property: width;
+                        transition-duration: 400ms;
                     }
 
                     .tex,
@@ -300,14 +313,34 @@ export class BuildInfo {
                         const data = event.data;
 
                         if (data.type === 'init') {
+                            if (progressManager.startTime) {
+                                progressManager.backupTimeElapsed = progressManager.totalSpan.innerHTML;
+                            }
                             progressManager.startTime = data.startTime;
+                            if (progressManager.stepTimes) {
+                                progressManager.backupStepTimes = progressManager.stepTimes;
+                            }
                             progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
+                            progressManager.maxTime = 0;
 
                             progressManager.start(10);
                         } else if (data.type === 'finished') {
+                            console.log('finished');
                             progressManager.stop();
+
+                            // if nothing happened i.e. latexmk ran and did nothing, keep the old data
+                            if (Object.keys(progressManager.stepTimes).length === 0) {
+                                console.log('restoring to previous state');
+                                progressManager.stepTimes = progressManager.backupStepTimes;
+                                progressManager.updateStepTimesUl();
+                                progressManager.drawGraph();
+                                if (progressManager.backupTimeElapsed) {
+                                    progressManager.totalSpan.innerHTML = progressManager.backupTimeElapsed;
+                                }
+                            }
                         } else if (data.type === 'update') {
+                            console.log('update');
                             progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
                             progressManager.pageTotal = data.pageTotal;
 
@@ -329,21 +362,15 @@ export class BuildInfo {
 
                     const progressManager = {
                         startTime: null,
+                        backupStartTime: null,
                         stepTimes: {},
+                        backupStepTimes: {},
                         pageTotal: null,
                         stepTimesDiv: document.getElementById('stepTimes'),
                         totalSpan: document.getElementById('total'),
                         updateTimesInterval: null,
-                        colours: [
-                            window.getComputedStyle(document.getElementById('color0')).color,
-                            window.getComputedStyle(document.getElementById('color1')).color,
-                            window.getComputedStyle(document.getElementById('color2')).color,
-                            window.getComputedStyle(document.getElementById('color3')).color,
-                            window.getComputedStyle(document.getElementById('color4')).color,
-                            window.getComputedStyle(document.getElementById('color5')).color,
-                            window.getComputedStyle(document.getElementById('color6')).color,
-                            window.getComputedStyle(document.getElementById('color7')).color
-                        ],
+                        colours: [],
+                        maxTime: 0,
                         rem: parseFloat(window.getComputedStyle(document.getElementById('1rem')).width.replace('px', '')),
                         graph: {
                             canvas: document.getElementById('compilationSpeed'),
@@ -357,10 +384,26 @@ export class BuildInfo {
                             lastResize: +new Date()
                         },
 
+                        init: function() {
+                            this.colours = [
+                                window.getComputedStyle(document.getElementById('color0')).color,
+                                window.getComputedStyle(document.getElementById('color1')).color,
+                                window.getComputedStyle(document.getElementById('color2')).color,
+                                window.getComputedStyle(document.getElementById('color3')).color,
+                                window.getComputedStyle(document.getElementById('color4')).color,
+                                window.getComputedStyle(document.getElementById('color5')).color,
+                                window.getComputedStyle(document.getElementById('color6')).color,
+                                window.getComputedStyle(document.getElementById('color7')).color
+                            ];
+                        },
+
                         updateStepTimesUl: function() {
                             this.stepTimesDiv.innerHTML = '';
+                            let colourIndex = 1;
 
                             for (const runName in this.stepTimes) {
+                                colourIndex++;
+
                                 const column = document.createElement('div');
                                 column.classList.add('column');
 
@@ -376,7 +419,16 @@ export class BuildInfo {
                                         itemLabel = 'Page ' + (itemLabel !== '1' ? itemLabel : itemLabel + ' + Preamble');
                                     }
                                     const li = document.createElement('li');
+                                    const timeBar = \`<div class="timeBar" style="
+                                        background: \${progressManager.colours[colourIndex]};
+                                        width: \${100 * this.stepTimes[runName][item] / this.maxTime}%;
+                                    " data-time="\${this.stepTimes[runName][item]}"></div>\`;
+                                    if (this.stepTimes[runName][item] > this.maxTime) {
+                                        this.maxTime = this.stepTimes[runName][item];
+                                        this.recalculateTimeBars();
+                                    }
                                     li.innerHTML =
+                                        timeBar +
                                         '<span class="item">' +
                                         itemLabel +
                                         '</span> <span class="pageTime">' +
@@ -387,6 +439,13 @@ export class BuildInfo {
                                 column.appendChild(ul);
                                 this.stepTimesDiv.appendChild(column);
                             }
+                        },
+
+                        recalculateTimeBars: function() {
+                            const bars = document.querySelectorAll('.timeBar');
+                            bars.forEach(bar => {
+                                bar.style.width = (100 * parseInt(bar.getAttribute('data-time')) / this.maxTime) + '%';
+                            });
                         },
 
                         start: function(updateGap = 10) {
@@ -421,12 +480,13 @@ export class BuildInfo {
                         },
 
                         drawGraph: function() {
-                            const width =
-                                Math.max(
-                                    ...Object.values(this.stepTimes).map(pt => Object.values(pt).length - 1),
-                                    this.pageTotal ? this.pageTotal : 0
-                                );
-                            const height = Math.max(...Array.prototype.concat(...Object.values(this.stepTimes).map(pt => Object.values(pt).slice(1))));
+                            const width = Math.max(
+                                ...Object.values(this.stepTimes).map(pt => Object.values(pt).length - 1),
+                                this.pageTotal ? this.pageTotal : 0
+                            );
+                            const height = Math.max(
+                                ...Array.prototype.concat(...Object.values(this.stepTimes).map(pt => Object.values(pt).slice(1)))
+                            );
                             this.graph.canvas.width = this.graph.canvas.clientWidth * this.graph.resolutionMultiplier;
                             this.graph.canvas.height = this.graph.canvas.clientHeight * this.graph.resolutionMultiplier;
                             const ctx = this.graph.canvas.getContext('2d');
@@ -486,7 +546,7 @@ export class BuildInfo {
 
                             // axis labels
                             ctx.fillStyle = this.colours[0];
-                            ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem serif';
+                            ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem sans-serif';
                             ctx.textAlign = 'center';
                             ctx.textBaseline = 'top';
                             ctx.fillText(
@@ -502,14 +562,14 @@ export class BuildInfo {
                             let colourIndex = 1;
                             for (const runName in this.stepTimes) {
                                 // only draw runs which produce pages (signified by INT step type)
-                                const lastItemName = Object.keys(this.stepTimes[runName])[Object.keys(this.stepTimes[runName]).length - 1]
+                                const lastItemName = Object.keys(this.stepTimes[runName])[Object.keys(this.stepTimes[runName]).length - 1];
                                 if (lastItemName.replace(/^T\\d+\\-/, '').indexOf('PAGE:') !== 0) {
                                     continue;
                                 }
 
                                 const points = [];
                                 for (const item in this.stepTimes[runName]) {
-                                    const pageNo = parseInt(item.replace(/^T\\d+\\-PAGE:/, ''))
+                                    const pageNo = parseInt(item.replace(/^T\\d+\\-PAGE:/, ''));
                                     if (isNaN(pageNo)) {
                                         continue;
                                     }
@@ -595,7 +655,7 @@ export class BuildInfo {
                                 ctx.globalAlpha = 0.1;
                                 ctx.fill();
 
-                                ctx.font = this.graph.resolutionMultiplier + 'rem serif';
+                                ctx.font = this.graph.resolutionMultiplier + 'rem sans-serif';
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'top';
 
@@ -612,7 +672,7 @@ export class BuildInfo {
                                     this.graph.margins.left - this.graph.textMargin * this.graph.resolutionMultiplier,
                                     closestPoint.y
                                 );
-                                ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem serif';
+                                ctx.font = 0.8 * this.graph.resolutionMultiplier + 'rem sans-serif';
                                 ctx.fillText(
                                     'ms',
                                     this.graph.margins.left - this.graph.textMargin * this.graph.resolutionMultiplier,
@@ -620,7 +680,7 @@ export class BuildInfo {
                                 );
 
                                 ctx.globalAlpha = 0.7;
-                                ctx.font = 1.2 * this.graph.resolutionMultiplier + 'rem serif';
+                                ctx.font = 1.2 * this.graph.resolutionMultiplier + 'rem sans-serif';
                                 ctx.textAlign = 'center';
                                 ctx.textBaseline = 'top';
                                 ctx.fillText(
@@ -632,6 +692,10 @@ export class BuildInfo {
                                 this.drawGraph();
                             }
                         }
+                    };
+
+                    window.onload = () => {
+                        progressManager.init();
                     };
                 </script>
             </body>

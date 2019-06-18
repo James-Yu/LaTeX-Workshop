@@ -22,6 +22,7 @@ export class Builder {
     buildMutex: Mutex
     waitingForBuildToFinishMutex: Mutex
     isMiktex: boolean = false
+    previouslyUsedRecipe: {name: string, tools: (string | StepCommand)[]} | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -60,9 +61,10 @@ export class Builder {
     }
 
     async preprocess() : Promise<() => void> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
-        setTimeout(() => this.disableBuildAfterSave = false, 1000)
+        setTimeout(() => this.disableBuildAfterSave = false, configuration.get('latex.autoBuild.interval', 1000) as number)
         const releaseWaiting = await this.waitingForBuildToFinishMutex.acquire()
         const releaseBuildMutex = await this.buildMutex.acquire()
         releaseWaiting()
@@ -166,6 +168,7 @@ export class Builder {
             })
             this.buildInitiator(rootFile, recipe, releaseBuildMutex)
         } catch (e) {
+            this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
             throw(e)
         }
@@ -230,6 +233,7 @@ export class Builder {
             this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${process.env.PATH}`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
+            this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
         })
 
@@ -237,6 +241,7 @@ export class Builder {
             this.extension.parser.parse(stdout)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
+                this.extension.buildInfo.buildEnded()
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
@@ -249,6 +254,7 @@ export class Builder {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
                         })
                     } else {
+                        this.extension.logger.displayStatus('x', 'errorForeground')
                         this.currentProcess = undefined
                         releaseBuildMutex()
                     }
@@ -293,13 +299,19 @@ export class Builder {
         this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
+        if (this.extension.parser.isLaTeXmkSkipped) {
+            return
+        }
         this.extension.viewer.refreshExistingViewer(rootFile)
+        this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
         this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+            this.extension.logger.addLogMessage('SyncTex after build invoked.')
             this.extension.locator.syncTeX()
         }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
+            this.extension.logger.addLogMessage('Auto Clean invoked.')
             this.extension.cleaner.clean()
         }
     }
@@ -331,6 +343,9 @@ export class Builder {
                 return undefined
             }
             let recipe = recipes[0]
+            if ((configuration.get('latex.recipe.default') as string === 'lastUsed') && (this.previouslyUsedRecipe !== undefined)) {
+                recipe = this.previouslyUsedRecipe
+            }
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
                 if (candidates.length < 1) {
@@ -338,6 +353,7 @@ export class Builder {
                 }
                 recipe = candidates[0]
             }
+            this.previouslyUsedRecipe = recipe
 
             recipe.tools.forEach(tool => {
                 if (typeof tool === 'string') {
@@ -373,21 +389,21 @@ export class Builder {
             const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
             const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
             if (step.args) {
-                step.args = step.args.map(arg => arg.replace('%DOC%', docker ? docfile : doc)
-                                                    .replace('%DOCFILE%', docfile)
-                                                    .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
-                                                    .replace('%TMPDIR%', this.tmpDir)
-                                                    .replace('%OUTDIR%', this.extension.manager.getOutputDir(rootFile)))
+                step.args = step.args.map(arg => arg.replace(/%DOC%/g, docker ? docfile : doc)
+                                                    .replace(/%DOCFILE%/g, docfile)
+                                                    .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
+                                                    .replace(/%TMPDIR%/g, this.tmpDir)
+                                                    .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile)))
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
                     if (step.env && step.env[v]) {
                         const e = step.env[v] as string
-                        step.env[v] = e.replace('%DOC%', docker ? docfile : doc)
-                                                 .replace('%DOCFILE%', docfile)
-                                                 .replace('%DIR%', path.dirname(rootFile).split(path.sep).join('/'))
-                                                 .replace('%TMPDIR%', this.tmpDir)
-                                                 .replace('%OUTDIR%', this.extension.manager.getOutputDir(rootFile))
+                        step.env[v] = e.replace(/%DOC%/g, docker ? docfile : doc)
+                                                 .replace(/%DOCFILE%/g, docfile)
+                                                 .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
+                                                 .replace(/%TMPDIR%/g, this.tmpDir)
+                                                 .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile))
                     }
                 })
             }

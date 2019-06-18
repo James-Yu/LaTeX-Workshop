@@ -184,12 +184,12 @@ export async function activate(context: vscode.ExtensionContext) {
     global['latex'] = extension
     vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    let configuration = vscode.workspace.getConfiguration('latex-workshop')
-    if (configuration.get('bind.altKeymap.enabled')) {
-        vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', true)
-    } else {
-        vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', false)
-    }
+    // let configuration = vscode.workspace.getConfiguration('latex-workshop')
+    // if (configuration.get('bind.altKeymap.enabled')) {
+    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', true)
+    // } else {
+    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', false)
+    // }
 
     vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveWithoutBuilding())
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
@@ -212,6 +212,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair())
     vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName())
     vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => extension.commander.multiCursorEnvName())
+    vscode.commands.registerCommand('latex-workshop.toggle-equation-envname', () => extension.commander.toggleEquationEnv())
     vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
     vscode.commands.registerCommand('latex-workshop.wrap-env', () => extension.commander.insertSnippet('wrapEnv'))
     vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
@@ -279,7 +280,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
     let isLaTeXActive = false
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
-        configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {

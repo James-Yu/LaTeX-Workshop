@@ -61,16 +61,43 @@ export class EnvPair {
         return null
     }
 
-    locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument) : MatchEnv | null {
+    /**
+     * Searches upwards or downwards for a begin or end environment captured by `pattern`.
+     * Begin environment can also be `\[` and end environment can also be `\]`
+     *
+     * @param pattern A regex that matches begin or end environments.
+     *
+     * Note: the regex must capture (`begin` or `[`) or (`end` or `]`) in the first
+     * capturing group. If nesting is possible, the pattern must capture *both* `begin` and `end`.
+     * If `dir` is -1, regex must capture `begin` and/or `[` and likewise if `dir` is +1.
+     * @param dir +1 to search downwards, -1 to search upwards
+     * @param pos starting position (e.g. cursor position)
+     * @param doc the document in which the search is performed
+     * @param splitSubstring where to split the string if dir = 1 (default at end of `\begin{...}`)
+     */
+    locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument, splitSubstring?: string) : MatchEnv | null {
         const patRegexp = new RegExp(pattern, 'g')
         let lineNumber = pos.line
         let nested = 0
         let line = doc.lineAt(lineNumber).text
+        let startCol
         /* Drop the pattern on the current line */
-        if (dir === 1) {
-            line = line.slice(line.indexOf('}', pos.character) + 1)
-        } else if (dir === -1) {
-            line = line.slice(0, pos.character)
+        switch (dir) {
+            case 1:
+                if (!splitSubstring) {
+                    startCol = line.indexOf('}', pos.character) + 1
+                } else {
+                    startCol = line.indexOf(splitSubstring, pos.character) + 1
+                }
+                line = line.slice(startCol)
+                break
+            case -1:
+                startCol = 0
+                line = line.slice(startCol, pos.character)
+                break
+            default:
+                this.extension.logger.addLogMessage('Direction error in locateMatchingPair')
+                return null
         }
         while (true) {
             line = utils.stripComments(line, '%')
@@ -79,12 +106,13 @@ export class EnvPair {
                 allMatches = allMatches.reverse()
             }
             for (const m of allMatches) {
-                if ((m[1] === 'begin' && dir === 1) || (m[1] === 'end' && dir === -1)) {
+                if ((dir === 1 && (m[1] === 'begin' || m[1] === '[')) || (dir === -1 && (m[1] === 'end' || m[1] === ']'))) {
                     nested += 1
                 }
-                if ((m[1] === 'end' && dir === 1) || (m[1] === 'begin' && dir === -1))  {
+                if ((dir === 1 && (m[1] === 'end' || m[1] === ']')) || (dir === -1 && (m[1] === 'begin' || m[1] === '[')))  {
                     if (nested === 0) {
-                        const matchPos = new vscode.Position(lineNumber, m.index + 1)
+                        const col = m.index + 1 + startCol
+                        const matchPos = new vscode.Position(lineNumber, col)
                         const matchName = m[2]
                         const matchType = m[1]
                         return {name: matchName, type: matchType, pos: matchPos}
@@ -97,6 +125,7 @@ export class EnvPair {
                 break
             }
             line = doc.lineAt(lineNumber).text
+            startCol = 0
         }
         return null
     }
@@ -128,47 +157,104 @@ export class EnvPair {
     }
 
     /**
-     * Select or add a multicursor to an environment name
+     * Select or add a multicursor to an environment name if called with
+     * `action = 'selection'` or `action = 'cursor'` respectively.
      *
-     * @param selectionOrCursor  can be
+     * Toggles between `\[...\]` and `\begin{$text}...\end{$text}`
+     * where `$text` is `''` if `action = cursor` and `'equation*'` otherwise
+     *
+     * Only toggles if `action = equationToggle` (i.e. does not move selection)
+     *
+     * @param action  can be
      *      - 'selection': the environment name is selected both in the begin and end part
      *      - 'cursor': a multicursor is added at the beginning of the environment name is selected both in the begin and end part
+     *      - 'equationToggle': toggles between `\[...\]` and `\begin{}...\end{}`
      */
-    selectEnvName(selectionOrCursor: 'selection'|'cursor') {
+    envAction(action: 'selection'|'cursor'|'equationToggle') {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
         }
-        const curPos = editor.selection.active
+        let startingPos = editor.selection.active
         const document = editor.document
 
-        const pattern = '\\\\(begin|end)\\{([^\\{\\}]*)\\}'
+        let searchEnvs = '[^\\{\\}]*'
+
+        if (action === 'equationToggle') {
+            searchEnvs = '(?:equation|align|flalign|alignat|gather|multline|eqnarray)\\*?'
+        }
+
+        const pattern = `(?<!\\\\)\\\\(\\[|\\]|(?:begin|end)(?=\\{(${searchEnvs})\\}))`
         const dirUp = -1
-        const beginEnv = this.locateMatchingPair(pattern, dirUp, curPos, document)
+        const beginEnv = this.locateMatchingPair(pattern, dirUp, startingPos, document)
         if (!beginEnv) {
             return
         }
         const dirDown = 1
-        const endEnv = this.locateMatchingPair(pattern, dirDown, beginEnv.pos, document)
+        const endEnv = this.locateMatchingPair(pattern, dirDown, beginEnv.pos, document, beginEnv.type === '[' ? '[' : '}')
         if (!endEnv) {
             return
         }
 
+        let envNameLength: number
         const beginEnvStartPos = beginEnv.pos.translate(0, 'begin{'.length)
-        const endEnvStartPos = endEnv.pos.translate(0, 'end{'.length)
-        switch (selectionOrCursor) {
-            case 'cursor':
-                editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
-                break
-            case 'selection':
-                const envNameLength = beginEnv.name.length
-                const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
-                const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
-                editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
-                break
-            default:
-                this.extension.logger.addLogMessage(`Error - while selecting environment name`)
+        let endEnvStartPos = endEnv.pos.translate(0, 'end{'.length)
+        const edit = new vscode.WorkspaceEdit()
+
+        if (beginEnv.type === '[' && endEnv.type === ']') {
+            const eqText = action === 'cursor' ? '' : 'equation*'
+            const beginRange = new vscode.Range(beginEnv.pos, beginEnv.pos.translate(0, 1))
+            const endRange = new vscode.Range(endEnv.pos, endEnv.pos.translate(0, 1))
+            envNameLength = eqText.length
+            edit.replace(document.uri, endRange, `end{${eqText}}`)
+            edit.replace(document.uri, beginRange, `begin{${eqText}}`)
+
+            const diff = 'begin{}'.length + envNameLength - '['.length
+            if (startingPos.line === beginEnv.pos.line) {
+                startingPos = startingPos.translate(0, diff)
+            }
+            if (beginEnv.pos.line === endEnv.pos.line) {
+                endEnvStartPos = endEnvStartPos.translate(0, diff)
+            }
+        } else if (beginEnv.type === 'begin' && endEnv.type === 'end') {
+            envNameLength = beginEnv.name.length
+            if (endEnv.name.length !== envNameLength) {
+                return // bad match
+            }
+            if (action === 'equationToggle') {
+                const beginRange = new vscode.Range(beginEnv.pos, beginEnv.pos.translate(0, envNameLength + 'begin{}'.length))
+                const endRange = new vscode.Range(endEnv.pos, endEnv.pos.translate(0, envNameLength + 'end{}'.length))
+                edit.replace(document.uri, endRange, ']')
+                edit.replace(document.uri, beginRange, '[')
+                if (startingPos.line === beginEnv.pos.line) {
+                    const diff = Math.max('['.length - 'begin{}'.length - envNameLength, -startingPos.character)
+                    startingPos = startingPos.translate(0, diff)
+                }
+            }
+        } else {
+            return // bad match
         }
+
+        vscode.workspace.applyEdit(edit).then(success => {
+            if (success) {
+                switch (action) {
+                    case 'cursor':
+                        editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
+                        break
+                    case 'selection':
+                        const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
+                        const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
+                        editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
+                        break
+                    case 'equationToggle':
+                        editor.selection = new vscode.Selection(startingPos, startingPos)
+                        break
+                    default:
+                        this.extension.logger.addLogMessage(`Error - while selecting environment name`)
+                }
+            }
+        })
+
         // editor.revealRange(new vscode.Range(beginEnvStartPos, endEnvStartPos))
     }
 

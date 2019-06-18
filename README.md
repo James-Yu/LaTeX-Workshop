@@ -13,6 +13,8 @@ LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudi
 
 This project won't be successful without contributions from the community, especially project maintainers Jerome Lelong [`@jlelong`](https://github.com/jlelong), James Booth [`@jabooth`](https://github.com/jabooth), and all code [contributors](https://github.com/James-Yu/LaTeX-Workshop/graphs/contributors)! Thank you!
 
+**Note that starting from version `7.0.0`, LaTeX-Workshop requires at least VSCode `1.34.0`.**
+
 ## Manual
 
 The manual of the extension is maintained as a [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki)

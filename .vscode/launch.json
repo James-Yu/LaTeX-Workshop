@@ -16,6 +16,20 @@
             "preLaunchTask":"npm: watch"
         },
         {
+            "name":"Run Extension With Sample",
+            "type":"extensionHost",
+            "request":"launch",
+            "runtimeExecutable":"${execPath}",
+            "args":[
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "${workspaceFolder}/sample"
+            ],
+            "outFiles":[
+                "${workspaceFolder}/out/src/**/*.js"
+            ],
+            "preLaunchTask":"npm: watch"
+        },
+        {
             "name":"Run Extension Tests",
             "type":"extensionHost",
             "request":"launch",

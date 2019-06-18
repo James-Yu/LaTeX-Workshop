@@ -1,14 +1,17 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as fs from 'fs'
 
 import { Extension } from '../main'
+import * as filenameEncoding from './filenameencoding'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
-const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info):\s+(.*?)(?: on input line (\d+))?\.$/
+const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?(\.|\?|)$/
+const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: on input line (\d+))?(\.)?$/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
@@ -151,7 +154,11 @@ export class Parser {
                     searchesEmptyLine = false
                     insideError = false
                 } else {
-                    if (insideError) {
+                    const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
+                    if (packageExtraLineResult) {
+                        currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + packageExtraLineResult[4]
+                        currentResult.line = parseInt(packageExtraLineResult[3], 10)
+                    } else if (insideError) {
                         const subLine = line.replace(messageLine, '$1')
                         currentResult.text = currentResult.text + '\n' + subLine
                     } else {
@@ -197,7 +204,7 @@ export class Parser {
                     type: 'warning',
                     file: filename,
                     line: parseInt(result[4], 10),
-                    text: result[3]
+                    text: result[3] + result[5]
                 }
                 searchesEmptyLine = true
                 continue
@@ -315,8 +322,17 @@ export class Parser {
             diagsCollection[item.file].push(diag)
         }
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
         for (const file in diagsCollection) {
-            this.compilerDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+            let file1 = file
+            if (!fs.existsSync(file1) && convEnc) {
+                const f = filenameEncoding.convertFilenameEncoding(file1)
+                if (f !== undefined) {
+                    file1 = f
+                }
+            }
+            this.compilerDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
         }
     }
 
@@ -333,11 +349,20 @@ export class Parser {
             }
             diagsCollection[item.file].push(diag)
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
         for (const file in diagsCollection) {
+            let file1 = file
             if (['.tex', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(file)) > -1) {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
-                this.linterDiagnostics.set(vscode.Uri.file(file), diagsCollection[file])
+                if (!fs.existsSync(file1) && convEnc) {
+                    const f = filenameEncoding.convertFilenameEncoding(file1)
+                    if (f !== undefined) {
+                        file1 = f
+                    }
+                }
+                this.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
             }
         }
     }

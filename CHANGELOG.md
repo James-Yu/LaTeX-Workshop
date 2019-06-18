@@ -1,5 +1,84 @@
 # Change Log
 
+## [7.0.2] - 2019-06-07
+
+### Changed
+- (#1417) Change default math preview cursor symbol.
+
+### Fixed
+- (#1405) Add eol to `newcommand` file for mathjax.
+- (#1412) Fix the width of textLayer on pdf viewer.
+- (#1413) Fixed the menu of pdf viewer.
+
+## [7.0.1] - 2019-05-24
+
+### Fixed
+- (#1389) Highlight `\verb` in math mode.
+- (#1390) Update alternate keyboard selection.
+- (#1397) Allow multi-line captions.
+- (#1397) Allow one level of `{...}` inside caption.
+- (#1399) Declare `displaymath` as a math environment.
+- (#1395,#1402) Wait for Web Socket to open.
+
+## [7.0.0] - 2019-05-17 - Work in the Cloud Update
+
+### Added
+- (#1326) Show label or given number to ref in hover on the ref.
+- (#1345) Support single and double line font warnings.
+- (#1357) Enable LaTeX Workshop to work with VSCode Remote Dev.
+
+### Fixed
+- (#1343) Make `buildOnFileChange` work regardless of the activeTextEditor.
+- (#1354) Add new command defs from an input file to hover preview.
+- (#1355) Add default trim mode setting.
+- (#1363) Extend font warning second line to other warnings.
+- (#1363) Locate matching pair for inline environments.
+
+## [6.5.1] - 2019-04-28
+
+### Fixed
+- (#1298,#1333) Fix structure analyzer with inclusion cycle.
+- (#1319) Use `PWD` to resolve paths in `.fls` files.
+- (#1331) Keep cursor >= 0 when shifting section.
+- (#1333) Auto build from imported files work again.
+- (#1334) Don't throw error when `synctexjs` fails.
+- (#1341) Handle cycle in `clearTeXFileTree`.
+
+## [6.5.0] - 2019-04-25
+
+### Added
+- (#1307) Add some details into `commands.json`.
+- (#1310) Provide details for `environments.json`.
+- (#1321) Make go back and forward buttons on pdf viewer work with SyncTeX.
+
+### Fixed
+- (#710) Highlight fenced code block with extra `{ }` argument.
+- (#1298) Prevent circular dependencies in manager.
+- (#1302) Remove label from `equation` and `align`.
+- (#1313) Load `latex-mathsymbols_cmd.json` by default.
+- (#1322) Less escapes in wordpattern.
+
+## [6.4.0] - 2019-04-11
+
+### Added
+- (#1263) Add accent commands.
+- (#1265) Make port of viewer configurable.
+- (#1267) Add label field to `AutocompleteEntry`.
+- (#1273) Configure the editor group for the tab viewer with `latex-workshop.view.pdf.tab.useNewGroup`.
+
+### Changed
+- Deprecate the old action dropdown, replace with side view.
+
+### Fixed
+- Improve regex for hovering on inline maths.
+- Make auto build interval configurable, not 1000ms.
+- Skip postprocessing (e.g., refresh viewer) if latexmk is skipped, i.e., no change.
+- (#1272) Root file detection with auto build and `subfiles` package.
+- (#1278) Support preview for `$$...$$`.
+- (#1281) Allow using previous recipe by default, configurable at `latex-workshop.latex.recipe.default`.
+- (#1288) Use file pooling for `chokidar` watch.
+- (#1290) Expand all placeholders.
+
 ## [6.3.0] - 2019-04-01
 
 ### Added

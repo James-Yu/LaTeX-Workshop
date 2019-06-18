@@ -1,5 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import * as path from 'path'
+import { stripComments } from "../../utils"
 
 import {Extension} from '../../main'
 
@@ -7,7 +9,8 @@ export type ReferenceEntry = {
     item: {
         reference: string,
         text: string,
-        position: vscode.Position
+        position: vscode.Position,
+        atLastCompilation?: {refNumber: string, pageNumber: string}
     },
     text: string,
     file: string
@@ -74,8 +77,9 @@ export class Reference {
     }
 
     getReferenceItems(content: string) {
-        const itemReg = /^(?:(?!%).*\\label(?:\[[^\[\]\{\}]*\])?|label=){([^}]*)}/gm
+        const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
         const items: {[key: string]: ReferenceEntry['item']} = {}
+        content = stripComments(content, '%')
         const noELContent = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
             const result = itemReg.exec(content)
@@ -95,4 +99,31 @@ export class Reference {
         }
         return items
     }
+
+    setNumbersFromAuxFile(rootFile: string) {
+        const outDir = this.extension.manager.getOutputDir(rootFile)
+        const rootDir = path.dirname(rootFile)
+        const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
+        const refKeys = Object.keys(this.referenceData)
+        for (const key of refKeys) {
+            const refData = this.referenceData[key]
+            refData.item.atLastCompilation = undefined
+        }
+        if (!fs.existsSync(auxFile)) {
+            return
+        }
+        const newLabelReg = /^\\newlabel\{(.*?)\}\{\{(.*?)\}\{(.*?)\}/gm
+        const auxContent = fs.readFileSync(auxFile, {encoding: 'utf8'})
+        while (true) {
+            const result = newLabelReg.exec(auxContent)
+            if (result === null) {
+                break
+            }
+            if (result[1] in this.referenceData) {
+                const refData = this.referenceData[result[1]]
+                refData.item.atLastCompilation = {refNumber: result[2], pageNumber: result[3]}
+            }
+        }
+    }
+
 }

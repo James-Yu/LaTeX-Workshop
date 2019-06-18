@@ -77,7 +77,7 @@ export class Input {
         const importfromDir = payload[4]
         switch (mode) {
             case 'import':
-                if(importfromDir) {
+                if (importfromDir) {
                     baseDir = [importfromDir]
                 } else {
                     baseDir = ['/']
@@ -85,7 +85,7 @@ export class Input {
                 }
                 break
             case 'subimport':
-                if(importfromDir) {
+                if (importfromDir) {
                     baseDir = [path.join(path.dirname(currentFile), importfromDir)]
                 } else {
                     baseDir = [path.dirname(currentFile)]
