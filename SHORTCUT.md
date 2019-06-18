@@ -36,6 +36,7 @@ By default, the shortcuts are set according to the first column. You may switch 
 | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>ctrl</kbd>+<kbd>c</kbd> | Small Caps Text |
 | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>ctrl</kbd>+<kbd>l</kbd> | Lowercase       |
 | <kbd>ctrl</kbd>+<kbd>l</kbd>, <kbd>ctrl</kbd>+<kbd>u</kbd> | Uppercase       |
+| <kbd>ctrl</kbd>+<kbd>n</kbd>, <kbd>ctrl</kbd>+<kbd>n</kbd> | `\textnormal`   |
 
 ### Other text formatting
 
