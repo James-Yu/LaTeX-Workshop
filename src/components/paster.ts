@@ -163,10 +163,9 @@ export class Paster {
             text = text.replace(/…/g, '\\ldots') // elipses
             text = text.replace(/‐/g, '-') // hyphen
             text = text.replace(/‐/g, '-') // hyphen-
-            text = text.replace(/™/g, '-') // trade mark
-            text = text.replace(/®/g, '-') // registered trade mark
-            text = text.replace(/©/g, '-') // copyright
-            text = text.replace(/℗/g, '-') // phonogram copyright
+            text = text.replace(/™/g, '\\texttrademark') // trade mark
+            text = text.replace(/®/g, '\\textregistered') // registered trade mark
+            text = text.replace(/©/g, '\\textcopyright') // copyright
             text = text.replace(/¢/g, '\\cent') // copyright
             text = text.replace(/£/g, '\\pound') // copyright
             return text
