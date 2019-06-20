@@ -292,6 +292,11 @@
         "command": "latex-structure.toggle-follow-cursor",
         "title": "Toggle follow cursor",
         "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.formattedPaste",
+        "title": "Paste formatted content",
+        "category": "LaTeX Workshop"
       }
     ],
     "keybindings": [
@@ -525,6 +530,12 @@
         "command": "latex-workshop.onAltEnterKey",
         "key": "alt+enter",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible"
+      },
+      {
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v",
+        "command": "latex-workshop.formattedPaste",
+        "when": "editorTextFocus && editorLangId == 'latex'"
       }
     ],
     "configurationDefaults": {
@@ -1250,6 +1261,58 @@
             "█████▙░░░ (4 levels per block)",
             "No Bar"
           ]
+        },
+        "latex-workshop.formattedPaste.path": {
+          "type": "string",
+          "default": "${graphicsPath}",
+          "description": "The destination to save image file. You can use variable ${currentFileDir}, ${graphicsPath} and ${projectRoot}. ${currentFileDir} will be replace by the path of directory that contain current editing file. ${projectRoot} will be replace by path of the project opened in vscode."
+        },
+        "latex-workshop.formattedPaste.basePath": {
+          "type": "string",
+          "default": "${graphicsPath}",
+          "description": "The base path of image url. See formattedPaste.path for description of options. If you set basePath to empty String, it will insert absolute path to file."
+        },
+        "latex-workshop.formattedPaste.graphicsPathFallback": {
+          "type": "string",
+          "default": "${currentFileDir}",
+          "description": "Fallback in case ${graphicsPath} is unavalible. See formattedPaste.path for description of options."
+        },
+        "latex-workshop.formattedPaste.template": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "default": "\\includegraphics{${imageFilePath}}",
+          "description": "The template to use for pasting the image, use ${imageFilePath} to represent the image file"
+        },
+        "latex-workshop.formattedPaste.defaultName": {
+          "type": "string",
+          "default": "Y-MM-DD-HH-mm-ss",
+          "description": "The default image file name. The value of this config will be pass to the 'format' function of moment library(a js time manipulation library), you can read document https://momentjs.com/docs/#/displaying/format/ for advanced usage."
+        },
+        "latex-workshop.formattedPaste.namePrefix": {
+          "type": "string",
+          "default": "",
+          "description": "The string prepend to the image file name."
+        },
+        "latex-workshop.formattedPaste.nameSuffix": {
+          "type": "string",
+          "default": "",
+          "description": "The string append to the image file name."
+        },
+        "latex-workshop.formattedPaste.showFilePathConfirmInputBox": {
+          "type": "boolean",
+          "default": false,
+          "description": "Set to true if you want to be able to change the file path or name prior to saving the file to disk"
+        },
+        "latex-workshop.formattedPaste.filePathConfirmInputBoxMode": {
+          "type": "string",
+          "enum": [
+            "fullPath",
+            "onlyName"
+          ],
+          "default": "fullPath",
+          "description": "Set the mode of file path confirm inputbox"
         }
       }
     },
