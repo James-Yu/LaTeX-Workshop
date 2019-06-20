@@ -68,14 +68,31 @@ export class Paster {
         if (clipboardContents === '') {
             this.pasteImg(editor, fileUri)
         } else {
-            this.pasteTable(editor, clipboardContents)
+            try {
+                this.pasteTable(editor, clipboardContents)
+            } catch (error) {
+                this.pasteNormal(editor, this.reformatText.completeReformat(clipboardContents))
+            }
         }
+    }
+
+    public pasteNormal(editor: vscode.TextEditor, content: string) {
+        editor.edit(edit => {
+            const current = editor.selection
+
+            if (current.isEmpty) {
+                edit.insert(current.start, content)
+            } else {
+                edit.replace(current, content)
+            }
+        })
     }
 
     public pasteTable(editor: vscode.TextEditor, content: string) {
         this.extension.logger.addLogMessage('Pasting: Table')
         // trim surrounding whitespace
         content = content.replace(/^\s*/, '').replace(/\s*$/, '')
+        content = this.reformatText.completeReformat(content)
         const lines = content.split('\n')
         const cells = lines.map(l => l.split('\t'))
         // determine if all rows have same number of cells
@@ -86,7 +103,7 @@ export class Paster {
                 return false
             }
         }, true)
-        if (!isConsistent) {
+        if (!isConsistent || (cells.length === 1 && cells[0].length === 1)) {
             throw new Error('Table is not consistent')
         }
         const columnType: string = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableColumnType']
@@ -112,6 +129,80 @@ export class Paster {
                 edit.replace(current, tabular)
             }
         })
+    }
+
+    public reformatText = {
+        escape: (text: string) => {
+            text = text.replace(/\\/g, '\\textbackslash')
+            text = text.replace(/&/g, '\\&')
+            text = text.replace(/%/g, '\\%')
+            text = text.replace(/\$/g, '\\$')
+            text = text.replace(/#/g, '\\#')
+            text = text.replace(/_/g, '\\_')
+            text = text.replace(/\^/g, '\\textasciicircum')
+            text = text.replace(/{/g, '\\{')
+            text = text.replace(/}/g, '\\}')
+            text = text.replace(/~/g, '\\textasciitilde')
+            return text
+        },
+        convertQuotes: (text: string) => {
+            text = text.replace(/"([^"]+)"/g, "``$1''")
+            text = text.replace(/'([^']+)'/g, "`$1'")
+            // 'smart' quotes
+            text = text.replace(/“/g, '``')
+            text = text.replace(/”/g, "''")
+            text = text.replace(/‘/g, '`')
+            text = text.replace(/’/g, "'")
+            return text
+        },
+        // symbols that have latex equivilents
+        unicodeSymbols: (text: string) => {
+            text = text.replace(/—/g, '---') // em dash
+            text = text.replace(/–/g, '--') // en dash
+            text = text.replace(/–/g, '-') // minus sign
+            text = text.replace(/…/g, '\\ldots') // elipses
+            text = text.replace(/‐/g, '-') // hyphen
+            text = text.replace(/‐/g, '-') // hyphen-
+            text = text.replace(/™/g, '-') // trade mark
+            text = text.replace(/®/g, '-') // registered trade mark
+            text = text.replace(/©/g, '-') // copyright
+            text = text.replace(/℗/g, '-') // phonogram copyright
+            text = text.replace(/¢/g, '\\cent') // copyright
+            text = text.replace(/£/g, '\\pound') // copyright
+            return text
+        },
+        unicodeMath: (text: string) => {
+            text = text.replace(/×/g, '\\(\\times \\)')
+            text = text.replace(/÷/g, '\\(\\div \\)')
+            text = text.replace(/…/g, '\\(\\ldots \\)')
+            text = text.replace(/±/g, '\\(\\pm \\)')
+            text = text.replace(/→/g, '\\(\\to \\)')
+            text = text.replace(/°/g, '\\(^\\circ \\)')
+            text = text.replace(/≤/g, '\\(\\leq \\)')
+            text = text.replace(/≥/g, '\\(\\geq \\)')
+            return text
+        },
+        typographicApproximations: (text: string) => {
+            text = text.replace(/\.\.\./g, '\\ldots')
+            text = text.replace(/-{20,}/g, '\\hline')
+            text = text.replace(/-{2,3}>/g, '\\(\\longrightarrow \\)')
+            text = text.replace(/->/g, '\\(\\to \\)')
+            text = text.replace(/<-{2,3}/g, '\\(\\longleftarrow \\)')
+            text = text.replace(/<-/g, '\\(\\leftarrow \\)')
+            return text
+        },
+        removeBonusWhitespace: (text: string) => {
+            return text.replace(/\s+/g, ' ')
+        },
+        completeReformat: (content: string) => {
+            content = this.reformatText.escape(content)
+            content = this.reformatText.removeBonusWhitespace(content)
+            content = this.reformatText.unicodeSymbols(content)
+            content = this.reformatText.convertQuotes(content)
+            content = this.reformatText.unicodeMath(content)
+            content = this.reformatText.typographicApproximations(content)
+            return content
+        }
     }
 
     public pasteImg(editor: vscode.TextEditor, fileUri: vscode.Uri) {
