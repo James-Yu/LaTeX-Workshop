@@ -191,7 +191,10 @@ export class Paster {
             return text
         },
         removeBonusWhitespace: (text: string) => {
-            return text.replace(/\s+/g, ' ')
+            text = text.replace(/\n\n/g, '\uE000')
+            text = text.replace(/\s+/g, ' ')
+            text = text.replace(/\uE000/g, '\n\n')
+            return text
         },
         completeReformat: (content: string) => {
             content = this.reformatText.escape(content)
