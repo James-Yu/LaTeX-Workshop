@@ -40,7 +40,7 @@ export class Paster {
     showFilePathConfirmInputBox: boolean
     filePathConfirmInputBoxMode: string
 
-    public paste() {
+    public async paste() {
         this.extension.logger.addLogMessage('Performing formatted paste')
 
         // get current edit file path
@@ -57,6 +57,60 @@ export class Paster {
             vscode.window.showInformationMessage('Before paste image, you need to save current edit file first.')
             return
         }
+
+        const clipboardContents = await vscode.env.clipboard.readText()
+        // if no text, then try an image
+        if (clipboardContents === '') {
+            this.pasteImg(editor, fileUri)
+        } else {
+            this.pasteTable(editor, clipboardContents)
+        }
+    }
+
+    public pasteTable(editor: vscode.TextEditor, content: string) {
+        this.extension.logger.addLogMessage('Pasting: Table')
+        // trim surrounding whitespace
+        content = content.replace(/^\s*/, '').replace(/\s*$/, '')
+        const lines = content.split('\n')
+        const cells = lines.map(l => l.split('\t'))
+        // determine if all rows have same number of cells
+        const isConsistent = cells.reduce((accumulator, current, index, array) => {
+            if (current.length === array[0].length) {
+                return accumulator
+            } else {
+                return false
+            }
+        }, true)
+        if (!isConsistent) {
+            throw new Error('Table is not consistent')
+        }
+        const columnType: string = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableColumnType']
+        const booktabs: boolean = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableBooktabsStyle']
+        const headerRows: number = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableHeaderRows']
+        const tabularRows = cells.map(row => '\t' + row.join(' & '))
+        if (headerRows && tabularRows.length > headerRows) {
+            const headSep = booktabs ? '\t\\midrule\n' : '\t\\hline\n'
+            tabularRows[headerRows] = headSep + tabularRows[headerRows]
+        }
+        let tabularContents = tabularRows.join(' \\\\\n')
+        if (booktabs) {
+            tabularContents = '\t\\toprule\n' + tabularContents + ' \\\\\n\t\\bottomrule'
+        }
+        const tabular = `\\begin{tabular}{${columnType.repeat(cells[0].length)}}\n${tabularContents}\n\\end{tabular}`
+
+        editor.edit(edit => {
+            const current = editor.selection
+
+            if (current.isEmpty) {
+                edit.insert(current.start, tabular)
+            } else {
+                edit.replace(current, tabular)
+            }
+        })
+    }
+
+    public pasteImg(editor: vscode.TextEditor, fileUri: vscode.Uri) {
+        this.extension.logger.addLogMessage('Pasting: Image')
         const filePath = fileUri.fsPath
         const folderPath = path.dirname(filePath)
         const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : folderPath
