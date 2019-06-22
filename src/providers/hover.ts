@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
+import {latexParser} from 'latex-utensils'
 import * as path from 'path'
 import * as stripJsonComments from 'strip-json-comments'
 import * as utils from '../utils'
@@ -130,20 +131,30 @@ export class HoverProvider implements vscode.HoverProvider {
         if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled') as boolean) {
             return commandsString
         }
-        const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^\[\]\{\}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
+        const ast = latexParser.parse(content, {startRule: 'preamble'})
         const commands: string[] = []
-        const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
-        let result
-        do {
-            result = regex.exec(noCommentContent)
-            if (result) {
-                let command = result[1]
-                if (result[2]) {
-                    command = command.replace(/\*/, '')
-                }
-                commands.push(command)
+        const regex = /((re)?new|provide)command(\\*)?/
+        for (const node of ast.content) {
+            if (latexParser.isCommand(node) && node.name.match(regex)) {
+                const s = latexParser.stringify(node)
+                commands.push(s)
             }
-        } while (result)
+        }
+
+        // const regex = /(\\(?:(?:(?:re)?new|provide)command(\*)?{\\[a-zA-Z]+}(?:\[[^\[\]\{\}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
+        // const commands: string[] = []
+        // const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
+        // let result
+        // do {
+        //     result = regex.exec(noCommentContent)
+        //     if (result) {
+        //         let command = result[1]
+        //         if (result[2]) {
+        //             command = command.replace(/\*/, '')
+        //         }
+        //         commands.push(command)
+        //     }
+        // } while (result)
         return commandsString + '\n' + commands.join('')
     }
 
