@@ -68,6 +68,14 @@ export class Paster {
         if (clipboardContents === '') {
             this.pasteImg(editor, fileUri)
         } else {
+            if (clipboardContents.split('\n').length === 1) {
+                const fpath = path.resolve(fileUri.fsPath, clipboardContents)
+                if (fs.existsSync(fpath)) {
+                    this.pasteFile(editor, fileUri.fsPath, clipboardContents)
+                    return
+                }
+            }
+            // if not pasting file
             try {
                 this.pasteTable(editor, clipboardContents)
             } catch (error) {
@@ -88,11 +96,68 @@ export class Paster {
         })
     }
 
+    public pasteFile(editor: vscode.TextEditor, baseFile: string, file: string) {
+        const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.eps', '.pdf']
+        const TABLE_FORMATS = ['.csv']
+        const extension = path.extname(file)
+
+        if (IMAGE_EXTENSIONS.indexOf(extension) !== -1) {
+            const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : path.dirname(file)
+            this.loadImageConfig(projectPath, file)
+
+            const imagePath = this.renderImagePath(baseFile, file)
+
+            editor.edit(edit => {
+                const current = editor.selection
+
+                if (current.isEmpty) {
+                    edit.insert(current.start, imagePath)
+                } else {
+                    edit.replace(current, imagePath)
+                }
+            })
+        } else if (TABLE_FORMATS.indexOf(extension) !== -1) {
+            const contents = fs.readFileSync(path.resolve(baseFile, file), 'utf8')
+            if (extension === '.csv') {
+                // from: https://stackoverflow.com/a/41563966/3026698
+                let p = ''
+                let row = ['']
+                let i = 0
+                let r = 0
+                let s = !0
+                let l
+                const ret = [row]
+                for (l of contents) {
+                    if ('"' === l) {
+                        if (s && l === p) {
+                            row[i] += l
+                        }
+                        s = !s
+                    } else if (',' === l && s) {
+                        l = row[++i] = ''
+                    } else if ('\n' === l && s) {
+                        if ('\r' === p) {
+                            row[i] = row[i].slice(0, -1)
+                        }
+                        row = ret[++r] = [(l = '')]
+                        i = 0
+                    } else {
+                        row[i] += l
+                    }
+                    p = l
+                }
+                const rows = ret.map(r => r.join('\t'))
+                const body = rows.join('\n')
+                this.pasteTable(editor, body)
+            }
+        }
+    }
+
     public pasteTable(editor: vscode.TextEditor, content: string) {
         this.extension.logger.addLogMessage('Pasting: Table')
         // trim surrounding whitespace
         content = content.replace(/^\s*/, '').replace(/\s*$/, '')
-        content = this.reformatText.completeReformat(content)
+        content = this.reformatText.completeReformat(content, false)
         const lines = content.split('\n')
         const cells = lines.map(l => l.split('\t'))
         // determine if all rows have same number of cells
@@ -196,9 +261,11 @@ export class Paster {
             text = text.replace(/\uE000/g, '\n\n')
             return text
         },
-        completeReformat: (content: string) => {
+        completeReformat: (content: string, removeBonusWhitespace = true) => {
             content = this.reformatText.escape(content)
-            content = this.reformatText.removeBonusWhitespace(content)
+            if (removeBonusWhitespace) {
+                content = this.reformatText.removeBonusWhitespace(content)
+            }
             content = this.reformatText.unicodeSymbols(content)
             content = this.reformatText.convertQuotes(content)
             content = this.reformatText.unicodeMath(content)
@@ -207,20 +274,7 @@ export class Paster {
         }
     }
 
-    public pasteImg(editor: vscode.TextEditor, fileUri: vscode.Uri) {
-        this.extension.logger.addLogMessage('Pasting: Image')
-        const filePath = fileUri.fsPath
-        const folderPath = path.dirname(filePath)
-        const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : folderPath
-
-        // get selection as image file name, need check
-        const selection = editor.selection
-        const selectText = editor.document.getText(selection)
-        if (selectText && /[\\:*?<>|]/.test(selectText)) {
-            vscode.window.showInformationMessage('Your selection is not a valid file name!')
-            return
-        }
-
+    public loadImageConfig(projectPath, filePath) {
         // load config latex-workshop.formattedPaste.defaultName
         this.defaultNameConfig = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['defaultName']
         if (!this.defaultNameConfig) {
@@ -274,6 +328,23 @@ export class Paster {
         this.namePrefixConfig = this.replacePathVariable(this.namePrefixConfig, projectPath, filePath)
         this.nameSuffixConfig = this.replacePathVariable(this.nameSuffixConfig, projectPath, filePath)
         this.pasteTemplate = this.replacePathVariable(this.pasteTemplate, projectPath, filePath)
+    }
+
+    public pasteImg(editor: vscode.TextEditor, fileUri: vscode.Uri) {
+        this.extension.logger.addLogMessage('Pasting: Image')
+        const filePath = fileUri.fsPath
+        const folderPath = path.dirname(filePath)
+        const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : folderPath
+
+        // get selection as image file name, need check
+        const selection = editor.selection
+        const selectText = editor.document.getText(selection)
+        if (selectText && /[\\:*?<>|]/.test(selectText)) {
+            vscode.window.showInformationMessage('Your selection is not a valid file name!')
+            return
+        }
+
+        this.loadImageConfig(projectPath, filePath)
 
         // "this" is lost when coming back from the callback, thus we need to store it here.
         const instance = this
@@ -321,7 +392,7 @@ export class Paster {
                         return
                     }
 
-                    imagePath = this.renderFilePath(this.basePathConfig, imagePath)
+                    imagePath = this.renderImagePath(this.basePathConfig, imagePath)
 
                     editor.edit(edit => {
                         const current = editor.selection
@@ -522,7 +593,7 @@ export class Paster {
         }
     }
 
-    public renderFilePath(basePath: string, imageFilePath: string) : string {
+    public renderImagePath(basePath: string, imageFilePath: string) : string {
         if (basePath) {
             imageFilePath = path.relative(basePath, imageFilePath)
         }
