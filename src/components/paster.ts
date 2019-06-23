@@ -105,7 +105,7 @@ export class Paster {
             const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : path.dirname(file)
             this.loadImageConfig(projectPath, file)
 
-            const imagePath = this.renderImagePath(baseFile, file)
+            const imagePath = this.renderImagePath(path.dirname(baseFile), file)
 
             editor.edit(edit => {
                 const current = editor.selection
