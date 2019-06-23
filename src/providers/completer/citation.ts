@@ -124,7 +124,7 @@ export class Citation {
             return {
                 label: item.title ? item.title as string : '',
                 description: `${item.key}`,
-                detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.publisher ? item.publisher : 'Unknown')}`
+                detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.journaltitle ? item.journaltitle : (item.publisher ? item.publisher : 'Unknown'))}`
             }
         })
         vscode.window.showQuickPick(pickItems, {
