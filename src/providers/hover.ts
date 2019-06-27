@@ -131,7 +131,7 @@ export class HoverProvider implements vscode.HoverProvider {
         if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled') as boolean) {
             return commandsString
         }
-        const ast = latexParser.parse(content, {startRule: 'preamble'})
+        const ast = latexParser.parse(content, {startRule: 'Preamble'})
         const commands: string[] = []
         const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
         for (const node of ast.content) {
