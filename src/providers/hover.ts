@@ -131,30 +131,32 @@ export class HoverProvider implements vscode.HoverProvider {
         if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled') as boolean) {
             return commandsString
         }
-        const ast = latexParser.parsePreamble(content)
-        const commands: string[] = []
-        const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
-        for (const node of ast.content) {
-            if (latexParser.isCommand(node) && node.name.match(regex)) {
-                const s = latexParser.stringify(node)
-                commands.push(s)
+        let commands: string[] = []
+        try {
+            const ast = latexParser.parsePreamble(content)
+            const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
+            for (const node of ast.content) {
+                if (latexParser.isCommand(node) && node.name.match(regex)) {
+                    const s = latexParser.stringify(node)
+                    commands.push(s)
+                }
             }
+        } catch (e) {
+            commands = []
+            const regex = /(\\(?:(?:(?:re)?new|provide)command(\*)?{\\[a-zA-Z]+}(?:\[[^\[\]\{\}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
+            const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
+            let result
+            do {
+                result = regex.exec(noCommentContent)
+                if (result) {
+                    let command = result[1]
+                    if (result[2]) {
+                        command = command.replace(/\*/, '')
+                    }
+                    commands.push(command)
+                }
+            } while (result)
         }
-
-        // const regex = /(\\(?:(?:(?:re)?new|provide)command(\*)?{\\[a-zA-Z]+}(?:\[[^\[\]\{\}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
-        // const commands: string[] = []
-        // const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
-        // let result
-        // do {
-        //     result = regex.exec(noCommentContent)
-        //     if (result) {
-        //         let command = result[1]
-        //         if (result[2]) {
-        //             command = command.replace(/\*/, '')
-        //         }
-        //         commands.push(command)
-        //     }
-        // } while (result)
         return commandsString + '\n' + commands.join('')
     }
 
