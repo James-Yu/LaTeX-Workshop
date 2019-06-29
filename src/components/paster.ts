@@ -146,7 +146,7 @@ export class Paster {
         const lines = content.split('\n')
         const cells = lines.map(l => l.split('\t'))
         // determine if all rows have same number of cells
-        const isConsistent = cells.reduce((accumulator, current, index, array) => {
+        const isConsistent = cells.reduce((accumulator, current, _index, array) => {
             if (current.length === array[0].length) {
                 return accumulator
             } else {
@@ -302,7 +302,7 @@ export class Paster {
             this.folderPathConfig,
             this.showFilePathConfirmInputBox,
             this.filePathConfirmInputBoxMode,
-            (err: Error, imagePath) => {
+            (_err: Error, imagePath) => {
                 try {
                     // is the file existed?
                     const existed = fs.existsSync(imagePath)
@@ -538,7 +538,7 @@ export class Paster {
 
     public replacePathVariable(
         pathStr: string,
-        projectRoot: string,
+        _projectRoot: string,
         curFilePath: string,
         postFunction: (string) => string = x => x
     ) : string {
