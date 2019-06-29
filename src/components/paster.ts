@@ -2,16 +2,13 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as fse from 'fs-extra'
-import { spawn } from 'child_process'
 import * as moment from 'moment'
 
 import { Extension } from '../main'
+import { promisify } from 'util'
 
-// Adapted from https://github.com/mushanshitiancai/vscode-paste-image/
-// Copyright 2016 mushanshitiancai
-// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+const fsRename = promisify(fs.rename)
+const fsCopy = promisify(fs.copyFile)
 
 export class Paster {
     extension: Extension
@@ -34,6 +31,7 @@ export class Paster {
     FILE_PATH_CONFIRM_INPUTBOX_MODE_ONLY_NAME = 'onlyName'
     FILE_PATH_CONFIRM_INPUTBOX_MODE_PULL_PATH = 'fullPath'
 
+    imageMethodConfig: 'leave' | 'copy' | 'move'
     defaultNameConfig: string
     folderPathConfig: string
     basePathConfig: string
@@ -64,23 +62,23 @@ export class Paster {
         }
 
         const clipboardContents = await vscode.env.clipboard.readText()
-        // if no text, then try an image
+
         if (clipboardContents === '') {
-            this.pasteImg(editor, fileUri)
-        } else {
-            if (clipboardContents.split('\n').length === 1) {
-                const fpath = path.resolve(fileUri.fsPath, clipboardContents)
-                if (fs.existsSync(fpath)) {
-                    this.pasteFile(editor, fileUri.fsPath, clipboardContents)
-                    return
-                }
+            return
+        }
+
+        if (clipboardContents.split('\n').length === 1) {
+            const fpath = path.resolve(fileUri.fsPath, clipboardContents)
+            if (fs.existsSync(fpath)) {
+                this.pasteFile(editor, fileUri.fsPath, clipboardContents)
+                return
             }
-            // if not pasting file
-            try {
-                this.pasteTable(editor, clipboardContents)
-            } catch (error) {
-                this.pasteNormal(editor, this.reformatText.completeReformat(clipboardContents))
-            }
+        }
+        // if not pasting file
+        try {
+            this.pasteTable(editor, clipboardContents)
+        } catch (error) {
+            this.pasteNormal(editor, this.reformatText.completeReformat(clipboardContents))
         }
     }
 
@@ -102,20 +100,7 @@ export class Paster {
         const extension = path.extname(file)
 
         if (IMAGE_EXTENSIONS.indexOf(extension) !== -1) {
-            const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : path.dirname(file)
-            this.loadImageConfig(projectPath, file)
-
-            const imagePath = this.renderImagePath(path.dirname(baseFile), file)
-
-            editor.edit(edit => {
-                const current = editor.selection
-
-                if (current.isEmpty) {
-                    edit.insert(current.start, imagePath)
-                } else {
-                    edit.replace(current, imagePath)
-                }
-            })
+            this.pasteImg(editor, baseFile, file)
         } else if (TABLE_FORMATS.indexOf(extension) !== -1) {
             const contents = fs.readFileSync(path.resolve(baseFile, file), 'utf8')
             if (extension === '.csv') {
@@ -274,66 +259,21 @@ export class Paster {
         }
     }
 
-    public loadImageConfig(projectPath, filePath) {
-        // load config latex-workshop.formattedPaste.defaultName
-        this.defaultNameConfig = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['defaultName']
-        if (!this.defaultNameConfig) {
-            this.defaultNameConfig = 'Y-MM-DD-HH-mm-ss'
-        }
-
-        // load config latex-workshop.formattedPaste.path
-        this.folderPathConfig = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['path']
-        if (!this.folderPathConfig) {
-            this.folderPathConfig = '${graphicsPath}'
-        }
-        if (this.folderPathConfig.length !== this.folderPathConfig.trim().length) {
-            vscode.window.showErrorMessage(
-                `The config latex-workshop.formattedPaste.path = '${this.folderPathConfig}' is invalid. please check your config.`
-            )
-            return
-        }
-        // load config latex-workshop.formattedPaste.basePath
-        this.basePathConfig = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['basePath']
-        if (!this.basePathConfig) {
-            this.basePathConfig = ''
-        }
-        if (this.basePathConfig.length !== this.basePathConfig.trim().length) {
-            vscode.window.showErrorMessage(
-                `The config latex-workshop.formattedPaste.path = '${this.basePathConfig}' is invalid. please check your config.`
-            )
-            return
-        }
-        // load other config
-        this.encodePathConfig = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['encodePath']
-        this.namePrefixConfig = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['namePrefix']
-        this.nameSuffixConfig = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['nameSuffix']
-        this.graphicsPathFallback = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['graphicsPathFallback']
-        const pasteTemplate = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['template']
-        if (typeof pasteTemplate === 'string') {
-            this.pasteTemplate = pasteTemplate
-        } else {
-            // is array
-            this.pasteTemplate = pasteTemplate.join('\n')
-        }
-        this.showFilePathConfirmInputBox =
-            vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['showFilePathConfirmInputBox'] || false
-        this.filePathConfirmInputBoxMode = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')[
-            'filePathConfirmInputBoxMode'
-        ]
-
-        // replace variable in config
-        this.defaultNameConfig = this.replacePathVariable(this.defaultNameConfig, projectPath, filePath, x => `[${x}]`)
-        this.folderPathConfig = this.replacePathVariable(this.folderPathConfig, projectPath, filePath)
-        this.basePathConfig = this.replacePathVariable(this.basePathConfig, projectPath, filePath)
-        this.namePrefixConfig = this.replacePathVariable(this.namePrefixConfig, projectPath, filePath)
-        this.nameSuffixConfig = this.replacePathVariable(this.nameSuffixConfig, projectPath, filePath)
-        this.pasteTemplate = this.replacePathVariable(this.pasteTemplate, projectPath, filePath)
-    }
-
-    public pasteImg(editor: vscode.TextEditor, fileUri: vscode.Uri) {
+    /**
+     * This function and called vars / methods are adapted from https://github.com/mushanshitiancai/vscode-paste-image/
+     * Copyright 2016 mushanshitiancai
+     * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+     * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+     */
+    public pasteImg(editor: vscode.TextEditor, baseFile: string, filePath: string) {
         this.extension.logger.addLogMessage('Pasting: Image')
-        const filePath = fileUri.fsPath
-        const folderPath = path.dirname(filePath)
+
+        if (!fs.existsSync(filePath)) {
+            throw new Error('Image file does not exist')
+        }
+
+        const folderPath = path.dirname(baseFile)
         const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : folderPath
 
         // get selection as image file name, need check
@@ -344,32 +284,40 @@ export class Paster {
             return
         }
 
-        this.loadImageConfig(projectPath, filePath)
+        this.loadImageConfig(projectPath, baseFile)
+
+        if (this.imageMethodConfig === 'leave' && !selectText) {
+            const imagePath = this.renderImagePath(path.dirname(baseFile), filePath)
+
+            editor.edit(edit => {
+                edit.insert(editor.selection.start, imagePath)
+            })
+        }
 
         // "this" is lost when coming back from the callback, thus we need to store it here.
         const instance = this
         this.getImagePath(
-            filePath,
+            baseFile,
             selectText,
             this.folderPathConfig,
             this.showFilePathConfirmInputBox,
             this.filePathConfirmInputBoxMode,
-            (err, imagePath) => {
+            (err: Error, imagePath) => {
                 try {
                     // is the file existed?
                     const existed = fs.existsSync(imagePath)
                     if (existed) {
                         vscode.window
-                            .showInformationMessage(`File ${imagePath} existed.Would you want to replace?`, 'Replace', 'Cancel')
+                            .showInformationMessage(`File ${imagePath} exists. Would you want to replace?`, 'Replace', 'Cancel')
                             .then(choose => {
                                 if (choose !== 'Replace') {
                                     return
                                 }
 
-                                instance.saveAndPaste(editor, imagePath)
+                                instance.saveAndPaste(editor, imagePath, filePath)
                             })
                     } else {
-                        instance.saveAndPaste(editor, imagePath)
+                        instance.saveAndPaste(editor, imagePath, filePath)
                     }
                 } catch (err) {
                     vscode.window.showErrorMessage(`fs.existsSync(${imagePath}) fail. message=${err.message}`)
@@ -379,36 +327,60 @@ export class Paster {
         )
     }
 
-    public saveAndPaste(editor: vscode.TextEditor, imagePath) {
-        this.createImageDirWithImagePath(imagePath)
-            .then(imagePath => {
-                // save image and insert to current edit file
-                this.saveClipboardImageToFileAndGetPath(imagePath, (imagePath, imagePathReturnByScript) => {
-                    if (!imagePathReturnByScript) {
-                        return
-                    }
-                    if (imagePathReturnByScript === 'no image') {
-                        vscode.window.showInformationMessage('There is not a image in clipboard.')
-                        return
-                    }
+    public loadImageConfig(projectPath, filePath) {
+        const config = vscode.workspace.getConfiguration('latex-workshop.formattedPaste.image')
 
-                    imagePath = this.renderImagePath(this.basePathConfig, imagePath)
+        // load config latex-workshop.formattedPaste.defaultName
+        this.defaultNameConfig = config['defaultName']
+        if (!this.defaultNameConfig) {
+            this.defaultNameConfig = 'Y-MM-DD-HH-mm-ss'
+        }
 
-                    editor.edit(edit => {
-                        const current = editor.selection
+        // load config latex-workshop.formattedPaste.path
+        this.folderPathConfig = config['path']
+        if (!this.folderPathConfig) {
+            this.folderPathConfig = '${graphicsPath}'
+        }
+        if (this.folderPathConfig.length !== this.folderPathConfig.trim().length) {
+            vscode.window.showErrorMessage(
+                `The config latex-workshop.formattedPaste.path = '${this.folderPathConfig}' is invalid. please check your config.`
+            )
+            return
+        }
+        // load config latex-workshop.formattedPaste.basePath
+        this.basePathConfig = config['basePath']
+        if (!this.basePathConfig) {
+            this.basePathConfig = ''
+        }
+        if (this.basePathConfig.length !== this.basePathConfig.trim().length) {
+            vscode.window.showErrorMessage(
+                `The config latex-workshop.formattedPaste.path = '${this.basePathConfig}' is invalid. please check your config.`
+            )
+            return
+        }
+        // load other config
+        this.imageMethodConfig = config['method']
+        this.namePrefixConfig = config['namePrefix']
+        this.nameSuffixConfig = config['nameSuffix']
+        this.graphicsPathFallback = config['graphicsPathFallback']
+        const pasteTemplate = config['template']
+        if (typeof pasteTemplate === 'string') {
+            this.pasteTemplate = pasteTemplate
+        } else {
+            // is array
+            this.pasteTemplate = pasteTemplate.join('\n')
+        }
+        this.showFilePathConfirmInputBox = config['showFilePathConfirmInputBox'] || false
+        this.filePathConfirmInputBoxMode = config['filePathConfirmInputBoxMode']
 
-                        if (current.isEmpty) {
-                            edit.insert(current.start, imagePath)
-                        } else {
-                            edit.replace(current, imagePath)
-                        }
-                    })
-                })
-            })
-            .catch(err => {
-                vscode.window.showErrorMessage(`Failed make folder. message=${err.message}`)
-                return
-            })
+        // replace variable in config
+        this.defaultNameConfig = this.replacePathVariable(this.defaultNameConfig, projectPath, filePath, x => `[${x}]`)
+        this.graphicsPathFallback = this.replacePathVariable(this.graphicsPathFallback, projectPath, filePath)
+        this.folderPathConfig = this.replacePathVariable(this.folderPathConfig, projectPath, filePath)
+        this.basePathConfig = this.replacePathVariable(this.basePathConfig, projectPath, filePath)
+        this.namePrefixConfig = this.replacePathVariable(this.namePrefixConfig, projectPath, filePath)
+        this.nameSuffixConfig = this.replacePathVariable(this.nameSuffixConfig, projectPath, filePath)
+        this.pasteTemplate = this.replacePathVariable(this.pasteTemplate, projectPath, filePath)
     }
 
     public getImagePath(
@@ -417,7 +389,7 @@ export class Paster {
         folderPathFromConfig: string,
         showFilePathConfirmInputBox: boolean,
         filePathConfirmInputBoxMode: string,
-        callback: (err, imagePath: string) => void
+        callback: (err: Error | null, imagePath: string) => void
     ) {
         // image file name
         let imageFileName = ''
@@ -430,7 +402,7 @@ export class Paster {
             imageFileName = this.namePrefixConfig + selectText + this.nameSuffixConfig + '.png'
         }
 
-        let filePathOrName
+        let filePathOrName: string
         if (filePathConfirmInputBoxMode === this.FILE_PATH_CONFIRM_INPUTBOX_MODE_PULL_PATH) {
             filePathOrName = makeImagePath(imageFileName)
         } else {
@@ -463,7 +435,7 @@ export class Paster {
             return
         }
 
-        function makeImagePath(fileName) {
+        function makeImagePath(fileName: string) {
             // image output path
             const folderPath = path.dirname(filePath)
             let imagePath = ''
@@ -477,6 +449,35 @@ export class Paster {
 
             return imagePath
         }
+    }
+
+    public async saveAndPaste(editor: vscode.TextEditor, imagePath: string, oldPath: string) {
+        this.createImageDirWithImagePath(imagePath)
+            .then((imagePath: string) => {
+                // save image and insert to current edit file
+
+                if (this.imageMethodConfig === 'copy') {
+                    fsCopy(oldPath, imagePath)
+                } else {
+                    fsRename(oldPath, imagePath)
+                }
+
+                const imageString = this.renderImagePath(this.basePathConfig, imagePath)
+
+                editor.edit(edit => {
+                    const current = editor.selection
+
+                    if (current.isEmpty) {
+                        edit.insert(current.start, imageString)
+                    } else {
+                        edit.replace(current, imageString)
+                    }
+                })
+            })
+            .catch(err => {
+                vscode.window.showErrorMessage(`Failed make folder. message=${err.message}`)
+                return
+            })
     }
 
     /**
@@ -507,90 +508,6 @@ export class Paster {
                 }
             })
         })
-    }
-
-    private saveClipboardImageToFileAndGetPath(imagePath, cb: (imagePath: string, imagePathFromScript: string) => void) {
-        if (!imagePath) {
-            return
-        }
-
-        const platform = process.platform
-        if (platform === 'win32') {
-            // Windows
-            const scriptPath = path.join(this.extension.extensionRoot, './scripts/saveclipimg-pc.ps1')
-
-            let command = 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe'
-            const powershellExisted = fs.existsSync(command)
-            if (!powershellExisted) {
-                command = 'powershell'
-            }
-
-            const powershell = spawn(command, [
-                '-noprofile',
-                '-noninteractive',
-                '-nologo',
-                '-sta',
-                '-executionpolicy',
-                'unrestricted',
-                '-windowstyle',
-                'hidden',
-                '-file',
-                scriptPath,
-                imagePath
-            ])
-            powershell.on('error', e => {
-                if (e.name === 'ENOENT') {
-                    vscode.window.showErrorMessage(
-                        `The powershell command is not in you PATH environment variables.Please add it and retry.`
-                    )
-                } else {
-                    console.log(e)
-                    vscode.window.showErrorMessage(e.message)
-                }
-            })
-            powershell.on('exit', (code, signal) => {
-                // console.log('exit', code, signal);
-            })
-            powershell.stdout.on('data', (data: Buffer) => {
-                cb(imagePath, data.toString().trim())
-            })
-        } else if (platform === 'darwin') {
-            // Mac
-            const scriptPath = path.join(this.extension.extensionRoot, './scripts/saveclipimg-mac.applescript')
-
-            const ascript = spawn('osascript', [scriptPath, imagePath])
-            ascript.on('error', e => {
-                console.log(e)
-                vscode.window.showErrorMessage(e.message)
-            })
-            ascript.on('exit', (code, signal) => {
-                // console.log('exit',code,signal);
-            })
-            ascript.stdout.on('data', (data: Buffer) => {
-                cb(imagePath, data.toString().trim())
-            })
-        } else {
-            // Linux
-
-            const scriptPath = path.join(this.extension.extensionRoot, './scripts/saveclipimg-linux.sh')
-
-            const ascript = spawn('sh', [scriptPath, imagePath])
-            ascript.on('error', e => {
-                console.log(e)
-                vscode.window.showErrorMessage(e.message)
-            })
-            ascript.on('exit', (code, signal) => {
-                // console.log('exit',code,signal);
-            })
-            ascript.stdout.on('data', (data: Buffer) => {
-                const result = data.toString().trim()
-                if (result === 'no xclip') {
-                    vscode.window.showErrorMessage('You need to install xclip command first.')
-                    return
-                }
-                cb(imagePath, result)
-            })
-        }
     }
 
     public renderImagePath(basePath: string, imageFilePath: string) : string {

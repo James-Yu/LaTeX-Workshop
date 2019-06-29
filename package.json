@@ -1262,50 +1262,57 @@
             "No Bar"
           ]
         },
-        "latex-workshop.formattedPaste.path": {
+        "latex-workshop.formattedPaste.image.method": {
+          "type": "string",
+          "enum": ["leave", "copy", "move"],
+          "enumDescriptions": ["reference the image where it is", "copy image to target location", "move image to target location"],
+          "default": "leave",
+          "description": "Copy the pasted image to formattedPaste.image.path if it isn't there already"
+        },
+        "latex-workshop.formattedPaste.image.path": {
           "type": "string",
           "default": "${graphicsPath}",
-          "description": "The destination to save image file. You can use variable ${currentFileDir}, ${graphicsPath} and ${projectRoot}. ${currentFileDir} will be replace by the path of directory that contain current editing file. ${projectRoot} will be replace by path of the project opened in vscode."
+          "description": "The destination to copy the image file to. You can use variable ${currentFileDir}, ${graphicsPath} and ${projectRoot}. ${currentFileDir} will be replace by the path of directory that contain current editing file. ${projectRoot} will be replace by path of the project opened in vscode."
         },
-        "latex-workshop.formattedPaste.basePath": {
+        "latex-workshop.formattedPaste.image.basePath": {
           "type": "string",
           "default": "${graphicsPath}",
-          "description": "The base path of image url. See formattedPaste.path for description of options. If you set basePath to empty String, it will insert absolute path to file."
+          "description": "The base path of image url. See formattedPaste.image.path for description of options. If you set basePath to empty String, it will insert absolute path to file."
         },
-        "latex-workshop.formattedPaste.graphicsPathFallback": {
+        "latex-workshop.formattedPaste.image.graphicsPathFallback": {
           "type": "string",
           "default": "${currentFileDir}",
           "description": "Fallback in case ${graphicsPath} is unavalible. See formattedPaste.path for description of options."
         },
-        "latex-workshop.formattedPaste.template": {
+        "latex-workshop.formattedPaste.image.template": {
           "type": [
             "string",
             "array"
           ],
           "default": "\\includegraphics{${imageFilePath}}",
-          "description": "The template to use for pasting the image, use ${imageFilePath} to represent the image file"
+          "description": "The template to use for pasting the image, use ${imageFilePath} to represent the image file. Can also use ${imageFileNameWithoutExt}"
         },
-        "latex-workshop.formattedPaste.defaultName": {
+        "latex-workshop.formattedPaste.image.defaultName": {
           "type": "string",
           "default": "Y-MM-DD-HH-mm-ss",
-          "description": "The default image file name. The value of this config will be pass to the 'format' function of moment library(a js time manipulation library), you can read document https://momentjs.com/docs/#/displaying/format/ for advanced usage."
+          "description": "The default copied image file name. The value of this config will be pass to the 'format' function of moment library (a js time manipulation library), you can read document https://momentjs.com/docs/#/displaying/format/ for advanced usage. It will then have placeholders such as ${imageFilePath} replaced"
         },
-        "latex-workshop.formattedPaste.namePrefix": {
+        "latex-workshop.formattedPaste.image.namePrefix": {
           "type": "string",
           "default": "",
           "description": "The string prepend to the image file name."
         },
-        "latex-workshop.formattedPaste.nameSuffix": {
+        "latex-workshop.formattedPaste.image.nameSuffix": {
           "type": "string",
           "default": "",
           "description": "The string append to the image file name."
         },
-        "latex-workshop.formattedPaste.showFilePathConfirmInputBox": {
+        "latex-workshop.formattedPaste.image.showFilePathConfirmInputBox": {
           "type": "boolean",
           "default": false,
           "description": "Set to true if you want to be able to change the file path or name prior to saving the file to disk"
         },
-        "latex-workshop.formattedPaste.filePathConfirmInputBoxMode": {
+        "latex-workshop.formattedPaste.image.filePathConfirmInputBoxMode": {
           "type": "string",
           "enum": [
             "fullPath",
