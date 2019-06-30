@@ -130,7 +130,8 @@ export class Paster {
         const tabularRows = cells.map(row => '\t' + row.join(' & '))
 
         if (headerRows && tabularRows.length > headerRows) {
-            const headSep = booktabs ? '\t\\midrule\n' : '\t\\hline\n'
+            const eol = editor.document.eol.toString()
+            const headSep = '\t' + (booktabs ? '\\midrule' : '\\hline') + eol
             tabularRows[headerRows] = headSep + tabularRows[headerRows]
         }
         let tabularContents = tabularRows.join(' \\\\\n')
