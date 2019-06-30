@@ -124,6 +124,7 @@ export class Paster {
                     }
                     p = l
                 }
+
                 const rows = ret.map(r => r.join('\t'))
                 const body = rows.join('\n')
                 this.pasteTable(editor, body)
@@ -138,6 +139,7 @@ export class Paster {
         content = this.reformatText.completeReformat(content, false)
         const lines = content.split('\n')
         const cells = lines.map(l => l.split('\t'))
+
         // determine if all rows have same number of cells
         const isConsistent = cells.reduce((accumulator, current, _index, array) => {
             if (current.length === array[0].length) {
@@ -149,10 +151,12 @@ export class Paster {
         if (!isConsistent || (cells.length === 1 && cells[0].length === 1)) {
             throw new Error('Table is not consistent')
         }
+
         const columnType: string = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableColumnType']
         const booktabs: boolean = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableBooktabsStyle']
         const headerRows: number = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableHeaderRows']
         const tabularRows = cells.map(row => '\t' + row.join(' & '))
+
         if (headerRows && tabularRows.length > headerRows) {
             const headSep = booktabs ? '\t\\midrule\n' : '\t\\hline\n'
             tabularRows[headerRows] = headSep + tabularRows[headerRows]
@@ -280,16 +284,14 @@ export class Paster {
         this.loadImageConfig(projectPath, baseFile)
 
         if (this.imageMethodConfig === 'leave' && !selectText) {
-            const imagePath = this.renderImagePath(path.dirname(baseFile), filePath)
+            const imagePath = this.renderImagePaste(path.dirname(baseFile), filePath)
 
             editor.edit(edit => {
                 edit.insert(editor.selection.start, imagePath)
             })
         }
 
-        // "this" is lost when coming back from the callback, thus we need to store it here.
-        const instance = this
-        this.getImagePath(baseFile, selectText, this.basePathConfig, (_err: Error, imagePath) => {
+        this.getImagePath(baseFile, filePath, selectText, this.basePathConfig, (_err: Error, imagePath) => {
             try {
                 // does the file exist?
                 const existed = fs.existsSync(imagePath)
@@ -301,10 +303,10 @@ export class Paster {
                                 return
                             }
 
-                            instance.saveAndPaste(editor, imagePath, filePath)
+                            this.saveAndPaste(editor, imagePath, filePath)
                         })
                 } else {
-                    instance.saveAndPaste(editor, imagePath, filePath)
+                    this.saveAndPaste(editor, imagePath, filePath)
                 }
             } catch (err) {
                 vscode.window.showErrorMessage(`fs.existsSync(${imagePath}) fail. message=${err.message}`)
@@ -333,35 +335,22 @@ export class Paster {
         }
 
         // replace variable in config
-        this.defaultNameConfig = this.replacePathVariable(this.defaultNameConfig, projectPath, filePath, x => `[${x}]`)
-        this.graphicsPathFallback = this.replacePathVariable(this.graphicsPathFallback, projectPath, filePath)
-        this.basePathConfig = this.replacePathVariable(this.basePathConfig, projectPath, filePath)
-        this.pasteTemplate = this.replacePathVariable(this.pasteTemplate, projectPath, filePath)
+        this.defaultNameConfig = this.replacePathVariables(this.defaultNameConfig, projectPath, filePath, x => `[${x}]`)
+        this.graphicsPathFallback = this.replacePathVariables(this.graphicsPathFallback, projectPath, filePath)
+        this.basePathConfig = this.replacePathVariables(this.basePathConfig, projectPath, filePath)
+        this.pasteTemplate = this.replacePathVariables(this.pasteTemplate, projectPath, filePath)
     }
 
     public getImagePath(
         filePath: string,
+        imagePathCurrent: string = '',
         selectText: string,
         folderPathFromConfig: string,
         callback: (err: Error | null, imagePath: string) => void
     ) {
-        // image file name
-        let imageFileName = ''
-        if (!selectText) {
-            imageFileName = moment().format(this.defaultNameConfig) + '.png'
-            // no moment alternative
-            // date format: "2019-06-19-9-04"
-            // new Date().toISOString().replace(/(T0|:)/g, '-').replace(/-\d+\..*$/, '')
-        } else {
-            imageFileName = selectText + '.png'
-        }
-
-        let filePathOrName: string
-        if (this.filePathConfirmBoxMode === 'fullPath') {
-            filePathOrName = makeImagePath(imageFileName)
-        } else {
-            filePathOrName = imageFileName
-        }
+        const imgExtension = path.extname(imagePathCurrent) ? path.extname(imagePathCurrent) : '.png'
+        const imageFileName = selectText ? selectText + imgExtension : moment().format(this.defaultNameConfig) + imgExtension
+        const filePathOrName = this.filePathConfirmBoxMode === 'fullPath' ? makeImagePath(imageFileName) : imageFileName
 
         if (this.filePathConfirmBoxMode !== 'none') {
             vscode.window
@@ -372,8 +361,8 @@ export class Paster {
                 })
                 .then(result => {
                     if (result) {
-                        if (!result.endsWith('.png')) {
-                            result += '.png'
+                        if (!result.endsWith(imgExtension)) {
+                            result += imgExtension
                         }
 
                         if (this.filePathConfirmBoxMode === 'onlyName') {
@@ -406,7 +395,7 @@ export class Paster {
     }
 
     public async saveAndPaste(editor: vscode.TextEditor, imagePath: string, oldPath: string) {
-        this.createImageDirWithImagePath(imagePath)
+        this.ensureImgDirExists(imagePath)
             .then((imagePath: string) => {
                 // save image and insert to current edit file
 
@@ -416,7 +405,7 @@ export class Paster {
                     fsRename(oldPath, imagePath)
                 }
 
-                const imageString = this.renderImagePath(this.basePathConfig, imagePath)
+                const imageString = this.renderImagePaste(this.basePathConfig, imagePath)
 
                 editor.edit(edit => {
                     const current = editor.selection
@@ -434,10 +423,7 @@ export class Paster {
             })
     }
 
-    /**
-     * create directory for image when directory does not exist
-     */
-    private createImageDirWithImagePath(imagePath: string) {
+    private ensureImgDirExists(imagePath: string) {
         return new Promise((resolve, reject) => {
             const imageDir = path.dirname(imagePath)
 
@@ -446,7 +432,7 @@ export class Paster {
                     if (stats.isDirectory()) {
                         resolve(imagePath)
                     } else {
-                        reject(new Error(`The image dest directory '${imageDir}' is a file. please check your 'pasteImage.path' config.`))
+                        reject(new Error(`The image destination directory '${imageDir}' is a file.`))
                     }
                 } else if (error.code === 'ENOENT') {
                     fse.ensureDir(imageDir, undefined, err => {
@@ -464,7 +450,7 @@ export class Paster {
         })
     }
 
-    public renderImagePath(basePath: string, imageFilePath: string) : string {
+    public renderImagePaste(basePath: string, imageFilePath: string) : string {
         if (basePath) {
             imageFilePath = path.relative(basePath, imageFilePath)
         }
@@ -484,7 +470,7 @@ export class Paster {
         return result
     }
 
-    public replacePathVariable(
+    public replacePathVariables(
         pathStr: string,
         _projectRoot: string,
         curFilePath: string,
@@ -495,11 +481,7 @@ export class Paster {
         const fileName = path.basename(curFilePath)
         const fileNameWithoutExt = path.basename(curFilePath, ext)
         let graphicsPath: string | string[] = this.extension.completer.input.graphicsPath
-        if (graphicsPath.length === 0) {
-            graphicsPath = this.graphicsPathFallback
-        } else {
-            graphicsPath = graphicsPath[0]
-        }
+        graphicsPath = graphicsPath.length !== 0 ? graphicsPath[0] : this.graphicsPathFallback
         graphicsPath = path.resolve(currentFileDir, graphicsPath)
 
         pathStr = pathStr.replace(this.PATH_VARIABLE_GRAPHICS_PATH, postFunction(graphicsPath))
