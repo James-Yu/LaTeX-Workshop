@@ -1,14 +1,8 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-import * as fse from 'fs-extra'
-import * as moment from 'moment'
 
 import { Extension } from '../main'
-import { promisify } from 'util'
-
-const fsRename = promisify(fs.rename)
-const fsCopy = promisify(fs.copyFile)
 
 export class Paster {
     extension: Extension
@@ -16,25 +10,6 @@ export class Paster {
     constructor(extension: Extension) {
         this.extension = extension
     }
-
-    PATH_VARIABLE_GRAPHICS_PATH = /\$\{graphicsPath\}/g
-    PATH_VARIABLE_CURRNET_FILE_DIR = /\$\{currentFileDir\}/g
-    PATH_VARIABLE_PROJECT_ROOT = /\$\{projectRoot\}/g
-    PATH_VARIABLE_CURRNET_FILE_NAME = /\$\{currentFileName\}/g
-    PATH_VARIABLE_CURRNET_FILE_NAME_WITHOUT_EXT = /\$\{currentFileNameWithoutExt\}/g
-
-    PATH_VARIABLE_IMAGE_FILE_PATH = /\$\{imageFilePath\}/g
-    PATH_VARIABLE_IMAGE_ORIGINAL_FILE_PATH = /\$\{imageOriginalFilePath\}/g
-    PATH_VARIABLE_IMAGE_FILE_NAME = /\$\{imageFileName\}/g
-    PATH_VARIABLE_IMAGE_FILE_NAME_WITHOUT_EXT = /\$\{imageFileNameWithoutExt\}/g
-
-    imageMethodConfig: 'leave' | 'copy' | 'move'
-    filePathConfirmBoxMode: 'none' | 'fullPath' | 'onlyName'
-    defaultNameConfig: string
-    pasteTemplate: string
-    basePathConfig = '${graphicsPath}'
-    graphicsPathFallback = '${currentFileDir}'
-    showFilePathConfirmInputBox: boolean
 
     public async paste() {
         this.extension.logger.addLogMessage('Performing formatted paste')
@@ -88,13 +63,10 @@ export class Paster {
     }
 
     public pasteFile(editor: vscode.TextEditor, baseFile: string, file: string) {
-        const IMAGE_EXTENSIONS = ['.png', '.jpg', '.jpeg', '.eps', '.pdf']
         const TABLE_FORMATS = ['.csv']
         const extension = path.extname(file)
 
-        if (IMAGE_EXTENSIONS.indexOf(extension) !== -1) {
-            this.pasteImg(editor, baseFile, file)
-        } else if (TABLE_FORMATS.indexOf(extension) !== -1) {
+        if (TABLE_FORMATS.indexOf(extension) !== -1) {
             const contents = fs.readFileSync(path.resolve(baseFile, file), 'utf8')
             if (extension === '.csv') {
                 // from: https://stackoverflow.com/a/41563966/3026698
@@ -254,240 +226,5 @@ export class Paster {
             content = this.reformatText.typographicApproximations(content)
             return content
         }
-    }
-
-    /**
-     * This function and called vars / methods are adapted from https://github.com/mushanshitiancai/vscode-paste-image/
-     * Copyright 2016 mushanshitiancai
-     * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-     * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-     */
-    public pasteImg(editor: vscode.TextEditor, baseFile: string, filePath: string) {
-        this.extension.logger.addLogMessage('Pasting: Image')
-
-        if (!fs.existsSync(filePath)) {
-            throw new Error('Image file does not exist')
-        }
-
-        const folderPath = path.dirname(baseFile)
-        const projectPath = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath : folderPath
-
-        // get selection as image file name, need check
-        const selection = editor.selection
-        const selectText = editor.document.getText(selection)
-        if (selectText && /\x00|\//.test(selectText)) {
-            vscode.window.showInformationMessage('Your selection is not a valid file name!')
-            return
-        }
-
-        this.loadImageConfig(projectPath, baseFile)
-
-        if (this.imageMethodConfig === 'leave' && !selectText) {
-            const imagePath = this.renderImagePaste(path.dirname(baseFile), filePath)
-
-            editor.edit(edit => {
-                edit.insert(editor.selection.start, imagePath)
-            })
-        }
-
-        this.getImagePath(baseFile, filePath, selectText, this.basePathConfig, (_err: Error, imagePath) => {
-            try {
-                // does the file exist?
-                const existed = fs.existsSync(imagePath)
-                if (existed) {
-                    vscode.window
-                        .showInformationMessage(`File ${imagePath} exists. Would you want to replace?`, 'Replace', 'Cancel')
-                        .then(choose => {
-                            if (choose !== 'Replace') {
-                                return
-                            }
-
-                            this.saveAndPaste(editor, imagePath, filePath)
-                        })
-                } else {
-                    this.saveAndPaste(editor, imagePath, filePath)
-                }
-            } catch (err) {
-                vscode.window.showErrorMessage(`fs.existsSync(${imagePath}) fail. message=${err.message}`)
-                return
-            }
-        })
-    }
-
-    public loadImageConfig(projectPath: string, filePath: string) {
-        const config = vscode.workspace.getConfiguration('latex-workshop.formattedPaste.image')
-
-        this.defaultNameConfig = config['defaultName']
-        if (!this.defaultNameConfig) {
-            this.defaultNameConfig = 'Y-MM-DD-HH-mm-ss'
-        }
-
-        // load other config
-        this.imageMethodConfig = config['method']
-        this.filePathConfirmBoxMode = config['filePathConfirmInputBoxMode']
-        const pasteTemplate = config['template']
-        if (typeof pasteTemplate === 'string') {
-            this.pasteTemplate = pasteTemplate
-        } else {
-            // is multiline string represented by array
-            this.pasteTemplate = pasteTemplate.join('\n')
-        }
-
-        // replace variable in config
-        this.defaultNameConfig = this.replacePathVariables(this.defaultNameConfig, projectPath, filePath, x => `[${x}]`)
-        this.graphicsPathFallback = this.replacePathVariables(this.graphicsPathFallback, projectPath, filePath)
-        this.basePathConfig = this.replacePathVariables(this.basePathConfig, projectPath, filePath)
-        this.pasteTemplate = this.replacePathVariables(this.pasteTemplate, projectPath, filePath)
-    }
-
-    public getImagePath(
-        filePath: string,
-        imagePathCurrent: string = '',
-        selectText: string,
-        folderPathFromConfig: string,
-        callback: (err: Error | null, imagePath: string) => void
-    ) {
-        const imgExtension = path.extname(imagePathCurrent) ? path.extname(imagePathCurrent) : '.png'
-        const imageFileName = selectText ? selectText + imgExtension : moment().format(this.defaultNameConfig) + imgExtension
-        const filePathOrName = this.filePathConfirmBoxMode === 'fullPath' ? makeImagePath(imageFileName) : imageFileName
-
-        if (this.filePathConfirmBoxMode !== 'none') {
-            vscode.window
-                .showInputBox({
-                    prompt: 'Please specify the filename of the image.',
-                    value: filePathOrName,
-                    valueSelection: [filePathOrName.length - imageFileName.length, filePathOrName.length - 4]
-                })
-                .then(result => {
-                    if (result) {
-                        if (!result.endsWith(imgExtension)) {
-                            result += imgExtension
-                        }
-
-                        if (this.filePathConfirmBoxMode === 'onlyName') {
-                            result = makeImagePath(result)
-                        }
-
-                        callback(null, result)
-                    }
-                    return
-                })
-        } else {
-            callback(null, makeImagePath(imageFileName))
-            return
-        }
-
-        function makeImagePath(fileName: string) {
-            // image output path
-            const folderPath = path.dirname(filePath)
-            let imagePath = ''
-
-            // generate image path
-            if (path.isAbsolute(folderPathFromConfig)) {
-                imagePath = path.join(folderPathFromConfig, fileName)
-            } else {
-                imagePath = path.join(folderPath, folderPathFromConfig, fileName)
-            }
-
-            return imagePath
-        }
-    }
-
-    public async saveAndPaste(editor: vscode.TextEditor, imagePath: string, oldPath: string) {
-        this.ensureImgDirExists(imagePath)
-            .then((imagePath: string) => {
-                // save image and insert to current edit file
-
-                if (this.imageMethodConfig === 'copy') {
-                    fsCopy(oldPath, imagePath)
-                } else {
-                    fsRename(oldPath, imagePath)
-                }
-
-                const imageString = this.renderImagePaste(this.basePathConfig, imagePath)
-
-                editor.edit(edit => {
-                    const current = editor.selection
-
-                    if (current.isEmpty) {
-                        edit.insert(current.start, imageString)
-                    } else {
-                        edit.replace(current, imageString)
-                    }
-                })
-            })
-            .catch(err => {
-                vscode.window.showErrorMessage(`Failed make folder. message=${err.message}`)
-                return
-            })
-    }
-
-    private ensureImgDirExists(imagePath: string) {
-        return new Promise((resolve, reject) => {
-            const imageDir = path.dirname(imagePath)
-
-            fs.stat(imageDir, (error, stats) => {
-                if (error === null) {
-                    if (stats.isDirectory()) {
-                        resolve(imagePath)
-                    } else {
-                        reject(new Error(`The image destination directory '${imageDir}' is a file.`))
-                    }
-                } else if (error.code === 'ENOENT') {
-                    fse.ensureDir(imageDir, undefined, err => {
-                        if (err) {
-                            reject(err)
-                            return undefined
-                        }
-                        resolve(imagePath)
-                        return undefined
-                    })
-                } else {
-                    reject(error)
-                }
-            })
-        })
-    }
-
-    public renderImagePaste(basePath: string, imageFilePath: string) : string {
-        if (basePath) {
-            imageFilePath = path.relative(basePath, imageFilePath)
-        }
-
-        const originalImagePath = imageFilePath
-        const ext = path.extname(originalImagePath)
-        const fileName = path.basename(originalImagePath)
-        const fileNameWithoutExt = path.basename(originalImagePath, ext)
-
-        let result = this.pasteTemplate
-
-        result = result.replace(this.PATH_VARIABLE_IMAGE_FILE_PATH, imageFilePath)
-        result = result.replace(this.PATH_VARIABLE_IMAGE_ORIGINAL_FILE_PATH, originalImagePath)
-        result = result.replace(this.PATH_VARIABLE_IMAGE_FILE_NAME, fileName)
-        result = result.replace(this.PATH_VARIABLE_IMAGE_FILE_NAME_WITHOUT_EXT, fileNameWithoutExt)
-
-        return result
-    }
-
-    public replacePathVariables(
-        pathStr: string,
-        _projectRoot: string,
-        curFilePath: string,
-        postFunction: (string) => string = x => x
-    ) : string {
-        const currentFileDir = path.dirname(curFilePath)
-        const ext = path.extname(curFilePath)
-        const fileName = path.basename(curFilePath)
-        const fileNameWithoutExt = path.basename(curFilePath, ext)
-        let graphicsPath: string | string[] = this.extension.completer.input.graphicsPath
-        graphicsPath = graphicsPath.length !== 0 ? graphicsPath[0] : this.graphicsPathFallback
-        graphicsPath = path.resolve(currentFileDir, graphicsPath)
-
-        pathStr = pathStr.replace(this.PATH_VARIABLE_GRAPHICS_PATH, postFunction(graphicsPath))
-        pathStr = pathStr.replace(this.PATH_VARIABLE_CURRNET_FILE_DIR, postFunction(currentFileDir))
-        pathStr = pathStr.replace(this.PATH_VARIABLE_CURRNET_FILE_NAME, postFunction(fileName))
-        pathStr = pathStr.replace(this.PATH_VARIABLE_CURRNET_FILE_NAME_WITHOUT_EXT, postFunction(fileNameWithoutExt))
-        return pathStr
     }
 }
