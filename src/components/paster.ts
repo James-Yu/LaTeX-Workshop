@@ -46,7 +46,7 @@ export class Paster {
         try {
             this.pasteTable(editor, clipboardContents)
         } catch (error) {
-            this.pasteNormal(editor, this.reformatText.completeReformat(clipboardContents))
+            this.pasteNormal(editor, this.reformatText(clipboardContents))
         }
     }
 
@@ -108,7 +108,7 @@ export class Paster {
         this.extension.logger.addLogMessage('Pasting: Table')
         // trim surrounding whitespace
         content = content.replace(/^\s*/, '').replace(/\s*$/, '')
-        content = this.reformatText.completeReformat(content, false)
+        content = this.reformatText(content, false)
         const lines = content.split('\n')
         const cells = lines.map(l => l.split('\t'))
 
@@ -150,81 +150,70 @@ export class Paster {
         })
     }
 
-    public reformatText = {
-        escape: (text: string) => {
-            text = text.replace(/\\/g, '\\textbackslash')
-            text = text.replace(/&/g, '\\&')
-            text = text.replace(/%/g, '\\%')
-            text = text.replace(/\$/g, '\\$')
-            text = text.replace(/#/g, '\\#')
-            text = text.replace(/_/g, '\\_')
-            text = text.replace(/\^/g, '\\textasciicircum')
-            text = text.replace(/{/g, '\\{')
-            text = text.replace(/}/g, '\\}')
-            text = text.replace(/~/g, '\\textasciitilde')
-            return text
-        },
-        convertQuotes: (text: string) => {
-            text = text.replace(/"([^"]+)"/g, "``$1''")
-            text = text.replace(/'([^']+)'/g, "`$1'")
-            // 'smart' quotes
-            text = text.replace(/“/g, '``')
-            text = text.replace(/”/g, "''")
-            text = text.replace(/‘/g, '`')
-            text = text.replace(/’/g, "'")
-            return text
-        },
-        // symbols that have latex equivilents
-        unicodeSymbols: (text: string) => {
-            text = text.replace(/—/g, '---') // em dash
-            text = text.replace(/–/g, '--') // en dash
-            text = text.replace(/–/g, '-') // minus sign
-            text = text.replace(/…/g, '\\ldots') // elipses
-            text = text.replace(/‐/g, '-') // hyphen
-            text = text.replace(/‐/g, '-') // hyphen-
-            text = text.replace(/™/g, '\\texttrademark') // trade mark
-            text = text.replace(/®/g, '\\textregistered') // registered trade mark
-            text = text.replace(/©/g, '\\textcopyright') // copyright
-            text = text.replace(/¢/g, '\\cent') // copyright
-            text = text.replace(/£/g, '\\pound') // copyright
-            return text
-        },
-        unicodeMath: (text: string) => {
-            text = text.replace(/×/g, '\\(\\times \\)')
-            text = text.replace(/÷/g, '\\(\\div \\)')
-            text = text.replace(/…/g, '\\(\\ldots \\)')
-            text = text.replace(/±/g, '\\(\\pm \\)')
-            text = text.replace(/→/g, '\\(\\to \\)')
-            text = text.replace(/°/g, '\\(^\\circ \\)')
-            text = text.replace(/≤/g, '\\(\\leq \\)')
-            text = text.replace(/≥/g, '\\(\\geq \\)')
-            return text
-        },
-        typographicApproximations: (text: string) => {
-            text = text.replace(/\.\.\./g, '\\ldots')
-            text = text.replace(/-{20,}/g, '\\hline')
-            text = text.replace(/-{2,3}>/g, '\\(\\longrightarrow \\)')
-            text = text.replace(/->/g, '\\(\\to \\)')
-            text = text.replace(/<-{2,3}/g, '\\(\\longleftarrow \\)')
-            text = text.replace(/<-/g, '\\(\\leftarrow \\)')
-            return text
-        },
-        removeBonusWhitespace: (text: string) => {
-            text = text.replace(/\n\n/g, '\uE000')
-            text = text.replace(/\s+/g, ' ')
-            text = text.replace(/\uE000/g, '\n\n')
-            return text
-        },
-        completeReformat: (content: string, removeBonusWhitespace = true) => {
-            content = this.reformatText.escape(content)
-            if (removeBonusWhitespace) {
-                content = this.reformatText.removeBonusWhitespace(content)
-            }
-            content = this.reformatText.unicodeSymbols(content)
-            content = this.reformatText.convertQuotes(content)
-            content = this.reformatText.unicodeMath(content)
-            content = this.reformatText.typographicApproximations(content)
-            return content
+    public reformatText(text: string, removeBonusWhitespace = true) {
+        function doRemoveBonusWhitespace(str: string) {
+            str = str.replace(/\n\n/g, '\uE000')
+            str = str.replace(/\s+/g, ' ')
+            str = str.replace(/\uE000/g, '\n\n')
+            return str
         }
+
+        if (removeBonusWhitespace) {
+            text = doRemoveBonusWhitespace(text)
+        }
+
+        const textReplacements = {
+            // escape latex special characters
+            '\\\\': '\\textbackslash',
+            '&/': '\\&',
+            '%/': '\\%',
+            '$/': '\\$',
+            '#/': '\\#',
+            '_/': '\\_',
+            '^/': '\\textasciicircum',
+            '{/': '\\{',
+            '}/': '\\}',
+            '~/': '\\textasciitilde',
+            // dumb quotes
+            '"([^"]+)"': "``$1''",
+            "'([^']+)'": "`$1'",
+            // 'smart' quotes
+            '“': '``',
+            '”': "''",
+            '‘': '`',
+            '’': "'",
+            // unicode symbols
+            '—': '---', // em dash
+            '–': '--', // en dash
+            '−': '-', // minus sign
+            '…': '\\ldots', // elipses
+            '‐': '-', // hyphen
+            '™': '\\texttrademark', // trade mark
+            '®': '\\textregistered', // registered trade mark
+            '©': '\\textcopyright', // copyright
+            '¢': '\\cent', // copyright
+            '£': '\\pound', // copyright
+            // unicode math
+            '×': '\\(\\times \\)',
+            '÷': '\\(\\div \\)',
+            '±': '\\(\\pm \\)',
+            '→': '\\(\\to \\)',
+            '°': '\\(^\\circ \\)',
+            '≤': '\\(\\leq \\)',
+            '≥': '\\(\\geq \\)',
+            // typographic approximations
+            '\\.\\.\\.': '\\ldots',
+            '-{20,}': '\\hline',
+            '-{2,3}>': '\\(\\longrightarrow \\)',
+            '->': '\\(\\to \\)',
+            '<-{2,3}': '\\(\\longleftarrow \\)',
+            '<-': '\\(\\leftarrow \\)'
+        }
+
+        for (const pattern in textReplacements) {
+            text = text.replace(new RegExp(pattern, 'g'), textReplacements[pattern])
+        }
+
+        return text
     }
 }
