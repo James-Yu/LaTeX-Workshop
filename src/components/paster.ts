@@ -272,7 +272,7 @@ export class Paster {
         // get selection as image file name, need check
         const selection = editor.selection
         const selectText = editor.document.getText(selection)
-        if (selectText && /[\\:*?<>|]/.test(selectText)) {
+        if (selectText && /\x00|\//.test(selectText)) {
             vscode.window.showInformationMessage('Your selection is not a valid file name!')
             return
         }
