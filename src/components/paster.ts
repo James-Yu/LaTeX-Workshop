@@ -28,20 +28,13 @@ export class Paster {
     PATH_VARIABLE_IMAGE_FILE_NAME = /\$\{imageFileName\}/g
     PATH_VARIABLE_IMAGE_FILE_NAME_WITHOUT_EXT = /\$\{imageFileNameWithoutExt\}/g
 
-    FILE_PATH_CONFIRM_INPUTBOX_MODE_ONLY_NAME = 'onlyName'
-    FILE_PATH_CONFIRM_INPUTBOX_MODE_PULL_PATH = 'fullPath'
-
     imageMethodConfig: 'leave' | 'copy' | 'move'
+    filePathConfirmBoxMode: 'none' | 'fullPath' | 'onlyName'
     defaultNameConfig: string
-    folderPathConfig: string
-    basePathConfig: string
-    encodePathConfig: string
-    namePrefixConfig: string
-    nameSuffixConfig: string
     pasteTemplate: string
-    graphicsPathFallback: string
+    basePathConfig = '${graphicsPath}'
+    graphicsPathFallback = '${currentFileDir}'
     showFilePathConfirmInputBox: boolean
-    filePathConfirmInputBoxMode: string
 
     public async paste() {
         this.extension.logger.addLogMessage('Performing formatted paste')
@@ -296,90 +289,53 @@ export class Paster {
 
         // "this" is lost when coming back from the callback, thus we need to store it here.
         const instance = this
-        this.getImagePath(
-            baseFile,
-            selectText,
-            this.folderPathConfig,
-            this.showFilePathConfirmInputBox,
-            this.filePathConfirmInputBoxMode,
-            (_err: Error, imagePath) => {
-                try {
-                    // is the file existed?
-                    const existed = fs.existsSync(imagePath)
-                    if (existed) {
-                        vscode.window
-                            .showInformationMessage(`File ${imagePath} exists. Would you want to replace?`, 'Replace', 'Cancel')
-                            .then(choose => {
-                                if (choose !== 'Replace') {
-                                    return
-                                }
+        this.getImagePath(baseFile, selectText, this.basePathConfig, (_err: Error, imagePath) => {
+            try {
+                // does the file exist?
+                const existed = fs.existsSync(imagePath)
+                if (existed) {
+                    vscode.window
+                        .showInformationMessage(`File ${imagePath} exists. Would you want to replace?`, 'Replace', 'Cancel')
+                        .then(choose => {
+                            if (choose !== 'Replace') {
+                                return
+                            }
 
-                                instance.saveAndPaste(editor, imagePath, filePath)
-                            })
-                    } else {
-                        instance.saveAndPaste(editor, imagePath, filePath)
-                    }
-                } catch (err) {
-                    vscode.window.showErrorMessage(`fs.existsSync(${imagePath}) fail. message=${err.message}`)
-                    return
+                            instance.saveAndPaste(editor, imagePath, filePath)
+                        })
+                } else {
+                    instance.saveAndPaste(editor, imagePath, filePath)
                 }
+            } catch (err) {
+                vscode.window.showErrorMessage(`fs.existsSync(${imagePath}) fail. message=${err.message}`)
+                return
             }
-        )
+        })
     }
 
-    public loadImageConfig(projectPath, filePath) {
+    public loadImageConfig(projectPath: string, filePath: string) {
         const config = vscode.workspace.getConfiguration('latex-workshop.formattedPaste.image')
 
-        // load config latex-workshop.formattedPaste.defaultName
         this.defaultNameConfig = config['defaultName']
         if (!this.defaultNameConfig) {
             this.defaultNameConfig = 'Y-MM-DD-HH-mm-ss'
         }
 
-        // load config latex-workshop.formattedPaste.path
-        this.folderPathConfig = config['path']
-        if (!this.folderPathConfig) {
-            this.folderPathConfig = '${graphicsPath}'
-        }
-        if (this.folderPathConfig.length !== this.folderPathConfig.trim().length) {
-            vscode.window.showErrorMessage(
-                `The config latex-workshop.formattedPaste.path = '${this.folderPathConfig}' is invalid. please check your config.`
-            )
-            return
-        }
-        // load config latex-workshop.formattedPaste.basePath
-        this.basePathConfig = config['basePath']
-        if (!this.basePathConfig) {
-            this.basePathConfig = ''
-        }
-        if (this.basePathConfig.length !== this.basePathConfig.trim().length) {
-            vscode.window.showErrorMessage(
-                `The config latex-workshop.formattedPaste.path = '${this.basePathConfig}' is invalid. please check your config.`
-            )
-            return
-        }
         // load other config
         this.imageMethodConfig = config['method']
-        this.namePrefixConfig = config['namePrefix']
-        this.nameSuffixConfig = config['nameSuffix']
-        this.graphicsPathFallback = config['graphicsPathFallback']
+        this.filePathConfirmBoxMode = config['filePathConfirmInputBoxMode']
         const pasteTemplate = config['template']
         if (typeof pasteTemplate === 'string') {
             this.pasteTemplate = pasteTemplate
         } else {
-            // is array
+            // is multiline string represented by array
             this.pasteTemplate = pasteTemplate.join('\n')
         }
-        this.showFilePathConfirmInputBox = config['showFilePathConfirmInputBox'] || false
-        this.filePathConfirmInputBoxMode = config['filePathConfirmInputBoxMode']
 
         // replace variable in config
         this.defaultNameConfig = this.replacePathVariable(this.defaultNameConfig, projectPath, filePath, x => `[${x}]`)
         this.graphicsPathFallback = this.replacePathVariable(this.graphicsPathFallback, projectPath, filePath)
-        this.folderPathConfig = this.replacePathVariable(this.folderPathConfig, projectPath, filePath)
         this.basePathConfig = this.replacePathVariable(this.basePathConfig, projectPath, filePath)
-        this.namePrefixConfig = this.replacePathVariable(this.namePrefixConfig, projectPath, filePath)
-        this.nameSuffixConfig = this.replacePathVariable(this.nameSuffixConfig, projectPath, filePath)
         this.pasteTemplate = this.replacePathVariable(this.pasteTemplate, projectPath, filePath)
     }
 
@@ -387,29 +343,27 @@ export class Paster {
         filePath: string,
         selectText: string,
         folderPathFromConfig: string,
-        showFilePathConfirmInputBox: boolean,
-        filePathConfirmInputBoxMode: string,
         callback: (err: Error | null, imagePath: string) => void
     ) {
         // image file name
         let imageFileName = ''
         if (!selectText) {
-            imageFileName = this.namePrefixConfig + moment().format(this.defaultNameConfig) + this.nameSuffixConfig + '.png'
+            imageFileName = moment().format(this.defaultNameConfig) + '.png'
             // no moment alternative
             // date format: "2019-06-19-9-04"
             // new Date().toISOString().replace(/(T0|:)/g, '-').replace(/-\d+\..*$/, '')
         } else {
-            imageFileName = this.namePrefixConfig + selectText + this.nameSuffixConfig + '.png'
+            imageFileName = selectText + '.png'
         }
 
         let filePathOrName: string
-        if (filePathConfirmInputBoxMode === this.FILE_PATH_CONFIRM_INPUTBOX_MODE_PULL_PATH) {
+        if (this.filePathConfirmBoxMode === 'fullPath') {
             filePathOrName = makeImagePath(imageFileName)
         } else {
             filePathOrName = imageFileName
         }
 
-        if (showFilePathConfirmInputBox) {
+        if (this.filePathConfirmBoxMode !== 'none') {
             vscode.window
                 .showInputBox({
                     prompt: 'Please specify the filename of the image.',
@@ -422,7 +376,7 @@ export class Paster {
                             result += '.png'
                         }
 
-                        if (filePathConfirmInputBoxMode === this.FILE_PATH_CONFIRM_INPUTBOX_MODE_ONLY_NAME) {
+                        if (this.filePathConfirmBoxMode === 'onlyName') {
                             result = makeImagePath(result)
                         }
 
@@ -519,12 +473,6 @@ export class Paster {
         const ext = path.extname(originalImagePath)
         const fileName = path.basename(originalImagePath)
         const fileNameWithoutExt = path.basename(originalImagePath, ext)
-
-        if (this.encodePathConfig === 'urlEncode') {
-            imageFilePath = encodeURI(imageFilePath)
-        } else if (this.encodePathConfig === 'urlEncodeSpace') {
-            imageFilePath = imageFilePath.replace(/ /g, '%20')
-        }
 
         let result = this.pasteTemplate
 
