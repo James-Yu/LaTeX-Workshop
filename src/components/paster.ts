@@ -130,7 +130,7 @@ export class Paster {
         const tabularRows = cells.map(row => '\t' + row.join(' & '))
 
         if (headerRows && tabularRows.length > headerRows) {
-            const eol = editor.document.eol.toString()
+            const eol = editor.document.eol === vscode.EndOfLine.LF ? '\n' : '\r\n'
             const headSep = '\t' + (booktabs ? '\\midrule' : '\\hline') + eol
             tabularRows[headerRows] = headSep + tabularRows[headerRows]
         }
