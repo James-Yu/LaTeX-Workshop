@@ -110,9 +110,12 @@ export class Paster {
             return
         }
 
-        const columnType: string = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableColumnType']
-        const booktabs: boolean = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableBooktabsStyle']
-        const headerRows: number = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableHeaderRows']
+        const configuration = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')
+
+        const columnType: string = configuration['tableColumnType']
+        const booktabs: boolean = configuration['tableBooktabsStyle']
+        const headerRows: number = configuration['tableHeaderRows']
+
         const tabularRows = cells.map(row => '\t' + row.join(' & '))
 
         if (headerRows && tabularRows.length > headerRows) {
