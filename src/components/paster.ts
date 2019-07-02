@@ -25,10 +25,6 @@ export class Paster {
         if (!fileUri) {
             return
         }
-        if (fileUri.scheme === 'untitled') {
-            vscode.window.showInformationMessage('Before paste image, you need to save current edit file first.')
-            return
-        }
 
         const clipboardContents = await vscode.env.clipboard.readText()
 
@@ -37,9 +33,18 @@ export class Paster {
         }
 
         if (clipboardContents.split('\n').length === 1) {
-            const fpath = path.resolve(fileUri.fsPath, clipboardContents)
-            if (fs.existsSync(fpath)) {
-                this.pasteFile(editor, fileUri.fsPath, clipboardContents)
+            let filePath: string
+            let basePath: string
+            if (fileUri.scheme === 'untitled') {
+                filePath = clipboardContents
+                basePath = ''
+            } else {
+                filePath = path.resolve(fileUri.fsPath, clipboardContents)
+                basePath = fileUri.fsPath
+            }
+
+            if (fs.existsSync(filePath)) {
+                this.pasteFile(editor, basePath, clipboardContents)
                 return
             }
         }
