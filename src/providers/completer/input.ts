@@ -5,7 +5,7 @@ import * as micromatch from 'micromatch'
 import * as cp from 'child_process'
 import * as utils from '../../utils'
 
-import { Extension } from '../../main'
+import {Extension} from '../../main'
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
@@ -19,23 +19,18 @@ export class Input {
     }
 
     private filterIgnoredFiles(files: string[], baseDir: string) : string[] {
-        const excludeGlob = Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})
-            .concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [])
-            .concat(ignoreFiles)
+        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         let gitIgnoredFiles: string[] = []
         /* Check .gitignore if needed */
         if (vscode.workspace.getConfiguration('search', null).get('useIgnoreFiles')) {
             try {
-                gitIgnoredFiles = cp
-                    .execSync('git check-ignore ' + files.join(' '), { cwd: baseDir })
-                    .toString()
-                    .split('\n')
-            } catch (ex) {}
+                gitIgnoredFiles = (cp.execSync('git check-ignore ' + files.join(' '), {cwd: baseDir})).toString().split('\n')
+            } catch (ex) { }
         }
         return files.filter(file => {
             const filePath = path.resolve(baseDir, file)
             /* Check if the file should be ignored */
-            if (gitIgnoredFiles.indexOf(file) > -1 || micromatch.any(filePath, excludeGlob, { basename: true })) {
+            if ((gitIgnoredFiles.indexOf(file) > -1) || micromatch.any(filePath, excludeGlob, {basename: true})) {
                 return false
             } else {
                 return true
@@ -143,7 +138,7 @@ export class Input {
                         item.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                         item.detail = dir
                         suggestions.push(item)
-                    } else if (!provideDirOnly) {
+                    } else if (! provideDirOnly) {
                         const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
                         item.detail = dir
                         suggestions.push(item)
