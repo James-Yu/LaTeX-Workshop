@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as csv from 'csv-parser'
 
 import { Extension } from '../main'
 
@@ -67,39 +68,17 @@ export class Paster {
         const extension = path.extname(file)
 
         if (TABLE_FORMATS.indexOf(extension) !== -1) {
-            const contents = fs.readFileSync(path.resolve(baseFile, file), 'utf8')
             if (extension === '.csv') {
-                // from: https://stackoverflow.com/a/41563966/3026698
-                let p = ''
-                let row = ['']
-                let i = 0
-                let r = 0
-                let s = !0
-                let l
-                const ret = [row]
-                for (l of contents) {
-                    if ('"' === l) {
-                        if (s && l === p) {
-                            row[i] += l
-                        }
-                        s = !s
-                    } else if (',' === l && s) {
-                        l = row[++i] = ''
-                    } else if ('\n' === l && s) {
-                        if ('\r' === p) {
-                            row[i] = row[i].slice(0, -1)
-                        }
-                        row = ret[++r] = [(l = '')]
-                        i = 0
-                    } else {
-                        row[i] += l
-                    }
-                    p = l
-                }
+                const rows: string[] = []
 
-                const rows = ret.map(r => r.join('\t'))
-                const body = rows.join('\n')
-                this.pasteTable(editor, body)
+                fs.createReadStream(path.resolve(baseFile, file))
+                    .pipe(csv())
+                    .on('data', (data: Object) => rows.push(Object.values(data).join('\t')))
+                    .on('end', () => {
+                        console.log(rows)
+                        const body = rows.join('\n')
+                        this.pasteTable(editor, body)
+                    })
             }
         }
     }
@@ -120,8 +99,11 @@ export class Paster {
                 return false
             }
         }, true)
-        if (!isConsistent || (cells.length === 1 && cells[0].length === 1)) {
+        if (!isConsistent) {
             throw new Error('Table is not consistent')
+        } else if (cells.length === 1 && cells[0].length === 1) {
+            this.pasteNormal(editor, content)
+            return
         }
 
         const columnType: string = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')['tableColumnType']
