@@ -89,8 +89,8 @@ export class Paster {
 
     public pasteTable(editor: vscode.TextEditor, content: string) {
         this.extension.logger.addLogMessage('Pasting: Table')
-        // trim surrounding whitespace
-        content = content.replace(/^\s*/, '').replace(/\s*$/, '')
+        const trimUnwantedWhitespace = s => s.replace(/^[^\S\t]+|[^\S\t]+$/gm, '').replace(/^[\uFEFF\xA0]+|[\uFEFF\xA0]+$/gm, '')
+        content = trimUnwantedWhitespace(content)
         content = this.reformatText(content, false)
         const lines = content.split('\n')
         const cells = lines.map(l => l.split('\t'))
