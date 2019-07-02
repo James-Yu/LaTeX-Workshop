@@ -75,7 +75,6 @@ export class Paster {
                     .pipe(csv())
                     .on('data', (data: Object) => rows.push(Object.values(data).join('\t')))
                     .on('end', () => {
-                        console.log(rows)
                         const body = rows.join('\n')
                         this.pasteTable(editor, body)
                     })
