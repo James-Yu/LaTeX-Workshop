@@ -142,9 +142,10 @@ export class Paster {
 
     public reformatText(text: string, removeBonusWhitespace = true) {
         function doRemoveBonusWhitespace(str: string) {
-            str = str.replace(/\n\n/g, '\uE000')
-            str = str.replace(/\s+/g, ' ')
-            str = str.replace(/\uE000/g, '\n\n')
+            str = str.replace(/\u200B/g, '') // get rid of zero-width spaces
+            str = str.replace(/\n{2,}/g, '\uE000') // 'save' multi-newlines to private use character
+            str = str.replace(/\s+/g, ' ') // replace all whitespace with normal space
+            str = str.replace(/\uE000/g, '\n\n') // re-insert multi-newlines
             return str
         }
 
