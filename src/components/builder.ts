@@ -321,7 +321,7 @@ export class Builder {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const [magicTex, magicBib] = this.findProgramMagic(rootFile)
-        if (recipeName === undefined && magicTex) {
+        if (recipeName === undefined && magicTex && !configuration.get('latex.build.forceRecipeUsage')) {
             if (! magicTex.args) {
                 magicTex.args = configuration.get('latex.magic.args') as string[]
                 magicTex.name = texMagicProgramName + 'WithArgs'
