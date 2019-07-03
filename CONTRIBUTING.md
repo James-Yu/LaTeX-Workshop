@@ -6,12 +6,11 @@ Make sure you have installed:
 
 - [`node.js`](https://nodejs.org/)
 - `npm`
-- `yarn`
 - the [`tslint`](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-tslint-plugin) extension for VS Code (recommended)
 
 Then run
 
-    yarn install
+    npm install
 
 inside the extension workspace to download the node modules needed to build the extension.
 
