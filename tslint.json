@@ -49,7 +49,16 @@
     "linebreak-style": [true, "LF"],
     "semicolon": [true, "never"],
     "switch-default": true,
-    "space-before-function-paren": [true, "always"],
+    "space-before-function-paren": [
+      true,
+      {
+          "anonymous": "always",
+          "named": "never",
+          "asyncArrow": "always",
+          "method": "never",
+          "constructor": "never"
+      }
+    ],
     "space-within-parens": false,
     "static-this": true,
     "triple-equals": true,
