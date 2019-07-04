@@ -116,7 +116,7 @@ let file
 for (let i = 0, ii = parts.length; i < ii; ++i) {
     let param = parts[i].split('=')
     if (param[0].toLowerCase() === 'file') {
-        file = param[1].replace('/pdf:', '')
+        file = decodeURIComponent(param[1]).replace('/pdf:', '')
         documentTitle = decodeURIComponent(decodeURIComponent(file)).split(/[\\/]/).pop()
         document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
