@@ -221,7 +221,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + '.tex')) {
                     inputFilePath += '.tex'
                 }
-                if (fs.existsSync(inputFilePath) === false) {
+                if (!fs.existsSync(inputFilePath)) {
                     this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
                     continue
                 }

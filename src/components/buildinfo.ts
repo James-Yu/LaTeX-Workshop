@@ -792,7 +792,7 @@ export class BuildInfo {
             }
 
             const characterSets: IProgressBarCharacterSets = {
-                "none": {
+                'none': {
                     wholeCharacter: '',
                     partialCharacters: [''],
                     blankCharacter: '',
@@ -834,7 +834,7 @@ export class BuildInfo {
         }
 
         const enclosedNumbers = {
-            "Parenthesised": {
+            'Parenthesised': {
                 0: '⒪',
                 1: '⑴',
                 2: '⑵',
@@ -857,7 +857,7 @@ export class BuildInfo {
                 19: '⒆',
                 20: '⒇',
             },
-            "Circled": {
+            'Circled': {
                 0: '⓪',
                 1: '①',
                 2: '②',
