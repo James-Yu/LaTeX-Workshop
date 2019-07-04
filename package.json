@@ -292,6 +292,11 @@
         "command": "latex-structure.toggle-follow-cursor",
         "title": "Toggle follow cursor",
         "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.formattedPaste",
+        "title": "Paste formatted content",
+        "category": "LaTeX Workshop"
       }
     ],
     "keybindings": [
@@ -525,6 +530,12 @@
         "command": "latex-workshop.onAltEnterKey",
         "key": "alt+enter",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible"
+      },
+      {
+        "key": "ctrl+shift+v",
+        "mac": "cmd+shift+v",
+        "command": "latex-workshop.formattedPaste",
+        "when": "editorTextFocus && editorLangId == 'latex'"
       }
     ],
     "configurationDefaults": {
@@ -1255,6 +1266,21 @@
             "█████▙░░░ (4 levels per block)",
             "No Bar"
           ]
+        },
+        "latex-workshop.formattedPaste.tableColumnType": {
+          "type": "string",
+          "default": "l",
+          "description": "Tabular column type to use, e.g. l/r/c…"
+        },
+        "latex-workshop.formattedPaste.tableBooktabsStyle": {
+          "type": "boolean",
+          "default": true,
+          "description": "Use the booktabs commands `\\toprule`, `\\midrule`, and `\\bottomrule`"
+        },
+        "latex-workshop.formattedPaste.tableHeaderRows": {
+          "type": "integer",
+          "default": 1,
+          "description": "Number of header rows to assume. Set to 0 to disable.`"
         }
       }
     },
@@ -1326,6 +1352,7 @@
   },
   "dependencies": {
     "chokidar": "^2.0.3",
+    "csv-parser": "^2.3.0",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.1",
     "iconv-lite": "^0.4.24",

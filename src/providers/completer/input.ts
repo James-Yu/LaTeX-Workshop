@@ -40,12 +40,12 @@ export class Input {
 
     getGraphicsPath(filePath: string) {
         const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
-        const regex = /\\graphicspath{(.*)}/g
-        let result: string[]|null
+        const regex = /\\graphicspath{(([^\{\}]|{.*})*)}/g
+        let result: string[] | null
         do {
             result = regex.exec(content)
             if (result) {
-                for (const dir of result[1].split(/\{|\}/).filter(s => s)) {
+                for (const dir of result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, ''))) {
                     if (this.graphicsPath.indexOf(dir) > -1) {
                         continue
                     }
