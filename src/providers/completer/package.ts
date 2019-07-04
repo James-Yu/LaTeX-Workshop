@@ -1,18 +1,18 @@
-import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
+import * as vscode from 'vscode'
 
-import {Extension} from '../../main'
+import { Extension } from '../../main'
 
 export class Package {
     extension: Extension
     suggestions: vscode.CompletionItem[] = []
     provideRefreshTime: number
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    initialize(defaultPackages: {[key: string]: {command: string, detail: string, documentation: string}}) {
+    initialize (defaultPackages: { [key: string]: { command: string; detail: string; documentation: string } }) {
         Object.keys(defaultPackages).forEach(key => {
             const item = defaultPackages[key]
             const pack = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
@@ -22,11 +22,14 @@ export class Package {
         })
     }
 
-    provide() : vscode.CompletionItem[] {
+    provide () : vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
-            const pkgs = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString())
+            const pkgs = JSON.parse(
+                fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString(),
+            )
             this.initialize(pkgs)
         }
+
         return this.suggestions
     }
 }

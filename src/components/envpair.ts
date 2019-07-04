@@ -1,15 +1,15 @@
 import * as vscode from 'vscode'
-import * as utils from '../utils'
 import { Extension } from '../main'
+import * as utils from '../utils'
 
-
-function regexpAllMatches(str: string, reg: RegExp) {
+function regexpAllMatches (str: string, reg: RegExp) {
     const res: any[] = []
     let m = reg.exec(str)
     while (m) {
         res.push(m)
         m = reg.exec(str)
     }
+
     return res
 }
 
@@ -24,21 +24,22 @@ export class EnvPair {
     beginLength = '\\begin'.length
     endLength = '\\end'.length
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    getEnvName(line: string, ind: number, beginOrEnd: string) : string | null {
+    getEnvName (line: string, ind: number, beginOrEnd: string) : string | null {
         const subline = line.slice(ind)
-        const re = new RegExp('^' +  beginOrEnd + '\\{([^\\{\\}]*)\\}')
+        const re = new RegExp('^' + beginOrEnd + '\\{([^\\{\\}]*)\\}')
         const env = subline.match(re)
         if (env && env.length === 2) {
             return env[1]
         }
+
         return null
     }
 
-    tokenizeLine(document: vscode.TextDocument, pos: vscode.Position) : MatchEnv | null {
+    tokenizeLine (document: vscode.TextDocument, pos: vscode.Position) : MatchEnv | null {
         const line = utils.stripComments(document.lineAt(pos).text, '%')
         const ind = pos.character
         if (ind > line.length) {
@@ -47,17 +48,18 @@ export class EnvPair {
         const lineUpToInd = line.slice(0, ind + 1)
         const startInd = lineUpToInd.lastIndexOf('\\')
         const startPos = new vscode.Position(pos.line, startInd)
-        if (startInd + this.beginLength  >= ind && line.slice(startInd, startInd + this.beginLength) === '\\begin') {
+        if (startInd + this.beginLength >= ind && line.slice(startInd, startInd + this.beginLength) === '\\begin') {
             const envName = this.getEnvName(line, startInd, '\\\\begin')
             if (envName) {
-                return {pos: startPos, type: 'begin', name: envName}
+                return { pos: startPos, type: 'begin', name: envName }
             }
-        } else if (startInd + this.endLength  >= ind && line.slice(startInd, startInd + this.endLength) === '\\end') {
+        } else if (startInd + this.endLength >= ind && line.slice(startInd, startInd + this.endLength) === '\\end') {
             const envName = this.getEnvName(line, startInd, '\\\\end')
             if (envName) {
-                return {pos: startPos, type: 'end', name: envName}
+                return { pos: startPos, type: 'end', name: envName }
             }
         }
+
         return null
     }
 
@@ -75,7 +77,13 @@ export class EnvPair {
      * @param doc the document in which the search is performed
      * @param splitSubstring where to split the string if dir = 1 (default at end of `\begin{...}`)
      */
-    locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument, splitSubstring?: string) : MatchEnv | null {
+    locateMatchingPair (
+        pattern: string,
+        dir: number,
+        pos: vscode.Position,
+        doc: vscode.TextDocument,
+        splitSubstring?: string,
+    ) : MatchEnv | null {
         const patRegexp = new RegExp(pattern, 'g')
         let lineNumber = pos.line
         let nested = 0
@@ -97,6 +105,7 @@ export class EnvPair {
                 break
             default:
                 this.extension.logger.addLogMessage('Direction error in locateMatchingPair')
+
                 return null
         }
         while (true) {
@@ -106,16 +115,23 @@ export class EnvPair {
                 allMatches = allMatches.reverse()
             }
             for (const m of allMatches) {
-                if ((dir === 1 && (m[1] === 'begin' || m[1] === '[')) || (dir === -1 && (m[1] === 'end' || m[1] === ']'))) {
+                if (
+                    (dir === 1 && (m[1] === 'begin' || m[1] === '[')) ||
+                    (dir === -1 && (m[1] === 'end' || m[1] === ']'))
+                ) {
                     nested += 1
                 }
-                if ((dir === 1 && (m[1] === 'end' || m[1] === ']')) || (dir === -1 && (m[1] === 'begin' || m[1] === '[')))  {
+                if (
+                    (dir === 1 && (m[1] === 'end' || m[1] === ']')) ||
+                    (dir === -1 && (m[1] === 'begin' || m[1] === '['))
+                ) {
                     if (nested === 0) {
                         const col = m.index + 1 + startCol
                         const matchPos = new vscode.Position(lineNumber, col)
                         const matchName = m[2]
                         const matchType = m[1]
-                        return {name: matchName, type: matchType, pos: matchPos}
+
+                        return { name: matchName, type: matchType, pos: matchPos }
                     }
                     nested -= 1
                 }
@@ -127,13 +143,14 @@ export class EnvPair {
             line = doc.lineAt(lineNumber).text
             startCol = 0
         }
+
         return null
     }
 
     /**
      * While on a 'begin' or 'end' keyword, moves the cursor to the corresponding 'end/begin'
      */
-    gotoPair() {
+    gotoPair () {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
@@ -147,7 +164,7 @@ export class EnvPair {
         }
         const startPos = tokens.pos
         const pattern = '\\\\(begin|end)\\{' + utils.escapeRegExp(tokens.name) + '\\}'
-        const dir = (tokens.type ===  'begin') ? 1 : -1
+        const dir = tokens.type === 'begin' ? 1 : -1
         const resMatchingPair = this.locateMatchingPair(pattern, dir, startPos, document)
         if (resMatchingPair) {
             const newPos = resMatchingPair.pos
@@ -170,7 +187,7 @@ export class EnvPair {
      *      - 'cursor': a multicursor is added at the beginning of the environment name is selected both in the begin and end part
      *      - 'equationToggle': toggles between `\[...\]` and `\begin{}...\end{}`
      */
-    envAction(action: 'selection'|'cursor'|'equationToggle') {
+    envAction (action: 'selection' | 'cursor' | 'equationToggle') {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
@@ -191,7 +208,13 @@ export class EnvPair {
             return
         }
         const dirDown = 1
-        const endEnv = this.locateMatchingPair(pattern, dirDown, beginEnv.pos, document, beginEnv.type === '[' ? '[' : '}')
+        const endEnv = this.locateMatchingPair(
+            pattern,
+            dirDown,
+            beginEnv.pos,
+            document,
+            beginEnv.type === '[' ? '[' : '}',
+        )
         if (!endEnv) {
             return
         }
@@ -222,7 +245,10 @@ export class EnvPair {
                 return // bad match
             }
             if (action === 'equationToggle') {
-                const beginRange = new vscode.Range(beginEnv.pos, beginEnv.pos.translate(0, envNameLength + 'begin{}'.length))
+                const beginRange = new vscode.Range(
+                    beginEnv.pos,
+                    beginEnv.pos.translate(0, envNameLength + 'begin{}'.length),
+                )
                 const endRange = new vscode.Range(endEnv.pos, endEnv.pos.translate(0, envNameLength + 'end{}'.length))
                 edit.replace(document.uri, endRange, ']')
                 edit.replace(document.uri, beginRange, '[')
@@ -239,12 +265,18 @@ export class EnvPair {
             if (success) {
                 switch (action) {
                     case 'cursor':
-                        editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
+                        editor.selections = [
+                            new vscode.Selection(beginEnvStartPos, beginEnvStartPos),
+                            new vscode.Selection(endEnvStartPos, endEnvStartPos),
+                        ]
                         break
                     case 'selection':
                         const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
                         const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
-                        editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
+                        editor.selections = [
+                            new vscode.Selection(beginEnvStartPos, beginEnvStopPos),
+                            new vscode.Selection(endEnvStartPos, endEnvStopPos),
+                        ]
                         break
                     case 'equationToggle':
                         editor.selection = new vscode.Selection(startingPos, startingPos)
@@ -258,7 +290,7 @@ export class EnvPair {
         // editor.revealRange(new vscode.Range(beginEnvStartPos, endEnvStartPos))
     }
 
-    closeEnv() {
+    closeEnv () {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
@@ -271,9 +303,12 @@ export class EnvPair {
         const resMatchingPair = this.locateMatchingPair(pattern, dir, curPos, document)
         if (resMatchingPair) {
             const endEnv = '\\end{' + resMatchingPair.name + '}'
-            return editor.edit(editBuilder => { editBuilder.insert(curPos, endEnv) })
+
+            return editor.edit(editBuilder => {
+                editBuilder.insert(curPos, endEnv)
+            })
         }
+
         return
     }
-
 }

@@ -1,18 +1,18 @@
-import * as vscode from 'vscode'
-import * as path from 'path'
-import * as fs from 'fs'
 import * as csv from 'csv-parser'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as vscode from 'vscode'
 
 import { Extension } from '../main'
 
 export class Paster {
     extension: Extension
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    public async paste() {
+    public async paste () {
         this.extension.logger.addLogMessage('Performing formatted paste')
 
         // get current edit file path
@@ -45,6 +45,7 @@ export class Paster {
 
             if (fs.existsSync(filePath)) {
                 this.pasteFile(editor, basePath, clipboardContents)
+
                 return
             }
         }
@@ -56,7 +57,7 @@ export class Paster {
         }
     }
 
-    public pasteNormal(editor: vscode.TextEditor, content: string) {
+    public pasteNormal (editor: vscode.TextEditor, content: string) {
         editor.edit(edit => {
             const current = editor.selection
 
@@ -68,7 +69,7 @@ export class Paster {
         })
     }
 
-    public pasteFile(editor: vscode.TextEditor, baseFile: string, file: string) {
+    public pasteFile (editor: vscode.TextEditor, baseFile: string, file: string) {
         const TABLE_FORMATS = ['.csv']
         const extension = path.extname(file)
 
@@ -87,9 +88,10 @@ export class Paster {
         }
     }
 
-    public pasteTable(editor: vscode.TextEditor, content: string) {
+    public pasteTable (editor: vscode.TextEditor, content: string) {
         this.extension.logger.addLogMessage('Pasting: Table')
-        const trimUnwantedWhitespace = s => s.replace(/^[^\S\t]+|[^\S\t]+$/gm, '').replace(/^[\uFEFF\xA0]+|[\uFEFF\xA0]+$/gm, '')
+        const trimUnwantedWhitespace = s =>
+            s.replace(/^[^\S\t]+|[^\S\t]+$/gm, '').replace(/^[\uFEFF\xA0]+|[\uFEFF\xA0]+$/gm, '')
         content = trimUnwantedWhitespace(content)
         content = this.reformatText(content, false)
         const lines = content.split('\n')
@@ -107,14 +109,15 @@ export class Paster {
             throw new Error('Table is not consistent')
         } else if (cells.length === 1 && cells[0].length === 1) {
             this.pasteNormal(editor, content)
+
             return
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop.formattedPaste')
 
-        const columnType: string = configuration['tableColumnType']
-        const booktabs: boolean = configuration['tableBooktabsStyle']
-        const headerRows: number = configuration['tableHeaderRows']
+        const columnType: string = configuration.tableColumnType
+        const booktabs: boolean = configuration.tableBooktabsStyle
+        const headerRows: number = configuration.tableHeaderRows
 
         const tabularRows = cells.map(row => '\t' + row.join(' & '))
 
@@ -140,12 +143,13 @@ export class Paster {
         })
     }
 
-    public reformatText(text: string, removeBonusWhitespace = true) {
-        function doRemoveBonusWhitespace(str: string) {
+    public reformatText (text: string, removeBonusWhitespace = true) {
+        function doRemoveBonusWhitespace (str: string) {
             str = str.replace(/\u200B/g, '') // get rid of zero-width spaces
             str = str.replace(/\n{2,}/g, '\uE000') // 'save' multi-newlines to private use character
             str = str.replace(/\s+/g, ' ') // replace all whitespace with normal space
-            str = str.replace(/\uE000/g, '\n\n') // re-insert multi-newlines
+            str = str.replace(/\uE000/g, '\n\n')
+
             return str
         }
 
@@ -198,7 +202,7 @@ export class Paster {
             '-{2,3}>': '\\(\\longrightarrow \\)',
             '->': '\\(\\to \\)',
             '<-{2,3}': '\\(\\longleftarrow \\)',
-            '<-': '\\(\\leftarrow \\)'
+            '<-': '\\(\\leftarrow \\)',
         }
 
         for (const pattern in textReplacements) {

@@ -1,13 +1,41 @@
-import * as vscode from 'vscode'
 import * as fs from 'fs'
+import * as vscode from 'vscode'
 
-import {Extension} from '../../main'
+import { Extension } from '../../main'
 
-const bibEntries = ['article', 'book', 'bookinbook', 'booklet', 'collection', 'conference', 'inbook',
-                    'incollection', 'inproceedings', 'inreference', 'manual', 'mastersthesis', 'misc',
-                    'mvbook', 'mvcollection', 'mvproceedings', 'mvreference', 'online', 'patent', 'periodical',
-                    'phdthesis', 'proceedings', 'reference', 'report', 'set', 'suppbook', 'suppcollection',
-                    'suppperiodical', 'techreport', 'thesis', 'unpublished']
+const bibEntries = [
+    'article',
+    'book',
+    'bookinbook',
+    'booklet',
+    'collection',
+    'conference',
+    'inbook',
+    'incollection',
+    'inproceedings',
+    'inreference',
+    'manual',
+    'mastersthesis',
+    'misc',
+    'mvbook',
+    'mvcollection',
+    'mvproceedings',
+    'mvreference',
+    'online',
+    'patent',
+    'periodical',
+    'phdthesis',
+    'proceedings',
+    'reference',
+    'report',
+    'set',
+    'suppbook',
+    'suppcollection',
+    'suppperiodical',
+    'techreport',
+    'thesis',
+    'unpublished',
+]
 
 interface CitationRecord {
     key: string
@@ -17,22 +45,34 @@ interface CitationRecord {
 export class Citation {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    citationInBib: { [id: string]: {citations: CitationRecord[], rootFiles: string[] }} = {}
-    citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
-    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string, rootFile: string}} = {}
+    citationInBib: { [id: string]: { citations: CitationRecord[]; rootFiles: string[] } } = {}
+    citationData: { [id: string]: { item: {}; text: string; position: vscode.Position; file: string } } = {}
+    theBibliographyData: {
+        [id: string]: {
+            item: { citation: string; text: string; position: vscode.Position };
+            text: string;
+            file: string;
+            rootFile: string;
+        };
+    } = {}
     refreshTimer: number
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    reset() {
+    reset () {
         this.suggestions = []
         this.theBibliographyData = {}
         this.refreshTimer = 0
     }
 
-    provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
+    provide (args?: {
+        document: vscode.TextDocument;
+        position: vscode.Position;
+        token: vscode.CancellationToken;
+        context: vscode.CompletionContext;
+    }) : vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
@@ -43,7 +83,10 @@ export class Citation {
         // First, we deal with citation items from bib files
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
-            if (this.citationInBib[bibPath].rootFiles.length === 0 || this.citationInBib[bibPath].rootFiles.indexOf(rootFile) > -1) {
+            if (
+                this.citationInBib[bibPath].rootFiles.length === 0 ||
+                this.citationInBib[bibPath].rootFiles.indexOf(rootFile) > -1
+            ) {
                 this.citationInBib[bibPath].citations.forEach(item => items.push(item))
             }
         })
@@ -77,25 +120,28 @@ export class Citation {
             citation.filterText = `${item.key} ${item.author} ${item.title} ${item.journal}`
             citation.insertText = item.key
             citation.documentation = Object.keys(item)
-                .filter(key => (key !== 'key'))
+                .filter(key => key !== 'key')
                 .map(key => `${key}: ${item[key]}`)
                 .join('\n')
             if (args) {
                 citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
             }
+
             return citation
         })
 
         // Second, we deal with the items from thebibliography
         const suggestions = {}
         Object.keys(this.theBibliographyData).forEach(key => {
-            if (! (this.theBibliographyData[key].rootFile === rootFile)) {
-               return
+            if (!(this.theBibliographyData[key].rootFile === rootFile)) {
+                return
             }
             suggestions[key] = this.theBibliographyData[key].item
         })
         if (vscode.window.activeTextEditor) {
-            const thebibliographyItems = this.getTheBibliographyItems(vscode.window.activeTextEditor.document.getText())
+            const thebibliographyItems = this.getTheBibliographyItems(
+                vscode.window.activeTextEditor.document.getText(),
+            )
             Object.keys(thebibliographyItems).map(key => {
                 if (!(key in suggestions)) {
                     suggestions[key] = thebibliographyItems[key]
@@ -111,10 +157,16 @@ export class Citation {
             }
             this.suggestions.push(citation)
         })
+
         return this.suggestions
     }
 
-    browser(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    browser (args?: {
+        document: vscode.TextDocument;
+        position: vscode.Position;
+        token: vscode.CancellationToken;
+        context: vscode.CompletionContext;
+    }) {
         this.provide(args)
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
@@ -122,41 +174,62 @@ export class Citation {
         })
         const pickItems: vscode.QuickPickItem[] = items.map(item => {
             return {
-                label: item.title ? item.title as string : '',
+                label: item.title ? (item.title as string) : '',
                 description: `${item.key}`,
-                detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.journaltitle ? item.journaltitle : (item.publisher ? item.publisher : 'Unknown'))}`
+                detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${
+                    item.journal
+                        ? item.journal
+                        : item.journaltitle
+                        ? item.journaltitle
+                        : item.publisher
+                        ? item.publisher
+                        : 'Unknown'
+                }`,
             }
         })
-        vscode.window.showQuickPick(pickItems, {
-            placeHolder: 'Press ENTER to insert citation key at cursor',
-            matchOnDetail: true,
-            matchOnDescription: true
-        }).then(selected => {
-            if (!selected) {
-                return
-            }
-            if (vscode.window.activeTextEditor) {
-                const editor = vscode.window.activeTextEditor
-                const content = editor.document.getText(new vscode.Range(new vscode.Position(0, 0), editor.selection.start))
-                let start = editor.selection.start
-                if (content.lastIndexOf('\\cite') > content.lastIndexOf('}')) {
-                    const curlyStart = content.lastIndexOf('{') + 1
-                    const commaStart = content.lastIndexOf(',') + 1
-                    start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
+        vscode.window
+            .showQuickPick(pickItems, {
+                placeHolder: 'Press ENTER to insert citation key at cursor',
+                matchOnDetail: true,
+                matchOnDescription: true,
+            })
+            .then(selected => {
+                if (!selected) {
+                    return
                 }
-                editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''))
-                    .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
-            }
-        })
+                if (vscode.window.activeTextEditor) {
+                    const editor = vscode.window.activeTextEditor
+                    const content = editor.document.getText(
+                        new vscode.Range(new vscode.Position(0, 0), editor.selection.start),
+                    )
+                    let start = editor.selection.start
+                    if (content.lastIndexOf('\\cite') > content.lastIndexOf('}')) {
+                        const curlyStart = content.lastIndexOf('{') + 1
+                        const commaStart = content.lastIndexOf(',') + 1
+                        start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
+                    }
+                    editor
+                        .edit(edit =>
+                            edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''),
+                        )
+                        .then(
+                            () => (editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end)),
+                        )
+                }
+            })
     }
 
-    parseBibFile(bibPath: string, texFile: string | undefined = undefined) {
+    parseBibFile (bibPath: string, texFile: string | undefined = undefined) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
         const items: CitationRecord[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (fs.statSync(bibPath).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
+        if (
+            fs.statSync(bibPath).size >=
+            (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024
+        ) {
             this.extension.logger.addLogMessage(`${bibPath} is too large, ignoring it.`)
             this.citationInBib[bibPath] = { citations: items, rootFiles: [] }
+
             return
         }
         const content = fs.readFileSync(bibPath, 'utf-8')
@@ -168,16 +241,19 @@ export class Citation {
         let prevPrevResultIndex = 0
         while (result || prevResult) {
             if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
-                const itemString = contentNoNewLine.substring(prevResult.index, result ? result.index : undefined).trim()
+                const itemString = contentNoNewLine
+                    .substring(prevResult.index, result ? result.index : undefined)
+                    .trim()
                 const item = this.parseBibString(itemString)
                 if (item !== undefined) {
                     items.push(item)
-                    numLines = numLines + content.substring(prevPrevResultIndex, prevResult.index).split('\n').length - 1
+                    numLines =
+                        numLines + content.substring(prevPrevResultIndex, prevResult.index).split('\n').length - 1
                     prevPrevResultIndex = prevResult.index
                     this.citationData[item.key] = {
                         item,
                         text: Object.keys(item)
-                            .filter(key => (key !== 'key'))
+                            .filter(key => key !== 'key')
                             .sort((a, b) => {
                                 if (a.toLowerCase() === 'title') {
                                     return -1
@@ -191,16 +267,19 @@ export class Citation {
                                 if (b.toLowerCase() === 'author') {
                                     return 1
                                 }
+
                                 return 0
                             })
                             .map(key => `${key}: ${item[key]}`)
                             .join('\n\n'),
                         position: new vscode.Position(numLines - 1, 0),
-                        file: bibPath
+                        file: bibPath,
                     }
                 } else {
                     // TODO we could consider adding a diagnostic for this case so the issue appears in the Problems list
-                    this.extension.logger.addLogMessage(`Warning - following .bib entry in ${bibPath} has no cite key:\n${itemString}`)
+                    this.extension.logger.addLogMessage(
+                        `Warning - following .bib entry in ${bibPath} has no cite key:\n${itemString}`,
+                    )
                 }
             }
             prevResult = result
@@ -220,12 +299,12 @@ export class Citation {
         this.citationInBib[bibPath] = { citations: items, rootFiles: rootFilesList }
     }
 
-    forgetParsedBibItems(bibPath: string) {
+    forgetParsedBibItems (bibPath: string) {
         this.extension.logger.addLogMessage(`Forgetting parsed bib entries for ${bibPath}`)
         delete this.citationInBib[bibPath]
     }
 
-    parseBibString(item: string) {
+    parseBibString (item: string) {
         const bibDefinitionReg = /((@)[a-zA-Z]+)\s*(\{)\s*([^\s,]*)/g
         let regResult = bibDefinitionReg.exec(item)
         if (!regResult) {
@@ -243,8 +322,11 @@ export class Citation {
             const quotePos = /\"/g.exec(item)
             const bracePos = /{/g.exec(item)
             let attrValue = ''
-            if (commaPos && ((!quotePos || (quotePos && (commaPos.index < quotePos.index)))
-                && (!bracePos || (bracePos && (commaPos.index < bracePos.index))))) {
+            if (
+                commaPos &&
+                ((!quotePos || (quotePos && commaPos.index < quotePos.index)) &&
+                    (!bracePos || (bracePos && commaPos.index < bracePos.index)))
+            ) {
                 // No deliminator
                 attrValue = item.substring(0, commaPos.index).trim()
                 item = item.substr(commaPos.index)
@@ -259,8 +341,10 @@ export class Citation {
                         nested--
                     }
                     if (nested === 0) {
-                        attrValue = item.substring(bracePos.index + 1, i)
-                                        .replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
+                        attrValue = item
+                            .substring(bracePos.index + 1, i)
+                            .replace(/(\\.)|({)/g, '$1')
+                            .replace(/(\\.)|(})/g, '$1')
                         item = item.substr(i)
                         break
                     }
@@ -269,8 +353,10 @@ export class Citation {
                 // Use double quotes
                 for (let i = quotePos.index + 1; i < item.length; ++i) {
                     if (item[i] === '"') {
-                        attrValue = item.substring(quotePos.index + 1, i)
-                                        .replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
+                        attrValue = item
+                            .substring(quotePos.index + 1, i)
+                            .replace(/(\\.)|({)/g, '$1')
+                            .replace(/(\\.)|(})/g, '$1')
                         item = item.substr(i)
                         break
                     }
@@ -279,27 +365,28 @@ export class Citation {
             bibItem[attrKey.toLowerCase()] = attrValue
             regResult = bibAttrReg.exec(item)
         }
+
         return bibItem
     }
 
-    getTheBibliographyTeX(filePath: string) {
+    getTheBibliographyTeX (filePath: string) {
         const bibitems = this.getTheBibliographyItems(fs.readFileSync(filePath, 'utf-8'))
-        Object.keys(this.theBibliographyData).forEach((key) => {
+        Object.keys(this.theBibliographyData).forEach(key => {
             if (this.theBibliographyData[key].file === filePath) {
                 delete this.theBibliographyData[key]
             }
         })
-        Object.keys(bibitems).forEach((key) => {
+        Object.keys(bibitems).forEach(key => {
             this.theBibliographyData[key] = {
                 item: bibitems[key],
                 text: bibitems[key].text,
                 file: filePath,
-                rootFile: this.extension.manager.rootFile
+                rootFile: this.extension.manager.rootFile,
             }
         })
     }
 
-    getTheBibliographyItems(content: string) {
+    getTheBibliographyItems (content: string) {
         const itemReg = /^(?!%).*\\bibitem(?:\[[^\[\]\{\}]*\])?{([^}]*)}/gm
         const items = {}
         while (true) {
@@ -308,15 +395,21 @@ export class Citation {
                 break
             }
             if (!(result[1] in items)) {
-                const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
+                const postContent = content
+                    .substring(result.index + result[0].length, content.indexOf('\n', result.index))
+                    .trim()
                 const positionContent = content.substring(0, result.index).split('\n')
                 items[result[1]] = {
                     citation: result[1],
                     text: `${postContent}\n...`,
-                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
+                    position: new vscode.Position(
+                        positionContent.length - 1,
+                        positionContent[positionContent.length - 1].length,
+                    ),
                 }
             }
         }
+
         return items
     }
 }

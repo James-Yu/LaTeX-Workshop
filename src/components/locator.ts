@@ -1,32 +1,32 @@
-import * as vscode from 'vscode'
+import * as cp from 'child_process'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as cp from 'child_process'
+import * as vscode from 'vscode'
 import * as synctexjs from './synctex'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
-export type SyncTeXRecordForward = {
-    page: number;
-    x: number;
-    y: number;
+export interface SyncTeXRecordForward {
+    page: number
+    x: number
+    y: number
 }
 
-export type SyncTeXRecordBackward = {
-    input: string;
-    line: number;
-    column: number;
+export interface SyncTeXRecordBackward {
+    input: string
+    line: number
+    column: number
 }
 
 export class Locator {
     extension: Extension
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    parseSyncTeXForward(result: string) : SyncTeXRecordForward {
-        const record: { page?: number, x?: number, y?: number } = {}
+    parseSyncTeXForward (result: string) : SyncTeXRecordForward {
+        const record: { page?: number; x?: number; y?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
             if (line.indexOf('SyncTeX result begin') > -1) {
@@ -44,21 +44,21 @@ export class Locator {
                 continue
             }
             const key = line.substr(0, pos).toLowerCase()
-            if (key !== 'page' && key !== 'x' && key !== 'y' ) {
+            if (key !== 'page' && key !== 'x' && key !== 'y') {
                 continue
             }
             const value = line.substr(pos + 1)
             record[key] = Number(value)
         }
         if (record.page !== undefined && record.x !== undefined && record.y !== undefined) {
-            return { page: record.page, x: record.x, y: record.y, }
+            return { page: record.page, x: record.x, y: record.y }
         } else {
-            throw(new Error('parse error when parsing the result of synctex forward.'))
+            throw new Error('parse error when parsing the result of synctex forward.')
         }
     }
 
-    parseSyncTeXBackward(result: string) : SyncTeXRecordBackward {
-        const record: { input?: string, line?: number, column?: number } = {}
+    parseSyncTeXBackward (result: string) : SyncTeXRecordBackward {
+        const record: { input?: string; line?: number; column?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
             if (line.indexOf('SyncTeX result begin') > -1) {
@@ -76,7 +76,7 @@ export class Locator {
                 continue
             }
             const key = line.substr(0, pos).toLowerCase()
-            if (key !== 'input' && key !== 'line' && key !== 'column' ) {
+            if (key !== 'input' && key !== 'line' && key !== 'column') {
                 continue
             }
             const value = line.substr(pos + 1)
@@ -89,11 +89,11 @@ export class Locator {
         if (record.input !== undefined && record.line !== undefined && record.column !== undefined) {
             return { input: record.input, line: record.line, column: record.column }
         } else {
-            throw(new Error('parse error when parsing the result of synctex backward.'))
+            throw new Error('parse error when parsing the result of synctex backward.')
         }
     }
 
-    syncTeX(args?: {line: number, filePath: string}, forcedViewer: string = 'auto') {
+    syncTeX (args?: { line: number; filePath: string }, forcedViewer: string = 'auto') {
         let line: number
         let filePath: string
         let character = 0
@@ -105,11 +105,13 @@ export class Locator {
             filePath = vscode.window.activeTextEditor.document.uri.fsPath
             if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
                 this.extension.logger.addLogMessage(`${filePath} is not a valid LaTeX file.`)
+
                 return
             }
             const position = vscode.window.activeTextEditor.selection.active
             if (!position) {
                 this.extension.logger.addLogMessage(`Cannot get cursor position: ${position}`)
+
                 return
             }
             line = position.line + 1
@@ -120,12 +122,18 @@ export class Locator {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        if (vscode.window.activeTextEditor.document.lineCount === line &&
-            vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
-                line -= 1
+        if (
+            vscode.window.activeTextEditor.document.lineCount === line &&
+            vscode.window.activeTextEditor.document.lineAt(line - 1).text === ''
+        ) {
+            line -= 1
         }
-        if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
+        if (
+            forcedViewer === 'external' ||
+            (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external')
+        ) {
             this.syncTeXExternal(line, pdfFile, this.extension.manager.rootFile)
+
             return
         }
 
@@ -147,16 +155,27 @@ export class Locator {
                 console.log(e)
             }
         } else {
-            this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
+            this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then(record => {
                 this.extension.viewer.syncTeX(pdfFile, record)
             })
         }
     }
 
-    invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string) : Thenable<SyncTeXRecordForward> {
+    invokeSyncTeXCommandForward (
+        line: number,
+        col: number,
+        filePath: string,
+        pdfFile: string,
+    ) : Thenable<SyncTeXRecordForward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
+        const args = [
+            'view',
+            '-i',
+            `${line}:${col + 1}:${docker ? path.basename(filePath) : filePath}`,
+            '-o',
+            docker ? path.basename(pdfFile) : pdfFile,
+        ]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
@@ -169,7 +188,7 @@ export class Locator {
             }
         }
         this.extension.manager.setEnvVar()
-        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
+        const proc = cp.spawn(command, args, { cwd: path.dirname(pdfFile) })
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -187,7 +206,7 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot synctex: ${err.message}, ${stderr}`)
         })
 
-        return new Promise( (resolve) => {
+        return new Promise(resolve => {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
                     this.extension.logger.addLogMessage(`Cannot synctex, code: ${exitCode}, ${stderr}`)
@@ -198,7 +217,7 @@ export class Locator {
         })
     }
 
-    syncTeXOnRef(args: {line: number, filePath: string}) {
+    syncTeXOnRef (args: { line: number; filePath: string }) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewer = configuration.get('view.pdf.ref.viewer') as string
         args.line += 1
@@ -209,7 +228,7 @@ export class Locator {
         }
     }
 
-    invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string) : Thenable<SyncTeXRecordBackward> {
+    invokeSyncTeXCommandBackward (page: number, x: number, y: number, pdfPath: string) : Thenable<SyncTeXRecordBackward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const docker = configuration.get('docker.enabled')
@@ -226,7 +245,7 @@ export class Locator {
             }
         }
         this.extension.manager.setEnvVar()
-        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})
+        const proc = cp.spawn(command, args, { cwd: path.dirname(pdfPath) })
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -244,7 +263,7 @@ export class Locator {
             this.extension.logger.addLogMessage(`Cannot reverse synctex: ${err.message}, ${stderr}`)
         })
 
-        return new Promise( (resolve) => {
+        return new Promise(resolve => {
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
                     this.extension.logger.addLogMessage(`Cannot reverse synctex, code: ${exitCode}, ${stderr}`)
@@ -256,7 +275,7 @@ export class Locator {
         })
     }
 
-    async locate(data: any, pdfPath: string) {
+    async locate (data: any, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean
@@ -265,7 +284,7 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
-            } catch ( e ) {
+            } catch (e) {
                 if (e instanceof Error) {
                     if (e.stack !== undefined) {
                         this.extension.logger.addLogMessage(e.stack)
@@ -274,6 +293,7 @@ export class Locator {
                     }
                 }
                 console.log(e)
+
                 return
             }
         } else {
@@ -296,7 +316,7 @@ export class Locator {
 
         const filePath = path.resolve(record.input)
         this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
-        vscode.workspace.openTextDocument(filePath).then((doc) => {
+        vscode.workspace.openTextDocument(filePath).then(doc => {
             let viewColumn: vscode.ViewColumn | undefined = undefined
             for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
                 viewColumn = vscode.window.visibleTextEditors[index].viewColumn
@@ -313,29 +333,46 @@ export class Locator {
             }
             const pos = new vscode.Position(row, col)
 
-            vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
+            vscode.window.showTextDocument(doc, viewColumn).then(editor => {
                 editor.selection = new vscode.Selection(pos, pos)
-                vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
+                vscode.commands.executeCommand('revealLine', { lineNumber: row, at: 'center' })
                 this.animateToNotify(editor, pos)
             })
         })
     }
 
-    private getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
-        let tempCol = this.getColumnBySurroundingText(doc.lineAt(row).text, textBeforeSelectionFull, textAfterSelectionFull)
+    private getRowAndColumn (
+        doc: vscode.TextDocument,
+        row: number,
+        textBeforeSelectionFull: string,
+        textAfterSelectionFull: string,
+    ) {
+        let tempCol = this.getColumnBySurroundingText(
+            doc.lineAt(row).text,
+            textBeforeSelectionFull,
+            textAfterSelectionFull,
+        )
         if (tempCol !== null) {
             return [row, tempCol]
         }
 
         if (row - 1 >= 0) {
-            tempCol = this.getColumnBySurroundingText(doc.lineAt(row - 1).text, textBeforeSelectionFull, textAfterSelectionFull)
+            tempCol = this.getColumnBySurroundingText(
+                doc.lineAt(row - 1).text,
+                textBeforeSelectionFull,
+                textAfterSelectionFull,
+            )
             if (tempCol !== null) {
                 return [row - 1, tempCol]
             }
         }
 
         if (row + 1 < doc.lineCount) {
-            tempCol = this.getColumnBySurroundingText(doc.lineAt(row + 1).text, textBeforeSelectionFull, textAfterSelectionFull)
+            tempCol = this.getColumnBySurroundingText(
+                doc.lineAt(row + 1).text,
+                textBeforeSelectionFull,
+                textAfterSelectionFull,
+            )
             if (tempCol !== null) {
                 return [row + 1, tempCol]
             }
@@ -344,17 +381,26 @@ export class Locator {
         return [row, 0]
     }
 
-    private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
+    private getColumnBySurroundingText (line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
         let previousColumnMatches = {}
 
-        for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
+        for (
+            let length = 5;
+            length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length);
+            length++
+        ) {
             const columns: number[] = []
-            const textBeforeSelection = textBeforeSelectionFull.substring(textBeforeSelectionFull.length - length, textBeforeSelectionFull.length)
+            const textBeforeSelection = textBeforeSelectionFull.substring(
+                textBeforeSelectionFull.length - length,
+                textBeforeSelectionFull.length,
+            )
             const textAfterSelection = textAfterSelectionFull.substring(0, length)
 
             // Get all indexes for the before and after text
             if (textBeforeSelection !== '') {
-                columns.push(...this.indexes(line, textBeforeSelection).map(index => index + textBeforeSelection.length))
+                columns.push(
+                    ...this.indexes(line, textBeforeSelection).map(index => index + textBeforeSelection.length),
+                )
             }
             if (textAfterSelection !== '') {
                 columns.push(...this.indexes(line, textAfterSelection))
@@ -362,7 +408,7 @@ export class Locator {
 
             // Get number or occurrences for each column
             const columnMatches = {}
-            columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
+            columns.forEach(column => (columnMatches[column] = (columnMatches[column] || 0) + 1))
             const values = Object.values(columnMatches).sort()
 
             // At least two matches with equal fit
@@ -372,51 +418,59 @@ export class Locator {
             }
             // Only one match or one best match
             if (values.length >= 1) {
-                return parseInt(Object.keys(columnMatches).reduce((a, b) => {
-                    return columnMatches[a] > columnMatches[b] ? a : b
-                }))
+                return parseInt(
+                    Object.keys(columnMatches).reduce((a, b) => {
+                        return columnMatches[a] > columnMatches[b] ? a : b
+                    }),
+                )
             }
             // No match in current iteration, return first best match from previous run or 0
             if (Object.keys(previousColumnMatches).length > 0) {
-                return parseInt(Object.keys(previousColumnMatches).reduce((a, b) => {
-                    return previousColumnMatches[a] > previousColumnMatches[b] ? a : b
-                }))
+                return parseInt(
+                    Object.keys(previousColumnMatches).reduce((a, b) => {
+                        return previousColumnMatches[a] > previousColumnMatches[b] ? a : b
+                    }),
+                )
             } else {
                 return null
             }
         }
+
         // Should never be reached
         return null
     }
 
-    private indexes(source: string, find: string) {
+    private indexes (source: string, find: string) {
         const result: number[] = []
         for (let i = 0; i < source.length; ++i) {
             if (source.substring(i, i + find.length) === find) {
                 result.push(i)
             }
         }
+
         return result
     }
 
-    private animateToNotify(editor: vscode.TextEditor, position: vscode.Position) {
+    private animateToNotify (editor: vscode.TextEditor, position: vscode.Position) {
         const decoConfig = {
             borderWidth: '1px',
             borderStyle: 'solid',
             light: {
-                borderColor: 'red'
+                borderColor: 'red',
             },
             dark: {
-                borderColor: 'white'
-            }
+                borderColor: 'white',
+            },
         }
         const range = new vscode.Range(position.line, 0, position.line, 65535)
         const deco = vscode.window.createTextEditorDecorationType(decoConfig)
         editor.setDecorations(deco, [range])
-        setTimeout(() => { deco.dispose() }, 500)
+        setTimeout(() => {
+            deco.dispose()
+        }, 500)
     }
 
-    syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
+    syncTeXExternal (line: number, pdfFile: string, rootFile: string) {
         if (!vscode.window.activeTextEditor) {
             return
         }
@@ -424,11 +478,26 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.synctex'))) as ExternalCommand
         if (command.args) {
-            command.args = command.args.map(arg => arg.replace(/%DOC%/g, rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                                      .replace(/%DOCFILE%/g, path.basename(rootFile, '.tex').split(path.sep).join('/'))
-                                                      .replace(/%PDF%/g, pdfFile)
-                                                      .replace(/%LINE%/g, line.toString())
-                                                      .replace(/%TEX%/g, texFile))
+            command.args = command.args.map(arg =>
+                arg
+                    .replace(
+                        /%DOC%/g,
+                        rootFile
+                            .replace(/\.tex$/, '')
+                            .split(path.sep)
+                            .join('/'),
+                    )
+                    .replace(
+                        /%DOCFILE%/g,
+                        path
+                            .basename(rootFile, '.tex')
+                            .split(path.sep)
+                            .join('/'),
+                    )
+                    .replace(/%PDF%/g, pdfFile)
+                    .replace(/%LINE%/g, line.toString())
+                    .replace(/%TEX%/g, texFile),
+            )
         }
         this.extension.manager.setEnvVar()
         cp.spawn(command.command, command.args)
@@ -437,6 +506,6 @@ export class Locator {
 }
 
 interface ExternalCommand {
-    command: string,
+    command: string
     args?: string[]
 }

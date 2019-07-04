@@ -1,11 +1,11 @@
-import * as http from 'http'
-import * as ws from 'ws'
 import * as fs from 'fs'
+import * as http from 'http'
 import * as path from 'path'
 import * as vscode from 'vscode'
+import * as ws from 'ws'
 
-import {Extension} from '../main'
-import {AddressInfo} from 'net'
+import { AddressInfo } from 'net'
+import { Extension } from '../main'
 
 export class Server {
     extension: Extension
@@ -14,7 +14,7 @@ export class Server {
     address: string
     port: number
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -23,7 +23,7 @@ export class Server {
             if (err) {
                 this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
             } else {
-                const {address, port} = this.httpServer.address() as AddressInfo
+                const { address, port } = this.httpServer.address() as AddressInfo
                 this.port = port
                 if (address.indexOf(':') > -1) {
                     // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
@@ -34,11 +34,11 @@ export class Server {
                 this.extension.logger.addLogMessage(`Server created on ${this.address}`)
             }
         })
-        this.httpServer.on('error', (err) => {
+        this.httpServer.on('error', err => {
             this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
         })
-        this.wsServer = new ws.Server({server: this.httpServer})
-        this.wsServer.on('connection', (websocket) => {
+        this.wsServer = new ws.Server({ server: this.httpServer })
+        this.wsServer.on('connection', websocket => {
             websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
             websocket.on('close', () => this.extension.viewer.handler(websocket, '{"type": "close"}'))
             websocket.on('error', () => this.extension.logger.addLogMessage('Error on WebSocket connection.'))
@@ -46,7 +46,7 @@ export class Server {
         this.extension.logger.addLogMessage(`Creating LaTeX Workshop http and websocket server.`)
     }
 
-    handler(request: http.IncomingMessage, response: http.ServerResponse) {
+    handler (request: http.IncomingMessage, response: http.ServerResponse) {
         if (!request.url) {
             return
         }
@@ -56,7 +56,7 @@ export class Server {
             const fileName = decodeURIComponent(request.url.replace('/pdf:', ''))
             try {
                 const pdfSize = fs.statSync(fileName).size
-                response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})
+                response.writeHead(200, { 'Content-Type': 'application/pdf', 'Content-Length': pdfSize })
                 fs.createReadStream(fileName).pipe(response)
                 this.extension.logger.addLogMessage(`Preview PDF file: ${fileName}`)
             } catch (e) {
@@ -64,6 +64,7 @@ export class Server {
                 response.end()
                 this.extension.logger.addLogMessage(`Error reading PDF file: ${fileName}`)
             }
+
             return
         } else {
             let root: string
@@ -105,7 +106,7 @@ export class Server {
                     }
                     response.end()
                 } else {
-                    response.writeHead(200, {'Content-Type': contentType})
+                    response.writeHead(200, { 'Content-Type': contentType })
                     response.end(content, 'utf-8')
                 }
             })

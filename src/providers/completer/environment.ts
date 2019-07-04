@@ -1,45 +1,46 @@
-import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
+import * as vscode from 'vscode'
 
-import {Extension} from '../../main'
+import { Extension } from '../../main'
 
 export class Environment {
     extension: Extension
     suggestions: vscode.CompletionItem[]
-    defaults: {[id: string]: vscode.CompletionItem} = {}
-    environmentsInTeX: {[id: string]: vscode.CompletionItem} = {}
-    packageEnvs: {[pkg: string]: vscode.CompletionItem[]} = {}
+    defaults: { [id: string]: vscode.CompletionItem } = {}
+    environmentsInTeX: { [id: string]: vscode.CompletionItem } = {}
+    packageEnvs: { [pkg: string]: vscode.CompletionItem[] } = {}
     refreshTimer: number
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    initialize(defaultEnvs: string[]) {
+    initialize (defaultEnvs: string[]) {
         defaultEnvs.forEach(env => {
             const environment = new vscode.CompletionItem(env, vscode.CompletionItemKind.Module)
             this.defaults[env] = environment
         })
     }
 
-    reset() {
+    reset () {
         this.environmentsInTeX = {}
     }
 
-    provide() : vscode.CompletionItem[] {
+    provide () : vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
         this.refreshTimer = Date.now()
-        const suggestions = Object.assign({}, this.defaults, this.environmentsInTeX)
+        const suggestions = { ...this.defaults, ...this.environmentsInTeX }
         this.extension.completer.command.usedPackages.forEach(pkg => this.insertPkgEnvs(pkg, suggestions))
         this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
+
         return this.suggestions
     }
 
-    insertPkgEnvs(pkg: string, suggestions) {
+    insertPkgEnvs (pkg: string, suggestions) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!(configuration.get('intellisense.package.enabled'))) {
+        if (!configuration.get('intellisense.package.enabled')) {
             return
         }
         if (!(pkg in this.packageEnvs)) {
@@ -62,11 +63,11 @@ export class Environment {
         }
     }
 
-    getEnvironmentsTeX(filePath: string) {
+    getEnvironmentsTeX (filePath: string) {
         Object.assign(this.environmentsInTeX, this.getEnvironmentItems(fs.readFileSync(filePath, 'utf-8')))
     }
 
-    getEnvironmentItems(content: string) : { [id: string]: vscode.CompletionItem } {
+    getEnvironmentItems (content: string) : { [id: string]: vscode.CompletionItem } {
         const itemReg = /\\begin\s?{([^{}]*)}/g
         const items = {}
         while (true) {
@@ -76,6 +77,7 @@ export class Environment {
             }
             items[result[1]] = new vscode.CompletionItem(result[1], vscode.CompletionItemKind.Module)
         }
+
         return items
     }
 }

@@ -1,22 +1,22 @@
-import * as path from 'path'
 import * as fs from 'fs'
-
+import * as path from 'path'
 
 export interface ExternalCommand {
-    command: string,
+    command: string
     args?: string[]
 }
 
-export function escapeRegExp(str: string) {
+export function escapeRegExp (str: string) {
     return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, '\\$&')
 }
 
 /**
  * Remove the comments if any
  */
-export function stripComments(text: string, commentSign: string) : string {
+export function stripComments (text: string, commentSign: string) : string {
     const pattern = '([^\\\\]|^)' + commentSign + '.*$'
     const reg = RegExp(pattern, 'gm')
+
     return text.replace(reg, '$1')
 }
 
@@ -24,7 +24,7 @@ export function stripComments(text: string, commentSign: string) : string {
  * Finding the longest substring containing balanced {...}
  * @param s a string
  */
-export function getLongestBalancedString(s: string) : string {
+export function getLongestBalancedString (s: string) : string {
     let nested = 1
     let i = 0
     for (i = 0; i < s.length; i++) {
@@ -33,7 +33,7 @@ export function getLongestBalancedString(s: string) : string {
                 nested++
                 break
             case '}':
-                nested --
+                nested--
                 break
             case '\\':
                 // skip an escaped character
@@ -45,11 +45,12 @@ export function getLongestBalancedString(s: string) : string {
             break
         }
     }
+
     return s.substring(0, i)
 }
 
 // Given an input file determine its full path using the prefixes dirs
-export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex') : string | null {
+export function resolveFile (dirs: string[], inputFile: string, suffix: string = '.tex') : string | null {
     if (inputFile.startsWith('/')) {
         dirs.unshift('')
     }
@@ -65,5 +66,6 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
             return inputFilePath
         }
     }
+
     return null
 }

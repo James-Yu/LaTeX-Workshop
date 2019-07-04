@@ -11,7 +11,7 @@ export class Semaphore {
             this.count--;
             let next = this.tasks.shift();
             if (next === undefined) {
-                throw "Unexpected undefined value in tasks list";
+                throw 'Unexpected undefined value in tasks list';
             }
 
             next();
@@ -19,7 +19,7 @@ export class Semaphore {
     }
 
     public acquire() {
-        return new Promise<() => void>((res) => {
+        return new Promise<() => void>(res => {
             var task = () => {
                 var released = false;
                 res(() => {
@@ -40,17 +40,16 @@ export class Semaphore {
     }
 
     public use<T>(f: () => Promise<T>) {
-        return this.acquire()
-        .then(release => {
+        return this.acquire().then(release => {
             return f()
-            .then((res) => {
-                release();
-                return res;
-            })
-            .catch((err) => {
-                release();
-                throw err;
-            });
+                .then(res => {
+                    release();
+                    return res;
+                })
+                .catch(err => {
+                    release();
+                    throw err;
+                });
         });
     }
 }

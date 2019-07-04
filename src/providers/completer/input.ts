@@ -1,11 +1,11 @@
-import * as vscode from 'vscode'
-import * as fs from 'fs-extra'
-import * as path from 'path'
-import * as micromatch from 'micromatch'
 import * as cp from 'child_process'
+import * as fs from 'fs-extra'
+import * as micromatch from 'micromatch'
+import * as path from 'path'
+import * as vscode from 'vscode'
 import * as utils from '../../utils'
 
-import {Extension} from '../../main'
+import { Extension } from '../../main'
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
@@ -14,23 +14,29 @@ export class Input {
     provideRefreshTime: number
     graphicsPath: string[] = []
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    private filterIgnoredFiles(files: string[], baseDir: string) : string[] {
-        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
+    private filterIgnoredFiles (files: string[], baseDir: string) : string[] {
+        const excludeGlob = Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})
+            .concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [])
+            .concat(ignoreFiles)
         let gitIgnoredFiles: string[] = []
         /* Check .gitignore if needed */
         if (vscode.workspace.getConfiguration('search', null).get('useIgnoreFiles')) {
             try {
-                gitIgnoredFiles = (cp.execSync('git check-ignore ' + files.join(' '), {cwd: baseDir})).toString().split('\n')
-            } catch (ex) { }
+                gitIgnoredFiles = cp
+                    .execSync('git check-ignore ' + files.join(' '), { cwd: baseDir })
+                    .toString()
+                    .split('\n')
+            } catch (ex) {}
         }
+
         return files.filter(file => {
             const filePath = path.resolve(baseDir, file)
             /* Check if the file should be ignored */
-            if ((gitIgnoredFiles.indexOf(file) > -1) || micromatch.any(filePath, excludeGlob, {basename: true})) {
+            if (gitIgnoredFiles.indexOf(file) > -1 || micromatch.any(filePath, excludeGlob, { basename: true })) {
                 return false
             } else {
                 return true
@@ -38,7 +44,7 @@ export class Input {
         })
     }
 
-    getGraphicsPath(filePath: string) {
+    getGraphicsPath (filePath: string) {
         const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
         const regex = /\\graphicspath{(([^\{\}]|{.*})*)}/g
         let result: string[] | null
@@ -55,7 +61,7 @@ export class Input {
         } while (result)
     }
 
-    reset() {
+    reset () {
         this.graphicsPath = []
     }
 
@@ -68,7 +74,7 @@ export class Input {
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
      */
-    provide(payload: string[]) : vscode.CompletionItem[] {
+    provide (payload: string[]) : vscode.CompletionItem[] {
         let provideDirOnly = false
         let baseDir: string[] = []
         const mode = payload[0]
@@ -98,7 +104,9 @@ export class Input {
                 if (command === 'includegraphics' && this.graphicsPath.length > 0) {
                     baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
                 } else {
-                    const baseConfig = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.base')
+                    const baseConfig = vscode.workspace
+                        .getConfiguration('latex-workshop')
+                        .get('intellisense.file.base')
                     switch (baseConfig) {
                         case 'root relative':
                             baseDir = [rootDir]
@@ -138,7 +146,7 @@ export class Input {
                         item.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                         item.detail = dir
                         suggestions.push(item)
-                    } else if (! provideDirOnly) {
+                    } else if (!provideDirOnly) {
                         const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
                         item.detail = dir
                         suggestions.push(item)
@@ -146,6 +154,7 @@ export class Input {
                 })
             } catch (error) {}
         })
+
         return suggestions
     }
 }

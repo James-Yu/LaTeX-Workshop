@@ -1,21 +1,21 @@
-import * as vscode from 'vscode'
-import * as path from 'path'
+import { ChildProcess, spawn, SpawnOptions } from 'child_process'
 import * as fs from 'fs'
-import {ChildProcess, spawn, SpawnOptions} from 'child_process'
-import {EOL} from 'os'
+import { EOL } from 'os'
+import * as path from 'path'
+import * as vscode from 'vscode'
 
-import {Extension} from '../main'
+import { Extension } from '../main'
 
 export class Linter {
     extension: Extension
     linterTimeout: NodeJS.Timer
-    currentProcesses: {[linterId: string]: ChildProcess} = {}
+    currentProcesses: { [linterId: string]: ChildProcess } = {}
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    get rcPath() {
+    get rcPath () {
         let rcPath
         // 0. root file folder
         const root = this.extension.manager.rootFile
@@ -34,28 +34,33 @@ export class Linter {
         if (fs.existsSync(rcPath)) {
             return rcPath
         }
+
         return undefined
     }
 
-    lintRootFileIfEnabled() {
+    lintRootFileIfEnabled () {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('chktex.enabled') as boolean) {
             this.lintRootFile()
         }
     }
 
-    lintActiveFileIfEnabled() {
+    lintActiveFileIfEnabled () {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if ((configuration.get('chktex.enabled') as boolean) &&
-            (configuration.get('chktex.run') as string) === 'onType') {
+        if (
+            (configuration.get('chktex.enabled') as boolean) &&
+            (configuration.get('chktex.run') as string) === 'onType'
+        ) {
             this.lintActiveFile()
         }
     }
 
-    lintActiveFileIfEnabledAfterInterval() {
+    lintActiveFileIfEnabledAfterInterval () {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if ((configuration.get('chktex.enabled') as boolean) &&
-            (configuration.get('chktex.run') as string) === 'onType') {
+        if (
+            (configuration.get('chktex.enabled') as boolean) &&
+            (configuration.get('chktex.run') as string) === 'onType'
+        ) {
             const interval = configuration.get('chktex.delay') as number
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
@@ -64,7 +69,7 @@ export class Linter {
         }
     }
 
-    async lintActiveFile() {
+    async lintActiveFile () {
         if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.getText()) {
             return
         }
@@ -85,7 +90,13 @@ export class Linter {
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
+            stdout = await this.processWrapper(
+                'active file',
+                command,
+                args.concat(requiredArgs).filter(arg => arg !== ''),
+                { cwd: path.dirname(filePath) },
+                content,
+            )
         } catch (err) {
             if ('stdout' in err) {
                 stdout = err.stdout
@@ -98,7 +109,7 @@ export class Linter {
         this.extension.parser.parseLinter(stdout, filePath)
     }
 
-    async lintRootFile() {
+    async lintRootFile () {
         this.extension.logger.addLogMessage(`Linter for root file started.`)
         const filePath = this.extension.manager.rootFile
 
@@ -115,7 +126,12 @@ export class Linter {
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('root file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(this.extension.manager.rootFile)})
+            stdout = await this.processWrapper(
+                'root file',
+                command,
+                args.concat(requiredArgs).filter(arg => arg !== ''),
+                { cwd: path.dirname(this.extension.manager.rootFile) },
+            )
         } catch (err) {
             if ('stdout' in err) {
                 stdout = err.stdout
@@ -126,8 +142,15 @@ export class Linter {
         this.extension.parser.parseLinter(stdout)
     }
 
-    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string) : Promise<string> {
+    processWrapper (
+        linterId: string,
+        command: string,
+        args: string[],
+        options: SpawnOptions,
+        stdin?: string,
+    ) : Promise<string> {
         this.extension.logger.addLogMessage(`Linter for ${linterId} running command ${command} with arguments ${args}`)
+
         return new Promise((resolve, reject) => {
             if (this.currentProcesses[linterId]) {
                 this.currentProcesses[linterId].kill()
@@ -149,17 +172,26 @@ export class Linter {
             })
 
             proc.on('error', err => {
-                this.extension.logger.addLogMessage(`Linter for ${linterId} failed to spawn command, encountering error: ${err.message}`)
+                this.extension.logger.addLogMessage(
+                    `Linter for ${linterId} failed to spawn command, encountering error: ${err.message}`,
+                )
+
                 return reject(err)
             })
 
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    this.extension.logger.addLogMessage(`Linter for ${linterId} failed with exit code ${exitCode} and error:\n  ${stderr}`)
-                    return reject({ exitCode, stdout, stderr})
+                    this.extension.logger.addLogMessage(
+                        `Linter for ${linterId} failed with exit code ${exitCode} and error:\n  ${stderr}`,
+                    )
+
+                    return reject({ exitCode, stdout, stderr })
                 } else {
                     const [s, ms] = process.hrtime(startTime)
-                    this.extension.logger.addLogMessage(`Linter for ${linterId} successfully finished in ${s}s ${Math.round(ms / 1000000)}ms`)
+                    this.extension.logger.addLogMessage(
+                        `Linter for ${linterId} successfully finished in ${s}s ${Math.round(ms / 1000000)}ms`,
+                    )
+
                     return resolve(stdout)
                 }
             })
@@ -174,5 +206,4 @@ export class Linter {
             }
         })
     }
-
 }

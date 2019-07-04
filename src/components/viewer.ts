@@ -1,12 +1,12 @@
-import * as vscode from 'vscode'
-import * as fs from 'fs'
-import * as ws from 'ws'
-import * as path from 'path'
 import * as cp from 'child_process'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as vscode from 'vscode'
+import * as ws from 'ws'
 
-import {Extension} from '../main'
-import {SyncTeXRecordForward} from './locator'
-import {ExternalCommand} from '../utils'
+import { Extension } from '../main'
+import { ExternalCommand } from '../utils'
+import { SyncTeXRecordForward } from './locator'
 
 interface Position {}
 
@@ -18,20 +18,21 @@ interface Client {
 
 export class Viewer {
     extension: Extension
-    clients: {[key: string]: Client[]} = {}
+    clients: { [key: string]: Client[] } = {}
     positions = {}
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    refreshExistingViewer(sourceFile?: string, viewer?: string) : boolean {
+    refreshExistingViewer (sourceFile?: string, viewer?: string) : boolean {
         if (!sourceFile) {
             Object.keys(this.clients).forEach(key => {
                 this.clients[key].forEach(client => {
-                    client.websocket.send(JSON.stringify({type: 'refresh'}))
+                    client.websocket.send(JSON.stringify({ type: 'refresh' }))
                 })
             })
+
             return true
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, true)
@@ -47,7 +48,7 @@ export class Viewer {
                 // Refresh only correct type
                 if (viewer === undefined || client.viewer === viewer) {
                     this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-                    client.websocket.send(JSON.stringify({type: 'refresh'}))
+                    client.websocket.send(JSON.stringify({ type: 'refresh' }))
                     refreshed = true
                 }
             })
@@ -57,28 +58,34 @@ export class Viewer {
             }
         }
         this.extension.logger.addLogMessage(`No PDF viewer connected for ${pdfFile}`)
+
         return false
     }
 
-    checkViewer(sourceFile: string, respectOutDir: boolean = true) : string | undefined {
+    checkViewer (sourceFile: string, respectOutDir: boolean = true) : string | undefined {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
+
             return
         }
         if (this.extension.server.address === undefined) {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
+
             return
         }
         // pdfjs viewer automatically call decodeURIComponent.
         // So, to pass the encoded path of a pdf file to the http server,
         // we have to call encodeURIComponent two times! 2 - 1 = 1 !
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(pdfFile))}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=/pdf:${encodeURIComponent(
+            encodeURIComponent(pdfFile),
+        )}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
+
         return url
     }
 
-    openBrowser(sourceFile: string) {
+    openBrowser (sourceFile: string) {
         const url = this.checkViewer(sourceFile, true)
         if (!url) {
             return
@@ -92,13 +99,13 @@ export class Viewer {
         } catch (e) {
             vscode.window.showInputBox({
                 prompt: 'Unable to open browser. Please copy and visit this link.',
-                value: url
+                value: url,
             })
             this.extension.logger.addLogMessage(`Something bad happened when opening PDF viewer for ${pdfFile}: ${e}`)
         }
     }
 
-    openTab(sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) {
+    openTab (sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) {
         const url = this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
             return
@@ -106,13 +113,20 @@ export class Viewer {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         this.clients[pdfFile.toLocaleUpperCase()] = this.clients[pdfFile.toLocaleUpperCase()] || []
 
-        const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
+        const uri = vscode.Uri.file(pdfFile).with({ scheme: 'latex-workshop-pdf' })
         const editor = vscode.window.activeTextEditor
-        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
-            enableScripts: true,
-            retainContextWhenHidden: true,
-            portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
-        })
+        const panel = vscode.window.createWebviewPanel(
+            'latex-workshop-pdf',
+            path.basename(pdfFile),
+            sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active,
+            {
+                enableScripts: true,
+                retainContextWhenHidden: true,
+                portMapping: [
+                    { webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port },
+                ],
+            },
+        )
         panel.webview.html = this.getPDFViewerContent(uri)
         if (editor && sideColumn) {
             setTimeout(() => vscode.window.showTextDocument(editor.document, editor.viewColumn), 500)
@@ -120,11 +134,14 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
-    getPDFViewerContent(uri: vscode.Uri) : string {
+    getPDFViewerContent (uri: vscode.Uri) : string {
         // pdfjs viewer automatically call decodeURIComponent.
         // So, to pass the encoded path of a pdf file to the http server,
         // we have to call encodeURIComponent two times! 2 - 1 = 1 !
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=/pdf:${
+            uri.authority ? `\\\\${uri.authority}` : ''
+        }${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
+
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
@@ -147,20 +164,20 @@ export class Viewer {
         `
     }
 
-    openExternal(sourceFile: string) {
+    openExternal (sourceFile: string) {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.command'))) as ExternalCommand
         if (!command.command) {
             switch (process.platform) {
                 case 'win32':
-                    command = {'command': 'SumatraPDF.exe', 'args': ['%PDF%'] }
+                    command = { command: 'SumatraPDF.exe', args: ['%PDF%'] }
                     break
                 case 'linux':
-                    command = {'command': 'xdg-open', 'args': ['%PDF%'] }
+                    command = { command: 'xdg-open', args: ['%PDF%'] }
                     break
                 case 'darwin':
-                    command = {'command': 'open', 'args': ['%PDF%'] }
+                    command = { command: 'open', args: ['%PDF%'] }
                     break
                 default:
                     break
@@ -170,11 +187,11 @@ export class Viewer {
             command.args = command.args.map(arg => arg.replace('%PDF%', pdfFile))
         }
         this.extension.manager.setEnvVar()
-        cp.spawn(command.command, command.args, {cwd: path.dirname(sourceFile), detached: true})
+        cp.spawn(command.command, command.args, { cwd: path.dirname(sourceFile), detached: true })
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 
-    handler(websocket: ws, msg: string) {
+    handler (websocket: ws, msg: string) {
         const data = JSON.parse(msg)
         let clients: Client[] | undefined
         this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
@@ -186,7 +203,7 @@ export class Viewer {
                 }
                 clients.push({
                     viewer: data.viewer,
-                    websocket
+                    websocket,
                 })
                 break
             case 'close':
@@ -222,15 +239,17 @@ export class Viewer {
                     if (client.position !== undefined) {
                         client.websocket.send(JSON.stringify(client.position))
                     } else {
-                        client.websocket.send(JSON.stringify({
-                            type: 'params',
-                            scale: configuration.get('view.pdf.zoom'),
-                            trim: configuration.get('view.pdf.trim'),
-                            scrollMode: configuration.get('view.pdf.scrollMode'),
-                            spreadMode: configuration.get('view.pdf.spreadMode'),
-                            hand: configuration.get('view.pdf.hand'),
-                            invert: configuration.get('view.pdf.invert'),
-                        }))
+                        client.websocket.send(
+                            JSON.stringify({
+                                type: 'params',
+                                scale: configuration.get('view.pdf.zoom'),
+                                trim: configuration.get('view.pdf.trim'),
+                                scrollMode: configuration.get('view.pdf.scrollMode'),
+                                spreadMode: configuration.get('view.pdf.spreadMode'),
+                                hand: configuration.get('view.pdf.hand'),
+                                invert: configuration.get('view.pdf.invert'),
+                            }),
+                        )
                     }
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                         this.extension.locator.syncTeX()
@@ -249,14 +268,15 @@ export class Viewer {
         }
     }
 
-    syncTeX(pdfFile: string, record: SyncTeXRecordForward) {
+    syncTeX (pdfFile: string, record: SyncTeXRecordForward) {
         const clients = this.clients[pdfFile.toLocaleUpperCase()]
         if (clients === undefined) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
+
             return
         }
         for (const client of clients) {
-            client.websocket.send(JSON.stringify({type: 'synctex', data: record}))
+            client.websocket.send(JSON.stringify({ type: 'synctex', data: record }))
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
     }

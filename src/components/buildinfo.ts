@@ -18,7 +18,7 @@ export class BuildInfo {
         ruleProducesPages: boolean | undefined;
     } // | undefined
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10001)
         this.status.command = 'latex-workshop.showCompilationPanel'
@@ -26,7 +26,7 @@ export class BuildInfo {
         this.status.show()
     }
 
-    public buildStarted() {
+    public buildStarted () {
         this.currentBuild = {
             buildStart: +new Date(),
             pageTotal: undefined,
@@ -35,18 +35,18 @@ export class BuildInfo {
             stdout: '\n'.repeat(50),
             ruleNumber: 0,
             ruleName: '',
-            ruleProducesPages: undefined
+            ruleProducesPages: undefined,
         }
         this.status.text = ''
         if (this.panel) {
             this.panel.webview.postMessage({
                 type: 'init',
                 startTime: this.currentBuild.buildStart,
-                pageTotal: this.currentBuild.pageTotal
+                pageTotal: this.currentBuild.pageTotal,
             })
         }
     }
-    public buildEnded() {
+    public buildEnded () {
         if (this.currentBuild) {
             this.status.text = `( ${((+new Date() - this.currentBuild.buildStart) / 1000).toFixed(1)} s )`
             // @ts-ignore
@@ -63,24 +63,25 @@ export class BuildInfo {
         }
     }
 
-    public setPageTotal(count: number) {
+    public setPageTotal (count: number) {
         if (this.currentBuild) {
             this.currentBuild.pageTotal = count
         }
     }
 
-    public async newStdoutLine(lines: string) {
+    public async newStdoutLine (lines: string) {
         if (!this.currentBuild) {
             throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
         }
 
         for (const line of lines.split('\n')) {
-            this.currentBuild.stdout = this.currentBuild.stdout.substring(this.currentBuild.stdout.indexOf('\n') + 1) + '\n' + line
+            this.currentBuild.stdout =
+                this.currentBuild.stdout.substring(this.currentBuild.stdout.indexOf('\n') + 1) + '\n' + line
             this.checkStdoutForInfo()
         }
     }
 
-    private checkStdoutForInfo() {
+    private checkStdoutForInfo () {
         const pageNumberRegex = /\[(\d+)[^\[\]]*\]$/
         const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
@@ -133,13 +134,18 @@ export class BuildInfo {
         // TODO: Add more rules
     }
 
-    public showPanel() {
+    public showPanel () {
         if (this.panel) {
             return
         }
-        this.panel = vscode.window.createWebviewPanel('compilationInfo', 'LaTeX Compilation Live Info', vscode.ViewColumn.Beside, {
-            enableScripts: true
-        })
+        this.panel = vscode.window.createWebviewPanel(
+            'compilationInfo',
+            'LaTeX Compilation Live Info',
+            vscode.ViewColumn.Beside,
+            {
+                enableScripts: true,
+            },
+        )
         this.panel.onDidDispose(() => {
             // @ts-ignore
             this.panel = undefined
@@ -702,12 +708,12 @@ export class BuildInfo {
                 type: 'init',
                 startTime: this.currentBuild.buildStart,
                 stepTimes: this.currentBuild.stepTimes,
-                pageTotal: this.currentBuild.pageTotal
+                pageTotal: this.currentBuild.pageTotal,
             })
         }
     }
 
-    private displayProgress(current: string | number) {
+    private displayProgress (current: string | number) {
         if (!this.currentBuild) {
             throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
         }
@@ -715,34 +721,41 @@ export class BuildInfo {
         this.configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         if (current === 0) {
-            this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][`T${+new Date()}-Wait Time`] =
-                +new Date() - this.currentBuild.lastStepTime
+            this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
+                `T${+new Date()}-Wait Time`
+            ] = +new Date() - this.currentBuild.lastStepTime
         } else {
             if (this.currentBuild.ruleProducesPages) {
                 // if page already exists, add times and remove old entry
                 const pageAlreadyExistsRegex = new RegExp(`^T\\d+-PAGE:${current}`)
                 const pageMatchArray = Object.keys(
-                    this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]
+                    this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`],
                 ).map(pageLabel => Boolean(pageLabel.match(pageAlreadyExistsRegex)))
 
                 let extraTime = 0
                 if (pageMatchArray.indexOf(true) !== -1) {
-                    extraTime = this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
-                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`])[
-                            pageMatchArray.indexOf(true)
-                        ]
+                    extraTime = this.currentBuild.stepTimes[
+                        `${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`
+                    ][
+                        Object.keys(
+                            this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`],
+                        )[pageMatchArray.indexOf(true)]
                     ]
                     delete this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
-                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`])[
-                            pageMatchArray.indexOf(true)
-                        ]
+                        Object.keys(
+                            this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`],
+                        )[pageMatchArray.indexOf(true)]
                     ]
                 } else {
                     const pagesProducedByCurrentRule =
-                        Object.keys(this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`]).length -
-                        1
+                        Object.keys(
+                            this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`],
+                        ).length - 1
 
-                    if (typeof this.currentBuild.pageTotal !== 'number' || pagesProducedByCurrentRule > this.currentBuild.pageTotal) {
+                    if (
+                        typeof this.currentBuild.pageTotal !== 'number' ||
+                        pagesProducedByCurrentRule > this.currentBuild.pageTotal
+                    ) {
                         this.currentBuild.pageTotal = pagesProducedByCurrentRule
                     }
                 }
@@ -751,8 +764,9 @@ export class BuildInfo {
                     `T${+new Date()}-PAGE:${current}`
                 ] = +new Date() - this.currentBuild.lastStepTime + extraTime
             } else {
-                this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][`T${+new Date()}-${current}`] =
-                    +new Date() - this.currentBuild.lastStepTime
+                this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
+                    `T${+new Date()}-${current}`
+                ] = +new Date() - this.currentBuild.lastStepTime
             }
         }
 
@@ -762,7 +776,7 @@ export class BuildInfo {
             this.panel.webview.postMessage({
                 type: 'update',
                 stepTimes: this.currentBuild.stepTimes,
-                pageTotal: this.currentBuild.pageTotal
+                pageTotal: this.currentBuild.pageTotal,
             })
         }
 
@@ -778,26 +792,26 @@ export class BuildInfo {
             }
 
             const characterSets: IProgressBarCharacterSets = {
-                none: {
+                "none": {
                     wholeCharacter: '',
                     partialCharacters: [''],
-                    blankCharacter: ''
+                    blankCharacter: '',
                 },
                 'Block Width': {
                     wholeCharacter: '█',
                     partialCharacters: ['', '▏', '▎', '▍', '▌ ', '▋', '▊', '▉', '█ '],
-                    blankCharacter: '░'
+                    blankCharacter: '░',
                 },
                 'Block Shading': {
                     wholeCharacter: '█',
                     partialCharacters: ['', '░', '▒', '▓'],
-                    blankCharacter: '░'
+                    blankCharacter: '░',
                 },
                 'Block Quadrants': {
                     wholeCharacter: '█',
                     partialCharacters: ['', '▖', '▚', '▙'],
-                    blankCharacter: '░'
-                }
+                    blankCharacter: '░',
+                },
             }
 
             const selectedCharacterSet = this.configuration.get('progress.barStyle') as string
@@ -805,7 +819,10 @@ export class BuildInfo {
             const wholeCharacter = characterSets[selectedCharacterSet].wholeCharacter
             const partialCharacter =
                 characterSets[selectedCharacterSet].partialCharacters[
-                    Math.round((length * proportion - wholeCharacters) * (characterSets[selectedCharacterSet].partialCharacters.length - 1))
+                    Math.round(
+                        (length * proportion - wholeCharacters) *
+                            (characterSets[selectedCharacterSet].partialCharacters.length - 1),
+                    )
                 ]
             const blankCharacter = characterSets[selectedCharacterSet].blankCharacter
 
@@ -817,7 +834,7 @@ export class BuildInfo {
         }
 
         const enclosedNumbers = {
-            Parenthesised: {
+            "Parenthesised": {
                 0: '⒪',
                 1: '⑴',
                 2: '⑵',
@@ -838,9 +855,9 @@ export class BuildInfo {
                 17: '⒄',
                 18: '⒅',
                 19: '⒆',
-                20: '⒇'
+                20: '⒇',
             },
-            Circled: {
+            "Circled": {
                 0: '⓪',
                 1: '①',
                 2: '②',
@@ -861,7 +878,7 @@ export class BuildInfo {
                 17: '⑰',
                 18: '⑱',
                 19: '⑲',
-                20: '⑳'
+                20: '⑳',
             },
             'Solid Circled': {
                 0: '⓿',
@@ -884,7 +901,7 @@ export class BuildInfo {
                 17: '⓱',
                 18: '⓲',
                 19: '⓳',
-                20: '⓴'
+                20: '⓴',
             },
             'Full Stop': {
                 0: '0.',
@@ -907,17 +924,19 @@ export class BuildInfo {
                 17: '⒘',
                 18: '⒙',
                 19: '⒚',
-                20: '⒛'
-            }
+                20: '⒛',
+            },
         }
         const padRight = (str: string, desiredMinLength: number) => {
             if (str.length < desiredMinLength) {
                 str = str + ' '.repeat(desiredMinLength - str.length)
             }
+
             return str
         }
 
-        const runIcon: string = enclosedNumbers[this.configuration.get('progress.runIconType') as string][this.currentBuild.ruleNumber]
+        const runIcon: string =
+            enclosedNumbers[this.configuration.get('progress.runIconType') as string][this.currentBuild.ruleNumber]
         // set generic status text
         this.status.text = `${runIcon} ${this.currentBuild.ruleName}`
 
@@ -929,11 +948,13 @@ export class BuildInfo {
             const currentAsString = current.toString()
             const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString() : ''
             const barAsString = this.currentBuild.pageTotal
-                ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get('progress.barLength') as number)
+                ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
+                      'progress.barLength',
+                  ) as number)
                 : ''
             this.status.text = `${runIcon}  Page ${padRight(
                 currentAsString + endpointAsString,
-                this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
+                this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6,
             )} ${barAsString}`
         }
     }

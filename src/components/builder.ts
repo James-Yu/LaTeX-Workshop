@@ -1,13 +1,13 @@
-import * as vscode from 'vscode'
-import * as path from 'path'
-import * as fs from 'fs-extra'
 import * as cp from 'child_process'
-import * as tmp from 'tmp'
+import * as fs from 'fs-extra'
+import * as path from 'path'
 import * as pdfjsLib from 'pdfjs-dist'
-import {Mutex} from '../lib/await-semaphore'
+import * as tmp from 'tmp'
+import * as vscode from 'vscode'
+import { Mutex } from '../lib/await-semaphore'
 
-import {Extension} from '../main'
-import {ExternalCommand} from '../utils'
+import { Extension } from '../main'
+import { ExternalCommand } from '../utils'
 
 const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'
@@ -22,14 +22,19 @@ export class Builder {
     buildMutex: Mutex
     waitingForBuildToFinishMutex: Mutex
     isMiktex: boolean = false
-    previouslyUsedRecipe: {name: string, tools: (string | StepCommand)[]} | undefined
+    previouslyUsedRecipe: { name: string; tools: (string | StepCommand)[] } | undefined
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
         try {
-            this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
+            this.tmpDir = tmp
+                .dirSync({ unsafeCleanup: true })
+                .name.split(path.sep)
+                .join('/')
         } catch (e) {
-            vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
+            vscode.window.showErrorMessage(
+                'Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.',
+            )
             throw e
         }
         this.buildMutex = new Mutex()
@@ -45,7 +50,7 @@ export class Builder {
         }
     }
 
-    kill() {
+    kill () {
         const proc = this.currentProcess
         if (proc) {
             const pid = proc.pid
@@ -56,34 +61,40 @@ export class Builder {
         }
     }
 
-    isWaitingForBuildToFinish() : boolean {
+    isWaitingForBuildToFinish () : boolean {
         return this.waitingForBuildToFinishMutex.count < 1
     }
 
-    async preprocess() : Promise<() => void> {
+    async preprocess () : Promise<() => void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
-        setTimeout(() => this.disableBuildAfterSave = false, configuration.get('latex.autoBuild.interval', 1000) as number)
+        setTimeout(() => (this.disableBuildAfterSave = false), configuration.get(
+            'latex.autoBuild.interval',
+            1000,
+        ) as number)
         const releaseWaiting = await this.waitingForBuildToFinishMutex.acquire()
         const releaseBuildMutex = await this.buildMutex.acquire()
         releaseWaiting()
+
         return releaseBuildMutex
     }
 
-    async buildWithExternalCommand(command: ExternalCommand, pwd: string) {
+    async buildWithExternalCommand (command: ExternalCommand, pwd: string) {
         if (this.isWaitingForBuildToFinish()) {
             return
         }
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
+        this.extension.logger.addLogMessage(
+            `Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`,
+        )
         let wd = pwd
         const ws = vscode.workspace.workspaceFolders
         if (ws && ws.length > 0) {
             wd = ws[0].uri.fsPath
         }
-        this.currentProcess = cp.spawn(command.command, command.args, {cwd: wd})
+        this.currentProcess = cp.spawn(command.command, command.args, { cwd: wd })
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`LaTeX buid process as an external command spawned. PID: ${pid}.`)
 
@@ -100,8 +111,14 @@ export class Builder {
         })
 
         this.currentProcess.on('error', err => {
-            this.extension.logger.addLogMessage(`Build fatal error: ${err.message}, ${stderr}. PID: ${pid}. Does the executable exist?`)
-            this.extension.logger.displayStatus('x', 'errorForeground', `Build terminated with fatal error: ${err.message}.`)
+            this.extension.logger.addLogMessage(
+                `Build fatal error: ${err.message}, ${stderr}. PID: ${pid}. Does the executable exist?`,
+            )
+            this.extension.logger.displayStatus(
+                'x',
+                'errorForeground',
+                `Build terminated with fatal error: ${err.message}.`,
+            )
             this.currentProcess = undefined
             releaseBuildMutex()
         })
@@ -132,18 +149,22 @@ export class Builder {
         })
     }
 
-    buildInitiator(rootFile: string, recipe: string | undefined = undefined, releaseBuildMutex: () => void) {
+    buildInitiator (rootFile: string, recipe: string | undefined = undefined, releaseBuildMutex: () => void) {
         const steps = this.createSteps(rootFile, recipe)
         if (steps === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
+
             return
         }
         this.buildStep(rootFile, steps, 0, recipe || 'Build', releaseBuildMutex) // use 'Build' as default name
     }
 
-    async build(rootFile: string, recipe: string | undefined = undefined) {
+    async build (rootFile: string, recipe: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
-            this.extension.logger.addLogMessage(`Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.`)
+            this.extension.logger.addLogMessage(
+                `Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.`,
+            )
+
             return
         }
         const releaseBuildMutex = await this.preprocess()
@@ -158,8 +179,11 @@ export class Builder {
             })
             // Create sub directories of output directory
             let outDir = this.extension.manager.getOutputDir(rootFile)
-            const directories = new Set<string>(this.extension.manager.filesWatched
-                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
+            const directories = new Set<string>(
+                this.extension.manager.filesWatched.map(file =>
+                    path.dirname(file.replace(this.extension.manager.rootDir, '.')),
+                ),
+            )
             if (!path.isAbsolute(outDir)) {
                 outDir = path.resolve(this.extension.manager.rootDir, outDir)
             }
@@ -170,11 +194,11 @@ export class Builder {
         } catch (e) {
             this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
-            throw(e)
+            throw e
         }
     }
 
-    progressString(recipeName: string, steps: StepCommand[], index: number) {
+    progressString (recipeName: string, steps: StepCommand[], index: number) {
         if (steps.length < 2) {
             return recipeName
         } else {
@@ -182,7 +206,13 @@ export class Builder {
         }
     }
 
-    buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string, releaseBuildMutex: () => void) {
+    buildStep (
+        rootFile: string,
+        steps: StepCommand[],
+        index: number,
+        recipeName: string,
+        releaseBuildMutex: () => void,
+    ) {
         if (index === 0) {
             this.extension.logger.clearCompilerMessage()
         }
@@ -192,25 +222,34 @@ export class Builder {
                 this.extension.logger.clearCompilerMessage()
             }
         }
-        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
+        this.extension.logger.displayStatus(
+            'sync~spin',
+            'statusBar.foreground',
+            undefined,
+            undefined,
+            ` ${this.progressString(recipeName, steps, index)}`,
+        )
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
         this.extension.manager.setEnvVar()
         const envVars: ProcessEnv = {}
-        Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
+        Object.keys(process.env).forEach(key => (envVars[key] = process.env[key]))
         if (steps[index].env) {
             const currentEnv = steps[index].env as ProcessEnv
-            Object.keys(currentEnv).forEach(key => envVars[key] = currentEnv[key])
+            Object.keys(currentEnv).forEach(key => (envVars[key] = currentEnv[key]))
         }
-        envVars['max_print_line'] = maxPrintLine
+        envVars.max_print_line = maxPrintLine
         if (steps[index].name === texMagicProgramName || steps[index].name === bibMagicProgramName) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
             let command = steps[index].command
             if (steps[index].args) {
                 command += ' ' + (steps[index].args as string[])[0]
             }
-            this.currentProcess = cp.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
+            this.currentProcess = cp.spawn(command, [], { cwd: path.dirname(rootFile), env: envVars, shell: true })
         } else {
-            this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
+            this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {
+                cwd: path.dirname(rootFile),
+                env: envVars,
+            })
         }
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${pid}.`)
@@ -231,7 +270,11 @@ export class Builder {
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
             this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${process.env.PATH}`)
-            this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`)
+            this.extension.logger.displayStatus(
+                'x',
+                'errorForeground',
+                `Recipe terminated with fatal error: ${err.message}.`,
+            )
             this.currentProcess = undefined
             this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
@@ -240,15 +283,24 @@ export class Builder {
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.parser.parse(stdout)
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
+                this.extension.logger.addLogMessage(
+                    `Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`,
+                )
                 this.extension.buildInfo.buildEnded()
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
                     this.disableCleanAndRetry = true
                     if (signal !== 'SIGTERM') {
-                        this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
-                        this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
+                        this.extension.logger.displayStatus(
+                            'x',
+                            'errorForeground',
+                            `Recipe terminated with error. Retry building the project.`,
+                            'warning',
+                        )
+                        this.extension.logger.addLogMessage(
+                            `Cleaning auxillary files and retrying build after toolchain error.`,
+                        )
 
                         this.extension.commander.clean().then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
@@ -263,7 +315,10 @@ export class Builder {
                     if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
                         this.extension.commander.clean()
                     }
-                    const res = this.extension.logger.showErrorMessage(`Recipe terminated with error.`, 'Open compiler log')
+                    const res = this.extension.logger.showErrorMessage(
+                        `Recipe terminated with error.`,
+                        'Open compiler log',
+                    )
                     if (res) {
                         res.then(option => {
                             switch (option) {
@@ -295,7 +350,7 @@ export class Builder {
         })
     }
 
-    buildFinished(rootFile: string) {
+    buildFinished (rootFile: string) {
         this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
@@ -310,24 +365,24 @@ export class Builder {
             this.extension.logger.addLogMessage('SyncTex after build invoked.')
             this.extension.locator.syncTeX()
         }
-        if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
+        if ((configuration.get('latex.autoClean.run') as string) === 'onBuilt') {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
             this.extension.cleaner.clean()
         }
     }
 
-    createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
+    createSteps (rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const [magicTex, magicBib] = this.findProgramMagic(rootFile)
         if (recipeName === undefined && magicTex && !configuration.get('latex.build.forceRecipeUsage')) {
-            if (! magicTex.args) {
+            if (!magicTex.args) {
                 magicTex.args = configuration.get('latex.magic.args') as string[]
                 magicTex.name = texMagicProgramName + 'WithArgs'
             }
             if (magicBib) {
-                if (! magicBib.args) {
+                if (!magicBib.args) {
                     magicBib.args = configuration.get('latex.magic.bib.args') as string[]
                     magicBib.name = bibMagicProgramName + 'WithArgs'
                 }
@@ -336,14 +391,18 @@ export class Builder {
                 steps = [magicTex]
             }
         } else {
-            const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
+            const recipes = configuration.get('latex.recipes') as { name: string; tools: (string | StepCommand)[] }[]
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
                 this.extension.logger.showErrorMessage(`No recipes defined.`)
+
                 return undefined
             }
             let recipe = recipes[0]
-            if ((configuration.get('latex.recipe.default') as string === 'lastUsed') && (this.previouslyUsedRecipe !== undefined)) {
+            if (
+                (configuration.get('latex.recipe.default') as string) === 'lastUsed' &&
+                this.previouslyUsedRecipe !== undefined
+            ) {
                 recipe = this.previouslyUsedRecipe
             }
             if (recipeName) {
@@ -359,7 +418,9 @@ export class Builder {
                 if (typeof tool === 'string') {
                     const candidates = tools.filter(candidate => candidate.name === tool)
                     if (candidates.length < 1) {
-                        this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
+                        this.extension.logger.showErrorMessage(
+                            `Skipping undefined tool "${tool}" in recipe "${recipe.name}."`,
+                        )
                     } else {
                         steps.push(candidates[0])
                     }
@@ -386,24 +447,46 @@ export class Builder {
                         break
                 }
             }
-            const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
-            const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+            const doc = rootFile
+                .replace(/\.tex$/, '')
+                .split(path.sep)
+                .join('/')
+            const docfile = path
+                .basename(rootFile, '.tex')
+                .split(path.sep)
+                .join('/')
             if (step.args) {
-                step.args = step.args.map(arg => arg.replace(/%DOC%/g, docker ? docfile : doc)
-                                                    .replace(/%DOCFILE%/g, docfile)
-                                                    .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
-                                                    .replace(/%TMPDIR%/g, this.tmpDir)
-                                                    .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile)))
+                step.args = step.args.map(arg =>
+                    arg
+                        .replace(/%DOC%/g, docker ? docfile : doc)
+                        .replace(/%DOCFILE%/g, docfile)
+                        .replace(
+                            /%DIR%/g,
+                            path
+                                .dirname(rootFile)
+                                .split(path.sep)
+                                .join('/'),
+                        )
+                        .replace(/%TMPDIR%/g, this.tmpDir)
+                        .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile)),
+                )
             }
             if (step.env) {
-                Object.keys(step.env).forEach( v => {
+                Object.keys(step.env).forEach(v => {
                     if (step.env && step.env[v]) {
                         const e = step.env[v] as string
-                        step.env[v] = e.replace(/%DOC%/g, docker ? docfile : doc)
-                                                 .replace(/%DOCFILE%/g, docfile)
-                                                 .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
-                                                 .replace(/%TMPDIR%/g, this.tmpDir)
-                                                 .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile))
+                        step.env[v] = e
+                            .replace(/%DOC%/g, docker ? docfile : doc)
+                            .replace(/%DOCFILE%/g, docfile)
+                            .replace(
+                                /%DIR%/g,
+                                path
+                                    .dirname(rootFile)
+                                    .split(path.sep)
+                                    .join('/'),
+                            )
+                            .replace(/%TMPDIR%/g, this.tmpDir)
+                            .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile))
                     }
                 })
             }
@@ -411,17 +494,23 @@ export class Builder {
                 if (!step.args) {
                     step.args = []
                 }
-                if ((step.command === 'latexmk' && step.args.indexOf('-lualatex') === -1 && step.args.indexOf('-pdflua') === -1) || step.command === 'pdflatex') {
+                if (
+                    (step.command === 'latexmk' &&
+                        step.args.indexOf('-lualatex') === -1 &&
+                        step.args.indexOf('-pdflua') === -1) ||
+                    step.command === 'pdflatex'
+                ) {
                     if (this.isMiktex) {
                         step.args.unshift('--max-print-line=' + maxPrintLine)
                     }
                 }
             }
         })
+
         return steps
     }
 
-    findProgramMagic(rootFile: string) : [StepCommand | undefined,  StepCommand | undefined] {
+    findProgramMagic (rootFile: string) : [StepCommand | undefined, StepCommand | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
@@ -436,7 +525,7 @@ export class Builder {
         if (tex) {
             texCommand = {
                 name: texMagicProgramName,
-                command: tex[1]
+                command: tex[1],
             }
             this.extension.logger.addLogMessage(`Found TeX program by magic comment: ${texCommand.command}`)
             const res = content.match(regexTexOptions)
@@ -449,7 +538,7 @@ export class Builder {
         if (bib) {
             bibCommand = {
                 name: bibMagicProgramName,
-                command: bib[1]
+                command: bib[1],
             }
             this.extension.logger.addLogMessage(`Found BIB program by magic comment: ${bibCommand.command}`)
             const res = content.match(regexBibOptions)
@@ -468,8 +557,8 @@ interface ProcessEnv {
 }
 
 interface StepCommand {
-    name: string,
-    command: string,
-    args?: string[],
+    name: string
+    command: string
+    args?: string[]
     env?: ProcessEnv
 }

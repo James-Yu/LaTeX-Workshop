@@ -1,6 +1,6 @@
-import * as vscode from 'vscode'
-import * as path from 'path'
 import * as fs from 'fs'
+import * as path from 'path'
+import * as vscode from 'vscode'
 
 import { Extension } from '../main'
 import * as filenameEncoding from './filenameencoding'
@@ -28,9 +28,9 @@ const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 const messageLine = /^l\.\d+\s(.*)$/
 
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
-    'typesetting': vscode.DiagnosticSeverity.Information,
-    'warning': vscode.DiagnosticSeverity.Warning,
-    'error': vscode.DiagnosticSeverity.Error,
+    typesetting: vscode.DiagnosticSeverity.Information,
+    warning: vscode.DiagnosticSeverity.Warning,
+    error: vscode.DiagnosticSeverity.Error,
 }
 
 interface LinterLogEntry {
@@ -51,11 +51,11 @@ export class Parser {
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
     linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
     }
 
-    parse(log: string) {
+    parse (log: string) {
         this.isLaTeXmkSkipped = false
         // canonicalize line-endings
         log = log.replace(/(\r\n)|\r/g, '\n')
@@ -72,7 +72,7 @@ export class Parser {
         }
     }
 
-    trimLaTeXmk(log: string) : string {
+    trimLaTeXmk (log: string) : string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -94,7 +94,7 @@ export class Parser {
         }
     }
 
-    trimTexify(log: string) : string {
+    trimTexify (log: string) : string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -116,16 +116,18 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string) : boolean {
+    latexmkSkipped (log: string) : boolean {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
+
             return true
         }
+
         return false
     }
 
-    parseLaTeX(log: string) {
+    parseLaTeX (log: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
 
@@ -136,7 +138,12 @@ export class Parser {
         let searchesEmptyLine = false
         let insideBoxWarn = false
         let insideError = false
-        let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
+        let currentResult: { type: string; file: string; text: string; line: number | undefined } = {
+            type: '',
+            file: '',
+            text: '',
+            line: undefined,
+        }
         const fileStack: string[] = [this.extension.manager.rootFile]
         let nested = 0
         for (const line of lines) {
@@ -156,13 +163,18 @@ export class Parser {
                 } else {
                     const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
                     if (packageExtraLineResult) {
-                        currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + packageExtraLineResult[4]
+                        currentResult.text +=
+                            '\n(' +
+                            packageExtraLineResult[1] +
+                            ')\t' +
+                            packageExtraLineResult[2] +
+                            packageExtraLineResult[4]
                         currentResult.line = parseInt(packageExtraLineResult[3], 10)
                     } else if (insideError) {
                         const subLine = line.replace(messageLine, '$1')
                         currentResult.text = currentResult.text + '\n' + subLine
                     } else {
-                    currentResult.text = currentResult.text + '\n' + line
+                        currentResult.text = currentResult.text + '\n' + line
                     }
                 }
                 continue
@@ -189,7 +201,7 @@ export class Parser {
                     type: 'typesetting',
                     file: filename,
                     line: parseInt(result[2], 10),
-                    text: result[1]
+                    text: result[1],
                 }
                 searchesEmptyLine = false
                 insideBoxWarn = true
@@ -204,7 +216,7 @@ export class Parser {
                     type: 'warning',
                     file: filename,
                     line: parseInt(result[4], 10),
-                    text: result[3] + result[5]
+                    text: result[3] + result[5],
                 }
                 searchesEmptyLine = true
                 continue
@@ -218,7 +230,7 @@ export class Parser {
                     type: 'warning',
                     file: '',
                     line: 1,
-                    text: `No bib entry found for '${result[1]}'`
+                    text: `No bib entry found for '${result[1]}'`,
                 }
                 searchesEmptyLine = false
                 continue
@@ -231,9 +243,9 @@ export class Parser {
                 }
                 currentResult = {
                     type: 'error',
-                    text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
+                    text: result[3] && result[3] !== 'LaTeX' ? `${result[3]}: ${result[4]}` : result[4],
                     file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : filename,
-                    line: result[2] ? parseInt(result[2], 10) : undefined
+                    line: result[2] ? parseInt(result[2], 10) : undefined,
                 }
                 searchesEmptyLine = true
                 insideError = true
@@ -252,7 +264,7 @@ export class Parser {
         this.showCompilerDiagnostics()
     }
 
-    parseLaTeXFileStack(line: string, fileStack: string[], nested: number) : number {
+    parseLaTeXFileStack (line: string, fileStack: string[], nested: number) : number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substr(result.index + 1)
@@ -275,10 +287,11 @@ export class Parser {
             }
             nested = this.parseLaTeXFileStack(line, fileStack, nested)
         }
+
         return nested
     }
 
-    parseLinter(log: string, singleFileOriginalPath?: string) {
+    parseLinter (log: string, singleFileOriginalPath?: string) {
         const re = /^(.*?):(\d+):(\d+):(\d+):(.*?):(\d+):(.*?)$/gm
         const linterLog: LinterLogEntry[] = []
         let match = re.exec(log)
@@ -293,7 +306,7 @@ export class Parser {
                 length: parseInt(match[4]),
                 type: match[5].toLowerCase(),
                 code: parseInt(match[6]),
-                text: `${match[6]}: ${match[7]}`
+                text: `${match[6]}: ${match[7]}`,
             })
             match = re.exec(log)
         }
@@ -309,11 +322,14 @@ export class Parser {
         this.showLinterDiagnostics(linterLog)
     }
 
-    showCompilerDiagnostics() {
+    showCompilerDiagnostics () {
         this.compilerDiagnostics.clear()
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of this.buildLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
+            const range = new vscode.Range(
+                new vscode.Position(item.line - 1, 0),
+                new vscode.Position(item.line - 1, 65535),
+            )
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.source = 'LaTeX'
             if (diagsCollection[item.file] === undefined) {
@@ -336,11 +352,13 @@ export class Parser {
         }
     }
 
-    showLinterDiagnostics(linterLog: LinterLogEntry[]) {
+    showLinterDiagnostics (linterLog: LinterLogEntry[]) {
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of linterLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1),
-                new vscode.Position(item.line - 1, item.position - 1 + item.length))
+            const range = new vscode.Range(
+                new vscode.Position(item.line - 1, item.position - 1),
+                new vscode.Position(item.line - 1, item.position - 1 + item.length),
+            )
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.code = item.code
             diag.source = 'ChkTeX'

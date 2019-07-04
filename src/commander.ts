@@ -1,34 +1,39 @@
-import * as vscode from 'vscode'
+import * as cp from 'child_process'
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import * as cp from 'child_process'
+import * as vscode from 'vscode'
 
-import {Extension} from './main'
+import { Extension } from './main'
 import { ExternalCommand, getLongestBalancedString } from './utils'
-
 
 export class Commander {
     extension: Extension
     commandTitles: string[]
     commands: string[]
-    snippets: {[key: string]: vscode.SnippetString} = {}
+    snippets: { [key: string]: vscode.SnippetString } = {}
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
         let extensionSnippets: string
         fs.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
-            .then(data => {extensionSnippets = data.toString()})
+            .then(data => {
+                extensionSnippets = data.toString()
+            })
             .then(() => {
                 const snipObj = JSON.parse(extensionSnippets)
                 Object.keys(snipObj).forEach(key => {
-                    this.snippets[key] = new vscode.SnippetString(snipObj[key]['body'])
+                    this.snippets[key] = new vscode.SnippetString(snipObj[key].body)
                 })
                 this.extension.logger.addLogMessage(`Snippet data loaded.`)
             })
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
-    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, recipe: string | undefined = undefined) {
+    async build (
+        skipSelection: boolean = false,
+        rootFile: string | undefined = undefined,
+        recipe: string | undefined = undefined,
+    ) {
         this.extension.logger.addLogMessage(`BUILD command invoked.`)
         if (!vscode.window.activeTextEditor) {
             return
@@ -37,15 +42,20 @@ export class Commander {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as ExternalCommand
         if (externalBuildCommand.command) {
-            const pwd  = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
+            const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
             await this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
+
             return
         }
-        if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            rootFile === undefined &&
+            this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             rootFile = await this.extension.manager.findRoot()
         }
         if (rootFile === undefined) {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+
             return
         }
         if (skipSelection) {
@@ -54,32 +64,40 @@ export class Commander {
         } else {
             const subFileRoot = this.extension.manager.findSubFiles()
             if (subFileRoot) {
-                vscode.window.showQuickPick([{
-                    label: 'Default root file',
-                    description: `Path: ${rootFile}`
-                }, {
-                    label: 'Subfiles package root file',
-                    description: `Path: ${subFileRoot}`
-                }], {
-                    placeHolder: 'Subfiles package detected. Which file to build?',
-                    matchOnDescription: true
-                }).then(async selected => {
-                    if (!selected) {
-                        return
-                    }
-                    switch (selected.label) {
-                        case 'Default root file':
-                            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            await this.extension.builder.build(rootFile as string, recipe)
-                            break
-                        case 'Subfiles package root file':
-                            this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
-                            await this.extension.builder.build(subFileRoot, recipe)
-                            break
-                        default:
-                            break
-                    }
-                })
+                vscode.window
+                    .showQuickPick(
+                        [
+                            {
+                                label: 'Default root file',
+                                description: `Path: ${rootFile}`,
+                            },
+                            {
+                                label: 'Subfiles package root file',
+                                description: `Path: ${subFileRoot}`,
+                            },
+                        ],
+                        {
+                            placeHolder: 'Subfiles package detected. Which file to build?',
+                            matchOnDescription: true,
+                        },
+                    )
+                    .then(async selected => {
+                        if (!selected) {
+                            return
+                        }
+                        switch (selected.label) {
+                            case 'Default root file':
+                                this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
+                                await this.extension.builder.build(rootFile as string, recipe)
+                                break
+                            case 'Subfiles package root file':
+                                this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
+                                await this.extension.builder.build(subFileRoot, recipe)
+                                break
+                            default:
+                                break
+                        }
+                    })
             } else {
                 this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
                 await this.extension.builder.build(rootFile, recipe)
@@ -87,67 +105,81 @@ export class Commander {
         }
     }
 
-    async revealOutputDir() {
+    async revealOutputDir () {
         let outputDir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
         if (!path.isAbsolute(outputDir)) {
-            outputDir = path.resolve(this.extension.manager.rootDir, this.extension.manager.getOutputDir(this.extension.manager.rootFile))
+            outputDir = path.resolve(
+                this.extension.manager.rootDir,
+                this.extension.manager.getOutputDir(this.extension.manager.rootFile),
+            )
         }
         this.extension.logger.addLogMessage(`Reveal ${vscode.Uri.file(outputDir)}`)
         await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outputDir))
     }
 
-    recipes(recipe?: string) {
+    recipes (recipe?: string) {
         this.extension.logger.addLogMessage(`RECIPES command invoked.`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const recipes = configuration.get('latex.recipes') as {name: string}[]
+        const recipes = configuration.get('latex.recipes') as { name: string }[]
         if (!recipes) {
             return
         }
         if (recipe) {
             this.build(false, undefined, recipe)
+
             return
         }
-        vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
-            placeHolder: 'Please Select a LaTeX Recipe'
-        }).then(selected => {
-            if (!selected) {
-                return
-            }
-            this.build(false, undefined, selected)
-        })
+        vscode.window
+            .showQuickPick(recipes.map(candidate => candidate.name), {
+                placeHolder: 'Please Select a LaTeX Recipe',
+            })
+            .then(selected => {
+                if (!selected) {
+                    return
+                }
+                this.build(false, undefined, selected)
+            })
     }
 
-    async view(mode?: string) {
+    async view (mode?: string) {
         this.extension.logger.addLogMessage(`VIEW command invoked.`)
         if (!vscode.window.activeTextEditor) {
             this.extension.logger.addLogMessage('Cannot find active TextEditor.')
+
             return
         }
         if (!this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             this.extension.logger.addLogMessage('Active document is not a TeX file.')
+
             return
         }
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile === undefined) {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
+
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useActiveGroup = configuration.get('view.pdf.tab.useNewGroup') as boolean
         if (mode === 'browser') {
             this.extension.viewer.openBrowser(rootFile)
+
             return
         } else if (mode === 'tab') {
             this.extension.viewer.openTab(rootFile, true, useActiveGroup)
+
             return
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(rootFile)
+
             return
         } else if (mode === 'set') {
             this.setViewer()
+
             return
         }
-        const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer() : Promise.resolve()
+        const promise =
+            (configuration.get('view.pdf.viewer') as string) === 'none' ? this.setViewer() : Promise.resolve()
         promise.then(() => {
             switch (configuration.get('view.pdf.viewer')) {
                 case 'browser':
@@ -164,19 +196,22 @@ export class Commander {
         })
     }
 
-    refresh() {
+    refresh () {
         this.extension.logger.addLogMessage(`REFRESH command invoked.`)
         this.extension.viewer.refreshExistingViewer()
     }
 
-    kill() {
+    kill () {
         this.extension.logger.addLogMessage(`KILL command invoked.`)
         this.extension.builder.kill()
     }
 
-    async browser() {
+    async browser () {
         this.extension.logger.addLogMessage(`BROWSER command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -187,9 +222,12 @@ export class Commander {
         }
     }
 
-    async tab() {
+    async tab () {
         this.extension.logger.addLogMessage(`TAB command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         const rootFile = await this.extension.manager.findRoot()
@@ -201,7 +239,7 @@ export class Commander {
         }
     }
 
-    pdf(uri: vscode.Uri | undefined) {
+    pdf (uri: vscode.Uri | undefined) {
         this.extension.logger.addLogMessage(`PDF command invoked.`)
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
@@ -209,143 +247,184 @@ export class Commander {
         this.extension.viewer.openTab(uri.fsPath, false, false)
     }
 
-    async synctex() {
+    async synctex () {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
         await this.extension.manager.findRoot()
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         this.extension.locator.syncTeX()
     }
 
-    async synctexonref(line: number, filePath: string) {
+    async synctexonref (line: number, filePath: string) {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
         await this.extension.manager.findRoot()
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
-        this.extension.locator.syncTeXOnRef({line, filePath})
+        this.extension.locator.syncTeXOnRef({ line, filePath })
     }
 
-    async clean() : Promise<void> {
+    async clean () : Promise<void> {
         this.extension.logger.addLogMessage(`CLEAN command invoked.`)
         await this.extension.manager.findRoot()
+
         return this.extension.cleaner.clean()
     }
 
-    addTexRoot() {
+    addTexRoot () {
         this.extension.logger.addLogMessage(`ADDTEXROOT command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         this.extension.texMagician.addTexRoot()
     }
 
-    citation() {
+    citation () {
         this.extension.logger.addLogMessage(`CITATION command invoked.`)
         this.extension.completer.citation.browser()
     }
 
-    wordcount() {
+    wordcount () {
         this.extension.logger.addLogMessage(`WORDCOUNT command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
-            this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
+            this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName
+        ) {
             this.extension.counter.count(this.extension.manager.rootFile)
         } else {
             this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
         }
     }
 
-    log(compiler?) {
+    log (compiler?) {
         this.extension.logger.addLogMessage(`LOG command invoked.`)
         if (compiler) {
             this.extension.logger.showCompilerLog()
+
             return
         }
         this.extension.logger.showLog()
     }
 
-    gotoSection(filePath: string, lineNumber: number) {
+    gotoSection (filePath: string, lineNumber: number) {
         this.extension.logger.addLogMessage(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
         const activeEditor = vscode.window.activeTextEditor
 
-        vscode.workspace.openTextDocument(filePath).then((doc) => {
-            vscode.window.showTextDocument(doc).then((_) => {
-                vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
+        vscode.workspace.openTextDocument(filePath).then(doc => {
+            vscode.window.showTextDocument(doc).then(_ => {
+                vscode.commands.executeCommand('revealLine', { lineNumber, at: 'center' })
                 if (activeEditor) {
-                    activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
+                    activeEditor.selection = new vscode.Selection(
+                        new vscode.Position(lineNumber, 0),
+                        new vscode.Position(lineNumber, 0),
+                    )
                 }
             })
         })
-
     }
 
-    setViewer() {
+    setViewer () {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        return vscode.window.showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], {placeHolder: `View PDF with`})
-        .then(option => {
-            switch (option) {
-                case 'Web browser':
-                    configuration.update('view.pdf.viewer', 'browser', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
-                    break
-                case 'VSCode tab':
-                    configuration.update('view.pdf.viewer', 'tab', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
-                    break
-                case 'External viewer':
-                    configuration.update('view.pdf.viewer', 'external', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
-                    break
-                default:
-                    break
-            }
-        })
+
+        return vscode.window
+            .showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], { placeHolder: `View PDF with` })
+            .then(option => {
+                switch (option) {
+                    case 'Web browser':
+                        configuration.update('view.pdf.viewer', 'browser', true)
+                        vscode.window.showInformationMessage(
+                            `By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`,
+                        )
+                        break
+                    case 'VSCode tab':
+                        configuration.update('view.pdf.viewer', 'tab', true)
+                        vscode.window.showInformationMessage(
+                            `By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`,
+                        )
+                        break
+                    case 'External viewer':
+                        configuration.update('view.pdf.viewer', 'external', true)
+                        vscode.window.showInformationMessage(
+                            `By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".`,
+                        )
+                        break
+                    default:
+                        break
+                }
+            })
     }
 
-    navigateToEnvPair() {
+    navigateToEnvPair () {
         this.extension.logger.addLogMessage(`JumpToEnvPair command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         this.extension.envPair.gotoPair()
     }
 
-    selectEnvName() {
+    selectEnvName () {
         this.extension.logger.addLogMessage(`SelectEnvName command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         this.extension.envPair.envAction('selection')
     }
 
-    multiCursorEnvName() {
+    multiCursorEnvName () {
         this.extension.logger.addLogMessage(`MutliCursorEnvName command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         this.extension.envPair.envAction('cursor')
     }
 
-    toggleEquationEnv() {
+    toggleEquationEnv () {
         this.extension.logger.addLogMessage(`toggleEquationEnv command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         this.extension.envPair.envAction('equationToggle')
     }
 
-    closeEnv() {
+    closeEnv () {
         this.extension.logger.addLogMessage(`CloseEnv command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+        if (
+            !vscode.window.activeTextEditor ||
+            !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)
+        ) {
             return
         }
         this.extension.envPair.closeEnv()
     }
 
-    actions() {
+    actions () {
         this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
-        vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+        vscode.commands
+            .executeCommand('workbench.view.extension.latex')
+            .then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
         // const configuration = vscode.workspace.getConfiguration('latex-workshop')
         // if (!this.commandTitles) {
         //     const commands = this.extension.packageInfo.contributes.commands.filter(command => {
@@ -439,7 +518,7 @@ export class Commander {
      * Insert the snippet with name name.
      * @param name  the name of a snippet contained in latex.json
      */
-    insertSnippet(name: string) {
+    insertSnippet (name: string) {
         const editor = vscode.window.activeTextEditor
         if (!editor) {
             return
@@ -455,7 +534,7 @@ export class Commander {
      * Note that hitting enter on a line containing only \item or \item[]
      * actually deletes the content of the line.
      */
-    onEnterKey(modifiers?: string) {
+    onEnterKey (modifiers?: string) {
         const editor = vscode.window.activeTextEditor
         if (!editor) {
             return
@@ -474,7 +553,10 @@ export class Commander {
         const line = editor.document.lineAt(cursorPos.line)
 
         // if the cursor is not followed by only spaces/eol, insert a plain newline
-        if (line.text.substr(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
+        if (
+            line.text.substr(cursorPos.character).split(' ').length - 1 !==
+            line.range.end.character - cursorPos.character
+        ) {
             return editor.edit(() => {
                 vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
             })
@@ -482,7 +564,10 @@ export class Commander {
 
         // if the line only constists of \item or \item[], delete its content
         if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
-            const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
+            const rangeToDelete = line.range.with(
+                cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex),
+                line.range.end,
+            )
 
             return editor.edit(editBuilder => {
                 editBuilder.delete(rangeToDelete)
@@ -495,7 +580,7 @@ export class Commander {
             let newCursorPos
             // leading indent
             if (matches[1]) {
-                itemString  += matches[1]
+                itemString += matches[1]
             }
             // is there an optional paramter to \item
             if (matches[2]) {
@@ -505,25 +590,31 @@ export class Commander {
                 itemString += '\\item '
                 newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length)
             }
-            return editor.edit(editBuilder => {
-                editBuilder.insert(cursorPos, '\n' + itemString)
-                }).then(() => {
+
+            return editor
+                .edit(editBuilder => {
+                    editBuilder.insert(cursorPos, '\n' + itemString)
+                })
+                .then(() => {
                     editor.selection = new vscode.Selection(newCursorPos, newCursorPos)
-                }
-            ).then(() => { editor.revealRange(editor.selection) })
+                })
+                .then(() => {
+                    editor.revealRange(editor.selection)
+                })
         }
+
         return editor.edit(() => {
             vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
         })
     }
 
     /**
-    * Toggle a keyword, if the cursor is inside a keyword,
-    * the keyword will be removed, otherwise a snippet will be added.
-    * @param keyword the keyword to toggle without backslash eg. textbf or underline
-    * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
-    */
-    toggleSelectedKeyword(keyword: string, outerBraces?: boolean) : undefined | 'added' | 'removed' {
+     * Toggle a keyword, if the cursor is inside a keyword,
+     * the keyword will be removed, otherwise a snippet will be added.
+     * @param keyword the keyword to toggle without backslash eg. textbf or underline
+     * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
+     */
+    toggleSelectedKeyword (keyword: string, outerBraces?: boolean) : undefined | 'added' | 'removed' {
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
             return
@@ -543,9 +634,10 @@ export class Commander {
 
             if (matchRange.contains(selection)) {
                 // Remove keyword
-                editor.edit(((editBuilder) => {
+                editor.edit(editBuilder => {
                     editBuilder.replace(matchRange, insideText)
-                }))
+                })
+
                 return 'removed'
             }
             match = pattern.exec(line.text)
@@ -553,13 +645,13 @@ export class Commander {
 
         // Add keyword
         if (selectionText.length > 0) {
-            editor.edit(((editBuilder) => {
+            editor.edit(editBuilder => {
                 if (outerBraces === true) {
                     editBuilder.replace(selection, `{\\${keyword} ${selectionText}}`)
                 } else {
                     editBuilder.replace(selection, `\\${keyword}{${selectionText}}`)
                 }
-            }))
+            })
         } else {
             let snippet: vscode.SnippetString
             if (outerBraces === true) {
@@ -569,6 +661,7 @@ export class Commander {
             }
             editor.insertSnippet(snippet, selection.start)
         }
+
         return 'added'
     }
 
@@ -576,11 +669,9 @@ export class Commander {
      * Shift the level sectioning in the selection by one (up or down)
      * @param change
      */
-    shiftSectioningLevel(change: 'increment' | 'decrement') {
+    shiftSectioningLevel (change: 'increment' | 'decrement') {
         if (change !== 'increment' && change !== 'decrement') {
-            throw TypeError(
-            `Invalid value of function parameter 'change' (=${change})`
-            )
+            throw TypeError(`Invalid value of function parameter 'change' (=${change})`)
         }
 
         const editor = vscode.window.activeTextEditor
@@ -595,7 +686,7 @@ export class Commander {
             subsection: 'section',
             subsubsection: 'subsection',
             paragraph: 'subsubsection',
-            subparagraph: 'paragraph'
+            subparagraph: 'paragraph',
         }
         const decrements = {
             part: 'chapter',
@@ -604,15 +695,10 @@ export class Commander {
             subsection: 'subsubsection',
             subsubsection: 'paragraph',
             paragraph: 'subparagraph',
-            subparagraph: 'subparagraph'
+            subparagraph: 'subparagraph',
         }
 
-        function replacer(
-            _match: string,
-            sectionName: string,
-            options: string,
-            contents: string
-        ) {
+        function replacer (_match: string, sectionName: string, options: string, contents: string) {
             if (change === 'increment') {
                 return '\\' + increments[sectionName] + (options ? options : '') + contents
             } else {
@@ -624,8 +710,9 @@ export class Commander {
         // when supported, negative lookbehind at start would be nice --- (?<!\\)
         const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\[.+?\])?(\{.+?\})/g
 
-        function getLastLineLength(someText: string) {
+        function getLastLineLength (someText: string) {
             const lines = someText.split(/\n/)
+
             return lines.slice(lines.length - 1, lines.length)[0].length
         }
 
@@ -652,20 +739,20 @@ export class Commander {
             const changeInEndCharacterPosition = getLastLineLength(newText) - getLastLineLength(selectionText)
             if (mode === 'selection') {
                 newSelections.push(
-                    new vscode.Selection(selection.start,
-                        new vscode.Position(selection.end.line,
-                            selection.end.character + changeInEndCharacterPosition
-                        )
-                    )
+                    new vscode.Selection(
+                        selection.start,
+                        new vscode.Position(selection.end.line, selection.end.character + changeInEndCharacterPosition),
+                    ),
                 )
-            } else { // mode === 'cursor'
+            } else {
+                // mode === 'cursor'
                 const anchorPosition = oldSelection.anchor.character + changeInEndCharacterPosition
                 const activePosition = oldSelection.active.character + changeInEndCharacterPosition
                 newSelections.push(
                     new vscode.Selection(
                         new vscode.Position(oldSelection.anchor.line, anchorPosition < 0 ? 0 : anchorPosition),
-                        new vscode.Position(oldSelection.active.line, activePosition < 0 ? 0 : activePosition)
-                    )
+                        new vscode.Position(oldSelection.active.line, activePosition < 0 ? 0 : activePosition),
+                    ),
                 )
             }
         }
@@ -677,14 +764,14 @@ export class Commander {
         })
     }
 
-    devParseLog() {
+    devParseLog () {
         if (vscode.window.activeTextEditor === undefined) {
             return
         }
         this.extension.parser.parse(vscode.window.activeTextEditor.document.getText())
     }
 
-    async runTexdoc(pkg: string) {
+    async runTexdoc (pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
         const proc = cp.spawn(texdocPath, ['--view', pkg])
@@ -707,7 +794,9 @@ export class Commander {
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
-                this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+                this.extension.logger.showErrorMessage(
+                    'Texdoc failed. Please refer to LaTeX Workshop Output for details.',
+                )
             } else {
                 const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
                 if (stdout.match(regex) || stderr.match(regex)) {
@@ -720,12 +809,13 @@ export class Commander {
         })
     }
 
-    texdoc(pkg?: string) {
+    texdoc (pkg?: string) {
         if (pkg) {
             this.runTexdoc(pkg)
+
             return
         }
-        vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
+        vscode.window.showInputBox({ value: '', prompt: 'Package name' }).then(selectedPkg => {
             if (!selectedPkg) {
                 return
             }
@@ -733,12 +823,12 @@ export class Commander {
         })
     }
 
-    async saveWithoutBuilding() {
+    async saveWithoutBuilding () {
         if (vscode.window.activeTextEditor === undefined) {
             return
         }
         this.extension.builder.disableBuildAfterSave = true
         await vscode.window.activeTextEditor.document.save()
-        setTimeout(() => this.extension.builder.disableBuildAfterSave = false, 1000)
+        setTimeout(() => (this.extension.builder.disableBuildAfterSave = false), 1000)
     }
 }

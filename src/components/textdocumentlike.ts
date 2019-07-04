@@ -1,6 +1,6 @@
-import * as vscode from 'vscode'
 import * as fs from 'fs'
 import { isNumber } from 'util'
+import * as vscode from 'vscode'
 
 export class TextDocumentLike {
     private _lines: string[]
@@ -8,21 +8,22 @@ export class TextDocumentLike {
     readonly eol: vscode.EndOfLine
     private _eol: string
 
-    static load(filePath: string) : TextDocumentLike | vscode.TextDocument {
+    static load (filePath: string) : TextDocumentLike | vscode.TextDocument {
         const uri = vscode.Uri.file(filePath)
         const editor = vscode.window.activeTextEditor
         if (editor !== undefined && editor.document.uri.fsPath === uri.fsPath) {
             return editor.document
         }
-        for ( const doc of vscode.workspace.textDocuments ) {
+        for (const doc of vscode.workspace.textDocuments) {
             if (doc.uri.fsPath === uri.fsPath) {
                 return doc
             }
         }
+
         return new TextDocumentLike(fs.readFileSync(filePath).toString())
     }
 
-    constructor(s: string) {
+    constructor (s: string) {
         if (s.match(/\r\n/)) {
             this.eol = vscode.EndOfLine.CRLF
             this._eol = '\r\n'
@@ -43,7 +44,7 @@ export class TextDocumentLike {
         this.lineCount = this._lines.length
     }
 
-    getText(range?: vscode.Range) : string {
+    getText (range?: vscode.Range) : string {
         if (range === undefined) {
             return this._lines.join(this._eol)
         }
@@ -56,6 +57,7 @@ export class TextDocumentLike {
         }
         if (startLineNum === endLineNum) {
             line = this._lines[startLineNum]
+
             return line.slice(range.start.character, range.end.character)
         }
         line = this._lines[startLineNum]
@@ -64,10 +66,14 @@ export class TextDocumentLike {
             ret += this._eol + this._lines[i]
         }
         ret += this._eol + this._lines[endLineNum].slice(0, range.end.character)
+
         return ret
     }
 
-    getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!\@@#\%\^\&*()-\=+[{]}\|\;\:\'\"\,.\<>\/\?\s]+)/g) : vscode.Range | undefined {
+    getWordRangeAtPosition (
+        position: vscode.Position,
+        regex = /(-?\d.\d\w)|([^`~!\@@#\%\^\&*()-\=+[{]}\|\;\:\'\"\,.\<>\/\?\s]+)/g,
+    ) : vscode.Range | undefined {
         if (position.line > this.lineCount) {
             return undefined
         }
@@ -79,26 +85,25 @@ export class TextDocumentLike {
                 return new vscode.Range(position.line, i, position.line, i + m[0].length)
             }
         }
+
         return undefined
     }
 
-    lineAt(lineNum: number) : TextLineLike
-    lineAt(position: vscode.Position) : TextLineLike
-    lineAt(lineNum: number | vscode.Position) {
+    lineAt (lineNum: number) : TextLineLike
+    lineAt (position: vscode.Position) : TextLineLike
+    lineAt (lineNum: number | vscode.Position) {
         if (isNumber(lineNum)) {
             return new TextLineLike(this._lines[lineNum])
         } else {
             return new TextLineLike(this._lines[lineNum.line])
         }
     }
-
 }
 
 class TextLineLike {
     readonly text: string
 
-    constructor(s: string) {
+    constructor (s: string) {
         this.text = s
     }
-
 }

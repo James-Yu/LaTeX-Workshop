@@ -8,7 +8,7 @@ export class Logger {
     compilerLogPanel: vscode.OutputChannel
     status: vscode.StatusBarItem
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
         this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
         this.compilerLogPanel = vscode.window.createOutputChannel('LaTeX Compiler')
@@ -20,22 +20,28 @@ export class Logger {
         this.displayStatus('check', 'statusBar.foreground')
     }
 
-    addLogMessage(message: string) {
+    addLogMessage (message: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('message.log.show')) {
             this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${message}\n`)
         }
     }
 
-    addCompilerMessage(message: string) {
+    addCompilerMessage (message: string) {
         this.compilerLogPanel.append(message)
     }
 
-    clearCompilerMessage() {
+    clearCompilerMessage () {
         this.compilerLogPanel.clear()
     }
 
-    displayStatus(icon: string, color: string, message: string | undefined = undefined, severity: string = 'info', build: string = '') {
+    displayStatus (
+        icon: string,
+        color: string,
+        message: string | undefined = undefined,
+        severity: string = 'info',
+        build: string = '',
+    ) {
         this.status.text = `$(${icon})${build}`
         this.status.tooltip = message
         this.status.color = new vscode.ThemeColor(color)
@@ -63,7 +69,7 @@ export class Logger {
         }
     }
 
-    showErrorMessage(message: string, ...args) : Thenable<any> | undefined {
+    showErrorMessage (message: string, ...args) : Thenable<any> | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('message.error.show')) {
             return vscode.window.showErrorMessage(message, ...args)
@@ -72,11 +78,11 @@ export class Logger {
         }
     }
 
-    showLog() {
+    showLog () {
         this.logPanel.show()
     }
 
-    showCompilerLog() {
+    showCompilerLog () {
         this.compilerLogPanel.show()
     }
 }

@@ -1,12 +1,11 @@
-import * as vscode from 'vscode'
-import * as path from 'path'
-import * as fs from 'fs'
 import * as chokidar from 'chokidar'
+import * as fs from 'fs'
 import * as micromatch from 'micromatch'
+import * as path from 'path'
+import * as vscode from 'vscode'
 import * as utils from '../utils'
 
-import {Extension} from '../main'
-
+import { Extension } from '../main'
 
 export class Manager {
     extension: Extension
@@ -20,10 +19,10 @@ export class Manager {
     watcherOptions: chokidar.WatchOptions = {
         usePolling: true,
         interval: 300,
-        binaryInterval: 1000
+        binaryInterval: 1000,
     }
 
-    constructor(extension: Extension) {
+    constructor (extension: Extension) {
         this.extension = extension
         this.filesWatched = []
         this.bibsWatched = []
@@ -31,45 +30,62 @@ export class Manager {
         this.workspace = ''
     }
 
-    getOutputDir(texPath: string) {
-        const doc = texPath.replace(/\.tex$/, '').split(path.sep).join('/')
+    getOutputDir (texPath: string) {
+        const doc = texPath
+            .replace(/\.tex$/, '')
+            .split(path.sep)
+            .join('/')
         const docfile = path.basename(texPath, '.tex')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        let outDir = (configuration.get('latex.outDir') as string)
-        outDir = outDir.replace(/%DOC%/g, docker ? docfile : doc)
-                    .replace(/%DOCFILE%/g, docfile)
-                    .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
-                    .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
+        let outDir = configuration.get('latex.outDir') as string
+        outDir = outDir
+            .replace(/%DOC%/g, docker ? docfile : doc)
+            .replace(/%DOCFILE%/g, docfile)
+            .replace(
+                /%DIR%/g,
+                docker
+                    ? './'
+                    : path
+                          .dirname(texPath)
+                          .split(path.sep)
+                          .join('/'),
+            )
+            .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
+
         return outDir
     }
 
-    get rootDir() {
+    get rootDir () {
         return path.dirname(this.rootFile)
     }
 
-    get rootFile() {
+    get rootFile () {
         return this.rootFiles[this.workspace]
     }
 
-    set rootFile(root: string) {
+    set rootFile (root: string) {
         this.rootFiles[this.workspace] = root
     }
 
-    tex2pdf(texPath: string, respectOutDir: boolean = true) {
+    tex2pdf (texPath: string, respectOutDir: boolean = true) {
         let outputDir = './'
         if (respectOutDir) {
             outputDir = this.getOutputDir(texPath)
         }
-        return path.resolve(path.dirname(texPath), outputDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
+
+        return path.resolve(
+            path.dirname(texPath),
+            outputDir,
+            path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`),
+        )
     }
 
-    hasTexId(id: string) {
-        return (id === 'tex' || id === 'latex' || id === 'doctex')
+    hasTexId (id: string) {
+        return id === 'tex' || id === 'latex' || id === 'doctex'
     }
 
-
-    updateWorkspace() {
+    updateWorkspace () {
         let wsroot = vscode.workspace.rootPath
         const activeTextEditor = vscode.window.activeTextEditor
         if (activeTextEditor) {
@@ -87,26 +103,30 @@ export class Manager {
         }
     }
 
-    async findRoot() : Promise<string | undefined> {
+    async findRoot () : Promise<string | undefined> {
         this.updateWorkspace()
         const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootDir()]
         for (const method of findMethods) {
             const rootFile = await method()
             if (rootFile !== undefined) {
                 if (this.rootFile !== rootFile) {
-                    this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
+                    this.extension.logger.addLogMessage(
+                        `Root file changed from: ${this.rootFile}. Find all dependencies.`,
+                    )
                     this.rootFile = rootFile
                     this.findAllDependentFiles(rootFile)
                 } else {
                     this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
                 }
+
                 return rootFile
             }
         }
+
         return undefined
     }
 
-    findRootMagic() : string | undefined {
+    findRootMagic () : string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -127,6 +147,7 @@ export class Manager {
                 file = path.resolve(path.dirname(file), result[1])
                 if (fileStack.indexOf(file) > -1) {
                     this.extension.logger.addLogMessage(`Looped root file by magic comment found: ${file}, stop here.`)
+
                     return file
                 } else {
                     fileStack.push(file)
@@ -136,12 +157,14 @@ export class Manager {
                 content = fs.readFileSync(file).toString()
                 result = content.match(regex)
             }
+
             return file
         }
+
         return undefined
     }
 
-    findRootSelf() : string | undefined {
+    findRootSelf () : string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -151,12 +174,14 @@ export class Manager {
         if (result) {
             const file = vscode.window.activeTextEditor.document.fileName
             this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
+
             return file
         }
+
         return undefined
     }
 
-    findSubFiles() : string | undefined {
+    findSubFiles () : string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -166,12 +191,14 @@ export class Manager {
         if (result) {
             const file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
             this.extension.logger.addLogMessage(`Found root file of this subfile from active editor: ${file}`)
+
             return file
         }
+
         return undefined
     }
 
-    async findRootDir() : Promise<string | undefined> {
+    async findRootDir () : Promise<string | undefined> {
         const regex = /\\begin{document}/m
 
         if (!this.workspace) {
@@ -182,7 +209,8 @@ export class Manager {
         const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
         const rootFilesIncludeGlob = '{' + rootFilesIncludePatterns.join(',') + '}'
         const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
-        const rootFilesExcludeGlob = rootFilesExcludePatterns.length > 0 ? '{' + rootFilesExcludePatterns.join(',') + '}' : undefined
+        const rootFilesExcludeGlob =
+            rootFilesExcludePatterns.length > 0 ? '{' + rootFilesExcludePatterns.join(',') + '}' : undefined
         try {
             const urls = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             for (const url of urls) {
@@ -192,17 +220,23 @@ export class Manager {
                     const file = url.fsPath
                     this.extension.logger.addLogMessage(`Try root file in root directory: ${file}`)
                     const window = vscode.window
-                    if (window && window.activeTextEditor && this.isRoot(url.fsPath, window.activeTextEditor.document.fileName, true)) {
+                    if (
+                        window &&
+                        window.activeTextEditor &&
+                        this.isRoot(url.fsPath, window.activeTextEditor.document.fileName, true)
+                    ) {
                         this.extension.logger.addLogMessage(`Found root file in root directory: ${file}`)
+
                         return file
                     }
                 }
             }
         } catch (e) {}
+
         return undefined
     }
 
-    isRoot(root: string, file: string, updateDependent = false) : boolean {
+    isRoot (root: string, file: string, updateDependent = false) : boolean {
         if (!fs.existsSync(root)) {
             return false
         }
@@ -221,10 +255,11 @@ export class Manager {
                 return true
             }
         }
+
         return false
     }
 
-    findAllDependentFiles(rootFile: string) {
+    findAllDependentFiles (rootFile: string) {
         let prevWatcherClosed = false
         if (this.fileWatcher !== undefined && this.filesWatched.indexOf(rootFile) < 0) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
@@ -255,11 +290,12 @@ export class Manager {
                 }
                 this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+                if ((configuration.get('latex.autoBuild.run') as string) !== 'onFileChange') {
                     return
                 }
                 if (this.extension.builder.disableBuildAfterSave) {
                     this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
@@ -281,7 +317,7 @@ export class Manager {
         }
     }
 
-    findDependentFiles(filePath: string, rootDir: string | undefined = undefined, fast = false) {
+    findDependentFiles (filePath: string, rootDir: string | undefined = undefined, fast = false) {
         if (!rootDir) {
             rootDir = path.dirname(filePath)
         }
@@ -302,9 +338,17 @@ export class Manager {
             }
 
             let inputFilePath: string | null
-            if (result[0].startsWith('\\subimport') || result[0].startsWith('\\subinputfrom') || result[0].startsWith('\\subincludefrom')) {
+            if (
+                result[0].startsWith('\\subimport') ||
+                result[0].startsWith('\\subinputfrom') ||
+                result[0].startsWith('\\subincludefrom')
+            ) {
                 inputFilePath = utils.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
-            } else if (result[0].startsWith('\\import') || result[0].startsWith('\\inputfrom') || result[0].startsWith('\\includefrom')) {
+            } else if (
+                result[0].startsWith('\\import') ||
+                result[0].startsWith('\\inputfrom') ||
+                result[0].startsWith('\\includefrom')
+            ) {
                 inputFilePath = utils.resolveFile([result[1]], result[2])
             } else {
                 inputFilePath = utils.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
@@ -314,7 +358,12 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Cannot find ${inputFilePath}`)
             }
             // Test if we are facing circular inclusion
-            if (inputFilePath && fs.existsSync(inputFilePath) && inputFilePath !== filePath && !this.texFileTree[filePath].has(inputFilePath)) {
+            if (
+                inputFilePath &&
+                fs.existsSync(inputFilePath) &&
+                inputFilePath !== filePath &&
+                !this.texFileTree[filePath].has(inputFilePath)
+            ) {
                 this.texFileTree[filePath].add(inputFilePath)
                 if (!fast && this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
                     this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
@@ -335,7 +384,7 @@ export class Manager {
             if (!result) {
                 break
             }
-            const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
+            const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => {
                 return bib.trim()
             })
             for (const bib of bibs) {
@@ -346,16 +395,16 @@ export class Manager {
         this.onFileChange(filePath)
     }
 
-    findAdditionalDependentFilesFromFls(rootFile: string, fast: boolean = false) {
+    findAdditionalDependentFilesFromFls (rootFile: string, fast: boolean = false) {
         const rootDir = path.dirname(rootFile)
         const outDir = this.getOutputDir(rootFile)
         const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.fls'))
-        if (! fs.existsSync(flsFile)) {
+        if (!fs.existsSync(flsFile)) {
             this.extension.logger.addLogMessage(`Cannot find file ${flsFile}`)
+
             return
         } else {
             this.extension.logger.addLogMessage(`Parsing ${flsFile} to compute dependencies`)
-
         }
 
         const inputFiles = new Set()
@@ -373,7 +422,7 @@ export class Manager {
         // #3: an OUTPUT entry --> #4: output file path
         while (true) {
             const result = regex.exec(flsContent)
-            if (! result) {
+            if (!result) {
                 break
             }
             if (result[1]) {
@@ -397,7 +446,10 @@ export class Manager {
                 return
             }
             // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (rootFile === inputFile || (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile))) {
+            if (
+                rootFile === inputFile ||
+                (this.texFileTree.hasOwnProperty(rootFile) && this.texFileTree[rootFile].has(inputFile))
+            ) {
                 return
             }
             const ext = path.extname(inputFile)
@@ -413,13 +465,13 @@ export class Manager {
         })
 
         outputFiles.forEach((outputFile: string) => {
-            if (!fast && path.extname(outputFile) === '.aux' ) {
+            if (!fast && path.extname(outputFile) === '.aux') {
                 this.findBibFileFromAux(outputFile, rootDir, outDir)
             }
         })
     }
 
-    findBibFileFromAux(auxFilePath: string, rootDir: string, outDir: string) {
+    findBibFileFromAux (auxFilePath: string, rootDir: string, outDir: string) {
         const regex = /^\\bibdata{(.*)}$/gm
         const auxContent = fs.readFileSync(auxFilePath).toString()
         const srcDir = path.dirname(auxFilePath).replace(outDir, rootDir)
@@ -428,7 +480,7 @@ export class Manager {
             if (!result) {
                 return
             }
-            const bibs = (result[1] ? result[1] : result[2]).split(',').map((bib) => {
+            const bibs = (result[1] ? result[1] : result[2]).split(',').map(bib => {
                 return bib.trim()
             })
             for (const bib of bibs) {
@@ -437,7 +489,7 @@ export class Manager {
         }
     }
 
-    onFileChange(filePath: string) {
+    onFileChange (filePath: string) {
         this.extension.completer.command.getCommandsTeX(filePath)
         this.extension.completer.command.getPackage(filePath)
         this.extension.completer.environment.getEnvironmentsTeX(filePath)
@@ -446,13 +498,14 @@ export class Manager {
         this.extension.completer.input.getGraphicsPath(filePath)
     }
 
-    addBibToWatcher(bib: string, rootDir: string, rootFile: string | undefined = undefined) {
+    addBibToWatcher (bib: string, rootDir: string, rootFile: string | undefined = undefined) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const bibDirs = configuration.get('latex.bibDirs') as string[]
         const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file ${bib}`)
+
             return
         }
         this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
@@ -462,11 +515,12 @@ export class Manager {
             this.bibWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
                 this.extension.completer.citation.parseBibFile(filePath)
-                if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+                if ((configuration.get('latex.autoBuild.run') as string) !== 'onFileChange') {
                     return
                 }
                 if (this.extension.builder.disableBuildAfterSave) {
                     this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
@@ -499,16 +553,16 @@ export class Manager {
         }
     }
 
-    setEnvVar() {
+    setEnvVar () {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        process.env['LATEXWORKSHOP_DOCKER_LATEX'] = configuration.get('docker.image.latex') as string
+        process.env.LATEXWORKSHOP_DOCKER_LATEX = configuration.get('docker.image.latex') as string
     }
 
     /**
      * Delete the whole dependency structure from texFileTree for file
      * @param file
      */
-    clearTexFileTree(file: string) {
+    clearTexFileTree (file: string) {
         if (!this.texFileTree.hasOwnProperty(file)) {
             return
         }
