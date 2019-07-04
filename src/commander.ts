@@ -687,7 +687,9 @@ export class Commander {
     async runTexdoc(pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
-        const proc = cp.spawn(texdocPath, ['--view', pkg])
+        const texdocArgs = configuration.get('texdoc.args') as string[]
+        texdocArgs.push(pkg)
+        const proc = cp.spawn(texdocPath, texdocArgs)
 
         let stdout = ''
         proc.stdout.on('data', newStdout => {
