@@ -294,6 +294,11 @@
         "category": "LaTeX Workshop"
       },
       {
+        "command": "latex-workshop.paste",
+        "title": "Paste content",
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-workshop.formattedPaste",
         "title": "Paste formatted content",
         "category": "LaTeX Workshop"
@@ -305,7 +310,7 @@
       },
       {
         "command": "latex-workshop.showSnippetPanel",
-        "title": "Show Snippet Panel", 
+        "title": "Show Snippet Panel",
         "category": "LaTeX Workshop"
       }
     ],
@@ -540,6 +545,12 @@
         "command": "latex-workshop.onAltEnterKey",
         "key": "alt+enter",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible"
+      },
+      {
+        "key": "ctrl+v",
+        "mac": "cmd+v",
+        "command": "latex-workshop.paste",
+        "when": "editorTextFocus && editorLangId == 'latex'"
       },
       {
         "key": "ctrl+shift+v",
@@ -1328,6 +1339,49 @@
           "type": "number",
           "default": 100,
           "markdownDescription": "Defines the delay in milliseconds to wait after typing stops. Set to 0 to disable."
+        },
+        "latex-workshop.formattedPaste.image.method": {
+          "type": "string",
+          "enum": [
+            "leave",
+            "copy",
+            "move"
+          ],
+          "enumDescriptions": [
+            "reference the image where it is",
+            "copy image to target location",
+            "move image to target location"
+          ],
+          "default": "leave",
+          "description": "When pasting the path to an image, determine how it is treated. With copy and move 'target location' is graphicsdir or cwd"
+        },
+        "latex-workshop.formattedPaste.image.template": {
+          "type": [
+            "string",
+            "array"
+          ],
+          "default": "\\includegraphics{${imageFilePath}}",
+          "description": "The template to use for pasting the image (use an array for multiline strings), use ${imageFilePath} to represent the image file. Can also use ${imageFileNameWithoutExt}"
+        },
+        "latex-workshop.formattedPaste.image.defaultName": {
+          "type": "string",
+          "default": "Y-MM-DD-HH-mm-ss",
+          "description": "The default copied image file name. The value of this config will be pass to the 'format' function of moment library (a js time manipulation library), you can read document https://momentjs.com/docs/#/displaying/format/ for advanced usage. You can include unformatted text by enclosing with square brackets [like so]."
+        },
+        "latex-workshop.formattedPaste.image.filePathConfirmInputBoxMode": {
+          "type": "string",
+          "enum": [
+            "none",
+            "fullPath",
+            "onlyName"
+          ],
+          "enumDescriptions": [
+            "Don't show a confirm inputbox",
+            "Act on the entire path to the image",
+            "Act on the image filename only"
+          ],
+          "default": "none",
+          "description": "Set the mode of file path confirm inputbox"
         }
       }
     },
@@ -1406,6 +1460,7 @@
     "mathjax": "^2.7.5",
     "mathjax-node": "2.1.1",
     "micromatch": "^3.0.0",
+    "moment": "^2.24.0",
     "pdfjs-dist": "2.0.943",
     "strip-json-comments": "^2.0.1",
     "tmp": "^0.0.33",

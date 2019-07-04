@@ -251,7 +251,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
-    context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.formattedPaste', () => extension.paster.paste()))
+    context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.paste', () => extension.paster.paste()))
+    context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.formattedPaste', () => extension.paster.pasteFormatted()))
 
     context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.viewtikzpicture', (document, range) => extension.tikzPictureView.view(document, range)))
     context.subscriptions.push(vscode.languages.registerCodeLensProvider({language: 'latex', scheme: 'file'}, new TikzCodeLense()))
