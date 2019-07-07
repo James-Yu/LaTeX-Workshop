@@ -1,5 +1,26 @@
 # Change Log
 
+## [7.1.0] - 2019-07-07
+
+### Added
+- (#1452) Paste formatted tables from csv.
+
+### Changed
+- (#1446,#1448) Build info panel tweaks.
+
+### Fixed
+- (#1415) Parse `label={...}` properly to get references.
+- (#1428) Handle optional arguments in `newcommand` for `mathjax`.
+- (#1430) Declare `\left`, `\right` as a pair.
+- (#1433) Fix `.fls` and `.aux` file discovery with relative `outDir`.
+- (#1433) Make structure and manger honor `texDirs`.
+- (#1435) Remove a file from `texFileTree` when it is deleted.
+- (#1440) Clear build progress on failure to build.
+- (#1449) Add option to force recipe usage.
+- (#1457) Honor `journaltitle` in citation browser.
+- (#1458) Show `stderr` on recipe error.
+- ($1463) Pass `DeclareMathOperator` to `mathjax`.
+
 ## [7.0.2] - 2019-06-07
 
 ### Changed
