@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as cp from 'child_process'
+import * as utils from './utils'
 
 import {Extension} from './main'
 import { ExternalCommand, getLongestBalancedString } from './utils'
@@ -52,7 +53,8 @@ export class Commander {
             this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
             await this.extension.builder.build(rootFile, recipe)
         } else {
-            const subFileRoot = this.extension.manager.findSubFiles()
+            const editorContent = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
+            const subFileRoot = this.extension.manager.findSubFiles(editorContent)
             if (subFileRoot) {
                 vscode.window.showQuickPick([{
                     label: 'Default root file',
