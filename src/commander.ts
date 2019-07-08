@@ -120,7 +120,11 @@ export class Commander {
     }
 
     async view(mode?: string) {
-        this.extension.logger.addLogMessage(`VIEW command invoked.`)
+        if (mode) {
+            this.extension.logger.addLogMessage(`VIEW command invoked with mode: ${mode}.`)
+        } else {
+            this.extension.logger.addLogMessage(`VIEW command invoked.`)
+        }
         if (!vscode.window.activeTextEditor) {
             this.extension.logger.addLogMessage('Cannot find active TextEditor.')
             return
@@ -174,33 +178,6 @@ export class Commander {
     kill() {
         this.extension.logger.addLogMessage(`KILL command invoked.`)
         this.extension.builder.kill()
-    }
-
-    async browser() {
-        this.extension.logger.addLogMessage(`BROWSER command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            return
-        }
-        const rootFile = await this.extension.manager.findRoot()
-        if (rootFile !== undefined) {
-            this.extension.viewer.openBrowser(rootFile)
-        } else {
-            this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
-        }
-    }
-
-    async tab() {
-        this.extension.logger.addLogMessage(`TAB command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            return
-        }
-        const rootFile = await this.extension.manager.findRoot()
-        if (rootFile !== undefined) {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            this.extension.viewer.openTab(rootFile, true, configuration.get('view.pdf.tab.useNewGroup'))
-        } else {
-            this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
-        }
     }
 
     pdf(uri: vscode.Uri | undefined) {
