@@ -119,6 +119,7 @@ export class Locator {
             filePath = args.filePath
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.extension.manager.findRoot()
         const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
         if (vscode.window.activeTextEditor.document.lineCount === line &&
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {

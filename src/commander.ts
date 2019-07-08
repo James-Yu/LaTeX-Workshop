@@ -190,7 +190,6 @@ export class Commander {
 
     async synctex() {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
-        await this.extension.manager.findRoot()
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -199,7 +198,6 @@ export class Commander {
 
     async synctexonref(line: number, filePath: string) {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
-        await this.extension.manager.findRoot()
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
