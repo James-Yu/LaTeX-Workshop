@@ -55,7 +55,7 @@ export class Parser {
         this.extension = extension
     }
 
-    parse(log: string) {
+    parse(log: string, rootFile?: string) {
         this.isLaTeXmkSkipped = false
         // canonicalize line-endings
         log = log.replace(/(\r\n)|\r/g, '\n')
@@ -66,7 +66,7 @@ export class Parser {
             log = this.trimTexify(log)
         }
         if (log.match(latexPattern) || log.match(latexFatalPattern)) {
-            this.parseLaTeX(log)
+            this.parseLaTeX(log, rootFile)
         } else if (this.latexmkSkipped(log)) {
             this.isLaTeXmkSkipped = true
         }
@@ -125,7 +125,10 @@ export class Parser {
         return false
     }
 
-    parseLaTeX(log: string) {
+    parseLaTeX(log: string, rootFile?: string) {
+        if (! rootFile) {
+            rootFile = this.extension.manager.rootFile
+        }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
 
@@ -137,11 +140,11 @@ export class Parser {
         let insideBoxWarn = false
         let insideError = false
         let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
-        const fileStack: string[] = [this.extension.manager.rootFile]
+        const fileStack: string[] = [rootFile]
         let nested = 0
         for (const line of lines) {
             // Compose the current file
-            const filename = path.resolve(this.extension.manager.rootDir, fileStack[fileStack.length - 1])
+            const filename = path.resolve(path.dirname(rootFile), fileStack[fileStack.length - 1])
             // Skip the first line after a box warning, this is just garbage
             if (insideBoxWarn) {
                 insideBoxWarn = false
@@ -232,7 +235,7 @@ export class Parser {
                 currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
-                    file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : filename,
+                    file: result[1] ? path.resolve(path.dirname(rootFile), result[1]) : filename,
                     line: result[2] ? parseInt(result[2], 10) : undefined
                 }
                 searchesEmptyLine = true
@@ -241,7 +244,7 @@ export class Parser {
             }
             nested = this.parseLaTeXFileStack(line, fileStack, nested)
             if (fileStack.length === 0) {
-                fileStack.push(this.extension.manager.rootFile)
+                fileStack.push(rootFile)
             }
         }
         // push final result

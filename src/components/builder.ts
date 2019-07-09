@@ -238,7 +238,7 @@ export class Builder {
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
-            this.extension.parser.parse(stdout)
+            this.extension.parser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
                 this.extension.buildInfo.buildEnded()
