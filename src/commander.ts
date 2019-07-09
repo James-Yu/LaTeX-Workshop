@@ -2,10 +2,37 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as cp from 'child_process'
-import * as utils from './utils'
 
 import {Extension} from './main'
 import { ExternalCommand, getLongestBalancedString } from './utils'
+
+async function quickPickRootFile(rootFile: string, localRootFile: string) : Promise<string | undefined> {
+    const pickedRootFile = await vscode.window.showQuickPick([{
+        label: 'Default root file',
+        description: `Path: ${rootFile}`
+    }, {
+        label: 'Subfiles package root file',
+        description: `Path: ${localRootFile}`
+    }], {
+        placeHolder: 'Subfiles package detected. Which file to build?',
+        matchOnDescription: true
+    }).then(async selected => {
+        if (!selected) {
+            return undefined
+        }
+        switch (selected.label) {
+            case 'Default root file':
+                return rootFile
+                break
+            case 'Subfiles package root file':
+                return localRootFile
+                break
+            default:
+                return undefined
+        }
+    })
+    return pickedRootFile
+}
 
 
 export class Commander {
@@ -49,44 +76,16 @@ export class Commander {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
             return
         }
-        if (skipSelection) {
-            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            await this.extension.builder.build(rootFile, recipe)
-        } else {
-            const editorContent = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
-            const subFileRoot = this.extension.manager.findSubFiles(editorContent)
-            if (subFileRoot) {
-                vscode.window.showQuickPick([{
-                    label: 'Default root file',
-                    description: `Path: ${rootFile}`
-                }, {
-                    label: 'Subfiles package root file',
-                    description: `Path: ${subFileRoot}`
-                }], {
-                    placeHolder: 'Subfiles package detected. Which file to build?',
-                    matchOnDescription: true
-                }).then(async selected => {
-                    if (!selected) {
-                        return
-                    }
-                    switch (selected.label) {
-                        case 'Default root file':
-                            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            await this.extension.builder.build(rootFile as string, recipe)
-                            break
-                        case 'Subfiles package root file':
-                            this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
-                            await this.extension.builder.build(subFileRoot, recipe)
-                            break
-                        default:
-                            break
-                    }
-                })
-            } else {
-                this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                await this.extension.builder.build(rootFile, recipe)
+        let pickedRootFile: string | undefined = rootFile
+        if (!skipSelection && this.extension.manager.localRootFile) {
+            // We are using the subfile package
+            pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
+            if (! pickedRootFile) {
+                return
             }
         }
+        this.extension.logger.addLogMessage(`Building root file: ${pickedRootFile}`)
+        await this.extension.builder.build(pickedRootFile, recipe)
     }
 
     async revealOutputDir() {
