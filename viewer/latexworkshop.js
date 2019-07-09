@@ -110,6 +110,8 @@ class ViewerHistory {
 
 let viewerHistory = new ViewerHistory()
 
+const pdfFilePrefix = 'pdf..'
+
 function encodePath(path) {
   const s = encodeURIComponent(path)
   const b64 = window.btoa(s)
@@ -130,7 +132,7 @@ let file
 for (let i = 0, ii = parts.length; i < ii; ++i) {
     let param = parts[i].split('=')
     if (param[0].toLowerCase() === 'file') {
-        file = decodePath(param[1].replace('/pdf:', ''))
+        file = decodePath(param[1].replace(pdfFilePrefix, ''))
         documentTitle = file.split(/[\\/]/).pop()
         document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
@@ -177,7 +179,7 @@ socket.addEventListener("message", (event) => {
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft,
                                         viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
-            PDFViewerApplication.open(`/pdf:${encodePath(file)}`).then( () => {
+            PDFViewerApplication.open(`${pdfFilePrefix}${encodePath(file)}`).then( () => {
               // reset the document title to the original value to avoid duplication
               document.title = documentTitle
 
