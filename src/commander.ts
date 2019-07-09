@@ -137,16 +137,24 @@ export class Commander {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
             return
         }
+        let pickedRootFile: string | undefined = rootFile
+        if (this.extension.manager.localRootFile) {
+            // We are using the subfile package
+            pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
+            if (! pickedRootFile) {
+                return
+            }
+        }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useActiveGroup = configuration.get('view.pdf.tab.useNewGroup') as boolean
         if (mode === 'browser') {
-            this.extension.viewer.openBrowser(rootFile)
+            this.extension.viewer.openBrowser(pickedRootFile)
             return
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(rootFile, true, useActiveGroup)
+            this.extension.viewer.openTab(pickedRootFile, true, useActiveGroup)
             return
         } else if (mode === 'external') {
-            this.extension.viewer.openExternal(rootFile)
+            this.extension.viewer.openExternal(pickedRootFile)
             return
         } else if (mode === 'set') {
             this.setViewer()
@@ -154,16 +162,19 @@ export class Commander {
         }
         const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer() : Promise.resolve()
         promise.then(() => {
+            if (!pickedRootFile) {
+                return
+            }
             switch (configuration.get('view.pdf.viewer')) {
                 case 'browser':
-                    this.extension.viewer.openBrowser(rootFile)
+                    this.extension.viewer.openBrowser(pickedRootFile)
                     break
                 case 'tab':
                 default:
-                    this.extension.viewer.openTab(rootFile, true, useActiveGroup)
+                    this.extension.viewer.openTab(pickedRootFile, true, useActiveGroup)
                     break
                 case 'external':
-                    this.extension.viewer.openExternal(rootFile)
+                    this.extension.viewer.openExternal(pickedRootFile)
                     break
             }
         })
