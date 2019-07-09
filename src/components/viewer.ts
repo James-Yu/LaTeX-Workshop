@@ -7,6 +7,7 @@ import * as cp from 'child_process'
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
 import {ExternalCommand} from '../utils'
+import {encodePath} from './encodePath'
 
 interface Position {}
 
@@ -70,10 +71,7 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        // pdfjs viewer automatically call decodeURIComponent.
-        // So, to pass the encoded path of a pdf file to the http server,
-        // we have to call encodeURIComponent two times! 2 - 1 = 1 !
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(pdfFile))}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=/pdf:${encodePath(pdfFile)}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         return url
     }
@@ -121,10 +119,7 @@ export class Viewer {
     }
 
     getPDFViewerContent(uri: vscode.Uri) : string {
-        // pdfjs viewer automatically call decodeURIComponent.
-        // So, to pass the encoded path of a pdf file to the http server,
-        // we have to call encodeURIComponent two times! 2 - 1 = 1 !
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodePath(uri.fsPath)}`
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
@@ -180,7 +175,7 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
         switch (data.type) {
             case 'open':
-                clients = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
+                clients = this.clients[data.path.toLocaleUpperCase()]
                 if (clients === undefined) {
                     return
                 }
@@ -205,7 +200,7 @@ export class Viewer {
                 }
                 break
             case 'position':
-                clients = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
+                clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
                     if (client.websocket === websocket) {
                         client.position = data
@@ -213,7 +208,7 @@ export class Viewer {
                 }
                 break
             case 'loaded':
-                clients = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
+                clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
                     if (client.websocket !== websocket) {
                         continue
@@ -238,7 +233,7 @@ export class Viewer {
                 }
                 break
             case 'click':
-                this.extension.locator.locate(data, decodeURIComponent(data.path))
+                this.extension.locator.locate(data, data.path)
                 break
             case 'external_link':
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))

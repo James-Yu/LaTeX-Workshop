@@ -110,14 +110,28 @@ class ViewerHistory {
 
 let viewerHistory = new ViewerHistory()
 
+function encodePath(path) {
+  const s = encodeURIComponent(path)
+  const b64 = window.btoa(s)
+  const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/, '')
+  return b64url
+}
+
+function decodePath(b64url) {
+  const tmp = b64url + '='.repeat((4 - b64url.length % 4) % 4)
+  const b64 = tmp.replace(/-/g, '+').replace(/_/g, '/')
+  const s = window.atob(b64)
+  return decodeURIComponent(s)
+}
+
 let query = document.location.search.substring(1)
 let parts = query.split('&')
 let file
 for (let i = 0, ii = parts.length; i < ii; ++i) {
     let param = parts[i].split('=')
     if (param[0].toLowerCase() === 'file') {
-        file = decodeURIComponent(param[1]).replace('/pdf:', '')
-        documentTitle = decodeURIComponent(decodeURIComponent(file)).split(/[\\/]/).pop()
+        file = decodePath(param[1].replace('/pdf:', ''))
+        documentTitle = file.split(/[\\/]/).pop()
         document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
         const dom = document.getElementsByClassName('print')
@@ -163,7 +177,7 @@ socket.addEventListener("message", (event) => {
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft,
                                         viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
-            PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
+            PDFViewerApplication.open(`/pdf:${encodePath(file)}`).then( () => {
               // reset the document title to the original value to avoid duplication
               document.title = documentTitle
 
@@ -280,7 +294,7 @@ document.addEventListener('pagerendered', (evPageRendered) => {
           left += offsetLeft
         }
         const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
-        socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page,
+        socket.send(JSON.stringify({type:"click", path:file, pos:pos, page:page,
          textBeforeSelection:textBeforeSelection, textAfterSelection:textAfterSelection}))
     }
 }, true)
