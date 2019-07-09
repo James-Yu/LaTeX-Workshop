@@ -233,7 +233,7 @@ export class Viewer {
                         }))
                     }
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
-                        this.extension.locator.syncTeX()
+                        this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
                     }
                 }
                 break

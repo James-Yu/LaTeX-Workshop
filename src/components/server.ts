@@ -13,6 +13,7 @@ export class Server {
     wsServer: ws.Server
     address: string
     port: number
+    pdfFile: string | undefined = undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -54,6 +55,7 @@ export class Server {
         if (request.url.indexOf('pdf:') >= 0 && request.url.indexOf('viewer.html') < 0) {
             // The second backslash was encoded as %2F, and the first one is prepended by request
             const fileName = decodeURIComponent(request.url.replace('/pdf:', ''))
+            this.pdfFile = fileName
             try {
                 const pdfSize = fs.statSync(fileName).size
                 response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})
@@ -73,6 +75,7 @@ export class Server {
                 root = path.resolve(`${this.extension.extensionRoot}/viewer`)
             }
             const fileName = path.resolve(root, '.' + request.url.split('?')[0])
+            this.pdfFile = fileName
             let contentType = 'text/html'
             switch (path.extname(fileName)) {
                 case '.js':

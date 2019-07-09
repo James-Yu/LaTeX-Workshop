@@ -306,10 +306,10 @@ export class Builder {
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
         this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('synctex.afterBuild.enabled') as boolean) {
-            this.extension.logger.addLogMessage('SyncTex after build invoked.')
-            this.extension.locator.syncTeX()
-        }
+        // if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+        //     this.extension.logger.addLogMessage('SyncTex after build invoked.')
+        //     this.extension.locator.syncTeX(undefined, undefined, rootFile)
+        // }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
             this.extension.cleaner.clean()
