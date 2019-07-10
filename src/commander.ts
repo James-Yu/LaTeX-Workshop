@@ -223,8 +223,20 @@ export class Commander {
 
     async clean() : Promise<void> {
         this.extension.logger.addLogMessage(`CLEAN command invoked.`)
-        await this.extension.manager.findRoot()
-        return this.extension.cleaner.clean()
+        const rootFile = await this.extension.manager.findRoot()
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage(`Cannot find LaTeX root file to clean.`)
+            return
+        }
+        let pickedRootFile: string | undefined = rootFile
+        if (this.extension.manager.localRootFile) {
+            // We are using the subfile package
+            pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
+            if (! pickedRootFile) {
+                return
+            }
+        }
+        return this.extension.cleaner.clean(pickedRootFile)
     }
 
     addTexRoot() {

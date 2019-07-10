@@ -250,7 +250,7 @@ export class Builder {
                         this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
                         this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
 
-                        this.extension.commander.clean().then(() => {
+                        this.extension.cleaner.clean(rootFile).then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
                         })
                     } else {
@@ -261,7 +261,7 @@ export class Builder {
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
                     if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
-                        this.extension.commander.clean()
+                        this.extension.cleaner.clean(rootFile)
                     }
                     const res = this.extension.logger.showErrorMessage(`Recipe terminated with error.`, 'Open compiler log')
                     if (res) {
@@ -312,7 +312,7 @@ export class Builder {
         // }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
-            this.extension.cleaner.clean()
+            this.extension.cleaner.clean(rootFile)
         }
     }
 
