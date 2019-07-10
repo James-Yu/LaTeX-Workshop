@@ -73,6 +73,7 @@ export class Viewer {
         }
         const url = `http://localhost:${this.extension.server.port}/viewer.html?file=${pdfFilePrefix}${encodePath(pdfFile)}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
+        this.extension.logger.addLogMessage(`The decoded path is ${pdfFile}`)
         return url
     }
 
