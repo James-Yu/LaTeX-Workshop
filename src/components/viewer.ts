@@ -120,7 +120,7 @@ export class Viewer {
     }
 
     getPDFViewerContent(uri: vscode.Uri) : string {
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${pdfFilePrefix}${uri.authority ? `\\\\${uri.authority}` : ''}${encodePath(uri.fsPath)}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${pdfFilePrefix}${encodePath(uri.fsPath)}`
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
