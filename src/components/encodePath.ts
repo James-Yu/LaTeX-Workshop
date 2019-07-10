@@ -1,5 +1,15 @@
+// prefix that server.ts uses to distiguish requets on pdf files from others.
+// '.' is chosen because it is not converted by encodeURIComponent and others.
+// See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
+// See https://tools.ietf.org/html/rfc3986#section-2.3
+
 export const pdfFilePrefix = 'pdf..'
 
+// We encode the path with base64url after calling encodeURIComponent.
+// The reason not using base64url directly is that we are not sure that
+// encodeURIComponent, unescape and btoa trick is valid on node.js.
+// See https://en.wikipedia.org/wiki/Base64#URL_applications
+// See https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
 export function encodePath(path: string) {
     const s = encodeURIComponent(path)
     const b64 = Buffer.from(s).toString('base64')
