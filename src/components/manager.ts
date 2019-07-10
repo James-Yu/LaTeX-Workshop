@@ -279,7 +279,11 @@ export class Manager {
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
-                this.extension.commander.build(true, rootFile)
+                if (this.localRootFile && configuration.get("latex.rootFile.useSubFile")) {
+                    this.extension.commander.build(true, this.localRootFile)
+                } else {
+                    this.extension.commander.build(true, rootFile)
+                }
             })
             this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)

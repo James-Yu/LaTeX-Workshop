@@ -203,7 +203,14 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.locator.syncTeX()
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let pdfFile: string
+        if (this.extension.manager.localRootFile && configuration.get("latex.rootFile.useSubFile")) {
+            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
+        } else {
+            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
+        }
+        this.extension.locator.syncTeX(undefined, undefined, pdfFile)
     }
 
     async synctexonref(line: number, filePath: string) {
