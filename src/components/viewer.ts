@@ -233,6 +233,7 @@ export class Viewer {
                         }))
                     }
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+                        this.extension.logger.addLogMessage('SyncTex after build invoked.')
                         this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
                     }
                 }
