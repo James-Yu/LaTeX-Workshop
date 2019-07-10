@@ -13,7 +13,6 @@ export class Server {
     wsServer: ws.Server
     address: string
     port: number
-    pdfFile: string | undefined = undefined
 
     constructor(extension: Extension) {
         this.extension = extension
