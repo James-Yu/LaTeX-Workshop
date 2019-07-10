@@ -13,3 +13,12 @@ export function decodePath(b64url: string) {
     const s = Buffer.from(b64, 'base64').toString()
     return decodeURIComponent(s)
 }
+
+export function encodePathWithPrefix(path: string) {
+    return pdfFilePrefix + encodePath(path)
+}
+
+export function decodePathWithPrefix(b64urlWithPrefix: string) {
+    const s = b64urlWithPrefix.replace(pdfFilePrefix, '')
+    return decodePath(s)
+}

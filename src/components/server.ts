@@ -6,7 +6,7 @@ import * as vscode from 'vscode'
 
 import {Extension} from '../main'
 import {AddressInfo} from 'net'
-import {decodePath, pdfFilePrefix} from './encodePath'
+import {decodePathWithPrefix, pdfFilePrefix} from './encodePath'
 
 export class Server {
     extension: Extension
@@ -53,8 +53,8 @@ export class Server {
         }
 
         if (request.url.indexOf(pdfFilePrefix) >= 0 && request.url.indexOf('viewer.html') < 0) {
-            const s = request.url.replace('/' + pdfFilePrefix, '')
-            const fileName = decodePath(s)
+            const s = request.url.replace('/', '')
+            const fileName = decodePathWithPrefix(s)
             try {
                 const pdfSize = fs.statSync(fileName).size
                 response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})

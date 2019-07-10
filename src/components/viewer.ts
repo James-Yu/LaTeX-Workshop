@@ -7,7 +7,7 @@ import * as cp from 'child_process'
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
 import {ExternalCommand} from '../utils'
-import {encodePath, pdfFilePrefix} from './encodePath'
+import {encodePathWithPrefix, pdfFilePrefix} from './encodePath'
 
 interface Position {}
 
@@ -71,7 +71,7 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Cannot establish server connection.`)
             return
         }
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=${pdfFilePrefix}${encodePath(pdfFile)}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=${encodePathWithPrefix(pdfFile)}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
         this.extension.logger.addLogMessage(`The decoded path is ${pdfFile}`)
         return url
@@ -120,7 +120,8 @@ export class Viewer {
     }
 
     getPDFViewerContent(uri: vscode.Uri) : string {
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${pdfFilePrefix}${encodePath(uri.fsPath)}`
+        // viewer/viewer.js automatically requests the file to server.ts and server.ts decodes the encoded fsPath.
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(uri.fsPath)}`
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
