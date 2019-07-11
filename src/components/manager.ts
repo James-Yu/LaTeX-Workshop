@@ -10,8 +10,8 @@ import {Extension} from '../main'
 
 export class Manager {
     extension: Extension
-    rootFiles: object
-    localRootFiles: object
+    rootFiles: { [key: string]: string }
+    localRootFiles: { [key: string]: string | undefined }
     workspace: string
     texFileTree: { [id: string]: Set<string> } = {}
     fileWatcher: chokidar.FSWatcher
