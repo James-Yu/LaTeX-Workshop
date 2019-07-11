@@ -24,7 +24,7 @@ interface IFileTikzCollection {
 
 interface IFileTikzPicture {
     range: vscode.Range
-    content: string[]
+    content: string
     tempFile: string
     lastChange: number
 }
@@ -32,29 +32,35 @@ interface IFileTikzPicture {
 export class TikzPictureView {
     extension: Extension
     tikzCollections: { [filePath: string]: IFileTikzCollection } = {}
+    initalised = false
+
+    private TEMPFOLDER_NAME = 'vscode-latexworkshop'
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     public async view(document: vscode.TextDocument, range: vscode.Range) {
+        if (!this.initalised) {
+            await this.cleanupTempDir()
+            if (!fs.existsSync(path.join(tmpdir(), this.TEMPFOLDER_NAME))) {
+                await mkdir(path.join(tmpdir(), this.TEMPFOLDER_NAME))
+            }
+            this.initalised = true
+        }
+
         const fileTikzCollection = await this.getFileTikzCollection(document)
 
         const tikzPicture = await this.getTikzEntry(fileTikzCollection, {
             range,
-            content: document.getText(range).split('\n')
+            content: document.getText(range)
         })
 
-        const generatedPreamble = await this.generatePreamble(fileTikzCollection)
-        if (fileTikzCollection.preamble !== generatedPreamble) {
-            fileTikzCollection.preamble = generatedPreamble
-            await this.precompilePreamble(
-                path.join(fileTikzCollection.tempDir, 'preamble.tex'),
-                fileTikzCollection.preamble
-            )
-        }
+        const preambleStatus = await this.checkPreamble(fileTikzCollection)
 
-        this.updateTikzPicture(tikzPicture)
+        if (preambleStatus === 'stable') {
+            this.updateTikzPicture(tikzPicture)
+        }
     }
 
     public async onFileChange(
@@ -62,12 +68,14 @@ export class TikzPictureView {
         changes: vscode.TextDocumentContentChangeEvent[],
         waitedDelay?: boolean
     ) {
+        const tikzFileCollection = this.tikzCollections[document.uri.fsPath]
+
         const changeDelay = vscode.workspace.getConfiguration('latex-workshop.tikzpreview').get('delay') as number
-        if (changeDelay === 0 || this.tikzCollections[document.uri.fsPath] === undefined) {
+        if (changeDelay === 0 || tikzFileCollection === undefined) {
             return
-        } else if (+new Date() - this.tikzCollections[document.uri.fsPath].lastChange < changeDelay) {
+        } else if (+new Date() - tikzFileCollection.lastChange < changeDelay) {
             if (!waitedDelay) {
-                this.tikzCollections[document.uri.fsPath].lastChange = +new Date()
+                tikzFileCollection.lastChange = +new Date()
                 setTimeout(() => {
                     this.onFileChange(document, changes, true)
                 }, changeDelay)
@@ -75,7 +83,9 @@ export class TikzPictureView {
             return
         }
 
-        const tikzPictures: IFileTikzPicture[] = this.tikzCollections[document.uri.fsPath].tikzPictures
+        this.checkPreamble(tikzFileCollection)
+
+        const tikzPictures: IFileTikzPicture[] = tikzFileCollection.tikzPictures
 
         for (const change of changes) {
             for (const tikzPicture of tikzPictures) {
@@ -102,7 +112,7 @@ export class TikzPictureView {
                         tikzPicture.range.start,
                         tikzPicture.range.end.translate(lineDelta, 0)
                     )
-                    tikzPicture.content = document.getText(tikzPicture.range).split('\n')
+                    tikzPicture.content = document.getText(tikzPicture.range)
                     this.updateTikzPicture(tikzPicture)
                 }
             }
@@ -110,56 +120,43 @@ export class TikzPictureView {
     }
 
     public async updateTikzPicture(tikzPicture: IFileTikzPicture) {
-        // await writeFile(
-        //     tikzPicture.tempFile,
-        //     `%&preamble\n\\begin{document}\n${tikzPicture.content.join('\n')}\n\\end{document}`
-        // ).catch(() => {
-        //     throw new Error('unable to write tikzpicture to tempfile')
-        // })
-
         fs.writeFileSync(
             tikzPicture.tempFile,
-            `%&preamble\n\\begin{document}\n${tikzPicture.content.join('\n')}\n\\end{document}`
+            `%&preamble\n\\begin{document}\n${tikzPicture.content}\n\\end{document}`
         )
 
         const startTime = +new Date()
 
-        child_process.execSync(`latexmk ${path.basename(tikzPicture.tempFile)} -pdf`, {
-            cwd: path.dirname(tikzPicture.tempFile)
-        })
-
-        console.log(`took ${+new Date() - startTime}ms to recompile tikzpicture`)
+        try {
+            child_process.execSync(
+                `latexmk ${path.basename(tikzPicture.tempFile)} -interaction=batchmode -quiet -pdf`,
+                {
+                    cwd: path.dirname(tikzPicture.tempFile),
+                    stdio: 'ignore'
+                }
+            )
+            console.log(`Took ${+new Date() - startTime}ms to recompile tikzpicture`)
+        } catch (error) {
+            console.log('latexmk failed to compile standalone tikzpicture')
+        }
 
         if (
             this.extension.viewer.clients[tikzPicture.tempFile.replace(/\.tex$/, '.pdf').toLocaleUpperCase()] !==
             undefined
         ) {
-            this.extension.viewer.refreshExistingViewer(tikzPicture.tempFile)
+            const refreshed = this.extension.viewer.refreshExistingViewer(tikzPicture.tempFile)
+            if (!refreshed) {
+                this.extension.viewer.openTab(tikzPicture.tempFile, false, true)
+            }
         } else {
             this.extension.viewer.openTab(tikzPicture.tempFile, false, true)
         }
     }
 
-    public async cleanupTempFiles() {
-        const rmPromises: Promise<unknown>[] = []
-        for (const tikzCollection in this.tikzCollections) {
-            rmPromises.push(removeDir(this.tikzCollections[tikzCollection].tempDir))
-        }
-        await Promise.all(rmPromises)
-    }
-
     private async getFileTikzCollection(document: vscode.TextDocument) : Promise<IFileTikzCollection> {
         if (!(document.uri.fsPath in this.tikzCollections)) {
-            if (!fs.existsSync(path.join(tmpdir(), 'vscode-latexworkshop'))) {
-                await mkdir(path.join(tmpdir(), 'vscode-latexworkshop'))
-            }
-
             const tempDir: string = await mkdtemp(
-                path.join(
-                    tmpdir(),
-                    'vscode-latexworkshop',
-                    `tikzpreview-${path.basename(document.uri.fsPath, '.tex')}-`
-                )
+                path.join(tmpdir(), this.TEMPFOLDER_NAME, `tikzpreview-${path.basename(document.uri.fsPath, '.tex')}-`)
             )
 
             const thisFileTikzCollection: IFileTikzCollection = {
@@ -180,7 +177,7 @@ export class TikzPictureView {
         tikzCollection: IFileTikzCollection,
         tikzPictureContent: {
             range: vscode.Range;
-            content: string[];
+            content: string;
         }
     ) : Promise<IFileTikzPicture> {
         for (const tikzPicture of tikzCollection.tikzPictures) {
@@ -199,6 +196,23 @@ export class TikzPictureView {
         })
 
         return tikzCollection.tikzPictures[tikzCollection.tikzPictures.length - 1]
+    }
+
+    private async checkPreamble(fileTikzCollection: IFileTikzCollection) {
+        const generatedPreamble = await this.generatePreamble(fileTikzCollection)
+        if (fileTikzCollection.preamble !== generatedPreamble) {
+            fileTikzCollection.preamble = generatedPreamble
+            await this.precompilePreamble(
+                path.join(fileTikzCollection.tempDir, 'preamble.tex'),
+                fileTikzCollection.preamble
+            )
+            const recompilePromises = fileTikzCollection.tikzPictures.map(tikzPicture =>
+                this.updateTikzPicture(tikzPicture)
+            )
+            await Promise.all(recompilePromises)
+            return 'updated'
+        }
+        return 'stable'
     }
 
     private async generatePreamble(fileTikzCollection: IFileTikzCollection) {
@@ -240,6 +254,7 @@ export class TikzPictureView {
         } while (result)
         let preamble = commandsString + '\n' + commands.join('\n')
         preamble = preamble.includes('\\usepackage{tikz}') ? preamble : '\n\\usepackage{tikz}\n' + preamble
+        preamble += '\n\n\\pdfcompresslevel=0\n\\pdfobjcompresslevel=0'
         return preamble
     }
 
@@ -261,8 +276,8 @@ export class TikzPictureView {
                         ],
                         { cwd: path.dirname(file) }
                     )
-                    process.on('exit', code => {
-                        resolve(code)
+                    process.on('exit', _code => {
+                        resolve()
                     })
                     process.on('error', err => {
                         reject(err)
@@ -272,5 +287,17 @@ export class TikzPictureView {
                     reject(err)
                 })
         })
+    }
+
+    public async cleanupTempFiles() {
+        const rmPromises: Promise<unknown>[] = []
+        for (const tikzCollection in this.tikzCollections) {
+            rmPromises.push(removeDir(this.tikzCollections[tikzCollection].tempDir))
+        }
+        await Promise.all(rmPromises)
+    }
+
+    public async cleanupTempDir() {
+        await removeDir(path.join(tmpdir(), this.TEMPFOLDER_NAME))
     }
 }
