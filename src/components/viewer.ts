@@ -7,7 +7,7 @@ import * as cp from 'child_process'
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
 import {ExternalCommand} from '../utils'
-import {encodePathWithPrefix, pdfFilePrefix} from './encodePath'
+import {encodePathWithPrefix} from './encodePath'
 
 interface Position {}
 
@@ -73,7 +73,7 @@ export class Viewer {
         }
         const url = `http://localhost:${this.extension.server.port}/viewer.html?file=${encodePathWithPrefix(pdfFile)}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
-        this.extension.logger.addLogMessage(`The decoded path is ${pdfFile}`)
+        this.extension.logger.addLogMessage(`The encoded path is ${pdfFile}`)
         return url
     }
 
