@@ -9,7 +9,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
     constructor(extension: Extension) {
         this.extension = extension
         const sections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
-        this.sectionRegex = sections.map(section => RegExp(`\\\\${section}(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+        this.sectionRegex = sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
     }
 
     public provideFoldingRanges(
@@ -26,8 +26,9 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         let  documentClassLine = -1
 
         const sections: {level: number, from: number, to: number}[] = []
+        let index = -1
         for (const line of lines) {
-            const index = lines.indexOf(line)
+            index++
             for (const regex of this.sectionRegex) {
                 const result = regex.exec(line)
                 if (!result) {
