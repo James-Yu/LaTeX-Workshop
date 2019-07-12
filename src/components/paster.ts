@@ -7,7 +7,6 @@ import * as csv from 'csv-parser'
 
 import { Extension } from '../main'
 import { promisify } from 'util'
-import { file } from 'tmp'
 
 const fsCopy = promisify(fs.copyFile)
 
@@ -244,7 +243,6 @@ export class Paster {
     PATH_VARIABLE_IMAGE_FILE_NAME = /\$\{imageFileName\}/g
     PATH_VARIABLE_IMAGE_FILE_NAME_WITHOUT_EXT = /\$\{imageFileNameWithoutExt\}/g
 
-    filePathConfirmBoxMode: 'none' | 'fullPath' | 'onlyName'
     pasteTemplate: string
     basePathConfig = '${graphicsPath}'
     graphicsPathFallback = '${currentFileDir}'
@@ -311,7 +309,6 @@ export class Paster {
         const config = vscode.workspace.getConfiguration('latex-workshop.formattedPaste.image')
 
         // load other config
-        this.filePathConfirmBoxMode = config.filePathConfirmInputBoxMode
         const pasteTemplate = config.template
         if (typeof pasteTemplate === 'string') {
             this.pasteTemplate = pasteTemplate
@@ -339,40 +336,30 @@ export class Paster {
                 ...fs
                     .readdirSync(graphicsPath)
                     .map(imagePath => parseInt(imagePath.replace(/^image(\d+)\.\w+/, '$1')))
-                    .filter(number => !isNaN(number))
+                    .filter(num => !isNaN(num))
             ) + 1
         const imgExtension = path.extname(imagePathCurrent) ? path.extname(imagePathCurrent) : '.png'
         const imageFileName = selectText ? selectText + imgExtension : `image${imgPostfixNumber}` + imgExtension
-        const filePathOrName =
-            this.filePathConfirmBoxMode === 'fullPath' ? makeImagePath(imageFileName) : imageFileName
 
-        if (this.filePathConfirmBoxMode !== 'none') {
-            vscode.window
-                .showInputBox({
-                    prompt: 'Please specify the filename of the image.',
-                    value: filePathOrName,
-                    valueSelection: [filePathOrName.length - imageFileName.length, filePathOrName.length - 4]
-                })
-                .then(result => {
-                    if (result) {
-                        if (!result.endsWith(imgExtension)) {
-                            result += imgExtension
-                        }
-
-                        if (this.filePathConfirmBoxMode === 'onlyName') {
-                            result = makeImagePath(result)
-                        }
-
-                        callback(null, result)
+        vscode.window
+            .showInputBox({
+                prompt: 'Please specify the filename of the image.',
+                value: imageFileName,
+                valueSelection: [imageFileName.length - imageFileName.length, imageFileName.length - 4]
+            })
+            .then(result => {
+                if (result) {
+                    if (!result.endsWith(imgExtension)) {
+                        result += imgExtension
                     }
 
-                    return
-                })
-        } else {
-            callback(null, makeImagePath(imageFileName))
+                    result = makeImagePath(result)
 
-            return
-        }
+                    callback(null, result)
+                }
+
+                return
+            })
 
         function makeImagePath(fileName: string) {
             // image output path
