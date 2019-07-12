@@ -9,7 +9,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
     constructor(extension: Extension) {
         this.extension = extension
         const sections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
-        this.sectionRegex = sections.map(section => RegExp(`\\\\${section}(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+        this.sectionRegex = sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
     }
 
     public provideFoldingRanges(
