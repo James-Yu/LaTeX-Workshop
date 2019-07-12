@@ -19,31 +19,6 @@ export class Paster {
         this.extension = extension
     }
 
-    public async paste() {
-        const editor = vscode.window.activeTextEditor
-        if (!editor) {
-            return
-        }
-
-        const clipboardContents = await vscode.env.clipboard.readText()
-
-        if (clipboardContents === '') {
-            const fileUri = editor.document.uri
-            if (!fileUri) {
-                return
-            }
-            if (fileUri.scheme === 'untitled') {
-                vscode.window.showInformationMessage('You need to the save the current editor before pasting an image')
-
-                return
-            }
-
-            this.pasteImage(editor, fileUri.fsPath)
-        } else {
-            this.pasteNormal(editor, clipboardContents)
-        }
-    }
-
     public async pasteFormatted() {
         this.extension.logger.addLogMessage('Performing formatted paste')
 
