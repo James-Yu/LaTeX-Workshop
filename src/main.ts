@@ -197,7 +197,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.recipes', (recipe) => extension.commander.recipes(recipe))
     vscode.commands.registerCommand('latex-workshop.view', (mode) => extension.commander.view(mode))
     vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh())
-    vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
+    vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.view('tab'))
     vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.texdoc', (pkg) => extension.commander.texdoc(pkg))

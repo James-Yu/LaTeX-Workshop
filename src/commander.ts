@@ -6,6 +6,34 @@ import * as cp from 'child_process'
 import {Extension} from './main'
 import { ExternalCommand, getLongestBalancedString } from './utils'
 
+async function quickPickRootFile(rootFile: string, localRootFile: string) : Promise<string | undefined> {
+    const pickedRootFile = await vscode.window.showQuickPick([{
+        label: 'Default root file',
+        description: `Path: ${rootFile}`
+    }, {
+        label: 'Subfiles package root file',
+        description: `Path: ${localRootFile}`
+    }], {
+        placeHolder: 'Subfiles package detected. Which file to build?',
+        matchOnDescription: true
+    }).then(async selected => {
+        if (!selected) {
+            return undefined
+        }
+        switch (selected.label) {
+            case 'Default root file':
+                return rootFile
+                break
+            case 'Subfiles package root file':
+                return localRootFile
+                break
+            default:
+                return undefined
+        }
+    })
+    return pickedRootFile
+}
+
 
 export class Commander {
     extension: Extension
@@ -48,43 +76,16 @@ export class Commander {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
             return
         }
-        if (skipSelection) {
-            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-            await this.extension.builder.build(rootFile, recipe)
-        } else {
-            const subFileRoot = this.extension.manager.findSubFiles()
-            if (subFileRoot) {
-                vscode.window.showQuickPick([{
-                    label: 'Default root file',
-                    description: `Path: ${rootFile}`
-                }, {
-                    label: 'Subfiles package root file',
-                    description: `Path: ${subFileRoot}`
-                }], {
-                    placeHolder: 'Subfiles package detected. Which file to build?',
-                    matchOnDescription: true
-                }).then(async selected => {
-                    if (!selected) {
-                        return
-                    }
-                    switch (selected.label) {
-                        case 'Default root file':
-                            this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                            await this.extension.builder.build(rootFile as string, recipe)
-                            break
-                        case 'Subfiles package root file':
-                            this.extension.logger.addLogMessage(`Building root file: ${subFileRoot}`)
-                            await this.extension.builder.build(subFileRoot, recipe)
-                            break
-                        default:
-                            break
-                    }
-                })
-            } else {
-                this.extension.logger.addLogMessage(`Building root file: ${rootFile}`)
-                await this.extension.builder.build(rootFile, recipe)
+        let pickedRootFile: string | undefined = rootFile
+        if (!skipSelection && this.extension.manager.localRootFile) {
+            // We are using the subfile package
+            pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
+            if (! pickedRootFile) {
+                return
             }
         }
+        this.extension.logger.addLogMessage(`Building root file: ${pickedRootFile}`)
+        await this.extension.builder.build(pickedRootFile, recipe)
     }
 
     async revealOutputDir() {
@@ -118,7 +119,11 @@ export class Commander {
     }
 
     async view(mode?: string) {
-        this.extension.logger.addLogMessage(`VIEW command invoked.`)
+        if (mode) {
+            this.extension.logger.addLogMessage(`VIEW command invoked with mode: ${mode}.`)
+        } else {
+            this.extension.logger.addLogMessage(`VIEW command invoked.`)
+        }
         if (!vscode.window.activeTextEditor) {
             this.extension.logger.addLogMessage('Cannot find active TextEditor.')
             return
@@ -132,16 +137,24 @@ export class Commander {
             this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
             return
         }
+        let pickedRootFile: string | undefined = rootFile
+        if (this.extension.manager.localRootFile) {
+            // We are using the subfile package
+            pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
+            if (! pickedRootFile) {
+                return
+            }
+        }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useActiveGroup = configuration.get('view.pdf.tab.useNewGroup') as boolean
         if (mode === 'browser') {
-            this.extension.viewer.openBrowser(rootFile)
+            this.extension.viewer.openBrowser(pickedRootFile)
             return
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(rootFile, true, useActiveGroup)
+            this.extension.viewer.openTab(pickedRootFile, true, useActiveGroup)
             return
         } else if (mode === 'external') {
-            this.extension.viewer.openExternal(rootFile)
+            this.extension.viewer.openExternal(pickedRootFile)
             return
         } else if (mode === 'set') {
             this.setViewer()
@@ -149,16 +162,19 @@ export class Commander {
         }
         const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer() : Promise.resolve()
         promise.then(() => {
+            if (!pickedRootFile) {
+                return
+            }
             switch (configuration.get('view.pdf.viewer')) {
                 case 'browser':
-                    this.extension.viewer.openBrowser(rootFile)
+                    this.extension.viewer.openBrowser(pickedRootFile)
                     break
                 case 'tab':
                 default:
-                    this.extension.viewer.openTab(rootFile, true, useActiveGroup)
+                    this.extension.viewer.openTab(pickedRootFile, true, useActiveGroup)
                     break
                 case 'external':
-                    this.extension.viewer.openExternal(rootFile)
+                    this.extension.viewer.openExternal(pickedRootFile)
                     break
             }
         })
@@ -174,33 +190,6 @@ export class Commander {
         this.extension.builder.kill()
     }
 
-    async browser() {
-        this.extension.logger.addLogMessage(`BROWSER command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            return
-        }
-        const rootFile = await this.extension.manager.findRoot()
-        if (rootFile !== undefined) {
-            this.extension.viewer.openBrowser(rootFile)
-        } else {
-            this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
-        }
-    }
-
-    async tab() {
-        this.extension.logger.addLogMessage(`TAB command invoked.`)
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            return
-        }
-        const rootFile = await this.extension.manager.findRoot()
-        if (rootFile !== undefined) {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            this.extension.viewer.openTab(rootFile, true, configuration.get('view.pdf.tab.useNewGroup'))
-        } else {
-            this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
-        }
-    }
-
     pdf(uri: vscode.Uri | undefined) {
         this.extension.logger.addLogMessage(`PDF command invoked.`)
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
@@ -211,16 +200,21 @@ export class Commander {
 
     async synctex() {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
-        await this.extension.manager.findRoot()
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.locator.syncTeX()
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let pdfFile: string
+        if (this.extension.manager.localRootFile && configuration.get("latex.rootFile.useSubFile")) {
+            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
+        } else {
+            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
+        }
+        this.extension.locator.syncTeX(undefined, undefined, pdfFile)
     }
 
     async synctexonref(line: number, filePath: string) {
         this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
-        await this.extension.manager.findRoot()
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -229,8 +223,20 @@ export class Commander {
 
     async clean() : Promise<void> {
         this.extension.logger.addLogMessage(`CLEAN command invoked.`)
-        await this.extension.manager.findRoot()
-        return this.extension.cleaner.clean()
+        const rootFile = await this.extension.manager.findRoot()
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage(`Cannot find LaTeX root file to clean.`)
+            return
+        }
+        let pickedRootFile: string | undefined = rootFile
+        if (this.extension.manager.localRootFile) {
+            // We are using the subfile package
+            pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
+            if (! pickedRootFile) {
+                return
+            }
+        }
+        return this.extension.cleaner.clean(pickedRootFile)
     }
 
     addTexRoot() {

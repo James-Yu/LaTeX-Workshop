@@ -238,7 +238,7 @@ export class Builder {
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
-            this.extension.parser.parse(stdout)
+            this.extension.parser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
                 this.extension.buildInfo.buildEnded()
@@ -250,7 +250,7 @@ export class Builder {
                         this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
                         this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
 
-                        this.extension.commander.clean().then(() => {
+                        this.extension.cleaner.clean(rootFile).then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
                         })
                     } else {
@@ -261,7 +261,7 @@ export class Builder {
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
                     if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
-                        this.extension.commander.clean()
+                        this.extension.cleaner.clean(rootFile)
                     }
                     const res = this.extension.logger.showErrorMessage(`Recipe terminated with error.`, 'Open compiler log')
                     if (res) {
@@ -306,13 +306,13 @@ export class Builder {
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
         this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('synctex.afterBuild.enabled') as boolean) {
-            this.extension.logger.addLogMessage('SyncTex after build invoked.')
-            this.extension.locator.syncTeX()
-        }
+        // if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+        //     this.extension.logger.addLogMessage('SyncTex after build invoked.')
+        //     this.extension.locator.syncTeX(undefined, undefined, rootFile)
+        // }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
-            this.extension.cleaner.clean()
+            this.extension.cleaner.clean(rootFile)
         }
     }
 
