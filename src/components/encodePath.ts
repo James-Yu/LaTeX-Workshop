@@ -13,7 +13,7 @@ export const pdfFilePrefix = 'pdf..'
 export function encodePath(path: string) {
     const s = encodeURIComponent(path)
     const b64 = Buffer.from(s).toString('base64')
-    const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/, '')
+    const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
     return b64url
 }
 

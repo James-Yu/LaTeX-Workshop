@@ -115,7 +115,7 @@ const pdfFilePrefix = 'pdf..'
 function encodePath(path) {
   const s = encodeURIComponent(path)
   const b64 = window.btoa(s)
-  const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/, '')
+  const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
   return b64url
 }
 
