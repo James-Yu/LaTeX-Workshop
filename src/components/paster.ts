@@ -234,9 +234,6 @@ export class Paster {
 
     PATH_VARIABLE_GRAPHICS_PATH = /\$\{graphicsPath\}/g
     PATH_VARIABLE_CURRNET_FILE_DIR = /\$\{currentFileDir\}/g
-    PATH_VARIABLE_PROJECT_ROOT = /\$\{projectRoot\}/g
-    PATH_VARIABLE_CURRNET_FILE_NAME = /\$\{currentFileName\}/g
-    PATH_VARIABLE_CURRNET_FILE_NAME_WITHOUT_EXT = /\$\{currentFileNameWithoutExt\}/g
 
     PATH_VARIABLE_IMAGE_FILE_PATH = /\$\{imageFilePath\}/g
     PATH_VARIABLE_IMAGE_ORIGINAL_FILE_PATH = /\$\{imageOriginalFilePath\}/g
@@ -329,7 +326,7 @@ export class Paster {
         folderPathFromConfig: string,
         callback: (err: Error | null, imagePath: string) => void
     ) {
-        const graphicsPath = this.replacePathVariables('${graphicsPath}', folderPathFromConfig, filePath)
+        const graphicsPath = this.basePathConfig
         const imgPostfixNumber =
             Math.max(
                 0,
@@ -572,17 +569,12 @@ export class Paster {
         postFunction: (str: string) => string = x => x
     ) : string {
         const currentFileDir = path.dirname(curFilePath)
-        const ext = path.extname(curFilePath)
-        const fileName = path.basename(curFilePath)
-        const fileNameWithoutExt = path.basename(curFilePath, ext)
         let graphicsPath: string | string[] = this.extension.completer.input.graphicsPath
         graphicsPath = graphicsPath.length !== 0 ? graphicsPath[0] : this.graphicsPathFallback
         graphicsPath = path.resolve(currentFileDir, graphicsPath)
 
         pathStr = pathStr.replace(this.PATH_VARIABLE_GRAPHICS_PATH, postFunction(graphicsPath))
         pathStr = pathStr.replace(this.PATH_VARIABLE_CURRNET_FILE_DIR, postFunction(currentFileDir))
-        pathStr = pathStr.replace(this.PATH_VARIABLE_CURRNET_FILE_NAME, postFunction(fileName))
-        pathStr = pathStr.replace(this.PATH_VARIABLE_CURRNET_FILE_NAME_WITHOUT_EXT, postFunction(fileNameWithoutExt))
 
         return pathStr
     }
