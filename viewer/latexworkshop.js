@@ -110,14 +110,32 @@ class ViewerHistory {
 
 let viewerHistory = new ViewerHistory()
 
+const pdfFilePrefix = 'pdf..'
+
+function encodePath(path) {
+  const s = encodeURIComponent(path)
+  const b64 = window.btoa(s)
+  const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/, '')
+  return b64url
+}
+
+function decodePath(b64url) {
+  const tmp = b64url + '='.repeat((4 - b64url.length % 4) % 4)
+  const b64 = tmp.replace(/-/g, '+').replace(/_/g, '/')
+  const s = window.atob(b64)
+  return decodeURIComponent(s)
+}
+
 let query = document.location.search.substring(1)
 let parts = query.split('&')
-let file
+let encodedPdfFilePath
+let pdfFilePath
 for (let i = 0, ii = parts.length; i < ii; ++i) {
     let param = parts[i].split('=')
     if (param[0].toLowerCase() === 'file') {
-        file = decodeURIComponent(param[1]).replace('/pdf:', '')
-        documentTitle = decodeURIComponent(decodeURIComponent(file)).split(/[\\/]/).pop()
+        encodedPdfFilePath = param[1].replace(pdfFilePrefix, '')
+        pdfFilePath = decodePath(encodedPdfFilePath)
+        documentTitle = pdfFilePath.split(/[\\/]/).pop()
         document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
         const dom = document.getElementsByClassName('print')
@@ -129,7 +147,7 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
 let server = `ws://${window.location.hostname}:${window.location.port}`
 
 let socket = new WebSocket(server)
-socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:file, viewer:(embedded ? "tab" : "browser")})))
+socket.addEventListener("open", () => socket.send(JSON.stringify({type:"open", path:pdfFilePath, viewer:(embedded ? "tab" : "browser")})))
 socket.addEventListener("message", (event) => {
     let data = JSON.parse(event.data)
     switch (data.type) {
@@ -155,7 +173,7 @@ socket.addEventListener("message", (event) => {
         case "refresh":
             // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
             // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-            socket.send(JSON.stringify({type:"position", path:file,
+            socket.send(JSON.stringify({type:"position", path:pdfFilePath,
                                         scale:PDFViewerApplication.pdfViewer.currentScaleValue,
                                         scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
                                         spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
@@ -163,7 +181,7 @@ socket.addEventListener("message", (event) => {
                                         scrollLeft:document.getElementById('viewerContainer').scrollLeft,
                                         viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
             PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
-            PDFViewerApplication.open(`/pdf:${decodeURIComponent(file)}`).then( () => {
+            PDFViewerApplication.open(`${pdfFilePrefix}${encodedPdfFilePath}`).then( () => {
               // reset the document title to the original value to avoid duplication
               document.title = documentTitle
 
@@ -223,10 +241,10 @@ socket.onclose = () => { document.title = `[Disconnected] ${document.title}` }
 document.addEventListener('pagesinit', () => {
   // check whether WebSocket is open (readyState === 1).
   if (socket.readyState === 1) {
-    socket.send(JSON.stringify({type:"loaded", path:file}))
+    socket.send(JSON.stringify({type:"loaded", path:pdfFilePath}))
   } else {
     socket.addEventListener("open", () => {
-      socket.send(JSON.stringify({type:"loaded", path:file}))
+      socket.send(JSON.stringify({type:"loaded", path:pdfFilePath}))
     }, {once: true})
   }
 })
@@ -280,7 +298,7 @@ document.addEventListener('pagerendered', (evPageRendered) => {
           left += offsetLeft
         }
         const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
-        socket.send(JSON.stringify({type:"click", path:decodeURIComponent(file), pos:pos, page:page,
+        socket.send(JSON.stringify({type:"click", path:pdfFilePath, pos:pos, page:page,
          textBeforeSelection:textBeforeSelection, textAfterSelection:textAfterSelection}))
     }
 }, true)
