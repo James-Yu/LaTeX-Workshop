@@ -8,10 +8,6 @@ import { promisify } from 'util'
 
 import { Extension } from '../main'
 
-const mkdtemp = promisify(fs.mkdtemp)
-const mkdir = promisify(fs.mkdir)
-const writeFile = promisify(fs.writeFile)
-const readFile = promisify(fs.readFile)
 const removeDir = promisify(fse.remove)
 
 interface IFileTikzCollection {
@@ -44,7 +40,7 @@ export class TikzPictureView {
         if (!this.initalised) {
             await this.cleanupTempDir()
             if (!fs.existsSync(path.join(tmpdir(), this.TEMPFOLDER_NAME))) {
-                await mkdir(path.join(tmpdir(), this.TEMPFOLDER_NAME))
+                await fs.mkdirSync(path.join(tmpdir(), this.TEMPFOLDER_NAME))
             }
             this.initalised = true
         }
@@ -214,7 +210,7 @@ export class TikzPictureView {
 
     private async getFileTikzCollection(document: vscode.TextDocument) : Promise<IFileTikzCollection> {
         if (!(document.uri.fsPath in this.tikzCollections)) {
-            const tempDir: string = await mkdtemp(
+            const tempDir: string = await fs.mkdtempSync(
                 path.join(tmpdir(), this.TEMPFOLDER_NAME, `tikzpreview-${path.basename(document.uri.fsPath, '.tex')}-`)
             )
 
@@ -281,7 +277,7 @@ export class TikzPictureView {
         if (newCommandFile !== '') {
             if (path.isAbsolute(newCommandFile)) {
                 if (fs.existsSync(newCommandFile)) {
-                    commandsString = await readFile(newCommandFile, { encoding: 'utf8' })
+                    commandsString = await fs.readFileSync(newCommandFile, { encoding: 'utf8' })
                 }
             } else {
                 if (this.extension.manager.rootFile === undefined) {
@@ -290,7 +286,7 @@ export class TikzPictureView {
                 const rootDir = this.extension.manager.rootDir
                 const newCommandFileAbs = path.join(rootDir, newCommandFile)
                 if (fs.existsSync(newCommandFileAbs)) {
-                    commandsString = await readFile(newCommandFileAbs, { encoding: 'utf8' })
+                    commandsString = await fs.readFileSync(newCommandFileAbs, { encoding: 'utf8' })
                 }
             }
         }
@@ -301,7 +297,7 @@ export class TikzPictureView {
         const regex = /(\\tikzset{(?:(?:[^\{\}]|{[^\{\}]+})*)}|\\usetikzlibrary{[\w\.]+})/gm
         const commands: string[] = []
 
-        const content = await readFile(fileTikzCollection.location, { encoding: 'utf8' })
+        const content = await fs.readFileSync(fileTikzCollection.location, { encoding: 'utf8' })
         const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
 
         let result: RegExpExecArray | null
@@ -319,32 +315,27 @@ export class TikzPictureView {
 
     private precompilePreamble(file: string, preamble: string) {
         return new Promise((resolve, reject) => {
-            writeFile(file, `\\documentclass{standalone}\n\n${preamble}\n\n\\begin{document}\\end{document}`)
-                .then(() => {
-                    const process = child_process.spawn(
-                        'pdftex',
-                        [
-                            '-ini',
-                            '-interaction=nonstopmode',
-                            '-shell-escape',
-                            '-file-line-error',
-                            '-jobname="preamble"',
-                            '"&pdflatex"',
-                            'mylatexformat.ltx',
-                            `"${file}"`
-                        ],
-                        { cwd: path.dirname(file) }
-                    )
-                    process.on('exit', _code => {
-                        resolve()
-                    })
-                    process.on('error', err => {
-                        reject(err)
-                    })
-                })
-                .catch(err => {
-                    reject(err)
-                })
+            fs.writeFileSync(file, `\\documentclass{standalone}\n\n${preamble}\n\n\\begin{document}\\end{document}`)
+            const process = child_process.spawn(
+                'pdftex',
+                [
+                    '-ini',
+                    '-interaction=nonstopmode',
+                    '-shell-escape',
+                    '-file-line-error',
+                    '-jobname="preamble"',
+                    '"&pdflatex"',
+                    'mylatexformat.ltx',
+                    `"${file}"`
+                ],
+                { cwd: path.dirname(file) }
+            )
+            process.on('exit', _code => {
+                resolve()
+            })
+            process.on('error', err => {
+                reject(err)
+            })
         })
     }
 
@@ -357,7 +348,7 @@ export class TikzPictureView {
     }
 
     public async cleanupTempFiles() {
-        const rmPromises: Promise<unknown>[] = []
+        const rmPromises: Promise<any>[] = []
         for (const tikzCollection in this.tikzCollections) {
             rmPromises.push(removeDir(this.tikzCollections[tikzCollection].tempDir))
         }
@@ -365,6 +356,6 @@ export class TikzPictureView {
     }
 
     public async cleanupTempDir() {
-        await removeDir(path.join(tmpdir(), this.TEMPFOLDER_NAME))
+        await fse.removeSync(path.join(tmpdir(), this.TEMPFOLDER_NAME))
     }
 }
