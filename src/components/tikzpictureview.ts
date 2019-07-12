@@ -87,8 +87,19 @@ export class TikzPictureView {
 
         const tikzPictures: IFileTikzPicture[] = tikzFileCollection.tikzPictures
 
-        for (const change of changes) {
-            for (const tikzPicture of tikzPictures) {
+        for (const tikzPicture of tikzPictures) {
+            if (
+                this.extension.viewer.clients[tikzPicture.tempFile.replace(/\.tex$/, '.pdf').toLocaleUpperCase()]
+                    .length === 0
+            ) {
+                tikzPictures.splice(tikzPictures.indexOf(tikzPicture), 1)
+                this.cleanupTikzPicture(tikzPicture)
+                continue
+            }
+
+            const tikzPicturesToUpdate: IFileTikzPicture[] = []
+
+            for (const change of changes) {
                 const lineDelta =
                     change.text.split('\n').length - 1 - (change.range.end.line - change.range.start.line)
                 if (tikzPicture.range.end.isBefore(change.range.start)) {
@@ -106,20 +117,68 @@ export class TikzPictureView {
                 ) {
                     // tikzpicture removed
                     tikzPictures.splice(tikzPictures.indexOf(tikzPicture), 1)
+                    this.cleanupTikzPicture(tikzPicture)
                 } else {
                     // tikzpicture modified
+                    let startLocation: vscode.Position | null = null
+                    if (change.range.start.line <= tikzPicture.range.start.line) {
+                        const startLine = document.lineAt(tikzPicture.range.start.line)
+                        const tikzPictureStartIndex = startLine.text.indexOf('\\begin{tikzpicture}')
+                        if (tikzPictureStartIndex !== -1) {
+                            startLocation = tikzPicture.range.start.translate(
+                                0,
+                                tikzPictureStartIndex - tikzPicture.range.start.character
+                            )
+                        } else {
+                            const startRegex = /\\begin{tikzpicture}/
+                            let startMatch: RegExpMatchArray | null = null
+                            let lineNo = change.range.start.line - 1
+                            do {
+                                startMatch = document.lineAt(++lineNo).text.match(startRegex)
+                            } while (!startMatch && lineNo <= tikzPicture.range.end.line)
+
+                            if (startMatch) {
+                                // @ts-ignore
+                                startLocation = new vscode.Position(lineNo, startMatch.index)
+                            }
+                        }
+                    }
+
+                    let endLocation: vscode.Position | null = null
+                    if (change.range.end.line >= tikzPicture.range.end.line) {
+                        // things can be a bit funny so we'll just look for the matchin \end{tikzpicture}
+                        const endRegex = /\\end{tikzpicture}/
+                        let endMatch: RegExpMatchArray | null = null
+                        let lineNo = tikzPicture.range.start.line - 1
+                        do {
+                            endMatch = document.lineAt(++lineNo).text.match(endRegex)
+                        } while (!endMatch && lineNo <= change.range.end.line)
+
+                        if (endMatch) {
+                            // @ts-ignore
+                            endLocation = new vscode.Position(lineNo, endMatch.index + endMatch[0].length)
+                        }
+                    }
+
                     tikzPicture.range = new vscode.Range(
-                        tikzPicture.range.start,
-                        tikzPicture.range.end.translate(lineDelta, 0)
+                        startLocation ? startLocation : tikzPicture.range.start,
+                        endLocation ? endLocation : tikzPicture.range.end.translate(lineDelta, 0)
                     )
                     tikzPicture.content = document.getText(tikzPicture.range)
-                    this.updateTikzPicture(tikzPicture)
+                    // recompile if currently viewed
+                    if (!tikzPicturesToUpdate.includes(tikzPicture)) {
+                        tikzPicturesToUpdate.push(tikzPicture)
+                    }
                 }
             }
+
+            tikzPicturesToUpdate.forEach(tikzP => {
+                this.updateTikzPicture(tikzP)
+            })
         }
     }
 
-    public async updateTikzPicture(tikzPicture: IFileTikzPicture) {
+    private async updateTikzPicture(tikzPicture: IFileTikzPicture) {
         fs.writeFileSync(
             tikzPicture.tempFile,
             `%&preamble\n\\begin{document}\n${tikzPicture.content}\n\\end{document}`
@@ -129,7 +188,7 @@ export class TikzPictureView {
 
         try {
             child_process.execSync(
-                `latexmk ${path.basename(tikzPicture.tempFile)} -interaction=batchmode -quiet -pdf`,
+                `latexmk "${path.basename(tikzPicture.tempFile)}" -interaction=batchmode -quiet -pdf`,
                 {
                     cwd: path.dirname(tikzPicture.tempFile),
                     stdio: 'ignore'
@@ -287,6 +346,14 @@ export class TikzPictureView {
                     reject(err)
                 })
         })
+    }
+
+    private async cleanupTikzPicture(tikzPicture: IFileTikzPicture) {
+        child_process.execSync(`latexmk -C "${path.basename(tikzPicture.tempFile)}"`, {
+            cwd: path.dirname(tikzPicture.tempFile),
+            stdio: 'ignore'
+        })
+        fs.unlinkSync(tikzPicture.tempFile)
     }
 
     public async cleanupTempFiles() {
