@@ -9,7 +9,6 @@ import * as moment from 'moment'
 import { Extension } from '../main'
 import { promisify } from 'util'
 
-const fsRename = promisify(fs.rename)
 const fsCopy = promisify(fs.copyFile)
 
 export class Paster {
@@ -218,7 +217,7 @@ export class Paster {
             '-{2,3}>': '\\(\\longrightarrow \\)',
             '->': '\\(\\to \\)',
             '<-{2,3}': '\\(\\longleftarrow \\)',
-            '<-': '\\(\\leftarrow \\)',
+            '<-': '\\(\\leftarrow \\)'
         }
 
         for (const pattern in textReplacements) {
@@ -245,7 +244,6 @@ export class Paster {
     PATH_VARIABLE_IMAGE_FILE_NAME = /\$\{imageFileName\}/g
     PATH_VARIABLE_IMAGE_FILE_NAME_WITHOUT_EXT = /\$\{imageFileNameWithoutExt\}/g
 
-    imageMethodConfig: 'leave' | 'copy' | 'move'
     filePathConfirmBoxMode: 'none' | 'fullPath' | 'onlyName'
     defaultNameConfig: string
     pasteTemplate: string
@@ -271,7 +269,7 @@ export class Paster {
 
         this.loadImageConfig(projectPath, baseFile)
 
-        if (imgFile && this.imageMethodConfig === 'leave' && !selectText) {
+        if (imgFile && !selectText) {
             const imagePath = this.renderImagePaste(path.dirname(baseFile), imgFile)
 
             editor.edit(edit => {
@@ -290,7 +288,7 @@ export class Paster {
                         .showInformationMessage(
                             `File ${imagePath} exists. Would you want to replace?`,
                             'Replace',
-                            'Cancel',
+                            'Cancel'
                         )
                         .then(choose => {
                             if (choose !== 'Replace') {
@@ -319,7 +317,6 @@ export class Paster {
         }
 
         // load other config
-        this.imageMethodConfig = config.method
         this.filePathConfirmBoxMode = config.filePathConfirmInputBoxMode
         const pasteTemplate = config.template
         if (typeof pasteTemplate === 'string') {
@@ -334,7 +331,7 @@ export class Paster {
             this.defaultNameConfig,
             projectPath,
             filePath,
-            x => `[${x}]`,
+            x => `[${x}]`
         )
         this.graphicsPathFallback = this.replacePathVariables(this.graphicsPathFallback, projectPath, filePath)
         this.basePathConfig = this.replacePathVariables(this.basePathConfig, projectPath, filePath)
@@ -346,7 +343,7 @@ export class Paster {
         imagePathCurrent: string = '',
         selectText: string,
         folderPathFromConfig: string,
-        callback: (err: Error | null, imagePath: string) => void,
+        callback: (err: Error | null, imagePath: string) => void
     ) {
         const imgExtension = path.extname(imagePathCurrent) ? path.extname(imagePathCurrent) : '.png'
         const imageFileName = selectText
@@ -360,7 +357,7 @@ export class Paster {
                 .showInputBox({
                     prompt: 'Please specify the filename of the image.',
                     value: filePathOrName,
-                    valueSelection: [filePathOrName.length - imageFileName.length, filePathOrName.length - 4],
+                    valueSelection: [filePathOrName.length - imageFileName.length, filePathOrName.length - 4]
                 })
                 .then(result => {
                     if (result) {
@@ -405,12 +402,7 @@ export class Paster {
                 // save image and insert to current edit file
 
                 if (oldPath) {
-                    if (this.imageMethodConfig === 'copy') {
-                        fsCopy(oldPath, imagePath)
-                    } else {
-                        fsRename(oldPath, imagePath)
-                    }
-
+                    fsCopy(oldPath, imagePath)
                     const imageString = this.renderImagePaste(this.basePathConfig, imagePath)
 
                     editor.edit(edit => {
@@ -486,7 +478,7 @@ export class Paster {
     // TODO: turn into async function, and raise errors internally
     private saveClipboardImageToFileAndGetPath(
         imagePath,
-        cb: (imagePath: string, imagePathFromScript: string) => void,
+        cb: (imagePath: string, imagePathFromScript: string) => void
     ) {
         if (!imagePath) {
             return
@@ -514,12 +506,12 @@ export class Paster {
                 'hidden',
                 '-file',
                 scriptPath,
-                imagePath,
+                imagePath
             ])
             powershell.on('error', e => {
                 if (e.name === 'ENOENT') {
                     vscode.window.showErrorMessage(
-                        `The powershell command is not in you PATH environment variables.Please add it and retry.`,
+                        `The powershell command is not in you PATH environment variables.Please add it and retry.`
                     )
                 } else {
                     console.log(e)
@@ -596,7 +588,7 @@ export class Paster {
         pathStr: string,
         _projectRoot: string,
         curFilePath: string,
-        postFunction: (str: string) => string = x => x,
+        postFunction: (str: string) => string = x => x
     ) : string {
         const currentFileDir = path.dirname(curFilePath)
         const ext = path.extname(curFilePath)
