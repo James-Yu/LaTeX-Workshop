@@ -4,10 +4,10 @@ import * as fs from 'fs'
 import * as fse from 'fs-extra'
 import { spawn } from 'child_process'
 import * as csv from 'csv-parser'
-import * as moment from 'moment'
 
 import { Extension } from '../main'
 import { promisify } from 'util'
+import { file } from 'tmp'
 
 const fsCopy = promisify(fs.copyFile)
 
@@ -245,7 +245,6 @@ export class Paster {
     PATH_VARIABLE_IMAGE_FILE_NAME_WITHOUT_EXT = /\$\{imageFileNameWithoutExt\}/g
 
     filePathConfirmBoxMode: 'none' | 'fullPath' | 'onlyName'
-    defaultNameConfig: string
     pasteTemplate: string
     basePathConfig = '${graphicsPath}'
     graphicsPathFallback = '${currentFileDir}'
@@ -311,11 +310,6 @@ export class Paster {
     public loadImageConfig(projectPath: string, filePath: string) {
         const config = vscode.workspace.getConfiguration('latex-workshop.formattedPaste.image')
 
-        this.defaultNameConfig = config.defaultName
-        if (!this.defaultNameConfig) {
-            this.defaultNameConfig = 'Y-MM-DD-HH-mm-ss'
-        }
-
         // load other config
         this.filePathConfirmBoxMode = config.filePathConfirmInputBoxMode
         const pasteTemplate = config.template
@@ -326,13 +320,6 @@ export class Paster {
             this.pasteTemplate = pasteTemplate.join('\n')
         }
 
-        // replace variable in config
-        this.defaultNameConfig = this.replacePathVariables(
-            this.defaultNameConfig,
-            projectPath,
-            filePath,
-            x => `[${x}]`
-        )
         this.graphicsPathFallback = this.replacePathVariables(this.graphicsPathFallback, projectPath, filePath)
         this.basePathConfig = this.replacePathVariables(this.basePathConfig, projectPath, filePath)
         this.pasteTemplate = this.replacePathVariables(this.pasteTemplate, projectPath, filePath)
@@ -345,10 +332,17 @@ export class Paster {
         folderPathFromConfig: string,
         callback: (err: Error | null, imagePath: string) => void
     ) {
+        const graphicsPath = this.replacePathVariables('${graphicsPath}', folderPathFromConfig, filePath)
+        const imgPostfixNumber =
+            Math.max(
+                0,
+                ...fs
+                    .readdirSync(graphicsPath)
+                    .map(imagePath => parseInt(imagePath.replace(/^image(\d+)\.\w+/, '$1')))
+                    .filter(number => !isNaN(number))
+            ) + 1
         const imgExtension = path.extname(imagePathCurrent) ? path.extname(imagePathCurrent) : '.png'
-        const imageFileName = selectText
-            ? selectText + imgExtension
-            : moment().format(this.defaultNameConfig) + imgExtension
+        const imageFileName = selectText ? selectText + imgExtension : `image${imgPostfixNumber}` + imgExtension
         const filePathOrName =
             this.filePathConfirmBoxMode === 'fullPath' ? makeImagePath(imageFileName) : imageFileName
 
