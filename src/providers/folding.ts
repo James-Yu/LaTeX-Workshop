@@ -26,8 +26,9 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         let  documentClassLine = -1
 
         const sections: {level: number, from: number, to: number}[] = []
+        let index = -1
         for (const line of lines) {
-            const index = lines.indexOf(line)
+            index++
             for (const regex of this.sectionRegex) {
                 const result = regex.exec(line)
                 if (!result) {
