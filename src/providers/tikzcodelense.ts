@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import { stripComments } from '../utils'
 
 export class TikzCodeLense implements vscode.CodeLensProvider {
     onDidChangeCodeLenses?: vscode.Event<void> | undefined
@@ -28,7 +29,7 @@ function findTikzPictures(document: vscode.TextDocument) {
     const endRegex = /\\end{tikzpicture}/
     for (let i = 0; i < document.lineCount; i++) {
         let line = document.lineAt(i)
-        let text = line.text.substr(0, 1000)
+        let text = stripComments(line.text, '%')
         const startMatch: RegExpMatchArray | null = text.match(startRegex)
         if (!startMatch) {
             continue

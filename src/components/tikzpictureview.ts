@@ -7,6 +7,7 @@ import { tmpdir } from 'os'
 import { promisify } from 'util'
 
 import { Extension } from '../main'
+import { stripComments } from '../utils'
 
 const removeDir = promisify(fse.remove)
 
@@ -119,7 +120,9 @@ export class TikzPictureView {
                     let startLocation: vscode.Position | null = null
                     if (change.range.start.line <= tikzPicture.range.start.line) {
                         const startLine = document.lineAt(tikzPicture.range.start.line)
-                        const tikzPictureStartIndex = startLine.text.indexOf('\\begin{tikzpicture}')
+                        const tikzPictureStartIndex = stripComments(startLine.text, '%').indexOf(
+                            '\\begin{tikzpicture}'
+                        )
                         if (tikzPictureStartIndex !== -1) {
                             startLocation = tikzPicture.range.start.translate(
                                 0,
@@ -146,7 +149,7 @@ export class TikzPictureView {
                         let endMatch: RegExpMatchArray | null = null
                         let lineNo = tikzPicture.range.start.line - 1
                         do {
-                            endMatch = document.lineAt(++lineNo).text.match(endRegex)
+                            endMatch = stripComments(document.lineAt(++lineNo).text, '%').match(endRegex)
                         } while (!endMatch && lineNo <= change.range.end.line)
 
                         if (endMatch && endMatch.index !== undefined) {
