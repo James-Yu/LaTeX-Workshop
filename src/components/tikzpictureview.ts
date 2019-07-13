@@ -83,6 +83,7 @@ export class TikzPictureView {
         this.checkPreamble(tikzFileCollection)
 
         const tikzPictures: IFileTikzPicture[] = tikzFileCollection.tikzPictures
+        const tikzPicturesToUpdate: IFileTikzPicture[] = []
 
         for (const tikzPicture of tikzPictures) {
             if (
@@ -93,8 +94,6 @@ export class TikzPictureView {
                 this.cleanupTikzPicture(tikzPicture)
                 continue
             }
-
-            const tikzPicturesToUpdate: IFileTikzPicture[] = []
 
             for (const change of changes) {
                 const lineDelta =
@@ -168,11 +167,10 @@ export class TikzPictureView {
                     }
                 }
             }
-
-            tikzPicturesToUpdate.forEach(tikzP => {
-                this.updateTikzPicture(tikzP)
-            })
         }
+        tikzPicturesToUpdate.forEach(tikzP => {
+            this.updateTikzPicture(tikzP)
+        })
     }
 
     private async updateTikzPicture(tikzPicture: IFileTikzPicture) {
