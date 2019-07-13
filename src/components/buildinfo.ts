@@ -145,7 +145,8 @@ export class BuildInfo {
             'LaTeX Compilation Live Info',
             vscode.ViewColumn.Beside,
             {
-                enableScripts: true
+                enableScripts: true,
+                retainContextWhenHidden: true
             }
         )
         this.panel.onDidDispose(() => {

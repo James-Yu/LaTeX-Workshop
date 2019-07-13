@@ -34,12 +34,13 @@
                         border-radius: 0.5em;
                         padding: 0;
                         margin: 0 0 0.0em 1em;
-                        width: 13.5em;
+                        width: 14em;
                     }
 
                     #stepTimes ul li span.item {
                         margin: 0 0.5em 0 0;
                         padding: 0;
+                        margin: 0;
                         /* font-weight: 600; */
                         /* position: relative;
                         float: left; */
@@ -264,9 +265,9 @@
                                     }
                                     const li = document.createElement('li');
                                     const timeBar = `<div class="timeBar" style="
-                                        background: \${progressManager.colours[colourIndex]};
-                                        width: \${100 * this.stepTimes[runName][item] / this.maxTime}%;
-                                    " data-time="\${this.stepTimes[runName][item]}"></div>`;
+                                        background: ${progressManager.colours[colourIndex]};
+                                        width: ${100 * this.stepTimes[runName][item] / this.maxTime}%;
+                                    " data-time="${this.stepTimes[runName][item]}"></div>`;
                                     if (this.stepTimes[runName][item] > this.maxTime) {
                                         this.maxTime = this.stepTimes[runName][item];
                                         this.recalculateTimeBars();
