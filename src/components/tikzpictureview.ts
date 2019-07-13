@@ -133,8 +133,7 @@ export class TikzPictureView {
                                 startMatch = document.lineAt(++lineNo).text.match(startRegex)
                             } while (!startMatch && lineNo <= tikzPicture.range.end.line)
 
-                            if (startMatch) {
-                                // @ts-ignore
+                            if (startMatch && startMatch.index !== undefined) {
                                 startLocation = new vscode.Position(lineNo, startMatch.index)
                             }
                         }
@@ -150,8 +149,7 @@ export class TikzPictureView {
                             endMatch = document.lineAt(++lineNo).text.match(endRegex)
                         } while (!endMatch && lineNo <= change.range.end.line)
 
-                        if (endMatch) {
-                            // @ts-ignore
+                        if (endMatch && endMatch.index !== undefined) {
                             endLocation = new vscode.Position(lineNo, endMatch.index + endMatch[0].length)
                         }
                     }
