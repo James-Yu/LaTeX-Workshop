@@ -28,6 +28,7 @@ import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 import { Paster } from './components/paster';
+import { SnippetPanel } from './components/snippetpanel';
 
 function renameValue(config: string, oldValue: string, newValue: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -246,6 +247,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.decrement-sectioning', () => extension.commander.shiftSectioningLevel('decrement'))
 
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
+    vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
     context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.formattedPaste', () => extension.paster.paste()))
 
@@ -384,6 +386,7 @@ export class Extension {
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
     paster: Paster
+    snippetPanel: SnippetPanel
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -406,6 +409,7 @@ export class Extension {
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.paster = new Paster(this)
+        this.snippetPanel = new SnippetPanel(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
