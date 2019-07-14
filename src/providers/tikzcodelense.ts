@@ -53,8 +53,7 @@ function findTikzPictures(document: vscode.TextDocument) {
             line = document.lineAt(++lineNo)
             text = line.text.substr(0, 1000)
             endMatch = text.match(endRegex)
-            if (endMatch) {
-                // @ts-ignore
+            if (endMatch && endMatch.index) {
                 endColumn = endMatch.index + endMatch[0].length
             }
         } while (!endMatch)
