@@ -685,6 +685,11 @@
           "default": [],
           "markdownDescription": "Patterns of files to exclude from the root detection mechanism.\nSee also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
+        "latex-workshop.latex.rootFile.useSubFile": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When set to `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands. Note that this setting does not affect the `build` and `view` command as they both ask the user's choice first."
+        },
         "latex-workshop.latex.watch.files.ignore": {
           "type": "array",
           "default": [
@@ -1282,17 +1287,17 @@
         "latex-workshop.formattedPaste.tableColumnType": {
           "type": "string",
           "default": "l",
-          "description": "Tabular column type to use, e.g. l/r/c…"
+          "markdownDescription": "Tabular column type to use, e.g. **`l`**/**`r`**/**`c`**…"
         },
         "latex-workshop.formattedPaste.tableBooktabsStyle": {
           "type": "boolean",
           "default": true,
-          "description": "Use the booktabs commands `\\toprule`, `\\midrule`, and `\\bottomrule`"
+          "markdownDescription": "Use the booktabs commands `\\toprule`, `\\midrule`, and `\\bottomrule`"
         },
         "latex-workshop.formattedPaste.tableHeaderRows": {
           "type": "integer",
           "default": 1,
-          "description": "Number of header rows to assume. Set to 0 to disable.`"
+          "markdownDescription": "Number of header rows to assume. Set to **`0`** to disable."
         },
         "latex-workshop.tikzpreview.enabled": {
           "type": "boolean",

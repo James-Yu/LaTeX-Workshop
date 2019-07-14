@@ -10,7 +10,8 @@ import {Extension} from '../main'
 
 export class Manager {
     extension: Extension
-    rootFiles: object
+    rootFiles: { [key: string]: string }
+    localRootFiles: { [key: string]: string | undefined }
     workspace: string
     texFileTree: { [id: string]: Set<string> } = {}
     fileWatcher: chokidar.FSWatcher
@@ -28,6 +29,7 @@ export class Manager {
         this.filesWatched = []
         this.bibsWatched = []
         this.rootFiles = {}
+        this.localRootFiles = {}
         this.workspace = ''
     }
 
@@ -54,6 +56,14 @@ export class Manager {
 
     set rootFile(root: string) {
         this.rootFiles[this.workspace] = root
+    }
+
+    get localRootFile() {
+        return this.localRootFiles[this.workspace]
+    }
+
+    set localRootFile(localRoot: string | undefined) {
+        this.localRootFiles[this.workspace] = localRoot
     }
 
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
@@ -89,6 +99,7 @@ export class Manager {
 
     async findRoot() : Promise<string | undefined> {
         this.updateWorkspace()
+        this.localRootFile = undefined
         const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootDir()]
         for (const method of findMethods) {
             const rootFile = await method()
@@ -149,19 +160,24 @@ export class Manager {
         const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
+            const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
-            this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
-            return file
+            if (rootSubFile) {
+               this.localRootFile = file
+               return rootSubFile
+            } else {
+                this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
+                return file
+            }
         }
         return undefined
     }
 
-    findSubFiles() : string | undefined {
+    findSubFiles(content: string) : string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
         const regex = /(?:\\documentclass\[(.*(?:\.tex))\]{subfiles})/
-        const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
             const file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
@@ -263,7 +279,11 @@ export class Manager {
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
-                this.extension.commander.build(true, rootFile)
+                if (this.localRootFile && configuration.get("latex.rootFile.useSubFile")) {
+                    this.extension.commander.build(true, this.localRootFile)
+                } else {
+                    this.extension.commander.build(true, rootFile)
+                }
             })
             this.fileWatcher.on('unlink', async (filePath: string) => {
                 this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)

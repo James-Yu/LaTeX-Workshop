@@ -6,6 +6,7 @@ import * as vscode from 'vscode'
 
 import {Extension} from '../main'
 import {AddressInfo} from 'net'
+import {decodePathWithPrefix, pdfFilePrefix} from './encodePath'
 
 export class Server {
     extension: Extension
@@ -51,9 +52,9 @@ export class Server {
             return
         }
 
-        if (request.url.indexOf('pdf:') >= 0 && request.url.indexOf('viewer.html') < 0) {
-            // The second backslash was encoded as %2F, and the first one is prepended by request
-            const fileName = decodeURIComponent(request.url.replace('/pdf:', ''))
+        if (request.url.indexOf(pdfFilePrefix) >= 0 && request.url.indexOf('viewer.html') < 0) {
+            const s = request.url.replace('/', '')
+            const fileName = decodePathWithPrefix(s)
             try {
                 const pdfSize = fs.statSync(fileName).size
                 response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})

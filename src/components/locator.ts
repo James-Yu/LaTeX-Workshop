@@ -93,7 +93,7 @@ export class Locator {
         }
     }
 
-    syncTeX(args?: {line: number, filePath: string}, forcedViewer: string = 'auto') {
+    syncTeX(args?: {line: number, filePath: string}, forcedViewer: string = 'auto', pdfFile?: string) {
         let line: number
         let filePath: string
         let character = 0
@@ -119,13 +119,17 @@ export class Locator {
             filePath = args.filePath
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
+        const rootFile = this.extension.manager.rootFile
+        if (! pdfFile) {
+            this.extension.manager.findRoot()
+            pdfFile = this.extension.manager.tex2pdf(rootFile)
+        }
         if (vscode.window.activeTextEditor.document.lineCount === line &&
             vscode.window.activeTextEditor.document.lineAt(line - 1).text === '') {
                 line -= 1
         }
         if (forcedViewer === 'external' || (forcedViewer === 'auto' && configuration.get('view.pdf.viewer') === 'external') ) {
-            this.syncTeXExternal(line, pdfFile, this.extension.manager.rootFile)
+            this.syncTeXExternal(line, pdfFile, rootFile)
             return
         }
 
@@ -148,7 +152,7 @@ export class Locator {
             }
         } else {
             this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
-                this.extension.viewer.syncTeX(pdfFile, record)
+                this.extension.viewer.syncTeX(pdfFile as string, record)
             })
         }
     }

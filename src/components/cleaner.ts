@@ -12,19 +12,19 @@ export class Cleaner {
         this.extension = extension
     }
 
-    async clean() : Promise<void> {
-        if (this.extension.manager.rootFile !== undefined) {
-            await this.extension.manager.findRoot()
+    async clean(rootFile?: string) : Promise<void> {
+        if (! rootFile) {
+            if (this.extension.manager.rootFile !== undefined) {
+                await this.extension.manager.findRoot()
+            }
+            rootFile = this.extension.manager.rootFile
+            if (! rootFile) {
+                return
+            }
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let globs = configuration.get('latex.clean.fileTypes') as string[]
-        const outdir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
-        // if (!outdir.endsWith('/') && !outdir.endsWith('\\')) {
-        //     outdir += path.sep
-        // }
-        // if (outdir !== './' && outdir !== '.') {
-        //     globs = globs.concat(globs.map(globType => outdir + globType), globs.map(globType => outdir + '**/' + globType))
-        // }
+        const outdir = this.extension.manager.getOutputDir(rootFile)
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
             globs = globs.map(globType => './**/' + globType)
         }
