@@ -65,6 +65,60 @@ export class TikzPictureView {
         changes: vscode.TextDocumentContentChangeEvent[],
         waitedDelay?: boolean
     ) {
+        function processModificationToTikzPicture(
+            tikzPicture: IFileTikzPicture,
+            change: vscode.TextDocumentContentChangeEvent,
+            lineDelta: number
+        ) {
+            let startLocation: vscode.Position | null = null
+            if (change.range.start.line <= tikzPicture.range.start.line) {
+                const startLine = document.lineAt(tikzPicture.range.start.line)
+                const tikzPictureStartIndex = stripComments(startLine.text, '%').indexOf('\\begin{tikzpicture}')
+                if (tikzPictureStartIndex !== -1) {
+                    startLocation = tikzPicture.range.start.translate(
+                        0,
+                        tikzPictureStartIndex - tikzPicture.range.start.character
+                    )
+                } else {
+                    const startRegex = /\\begin{tikzpicture}/
+                    let startMatch: RegExpMatchArray | null = null
+                    let lineNo = change.range.start.line - 1
+                    do {
+                        startMatch = document.lineAt(++lineNo).text.match(startRegex)
+                    } while (!startMatch && lineNo <= tikzPicture.range.end.line)
+
+                    if (startMatch && startMatch.index !== undefined) {
+                        startLocation = new vscode.Position(lineNo, startMatch.index)
+                    }
+                }
+            }
+
+            let endLocation: vscode.Position | null = null
+            if (change.range.end.line >= tikzPicture.range.end.line) {
+                // things can be a bit funny so we'll just look for the matchin \end{tikzpicture}
+                const endRegex = /\\end{tikzpicture}/
+                let endMatch: RegExpMatchArray | null = null
+                let lineNo = tikzPicture.range.start.line - 1
+                do {
+                    endMatch = stripComments(document.lineAt(++lineNo).text, '%').match(endRegex)
+                } while (!endMatch && lineNo <= change.range.end.line)
+
+                if (endMatch && endMatch.index !== undefined) {
+                    endLocation = new vscode.Position(lineNo, endMatch.index + endMatch[0].length)
+                }
+            }
+
+            tikzPicture.range = new vscode.Range(
+                startLocation ? startLocation : tikzPicture.range.start,
+                endLocation ? endLocation : tikzPicture.range.end.translate(lineDelta, 0)
+            )
+            tikzPicture.content = document.getText(tikzPicture.range)
+            // recompile if currently viewed
+            if (!tikzPicturesToUpdate.includes(tikzPicture)) {
+                tikzPicturesToUpdate.push(tikzPicture)
+            }
+        }
+
         const tikzFileCollection = this.tikzCollections[document.uri.fsPath]
 
         const changeDelay = vscode.workspace.getConfiguration('latex-workshop.tikzpreview').get('delay') as number
@@ -116,55 +170,7 @@ export class TikzPictureView {
                     this.cleanupTikzPicture(tikzPicture)
                 } else {
                     // tikzpicture modified
-                    let startLocation: vscode.Position | null = null
-                    if (change.range.start.line <= tikzPicture.range.start.line) {
-                        const startLine = document.lineAt(tikzPicture.range.start.line)
-                        const tikzPictureStartIndex = stripComments(startLine.text, '%').indexOf(
-                            '\\begin{tikzpicture}'
-                        )
-                        if (tikzPictureStartIndex !== -1) {
-                            startLocation = tikzPicture.range.start.translate(
-                                0,
-                                tikzPictureStartIndex - tikzPicture.range.start.character
-                            )
-                        } else {
-                            const startRegex = /\\begin{tikzpicture}/
-                            let startMatch: RegExpMatchArray | null = null
-                            let lineNo = change.range.start.line - 1
-                            do {
-                                startMatch = document.lineAt(++lineNo).text.match(startRegex)
-                            } while (!startMatch && lineNo <= tikzPicture.range.end.line)
-
-                            if (startMatch && startMatch.index !== undefined) {
-                                startLocation = new vscode.Position(lineNo, startMatch.index)
-                            }
-                        }
-                    }
-
-                    let endLocation: vscode.Position | null = null
-                    if (change.range.end.line >= tikzPicture.range.end.line) {
-                        // things can be a bit funny so we'll just look for the matchin \end{tikzpicture}
-                        const endRegex = /\\end{tikzpicture}/
-                        let endMatch: RegExpMatchArray | null = null
-                        let lineNo = tikzPicture.range.start.line - 1
-                        do {
-                            endMatch = stripComments(document.lineAt(++lineNo).text, '%').match(endRegex)
-                        } while (!endMatch && lineNo <= change.range.end.line)
-
-                        if (endMatch && endMatch.index !== undefined) {
-                            endLocation = new vscode.Position(lineNo, endMatch.index + endMatch[0].length)
-                        }
-                    }
-
-                    tikzPicture.range = new vscode.Range(
-                        startLocation ? startLocation : tikzPicture.range.start,
-                        endLocation ? endLocation : tikzPicture.range.end.translate(lineDelta, 0)
-                    )
-                    tikzPicture.content = document.getText(tikzPicture.range)
-                    // recompile if currently viewed
-                    if (!tikzPicturesToUpdate.includes(tikzPicture)) {
-                        tikzPicturesToUpdate.push(tikzPicture)
-                    }
+                    processModificationToTikzPicture(tikzPicture, change, lineDelta)
                 }
             }
         }
