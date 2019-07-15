@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import { readFileSync } from 'fs'
+import { readFileSync, writeFileSync } from 'fs'
 import * as fs from 'fs'
 
 import { Extension } from '../main'
@@ -51,16 +51,7 @@ export class SnippetPanel {
                 mj.start()
             })
             .then(() => {
-                this.loadSnippets().then(() => {
-                    this.mathSymbols.forEach(async mathSymbol => {
-                        const data = await this.mathJax.typeset({
-                            math: mathSymbol.source,
-                            format: 'TeX',
-                            svgNode: true
-                        })
-                        mathSymbol.svg = data.svgNode.outerHTML
-                    })
-                })
+                this.loadSnippets()
             })
     }
 
@@ -107,30 +98,70 @@ export class SnippetPanel {
     private mathSymbols: IMathSymbol[] = []
 
     private async loadSnippets() {
+        const snipetsFile = path.join(this.extension.extensionRoot, 'snippets', 'snippetPanel.json')
         const snippets: {
             mathSymbols: {
                 [category: string]: {
                     name: string;
                     keywords?: string;
+                    category?: string;
                     source: string;
                     snippet: string;
+                    svg?: string;
                 }[];
             };
-        } = JSON.parse(
-            readFileSync(path.join(this.extension.extensionRoot, 'snippets', 'snippetPanel.json'), { encoding: 'utf8' })
-        )
+        } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' }))
 
+        const mathSymbolPromises: Promise<any>[] = []
         for (const category in snippets.mathSymbols) {
-            snippets.mathSymbols[category].forEach(symbol => {
-                if (symbol.keywords === undefined) {
-                    symbol.keywords = ''
+            for (let i = 0; i < snippets.mathSymbols[category].length; i++) {
+                const symbol = snippets.mathSymbols[category][i]
+                if (symbol.svg === undefined) {
+                    mathSymbolPromises.push(
+                        new Promise((resolve, reject) => {
+                            this.mathJax
+                                .typeset({
+                                    math: symbol.source,
+                                    format: 'TeX',
+                                    svgNode: true
+                                })
+                                .then(
+                                    (data: {
+                                        height: string;
+                                        speakText: string;
+                                        style: string;
+                                        svgNode: SVGSVGElement;
+                                        width: string;
+                                    }) => {
+                                        symbol.svg = data.svgNode.outerHTML
+                                        resolve()
+                                    }
+                                )
+                                .catch(reject)
+                        })
+                    )
                 }
-                this.mathSymbols.push({
-                    ...symbol,
-                    category
-                })
-            })
+            }
         }
+        Promise.all(mathSymbolPromises).finally(() => {
+            if (mathSymbolPromises.length > 0) {
+                writeFileSync(snipetsFile, JSON.stringify(snippets, undefined, 4))
+                vscode.window.showInformationMessage(
+                    `LaTeX-Workshop: ${mathSymbolPromises.length} symbols rendered and cached`
+                )
+            }
+            for (const category in snippets.mathSymbols) {
+                for (let i = 0; i < snippets.mathSymbols[category].length; i++) {
+                    const symbol = snippets.mathSymbols[category][i]
+                    symbol.category = category
+                    if (symbol.keywords === undefined) {
+                        symbol.keywords = ''
+                    }
+                    // @ts-ignore
+                    this.mathSymbols.push(symbol)
+                }
+            }
+        })
     }
 
     private async initialisePanel() {
@@ -153,7 +184,7 @@ export class SnippetPanel {
         if (message.type === 'insertSnippet') {
             const editor = this.lastActiveTextEditor
             if (editor) {
-                editor.insertSnippet(new vscode.SnippetString(message.snippet)).then(
+                editor.insertSnippet(new vscode.SnippetString(message.snippet + ' ')).then(
                     msg => {
                         console.log(msg)
                     },
