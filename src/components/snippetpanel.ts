@@ -7,6 +7,7 @@ import { Extension } from '../main'
 
 interface IMathSymbol {
     name: string
+    keywords?: string
     source: string
     snippet: string
     category: string
@@ -110,6 +111,7 @@ export class SnippetPanel {
             mathSymbols: {
                 [category: string]: {
                     name: string;
+                    keywords?: string;
                     source: string;
                     snippet: string;
                 }[];
@@ -120,6 +122,9 @@ export class SnippetPanel {
 
         for (const category in snippets.mathSymbols) {
             snippets.mathSymbols[category].forEach(symbol => {
+                if (symbol.keywords === undefined) {
+                    symbol.keywords = ''
+                }
                 this.mathSymbols.push({
                     ...symbol,
                     category

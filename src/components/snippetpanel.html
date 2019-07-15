@@ -56,7 +56,7 @@
                 padding: 0px 12px;
                 border: 0;
                 width: 100%;
-                max-width: 24rem;
+                max-width: 32rem;
                 min-width: 12rem;
                 border-left: none;
                 height: 300px;
@@ -189,7 +189,8 @@
 
         <script>
             var mathSymbols = [];
-            var mathSymbolCategories = [];
+            var mathSymbolCategories = ['All'];
+            const grid = document.querySelector('#Symbols .grid');
             var vscode;
 
             (function() {
@@ -199,42 +200,35 @@
             window.addEventListener('message', event => {
                 const data = event.data;
                 if (data.type === 'mathSymbol') {
-                    mathSymbols.push(data);
-                }
-                if (data.type === 'initialise') {
-                    processMathSymbols();
+                    processMathSymbol(data);
                 }
             });
 
-            function processMathSymbols() {
-                const grid = document.querySelector('#Symbols .grid');
-                mathSymbols.forEach(mathSymbol => {
-                    const symbolDiv = document.createElement('div');
-                    symbolDiv.className = 'snippet';
-                    symbolDiv.setAttribute('data-snippet', mathSymbol.snippet);
-                    symbolDiv.innerHTML = mathSymbol.svg;
-                    grid.appendChild(symbolDiv);
-                    mathSymbol.div = symbolDiv;
-                });
+            function processMathSymbol(mathSymbol) {
+                mathSymbol.searchText = getSearchText(mathSymbol);
+                mathSymbol.category = mathSymbol.category.replace(/^-/, '');
+                mathSymbols.push(mathSymbol);
 
-                document.querySelectorAll('#Symbols .grid .snippet').forEach(elem => {
-                    elem.addEventListener('click', _evt => {
-                        vscode.postMessage({
-                            type: 'insertSnippet',
-                            snippet: elem.getAttribute('data-snippet')
-                        });
+                if (mathSymbolCategories.indexOf(mathSymbol.category) === -1) {
+                    mathSymbolCategories.push(mathSymbol.category);
+                    document.querySelector('#Symbols .header select').innerHTML = mathSymbolCategories
+                        .map(category => `<option>${category}</option>`)
+                        .join('\n');
+                }
+
+                const symbolDiv = document.createElement('div');
+                symbolDiv.className = 'snippet';
+                symbolDiv.setAttribute('data-snippet', mathSymbol.snippet);
+                symbolDiv.innerHTML = mathSymbol.svg;
+                symbolDiv.addEventListener('click', _evt => {
+                    vscode.postMessage({
+                        type: 'insertSnippet',
+                        snippet: symbolDiv.getAttribute('data-snippet')
                     });
                 });
 
-                mathSymbolCategories = ['All'];
-                mathSymbols.forEach(symbol => {
-                    if (mathSymbolCategories.indexOf(symbol.category) === -1) {
-                        mathSymbolCategories.push(symbol.category);
-                    }
-                });
-                document.querySelector('#Symbols .header select').innerHTML = mathSymbolCategories
-                    .map(category => `<option>${category}</option>`)
-                    .join('\n');
+                mathSymbol.div = symbolDiv;
+                grid.appendChild(symbolDiv);
             }
 
             function mathSymbolSearch() {
@@ -247,12 +241,20 @@
                         mathSymbol.div.style.display = 'none';
                         return;
                     }
-                    if ((mathSymbol.name + mathSymbol.category).toLowerCase().indexOf(searchStr.toLowerCase()) === -1) {
+                    if (mathSymbol.searchText.toLowerCase().indexOf(searchStr.toLowerCase()) === -1) {
                         mathSymbol.div.style.display = 'none';
                     } else {
                         mathSymbol.div.style.display = '';
                     }
                 });
+            }
+
+            function getSearchText(symbol) {
+                let searchText = symbol.name + symbol.keywords;
+                if (!symbol.category.match(/^-/)) {
+                    searchText += symbol.category;
+                }
+                return searchText;
             }
         </script>
         <script>
