@@ -184,7 +184,7 @@ export class SnippetPanel {
         if (message.type === 'insertSnippet') {
             const editor = this.lastActiveTextEditor
             if (editor) {
-                editor.insertSnippet(new vscode.SnippetString(message.snippet + ' ')).then(
+                editor.insertSnippet(new vscode.SnippetString(message.snippet)).then(
                     msg => {
                         console.log(msg)
                     },
