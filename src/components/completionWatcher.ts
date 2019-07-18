@@ -22,6 +22,9 @@ export class CompletionWatcher {
           }
         | undefined
     currentlyExecutingChange = false
+    private enabled: boolean
+    private configAge: number
+    private MAX_CONFIG_AGE = 5000
     snippets: ISnippet[] = [
         {
             prefix: /([A-Za-z])(\d)$/,
@@ -342,6 +345,8 @@ export class CompletionWatcher {
     constructor(extension: Extension) {
         this.extension = extension
         this.typeFinder = new TypeFinder()
+        this.enabled = vscode.workspace.getConfiguration('latex-workshop').get('liveReformat.enabled') as boolean
+        this.configAge = +new Date()
         vscode.workspace.onDidChangeTextDocument(this.watcher, this)
         this.processSnippets()
     }
@@ -366,7 +371,12 @@ export class CompletionWatcher {
     }
 
     public async watcher(e: vscode.TextDocumentChangeEvent) {
-        if (e.contentChanges.length === 0 || this.currentlyExecutingChange || this.sameChanges(e)) {
+        if (+new Date() - this.configAge > this.MAX_CONFIG_AGE) {
+            this.enabled = vscode.workspace.getConfiguration('latex-workshop').get('liveReformat.enabled') as boolean
+            this.configAge = +new Date()
+        }
+
+        if (e.contentChanges.length === 0 || this.currentlyExecutingChange || this.sameChanges(e) || !this.enabled) {
             return
         }
         this.lastChanges = e
