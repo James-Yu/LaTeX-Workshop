@@ -41,7 +41,7 @@ export class CompletionWatcher {
             description: 'auto subscript 2'
         },
         {
-            prefix: /([A-Za-z]) ?\^([\d\+-]\d)$/,
+            prefix: /([A-Za-z]) ?\^ ?([\d\+-] ?\d)$/,
             body: '$1^{$2}',
             mode: 'maths',
             triggerWhenComplete: true,
@@ -49,10 +49,11 @@ export class CompletionWatcher {
             priority: 2
         },
         {
-            prefix: /([^ ])([\+\-=])$/,
+            prefix: /([^ &\\])([\+\-=])$/,
             body: '$1 $2',
             mode: 'maths',
             priority: -1,
+            description: 'whitespace before operators',
             triggerWhenComplete: true
         },
         {
@@ -60,6 +61,7 @@ export class CompletionWatcher {
             body: '$1 $2',
             mode: 'maths',
             priority: -1,
+            description: 'whitespace after operators',
             triggerWhenComplete: true
         },
         {
@@ -339,6 +341,20 @@ export class CompletionWatcher {
             body: '\\text{s.t.} ',
             mode: 'maths',
             triggerWhenComplete: true
+        },
+        {
+            prefix: /\+ ?-$/,
+            body: '\\pm ',
+            mode: 'maths',
+            priority: 1,
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /- ?\+$/,
+            body: '\\mp ',
+            mode: 'maths',
+            priority: 1,
+            triggerWhenComplete: true
         }
     ]
 
@@ -382,6 +398,7 @@ export class CompletionWatcher {
         this.lastChanges = e
 
         const start = +new Date()
+        let columnOffset = 0
         for (const change of e.contentChanges) {
             const type = this.typeFinder.getTypeAtPosition(e.document, change.range.start, this.lastKnownType)
             this.lastKnownType = { position: change.range.start, mode: type }
@@ -389,8 +406,9 @@ export class CompletionWatcher {
                 let line = e.document.lineAt(change.range.start.line)
                 for (let i = 0; i < this.snippets.length; i++) {
                     if (this.snippets[i].mode === 'any' || this.snippets[i].mode === type) {
-                        const replacementMade = await this.execSnippet(this.snippets[i], line, change)
-                        if (replacementMade) {
+                        const newColumnOffset = await this.execSnippet(this.snippets[i], line, change, columnOffset)
+                        if (newColumnOffset !== null) {
+                            columnOffset += newColumnOffset
                             line = e.document.lineAt(change.range.start.line)
                         }
                     }
@@ -422,9 +440,16 @@ export class CompletionWatcher {
         return true
     }
 
-    private async execSnippet(snippet: ISnippet, line: vscode.TextLine, change: vscode.TextDocumentContentChangeEvent) {
+    private async execSnippet(
+        snippet: ISnippet,
+        line: vscode.TextLine,
+        change: vscode.TextDocumentContentChangeEvent,
+        columnOffset: number
+    ) : Promise<number | null> {
         return new Promise((resolve, reject) => {
-            const match = snippet.prefix.exec(line.text.substr(0, change.range.start.character + change.text.length))
+            const match = snippet.prefix.exec(
+                line.text.substr(0, change.range.start.character + change.text.length + columnOffset)
+            )
             if (match && vscode.window.activeTextEditor) {
                 let matchRange: vscode.Range
                 let replacement: string
@@ -475,7 +500,7 @@ export class CompletionWatcher {
                                 .then(
                                     () => {
                                         this.currentlyExecutingChange = false
-                                        resolve(true)
+                                        resolve(replacement.length - match[0].length)
                                     },
                                     (reason: any) => {
                                         this.currentlyExecutingChange = false
@@ -488,10 +513,8 @@ export class CompletionWatcher {
                             reject(reason)
                         }
                     )
-                // const endPos = new vscode.Position(line.lineNumber, match.index + replacement.length)
-                // vscode.window.activeTextEditor.selection = new vscode.Selection(endPos, endPos)
             } else {
-                resolve(false)
+                resolve(null)
             }
         })
     }
