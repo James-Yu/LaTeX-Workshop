@@ -30,6 +30,7 @@ import {FoldingProvider} from './providers/folding'
 import { Paster } from './components/paster';
 import { TikzCodeLense } from './providers/tikzcodelense'
 import { TikzPictureView } from './components/tikzpictureview'
+import { CompletionWatcher } from './components/completionWatcher';
 
 function renameValue(config: string, oldValue: string, newValue: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -283,6 +284,7 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabledAfterInterval()
+            extension.completionWatcher.watcher(e),
             extension.tikzPictureView.onFileChange(e.document, e.contentChanges)
         }
     }, undefined, [new vscode.Disposable(extension.tikzPictureView.cleanupTempFiles)]))
@@ -391,6 +393,7 @@ export class Extension {
     structureViewer: StructureTreeView
     paster: Paster
     tikzPictureView: TikzPictureView
+    completionWatcher: CompletionWatcher
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -414,6 +417,7 @@ export class Extension {
         this.structureViewer = new StructureTreeView(this)
         this.paster = new Paster(this)
         this.tikzPictureView = new TikzPictureView(this)
+        this.completionWatcher = new CompletionWatcher(this)
 
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
