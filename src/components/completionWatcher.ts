@@ -18,7 +18,7 @@ export class CompletionWatcher {
     lastKnownType:
         | {
               position: vscode.Position;
-              type: 'maths' | 'text';
+              mode: 'maths' | 'text';
           }
         | undefined
     currentlyExecutingChange = false
@@ -244,7 +244,7 @@ export class CompletionWatcher {
         const start = +new Date()
         for (const change of e.contentChanges) {
             const type = this.typeFinder.getTypeAtPosition(e.document, change.range.start, this.lastKnownType)
-            this.lastKnownType = { position: change.range.start.translate(0, change.text.length), type }
+            this.lastKnownType = { position: change.range.start, mode: type }
             if (change.range.isSingleLine) {
                 let line = e.document.lineAt(change.range.start.line)
                 for (let i = 0; i < this.snippets.length; i++) {

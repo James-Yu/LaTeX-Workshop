@@ -144,7 +144,7 @@ export class TypeFinder {
     public getTypeAtPosition(
         document: vscode.TextDocument,
         position: vscode.Position,
-        lastKnown?: { position: vscode.Position; type: 'maths' | 'text' }
+        lastKnown?: { position: vscode.Position; mode: 'maths' | 'text' }
     ) : 'maths' | 'text' {
         const start = +new Date()
 
@@ -152,7 +152,7 @@ export class TypeFinder {
         const tokenStack: string[] = []
 
         let minLine = 0
-        let minChar = 0
+        let minChar = -1
         if (lastKnown !== undefined && lastKnown.position.isBeforeOrEqual(position)) {
             minLine = lastKnown.position.line
             minChar = lastKnown.position.character
@@ -166,24 +166,31 @@ export class TypeFinder {
             lineContents = stripComments(lineContents, '%')
 
             let tokens: RegExpExecArray[] = []
-            let match
+            let match: RegExpExecArray | null
             do {
                 match = this.allEnvRegex.exec(lineContents)
                 if (match !== null) {
                     tokens.push(match)
                 }
             } while (match)
-            if (tokens === null) {
-                continue
-            } else if (tokens.length === 0) {
-                if (lineNo === minLine && 0 < minChar && lastKnown) {
+            if (tokens === null || tokens.length === 0) {
+                if (lineNo + 1 === minLine && 0 <= minChar && lastKnown) {
+                    // if last seen token closes the 'last known' environment, then we DON'T want to use it
+                    if (tokenStack.length > 0) {
+                        const lastEnv = this.envs[tokenStack[tokenStack.length - 1]]
+                        if (lastEnv.type === 'end' && lastEnv.mode === lastKnown.mode) {
+                            minLine = 0
+                            continue
+                        }
+                    }
                     console.log(
-                        `TypeFinder took ${+new Date() - start}ms and ${position.line - lineNo} lines to determine: ${
-                            lastKnown.type
+                        `🔲 TypeFinder took ${+new Date() - start}ms and ${position.line -
+                            lineNo} lines to determine: ${
+                            lastKnown.mode === 'text' ? '𝘁𝗲𝘅𝘁' : '𝗺𝗮𝘁𝗵𝘀'
                         } using lastknown (1)`
                     )
 
-                    return lastKnown.type
+                    return lastKnown.mode
                 } else {
                     continue
                 }
@@ -195,23 +202,13 @@ export class TypeFinder {
 
             for (let i = 0; i < tokens.length; i++) {
                 const token = tokens[i]
-                if (lineNo + 1 === minLine && token.index < minChar && lastKnown) {
-                    console.log(
-                        `TypeFinder took ${+new Date() - start}ms and ${position.line - lineNo} lines to determine: ${
-                            lastKnown.type
-                        } using lastknown (2)`
-                    )
-
-                    return lastKnown.type
-                }
-
                 const env = this.envs[token[1]]
                 for (let j = lineContents.length - 1; j >= 0; j--) {
                     if (token[1] === '\\text' && token.index === j) {
                         if (curlyBracketDepth > 0) {
                             console.log(
-                                `TypeFinder took ${+new Date() - start}ms and ${position.line -
-                                    lineNo} lines to determine: ${env.mode} (1)`
+                                `🔲 TypeFinder took ${+new Date() - start}ms and ${position.line -
+                                    lineNo} lines to determine: ${env.mode === 'text' ? '𝘁𝗲𝘅𝘁' : '𝗺𝗮𝘁𝗵𝘀'} from \\text`
                             )
 
                             return env.mode
@@ -229,8 +226,10 @@ export class TypeFinder {
                 if (env.type === 'end') {
                     if (env.pair === null) {
                         console.log(
-                            `TypeFinder took ${+new Date() - start}ms and ${position.line -
-                                lineNo} lines to determine: ${env.mode} (2)`
+                            `🔲 TypeFinder took ${+new Date() - start}ms and ${position.line -
+                                lineNo} lines to determine: ${
+                                env.mode === 'text' ? '𝘁𝗲𝘅𝘁' : '𝗺𝗮𝘁𝗵𝘀'
+                            } from env with no pair`
                         )
 
                         return env.mode
@@ -239,19 +238,45 @@ export class TypeFinder {
                     }
                 } else if (tokenStack.length === 0 || tokenStack.pop() !== env.pair) {
                     console.log(
-                        `TypeFinder took ${+new Date() - start}ms and ${position.line - lineNo} lines to determine: ${
-                            env.mode
-                        } (3)`
+                        `🔲 TypeFinder took ${+new Date() - start}ms and ${position.line -
+                            lineNo} lines to determine: ${
+                            env.mode === 'text' ? '𝘁𝗲𝘅𝘁' : '𝗺𝗮𝘁𝗵𝘀'
+                        } from unpaired env start token`
                     )
 
                     return env.mode
                 }
+
+                // if before a last known location
+                if (lineNo + 1 === minLine && token.index < minChar && lastKnown) {
+                    // if last seen token closes the 'last known' environment, then we DON'T want to use it
+                    if (tokenStack.length > 0) {
+                        const lastEnv = this.envs[tokenStack[tokenStack.length - 1]]
+                        if (lastEnv.type === 'end' && lastEnv.mode === lastKnown.mode) {
+                            minLine = 0
+                            continue
+                        }
+                    }
+                    console.log(
+                        `🔲 TypeFinder took ${+new Date() - start}ms and ${position.line -
+                            lineNo} lines to determine: ${
+                            lastKnown.mode === 'text' ? '𝘁𝗲𝘅𝘁' : '𝗺𝗮𝘁𝗵𝘀'
+                        } using lastknown (2)`
+                    )
+
+                    return lastKnown.mode
+                }
             }
         } while (lineNo >= minLine)
 
+        console.log(
+            `🔲 TypeFinder took ${+new Date() - start}ms and ${position.line -
+                lineNo} lines to determine: 𝘁𝗲𝘅𝘁 by default`
+        )
         return 'text'
     }
 
+    // @ts-ignore
     private getDocumentCache(document: vscode.TextDocument) {
         if (this.cache[document.uri.toString()] === undefined) {
             this.cache[document.uri.toString()] = {}
