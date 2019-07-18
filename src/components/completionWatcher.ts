@@ -94,14 +94,38 @@ export class CompletionWatcher {
             triggerWhenComplete: true
         },
         {
-            prefix: /\siff$/,
+            prefix: /([\)\]])\/$/,
+            body: 'SPECIAL_ACTION_FRACTION',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\b\s?iff$/,
             body: ' \\iff ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\b\s?in$/,
+            body: ' \\in ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\b\s?notin$/,
+            body: ' \\not\\in ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
             prefix: /\s?!=$/,
             body: ' \\neq ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?==$/,
+            body: ' &= ',
             mode: 'maths',
             triggerWhenComplete: true
         },
@@ -148,7 +172,7 @@ export class CompletionWatcher {
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?\*$/,
+            prefix: /\s?\*\*$/,
             body: ' \\cdot ',
             mode: 'maths',
             triggerWhenComplete: true
@@ -166,7 +190,7 @@ export class CompletionWatcher {
             triggerWhenComplete: true
         },
         {
-            prefix: /(^|[^\\])\s?(exp|sin|cos|tan|cot|arcsin|arccos|arctan|arccot|csc|sec|pi)$/,
+            prefix: /(^|[^\\])\s?(exp|sin|cos|tan|cot|csc|sec|arcsin|arccos|arctan|arccot|csc|sec|pi)$/,
             body: '$1\\$2',
             mode: 'maths',
             triggerWhenComplete: true
@@ -205,6 +229,139 @@ export class CompletionWatcher {
             prefix: /\\\)(\w)$/,
             body: '\\) $1',
             mode: 'text',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\\\\\\$/,
+            body: '\\setminus ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?pmat$/,
+            body: ' \\begin{pmatrix} $1 \\end{pmatrix} $0 ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?bmat$/,
+            body: ' \\begin{bmatrix} $1 \\end{bmatrix} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?\(\)$/,
+            body: ' \\left( $1 \\right) ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?lr\($/,
+            body: ' \\left( $1 \\right) ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?lr\[$/,
+            body: ' \\left[ $1 \\right] ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?lr\|$/,
+            body: ' \\left\\lvert $1 \\right\\rvert ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?lr\{$/,
+            body: ' \\left\\{ $1 \\right\\} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?lr<$/,
+            body: ' \\left< $1 \\right> ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?part$/,
+            body: ' \\frac{\\partial ${1:V}}{\\partial ${2:x}} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?sq$/,
+            body: ' \\sqrt{$1} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /sr$/,
+            body: '^2 ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /sb$/,
+            body: '^3 ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?EE$/,
+            body: ' \\exists ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?AA$/,
+            body: ' \\forall ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?(x|y|n|m)(i|j|k|n|m){2}$/,
+            body: ' $1_$2 ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?(x|y|n|m)(i|j|k|n|m){1,2}p1$/,
+            body: ' $1_{$2+1} ',
+            mode: 'maths',
+            priority: 2,
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?dint$/,
+            body: ' \\int_{${1:-\\infty}}^{${2:\\infty}} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?set$/,
+            body: ' \\{$1\\} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?\|\|$/,
+            body: ' \\mid ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?<>$/,
+            body: ' \\diamond ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\s?case$/,
+            body: ' \\begin{cases} $1 \\end{cases} ',
+            mode: 'maths',
             triggerWhenComplete: true
         }
     ]
