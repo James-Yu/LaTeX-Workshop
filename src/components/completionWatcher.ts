@@ -31,14 +31,14 @@ export class CompletionWatcher {
             description: 'auto subscript'
         },
         {
-            prefix: /([A-Za-z])\s?_(\d\d)$/,
+            prefix: /([A-Za-z]) ?_(\d\d)$/,
             body: '$1_{$2}',
             mode: 'maths',
             triggerWhenComplete: true,
             description: 'auto subscript 2'
         },
         {
-            prefix: /([A-Za-z])\s?\^([\d\+-]\d)$/,
+            prefix: /([A-Za-z]) ?\^([\d\+-]\d)$/,
             body: '$1^{$2}',
             mode: 'maths',
             triggerWhenComplete: true,
@@ -46,44 +46,40 @@ export class CompletionWatcher {
             priority: 2
         },
         {
-            prefix: /([^\s\+])\+\s?([^\s\+])$/,
-            body: '$1 + $2',
+            prefix: /([^ ])([\+\-=])$/,
+            body: '$1 $2',
+            mode: 'maths',
+            priority: -1,
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /([\+\-=])([^ ])$/,
+            body: '$1 $2',
+            mode: 'maths',
+            priority: -1,
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\.\.\.$/,
+            body: '\\dots ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /([^\s-])-\s?([^\s-])$/,
-            body: '$1 - $2',
+            prefix: /=>$/,
+            body: '\\implies ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /([^\s&=])=\s?([^\s=])$/,
-            body: '$1 = $2',
+            prefix: /=<$/,
+            body: '\\impliedby ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?\.\.\.$/,
-            body: ' \\dots ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?=>$/,
-            body: ' \\implies ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?=<$/,
-            body: ' \\impliedby ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?\/\/$/,
-            body: ' \\fraction{$1}{$2} ',
+            prefix: /\/\/$/,
+            body: '\\fraction{$1}{$2} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
@@ -100,128 +96,135 @@ export class CompletionWatcher {
             triggerWhenComplete: true
         },
         {
-            prefix: /\b\s?iff$/,
-            body: ' \\iff ',
+            prefix: /\biff$/,
+            body: '\\iff ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\b\s?in$/,
-            body: ' \\in ',
+            prefix: /\bin$/,
+            body: '\\in ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\b\s?notin$/,
-            body: ' \\not\\in ',
+            prefix: /\bnotin$/,
+            body: '\\not\\in ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?!=$/,
+            prefix: / ?!=$/,
             body: ' \\neq ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?==$/,
-            body: ' &= ',
+            prefix: /==$/,
+            body: '&= ',
             mode: 'maths',
+            priority: 1,
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?~=$/,
+            prefix: / ?~=$/,
             body: ' \\approx ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?~~$/,
+            prefix: / ?~~$/,
             body: ' \\sim ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?>=$/,
+            prefix: / ?>=$/,
             body: ' \\geq ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?<=$/,
+            prefix: / ?<=$/,
             body: ' \\leq ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?>>$/,
+            prefix: / ?>>$/,
             body: ' \\gg ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?<<$/,
+            prefix: / ?<<$/,
             body: ' \\ll ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?xx$/,
+            prefix: / ?xx$/,
             body: ' \\times ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?\*\*$/,
+            prefix: / ?\*\*$/,
             body: ' \\cdot ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?(to|->)$/,
-            body: ' \\to ',
+            prefix: /(^|[^\\])(to|->)$/,
+            body: '$1\\to ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?\|->$/,
+            prefix: / ?(?:\|->|!>)$/,
             body: ' \\mapsto ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /(^|[^\\])\s?(exp|sin|cos|tan|cot|csc|sec|arcsin|arccos|arctan|arccot|csc|sec|pi)$/,
-            body: '$1\\$2',
+            prefix: /(^|[^\\])a(sin|cos|tan|cot|csc|sec)$/,
+            body: '$1\\arc$2 ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?(\\?\w+)(,\.|\.,)$/,
-            body: ' \\vec{$1} ',
+            prefix: /(^|[^\\])(exp|sin|cos|tan|cot|csc|sec|arcsin|arccos|arctan|arccot|pi)$/,
+            body: '$1\\$2 ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\sbar$/,
-            body: ' \\overline{$1} ',
+            prefix: /\b(\\?\w+)(,\.|\.,)$/,
+            body: '\\vec{$1} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s([A-Za-z]{1,3})bar$/,
-            body: ' \\overline{$1} ',
+            prefix: /\bbar$/,
+            body: '\\overline{$1} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\shat$/,
-            body: ' \\overline{$1} ',
+            prefix: /\b([A-Za-z]{1,3})bar$/,
+            body: '\\overline{$1} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s([A-Za-z])hat$/,
-            body: ' \\hat{$1} ',
+            prefix: /\bhat$/,
+            body: '\\overline{$1} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /\b([A-Za-z])hat$/,
+            body: '\\hat{$1} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
@@ -238,62 +241,26 @@ export class CompletionWatcher {
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?pmat$/,
-            body: ' \\begin{pmatrix} $1 \\end{pmatrix} $0 ',
+            prefix: /\bpmat$/,
+            body: '\\begin{pmatrix} $1 \\end{pmatrix} $0 ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?bmat$/,
-            body: ' \\begin{bmatrix} $1 \\end{bmatrix} ',
+            prefix: /\bbmat$/,
+            body: '\\begin{bmatrix} $1 \\end{bmatrix} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?\(\)$/,
-            body: ' \\left( $1 \\right) ',
+            prefix: /\bpart$/,
+            body: '\\frac{\\partial ${1:V}}{\\partial ${2:x}} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?lr\($/,
-            body: ' \\left( $1 \\right) ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?lr\[$/,
-            body: ' \\left[ $1 \\right] ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?lr\|$/,
-            body: ' \\left\\lvert $1 \\right\\rvert ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?lr\{$/,
-            body: ' \\left\\{ $1 \\right\\} ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?lr<$/,
-            body: ' \\left< $1 \\right> ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?part$/,
-            body: ' \\frac{\\partial ${1:V}}{\\partial ${2:x}} ',
-            mode: 'maths',
-            triggerWhenComplete: true
-        },
-        {
-            prefix: /\s?sq$/,
-            body: ' \\sqrt{$1} ',
+            prefix: /\bsq$/,
+            body: '\\sqrt{$1} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
@@ -304,63 +271,69 @@ export class CompletionWatcher {
             triggerWhenComplete: true
         },
         {
-            prefix: /sb$/,
+            prefix: /cb$/,
             body: '^3 ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?EE$/,
-            body: ' \\exists ',
+            prefix: /\bEE$/,
+            body: '\\exists ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?AA$/,
-            body: ' \\forall ',
+            prefix: /\bAA$/,
+            body: '\\forall ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?(x|y|n|m)(i|j|k|n|m){2}$/,
-            body: ' $1_$2 ',
+            prefix: /\b(x|y|n|m|a|b|c)(i|j|k|n|m){2}$/,
+            body: '$1_$2 ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?(x|y|n|m)(i|j|k|n|m){1,2}p1$/,
-            body: ' $1_{$2+1} ',
+            prefix: /\b(x|y|n|m|a|b|c)(i|j|k|n|m){1,2}p1$/,
+            body: '$1_{$2+1} ',
             mode: 'maths',
             priority: 2,
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?dint$/,
-            body: ' \\int_{${1:-\\infty}}^{${2:\\infty}} ',
+            prefix: /\bdint$/,
+            body: '\\int_{${1:-\\infty}}^{${2:\\infty}} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?set$/,
-            body: ' \\{$1\\} ',
+            prefix: /\bset$/,
+            body: '\\{$1\\} ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?\|\|$/,
-            body: ' \\mid ',
+            prefix: /\|\|$/,
+            body: '\\mid ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?<>$/,
-            body: ' \\diamond ',
+            prefix: /<>$/,
+            body: '\\diamond ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\s?case$/,
-            body: ' \\begin{cases} $1 \\end{cases} ',
+            prefix: /\bcase$/,
+            body: '\\begin{cases} $1 \\end{cases} ',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /st$/,
+            body: '\\text{s.t.} ',
             mode: 'maths',
             triggerWhenComplete: true
         }
