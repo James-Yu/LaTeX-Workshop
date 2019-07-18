@@ -286,11 +286,36 @@ export class CompletionWatcher {
         return new Promise((resolve, reject) => {
             const match = snippet.prefix.exec(line.text.substr(0, change.range.start.character + change.text.length))
             if (match && vscode.window.activeTextEditor) {
-                const matchRange = new vscode.Range(
-                    new vscode.Position(line.lineNumber, match.index),
-                    new vscode.Position(line.lineNumber, match.index + match[0].length)
-                )
-                const replacement = match[0].replace(snippet.prefix, snippet.body).replace(/\$\./g, '$')
+                let matchRange: vscode.Range
+                let replacement: string
+                if (snippet.body === 'SPECIAL_ACTION_FRACTION') {
+                    // @ts-ignore
+                    const closingBracket: ')' | ']' = match[1]
+                    // @ts-ignore
+                    const openingBracket: '(' | '[' = { ')': '(', ']': '[' }[closingBracket]
+                    let depth = 0
+                    for (let i = match.index; i >= 0; i--) {
+                        if (line.text[i] === closingBracket) {
+                            depth--
+                        } else if (line.text[i] === openingBracket) {
+                            depth++
+                        }
+                        if (depth === 0) {
+                            matchRange = new vscode.Range(
+                                new vscode.Position(line.lineNumber, i),
+                                new vscode.Position(line.lineNumber, match.index + match[0].length)
+                            )
+                            replacement = `\\frac{${line.text.substring(i + 1, match.index)}}{$1} `
+                            break
+                        }
+                    }
+                } else {
+                    matchRange = new vscode.Range(
+                        new vscode.Position(line.lineNumber, match.index),
+                        new vscode.Position(line.lineNumber, match.index + match[0].length)
+                    )
+                    replacement = match[0].replace(snippet.prefix, snippet.body).replace(/\$\./g, '$')
+                }
                 this.currentlyExecutingChange = true
                 vscode.window.activeTextEditor
                     .edit(
