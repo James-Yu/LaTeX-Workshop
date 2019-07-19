@@ -127,6 +127,7 @@ export class SnippetPanel {
                     source: string;
                     snippet: string;
                     svg?: string;
+                    shrink?: boolean;
                 }[];
             };
         } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' }))
@@ -152,7 +153,17 @@ export class SnippetPanel {
                                         svgNode: SVGSVGElement;
                                         width: string;
                                     }) => {
-                                        symbol.svg = data.svgNode.outerHTML
+                                        let svg = data.svgNode.outerHTML
+                                        svg = svg.replace(
+                                            /<title([^>]*)>(.*)<\/title>/,
+                                            `<title$1>${symbol.name.toLocaleUpperCase()}.${
+                                                symbol.keywords ? ' Keywords: ' + symbol.keywords : ''
+                                            }</title>`
+                                        )
+                                        if (symbol.shrink) {
+                                            svg = svg.replace(/^<svg/, '<svg class="shrink"')
+                                        }
+                                        symbol.svg = svg
                                         resolve()
                                     }
                                 )

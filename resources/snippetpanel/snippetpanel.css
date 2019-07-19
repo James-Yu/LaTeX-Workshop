@@ -150,25 +150,37 @@ input[type='text']:hover {
     display: inline-block;
 }
 
+#Symbols .grid {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 #Symbols .grid div {
-    width: 1.8rem;
-    height: 1.8rem;
     display: inline-block;
     position: relative;
-    top: 0;
+    min-width: 2ex;
+}
+
+#Symbols .grid div:last-child {
+    margin-right: auto;
 }
 
 #Symbols .grid div svg {
-    width: 100%;
-    height: 100%;
-    padding: 8%;
-    transition-property: padding;
+    padding: 0.2rem;
+    zoom: 2.5;
+    transition-property: transform;
     transition-duration: 0.2s;
 }
 
-#Symbols .grid div svg:hover {
+#Symbols .grid div svg.shrink {
+    zoom: 1.6;
+}
+
+#Symbols .grid div:hover svg {
     color: var(--vscode-list-warningForeground);
-    padding: 3%;
+    transform: scale(1.15);
 }
 
 #Tikz h3 {
