@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import { Extension } from '../main'
 import { TypeFinder } from './typeFinder'
+import { exec } from 'child_process'
 
 interface ISnippet {
     prefix: RegExp
@@ -101,13 +102,26 @@ export class CompletionWatcher {
             triggerWhenComplete: true
         },
         {
+            prefix: /sympy$/,
+            body: 'sympy $1 sympy',
+            mode: 'maths',
+            triggerWhenComplete: true
+        },
+        {
+            prefix: /sympy ?(.+?) ?sympy$/,
+            body: 'SPECIAL_ACTION_SYMPY',
+            mode: 'maths',
+            priority: 2,
+            triggerWhenComplete: true
+        },
+        {
             prefix: /\biff$/,
             body: '\\iff ',
             mode: 'maths',
             triggerWhenComplete: true
         },
         {
-            prefix: /\bin$/,
+            prefix: /\binn$/,
             body: '\\in ',
             mode: 'maths',
             triggerWhenComplete: true
@@ -479,7 +493,59 @@ export class CompletionWatcher {
                         new vscode.Position(line.lineNumber, match.index),
                         new vscode.Position(line.lineNumber, match.index + match[0].length)
                     )
-                    replacement = match[0].replace(snippet.prefix, snippet.body).replace(/\$\./g, '$')
+                    if (snippet.body === 'SPECIAL_ACTION_SYMPY') {
+                        replacement = 'SYMPY_CALCULATING'
+                        const command = match[1]
+                            .replace(/\\(\w+) ?/g, '$1')
+                            .replace(/\^/, '**')
+                            .replace('{', '(')
+                            .replace('}', ')')
+                        exec(
+                            `python3 -c "from sympy import *
+import re
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+init_printing()
+print(eval('''latex(${command})'''), end='')"`,
+                            { encoding: 'utf8' },
+                            (_error, stdout, stderr) => {
+                                if (!vscode.window.activeTextEditor) {
+                                    return
+                                } else if (stderr) {
+                                    stdout = 'SYMPY_ERROR'
+                                    setTimeout(() => {
+                                        this.extension.logger.addLogMessage(
+                                            `error executing sympy command: ${command}`
+                                        )
+                                        if (!vscode.window.activeTextEditor) {
+                                            return
+                                        }
+
+                                        vscode.window.activeTextEditor.edit(editBuilder => {
+                                            editBuilder.delete(
+                                                new vscode.Range(
+                                                    new vscode.Position(line.lineNumber, match.index),
+                                                    new vscode.Position(line.lineNumber, match.index + stdout.length)
+                                                )
+                                            )
+                                        })
+                                    }, 400)
+                                }
+                                vscode.window.activeTextEditor.edit(editBuilder => {
+                                    editBuilder.replace(
+                                        new vscode.Range(
+                                            new vscode.Position(line.lineNumber, match.index),
+                                            new vscode.Position(line.lineNumber, match.index + replacement.length)
+                                        ),
+                                        stdout
+                                    )
+                                })
+                            }
+                        )
+                    } else {
+                        replacement = match[0].replace(snippet.prefix, snippet.body).replace(/\$\./g, '$')
+                    }
                 }
                 this.currentlyExecutingChange = true
                 vscode.window.activeTextEditor
