@@ -259,25 +259,39 @@
                         >loosely dashed</a>
                 </div>
                 <div class="col widesvg">
-                    <svg>
-                        <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 1; shape-rendering: crispEdges;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 100">
+                        <defs>
+                            <marker id="arrowhead" markerWidth="5" markerHeight="4" refX="1" refY="2" orient="auto" fill="currentColor">
+                            <polygon points="0 0, 5 2, 0 4, 2 3" style="shape-rendering: crispedges;"></polygon>
+                            </marker>
+                        </defs>
+                        <line x1="0" y1="50" x2="250" y2="50" stroke="currentColor" stroke-width="24" marker-end="url(#arrowhead)"></line>
                     </svg>
                     <a
                     class="cmd"
                     data-snippet="-stealth"
                     >-stealth</a>
-                    <svg>
-                        <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 1; shape-rendering: crispEdges;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 100">
+                        <defs>
+                            <marker id="arrowhead2" markerWidth="5" markerHeight="4" refX="1" refY="2" orient="auto" fill="currentColor">
+                            <polygon points="0 0, 5 2, 0 4" style="shape-rendering: crispedges;"></polygon>
+                            </marker>
+                        </defs>
+                        <line x1="0" y1="50" x2="250" y2="50" stroke="currentColor" stroke-width="24" marker-end="url(#arrowhead2)"></line>
                     </svg>
                     <a
                     class="cmd"
                     data-snippet="-latex"
                     >-latex</a>
-                    <svg>
-                    <line x1="0%" y1="50%" x2="100%" y2="50%"
-                        style="stroke-width: 1; shape-rendering: crispEdges;">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 100">
+                        <defs>
+                            <marker id="arrowhead3" markerWidth="5" markerHeight="5" refX="1" refY="2.5" orient="auto">
+                                <line x1="5" y1="2.5" x2="0" y2="5" stroke="currentColor" stroke-width="1"></line>
+                                <line x1="5" y1="2.5" x2="0" y2="0" stroke="currentColor" stroke-width="1"></line>
+                                <line x1="5" y1="2.5" x2="0" y2="2.5" stroke="currentColor" stroke-width="1"></line>
+                            </marker>
+                        </defs>
+                        <line x1="0" y1="50" x2="250" y2="50" stroke="currentColor" stroke-width="24" marker-end="url(#arrowhead3)"></line>
                     </svg>
                     <a
                     class="cmd"
@@ -285,8 +299,6 @@
                     >-to</a>
                 </div>
             </div>
-            <h3>Path Decorations</h3>
-            <h3>Shapes</h3>
         </div>
 
         <script src="vscode-resource:./snippetpanel.js"></script>
