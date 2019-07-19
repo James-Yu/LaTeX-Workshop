@@ -42,10 +42,16 @@ function processMathSymbol(mathSymbol) {
     grid.appendChild(symbolDiv);
 }
 
+let lastSymbol;
 function mathSymbolSearch() {
     const searchStr = document.querySelector('#Symbols .header input').value;
     let category = document.querySelector('#Symbols .header select').value;
     category = category === 'All' ? '' : category;
+
+    if (lastSymbol) {
+        lastSymbol.div.style = '';
+        lastSymbol = undefined;
+    }
 
     mathSymbols.forEach(mathSymbol => {
         if (category && mathSymbol.category !== category) {
@@ -56,8 +62,13 @@ function mathSymbolSearch() {
             mathSymbol.div.style.display = 'none';
         } else {
             mathSymbol.div.style.display = '';
+            lastSymbol = mathSymbol;
         }
     });
+
+    if (lastSymbol) {
+        lastSymbol.div.style = 'margin-right: auto;';
+    }
 }
 
 function getSearchText(symbol) {
