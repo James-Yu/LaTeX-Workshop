@@ -61,6 +61,8 @@ export class SnippetPanel {
             return
         }
 
+        const resourcesFolder = path.join(this.extension.extensionRoot, 'resources', 'snippetpanel')
+
         this.panel = vscode.window.createWebviewPanel(
             'latex.snippetPanel',
             'LaTeX Snippet Panel',
@@ -71,20 +73,25 @@ export class SnippetPanel {
             {
                 enableScripts: true,
                 retainContextWhenHidden: true,
-                enableFindWidget: true
+                enableFindWidget: true,
+                localResourceRoots: [vscode.Uri.file(resourcesFolder)]
             }
         )
         this.panel.onDidDispose(() => {
             this.panel = undefined
         })
 
-        const webviewSourcePath = path.join(
-            this.extension.extensionRoot,
-            'resources',
-            'snippetpanel',
-            'snippetpanel.html'
+        const webviewSourcePath = path.join(resourcesFolder, 'snippetpanel.html')
+        let webviewHtml = readFileSync(webviewSourcePath, { encoding: 'utf8' })
+        webviewHtml = webviewHtml.replace(
+            /vscode-resource:\.\//g,
+            'vscode-resource:' +
+                vscode.Uri.file(resourcesFolder).with({
+                    scheme: 'vscode-resource'
+                }).path +
+                '/'
         )
-        this.panel.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
+        this.panel.webview.html = webviewHtml
 
         this.initialisePanel()
 
@@ -93,7 +100,14 @@ export class SnippetPanel {
         fs.watchFile(webviewSourcePath, () => {
             {
                 if (this.panel) {
-                    this.panel.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
+                    this.panel.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' }).replace(
+                        /vscode-resource:\.\//g,
+                        'vscode-resource:' +
+                            vscode.Uri.file(resourcesFolder).with({
+                                scheme: 'vscode-resource'
+                            }).path +
+                            '/'
+                    )
                     this.initialisePanel()
                 }
             }
