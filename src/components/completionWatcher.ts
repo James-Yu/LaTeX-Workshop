@@ -468,81 +468,14 @@ export class CompletionWatcher {
                 let matchRange: vscode.Range
                 let replacement: string
                 if (snippet.body === 'SPECIAL_ACTION_FRACTION') {
-                    // @ts-ignore
-                    const closingBracket: ')' | ']' = match[1]
-                    // @ts-ignore
-                    const openingBracket: '(' | '[' = { ')': '(', ']': '[' }[closingBracket]
-                    let depth = 0
-                    for (let i = match.index; i >= 0; i--) {
-                        if (line.text[i] === closingBracket) {
-                            depth--
-                        } else if (line.text[i] === openingBracket) {
-                            depth++
-                        }
-                        if (depth === 0) {
-                            matchRange = new vscode.Range(
-                                new vscode.Position(line.lineNumber, i),
-                                new vscode.Position(line.lineNumber, match.index + match[0].length)
-                            )
-                            replacement = `\\frac{${line.text.substring(i + 1, match.index)}}{$1} `
-                            break
-                        }
-                    }
+                    [matchRange, replacement] = this.getFraction(match, line)
                 } else {
                     matchRange = new vscode.Range(
                         new vscode.Position(line.lineNumber, match.index),
                         new vscode.Position(line.lineNumber, match.index + match[0].length)
                     )
                     if (snippet.body === 'SPECIAL_ACTION_SYMPY') {
-                        replacement = 'SYMPY_CALCULATING'
-                        const command = match[1]
-                            .replace(/\\(\w+) ?/g, '$1')
-                            .replace(/\^/, '**')
-                            .replace('{', '(')
-                            .replace('}', ')')
-                        exec(
-                            `python3 -c "from sympy import *
-import re
-x, y, z, t = symbols('x y z t')
-k, m, n = symbols('k m n', integer=True)
-f, g, h = symbols('f g h', cls=Function)
-init_printing()
-print(eval('''latex(${command})'''), end='')"`,
-                            { encoding: 'utf8' },
-                            (_error, stdout, stderr) => {
-                                if (!vscode.window.activeTextEditor) {
-                                    return
-                                } else if (stderr) {
-                                    stdout = 'SYMPY_ERROR'
-                                    setTimeout(() => {
-                                        this.extension.logger.addLogMessage(
-                                            `error executing sympy command: ${command}`
-                                        )
-                                        if (!vscode.window.activeTextEditor) {
-                                            return
-                                        }
-
-                                        vscode.window.activeTextEditor.edit(editBuilder => {
-                                            editBuilder.delete(
-                                                new vscode.Range(
-                                                    new vscode.Position(line.lineNumber, match.index),
-                                                    new vscode.Position(line.lineNumber, match.index + stdout.length)
-                                                )
-                                            )
-                                        })
-                                    }, 400)
-                                }
-                                vscode.window.activeTextEditor.edit(editBuilder => {
-                                    editBuilder.replace(
-                                        new vscode.Range(
-                                            new vscode.Position(line.lineNumber, match.index),
-                                            new vscode.Position(line.lineNumber, match.index + replacement.length)
-                                        ),
-                                        stdout
-                                    )
-                                })
-                            }
-                        )
+                        replacement = this.execSympy(match, line)
                     } else {
                         replacement = match[0].replace(snippet.prefix, snippet.body).replace(/\$\./g, '$')
                     }
@@ -583,5 +516,86 @@ print(eval('''latex(${command})'''), end='')"`,
                 resolve(null)
             }
         })
+    }
+
+    private getFraction(match: RegExpExecArray, line: vscode.TextLine) : [vscode.Range, string] {
+        // @ts-ignore
+        const closingBracket: ')' | ']' = match[1]
+        // @ts-ignore
+        const openingBracket: '(' | '[' = { ')': '(', ']': '[' }[closingBracket]
+        let depth = 0
+        for (let i = match.index; i >= 0; i--) {
+            if (line.text[i] === closingBracket) {
+                depth--
+            } else if (line.text[i] === openingBracket) {
+                depth++
+            }
+            if (depth === 0) {
+                const matchRange = new vscode.Range(
+                    new vscode.Position(line.lineNumber, i),
+                    new vscode.Position(line.lineNumber, match.index + match[0].length)
+                )
+                const replacement = `\\frac{${line.text.substring(i + 1, match.index)}}{$1} `
+                return [matchRange, replacement]
+            }
+        }
+        return [
+            new vscode.Range(
+                new vscode.Position(line.lineNumber, match.index + match[0].length),
+                new vscode.Position(line.lineNumber, match.index + match[0].length)
+            ),
+            ''
+        ]
+    }
+
+    private execSympy(match: RegExpExecArray, line: vscode.TextLine) {
+        const replacement = 'SYMPY_CALCULATING'
+        const command = match[1]
+            .replace(/\\(\w+) ?/g, '$1')
+            .replace(/\^/, '**')
+            .replace('{', '(')
+            .replace('}', ')')
+        exec(
+            `python3 -c "from sympy import *
+import re
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+init_printing()
+print(eval('''latex(${command})'''), end='')"`,
+            { encoding: 'utf8' },
+            (_error, stdout, stderr) => {
+                if (!vscode.window.activeTextEditor) {
+                    return
+                } else if (stderr) {
+                    stdout = 'SYMPY_ERROR'
+                    setTimeout(() => {
+                        this.extension.logger.addLogMessage(`error executing sympy command: ${command}`)
+                        if (!vscode.window.activeTextEditor) {
+                            return
+                        }
+
+                        vscode.window.activeTextEditor.edit(editBuilder => {
+                            editBuilder.delete(
+                                new vscode.Range(
+                                    new vscode.Position(line.lineNumber, match.index),
+                                    new vscode.Position(line.lineNumber, match.index + stdout.length)
+                                )
+                            )
+                        })
+                    }, 400)
+                }
+                vscode.window.activeTextEditor.edit(editBuilder => {
+                    editBuilder.replace(
+                        new vscode.Range(
+                            new vscode.Position(line.lineNumber, match.index),
+                            new vscode.Position(line.lineNumber, match.index + replacement.length)
+                        ),
+                        stdout
+                    )
+                })
+            }
+        )
+        return replacement
     }
 }
