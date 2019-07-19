@@ -78,7 +78,12 @@ export class SnippetPanel {
             this.panel = undefined
         })
 
-        const webviewSourcePath = path.join(this.extension.extensionRoot, 'src', 'components', 'snippetpanel.html')
+        const webviewSourcePath = path.join(
+            this.extension.extensionRoot,
+            'resources',
+            'snippetpanel',
+            'snippetpanel.html'
+        )
         this.panel.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
 
         this.initialisePanel()
@@ -98,7 +103,7 @@ export class SnippetPanel {
     private mathSymbols: IMathSymbol[] = []
 
     private async loadSnippets() {
-        const snipetsFile = path.join(this.extension.extensionRoot, 'snippets', 'snippetPanel.json')
+        const snipetsFile = path.join(this.extension.extensionRoot, 'resources', 'snippetpanel', 'snippetpanel.json')
         const snippets: {
             mathSymbols: {
                 [category: string]: {
