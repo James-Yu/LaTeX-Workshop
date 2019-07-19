@@ -134,6 +134,10 @@ This is not a complete list but rather a preview of some of the coolest features
 
     <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/hover.gif" alt="auto \item demo" height="120px">
 
+- Tikz picture preview.
+
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/tikz-preview.gif" alt="tikz preview demo">
+
 ## GitHub
 
 The code for this extension is available on github at: https://github.com/James-Yu/LaTeX-Workshop
