@@ -132,7 +132,7 @@ This is not a complete list but rather a preview of some of the coolest features
 
 - Preview on hover. Hovering over the start tag of a math environment causes a mathjax preview to pop up.
 
-    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/hover.gif" alt="auto \item demo" height="120px">
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/hover.gif" alt="equation hover demo" height="120px">
 
 - Tikz picture preview.
 
