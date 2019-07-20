@@ -20,7 +20,7 @@ body {
 .tab button {
     display: inline-block;
     background-color: inherit;
-    color: var(--vscode-list-inactiveSelectionForeground);
+    color: var(--vscode-panelTitle-inactiveForeground);
     padding: 0.2em 1em;
     border: none;
     border-bottom: var(--vscode-editor-background) 1px solid;
@@ -34,13 +34,13 @@ body {
 
 /* Change background color of buttons on hover */
 .tab button:hover {
-    border-bottom: var(--vscode-settings-dropdownListBorder) 1px solid;
+    color: var(--vscode-panelTitle-activeForeground);
 }
 
 /* Create an active/current "tab button" class */
 .tab button.active {
-    color: var(--vscode-list-activeSelectionForeground);
-    border-bottom: var(--vscode-list-activeSelectionForeground) 1px solid;
+    color: var(--vscode-panelTitle-activeForeground);
+    border-bottom: var(--vscode-panelTitle-activeBorder) 1px solid;
 }
 
 /* Style the tab content */
@@ -106,21 +106,15 @@ select {
     margin: 0.3rem 0.5rem 0.3rem 0.1rem;
     font-size: 1rem;
     border: none;
-    background-color: var(--vscode-input-background);
-    color: var(--vscode-input-foreground);
-    outline: 1px solid var(--vscode-input-background);
-}
-select:hover {
-    outline: 1px solid var(--vscode-inputOption-activeBorder);
-}
-select:focus {
-    outline: 1px solid var(--vscode-inputOption-activeBorder);
+    background-color: var(--vscode-dropdown-background);
+    color: var(--vscode-dropdown-foreground);
+    outline: 1px solid var(--vscode-dropdown-border);
 }
 
 input[type='text'] {
     background-color: var(--vscode-input-background);
     color: var(--vscode-input-foreground);
-    outline: 1px solid var(--vscode-input-background);
+    outline: 1px solid var(--vscode-input-border);
     border: none;
     height: 1.5rem;
     padding: 0.2rem 0.4rem;
@@ -131,7 +125,9 @@ input[type='text'] {
 input[type='text']::placeholder {
     color: var(--vscode-input-placeholderForeground);
 }
-input[type='text']:hover {
+input[type='text']:active,
+input[type='text']:hover,
+input[type='text']:focus {
     outline: 1px solid var(--vscode-inputOption-activeBorder);
 }
 
