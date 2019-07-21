@@ -5,13 +5,14 @@ import * as fs from 'fs'
 
 import { Extension } from '../main'
 
-interface IMathSymbol {
-    name: string
-    keywords?: string
-    source: string
-    snippet: string
-    category: string
-    svg?: string
+type IMathSymbol = {
+    name: string;
+    keywords?: string;
+    source: string;
+    snippet: string;
+    category?: string;
+    svg?: string;
+    shrink?: boolean;
 }
 
 export class SnippetPanel {
@@ -120,15 +121,7 @@ export class SnippetPanel {
         const snipetsFile = path.join(this.extension.extensionRoot, 'resources', 'snippetpanel', 'snippetpanel.json')
         const snippets: {
             mathSymbols: {
-                [category: string]: {
-                    name: string;
-                    keywords?: string;
-                    category?: string;
-                    source: string;
-                    snippet: string;
-                    svg?: string;
-                    shrink?: boolean;
-                }[];
+                [category: string]: IMathSymbol[];
             };
         } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' }))
 
@@ -187,7 +180,6 @@ export class SnippetPanel {
                     if (symbol.keywords === undefined) {
                         symbol.keywords = ''
                     }
-                    // @ts-ignore
                     this.mathSymbols.push(symbol)
                 }
             }
@@ -200,7 +192,9 @@ export class SnippetPanel {
         }
 
         this.mathSymbols.forEach(async mathSymbol => {
-            // @ts-ignore
+            if (this.panel === undefined) {
+                return
+            }
             this.panel.webview.postMessage({
                 type: 'mathSymbol',
                 ...mathSymbol
