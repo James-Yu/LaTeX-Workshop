@@ -146,7 +146,8 @@ export class BuildInfo {
             vscode.ViewColumn.Beside,
             {
                 enableScripts: true,
-                retainContextWhenHidden: true
+                retainContextWhenHidden: true,
+                localResourceRoots: [vscode.Uri.file(path.join(this.extension.extensionRoot, 'resources', 'buildinfo'))]
             }
         )
         this.panel.onDidDispose(() => {
@@ -154,8 +155,17 @@ export class BuildInfo {
             this.panel = undefined
         })
 
-        const webviewSourcePath = path.join(this.extension.extensionRoot, 'src', 'components', 'buildinfo_panel.html')
-        this.panel.webview.html = readFileSync(webviewSourcePath, { encoding: 'utf8' })
+        const webviewSourcePath = path.join(this.extension.extensionRoot, 'resources', 'buildinfo', 'buildinfo.html')
+        let webviewHtml = readFileSync(webviewSourcePath, { encoding: 'utf8' })
+        webviewHtml = webviewHtml.replace(
+            /vscode-resource:\.\//,
+            'vscode-resource:' +
+                vscode.Uri.file(path.join(this.extension.extensionRoot, 'resources', 'buildinfo')).with({
+                    scheme: 'vscode-resource'
+                }).path +
+                '/'
+        )
+        this.panel.webview.html = webviewHtml
 
         if (this.currentBuild) {
             this.panel.reveal(vscode.ViewColumn.Beside)
