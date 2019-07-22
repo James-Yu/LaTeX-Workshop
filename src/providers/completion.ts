@@ -119,7 +119,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.package
                 break
             case 'input':
-                reg = /\\(input|include|subfile|includegraphics)\*?(?:\[[^\[\]]*\])*{([^}]*)$/
+                reg = /\\(input|include|subfile|includegraphics|lstinputlisting|verbatiminput)\*?(?:\[[^\[\]]*\])*{([^}]*)$/
                 provider = this.input
                 break
             case 'import':

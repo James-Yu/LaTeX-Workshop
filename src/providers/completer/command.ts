@@ -225,7 +225,7 @@ export class Command {
         })
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
-        } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
+        } else if (/[a-zA-Z]*([Cc]ite|ref|input)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
             // Automatically trigger completion if the command is for citation, filename or reference
             command.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
         }
