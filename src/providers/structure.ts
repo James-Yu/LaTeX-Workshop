@@ -244,13 +244,24 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {
         const content = lines.slice(env.start, env.end).join('\n')
-        let regex
+        let result
         if (env.name === 'frame') {
-            regex = /\\frametitle(?:<[^<>]*>)?(?:\[[^\[\]]*\])?{((?:(?:[^\{\}])|(?:\{[^\{\}]*\}))+)}/gsm
+            // Frame titles can be specified as either \begin{frame}{Frame Title}
+            // or \begin{frame} \frametitle{Frame Title}
+            const frametitleRegex = /\\frametitle(?:<[^<>]*>)?(?:\[[^\[\]]*\])?{((?:(?:[^\{\}])|(?:\{[^\{\}]*\}))+)}/gsm
+            // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
+            const beginframeRegex = /\\begin{frame}(?:<[^<>]*>?)?(?:\[[^\[\]]*\]){0,2}[\t ]*(?:(?:\r\n|\r|\n)[\t ]*)?{([^{}]*)}/gsm
+
+            // \frametitle can override title set in \begin{frame}{<title>} so we check that first
+            result = frametitleRegex.exec(content)
+            if (!result) {
+                result = beginframeRegex.exec(content)
+            }
         } else {
-            regex = /(?:\\caption(?:\[[^\[\]]*\])?){((?:(?:[^\{\}])|(?:\{[^\{\}]*\}))+)}/gsm
+            const captionRegex = /(?:\\caption(?:\[[^\[\]]*\])?){((?:(?:[^\{\}])|(?:\{[^\{\}]*\}))+)}/gsm
+            result = captionRegex.exec(content)
         }
-        const result = regex.exec(content)
+
         if (result) {
             // Remove indentation, newlines and the final '.'
             return result[1].replace(/^ */gm, ' ').replace(/\r|\n/g, '').replace(/\.$/, '')
