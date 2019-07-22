@@ -92,6 +92,14 @@ export class Command {
             }
             suggestions = Object.assign(suggestions, this.defaultSymbols)
         }
+        const extraPackages = configuration.get('intellisense.package.extra') as string[]
+        if (extraPackages) {
+            extraPackages.forEach(pkg => {
+                if (this.usedPackages.indexOf(pkg) === -1) {
+                    this.usedPackages.push(pkg)
+                }
+            })
+        }
         this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
         this.allCommands = suggestions
         const suggestionsAsciiKeys: string[] = []
