@@ -53,5 +53,14 @@ If applicable, add screenshots to help explain your problem.
  - VS Code version: [e.g. 1.20.0]
  - Extension version: [e.g. 5.0.0]
 
+**Are you using LaTeX Workshop with VS Code Remote?**
+
+Yes/No
+
+If the answer is Yes, please write which one you are using. Write the versions of the remote extension.
+
+- Remote Containers/Remote SSH/Remote WSL
+- Remote Extension Version: [e.g. 5.0.0]
+
 **Additional context**
 Add any other context about the problem here.
