@@ -1722,8 +1722,7 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 						(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*
 						\*?											# Optional Unabreviated
 					)
-					(?:(\[)[^\]]*(\]))?								# Optional
-					(?:(\[)[^\]]*(\]))?								#   Arguments
+					(?:(\[)[^\]]*(\])){0,2}								# Optional Arguments
 					(\{)											# Opening Bracket
 				</string>
 			<key>captures</key>
@@ -1749,16 +1748,6 @@ Put specific matches for particular LaTeX keyword.functions before the last two 
 					<string>punctuation.definition.arguments.optional.end.latex</string>
 				</dict>
 				<key>5</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.begin.latex</string>
-				</dict>
-				<key>6</key>
-				<dict>
-					<key>name</key>
-					<string>punctuation.definition.arguments.optional.end.latex</string>
-				</dict>
-				<key>7</key>
 				<dict>
 					<key>name</key>
 					<string>punctuation.definition.arguments.begin.latex</string>
