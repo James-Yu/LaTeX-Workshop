@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icon.png",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -299,8 +299,13 @@
         "category": "LaTeX Workshop"
       },
       {
+        "command": "latex-workshop.viewtikzpicture",
+        "title": "View TikzPicture",
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-workshop.showSnippetPanel",
-        "title": "Show Snippet Panel",
+        "title": "Show Snippet Panel", 
         "category": "LaTeX Workshop"
       }
     ],
@@ -1062,6 +1067,11 @@
           "default": false,
           "markdownDescription": "Auto-complete commands and environments from used packages."
         },
+        "latex-workshop.intellisense.package.extra": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "List of extra packages to always add to the auto-completion mechanism.\nWhen `latex-workshop.intellisense.package.enabled` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
+        },
         "latex-workshop.message.badbox.show": {
           "type": "boolean",
           "default": true,
@@ -1287,17 +1297,37 @@
         "latex-workshop.formattedPaste.tableColumnType": {
           "type": "string",
           "default": "l",
-          "description": "Tabular column type to use, e.g. l/r/c…"
+          "markdownDescription": "Tabular column type to use, e.g. **`l`**/**`r`**/**`c`**…"
         },
         "latex-workshop.formattedPaste.tableBooktabsStyle": {
           "type": "boolean",
           "default": true,
-          "description": "Use the booktabs commands `\\toprule`, `\\midrule`, and `\\bottomrule`"
+          "markdownDescription": "Use the booktabs commands `\\toprule`, `\\midrule`, and `\\bottomrule`"
         },
         "latex-workshop.formattedPaste.tableHeaderRows": {
           "type": "integer",
           "default": 1,
-          "description": "Number of header rows to assume. Set to 0 to disable.`"
+          "markdownDescription": "Number of header rows to assume. Set to **`0`** to disable."
+        },
+        "latex-workshop.tikzpreview.enabled": {
+          "type": "boolean",
+          "default": "true",
+          "markdownDescription": "Identify tikzpictures, and add a codelense that allows you to preview them"
+        },
+        "latex-workshop.tikzpreview.preambleContents": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Set the path of a file containing LaTeX code to be included in the preamble of standalone documents for tikzpicture preview. If the path is relative, it is joined with the root dir."
+        },
+        "latex-workshop.tikzpreview.parseTeXFile": {
+          "type": "boolean",
+          "default": "true",
+          "markdownDescription": "Enable important tikz code in the current TeX file to be included in tikzpreview standalone file."
+        },
+        "latex-workshop.tikzpreview.delay": {
+          "type": "number",
+          "default": 100,
+          "markdownDescription": "Defines the delay in milliseconds to wait after typing stops. Set to 0 to disable."
         }
       }
     },
@@ -1353,7 +1383,6 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "sh minify.sh",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
@@ -1391,9 +1420,8 @@
     "@types/ws": "^4.0.2",
     "ts-loader": "^5.2.1",
     "tslint": "^5.0.0",
-    "typescript": "^2.0.3",
+    "typescript": "^3.5.3",
     "vscode": "^1.1.14",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.20.2"
   }
 }

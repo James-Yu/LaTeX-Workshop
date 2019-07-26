@@ -92,6 +92,14 @@ export class Command {
             }
             suggestions = Object.assign(suggestions, this.defaultSymbols)
         }
+        const extraPackages = configuration.get('intellisense.package.extra') as string[]
+        if (extraPackages) {
+            extraPackages.forEach(pkg => {
+                if (this.usedPackages.indexOf(pkg) === -1) {
+                    this.usedPackages.push(pkg)
+                }
+            })
+        }
         this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
         this.allCommands = suggestions
         const suggestionsAsciiKeys: string[] = []
@@ -217,7 +225,7 @@ export class Command {
         })
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
-        } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
+        } else if (/[a-zA-Z]*([Cc]ite|ref|input)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
             // Automatically trigger completion if the command is for citation, filename or reference
             command.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
         }

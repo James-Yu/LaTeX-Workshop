@@ -1,5 +1,18 @@
 # Change Log
 
+## [7.2.0] - 2019-07-20
+
+### Added
+- (#1500,#1516) Add `tikzpicture` preview.
+- (#1496) New `subfiles` package support.
+
+### Changed
+- (#1501) Use `base64url` to encode path.
+- (#1509) Improve description of `formattedPaste` settings.
+
+### Fixed
+- (#1201) Catastrophic backtracking in `getGraphicsPath`.
+
 ## [7.1.0] - 2019-07-07
 
 ### Added

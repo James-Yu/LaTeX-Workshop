@@ -11,7 +11,13 @@
 
 LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudio.com/), aiming to provide all-in-one features and utilities for LaTeX typesetting with Visual Studio Code.
 
-This project won't be successful without contributions from the community, especially project maintainers Jerome Lelong [`@jlelong`](https://github.com/jlelong), James Booth [`@jabooth`](https://github.com/jabooth), and all code [contributors](https://github.com/James-Yu/LaTeX-Workshop/graphs/contributors)! Thank you!
+This project won't be successful without contributions from the community, especially the current and past key contributors:
+- Jerome Lelong [`@jlelong`](https://github.com/jlelong)
+- Takashi Tamura [`@tamuratak`](https://github.com/tamuratak)
+- Tecosaur [`@tecosaur`](https://github.com/tecosaur)
+- James Booth [`@jabooth`](https://github.com/jabooth)
+
+Thank you so much!
 
 **Note that starting from version `7.0.0`, LaTeX-Workshop requires at least VSCode `1.34.0`.**
 
@@ -50,9 +56,10 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Mathematical font commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Mathematical-font-commands)
   - [Surrounding text](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#surrounding-text)
   - [Miscellaneous actions](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Miscellaneous-Actions)
-- [Hovering features](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover)
+- [Hovering and previewing features](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover)
   - [Documentation of a package](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#documentation-of-a-package)
   - [Previewing equations](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-equations)
+  - [Tikz preview](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#tikz-preview)
   - [Previewing citation details](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-citation-details)
   - [Previewing references](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-references)
   - [Documentation of a command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#documentation-of-a-command)
@@ -124,9 +131,13 @@ This is not a complete list but rather a preview of some of the coolest features
 
     <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/auto item.gif" alt="auto \item demo" height="80px">
 
-- Preview on hover. Hovering over the start tag of a math environment causes a mathjax preview to pop up.
+- [Preview on hover](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-equations). Hovering over the start tag of a math environment causes a mathjax preview to pop up.
 
-    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/hover.gif" alt="auto \item demo" height="120px">
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/hover.gif" alt="equation hover demo" height="120px">
+
+- [Tikz picture preview](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#tikz-preview)
+
+    <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/tikz-preview.gif" alt="tikz preview demo">
 
 ## GitHub
 

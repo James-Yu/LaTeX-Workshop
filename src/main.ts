@@ -28,6 +28,8 @@ import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 import { Paster } from './components/paster';
+import { TikzCodeLense } from './providers/tikzcodelense'
+import { TikzPictureView } from './components/tikzpictureview'
 import { SnippetPanel } from './components/snippetpanel';
 
 function renameValue(config: string, oldValue: string, newValue: string) {
@@ -251,6 +253,9 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.formattedPaste', () => extension.paster.paste()))
 
+    context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.viewtikzpicture', (document, range) => extension.tikzPictureView.view(document, range)))
+    context.subscriptions.push(vscode.languages.registerCodeLensProvider({language: 'latex', scheme: 'file'}, new TikzCodeLense()))
+
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(async (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
@@ -280,8 +285,9 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabledAfterInterval()
+            extension.tikzPictureView.onFileChange(e.document, e.contentChanges)
         }
-    }))
+    }, undefined, [new vscode.Disposable(extension.tikzPictureView.cleanupTempFiles)]))
 
     let isLaTeXActive = false
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
@@ -386,6 +392,7 @@ export class Extension {
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
     paster: Paster
+    tikzPictureView: TikzPictureView
     snippetPanel: SnippetPanel
 
     constructor() {
@@ -409,8 +416,9 @@ export class Extension {
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.paster = new Paster(this)
+        this.tikzPictureView = new TikzPictureView(this)
         this.snippetPanel = new SnippetPanel(this)
-
+      
         this.logger.addLogMessage(`LaTeX Workshop initialized.`)
     }
 }
