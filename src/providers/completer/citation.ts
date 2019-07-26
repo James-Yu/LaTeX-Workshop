@@ -32,7 +32,7 @@ export class Citation {
         this.refreshTimer = 0
     }
 
-    provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
+    provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
@@ -81,7 +81,7 @@ export class Citation {
                 .map(key => `${key}: ${item[key]}`)
                 .join('\n')
             if (args) {
-                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
+                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
             }
             return citation
         })
@@ -107,7 +107,7 @@ export class Citation {
             const citation = new vscode.CompletionItem(item.citation, vscode.CompletionItemKind.Reference)
             citation.detail = item.text
             if (args) {
-                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
+                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
             }
             this.suggestions.push(citation)
         })
@@ -233,14 +233,14 @@ export class Citation {
         }
         item = item.substr(bibDefinitionReg.lastIndex)
         const bibItem: CitationRecord = { key: regResult[4] }
-        const bibAttrReg = /([a-zA-Z0-9\!\$\&\*\+\-\.\/\:\;\<\>\?\[\]\^\_\`\|]+)\s*(\=)/g
+        const bibAttrReg = /([a-zA-Z0-9!$&*+\-./:;<>?[\]^_`|]+)\s*(=)/g
         regResult = bibAttrReg.exec(item)
         while (regResult) {
             const attrKey = regResult[1]
             item = item.substr(bibAttrReg.lastIndex)
             bibAttrReg.lastIndex = 0
             const commaPos = /,/g.exec(item)
-            const quotePos = /\"/g.exec(item)
+            const quotePos = /"/g.exec(item)
             const bracePos = /{/g.exec(item)
             let attrValue = ''
             if (commaPos && ((!quotePos || (quotePos && (commaPos.index < quotePos.index)))
@@ -300,7 +300,7 @@ export class Citation {
     }
 
     getTheBibliographyItems(content: string) {
-        const itemReg = /^(?!%).*\\bibitem(?:\[[^\[\]\{\}]*\])?{([^}]*)}/gm
+        const itemReg = /^(?!%).*\\bibitem(?:\[[^[\]{}]*\])?{([^}]*)}/gm
         const items = {}
         while (true) {
             const result = itemReg.exec(content)

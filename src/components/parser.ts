@@ -72,7 +72,7 @@ export class Parser {
         }
     }
 
-    trimLaTeXmk(log: string) : string {
+    trimLaTeXmk(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -94,7 +94,7 @@ export class Parser {
         }
     }
 
-    trimTexify(log: string) : string {
+    trimTexify(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -116,7 +116,7 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string) : boolean {
+    latexmkSkipped(log: string): boolean {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
@@ -235,8 +235,8 @@ export class Parser {
                 currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
-                    file: result[1] ? path.resolve(path.dirname(rootFile), result[1]) : filename,
-                    line: result[2] ? parseInt(result[2], 10) : undefined
+                    file: result[1] ? path.resolve(path.dirname(rootFile), result[1]): filename,
+                    line: result[2] ? parseInt(result[2], 10): undefined
                 }
                 searchesEmptyLine = true
                 insideError = true
@@ -255,7 +255,7 @@ export class Parser {
         this.showCompilerDiagnostics()
     }
 
-    parseLaTeXFileStack(line: string, fileStack: string[], nested: number) : number {
+    parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substr(result.index + 1)

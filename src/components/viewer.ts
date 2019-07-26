@@ -26,7 +26,7 @@ export class Viewer {
         this.extension = extension
     }
 
-    refreshExistingViewer(sourceFile?: string, viewer?: string) : boolean {
+    refreshExistingViewer(sourceFile?: string, viewer?: string): boolean {
         if (!sourceFile) {
             Object.keys(this.clients).forEach(key => {
                 this.clients[key].forEach(client => {
@@ -61,7 +61,7 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, respectOutDir: boolean = true) : string | undefined {
+    checkViewer(sourceFile: string, respectOutDir: boolean = true): string | undefined {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
@@ -119,7 +119,7 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
-    getPDFViewerContent(uri: vscode.Uri) : string {
+    getPDFViewerContent(uri: vscode.Uri): string {
         // viewer/viewer.js automatically requests the file to server.ts and server.ts decodes the encoded fsPath.
         const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(uri.fsPath)}`
         return `

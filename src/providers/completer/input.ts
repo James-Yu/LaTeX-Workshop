@@ -18,7 +18,7 @@ export class Input {
         this.extension = extension
     }
 
-    private filterIgnoredFiles(files: string[], baseDir: string) : string[] {
+    private filterIgnoredFiles(files: string[], baseDir: string): string[] {
         const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         let gitIgnoredFiles: string[] = []
         /* Check .gitignore if needed */
@@ -40,7 +40,7 @@ export class Input {
 
     getGraphicsPath(filePath: string) {
         const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
-        const regex = /\\graphicspath{((?:{[^\{\}]*}[\s\n]*)*)}/g
+        const regex = /\\graphicspath{((?:{[^{}]*}[\s\n]*)*)}/g
         let result: string[] | null
         do {
             result = regex.exec(content)
@@ -68,7 +68,7 @@ export class Input {
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
      */
-    provide(payload: string[]) : vscode.CompletionItem[] {
+    provide(payload: string[]): vscode.CompletionItem[] {
         let provideDirOnly = false
         let baseDir: string[] = []
         const mode = payload[0]

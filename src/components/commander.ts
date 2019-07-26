@@ -58,7 +58,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         this.commands.push(snippetPanelCommand)
     }
 
-    getTreeItem(element: LaTeXCommand) : vscode.TreeItem {
+    getTreeItem(element: LaTeXCommand): vscode.TreeItem {
 
         const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, element.collapsibleState)
         treeItem.command = element.command
@@ -67,7 +67,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         return treeItem
     }
 
-    getChildren(element?: LaTeXCommand) : Thenable<LaTeXCommand[]> {
+    getChildren(element?: LaTeXCommand): Thenable<LaTeXCommand[]> {
         if (!element) {
             return Promise.resolve(this.commands)
         }

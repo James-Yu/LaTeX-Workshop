@@ -44,7 +44,7 @@ export type Block = {
   page: number;
 }
 
-function isBlock(b: Block | Page) : b is Block {
+function isBlock(b: Block | Page): b is Block {
   return (b as Block).parent !== undefined
 }
 
@@ -92,7 +92,7 @@ export class SyncTexJsError extends Error {
 
 }
 
-export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
+export function parseSyncTex(pdfsyncBody: string): PdfSyncObject {
   const unit = 65781.76
   let numberPages = 0
   let currentPage: Page | undefined

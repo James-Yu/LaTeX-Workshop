@@ -16,7 +16,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         document: vscode.TextDocument,
         _context: vscode.FoldingContext,
         _token: vscode.CancellationToken
-    ) : vscode.ProviderResult<vscode.FoldingRange[]> {
+    ): vscode.ProviderResult<vscode.FoldingRange[]> {
         return [...this.getSectionFoldingRanges(document), ...this.getEnvironmentFoldingRanges(document)]
     }
 

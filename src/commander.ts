@@ -6,7 +6,7 @@ import * as cp from 'child_process'
 import {Extension} from './main'
 import { ExternalCommand, getLongestBalancedString } from './utils'
 
-async function quickPickRootFile(rootFile: string, localRootFile: string) : Promise<string | undefined> {
+async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
     const pickedRootFile = await vscode.window.showQuickPick([{
         label: 'Default root file',
         description: `Path: ${rootFile}`
@@ -160,7 +160,7 @@ export class Commander {
             this.setViewer()
             return
         }
-        const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer() : Promise.resolve()
+        const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer(): Promise.resolve()
         promise.then(() => {
             if (!pickedRootFile) {
                 return
@@ -221,7 +221,7 @@ export class Commander {
         this.extension.locator.syncTeXOnRef({line, filePath})
     }
 
-    async clean() : Promise<void> {
+    async clean(): Promise<void> {
         this.extension.logger.addLogMessage('CLEAN command invoked.')
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile === undefined) {
@@ -495,7 +495,7 @@ export class Commander {
             })
         }
 
-        const matches = /^(\s*)\\item(\[[^\[\]]*\])?\s*(.*)$/.exec(line.text)
+        const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
         if (matches) {
             let itemString = ''
             let newCursorPos
@@ -529,7 +529,7 @@ export class Commander {
     * @param keyword the keyword to toggle without backslash eg. textbf or underline
     * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
     */
-    toggleSelectedKeyword(keyword: string, outerBraces?: boolean) : undefined | 'added' | 'removed' {
+    toggleSelectedKeyword(keyword: string, outerBraces?: boolean): undefined | 'added' | 'removed' {
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
             return

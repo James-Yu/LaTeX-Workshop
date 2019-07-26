@@ -36,7 +36,7 @@ export class LaTexFormatter {
         this.machineOs = os.platform()
     }
 
-    public formatDocument(document: vscode.TextDocument, range?: vscode.Range) : Thenable<vscode.TextEdit[]> {
+    public formatDocument(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             if (this.machineOs === windows.name) {
                 this.currentOs = windows
@@ -79,7 +79,7 @@ export class LaTexFormatter {
         })
     }
 
-    private checkPath(checker: string) : Thenable<boolean> {
+    private checkPath(checker: string): Thenable<boolean> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('docker.enabled')) {
             return Promise.resolve(true)
@@ -103,7 +103,7 @@ export class LaTexFormatter {
 
     }
 
-    private format(document: vscode.TextDocument, range?: vscode.Range) : Thenable<vscode.TextEdit[]> {
+    private format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('editor', document.uri)
 
@@ -114,7 +114,7 @@ export class LaTexFormatter {
             const tabSize = options.tabSize ? +options.tabSize : 4
             const useSpaces = options.insertSpaces
 
-            const indent = useSpaces ? ' '.repeat(tabSize) : '\\t'
+            const indent = useSpaces ? ' '.repeat(tabSize): '\\t'
 
             const documentDirectory = path.dirname(document.fileName)
 
@@ -184,7 +184,7 @@ export class LatexFormatterProvider implements vscode.DocumentFormattingEditProv
         this.formatter = new LaTexFormatter(extension)
     }
 
-    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken) :
+    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken):
         vscode.ProviderResult<vscode.TextEdit[]> {
         return document.save().then(() => {
             return this.formatter.formatDocument(document)
@@ -192,7 +192,7 @@ export class LatexFormatterProvider implements vscode.DocumentFormattingEditProv
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions,
-                                               _token: vscode.CancellationToken) : vscode.ProviderResult<vscode.TextEdit[]> {
+                                               _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
         return document.save().then(() => {
             return this.formatter.formatDocument(document, range)
         })

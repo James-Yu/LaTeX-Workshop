@@ -13,7 +13,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         this.extension = extension
     }
 
-    private onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string) : string|null {
+    private onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): string|null {
         const line = document.lineAt(position.line).text
         const escapedToken = utils.escapeRegExp(token)
         const regexInput = new RegExp(`\\\\(?:include|input|subfile)\\{${escapedToken}\\}`)
@@ -40,7 +40,7 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
     }
 
 
-    public provideDefinition(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
+    public provideDefinition(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken):
         Thenable<vscode.Location> {
         return new Promise((resolve, _reject) => {
             const token = tokenizer(document, position)

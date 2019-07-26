@@ -126,7 +126,7 @@ export class Linter {
         this.extension.parser.parseLinter(stdout)
     }
 
-    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string) : Promise<string> {
+    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string): Promise<string> {
         this.extension.logger.addLogMessage(`Linter for ${linterId} running command ${command} with arguments ${args}`)
         return new Promise((resolve, reject) => {
             if (this.currentProcesses[linterId]) {

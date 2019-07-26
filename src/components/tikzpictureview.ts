@@ -213,7 +213,7 @@ export class TikzPictureView {
         }
     }
 
-    private async getFileTikzCollection(document: vscode.TextDocument) : Promise<IFileTikzCollection> {
+    private async getFileTikzCollection(document: vscode.TextDocument): Promise<IFileTikzCollection> {
         if (!(document.uri.fsPath in this.tikzCollections)) {
             const tempDir: string = await fs.mkdtempSync(
                 path.join(tmpdir(), this.TEMPFOLDER_NAME, `tikzpreview-${path.basename(document.uri.fsPath, '.tex')}-`)
@@ -239,7 +239,7 @@ export class TikzPictureView {
             range: vscode.Range;
             content: string;
         }
-    ) : Promise<IFileTikzPicture> {
+    ): Promise<IFileTikzPicture> {
         for (const tikzPicture of tikzCollection.tikzPictures) {
             if (tikzPicture.range.isEqual(tikzPictureContent.range)) {
                 return tikzPicture

@@ -56,11 +56,11 @@ export class Builder {
         }
     }
 
-    isWaitingForBuildToFinish() : boolean {
+    isWaitingForBuildToFinish(): boolean {
         return this.waitingForBuildToFinishMutex.count < 1
     }
 
-    async preprocess() : Promise<() => void> {
+    async preprocess(): Promise<() => void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
@@ -77,7 +77,7 @@ export class Builder {
         }
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
+        this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' '): ''}`)
         let wd = pwd
         const ws = vscode.workspace.workspaceFolders
         if (ws && ws.length > 0) {
@@ -316,7 +316,7 @@ export class Builder {
         }
     }
 
-    createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
+    createSteps(rootFile: string, recipeName: string | undefined): StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
@@ -421,7 +421,7 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string) : [StepCommand | undefined,  StepCommand | undefined] {
+    findProgramMagic(rootFile: string): [StepCommand | undefined,  StepCommand | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m

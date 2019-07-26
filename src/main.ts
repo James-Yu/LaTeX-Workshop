@@ -27,10 +27,10 @@ import {SectionNodeProvider, StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
-import { Paster } from './components/paster';
+import { Paster } from './components/paster'
 import { TikzCodeLense } from './providers/tikzcodelense'
 import { TikzPictureView } from './components/tikzpictureview'
-import { SnippetPanel } from './components/snippetpanel';
+import { SnippetPanel } from './components/snippetpanel'
 
 function renameValue(config: string, oldValue: string, newValue: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')

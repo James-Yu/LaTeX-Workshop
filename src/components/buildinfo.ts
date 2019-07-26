@@ -84,16 +84,16 @@ export class BuildInfo {
     }
 
     private checkStdoutForInfo() {
-        const pageNumberRegex = /\[(\d+)[^\[\]]*\]$/
-        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
+        const pageNumberRegex = /\[(\d+)[^[\]]*\]$/
+        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z /]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
 
         const hardcodedRulesPageProducing = ['pdflatex', 'pdftex']
         const hardcodedRulesOther = ['sage']
 
-        const rulePdfLatexStart = /This is pdfTeX, Version [\d\.\-]+[^\n]*$/
-        const ruleSageStart = /Processing Sage code for [\w\.\- \"]+\.\.\.$/
-        const ruleBibtexStart = /This is BibTeX[\w\.\- \"\,\(\)]+$/
+        const rulePdfLatexStart = /This is pdfTeX, Version [\d.-]+[^\n]*$/
+        const ruleSageStart = /Processing Sage code for [\w.- "]+\.\.\.$/
+        const ruleBibtexStart = /This is BibTeX[\w.\- ",()]+$/
 
         // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
 
@@ -410,7 +410,7 @@ export class BuildInfo {
                 current = parseInt(current)
             }
             const currentAsString = current.toString()
-            const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString() : ''
+            const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString(): ''
             const barAsString = this.currentBuild.pageTotal
                 ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
                       'progress.barLength'

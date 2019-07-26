@@ -28,7 +28,7 @@ export class EnvPair {
         this.extension = extension
     }
 
-    getEnvName(line: string, ind: number, beginOrEnd: string) : string | null {
+    getEnvName(line: string, ind: number, beginOrEnd: string): string | null {
         const subline = line.slice(ind)
         const re = new RegExp('^' +  beginOrEnd + '\\{([^\\{\\}]*)\\}')
         const env = subline.match(re)
@@ -38,7 +38,7 @@ export class EnvPair {
         return null
     }
 
-    tokenizeLine(document: vscode.TextDocument, pos: vscode.Position) : MatchEnv | null {
+    tokenizeLine(document: vscode.TextDocument, pos: vscode.Position): MatchEnv | null {
         const line = utils.stripComments(document.lineAt(pos).text, '%')
         const ind = pos.character
         if (ind > line.length) {
@@ -75,7 +75,7 @@ export class EnvPair {
      * @param doc the document in which the search is performed
      * @param splitSubstring where to split the string if dir = 1 (default at end of `\begin{...}`)
      */
-    locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument, splitSubstring?: string) : MatchEnv | null {
+    locateMatchingPair(pattern: string, dir: number, pos: vscode.Position, doc: vscode.TextDocument, splitSubstring?: string): MatchEnv | null {
         const patRegexp = new RegExp(pattern, 'g')
         let lineNumber = pos.line
         let nested = 0

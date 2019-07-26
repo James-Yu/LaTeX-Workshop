@@ -27,7 +27,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         })
     }
 
-    refresh() : Section[] {
+    refresh(): Section[] {
         if (this.extension.manager.rootFile) {
             this.ds = this.buildModel(this.extension.manager.rootFile)
             return this.ds
@@ -40,7 +40,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire()
     }
 
-    buildModel(filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], imports: boolean = true) : Section[] {
+    buildModel(filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], imports: boolean = true): Section[] {
 
         let rootStack: Section[] = []
         if (parentStack) {
@@ -87,7 +87,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'm')
-        const envReg = /(?:\\(begin|end)(?:\[[^\[\]]*\])?){(?:(figure|frame|table)\*?)}/m
+        const envReg = /(?:\\(begin|end)(?:\[[^[\]]*\])?){(?:(figure|frame|table)\*?)}/m
 
         const lines = content.split('\n')
         for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
@@ -206,7 +206,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return children
     }
 
-    getTreeItem(element: Section) : vscode.TreeItem {
+    getTreeItem(element: Section): vscode.TreeItem {
 
         const hasChildren = element.children.length > 0
         const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, hasChildren ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.None)
@@ -222,7 +222,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return treeItem
     }
 
-    getChildren(element?: Section) : Thenable<Section[]> {
+    getChildren(element?: Section): Thenable<Section[]> {
         if (this.extension.manager.rootFile === undefined) {
             return Promise.resolve([])
         }
@@ -235,7 +235,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return Promise.resolve(element.children)
     }
 
-    getParent(element?: Section) : Thenable<Section | undefined> {
+    getParent(element?: Section): Thenable<Section | undefined> {
         if (this.extension.manager.rootFile === undefined || !element) {
             return Promise.resolve(undefined)
         }
@@ -248,9 +248,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (env.name === 'frame') {
             // Frame titles can be specified as either \begin{frame}{Frame Title}
             // or \begin{frame} \frametitle{Frame Title}
-            const frametitleRegex = /\\frametitle(?:<[^<>]*>)?(?:\[[^\[\]]*\])?{((?:(?:[^\{\}])|(?:\{[^\{\}]*\}))+)}/gsm
+            const frametitleRegex = /\\frametitle(?:<[^<>]*>)?(?:\[[^[\]]*\])?{((?:(?:[^{}])|(?:\{[^{}]*\}))+)}/gsm
             // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
-            const beginframeRegex = /\\begin{frame}(?:<[^<>]*>?)?(?:\[[^\[\]]*\]){0,2}[\t ]*(?:(?:\r\n|\r|\n)[\t ]*)?{([^{}]*)}/gsm
+            const beginframeRegex = /\\begin{frame}(?:<[^<>]*>?)?(?:\[[^[\]]*\]){0,2}[\t ]*(?:(?:\r\n|\r|\n)[\t ]*)?{([^{}]*)}/gsm
 
             // \frametitle can override title set in \begin{frame}{<title>} so we check that first
             result = frametitleRegex.exec(content)
@@ -258,7 +258,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 result = beginframeRegex.exec(content)
             }
         } else {
-            const captionRegex = /(?:\\caption(?:\[[^\[\]]*\])?){((?:(?:[^\{\}])|(?:\{[^\{\}]*\}))+)}/gsm
+            const captionRegex = /(?:\\caption(?:\[[^[\]]*\])?){((?:(?:[^{}])|(?:\{[^{}]*\}))+)}/gsm
             result = captionRegex.exec(content)
         }
 

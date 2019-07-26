@@ -10,7 +10,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         this.extension = extension
     }
 
-    public provideWorkspaceSymbols(_query: string, _token: vscode.CancellationToken) :
+    public provideWorkspaceSymbols(_query: string, _token: vscode.CancellationToken):
         Thenable<vscode.SymbolInformation[]> {
         return new Promise((resolve, _reject) => {
             const symbols: vscode.SymbolInformation[] = []
