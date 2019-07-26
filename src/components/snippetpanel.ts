@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import { readFileSync, writeFileSync } from 'fs'
+import { readFileSync } from 'fs'
 import * as fs from 'fs'
 
 import { Extension } from '../main'
@@ -30,6 +30,8 @@ export class SnippetPanel {
                 this.lastActiveTextEditor = textEditor
             }
         })
+
+        this.loadSnippets()
     }
 
     public async showPanel() {
