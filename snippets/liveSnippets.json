@@ -62,13 +62,13 @@
         "triggerWhenComplete": true
     },
     {
-        "prefix": "((\\d+)|(\\d*)(\\\\)?([A-Za-z]+)((\\^|_)(\\{\\d+\\}|\\d))*)/",
+        "prefix": "((\\d+)|(\\d*)(\\\\)?([A-Za-z]+)((\\^|_)(\\{\\d+\\}|\\d))*)/$",
         "body": "\\frac{$1}{$.1}$.0",
         "mode": "maths",
         "triggerWhenComplete": true
     },
     {
-        "prefix": "([\\)\\]])/$",
+        "prefix": "([\\)\\]}]) ?/$",
         "body": "SPECIAL_ACTION_FRACTION",
         "mode": "maths",
         "triggerWhenComplete": true
@@ -84,13 +84,13 @@
         "body": "SPECIAL_ACTION_BREAK",
         "mode": "maths",
         "triggerWhenComplete": true,
-        "priority": 3
+        "priority": 2
     },
     {
         "prefix": "sympy ?(.+?) ?sympy ?$",
         "body": "SPECIAL_ACTION_SYMPY",
         "mode": "maths",
-        "priority": 2,
+        "priority": 3,
         "triggerWhenComplete": true
     },
     {
@@ -293,7 +293,7 @@
         "triggerWhenComplete": true
     },
     {
-        "prefix": "\\b(x|y|n|m|a|b|c)(i|j|k|n|m){1,2}p1$",
+        "prefix": "\\b(x|y|n|m|a|b|c)(i|j|k|n|m|x|y|z){1,2}p1$",
         "body": "$1_{$2+1} ",
         "mode": "maths",
         "priority": 2,
@@ -307,7 +307,7 @@
     },
     {
         "prefix": "\\bset$",
-        "body": "\\{$1\\} ",
+        "body": "\\\\{$1\\\\} ",
         "mode": "maths",
         "triggerWhenComplete": true
     },
