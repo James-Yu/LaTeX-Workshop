@@ -99,7 +99,7 @@ export class Completer implements vscode.CompletionItemProvider {
         let payload
         switch (type) {
             case 'citation':
-                reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\[[^\[\]]*\])*){([^}]*)$/
+                reg = /\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:(?:\[[^\[\]]*\])*(?:{[^{}]*})?)*{([^}]*)$/
                 provider = this.citation
                 break
             case 'reference':
@@ -119,7 +119,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.package
                 break
             case 'input':
-                reg = /\\(input|include|subfile|includegraphics)\*?(?:\[[^\[\]]*\])*{([^}]*)$/
+                reg = /\\(input|include|subfile|includegraphics|lstinputlisting|verbatiminput)\*?(?:\[[^\[\]]*\])*{([^}]*)$/
                 provider = this.input
                 break
             case 'import':

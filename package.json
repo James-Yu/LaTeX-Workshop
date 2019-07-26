@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icon.png",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -304,9 +304,14 @@
         "category": "LaTeX Workshop"
       },
       {
+        "command": "latex-workshop.showSnippetPanel",
+        "title": "Show Snippet Panel", 
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-workshop.editLiveSnippetsFile",
         "title": "Edit Live Snippets File",
-        "category": "LaTeX Workshop"
+         "category": "LaTeX Workshop"
       }
     ],
     "keybindings": [
@@ -1067,6 +1072,11 @@
           "default": false,
           "markdownDescription": "Auto-complete commands and environments from used packages."
         },
+        "latex-workshop.intellisense.package.extra": {
+          "type": "array",
+          "default": [],
+          "markdownDescription": "List of extra packages to always add to the auto-completion mechanism.\nWhen `latex-workshop.intellisense.package.enabled` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
+        },
         "latex-workshop.message.badbox.show": {
           "type": "boolean",
           "default": true,
@@ -1384,7 +1394,6 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "sh minify.sh",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
@@ -1422,9 +1431,8 @@
     "@types/ws": "^4.0.2",
     "ts-loader": "^5.2.1",
     "tslint": "^5.0.0",
-    "typescript": "^2.0.3",
+    "typescript": "^3.5.3",
     "vscode": "^1.1.14",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.20.2"
   }
 }

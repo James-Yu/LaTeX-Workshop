@@ -299,7 +299,7 @@ export class TikzPictureView {
         if (!configuration.get('parseTeXFile') as boolean) {
             return commandsString
         }
-        const regex = /(\\usepackage{(?:tikz|pgfplots)}|\\(?:tikzset|pgfplotsset){(?:(?:[^\{\}]|{[^\{\}]+})*)}|\\(?:usetikzlibrary|usepgfplotslibrary){[\w\.,]+}|\\definecolor{\w+}{\w+}{[^}]+}|\\colorlet{\w+}{{[^}]+}})/gm
+        const regex = /(\\usepackage(?:\[[^\]]*\])?{(?:tikz|pgfplots|xcolor)}|\\(?:tikzset|pgfplotsset){(?:[^{}]+|{(?:[^{}]+|{(?:[^{}]+|{[^{}]+})+})+})+}|\\(?:usetikzlibrary|usepgfplotslibrary){[^}]+}|\\definecolor{[^}]+}{[^}]+}{[^}]+}|\\colorlet{[^}]+}{[^}]+})/gm
         const commands: string[] = []
 
         const content = await fs.readFileSync(fileTikzCollection.location, { encoding: 'utf8' })
@@ -321,20 +321,7 @@ export class TikzPictureView {
     private precompilePreamble(file: string, preamble: string) {
         return new Promise((resolve, reject) => {
             fs.writeFileSync(file, `\\documentclass{standalone}\n\n${preamble}\n\n\\begin{document}\\end{document}`)
-            const process = child_process.spawn(
-                'pdftex',
-                [
-                    '-ini',
-                    '-interaction=nonstopmode',
-                    '-shell-escape',
-                    '-file-line-error',
-                    '-jobname="preamble"',
-                    '"&pdflatex"',
-                    'mylatexformat.ltx',
-                    `"${file}"`
-                ],
-                { cwd: path.dirname(file) }
-            )
+            const process = child_process.exec( `pdftex -ini -interaction=nonstopmode -shell-escape -file-line-error -jobname="preamble" "&pdflatex" mylatexformat.ltx ${path.basename(file)}`, { cwd: path.dirname(file) } )
             process.on('exit', _code => {
                 resolve()
             })
