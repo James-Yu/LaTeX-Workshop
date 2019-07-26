@@ -153,7 +153,7 @@ export class TypeFinder {
 
         let minLine = 0
         let minChar = -1
-        if (lastKnown !== undefined && lastKnown.position.isBeforeOrEqual(position)) {
+        if (lastKnown !== undefined && lastKnown.position.isBefore(position)) {
             minLine = lastKnown.position.line
             minChar = lastKnown.position.character
         }
@@ -161,7 +161,7 @@ export class TypeFinder {
         do {
             let lineContents = document.lineAt(lineNo--).text
             if (lineNo + 1 === position.line) {
-                lineContents = lineContents.substr(0, position.character)
+                lineContents = lineContents.substr(0, position.character + 1)
             }
             lineContents = stripComments(lineContents, '%')
 
@@ -220,9 +220,7 @@ export class TypeFinder {
                         curlyBracketDepth++
                     }
                 }
-                if (token[1] === '\\text') {
-                    continue
-                }
+
                 if (env.type === 'end') {
                     if (env.pair === null) {
                         console.log(
@@ -236,7 +234,10 @@ export class TypeFinder {
                     } else {
                         tokenStack.push(token[1])
                     }
-                } else if (tokenStack.length === 0 || tokenStack.pop() !== env.pair) {
+                } else if (
+                    (tokenStack.length === 0 || tokenStack[tokenStack.length - 1] !== env.pair) &&
+                    token[1] !== '\\text'
+                ) {
                     console.log(
                         `⚪ TypeFinder took ${+new Date() - start}ms and ${position.line -
                             lineNo} lines to determine: ${
@@ -245,6 +246,8 @@ export class TypeFinder {
                     )
 
                     return env.mode
+                } else if (tokenStack.length > 0 && token[1] !== '\\text') {
+                    tokenStack.pop()
                 }
 
                 // if before a last known location
