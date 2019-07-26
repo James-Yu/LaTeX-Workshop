@@ -34,6 +34,7 @@ export class CompletionWatcher {
         current?: string;
     }
     snippets: ISnippet[] = []
+    activeSnippets: vscode.CompletionItem[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -78,6 +79,7 @@ export class CompletionWatcher {
             return
         }
         this.lastChanges = e
+        this.activeSnippets = []
 
         if (+new Date() - this.configAge > this.MAX_CONFIG_AGE) {
             this.enabled = vscode.workspace.getConfiguration('latex-workshop').get('liveReformat.enabled') as boolean
@@ -153,42 +155,54 @@ export class CompletionWatcher {
                         replacement = match[0].replace(snippet.prefix, snippet.body).replace(/\$\./g, '$')
                     }
                 }
-                this.currentlyExecutingChange = true
-                vscode.window.activeTextEditor
-                    .edit(
-                        editBuilder => {
-                            editBuilder.delete(matchRange)
-                        },
-                        { undoStopBefore: true, undoStopAfter: false }
-                    )
-                    .then(
-                        () => {
-                            // @ts-ignore
-                            vscode.window.activeTextEditor
-                                .insertSnippet(new vscode.SnippetString(replacement), undefined, {
-                                    undoStopBefore: true,
-                                    undoStopAfter: true
-                                })
-                                .then(
-                                    () => {
-                                        this.currentlyExecutingChange = false
-                                        resolve(replacement.length - match[0].length)
-                                    },
-                                    (reason: any) => {
-                                        this.currentlyExecutingChange = false
-                                        reject(reason)
-                                    }
-                                )
-                        },
-                        (reason: any) => {
-                            this.currentlyExecutingChange = false
-                            reject(reason)
-                        }
-                    )
+                if (snippet.triggerWhenComplete) {
+                    this.currentlyExecutingChange = true
+                    vscode.window.activeTextEditor
+                        .edit(
+                            editBuilder => {
+                                editBuilder.delete(matchRange)
+                            },
+                            { undoStopBefore: true, undoStopAfter: false }
+                        )
+                        .then(
+                            () => {
+                                // @ts-ignore
+                                vscode.window.activeTextEditor
+                                    .insertSnippet(new vscode.SnippetString(replacement), undefined, {
+                                        undoStopBefore: true,
+                                        undoStopAfter: true
+                                    })
+                                    .then(
+                                        () => {
+                                            this.currentlyExecutingChange = false
+                                            resolve(replacement.length - match[0].length)
+                                        },
+                                        (reason: any) => {
+                                            this.currentlyExecutingChange = false
+                                            reject(reason)
+                                        }
+                                    )
+                            },
+                            (reason: any) => {
+                                this.currentlyExecutingChange = false
+                                reject(reason)
+                            }
+                        )
+                } else {
+                    this.activeSnippets.push({
+                        label: replacement,
+                        range: matchRange,
+                        kind: vscode.CompletionItemKind.Reference
+                    })
+                }
             } else {
                 resolve(null)
             }
         })
+    }
+
+    public provide() : vscode.CompletionItem[] {
+        return this.activeSnippets
     }
 
     public editSnippetsFile() {

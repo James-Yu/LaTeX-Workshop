@@ -74,7 +74,7 @@ export class Completer implements vscode.CompletionItemProvider {
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
-            for (const type of ['citation', 'reference', 'environment', 'package', 'input', 'subimport', 'import', 'command']) {
+            for (const type of ['citation', 'reference', 'environment', 'package', 'input', 'subimport', 'import', 'command', 'livecompletion']) {
                 const suggestions = this.completion(type, line, {document, position, token, context})
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
@@ -129,6 +129,10 @@ export class Completer implements vscode.CompletionItemProvider {
             case 'subimport':
                 reg = /\\(sub(?:import|includefrom|inputfrom))\*?(?:{([^}]*)})?{([^}]*)$/
                 provider = this.input
+                break
+            case 'livecompletion':
+                reg = /.$/
+                provider = this.extension.completionWatcher
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.
