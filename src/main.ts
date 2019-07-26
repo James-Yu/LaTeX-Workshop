@@ -251,6 +251,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
 
     context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.formattedPaste', () => extension.paster.paste()))
+    context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.editLiveSnippetsFile', () => extension.completionWatcher.editSnippetsFile()))
 
     context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.viewtikzpicture', (document, range) => extension.tikzPictureView.view(document, range)))
     context.subscriptions.push(vscode.languages.registerCodeLensProvider({language: 'latex', scheme: 'file'}, new TikzCodeLense()))
@@ -288,6 +289,12 @@ export async function activate(context: vscode.ExtensionContext) {
             extension.tikzPictureView.onFileChange(e.document, e.contentChanges)
         }
     }, undefined, [new vscode.Disposable(extension.tikzPictureView.cleanupTempFiles)]))
+
+    context.subscriptions.push(vscode.workspace.onDidSaveTextDocument((e: vscode.TextDocument) => {
+        if (e.uri.fsPath === extension.completionWatcher.snippetFile.user) {
+            extension.completionWatcher.loadSnippets(true)
+        }
+    }))
 
     let isLaTeXActive = false
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
