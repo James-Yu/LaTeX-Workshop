@@ -310,10 +310,10 @@ export class Command {
                 }
             }
             if (result[3]) {
-                items[result[1]].snippet += `{$\{2}}`
+                items[result[1]].snippet += '{${2}}'
             }
             if (result[4]) {
-                items[result[1]].snippet += `{$\{3}}`
+                items[result[1]].snippet += '{${3}}'
             }
         }
 

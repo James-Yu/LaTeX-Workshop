@@ -73,7 +73,7 @@ export class BuildInfo {
 
     public async newStdoutLine(lines: string) {
         if (!this.currentBuild) {
-            throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
+            throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
 
         for (const line of lines.split('\n')) {
@@ -180,7 +180,7 @@ export class BuildInfo {
 
     private displayProgress(current: string | number) {
         if (!this.currentBuild) {
-            throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
+            throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
 
         this.configuration = vscode.workspace.getConfiguration('latex-workshop')

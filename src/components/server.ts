@@ -44,7 +44,7 @@ export class Server {
             websocket.on('close', () => this.extension.viewer.handler(websocket, '{"type": "close"}'))
             websocket.on('error', () => this.extension.logger.addLogMessage('Error on WebSocket connection.'))
         })
-        this.extension.logger.addLogMessage(`Creating LaTeX Workshop http and websocket server.`)
+        this.extension.logger.addLogMessage('Creating LaTeX Workshop http and websocket server.')
     }
 
     handler(request: http.IncomingMessage, response: http.ServerResponse) {

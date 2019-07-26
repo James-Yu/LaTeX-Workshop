@@ -250,7 +250,7 @@ export class EnvPair {
                         editor.selection = new vscode.Selection(startingPos, startingPos)
                         break
                     default:
-                        this.extension.logger.addLogMessage(`Error - while selecting environment name`)
+                        this.extension.logger.addLogMessage('Error - while selecting environment name')
                 }
             }
         })

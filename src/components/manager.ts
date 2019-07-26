@@ -245,7 +245,7 @@ export class Manager {
         if (this.fileWatcher !== undefined && this.filesWatched.indexOf(rootFile) < 0) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
             // => the user has changed the root. Clean up the old watcher so we reform it.
-            this.extension.logger.addLogMessage(`Root file changed -> cleaning up old file watcher.`)
+            this.extension.logger.addLogMessage('Root file changed -> cleaning up old file watcher.')
             this.fileWatcher.close()
             this.filesWatched = []
             prevWatcherClosed = true
@@ -279,7 +279,7 @@ export class Manager {
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
-                if (this.localRootFile && configuration.get("latex.rootFile.useSubFile")) {
+                if (this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
                     this.extension.commander.build(true, this.localRootFile)
                 } else {
                     this.extension.commander.build(true, rootFile)
@@ -477,7 +477,7 @@ export class Manager {
         }
         this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
         if (this.bibWatcher === undefined) {
-            this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
+            this.extension.logger.addLogMessage('Creating file watcher for .bib files.')
             this.bibWatcher = chokidar.watch('', this.watcherOptions)
             this.bibWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
@@ -494,7 +494,7 @@ export class Manager {
                     this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
                     this.extension.builder.build(this.rootFile)
                 } else {
-                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+                    this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
                 }
             })
             this.bibWatcher.on('unlink', (filePath: string) => {

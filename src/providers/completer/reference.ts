@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import { stripComments } from "../../utils"
+import { stripComments } from '../../utils'
 
 import {Extension} from '../../main'
 

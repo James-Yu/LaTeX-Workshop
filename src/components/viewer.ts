@@ -68,7 +68,7 @@ export class Viewer {
             return
         }
         if (this.extension.server.address === undefined) {
-            this.extension.logger.addLogMessage(`Cannot establish server connection.`)
+            this.extension.logger.addLogMessage('Cannot establish server connection.')
             return
         }
         const url = `http://localhost:${this.extension.server.port}/viewer.html?file=${encodePathWithPrefix(pdfFile)}`

@@ -125,7 +125,7 @@ export class Builder {
                 }
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
-                this.extension.logger.displayStatus('check', 'statusBar.foreground', `Build succeeded.`)
+                this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
             }
             this.currentProcess = undefined
             releaseBuildMutex()
@@ -143,7 +143,7 @@ export class Builder {
 
     async build(rootFile: string, recipe: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
-            this.extension.logger.addLogMessage(`Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.`)
+            this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
             return
         }
         const releaseBuildMutex = await this.preprocess()
@@ -247,8 +247,8 @@ export class Builder {
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
                     this.disableCleanAndRetry = true
                     if (signal !== 'SIGTERM') {
-                        this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
-                        this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
+                        this.extension.logger.displayStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
+                        this.extension.logger.addLogMessage('Cleaning auxillary files and retrying build after toolchain error.')
 
                         this.extension.cleaner.clean(rootFile).then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
@@ -263,7 +263,7 @@ export class Builder {
                     if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
                         this.extension.cleaner.clean(rootFile)
                     }
-                    const res = this.extension.logger.showErrorMessage(`Recipe terminated with error.`, 'Open compiler log')
+                    const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
                     if (res) {
                         res.then(option => {
                             switch (option) {
@@ -339,7 +339,7 @@ export class Builder {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
-                this.extension.logger.showErrorMessage(`No recipes defined.`)
+                this.extension.logger.showErrorMessage('No recipes defined.')
                 return undefined
             }
             let recipe = recipes[0]

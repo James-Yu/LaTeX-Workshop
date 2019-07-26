@@ -147,7 +147,7 @@ function conflictExtensionCheck() {
 function newVersionMessage(extensionPath: string, extension: Extension) {
     fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
         if (err) {
-            extension.logger.addLogMessage(`Cannot read package information.`)
+            extension.logger.addLogMessage('Cannot read package information.')
             return
         }
         extension.packageInfo = JSON.parse(data.toString())
@@ -419,6 +419,6 @@ export class Extension {
         this.tikzPictureView = new TikzPictureView(this)
         this.snippetPanel = new SnippetPanel(this)
       
-        this.logger.addLogMessage(`LaTeX Workshop initialized.`)
+        this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }

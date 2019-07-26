@@ -51,13 +51,13 @@ export class Commander {
                 Object.keys(snipObj).forEach(key => {
                     this.snippets[key] = new vscode.SnippetString(snipObj[key]['body'])
                 })
-                this.extension.logger.addLogMessage(`Snippet data loaded.`)
+                this.extension.logger.addLogMessage('Snippet data loaded.')
             })
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
     async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, recipe: string | undefined = undefined) {
-        this.extension.logger.addLogMessage(`BUILD command invoked.`)
+        this.extension.logger.addLogMessage('BUILD command invoked.')
         if (!vscode.window.activeTextEditor) {
             return
         }
@@ -73,7 +73,7 @@ export class Commander {
             rootFile = await this.extension.manager.findRoot()
         }
         if (rootFile === undefined) {
-            this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+            this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
             return
         }
         let pickedRootFile: string | undefined = rootFile
@@ -98,7 +98,7 @@ export class Commander {
     }
 
     recipes(recipe?: string) {
-        this.extension.logger.addLogMessage(`RECIPES command invoked.`)
+        this.extension.logger.addLogMessage('RECIPES command invoked.')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const recipes = configuration.get('latex.recipes') as {name: string}[]
         if (!recipes) {
@@ -122,7 +122,7 @@ export class Commander {
         if (mode) {
             this.extension.logger.addLogMessage(`VIEW command invoked with mode: ${mode}.`)
         } else {
-            this.extension.logger.addLogMessage(`VIEW command invoked.`)
+            this.extension.logger.addLogMessage('VIEW command invoked.')
         }
         if (!vscode.window.activeTextEditor) {
             this.extension.logger.addLogMessage('Cannot find active TextEditor.')
@@ -134,7 +134,7 @@ export class Commander {
         }
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile === undefined) {
-            this.extension.logger.addLogMessage(`Cannot find LaTeX root PDF to view.`)
+            this.extension.logger.addLogMessage('Cannot find LaTeX root PDF to view.')
             return
         }
         let pickedRootFile: string | undefined = rootFile
@@ -181,17 +181,17 @@ export class Commander {
     }
 
     refresh() {
-        this.extension.logger.addLogMessage(`REFRESH command invoked.`)
+        this.extension.logger.addLogMessage('REFRESH command invoked.')
         this.extension.viewer.refreshExistingViewer()
     }
 
     kill() {
-        this.extension.logger.addLogMessage(`KILL command invoked.`)
+        this.extension.logger.addLogMessage('KILL command invoked.')
         this.extension.builder.kill()
     }
 
     pdf(uri: vscode.Uri | undefined) {
-        this.extension.logger.addLogMessage(`PDF command invoked.`)
+        this.extension.logger.addLogMessage('PDF command invoked.')
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
@@ -199,13 +199,13 @@ export class Commander {
     }
 
     async synctex() {
-        this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
+        this.extension.logger.addLogMessage('SYNCTEX command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let pdfFile: string
-        if (this.extension.manager.localRootFile && configuration.get("latex.rootFile.useSubFile")) {
+        if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
         } else {
             pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
@@ -214,7 +214,7 @@ export class Commander {
     }
 
     async synctexonref(line: number, filePath: string) {
-        this.extension.logger.addLogMessage(`SYNCTEX command invoked.`)
+        this.extension.logger.addLogMessage('SYNCTEX command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -222,10 +222,10 @@ export class Commander {
     }
 
     async clean() : Promise<void> {
-        this.extension.logger.addLogMessage(`CLEAN command invoked.`)
+        this.extension.logger.addLogMessage('CLEAN command invoked.')
         const rootFile = await this.extension.manager.findRoot()
         if (rootFile === undefined) {
-            this.extension.logger.addLogMessage(`Cannot find LaTeX root file to clean.`)
+            this.extension.logger.addLogMessage('Cannot find LaTeX root file to clean.')
             return
         }
         let pickedRootFile: string | undefined = rootFile
@@ -240,7 +240,7 @@ export class Commander {
     }
 
     addTexRoot() {
-        this.extension.logger.addLogMessage(`ADDTEXROOT command invoked.`)
+        this.extension.logger.addLogMessage('ADDTEXROOT command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -248,12 +248,12 @@ export class Commander {
     }
 
     citation() {
-        this.extension.logger.addLogMessage(`CITATION command invoked.`)
+        this.extension.logger.addLogMessage('CITATION command invoked.')
         this.extension.completer.citation.browser()
     }
 
     wordcount() {
-        this.extension.logger.addLogMessage(`WORDCOUNT command invoked.`)
+        this.extension.logger.addLogMessage('WORDCOUNT command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
             this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
             this.extension.counter.count(this.extension.manager.rootFile)
@@ -263,7 +263,7 @@ export class Commander {
     }
 
     log(compiler?) {
-        this.extension.logger.addLogMessage(`LOG command invoked.`)
+        this.extension.logger.addLogMessage('LOG command invoked.')
         if (compiler) {
             this.extension.logger.showCompilerLog()
             return
@@ -288,20 +288,20 @@ export class Commander {
 
     setViewer() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        return vscode.window.showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], {placeHolder: `View PDF with`})
+        return vscode.window.showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], {placeHolder: 'View PDF with'})
         .then(option => {
             switch (option) {
                 case 'Web browser':
                     configuration.update('view.pdf.viewer', 'browser', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    vscode.window.showInformationMessage('By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 case 'VSCode tab':
                     configuration.update('view.pdf.viewer', 'tab', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    vscode.window.showInformationMessage('By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 case 'External viewer':
                     configuration.update('view.pdf.viewer', 'external', true)
-                    vscode.window.showInformationMessage(`By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".`)
+                    vscode.window.showInformationMessage('By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 default:
                     break
@@ -310,7 +310,7 @@ export class Commander {
     }
 
     navigateToEnvPair() {
-        this.extension.logger.addLogMessage(`JumpToEnvPair command invoked.`)
+        this.extension.logger.addLogMessage('JumpToEnvPair command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -318,7 +318,7 @@ export class Commander {
     }
 
     selectEnvName() {
-        this.extension.logger.addLogMessage(`SelectEnvName command invoked.`)
+        this.extension.logger.addLogMessage('SelectEnvName command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -326,7 +326,7 @@ export class Commander {
     }
 
     multiCursorEnvName() {
-        this.extension.logger.addLogMessage(`MutliCursorEnvName command invoked.`)
+        this.extension.logger.addLogMessage('MutliCursorEnvName command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -334,7 +334,7 @@ export class Commander {
     }
 
     toggleEquationEnv() {
-        this.extension.logger.addLogMessage(`toggleEquationEnv command invoked.`)
+        this.extension.logger.addLogMessage('toggleEquationEnv command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -342,7 +342,7 @@ export class Commander {
     }
 
     closeEnv() {
-        this.extension.logger.addLogMessage(`CloseEnv command invoked.`)
+        this.extension.logger.addLogMessage('CloseEnv command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
@@ -350,7 +350,7 @@ export class Commander {
     }
 
     actions() {
-        this.extension.logger.addLogMessage(`ACTIONS command invoked.`)
+        this.extension.logger.addLogMessage('ACTIONS command invoked.')
         vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
         // const configuration = vscode.workspace.getConfiguration('latex-workshop')
         // if (!this.commandTitles) {

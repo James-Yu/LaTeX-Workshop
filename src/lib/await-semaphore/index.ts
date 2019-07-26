@@ -11,7 +11,7 @@ export class Semaphore {
             this.count--;
             let next = this.tasks.shift();
             if (next === undefined) {
-                throw "Unexpected undefined value in tasks list";
+                throw 'Unexpected undefined value in tasks list';
             }
 
             next();
