@@ -299,7 +299,7 @@ export class TikzPictureView {
         if (!configuration.get('parseTeXFile') as boolean) {
             return commandsString
         }
-        const regex = /(\\usepackage{(?:tikz|pgfplots)}|\\(?:tikzset|pgfplotsset){(?:(?:[^\{\}]|{[^\{\}]+})*)}|\\(?:usetikzlibrary|usepgfplotslibrary){[\w\.,]+}|\\definecolor{\w+}{\w+}{[^}]+}|\\colorlet{\w+}{{[^}]+}})/gm
+        const regex = /(\\usepackage(?:\[[^\]]*\])?{(?:tikz|pgfplots|xcolor)}|\\(?:tikzset|pgfplotsset){(?:[^{}]+|{(?:[^{}]+|{(?:[^{}]+|{[^{}]+})+})+})+}|\\(?:usetikzlibrary|usepgfplotslibrary){[^}]+}|\\definecolor{[^}]+}{[^}]+}{[^}]+}|\\colorlet{[^}]+}{[^}]+})/gm
         const commands: string[] = []
 
         const content = await fs.readFileSync(fileTikzCollection.location, { encoding: 'utf8' })

@@ -13,8 +13,8 @@ export class TikzCodeLense implements vscode.CodeLensProvider {
         return matches.map(
             match =>
                 new vscode.CodeLens(match.range, {
-                    title: 'View TikzPicture',
-                    tooltip: 'Open view of this TikzPicture',
+                    title: 'View TikZ Picture',
+                    tooltip: 'Open view of this TikZ Picture',
                     command: 'latex-workshop.viewtikzpicture',
                     arguments: [match.document, match.range]
                 })
@@ -67,7 +67,7 @@ function findTikzPictures(document: vscode.TextDocument) {
             range: new vscode.Range(i, startColumn, lineNo, endColumn)
         })
 
-        i = lineNo + 1
+        i = lineNo
     }
 
     return matches
