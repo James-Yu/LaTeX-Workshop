@@ -35,6 +35,8 @@
                 padding: 0;
                 margin: 0 0 0em 1em;
                 width: 14em;
+                transition-property: opacity;
+                transition-duration: 400ms;
             }
 
             #stepTimes ul li span.item {
@@ -92,8 +94,15 @@
                 box-sizing: border-box;
                 margin-left: -0.3em;
                 border-radius: 0.2em;
-                transition-property: width;
+                transition-property: width opacity;
                 transition-duration: 400ms;
+            }
+
+            #stepTimes ul li:hover .timeBar {
+                opacity: 0.5;
+            }
+            #stepTimes ul li:hover {
+                opacity: 0.8;
             }
 
             .tex,
