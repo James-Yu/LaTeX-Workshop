@@ -276,7 +276,7 @@ export class Commander {
         const activeEditor = vscode.window.activeTextEditor
 
         vscode.workspace.openTextDocument(filePath).then((doc) => {
-            vscode.window.showTextDocument(doc).then((_) => {
+            vscode.window.showTextDocument(doc).then(() => {
                 vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
                 if (activeEditor) {
                     activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))

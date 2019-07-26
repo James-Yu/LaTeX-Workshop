@@ -50,7 +50,7 @@ export class BuildInfo {
     }
     public buildEnded() {
         if (this.currentBuild) {
-            this.status.text = `( ${((+new Date() - this.currentBuild.buildStart) / 1000).toFixed(1)} s )`
+            this.status.text = `( ${((+new Date() - this.currentBuild.buildStart) / 1000).toFixed(1)} s )`
             // @ts-ignore
             this.currentBuild = undefined
             setTimeout(() => {
@@ -416,7 +416,7 @@ export class BuildInfo {
                       'progress.barLength'
                   ) as number)
                 : ''
-            this.status.text = `${runIcon}  Page ${padRight(
+            this.status.text = `${runIcon}  Page ${padRight(
                 currentAsString + endpointAsString,
                 this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
             )} ${barAsString}`

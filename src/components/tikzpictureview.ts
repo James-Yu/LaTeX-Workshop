@@ -322,7 +322,7 @@ export class TikzPictureView {
         return new Promise((resolve, reject) => {
             fs.writeFileSync(file, `\\documentclass{standalone}\n\n${preamble}\n\n\\begin{document}\\end{document}`)
             const process = child_process.exec( `pdftex -ini -interaction=nonstopmode -shell-escape -file-line-error -jobname="preamble" "&pdflatex" mylatexformat.ltx ${path.basename(file)}`, { cwd: path.dirname(file) } )
-            process.on('exit', _code => {
+            process.on('exit', () => {
                 resolve()
             })
             process.on('error', err => {
