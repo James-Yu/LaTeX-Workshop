@@ -96,7 +96,9 @@ export class CompletionWatcher {
                 for (let i = 0; i < this.snippets.length; i++) {
                     if (this.snippets[i].mode === 'any' || this.snippets[i].mode === type) {
                         const newColumnOffset = await this.execSnippet(this.snippets[i], line, change, columnOffset)
-                        if (newColumnOffset !== null) {
+                        if (newColumnOffset === 'break') {
+                            break
+                        } else if (newColumnOffset !== 0) {
                             columnOffset += newColumnOffset
                             line = e.document.lineAt(change.range.start.line)
                         }
@@ -134,7 +136,7 @@ export class CompletionWatcher {
         line: vscode.TextLine,
         change: vscode.TextDocumentContentChangeEvent,
         columnOffset: number
-    ) : Promise<number | null> {
+    ) : Promise<number | 'break'> {
         return new Promise((resolve, reject) => {
             const match = snippet.prefix.exec(
                 line.text.substr(0, change.range.start.character + change.text.length + columnOffset)
@@ -142,7 +144,10 @@ export class CompletionWatcher {
             if (match && vscode.window.activeTextEditor) {
                 let matchRange: vscode.Range
                 let replacement: string
-                if (snippet.body === 'SPECIAL_ACTION_FRACTION') {
+                if (snippet.body === 'SPECIAL_ACTION_BREAK') {
+                    resolve('break')
+                    return
+                } else if (snippet.body === 'SPECIAL_ACTION_FRACTION') {
                     [matchRange, replacement] = this.getFraction(match, line)
                 } else {
                     matchRange = new vscode.Range(
@@ -196,7 +201,7 @@ export class CompletionWatcher {
                     })
                 }
             } else {
-                resolve(null)
+                resolve(0)
             }
         })
     }
