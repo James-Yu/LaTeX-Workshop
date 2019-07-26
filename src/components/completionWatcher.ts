@@ -259,9 +259,9 @@ export class CompletionWatcher {
 
     private getFraction(match: RegExpExecArray, line: vscode.TextLine) : [vscode.Range, string] {
         // @ts-ignore
-        const closingBracket: ')' | ']' = match[1]
+        const closingBracket: ')' | ']' | '}' = match[1]
         // @ts-ignore
-        const openingBracket: '(' | '[' = { ')': '(', ']': '[' }[closingBracket]
+        const openingBracket: '(' | '[' | '{' = { ')': '(', ']': '[', '}': '{' }[closingBracket]
         let depth = 0
         for (let i = match.index; i >= 0; i--) {
             if (line.text[i] === closingBracket) {
@@ -270,11 +270,21 @@ export class CompletionWatcher {
                 depth++
             }
             if (depth === 0) {
+                // if command keep going till the \
+                const commandMatch = /.*(\\\w+)$/.exec(line.text.substr(0, i))
+                if (closingBracket === '}') {
+                    if (commandMatch !== null) {
+                        i -= commandMatch[1].length
+                    }
+                }
                 const matchRange = new vscode.Range(
                     new vscode.Position(line.lineNumber, i),
                     new vscode.Position(line.lineNumber, match.index + match[0].length)
                 )
-                const replacement = `\\frac{${line.text.substring(i + 1, match.index)}}{$1} `
+                const replacement = `\\frac{${commandMatch ? '\\' : ''}${line.text.substring(
+                    i + 1,
+                    match.index
+                )}}{$1} `
                 return [matchRange, replacement]
             }
         }
