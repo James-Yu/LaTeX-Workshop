@@ -196,7 +196,10 @@ export class CompletionWatcher {
                 } else {
                     this.activeSnippets.push({
                         label: replacement,
+                        filterText: match[0],
+                        sortText: match[0],
                         range: matchRange,
+                        detail: 'live snippet',
                         kind: vscode.CompletionItemKind.Reference
                     })
                 }
