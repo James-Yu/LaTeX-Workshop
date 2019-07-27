@@ -1,0 +1,122 @@
+{
+  "fileTypes": [],
+  "firstLineMatch": "^\\\\documentclass(\\[.*\\])?\\{.*\\}",
+  "keyEquivalent": "^~M",
+  "name": "LaTeX-Expl3",
+  "patterns": [
+    {
+      "begin": "(\\$\\$|\\$)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.section.group.begin.tex"
+        }
+      },
+      "end": "(\\1)",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.section.group.end.tex"
+        }
+      },
+      "name": "support.class.math.tex",
+      "patterns": [
+        {
+          "match": "\\\\\\$",
+          "name": "constant.character.escape.tex"
+        },
+        {
+          "include": "#latex3"
+        },
+        {
+          "include": "text.tex#math"
+        },
+        {
+          "include": "$base"
+        }
+      ]
+    },
+    {
+      "begin": "\\\\\\(",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.group.begin.tex"
+        }
+      },
+      "end": "\\\\\\)",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.group.end.tex"
+        }
+      },
+      "name": "support.class.math.tex",
+      "patterns": [
+        {
+          "include": "#latex3"
+        },
+        {
+          "include": "text.tex#math"
+        },
+        {
+          "include": "$base"
+        }
+      ]
+    },
+    {
+      "begin": "\\\\\\[",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.group.begin.tex"
+        }
+      },
+      "end": "\\\\\\]",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.group.end.tex"
+        }
+      },
+      "name": "support.class.math.tex",
+      "patterns": [
+        {
+          "include": "#latex3"
+        },
+        {
+          "include": "text.tex#math"
+        },
+        {
+          "include": "$base"
+        }
+      ]
+    },
+    {
+      "include": "#latex3"
+    },
+    {
+      "include": "text.tex.latex"
+    }
+  ],
+  "repository": {
+    "latex3": {
+      "patterns": [
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.function.expl.latex"
+            }
+          },
+          "match": "(\\\\|\\.)[\\w@]+:\\w*",
+          "name": "keyword.control.expl.latex"
+        },
+        {
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.variable.expl.latex"
+            }
+          },
+          "match": "(\\\\)[\\w@]+_[\\w@]+",
+          "name": "variable.expl.latex"
+        }
+      ]
+    }
+  },
+  "scopeName": "text.tex.latex.expl3",
+  "uuid": "3BEEA00C-6B1D-11D9-B8AD-000D93589AF6"
+}
