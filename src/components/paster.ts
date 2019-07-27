@@ -78,7 +78,7 @@ export class Paster {
 
                 fs.createReadStream(path.resolve(baseFile, file))
                     .pipe(csv())
-                    .on('data', (data: Object) => rows.push(Object.values(data).join('\t')))
+                    .on('data', (data) => rows.push(Object.values(data).join('\t')))
                     .on('end', () => {
                         const body = rows.join('\n')
                         this.pasteTable(editor, body)
