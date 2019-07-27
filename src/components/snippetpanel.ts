@@ -73,7 +73,7 @@ export class SnippetPanel {
 
         this.initialisePanel()
 
-        this.panel.webview.onDidReceiveMessage(this.messageRecieve.bind(this))
+        this.panel.webview.onDidReceiveMessage(this.messageReceive.bind(this))
 
         fs.watchFile(webviewSourcePath, () => {
             {
@@ -132,7 +132,7 @@ export class SnippetPanel {
         this.panel.webview.postMessage({ type: 'initialise' })
     }
 
-    private async messageRecieve(message: { type: string; [param: string]: any }) {
+    private async messageReceive(message: { type: string; [param: string]: any }) {
         if (message.type === 'insertSnippet') {
             const editor = this.lastActiveTextEditor
             if (editor) {
