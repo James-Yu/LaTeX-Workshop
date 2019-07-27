@@ -82,7 +82,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         const ranges: vscode.FoldingRange[] = []
         const opStack: { keyword: string, index: number }[] = []
         const text: string =  document.getText()
-        const envRegex: RegExp = /(?:\\(begin){(.*?)})|(?:\\(begingroup)(?=$|%|\s|\\))|(?:\\(end){(.*?)})|(?:\\(endgroup)(?=$|%|\s|\\))/g //to match one 'begin' OR 'end'
+        const envRegex = /(?:\\(begin){(.*?)})|(?:\\(begingroup)(?=$|%|\s|\\))|(?:\\(end){(.*?)})|(?:\\(endgroup)(?=$|%|\s|\\))/g //to match one 'begin' OR 'end'
 
         let match = envRegex.exec(text) // init regex search
         while (match) {
