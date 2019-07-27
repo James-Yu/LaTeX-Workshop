@@ -52,7 +52,10 @@
         "@typescript-eslint/semi": ["error", "never"],
         "@typescript-eslint/member-delimiter-style": {"delimiter": "semi", "requireLast": false},
         "default-case": "error",
-        "eqeqeq": ["error", "always"]
+        "eqeqeq": ["error", "always"],
+        "space-before-function-paren": ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],
+        "func-call-spacing": ["error", "never"],
+        "no-multi-spaces": ["error", { "ignoreEOLComments": true }]
 /*
         "align": [true, "parameters", "statements"],
         "no-angle-bracket-type-assertion": true,
@@ -65,7 +68,6 @@
           "check-open-brace",
           "check-whitespace"
         ],
-        "only-arrow-functions": [true, "allow-declarations"],
         "typedef-whitespace": [
           true,
           {
@@ -82,12 +84,6 @@
             "property-declaration": "onespace",
             "variable-declaration": "onespace"
           }
-        ],
-        "variable-name": [
-          true,
-          "allow-leading-underscore",
-          "ban-keywords",
-          "check-format"
         ],
         "whitespace": [
           true,
