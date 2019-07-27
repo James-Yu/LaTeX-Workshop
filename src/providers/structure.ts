@@ -9,7 +9,7 @@ import * as utils from '../utils'
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
-    readonly onDidChangeTreeData: vscode.Event<Section | undefined> = this._onDidChangeTreeData.event
+    readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     private hierarchy: string[]
     private sectionDepths: { string?: number } = {}
     public root: string = ''
@@ -18,6 +18,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     public ds: Section[] = []
 
     constructor(private extension: Extension) {
+        this.onDidChangeTreeData = this._onDidChangeTreeData.event
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.hierarchy = configuration.get('view.outline.sections') as string[]
         this.hierarchy.forEach((section, index) => {
