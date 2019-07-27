@@ -92,7 +92,7 @@ export class BuildInfo {
         const hardcodedRulesOther = ['sage']
 
         const rulePdfLatexStart = /This is pdfTeX, Version [\d.-]+[^\n]*$/
-        const ruleSageStart = /Processing Sage code for [\w.- "]+\.\.\.$/
+        const ruleSageStart = /Processing Sage code for [\w.\- "]+\.\.\.$/
         const ruleBibtexStart = /This is BibTeX[\w.\- ",()]+$/
 
         // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
