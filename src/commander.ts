@@ -65,7 +65,7 @@ export class Commander {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as ExternalCommand
         if (externalBuildCommand.command) {
-            const pwd  = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
+            const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
             await this.extension.builder.buildWithExternalCommand(externalBuildCommand, pwd)
             return
         }
@@ -501,7 +501,7 @@ export class Commander {
             let newCursorPos
             // leading indent
             if (matches[1]) {
-                itemString  += matches[1]
+                itemString += matches[1]
             }
             // is there an optional paramter to \item
             if (matches[2]) {

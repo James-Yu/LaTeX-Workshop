@@ -30,7 +30,7 @@ export class EnvPair {
 
     getEnvName(line: string, ind: number, beginOrEnd: string): string | null {
         const subline = line.slice(ind)
-        const re = new RegExp('^' +  beginOrEnd + '\\{([^\\{\\}]*)\\}')
+        const re = new RegExp('^' + beginOrEnd + '\\{([^\\{\\}]*)\\}')
         const env = subline.match(re)
         if (env && env.length === 2) {
             return env[1]
@@ -47,12 +47,12 @@ export class EnvPair {
         const lineUpToInd = line.slice(0, ind + 1)
         const startInd = lineUpToInd.lastIndexOf('\\')
         const startPos = new vscode.Position(pos.line, startInd)
-        if (startInd + this.beginLength  >= ind && line.slice(startInd, startInd + this.beginLength) === '\\begin') {
+        if (startInd + this.beginLength >= ind && line.slice(startInd, startInd + this.beginLength) === '\\begin') {
             const envName = this.getEnvName(line, startInd, '\\\\begin')
             if (envName) {
                 return {pos: startPos, type: 'begin', name: envName}
             }
-        } else if (startInd + this.endLength  >= ind && line.slice(startInd, startInd + this.endLength) === '\\end') {
+        } else if (startInd + this.endLength >= ind && line.slice(startInd, startInd + this.endLength) === '\\end') {
             const envName = this.getEnvName(line, startInd, '\\\\end')
             if (envName) {
                 return {pos: startPos, type: 'end', name: envName}
@@ -109,7 +109,7 @@ export class EnvPair {
                 if ((dir === 1 && (m[1] === 'begin' || m[1] === '[')) || (dir === -1 && (m[1] === 'end' || m[1] === ']'))) {
                     nested += 1
                 }
-                if ((dir === 1 && (m[1] === 'end' || m[1] === ']')) || (dir === -1 && (m[1] === 'begin' || m[1] === '[')))  {
+                if ((dir === 1 && (m[1] === 'end' || m[1] === ']')) || (dir === -1 && (m[1] === 'begin' || m[1] === '['))) {
                     if (nested === 0) {
                         const col = m.index + 1 + startCol
                         const matchPos = new vscode.Position(lineNumber, col)
@@ -147,7 +147,7 @@ export class EnvPair {
         }
         const startPos = tokens.pos
         const pattern = '\\\\(begin|end)\\{' + utils.escapeRegExp(tokens.name) + '\\}'
-        const dir = (tokens.type ===  'begin') ? 1 : -1
+        const dir = (tokens.type === 'begin') ? 1 : -1
         const resMatchingPair = this.locateMatchingPair(pattern, dir, startPos, document)
         if (resMatchingPair) {
             const newPos = resMatchingPair.pos

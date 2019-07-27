@@ -421,7 +421,7 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string): [StepCommand | undefined,  StepCommand | undefined] {
+    findProgramMagic(rootFile: string): [StepCommand | undefined, StepCommand | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m

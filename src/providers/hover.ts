@@ -458,7 +458,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         const l = docOfRef.lineAt(refData.item.position.line).text
         const pat = new RegExp('\\\\label\\{' + utils.escapeRegExp(token) + '\\}')
-        const m  = l.match(pat)
+        const m = l.match(pat)
         if (m && m.index !== undefined) {
             const labelPos = new vscode.Position(refData.item.position.line, m.index)
             const beginPos = this.findBeginPair(docOfRef, envBeginPatMathMode, labelPos)
@@ -502,7 +502,7 @@ export class HoverProvider implements vscode.HoverProvider {
 
         let lineNum = startPos1.line + 1
         while (lineNum <= document.lineCount) {
-            m  = this.removeComment(document.lineAt(lineNum).text).match(endPat)
+            m = this.removeComment(document.lineAt(lineNum).text).match(endPat)
             if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
@@ -517,7 +517,7 @@ export class HoverProvider implements vscode.HoverProvider {
     private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit= 20): vscode.Position | undefined {
         const currentLine = document.lineAt(endPos1).text.substr(0, endPos1.character)
         let l = this.removeComment(currentLine)
-        let m  = l.match(beginPat)
+        let m = l.match(beginPat)
         if (m && m.index !== undefined) {
             return new vscode.Position(endPos1.line, m.index)
         }
