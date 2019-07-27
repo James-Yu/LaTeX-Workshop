@@ -9,12 +9,10 @@ import {SyncTeXRecordForward} from './locator'
 import {ExternalCommand} from '../utils'
 import {encodePathWithPrefix} from './encodePath'
 
-interface Position {}
-
 interface Client {
     viewer: 'browser' | 'tab'
     websocket: ws
-    position?: Position
+    position?: {}
 }
 
 export class Viewer {
