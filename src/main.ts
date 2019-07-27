@@ -418,7 +418,7 @@ export class Extension {
         this.paster = new Paster(this)
         this.tikzPictureView = new TikzPictureView(this)
         this.snippetPanel = new SnippetPanel(this)
-      
+
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }

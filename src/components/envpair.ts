@@ -241,11 +241,12 @@ export class EnvPair {
                     case 'cursor':
                         editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
                         break
-                    case 'selection':
+                    case 'selection': {
                         const beginEnvStopPos = beginEnvStartPos.translate(0, envNameLength)
                         const endEnvStopPos = endEnvStartPos.translate(0, envNameLength)
                         editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStopPos), new vscode.Selection(endEnvStartPos, endEnvStopPos)]
                         break
+                    }
                     case 'equationToggle':
                         editor.selection = new vscode.Selection(startingPos, startingPos)
                         break

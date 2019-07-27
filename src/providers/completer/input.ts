@@ -92,7 +92,7 @@ export class Input {
                     provideDirOnly = true
                 }
                 break
-            case 'input':
+            case 'input': {
                 const rootDir = path.dirname(this.extension.manager.rootFile)
                 const command = payload[2]
                 if (command === 'includegraphics' && this.graphicsPath.length > 0) {
@@ -113,6 +113,7 @@ export class Input {
                     }
                 }
                 break
+            }
             default:
                 return []
         }
