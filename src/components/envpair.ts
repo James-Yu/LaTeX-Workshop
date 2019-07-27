@@ -267,7 +267,7 @@ export class EnvPair {
         const document = editor.document
         const curPos = editor.selection.active
 
-        const pattern = '\\\\(begin|end)\\{([^\\{\\}]*)\\}'
+        const pattern = '\\\\(begin|end){([^{}]*)}'
         const dir = -1
         const resMatchingPair = this.locateMatchingPair(pattern, dir, curPos, document)
         if (resMatchingPair) {
