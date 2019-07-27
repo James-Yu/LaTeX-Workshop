@@ -7,7 +7,7 @@ import { Extension } from '../main'
 export class BuildInfo {
     extension: Extension
     status: vscode.StatusBarItem
-    panel: vscode.WebviewPanel
+    panel: vscode.WebviewPanel | undefined
     configuration: vscode.WorkspaceConfiguration
     currentBuild: {
         buildStart: number;
@@ -18,7 +18,7 @@ export class BuildInfo {
         ruleNumber: number;
         ruleName: string;
         ruleProducesPages: boolean | undefined;
-    } // | undefined
+    } | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -51,7 +51,6 @@ export class BuildInfo {
     public buildEnded() {
         if (this.currentBuild) {
             this.status.text = `( ${((+new Date() - this.currentBuild.buildStart) / 1000).toFixed(1)} s )`
-            // @ts-ignore
             this.currentBuild = undefined
             setTimeout(() => {
                 if (!this.currentBuild) {
@@ -97,15 +96,18 @@ export class BuildInfo {
 
         // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
 
+        if (!this.currentBuild) {
+            return
+        }
         if (this.currentBuild.ruleProducesPages && this.currentBuild.stdout.match(pageNumberRegex)) {
-            // @ts-ignore
-            const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
+            const pageNoRes = this.currentBuild.stdout.match(pageNumberRegex)
+            const pageNo = pageNoRes ? parseInt(pageNoRes[1]) : NaN
             if (!isNaN(pageNo)) {
                 this.displayProgress(pageNo)
             }
         } else if (this.currentBuild.stdout.match(latexmkRuleStartedRegex)) {
-            // @ts-ignore
-            const ruleName = this.currentBuild.stdout.match(latexmkRuleStartedRegex)[1]
+            const ruleNameRes = this.currentBuild.stdout.match(latexmkRuleStartedRegex)
+            const ruleName = ruleNameRes ? ruleNameRes[1] : ''
             // if rule name does not have own entry
             if ([...hardcodedRulesPageProducing, ...hardcodedRulesOther].indexOf(ruleName) === -1) {
                 this.currentBuild.ruleName = ruleName
@@ -151,7 +153,6 @@ export class BuildInfo {
             }
         )
         this.panel.onDidDispose(() => {
-            // @ts-ignore
             this.panel = undefined
         })
 
