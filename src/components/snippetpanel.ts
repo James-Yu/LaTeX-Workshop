@@ -19,7 +19,6 @@ export class SnippetPanel {
     extension: Extension
     panel: vscode.WebviewPanel | undefined
     configuration: vscode.WorkspaceConfiguration
-    mathJax: any
     lastActiveTextEditor: vscode.TextEditor | undefined
 
     constructor(extension: Extension) {
