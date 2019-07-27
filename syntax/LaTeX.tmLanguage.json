@@ -73,7 +73,7 @@
       ]
     },
     {
-      "begin": "(?x)\n\t\t\t\t(\t\t\t\t\t\t\t\t\t\t\t\t\t# Capture 1\n\t\t\t\t\t(\\\\)\t\t\t\t\t\t\t\t\t\t\t# Marker\n\t\t\t\t\t(\n\t\t\t\t\t\t(?:sub){0,2}section\t\t\t\t\t\t\t# Functions\n\t\t\t\t\t  | (?:sub)?paragraph\n\t\t\t\t\t  | chapter|part|addpart\n\t\t\t\t\t  | addchap|addsec|minisec\n\t\t\t\t\t  | frametitle\t\t\t\t\t\t\t\t\t# only for Beamer\n\t\t\t\t\t)\n\t\t\t\t\t(?:\\*)?\t\t\t\t\t\t\t\t\t\t\t# Optional Unnumbered\n\t\t\t\t)\n\t\t\t\t((?:\\[[^\\[]*?\\]){0,2})\n\t\t\t\t(\\{)\t\t\t\t\t\t\t\t\t\t\t\t# Opening Bracket\n\t\t\t\t",
+      "begin": "((\\\\)((?:sub){0,2}section|(?:sub)?paragraph|chapter|part|addpart|addchap|addsec|minisec|frametitle)(?:\\*)?)((?:\\[[^\\[]*?\\]){0,2})(\\{)",
       "beginCaptures": {
         "1": {
           "name": "support.function.section.latex"
@@ -654,7 +654,7 @@
       "name": "meta.function.end-document.latex"
     },
     {
-      "begin": "(?x)\n\t\t\t\t\t(?:\\s*)\t\t\t\t\t\t\t\t\t\t# Optional whitespace\n\t\t\t\t\t((\\\\)begin)\t\t\t\t\t\t\t\t\t# Marker - Function\n\t\t\t\t\t(\\{)\t\t\t\t\t\t\t\t\t\t# Open Bracket\n\t\t\t\t\t\t(\n\t\t\t\t\t\t\t(?:\n\t\t\t\t\t\t\t\talign|equation|(?:IEEE)?eqnarray\t\t\t# Argument\n\t\t\t\t\t\t\t  | multline|aligned|alignat\n\t\t\t\t\t\t\t  | split|gather|gathered\n\t\t\t\t\t\t\t  | cases\n\t\t\t\t\t\t\t  | displaymath\n\t\t\t\t\t\t\t  | [a-zA-Z]*matrix\n\t\t\t\t\t\t\t)\n\t\t\t\t\t\t\t(?:\\*)?\t\t\t\t\t\t\t\t# Optional Unnumbered\n\t\t\t\t\t\t)\n\t\t\t\t\t(\\})\t\t\t\t\t\t\t\t\t\t# Close Bracket\n\t\t\t\t\t(\\s*\\n)?\t\t\t\t# Match to end of line absent of content\n\t\t\t\t",
+      "begin": "(?:\\s*)((\\\\)begin)(\\{)((?:align|equation|(?:IEEE)?eqnarray|multline|aligned|alignat|split|gather|gathered| cases|displaymath|[a-zA-Z]*matrix)(?:\\*)?)(\\})(\\s*\\n)?",
       "captures": {
         "1": {
           "name": "support.function.be.latex"
@@ -673,7 +673,7 @@
         }
       },
       "contentName": "support.class.math.block.environment.latex",
-      "end": "(?x)\n\t\t\t\t\t(?:\\s*)\t\t\t\t\t\t\t\t\t\t# Optional whitespace\n\t\t\t\t\t((\\\\)end)\t\t\t\t\t\t\t\t\t# Marker - Function\n\t\t\t\t\t(\\{)\t\t\t\t\t\t\t\t\t\t# Open Bracket\n\t\t\t\t\t\t(\\4)\t\t\t\t# Previous capture from begin\n\t\t\t\t\t(\\})\t\t\t\t\t\t\t\t\t\t# Close Bracket\n\t\t\t\t\t(?:\\s*\\n)?\t\t\t\t# Match to end of line absent of content\n\t\t\t\t",
+      "end": "(?:\\s*)((\\\\)end)(\\{)(\\4)(\\})(?:\\s*\\n)?",
       "name": "meta.function.environment.math.latex",
       "patterns": [
         {
@@ -696,7 +696,7 @@
       ]
     },
     {
-      "begin": "(?x)\n\t\t\t\t\t(?:\\s*)\t\t\t\t\t\t\t\t\t\t# Optional whitespace\n\t\t\t\t\t((\\\\)begin)\t\t\t\t\t\t\t\t\t# Marker - Function\n\t\t\t\t\t(\\{)\t\t\t\t\t\t\t\t\t\t# Open Bracket\n\t\t\t\t\t\t(array|tabular[xy*]?|xltabular)\n\t\t\t\t\t(\\})\t\t\t\t\t\t\t\t\t\t# Close Bracket\n\t\t\t\t\t(\\s*\\n)?\t\t\t\t# Match to end of line absent of content\n\t\t\t\t",
+      "begin": "(?:\\s*)((\\\\)begin)(\\{)(array|tabular[xy*]?|xltabular)(\\})(\\s*\\n)?",
       "captures": {
         "1": {
           "name": "support.function.be.latex"
@@ -715,7 +715,7 @@
         }
       },
       "contentName": "meta.data.environment.tabular.latex",
-      "end": "(?x)\n\t\t\t\t\t(?:\\s*)\t\t\t\t\t\t\t\t\t\t# Optional whitespace\n\t\t\t\t\t((\\\\)end)\t\t\t\t\t\t\t\t\t# Marker - Function\n\t\t\t\t\t(\\{)\t\t\t\t\t\t\t\t\t\t# Open Bracket\n\t\t\t\t\t\t(\\4)\t\t\t\t# Previous capture from begin\n\t\t\t\t\t(\\})\t\t\t\t\t\t\t\t\t\t# Close Bracket\n\t\t\t\t\t(?:\\s*\\n)?\t\t\t\t# Match to end of line absent of content\n\t\t\t\t",
+      "end": "(?:\\s*)((\\\\)end)(\\{)(\\4)(\\})(?:\\s*\\n)?",
       "name": "meta.function.environment.tabular.latex",
       "patterns": [
         {
@@ -1068,7 +1068,7 @@
       "name": "meta.scope.item.latex"
     },
     {
-      "begin": "(?x)\n\t\t\t\t\t(\n\t\t\t\t\t\t(\\\\)\t\t\t\t\t\t\t\t\t\t# Marker\n\t\t\t\t\t\t(?:auto|foot|full|no|short|text|paren)?\t\t# Function Name\n\t\t\t\t\t\t[cC]ite\n\t\t\t\t\t\t(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]*\n\t\t\t\t\t\t\\*?\t\t\t\t\t\t\t\t\t\t\t# Optional Unabreviated\n\t\t\t\t\t)\n\t\t\t\t\t(?:(\\[)[^\\]]*(\\])){0,2}\t\t\t\t\t\t\t\t# Optional Arguments\n\t\t\t\t\t(\\{)\t\t\t\t\t\t\t\t\t\t\t# Opening Bracket\n\t\t\t\t",
+      "begin": "((\\\\)(?:auto|foot|full|no|short|text|paren)?[cC]ite(?:al)?(?:p|s|t|author|year(?:par)?|title)?[ANP]**?)(?:(\\[)[^\\]]*(\\])){0,2}(\\{)",
       "captures": {
         "1": {
           "name": "keyword.control.cite.latex"
