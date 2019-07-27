@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as fse from 'fs-extra'
-import * as child_process from 'child_process'
+import * as cp from 'child_process'
 import { tmpdir } from 'os'
 import { promisify } from 'util'
 
@@ -188,7 +188,7 @@ export class TikzPictureView {
         const startTime = +new Date()
 
         try {
-            child_process.execSync(
+            cp.execSync(
                 `latexmk "${path.basename(tikzPicture.tempFile)}" -interaction=batchmode -quiet -pdf`,
                 {
                     cwd: path.dirname(tikzPicture.tempFile),
@@ -321,7 +321,7 @@ export class TikzPictureView {
     private precompilePreamble(file: string, preamble: string) {
         return new Promise((resolve, reject) => {
             fs.writeFileSync(file, `\\documentclass{standalone}\n\n${preamble}\n\n\\begin{document}\\end{document}`)
-            const process = child_process.exec( `pdftex -ini -interaction=nonstopmode -shell-escape -file-line-error -jobname="preamble" "&pdflatex" mylatexformat.ltx ${path.basename(file)}`, { cwd: path.dirname(file) } )
+            const process = cp.exec( `pdftex -ini -interaction=nonstopmode -shell-escape -file-line-error -jobname="preamble" "&pdflatex" mylatexformat.ltx ${path.basename(file)}`, { cwd: path.dirname(file) } )
             process.on('exit', () => {
                 resolve()
             })
@@ -332,7 +332,7 @@ export class TikzPictureView {
     }
 
     private async cleanupTikzPicture(tikzPicture: IFileTikzPicture) {
-        child_process.execSync(`latexmk -C "${path.basename(tikzPicture.tempFile)}"`, {
+        cp.execSync(`latexmk -C "${path.basename(tikzPicture.tempFile)}"`, {
             cwd: path.dirname(tikzPicture.tempFile),
             stdio: 'ignore'
         })
