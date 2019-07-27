@@ -4,7 +4,7 @@ import { Extension } from '../main'
 
 
 function regexpAllMatches(str: string, reg: RegExp) {
-    const res: any[] = []
+    const res: RegExpExecArray[] = []
     let m = reg.exec(str)
     while (m) {
         res.push(m)
