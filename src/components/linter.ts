@@ -68,7 +68,7 @@ export class Linter {
         if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.getText()) {
             return
         }
-        this.extension.logger.addLogMessage(`Linter for active file started.`)
+        this.extension.logger.addLogMessage('Linter for active file started.')
         const filePath = vscode.window.activeTextEditor.document.fileName
         const content = vscode.window.activeTextEditor.document.getText()
 
@@ -99,7 +99,7 @@ export class Linter {
     }
 
     async lintRootFile() {
-        this.extension.logger.addLogMessage(`Linter for root file started.`)
+        this.extension.logger.addLogMessage('Linter for root file started.')
         const filePath = this.extension.manager.rootFile
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -126,7 +126,7 @@ export class Linter {
         this.extension.parser.parseLinter(stdout)
     }
 
-    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string) : Promise<string> {
+    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string): Promise<string> {
         this.extension.logger.addLogMessage(`Linter for ${linterId} running command ${command} with arguments ${args}`)
         return new Promise((resolve, reject) => {
             if (this.currentProcesses[linterId]) {

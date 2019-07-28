@@ -8,7 +8,7 @@ export class TextDocumentLike {
     readonly eol: vscode.EndOfLine
     private _eol: string
 
-    static load(filePath: string) : TextDocumentLike | vscode.TextDocument {
+    static load(filePath: string): TextDocumentLike | vscode.TextDocument {
         const uri = vscode.Uri.file(filePath)
         const editor = vscode.window.activeTextEditor
         if (editor !== undefined && editor.document.uri.fsPath === uri.fsPath) {
@@ -43,7 +43,7 @@ export class TextDocumentLike {
         this.lineCount = this._lines.length
     }
 
-    getText(range?: vscode.Range) : string {
+    getText(range?: vscode.Range): string {
         if (range === undefined) {
             return this._lines.join(this._eol)
         }
@@ -67,7 +67,7 @@ export class TextDocumentLike {
         return ret
     }
 
-    getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!\@@#\%\^\&*()-\=+[{]}\|\;\:\'\"\,.\<>\/\?\s]+)/g) : vscode.Range | undefined {
+    getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!@#%^&*()-=+[{\]}|;:'",.<>/?\s]+)/g): vscode.Range | undefined {
         if (position.line > this.lineCount) {
             return undefined
         }
@@ -82,8 +82,8 @@ export class TextDocumentLike {
         return undefined
     }
 
-    lineAt(lineNum: number) : TextLineLike
-    lineAt(position: vscode.Position) : TextLineLike
+    lineAt(lineNum: number): TextLineLike
+    lineAt(position: vscode.Position): TextLineLike
     lineAt(lineNum: number | vscode.Position) {
         if (isNumber(lineNum)) {
             return new TextLineLike(this._lines[lineNum])

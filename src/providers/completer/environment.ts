@@ -26,7 +26,7 @@ export class Environment {
         this.environmentsInTeX = {}
     }
 
-    provide() : vscode.CompletionItem[] {
+    provide(): vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
@@ -66,7 +66,7 @@ export class Environment {
         Object.assign(this.environmentsInTeX, this.getEnvironmentItems(fs.readFileSync(filePath, 'utf-8')))
     }
 
-    getEnvironmentItems(content: string) : { [id: string]: vscode.CompletionItem } {
+    getEnvironmentItems(content: string): { [id: string]: vscode.CompletionItem } {
         const itemReg = /\\begin\s?{([^{}]*)}/g
         const items = {}
         while (true) {

@@ -7,7 +7,7 @@ import { Extension } from '../main'
 export class BuildInfo {
     extension: Extension
     status: vscode.StatusBarItem
-    panel: vscode.WebviewPanel
+    panel: vscode.WebviewPanel | undefined
     configuration: vscode.WorkspaceConfiguration
     currentBuild: {
         buildStart: number;
@@ -18,7 +18,7 @@ export class BuildInfo {
         ruleNumber: number;
         ruleName: string;
         ruleProducesPages: boolean | undefined;
-    } // | undefined
+    } | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -50,8 +50,7 @@ export class BuildInfo {
     }
     public buildEnded() {
         if (this.currentBuild) {
-            this.status.text = `( ${((+new Date() - this.currentBuild.buildStart) / 1000).toFixed(1)} s )`
-            // @ts-ignore
+            this.status.text = `( ${((+new Date() - this.currentBuild.buildStart) / 1000).toFixed(1)} s )`
             this.currentBuild = undefined
             setTimeout(() => {
                 if (!this.currentBuild) {
@@ -73,7 +72,7 @@ export class BuildInfo {
 
     public async newStdoutLine(lines: string) {
         if (!this.currentBuild) {
-            throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
+            throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
 
         for (const line of lines.split('\n')) {
@@ -84,28 +83,31 @@ export class BuildInfo {
     }
 
     private checkStdoutForInfo() {
-        const pageNumberRegex = /\[(\d+)[^\[\]]*\]$/
-        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z \/]+)'\.\.\.\n$/
+        const pageNumberRegex = /\[(\d+)[^[\]]*\]$/
+        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z /]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
 
         const hardcodedRulesPageProducing = ['pdflatex', 'pdftex']
         const hardcodedRulesOther = ['sage']
 
-        const rulePdfLatexStart = /This is pdfTeX, Version [\d\.\-]+[^\n]*$/
-        const ruleSageStart = /Processing Sage code for [\w\.\- \"]+\.\.\.$/
-        const ruleBibtexStart = /This is BibTeX[\w\.\- \"\,\(\)]+$/
+        const rulePdfLatexStart = /This is pdfTeX, Version [\d.-]+[^\n]*$/
+        const ruleSageStart = /Processing Sage code for [\w.\- "]+\.\.\.$/
+        const ruleBibtexStart = /This is BibTeX[\w.\- ",()]+$/
 
         // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
 
+        if (!this.currentBuild) {
+            return
+        }
         if (this.currentBuild.ruleProducesPages && this.currentBuild.stdout.match(pageNumberRegex)) {
-            // @ts-ignore
-            const pageNo = parseInt(this.currentBuild.stdout.match(pageNumberRegex)[1])
+            const pageNoRes = this.currentBuild.stdout.match(pageNumberRegex)
+            const pageNo = pageNoRes ? parseInt(pageNoRes[1]) : NaN
             if (!isNaN(pageNo)) {
                 this.displayProgress(pageNo)
             }
         } else if (this.currentBuild.stdout.match(latexmkRuleStartedRegex)) {
-            // @ts-ignore
-            const ruleName = this.currentBuild.stdout.match(latexmkRuleStartedRegex)[1]
+            const ruleNameRes = this.currentBuild.stdout.match(latexmkRuleStartedRegex)
+            const ruleName = ruleNameRes ? ruleNameRes[1] : ''
             // if rule name does not have own entry
             if ([...hardcodedRulesPageProducing, ...hardcodedRulesOther].indexOf(ruleName) === -1) {
                 this.currentBuild.ruleName = ruleName
@@ -151,7 +153,6 @@ export class BuildInfo {
             }
         )
         this.panel.onDidDispose(() => {
-            // @ts-ignore
             this.panel = undefined
         })
 
@@ -180,7 +181,7 @@ export class BuildInfo {
 
     private displayProgress(current: string | number) {
         if (!this.currentBuild) {
-            throw Error(`Can't Display Progress for non-Started build - see BuildInfo.buildStarted()`)
+            throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
 
         this.configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -410,13 +411,13 @@ export class BuildInfo {
                 current = parseInt(current)
             }
             const currentAsString = current.toString()
-            const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString() : ''
+            const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString(): ''
             const barAsString = this.currentBuild.pageTotal
                 ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
                       'progress.barLength'
                   ) as number)
                 : ''
-            this.status.text = `${runIcon}  Page ${padRight(
+            this.status.text = `${runIcon}  Page ${padRight(
                 currentAsString + endpointAsString,
                 this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
             )} ${barAsString}`

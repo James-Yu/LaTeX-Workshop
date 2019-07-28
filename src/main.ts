@@ -27,10 +27,10 @@ import {SectionNodeProvider, StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
-import { Paster } from './components/paster';
+import { Paster } from './components/paster'
 import { TikzCodeLense } from './providers/tikzcodelense'
 import { TikzPictureView } from './components/tikzpictureview'
-import { SnippetPanel } from './components/snippetpanel';
+import { SnippetPanel } from './components/snippetpanel'
 
 function renameValue(config: string, oldValue: string, newValue: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -147,7 +147,7 @@ function conflictExtensionCheck() {
 function newVersionMessage(extensionPath: string, extension: Extension) {
     fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
         if (err) {
-            extension.logger.addLogMessage(`Cannot read package information.`)
+            extension.logger.addLogMessage('Cannot read package information.')
             return
         }
         extension.packageInfo = JSON.parse(data.toString())
@@ -312,7 +312,7 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
-            if (extension.manager.fileWatcher &&  extension.manager.filesWatched.indexOf(e.document.fileName) < 0) {
+            if (extension.manager.fileWatcher && extension.manager.filesWatched.indexOf(e.document.fileName) < 0) {
                 const previousRoot = extension.manager.rootFile
                 extension.manager.findRoot().then(rootFile => {
                     if (rootFile === undefined || rootFile === previousRoot) {
@@ -418,7 +418,7 @@ export class Extension {
         this.paster = new Paster(this)
         this.tikzPictureView = new TikzPictureView(this)
         this.snippetPanel = new SnippetPanel(this)
-      
-        this.logger.addLogMessage(`LaTeX Workshop initialized.`)
+
+        this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }

@@ -43,10 +43,12 @@ interface LinterLogEntry {
     text: string
 }
 
+interface LogEntry { type: string, file: string, text: string, line: number }
+
 export class Parser {
     extension: Extension
     isLaTeXmkSkipped: boolean
-    buildLog: any[] = []
+    buildLog: LogEntry[] = []
     buildLogRaw: string = ''
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
     linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
@@ -72,7 +74,7 @@ export class Parser {
         }
     }
 
-    trimLaTeXmk(log: string) : string {
+    trimLaTeXmk(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -94,7 +96,7 @@ export class Parser {
         }
     }
 
-    trimTexify(log: string) : string {
+    trimTexify(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -116,7 +118,7 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string) : boolean {
+    latexmkSkipped(log: string): boolean {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
@@ -139,7 +141,7 @@ export class Parser {
         let searchesEmptyLine = false
         let insideBoxWarn = false
         let insideError = false
-        let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
+        let currentResult: LogEntry = { type: '', file: '', text: '', line: 1 }
         const fileStack: string[] = [rootFile]
         let nested = 0
         for (const line of lines) {
@@ -235,8 +237,8 @@ export class Parser {
                 currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
-                    file: result[1] ? path.resolve(path.dirname(rootFile), result[1]) : filename,
-                    line: result[2] ? parseInt(result[2], 10) : undefined
+                    file: result[1] ? path.resolve(path.dirname(rootFile), result[1]): filename,
+                    line: result[2] ? parseInt(result[2], 10): 1
                 }
                 searchesEmptyLine = true
                 insideError = true
@@ -255,7 +257,7 @@ export class Parser {
         this.showCompilerDiagnostics()
     }
 
-    parseLaTeXFileStack(line: string, fileStack: string[], nested: number) : number {
+    parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substr(result.index + 1)

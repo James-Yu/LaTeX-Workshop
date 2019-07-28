@@ -82,10 +82,10 @@ export class CodeActions {
     }
 
     // Leading underscore to avoid tslint complaint
-    provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken) : vs.Command[] {
+    provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken): vs.Command[] {
         const actions: vs.Command[] = []
         context.diagnostics.filter(d => d.source === 'ChkTeX').forEach(d => {
-            let code  = d.code
+            let code = d.code
             if (!code) {
                 return
             }

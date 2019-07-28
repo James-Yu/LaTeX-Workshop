@@ -1,0 +1,72 @@
+{
+  "fileTypes": [
+    "dtx"
+  ],
+  "name": "DocTeX",
+  "patterns": [
+    {
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.verb.latex"
+        },
+        "2": {
+          "name": "markup.raw.verb.latex"
+        },
+        "3": {
+          "name": "punctuation.definition.verb.latex"
+        }
+      },
+      "match": "(\\|)([^\\|]*)(\\|)",
+      "name": "meta.function.verb.latex"
+    },
+    {
+      "begin": "^(%)(\\\\begin\\{macrocode\\})",
+      "captures": {
+        "1": {
+          "name": "comment.line.percentage.doctex"
+        },
+        "2": {
+          "name": "entity.name.tag.macrocode.doctex"
+        }
+      },
+      "end": "^(%)(\\\\end\\{macrocode\\})",
+      "patterns": [
+        {
+          "include": "#guards"
+        },
+        {
+          "include": "text.tex.latex.expl3"
+        },
+        {
+          "include": "text.tex"
+        }
+      ]
+    },
+    {
+      "include": "#guards"
+    },
+    {
+      "match": "(^[ \\t]*)%?%",
+      "name": "comment.line.percentage.doctex"
+    },
+    {
+      "match": "\\^\\^A.*$\\n?",
+      "name": "comment.line.percentage.tex"
+    },
+    {
+      "match": "(?<=[^%\\\\])%",
+      "name": "invalid"
+    },
+    {
+      "include": "text.tex.latex.expl3"
+    }
+  ],
+  "repository": {
+    "guards": {
+      "match": "^%(\\<[^\\>]*\\>)",
+      "name": "entity.name.function.filename.latex"
+    }
+  },
+  "scopeName": "text.tex.doctex",
+  "uuid": "6BC8DE6F-9360-4C7E-AC3C-971385945346"
+}

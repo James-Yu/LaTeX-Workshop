@@ -56,11 +56,11 @@ export class Builder {
         }
     }
 
-    isWaitingForBuildToFinish() : boolean {
+    isWaitingForBuildToFinish(): boolean {
         return this.waitingForBuildToFinishMutex.count < 1
     }
 
-    async preprocess() : Promise<() => void> {
+    async preprocess(): Promise<() => void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
@@ -77,7 +77,7 @@ export class Builder {
         }
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
+        this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' '): ''}`)
         let wd = pwd
         const ws = vscode.workspace.workspaceFolders
         if (ws && ws.length > 0) {
@@ -125,7 +125,7 @@ export class Builder {
                 }
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
-                this.extension.logger.displayStatus('check', 'statusBar.foreground', `Build succeeded.`)
+                this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
             }
             this.currentProcess = undefined
             releaseBuildMutex()
@@ -143,7 +143,7 @@ export class Builder {
 
     async build(rootFile: string, recipe: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
-            this.extension.logger.addLogMessage(`Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.`)
+            this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
             return
         }
         const releaseBuildMutex = await this.preprocess()
@@ -152,7 +152,6 @@ export class Builder {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
             this.extension.buildInfo.buildStarted()
-            // @ts-ignore
             pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
@@ -247,8 +246,8 @@ export class Builder {
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
                     this.disableCleanAndRetry = true
                     if (signal !== 'SIGTERM') {
-                        this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
-                        this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
+                        this.extension.logger.displayStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
+                        this.extension.logger.addLogMessage('Cleaning auxillary files and retrying build after toolchain error.')
 
                         this.extension.cleaner.clean(rootFile).then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
@@ -263,7 +262,7 @@ export class Builder {
                     if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
                         this.extension.cleaner.clean(rootFile)
                     }
-                    const res = this.extension.logger.showErrorMessage(`Recipe terminated with error.`, 'Open compiler log')
+                    const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
                     if (res) {
                         res.then(option => {
                             switch (option) {
@@ -316,7 +315,7 @@ export class Builder {
         }
     }
 
-    createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
+    createSteps(rootFile: string, recipeName: string | undefined): StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
@@ -339,7 +338,7 @@ export class Builder {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
-                this.extension.logger.showErrorMessage(`No recipes defined.`)
+                this.extension.logger.showErrorMessage('No recipes defined.')
                 return undefined
             }
             let recipe = recipes[0]
@@ -421,7 +420,7 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string) : [StepCommand | undefined,  StepCommand | undefined] {
+    findProgramMagic(rootFile: string): [StepCommand | undefined, StepCommand | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m

@@ -25,7 +25,7 @@ export class Locator {
         this.extension = extension
     }
 
-    parseSyncTeXForward(result: string) : SyncTeXRecordForward {
+    parseSyncTeXForward(result: string): SyncTeXRecordForward {
         const record: { page?: number, x?: number, y?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
@@ -57,7 +57,7 @@ export class Locator {
         }
     }
 
-    parseSyncTeXBackward(result: string) : SyncTeXRecordBackward {
+    parseSyncTeXBackward(result: string): SyncTeXRecordBackward {
         const record: { input?: string, line?: number, column?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
@@ -157,10 +157,10 @@ export class Locator {
         }
     }
 
-    invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string) : Thenable<SyncTeXRecordForward> {
+    invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordForward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath) : filePath}`, '-o', docker ? path.basename(pdfFile) : pdfFile]
+        const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
@@ -213,11 +213,11 @@ export class Locator {
         }
     }
 
-    invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string) : Thenable<SyncTeXRecordBackward> {
+    invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string): Thenable<SyncTeXRecordBackward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const docker = configuration.get('docker.enabled')
-        const args = ['edit', '-o', `${page}:${x}:${y}:${docker ? path.basename(pdfPath) : pdfPath}`]
+        const args = ['edit', '-o', `${page}:${x}:${y}:${docker ? path.basename(pdfPath): pdfPath}`]
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string

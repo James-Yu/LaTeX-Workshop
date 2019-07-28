@@ -41,8 +41,7 @@ export class HoverProvider implements vscode.HoverProvider {
         })
     }
 
-    public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken) :
-    Thenable<vscode.Hover> {
+    public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken): Thenable<vscode.Hover> {
         this.getColor()
         return new Promise( async (resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -143,7 +142,7 @@ export class HoverProvider implements vscode.HoverProvider {
             }
         } catch (e) {
             commands = []
-            const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^\[\]\{\}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
+            const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^[\]{}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
             const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
             let result
             do {
@@ -160,7 +159,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return commandsString + '\n' + commands.join('')
     }
 
-    private async provideHoverOnCommand(token: string) : Promise<vscode.Hover | undefined> {
+    private async provideHoverOnCommand(token: string): Promise<vscode.Hover | undefined> {
         const signatures: string[] = []
         const pkgs: string[] = []
         const tokenWithoutSlash = token.substring(1)
@@ -196,13 +195,13 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
-    addDummyCodeBlock(md: string) : string {
+    addDummyCodeBlock(md: string): string {
         // We need a dummy code block in hover to make the width of hover larger.
         const dummyCodeBlock = '```\n```'
         return dummyCodeBlock + '\n' + md + '\n' + dummyCodeBlock
     }
 
-    private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string) : Promise<vscode.Hover> {
+    private async provideHoverOnTex(document: vscode.TextDocument, tex: TexMathEnv, newCommand: string): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
         let s = this.renderCursor(document, tex.range)
@@ -219,7 +218,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
 
-    private async provideHoverOnRef(document: vscode.TextDocument, position: vscode.Position, refData: ReferenceEntry, token: string) : Promise<vscode.Hover> {
+    private async provideHoverOnRef(document: vscode.TextDocument, position: vscode.Position, refData: ReferenceEntry, token: string): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const line = refData.item.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
@@ -241,7 +240,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover([md, mdLink], refRange)
     }
 
-    private async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry) : Promise<vscode.Hover> {
+    private async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
 
@@ -273,7 +272,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return new vscode.Hover( [this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
     }
 
-    refNumberMessage(refData: ReferenceEntry) : string | undefined {
+    refNumberMessage(refData: ReferenceEntry): string | undefined {
         if (refData.item.atLastCompilation) {
             const refNum = refData.item.atLastCompilation.refNumber
             const refMessage = `numbered ${refNum} at last compilation`
@@ -282,7 +281,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
-    replaceLabelWithTag(tex: string, refLabel?: string, tag?: string) : string {
+    replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): string {
         let newTex = tex.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
             if (refLabel) {
                 if (refLabel === matchLabel) {
@@ -310,15 +309,15 @@ export class HoverProvider implements vscode.HoverProvider {
     private scaleSVG(data: any, scale: number) {
         const svgelm = data.svgNode
         // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
-        const w0 = svgelm.getAttribute('width').match(/([\.\d]+)(\w*)/)
-        const h0 = svgelm.getAttribute('height').match(/([\.\d]+)(\w*)/)
+        const w0 = svgelm.getAttribute('width').match(/([.\d]+)(\w*)/)
+        const h0 = svgelm.getAttribute('height').match(/([.\d]+)(\w*)/)
         const w = scale * Number(w0[1])
         const h = scale * Number(h0[1])
         svgelm.setAttribute('width', w + w0[2])
         svgelm.setAttribute('height', h + h0[2])
     }
 
-    private svgToDataUrl(xml: string) : string {
+    private svgToDataUrl(xml: string): string {
         const svg64 = Buffer.from(unescape(encodeURIComponent(xml))).toString('base64')
         const b64Start = 'data:image/svg+xml;base64,'
         return b64Start + svg64
@@ -339,7 +338,7 @@ export class HoverProvider implements vscode.HoverProvider {
         g.setAttribute('fill', this.color)
     }
 
-    private stripTeX(tex: string) : string {
+    private stripTeX(tex: string): string {
         if (tex.startsWith('$$') && tex.endsWith('$$')) {
             tex = tex.slice(2, tex.length - 2)
         } else if (tex.startsWith('$') && tex.endsWith('$')) {
@@ -405,20 +404,20 @@ export class HoverProvider implements vscode.HoverProvider {
 
     // Test whether cursor is in tex command strings
     // like \begin{...} \end{...} \xxxx{ \[ \] \( \) or \\
-    private isCursorInTeXCommand(document: vscode.TextDocument) : boolean {
+    private isCursorInTeXCommand(document: vscode.TextDocument): boolean {
         const editor = vscode.window.activeTextEditor
         if (!editor) {
             return false
         }
         const cursor = editor.selection.active
-        const r = document.getWordRangeAtPosition(cursor, /\\(?:begin|end|label)\{.*?\}|\\[a-zA-Z]+\{?|\\[\(\)\[\]]|\\\\/)
+        const r = document.getWordRangeAtPosition(cursor, /\\(?:begin|end|label)\{.*?\}|\\[a-zA-Z]+\{?|\\[()[\]]|\\\\/)
         if (r && r.start.isBefore(cursor) && r.end.isAfter(cursor) ) {
             return true
         }
         return false
     }
 
-    private renderCursor(document: vscode.TextDocument, range: vscode.Range) : string {
+    private renderCursor(document: vscode.TextDocument, range: vscode.Range): string {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const conf = configuration.get('hover.preview.cursor.enabled') as boolean
@@ -437,7 +436,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return document.getText(range)
     }
 
-    private mathjaxify(tex: string, envname: string, opt = { stripLabel: true }) : string {
+    private mathjaxify(tex: string, envname: string, opt = { stripLabel: true }): string {
         // remove TeX comments
         let s = tex.replace(/^\s*%.*\r?\n/mg, '')
         s = s.replace(/^((?:\\.|[^%])*).*$/mg, '$1')
@@ -451,7 +450,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return s
     }
 
-    private findHoverOnTex(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position) : TexMathEnv | undefined {
+    private findHoverOnTex(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
         const envBeginPat = /\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/
         let r = document.getWordRangeAtPosition(position, envBeginPat)
         if (r) {
@@ -467,13 +466,12 @@ export class HoverProvider implements vscode.HoverProvider {
         return this.findHoverOnInline(document, position)
     }
 
-    private findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token: string, refData: ReferenceEntry)
-    : TexMathEnv | undefined {
+    private findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token: string, refData: ReferenceEntry): TexMathEnv | undefined {
         const docOfRef = TextDocumentLike.load(refData.file)
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         const l = docOfRef.lineAt(refData.item.position.line).text
         const pat = new RegExp('\\\\label\\{' + utils.escapeRegExp(token) + '\\}')
-        const m  = l.match(pat)
+        const m = l.match(pat)
         if (m && m.index !== undefined) {
             const labelPos = new vscode.Position(refData.item.position.line, m.index)
             const beginPos = this.findBeginPair(docOfRef, envBeginPatMathMode, labelPos)
@@ -492,7 +490,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
-    private getFirstRmemberedSubstring(s: string, pat: RegExp) : string {
+    private getFirstRmemberedSubstring(s: string, pat: RegExp): string {
         const m = s.match(pat)
         if (m && m[1]) {
             return m[1]
@@ -500,14 +498,14 @@ export class HoverProvider implements vscode.HoverProvider {
         return 'never return here'
     }
 
-    private removeComment(line: string) : string {
+    private removeComment(line: string): string {
         return line.replace(/^((?:\\.|[^%])*).*$/, '$1')
     }
 
     //  \begin{...}                \end{...}
     //             ^
     //             startPos1
-    private findEndPair(document: vscode.TextDocument | TextDocumentLike, endPat: RegExp, startPos1: vscode.Position) : vscode.Position | undefined {
+    private findEndPair(document: vscode.TextDocument | TextDocumentLike, endPat: RegExp, startPos1: vscode.Position): vscode.Position | undefined {
         const currentLine = document.lineAt(startPos1).text.substring(startPos1.character)
         const l = this.removeComment(currentLine)
         let m = l.match(endPat)
@@ -517,7 +515,7 @@ export class HoverProvider implements vscode.HoverProvider {
 
         let lineNum = startPos1.line + 1
         while (lineNum <= document.lineCount) {
-            m  = this.removeComment(document.lineAt(lineNum).text).match(endPat)
+            m = this.removeComment(document.lineAt(lineNum).text).match(endPat)
             if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
@@ -529,10 +527,10 @@ export class HoverProvider implements vscode.HoverProvider {
     //  \begin{...}                \end{...}
     //  ^                          ^
     //  return pos                 endPos1
-    private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit= 20) : vscode.Position | undefined {
+    private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit= 20): vscode.Position | undefined {
         const currentLine = document.lineAt(endPos1).text.substr(0, endPos1.character)
         let l = this.removeComment(currentLine)
-        let m  = l.match(beginPat)
+        let m = l.match(beginPat)
         if (m && m.index !== undefined) {
             return new vscode.Position(endPos1.line, m.index)
         }
@@ -554,7 +552,7 @@ export class HoverProvider implements vscode.HoverProvider {
     //  \begin{...}                \end{...}
     //  ^
     //  startPos
-    private findHoverOnEnv(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position) : TexMathEnv | undefined {
+    private findHoverOnEnv(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
         const pattern = new RegExp('\\\\end\\{' + utils.escapeRegExp(envname) + '\\}')
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length + '\\begin{}'.length)
         const endPos = this.findEndPair(document, pattern, startPos1)
@@ -568,7 +566,7 @@ export class HoverProvider implements vscode.HoverProvider {
     //  \[                \]
     //  ^
     //  startPos
-    private findHoverOnParen(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position) : TexMathEnv | undefined {
+    private findHoverOnParen(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
         const pattern = envname === '\\[' ? /\\\]/ : envname === '\\(' ? /\\\)/ : /\$\$/
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length)
         const endPos = this.findEndPair(document, pattern, startPos1)
@@ -579,7 +577,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return undefined
     }
 
-    private findHoverOnInline(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position) : TexMathEnv | undefined {
+    private findHoverOnInline(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
         const currentLine = document.lineAt(position.line).text
         const regex = /(?<!\$|\\)\$(?!\$)(?:\\.|[^\\])+?\$|\\\(.+?\\\)/
         let s = currentLine

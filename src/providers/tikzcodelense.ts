@@ -4,7 +4,7 @@ import { stripComments } from '../utils'
 export class TikzCodeLense implements vscode.CodeLensProvider {
     onDidChangeCodeLenses?: vscode.Event<void> | undefined
 
-    async provideCodeLenses(document: vscode.TextDocument) : Promise<vscode.CodeLens[]> {
+    async provideCodeLenses(document: vscode.TextDocument): Promise<vscode.CodeLens[]> {
         if (!vscode.workspace.getConfiguration('latex-workshop.tikzpreview').get('enabled') as boolean) {
             return []
         }

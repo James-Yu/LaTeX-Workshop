@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import { stripComments } from "../../utils"
+import { stripComments } from '../../utils'
 
 import {Extension} from '../../main'
 
@@ -32,7 +32,7 @@ export class Reference {
         this.refreshTimer = 0
     }
 
-    provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
+    provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
@@ -54,7 +54,7 @@ export class Reference {
             const item = suggestions[key]
             const command = new vscode.CompletionItem(item.reference, vscode.CompletionItemKind.Reference)
             command.documentation = item.text
-            command.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:\.]+/)
+            command.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
             this.suggestions.push(command)
         })
         return this.suggestions
@@ -77,7 +77,7 @@ export class Reference {
     }
 
     getReferenceItems(content: string) {
-        const itemReg = /(?:\\label(?:\[[^\[\]\{\}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
+        const itemReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
         const items: {[key: string]: ReferenceEntry['item']} = {}
         content = stripComments(content, '%')
         const noELContent = content.split('\n').filter(para => para !== '').join('\n')

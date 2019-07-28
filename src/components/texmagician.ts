@@ -9,19 +9,19 @@ export class TeXMagician {
         this.extension = extension
     }
 
-    getFileName(file: string) : string {
-        const segments = file.replace(/\\/g, '/').match(/([^\/]+$)/)
+    getFileName(file: string): string {
+        const segments = file.replace(/\\/g, '/').match(/([^/]+$)/)
         if (segments) {
             return segments[0]
         }
         return ''
     }
 
-    getRelativePath(file: string, currentFile: string) : string {
+    getRelativePath(file: string, currentFile: string): string {
         // replace '\' in windows paths with '/'
         file = file.replace(/\\/g, '/')
         // get path of current folder, including to the last '/'
-        let currentFolder = currentFile.replace(/\\/g, '/').replace(/[^\/]+$/gi, '')
+        let currentFolder = currentFile.replace(/\\/g, '/').replace(/[^/]+$/gi, '')
         // find index up to which paths match
         let i = 0
         while (file.charAt(i) === currentFolder.charAt(i)) {

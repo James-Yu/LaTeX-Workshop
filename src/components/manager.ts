@@ -97,7 +97,7 @@ export class Manager {
         }
     }
 
-    async findRoot() : Promise<string | undefined> {
+    async findRoot(): Promise<string | undefined> {
         this.updateWorkspace()
         this.localRootFile = undefined
         const findMethods = [() => this.findRootMagic(), () => this.findRootSelf(), () => this.findRootDir()]
@@ -117,7 +117,7 @@ export class Manager {
         return undefined
     }
 
-    findRootMagic() : string | undefined {
+    findRootMagic(): string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -152,7 +152,7 @@ export class Manager {
         return undefined
     }
 
-    findRootSelf() : string | undefined {
+    findRootSelf(): string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -173,7 +173,7 @@ export class Manager {
         return undefined
     }
 
-    findSubFiles(content: string) : string | undefined {
+    findSubFiles(content: string): string | undefined {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
@@ -187,7 +187,7 @@ export class Manager {
         return undefined
     }
 
-    async findRootDir() : Promise<string | undefined> {
+    async findRootDir(): Promise<string | undefined> {
         const regex = /\\begin{document}/m
 
         if (!this.workspace) {
@@ -218,7 +218,7 @@ export class Manager {
         return undefined
     }
 
-    isRoot(root: string, file: string, updateDependent = false) : boolean {
+    isRoot(root: string, file: string, updateDependent = false): boolean {
         if (!fs.existsSync(root)) {
             return false
         }
@@ -245,7 +245,7 @@ export class Manager {
         if (this.fileWatcher !== undefined && this.filesWatched.indexOf(rootFile) < 0) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
             // => the user has changed the root. Clean up the old watcher so we reform it.
-            this.extension.logger.addLogMessage(`Root file changed -> cleaning up old file watcher.`)
+            this.extension.logger.addLogMessage('Root file changed -> cleaning up old file watcher.')
             this.fileWatcher.close()
             this.filesWatched = []
             prevWatcherClosed = true
@@ -279,7 +279,7 @@ export class Manager {
                     return
                 }
                 this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
-                if (this.localRootFile && configuration.get("latex.rootFile.useSubFile")) {
+                if (this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
                     this.extension.commander.build(true, this.localRootFile)
                 } else {
                     this.extension.commander.build(true, rootFile)
@@ -311,7 +311,7 @@ export class Manager {
         this.extension.logger.addLogMessage(`Parsing ${filePath}`)
         const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
 
-        const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^\[\]\{\}]*\])?){([^}]*)}/g
+        const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
         if (!this.texFileTree.hasOwnProperty(filePath)) {
             this.texFileTree[filePath] = new Set()
         }
@@ -349,7 +349,7 @@ export class Manager {
             return
         }
 
-        const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^\[\]\{\}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
+        const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
             const result = bibReg.exec(content)
             if (!result) {
@@ -477,7 +477,7 @@ export class Manager {
         }
         this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
         if (this.bibWatcher === undefined) {
-            this.extension.logger.addLogMessage(`Creating file watcher for .bib files.`)
+            this.extension.logger.addLogMessage('Creating file watcher for .bib files.')
             this.bibWatcher = chokidar.watch('', this.watcherOptions)
             this.bibWatcher.on('change', (filePath: string) => {
                 this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${filePath}`)
@@ -494,7 +494,7 @@ export class Manager {
                     this.extension.logger.addLogMessage(`Building root file: ${this.rootFile}`)
                     this.extension.builder.build(this.rootFile)
                 } else {
-                    this.extension.logger.addLogMessage(`Cannot find LaTeX root file.`)
+                    this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
                 }
             })
             this.bibWatcher.on('unlink', (filePath: string) => {

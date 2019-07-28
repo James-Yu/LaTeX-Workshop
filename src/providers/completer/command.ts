@@ -72,7 +72,7 @@ export class Command {
             }, {})
     }
 
-    provide() : vscode.CompletionItem[] {
+    provide(): vscode.CompletionItem[] {
         if (Date.now() - this.refreshTimer < 1000) {
             return this.suggestions
         }
@@ -104,8 +104,8 @@ export class Command {
         this.allCommands = suggestions
         const suggestionsAsciiKeys: string[] = []
         Object.keys(suggestions).forEach(key => {
-            const i = key.search(/[\[\{]/)
-            const k = i > -1 ? key.substr(0, i) : key
+            const i = key.search(/[[{]/)
+            const k = i > -1 ? key.substr(0, i): key
             if (suggestionsAsciiKeys.indexOf(k) === -1) {
                 suggestionsAsciiKeys.push(k)
             }
@@ -201,7 +201,7 @@ export class Command {
         })
     }
 
-    entryToCompletionItem(item: AutocompleteEntry) : CommandCompletionItem {
+    entryToCompletionItem(item: AutocompleteEntry): CommandCompletionItem {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command[0] === ' ' ? '' : '\\'
@@ -209,7 +209,7 @@ export class Command {
         const command = new CommandCompletionItem(label, vscode.CompletionItemKind.Function)
         if (item.snippet) {
             if (useTabStops) {
-                item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$${$1}')
+                item.snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
             }
             command.insertText = new vscode.SnippetString(item.snippet)
         } else {
@@ -220,8 +220,8 @@ export class Command {
         command.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
         command.packageName = item.package
         command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
-            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
-            return n !== undefined ? n.toString(16) : c
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16): c
         })
         if (item.postAction) {
             command.command = { title: 'Post-Action', command: item.postAction }
@@ -272,7 +272,7 @@ export class Command {
 
     getPackage(filePath: string) {
         const content = fs.readFileSync(filePath, 'utf-8')
-        const regex = /\\usepackage(?:\[[^\[\]\{\}]*\])?{(.*)}/g
+        const regex = /\\usepackage(?:\[[^[\]{}]*\])?{(.*)}/g
         let result
         do {
             result = regex.exec(content)
@@ -291,7 +291,7 @@ export class Command {
         this.commandInTeX[filePath] = this.getCommandItems(fs.readFileSync(filePath, 'utf-8'), filePath)
     }
 
-    getCommandItems(content: string, filePath: string) : { [id: string]: AutocompleteEntry } {
+    getCommandItems(content: string, filePath: string): { [id: string]: AutocompleteEntry } {
         const itemReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const items = {}
         while (true) {
@@ -310,10 +310,10 @@ export class Command {
                 }
             }
             if (result[3]) {
-                items[result[1]].snippet += `{$\{2}}`
+                items[result[1]].snippet += '{${2}}'
             }
             if (result[4]) {
-                items[result[1]].snippet += `{$\{3}}`
+                items[result[1]].snippet += '{${3}}'
             }
         }
 

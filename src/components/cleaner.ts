@@ -12,7 +12,7 @@ export class Cleaner {
         this.extension = extension
     }
 
-    async clean(rootFile?: string) : Promise<void> {
+    async clean(rootFile?: string): Promise<void> {
         if (! rootFile) {
             if (this.extension.manager.rootFile !== undefined) {
                 await this.extension.manager.findRoot()
@@ -56,7 +56,7 @@ export class Cleaner {
 
     // This function wraps the glob package into a promise.
     // It behaves like the original apart from returning a Promise instead of requiring a Callback.
-    globP(pattern: string, options: glob.IOptions) : Promise<string[]> {
+    globP(pattern: string, options: glob.IOptions): Promise<string[]> {
         return new Promise((resolve, reject) => {
             glob(pattern, options, (err, files) => {
                 if (err) {
