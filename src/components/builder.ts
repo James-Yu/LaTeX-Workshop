@@ -152,7 +152,6 @@ export class Builder {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
             this.extension.buildInfo.buildStarted()
-            // @ts-ignore
             pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
