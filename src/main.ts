@@ -284,6 +284,8 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
+            extension.manager.cachedContent[e.document.fileName].content = e.document.getText()
+            extension.manager.parseFileAndSubs(e.document.fileName)
             extension.linter.lintActiveFileIfEnabledAfterInterval()
             extension.tikzPictureView.onFileChange(e.document, e.contentChanges)
         }
