@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
+import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import * as utils from '../utils'
@@ -13,7 +13,7 @@ export class Manager {
     rootFiles: { [key: string]: string }
     localRootFiles: { [key: string]: string | undefined }
     workspace: string
-    texFileTree: { [id: string]: Set<string> } = {}
+    cachedContent: { [id: string]: {content: string, children: string[]}} = {}
     fileWatcher: chokidar.FSWatcher
     bibWatcher: chokidar.FSWatcher
     filesWatched: string[]
@@ -107,7 +107,8 @@ export class Manager {
                 if (this.rootFile !== rootFile) {
                     this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
                     this.rootFile = rootFile
-                    this.findAllDependentFiles(rootFile)
+                    this.initiateFileWatcher()
+                    this.parseFileAndSubs(this.rootFile)
                 } else {
                     this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
                 }
@@ -200,155 +201,90 @@ export class Manager {
         const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
         const rootFilesExcludeGlob = rootFilesExcludePatterns.length > 0 ? '{' + rootFilesExcludePatterns.join(',') + '}' : undefined
         try {
-            const urls = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
-            for (const url of urls) {
-                const content = utils.stripComments(fs.readFileSync(url.fsPath).toString(), '%')
+            const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
+            for (const file of files) {
+                const content = utils.stripComments(fs.readFileSync(file.fsPath).toString(), '%')
                 const result = content.match(regex)
                 if (result) {
-                    const file = url.fsPath
-                    this.extension.logger.addLogMessage(`Try root file in root directory: ${file}`)
-                    const window = vscode.window
-                    if (window && window.activeTextEditor && this.isRoot(url.fsPath, window.activeTextEditor.document.fileName, true)) {
-                        this.extension.logger.addLogMessage(`Found root file in root directory: ${file}`)
-                        return file
-                    }
+                    this.extension.logger.addLogMessage(`Found root file from workspace: ${file.fsPath}`)
+                    return file.fsPath
                 }
             }
         } catch (e) {}
         return undefined
     }
 
-    isRoot(root: string, file: string, updateDependent = false): boolean {
-        if (!fs.existsSync(root)) {
-            return false
-        }
-        if (root === file) {
-            return true
-        }
-        if (updateDependent) {
-            this.findDependentFiles(root, undefined, true)
-            this.findAdditionalDependentFilesFromFls(root, true)
-        }
-        if (!this.texFileTree.hasOwnProperty(root) || !this.texFileTree.hasOwnProperty(file)) {
-            return false
-        }
-        for (const r of this.texFileTree[root]) {
-            if (this.isRoot(r, file)) {
-                return true
+    getDirtyContent(file: string, reload: boolean = false) : string {
+        for (const cachedFile of Object.keys(this.cachedContent)) {
+            if (reload) {
+                break
             }
+            if (path.relative(cachedFile, file) !== '') {
+                continue
+            }
+            return this.cachedContent[cachedFile].content
         }
-        return false
+        const fileContent = utils.stripComments(fs.readFileSync(file, 'utf-8').toString(), '%')
+        this.cachedContent[file] = {content: fileContent, children: []}
+        return fileContent
     }
 
-    findAllDependentFiles(rootFile: string) {
-        let prevWatcherClosed = false
-        if (this.fileWatcher !== undefined && this.filesWatched.indexOf(rootFile) < 0) {
-            // We have an instantiated fileWatcher, but the rootFile is not being watched.
-            // => the user has changed the root. Clean up the old watcher so we reform it.
-            this.extension.logger.addLogMessage('Root file changed -> cleaning up old file watcher.')
-            this.fileWatcher.close()
-            this.filesWatched = []
-            prevWatcherClosed = true
-            // We also clean the completions from the old project
-            this.extension.completer.reference.reset()
-            this.extension.completer.command.reset()
-            this.extension.completer.citation.reset()
-            this.extension.completer.environment.reset()
-            this.extension.completer.input.reset()
+    parseFileAndSubs(file: string, onChange: boolean = false) {
+        this.extension.logger.addLogMessage(`Parsing ${file}`)
+        if (this.filesWatched.indexOf(file) < 0) {
+            this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
+            this.fileWatcher.add(file)
+            this.filesWatched.push(file)
         }
+        const content = this.getDirtyContent(file, onChange)
+        this.cachedContent[file].children = []
+        this.parseInputFiles(content, file)
+        this.parseBibFiles(content, file)
 
-        if (prevWatcherClosed || this.fileWatcher === undefined) {
-            this.extension.logger.addLogMessage(`Instantiating a new file watcher for ${rootFile}`)
-            this.fileWatcher = chokidar.watch(rootFile, this.watcherOptions)
-            this.filesWatched.push(rootFile)
-            this.fileWatcher.on('change', (filePath: string) => {
-                if (path.extname(filePath) === '.tex') {
-                    this.clearTexFileTree(filePath)
-                    this.findDependentFiles(filePath)
-                }
-                if (filePath === rootFile) {
-                    this.findAdditionalDependentFilesFromFls(filePath)
-                }
-                this.extension.logger.addLogMessage(`File watcher: responding to change in ${filePath}`)
-                const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
-                    return
-                }
-                if (this.extension.builder.disableBuildAfterSave) {
-                    this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-                    return
-                }
-                this.extension.logger.addLogMessage(`${filePath} changed. Auto build project.`)
-                if (this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-                    this.extension.commander.build(true, this.localRootFile)
-                } else {
-                    this.extension.commander.build(true, rootFile)
-                }
-            })
-            this.fileWatcher.on('unlink', async (filePath: string) => {
-                this.extension.logger.addLogMessage(`File watcher: ${filePath} deleted.`)
-                this.fileWatcher.unwatch(filePath)
-                this.filesWatched.splice(this.filesWatched.indexOf(filePath), 1)
-                this.clearTexFileTree(filePath)
-                if (filePath === rootFile) {
-                    this.extension.logger.addLogMessage(`Deleted ${filePath} was root - triggering root search`)
-                    await this.findRoot()
-                }
-            })
-            this.clearTexFileTree(rootFile)
-            this.findDependentFiles(rootFile)
-            this.findAdditionalDependentFilesFromFls(rootFile)
-        }
+        this.onFileChange(file) // TODO!!!!!!!!!!!
     }
 
-    findDependentFiles(filePath: string, rootDir: string | undefined = undefined, fast = false) {
-        if (!rootDir) {
-            rootDir = path.dirname(filePath)
-        }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const texDirs = configuration.get('latex.texDirs') as string[]
-
-        this.extension.logger.addLogMessage(`Parsing ${filePath}`)
-        const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
-
+    parseInputFiles(content: string, baseFile: string) {
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
-        if (!this.texFileTree.hasOwnProperty(filePath)) {
-            this.texFileTree[filePath] = new Set()
-        }
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
                 break
             }
 
-            let inputFilePath: string | null
-            if (result[0].startsWith('\\subimport') || result[0].startsWith('\\subinputfrom') || result[0].startsWith('\\subincludefrom')) {
-                inputFilePath = utils.resolveFile([path.dirname(filePath)], path.join(result[1], result[2]))
-            } else if (result[0].startsWith('\\import') || result[0].startsWith('\\inputfrom') || result[0].startsWith('\\includefrom')) {
-                inputFilePath = utils.resolveFile([result[1]], result[2])
-            } else {
-                inputFilePath = utils.resolveFile([path.dirname(filePath), rootDir, ...texDirs], result[2])
-            }
+            const inputFilePath = this.parseInputFilePath(result, baseFile)
 
-            if (inputFilePath && !fs.existsSync(inputFilePath)) {
+            if (!inputFilePath) {
+                continue
+            }
+            if (!fs.existsSync(inputFilePath)) {
                 this.extension.logger.addLogMessage(`Cannot find ${inputFilePath}`)
+                continue
             }
-            // Test if we are facing circular inclusion
-            if (inputFilePath && fs.existsSync(inputFilePath) && inputFilePath !== filePath && !this.texFileTree[filePath].has(inputFilePath)) {
-                this.texFileTree[filePath].add(inputFilePath)
-                if (!fast && this.fileWatcher && this.filesWatched.indexOf(inputFilePath) < 0) {
-                    this.extension.logger.addLogMessage(`Adding ${inputFilePath} to file watcher.`)
-                    this.fileWatcher.add(inputFilePath)
-                    this.filesWatched.push(inputFilePath)
-                }
-                this.findDependentFiles(inputFilePath, rootDir, fast)
+            if (path.relative(inputFilePath, baseFile) === '') {
+                continue
             }
-        }
+            if (inputFilePath in this.cachedContent) {
+                continue
+            }
 
-        if (fast) {
-            return
+            this.cachedContent[baseFile].children.push(inputFilePath)
+            this.parseFileAndSubs(inputFilePath)
         }
+    }
 
+    parseInputFilePath(regResult: RegExpExecArray, baseFile: string) : string | null {
+        const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
+        if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
+            return utils.resolveFile([path.dirname(baseFile)], path.join(regResult[1], regResult[2]))
+        } else if (regResult[0].startsWith('\\import') || regResult[0].startsWith('\\inputfrom') || regResult[0].startsWith('\\includefrom')) {
+            return utils.resolveFile([regResult[1]], regResult[2])
+        } else {
+            return utils.resolveFile([path.dirname(baseFile), ...texDirs], regResult[2])
+        }
+    }
+
+    parseBibFiles(content: string, baseFile: string) {
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
             const result = bibReg.exec(content)
@@ -359,11 +295,78 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                this.addBibToWatcher(bib, rootDir, this.extension.manager.rootFile)
+                this.addBibToWatcher(bib, path.dirname(baseFile), this.extension.manager.rootFile)
             }
         }
+    }
 
-        this.onFileChange(filePath)
+    initiateFileWatcher() {
+        if (this.fileWatcher !== undefined && this.filesWatched.indexOf(this.rootFile) < 0) {
+            // We have an instantiated fileWatcher, but the rootFile is not being watched.
+            // => the user has changed the root. Clean up the old watcher so we reform it.
+            this.resetFileWatcher()
+            this.createFileWatcher()
+        }
+
+        if (this.fileWatcher === undefined) {
+            this.createFileWatcher()
+        }
+    }
+
+    createFileWatcher() {
+        this.extension.logger.addLogMessage(`Instantiating a new file watcher for ${this.rootFile}`)
+        this.fileWatcher = chokidar.watch(this.rootFile, this.watcherOptions)
+        this.filesWatched.push(this.rootFile)
+        this.fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
+        this.fileWatcher.on('unlink', async (file: string) => this.onWatchedFileDeleted(file))
+        // this.findAdditionalDependentFilesFromFls(this.rootFile)
+    }
+
+    resetFileWatcher() {
+        this.extension.logger.addLogMessage('Root file changed -> cleaning up old file watcher.')
+        this.fileWatcher.close()
+        this.filesWatched = []
+        // We also clean the completions from the old project
+        this.extension.completer.reference.reset()
+        this.extension.completer.command.reset()
+        this.extension.completer.citation.reset()
+        this.extension.completer.environment.reset()
+        this.extension.completer.input.reset()
+    }
+
+    onWatchedFileChanged(file: string) {
+        if (path.extname(file) === '.tex') {
+            this.parseFileAndSubs(file, true)
+        }
+        if (file === this.rootFile) {
+            this.findAdditionalDependentFilesFromFls(file)
+        }
+        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+            return
+        }
+        if (this.extension.builder.disableBuildAfterSave) {
+            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+            return
+        }
+        this.extension.logger.addLogMessage(`${file} changed. Auto build project.`)
+        if (this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
+            this.extension.commander.build(true, this.localRootFile)
+        } else {
+            this.extension.commander.build(true, file)
+        }
+    }
+
+    async onWatchedFileDeleted(file: string) {
+        this.extension.logger.addLogMessage(`File watcher: ${file} deleted.`)
+        this.fileWatcher.unwatch(file)
+        this.filesWatched.splice(this.filesWatched.indexOf(file), 1)
+        this.clearTexFileTree(file)
+        if (file === this.rootFile) {
+            this.extension.logger.addLogMessage(`Deleted ${file} was root - triggering root search`)
+            await this.findRoot()
+        }
     }
 
     findAdditionalDependentFilesFromFls(rootFile: string, fast: boolean = false) {
