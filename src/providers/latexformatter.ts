@@ -5,6 +5,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 
 import { Extension } from '../main'
+import { getDockerWrapper } from '../utils';
 
 const fullRange = doc => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -48,14 +49,6 @@ export class LaTexFormatter {
 
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             this.formatter = configuration.get<string>('latexindent.path') || 'latexindent'
-            if (configuration.get('docker.enabled')) {
-                if (process.platform === 'win32') {
-                    this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
-                } else {
-                    this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent')
-                    fs.chmodSync(this.formatter, 0o755)
-                }
-            }
             this.formatterArgs = configuration.get<string[]>('latexindent.args')
                 || ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\'']
             const pathMeta = configuration.inspect('latexindent.path')
@@ -105,7 +98,7 @@ export class LaTexFormatter {
 
     private format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
-            const configuration = vscode.workspace.getConfiguration('editor', document.uri)
+            const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
 
             if (!vscode.window.activeTextEditor) {
                 return
@@ -137,8 +130,9 @@ export class LaTexFormatter {
                 .replace(/%INDENT%/g, indent))
 
             this.extension.logger.addLogMessage(`Formatting with arguments ${args}`)
-            this.extension.manager.setEnvVar()
-            const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
+            const worker = configuration.get('docker.enabled')
+                ? cp.spawn(getDockerWrapper(this.extension.extensionRoot), [this.formatter, ...args], { stdio: 'pipe', cwd: path.dirname(document.fileName) })
+                : cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
             // handle stdout/stderr
             const stdoutBuffer = [] as string[]
             const stderrBuffer = [] as string[]

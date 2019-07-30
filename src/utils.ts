@@ -1,5 +1,6 @@
 import * as path from 'path'
 import * as fs from 'fs'
+import * as vscode from 'vscode'
 
 
 export interface ExternalCommand {
@@ -66,4 +67,10 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
         }
     }
     return null
+}
+
+// Get path to the docker wrapper script
+export function getDockerWrapper(extensionRoot: string) {
+    return vscode.workspace.getConfiguration('latex-workshop').get<string>('docker.wrapper')
+        || path.resolve(extensionRoot, process.platform === 'win32' ? './scripts/docker-wrapper.bat' : './scripts/docker-wrapper')
 }

@@ -305,7 +305,7 @@
       },
       {
         "command": "latex-workshop.showSnippetPanel",
-        "title": "Show Snippet Panel", 
+        "title": "Show Snippet Panel",
         "category": "LaTeX Workshop"
       }
     ],
@@ -1130,12 +1130,11 @@
         "latex-workshop.docker.enabled": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use the images defined in `latex-workshop.docker.image.latex` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
+          "markdownDescription": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will execute `latexmk`, `synctex`, `texcount`, and `latexindent` using `latex-workshop.docker.wrapper`."
         },
-        "latex-workshop.docker.image.latex": {
+        "latex-workshop.docker.wrapper": {
           "type": "string",
-          "default": "tianon/latex",
-          "markdownDescription": "Define the image for `latexmk`, `synctex`, `texcount`, and `latexindent`."
+          "markdownDescription": "Use `docker` to call `latexmk`, `synctex`, `texcount`, and `latexindent`. Leave empty to use the built-in wrapper script."
         },
         "latex-workshop.showContextMenu": {
           "type": "boolean",

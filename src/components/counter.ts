@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
 
 import {Extension} from '../main'
+import { getDockerWrapper } from '../utils';
 
 export class Counter {
     extension: Extension
@@ -22,16 +22,10 @@ export class Counter {
             args.push('-merge')
         }
         let command = configuration.get('texcount.path') as string
-        if (configuration.get('docker.enabled')) {
-            if (process.platform === 'win32') {
-                command = path.resolve(this.extension.extensionRoot, './scripts/texcount.bat')
-            } else {
-                command = path.resolve(this.extension.extensionRoot, './scripts/texcount')
-                fs.chmodSync(command, 0o755)
-            }
-        }
-        this.extension.manager.setEnvVar()
-        const proc = cp.spawn(command, args.concat([path.basename(file)]), {cwd: path.dirname(file)})
+        const docker = configuration.get('docker.enabled')
+        const proc = docker
+            ? cp.spawn(getDockerWrapper(this.extension.extensionRoot), [command, ...args, path.basename(file)], { cwd: path.dirname(file) })
+            : cp.spawn(command, args.concat([path.basename(file)]), { cwd: path.dirname(file) })
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 

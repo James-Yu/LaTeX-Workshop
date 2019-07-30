@@ -7,7 +7,7 @@ import * as pdfjsLib from 'pdfjs-dist'
 import {Mutex} from '../lib/await-semaphore'
 
 import {Extension} from '../main'
-import {ExternalCommand} from '../utils'
+import {ExternalCommand, getDockerWrapper} from '../utils'
 
 const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'
@@ -185,15 +185,16 @@ export class Builder {
         if (index === 0) {
             this.extension.logger.clearCompilerMessage()
         }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (index > 0) {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
             if (configuration.get('latex.build.clearLog.everyRecipeStep.enabled')) {
                 this.extension.logger.clearCompilerMessage()
             }
         }
+        const docker = configuration.get('docker.enabled')
+
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
-        this.extension.manager.setEnvVar()
         const envVars: ProcessEnv = {}
         Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
         if (steps[index].env) {
@@ -208,6 +209,8 @@ export class Builder {
                 command += ' ' + (steps[index].args as string[])[0]
             }
             this.currentProcess = cp.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
+        } else if (docker) {
+            this.currentProcess = cp.spawn(getDockerWrapper(this.extension.extensionRoot), [steps[index].command, ...steps[index].args || []], {cwd: path.dirname(rootFile), env: envVars})
         } else {
             this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
         }
@@ -371,20 +374,6 @@ export class Builder {
 
         const docker = configuration.get('docker.enabled')
         steps.forEach(step => {
-            if (docker) {
-                switch (step.command) {
-                    case 'latexmk':
-                        if (process.platform === 'win32') {
-                            step.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk.bat')
-                        } else {
-                            step.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk')
-                            fs.chmodSync(step.command, 0o755)
-                        }
-                        break
-                    default:
-                        break
-                }
-            }
             const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
             const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
             if (step.args) {

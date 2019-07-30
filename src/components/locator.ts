@@ -5,6 +5,7 @@ import * as cp from 'child_process'
 import * as synctexjs from './synctex'
 
 import {Extension} from '../main'
+import { getDockerWrapper } from '../utils';
 
 export type SyncTeXRecordForward = {
     page: number;
@@ -164,16 +165,9 @@ export class Locator {
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
-        if (docker) {
-            if (process.platform === 'win32') {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
-            } else {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex')
-                fs.chmodSync(command, 0o755)
-            }
-        }
-        this.extension.manager.setEnvVar()
-        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
+        const proc = docker
+            ? cp.spawn(getDockerWrapper(this.extension.extensionRoot), [command, ...args], { cwd: path.dirname(pdfFile) })
+            : cp.spawn(command, args, { cwd: path.dirname(pdfFile) })
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -221,16 +215,9 @@ export class Locator {
         this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
 
         let command = configuration.get('synctex.path') as string
-        if (docker) {
-            if (process.platform === 'win32') {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
-            } else {
-                command = path.resolve(this.extension.extensionRoot, './scripts/synctex')
-                fs.chmodSync(command, 0o755)
-            }
-        }
-        this.extension.manager.setEnvVar()
-        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})
+        const proc = docker
+            ? cp.spawn(getDockerWrapper(this.extension.extensionRoot), [command, ...args], { cwd: path.dirname(pdfPath) })
+            : cp.spawn(command, args, { cwd: path.dirname(pdfPath) })
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -434,7 +421,6 @@ export class Locator {
                                                       .replace(/%LINE%/g, line.toString())
                                                       .replace(/%TEX%/g, texFile))
         }
-        this.extension.manager.setEnvVar()
         cp.spawn(command.command, command.args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
     }
