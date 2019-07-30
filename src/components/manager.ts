@@ -13,7 +13,7 @@ export class Manager {
     rootFiles: { [key: string]: string }
     localRootFiles: { [key: string]: string | undefined }
     workspace: string
-    cachedContent: { [id: string]: {content: string, children: string[]}} = {}
+    cachedContent: { [id: string]: {content: string, children: {index: number, file: string}[]}} = {}
     fileWatcher: chokidar.FSWatcher
     bibWatcher: chokidar.FSWatcher
     filesWatched: string[]
@@ -256,6 +256,32 @@ export class Manager {
         this.parseFlsFile(file)
     }
 
+    /* This function returns the flattened content from the given file,
+       typically the root file. */
+    getContent(file: string, fileTrace: string[] = []): string {
+        // Here we make a copy, so that the tree structure of tex dependency
+        // Can be maintained. For instance, main -> s1 and s2, both of which
+        // has s3 as a subfile. This subtrace will allow s3 to be expanded in
+        // both s1 and s2.
+        const subFileTrace = Array.from(fileTrace)
+        subFileTrace.push(file)
+        if (this.cachedContent[file].children.length === 0) {
+            return this.cachedContent[file].content
+        }
+        let content = this.cachedContent[file].content
+        // Do it reverse, so that we can directly insert the new content without
+        // messing up the previous line numbers.
+        for (let index = this.cachedContent[file].children.length - 1; index >=0; index--) {
+            const child = this.cachedContent[file].children[index]
+            if (subFileTrace.indexOf(child.file) > -1) {
+                continue
+            }
+            const pos = Math.min(content.length, child.index)
+            content = [content.slice(0, pos), this.getContent(child.file, subFileTrace), content.slice(pos)].join('')
+        }
+        return content
+    }
+
     private parseInputFiles(content: string, baseFile: string) {
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
         while (true) {
@@ -272,7 +298,10 @@ export class Manager {
                 continue
             }
 
-            this.cachedContent[baseFile].children.push(inputFile)
+            this.cachedContent[baseFile].children.push({
+                index: result.index,
+                file: inputFile
+            })
 
             if (inputFile in this.cachedContent) {
                 continue
@@ -335,7 +364,10 @@ export class Manager {
             }
             if (path.extname(inputFile) === '.tex') {
                 // Parse tex files as imported subfiles.
-                this.cachedContent[baseFile].children.push(inputFile)
+                this.cachedContent[baseFile].children.push({
+                    index: Number.MAX_VALUE,
+                    file: inputFile
+                })
                 this.parseFileAndSubs(inputFile)
             } else if (this.fileWatcher && this.filesWatched.indexOf(inputFile) < 0) {
                 // Watch non-tex files.
