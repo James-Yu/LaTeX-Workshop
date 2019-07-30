@@ -368,6 +368,12 @@ export async function activate(context: vscode.ExtensionContext) {
             })
         }
     })
+
+    const api = {
+        getGraphicsPath: () => extension.completer.input.graphicsPath
+    }
+
+    return api
 }
 
 export class Extension {
