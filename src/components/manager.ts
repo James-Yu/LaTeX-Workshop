@@ -14,6 +14,7 @@ export class Manager {
     localRootFiles: { [key: string]: string | undefined }
     workspace: string
     cachedContent: { [id: string]: {content: string, children: {index: number, file: string}[]}} = {}
+    private cachedFullContent: string | undefined
     fileWatcher: chokidar.FSWatcher
     bibWatcher: chokidar.FSWatcher
     filesWatched: string[]
@@ -251,6 +252,7 @@ export class Manager {
         }
         const content = this.getDirtyContent(file, onChange)
         this.cachedContent[file].children = []
+        this.cachedFullContent = undefined
         this.parseInputFiles(content, file)
         this.parseBibFiles(content, file)
         this.parseFlsFile(file)
@@ -263,9 +265,15 @@ export class Manager {
         // Can be maintained. For instance, main -> s1 and s2, both of which
         // has s3 as a subfile. This subtrace will allow s3 to be expanded in
         // both s1 and s2.
+        if (this.cachedFullContent && file === this.rootFile) {
+            return this.cachedFullContent
+        }
         const subFileTrace = Array.from(fileTrace)
         subFileTrace.push(file)
         if (this.cachedContent[file].children.length === 0) {
+            if (file === this.rootFile) {
+                this.cachedFullContent = this.cachedContent[file].content
+            }
             return this.cachedContent[file].content
         }
         let content = this.cachedContent[file].content
@@ -278,6 +286,9 @@ export class Manager {
             }
             const pos = Math.min(content.length, child.index)
             content = [content.slice(0, pos), this.getContent(child.file, subFileTrace), content.slice(pos)].join('')
+        }
+        if (file === this.rootFile) {
+            this.cachedFullContent = content
         }
         return content
     }
