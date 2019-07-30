@@ -379,6 +379,7 @@ export async function activate(context: vscode.ExtensionContext) {
 export class Extension {
     packageInfo
     extensionRoot: string
+    utilities: vscode.Extension<{pasteImage: (imgFile?: string) => void}> | undefined
     logger: Logger
     buildInfo: BuildInfo
     commander: Commander
@@ -424,6 +425,11 @@ export class Extension {
         this.paster = new Paster(this)
         this.tikzPictureView = new TikzPictureView(this)
         this.snippetPanel = new SnippetPanel(this)
+
+        this.utilities = vscode.extensions.getExtension('tecosaur.latex-utilities')
+        if (this.utilities !== undefined && this.utilities.isActive === false) {
+            this.utilities.activate()
+        }
 
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
