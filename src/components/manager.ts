@@ -7,19 +7,25 @@ import * as utils from '../utils'
 
 import {Extension} from '../main'
 
+interface Content {
+    [id: string]: { // tex file name
+        content: string, // the dirty (under editing) contents
+        children: { // sub-files, should be tex or plain files
+            index: number, // the index of character sub-content is inserted
+            file: string // the path to the sub-file
+        }[]
+    }
+}
 
 export class Manager {
-    extension: Extension
-    rootFiles: { [key: string]: string }
-    localRootFiles: { [key: string]: string | undefined }
-    workspace: string
-    cachedContent: { [id: string]: {content: string, children: {index: number, file: string}[]}} = {}
-    private cachedFullContent: string | undefined
-    fileWatcher: chokidar.FSWatcher
-    bibWatcher: chokidar.FSWatcher
-    filesWatched: string[]
-    bibsWatched: string[]
-    watcherOptions: chokidar.WatchOptions = {
+    cachedContent: Content = {}
+
+    private extension: Extension
+    private fileWatcher: chokidar.FSWatcher
+    private bibWatcher: chokidar.FSWatcher
+    private filesWatched: string[] = []
+    private bibsWatched: string[] = []
+    private watcherOptions: chokidar.WatchOptions = {
         usePolling: true,
         interval: 300,
         binaryInterval: 1000
@@ -27,50 +33,50 @@ export class Manager {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.filesWatched = []
-        this.bibsWatched = []
-        this.rootFiles = {}
-        this.localRootFiles = {}
-        this.workspace = ''
     }
 
-    getOutputDir(texPath: string) {
+    /* Returns the output directory developed according to the input tex path
+       and 'latex.outDir' config. If undefined is passed in, the default root
+       file is used. */
+    getOutDir(texPath?: string) {
+        if (texPath === undefined) {
+            texPath = this.rootFile
+        }
         const doc = texPath.replace(/\.tex$/, '').split(path.sep).join('/')
         const docfile = path.basename(texPath, '.tex')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        let outDir = (configuration.get('latex.outDir') as string)
-        outDir = outDir.replace(/%DOC%/g, docker ? docfile : doc)
-                    .replace(/%DOCFILE%/g, docfile)
-                    .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
-                    .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
-        return outDir
+        let out = (configuration.get('latex.outDir') as string)
+        return out.replace(/%DOC%/g, docker ? docfile : doc)
+                  .replace(/%DOCFILE%/g, docfile)
+                  .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
+                  .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
     }
 
     get rootDir() {
         return path.dirname(this.rootFile)
     }
 
+    private rootFiles: { [key: string]: string } = {}
     get rootFile() {
-        return this.rootFiles[this.workspace]
+        return this.rootFiles[this.workspaceRootDir]
     }
-
     set rootFile(root: string) {
-        this.rootFiles[this.workspace] = root
+        this.rootFiles[this.workspaceRootDir] = root
     }
 
+    private localRootFiles: { [key: string]: string | undefined } = {}
     get localRootFile() {
-        return this.localRootFiles[this.workspace]
+        return this.localRootFiles[this.workspaceRootDir]
     }
-
     set localRootFile(localRoot: string | undefined) {
-        this.localRootFiles[this.workspace] = localRoot
+        this.localRootFiles[this.workspaceRootDir] = localRoot
     }
 
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
         let outputDir = './'
         if (respectOutDir) {
-            outputDir = this.getOutputDir(texPath)
+            outputDir = this.getOutDir(texPath)
         }
         return path.resolve(path.dirname(texPath), outputDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
@@ -79,43 +85,45 @@ export class Manager {
         return (id === 'tex' || id === 'latex' || id === 'doctex')
     }
 
-
-    updateWorkspace() {
-        let wsroot = vscode.workspace.rootPath
-        const activeTextEditor = vscode.window.activeTextEditor
-        if (activeTextEditor) {
-            const wsfolder = vscode.workspace.getWorkspaceFolder(activeTextEditor.document.uri)
-            if (wsfolder) {
-                wsroot = wsfolder.uri.fsPath
-            }
+    private workspaceRootDir: string = ''
+    private findWorkspace() {
+        // Fallback to infer workspace from the root file
+        let uri = vscode.Uri.parse(this.rootFile)
+        if (vscode.window.activeTextEditor) {
+            // If we have an active editor, choose the one from possibly
+            // multiple workspaces that contains this editing file
+            uri = vscode.window.activeTextEditor.document.uri
         }
-        if (wsroot) {
-            if (wsroot !== this.workspace) {
-                this.workspace = wsroot
-            }
+        const wsfolder = vscode.workspace.getWorkspaceFolder(uri)
+        if (wsfolder) {
+            // If we can find a match
+            this.workspaceRootDir = wsfolder.uri.fsPath
         } else {
-            this.workspace = ''
+            this.workspaceRootDir = ''
         }
     }
 
     async findRoot(): Promise<string | undefined> {
-        this.updateWorkspace()
+        this.findWorkspace()
         this.localRootFile = undefined
         const findMethods = [() => this.findRootFromMagic(), () => this.findRootFromActive(), () => this.findRootInWorkspace()]
         for (const method of findMethods) {
             const rootFile = await method()
-            if (rootFile !== undefined) {
-                if (this.rootFile !== rootFile) {
-                    this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
-                    this.rootFile = rootFile
-                    this.initiateFileWatcher()
-                    this.initiateBibWatcher()
-                    this.parseFileAndSubs(this.rootFile)
-                } else {
-                    this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
-                }
-                return rootFile
+            if (rootFile === undefined) {
+                continue
             }
+            if (this.rootFile !== rootFile) {
+                this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
+                this.rootFile = rootFile
+                this.initiateFileWatcher()
+                this.initiateBibWatcher()
+                this.parseFileAndSubs(this.rootFile)
+                this.extension.structureProvider.refresh()
+                this.extension.structureProvider.update()
+            } else {
+                this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
+            }
+            return rootFile
         }
         return undefined
     }
@@ -193,7 +201,7 @@ export class Manager {
     private async findRootInWorkspace(): Promise<string | undefined> {
         const regex = /\\begin{document}/m
 
-        if (!this.workspace) {
+        if (!this.workspaceRootDir) {
             return undefined
         }
 
@@ -258,6 +266,7 @@ export class Manager {
         this.parseFlsFile(file)
     }
 
+    private cachedFullContent: string | undefined
     /* This function returns the flattened content from the given file,
        typically the root file. */
     getContent(file: string, fileTrace: string[] = []): string {
@@ -284,6 +293,7 @@ export class Manager {
             if (subFileTrace.indexOf(child.file) > -1) {
                 continue
             }
+            // As index can be 1E307 (included by fls file), here we need a min.
             const pos = Math.min(content.length, child.index)
             content = [content.slice(0, pos), this.getContent(child.file, subFileTrace), content.slice(pos)].join('')
         }
@@ -354,7 +364,7 @@ export class Manager {
        the aux files are parsed for any possible bib file. */
     parseFlsFile(baseFile: string) {
         const rootDir = path.dirname(baseFile)
-        const outDir = this.getOutputDir(baseFile)
+        const outDir = this.getOutDir(baseFile)
         const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
         if (!fs.existsSync(flsFile)) {
             return

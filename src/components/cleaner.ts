@@ -24,7 +24,7 @@ export class Cleaner {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let globs = configuration.get('latex.clean.fileTypes') as string[]
-        const outdir = this.extension.manager.getOutputDir(rootFile)
+        const outdir = this.extension.manager.getOutDir(rootFile)
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
             globs = globs.map(globType => './**/' + globType)
         }
