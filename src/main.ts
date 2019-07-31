@@ -369,7 +369,11 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     })
 
-    return extension
+    return {
+        getRootFile: () => extension.manager.rootFile,
+        getGraphicsPath: () => extension.completer.input.graphicsPath,
+        setEnvVar: () => extension.manager.setEnvVar()
+    }
 }
 
 export class Extension {
