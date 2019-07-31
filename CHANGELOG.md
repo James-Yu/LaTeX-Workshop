@@ -1,5 +1,17 @@
 # Change Log
 
+## [7.3.0] - 2019-07-31
+
+### Added
+- Add a config for always loading extra packages in auto-completion.
+- (#1511) A snippet panel.
+
+### Fixed
+- (#1521) Fixed several bugs on `tikz` preview.
+- (#1523) Syntax highlighting for `\autocites`.
+- (#1524) Add beamer frames to the outline.
+- (#1526) Add intellisense for code input `\lstinputlisting` and `\verbatiminput`.
+
 ## [7.2.0] - 2019-07-20
 
 ### Added

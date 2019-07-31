@@ -369,6 +369,8 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     })
 
+    console.log(`LaTeX Workshop version ${extension.packageInfo.version} activated.`)
+
     return {
         getRootFile: () => extension.manager.rootFile,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
