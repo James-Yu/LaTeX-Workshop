@@ -155,16 +155,17 @@ export class Builder {
             pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
-            // Create sub directories of output directory
-            let outDir = this.extension.manager.getOutputDir(rootFile)
-            const directories = new Set<string>(this.extension.manager.filesWatched
-                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
-            if (!path.isAbsolute(outDir)) {
-                outDir = path.resolve(this.extension.manager.rootDir, outDir)
-            }
-            directories.forEach(directory => {
-                fs.ensureDirSync(path.resolve(outDir, directory))
-            })
+            // Edit: I did not see the necessity of this block @james-yu 07.31.2019
+            // // Create sub directories of output directory
+            // let outDir = this.extension.manager.getOutDir()
+            // const directories = new Set<string>(this.extension.manager.filesWatched
+            //     .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
+            // if (!path.isAbsolute(outDir)) {
+            //     outDir = path.resolve(this.extension.manager.rootDir, outDir)
+            // }
+            // directories.forEach(directory => {
+            //     fs.ensureDirSync(path.resolve(outDir, directory))
+            // })
             this.buildInitiator(rootFile, recipe, releaseBuildMutex)
         } catch (e) {
             this.extension.buildInfo.buildEnded()
@@ -387,12 +388,13 @@ export class Builder {
             }
             const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
             const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+            const outDir = this.extension.manager.getOutDir()
             if (step.args) {
                 step.args = step.args.map(arg => arg.replace(/%DOC%/g, docker ? docfile : doc)
                                                     .replace(/%DOCFILE%/g, docfile)
                                                     .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
                                                     .replace(/%TMPDIR%/g, this.tmpDir)
-                                                    .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile)))
+                                                    .replace(/%OUTDIR%/g, outDir))
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
@@ -402,7 +404,7 @@ export class Builder {
                                                  .replace(/%DOCFILE%/g, docfile)
                                                  .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
                                                  .replace(/%TMPDIR%/g, this.tmpDir)
-                                                 .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile))
+                                                 .replace(/%OUTDIR%/g, outDir)
                     }
                 })
             }
