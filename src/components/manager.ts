@@ -117,7 +117,7 @@ export class Manager {
                 this.rootFile = rootFile
                 this.initiateFileWatcher()
                 this.initiateBibWatcher()
-                this.parseFileAndSubs(this.rootFile)
+                await this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
@@ -246,7 +246,7 @@ export class Manager {
        provided `file` is re-parsed, together with any new files that were not
        previously watched/considered. Since this function is called upon content
        changes, this lazy loading should be fine. */
-    parseFileAndSubs(file: string, onChange: boolean = false) {
+       async parseFileAndSubs(file: string, onChange: boolean = false) {
         this.extension.logger.addLogMessage(`Parsing ${file}`)
         if (this.filesWatched.indexOf(file) < 0) {
             // The file is first time considered by the extension.
@@ -363,7 +363,7 @@ export class Manager {
        file. All input files are considered as included subfiles/non-tex files,
        and all output files will be check if there are aux files related. If so,
        the aux files are parsed for any possible bib file. */
-    parseFlsFile(baseFile: string) {
+    async parseFlsFile(baseFile: string) {
         const rootDir = path.dirname(baseFile)
         const outDir = this.getOutDir(baseFile)
         const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
