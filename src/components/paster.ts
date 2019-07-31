@@ -30,12 +30,6 @@ export class Paster {
 
         // if empty try pasting an image from clipboard
         if (clipboardContents === '') {
-            if (fileUri.scheme === 'untitled') {
-                vscode.window.showInformationMessage('You need to the save the current editor before pasting an image')
-
-                return
-            }
-
             if (this.extension.utilities) {
                 this.extension.utilities.exports.pasteImage()
             } else {
