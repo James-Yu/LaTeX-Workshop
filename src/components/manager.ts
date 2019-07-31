@@ -88,7 +88,7 @@ export class Manager {
     private workspaceRootDir: string = ''
     private findWorkspace() {
         // Fallback to infer workspace from the root file
-        let uri = vscode.Uri.parse(this.rootFile)
+        let uri = vscode.Uri.parse(this.rootFile ? this.rootFile : 'file:///')
         if (vscode.window.activeTextEditor) {
             // If we have an active editor, choose the one from possibly
             // multiple workspaces that contains this editing file
@@ -263,7 +263,8 @@ export class Manager {
         this.cachedFullContent = undefined
         this.parseInputFiles(content, file)
         this.parseBibFiles(content, file)
-        this.parseFlsFile(file)
+        // It seems that we do not need to parse so many fls files.
+        // this.parseFlsFile(file)
     }
 
     private cachedFullContent: string | undefined
