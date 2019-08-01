@@ -10,7 +10,7 @@ const bibEntries = ['article', 'book', 'bookinbook', 'booklet', 'collection', 'c
                     'suppperiodical', 'techreport', 'thesis', 'unpublished']
 
 interface CitationRecord {
-    key: string
+    key: string,
     [key: string]: string | undefined
 }
 

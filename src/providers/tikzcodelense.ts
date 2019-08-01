@@ -23,7 +23,7 @@ export class TikzCodeLense implements vscode.CodeLensProvider {
 }
 
 interface TikzPictureMatch {
-    document: vscode.TextDocument
+    document: vscode.TextDocument,
     range: vscode.Range
 }
 
