@@ -37,16 +37,20 @@ export class Manager {
 
     /* Returns the output directory developed according to the input tex path
        and 'latex.outDir' config. If undefined is passed in, the default root
-       file is used. */
+       file is used. If there is not root file, './' is output. */
     getOutDir(texPath?: string) {
         if (texPath === undefined) {
             texPath = this.rootFile
+        }
+        // rootFile is also undefined
+        if (texPath === undefined) {
+            return './'
         }
         const doc = texPath.replace(/\.tex$/, '').split(path.sep).join('/')
         const docfile = path.basename(texPath, '.tex')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        let out = (configuration.get('latex.outDir') as string)
+        const out = (configuration.get('latex.outDir') as string)
         return out.replace(/%DOC%/g, docker ? docfile : doc)
                   .replace(/%DOCFILE%/g, docfile)
                   .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
@@ -54,16 +58,16 @@ export class Manager {
     }
 
     get rootDir() {
-        return path.dirname(this.rootFile)
+        return this.rootFile ? path.dirname(this.rootFile) : undefined
     }
 
-    // Here we have something complex. We use a private rootFiles to hold the 
+    // Here we have something complex. We use a private rootFiles to hold the
     // roots of each workspace, and use rootFile to return the cached content.
-    private rootFiles: { [key: string]: string } = {}
+    private rootFiles: { [key: string]: string | undefined } = {}
     get rootFile() {
         return this.rootFiles[this.workspaceRootDir]
     }
-    set rootFile(root: string) {
+    set rootFile(root: string | undefined) {
         this.rootFiles[this.workspaceRootDir] = root
     }
 
@@ -76,11 +80,11 @@ export class Manager {
     }
 
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
-        let outputDir = './'
+        let outDir = './'
         if (respectOutDir) {
-            outputDir = this.getOutDir(texPath)
+            outDir = this.getOutDir(texPath)
         }
-        return path.resolve(path.dirname(texPath), outputDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
+        return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
     hasTexId(id: string) {
@@ -107,7 +111,7 @@ export class Manager {
         for (const workspaceFolder of vscode.workspace.workspaceFolders) {
             if (activeFile.indexOf(workspaceFolder.uri.fsPath) > -1) {
                 this.workspaceRootDir = workspaceFolder.uri.fsPath
-                return 
+                return
             }
         }
         // Guess that the first workspace is the chosen one.
@@ -240,7 +244,7 @@ export class Manager {
         return undefined
     }
 
-    private getDirtyContent(file: string, reload: boolean = false) : string {
+    private getDirtyContent(file: string, reload: boolean = false): string {
         for (const cachedFile of Object.keys(this.cachedContent)) {
             if (reload) {
                 break
@@ -348,7 +352,7 @@ export class Manager {
         }
     }
 
-    private parseInputFilePath(regResult: RegExpExecArray, baseFile: string) : string | null {
+    private parseInputFilePath(regResult: RegExpExecArray, baseFile: string): string | null {
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
             return utils.resolveFile([path.dirname(baseFile)], path.join(regResult[1], regResult[2]))
@@ -473,7 +477,9 @@ export class Manager {
     }
 
     private initiateFileWatcher() {
-        if (this.fileWatcher !== undefined && this.filesWatched.indexOf(this.rootFile) < 0) {
+        if (this.fileWatcher !== undefined &&
+            this.rootFile !== undefined &&
+            this.filesWatched.indexOf(this.rootFile) < 0) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
             // => the user has changed the root. Clean up the old watcher so we reform it.
             this.resetFileWatcher()
@@ -487,8 +493,10 @@ export class Manager {
 
     private createFileWatcher() {
         this.extension.logger.addLogMessage(`Instantiating a new file watcher for ${this.rootFile}`)
-        this.fileWatcher = chokidar.watch(this.rootFile, this.watcherOptions)
-        this.filesWatched.push(this.rootFile)
+        if (this.rootFile) {
+            this.fileWatcher = chokidar.watch(this.rootFile, this.watcherOptions)
+            this.filesWatched.push(this.rootFile)
+        }
         this.fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
         this.fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
         // this.findAdditionalDependentFilesFromFls(this.rootFile)

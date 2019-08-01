@@ -25,7 +25,10 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
 
         let dirs: string[] = []
         if (line.match(regexInput)) {
-            dirs = [path.dirname(vscode.window.activeTextEditor.document.fileName), this.extension.manager.rootDir]
+            dirs = [path.dirname(vscode.window.activeTextEditor.document.fileName)]
+            if (this.extension.manager.rootDir !== undefined) {
+                dirs.push(this.extension.manager.rootDir)
+            }
         }
 
         const result = line.match(regexImport)

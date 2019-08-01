@@ -120,7 +120,11 @@ export class Locator {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const rootFile = this.extension.manager.rootFile
-        if (! pdfFile) {
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage('Cannot find root file.')
+            return
+        }
+        if (!pdfFile) {
             this.extension.manager.findRoot()
             pdfFile = this.extension.manager.tex2pdf(rootFile)
         }
