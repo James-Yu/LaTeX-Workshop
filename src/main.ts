@@ -27,7 +27,6 @@ import {SectionNodeProvider, StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
-import { Paster } from './components/paster'
 import { TikzCodeLense } from './providers/tikzcodelense'
 import { TikzPictureView } from './components/tikzpictureview'
 import { SnippetPanel } from './components/snippetpanel'
@@ -251,8 +250,6 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
-    context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.formattedPaste', () => extension.paster.paste()))
-
     context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.viewtikzpicture', (document, range) => extension.tikzPictureView.view(document, range)))
     context.subscriptions.push(vscode.languages.registerCodeLensProvider({language: 'latex', scheme: 'file'}, new TikzCodeLense()))
 
@@ -361,6 +358,14 @@ export async function activate(context: vscode.ExtensionContext) {
             })
         }
     })
+
+    console.log(`LaTeX Workshop version ${extension.packageInfo.version} activated.`)
+
+    return {
+        getRootFile: () => extension.manager.rootFile,
+        getGraphicsPath: () => extension.completer.input.graphicsPath,
+        setEnvVar: () => extension.manager.setEnvVar()
+    }
 }
 
 export class Extension {
@@ -384,7 +389,6 @@ export class Extension {
     envPair: EnvPair
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
-    paster: Paster
     tikzPictureView: TikzPictureView
     snippetPanel: SnippetPanel
 
@@ -408,7 +412,6 @@ export class Extension {
         this.envPair = new EnvPair(this)
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
-        this.paster = new Paster(this)
         this.tikzPictureView = new TikzPictureView(this)
         this.snippetPanel = new SnippetPanel(this)
 
