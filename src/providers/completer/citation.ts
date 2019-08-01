@@ -19,7 +19,7 @@ export class Citation {
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: {citations: CitationRecord[], rootFiles: string[] }} = {}
     citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
-    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string, rootFile: string}} = {}
+    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string, rootFile: string | undefined}} = {}
     refreshTimer: number
 
     constructor(extension: Extension) {
@@ -43,7 +43,8 @@ export class Citation {
         // First, we deal with citation items from bib files
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
-            if (this.citationInBib[bibPath].rootFiles.length === 0 || this.citationInBib[bibPath].rootFiles.indexOf(rootFile) > -1) {
+            if (this.citationInBib[bibPath].rootFiles.length === 0 ||
+                rootFile !== undefined && this.citationInBib[bibPath].rootFiles.indexOf(rootFile) > -1) {
                 this.citationInBib[bibPath].citations.forEach(item => items.push(item))
             }
         })
@@ -301,7 +302,7 @@ export class Citation {
 
     getTheBibliographyItems(content: string) {
         const itemReg = /^(?!%).*\\bibitem(?:\[[^[\]{}]*\])?{([^}]*)}/gm
-        const items = {}
+        const items: {[id: string]: {citation: string, text: string, position: vscode.Position}} = {}
         while (true) {
             const result = itemReg.exec(content)
             if (result === null) {

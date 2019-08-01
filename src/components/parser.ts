@@ -128,8 +128,12 @@ export class Parser {
     }
 
     parseLaTeX(log: string, rootFile?: string) {
-        if (! rootFile) {
+        if (rootFile === undefined) {
             rootFile = this.extension.manager.rootFile
+        }
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage('How can you reach this point?')
+            return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
@@ -292,7 +296,8 @@ export class Parser {
             // path with what is provided
             const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
             linterLog.push({
-                file: path.isAbsolute(filePath) ? filePath : path.resolve(this.extension.manager.rootDir, filePath),
+                file: (!path.isAbsolute(filePath) && this.extension.manager.rootDir !== undefined) ?
+                      path.resolve(this.extension.manager.rootDir, filePath) : filePath,
                 line: parseInt(match[2]),
                 position: parseInt(match[3]),
                 length: parseInt(match[4]),

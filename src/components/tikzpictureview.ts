@@ -289,9 +289,14 @@ export class TikzPictureView {
                     await this.extension.manager.findRoot()
                 }
                 const rootDir = this.extension.manager.rootDir
-                const newCommandFileAbs = path.join(rootDir, newCommandFile)
-                if (fs.existsSync(newCommandFileAbs)) {
-                    commandsString = await fs.readFileSync(newCommandFileAbs, { encoding: 'utf8' })
+                if (rootDir === undefined) {
+                    this.extension.logger.addLogMessage(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
+                    commandsString = ''
+                } else {
+                    const newCommandFileAbs = path.join(rootDir, newCommandFile)
+                    if (fs.existsSync(newCommandFileAbs)) {
+                        commandsString = await fs.readFileSync(newCommandFileAbs, { encoding: 'utf8' })
+                    }
                 }
             }
         }

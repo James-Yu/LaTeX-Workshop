@@ -93,7 +93,8 @@ export class Input {
                 }
                 break
             case 'input': {
-                const rootDir = path.dirname(this.extension.manager.rootFile)
+                // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
+                const rootDir = this.extension.manager.rootDir || path.dirname(currentFile)
                 const command = payload[2]
                 if (command === 'includegraphics' && this.graphicsPath.length > 0) {
                     baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
