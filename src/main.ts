@@ -141,42 +141,40 @@ function conflictExtensionCheck() {
 }
 
 function newVersionMessage(extensionPath: string, extension: Extension) {
-    return new Promise((resolve, reject) => {
-        fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
-            if (err) {
-                extension.logger.addLogMessage('Cannot read package information.')
-                resolve()
+    fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
+        if (err) {
+            extension.logger.addLogMessage('Cannot read package information.')
+            return
+        }
+        extension.packageInfo = JSON.parse(data.toString())
+        extension.logger.addLogMessage(`LaTeX Workshop version: ${extension.packageInfo.version}`)
+        if (fs.existsSync(`${extensionPath}${path.sep}VERSION`) &&
+            fs.readFileSync(`${extensionPath}${path.sep}VERSION`).toString() === extension.packageInfo.version) {
+            return
+        }
+        fs.writeFileSync(`${extensionPath}${path.sep}VERSION`, extension.packageInfo.version)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!(configuration.get('message.update.show') as boolean)) {
+            return
+        }
+        vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${extension.packageInfo.version}.`,
+            'Change log', 'Star the project', 'Disable this message')
+        .then(option => {
+            switch (option) {
+                case 'Change log':
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
+                    break
+                case 'Star the project':
+                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
+                        'https://github.com/James-Yu/LaTeX-Workshop'))
+                    break
+                case 'Disable this message':
+                    configuration.update('message.update.show', false, true)
+                    break
+                default:
+                    break
             }
-            extension.packageInfo = JSON.parse(data.toString())
-            extension.logger.addLogMessage(`LaTeX Workshop version: ${extension.packageInfo.version}`)
-            if (fs.existsSync(`${extensionPath}${path.sep}VERSION`) &&
-                fs.readFileSync(`${extensionPath}${path.sep}VERSION`).toString() === extension.packageInfo.version) {
-                resolve()
-            }
-            fs.writeFileSync(`${extensionPath}${path.sep}VERSION`, extension.packageInfo.version)
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (!(configuration.get('message.update.show') as boolean)) {
-                resolve()
-            }
-            vscode.window.showInformationMessage(`LaTeX Workshop updated to version ${extension.packageInfo.version}.`,
-                'Change log', 'Star the project', 'Disable this message')
-            .then(option => {
-                switch (option) {
-                    case 'Change log':
-                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                            'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
-                        break
-                    case 'Star the project':
-                        vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                            'https://github.com/James-Yu/LaTeX-Workshop'))
-                        break
-                    case 'Disable this message':
-                        configuration.update('message.update.show', false, true)
-                        break
-                    default:
-                        break
-                }
-            })
         })
     })
 }
@@ -349,7 +347,7 @@ export async function activate(context: vscode.ExtensionContext) {
     obsoleteConfigCheck(extension)
     conflictExtensionCheck()
     checkDeprecatedFeatures(extension)
-    await newVersionMessage(context.extensionPath, extension)
+    newVersionMessage(context.extensionPath, extension)
 
     vscode.window.visibleTextEditors.forEach(editor => {
         const e = editor.document
