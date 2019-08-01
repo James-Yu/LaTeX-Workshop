@@ -1336,6 +1336,11 @@
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint --cache --ext .ts ."
+    }
+  },
   "capabilities": {
     "completionProvider": {
       "resolveProvider": "true"
@@ -1372,6 +1377,7 @@
     "@typescript-eslint/parser": "^1.13.0",
     "eslint": "^5.16.0",
     "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.2",
     "ts-loader": "^5.2.1",
     "tslint": "^5.0.0",
     "typescript": "^3.5.3",
