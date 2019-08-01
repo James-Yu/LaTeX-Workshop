@@ -584,7 +584,7 @@ export class HoverProvider implements vscode.HoverProvider {
         let base = 0
         let m: RegExpMatchArray | null = s.match(regex)
         while (m) {
-            if (m && m.index !== undefined) {
+            if (m.index !== undefined) {
                 const matchStart = base + m.index
                 const matchEnd = base + m.index + m[0].length
                 if ( matchStart <= position.character && position.character <= matchEnd ) {

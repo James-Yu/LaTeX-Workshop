@@ -43,14 +43,14 @@ export class Reference {
         })
         if (vscode.window.activeTextEditor) {
             const items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
-            Object.keys(items).map(key => {
+            Object.keys(items).forEach(key => {
                 if (!(key in suggestions)) {
                     suggestions[key] = items[key]
                 }
             })
         }
         this.suggestions = []
-        Object.keys(suggestions).map(key => {
+        Object.keys(suggestions).forEach(key => {
             const item = suggestions[key]
             const command = new vscode.CompletionItem(item.reference, vscode.CompletionItemKind.Reference)
             command.documentation = item.text

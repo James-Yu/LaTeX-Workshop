@@ -84,7 +84,7 @@ export class BuildInfo {
 
     private checkStdoutForInfo() {
         const pageNumberRegex = /\[(\d+)[^[\]]*\]$/
-        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-z /]+)'\.\.\.\n$/
+        const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-Za-z\s/]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
 
         const hardcodedRulesPageProducing = ['pdflatex', 'pdftex']

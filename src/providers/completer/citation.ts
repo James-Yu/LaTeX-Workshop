@@ -89,20 +89,20 @@ export class Citation {
         // Second, we deal with the items from thebibliography
         const suggestions = {}
         Object.keys(this.theBibliographyData).forEach(key => {
-            if (! (this.theBibliographyData[key].rootFile === rootFile)) {
+            if (this.theBibliographyData[key].rootFile !== rootFile) {
                return
             }
             suggestions[key] = this.theBibliographyData[key].item
         })
         if (vscode.window.activeTextEditor) {
             const thebibliographyItems = this.getTheBibliographyItems(vscode.window.activeTextEditor.document.getText())
-            Object.keys(thebibliographyItems).map(key => {
+            Object.keys(thebibliographyItems).forEach(key => {
                 if (!(key in suggestions)) {
                     suggestions[key] = thebibliographyItems[key]
                 }
             })
         }
-        Object.keys(suggestions).map(key => {
+        Object.keys(suggestions).forEach(key => {
             const item = suggestions[key]
             const citation = new vscode.CompletionItem(item.citation, vscode.CompletionItemKind.Reference)
             citation.detail = item.text

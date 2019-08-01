@@ -58,7 +58,7 @@ function findTikzPictures(document: vscode.TextDocument) {
             }
         } while (!endMatch)
 
-        if (endColumn === null || endColumn === undefined) {
+        if (endColumn === undefined) {
             continue
         }
 
