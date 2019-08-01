@@ -359,9 +359,7 @@ export async function activate(context: vscode.ExtensionContext) {
     })
 
     return {
-        getRootFile: () => extension.manager.rootFile,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
-        setEnvVar: () => extension.manager.setEnvVar(),
         viewer: {
             clients: extension.viewer.clients,
             refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
@@ -371,6 +369,7 @@ export async function activate(context: vscode.ExtensionContext) {
             findRoot: () => extension.manager.findRoot(),
             rootDir: () => extension.manager.rootDir,
             rootFile: () => extension.manager.rootFile,
+            setEnvVar: () => extension.manager.setEnvVar()
         }
     }
 }
