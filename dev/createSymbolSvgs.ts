@@ -2,13 +2,13 @@ import { readFileSync, writeFileSync } from 'fs'
 import * as path from 'path'
 
 type IMathSymbol = {
-    name: string;
-    keywords?: string;
-    source: string;
-    snippet: string;
-    category?: string;
-    svg?: string;
-    shrink?: boolean;
+    name: string,
+    keywords?: string,
+    source: string,
+    snippet: string,
+    category?: string,
+    svg?: string,
+    shrink?: boolean
 }
 
 let mathJax: any
@@ -40,8 +40,8 @@ function loadSnippets() {
     const snipetsFile = path.resolve('.', 'resources', 'snippetpanel', 'snippetpanel.json')
     const snippets: {
         mathSymbols: {
-            [category: string]: IMathSymbol[];
-        };
+            [category: string]: IMathSymbol[]
+        }
     } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' }))
 
     const mathSymbolPromises: Promise<any>[] = []
@@ -59,11 +59,11 @@ function loadSnippets() {
                             })
                             .then(
                                 (data: {
-                                    height: string;
-                                    speakText: string;
-                                    style: string;
-                                    svgNode: SVGSVGElement;
-                                    width: string;
+                                    height: string,
+                                    speakText: string,
+                                    style: string,
+                                    svgNode: SVGSVGElement,
+                                    width: string
                                 }) => {
                                     let svg = data.svgNode.outerHTML
                                     svg = svg.replace(
