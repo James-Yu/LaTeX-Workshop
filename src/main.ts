@@ -26,8 +26,6 @@ import {SectionNodeProvider, StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
-import { TikzCodeLense } from './providers/tikzcodelense'
-import { TikzPictureView } from './components/tikzpictureview'
 import { SnippetPanel } from './components/snippetpanel'
 
 function renameValue(config: string, oldValue: string, newValue: string) {
@@ -248,9 +246,6 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
-    context.subscriptions.push(vscode.commands.registerCommand('latex-workshop.viewtikzpicture', (document, range) => extension.tikzPictureView.view(document, range)))
-    context.subscriptions.push(vscode.languages.registerCodeLensProvider({language: 'latex', scheme: 'file'}, new TikzCodeLense()))
-
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(async (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
@@ -280,9 +275,8 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabledAfterInterval()
-            extension.tikzPictureView.onFileChange(e.document, e.contentChanges)
         }
-    }, undefined, [new vscode.Disposable(extension.tikzPictureView.cleanupTempFiles)]))
+    }))
 
     let isLaTeXActive = false
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
@@ -365,9 +359,18 @@ export async function activate(context: vscode.ExtensionContext) {
     })
 
     return {
-        getRootFile: () => extension.manager.rootFile,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
-        setEnvVar: () => extension.manager.setEnvVar()
+        viewer: {
+            clients: extension.viewer.clients,
+            refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
+            openTab: (sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) => extension.viewer.openTab(sourceFile, respectOutDir, sideColumn)
+        },
+        manager: {
+            findRoot: () => extension.manager.findRoot(),
+            rootDir: () => extension.manager.rootDir,
+            rootFile: () => extension.manager.rootFile,
+            setEnvVar: () => extension.manager.setEnvVar()
+        }
     }
 }
 
@@ -391,7 +394,6 @@ export class Extension {
     envPair: EnvPair
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
-    tikzPictureView: TikzPictureView
     snippetPanel: SnippetPanel
 
     constructor() {
@@ -413,7 +415,6 @@ export class Extension {
         this.envPair = new EnvPair(this)
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
-        this.tikzPictureView = new TikzPictureView(this)
         this.snippetPanel = new SnippetPanel(this)
 
         this.logger.addLogMessage('LaTeX Workshop initialized.')
