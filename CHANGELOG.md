@@ -1,5 +1,11 @@
 # Change Log
 
+## Unreleased
+
+### Removed
+- Formatted Paste, moved to LaTeX Utilities
+- Word Count, moved to LaTeX Utilities
+
 ## [7.3.0] - 2019-07-31
 
 ### Added
