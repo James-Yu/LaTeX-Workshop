@@ -87,20 +87,29 @@ export class Manager {
 
     private workspaceRootDir: string = ''
     private findWorkspace() {
-        // Fallback to infer workspace from the root file
-        let uri = vscode.Uri.parse(this.rootFile ? this.rootFile : 'file:///')
-        if (vscode.window.activeTextEditor) {
-            // If we have an active editor, choose the one from possibly
-            // multiple workspaces that contains this editing file
-            uri = vscode.window.activeTextEditor.document.uri
-        }
-        const wsfolder = vscode.workspace.getWorkspaceFolder(uri)
-        if (wsfolder) {
-            // If we can find a match
-            this.workspaceRootDir = wsfolder.uri.fsPath
-        } else {
+        // If no workspace is opened.
+        if (vscode.workspace.workspaceFolders === undefined) {
             this.workspaceRootDir = ''
+            return
         }
+        // If we don't have an active text editor, we can only make a guess.
+        // Let's guess the first one.
+        if (!vscode.window.activeTextEditor) {
+            this.workspaceRootDir = vscode.workspace.workspaceFolders[0].uri.fsPath
+            return
+        }
+        // Guess that the correct workspace folder path should be contained in
+        // the path of active editor. If there are multiple matches, take the
+        // first one.
+        const activeFile = vscode.window.activeTextEditor.document.uri.fsPath
+        for (const workspaceFolder of vscode.workspace.workspaceFolders) {
+            if (activeFile.indexOf(workspaceFolder.uri.fsPath) > -1) {
+                this.workspaceRootDir = workspaceFolder.uri.fsPath
+                return 
+            }
+        }
+        // Guess that the first workspace is the chosen one.
+        this.workspaceRootDir = vscode.workspace.workspaceFolders[0].uri.fsPath
     }
 
     async findRoot(): Promise<string | undefined> {
