@@ -57,6 +57,8 @@ export class Manager {
         return path.dirname(this.rootFile)
     }
 
+    // Here we have something complex. We use a private rootFiles to hold the 
+    // roots of each workspace, and use rootFile to return the cached content.
     private rootFiles: { [key: string]: string } = {}
     get rootFile() {
         return this.rootFiles[this.workspaceRootDir]
@@ -112,6 +114,11 @@ export class Manager {
         this.workspaceRootDir = vscode.workspace.workspaceFolders[0].uri.fsPath
     }
 
+    /**
+     * This function is used to actually find the root file with respect to the
+     * current workspace. The found roots will be saved in rootFiles, and can be
+     * retrieved by the public rootFile variable/getter.
+     */
     async findRoot(): Promise<string | undefined> {
         this.findWorkspace()
         this.localRootFile = undefined
@@ -243,7 +250,7 @@ export class Manager {
             }
             return this.cachedContent[cachedFile].content
         }
-        const fileContent = utils.stripComments(fs.readFileSync(file, 'utf-8').toString(), '%')
+        const fileContent = utils.stripComments(fs.readFileSync(file).toString(), '%')
         this.cachedContent[file] = {content: fileContent, children: []}
         return fileContent
     }
