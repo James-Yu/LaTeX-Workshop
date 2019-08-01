@@ -358,12 +358,22 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     })
 
-    console.log(`LaTeX Workshop version ${extension.packageInfo.version} activated.`)
+    // console.log(`LaTeX Workshop version ${extension.packageInfo.version} activated.`)
 
     return {
         getRootFile: () => extension.manager.rootFile,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
-        setEnvVar: () => extension.manager.setEnvVar()
+        setEnvVar: () => extension.manager.setEnvVar(),
+        viewer: {
+            clients: extension.viewer.clients,
+            refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
+            openTab: (sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) => extension.viewer.openTab(sourceFile, respectOutDir, sideColumn)
+        },
+        manager: {
+            findRoot: () => extension.manager.findRoot(),
+            rootDir: () => extension.manager.rootDir,
+            rootFile: () => extension.manager.rootFile,
+        }
     }
 }
 
