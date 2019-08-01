@@ -12,17 +12,17 @@ import { stripComments } from '../utils'
 const removeDir = promisify(fse.remove)
 
 interface IFileTikzCollection {
-    location: string
-    tempDir: string
-    tikzPictures: IFileTikzPicture[]
-    preamble: string
+    location: string,
+    tempDir: string,
+    tikzPictures: IFileTikzPicture[],
+    preamble: string,
     lastChange: number
 }
 
 interface IFileTikzPicture {
-    range: vscode.Range
-    content: string
-    tempFile: string
+    range: vscode.Range,
+    content: string,
+    tempFile: string,
     lastChange: number
 }
 
@@ -236,8 +236,8 @@ export class TikzPictureView {
     private async getTikzEntry(
         tikzCollection: IFileTikzCollection,
         tikzPictureContent: {
-            range: vscode.Range;
-            content: string;
+            range: vscode.Range,
+            content: string
         }
     ): Promise<IFileTikzPicture> {
         for (const tikzPicture of tikzCollection.tikzPictures) {

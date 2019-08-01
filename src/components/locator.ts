@@ -7,15 +7,15 @@ import * as synctexjs from './synctex'
 import {Extension} from '../main'
 
 export type SyncTeXRecordForward = {
-    page: number;
-    x: number;
-    y: number;
+    page: number,
+    x: number,
+    y: number
 }
 
 export type SyncTeXRecordBackward = {
-    input: string;
-    line: number;
-    column: number;
+    input: string,
+    line: number,
+    column: number
 }
 
 export class Locator {

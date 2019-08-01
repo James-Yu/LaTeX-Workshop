@@ -337,13 +337,13 @@ export class Command {
 }
 
 interface AutocompleteEntry {
-    command: string
-    snippet?: string
-    detail?: string
-    label?: string
-    description?: string
-    documentation?: string
-    sortText?: string
-    postAction?: string
+    command: string,
+    snippet?: string,
+    detail?: string,
+    label?: string,
+    description?: string,
+    documentation?: string,
+    sortText?: string,
+    postAction?: string,
     package?: string
 }

@@ -34,12 +34,12 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
 }
 
 interface LinterLogEntry {
-    file: string
-    line: number
-    position: number
-    length: number
-    type: string
-    code: number
+    file: string,
+    line: number,
+    position: number,
+    length: number,
+    type: string,
+    code: number,
     text: string
 }
 

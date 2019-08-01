@@ -14,8 +14,8 @@ function regexpAllMatches(str: string, reg: RegExp) {
 }
 
 interface MatchEnv {
-    name: string
-    type: string // 'begin' or 'end'
+    name: string,
+    type: string, // 'begin' or 'end'
     pos: vscode.Position
 }
 
