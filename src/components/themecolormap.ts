@@ -13,5 +13,21 @@ export const themeColorMap = {
     'vs-seti': 'dark',
     'Solarized Dark': 'dark',
     'Solarized Light': 'light',
-    'Tomorrow Night Blue': 'dark'
+    'Tomorrow Night Blue': 'dark',
+    'One Dark Pro': 'dark',
+    'One Dark Pro Vivid': 'dark',
+    'One Dark Pro Bold': 'dark',
+    'Material Theme': 'dark',
+    'Material Theme High Contrast': 'dark',
+    'Material Theme Darker': 'dark',
+    'Material Theme Darker High Contrast': 'dark',
+    'Material Theme Palenight': 'dark',
+    'Material Theme Palenight High Contrast': 'dark',
+    'Material Theme Ocean': 'dark',
+    'Material Theme Ocean High Contrast': 'dark',
+    'Material Theme Lighter': 'light',
+    'Material Theme Lighter High Contrast': 'light',
+    'Atom One Dark': 'dark',
+    'Dracula': 'dark',
+    'Dracula Soft': 'dark'
 }
