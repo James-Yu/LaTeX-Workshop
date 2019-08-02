@@ -1,4 +1,4 @@
-export const themeColorMap = {
+export const themeColorMap: { [theme: string]: 'light' | 'dark' } = {
     'Abyss': 'dark',
     'Default Dark+': 'dark',
     'Default Light+': 'light',
