@@ -8,7 +8,7 @@ import {TextDocumentLike} from '../components/textdocumentlike'
 import {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
 import {ReferenceEntry} from './completer/reference'
-import {themeColorMap} from '../components/themecolor'
+import {themeColorMap} from '../components/themecolormap'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
