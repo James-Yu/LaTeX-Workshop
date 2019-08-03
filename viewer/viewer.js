@@ -868,7 +868,7 @@ var PDFViewerApplication = {
       }
     }
 
-    this.setTitle(title);
+    // this.setTitle(title);
   },
   setTitle: function setTitle(title) {
     if (this.isViewerEmbedded) {
@@ -4770,7 +4770,7 @@ function () {
         return;
       }
 
-      if (!this._switchView(view, true)) {
+      if (!this._switchView(view, false)) {
         this._dispatchEvent();
       }
     }
@@ -5149,7 +5149,7 @@ var defaultOptions = {
     kind: OptionKind.VIEWER
   },
   eventBusDispatchToDOM: {
-    value: false,
+    value: true,
     kind: OptionKind.VIEWER
   },
   externalLinkRel: {
@@ -5214,7 +5214,7 @@ var defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: '../web/cmaps/',
+    value: '../cmaps/',
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -6585,7 +6585,7 @@ var FindState = {
 };
 exports.FindState = FindState;
 var FIND_TIMEOUT = 250;
-var MATCH_SCROLL_OFFSET_TOP = -50;
+var MATCH_SCROLL_OFFSET_TOP = -100;
 var MATCH_SCROLL_OFFSET_LEFT = -400;
 var CHARACTERS_TO_NORMALIZE = {
   "\u2018": '\'',
@@ -10294,7 +10294,7 @@ function () {
     this.linkService = options.linkService || new _pdf_link_service.SimpleLinkService();
     this.downloadManager = options.downloadManager || null;
     this.findController = options.findController || null;
-    this.removePageBorders = options.removePageBorders || false;
+    this.removePageBorders = options.removePageBorders || true;
     this.textLayerMode = Number.isInteger(options.textLayerMode) ? options.textLayerMode : _ui_utils.TextLayerMode.ENABLE;
     this.imageResourcesPath = options.imageResourcesPath || '';
     this.renderInteractiveForms = options.renderInteractiveForms || false;
@@ -13811,7 +13811,7 @@ function getDefaultPreferences() {
       "sidebarViewOnLoad": -1,
       "cursorToolOnLoad": 0,
       "enableWebGL": false,
-      "eventBusDispatchToDOM": false,
+      "eventBusDispatchToDOM": true,
       "pdfBugEnabled": false,
       "disableRange": false,
       "disableStream": false,
