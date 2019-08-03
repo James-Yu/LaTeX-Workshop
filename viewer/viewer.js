@@ -13452,7 +13452,7 @@ function () {
             switch (_context.prev = _context.next) {
               case 0:
                 databaseStr = JSON.stringify(this.database);
-                localStorage.setItem('pdfjs.history', databaseStr);
+                // localStorage.setItem('pdfjs.history', databaseStr);
 
               case 2:
               case "end":
@@ -13478,7 +13478,7 @@ function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", localStorage.getItem('pdfjs.history'));
+                // return _context2.abrupt("return", localStorage.getItem('pdfjs.history'));
 
               case 1:
               case "end":
@@ -13708,7 +13708,7 @@ function (_BasePreferences) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
+                // localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
 
               case 1:
               case "end":
@@ -13734,7 +13734,7 @@ function (_BasePreferences) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", JSON.parse(localStorage.getItem('pdfjs.preferences')));
+                // return _context2.abrupt("return", JSON.parse(localStorage.getItem('pdfjs.preferences')));
 
               case 1:
               case "end":
