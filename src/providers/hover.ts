@@ -8,6 +8,7 @@ import {TextDocumentLike} from '../components/textdocumentlike'
 import {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
 import {ReferenceEntry} from './completer/reference'
+import {themeColorMap} from '../components/themecolormap'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
@@ -356,7 +357,7 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     private getColor() {
-        const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme')
+        const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme') as string
         for (const extension of vscode.extensions.all) {
             if (extension.packageJSON === undefined || extension.packageJSON.contributes === undefined || extension.packageJSON.contributes.themes === undefined) {
                 continue
@@ -402,6 +403,10 @@ export class HoverProvider implements vscode.HoverProvider {
                 this.color = '#ffffff'
                 return
             }
+        }
+        if (themeColorMap[colorTheme] === 'dark') {
+            this.color = '#ffffff'
+            return
         }
         this.color = '#000000'
     }
