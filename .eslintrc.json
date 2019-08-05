@@ -53,7 +53,10 @@
         "prefer-const": "error",
         "quotes": ["error", "single", {"avoidEscape": true}],
         "@typescript-eslint/semi": ["error", "never"],
-        "@typescript-eslint/member-delimiter-style": {"delimiter": "semi", "requireLast": false},
+        "@typescript-eslint/member-delimiter-style": ["error", {
+          "multiline": {"delimiter": "comma", "requireLast": false},
+          "singleline": {"delimiter": "comma", "requireLast": false}
+        }],
         "default-case": "error",
         "eqeqeq": ["error", "always"],
         "space-before-function-paren": ["error", {"anonymous": "always", "named": "never", "asyncArrow": "always"}],

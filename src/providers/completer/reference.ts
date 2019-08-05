@@ -101,7 +101,7 @@ export class Reference {
     }
 
     setNumbersFromAuxFile(rootFile: string) {
-        const outDir = this.extension.manager.getOutputDir(rootFile)
+        const outDir = this.extension.manager.getOutDir(rootFile)
         const rootDir = path.dirname(rootFile)
         const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
         const refKeys = Object.keys(this.referenceData)

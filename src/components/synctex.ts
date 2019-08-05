@@ -80,7 +80,7 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
   }
 
-function getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]: Block[]; } },
+function getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]: Block[] } },
                    lineNum: number ): Block[] {
     const pageBlocks = linePageBlocks[lineNum]
     const pageNums = Object.keys(pageBlocks)
@@ -129,7 +129,7 @@ class Rectangle {
       return new Rectangle({top, bottom, left, right})
     }
 
-    constructor( {top, bottom, left, right}: { top: number; bottom: number; left: number; right: number; } ) {
+    constructor( {top, bottom, left, right}: { top: number, bottom: number, left: number, right: number} ) {
       this.top = top
       this.bottom = bottom
       this.left = left

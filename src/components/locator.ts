@@ -7,15 +7,15 @@ import * as synctexjs from './synctex'
 import {Extension} from '../main'
 
 export type SyncTeXRecordForward = {
-    page: number;
-    x: number;
-    y: number;
+    page: number,
+    x: number,
+    y: number
 }
 
 export type SyncTeXRecordBackward = {
-    input: string;
-    line: number;
-    column: number;
+    input: string,
+    line: number,
+    column: number
 }
 
 export class Locator {
@@ -120,7 +120,11 @@ export class Locator {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const rootFile = this.extension.manager.rootFile
-        if (! pdfFile) {
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage('Cannot find root file.')
+            return
+        }
+        if (!pdfFile) {
             this.extension.manager.findRoot()
             pdfFile = this.extension.manager.tex2pdf(rootFile)
         }
@@ -291,7 +295,7 @@ export class Locator {
         // kpathsea/SyncTeX follow symlinks.
         // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
         // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
-        for (const ed in this.extension.manager.texFileTree) {
+        for (const ed in this.extension.manager.cachedContent) {
             if (fs.realpathSync(record.input) === fs.realpathSync(ed)) {
                 record.input = ed
                 break

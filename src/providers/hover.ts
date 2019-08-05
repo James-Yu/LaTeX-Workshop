@@ -120,6 +120,10 @@ export class HoverProvider implements vscode.HoverProvider {
                     await this.extension.manager.findRoot()
                 }
                 const rootDir = this.extension.manager.rootDir
+                if (rootDir === undefined) {
+                    this.extension.logger.addLogMessage(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
+                    return ''
+                }
                 const newCommandFileAbs = path.join(rootDir, newCommandFile)
                 if (fs.existsSync(newCommandFileAbs)) {
                     commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})

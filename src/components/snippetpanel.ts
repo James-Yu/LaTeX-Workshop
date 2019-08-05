@@ -6,13 +6,13 @@ import * as fs from 'fs'
 import { Extension } from '../main'
 
 type IMathSymbol = {
-    name: string;
-    keywords?: string;
-    source: string;
-    snippet: string;
-    category?: string;
-    svg?: string;
-    shrink?: boolean;
+    name: string,
+    keywords?: string,
+    source: string,
+    snippet: string,
+    category?: string,
+    svg?: string,
+    shrink?: boolean
 }
 
 export class SnippetPanel {
@@ -98,8 +98,8 @@ export class SnippetPanel {
         const snipetsFile = path.join(this.extension.extensionRoot, 'resources', 'snippetpanel', 'snippetpanel.json')
         const snippets: {
             mathSymbols: {
-                [category: string]: IMathSymbol[];
-            };
+                [category: string]: IMathSymbol[]
+            }
         } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' }))
 
         for (const category in snippets.mathSymbols) {
@@ -132,7 +132,7 @@ export class SnippetPanel {
         this.panel.webview.postMessage({ type: 'initialise' })
     }
 
-    private async messageReceive(message: { type: string; [param: string]: any }) {
+    private async messageReceive(message: { type: string, [param: string]: any }) {
         if (message.type === 'insertSnippet') {
             const editor = this.lastActiveTextEditor
             if (editor) {

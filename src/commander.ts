@@ -89,12 +89,17 @@ export class Commander {
     }
 
     async revealOutputDir() {
-        let outputDir = this.extension.manager.getOutputDir(this.extension.manager.rootFile)
-        if (!path.isAbsolute(outputDir)) {
-            outputDir = path.resolve(this.extension.manager.rootDir, this.extension.manager.getOutputDir(this.extension.manager.rootFile))
+        let outDir = this.extension.manager.getOutDir()
+        if (!path.isAbsolute(outDir)) {
+            const rootDir = this.extension.manager.rootDir || vscode.workspace.rootPath
+            if (rootDir === undefined) {
+                this.extension.logger.addLogMessage(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
+                return
+            }
+            outDir = path.resolve(rootDir, outDir)
         }
-        this.extension.logger.addLogMessage(`Reveal ${vscode.Uri.file(outputDir)}`)
-        await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outputDir))
+        this.extension.logger.addLogMessage(`Reveal ${vscode.Uri.file(outDir)}`)
+        await vscode.commands.executeCommand('revealFileInOS', vscode.Uri.file(outDir))
     }
 
     recipes(recipe?: string) {
@@ -204,10 +209,10 @@ export class Commander {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let pdfFile: string
+        let pdfFile: string | undefined = undefined
         if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
-        } else {
+        } else if (this.extension.manager.rootFile !== undefined) {
             pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
         }
         this.extension.locator.syncTeX(undefined, undefined, pdfFile)

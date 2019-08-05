@@ -274,6 +274,8 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
+            extension.manager.cachedContent[e.document.fileName].content = e.document.getText()
+            extension.manager.parseFileAndSubs(e.document.fileName)
             extension.linter.lintActiveFileIfEnabledAfterInterval()
         }
     }))
@@ -301,16 +303,6 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
-            if (extension.manager.fileWatcher && extension.manager.filesWatched.indexOf(e.document.fileName) < 0) {
-                const previousRoot = extension.manager.rootFile
-                extension.manager.findRoot().then(rootFile => {
-                    if (rootFile === undefined || rootFile === previousRoot) {
-                        return
-                    }
-                    extension.structureProvider.refresh()
-                    extension.structureProvider.update()
-                })
-            }
             extension.linter.lintActiveFileIfEnabled()
         } else {
             isLaTeXActive = false

@@ -10,8 +10,8 @@ import {ExternalCommand} from '../utils'
 import {encodePathWithPrefix} from './encodePath'
 
 interface Client {
-    viewer: 'browser' | 'tab'
-    websocket: ws
+    viewer: 'browser' | 'tab',
+    websocket: ws,
     position?: {}
 }
 

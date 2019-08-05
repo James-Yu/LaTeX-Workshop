@@ -100,8 +100,12 @@ export class Linter {
 
     async lintRootFile() {
         this.extension.logger.addLogMessage('Linter for root file started.')
-        const filePath = this.extension.manager.rootFile
+        if (this.extension.manager.rootFile === undefined) {
+            this.extension.logger.addLogMessage('No root file found for linting.')
+            return
+        }
 
+        const filePath = this.extension.manager.rootFile
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
         const args = [...(configuration.get('chktex.args.active') as string[])]

@@ -14,6 +14,10 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         Thenable<vscode.SymbolInformation[]> {
         return new Promise((resolve, _reject) => {
             const symbols: vscode.SymbolInformation[] = []
+            if (this.extension.manager.rootFile === undefined) {
+                resolve(symbols)
+                return
+            }
             this.sectionToSymbols(symbols, this.extension.structureProvider.buildModel(this.extension.manager.rootFile))
             resolve(symbols)
         })

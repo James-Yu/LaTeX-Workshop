@@ -10,14 +10,14 @@ export class BuildInfo {
     panel: vscode.WebviewPanel | undefined
     configuration: vscode.WorkspaceConfiguration
     currentBuild: {
-        buildStart: number;
-        pageTotal?: number | undefined;
-        lastStepTime: number;
-        stepTimes: { [runName: string]: { [pageNo: number]: number } };
-        stdout: string;
-        ruleNumber: number;
-        ruleName: string;
-        ruleProducesPages: boolean | undefined;
+        buildStart: number,
+        pageTotal?: number | undefined,
+        lastStepTime: number,
+        stepTimes: { [runName: string]: { [pageNo: number]: number } },
+        stdout: string,
+        ruleNumber: number,
+        ruleName: string,
+        ruleProducesPages: boolean | undefined
     } | undefined
 
     constructor(extension: Extension) {
@@ -251,9 +251,9 @@ export class BuildInfo {
 
             interface IProgressBarCharacterSets {
                 [settingsName: string]: {
-                    wholeCharacter: string;
-                    partialCharacters: string[];
-                    blankCharacter: string;
+                    wholeCharacter: string,
+                    partialCharacters: string[],
+                    blankCharacter: string
                 }
             }
 

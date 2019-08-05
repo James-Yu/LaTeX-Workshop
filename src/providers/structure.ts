@@ -177,7 +177,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 } else {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     const texDirs = configuration.get('latex.texDirs') as string[]
-                    inputFilePath = utils.resolveFile([...texDirs, path.dirname(filePath), this.extension.manager.rootDir], result[3])
+                    inputFilePath = utils.resolveFile([...texDirs, path.dirname(filePath),
+                        this.extension.manager.rootDir ? this.extension.manager.rootDir : '.'], result[3])
                 }
 
                 if (!inputFilePath) {

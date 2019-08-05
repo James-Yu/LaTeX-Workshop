@@ -110,7 +110,7 @@ export class Command {
                 suggestionsAsciiKeys.push(k)
             }
         })
-        Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
+        Object.keys(this.extension.manager.cachedContent).forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
                     if (suggestionsAsciiKeys.indexOf(key) > - 1) {
@@ -337,13 +337,13 @@ export class Command {
 }
 
 interface AutocompleteEntry {
-    command: string
-    snippet?: string
-    detail?: string
-    label?: string
-    description?: string
-    documentation?: string
-    sortText?: string
-    postAction?: string
+    command: string,
+    snippet?: string,
+    detail?: string,
+    label?: string,
+    description?: string,
+    documentation?: string,
+    sortText?: string,
+    postAction?: string,
     package?: string
 }

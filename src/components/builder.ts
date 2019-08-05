@@ -156,15 +156,20 @@ export class Builder {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
             // Create sub directories of output directory
-            let outDir = this.extension.manager.getOutputDir(rootFile)
-            const directories = new Set<string>(this.extension.manager.filesWatched
-                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
-            if (!path.isAbsolute(outDir)) {
-                outDir = path.resolve(this.extension.manager.rootDir, outDir)
+            // This was supposed to create the outputDir as latexmk does not
+            // take care of it (neither does any of latex command). If the
+            //output directory does not exist, the latex commands simply fail.
+            if (this.extension.manager.rootDir !== undefined) {
+                const rootDir = this.extension.manager.rootDir
+                let outDir = this.extension.manager.getOutDir()
+                if (!path.isAbsolute(outDir)) {
+                    outDir = path.resolve(this.extension.manager.rootDir, outDir)
+                }
+                Object.keys(this.extension.manager.cachedContent).forEach(file => {
+                    const relativePath = path.dirname(file.replace(rootDir, '.'))
+                    fs.ensureDirSync(path.resolve(outDir, relativePath))
+                })
             }
-            directories.forEach(directory => {
-                fs.ensureDirSync(path.resolve(outDir, directory))
-            })
             this.buildInitiator(rootFile, recipe, releaseBuildMutex)
         } catch (e) {
             this.extension.buildInfo.buildEnded()
@@ -303,7 +308,7 @@ export class Builder {
         }
         this.extension.viewer.refreshExistingViewer(rootFile)
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
-        this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
+        this.extension.manager.parseFlsFile(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         // if (configuration.get('synctex.afterBuild.enabled') as boolean) {
         //     this.extension.logger.addLogMessage('SyncTex after build invoked.')
@@ -387,12 +392,13 @@ export class Builder {
             }
             const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
             const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+            const outDir = this.extension.manager.getOutDir()
             if (step.args) {
                 step.args = step.args.map(arg => arg.replace(/%DOC%/g, docker ? docfile : doc)
                                                     .replace(/%DOCFILE%/g, docfile)
                                                     .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
                                                     .replace(/%TMPDIR%/g, this.tmpDir)
-                                                    .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile)))
+                                                    .replace(/%OUTDIR%/g, outDir))
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
@@ -402,7 +408,7 @@ export class Builder {
                                                  .replace(/%DOCFILE%/g, docfile)
                                                  .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
                                                  .replace(/%TMPDIR%/g, this.tmpDir)
-                                                 .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile))
+                                                 .replace(/%OUTDIR%/g, outDir)
                     }
                 })
             }
