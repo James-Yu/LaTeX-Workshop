@@ -93,8 +93,12 @@ export class Input {
                 }
                 break
             case 'input': {
+                if (this.extension.manager.rootDir === undefined) {
+                    this.extension.logger.addLogMessage(`No root dir can be found. The current root file should be undefined, is ${this.extension.manager.rootFile}. How did you get here?`)
+                    break
+                }
                 // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
-                const rootDir = this.extension.manager.rootDir || path.dirname(currentFile)
+                const rootDir = this.extension.manager.rootDir
                 const command = payload[2]
                 if (command === 'includegraphics' && this.graphicsPath.length > 0) {
                     baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))

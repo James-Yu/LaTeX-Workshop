@@ -155,17 +155,21 @@ export class Builder {
             pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
-            // Edit: I did not see the necessity of this block @james-yu 07.31.2019
-            // // Create sub directories of output directory
-            // let outDir = this.extension.manager.getOutDir()
-            // const directories = new Set<string>(this.extension.manager.filesWatched
-            //     .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
-            // if (!path.isAbsolute(outDir)) {
-            //     outDir = path.resolve(this.extension.manager.rootDir, outDir)
-            // }
-            // directories.forEach(directory => {
-            //     fs.ensureDirSync(path.resolve(outDir, directory))
-            // })
+            // Create sub directories of output directory
+            // This was supposed to create the outputDir as latexmk does not
+            // take care of it (neither does any of latex command). If the
+            //output directory does not exist, the latex commands simply fail.
+            if (this.extension.manager.rootDir !== undefined) {
+                const rootDir = this.extension.manager.rootDir
+                let outDir = this.extension.manager.getOutDir()
+                if (!path.isAbsolute(outDir)) {
+                    outDir = path.resolve(this.extension.manager.rootDir, outDir)
+                }
+                Object.keys(this.extension.manager.cachedContent).forEach(file => {
+                    const relativePath = path.dirname(file.replace(rootDir, '.'))
+                    fs.ensureDirSync(path.resolve(outDir, relativePath))
+                })
+            }
             this.buildInitiator(rootFile, recipe, releaseBuildMutex)
         } catch (e) {
             this.extension.buildInfo.buildEnded()
