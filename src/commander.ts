@@ -209,7 +209,7 @@ export class Commander {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let pdfFile: string | undefined
+        let pdfFile: string | undefined = undefined
         if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
         } else if (this.extension.manager.rootFile !== undefined) {

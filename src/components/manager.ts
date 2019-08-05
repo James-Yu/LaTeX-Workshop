@@ -8,7 +8,7 @@ import * as utils from '../utils'
 import {Extension} from '../main'
 
 interface Content {
-    [id: string]: { // tex file name
+    [filepath: string]: { // tex file name
         content: string, // the dirty (under editing) contents
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted
@@ -266,17 +266,12 @@ export class Manager {
        provided `file` is re-parsed, together with any new files that were not
        previously watched/considered. Since this function is called upon content
        changes, this lazy loading should be fine. */
-       async parseFileAndSubs(file: string, onChange: boolean = false) {
+    async parseFileAndSubs(file: string, onChange: boolean = false) {
         this.extension.logger.addLogMessage(`Parsing ${file}`)
         if (this.filesWatched.indexOf(file) < 0) {
             // The file is first time considered by the extension.
-            this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
             this.fileWatcher.add(file)
             this.filesWatched.push(file)
-            // So update completer w.r.t. this file. Subsequent updates will be
-            // handled in 1) onDidChangeTextDocument (in vscode) and 2) file
-            // watcher (changed externally)
-            this.updateCompleterOnChange(file)
         }
         const content = this.getDirtyContent(file, onChange)
         this.cachedContent[file].children = []
@@ -497,6 +492,7 @@ export class Manager {
             this.fileWatcher = chokidar.watch(this.rootFile, this.watcherOptions)
             this.filesWatched.push(this.rootFile)
         }
+        this.fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
         this.fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
         this.fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
         // this.findAdditionalDependentFilesFromFls(this.rootFile)
@@ -514,9 +510,16 @@ export class Manager {
         this.extension.completer.input.reset()
     }
 
+    private onWatchingNewFile(file: string) {
+        this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
+        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 ) {
+            this.updateCompleterOnChange(file)
+        }
+    }
+
     private onWatchedFileChanged(file: string) {
         // It is possible for either tex or non-tex files in the watcher.
-        if (path.extname(file) === '.tex') {
+        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 ) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
         }
@@ -576,7 +579,7 @@ export class Manager {
     }
 
     // This function updates all completers upon tex-file changes.
-    updateCompleterOnChange(file: string) {
+    private updateCompleterOnChange(file: string) {
         this.extension.completer.command.getCommandsTeX(file)
         this.extension.completer.command.getPackage(file)
         this.extension.completer.environment.getEnvironmentsTeX(file)
