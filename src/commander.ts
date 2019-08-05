@@ -552,7 +552,7 @@ export class Commander {
 
         const actions: ('added' | 'removed')[] = []
 
-        selectionLoop: for (let i = 0; i < selections.length; i++) {
+        for (let i = 0; i < selections.length; i++) {
             const selection = selections[i]
             const selectionText = selectionsText[i]
             const line = document.lineAt(selection.anchor)
@@ -568,6 +568,7 @@ export class Commander {
 
             const pattern = new RegExp(`\\\\${keyword}{`, 'g')
             let match = pattern.exec(line.text)
+            let keywordRemoved = false
             while (match !== null) {
                 const matchStart = line.range.start.translate(0, match.index)
                 const matchEnd = matchStart.translate(0, match[0].length)
@@ -582,9 +583,13 @@ export class Commander {
                     }))
                     updateOffset(insideText, matchRange)
                     actions.push('removed')
-                    continue selectionLoop
+                    keywordRemoved = true
+                    break
                 }
                 match = pattern.exec(line.text)
+            }
+            if (keywordRemoved) {
+                continue
             }
 
             // Add keyword
