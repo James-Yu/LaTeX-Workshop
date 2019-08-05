@@ -548,8 +548,8 @@ export class Commander {
         const selectionsText = selections.map(selection => document.getText(selection))
 
         const offset: {
-            currentLine: number
-            lineOffset: number
+            currentLine: number,
+            lineOffset: number,
             columnOffset: number
         } = {
             currentLine: 0, lineOffset: 0, columnOffset: 0
