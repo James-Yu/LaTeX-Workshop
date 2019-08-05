@@ -519,53 +519,105 @@ export class Commander {
     * @param keyword the keyword to toggle without backslash eg. textbf or underline
     * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
     */
-    toggleSelectedKeyword(keyword: string, outerBraces?: boolean): undefined | 'added' | 'removed' {
+    async toggleSelectedKeyword(keyword: string, outerBraces?: boolean) {
+        function updateOffset(newContent: string, replacedRange: vscode.Range) {
+            const splitLines = newContent.split('\n')
+            offset.lineOffset += splitLines.length - (replacedRange.end.line - replacedRange.start.line + 1)
+            offset.columnOffset +=
+                splitLines[splitLines.length - 1].length -
+                (replacedRange.isSingleLine
+                    ? replacedRange.end.character - replacedRange.start.character
+                    : replacedRange.start.character)
+        }
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
             return
         }
 
-        const { selection, document } = editor
-        const selectionText = document.getText(selection)
-        const line = document.lineAt(selection.anchor)
-        const pattern = new RegExp(`\\\\${keyword}{`, 'g')
-        let match = pattern.exec(line.text)
-        while (match !== null) {
-            const matchStart = line.range.start.translate(0, match.index)
-            const matchEnd = matchStart.translate(0, match[0].length)
-            const searchString = document.getText(new vscode.Range(matchEnd, line.range.end))
-            const insideText = getLongestBalancedString(searchString)
-            const matchRange = new vscode.Range(matchStart, matchEnd.translate(0, insideText.length + 1))
+        const document = editor.document
+        const selections = editor.selections.sort((a, b) => {
+            let diff = a.start.line - b.start.line
+            diff = diff !== 0 ? diff : a.start.character - b.start.character
+            return diff
+        })
+        const selectionsText = selections.map(selection => document.getText(selection))
 
-            if (matchRange.contains(selection)) {
-                // Remove keyword
-                editor.edit(((editBuilder) => {
-                    editBuilder.replace(matchRange, insideText)
-                }))
-                return 'removed'
-            }
-            match = pattern.exec(line.text)
+        const offset: {
+            currentLine: number
+            lineOffset: number
+            columnOffset: number
+        } = {
+            currentLine: 0, lineOffset: 0, columnOffset: 0
         }
 
-        // Add keyword
-        if (selectionText.length > 0) {
-            editor.edit(((editBuilder) => {
-                if (outerBraces === true) {
-                    editBuilder.replace(selection, `{\\${keyword} ${selectionText}}`)
-                } else {
-                    editBuilder.replace(selection, `\\${keyword}{${selectionText}}`)
+        const actions: ('added' | 'removed')[] = []
+
+        for (let i = 0; i < selections.length; i++) {
+            const selection = selections[i]
+            const selectionText = selectionsText[i]
+            const line = document.lineAt(selection.anchor)
+
+            if (offset.currentLine !== selection.start.line) {
+                offset.currentLine = selection.start.line
+                offset.columnOffset = 0
+            }
+            const translatedSelection = new vscode.Range(
+                selection.start.translate(offset.lineOffset, offset.columnOffset),
+                selection.end.translate(offset.lineOffset, offset.columnOffset),
+            )
+
+            const pattern = new RegExp(`\\\\${keyword}{`, 'g')
+            let match = pattern.exec(line.text)
+            let keywordRemoved = false
+            while (match !== null) {
+                const matchStart = line.range.start.translate(0, match.index)
+                const matchEnd = matchStart.translate(0, match[0].length)
+                const searchString = document.getText(new vscode.Range(matchEnd, line.range.end))
+                const insideText = getLongestBalancedString(searchString)
+                const matchRange = new vscode.Range(matchStart,matchEnd.translate(0, insideText.length + 1))
+
+                if (matchRange.contains(translatedSelection)) {
+                    // Remove keyword
+                    await editor.edit(((editBuilder) => {
+                        editBuilder.replace(matchRange, insideText)
+                    }))
+                    updateOffset(insideText, matchRange)
+                    actions.push('removed')
+                    keywordRemoved = true
+                    break
                 }
-            }))
-        } else {
-            let snippet: vscode.SnippetString
-            if (outerBraces === true) {
-                snippet = new vscode.SnippetString(`{\\${keyword} $1}`)
-            } else {
-                snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
+                match = pattern.exec(line.text)
             }
-            editor.insertSnippet(snippet, selection.start)
+            if (keywordRemoved) {
+                continue
+            }
+
+            // Add keyword
+            if (selectionText.length > 0) {
+                await editor.edit(((editBuilder) => {
+                    let replacementText: string
+                    if (outerBraces === true) {
+                        replacementText= `{\\${keyword} ${selectionText}}`
+                    } else {
+                        replacementText= `\\${keyword}{${selectionText}}`
+                    }
+                    editBuilder.replace(translatedSelection, replacementText)
+                    updateOffset(replacementText, selection)
+                }))
+            } else {
+                let snippet: vscode.SnippetString
+                if (outerBraces === true) {
+                    snippet = new vscode.SnippetString(`{\\${keyword} $1}`)
+                } else {
+                    snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
+                }
+                await editor.insertSnippet(snippet, selection.start.translate(offset.lineOffset, offset.columnOffset))
+                updateOffset(snippet.value.replace(/\$\d/g, ''), new vscode.Range(selection.start, selection.start))
+            }
+            actions.push('added')
         }
-        return 'added'
+
+        return actions
     }
 
     /**
