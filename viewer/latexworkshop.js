@@ -249,6 +249,13 @@ document.addEventListener('pagesinit', () => {
   }
 })
 
+// Send packets every 30 sec to prevent the connection closed by timeout.
+setInterval( () => {
+  if (socket.readyState === 1) {
+    socket.send(JSON.stringify({type: 'ping'}))
+  }
+}, 30000)
+
 // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
 if (embedded) {
   document.addEventListener('click', (e) => {

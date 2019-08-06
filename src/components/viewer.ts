@@ -172,7 +172,9 @@ export class Viewer {
     handler(websocket: ws, msg: string) {
         const data = JSON.parse(msg)
         let clients: Client[] | undefined
-        this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
+        if (data.type !== 'ping') {
+            this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
+        }
         switch (data.type) {
             case 'open':
                 clients = this.clients[data.path.toLocaleUpperCase()]
@@ -238,6 +240,9 @@ export class Viewer {
                 break
             case 'external_link':
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
+                break
+            case 'ping':
+                // nothing to do
                 break
             default:
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
