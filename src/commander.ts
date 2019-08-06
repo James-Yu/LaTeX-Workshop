@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as cp from 'child_process'
+import {latexParser} from 'latex-utensils'
 
 import {Extension} from './main'
 import { ExternalCommand, getLongestBalancedString } from './utils'
@@ -735,6 +736,14 @@ export class Commander {
             return
         }
         this.extension.parser.parse(vscode.window.activeTextEditor.document.getText())
+    }
+
+    devParsePEG() {
+        if (this.extension.manager.rootFile === undefined) {
+            return
+        }
+        const ast = latexParser.parse(this.extension.manager.getContent())
+        vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
     async runTexdoc(pkg: string) {

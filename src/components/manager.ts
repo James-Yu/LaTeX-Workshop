@@ -285,11 +285,17 @@ export class Manager {
     private cachedFullContent: string | undefined
     /* This function returns the flattened content from the given file,
        typically the root file. */
-    getContent(file: string, fileTrace: string[] = []): string {
+    getContent(file?: string, fileTrace: string[] = []): string {
         // Here we make a copy, so that the tree structure of tex dependency
         // Can be maintained. For instance, main -> s1 and s2, both of which
         // has s3 as a subfile. This subtrace will allow s3 to be expanded in
         // both s1 and s2.
+        if (file === undefined) {
+            file = this.rootFile
+        }
+        if (file === undefined) {
+            return ''
+        }
         if (this.cachedFullContent && file === this.rootFile) {
             return this.cachedFullContent
         }
