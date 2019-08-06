@@ -362,6 +362,11 @@ export async function activate(context: vscode.ExtensionContext) {
             rootDir: () => extension.manager.rootDir,
             rootFile: () => extension.manager.rootFile,
             setEnvVar: () => extension.manager.setEnvVar()
+        },
+        completer: {
+            command: {
+                usedPackages: () => extension.completer.command.usedPackages
+            }
         }
     }
 }
