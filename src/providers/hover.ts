@@ -7,7 +7,7 @@ import * as utils from '../utils'
 import {TextDocumentLike} from '../components/textdocumentlike'
 import {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
-import {ReferenceEntry} from './completer/reference'
+import {Suggestion as ReferenceEntry} from './completer/reference'
 import {themeColorMap} from '../components/themecolormap'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
@@ -81,8 +81,8 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve(new vscode.Hover([md, mdLink]))
                 return
             }
-            if (hovReference && token in this.extension.completer.reference.referenceData) {
-                const refData = this.extension.completer.reference.referenceData[token]
+            if (hovReference && token in this.extension.completer.reference.suggestions) {
+                const refData = this.extension.completer.reference.suggestions[token]
                 this.provideHoverOnRef(document, position, refData, token)
                 .then( hover => resolve(hover))
                 return
@@ -225,7 +225,7 @@ export class HoverProvider implements vscode.HoverProvider {
 
     private async provideHoverOnRef(document: vscode.TextDocument, position: vscode.Position, refData: ReferenceEntry, token: string): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const line = refData.item.position.line
+        const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
@@ -236,7 +236,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 return this.provideHoverPreviewOnRef(tex, newCommands, refData)
             }
         }
-        const md = '```latex\n' + refData.text + '\n```\n'
+        const md = '```latex\n' + refData.label + '\n```\n'
         const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
         const refNumberMessage = this.refNumberMessage(refData)
         if (refNumberMessage !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
@@ -250,12 +250,12 @@ export class HoverProvider implements vscode.HoverProvider {
         const scale = configuration.get('hover.preview.scale') as number
 
         let tag: string
-        if (refData.item.atLastCompilation !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
-            tag = refData.item.atLastCompilation.refNumber
+        if (refData.prevIndex !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
+            tag = refData.prevIndex.refNumber
         } else {
-            tag = refData.item.reference
+            tag = refData.label
         }
-        const newTex = this.replaceLabelWithTag(tex.texString, refData.item.reference, tag)
+        const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
         const s = this.mathjaxify(newTex, tex.envname, {stripLabel: false})
         const obj = { labels : {}, IDs: {}, startNumber: 0 }
         const data = await this.mj.typeset({
@@ -270,7 +270,7 @@ export class HoverProvider implements vscode.HoverProvider {
         this.colorSVG(data)
         const xml = data.svgNode.outerHTML
         const md = this.svgToDataUrl(xml)
-        const line = refData.item.position.line
+        const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
@@ -278,8 +278,8 @@ export class HoverProvider implements vscode.HoverProvider {
     }
 
     refNumberMessage(refData: ReferenceEntry): string | undefined {
-        if (refData.item.atLastCompilation) {
-            const refNum = refData.item.atLastCompilation.refNumber
+        if (refData.prevIndex) {
+            const refNum = refData.prevIndex.refNumber
             const refMessage = `numbered ${refNum} at last compilation`
             return refMessage
         }
@@ -478,11 +478,11 @@ export class HoverProvider implements vscode.HoverProvider {
     private findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token: string, refData: ReferenceEntry): TexMathEnv | undefined {
         const docOfRef = TextDocumentLike.load(refData.file)
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
-        const l = docOfRef.lineAt(refData.item.position.line).text
+        const l = docOfRef.lineAt(refData.position.line).text
         const pat = new RegExp('\\\\label\\{' + utils.escapeRegExp(token) + '\\}')
         const m = l.match(pat)
         if (m && m.index !== undefined) {
-            const labelPos = new vscode.Position(refData.item.position.line, m.index)
+            const labelPos = new vscode.Position(refData.position.line, m.index)
             const beginPos = this.findBeginPair(docOfRef, envBeginPatMathMode, labelPos)
             if (beginPos) {
                 const t = this.findHoverOnTex(docOfRef, beginPos)

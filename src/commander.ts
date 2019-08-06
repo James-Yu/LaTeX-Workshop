@@ -739,10 +739,10 @@ export class Commander {
     }
 
     devParsePEG() {
-        if (this.extension.manager.rootFile === undefined) {
+        if (vscode.window.activeTextEditor === undefined) {
             return
         }
-        const ast = latexParser.parse(this.extension.manager.getContent())
+        const ast = latexParser.parse(vscode.window.activeTextEditor.document.getText())
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 

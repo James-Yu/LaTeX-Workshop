@@ -1,114 +1,109 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import { stripComments } from '../../utils'
+import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
 
-export type ReferenceEntry = {
-    item: {
-        reference: string,
-        text: string,
-        position: vscode.Position,
-        atLastCompilation?: {refNumber: string, pageNumber: string}
-    },
-    text: string,
-    file: string
+export interface Suggestion extends vscode.CompletionItem {
+    file: string, // The file that defines the ref
+    position: vscode.Position, // The position that defines the ref
+    prevIndex?: {refNumber: string, pageNumber: string} // Stores the ref number
 }
 
 export class Reference {
     extension: Extension
-    suggestions: vscode.CompletionItem[]
-    referenceData: {[id: string]: ReferenceEntry} = {}
-    refreshTimer: number
+    // Here we use an object instead of an array for de-duplication
+    suggestions: {[id: string]: Suggestion} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    reset() {
-        this.suggestions = []
-        this.referenceData = {}
-        this.refreshTimer = 0
-    }
-
     provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        if (Date.now() - this.refreshTimer < 1000) {
-            return this.suggestions
-        }
-        this.refreshTimer = Date.now()
-        const suggestions: {[key: string]: ReferenceEntry['item']} = {}
-        Object.keys(this.referenceData).forEach(key => {
-            suggestions[key] = this.referenceData[key].item
-        })
+        // Update the dirty content in active text editor
         if (vscode.window.activeTextEditor) {
-            const items = this.getReferenceItems(vscode.window.activeTextEditor.document.getText())
-            Object.keys(items).forEach(key => {
-                if (!(key in suggestions)) {
-                    suggestions[key] = items[key]
+            const content = vscode.window.activeTextEditor.document.getText()
+            const refs = this.getReferenceFromAST(latexParser.parse(content), content.split('\n'))
+            this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath].element.reference = refs
+        }
+        // Extract cached references
+        const refList: string[] = []
+        Object.keys(this.extension.manager.cachedContent).forEach(cachedFile => {
+            const cachedRefs = this.extension.manager.cachedContent[cachedFile].element.reference
+            if (cachedRefs === undefined) {
+                return
+            }
+            for (const ref of cachedRefs) {
+                if (ref.range === undefined) {
+                    continue
                 }
+                this.suggestions[ref.label] = {...ref,
+                    file: cachedFile,
+                    position: ref.range.start,
+                    range: args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/),
+                }
+                refList.push(ref.label)
+            }
+        })
+        // Remove references that has been deleted
+        Object.keys(this.suggestions).forEach(key => {
+            if (refList.indexOf(key) <= -1) {
+                delete this.suggestions[key]
+            }
+        })
+        // Compile the suggestion object to array
+        return Object.keys(this.suggestions).map(key => this.suggestions[key])
+    }
+
+    update(file: string, content: string) {
+        const refs = this.getReferenceFromAST(latexParser.parse(content), content.split('\n'))
+        this.extension.manager.cachedContent[file].element.reference = refs
+    }
+
+    private getReferenceFromAST(ast: latexParser.LatexAst | latexParser.Node, lines: string[], nextNode?: latexParser.Node): vscode.CompletionItem[] {
+        let refs: vscode.CompletionItem[] = []
+        let label = ''
+        if (ast.kind === 'command' && ast.name === 'label') {
+            // \label{some-text}
+            label = (ast.args.filter(arg => arg.kind === 'arg.group')[0].content[0] as latexParser.TextString).content
+        } else if (ast.kind === 'text.string' && ast.content === 'label=' && nextNode !== undefined) {
+            // label={some=text}
+            label = ((nextNode as latexParser.Group).content[0] as latexParser.TextString).content
+        }
+        if (label !== '' && (ast.kind === 'command' || ast.kind === 'text.string')) {
+            refs.push({
+                label,
+                kind: vscode.CompletionItemKind.Reference,
+                documentation: lines.slice(ast.location.start.line - 2, ast.location.end.line + 4).join('\n'),
+                range: new vscode.Range(ast.location.start.line - 1, ast.location.start.column,
+                                        ast.location.end.line - 1, ast.location.end.column)
             })
+            // Here we abuse the definition of range to store the location of the reference definition
+            return refs
         }
-        this.suggestions = []
-        Object.keys(suggestions).forEach(key => {
-            const item = suggestions[key]
-            const command = new vscode.CompletionItem(item.reference, vscode.CompletionItemKind.Reference)
-            command.documentation = item.text
-            command.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
-            this.suggestions.push(command)
-        })
-        return this.suggestions
-    }
-
-    getReferencesTeX(filePath: string) {
-        const references = this.getReferenceItems(fs.readFileSync(filePath, 'utf-8'))
-        Object.keys(this.referenceData).forEach((key) => {
-            if (this.referenceData[key].file === filePath) {
-                delete this.referenceData[key]
-            }
-        })
-        Object.keys(references).forEach((key) => {
-            this.referenceData[key] = {
-                item: references[key],
-                text: references[key].text,
-                file: filePath
-            }
-        })
-    }
-
-    getReferenceItems(content: string) {
-        const itemReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
-        const items: {[key: string]: ReferenceEntry['item']} = {}
-        content = stripComments(content, '%')
-        const noELContent = content.split('\n').filter(para => para !== '').join('\n')
-        while (true) {
-            const result = itemReg.exec(content)
-            if (result === null) {
-                break
-            }
-            if (!(result[1] in items)) {
-                const prevContent = noELContent.substring(0, noELContent.substring(0, result.index).lastIndexOf('\n') - 1)
-                const followLength = noELContent.substring(result.index, noELContent.length).split('\n', 4).join('\n').length
-                const positionContent = content.substring(0, result.index).split('\n')
-                items[result[1]] = {
-                    reference: result[1],
-                    text: `${noELContent.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength)}\n...`,
-                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
+        if (ast.hasOwnProperty('content') && Array.isArray(ast['content'])) {
+            // AstRoot | AstPreamble | non-label nodes -> loop in all its contents
+            const nodes = ast['content'] as latexParser.Node[]
+            for (let index = 0; index < nodes.length; ++index) {
+                if (index < nodes.length - 1) {
+                    // Also pass the next node to handle cases like `label={some-text}`
+                    refs = refs.concat(this.getReferenceFromAST(nodes[index], lines, nodes[index+1]))
+                } else {
+                    refs = refs.concat(this.getReferenceFromAST(nodes[index], lines))
                 }
             }
         }
-        return items
+        return refs
     }
 
     setNumbersFromAuxFile(rootFile: string) {
         const outDir = this.extension.manager.getOutDir(rootFile)
         const rootDir = path.dirname(rootFile)
         const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
-        const refKeys = Object.keys(this.referenceData)
-        for (const key of refKeys) {
-            const refData = this.referenceData[key]
-            refData.item.atLastCompilation = undefined
-        }
+        Object.keys(this.suggestions).forEach(key => {
+            this.suggestions[key].prevIndex = undefined
+        })
         if (!fs.existsSync(auxFile)) {
             return
         }
@@ -119,9 +114,8 @@ export class Reference {
             if (result === null) {
                 break
             }
-            if (result[1] in this.referenceData) {
-                const refData = this.referenceData[result[1]]
-                refData.item.atLastCompilation = {refNumber: result[2], pageNumber: result[3]}
+            if (result[1] in this.suggestions) {
+                this.suggestions[result[1]].prevIndex = {refNumber: result[2], pageNumber: result[3]}
             }
         }
     }
