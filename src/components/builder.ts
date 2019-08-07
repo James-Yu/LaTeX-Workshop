@@ -310,10 +310,11 @@ export class Builder {
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
         this.extension.manager.parseFlsFile(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        // if (configuration.get('synctex.afterBuild.enabled') as boolean) {
-        //     this.extension.logger.addLogMessage('SyncTex after build invoked.')
-        //     this.extension.locator.syncTeX(undefined, undefined, rootFile)
-        // }
+        if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
+            const pdfFile = this.extension.manager.tex2pdf(rootFile)
+            this.extension.logger.addLogMessage('SyncTex after build invoked.')
+            this.extension.locator.syncTeX(undefined, undefined, pdfFile)
+        }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
             this.extension.cleaner.clean(rootFile)
