@@ -13,7 +13,8 @@ interface Content {
     [filepath: string]: { // tex file name
         content: string, // the dirty (under editing) contents
         element: {
-            reference?: vscode.CompletionItem[]
+            reference?: vscode.CompletionItem[],
+            environment?: vscode.CompletionItem[]
         }, // latex elements for completion, e.g., reference defition
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted
@@ -516,7 +517,6 @@ export class Manager {
         // We also clean the completions from the old project
         this.extension.completer.command.reset()
         this.extension.completer.citation.reset()
-        this.extension.completer.environment.reset()
         this.extension.completer.input.reset()
     }
 
@@ -594,10 +594,10 @@ export class Manager {
             const nodes = latexParser.parse(content).content
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
+            this.extension.completer.environment.update(file, nodes, lines)
         })
         this.extension.completer.command.getCommandsTeX(file)
         this.extension.completer.command.getPackage(file)
-        this.extension.completer.environment.getEnvironmentsTeX(file)
         this.extension.completer.citation.getTheBibliographyTeX(file)
         this.extension.completer.input.getGraphicsPath(file)
     }
