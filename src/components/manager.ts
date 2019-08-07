@@ -4,6 +4,7 @@ import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import * as utils from '../utils'
+import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../main'
 // import {ReferenceEntry} from '../providers/completer/reference'
@@ -590,7 +591,9 @@ export class Manager {
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
         fs.readFile(file).then(buffer => buffer.toString()).then(content => {
-            this.extension.completer.reference.update(file, content)
+            const nodes = latexParser.parse(content).content
+            const lines = content.split('\n')
+            this.extension.completer.reference.update(file, nodes, lines)
         })
         this.extension.completer.command.getCommandsTeX(file)
         this.extension.completer.command.getPackage(file)
