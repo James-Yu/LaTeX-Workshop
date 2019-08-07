@@ -140,10 +140,12 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
         documentTitle = pdfFilePath.split(/[\\/]/).pop()
         document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
+      document.addEventListener('pagesinit', () => {
         const dom = document.getElementsByClassName('print')
         for (let j = 0; j < dom.length; ++j) {
           dom.item(j).style.display='none'
         }
+      }, {once: true})
     }
 }
 const server = `ws://${window.location.hostname}:${window.location.port}`
@@ -292,7 +294,7 @@ document.addEventListener('pagesinit', () => {
       socket.send(JSON.stringify({type:'click', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
     }
   }
-}, true);
+}, {once: true});
 
 const setHistory = () => {
   const container = document.getElementById('viewerContainer')
