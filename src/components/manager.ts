@@ -4,12 +4,17 @@ import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import * as utils from '../utils'
+import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../main'
+// import {ReferenceEntry} from '../providers/completer/reference'
 
 interface Content {
     [filepath: string]: { // tex file name
         content: string, // the dirty (under editing) contents
+        element: {
+            reference?: vscode.CompletionItem[]
+        }, // latex elements for completion, e.g., reference defition
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted
             file: string // the path to the sub-file
@@ -255,7 +260,7 @@ export class Manager {
             return this.cachedContent[cachedFile].content
         }
         const fileContent = utils.stripComments(fs.readFileSync(file).toString(), '%')
-        this.cachedContent[file] = {content: fileContent, children: []}
+        this.cachedContent[file] = {content: fileContent, element: {}, children: []}
         return fileContent
     }
 
@@ -509,7 +514,6 @@ export class Manager {
         this.fileWatcher.close()
         this.filesWatched = []
         // We also clean the completions from the old project
-        this.extension.completer.reference.reset()
         this.extension.completer.command.reset()
         this.extension.completer.citation.reset()
         this.extension.completer.environment.reset()
@@ -586,10 +590,14 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
+        fs.readFile(file).then(buffer => buffer.toString()).then(content => {
+            const nodes = latexParser.parse(content).content
+            const lines = content.split('\n')
+            this.extension.completer.reference.update(file, nodes, lines)
+        })
         this.extension.completer.command.getCommandsTeX(file)
         this.extension.completer.command.getPackage(file)
         this.extension.completer.environment.getEnvironmentsTeX(file)
-        this.extension.completer.reference.getReferencesTeX(file)
         this.extension.completer.citation.getTheBibliographyTeX(file)
         this.extension.completer.input.getGraphicsPath(file)
     }
