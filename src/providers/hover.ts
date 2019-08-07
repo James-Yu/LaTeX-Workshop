@@ -239,7 +239,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const md = '```latex\n' + refData.label + '\n```\n'
         const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
         const refNumberMessage = this.refNumberMessage(refData)
-        if (refNumberMessage !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
+        if (refNumberMessage !== undefined && configuration.get('hover.ref.number.enabled') as boolean) {
             return new vscode.Hover([md, refNumberMessage, mdLink], refRange)
         }
         return new vscode.Hover([md, mdLink], refRange)
@@ -250,7 +250,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const scale = configuration.get('hover.preview.scale') as number
 
         let tag: string
-        if (refData.prevIndex !== undefined && configuration.get('hover.ref.numberAtLastCompilation.enabled') as boolean) {
+        if (refData.prevIndex !== undefined && configuration.get('hover.ref.number.enabled') as boolean) {
             tag = refData.prevIndex.refNumber
         } else {
             tag = refData.label
