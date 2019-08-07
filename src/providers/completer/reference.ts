@@ -76,7 +76,7 @@ export class Reference {
 
     // This function will return the reference defined by the node, or all references in `content`
     private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): vscode.CompletionItem[] {
-        let refs: vscode.CompletionItem[] = []
+        const refs: vscode.CompletionItem[] = []
         let label = ''
         if (latexParser.isCommand(node) && node.name === 'label') {
             // \label{some-text}
