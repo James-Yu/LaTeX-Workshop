@@ -229,7 +229,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
-        if (configuration.get('hover.preview.ref.enabled') as boolean) {
+        if (configuration.get('hover.ref.enabled') as boolean) {
             const tex = this.findHoverOnRef(document, position, token, refData)
             if (tex) {
                 const newCommands = await this.findNewCommand(document.getText())
