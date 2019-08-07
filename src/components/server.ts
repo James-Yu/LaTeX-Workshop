@@ -6,7 +6,7 @@ import * as vscode from 'vscode'
 
 import {Extension} from '../main'
 import {AddressInfo} from 'net'
-import {decodePathWithPrefix, pdfFilePrefix} from './encodePath'
+import {decodePathWithPrefix, pdfFilePrefix} from '../utils'
 
 export class Server {
     extension: Extension
