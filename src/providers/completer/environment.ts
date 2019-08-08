@@ -73,8 +73,9 @@ export class Environment {
     private getEnvFromNode(node: latexParser.Node, lines: string[]): vscode.CompletionItem[] {
         const envs: vscode.CompletionItem[] = []
         let label = ''
-        if ((latexParser.isEnvironment(node) || node.kind.indexOf('env.') > -1) && // e.g., 'env.math.align', 'env.verbatim'
-            'name' in node) {
+        // Here we only check `isEnvironment`which excludes `align*` and `verbatim`.
+        // Nonetheless, they have already been included in `defaultEnvs`.
+        if (latexParser.isEnvironment(node)) {
             label = node.name
             envs.push({
                 label,
