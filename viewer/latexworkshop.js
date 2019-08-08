@@ -1,11 +1,13 @@
 const embedded = window.parent !== window
 let documentTitle = ''
 
-// PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
-// and if so it behaves more "discretely", eg it disables its history mechanism.
-// We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
-//
-PDFViewerApplication.isViewerEmbedded = false;
+document.addEventListener('webviewerloaded', () => {
+  // PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
+  // and if so it behaves more "discretely", eg it disables its history mechanism.
+  // We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
+  //
+  PDFViewerApplication.isViewerEmbedded = false;
+});
 
 class ViewerHistory {
   constructor() {
@@ -138,10 +140,12 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
         documentTitle = pdfFilePath.split(/[\\/]/).pop()
         document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
+      document.addEventListener('pagesinit', () => {
         const dom = document.getElementsByClassName('print')
         for (let j = 0; j < dom.length; ++j) {
           dom.item(j).style.display='none'
         }
+      }, {once: true})
     }
 }
 const server = `ws://${window.location.hostname}:${window.location.port}`
@@ -266,49 +270,38 @@ if (embedded) {
   })
 }
 
-document.addEventListener('pagerendered', (evPageRendered) => {
-    const page = evPageRendered.target.dataset.pageNumber
-    const target = evPageRendered.target
-    // textLayer
-    const canvas_dom = evPageRendered.target.childNodes[1]
-    canvas_dom.onclick = (e) => {
-        if (!(e.ctrlKey || e.metaKey)) {
-          return
-        }
-
-        const selection = window.getSelection();
-        let textBeforeSelection = ''
-        let textAfterSelection = ''
-        // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
-        if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
-          const text = selection.anchorNode.textContent;
-          textBeforeSelection = text.substring(0, selection.anchorOffset);
-          textAfterSelection = text.substring(selection.anchorOffset);
-        }
-
-        let viewerContainer = null
-        // no spread
-        if (PDFViewerApplication.pdfViewer.spreadMode === 0) {
-          viewerContainer = target.parentNode.parentNode
-        }
-        // odd and even spread add an extra spread container
-        else {
-          viewerContainer = target.parentNode.parentNode.parentNode
-        }
-
-        const trimSelect = document.getElementById('trimSelect')
-        let left = e.pageX - target.offsetLeft + viewerContainer.scrollLeft
-        const top = e.pageY - target.offsetTop + viewerContainer.scrollTop
-        if (trimSelect.selectedIndex > 0) {
-          const m = canvas_dom.style.left.match(/-(.*)px/)
-          const offsetLeft = m ? Number(m[1]) : 0
-          left += offsetLeft
-        }
-        const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvas_dom.offsetHeight - top)
-        socket.send(JSON.stringify({type:'click', path:pdfFilePath, pos, page,
-         textBeforeSelection, textAfterSelection}))
+document.addEventListener('pagesinit', () => {
+  const viewerDom = document.getElementById('viewer')
+  for (const pageDom of viewerDom.childNodes) {
+    const page = pageDom.dataset.pageNumber
+    const viewerContainer = document.getElementById('viewerContainer')
+    pageDom.onclick = (e) => {
+      const canvasDom = pageDom.getElementsByTagName('canvas')[0]
+      if (!(e.ctrlKey || e.metaKey)) {
+        return
+      }
+      const selection = window.getSelection();
+      let textBeforeSelection = ''
+      let textAfterSelection = ''
+      // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
+      if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
+        const text = selection.anchorNode.textContent;
+        textBeforeSelection = text.substring(0, selection.anchorOffset);
+        textAfterSelection = text.substring(selection.anchorOffset);
+      }
+      const trimSelect = document.getElementById('trimSelect')
+      let left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft
+      const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop
+      if (trimSelect.selectedIndex > 0) {
+        const m = canvasDom.style.left.match(/-(.*)px/)
+        const offsetLeft = m ? Number(m[1]) : 0
+        left += offsetLeft
+      }
+      const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
+      socket.send(JSON.stringify({type:'click', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
     }
-}, true)
+  }
+}, {once: true});
 
 const setHistory = () => {
   const container = document.getElementById('viewerContainer')
@@ -317,17 +310,19 @@ const setHistory = () => {
   setTimeout(() => {viewerHistory.set(container.scrollTop)}, 500)
 }
 
-document.getElementById('viewerContainer').addEventListener('click', setHistory)
-document.getElementById('sidebarContainer').addEventListener('click', setHistory)
+document.addEventListener('pagesinit', () => {
+  document.getElementById('viewerContainer').addEventListener('click', setHistory)
+  document.getElementById('sidebarContainer').addEventListener('click', setHistory)
 
-// back button (mostly useful for the embedded viewer)
-document.getElementById('historyBack').addEventListener('click', () => {
-  viewerHistory.back()
-})
+  // back button (mostly useful for the embedded viewer)
+  document.getElementById('historyBack').addEventListener('click', () => {
+    viewerHistory.back()
+  })
 
-document.getElementById('historyForward').addEventListener('click', () => {
-  viewerHistory.forward()
-})
+  document.getElementById('historyForward').addEventListener('click', () => {
+    viewerHistory.forward()
+  })
+});
 
 // keyboard bindings
 window.addEventListener('keydown', (evt) => {
@@ -366,11 +361,13 @@ function showToolbar(animate) {
   }, 3000)
 }
 
-document.getElementById('outerContainer').onmousemove = (e) => {
-  if (e.clientY <= 64) {
-    showToolbar(true)
+document.addEventListener('pagesinit', () => {
+  document.getElementById('outerContainer').onmousemove = (e) => {
+    if (e.clientY <= 64) {
+      showToolbar(true)
+    }
   }
-}
+});
 
 let currentUserSelectScale = undefined;
 let originalUserSelectIndex = undefined;
@@ -384,49 +381,51 @@ const getTrimScale = () => {
   return 1.0/(1 - 2*trimValue);
 };
 
-document.getElementById('trimSelect').addEventListener('change', (ev) => {
-  const trimScale = getTrimScale();
-  const trimSelect = document.getElementById('trimSelect');
-  const scaleSelect = document.getElementById('scaleSelect');
-  const e = new Event('change');
-  let o;
-  if (trimSelect.selectedIndex <= 0) {
-    for ( o of scaleSelect.options ) {
-      o.disabled = false;
-    }
-    document.getElementById('trimOption').disabled = true;
-    document.getElementById('trimOption').hidden = true;
-    if (originalUserSelectIndex !== undefined) {
-      scaleSelect.selectedIndex = originalUserSelectIndex;
-    }
-    scaleSelect.dispatchEvent(e);
-    currentUserSelectScale = undefined;
-    originalUserSelectIndex = undefined;
-    const viewer = document.getElementById('viewer');
-    for ( const page of viewer.getElementsByClassName('page') ) {
-      for ( const layer of page.getElementsByClassName('annotationLayer') ) {
-        for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
-          if (secionOfAnnotation.dataset.originalLeft !== undefined) {
-            secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft;
+document.addEventListener('pagesinit', () => {
+  document.getElementById('trimSelect').addEventListener('change', () => {
+    const trimScale = getTrimScale();
+    const trimSelect = document.getElementById('trimSelect');
+    const scaleSelect = document.getElementById('scaleSelect');
+    const e = new Event('change');
+    let o;
+    if (trimSelect.selectedIndex <= 0) {
+      for ( o of scaleSelect.options ) {
+        o.disabled = false;
+      }
+      document.getElementById('trimOption').disabled = true;
+      document.getElementById('trimOption').hidden = true;
+      if (originalUserSelectIndex !== undefined) {
+        scaleSelect.selectedIndex = originalUserSelectIndex;
+      }
+      scaleSelect.dispatchEvent(e);
+      currentUserSelectScale = undefined;
+      originalUserSelectIndex = undefined;
+      const viewer = document.getElementById('viewer');
+      for ( const page of viewer.getElementsByClassName('page') ) {
+        for ( const layer of page.getElementsByClassName('annotationLayer') ) {
+          for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
+            if (secionOfAnnotation.dataset.originalLeft !== undefined) {
+              secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft;
+            }
           }
         }
       }
+      return;
     }
-    return;
-  }
-  for ( o of scaleSelect.options ) {
-    o.disabled = true;
-  }
-  if (currentUserSelectScale === undefined) {
-    currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale;
-  }
-  if (originalUserSelectIndex === undefined) {
-    originalUserSelectIndex = scaleSelect.selectedIndex;
-  }
-  o = document.getElementById('trimOption');
-  o.value = currentUserSelectScale * trimScale;
-  o.selected = true;
-  scaleSelect.dispatchEvent(e);
+    for ( o of scaleSelect.options ) {
+      o.disabled = true;
+    }
+    if (currentUserSelectScale === undefined) {
+      currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale;
+    }
+    if (originalUserSelectIndex === undefined) {
+      originalUserSelectIndex = scaleSelect.selectedIndex;
+    }
+    o = document.getElementById('trimOption');
+    o.value = currentUserSelectScale * trimScale;
+    o.selected = true;
+    scaleSelect.dispatchEvent(e);
+  });
 });
 
 const trimPage = (page) => {
