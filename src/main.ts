@@ -110,6 +110,13 @@ function obsoleteConfigCheck(extension: Extension) {
         'truetrue': 'onFileChange'
     })
     renameValue('latex.autoBuild.run', 'onSave', 'onFileChange')
+    renameConfig('hover.ref.numberAtLastCompilation.enabled', 'hover.ref.number.enabled')
+    combineConfig(extension, 'hover.ref.enabled', 'hover.preview.ref.enabled', 'hover.ref.enabled', {
+        'falsefalse': false,
+        'falsetrue': true,
+        'truefalse': true,
+        'truetrue': true
+    })
 }
 
 function checkDeprecatedFeatures(extension: Extension) {
