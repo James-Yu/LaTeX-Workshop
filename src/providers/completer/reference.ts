@@ -34,9 +34,9 @@ export class Reference {
             if (cachedRefs === undefined) {
                 return
             }
-            for (const ref of cachedRefs) {
+            cachedRefs.forEach(ref => {
                 if (ref.range === undefined) {
-                    continue
+                    return
                 }
                 this.suggestions[ref.label] = {...ref,
                     file: cachedFile,
@@ -44,7 +44,7 @@ export class Reference {
                     range: args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/),
                 }
                 refList.push(ref.label)
-            }
+            })
         })
         // Remove references that has been deleted
         Object.keys(this.suggestions).forEach(key => {
