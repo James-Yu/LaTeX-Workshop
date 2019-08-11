@@ -616,7 +616,7 @@ export class Manager {
             this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
             this.bibWatcher.add(bibPath)
             this.bibsWatched.push(bibPath)
-            this.extension.completer.citation.parseBibFile(bibPath, this.rootFile)
+            this.extension.completer.citation.parseBibFile(bibPath)
         }
     }
 

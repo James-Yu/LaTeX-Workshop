@@ -1,21 +1,18 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import {bibtexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
 
-const bibEntries = ['article', 'book', 'bookinbook', 'booklet', 'collection', 'conference', 'inbook',
-                    'incollection', 'inproceedings', 'inreference', 'manual', 'mastersthesis', 'misc',
-                    'mvbook', 'mvcollection', 'mvproceedings', 'mvreference', 'online', 'patent', 'periodical',
-                    'phdthesis', 'proceedings', 'reference', 'report', 'set', 'suppbook', 'suppcollection',
-                    'suppperiodical', 'techreport', 'thesis', 'unpublished']
-
-interface CitationRecord {
-    key: string,
-    [key: string]: string | undefined
+export interface Suggestion extends vscode.CompletionItem {
+    attributes: {[key: string]: string}
 }
 
 export class Citation {
     extension: Extension
+
+    private bibEntries: {[file: string]: Suggestion[]} = {}
+
     suggestions: vscode.CompletionItem[]
     citationInBib: { [id: string]: {citations: CitationRecord[], rootFiles: string[] }} = {}
     citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
@@ -151,15 +148,30 @@ export class Citation {
         })
     }
 
-    parseBibFile(bibPath: string, texFile: string | undefined = undefined) {
-        this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
-        const items: CitationRecord[] = []
+    parseBibFile(file: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (fs.statSync(bibPath).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
-            this.extension.logger.addLogMessage(`${bibPath} is too large, ignoring it.`)
-            this.citationInBib[bibPath] = { citations: items, rootFiles: [] }
+        if (fs.statSync(file).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
+            this.extension.logger.addLogMessage(`${file} is too large, ignoring it.`)
+            if (file in this.bibEntries) {
+                delete this.bibEntries[file]
+            }
             return
         }
+        this.bibEntries[file] = bibtexParser.parse(fs.readFileSync(file).toString()).content
+            .filter(entry => bibtexParser.isEntry(entry))
+            .filter((entry: bibtexParser.Entry) => entry.internalKey !== undefined)
+            .map((entry: bibtexParser.Entry) => {
+            const item: Suggestion = {
+                label: entry.internalKey,
+                kind: vscode.CompletionItemKind.Reference,
+                attributes: {}
+            }
+            // entry.content
+            return item
+        })
+
+        this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
+        const items: CitationRecord[] = []
         const content = fs.readFileSync(bibPath, 'utf-8')
         const contentNoNewLine = content.replace(/[\r\n]/g, ' ')
         const itemReg = /@(\w+)\s*{/g
