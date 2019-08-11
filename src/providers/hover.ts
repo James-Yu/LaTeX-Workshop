@@ -81,24 +81,18 @@ export class HoverProvider implements vscode.HoverProvider {
                 resolve(new vscode.Hover([md, mdLink]))
                 return
             }
-            if (hovReference && token in this.extension.completer.reference.suggestions) {
-                const refData = this.extension.completer.reference.suggestions[token]
+            const refs = this.extension.completer.reference.getRefDict()
+            if (hovReference && token in refs) {
+                const refData = refs[token]
                 this.provideHoverOnRef(document, position, refData, token)
                 .then( hover => resolve(hover))
                 return
             }
-            if (hovCitation && token in this.extension.completer.citation.citationData) {
+            const cites = this.extension.completer.citation.getEntryDict()
+            if (hovCitation && token in cites) {
                 const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
                 resolve(new vscode.Hover(
-                    this.extension.completer.citation.citationData[token].text,
-                    range
-                ))
-                return
-            }
-            if (hovCitation && token in this.extension.completer.citation.theBibliographyData) {
-                const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
-                resolve(new vscode.Hover(
-                    this.extension.completer.citation.theBibliographyData[token].text,
+                    '```\n' + cites[token].detail + '\n```\n',
                     range
                 ))
                 return
@@ -236,7 +230,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 return this.provideHoverPreviewOnRef(tex, newCommands, refData)
             }
         }
-        const md = '```latex\n' + refData.label + '\n```\n'
+        const md = '```latex\n' + refData.documentation + '\n```\n'
         const refRange = document.getWordRangeAtPosition(position, /\{.*?\}/)
         const refNumberMessage = this.refNumberMessage(refData)
         if (refNumberMessage !== undefined && configuration.get('hover.ref.number.enabled') as boolean) {

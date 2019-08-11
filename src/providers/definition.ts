@@ -51,22 +51,17 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
                 resolve()
                 return
             }
-            if (token in this.extension.completer.reference.suggestions) {
-                const ref = this.extension.completer.reference.suggestions[token]
+            const refs = this.extension.completer.reference.getRefDict()
+            if (token in refs) {
+                const ref = refs[token]
                 resolve(new vscode.Location(vscode.Uri.file(ref.file), ref.position))
                 return
             }
-            if (token in this.extension.completer.citation.citationData) {
-                const cite = this.extension.completer.citation.citationData[token]
+            const cites = this.extension.completer.citation.getEntryDict()
+            if (token in cites) {
+                const cite = cites[token]
                 resolve(new vscode.Location(
                     vscode.Uri.file(cite.file), cite.position
-                ))
-                return
-            }
-            if (token in this.extension.completer.citation.theBibliographyData) {
-                const cite = this.extension.completer.citation.theBibliographyData[token]
-                resolve(new vscode.Location(
-                    vscode.Uri.file(cite.file), cite.item.position
                 ))
                 return
             }

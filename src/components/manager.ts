@@ -14,7 +14,8 @@ interface Content {
         content: string, // the dirty (under editing) contents
         element: {
             reference?: vscode.CompletionItem[],
-            environment?: vscode.CompletionItem[]
+            environment?: vscode.CompletionItem[],
+            bibitem?: vscode.CompletionItem[]
         }, // latex elements for completion, e.g., reference defition
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted
@@ -594,10 +595,10 @@ export class Manager {
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
             this.extension.completer.environment.update(file, nodes, lines)
+            this.extension.completer.citation.update(file, content)
         })
         this.extension.completer.command.getCommandsTeX(file)
         this.extension.completer.command.getPackage(file)
-        this.extension.completer.citation.getTheBibliographyTeX(file)
         this.extension.completer.input.getGraphicsPath(file)
     }
 

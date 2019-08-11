@@ -5,7 +5,10 @@ import {bibtexParser} from 'latex-utensils'
 import {Extension} from '../../main'
 
 export interface Suggestion extends vscode.CompletionItem {
+    key: string,
+    detail: string,
     fields: {[key: string]: string},
+    file: string,
     position: vscode.Position
 }
 
@@ -25,102 +28,43 @@ export class Citation {
     }
 
     provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        let suggestions: Suggestion[] = []
-        // From bib files
-        Object.keys(this.bibEntries).forEach(file => {
-            suggestions = suggestions.concat(this.bibEntries[file])
-        })
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        // First, we deal with citation items from bib files
-        const items: CitationRecord[] = []
-        Object.keys(this.citationInBib).forEach(bibPath => {
-            if (this.citationInBib[bibPath].rootFiles.length === 0 ||
-                rootFile !== undefined && this.citationInBib[bibPath].rootFiles.indexOf(rootFile) > -1) {
-                this.citationInBib[bibPath].citations.forEach(item => items.push(item))
-            }
-        })
-
-        this.suggestions = items.map(item => {
-            const citation = new vscode.CompletionItem(item.key, vscode.CompletionItemKind.Reference)
-            citation.detail = item.title
-            switch (configuration.get('intellisense.citation.label') as string) {
+        // Compile the suggestion array to vscode completion array
+        const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
+        return this.updateAll().map(item => {
+            // Compile the completion item label
+            switch(label) {
                 case 'bibtex key':
                 default:
-                    citation.label = item.key
                     break
                 case 'title':
-                    if (item.title) {
-                        citation.label = item.title as string
-                        citation.detail = undefined
-                    } else {
-                        citation.label = item.key
+                    if (item.fields.title) {
+                        item.label = item.fields.title
                     }
                     break
                 case 'authors':
-                    if (item.author) {
-                        citation.label = item.author as string
-                        citation.detail = undefined
-                    } else {
-                        citation.label = item.key
+                    if (item.fields.author) {
+                        item.label = item.fields.author
                     }
                     break
             }
-
-            citation.filterText = `${item.key} ${item.author} ${item.title} ${item.journal}`
-            citation.insertText = item.key
-            citation.documentation = Object.keys(item)
-                .filter(key => (key !== 'key'))
-                .map(key => `${key}: ${item[key]}`)
-                .join('\n')
+            item.filterText = `${item.key} ${item.fields.author} ${item.fields.title} ${item.fields.journal}`
+            item.insertText = item.key
+            item.documentation = item.detail
             if (args) {
-                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
+                item.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
             }
-            return citation
+            return item
         })
-
-        // Second, we deal with the items from thebibliography
-        // const suggestions = {}
-        Object.keys(this.theBibliographyData).forEach(key => {
-            if (this.theBibliographyData[key].rootFile !== rootFile) {
-               return
-            }
-            suggestions[key] = this.theBibliographyData[key].item
-        })
-        if (vscode.window.activeTextEditor) {
-            const thebibliographyItems = this.getTheBibliographyItems(vscode.window.activeTextEditor.document.getText())
-            Object.keys(thebibliographyItems).forEach(key => {
-                if (!(key in suggestions)) {
-                    suggestions[key] = thebibliographyItems[key]
-                }
-            })
-        }
-        Object.keys(suggestions).forEach(key => {
-            const item = suggestions[key]
-            const citation = new vscode.CompletionItem(item.citation, vscode.CompletionItemKind.Reference)
-            citation.detail = item.text
-            if (args) {
-                citation.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
-            }
-            this.suggestions.push(citation)
-        })
-        return this.suggestions
     }
 
-    browser(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        this.provide(args)
-        const items: CitationRecord[] = []
-        Object.keys(this.citationInBib).forEach(bibPath => {
-            this.citationInBib[bibPath].citations.forEach(item => items.push(item))
-        })
-        const pickItems: vscode.QuickPickItem[] = items.map(item => {
+    browser(_args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        vscode.window.showQuickPick(this.updateAll().map(item => {
             return {
-                label: item.title ? item.title as string : '',
+                label: item.fields.title ? item.fields.title as string : '',
                 description: `${item.key}`,
-                detail: `Authors: ${item.author ? item.author : 'Unknown'}, publication: ${item.journal ? item.journal : (item.journaltitle ? item.journaltitle : (item.publisher ? item.publisher : 'Unknown'))}`
+                detail: `Authors: ${item.fields.author ? item.fields.author : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
             }
-        })
-        vscode.window.showQuickPick(pickItems, {
+        }), {
             placeHolder: 'Press ENTER to insert citation key at cursor',
             matchOnDetail: true,
             matchOnDescription: true
@@ -143,6 +87,47 @@ export class Citation {
         })
     }
 
+    getEntryDict(): {[key: string]: Suggestion} {
+        const suggestions = this.updateAll()
+        const entries = {}
+        suggestions.forEach(entry => entries[entry.key] = entry)
+        return entries
+    }
+
+    private updateAll(): Suggestion[] {
+        let suggestions: Suggestion[] = []
+        // Update the dirty content in active text editor, get bibitems
+        if (vscode.window.activeTextEditor) {
+            const file = vscode.window.activeTextEditor.document.uri.fsPath
+            const bibitems = this.parseContent(
+                vscode.window.activeTextEditor.document.getText(), file
+            )
+            this.extension.manager.cachedContent[file].element.bibitem = bibitems
+        }
+        // From bib files
+        Object.keys(this.bibEntries).forEach(file => {
+            suggestions = suggestions.concat(this.bibEntries[file])
+        })
+        // From caches
+        Object.keys(this.extension.manager.cachedContent).forEach(cachedFile => {
+            const cachedBibs = this.extension.manager.cachedContent[cachedFile].element.bibitem
+            if (cachedBibs === undefined) {
+                return
+            }
+            // TODO: update position
+            suggestions = suggestions.concat(cachedBibs.map(bib => {
+                return {...bib,
+                    key: bib.label,
+                    detail: bib.detail ? bib.detail : '',
+                    file: cachedFile,
+                    position: new vscode.Position(0, 0),
+                    fields: {}
+                }
+            }))
+        })
+        return suggestions
+    }
+
     parseBibFile(file: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -161,7 +146,10 @@ export class Citation {
                     return
                 }
                 const item: Suggestion = {
+                    key: entry.internalKey,
                     label: entry.internalKey,
+                    file,
+                    position: new vscode.Position(0, 0),
                     kind: vscode.CompletionItemKind.Reference,
                     detail: '',
                     fields: {}
@@ -182,24 +170,13 @@ export class Citation {
         delete this.bibEntries[file]
     }
 
-    getTheBibliographyTeX(filePath: string) {
-        const bibitems = this.getTheBibliographyItems(fs.readFileSync(filePath, 'utf-8'))
-        Object.keys(this.theBibliographyData).forEach((key) => {
-            if (this.theBibliographyData[key].file === filePath) {
-                delete this.theBibliographyData[key]
-            }
-        })
-        Object.keys(bibitems).forEach((key) => {
-            this.theBibliographyData[key] = {
-                item: bibitems[key],
-                text: bibitems[key].text,
-                file: filePath,
-                rootFile: this.extension.manager.rootFile
-            }
-        })
+    /* This function parses the bibitem entries defined in tex files */
+    update(file: string, content: string) {
+        this.extension.manager.cachedContent[file].element.bibitem =
+            this.parseContent(file, content)
     }
 
-    getTheBibliographyItems(content: string): Suggestion[] {
+    private parseContent(file: string, content: string): Suggestion[] {
         const itemReg = /^(?!%).*\\bibitem(?:\[[^[\]{}]*\])?{([^}]*)}/gm
         const items: Suggestion[] = []
         while (true) {
@@ -211,7 +188,9 @@ export class Citation {
                 const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
                 const positionContent = content.substring(0, result.index).split('\n')
                 items.push({
+                    key: result[1],
                     label: result[1],
+                    file,
                     kind: vscode.CompletionItemKind.Reference,
                     detail: `${postContent}\n...`,
                     fields: {},

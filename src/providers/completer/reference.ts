@@ -14,13 +14,30 @@ export interface Suggestion extends vscode.CompletionItem {
 export class Reference {
     extension: Extension
     // Here we use an object instead of an array for de-duplication
-    suggestions: {[id: string]: Suggestion} = {}
+    private suggestions: {[id: string]: Suggestion} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+        // Compile the suggestion object to array
+        this.updateAll(args)
+        return Object.keys(this.suggestions).map(key => this.suggestions[key])
+    }
+
+    update(file: string, nodes: latexParser.Node[], lines: string[]) {
+        this.extension.manager.cachedContent[file].element.reference = this.getRefFromNodeArray(nodes, lines)
+    }
+
+    getRefDict(): {[key: string]: Suggestion} {
+        if (this.suggestions) {
+            this.updateAll()
+        }
+        return this.suggestions
+    }
+
+    private updateAll(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         // Update the dirty content in active text editor
         if (vscode.window.activeTextEditor) {
             const content = vscode.window.activeTextEditor.document.getText()
@@ -41,7 +58,7 @@ export class Reference {
                 this.suggestions[ref.label] = {...ref,
                     file: cachedFile,
                     position: ref.range.start,
-                    range: args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/),
+                    range: args ? args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/) : undefined,
                 }
                 refList.push(ref.label)
             })
@@ -52,12 +69,6 @@ export class Reference {
                 delete this.suggestions[key]
             }
         })
-        // Compile the suggestion object to array
-        return Object.keys(this.suggestions).map(key => this.suggestions[key])
-    }
-
-    update(file: string, nodes: latexParser.Node[], lines: string[]) {
-        this.extension.manager.cachedContent[file].element.reference = this.getRefFromNodeArray(nodes, lines)
     }
 
     // This function will return all references in a node array, including sub-nodes
