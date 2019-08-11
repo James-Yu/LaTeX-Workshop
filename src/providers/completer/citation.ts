@@ -5,7 +5,8 @@ import {bibtexParser} from 'latex-utensils'
 import {Extension} from '../../main'
 
 export interface Suggestion extends vscode.CompletionItem {
-    attributes: {[key: string]: string}
+    fields: {[key: string]: string},
+    position: vscode.Position
 }
 
 export class Citation {
@@ -13,30 +14,24 @@ export class Citation {
 
     private bibEntries: {[file: string]: Suggestion[]} = {}
 
-    suggestions: vscode.CompletionItem[]
-    citationInBib: { [id: string]: {citations: CitationRecord[], rootFiles: string[] }} = {}
-    citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
-    theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string, rootFile: string | undefined}} = {}
-    refreshTimer: number
+    // suggestions: vscode.CompletionItem[]
+    // citationInBib: { [id: string]: {citations: CitationRecord[], rootFiles: string[] }} = {}
+    // citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
+    // theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string, rootFile: string | undefined}} = {}
+    // refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    reset() {
-        this.suggestions = []
-        this.theBibliographyData = {}
-        this.refreshTimer = 0
-    }
-
     provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        if (Date.now() - this.refreshTimer < 1000) {
-            return this.suggestions
-        }
-        this.refreshTimer = Date.now()
+        let suggestions: Suggestion[] = []
+        // From bib files
+        Object.keys(this.bibEntries).forEach(file => {
+            suggestions = suggestions.concat(this.bibEntries[file])
+        })
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const rootFile = this.extension.manager.rootFile
         // First, we deal with citation items from bib files
         const items: CitationRecord[] = []
         Object.keys(this.citationInBib).forEach(bibPath => {
@@ -85,7 +80,7 @@ export class Citation {
         })
 
         // Second, we deal with the items from thebibliography
-        const suggestions = {}
+        // const suggestions = {}
         Object.keys(this.theBibliographyData).forEach(key => {
             if (this.theBibliographyData[key].rootFile !== rootFile) {
                return
@@ -149,6 +144,7 @@ export class Citation {
     }
 
     parseBibFile(file: string) {
+        this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (fs.statSync(file).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`${file} is too large, ignoring it.`)
@@ -157,142 +153,33 @@ export class Citation {
             }
             return
         }
-        this.bibEntries[file] = bibtexParser.parse(fs.readFileSync(file).toString()).content
+        this.bibEntries[file] = []
+        bibtexParser.parse(fs.readFileSync(file).toString()).content
             .filter(entry => bibtexParser.isEntry(entry))
-            .filter((entry: bibtexParser.Entry) => entry.internalKey !== undefined)
-            .map((entry: bibtexParser.Entry) => {
-            const item: Suggestion = {
-                label: entry.internalKey,
-                kind: vscode.CompletionItemKind.Reference,
-                attributes: {}
-            }
-            // entry.content
-            return item
-        })
-
-        this.extension.logger.addLogMessage(`Parsing .bib entries from ${bibPath}`)
-        const items: CitationRecord[] = []
-        const content = fs.readFileSync(bibPath, 'utf-8')
-        const contentNoNewLine = content.replace(/[\r\n]/g, ' ')
-        const itemReg = /@(\w+)\s*{/g
-        let result = itemReg.exec(contentNoNewLine)
-        let prevResult: RegExpExecArray | null = null
-        let numLines = 1
-        let prevPrevResultIndex = 0
-        while (result || prevResult) {
-            if (prevResult && bibEntries.indexOf(prevResult[1].toLowerCase()) > -1) {
-                const itemString = contentNoNewLine.substring(prevResult.index, result ? result.index : undefined).trim()
-                const item = this.parseBibString(itemString)
-                if (item !== undefined) {
-                    items.push(item)
-                    numLines = numLines + content.substring(prevPrevResultIndex, prevResult.index).split('\n').length - 1
-                    prevPrevResultIndex = prevResult.index
-                    this.citationData[item.key] = {
-                        item,
-                        text: Object.keys(item)
-                            .filter(key => (key !== 'key'))
-                            .sort((a, b) => {
-                                if (a.toLowerCase() === 'title') {
-                                    return -1
-                                }
-                                if (b.toLowerCase() === 'title') {
-                                    return 1
-                                }
-                                if (a.toLowerCase() === 'author') {
-                                    return -1
-                                }
-                                if (b.toLowerCase() === 'author') {
-                                    return 1
-                                }
-                                return 0
-                            })
-                            .map(key => `${key}: ${item[key]}`)
-                            .join('\n\n'),
-                        position: new vscode.Position(numLines - 1, 0),
-                        file: bibPath
-                    }
-                } else {
-                    // TODO we could consider adding a diagnostic for this case so the issue appears in the Problems list
-                    this.extension.logger.addLogMessage(`Warning - following .bib entry in ${bibPath} has no cite key:\n${itemString}`)
+            .forEach((entry: bibtexParser.Entry) => {
+                if (entry.internalKey === undefined) {
+                    return
                 }
-            }
-            prevResult = result
-            if (result) {
-                result = itemReg.exec(contentNoNewLine)
-            }
-        }
-        this.extension.logger.addLogMessage(`Parsed ${items.length} .bib entries from ${bibPath}.`)
-
-        let rootFilesList: string[] = []
-        if (bibPath in this.citationInBib) {
-            rootFilesList = this.citationInBib[bibPath].rootFiles
-        }
-        if (texFile && rootFilesList.indexOf(texFile) === -1) {
-            rootFilesList.push(texFile)
-        }
-        this.citationInBib[bibPath] = { citations: items, rootFiles: rootFilesList }
+                const item: Suggestion = {
+                    label: entry.internalKey,
+                    kind: vscode.CompletionItemKind.Reference,
+                    detail: '',
+                    fields: {}
+                }
+                entry.content.forEach(field => {
+                    const value = Array.isArray(field.value.content) ?
+                        field.value.content.join(' ') : field.value.content
+                    item.fields[field.name] = value
+                    item.detail += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
+                })
+                this.bibEntries[file].push(item)
+            })
+        this.extension.logger.addLogMessage(`Parsed ${this.bibEntries[file].length} bib entries from ${file}.`)
     }
 
-    forgetParsedBibItems(bibPath: string) {
-        this.extension.logger.addLogMessage(`Forgetting parsed bib entries for ${bibPath}`)
-        delete this.citationInBib[bibPath]
-    }
-
-    parseBibString(item: string) {
-        const bibDefinitionReg = /((@)[a-zA-Z]+)\s*(\{)\s*([^\s,]*)/g
-        let regResult = bibDefinitionReg.exec(item)
-        if (!regResult) {
-            return undefined
-        }
-        item = item.substr(bibDefinitionReg.lastIndex)
-        const bibItem: CitationRecord = { key: regResult[4] }
-        const bibAttrReg = /([a-zA-Z0-9!$&*+\-./:;<>?[\]^_`|]+)\s*(=)/g
-        regResult = bibAttrReg.exec(item)
-        while (regResult) {
-            const attrKey = regResult[1]
-            item = item.substr(bibAttrReg.lastIndex)
-            bibAttrReg.lastIndex = 0
-            const commaPos = /,/g.exec(item)
-            const quotePos = /"/g.exec(item)
-            const bracePos = /{/g.exec(item)
-            let attrValue = ''
-            if (commaPos && ((!quotePos || (quotePos && (commaPos.index < quotePos.index)))
-                && (!bracePos || (bracePos && (commaPos.index < bracePos.index))))) {
-                // No deliminator
-                attrValue = item.substring(0, commaPos.index).trim()
-                item = item.substr(commaPos.index)
-            } else if (bracePos && (!quotePos || quotePos.index > bracePos.index)) {
-                // Use curly braces
-                let nested = 0
-                for (let i = bracePos.index; i < item.length; ++i) {
-                    const char = item[i]
-                    if (char === '{' && item[i - 1] !== '\\') {
-                        nested++
-                    } else if (char === '}' && item[i - 1] !== '\\') {
-                        nested--
-                    }
-                    if (nested === 0) {
-                        attrValue = item.substring(bracePos.index + 1, i)
-                                        .replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
-                        item = item.substr(i)
-                        break
-                    }
-                }
-            } else if (quotePos) {
-                // Use double quotes
-                for (let i = quotePos.index + 1; i < item.length; ++i) {
-                    if (item[i] === '"') {
-                        attrValue = item.substring(quotePos.index + 1, i)
-                                        .replace(/(\\.)|({)/g, '$1').replace(/(\\.)|(})/g, '$1')
-                        item = item.substr(i)
-                        break
-                    }
-                }
-            }
-            bibItem[attrKey.toLowerCase()] = attrValue
-            regResult = bibAttrReg.exec(item)
-        }
-        return bibItem
+    removeEntriesInFile(file: string) {
+        this.extension.logger.addLogMessage(`Remove parsed bib entries for ${file}`)
+        delete this.bibEntries[file]
     }
 
     getTheBibliographyTeX(filePath: string) {
@@ -312,9 +199,9 @@ export class Citation {
         })
     }
 
-    getTheBibliographyItems(content: string) {
+    getTheBibliographyItems(content: string): Suggestion[] {
         const itemReg = /^(?!%).*\\bibitem(?:\[[^[\]{}]*\])?{([^}]*)}/gm
-        const items: {[id: string]: {citation: string, text: string, position: vscode.Position}} = {}
+        const items: Suggestion[] = []
         while (true) {
             const result = itemReg.exec(content)
             if (result === null) {
@@ -323,11 +210,13 @@ export class Citation {
             if (!(result[1] in items)) {
                 const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
                 const positionContent = content.substring(0, result.index).split('\n')
-                items[result[1]] = {
-                    citation: result[1],
-                    text: `${postContent}\n...`,
+                items.push({
+                    label: result[1],
+                    kind: vscode.CompletionItemKind.Reference,
+                    detail: `${postContent}\n...`,
+                    fields: {},
                     position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
-                }
+                })
             }
         }
         return items

@@ -516,7 +516,6 @@ export class Manager {
         this.filesWatched = []
         // We also clean the completions from the old project
         this.extension.completer.command.reset()
-        this.extension.completer.citation.reset()
         this.extension.completer.input.reset()
     }
 
@@ -557,7 +556,7 @@ export class Manager {
         this.extension.logger.addLogMessage(`Bib file watcher: ${file} deleted.`)
         this.bibWatcher.unwatch(file)
         this.bibsWatched.splice(this.bibsWatched.indexOf(file), 1)
-        this.extension.completer.citation.forgetParsedBibItems(file)
+        this.extension.completer.citation.removeEntriesInFile(file)
     }
 
     private onWatchedFileDeleted(file: string) {
