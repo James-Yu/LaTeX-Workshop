@@ -148,7 +148,7 @@ export class Citation {
                 }
                 entry.content.forEach(field => {
                     const value = Array.isArray(field.value.content) ?
-                        field.value.content.join(' ') : field.value.content
+                        field.value.content.join(' ') : this.deParenthesis(field.value.content)
                     item.fields[field.name] = value
                     item.detail += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
                 })
@@ -191,5 +191,9 @@ export class Citation {
             }
         }
         return items
+    }
+
+    private deParenthesis(str: string) {
+        return str.replace(/{+([^\\{}]+)}+/g, '$1')
     }
 }
