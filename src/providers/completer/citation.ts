@@ -60,7 +60,8 @@ export class Citation {
         }), {
             placeHolder: 'Press ENTER to insert citation key at cursor',
             matchOnDetail: true,
-            matchOnDescription: true
+            matchOnDescription: true,
+            ignoreFocusOut: true
         }).then(selected => {
             if (!selected) {
                 return
