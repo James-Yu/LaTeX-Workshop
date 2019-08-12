@@ -7,7 +7,7 @@ import * as utils from '../utils'
 import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../main'
-// import {ReferenceEntry} from '../providers/completer/reference'
+import {Suggestion as CiteEntry} from '../providers/completer/citation'
 
 interface Content {
     [filepath: string]: { // tex file name
@@ -15,7 +15,7 @@ interface Content {
         element: {
             reference?: vscode.CompletionItem[],
             environment?: vscode.CompletionItem[],
-            bibitem?: vscode.CompletionItem[]
+            bibitem?: CiteEntry[]
         }, // latex elements for completion, e.g., reference defition
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted

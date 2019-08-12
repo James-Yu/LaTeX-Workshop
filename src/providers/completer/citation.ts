@@ -14,14 +14,7 @@ export interface Suggestion extends vscode.CompletionItem {
 
 export class Citation {
     extension: Extension
-
     private bibEntries: {[file: string]: Suggestion[]} = {}
-
-    // suggestions: vscode.CompletionItem[]
-    // citationInBib: { [id: string]: {citations: CitationRecord[], rootFiles: string[] }} = {}
-    // citationData: { [id: string]: {item: {}, text: string, position: vscode.Position, file: string} } = {}
-    // theBibliographyData: {[id: string]: {item: {citation: string, text: string, position: vscode.Position}, text: string, file: string, rootFile: string | undefined}} = {}
-    // refreshTimer: number
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -114,13 +107,11 @@ export class Citation {
             if (cachedBibs === undefined) {
                 return
             }
-            // TODO: update position
             suggestions = suggestions.concat(cachedBibs.map(bib => {
                 return {...bib,
                     key: bib.label,
                     detail: bib.detail ? bib.detail : '',
                     file: cachedFile,
-                    position: new vscode.Position(0, 0),
                     fields: {}
                 }
             }))
@@ -149,7 +140,7 @@ export class Citation {
                     key: entry.internalKey,
                     label: entry.internalKey,
                     file,
-                    position: new vscode.Position(0, 0),
+                    position: new vscode.Position(entry.location.start.line - 1, entry.location.start.column - 1),
                     kind: vscode.CompletionItemKind.Reference,
                     detail: '',
                     fields: {}
