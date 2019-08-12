@@ -622,6 +622,9 @@
         },
         "latex-workshop.latex.magic.args": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-synctex=1",
             "-interaction=nonstopmode",
@@ -632,6 +635,9 @@
         },
         "latex-workshop.latex.magic.bib.args": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "%DOCFILE%"
           ],
@@ -659,16 +665,25 @@
         },
         "latex-workshop.latex.texDirs": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "List of directories where to look for extra input `.tex` files. \nAbsolute paths are required. You may also need to set the environment variable `TEXINPUTS` properly for the LaTeX compiler to find the `.tex` files, see the `env` parameter of [recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)."
         },
         "latex-workshop.latex.bibDirs": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "List of directories where to look for `.bib` files.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
         "latex-workshop.latex.search.rootFiles.include": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "**/*.tex"
           ],
@@ -676,6 +691,9 @@
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "Patterns of files to exclude from the root detection mechanism.\nSee also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
@@ -686,6 +704,9 @@
         },
         "latex-workshop.latex.watch.files.ignore": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "**/*.bbx",
             "**/*.bbl",
@@ -759,6 +780,9 @@
         },
         "latex-workshop.latex.clean.fileTypes": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "*.aux",
             "*.bbl",
@@ -789,6 +813,9 @@
         },
         "latex-workshop.view.outline.sections": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "part",
             "chapter",
@@ -940,6 +967,9 @@
         },
         "latex-workshop.chktex.args.active": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-wall",
             "-n22",
@@ -951,6 +981,9 @@
         },
         "latex-workshop.chktex.args.root": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-wall",
             "-n22",
@@ -964,16 +997,6 @@
           "type": "number",
           "default": 500,
           "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing.\nThis config only matters when `latex-workshop.chktex.run` is set to `onType`."
-        },
-        "latex-workshop.texcount.path": {
-          "type": "string",
-          "default": "texcount",
-          "markdownDescription": "Define the location of TeXCount executive file/script.\nThis command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
-        },
-        "latex-workshop.texcount.args": {
-          "type": "array",
-          "default": [],
-          "markdownDescription": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
         },
         "latex-workshop.intellisense.citation.type": {
           "type": "string",
@@ -1010,6 +1033,9 @@
         },
         "latex-workshop.intellisense.file.exclude": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "**/*.aux",
             "**/*.bbl",
@@ -1063,6 +1089,9 @@
         },
         "latex-workshop.intellisense.package.extra": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "List of extra packages to always add to the auto-completion mechanism.\nWhen `latex-workshop.intellisense.package.enabled` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
         },
@@ -1073,6 +1102,9 @@
         },
         "latex-workshop.message.latexlog.exclude": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "Exclude log messages that matches the given regexp from the problems panel."
         },
@@ -1113,6 +1145,9 @@
         },
         "latex-workshop.latexindent.args": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-c",
             "%DIR%/",
@@ -1240,6 +1275,9 @@
         },
         "latex-workshop.texdoc.args": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "--view"
           ],
