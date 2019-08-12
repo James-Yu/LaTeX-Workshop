@@ -272,7 +272,22 @@ export class EnvPair {
         const resMatchingPair = this.locateMatchingPair(pattern, dir, curPos, document)
         if (resMatchingPair) {
             const endEnv = '\\end{' + resMatchingPair.name + '}'
-            return editor.edit(editBuilder => { editBuilder.insert(curPos, endEnv) })
+            const beginStartOfLine = resMatchingPair.pos.with(undefined, 0)
+            const beginIndentRange = new vscode.Range(beginStartOfLine, resMatchingPair.pos.translate(0, -1))
+            const beginIndent = editor.document.getText(beginIndentRange)
+            const endStartOfLine = curPos.with(undefined, 0)
+            const endIndentRange = new vscode.Range(endStartOfLine, curPos.translate(0, -1))
+            const endIndent = editor.document.getText(endIndentRange)
+            // If both \begin and the current position are preceeded by
+            // whitespace only in their respective lines, we mimic the exact
+            // kind of indentation of \begin when inserting \end.
+            if (/^\s*$/.test(beginIndent) && /^\s*$/.test(endIndent)) {
+                return editor.edit(editBuilder => {
+                    editBuilder.replace(new vscode.Range(endStartOfLine, curPos), beginIndent + endEnv)
+                })
+            } else {
+                return editor.edit(editBuilder => { editBuilder.insert(curPos, endEnv) })
+            }
         }
         return
     }
