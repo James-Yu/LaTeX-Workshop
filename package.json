@@ -644,14 +644,17 @@
           "markdownDescription": "Define the arguments to be input to BIB magic command executable. This can be overridden by using \"% !BIB options\"."
         },
         "latex-workshop.latex.external.build.command": {
-          "type": "object",
-          "default": {
-            "command": "",
-            "args": [
-              ""
-            ]
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The external command to execute when calling latex-workshop.build.\nThis is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism."
+        },
+        "latex-workshop.latex.external.build.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
           },
-          "markdownDescription": "The external command to execute when calling latex-workshop.build.\nThis is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism"
+          "default": [],
+          "markdownDescription": "The arguments of `latex-workshop.latex.external.build.command` when calling latex-workshop.build."
         },
         "latex-workshop.latex.build.forceRecipeUsage": {
           "type": "boolean",
@@ -867,27 +870,37 @@
           "default": "0",
           "markdownDescription": "Define the port to listen on for communicating with the internal viewer. The default value \"0\" means the port is chosen randomly by the application."
         },
-        "latex-workshop.view.pdf.external.command": {
-          "type": "object",
-          "default": {
-            "command": "",
-            "args": [
-              ""
-            ]
-          },
-          "markdownDescription": "The command to execute when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+        "latex-workshop.view.pdf.external.viewer.command": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The command to execute when using external viewer.\nThis function is not officially supported."
         },
-        "latex-workshop.view.pdf.external.synctex": {
-          "type": "object",
-          "default": {
-            "command": "SumatraPDF.exe",
-            "args": [
-              "%LINE%",
-              "%PDF%",
-              "%TEX%"
-            ]
+        "latex-workshop.view.pdf.external.viewer.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
           },
-          "markdownDescription": "The command to execute when forward synctex to external viewer.\nThis function is not officially supported. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
+          "default": [
+            "%PDF%"
+          ],
+          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.viewer.command` when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+        },
+        "latex-workshop.view.pdf.external.synctex.command": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The command to execute when forward synctex to external viewer.\nThis function is not officially supported."
+        },
+        "latex-workshop.view.pdf.external.synctex.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "%LINE%",
+            "%PDF%",
+            "%TEX%"
+          ],
+          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.synctex.args` when forward synctex to external viewer.\n%LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
         },
         "latex-workshop.view.pdf.zoom": {
           "type": "string",

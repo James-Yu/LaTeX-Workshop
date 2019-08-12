@@ -83,6 +83,25 @@ function combineConfig(extension: Extension, originalConfig1: string, originalCo
     configuration.update(originalConfig2, undefined, false)
 }
 
+function splitCommand(extension: Extension, config: string, newCommandConfig: string, newArgsConfig: string) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (!configuration.has(config)) {
+        return
+    }
+    const originalConfig = configuration.get(config, {})
+    if (originalConfig === undefined || Object.keys(originalConfig).indexOf('command') < 0) {
+        return
+    }
+    configuration.update(newCommandConfig, originalConfig['command'])
+    configuration.update(newArgsConfig, originalConfig['args'])
+
+    const msg = `"latex-workshop.${config}" has been replaced by "latex-workshop.${newCommandConfig}" and "latex-workshop.${newArgsConfig}". Please manually remove the deprecated configs from your settings.`
+    const markdownMsg = `\`latex-workshop.${config}\` has been replaced by \`latex-workshop.${newCommandConfig}\` and \`latex-workshop.${newArgsConfig}\`.  Please manually remove the deprecated configs from your \`settings.json\``
+
+    extension.logger.addLogMessage(msg)
+    extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
+}
+
 function obsoleteConfigCheck(extension: Extension) {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
@@ -111,6 +130,8 @@ function obsoleteConfigCheck(extension: Extension) {
     })
     renameValue('latex.autoBuild.run', 'onSave', 'onFileChange')
     renameConfig('hover.ref.numberAtLastCompilation.enabled', 'hover.ref.number.enabled')
+    splitCommand(extension, 'latex.external.build.command', 'latex.external.build.command', 'latex.external.build.args')
+    splitCommand(extension, 'view.pdf.external.command', 'view.pdf.external.viewer.command', 'view.pdf.external.viewer.args')
 }
 
 function checkDeprecatedFeatures(extension: Extension) {

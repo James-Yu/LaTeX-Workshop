@@ -6,7 +6,6 @@ import * as cp from 'child_process'
 
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
-import {ExternalCommand} from '../utils'
 import {encodePathWithPrefix} from '../utils'
 
 interface Client {
@@ -145,27 +144,31 @@ export class Viewer {
     openExternal(sourceFile: string) {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.command'))) as ExternalCommand
-        if (!command.command) {
+        let command = configuration.get('view.pdf.external.viewer.command') as string
+        let args = configuration.get('view.pdf.external.viewer.args') as string[]
+        if (!command) {
             switch (process.platform) {
                 case 'win32':
-                    command = {'command': 'SumatraPDF.exe', 'args': ['%PDF%'] }
+                    command = 'SumatraPDF.exe'
+                    args = ['%PDF%']
                     break
                 case 'linux':
-                    command = {'command': 'xdg-open', 'args': ['%PDF%'] }
+                    command = 'xdg-open'
+                    args = ['%PDF%']
                     break
                 case 'darwin':
-                    command = {'command': 'open', 'args': ['%PDF%'] }
+                    command = 'open'
+                    args = ['%PDF%']
                     break
                 default:
                     break
             }
         }
-        if (command.args) {
-            command.args = command.args.map(arg => arg.replace('%PDF%', pdfFile))
+        if (args) {
+            args = args.map(arg => arg.replace('%PDF%', pdfFile))
         }
         this.extension.manager.setEnvVar()
-        cp.spawn(command.command, command.args, {cwd: path.dirname(sourceFile), detached: true})
+        cp.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 

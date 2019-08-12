@@ -430,21 +430,17 @@ export class Locator {
         }
         const texFile = vscode.window.activeTextEditor.document.uri.fsPath
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.synctex'))) as ExternalCommand
-        if (command.args) {
-            command.args = command.args.map(arg => arg.replace(/%DOC%/g, rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                                      .replace(/%DOCFILE%/g, path.basename(rootFile, '.tex').split(path.sep).join('/'))
-                                                      .replace(/%PDF%/g, pdfFile)
-                                                      .replace(/%LINE%/g, line.toString())
-                                                      .replace(/%TEX%/g, texFile))
+        const command = configuration.get('view.pdf.external.synctex.command') as string
+        let args = configuration.get('view.pdf.external.synctex.args') as string[]
+        if (args) {
+            args = args.map(arg => arg.replace(/%DOC%/g, rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
+                                      .replace(/%DOCFILE%/g, path.basename(rootFile, '.tex').split(path.sep).join('/'))
+                                      .replace(/%PDF%/g, pdfFile)
+                                      .replace(/%LINE%/g, line.toString())
+                                      .replace(/%TEX%/g, texFile))
         }
         this.extension.manager.setEnvVar()
-        cp.spawn(command.command, command.args)
+        cp.spawn(command, args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
     }
-}
-
-interface ExternalCommand {
-    command: string,
-    args?: string[]
 }

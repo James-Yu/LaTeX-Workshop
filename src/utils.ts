@@ -2,12 +2,6 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as iconv from 'iconv-lite'
 
-
-export interface ExternalCommand {
-    command: string,
-    args?: string[]
-}
-
 export function escapeRegExp(str: string) {
     return str.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
 }
