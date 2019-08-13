@@ -23,7 +23,7 @@ export class Citation {
     provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion array to vscode completion array
         const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
-        return this.updateAll().map(item => {
+        return this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             // Compile the completion item label
             switch(label) {
                 case 'bibtex key':
@@ -51,7 +51,7 @@ export class Citation {
     }
 
     browser(_args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        vscode.window.showQuickPick(this.updateAll().map(item => {
+        vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             return {
                 label: item.fields.title ? item.fields.title as string : '',
                 description: `${item.key}`,
@@ -88,7 +88,27 @@ export class Citation {
         return entries
     }
 
-    private updateAll(): Suggestion[] {
+    private getIncludedBibs(file: string | undefined, visitedTeX: string[] = []) {
+        if (file === undefined) {
+            // Only happens when rootFile is undefined
+            return Object.keys(this.bibEntries)
+        }
+        if (!(file in this.extension.manager.cachedContent)) {
+            return []
+        }
+        let bibs = this.extension.manager.cachedContent[file].bibs
+        visitedTeX.push(file)
+        for (const child of this.extension.manager.cachedContent[file].children) {
+            if (visitedTeX.indexOf(child.file) > -1) {
+                // Already included
+                continue
+            }
+            bibs = bibs.concat(this.getIncludedBibs(child.file, visitedTeX))
+        }
+        return bibs
+    }
+
+    private updateAll(bibFiles?: string[]): Suggestion[] {
         let suggestions: Suggestion[] = []
         // Update the dirty content in active text editor, get bibitems
         if (vscode.window.activeTextEditor) {
@@ -99,7 +119,10 @@ export class Citation {
             this.extension.manager.cachedContent[file].element.bibitem = bibitems
         }
         // From bib files
-        Object.keys(this.bibEntries).forEach(file => {
+        if (bibFiles === undefined) {
+            bibFiles = Object.keys(this.bibEntries)
+        }
+        bibFiles.forEach(file => {
             suggestions = suggestions.concat(this.bibEntries[file])
         })
         // From caches
