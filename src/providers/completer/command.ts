@@ -110,7 +110,7 @@ export class Command {
                 suggestionsAsciiKeys.push(k)
             }
         })
-        Object.keys(this.extension.manager.cachedContent).forEach(filePath => {
+        this.extension.manager.getIncludedTeX().forEach(filePath => {
             if (filePath in this.commandInTeX) {
                 Object.keys(this.commandInTeX[filePath]).forEach(key => {
                     if (suggestionsAsciiKeys.indexOf(key) > - 1) {

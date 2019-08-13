@@ -252,6 +252,30 @@ export class Manager {
         return undefined
     }
 
+    /* This function returns a string array which holds all imported tex files
+       from the given `file`. If it is undefined, this function traces from the
+       root file, or return empty array if root is undefined */
+    getIncludedTeX(file?: string, includedTeX: string[] = []) {
+        if (file === undefined) {
+            file = this.rootFile
+        }
+        if (file === undefined) {
+            return []
+        }
+        if (!(file in this.extension.manager.cachedContent)) {
+            return []
+        }
+        includedTeX.push(file)
+        for (const child of this.extension.manager.cachedContent[file].children) {
+            if (includedTeX.indexOf(child.file) > -1) {
+                // Already included
+                continue
+            }
+            this.getIncludedTeX(child.file, includedTeX)
+        }
+        return includedTeX
+    }
+
     private getDirtyContent(file: string, reload: boolean = false): string {
         for (const cachedFile of Object.keys(this.cachedContent)) {
             if (reload) {

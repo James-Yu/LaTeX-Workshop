@@ -88,7 +88,7 @@ export class Citation {
         return entries
     }
 
-    private getIncludedBibs(file: string | undefined, visitedTeX: string[] = []) {
+    private getIncludedBibs(file?: string, visitedTeX: string[] = []) {
         if (file === undefined) {
             // Only happens when rootFile is undefined
             return Object.keys(this.bibEntries)
@@ -126,7 +126,7 @@ export class Citation {
             suggestions = suggestions.concat(this.bibEntries[file])
         })
         // From caches
-        Object.keys(this.extension.manager.cachedContent).forEach(cachedFile => {
+        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedBibs = this.extension.manager.cachedContent[cachedFile].element.bibitem
             if (cachedBibs === undefined) {
                 return

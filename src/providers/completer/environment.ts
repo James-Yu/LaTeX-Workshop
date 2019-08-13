@@ -27,7 +27,7 @@ export class Environment {
         // Extract cached envs and add to default ones
         const suggestions: vscode.CompletionItem[] = Array.from(this.defaultEnvs)
         const envList: string[] = this.defaultEnvs.map(env => env.label)
-        Object.keys(this.extension.manager.cachedContent).forEach(cachedFile => {
+        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedEnvs = this.extension.manager.cachedContent[cachedFile].element.environment
             if (cachedEnvs === undefined) {
                 return

@@ -165,7 +165,7 @@ export class Builder {
                 if (!path.isAbsolute(outDir)) {
                     outDir = path.resolve(this.extension.manager.rootDir, outDir)
                 }
-                Object.keys(this.extension.manager.cachedContent).forEach(file => {
+                this.extension.manager.getIncludedTeX().forEach(file => {
                     const relativePath = path.dirname(file.replace(rootDir, '.'))
                     fs.ensureDirSync(path.resolve(outDir, relativePath))
                 })

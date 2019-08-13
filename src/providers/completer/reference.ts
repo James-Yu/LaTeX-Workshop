@@ -46,7 +46,7 @@ export class Reference {
         }
         // Extract cached references
         const refList: string[] = []
-        Object.keys(this.extension.manager.cachedContent).forEach(cachedFile => {
+        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.manager.cachedContent[cachedFile].element.reference
             if (cachedRefs === undefined) {
                 return
