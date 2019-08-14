@@ -115,7 +115,7 @@ function obsoleteConfigCheck(extension: Extension) {
     renameConfig('hoverPreview.cursor.enabled', 'hover.preview.cursor.enabled')
     renameConfig('hoverPreview.cursor.symbol', 'hover.preview.cursor.symbol')
     renameConfig('hoverPreview.cursor.color', 'hover.preview.cursor.color')
-    renameConfig('hoverPreview.ref.enabled', 'hover.preview.ref.enabled')
+    renameConfig('hoverPreview.ref.enabled', 'hover.ref.enabled')
     combineConfig(extension, 'latex.clean.enabled', 'latex.clean.onFailBuild.enabled', 'latex.autoClean.run', {
         'falsefalse': 'never',
         'falsetrue': 'onFailed',
