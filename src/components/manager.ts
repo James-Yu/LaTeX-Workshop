@@ -7,19 +7,21 @@ import * as utils from '../utils'
 import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../main'
-// import {ReferenceEntry} from '../providers/completer/reference'
+import {Suggestion as CiteEntry} from '../providers/completer/citation'
 
 interface Content {
     [filepath: string]: { // tex file name
         content: string, // the dirty (under editing) contents
         element: {
             reference?: vscode.CompletionItem[],
-            environment?: vscode.CompletionItem[]
+            environment?: vscode.CompletionItem[],
+            bibitem?: CiteEntry[]
         }, // latex elements for completion, e.g., reference defition
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted
             file: string // the path to the sub-file
-        }[]
+        }[],
+        bibs: string[]
     }
 }
 
@@ -250,6 +252,30 @@ export class Manager {
         return undefined
     }
 
+    /* This function returns a string array which holds all imported tex files
+       from the given `file`. If it is undefined, this function traces from the
+       root file, or return empty array if root is undefined */
+    getIncludedTeX(file?: string, includedTeX: string[] = []) {
+        if (file === undefined) {
+            file = this.rootFile
+        }
+        if (file === undefined) {
+            return []
+        }
+        if (!(file in this.extension.manager.cachedContent)) {
+            return []
+        }
+        includedTeX.push(file)
+        for (const child of this.extension.manager.cachedContent[file].children) {
+            if (includedTeX.indexOf(child.file) > -1) {
+                // Already included
+                continue
+            }
+            this.getIncludedTeX(child.file, includedTeX)
+        }
+        return includedTeX
+    }
+
     private getDirtyContent(file: string, reload: boolean = false): string {
         for (const cachedFile of Object.keys(this.cachedContent)) {
             if (reload) {
@@ -261,7 +287,7 @@ export class Manager {
             return this.cachedContent[cachedFile].content
         }
         const fileContent = utils.stripComments(fs.readFileSync(file).toString(), '%')
-        this.cachedContent[file] = {content: fileContent, element: {}, children: []}
+        this.cachedContent[file] = {content: fileContent, element: {}, children: [], bibs: []}
         return fileContent
     }
 
@@ -281,6 +307,7 @@ export class Manager {
         }
         const content = this.getDirtyContent(file, onChange)
         this.cachedContent[file].children = []
+        this.cachedContent[file].bibs = []
         this.cachedFullContent = undefined
         this.parseInputFiles(content, file)
         this.parseBibFiles(content, file)
@@ -381,7 +408,12 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                this.watchBibFile(bib, path.dirname(baseFile))
+                const bibPath = this.resolveBibPath(bib, path.dirname(baseFile))
+                if (bibPath === undefined) {
+                    continue
+                }
+                this.cachedContent[baseFile].bibs.push(bibPath)
+                this.watchBibFile(bibPath)
             }
         }
     }
@@ -444,7 +476,14 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                this.watchBibFile(bib, srcDir)
+                const bibPath = this.resolveBibPath(bib, srcDir)
+                if (bibPath === undefined) {
+                    continue
+                }
+                if (this.rootFile) {
+                    this.cachedContent[this.rootFile].bibs.push(bibPath)
+                }
+                this.watchBibFile(bibPath)
             }
         }
     }
@@ -516,7 +555,6 @@ export class Manager {
         this.filesWatched = []
         // We also clean the completions from the old project
         this.extension.completer.command.reset()
-        this.extension.completer.citation.reset()
         this.extension.completer.input.reset()
     }
 
@@ -557,7 +595,7 @@ export class Manager {
         this.extension.logger.addLogMessage(`Bib file watcher: ${file} deleted.`)
         this.bibWatcher.unwatch(file)
         this.bibsWatched.splice(this.bibsWatched.indexOf(file), 1)
-        this.extension.completer.citation.forgetParsedBibItems(file)
+        this.extension.completer.citation.removeEntriesInFile(file)
     }
 
     private onWatchedFileDeleted(file: string) {
@@ -595,28 +633,31 @@ export class Manager {
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
             this.extension.completer.environment.update(file, nodes, lines)
+            this.extension.completer.citation.update(file, content)
         })
         this.extension.completer.command.getCommandsTeX(file)
         this.extension.completer.command.getPackage(file)
-        this.extension.completer.citation.getTheBibliographyTeX(file)
         this.extension.completer.input.getGraphicsPath(file)
     }
 
-    private watchBibFile(bib: string, rootDir: string) {
+    private resolveBibPath(bib: string, rootDir: string) {
         const bibDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.bibDirs') as string[]
         const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file ${bib}`)
-            return
+            return undefined
         }
         this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
+        return bibPath
+    }
 
+    private watchBibFile(bibPath: string) {
         if (this.bibsWatched.indexOf(bibPath) < 0) {
             this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
             this.bibWatcher.add(bibPath)
             this.bibsWatched.push(bibPath)
-            this.extension.completer.citation.parseBibFile(bibPath, this.rootFile)
+            this.extension.completer.citation.parseBibFile(bibPath)
         }
     }
 
