@@ -144,56 +144,7 @@ export class Command {
         return this.suggestions
     }
 
-    /**
-     * @param content a string to be surrounded. If not provided, then we
-     * loop over all the selections and surround each of them
-     */
-    surround(content?: string) {
-        if (!vscode.window.activeTextEditor) {
-            return
-        }
-        const editor = vscode.window.activeTextEditor
-        const candidate: string[] = []
-        this.provide().forEach(item => {
-            if (item.insertText === undefined) {
-                return
-            }
-            if (item.label === '\\begin') { // Causing a lot of trouble
-                return
-            }
-            const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
-            if (command.match(/(.*)(\${\d.*?})/)) {
-                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\'))
-            }
-        })
-        vscode.window.showQuickPick(candidate, {
-            placeHolder: 'Press ENTER to surround previous selection with selected command',
-            matchOnDetail: true,
-            matchOnDescription: true
-        }).then(selected => {
-            if (selected === undefined) {
-                return
-            }
-            editor.edit( editBuilder => {
-                let selectedCommand = selected
-                let selectedContent = content
-                for (const selection of editor.selections) {
-                    if (!content) {
-                        selectedContent = editor.document.getText(selection)
-                        selectedCommand = '\\' + selected
-                    }
-                    editBuilder.replace(new vscode.Range(selection.start, selection.end),
-                        selectedCommand.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
-                            .replace(/\${\d:?(.*?)}/g, '$1') // Remove snippet placeholders
-                            .replace('\\\\', '\\') // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
-                            .replace(/\$\d/, '')) // Remove $2 etc
-                }
-            })
-        })
-        return
-    }
-
-    loadSymbols() {
+    private loadSymbols() {
         const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
         Object.keys(symbols).forEach(key => {
             const item = symbols[key]
@@ -201,7 +152,7 @@ export class Command {
         })
     }
 
-    entryToCompletionItem(item: AutocompleteEntry): CommandCompletionItem {
+    private entryToCompletionItem(item: AutocompleteEntry): CommandCompletionItem {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command[0] === ' ' ? '' : '\\'
@@ -232,7 +183,7 @@ export class Command {
         return command
     }
 
-    insertPkgCmds(pkg: string, suggestions) {
+    private insertPkgCmds(pkg: string, suggestions) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!(configuration.get('intellisense.package.enabled'))) {
             return
@@ -291,7 +242,7 @@ export class Command {
         this.commandInTeX[filePath] = this.getCommandItems(fs.readFileSync(filePath, 'utf-8'), filePath)
     }
 
-    getCommandItems(content: string, filePath: string): { [id: string]: AutocompleteEntry } {
+    private getCommandItems(content: string, filePath: string): { [id: string]: AutocompleteEntry } {
         const itemReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const items = {}
         while (true) {
