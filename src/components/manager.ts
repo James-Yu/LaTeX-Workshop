@@ -15,7 +15,9 @@ interface Content {
         element: {
             reference?: vscode.CompletionItem[],
             environment?: vscode.CompletionItem[],
-            bibitem?: CiteEntry[]
+            bibitem?: CiteEntry[],
+            command?: vscode.CompletionItem[],
+            package?: string[]
         }, // latex elements for completion, e.g., reference defition
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted
@@ -554,7 +556,6 @@ export class Manager {
         this.fileWatcher.close()
         this.filesWatched = []
         // We also clean the completions from the old project
-        this.extension.completer.command.reset()
         this.extension.completer.input.reset()
     }
 
@@ -634,9 +635,9 @@ export class Manager {
             this.extension.completer.reference.update(file, nodes, lines)
             this.extension.completer.environment.update(file, nodes, lines)
             this.extension.completer.citation.update(file, content)
+            this.extension.completer.command.update(file, nodes)
+            this.extension.completer.command.updatePkg(file, nodes)
         })
-        this.extension.completer.command.getCommandsTeX(file)
-        this.extension.completer.command.getPackage(file)
         this.extension.completer.input.getGraphicsPath(file)
     }
 

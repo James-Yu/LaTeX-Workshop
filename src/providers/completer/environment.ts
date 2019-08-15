@@ -45,13 +45,19 @@ export class Environment {
             return suggestions
         }
         // Insert package environments
-        this.extension.completer.command.usedPackages.map(pkg => {
-            this.getEnvFromPkg(pkg).forEach(env => {
-                if (envList.indexOf(env.label) > -1) {
-                    return
-                }
-                suggestions.push(env)
-                envList.push(env.label)
+        this.extension.manager.getIncludedTeX().forEach(tex => {
+            const pkgs = this.extension.manager.cachedContent[tex].element.package
+            if (pkgs === undefined) {
+                return
+            }
+            pkgs.forEach(pkg => {
+                this.getEnvFromPkg(pkg).forEach(env => {
+                    if (envList.indexOf(env.label) > -1) {
+                        return
+                    }
+                    suggestions.push(env)
+                    envList.push(env.label)
+                })
             })
         })
         return suggestions

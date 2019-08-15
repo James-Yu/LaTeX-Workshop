@@ -384,11 +384,23 @@ export async function activate(context: vscode.ExtensionContext) {
             findRoot: () => extension.manager.findRoot(),
             rootDir: () => extension.manager.rootDir,
             rootFile: () => extension.manager.rootFile,
-            setEnvVar: () => extension.manager.setEnvVar()
+            setEnvVar: () => extension.manager.setEnvVar(),
+            cachedContent: () => extension.manager.cachedContent
         },
         completer: {
             command: {
-                usedPackages: () => extension.completer.command.usedPackages
+                usedPackages: () => {
+                    console.warn('`completer.command.usedPackages` is deprecated. Consider use `manager.cachedContent`.')
+                    let allPkgs: string[] = []
+                    extension.manager.getIncludedTeX().forEach(tex => {
+                        const pkgs = extension.manager.cachedContent[tex].element.package
+                        if (pkgs === undefined) {
+                            return
+                        }
+                        allPkgs = allPkgs.concat(pkgs)
+                    })
+                    return allPkgs
+                }
             }
         }
     }
