@@ -8,6 +8,7 @@ import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../main'
 import {Suggestion as CiteEntry} from '../providers/completer/citation'
+import {Suggestion as CmdEntry} from '../providers/completer/command'
 
 interface Content {
     [filepath: string]: { // tex file name
@@ -16,7 +17,7 @@ interface Content {
             reference?: vscode.CompletionItem[],
             environment?: vscode.CompletionItem[],
             bibitem?: CiteEntry[],
-            command?: vscode.CompletionItem[],
+            command?: CmdEntry[],
             package?: string[]
         }, // latex elements for completion, e.g., reference defition
         children: { // sub-files, should be tex or plain files
