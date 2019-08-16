@@ -299,7 +299,8 @@ export async function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
             extension.manager.cachedContent[e.document.fileName].content = e.document.getText()
-            extension.manager.parseFileAndSubs(e.document.fileName)
+            // extension.manager.parseFileAndSubs(e.document.fileName)
+            // We don't need so frequent re-parse
             extension.linter.lintActiveFileIfEnabledAfterInterval()
         }
     }))
