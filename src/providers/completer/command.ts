@@ -134,6 +134,55 @@ export class Command {
         return suggestions
     }
 
+    /**
+     * @param content a string to be surrounded. If not provided, then we
+     * loop over all the selections and surround each of them
+     */
+    surround(content?: string) {
+        if (!vscode.window.activeTextEditor) {
+            return
+        }
+        const editor = vscode.window.activeTextEditor
+        const candidate: string[] = []
+        this.provide().forEach(item => {
+            if (item.insertText === undefined) {
+                return
+            }
+            if (item.label === '\\begin') { // Causing a lot of trouble
+                return
+            }
+            const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
+            if (command.match(/(.*)(\${\d.*?})/)) {
+                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\'))
+            }
+        })
+        vscode.window.showQuickPick(candidate, {
+            placeHolder: 'Press ENTER to surround previous selection with selected command',
+            matchOnDetail: true,
+            matchOnDescription: true
+        }).then(selected => {
+            if (selected === undefined) {
+                return
+            }
+            editor.edit( editBuilder => {
+                let selectedCommand = selected
+                let selectedContent = content
+                for (const selection of editor.selections) {
+                    if (!content) {
+                        selectedContent = editor.document.getText(selection)
+                        selectedCommand = '\\' + selected
+                    }
+                    editBuilder.replace(new vscode.Range(selection.start, selection.end),
+                        selectedCommand.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
+                            .replace(/\${\d:?(.*?)}/g, '$1') // Remove snippet placeholders
+                            .replace('\\\\', '\\') // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
+                            .replace(/\$\d/, '')) // Remove $2 etc
+                }
+            })
+        })
+        return
+    }
+
     update(file: string, nodes: latexParser.Node[]) {
         // Remove newcommand cmds, because they will be re-insert in the next step
         Object.keys(this.definedCmds).forEach(cmd => {
