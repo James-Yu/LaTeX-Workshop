@@ -51,7 +51,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.environment.initialize(env)
     }
 
-    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) : Promise<vscode.CompletionItem[]> {
+    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): Promise<vscode.CompletionItem[]> {
         return new Promise((resolve, _reject) => {
             const invokeChar = document.lineAt(position.line).text[position.character - 1]
             const currentLine = document.lineAt(position.line).text
@@ -59,9 +59,9 @@ export class Completer implements vscode.CompletionItemProvider {
                 resolve()
                 return
             }
-            if (this.command.specialBrackets && this.command.specialBrackets.hasOwnProperty(invokeChar)) {
+            if (this.command.bracketCmds && this.command.bracketCmds.hasOwnProperty(invokeChar)) {
                 if (position.character > 1 && currentLine[position.character - 2] === '\\') {
-                    const mathSnippet = Object.assign({}, this.command.specialBrackets[invokeChar])
+                    const mathSnippet = Object.assign({}, this.command.bracketCmds[invokeChar])
                     if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
                         (currentLine.length > position.character && [')', ']', '}'].indexOf(currentLine[position.character]) > -1)) {
                         mathSnippet.range = new vscode.Range(position.translate(0, -1), position.translate(0, 1))
@@ -93,21 +93,21 @@ export class Completer implements vscode.CompletionItemProvider {
         })
     }
 
-    completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) : vscode.CompletionItem[] {
+    completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         let reg
         let provider
         let payload
         switch (type) {
             case 'citation':
-                reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\[[^\[\]]*\])*){([^}]*)$/
+                reg = /\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:(?:\[[^[\]]*\])*(?:{[^{}]*})?)*{([^}]*)$/
                 provider = this.citation
                 break
             case 'reference':
-                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^\[\]]*\])?){([^}]*)$)/
+                reg = /(?:\\hyperref\[([^\]]*)(?!\])$)|(?:(?:\\(?!hyper)[a-zA-Z]*ref[a-zA-Z]*\*?(?:\[[^[\]]*\])?){([^}]*)$)/
                 provider = this.reference
                 break
             case 'environment':
-                reg = /(?:\\begin(?:\[[^\[\]]*\])?){([^}]*)$/
+                reg = /(?:\\begin(?:\[[^[\]]*\])?){([^}]*)$/
                 provider = this.environment
                 break
             case 'command':
@@ -115,11 +115,11 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.command
                 break
             case 'package':
-                reg = /(?:\\usepackage(?:\[[^\[\]]*\])*){([^}]*)$/
+                reg = /(?:\\usepackage(?:\[[^[\]]*\])*){([^}]*)$/
                 provider = this.package
                 break
             case 'input':
-                reg = /\\(input|include|subfile|includegraphics)\*?(?:\[[^\[\]]*\])*{([^}]*)$/
+                reg = /\\(input|include|subfile|includegraphics|lstinputlisting|verbatiminput)\*?(?:\[[^[\]]*\])*{([^}]*)$/
                 provider = this.input
                 break
             case 'import':

@@ -2,8 +2,8 @@
   "name": "latex-workshop",
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
-  "icon": "icon.png",
-  "version": "7.0.2",
+  "icon": "icons/icon.png",
+  "version": "7.3.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -95,7 +95,7 @@
       {
         "id": "latex-expl3",
         "aliases": [
-          "LaTeX Expl3"
+          "LaTeX-Expl3"
         ],
         "configuration": "./syntax/syntax.json"
       },
@@ -114,17 +114,17 @@
       {
         "language": "tex",
         "scopeName": "text.tex",
-        "path": "./syntax/TeX.plist"
+        "path": "./syntax/TeX.tmLanguage.json"
       },
       {
         "language": "doctex",
         "scopeName": "text.tex.doctex",
-        "path": "./syntax/DocTeX.plist"
+        "path": "./syntax/DocTeX.tmLanguage.json"
       },
       {
         "language": "latex",
         "scopeName": "text.tex.latex",
-        "path": "./syntax/LaTeX.plist",
+        "path": "./syntax/LaTeX.tmLanguage.json",
         "embeddedLanguages": {
           "source.asymptote": "asymptote",
           "source.cpp": "cpp",
@@ -144,12 +144,12 @@
       {
         "language": "bibtex",
         "scopeName": "text.bibtex",
-        "path": "./syntax/Bibtex.plist"
+        "path": "./syntax/Bibtex.tmLanguage.json"
       },
       {
         "language": "latex-expl3",
         "scopeName": "text.tex.latex.expl3",
-        "path": "./syntax/LaTeX Expl3.plist"
+        "path": "./syntax/LaTeX-Expl3.tmLanguage.json"
       },
       {
         "scopeName": "markdown.latex.codeblock",
@@ -279,6 +279,16 @@
         "category": "LaTeX Workshop DevTools"
       },
       {
+        "command": "latex-workshop-dev.parsetex",
+        "title": "Parse current file as LaTeX AST",
+        "category": "LaTeX Workshop DevTools"
+      },
+      {
+        "command": "latex-workshop-dev.parsebib",
+        "title": "Parse current file as BibTeX AST",
+        "category": "LaTeX Workshop DevTools"
+      },
+      {
         "command": "latex-workshop.texdoc",
         "title": "Show package documentation",
         "category": "LaTeX Workshop"
@@ -291,6 +301,11 @@
       {
         "command": "latex-structure.toggle-follow-cursor",
         "title": "Toggle follow cursor",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.showSnippetPanel",
+        "title": "Show Snippet Panel",
         "category": "LaTeX Workshop"
       }
     ],
@@ -612,6 +627,9 @@
         },
         "latex-workshop.latex.magic.args": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-synctex=1",
             "-interaction=nonstopmode",
@@ -622,20 +640,31 @@
         },
         "latex-workshop.latex.magic.bib.args": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "%DOCFILE%"
           ],
           "markdownDescription": "Define the arguments to be input to BIB magic command executable. This can be overridden by using \"% !BIB options\"."
         },
         "latex-workshop.latex.external.build.command": {
-          "type": "object",
-          "default": {
-            "command": "",
-            "args": [
-              ""
-            ]
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The external command to execute when calling latex-workshop.build.\nThis is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism."
+        },
+        "latex-workshop.latex.external.build.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
           },
-          "markdownDescription": "The external command to execute when calling latex-workshop.build.\nThis is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism"
+          "default": [],
+          "markdownDescription": "The arguments of `latex-workshop.latex.external.build.command` when calling latex-workshop.build."
+        },
+        "latex-workshop.latex.build.forceRecipeUsage": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Force the use the recipe mechanism even if some magic comments are present."
         },
         "latex-workshop.latex.outDir": {
           "type": "string",
@@ -644,16 +673,25 @@
         },
         "latex-workshop.latex.texDirs": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "List of directories where to look for extra input `.tex` files. \nAbsolute paths are required. You may also need to set the environment variable `TEXINPUTS` properly for the LaTeX compiler to find the `.tex` files, see the `env` parameter of [recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)."
         },
         "latex-workshop.latex.bibDirs": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "List of directories where to look for `.bib` files.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
         "latex-workshop.latex.search.rootFiles.include": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "**/*.tex"
           ],
@@ -661,11 +699,22 @@
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "Patterns of files to exclude from the root detection mechanism.\nSee also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
+        "latex-workshop.latex.rootFile.useSubFile": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When set to `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands. Note that this setting does not affect the `build` and `view` command as they both ask the user's choice first."
+        },
         "latex-workshop.latex.watch.files.ignore": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "**/*.bbx",
             "**/*.bbl",
@@ -674,11 +723,16 @@
             "**/*.clo",
             "**/*.cnf",
             "**/*.def",
+            "**/*.dfu",
+            "**/*.enc",
+            "**/*.fd",
             "**/*.fmt",
             "**/*.lbx",
             "**/*.map",
+            "**/*.mkii",
             "**/*.pfb",
             "**/*.tfm",
+            "**/*.vf",
             "**/texmf-{dist,var}/**",
             "/dev/null"
           ],
@@ -734,6 +788,9 @@
         },
         "latex-workshop.latex.clean.fileTypes": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "*.aux",
             "*.bbl",
@@ -764,6 +821,9 @@
         },
         "latex-workshop.view.outline.sections": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "part",
             "chapter",
@@ -815,27 +875,37 @@
           "default": "0",
           "markdownDescription": "Define the port to listen on for communicating with the internal viewer. The default value \"0\" means the port is chosen randomly by the application."
         },
-        "latex-workshop.view.pdf.external.command": {
-          "type": "object",
-          "default": {
-            "command": "",
-            "args": [
-              ""
-            ]
-          },
-          "markdownDescription": "The command to execute when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+        "latex-workshop.view.pdf.external.viewer.command": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The command to execute when using external viewer.\nThis function is not officially supported."
         },
-        "latex-workshop.view.pdf.external.synctex": {
-          "type": "object",
-          "default": {
-            "command": "SumatraPDF.exe",
-            "args": [
-              "%LINE%",
-              "%PDF%",
-              "%TEX%"
-            ]
+        "latex-workshop.view.pdf.external.viewer.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
           },
-          "markdownDescription": "The command to execute when forward synctex to external viewer.\nThis function is not officially supported. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
+          "default": [
+            "%PDF%"
+          ],
+          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.viewer.command` when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+        },
+        "latex-workshop.view.pdf.external.synctex.command": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "The command to execute when forward synctex to external viewer.\nThis function is not officially supported."
+        },
+        "latex-workshop.view.pdf.external.synctex.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "%LINE%",
+            "%PDF%",
+            "%TEX%"
+          ],
+          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.synctex.args` when forward synctex to external viewer.\n%LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
         },
         "latex-workshop.view.pdf.zoom": {
           "type": "string",
@@ -915,6 +985,9 @@
         },
         "latex-workshop.chktex.args.active": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-wall",
             "-n22",
@@ -926,6 +999,9 @@
         },
         "latex-workshop.chktex.args.root": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-wall",
             "-n22",
@@ -939,16 +1015,6 @@
           "type": "number",
           "default": 500,
           "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing.\nThis config only matters when `latex-workshop.chktex.run` is set to `onType`."
-        },
-        "latex-workshop.texcount.path": {
-          "type": "string",
-          "default": "texcount",
-          "markdownDescription": "Define the location of TeXCount executive file/script.\nThis command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
-        },
-        "latex-workshop.texcount.args": {
-          "type": "array",
-          "default": [],
-          "markdownDescription": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
         },
         "latex-workshop.intellisense.citation.type": {
           "type": "string",
@@ -985,6 +1051,9 @@
         },
         "latex-workshop.intellisense.file.exclude": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "**/*.aux",
             "**/*.bbl",
@@ -1036,6 +1105,14 @@
           "default": false,
           "markdownDescription": "Auto-complete commands and environments from used packages."
         },
+        "latex-workshop.intellisense.package.extra": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "List of extra packages to always add to the auto-completion mechanism.\nWhen `latex-workshop.intellisense.package.enabled` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
+        },
         "latex-workshop.message.badbox.show": {
           "type": "boolean",
           "default": true,
@@ -1043,6 +1120,9 @@
         },
         "latex-workshop.message.latexlog.exclude": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [],
           "markdownDescription": "Exclude log messages that matches the given regexp from the problems panel."
         },
@@ -1083,6 +1163,9 @@
         },
         "latex-workshop.latexindent.args": {
           "type": "array",
+          "items": {
+            "type": "string"
+          },
           "default": [
             "-c",
             "%DIR%/",
@@ -1121,10 +1204,10 @@
           "default": true,
           "markdownDescription": "Enable Hover on References."
         },
-        "latex-workshop.hover.ref.numberAtLastCompilation.enabled": {
+        "latex-workshop.hover.ref.number.enabled": {
           "type": "boolean",
-          "default": false,
-          "markdownDescription": "Show number given to ref at the last compilation."
+          "default": true,
+          "markdownDescription": "Show number assigned to the reference in the previous compilation."
         },
         "latex-workshop.hover.citation.enabled": {
           "type": "boolean",
@@ -1193,11 +1276,6 @@
           ],
           "markdownDescription": "The color of cursor in Hover Preview."
         },
-        "latex-workshop.hover.preview.ref.enabled": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Render Hover Preview on \\ref."
-        },
         "latex-workshop.intellisense.optionalArgsEntries.enabled": {
           "type": "boolean",
           "default": true,
@@ -1212,6 +1290,16 @@
           "type": "string",
           "default": "texdoc",
           "markdownDescription": "Define the location of texdoc executable.\nThis command is used to show a package documentation."
+        },
+        "latex-workshop.texdoc.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "--view"
+          ],
+          "markdownDescription": "Texdoc arguments to see a package documentation.\nArguments must be in separate strings in the array. The package name is automatically appended to the arguments."
         },
         "latex-workshop.progress.runIconType": {
           "type": "string",
@@ -1305,10 +1393,14 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "sh minify.sh && rm -rf out/ && webpack --mode production",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "eslint --cache --ext .ts,.js ."
+    }
   },
   "capabilities": {
     "completionProvider": {
@@ -1321,13 +1413,15 @@
   },
   "dependencies": {
     "chokidar": "^2.0.3",
+    "csv-parser": "^2.3.0",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.1",
     "iconv-lite": "^0.4.24",
-    "mathjax": "2.7.5",
+    "latex-utensils": "^1.1.0",
+    "mathjax": "^2.7.5",
     "mathjax-node": "2.1.1",
     "micromatch": "^3.0.0",
-    "pdfjs-dist": "2.0.943",
+    "pdfjs-dist": "2.1.266",
     "strip-json-comments": "^2.0.1",
     "tmp": "^0.0.33",
     "ws": "^5.1.1"
@@ -1340,11 +1434,15 @@
     "@types/node": "^10.12.12",
     "@types/tmp": "^0.0.33",
     "@types/ws": "^4.0.2",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-import": "^2.18.2",
+    "husky": "^3.0.2",
     "ts-loader": "^5.2.1",
     "tslint": "^5.0.0",
-    "typescript": "^2.0.3",
+    "typescript": "^3.5.3",
     "vscode": "^1.1.14",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.20.2"
   }
 }

@@ -5,7 +5,7 @@ import * as zlib from 'zlib'
 import { SyncTeXRecordForward, SyncTeXRecordBackward } from './locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../lib/synctexjs'
 
-export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
+export function parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
     const filename = path.basename(pdfFile, path.extname(pdfFile))
     const dir = path.dirname(pdfFile)
     const synctexFile = path.resolve(dir, filename + '.synctex')
@@ -28,7 +28,7 @@ export function parseSyncTexForPdf(pdfFile: string) : PdfSyncObject {
 
 const iconvLiteSupportedEncodings = ['utf8', 'utf16le', 'UTF-16BE', 'UTF-16', 'Shift_JIS', 'Windows-31j', 'Windows932', 'EUC-JP', 'GB2312', 'GBK', 'GB18030', 'Windows936', 'EUC-CN', 'KS_C_5601', 'Windows949', 'EUC-KR', 'Big5', 'Big5-HKSCS', 'Windows950', 'ISO-8859-1', 'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5', 'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10', 'ISO-8859-11', 'ISO-8859-12', 'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'ISO-8859-16', 'windows-874', 'windows-1250', 'windows-1251', 'windows-1252', 'windows-1253', 'windows-1254', 'windows-1255', 'windows-1256', 'windows-1257', 'windows-1258', 'koi8-r', 'koi8-u', 'koi8-ru', 'koi8-t']
 
-function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject) : string | undefined {
+function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
   for (const inputFilePath in pdfSyncObject.blockNumberLine) {
     if (path.resolve(inputFilePath) === filePath) {
        return inputFilePath
@@ -49,7 +49,7 @@ function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject
   return undefined
 }
 
-export function syncTexJsForward(line: number, filePath: string, pdfFile: string) : SyncTeXRecordForward {
+export function syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward {
     const pdfSyncObject = parseSyncTexForPdf(pdfFile)
     const inputFilePath = findInputFilePathForward(filePath, pdfSyncObject)
     if (inputFilePath === undefined) {
@@ -80,8 +80,8 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     return { page: blocks1[0].page, x: c1.left + pdfSyncObject.offset.x, y: bottom + pdfSyncObject.offset.y }
   }
 
-function getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]: Block[]; } },
-                   lineNum: number ) : Block[] {
+function getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]: Block[] } },
+                   lineNum: number ): Block[] {
     const pageBlocks = linePageBlocks[lineNum]
     const pageNums = Object.keys(pageBlocks)
     if (pageNums.length === 0) {
@@ -121,7 +121,7 @@ class Rectangle {
       return new Rectangle({ top: cTop, bottom: cBottom, left: cLeft, right: cRight })
     }
 
-    static fromBlock(block: Block) : Rectangle {
+    static fromBlock(block: Block): Rectangle {
       const top = block.bottom - block.height
       const bottom = block.bottom
       const left = block.left
@@ -129,31 +129,31 @@ class Rectangle {
       return new Rectangle({top, bottom, left, right})
     }
 
-    constructor( {top, bottom, left, right}: { top: number; bottom: number; left: number; right: number; } ) {
+    constructor( {top, bottom, left, right}: { top: number, bottom: number, left: number, right: number} ) {
       this.top = top
       this.bottom = bottom
       this.left = left
       this.right = right
     }
 
-    include(rect: Rectangle) : boolean {
+    include(rect: Rectangle): boolean {
       return this.left <= rect.left && this.right >= rect.right && this.bottom >= rect.bottom && this.top <= rect.top
     }
 
-    distanceY(y: number) : number {
+    distanceY(y: number): number {
       return Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) )
     }
 
-    distanceXY(x: number, y: number) : number {
+    distanceXY(x: number, y: number): number {
       return Math.sqrt(Math.pow(Math.min( Math.abs(this.bottom - y), Math.abs(this.top - y) ), 2) + Math.pow(Math.min( Math.abs(this.left - x), Math.abs(this.right - x) ), 2))
     }
 
-    distanceFromCenter(x: number, y: number) : number {
+    distanceFromCenter(x: number, y: number): number {
       return Math.sqrt(Math.pow((this.left + this.right) / 2 - x, 2) + Math.pow((this.bottom + this.top) / 2 - y, 2))
     }
   }
 
-export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: string) : SyncTeXRecordBackward {
+export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward {
     const pdfSyncObject = parseSyncTexForPdf(pdfPath)
     const y0 = y - pdfSyncObject.offset.y
     const x0 = x - pdfSyncObject.offset.x
@@ -206,7 +206,7 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
     return { input: convInputFilePath(record.input), line: record.line, column: 0 }
   }
 
-function convInputFilePath(inputFilePath: string) : string {
+function convInputFilePath(inputFilePath: string): string {
   if (fs.existsSync(inputFilePath)) {
     return inputFilePath
   }

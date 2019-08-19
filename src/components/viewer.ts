@@ -6,14 +6,12 @@ import * as cp from 'child_process'
 
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
-import {ExternalCommand} from '../utils'
-
-interface Position {}
+import {encodePathWithPrefix} from '../utils'
 
 interface Client {
-    viewer: 'browser' | 'tab'
-    websocket: ws
-    position?: Position
+    viewer: 'browser' | 'tab',
+    websocket: ws,
+    position?: {}
 }
 
 export class Viewer {
@@ -25,7 +23,7 @@ export class Viewer {
         this.extension = extension
     }
 
-    refreshExistingViewer(sourceFile?: string, viewer?: string) : boolean {
+    refreshExistingViewer(sourceFile?: string, viewer?: string): boolean {
         if (!sourceFile) {
             Object.keys(this.clients).forEach(key => {
                 this.clients[key].forEach(client => {
@@ -60,21 +58,19 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, respectOutDir: boolean = true) : string | undefined {
+    checkViewer(sourceFile: string, respectOutDir: boolean = true): string | undefined {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
             return
         }
         if (this.extension.server.address === undefined) {
-            this.extension.logger.addLogMessage(`Cannot establish server connection.`)
+            this.extension.logger.addLogMessage('Cannot establish server connection.')
             return
         }
-        // pdfjs viewer automatically call decodeURIComponent.
-        // So, to pass the encoded path of a pdf file to the http server,
-        // we have to call encodeURIComponent two times! 2 - 1 = 1 !
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=/pdf:${encodeURIComponent(encodeURIComponent(pdfFile))}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?file=${encodePathWithPrefix(pdfFile)}`
         this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
+        this.extension.logger.addLogMessage(`The encoded path is ${pdfFile}`)
         return url
     }
 
@@ -120,11 +116,9 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
-    getPDFViewerContent(uri: vscode.Uri) : string {
-        // pdfjs viewer automatically call decodeURIComponent.
-        // So, to pass the encoded path of a pdf file to the http server,
-        // we have to call encodeURIComponent two times! 2 - 1 = 1 !
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=/pdf:${uri.authority ? `\\\\${uri.authority}` : ''}${encodeURIComponent(encodeURIComponent(uri.fsPath))}`
+    getPDFViewerContent(uri: vscode.Uri): string {
+        // viewer/viewer.js automatically requests the file to server.ts and server.ts decodes the encoded fsPath.
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(uri.fsPath)}`
         return `
             <!DOCTYPE html><html><head></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
@@ -150,37 +144,43 @@ export class Viewer {
     openExternal(sourceFile: string) {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let command = JSON.parse(JSON.stringify(configuration.get('view.pdf.external.command'))) as ExternalCommand
-        if (!command.command) {
+        let command = configuration.get('view.pdf.external.viewer.command') as string
+        let args = configuration.get('view.pdf.external.viewer.args') as string[]
+        if (!command) {
             switch (process.platform) {
                 case 'win32':
-                    command = {'command': 'SumatraPDF.exe', 'args': ['%PDF%'] }
+                    command = 'SumatraPDF.exe'
+                    args = ['%PDF%']
                     break
                 case 'linux':
-                    command = {'command': 'xdg-open', 'args': ['%PDF%'] }
+                    command = 'xdg-open'
+                    args = ['%PDF%']
                     break
                 case 'darwin':
-                    command = {'command': 'open', 'args': ['%PDF%'] }
+                    command = 'open'
+                    args = ['%PDF%']
                     break
                 default:
                     break
             }
         }
-        if (command.args) {
-            command.args = command.args.map(arg => arg.replace('%PDF%', pdfFile))
+        if (args) {
+            args = args.map(arg => arg.replace('%PDF%', pdfFile))
         }
         this.extension.manager.setEnvVar()
-        cp.spawn(command.command, command.args, {cwd: path.dirname(sourceFile), detached: true})
+        cp.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 
     handler(websocket: ws, msg: string) {
         const data = JSON.parse(msg)
         let clients: Client[] | undefined
-        this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
+        if (data.type !== 'ping') {
+            this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
+        }
         switch (data.type) {
             case 'open':
-                clients = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
+                clients = this.clients[data.path.toLocaleUpperCase()]
                 if (clients === undefined) {
                     return
                 }
@@ -205,7 +205,7 @@ export class Viewer {
                 }
                 break
             case 'position':
-                clients = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
+                clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
                     if (client.websocket === websocket) {
                         client.position = data
@@ -213,7 +213,7 @@ export class Viewer {
                 }
                 break
             case 'loaded':
-                clients = this.clients[decodeURIComponent(decodeURIComponent(data.path)).toLocaleUpperCase()]
+                clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
                     if (client.websocket !== websocket) {
                         continue
@@ -233,15 +233,19 @@ export class Viewer {
                         }))
                     }
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
-                        this.extension.locator.syncTeX()
+                        this.extension.logger.addLogMessage('SyncTex after build invoked.')
+                        this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
                     }
                 }
                 break
             case 'click':
-                this.extension.locator.locate(data, decodeURIComponent(data.path))
+                this.extension.locator.locate(data, data.path)
                 break
             case 'external_link':
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
+                break
+            case 'ping':
+                // nothing to do
                 break
             default:
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)

@@ -1,81 +1,110 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
+import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
 
 export class Environment {
     extension: Extension
-    suggestions: vscode.CompletionItem[]
-    defaults: {[id: string]: vscode.CompletionItem} = {}
-    environmentsInTeX: {[id: string]: vscode.CompletionItem} = {}
-    packageEnvs: {[pkg: string]: vscode.CompletionItem[]} = {}
-    refreshTimer: number
+    private defaultEnvs: vscode.CompletionItem[]
+    private packageEnvs: {[pkg: string]: vscode.CompletionItem[]}
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    initialize(defaultEnvs: string[]) {
-        defaultEnvs.forEach(env => {
-            const environment = new vscode.CompletionItem(env, vscode.CompletionItemKind.Module)
-            this.defaults[env] = environment
+    initialize(envs: string[]) {
+        this.defaultEnvs = envs.map(env => new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+    }
+
+    provide(): vscode.CompletionItem[] {
+        // Update the dirty content in active text editor
+        if (vscode.window.activeTextEditor) {
+            const content = vscode.window.activeTextEditor.document.getText()
+            const envs = this.getEnvFromNodeArray(latexParser.parse(content).content, content.split('\n'))
+            this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath].element.reference = envs
+        }
+        // Extract cached envs and add to default ones
+        const suggestions: vscode.CompletionItem[] = Array.from(this.defaultEnvs)
+        const envList: string[] = this.defaultEnvs.map(env => env.label)
+        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+            const cachedEnvs = this.extension.manager.cachedContent[cachedFile].element.environment
+            if (cachedEnvs === undefined) {
+                return
+            }
+            cachedEnvs.forEach(env => {
+                if (envList.indexOf(env.label) > -1) {
+                    return
+                }
+                suggestions.push(env)
+                envList.push(env.label)
+            })
         })
-    }
-
-    reset() {
-        this.environmentsInTeX = {}
-    }
-
-    provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.refreshTimer < 1000) {
-            return this.suggestions
+        // If no insert package-defined environments
+        if (!(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.enabled'))) {
+            return suggestions
         }
-        this.refreshTimer = Date.now()
-        const suggestions = Object.assign({}, this.defaults, this.environmentsInTeX)
-        this.extension.completer.command.usedPackages.forEach(pkg => this.insertPkgEnvs(pkg, suggestions))
-        this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
-        return this.suggestions
-    }
-
-    insertPkgEnvs(pkg: string, suggestions) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!(configuration.get('intellisense.package.enabled'))) {
-            return
-        }
-        if (!(pkg in this.packageEnvs)) {
-            const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_env.json`
-            if (fs.existsSync(filePath)) {
-                this.packageEnvs[pkg] = []
-                const envs = JSON.parse(fs.readFileSync(filePath).toString())
-                envs.forEach(env => {
-                    if (env in suggestions) {
+        // Insert package environments
+        this.extension.manager.getIncludedTeX().forEach(tex => {
+            const pkgs = this.extension.manager.cachedContent[tex].element.package
+            if (pkgs === undefined) {
+                return
+            }
+            pkgs.forEach(pkg => {
+                this.getEnvFromPkg(pkg).forEach(env => {
+                    if (envList.indexOf(env.label) > -1) {
                         return
                     }
-                    this.packageEnvs[pkg][env] = new vscode.CompletionItem(env, vscode.CompletionItemKind.Module)
+                    suggestions.push(env)
+                    envList.push(env.label)
                 })
-            }
-        }
-        if (pkg in this.packageEnvs) {
-            Object.keys(this.packageEnvs[pkg]).forEach(env => {
-                suggestions[env] = this.packageEnvs[pkg][env]
             })
-        }
+        })
+        return suggestions
     }
 
-    getEnvironmentsTeX(filePath: string) {
-        Object.assign(this.environmentsInTeX, this.getEnvironmentItems(fs.readFileSync(filePath, 'utf-8')))
+    update(file: string, nodes: latexParser.Node[], lines: string[]) {
+        this.extension.manager.cachedContent[file].element.environment = this.getEnvFromNodeArray(nodes, lines)
     }
 
-    getEnvironmentItems(content: string) : { [id: string]: vscode.CompletionItem } {
-        const itemReg = /\\begin\s?{([^{}]*)}/g
-        const items = {}
-        while (true) {
-            const result = itemReg.exec(content)
-            if (result === null) {
-                break
-            }
-            items[result[1]] = new vscode.CompletionItem(result[1], vscode.CompletionItemKind.Module)
+    // This function will return all environments in a node array, including sub-nodes
+    private getEnvFromNodeArray(nodes: latexParser.Node[], lines: string[]): vscode.CompletionItem[] {
+        let envs: vscode.CompletionItem[] = []
+        for (let index = 0; index < nodes.length; ++index) {
+            envs = envs.concat(this.getEnvFromNode(nodes[index], lines))
         }
-        return items
+        return envs
+    }
+
+    private getEnvFromNode(node: latexParser.Node, lines: string[]): vscode.CompletionItem[] {
+        const envs: vscode.CompletionItem[] = []
+        let label = ''
+        // Here we only check `isEnvironment`which excludes `align*` and `verbatim`.
+        // Nonetheless, they have already been included in `defaultEnvs`.
+        if (latexParser.isEnvironment(node)) {
+            label = node.name
+            envs.push({
+                label,
+                kind: vscode.CompletionItemKind.Module
+            })
+            return envs
+        }
+        if (latexParser.hasContentArray(node)) {
+            return this.getEnvFromNodeArray(node.content, lines)
+        }
+        return envs
+    }
+
+    private getEnvFromPkg(pkg: string): vscode.CompletionItem[] {
+        if (pkg in this.packageEnvs) {
+            return this.packageEnvs[pkg]
+        }
+        const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_env.json`
+        if (!fs.existsSync(filePath)) {
+            return []
+        }
+        this.packageEnvs[pkg] = (JSON.parse(fs.readFileSync(filePath).toString()) as string[])
+            .map(env => new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+        return this.packageEnvs[pkg]
     }
 }

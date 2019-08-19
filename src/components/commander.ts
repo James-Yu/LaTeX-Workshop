@@ -18,8 +18,8 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         const buildCommand = new LaTeXCommand('Build LaTeX project', vscode.TreeItemCollapsibleState.Collapsed, {command: 'latex-workshop.build', title: ''})
         this.commands.push(buildCommand)
         const recipes = configuration.get('latex.recipes') as {name: string}[]
-        buildCommand.children.push(new LaTeXCommand(`Clean up auxiliary files`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.clean', title: ''}))
-        buildCommand.children.push(new LaTeXCommand(`Terminate current compilation`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.kill', title: ''}))
+        buildCommand.children.push(new LaTeXCommand('Clean up auxiliary files', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.clean', title: ''}))
+        buildCommand.children.push(new LaTeXCommand('Terminate current compilation', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.kill', title: ''}))
         if (recipes) {
             recipes.forEach(recipe => {
                 buildCommand.children.push(new LaTeXCommand(`Recipe: ${recipe.name}`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.recipes', title: '', arguments: [recipe.name]}))
@@ -28,16 +28,16 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
         const viewCommand = new LaTeXCommand('View LaTeX PDF', vscode.TreeItemCollapsibleState.Collapsed, {command: 'latex-workshop.view', title: ''})
         this.commands.push(viewCommand)
-        viewCommand.children.push(new LaTeXCommand(`View in VSCode tab`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['tab']}))
-        viewCommand.children.push(new LaTeXCommand(`View in web browser`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['browser']}))
-        viewCommand.children.push(new LaTeXCommand(`View in external viewer`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['external']}))
-        viewCommand.children.push(new LaTeXCommand(`Set default viewer`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['set']}))
-        viewCommand.children.push(new LaTeXCommand(`Refresh all viewers`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.refresh-viewer', title: ''}))
+        viewCommand.children.push(new LaTeXCommand('View in VSCode tab', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['tab']}))
+        viewCommand.children.push(new LaTeXCommand('View in web browser', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['browser']}))
+        viewCommand.children.push(new LaTeXCommand('View in external viewer', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['external']}))
+        viewCommand.children.push(new LaTeXCommand('Set default viewer', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.view', title: '', arguments: ['set']}))
+        viewCommand.children.push(new LaTeXCommand('Refresh all viewers', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.refresh-viewer', title: ''}))
 
         const logCommand = new LaTeXCommand('View Log messages', vscode.TreeItemCollapsibleState.Collapsed, {command: 'latex-workshop.log', title: ''})
         this.commands.push(logCommand)
-        logCommand.children.push(new LaTeXCommand(`View LaTeX Workshop extension log`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.log', title: ''}))
-        logCommand.children.push(new LaTeXCommand(`View LaTeX compiler log`, vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.log', title: '', arguments: ['compiler']}))
+        logCommand.children.push(new LaTeXCommand('View LaTeX Workshop extension log', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.log', title: ''}))
+        logCommand.children.push(new LaTeXCommand('View LaTeX compiler log', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.log', title: '', arguments: ['compiler']}))
 
         const navCommand = new LaTeXCommand('Navigate, select, and edit', vscode.TreeItemCollapsibleState.Collapsed)
         this.commands.push(navCommand)
@@ -53,9 +53,12 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         miscCommand.children.push(new LaTeXCommand('Open citation browser', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.citation', title: ''}))
         miscCommand.children.push(new LaTeXCommand('Count words in LaTeX project', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.wordcount', title: ''}))
         miscCommand.children.push(new LaTeXCommand('Reveal output folder in OS', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.revealOutputDir', title: ''}))
+
+        const snippetPanelCommand = new LaTeXCommand('Snippet Panel', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.showSnippetPanel', title: ''})
+        this.commands.push(snippetPanelCommand)
     }
 
-    getTreeItem(element: LaTeXCommand) : vscode.TreeItem {
+    getTreeItem(element: LaTeXCommand): vscode.TreeItem {
 
         const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, element.collapsibleState)
         treeItem.command = element.command
@@ -64,7 +67,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         return treeItem
     }
 
-    getChildren(element?: LaTeXCommand) : Thenable<LaTeXCommand[]> {
+    getChildren(element?: LaTeXCommand): Thenable<LaTeXCommand[]> {
         if (!element) {
             return Promise.resolve(this.commands)
         }

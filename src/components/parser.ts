@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 import { Extension } from '../main'
-import * as filenameEncoding from './filenameencoding'
+import { convertFilenameEncoding } from '../utils'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
@@ -34,19 +34,21 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
 }
 
 interface LinterLogEntry {
-    file: string
-    line: number
-    position: number
-    length: number
-    type: string
-    code: number
+    file: string,
+    line: number,
+    position: number,
+    length: number,
+    type: string,
+    code: number,
     text: string
 }
+
+interface LogEntry { type: string, file: string, text: string, line: number }
 
 export class Parser {
     extension: Extension
     isLaTeXmkSkipped: boolean
-    buildLog: any[] = []
+    buildLog: LogEntry[] = []
     buildLogRaw: string = ''
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
     linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
@@ -55,7 +57,7 @@ export class Parser {
         this.extension = extension
     }
 
-    parse(log: string) {
+    parse(log: string, rootFile?: string) {
         this.isLaTeXmkSkipped = false
         // canonicalize line-endings
         log = log.replace(/(\r\n)|\r/g, '\n')
@@ -66,13 +68,13 @@ export class Parser {
             log = this.trimTexify(log)
         }
         if (log.match(latexPattern) || log.match(latexFatalPattern)) {
-            this.parseLaTeX(log)
+            this.parseLaTeX(log, rootFile)
         } else if (this.latexmkSkipped(log)) {
             this.isLaTeXmkSkipped = true
         }
     }
 
-    trimLaTeXmk(log: string) : string {
+    trimLaTeXmk(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -94,7 +96,7 @@ export class Parser {
         }
     }
 
-    trimTexify(log: string) : string {
+    trimTexify(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -116,7 +118,7 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string) : boolean {
+    latexmkSkipped(log: string): boolean {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
@@ -125,7 +127,14 @@ export class Parser {
         return false
     }
 
-    parseLaTeX(log: string) {
+    parseLaTeX(log: string, rootFile?: string) {
+        if (rootFile === undefined) {
+            rootFile = this.extension.manager.rootFile
+        }
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage('How can you reach this point?')
+            return
+        }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
 
@@ -136,12 +145,12 @@ export class Parser {
         let searchesEmptyLine = false
         let insideBoxWarn = false
         let insideError = false
-        let currentResult: { type: string, file: string, text: string, line: number | undefined } = { type: '', file: '', text: '', line: undefined }
-        const fileStack: string[] = [this.extension.manager.rootFile]
+        let currentResult: LogEntry = { type: '', file: '', text: '', line: 1 }
+        const fileStack: string[] = [rootFile]
         let nested = 0
         for (const line of lines) {
             // Compose the current file
-            const filename = path.resolve(this.extension.manager.rootDir, fileStack[fileStack.length - 1])
+            const filename = path.resolve(path.dirname(rootFile), fileStack[fileStack.length - 1])
             // Skip the first line after a box warning, this is just garbage
             if (insideBoxWarn) {
                 insideBoxWarn = false
@@ -232,8 +241,8 @@ export class Parser {
                 currentResult = {
                     type: 'error',
                     text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
-                    file: result[1] ? path.resolve(this.extension.manager.rootDir, result[1]) : filename,
-                    line: result[2] ? parseInt(result[2], 10) : undefined
+                    file: result[1] ? path.resolve(path.dirname(rootFile), result[1]): filename,
+                    line: result[2] ? parseInt(result[2], 10): 1
                 }
                 searchesEmptyLine = true
                 insideError = true
@@ -241,7 +250,7 @@ export class Parser {
             }
             nested = this.parseLaTeXFileStack(line, fileStack, nested)
             if (fileStack.length === 0) {
-                fileStack.push(this.extension.manager.rootFile)
+                fileStack.push(rootFile)
             }
         }
         // push final result
@@ -252,13 +261,13 @@ export class Parser {
         this.showCompilerDiagnostics()
     }
 
-    parseLaTeXFileStack(line: string, fileStack: string[], nested: number) : number {
+    parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substr(result.index + 1)
             if (result[1] === '(') {
-                const pathResult = line.match(/^"?((?:(?:[a-zA-Z]:|\.|\/)?(?:\/|\\\\?))[\w\u00a1-\uffff\-. \/\\#]*)/)
-                const mikTeXPathResult = line.match(/^"?([\w\u00a1-\uffff\-\/. #]*\.[a-z]{3,})/)
+                const pathResult = line.match(/^"?((?:(?:[a-zA-Z]:|\.|\/)?(?:\/|\\\\?))[ !\u0023-\u0027\u002A-\u00FE\u00a1-\uffff]*)/)
+                const mikTeXPathResult = line.match(/^"?([ !\u0023-\u0027\u002A-\u00FE\u00a1-\uffff]*\.[a-z]{3,})/)
                 if (pathResult) {
                     fileStack.push(pathResult[1].trim())
                 } else if (mikTeXPathResult) {
@@ -287,7 +296,8 @@ export class Parser {
             // path with what is provided
             const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
             linterLog.push({
-                file: path.isAbsolute(filePath) ? filePath : path.resolve(this.extension.manager.rootDir, filePath),
+                file: (!path.isAbsolute(filePath) && this.extension.manager.rootDir !== undefined) ?
+                      path.resolve(this.extension.manager.rootDir, filePath) : filePath,
                 line: parseInt(match[2]),
                 position: parseInt(match[3]),
                 length: parseInt(match[4]),
@@ -327,7 +337,7 @@ export class Parser {
         for (const file in diagsCollection) {
             let file1 = file
             if (!fs.existsSync(file1) && convEnc) {
-                const f = filenameEncoding.convertFilenameEncoding(file1)
+                const f = convertFilenameEncoding(file1)
                 if (f !== undefined) {
                     file1 = f
                 }
@@ -357,7 +367,7 @@ export class Parser {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
                 if (!fs.existsSync(file1) && convEnc) {
-                    const f = filenameEncoding.convertFilenameEncoding(file1)
+                    const f = convertFilenameEncoding(file1)
                     if (f !== undefined) {
                         file1 = f
                     }

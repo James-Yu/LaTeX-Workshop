@@ -1,139 +1,137 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
+import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
 
-export class CommandCompletionItem extends vscode.CompletionItem {
-    packageName: string | undefined = undefined
+interface DataItemEntry {
+    command: string, // frame
+    snippet: string,
+    package?: string,
+    label?: string, // \\begin{frame} ... \\end{frame}
+    detail?: string,
+    documentation?: string,
+    postAction?: string
+}
 
-    constructor(label: string, kind?: vscode.CompletionItemKind | undefined) {
-        super(label, kind)
-    }
+export interface Suggestion extends vscode.CompletionItem {
+    package: string
 }
 
 export class Command {
     extension: Extension
-    suggestions: CommandCompletionItem[] = []
-    commandInTeX: { [id: string]: {[id: string]: AutocompleteEntry} } = {}
-    refreshTimer: number
-    allCommands: {[key: string]: CommandCompletionItem} = {}
-    defaultCommands: {[key: string]: CommandCompletionItem} = {}
-    defaultSymbols: {[key: string]: CommandCompletionItem} = {}
-    newcommandData: {[id: string]: {position: vscode.Position, file: string}} = {}
-    specialBrackets: {[key: string]: vscode.CompletionItem}
-    usedPackages: string[] = []
-    packageCmds: {[pkg: string]: {[key: string]: CommandCompletionItem}} = {}
+
+    packages: string[] = []
+    bracketCmds: {[key: string]: Suggestion} = {}
+    definedCmds: {[key: string]: {file: string, location: vscode.Location}} = {}
+    private defaultCmds: Suggestion[] = []
+    private defaultSymbols: Suggestion[] = []
+    private packageCmds: {[pkg: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    reset() {
-        this.suggestions = []
-        this.commandInTeX = {}
-        this.allCommands = {}
-        this.newcommandData = {}
-        this.usedPackages = []
-        this.packageCmds = {}
-    }
-
-    initialize(defaultCommands: {[key: string]: AutocompleteEntry}, defaultEnvs: string[]) {
-        Object.keys(defaultCommands).forEach(key => {
-            const item = defaultCommands[key]
-            this.defaultCommands[key] = this.entryToCompletionItem(item)
+    initialize(defaultCmds: {[key: string]: DataItemEntry}, defaultEnvs: string[]) {
+        // Initialize default commands and `latex-mathsymbols`
+        Object.keys(defaultCmds).forEach(key => {
+            this.defaultCmds.push(this.entryToCompletion(defaultCmds[key]))
         })
-        const envSnippet: { [id: string]: { command: string, detail: string, snippet: string}} = {}
-        defaultEnvs.forEach(env => {
+
+        // Initialize default env begin-end pairs, de-duplication
+        Array.from(new Set(defaultEnvs)).forEach(env => {
+            const suggestion: Suggestion = {
+                label: env,
+                kind: vscode.CompletionItemKind.Snippet,
+                package: ''
+            }
             // Use 'an' or 'a' depending on the first letter
             const art = ['a', 'e', 'i', 'o', 'u'].indexOf(`${env}`.charAt(0)) >= 0 ? 'an' : 'a'
-            envSnippet[env] = {
-                command: env,
-                detail: `Insert ${art} ${env} environment.`,
-                snippet: `begin{${env}}\n\t$0\n\\\\end{${env}}`
-            }
+            suggestion.detail = `Insert ${art} ${env} environment.`
             if (['enumerate', 'itemize'].indexOf(env) > -1) {
-                envSnippet[env]['snippet'] = `begin{${env}}\n\t\\item $0\n\\\\end{${env}}`
+                suggestion.insertText = new vscode.SnippetString(`begin{${env}}\n\t\\item $0\n\\\\end{${env}}`)
+            } else {
+                suggestion.insertText = new vscode.SnippetString(`begin{${env}}\n\t$0\n\\\\end{${env}}`)
             }
+            suggestion.filterText = env
+            this.defaultCmds.push(suggestion)
         })
-        Object.keys(envSnippet).forEach(key => {
-            const item = envSnippet[key]
-            const command = new CommandCompletionItem(`\\begin{${item.command}} ... \\end{${item.command}}`, vscode.CompletionItemKind.Snippet)
-            command.filterText = item.command
-            command.detail = item.detail
-            command.insertText = new vscode.SnippetString(item.snippet)
-            this.defaultCommands[key] = command
+
+        // Handle special commands with brackets
+        const bracketCmds = ['\\(', '\\[', '\\{', '\\left(', '\\left[', '\\left{']
+        this.defaultCmds.filter(cmd => bracketCmds.indexOf(this.getCmdName(cmd)) > -1).forEach(cmd => {
+            this.bracketCmds[cmd.label] = cmd
         })
-        const bracketCommands = {'latexinlinemath': '(', 'latexdisplaymath': '[', 'curlybrackets': '{', 'lrparen': 'left(', 'lrbrack': 'left[', 'lrcurly': 'left\\{'}
-        this.specialBrackets = Object.keys(this.defaultCommands)
-            .filter(key => bracketCommands.hasOwnProperty(key))
-            .reduce((obj, key) => {
-                obj[bracketCommands[key]] = this.defaultCommands[key]
-                return obj
-            }, {})
     }
 
-    provide() : vscode.CompletionItem[] {
-        if (Date.now() - this.refreshTimer < 1000) {
-            return this.suggestions
-        }
-        this.refreshTimer = Date.now()
+    provide(): vscode.CompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
-        let suggestions = {}
-        Object.keys(this.defaultCommands).forEach(key => {
-            if (!useOptionalArgsEntries && key.indexOf('[') > -1) {
+
+        const suggestions: Suggestion[] = []
+        const cmdList: string[] = [] // This holds defined commands without the backslash
+
+        // Insert default commands
+        this.defaultCmds.forEach(cmd => {
+            if (!useOptionalArgsEntries && this.getCmdName(cmd).indexOf('[') > -1) {
                 return
             }
-            suggestions[key] = this.defaultCommands[key]
+            suggestions.push(cmd)
+            cmdList.push(this.getCmdName(cmd, true))
         })
+
+        // Insert unimathsymbols
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
-            if (Object.keys(this.defaultSymbols).length === 0) {
-                this.loadSymbols()
-            }
-            suggestions = Object.assign(suggestions, this.defaultSymbols)
-        }
-        this.usedPackages.forEach(pkg => this.insertPkgCmds(pkg, suggestions))
-        this.allCommands = suggestions
-        const suggestionsAsciiKeys: string[] = []
-        Object.keys(suggestions).forEach(key => {
-            const i = key.search(/[\[\{]/)
-            const k = i > -1 ? key.substr(0, i) : key
-            if (suggestionsAsciiKeys.indexOf(k) === -1) {
-                suggestionsAsciiKeys.push(k)
-            }
-        })
-        Object.keys(this.extension.manager.texFileTree).forEach(filePath => {
-            if (filePath in this.commandInTeX) {
-                Object.keys(this.commandInTeX[filePath]).forEach(key => {
-                    if (suggestionsAsciiKeys.indexOf(key) > - 1) {
-                        return
-                    }
-                    suggestions[key] = this.entryToCompletionItem(this.commandInTeX[filePath][key])
-                    suggestionsAsciiKeys.push(key)
+            if (this.defaultSymbols.length === 0) {
+                const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
+                Object.keys(symbols).forEach(key => {
+                    this.defaultSymbols.push(this.entryToCompletion(symbols[key]))
                 })
             }
-        })
-        if (vscode.window.activeTextEditor) {
-            const items = this.getCommandItems(vscode.window.activeTextEditor.document.getText(), vscode.window.activeTextEditor.document.fileName)
-            Object.keys(items).forEach(key => {
-                if (suggestionsAsciiKeys.indexOf(key) > - 1) {
-                    return
-                }
-                suggestions[key] = this.entryToCompletionItem(items[key])
-                suggestionsAsciiKeys.push(key)
+            this.defaultSymbols.forEach(symbol => {
+                suggestions.push(symbol)
+                cmdList.push(this.getCmdName(symbol, true))
             })
         }
-        Object.keys(this.newcommandData).forEach(key => {
-            if (suggestionsAsciiKeys.indexOf(key) > - 1) {
-               return
+
+        // Insert commands from packages
+        const extraPackages = configuration.get('intellisense.package.extra') as string[]
+        if (extraPackages) {
+            extraPackages.forEach(pkg => {
+                this.provideCmdInPkg(pkg, suggestions, cmdList)
+            })
+        }
+        this.extension.manager.getIncludedTeX().forEach(tex => {
+            const pkgs = this.extension.manager.cachedContent[tex].element.package
+            if (pkgs === undefined) {
+                return
             }
-            const item = new vscode.CompletionItem(`\\${key}`, vscode.CompletionItemKind.Function)
-            item.insertText = key
-            suggestions[key] = item
-            suggestionsAsciiKeys.push(key)
-       })
-        this.suggestions = Object.keys(suggestions).map(key => suggestions[key])
-        return this.suggestions
+            pkgs.forEach(pkg => this.provideCmdInPkg(pkg, suggestions, cmdList))
+        })
+
+        // Update the dirty content in active text editor
+        if (vscode.window.activeTextEditor) {
+            const content = vscode.window.activeTextEditor.document.getText()
+            const file = vscode.window.activeTextEditor.document.uri.fsPath
+            const cmds = this.getCmdFromNodeArray(file, latexParser.parse(content).content)
+            this.extension.manager.cachedContent[file].element.command = cmds
+        }
+
+        // Start working on commands in tex
+        this.extension.manager.getIncludedTeX().forEach(tex => {
+            const cmds = this.extension.manager.cachedContent[tex].element.command
+            if (cmds === undefined) {
+                return
+            }
+            cmds.forEach(cmd => {
+                if (cmdList.indexOf(this.getCmdName(cmd, true)) < 0) {
+                    suggestions.push(cmd)
+                    cmdList.push(this.getCmdName(cmd, true))
+                }
+            })
+        })
+
+        return suggestions
     }
 
     /**
@@ -185,51 +183,170 @@ export class Command {
         return
     }
 
-    loadSymbols() {
-        const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
-        Object.keys(symbols).forEach(key => {
-            const item = symbols[key]
-            this.defaultSymbols[key] = this.entryToCompletionItem(item)
+    update(file: string, nodes: latexParser.Node[]) {
+        // Remove newcommand cmds, because they will be re-insert in the next step
+        Object.keys(this.definedCmds).forEach(cmd => {
+            if (this.definedCmds[cmd].file === file) {
+                delete this.definedCmds[cmd]
+            }
+        })
+        this.extension.manager.cachedContent[file].element.command = this.getCmdFromNodeArray(file, nodes)
+    }
+
+    getCmdName(item: Suggestion, removeArgs = false): string {
+        const name = item.filterText ? item.filterText : item.label.slice(1)
+        if (removeArgs) {
+            const i = name.search(/[[{]/)
+            return i > -1 ? name.substr(0, i): name
+        }
+        return name
+    }
+
+    private getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdList: string[] = []): Suggestion[] {
+        let cmds: Suggestion[] = []
+        nodes.forEach(node => {
+            cmds = cmds.concat(this.getCmdFromNode(file, node, cmdList))
+        })
+        return cmds
+    }
+
+    updatePkg(file: string, nodes: latexParser.Node[]){
+        nodes.forEach(node => {
+            if (latexParser.isCommand(node) && node.name === 'usepackage' && 'args' in node) {
+                node.args.forEach(arg => {
+                    if (latexParser.isOptionalArg(arg)) {
+                        return
+                    }
+                    const pkg: string = (arg.content[0] as latexParser.TextString).content
+                    const pkgs = this.extension.manager.cachedContent[file].element.package
+                    if (pkgs) {
+                        pkgs.push(pkg)
+                    } else {
+                        this.extension.manager.cachedContent[file].element.package = [pkg]
+                    }
+                })
+            } else {
+                if (latexParser.hasContentArray(node)) {
+                    this.updatePkg(file, node.content)
+                }
+            }
         })
     }
 
-    entryToCompletionItem(item: AutocompleteEntry) : CommandCompletionItem {
+    private getCmdFromNode(file: string, node: latexParser.Node, cmdList: string[] = []): Suggestion[] {
+        const cmds: Suggestion[] = []
+        if (latexParser.isCommand(node)) {
+            if (cmdList.indexOf(node.name) < 0) {
+                const cmd: Suggestion = {
+                    label: `\\${node.name}`,
+                    kind: vscode.CompletionItemKind.Function,
+                    documentation: '`' + node.name + '`',
+                    insertText: new vscode.SnippetString(node.name + this.getArgsFromNode(node)),
+                    filterText: node.name,
+                    package: ''
+                }
+                if (node.name.match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|begin/)) {
+                    cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+                }
+                cmds.push(cmd)
+                cmdList.push(node.name)
+            }
+            if (['newcommand', 'renewcommand', 'providecommand'].indexOf(node.name) > -1 && 'args' in node) {
+                const label = (node.args[0].content[0] as latexParser.Command).name
+                let args = ''
+                if (latexParser.isOptionalArg(node.args[1])) {
+                    const numArgs = parseInt((node.args[1].content[0] as latexParser.TextString).content)
+                    for (let i = 1; i <= numArgs; ++i) {
+                        args += '{${' + i + '}}'
+                    }
+                }
+                if (cmdList.indexOf(label) < 0) {
+                    const cmd: Suggestion = {
+                        label: `\\${label}`,
+                        kind: vscode.CompletionItemKind.Function,
+                        documentation: '`' + label + '`',
+                        insertText: new vscode.SnippetString(label + args),
+                        filterText: label,
+                        package: 'user-defined'
+                    }
+                    cmds.push(cmd)
+                    this.definedCmds[label] = {
+                        file,
+                        location: new vscode.Location(
+                            vscode.Uri.file(file),
+                            new vscode.Position(node.location.start.line - 1, node.location.start.column))
+                    }
+                    cmdList.push(label)
+                }
+            }
+        }
+        if (latexParser.hasContentArray(node)) {
+            return cmds.concat(this.getCmdFromNodeArray(file, node.content, cmdList))
+        }
+        return cmds
+    }
+
+    private getArgsFromNode(node: latexParser.Node): string {
+        let args = ''
+        if (!('args' in node)) {
+            return args
+        }
+        let index = 0
+        node.args.forEach(arg => {
+            ++index
+            if (latexParser.isOptionalArg(arg)) {
+                args += '[${' + index + '}]'
+            } else {
+                args += '{${' + index + '}}'
+            }
+        })
+        return args
+    }
+
+    private entryToCompletion(item: DataItemEntry): Suggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command[0] === ' ' ? '' : '\\'
         const label = item.label ? `${item.label}` : `${backslash}${item.command}`
-        const command = new CommandCompletionItem(label, vscode.CompletionItemKind.Function)
+        const suggestion: Suggestion = {
+            label,
+            kind: vscode.CompletionItemKind.Function,
+            package: 'latex'
+        }
+
         if (item.snippet) {
             if (useTabStops) {
-                item.snippet = item.snippet.replace(/\$\{(\d+):[^\}]*\}/g, '$${$1}')
+                item.snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
             }
-            command.insertText = new vscode.SnippetString(item.snippet)
+            suggestion.insertText = new vscode.SnippetString(item.snippet)
         } else {
-            command.insertText = item.command
+            suggestion.insertText = item.command
         }
-        if (item.label) { command.filterText = item.command }
-        command.detail = item.detail
-        command.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
-        command.packageName = item.package
-        command.sortText = item.command.replace(/^[a-zA-Z]/, c => {
-            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0) : c.toLowerCase().charCodeAt(0)
-            return n !== undefined ? n.toString(16) : c
+        if (item.label) {
+            suggestion.filterText = item.command
+        }
+        suggestion.detail = item.detail
+        suggestion.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
+        suggestion.sortText = item.command.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16): c
         })
         if (item.postAction) {
-            command.command = { title: 'Post-Action', command: item.postAction }
-        } else if (/[a-zA-Z]*([Cc]ite|ref)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
+            suggestion.command = { title: 'Post-Action', command: item.postAction }
+        } else if (/[a-zA-Z]*([Cc]ite|ref|input)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
             // Automatically trigger completion if the command is for citation, filename or reference
-            command.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+            suggestion.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
         }
-        return command
+        return suggestion
     }
 
-    insertPkgCmds(pkg: string, suggestions) {
+    private provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!(configuration.get('intellisense.package.enabled'))) {
             return
         }
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
+        // Load command in pkg
         if (!(pkg in this.packageCmds)) {
             let filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
             if (!fs.existsSync(filePath)) {
@@ -242,100 +359,27 @@ export class Command {
                 }
             }
             if (fs.existsSync(filePath)) {
-                this.packageCmds[pkg] = {}
-                const cmds = JSON.parse(fs.readFileSync(filePath).toString())
-                Object.keys(cmds).forEach(cmd => {
-                    if (cmd in suggestions) {
-                        return
-                    }
-                    this.packageCmds[pkg][cmd] = this.entryToCompletionItem(cmds[cmd])
-                })
-            }
-        }
-        if (pkg in this.packageCmds) {
-            Object.keys(this.packageCmds[pkg]).forEach(cmd => {
-                if (!useOptionalArgsEntries && cmd.indexOf('[') > -1) {
-                    return
-                }
-                suggestions[cmd] = this.packageCmds[pkg][cmd]
-            })
-        }
-    }
-
-    getPackage(filePath: string) {
-        const content = fs.readFileSync(filePath, 'utf-8')
-        const regex = /\\usepackage(?:\[[^\[\]\{\}]*\])?{(.*)}/g
-        let result
-        do {
-            result = regex.exec(content)
-            if (result) {
-                for (const pkg of result[1].split(',')) {
-                    if (this.usedPackages.indexOf(pkg.trim()) > -1) {
-                        continue
-                    }
-                    this.usedPackages.push(pkg.trim())
-                }
-            }
-        } while (result)
-    }
-
-    getCommandsTeX(filePath: string) {
-        this.commandInTeX[filePath] = this.getCommandItems(fs.readFileSync(filePath, 'utf-8'), filePath)
-    }
-
-    getCommandItems(content: string, filePath: string) : { [id: string]: AutocompleteEntry } {
-        const itemReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
-        const items = {}
-        while (true) {
-            const result = itemReg.exec(content)
-            if (result === null) {
-                break
-            }
-            items[result[1]] = {
-                command: result[1]
-            }
-            if (result[2]) {
-                items[result[1]].snippet = `${result[1]}{$\{1}}`
-                // Automatically trigger intellisense if the command matches citation, reference or environment completion
-                if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|begin/)) {
-                    items[result[1]].postAction = 'editor.action.triggerSuggest'
-                }
-            }
-            if (result[3]) {
-                items[result[1]].snippet += `{$\{2}}`
-            }
-            if (result[4]) {
-                items[result[1]].snippet += `{$\{3}}`
+                const cmds = Object.keys(JSON.parse(fs.readFileSync(filePath).toString()))
+                this.packageCmds[pkg] = cmds.map(key => this.entryToCompletion(cmds[key]))
+            } else {
+                this.packageCmds[pkg] = []
             }
         }
 
-        const newCommandReg = /\\(?:re|provide)?(?:new)?command(?:{)?\\(\w+)/g
-        while (true) {
-            const result = newCommandReg.exec(content)
-            if (result === null) {
-                break
-            }
-            if (result[1] in this.newcommandData) {
-                continue
-            }
-            this.newcommandData[result[1]] = {
-                position: new vscode.Position(content.substr(0, result.index).split('\n').length - 1, 0),
-                file: filePath
-            }
+        // No package command defined
+        if (!(pkg in this.packageCmds) || this.packageCmds[pkg].length === 0) {
+            return
         }
 
-        return items
+        // Insert commands
+        this.packageCmds[pkg].forEach(cmd => {
+            if (!useOptionalArgsEntries && this.getCmdName(cmd).indexOf('[') > -1) {
+                return
+            }
+            if (cmdList.indexOf(this.getCmdName(cmd, true)) < 0) {
+                suggestions.push(cmd)
+                cmdList.push(this.getCmdName(cmd, true))
+            }
+        })
     }
-}
-
-interface AutocompleteEntry {
-    command: string
-    snippet?: string
-    detail?: string
-    label?: string
-    description?: string
-    documentation?: string
-    sortText?: string
-    postAction?: string
-    package?: string
 }

@@ -1,5 +1,57 @@
 # Change Log
 
+## Unreleased
+
+### Removed
+- Formatted Paste, moved to LaTeX Utilities
+- Word Count, moved to LaTeX Utilities
+
+## [7.3.0] - 2019-07-31
+
+### Added
+- Add a config for always loading extra packages in auto-completion.
+- (#1511) A snippet panel.
+
+### Fixed
+- (#1521) Fixed several bugs on `tikz` preview.
+- (#1523) Syntax highlighting for `\autocites`.
+- (#1524) Add beamer frames to the outline.
+- (#1526) Add intellisense for code input `\lstinputlisting` and `\verbatiminput`.
+
+## [7.2.0] - 2019-07-20
+
+### Added
+- (#1500,#1516) Add `tikzpicture` preview.
+- (#1496) New `subfiles` package support.
+
+### Changed
+- (#1501) Use `base64url` to encode path.
+- (#1509) Improve description of `formattedPaste` settings.
+
+### Fixed
+- (#1201) Catastrophic backtracking in `getGraphicsPath`.
+
+## [7.1.0] - 2019-07-07
+
+### Added
+- (#1452) Paste formatted tables from csv.
+
+### Changed
+- (#1446,#1448) Build info panel tweaks.
+
+### Fixed
+- (#1415) Parse `label={...}` properly to get references.
+- (#1428) Handle optional arguments in `newcommand` for `mathjax`.
+- (#1430) Declare `\left`, `\right` as a pair.
+- (#1433) Fix `.fls` and `.aux` file discovery with relative `outDir`.
+- (#1433) Make structure and manger honor `texDirs`.
+- (#1435) Remove a file from `texFileTree` when it is deleted.
+- (#1440) Clear build progress on failure to build.
+- (#1449) Add option to force recipe usage.
+- (#1457) Honor `journaltitle` in citation browser.
+- (#1458) Show `stderr` on recipe error.
+- ($1463) Pass `DeclareMathOperator` to `mathjax`.
+
 ## [7.0.2] - 2019-06-07
 
 ### Changed

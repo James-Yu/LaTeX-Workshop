@@ -9,7 +9,7 @@ import * as utils from '../utils'
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
-    readonly onDidChangeTreeData: vscode.Event<Section | undefined> = this._onDidChangeTreeData.event
+    readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     private hierarchy: string[]
     private sectionDepths: { string?: number } = {}
     public root: string = ''
@@ -18,6 +18,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     public ds: Section[] = []
 
     constructor(private extension: Extension) {
+        this.onDidChangeTreeData = this._onDidChangeTreeData.event
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.hierarchy = configuration.get('view.outline.sections') as string[]
         this.hierarchy.forEach((section, index) => {
@@ -27,7 +28,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         })
     }
 
-    refresh() : Section[] {
+    refresh(): Section[] {
         if (this.extension.manager.rootFile) {
             this.ds = this.buildModel(this.extension.manager.rootFile)
             return this.ds
@@ -40,7 +41,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire()
     }
 
-    buildModel(filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], imports: boolean = true) : Section[] {
+    buildModel(filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], imports: boolean = true): Section[] {
 
         let rootStack: Section[] = []
         if (parentStack) {
@@ -87,7 +88,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'm')
-        const envReg = /(?:\\(begin|end)(?:\[[^\[\]]*\])?){(?:(figure|table)\*?)}/m
+        const envReg = /(?:\\(begin|end)(?:\[[^[\]]*\])?){(?:(figure|frame|table)\*?)}/m
 
         const lines = content.split('\n')
         for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
@@ -104,7 +105,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
                 env.end = lineNumber
-                const caption = this.getCaption(lines, env)
+                const caption = this.getCaptionOrTitle(lines, env)
                 if (!caption) {
                     continue
                 }
@@ -176,7 +177,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 } else {
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
                     const texDirs = configuration.get('latex.texDirs') as string[]
-                    inputFilePath = utils.resolveFile([...texDirs, path.dirname(filePath), this.extension.manager.rootDir], result[3])
+                    inputFilePath = utils.resolveFile([...texDirs, path.dirname(filePath),
+                        this.extension.manager.rootDir ? this.extension.manager.rootDir : '.'], result[3])
                 }
 
                 if (!inputFilePath) {
@@ -206,7 +208,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return children
     }
 
-    getTreeItem(element: Section) : vscode.TreeItem {
+    getTreeItem(element: Section): vscode.TreeItem {
 
         const hasChildren = element.children.length > 0
         const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, hasChildren ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.None)
@@ -222,7 +224,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return treeItem
     }
 
-    getChildren(element?: Section) : Thenable<Section[]> {
+    getChildren(element?: Section): Thenable<Section[]> {
         if (this.extension.manager.rootFile === undefined) {
             return Promise.resolve([])
         }
@@ -235,16 +237,33 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return Promise.resolve(element.children)
     }
 
-    getParent(element?: Section) : Thenable<Section | undefined> {
+    getParent(element?: Section): Thenable<Section | undefined> {
         if (this.extension.manager.rootFile === undefined || !element) {
             return Promise.resolve(undefined)
         }
         return Promise.resolve(element.parent)
     }
 
-    getCaption(lines: string[], env: {name: string, start: number, end: number}) {
+    getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {
         const content = lines.slice(env.start, env.end).join('\n')
-        const result = /(?:\\caption(?:\[[^\[\]]*\])?){((?:(?:[^\{\}])|(?:\{[^\{\}]*\}))+)}/gsm.exec(content)
+        let result
+        if (env.name === 'frame') {
+            // Frame titles can be specified as either \begin{frame}{Frame Title}
+            // or \begin{frame} \frametitle{Frame Title}
+            const frametitleRegex = /\\frametitle(?:<[^<>]*>)?(?:\[[^[\]]*\])?{((?:(?:[^{}])|(?:\{[^{}]*\}))+)}/gsm
+            // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
+            const beginframeRegex = /\\begin{frame}(?:<[^<>]*>?)?(?:\[[^[\]]*\]){0,2}[\t ]*(?:(?:\r\n|\r|\n)[\t ]*)?{([^{}]*)}/gsm
+
+            // \frametitle can override title set in \begin{frame}{<title>} so we check that first
+            result = frametitleRegex.exec(content)
+            if (!result) {
+                result = beginframeRegex.exec(content)
+            }
+        } else {
+            const captionRegex = /(?:\\caption(?:\[[^[\]]*\])?){((?:(?:[^{}])|(?:\{[^{}]*\}))+)}/gsm
+            result = captionRegex.exec(content)
+        }
+
         if (result) {
             // Remove indentation, newlines and the final '.'
             return result[1].replace(/^ */gm, ' ').replace(/\r|\n/g, '').replace(/\.$/, '')

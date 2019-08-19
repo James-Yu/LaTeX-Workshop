@@ -9,25 +9,26 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
     constructor(extension: Extension) {
         this.extension = extension
         const sections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
-        this.sectionRegex = sections.map(section => RegExp(`\\\\${section}(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
+        this.sectionRegex = sections.map(section => RegExp(`\\\\(?:${section})(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}`, 'm'))
     }
 
     public provideFoldingRanges(
         document: vscode.TextDocument,
         _context: vscode.FoldingContext,
         _token: vscode.CancellationToken
-    ) : vscode.ProviderResult<vscode.FoldingRange[]> {
+    ): vscode.ProviderResult<vscode.FoldingRange[]> {
         return [...this.getSectionFoldingRanges(document), ...this.getEnvironmentFoldingRanges(document)]
     }
 
     private getSectionFoldingRanges(document: vscode.TextDocument) {
         const startingIndices: number[] = this.sectionRegex.map(_ => -1)
         const lines = document.getText().split(/\r?\n/g)
-        let  documentClassLine = -1
+        let documentClassLine = -1
 
         const sections: {level: number, from: number, to: number}[] = []
+        let index = -1
         for (const line of lines) {
-            const index = lines.indexOf(line)
+            index++
             for (const regex of this.sectionRegex) {
                 const result = regex.exec(line)
                 if (!result) {
@@ -80,8 +81,8 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
     private getEnvironmentFoldingRanges(document: vscode.TextDocument) {
         const ranges: vscode.FoldingRange[] = []
         const opStack: { keyword: string, index: number }[] = []
-        const text: string =  document.getText()
-        const envRegex: RegExp = /(?:\\(begin){(.*?)})|(?:\\(begingroup)(?=$|%|\s|\\))|(?:\\(end){(.*?)})|(?:\\(endgroup)(?=$|%|\s|\\))/g //to match one 'begin' OR 'end'
+        const text: string = document.getText()
+        const envRegex = /(?:\\(begin){(.*?)})|(?:\\(begingroup)(?=$|%|\s|\\))|(?:\\(end){(.*?)})|(?:\\(endgroup)(?=$|%|\s|\\))/g //to match one 'begin' OR 'end'
 
         let match = envRegex.exec(text) // init regex search
         while (match) {
@@ -95,7 +96,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             }
             const lastItem = opStack[opStack.length - 1]
 
-            if ((match[4] || match[6])  && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+            if ((match[4] || match[6]) && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
                 opStack.pop()
                 ranges.push(new vscode.FoldingRange(
                     document.positionAt(lastItem.index).line,

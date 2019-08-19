@@ -14,7 +14,6 @@ import {Locator} from './components/locator'
 import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
-import {Counter} from './components/counter'
 import {TeXMagician} from './components/texmagician'
 import {EnvPair} from './components/envpair'
 
@@ -27,6 +26,7 @@ import {SectionNodeProvider, StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
+import { SnippetPanel } from './components/snippetpanel'
 
 function renameValue(config: string, oldValue: string, newValue: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -83,6 +83,25 @@ function combineConfig(extension: Extension, originalConfig1: string, originalCo
     configuration.update(originalConfig2, undefined, false)
 }
 
+function splitCommand(extension: Extension, config: string, newCommandConfig: string, newArgsConfig: string) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    if (!configuration.has(config)) {
+        return
+    }
+    const originalConfig = configuration.get(config, {})
+    if (originalConfig === undefined || Object.keys(originalConfig).indexOf('command') < 0) {
+        return
+    }
+    configuration.update(newCommandConfig, originalConfig['command'])
+    configuration.update(newArgsConfig, originalConfig['args'])
+
+    const msg = `"latex-workshop.${config}" has been replaced by "latex-workshop.${newCommandConfig}" and "latex-workshop.${newArgsConfig}". Please manually remove the deprecated configs from your settings.`
+    const markdownMsg = `\`latex-workshop.${config}\` has been replaced by \`latex-workshop.${newCommandConfig}\` and \`latex-workshop.${newArgsConfig}\`.  Please manually remove the deprecated configs from your \`settings.json\``
+
+    extension.logger.addLogMessage(msg)
+    extension.logger.displayStatus('check', 'statusBar.foreground', markdownMsg, 'warning')
+}
+
 function obsoleteConfigCheck(extension: Extension) {
     renameConfig('maxPrintLine.option.enabled', 'latex.option.maxPrintLine.enabled')
     renameConfig('chktex.interval', 'chktex.delay')
@@ -96,7 +115,7 @@ function obsoleteConfigCheck(extension: Extension) {
     renameConfig('hoverPreview.cursor.enabled', 'hover.preview.cursor.enabled')
     renameConfig('hoverPreview.cursor.symbol', 'hover.preview.cursor.symbol')
     renameConfig('hoverPreview.cursor.color', 'hover.preview.cursor.color')
-    renameConfig('hoverPreview.ref.enabled', 'hover.preview.ref.enabled')
+    renameConfig('hoverPreview.ref.enabled', 'hover.ref.enabled')
     combineConfig(extension, 'latex.clean.enabled', 'latex.clean.onFailBuild.enabled', 'latex.autoClean.run', {
         'falsefalse': 'never',
         'falsetrue': 'onFailed',
@@ -110,6 +129,9 @@ function obsoleteConfigCheck(extension: Extension) {
         'truetrue': 'onFileChange'
     })
     renameValue('latex.autoBuild.run', 'onSave', 'onFileChange')
+    renameConfig('hover.ref.numberAtLastCompilation.enabled', 'hover.ref.number.enabled')
+    splitCommand(extension, 'latex.external.build.command', 'latex.external.build.command', 'latex.external.build.args')
+    splitCommand(extension, 'view.pdf.external.command', 'view.pdf.external.viewer.command', 'view.pdf.external.viewer.args')
 }
 
 function checkDeprecatedFeatures(extension: Extension) {
@@ -143,7 +165,7 @@ function conflictExtensionCheck() {
 function newVersionMessage(extensionPath: string, extension: Extension) {
     fs.readFile(`${extensionPath}${path.sep}package.json`, (err, data) => {
         if (err) {
-            extension.logger.addLogMessage(`Cannot read package information.`)
+            extension.logger.addLogMessage('Cannot read package information.')
             return
         }
         extension.packageInfo = JSON.parse(data.toString())
@@ -196,7 +218,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.recipes', (recipe) => extension.commander.recipes(recipe))
     vscode.commands.registerCommand('latex-workshop.view', (mode) => extension.commander.view(mode))
     vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh())
-    vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.tab())
+    vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.view('tab'))
     vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.texdoc', (pkg) => extension.commander.texdoc(pkg))
@@ -205,7 +227,6 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
     vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot())
-    vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount())
     vscode.commands.registerCommand('latex-workshop.log', (compiler) => extension.commander.log(compiler))
     vscode.commands.registerCommand('latex-workshop.code-action', (d, r, c, m) => extension.codeActions.runCodeAction(d, r, c, m))
     vscode.commands.registerCommand('latex-workshop.goto-section', (filePath, lineNumber) => extension.commander.gotoSection(filePath, lineNumber))
@@ -219,6 +240,8 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
     vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => extension.commander.revealOutputDir())
     vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
+    vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => extension.commander.devParseTeX())
+    vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => extension.commander.devParseBib())
 
     vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item'))
     vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => extension.commander.toggleSelectedKeyword('emph'))
@@ -245,6 +268,7 @@ export async function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.decrement-sectioning', () => extension.commander.shiftSectioningLevel('decrement'))
 
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
+    vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument(async (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
@@ -274,6 +298,9 @@ export async function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
         if (extension.manager.hasTexId(e.document.languageId)) {
+            extension.manager.cachedContent[e.document.fileName].content = e.document.getText()
+            // extension.manager.parseFileAndSubs(e.document.fileName)
+            // We don't need so frequent re-parse
             extension.linter.lintActiveFileIfEnabledAfterInterval()
         }
     }))
@@ -301,16 +328,6 @@ export async function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
-            if (extension.manager.fileWatcher &&  extension.manager.filesWatched.indexOf(e.document.fileName) < 0) {
-                const previousRoot = extension.manager.rootFile
-                extension.manager.findRoot().then(rootFile => {
-                    if (rootFile === undefined || rootFile === previousRoot) {
-                        return
-                    }
-                    extension.structureProvider.refresh()
-                    extension.structureProvider.update()
-                })
-            }
             extension.linter.lintActiveFileIfEnabled()
         } else {
             isLaTeXActive = false
@@ -357,6 +374,38 @@ export async function activate(context: vscode.ExtensionContext) {
             })
         }
     })
+
+    return {
+        getGraphicsPath: () => extension.completer.input.graphicsPath,
+        viewer: {
+            clients: extension.viewer.clients,
+            refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
+            openTab: (sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) => extension.viewer.openTab(sourceFile, respectOutDir, sideColumn)
+        },
+        manager: {
+            findRoot: () => extension.manager.findRoot(),
+            rootDir: () => extension.manager.rootDir,
+            rootFile: () => extension.manager.rootFile,
+            setEnvVar: () => extension.manager.setEnvVar(),
+            cachedContent: () => extension.manager.cachedContent
+        },
+        completer: {
+            command: {
+                usedPackages: () => {
+                    console.warn('`completer.command.usedPackages` is deprecated. Consider use `manager.cachedContent`.')
+                    let allPkgs: string[] = []
+                    extension.manager.getIncludedTeX().forEach(tex => {
+                        const pkgs = extension.manager.cachedContent[tex].element.package
+                        if (pkgs === undefined) {
+                            return
+                        }
+                        allPkgs = allPkgs.concat(pkgs)
+                    })
+                    return allPkgs
+                }
+            }
+        }
+    }
 }
 
 export class Extension {
@@ -374,12 +423,12 @@ export class Extension {
     completer: Completer
     linter: Linter
     cleaner: Cleaner
-    counter: Counter
     codeActions: CodeActions
     texMagician: TeXMagician
     envPair: EnvPair
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
+    snippetPanel: SnippetPanel
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -395,13 +444,13 @@ export class Extension {
         this.completer = new Completer(this)
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
-        this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
         this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
+        this.snippetPanel = new SnippetPanel(this)
 
-        this.logger.addLogMessage(`LaTeX Workshop initialized.`)
+        this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }

@@ -18,7 +18,7 @@ export class Input {
         this.extension = extension
     }
 
-    private filterIgnoredFiles(files: string[], baseDir: string) : string[] {
+    private filterIgnoredFiles(files: string[], baseDir: string): string[] {
         const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         let gitIgnoredFiles: string[] = []
         /* Check .gitignore if needed */
@@ -40,12 +40,12 @@ export class Input {
 
     getGraphicsPath(filePath: string) {
         const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'), '%')
-        const regex = /\\graphicspath{(.*)}/g
-        let result: string[]|null
+        const regex = /\\graphicspath{((?:{[^{}]*}[\s\n]*)*)}/g
+        let result: string[] | null
         do {
             result = regex.exec(content)
             if (result) {
-                for (const dir of result[1].split(/\{|\}/).filter(s => s)) {
+                for (const dir of result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, ''))) {
                     if (this.graphicsPath.indexOf(dir) > -1) {
                         continue
                     }
@@ -68,7 +68,7 @@ export class Input {
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
      */
-    provide(payload: string[]) : vscode.CompletionItem[] {
+    provide(payload: string[]): vscode.CompletionItem[] {
         let provideDirOnly = false
         let baseDir: string[] = []
         const mode = payload[0]
@@ -92,8 +92,13 @@ export class Input {
                     provideDirOnly = true
                 }
                 break
-            case 'input':
-                const rootDir = path.dirname(this.extension.manager.rootFile)
+            case 'input': {
+                if (this.extension.manager.rootDir === undefined) {
+                    this.extension.logger.addLogMessage(`No root dir can be found. The current root file should be undefined, is ${this.extension.manager.rootFile}. How did you get here?`)
+                    break
+                }
+                // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
+                const rootDir = this.extension.manager.rootDir
                 const command = payload[2]
                 if (command === 'includegraphics' && this.graphicsPath.length > 0) {
                     baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
@@ -113,6 +118,7 @@ export class Input {
                     }
                 }
                 break
+            }
             default:
                 return []
         }

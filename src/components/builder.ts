@@ -7,7 +7,6 @@ import * as pdfjsLib from 'pdfjs-dist'
 import {Mutex} from '../lib/await-semaphore'
 
 import {Extension} from '../main'
-import {ExternalCommand} from '../utils'
 
 const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'
@@ -56,11 +55,11 @@ export class Builder {
         }
     }
 
-    isWaitingForBuildToFinish() : boolean {
+    isWaitingForBuildToFinish(): boolean {
         return this.waitingForBuildToFinishMutex.count < 1
     }
 
-    async preprocess() : Promise<() => void> {
+    async preprocess(): Promise<() => void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
@@ -71,19 +70,19 @@ export class Builder {
         return releaseBuildMutex
     }
 
-    async buildWithExternalCommand(command: ExternalCommand, pwd: string) {
+    async buildWithExternalCommand(command: string, args: string[], pwd: string) {
         if (this.isWaitingForBuildToFinish()) {
             return
         }
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        this.extension.logger.addLogMessage(`Build using the external command: ${command.command} ${command.args ? command.args.join(' ') : ''}`)
+        this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args ? args.join(' '): ''}`)
         let wd = pwd
         const ws = vscode.workspace.workspaceFolders
         if (ws && ws.length > 0) {
             wd = ws[0].uri.fsPath
         }
-        this.currentProcess = cp.spawn(command.command, command.args, {cwd: wd})
+        this.currentProcess = cp.spawn(command, args, {cwd: wd})
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`LaTeX buid process as an external command spawned. PID: ${pid}.`)
 
@@ -125,7 +124,7 @@ export class Builder {
                 }
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
-                this.extension.logger.displayStatus('check', 'statusBar.foreground', `Build succeeded.`)
+                this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
             }
             this.currentProcess = undefined
             releaseBuildMutex()
@@ -143,7 +142,7 @@ export class Builder {
 
     async build(rootFile: string, recipe: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
-            this.extension.logger.addLogMessage(`Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.`)
+            this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
             return
         }
         const releaseBuildMutex = await this.preprocess()
@@ -152,20 +151,24 @@ export class Builder {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
             this.extension.buildInfo.buildStarted()
-            // @ts-ignore
             pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then(doc => {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
             // Create sub directories of output directory
-            let outDir = this.extension.manager.getOutputDir(rootFile)
-            const directories = new Set<string>(this.extension.manager.filesWatched
-                .map(file => path.dirname(file.replace(this.extension.manager.rootDir, '.'))))
-            if (!path.isAbsolute(outDir)) {
-                outDir = path.resolve(this.extension.manager.rootDir, outDir)
+            // This was supposed to create the outputDir as latexmk does not
+            // take care of it (neither does any of latex command). If the
+            //output directory does not exist, the latex commands simply fail.
+            if (this.extension.manager.rootDir !== undefined) {
+                const rootDir = this.extension.manager.rootDir
+                let outDir = this.extension.manager.getOutDir()
+                if (!path.isAbsolute(outDir)) {
+                    outDir = path.resolve(this.extension.manager.rootDir, outDir)
+                }
+                this.extension.manager.getIncludedTeX().forEach(file => {
+                    const relativePath = path.dirname(file.replace(rootDir, '.'))
+                    fs.ensureDirSync(path.resolve(outDir, relativePath))
+                })
             }
-            directories.forEach(directory => {
-                fs.ensureDirSync(path.resolve(outDir, directory))
-            })
             this.buildInitiator(rootFile, recipe, releaseBuildMutex)
         } catch (e) {
             this.extension.buildInfo.buildEnded()
@@ -238,19 +241,19 @@ export class Builder {
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
-            this.extension.parser.parse(stdout)
+            this.extension.parser.parse(stdout, rootFile)
             if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
+                this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
                 this.extension.buildInfo.buildEnded()
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
                     this.disableCleanAndRetry = true
                     if (signal !== 'SIGTERM') {
-                        this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with error. Retry building the project.`, 'warning')
-                        this.extension.logger.addLogMessage(`Cleaning auxillary files and retrying build after toolchain error.`)
+                        this.extension.logger.displayStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
+                        this.extension.logger.addLogMessage('Cleaning auxillary files and retrying build after toolchain error.')
 
-                        this.extension.commander.clean().then(() => {
+                        this.extension.cleaner.clean(rootFile).then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
                         })
                     } else {
@@ -261,9 +264,9 @@ export class Builder {
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
                     if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
-                        this.extension.commander.clean()
+                        this.extension.cleaner.clean(rootFile)
                     }
-                    const res = this.extension.logger.showErrorMessage(`Recipe terminated with error.`, 'Open compiler log')
+                    const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
                     if (res) {
                         res.then(option => {
                             switch (option) {
@@ -304,24 +307,25 @@ export class Builder {
         }
         this.extension.viewer.refreshExistingViewer(rootFile)
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
-        this.extension.manager.findAdditionalDependentFilesFromFls(rootFile)
+        this.extension.manager.parseFlsFile(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+        if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
+            const pdfFile = this.extension.manager.tex2pdf(rootFile)
             this.extension.logger.addLogMessage('SyncTex after build invoked.')
-            this.extension.locator.syncTeX()
+            this.extension.locator.syncTeX(undefined, undefined, pdfFile)
         }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
-            this.extension.cleaner.clean()
+            this.extension.cleaner.clean(rootFile)
         }
     }
 
-    createSteps(rootFile: string, recipeName: string | undefined) : StepCommand[] | undefined {
+    createSteps(rootFile: string, recipeName: string | undefined): StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const [magicTex, magicBib] = this.findProgramMagic(rootFile)
-        if (recipeName === undefined && magicTex) {
+        if (recipeName === undefined && magicTex && !configuration.get('latex.build.forceRecipeUsage')) {
             if (! magicTex.args) {
                 magicTex.args = configuration.get('latex.magic.args') as string[]
                 magicTex.name = texMagicProgramName + 'WithArgs'
@@ -339,7 +343,7 @@ export class Builder {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
-                this.extension.logger.showErrorMessage(`No recipes defined.`)
+                this.extension.logger.showErrorMessage('No recipes defined.')
                 return undefined
             }
             let recipe = recipes[0]
@@ -388,12 +392,13 @@ export class Builder {
             }
             const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
             const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+            const outDir = this.extension.manager.getOutDir()
             if (step.args) {
                 step.args = step.args.map(arg => arg.replace(/%DOC%/g, docker ? docfile : doc)
                                                     .replace(/%DOCFILE%/g, docfile)
                                                     .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
                                                     .replace(/%TMPDIR%/g, this.tmpDir)
-                                                    .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile)))
+                                                    .replace(/%OUTDIR%/g, outDir))
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
@@ -403,7 +408,7 @@ export class Builder {
                                                  .replace(/%DOCFILE%/g, docfile)
                                                  .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
                                                  .replace(/%TMPDIR%/g, this.tmpDir)
-                                                 .replace(/%OUTDIR%/g, this.extension.manager.getOutputDir(rootFile))
+                                                 .replace(/%OUTDIR%/g, outDir)
                     }
                 })
             }
@@ -421,7 +426,7 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string) : [StepCommand | undefined,  StepCommand | undefined] {
+    findProgramMagic(rootFile: string): [StepCommand | undefined, StepCommand | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
