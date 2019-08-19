@@ -626,7 +626,7 @@ export class Manager {
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             this.extension.commander.build(true, this.localRootFile)
         } else {
-            this.extension.commander.build(true, file)
+            this.extension.commander.build(true, this.rootFile)
         }
     }
 
