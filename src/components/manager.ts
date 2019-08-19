@@ -562,14 +562,16 @@ export class Manager {
 
     private onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
-        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 ) {
+        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 &&
+            file.indexOf('expl3-code.tex') < 0) {
             this.updateCompleterOnChange(file)
         }
     }
 
     private onWatchedFileChanged(file: string) {
         // It is possible for either tex or non-tex files in the watcher.
-        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 ) {
+        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 &&
+            file.indexOf('expl3-code.tex') < 0) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
         }
