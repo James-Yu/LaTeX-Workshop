@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.0.3] - 2019-08-29
+
+### Fixed
+- (#1607,#1608,#1609) Compilation cannot find root file within `\input` sub-files.
+
 ## [8.0.2] - 2019-08-29
 
 ### Fixed
