@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.0.1] - 2019-08-29
+
+### Fixed
+- Packaging issue in version 8.0.0 leads to unusable extension.
+
 ## [8.0.0] - 2019-08-29 - Engineering Update
 
 ### General
