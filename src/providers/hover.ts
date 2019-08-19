@@ -162,20 +162,31 @@ export class HoverProvider implements vscode.HoverProvider {
         const signatures: string[] = []
         const pkgs: string[] = []
         const tokenWithoutSlash = token.substring(1)
-        Object.keys(this.extension.completer.command.allCommands).forEach( key => {
-            if (key.startsWith(tokenWithoutSlash) && ((key.length === tokenWithoutSlash.length) || (key.charAt(tokenWithoutSlash.length) === '[') || (key.charAt(tokenWithoutSlash.length) === '{'))) {
-                const command = this.extension.completer.command.allCommands[key]
-                if (command.documentation === undefined) {
-                    return
-                }
-                const doc = command.documentation as string
-                const packageName = command.packageName
-                if (packageName && (pkgs.indexOf(packageName) === -1)) {
-                    pkgs.push(packageName)
-                }
-                signatures.push(doc)
+
+        this.extension.manager.getIncludedTeX().forEach(cachedFile => {
+            const cachedCmds = this.extension.manager.cachedContent[cachedFile].element.command
+            if (cachedCmds === undefined) {
+                return
             }
+            cachedCmds.forEach(cmd => {
+                const key = this.extension.completer.command.getCmdName(cmd)
+                if (key.startsWith(tokenWithoutSlash) &&
+                    ((key.length === tokenWithoutSlash.length) ||
+                     (key.charAt(tokenWithoutSlash.length) === '[') ||
+                     (key.charAt(tokenWithoutSlash.length) === '{'))) {
+                    if (cmd.documentation === undefined) {
+                        return
+                    }
+                    const doc = cmd.documentation as string
+                    const packageName = cmd.package
+                    if (packageName && (pkgs.indexOf(packageName) === -1)) {
+                        pkgs.push(packageName)
+                    }
+                    signatures.push(doc)
+                }
+            })
         })
+
         let pkgLink = ''
         if (pkgs.length > 0) {
             pkgLink = '\n\nView documentation for package(s) '
