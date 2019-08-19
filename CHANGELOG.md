@@ -1,10 +1,26 @@
 # Change Log
 
-## Unreleased
+## [8.0.0] - 2019-08-29 - Engineering Update
+
+### General
+- LaTeX Workshop now use abstract syntax tree to analyze LaTeX projects and provide auto-completions.
+- LaTeX Workshop now has a sibling extension, LaTeX Utilities, to hold features that are fancy yet not for everyone.
+
+### Added
+- Updated `pdfjs` for PDF viewer.
+- (#1564) Make `toggleSelectedKeyword` work for multi-selections.
+
+### Fixed
+- (#1553) Allow double quotes to delimit values in bibtex.
+- (#1581) PDF viewer not refreshing after build after a while.
+- (#1585) Fix synctex after build with external viewer.
+- (#1595) Mimic the way `\begin` is indented when closing an environment.
+- (#1604) Prefer `source.cpp.embedded.latex` in `cpp`-minted env.
 
 ### Removed
 - Formatted Paste, moved to LaTeX Utilities
 - Word Count, moved to LaTeX Utilities
+- Tikz Preview, moved to LaTeX Utilities
 
 ## [7.3.0] - 2019-07-31
 

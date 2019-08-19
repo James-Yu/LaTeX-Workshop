@@ -93,7 +93,7 @@ export class BuildInfo {
         const rulePdfLatexStart = /This is pdfTeX, Version [\d.-]+[^\n]*$/
         const ruleSageStart = /Processing Sage code for [\w.\- "]+\.\.\.$/
         const ruleBibtexStart = /This is BibTeX[\w.\- ",()]+$/
-        const ruleLuaTexStart = /This is LuaTeX, Version [\d\.]+[^\n]*$/
+        const ruleLuaTexStart = /This is LuaTeX, Version [\d.]+[^\n]*$/
 
         // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
 
