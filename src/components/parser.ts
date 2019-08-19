@@ -11,7 +11,7 @@ const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
 const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?(\.|\?|)$/
-const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: on input line (\d+))?(\.)?$/
+const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: +on input line (\d+))?(\.)?$/
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
@@ -165,7 +165,7 @@ export class Parser {
                 } else {
                     const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
                     if (packageExtraLineResult) {
-                        currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + packageExtraLineResult[4]
+                        currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + (packageExtraLineResult[4] ? '.' : '')
                         currentResult.line = parseInt(packageExtraLineResult[3], 10)
                     } else if (insideError) {
                         const subLine = line.replace(messageLine, '$1')
