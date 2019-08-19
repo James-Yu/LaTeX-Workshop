@@ -42,7 +42,10 @@ export class Reference {
         if (vscode.window.activeTextEditor) {
             const content = vscode.window.activeTextEditor.document.getText()
             const refs = this.getRefFromNodeArray(latexParser.parse(content).content, content.split('\n'))
-            this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath].element.reference = refs
+            const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
+            if (cache !== undefined) {
+                cache.element.reference = refs
+            }
         }
         // Extract cached references
         const refList: string[] = []

@@ -113,10 +113,11 @@ export class Citation {
         // Update the dirty content in active text editor, get bibitems
         if (vscode.window.activeTextEditor) {
             const file = vscode.window.activeTextEditor.document.uri.fsPath
-            const bibitems = this.parseContent(
-                vscode.window.activeTextEditor.document.getText(), file
-            )
-            this.extension.manager.cachedContent[file].element.bibitem = bibitems
+            const cache = this.extension.manager.cachedContent[file]
+            if (cache !== undefined) {
+                const bibitems = this.parseContent(vscode.window.activeTextEditor.document.getText(), file)
+                cache.element.bibitem = bibitems
+            }
         }
         // From bib files
         if (bibFiles === undefined) {

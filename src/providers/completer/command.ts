@@ -113,8 +113,11 @@ export class Command {
         if (vscode.window.activeTextEditor) {
             const content = vscode.window.activeTextEditor.document.getText()
             const file = vscode.window.activeTextEditor.document.uri.fsPath
-            const cmds = this.getCmdFromNodeArray(file, latexParser.parse(content).content)
-            this.extension.manager.cachedContent[file].element.command = cmds
+            const cache = this.extension.manager.cachedContent[file]
+            if (cache !== undefined) {
+                const cmds = this.getCmdFromNodeArray(file, latexParser.parse(content).content)
+                cache.element.command = cmds
+            }
         }
 
         // Start working on commands in tex

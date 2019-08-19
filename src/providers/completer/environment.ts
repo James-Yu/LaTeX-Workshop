@@ -22,7 +22,10 @@ export class Environment {
         if (vscode.window.activeTextEditor) {
             const content = vscode.window.activeTextEditor.document.getText()
             const envs = this.getEnvFromNodeArray(latexParser.parse(content).content, content.split('\n'))
-            this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath].element.reference = envs
+            const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
+            if (cache !== undefined) {
+                cache.element.environment = envs
+            }
         }
         // Extract cached envs and add to default ones
         const suggestions: vscode.CompletionItem[] = Array.from(this.defaultEnvs)
