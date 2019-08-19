@@ -87,12 +87,13 @@ export class BuildInfo {
         const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-Za-z\s/]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
 
-        const hardcodedRulesPageProducing = ['pdflatex', 'pdftex']
+        const hardcodedRulesPageProducing = ['pdflatex', 'pdftex', 'lualatex']
         const hardcodedRulesOther = ['sage']
 
         const rulePdfLatexStart = /This is pdfTeX, Version [\d.-]+[^\n]*$/
         const ruleSageStart = /Processing Sage code for [\w.\- "]+\.\.\.$/
         const ruleBibtexStart = /This is BibTeX[\w.\- ",()]+$/
+        const ruleLuaTexStart = /This is LuaTeX, Version [\d\.]+[^\n]*$/
 
         // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
 
@@ -131,6 +132,12 @@ export class BuildInfo {
         } else if (this.currentBuild.stdout.match(ruleSageStart)) {
             this.currentBuild.ruleName = 'Sage'
             this.currentBuild.ruleProducesPages = false
+            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
+            this.displayProgress(0)
+            this.currentBuild.lastStepTime = +new Date()
+        } else if (this.currentBuild.stdout.match(ruleLuaTexStart)) {
+            this.currentBuild.ruleName = 'LuaTex'
+            this.currentBuild.ruleProducesPages = true
             this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
             this.displayProgress(0)
             this.currentBuild.lastStepTime = +new Date()
