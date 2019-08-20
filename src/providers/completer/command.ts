@@ -254,7 +254,8 @@ export class Command {
                 cmds.push(cmd)
                 cmdList.push(node.name)
             }
-            if (['newcommand', 'renewcommand', 'providecommand'].indexOf(node.name) > -1 && 'args' in node) {
+            if (['newcommand', 'renewcommand', 'providecommand'].indexOf(node.name) > -1 &&
+                Array.isArray(node.args) && node.args.length > 0) {
                 const label = (node.args[0].content[0] as latexParser.Command).name
                 let args = ''
                 if (latexParser.isOptionalArg(node.args[1])) {
