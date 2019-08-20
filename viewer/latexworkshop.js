@@ -271,7 +271,7 @@ if (embedded) {
 }
 
 
-function callSynctex(e, page, pageDom, viewerContainer) {
+function callSynctex(clickType, e, page, pageDom, viewerContainer) {
   const canvasDom = pageDom.getElementsByTagName('canvas')[0]
   const selection = window.getSelection();
     let textBeforeSelection = ''
@@ -291,7 +291,7 @@ function callSynctex(e, page, pageDom, viewerContainer) {
       left += offsetLeft
     }
     const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
-    socket.send(JSON.stringify({type:'click', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
+    socket.send(JSON.stringify({type: clickType, path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
 }
 
 document.addEventListener('pagesinit', () => {
@@ -303,10 +303,10 @@ document.addEventListener('pagesinit', () => {
       if (!(e.ctrlKey || e.metaKey)) {
         return
       }
-      callSynctex(e, page, pageDom, viewerContainer)
+      callSynctex('ctrl-click', e, page, pageDom, viewerContainer)
     }
     pageDom.ondblclick = (e) => {
-      callSynctex(e, page, pageDom, viewerContainer)
+      callSynctex('double-click', e, page, pageDom, viewerContainer)
     }
   }
 });

@@ -174,6 +174,7 @@ export class Viewer {
 
     handler(websocket: ws, msg: string) {
         const data = JSON.parse(msg)
+        const reverseSynctexKeyBinding = vscode.workspace.getConfiguration('latex-workshop').get('view.pdf.internal.synctex.keybinding')
         let clients: Client[] | undefined
         if (data.type !== 'ping') {
             this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
@@ -238,8 +239,19 @@ export class Viewer {
                     }
                 }
                 break
-            case 'click':
-                this.extension.locator.locate(data, data.path)
+            case 'ctrl-click':
+                if(reverseSynctexKeyBinding === 'ctrl-click') {
+                    this.extension.locator.locate(data, data.path)
+                } else {
+                    this.extension.logger.addLogMessage('Reverse SyncTeX keybinding is not set to ctrl+click.')
+                }
+                break
+            case 'double-click':
+                if(reverseSynctexKeyBinding === 'double-click') {
+                    this.extension.locator.locate(data, data.path)
+                } else {
+                    this.extension.logger.addLogMessage('Reverse SyncTeX keybinding is not set to double click.')
+                }
                 break
             case 'external_link':
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
