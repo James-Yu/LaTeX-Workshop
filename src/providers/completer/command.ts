@@ -70,7 +70,6 @@ export class Command {
 
         const suggestions: Suggestion[] = []
         const cmdList: string[] = [] // This holds defined commands without the backslash
-
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
             if (!useOptionalArgsEntries && this.getCmdName(cmd).indexOf('[') > -1) {
@@ -110,15 +109,16 @@ export class Command {
         })
 
         // Update the dirty content in active text editor
-        if (vscode.window.activeTextEditor) {
-            const content = vscode.window.activeTextEditor.document.getText()
-            const file = vscode.window.activeTextEditor.document.uri.fsPath
-            const cache = this.extension.manager.cachedContent[file]
-            if (cache !== undefined) {
-                const cmds = this.getCmdFromNodeArray(file, latexParser.parse(content, { timeout: 1000 }).content)
-                cache.element.command = cmds
-            }
-        }
+        // *** This is done after stop typing for 5 seconds. Defined in `onDidChangeTextDocument` ***
+        // if (vscode.window.activeTextEditor) {
+        //     const content = vscode.window.activeTextEditor.document.getText()
+        //     const file = vscode.window.activeTextEditor.document.uri.fsPath
+        //     const cache = this.extension.manager.cachedContent[file]
+        //     if (cache !== undefined) {
+        //         const cmds = this.getCmdFromNodeArray(file, latexParser.parse(content, { timeout: 1000 }).content)
+        //         cache.element.command = cmds
+        //     }
+        // }
 
         // Start working on commands in tex
         this.extension.manager.getIncludedTeX().forEach(tex => {

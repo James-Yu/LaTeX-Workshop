@@ -39,14 +39,15 @@ export class Reference {
 
     private updateAll(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         // Update the dirty content in active text editor
-        if (vscode.window.activeTextEditor) {
-            const content = vscode.window.activeTextEditor.document.getText()
-            const refs = this.getRefFromNodeArray(latexParser.parse(content, { timeout: 1000 }).content, content.split('\n'))
-            const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
-            if (cache !== undefined) {
-                cache.element.reference = refs
-            }
-        }
+        // *** This is done after stop typing for 5 seconds. Defined in `onDidChangeTextDocument` ***
+        // if (vscode.window.activeTextEditor) {
+        //     const content = vscode.window.activeTextEditor.document.getText()
+        //     const refs = this.getRefFromNodeArray(latexParser.parse(content, { timeout: 1000 }).content, content.split('\n'))
+        //     const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
+        //     if (cache !== undefined) {
+        //         cache.element.reference = refs
+        //     }
+        // }
         // Extract cached references
         const refList: string[] = []
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {

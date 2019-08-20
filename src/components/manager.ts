@@ -722,16 +722,19 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
-        fs.readFile(file).then(buffer => buffer.toString()).then(content => {
-            const nodes = latexParser.parse(content, { timeout: 1000 }).content
-            const lines = content.split('\n')
-            this.extension.completer.reference.update(file, nodes, lines)
-            this.extension.completer.environment.update(file, nodes, lines)
-            this.extension.completer.citation.update(file, content)
-            this.extension.completer.command.update(file, nodes)
-            this.extension.completer.command.updatePkg(file, nodes)
-        })
+        fs.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
         this.extension.completer.input.getGraphicsPath(file)
+    }
+
+    // This function updates all completers upon tex-file changes, or active file content is changed.
+    updateCompleter(file: string, content: string) {
+        const nodes = latexParser.parse(content, { timeout: 1000 }).content
+        const lines = content.split('\n')
+        this.extension.completer.reference.update(file, nodes, lines)
+        this.extension.completer.environment.update(file, nodes, lines)
+        this.extension.completer.citation.update(file, content)
+        this.extension.completer.command.update(file, nodes)
+        this.extension.completer.command.updatePkg(file, nodes)
     }
 
     private resolveBibPath(bib: string, rootDir: string) {

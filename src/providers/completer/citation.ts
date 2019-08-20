@@ -111,14 +111,15 @@ export class Citation {
     private updateAll(bibFiles?: string[]): Suggestion[] {
         let suggestions: Suggestion[] = []
         // Update the dirty content in active text editor, get bibitems
-        if (vscode.window.activeTextEditor) {
-            const file = vscode.window.activeTextEditor.document.uri.fsPath
-            const cache = this.extension.manager.cachedContent[file]
-            if (cache !== undefined) {
-                const bibitems = this.parseContent(vscode.window.activeTextEditor.document.getText(), file)
-                cache.element.bibitem = bibitems
-            }
-        }
+        // *** This is done after stop typing for 5 seconds. Defined in `onDidChangeTextDocument` ***
+        // if (vscode.window.activeTextEditor) {
+        //     const file = vscode.window.activeTextEditor.document.uri.fsPath
+        //     const cache = this.extension.manager.cachedContent[file]
+        //     if (cache !== undefined) {
+        //         const bibitems = this.parseContent(vscode.window.activeTextEditor.document.getText(), file)
+        //         cache.element.bibitem = bibitems
+        //     }
+        // }
         // From bib files
         if (bibFiles === undefined) {
             bibFiles = Object.keys(this.bibEntries)

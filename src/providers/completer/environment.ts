@@ -19,14 +19,15 @@ export class Environment {
 
     provide(): vscode.CompletionItem[] {
         // Update the dirty content in active text editor
-        if (vscode.window.activeTextEditor) {
-            const content = vscode.window.activeTextEditor.document.getText()
-            const envs = this.getEnvFromNodeArray(latexParser.parse(content, { timeout: 1000 }).content, content.split('\n'))
-            const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
-            if (cache !== undefined) {
-                cache.element.environment = envs
-            }
-        }
+        // *** This is done after stop typing for 5 seconds. Defined in `onDidChangeTextDocument` ***
+        // if (vscode.window.activeTextEditor) {
+        //     const content = vscode.window.activeTextEditor.document.getText()
+        //     const envs = this.getEnvFromNodeArray(latexParser.parse(content, { timeout: 1000 }).content, content.split('\n'))
+        //     const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
+        //     if (cache !== undefined) {
+        //         cache.element.environment = envs
+        //     }
+        // }
         // Extract cached envs and add to default ones
         const suggestions: vscode.CompletionItem[] = Array.from(this.defaultEnvs)
         const envList: string[] = this.defaultEnvs.map(env => env.label)
