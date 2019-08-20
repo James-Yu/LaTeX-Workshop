@@ -138,6 +138,7 @@ export class Manager {
     async findRoot(firstTime: boolean = false): Promise<string | undefined> {
         this.findWorkspace()
         if (firstTime) {
+            this.extension.logger.addLogMessage('Guess project structure without root file.')
             await this.initializeWorkspaceTeX()
         }
         this.localRootFile = undefined
@@ -160,6 +161,7 @@ export class Manager {
                 await this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
                 // Re-initialize, but this time we have root file information.
                 if (firstTime) {
+                    this.extension.logger.addLogMessage('Re-parse project structure with root file set.')
                     await this.initializeWorkspaceTeX()
                     await this.findRoot()
                 }
@@ -364,6 +366,10 @@ export class Manager {
                 return
             }
             for (const file of files) {
+                // There is no need to parse rootFile
+                if (file.fsPath === this.rootFile) {
+                    continue
+                }
                 this.parseFileAndSubs(file.fsPath)
             }
         } catch (e) {}
