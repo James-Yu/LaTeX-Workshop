@@ -182,7 +182,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
 
                 if (!inputFilePath) {
-                    this.extension.logger.addLogMessage(`Could not resolve included file ${filePath}`)
+                    this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
                     continue
                 }
                 if (path.extname(inputFilePath) === '') {

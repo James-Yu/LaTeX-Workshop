@@ -158,6 +158,11 @@ export class Manager {
                 this.initiateFileWatcher()
                 this.initiateBibWatcher()
                 await this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
+                // Re-initialize, but this time we have root file information.
+                if (firstTime) {
+                    await this.initializeWorkspaceTeX()
+                    await this.findRoot()
+                }
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
@@ -359,9 +364,7 @@ export class Manager {
                 return
             }
             for (const file of files) {
-                if (this.cachedContent[file.fsPath] === undefined) {
-                    this.parseFileAndSubs(file.fsPath)
-                }
+                this.parseFileAndSubs(file.fsPath)
             }
         } catch (e) {}
     }
@@ -473,7 +476,11 @@ export class Manager {
         } else if (regResult[0].startsWith('\\import') || regResult[0].startsWith('\\inputfrom') || regResult[0].startsWith('\\includefrom')) {
             return utils.resolveFile([regResult[1]], regResult[2])
         } else {
-            return utils.resolveFile([path.dirname(baseFile), ...texDirs], regResult[2])
+            if (this.rootFile) {
+                return utils.resolveFile([path.dirname(baseFile), path.dirname(this.rootFile), ...texDirs], regResult[2])
+            } else {
+                return utils.resolveFile([path.dirname(baseFile), ...texDirs], regResult[2])
+            }
         }
     }
 
