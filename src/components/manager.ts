@@ -573,7 +573,7 @@ export class Manager {
                 if (bibPath === undefined) {
                     continue
                 }
-                if (this.rootFile) {
+                if (this.rootFile && this.cachedContent[this.rootFile].bibs.indexOf(bibPath) < 0) {
                     this.cachedContent[this.rootFile].bibs.push(bibPath)
                 }
                 this.watchBibFile(bibPath)
@@ -747,7 +747,7 @@ export class Manager {
     }
 
     private watchBibFile(bibPath: string) {
-        if (this.bibsWatched.indexOf(bibPath) < 0) {
+        if (this.bibWatcher && this.bibsWatched.indexOf(bibPath) < 0) {
             this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
             this.bibWatcher.add(bibPath)
             this.bibsWatched.push(bibPath)
