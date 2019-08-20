@@ -235,6 +235,9 @@ socket.addEventListener('message', (event) => {
               document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
               document.querySelector('#viewer').style.background = 'white'
             }
+            if (data.keybinding) {
+              registerSynctexKeybinding(data.keybinding)
+            }
             break
         default:
             break
@@ -271,7 +274,7 @@ if (embedded) {
 }
 
 
-function callSynctex(clickType, e, page, pageDom, viewerContainer) {
+function callSynctex(e, page, pageDom, viewerContainer) {
   const canvasDom = pageDom.getElementsByTagName('canvas')[0]
   const selection = window.getSelection();
     let textBeforeSelection = ''
@@ -291,25 +294,34 @@ function callSynctex(clickType, e, page, pageDom, viewerContainer) {
       left += offsetLeft
     }
     const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
-    socket.send(JSON.stringify({type: clickType, path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
+    socket.send(JSON.stringify({type: 'reverse_synctex', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
 }
 
-document.addEventListener('pagesinit', () => {
+function registerSynctexKeybinding(keybinding) {
   const viewerDom = document.getElementById('viewer')
   for (const pageDom of viewerDom.childNodes) {
     const page = pageDom.dataset.pageNumber
     const viewerContainer = document.getElementById('viewerContainer')
-    pageDom.onclick = (e) => {
-      if (!(e.ctrlKey || e.metaKey)) {
-        return
-      }
-      callSynctex('ctrl-click', e, page, pageDom, viewerContainer)
-    }
-    pageDom.ondblclick = (e) => {
-      callSynctex('double-click', e, page, pageDom, viewerContainer)
+    switch (keybinding) {
+      case 'ctrl-click':
+        pageDom.onclick = (e) => {
+          if (!(e.ctrlKey || e.metaKey)) {
+            return
+          }
+          callSynctex(e, page, pageDom, viewerContainer)
+        }
+        break;
+      case 'double-click':
+          pageDom.ondblclick = (e) => {
+            callSynctex(e, page, pageDom, viewerContainer)
+          }
+          break;
+      default:
+        console.log(`Unknown keybinding ${keybinding} (view.pdf.internal.synctex.keybinding)`)
+        break;
     }
   }
-});
+}
 
 const setHistory = () => {
   const container = document.getElementById('viewerContainer')
