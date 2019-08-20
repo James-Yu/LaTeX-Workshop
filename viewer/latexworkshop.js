@@ -301,7 +301,7 @@ document.addEventListener('pagesinit', () => {
       socket.send(JSON.stringify({type:'click', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
     }
   }
-}, {once: true});
+});
 
 const setHistory = () => {
   const container = document.getElementById('viewerContainer')
