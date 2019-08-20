@@ -135,8 +135,11 @@ export class Manager {
      * current workspace. The found roots will be saved in rootFiles, and can be
      * retrieved by the public rootFile variable/getter.
      */
-    async findRoot(): Promise<string | undefined> {
+    async findRoot(firstTime: boolean = false): Promise<string | undefined> {
         this.findWorkspace()
+        if (firstTime) {
+            await this.initializeWorkspaceTeX()
+        }
         this.localRootFile = undefined
         const findMethods = [
             () => this.findRootFromMagic(),
@@ -252,6 +255,7 @@ export class Manager {
         }
         for (const parent of parents) {
             if (this.cachedContent[parent] && this.cachedContent[parent].canroot) {
+                this.extension.logger.addLogMessage(`Found root file in parents: ${parent}`)
                 return parent
             }
         }
@@ -337,6 +341,31 @@ export class Manager {
         return fileContent
     }
 
+    // This function parse all tex in root. It should only be invoked upon extension initialization.
+    async initializeWorkspaceTeX() {
+        this.findWorkspace()
+        if (!this.workspaceRootDir) {
+            return
+        }
+
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
+        const rootFilesIncludeGlob = '{' + rootFilesIncludePatterns.join(',') + '}'
+        const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
+        const rootFilesExcludeGlob = rootFilesExcludePatterns.length > 0 ? '{' + rootFilesExcludePatterns.join(',') + '}' : undefined
+        try {
+            const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
+            if (files.length > 10) {
+                return
+            }
+            for (const file of files) {
+                if (this.cachedContent[file.fsPath] === undefined) {
+                    this.parseFileAndSubs(file.fsPath)
+                }
+            }
+        } catch (e) {}
+    }
+
     /* This function is called when a root file is found or a watched file is
        changed (in vscode or externally). It searches the subfiles, including
        \input siblings, bib files, and related fls file to construct a file
@@ -346,7 +375,7 @@ export class Manager {
        changes, this lazy loading should be fine. */
     async parseFileAndSubs(file: string, onChange: boolean = false) {
         this.extension.logger.addLogMessage(`Parsing ${file}`)
-        if (this.filesWatched.indexOf(file) < 0) {
+        if (this.fileWatcher && this.filesWatched.indexOf(file) < 0) {
             // The file is first time considered by the extension.
             this.fileWatcher.add(file)
             this.filesWatched.push(file)
