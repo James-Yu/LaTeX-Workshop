@@ -12,6 +12,7 @@ import {Suggestion as CmdEntry} from '../providers/completer/command'
 
 interface Content {
     [filepath: string]: { // tex file name
+        canroot: boolean, // if this tex file can serve as a root file
         content: string, // the dirty (under editing) contents
         element: {
             reference?: vscode.CompletionItem[],
@@ -137,14 +138,19 @@ export class Manager {
     async findRoot(): Promise<string | undefined> {
         this.findWorkspace()
         this.localRootFile = undefined
-        const findMethods = [() => this.findRootFromMagic(), () => this.findRootFromActive(), () => this.findRootInWorkspace()]
+        const findMethods = [
+            () => this.findRootFromMagic(),
+            () => this.findRootFromActive(),
+            () => this.findRootFromParent(),
+            () => this.findRootInWorkspace()
+        ]
         for (const method of findMethods) {
             const rootFile = await method()
             if (rootFile === undefined) {
                 continue
             }
             if (this.rootFile !== rootFile) {
-                this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile}. Find all dependencies.`)
+                this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile} to ${rootFile}. Find all dependencies.`)
                 this.rootFile = rootFile
                 this.initiateFileWatcher()
                 this.initiateBibWatcher()
@@ -210,6 +216,43 @@ export class Manager {
             } else {
                 this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
                 return file
+            }
+        }
+        return undefined
+    }
+
+    private findRootFromParent(): string | undefined {
+        if (!vscode.window.activeTextEditor) {
+            return undefined
+        }
+        // First get all possible parents. Any item in the array has the active file as a child
+        let parents = [ vscode.window.activeTextEditor.document.fileName ]
+        let candidates = [ vscode.window.activeTextEditor.document.fileName ]
+        while (true) {
+            const prevCandidates = Array.from(candidates)
+            candidates = []
+            for (const candidate of prevCandidates) {
+                candidates = candidates.concat(Object.keys(this.cachedContent).filter(key => {
+                    // No already included
+                    if (parents.indexOf(key) > -1) {
+                        return false
+                    }
+                    for (const child of this.cachedContent[key].children) {
+                        if (candidate === child.file) {
+                            return true
+                        }
+                    }
+                    return false
+                }))
+            }
+            if (candidates.length === 0) {
+                break
+            }
+            parents = parents.concat(candidates)
+        }
+        for (const parent of parents) {
+            if (this.cachedContent[parent] && this.cachedContent[parent].canroot) {
+                return parent
             }
         }
         return undefined
@@ -290,7 +333,7 @@ export class Manager {
             return this.cachedContent[cachedFile].content
         }
         const fileContent = utils.stripComments(fs.readFileSync(file).toString(), '%')
-        this.cachedContent[file] = {content: fileContent, element: {}, children: [], bibs: []}
+        this.cachedContent[file] = {canroot: false, content: fileContent, element: {}, children: [], bibs: []}
         return fileContent
     }
 
@@ -309,6 +352,11 @@ export class Manager {
             this.filesWatched.push(file)
         }
         const content = this.getDirtyContent(file, onChange)
+        if (utils.stripComments(content, '%').match(/\\begin{document}/m)) {
+            this.cachedContent[file].canroot = true
+        } else {
+            this.cachedContent[file].canroot = false
+        }
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
         this.cachedFullContent = undefined

@@ -319,6 +319,7 @@ export async function activate(context: vscode.ExtensionContext) {
                 }
                 isLaTeXActive = true
             })
+            extension.manager.findRoot()
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
