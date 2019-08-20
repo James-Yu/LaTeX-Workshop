@@ -115,7 +115,7 @@ export class Command {
             const file = vscode.window.activeTextEditor.document.uri.fsPath
             const cache = this.extension.manager.cachedContent[file]
             if (cache !== undefined) {
-                const cmds = this.getCmdFromNodeArray(file, latexParser.parse(content).content)
+                const cmds = this.getCmdFromNodeArray(file, latexParser.parse(content, { timeout: 1000 }).content)
                 cache.element.command = cmds
             }
         }

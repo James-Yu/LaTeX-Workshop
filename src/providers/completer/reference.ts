@@ -41,7 +41,7 @@ export class Reference {
         // Update the dirty content in active text editor
         if (vscode.window.activeTextEditor) {
             const content = vscode.window.activeTextEditor.document.getText()
-            const refs = this.getRefFromNodeArray(latexParser.parse(content).content, content.split('\n'))
+            const refs = this.getRefFromNodeArray(latexParser.parse(content, { timeout: 1000 }).content, content.split('\n'))
             const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
             if (cache !== undefined) {
                 cache.element.reference = refs

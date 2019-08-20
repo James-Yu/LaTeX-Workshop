@@ -21,7 +21,7 @@ export class Environment {
         // Update the dirty content in active text editor
         if (vscode.window.activeTextEditor) {
             const content = vscode.window.activeTextEditor.document.getText()
-            const envs = this.getEnvFromNodeArray(latexParser.parse(content).content, content.split('\n'))
+            const envs = this.getEnvFromNodeArray(latexParser.parse(content, { timeout: 1000 }).content, content.split('\n'))
             const cache = this.extension.manager.cachedContent[vscode.window.activeTextEditor.document.uri.fsPath]
             if (cache !== undefined) {
                 cache.element.environment = envs

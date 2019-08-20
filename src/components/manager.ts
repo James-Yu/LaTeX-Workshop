@@ -723,7 +723,7 @@ export class Manager {
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
         fs.readFile(file).then(buffer => buffer.toString()).then(content => {
-            const nodes = latexParser.parse(content).content
+            const nodes = latexParser.parse(content, { timeout: 1000 }).content
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
             this.extension.completer.environment.update(file, nodes, lines)

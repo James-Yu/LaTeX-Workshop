@@ -131,7 +131,7 @@ export class HoverProvider implements vscode.HoverProvider {
         }
         let commands: string[] = []
         try {
-            const ast = latexParser.parsePreamble(content)
+            const ast = latexParser.parsePreamble(content, { timeout: 1000 })
             const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
             for (const node of ast.content) {
                 if (latexParser.isCommand(node) && node.name.match(regex)) {
