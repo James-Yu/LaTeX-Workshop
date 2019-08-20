@@ -1,5 +1,15 @@
 # Change Log
 
+## [8.0.4] - 2019-08-20
+
+### Fixed
+- Latency before providing auto-completion items.
+- (#1599) Fix handling of periods in multiline warnings.
+- (#1612) Find root also search for `tex` parents.
+- (#1614) Remove word count remnants.
+- (#1615) Synctex stops working.
+- (#1619) Regression: respect rootDir when dealing with \input
+
 ## [8.0.3] - 2019-08-19
 
 ### Fixed
