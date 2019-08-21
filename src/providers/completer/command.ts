@@ -58,9 +58,9 @@ export class Command {
         })
 
         // Handle special commands with brackets
-        const bracketCmds = ['\\(', '\\[', '\\{', '\\left(', '\\left[', '\\left{']
+        const bracketCmds = ['(', '[', '{', 'left(', 'left[', 'left\\{']
         this.defaultCmds.filter(cmd => bracketCmds.indexOf(this.getCmdName(cmd)) > -1).forEach(cmd => {
-            this.bracketCmds[cmd.label] = cmd
+            this.bracketCmds[cmd.label.slice(1)] = cmd
         })
     }
 
