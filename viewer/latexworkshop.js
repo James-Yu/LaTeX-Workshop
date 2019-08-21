@@ -235,8 +235,8 @@ socket.addEventListener('message', (event) => {
               document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
               document.querySelector('#viewer').style.background = 'white'
             }
-            if (data.keybinding) {
-              registerSynctexKeybinding(data.keybinding)
+            if (data.keybindings) {
+              registerSynctexKeybinding(data.keybindings['synctex'])
             }
             break
         default:

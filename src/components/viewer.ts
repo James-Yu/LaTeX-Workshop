@@ -230,7 +230,9 @@ export class Viewer {
                             spreadMode: configuration.get('view.pdf.spreadMode'),
                             hand: configuration.get('view.pdf.hand'),
                             invert: configuration.get('view.pdf.invert'),
-                            keybinding: configuration.get('view.pdf.internal.synctex.keybinding')
+                            keybindings: {
+                                synctex: configuration.get('view.pdf.internal.synctex.keybinding')
+                            }
                         }))
                     }
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
