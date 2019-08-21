@@ -247,13 +247,24 @@ export class Manager {
         const rootFilesExcludeGlob = rootFilesExcludePatterns.length > 0 ? '{' + rootFilesExcludePatterns.join(',') + '}' : undefined
         try {
             const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
+            const candidates: string[] = []
             for (const file of files) {
                 const content = utils.stripComments(fs.readFileSync(file.fsPath).toString(), '%')
                 const result = content.match(regex)
                 if (result) {
-                    this.extension.logger.addLogMessage(`Found root file from workspace: ${file.fsPath}`)
-                    return file.fsPath
+                    // Can be a root
+                    const children = this.getTeXChildren(file.fsPath, file.fsPath, [], content)
+                    if (vscode.window.activeTextEditor && children.indexOf(vscode.window.activeTextEditor.document.fileName) > -1) {
+                        this.extension.logger.addLogMessage(`Found root file from parent: ${file.fsPath}`)
+                        return file.fsPath
+                    }
+                    // Not including the active file, yet can still be a root candidate
+                    candidates.push(file.fsPath)
                 }
+            }
+            if (candidates.length > 0) {
+                this.extension.logger.addLogMessage(`Found files that might be root, choose the first one: ${candidates}`)
+                return candidates[0]
             }
         } catch (e) {}
         return undefined
@@ -365,6 +376,47 @@ export class Manager {
         return content
     }
 
+    private getTeXChildren(file: string, baseFile: string, children: string[], content?: string): string[] {
+        if (content === undefined) {
+            content = utils.stripComments(fs.readFileSync(file).toString(), '%')
+        }
+
+        // Update children of current file
+        if (this.cachedContent[file] === undefined) {
+            this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
+            const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
+            while (true) {
+                const result = inputReg.exec(content)
+                if (!result) {
+                    break
+                }
+
+                const inputFile = this.parseInputFilePath(result, baseFile)
+
+                if (!inputFile ||
+                    !fs.existsSync(inputFile) ||
+                    path.relative(inputFile, baseFile) === '') {
+                    continue
+                }
+
+                this.cachedContent[file].children.push({
+                    index: result.index,
+                    file: inputFile
+                })
+            }
+        }
+
+        this.cachedContent[file].children.forEach(child => {
+            if (children.indexOf(child.file) > -1) {
+                // Already included
+                return
+            }
+            children.push(child.file)
+            this.getTeXChildren(child.file, baseFile, children)
+        })
+        return children
+    }
+
     private parseInputFiles(content: string, baseFile: string) {
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
         while (true) {
@@ -386,7 +438,7 @@ export class Manager {
                 file: inputFile
             })
 
-            if (inputFile in this.cachedContent) {
+            if (this.filesWatched.indexOf(inputFile) > -1) {
                 continue
             }
             this.parseFileAndSubs(inputFile)
