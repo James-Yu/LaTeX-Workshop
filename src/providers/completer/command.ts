@@ -362,9 +362,12 @@ export class Command {
                     filePath = `${this.extension.extensionRoot}/data/packages/${generalPkg}_cmd.json`
                 }
             }
+            this.packageCmds[pkg] = []
             if (fs.existsSync(filePath)) {
-                const cmds = Object.keys(JSON.parse(fs.readFileSync(filePath).toString()))
-                this.packageCmds[pkg] = cmds.map(key => this.entryToCompletion(cmds[key]))
+                const cmds = JSON.parse(fs.readFileSync(filePath).toString())
+                Object.keys(cmds).forEach(key => {
+                    this.packageCmds[pkg].push(this.entryToCompletion(cmds[key]))
+                })
             } else {
                 this.packageCmds[pkg] = []
             }
