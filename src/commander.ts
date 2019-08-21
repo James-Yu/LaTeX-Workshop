@@ -68,7 +68,7 @@ export class Commander {
         const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
         if (externalBuildCommand) {
             const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
-            await this.extension.builder.buildWithExternalCommand(externalBuildCommand, externalBuildArgs, pwd)
+            await this.extension.builder.buildWithExternalCommand(externalBuildCommand, externalBuildArgs, pwd, rootFile)
             return
         }
         if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
