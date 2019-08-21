@@ -70,7 +70,7 @@ export class Builder {
         return releaseBuildMutex
     }
 
-    async buildWithExternalCommand(command: string, args: string[], pwd: string) {
+    async buildWithExternalCommand(command: string, args: string[], pwd: string, rootFile: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
             return
         }
@@ -125,6 +125,16 @@ export class Builder {
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
                 this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
+                try {
+                    if (rootFile === undefined) {
+                        this.extension.viewer.refreshExistingViewer()
+                    } else {
+                        this.buildFinished(rootFile)
+                    }
+                } finally {
+                    this.currentProcess = undefined
+                    releaseBuildMutex()
+                }
             }
             this.currentProcess = undefined
             releaseBuildMutex()
