@@ -12,7 +12,6 @@ import {Suggestion as CmdEntry} from '../providers/completer/command'
 
 interface Content {
     [filepath: string]: { // tex file name
-        canroot: boolean, // if this tex file can serve as a root file
         content: string, // the dirty (under editing) contents
         element: {
             reference?: vscode.CompletionItem[],
@@ -135,17 +134,12 @@ export class Manager {
      * current workspace. The found roots will be saved in rootFiles, and can be
      * retrieved by the public rootFile variable/getter.
      */
-    async findRoot(firstTime: boolean = false): Promise<string | undefined> {
+    async findRoot(): Promise<string | undefined> {
         this.findWorkspace()
-        if (firstTime) {
-            this.extension.logger.addLogMessage('Guess project structure without root file.')
-            await this.initializeWorkspaceTeX()
-        }
         this.localRootFile = undefined
         const findMethods = [
             () => this.findRootFromMagic(),
             () => this.findRootFromActive(),
-            () => this.findRootFromParent(),
             () => this.findRootInWorkspace()
         ]
         for (const method of findMethods) {
@@ -158,13 +152,7 @@ export class Manager {
                 this.rootFile = rootFile
                 this.initiateFileWatcher()
                 this.initiateBibWatcher()
-                await this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
-                // Re-initialize, but this time we have root file information.
-                if (firstTime) {
-                    this.extension.logger.addLogMessage('Re-parse project structure with root file set.')
-                    await this.initializeWorkspaceTeX()
-                    await this.findRoot()
-                }
+                this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
@@ -226,44 +214,6 @@ export class Manager {
             } else {
                 this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
                 return file
-            }
-        }
-        return undefined
-    }
-
-    private findRootFromParent(): string | undefined {
-        if (!vscode.window.activeTextEditor) {
-            return undefined
-        }
-        // First get all possible parents. Any item in the array has the active file as a child
-        let parents = [ vscode.window.activeTextEditor.document.fileName ]
-        let candidates = [ vscode.window.activeTextEditor.document.fileName ]
-        while (true) {
-            const prevCandidates = Array.from(candidates)
-            candidates = []
-            for (const candidate of prevCandidates) {
-                candidates = candidates.concat(Object.keys(this.cachedContent).filter(key => {
-                    // No already included
-                    if (parents.indexOf(key) > -1) {
-                        return false
-                    }
-                    for (const child of this.cachedContent[key].children) {
-                        if (candidate === child.file) {
-                            return true
-                        }
-                    }
-                    return false
-                }))
-            }
-            if (candidates.length === 0) {
-                break
-            }
-            parents = parents.concat(candidates)
-        }
-        for (const parent of parents) {
-            if (this.cachedContent[parent] && this.cachedContent[parent].canroot) {
-                this.extension.logger.addLogMessage(`Found root file in parents: ${parent}`)
-                return parent
             }
         }
         return undefined
@@ -344,35 +294,8 @@ export class Manager {
             return this.cachedContent[cachedFile].content
         }
         const fileContent = utils.stripComments(fs.readFileSync(file).toString(), '%')
-        this.cachedContent[file] = {canroot: false, content: fileContent, element: {}, children: [], bibs: []}
+        this.cachedContent[file] = {content: fileContent, element: {}, children: [], bibs: []}
         return fileContent
-    }
-
-    // This function parse all tex in root. It should only be invoked upon extension initialization.
-    async initializeWorkspaceTeX() {
-        this.findWorkspace()
-        if (!this.workspaceRootDir) {
-            return
-        }
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
-        const rootFilesIncludeGlob = '{' + rootFilesIncludePatterns.join(',') + '}'
-        const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
-        const rootFilesExcludeGlob = rootFilesExcludePatterns.length > 0 ? '{' + rootFilesExcludePatterns.join(',') + '}' : undefined
-        try {
-            const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
-            if (files.length > 10) {
-                return
-            }
-            for (const file of files) {
-                // There is no need to parse rootFile
-                if (file.fsPath === this.rootFile) {
-                    continue
-                }
-                this.parseFileAndSubs(file.fsPath)
-            }
-        } catch (e) {}
     }
 
     /* This function is called when a root file is found or a watched file is
@@ -390,11 +313,6 @@ export class Manager {
             this.filesWatched.push(file)
         }
         const content = this.getDirtyContent(file, onChange)
-        if (utils.stripComments(content, '%').match(/\\begin{document}/m)) {
-            this.cachedContent[file].canroot = true
-        } else {
-            this.cachedContent[file].canroot = false
-        }
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
         this.cachedFullContent = undefined

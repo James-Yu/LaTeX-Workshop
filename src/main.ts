@@ -344,8 +344,6 @@ export async function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    extension.manager.findRoot(true)
-
     const formatter = new LatexFormatterProvider(extension)
     vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'latex'}, formatter)
     vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
