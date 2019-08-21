@@ -6,8 +6,8 @@ import {Extension} from '../../main'
 
 export class Environment {
     extension: Extension
-    private defaultEnvs: vscode.CompletionItem[]
-    private packageEnvs: {[pkg: string]: vscode.CompletionItem[]}
+    private defaultEnvs: vscode.CompletionItem[] = []
+    private packageEnvs: {[pkg: string]: vscode.CompletionItem[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
