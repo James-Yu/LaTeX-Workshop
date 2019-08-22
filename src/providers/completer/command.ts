@@ -186,14 +186,18 @@ export class Command {
         return
     }
 
-    update(file: string, nodes: latexParser.Node[]) {
+    update(file: string, nodes?: latexParser.Node[], content?: string) {
         // Remove newcommand cmds, because they will be re-insert in the next step
         Object.keys(this.definedCmds).forEach(cmd => {
             if (this.definedCmds[cmd].file === file) {
                 delete this.definedCmds[cmd]
             }
         })
-        this.extension.manager.cachedContent[file].element.command = this.getCmdFromNodeArray(file, nodes)
+        if (nodes !== undefined) {
+            this.extension.manager.cachedContent[file].element.command = this.getCmdFromNodeArray(file, nodes)
+        } else if (content !== undefined) {
+            this.extension.manager.cachedContent[file].element.command = this.getCmdFromContent(file, content)
+        }
     }
 
     getCmdName(item: Suggestion, removeArgs = false): string {
@@ -213,27 +217,54 @@ export class Command {
         return cmds
     }
 
-    updatePkg(file: string, nodes: latexParser.Node[]){
-        nodes.forEach(node => {
-            if (latexParser.isCommand(node) && node.name === 'usepackage' && 'args' in node) {
-                node.args.forEach(arg => {
-                    if (latexParser.isOptionalArg(arg)) {
+    updatePkg(file: string, nodes?: latexParser.Node[], content?: string) {
+        if (nodes !== undefined) {
+            nodes.forEach(node => {
+                if (latexParser.isCommand(node) && node.name === 'usepackage' && 'args' in node) {
+                    node.args.forEach(arg => {
+                        if (latexParser.isOptionalArg(arg)) {
+                            return
+                        }
+                        (arg.content[0] as latexParser.TextString).content.split(',').forEach(pkg => {
+                            const pkgs = this.extension.manager.cachedContent[file].element.package
+                            if (pkgs) {
+                                pkgs.push(pkg)
+                            } else {
+                                this.extension.manager.cachedContent[file].element.package = [pkg]
+                            }
+                        })
+                    })
+                } else {
+                    if (latexParser.hasContentArray(node)) {
+                        this.updatePkg(file, node.content)
+                    }
+                }
+            })
+        } else if (content !== undefined) {
+            const pkgReg = /\\usepackage(?:\[[^[\]{}]*\])?{(.*)}/g
+            const pkgs: string[] = []
+
+            if (this.extension.manager.cachedContent[file].element.package === undefined) {
+                this.extension.manager.cachedContent[file].element.package = []
+            }
+
+            while (true) {
+                const result = pkgReg.exec(content)
+                if (result === null) {
+                    break
+                }
+                result[1].split(',').forEach(pkg => {
+                    pkg = pkg.trim()
+                    if (pkgs.indexOf(pkg) > -1) {
                         return
                     }
-                    const pkg: string = (arg.content[0] as latexParser.TextString).content
-                    const pkgs = this.extension.manager.cachedContent[file].element.package
-                    if (pkgs) {
-                        pkgs.push(pkg)
-                    } else {
-                        this.extension.manager.cachedContent[file].element.package = [pkg]
+                    const filePkgs = this.extension.manager.cachedContent[file].element.package
+                    if (filePkgs !== undefined) {
+                        filePkgs.push(pkg)
                     }
                 })
-            } else {
-                if (latexParser.hasContentArray(node)) {
-                    this.updatePkg(file, node.content)
-                }
             }
-        })
+        }
     }
 
     private getCmdFromNode(file: string, node: latexParser.Node, cmdList: string[] = []): Suggestion[] {
@@ -305,6 +336,81 @@ export class Command {
             }
         })
         return args
+    }
+
+    private getCmdFromContent(file: string, content: string): Suggestion[] {
+        const cmdReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
+        const cmds: Suggestion[] = []
+        const cmdList: string[] = []
+        while (true) {
+            const result = cmdReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (cmdList.indexOf(result[1]) > -1) {
+                continue
+            }
+
+            const cmd: Suggestion = {
+                label: `\\${result[1]}`,
+                kind: vscode.CompletionItemKind.Function,
+                documentation: '`' + result[1] + '`',
+                insertText: new vscode.SnippetString(this.getArgsFromRegResult(result)),
+                filterText: result[1],
+                package: ''
+            }
+            if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|begin/)) {
+                cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+            }
+            cmds.push(cmd)
+            cmdList.push(result[1])
+        }
+
+        const newCommandReg = /\\(?:re|provide)?(?:new)?command(?:{)?\\(\w+)/g
+        while (true) {
+            const result = newCommandReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (cmdList.indexOf(result[1]) > -1) {
+                continue
+            }
+
+            const cmd: Suggestion = {
+                label: `\\${result[1]}`,
+                kind: vscode.CompletionItemKind.Function,
+                documentation: '`' + result[1] + '`',
+                insertText: result[1],
+                filterText: result[1],
+                package: 'user-defined'
+            }
+            cmds.push(cmd)
+            cmdList.push(result[1])
+
+            this.definedCmds[result[1]] = {
+                file,
+                location: new vscode.Location(
+                    vscode.Uri.file(file),
+                    new vscode.Position(content.substr(0, result.index).split('\n').length - 1, 0))
+            }
+        }
+
+        return cmds
+    }
+
+    private getArgsFromRegResult(result: RegExpExecArray): string {
+        let text = result[1]
+
+        if (result[2]) {
+            text += '{${1}}'
+        }
+        if (result[3]) {
+            text += '{${2}}'
+        }
+        if (result[4]) {
+            text += '{${3}}'
+        }
+        return text
     }
 
     private entryToCompletion(item: DataItemEntry): Suggestion {

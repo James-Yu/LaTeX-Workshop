@@ -67,8 +67,12 @@ export class Environment {
         return suggestions
     }
 
-    update(file: string, nodes: latexParser.Node[], lines: string[]) {
-        this.extension.manager.cachedContent[file].element.environment = this.getEnvFromNodeArray(nodes, lines)
+    update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
+        if (nodes !== undefined && lines !== undefined) {
+            this.extension.manager.cachedContent[file].element.environment = this.getEnvFromNodeArray(nodes, lines)
+        } else if (content !== undefined) {
+            this.extension.manager.cachedContent[file].element.environment = this.getEnvFromContent(content)
+        }
     }
 
     // This function will return all environments in a node array, including sub-nodes
@@ -110,5 +114,27 @@ export class Environment {
         this.packageEnvs[pkg] = (JSON.parse(fs.readFileSync(filePath).toString()) as string[])
             .map(env => new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
         return this.packageEnvs[pkg]
+    }
+
+    private getEnvFromContent(content: string): vscode.CompletionItem[] {
+        const envReg = /\\begin\s?{([^{}]*)}/g
+        const envs: vscode.CompletionItem[] = []
+        const envList: string[] = []
+        while (true) {
+            const result = envReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (envList.indexOf(result[1]) > -1) {
+                continue
+            }
+
+            envs.push({
+                label: result[1],
+                kind: vscode.CompletionItemKind.Module
+            })
+            envList.push(result[1])
+        }
+        return envs
     }
 }

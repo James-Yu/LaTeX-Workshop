@@ -301,6 +301,10 @@ export async function activate(context: vscode.ExtensionContext) {
         if (!extension.manager.hasTexId(e.document.languageId)) {
             return
         }
+        extension.linter.lintActiveFileIfEnabledAfterInterval()
+        if (extension.manager.cachedContent[e.document.fileName] === undefined) {
+            return
+        }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const content = e.document.getText()
         extension.manager.cachedContent[e.document.fileName].content = content
@@ -311,7 +315,6 @@ export async function activate(context: vscode.ExtensionContext) {
             const file = e.document.uri.fsPath
             extension.manager.updateCompleter(file, content)
         }, configuration.get('intellisense.update.delay', 1000))
-        extension.linter.lintActiveFileIfEnabledAfterInterval()
     }))
 
     let isLaTeXActive = false
