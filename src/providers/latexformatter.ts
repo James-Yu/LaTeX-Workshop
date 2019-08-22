@@ -40,6 +40,8 @@ export class LaTexFormatter {
             this.currentOs = linux
         } else if (this.machineOs === mac.name) {
             this.currentOs = mac
+        } else {
+            this.extension.logger.addLogMessage('LaTexFormatter: Unsupported OS')
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.formatter = configuration.get<string>('latexindent.path') || 'latexindent'
