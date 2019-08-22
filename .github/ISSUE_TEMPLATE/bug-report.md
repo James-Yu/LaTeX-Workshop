@@ -18,6 +18,9 @@ You still see this issue?: Yes/No
 
 **Make sure to visit the [wiki FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) before filling an issue.**
 
+**If your issue is with compiling a document (not having to do with finding the root file of a project), check first that you can compile manually.**
+
+**If your issue is with the internal pdf viewer not displaying something correctly, take the pdf and open it in Firefox (or any program that uses PDF.js to display PDFs) and check if the same issue exists there. If so, the problem is with PDF.js and not this extension.**
 
 **Describe the bug [Required]**
 A clear and concise description of what the bug is.
