@@ -27,7 +27,7 @@ const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 export class LaTexFormatter {
     private extension: Extension
     private machineOs: string
-    private currentOs: OperatingSystem
+    private currentOs?: OperatingSystem
     private formatter: string
     private formatterArgs: string[]
 
@@ -40,8 +40,6 @@ export class LaTexFormatter {
             this.currentOs = linux
         } else if (this.machineOs === mac.name) {
             this.currentOs = mac
-        } else {
-            throw new Error('unknown os')
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.formatter = configuration.get<string>('latexindent.path') || 'latexindent'
@@ -67,6 +65,9 @@ export class LaTexFormatter {
                     return resolve(edit)
                 })
             } else {
+                if (!this.currentOs) {
+                    return
+                }
                 this.checkPath(this.currentOs.checker).then((latexindentPresent) => {
                     if (!latexindentPresent) {
                         this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
@@ -89,6 +90,9 @@ export class LaTexFormatter {
         return new Promise((resolve, _reject) => {
             cp.exec(checker + ' ' + this.formatter, (err, _stdout, _stderr) => {
                 if (err) {
+                    if (!this.currentOs) {
+                        return
+                    }
                     this.formatter += this.currentOs.fileExt
                     cp.exec(checker + ' ' + this.formatter, (err1, _stdout1, _stderr1) => {
                         if (err1) {
