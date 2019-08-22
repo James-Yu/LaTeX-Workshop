@@ -225,13 +225,14 @@ export class Command {
                         if (latexParser.isOptionalArg(arg)) {
                             return
                         }
-                        const pkg: string = (arg.content[0] as latexParser.TextString).content
-                        const pkgs = this.extension.manager.cachedContent[file].element.package
-                        if (pkgs) {
-                            pkgs.push(pkg)
-                        } else {
-                            this.extension.manager.cachedContent[file].element.package = [pkg]
-                        }
+                        (arg.content[0] as latexParser.TextString).content.split(',').forEach(pkg => {
+                            const pkgs = this.extension.manager.cachedContent[file].element.package
+                            if (pkgs) {
+                                pkgs.push(pkg)
+                            } else {
+                                this.extension.manager.cachedContent[file].element.package = [pkg]
+                            }
+                        })
                     })
                 } else {
                     if (latexParser.hasContentArray(node)) {
