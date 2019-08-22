@@ -150,6 +150,7 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
 }
 const server = `ws://${window.location.hostname}:${window.location.port}`
 
+let reverseSynctexKeybinding
 const socket = new WebSocket(server)
 socket.addEventListener('open', () => socket.send(JSON.stringify({type:'open', path:pdfFilePath, viewer:(embedded ? 'tab' : 'browser')})))
 socket.addEventListener('message', (event) => {
@@ -236,7 +237,8 @@ socket.addEventListener('message', (event) => {
               document.querySelector('#viewer').style.background = 'white'
             }
             if (data.keybindings) {
-              registerSynctexKeybinding(data.keybindings['synctex'])
+              reverseSynctexKeybinding = data.keybindings['synctex']
+              registerSynctexKeybinding(reverseSynctexKeybinding)
             }
             break
         default:
@@ -322,6 +324,12 @@ function registerSynctexKeybinding(keybinding) {
     }
   }
 }
+
+document.addEventListener('pagesinit', () => {
+  if (reverseSynctexKeybinding) {
+    registerSynctexKeybinding(reverseSynctexKeybinding)
+  }
+});
 
 const setHistory = () => {
   const container = document.getElementById('viewerContainer')
