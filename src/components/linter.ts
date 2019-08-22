@@ -16,11 +16,13 @@ export class Linter {
     }
 
     get rcPath() {
-        let rcPath
+        let rcPath: string
         // 0. root file folder
         const root = this.extension.manager.rootFile
         if (root) {
             rcPath = path.resolve(path.dirname(root), './.chktexrc')
+        } else {
+            return
         }
         if (fs.existsSync(rcPath)) {
             return rcPath

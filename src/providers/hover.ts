@@ -15,8 +15,8 @@ type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
     jaxInitialized = false
-    color
-    mj
+    color: any
+    mj: any
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -333,7 +333,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return b64Start + svg64
     }
 
-    private hexToRgb(hex) {
+    private hexToRgb(hex: string) {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
         return result ? {
             r: parseInt(result[1], 16) / 255,
@@ -367,7 +367,7 @@ export class HoverProvider implements vscode.HoverProvider {
             if (extension.packageJSON === undefined || extension.packageJSON.contributes === undefined || extension.packageJSON.contributes.themes === undefined) {
                 continue
             }
-            const candidateThemes = extension.packageJSON.contributes.themes.filter(themePkg => themePkg.label === colorTheme || themePkg.id === colorTheme)
+            const candidateThemes = extension.packageJSON.contributes.themes.filter( (themePkg: any) => themePkg.label === colorTheme || themePkg.id === colorTheme)
             if (candidateThemes.length === 0) {
                 continue
             }

@@ -6,12 +6,12 @@ import * as os from 'os'
 
 import { Extension } from '../main'
 
-const fullRange = doc => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
+const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
 export class OperatingSystem {
-    public name
-    public fileExt
-    public checker
+    public name: string
+    public fileExt: string
+    public checker: string
 
     constructor(name: string, fileExt: string, checker: string) {
         this.name = name

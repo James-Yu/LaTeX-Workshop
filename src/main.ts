@@ -88,7 +88,7 @@ function splitCommand(extension: Extension, config: string, newCommandConfig: st
     if (!configuration.has(config)) {
         return
     }
-    const originalConfig = configuration.get(config, {})
+    const originalConfig: { [key: string]: any } = configuration.get(config, {})
     if (originalConfig === undefined || Object.keys(originalConfig).indexOf('command') < 0) {
         return
     }
@@ -203,7 +203,6 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
 
 export async function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
-    global['latex'] = extension
     vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
     // let configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -421,7 +420,7 @@ export async function activate(context: vscode.ExtensionContext) {
 }
 
 export class Extension {
-    packageInfo
+    packageInfo: any
     extensionRoot: string
     logger: Logger
     buildInfo: BuildInfo

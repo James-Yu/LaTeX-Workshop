@@ -83,7 +83,7 @@ export class Citation {
 
     getEntryDict(): {[key: string]: Suggestion} {
         const suggestions = this.updateAll()
-        const entries = {}
+        const entries: {[key: string]: Suggestion} = {}
         suggestions.forEach(entry => entries[entry.key] = entry)
         return entries
     }

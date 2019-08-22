@@ -257,7 +257,7 @@ export class Commander {
         this.extension.completer.citation.browser()
     }
 
-    log(compiler?) {
+    log(compiler?: string) {
         this.extension.logger.addLogMessage('LOG command invoked.')
         if (compiler) {
             this.extension.logger.showCompilerLog()
@@ -493,7 +493,7 @@ export class Commander {
         const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
         if (matches) {
             let itemString = ''
-            let newCursorPos
+            let newCursorPos: vscode.Position
             // leading indent
             if (matches[1]) {
                 itemString += matches[1]
@@ -662,7 +662,7 @@ export class Commander {
 
         function replacer(
             _match: string,
-            sectionName: string,
+            sectionName: keyof typeof increments ,
             options: string,
             contents: string
         ) {

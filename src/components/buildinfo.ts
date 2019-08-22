@@ -13,7 +13,7 @@ export class BuildInfo {
         buildStart: number,
         pageTotal?: number | undefined,
         lastStepTime: number,
-        stepTimes: { [runName: string]: { [pageNo: number]: number } },
+        stepTimes: { [runName: string]: { [pageNo: string]: number } },
         stdout: string,
         ruleNumber: number,
         ruleName: string,
@@ -407,9 +407,9 @@ export class BuildInfo {
             }
             return str
         }
-
-        const runIcon: string =
-            enclosedNumbers[this.configuration.get('progress.runIconType') as string][this.currentBuild.ruleNumber]
+        const runIconType = this.configuration.get('progress.runIconType') as keyof typeof enclosedNumbers
+        const index = this.currentBuild.ruleNumber as keyof typeof enclosedNumbers[keyof typeof enclosedNumbers]
+        const runIcon: string = enclosedNumbers[runIconType][index]
         // set generic status text
         this.status.text = `${runIcon} ${this.currentBuild.ruleName}`
 

@@ -63,7 +63,7 @@ export class Logger {
         }
     }
 
-    showErrorMessage(message: string, ...args): Thenable<any> | undefined {
+    showErrorMessage(message: string, ...args: string[]): Thenable<any> | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('message.error.show')) {
             return vscode.window.showErrorMessage(message, ...args)

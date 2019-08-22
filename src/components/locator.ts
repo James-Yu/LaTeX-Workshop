@@ -353,7 +353,7 @@ export class Locator {
     }
 
     private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
-        let previousColumnMatches = {}
+        let previousColumnMatches: any = {}
 
         for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
             const columns: number[] = []
@@ -369,7 +369,7 @@ export class Locator {
             }
 
             // Get number or occurrences for each column
-            const columnMatches = {}
+            const columnMatches: any = {}
             columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
             const values = Object.values(columnMatches).sort()
 

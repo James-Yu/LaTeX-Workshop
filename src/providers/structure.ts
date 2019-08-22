@@ -11,7 +11,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     private hierarchy: string[]
-    private sectionDepths: { string?: number } = {}
+    private sectionDepths: { [key: string]: number } = {}
     public root: string = ''
 
     // our data source is a set multi-rooted set of trees
@@ -305,7 +305,7 @@ export class StructureTreeView {
         })
     }
 
-    private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number) {
+    private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {
         for (const node of sections) {
             if (node.fileName !== fileName) {
                 continue
