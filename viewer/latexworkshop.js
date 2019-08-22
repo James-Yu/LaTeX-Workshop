@@ -235,6 +235,9 @@ socket.addEventListener('message', (event) => {
               document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
               document.querySelector('#viewer').style.background = 'white'
             }
+            if (data.keybindings) {
+              registerSynctexKeybinding(data.keybindings['synctex'])
+            }
             break
         default:
             break
@@ -270,38 +273,55 @@ if (embedded) {
   })
 }
 
-document.addEventListener('pagesinit', () => {
+
+function callSynctex(e, page, pageDom, viewerContainer) {
+  const canvasDom = pageDom.getElementsByTagName('canvas')[0]
+  const selection = window.getSelection();
+    let textBeforeSelection = ''
+    let textAfterSelection = ''
+    // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
+    if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
+      const text = selection.anchorNode.textContent;
+      textBeforeSelection = text.substring(0, selection.anchorOffset);
+      textAfterSelection = text.substring(selection.anchorOffset);
+    }
+    const trimSelect = document.getElementById('trimSelect')
+    let left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft
+    const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop
+    if (trimSelect.selectedIndex > 0) {
+      const m = canvasDom.style.left.match(/-(.*)px/)
+      const offsetLeft = m ? Number(m[1]) : 0
+      left += offsetLeft
+    }
+    const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
+    socket.send(JSON.stringify({type: 'reverse_synctex', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
+}
+
+function registerSynctexKeybinding(keybinding) {
   const viewerDom = document.getElementById('viewer')
   for (const pageDom of viewerDom.childNodes) {
     const page = pageDom.dataset.pageNumber
     const viewerContainer = document.getElementById('viewerContainer')
-    pageDom.onclick = (e) => {
-      const canvasDom = pageDom.getElementsByTagName('canvas')[0]
-      if (!(e.ctrlKey || e.metaKey)) {
-        return
-      }
-      const selection = window.getSelection();
-      let textBeforeSelection = ''
-      let textAfterSelection = ''
-      // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
-      if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
-        const text = selection.anchorNode.textContent;
-        textBeforeSelection = text.substring(0, selection.anchorOffset);
-        textAfterSelection = text.substring(selection.anchorOffset);
-      }
-      const trimSelect = document.getElementById('trimSelect')
-      let left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft
-      const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop
-      if (trimSelect.selectedIndex > 0) {
-        const m = canvasDom.style.left.match(/-(.*)px/)
-        const offsetLeft = m ? Number(m[1]) : 0
-        left += offsetLeft
-      }
-      const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
-      socket.send(JSON.stringify({type:'click', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
+    switch (keybinding) {
+      case 'ctrl-click':
+        pageDom.onclick = (e) => {
+          if (!(e.ctrlKey || e.metaKey)) {
+            return
+          }
+          callSynctex(e, page, pageDom, viewerContainer)
+        }
+        break;
+      case 'double-click':
+          pageDom.ondblclick = (e) => {
+            callSynctex(e, page, pageDom, viewerContainer)
+          }
+          break;
+      default:
+        console.log(`Unknown keybinding ${keybinding} (view.pdf.internal.synctex.keybinding)`)
+        break;
     }
   }
-});
+}
 
 const setHistory = () => {
   const container = document.getElementById('viewerContainer')

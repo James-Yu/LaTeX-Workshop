@@ -230,6 +230,9 @@ export class Viewer {
                             spreadMode: configuration.get('view.pdf.spreadMode'),
                             hand: configuration.get('view.pdf.hand'),
                             invert: configuration.get('view.pdf.invert'),
+                            keybindings: {
+                                synctex: configuration.get('view.pdf.internal.synctex.keybinding')
+                            }
                         }))
                     }
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
@@ -238,7 +241,7 @@ export class Viewer {
                     }
                 }
                 break
-            case 'click':
+            case 'reverse_synctex':
                 this.extension.locator.locate(data, data.path)
                 break
             case 'external_link':
