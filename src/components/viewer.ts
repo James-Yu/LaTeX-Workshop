@@ -99,7 +99,8 @@ export class Viewer {
         if (!url) {
             return
         }
-        if (this.extension.server.port === undefined || this.extension.server.port === undefined) {
+        if (this.extension.server.port === undefined) {
+            this.extension.logger.addLogMessage('Server port is undefined')
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
