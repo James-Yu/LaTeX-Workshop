@@ -123,12 +123,12 @@ export class Reference {
     }
 
     private getRefFromContent(content: string) {
-        const itemReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
+        const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
         const refs: vscode.CompletionItem[] = []
         const refList: string[] = []
         const contentNoEmpty = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
-            const result = itemReg.exec(content)
+            const result = refReg.exec(content)
             if (result === null) {
                 break
             }
