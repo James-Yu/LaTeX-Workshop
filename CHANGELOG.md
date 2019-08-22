@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.0.6] - 2019-08-22
+
+### Fixed
+- (#1630) Synctex not working after refreshing pdf viewer.
+
 ## [8.0.5] - 2019-08-22
 
 ### Fixed
