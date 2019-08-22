@@ -32,8 +32,8 @@ export class Manager {
     cachedContent: Content = {}
 
     private extension: Extension
-    private fileWatcher: chokidar.FSWatcher
-    private bibWatcher: chokidar.FSWatcher
+    private fileWatcher?: chokidar.FSWatcher
+    private bibWatcher?: chokidar.FSWatcher
     private filesWatched: string[] = []
     private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions = {
@@ -606,15 +606,19 @@ export class Manager {
             this.fileWatcher = chokidar.watch(this.rootFile, this.watcherOptions)
             this.filesWatched.push(this.rootFile)
         }
-        this.fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
-        this.fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
-        this.fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
+        if (this.fileWatcher) {
+            this.fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
+            this.fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
+            this.fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
+        }
         // this.findAdditionalDependentFilesFromFls(this.rootFile)
     }
 
     private resetFileWatcher() {
         this.extension.logger.addLogMessage('Root file changed -> cleaning up old file watcher.')
-        this.fileWatcher.close()
+        if (this.fileWatcher) {
+            this.fileWatcher.close()
+        }
         this.filesWatched = []
         // We also clean the completions from the old project
         this.extension.completer.input.reset()
@@ -657,14 +661,18 @@ export class Manager {
 
     private onWatchedBibDeleted(file: string) {
         this.extension.logger.addLogMessage(`Bib file watcher: ${file} deleted.`)
-        this.bibWatcher.unwatch(file)
+        if (this.bibWatcher) {
+            this.bibWatcher.unwatch(file)
+        }
         this.bibsWatched.splice(this.bibsWatched.indexOf(file), 1)
         this.extension.completer.citation.removeEntriesInFile(file)
     }
 
     private onWatchedFileDeleted(file: string) {
         this.extension.logger.addLogMessage(`File watcher: ${file} deleted.`)
-        this.fileWatcher.unwatch(file)
+        if (this.fileWatcher) {
+            this.fileWatcher.unwatch(file)
+        }
         this.filesWatched.splice(this.filesWatched.indexOf(file), 1)
         delete this.cachedContent[file]
         if (file === this.rootFile) {

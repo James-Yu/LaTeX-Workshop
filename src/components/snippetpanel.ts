@@ -18,7 +18,6 @@ type IMathSymbol = {
 export class SnippetPanel {
     extension: Extension
     panel: vscode.WebviewPanel | undefined
-    configuration: vscode.WorkspaceConfiguration
     lastActiveTextEditor: vscode.TextEditor | undefined
 
     constructor(extension: Extension) {

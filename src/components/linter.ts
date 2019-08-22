@@ -8,7 +8,7 @@ import {Extension} from '../main'
 
 export class Linter {
     extension: Extension
-    linterTimeout: NodeJS.Timer
+    linterTimeout?: NodeJS.Timer
     currentProcesses: {[linterId: string]: ChildProcess} = {}
 
     constructor(extension: Extension) {

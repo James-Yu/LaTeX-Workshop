@@ -34,30 +34,32 @@ export class LaTexFormatter {
     constructor(extension: Extension) {
         this.extension = extension
         this.machineOs = os.platform()
+        if (this.machineOs === windows.name) {
+            this.currentOs = windows
+        } else if (this.machineOs === linux.name) {
+            this.currentOs = linux
+        } else if (this.machineOs === mac.name) {
+            this.currentOs = mac
+        } else {
+            throw new Error('unknown os')
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.formatter = configuration.get<string>('latexindent.path') || 'latexindent'
+        if (configuration.get('docker.enabled')) {
+            if (process.platform === 'win32') {
+                this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
+            } else {
+                this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent')
+                fs.chmodSync(this.formatter, 0o755)
+            }
+        }
+        this.formatterArgs = configuration.get<string[]>('latexindent.args')
+            || ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\'']
     }
 
     public formatDocument(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
-            if (this.machineOs === windows.name) {
-                this.currentOs = windows
-            } else if (this.machineOs === linux.name) {
-                this.currentOs = linux
-            } else if (this.machineOs === mac.name) {
-                this.currentOs = mac
-            }
-
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            this.formatter = configuration.get<string>('latexindent.path') || 'latexindent'
-            if (configuration.get('docker.enabled')) {
-                if (process.platform === 'win32') {
-                    this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
-                } else {
-                    this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent')
-                    fs.chmodSync(this.formatter, 0o755)
-                }
-            }
-            this.formatterArgs = configuration.get<string[]>('latexindent.args')
-                || ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\'']
             const pathMeta = configuration.inspect('latexindent.path')
 
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {

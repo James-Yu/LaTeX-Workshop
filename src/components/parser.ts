@@ -47,7 +47,7 @@ interface LogEntry { type: string, file: string, text: string, line: number }
 
 export class Parser {
     extension: Extension
-    isLaTeXmkSkipped: boolean
+    isLaTeXmkSkipped: boolean = false
     buildLog: LogEntry[] = []
     buildLogRaw: string = ''
     compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')

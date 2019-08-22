@@ -6,7 +6,6 @@ import {Extension} from '../../main'
 export class Package {
     extension: Extension
     suggestions: vscode.CompletionItem[] = []
-    provideRefreshTime: number
 
     constructor(extension: Extension) {
         this.extension = extension
