@@ -26,8 +26,12 @@ export class Reference {
         return Object.keys(this.suggestions).map(key => this.suggestions[key])
     }
 
-    update(file: string, nodes: latexParser.Node[], lines: string[]) {
-        this.extension.manager.cachedContent[file].element.reference = this.getRefFromNodeArray(nodes, lines)
+    update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
+        if (nodes !== undefined && lines !== undefined) {
+            this.extension.manager.cachedContent[file].element.reference = this.getRefFromNodeArray(nodes, lines)
+        } else if (content !== undefined) {
+            this.extension.manager.cachedContent[file].element.reference = this.getRefFromContent(content)
+        }
     }
 
     getRefDict(): {[key: string]: Suggestion} {
@@ -114,6 +118,37 @@ export class Reference {
         }
         if (latexParser.hasContentArray(node)) {
             return this.getRefFromNodeArray(node.content, lines)
+        }
+        return refs
+    }
+
+    private getRefFromContent(content: string) {
+        const itemReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
+        const refs: vscode.CompletionItem[] = []
+        const refList: string[] = []
+        const contentNoEmpty = content.split('\n').filter(para => para !== '').join('\n')
+        while (true) {
+            const result = itemReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (result[1] in refList) {
+                continue
+            }
+            const prevContent = contentNoEmpty.substring(0, contentNoEmpty.substring(0, result.index).lastIndexOf('\n') - 1)
+            const followLength = contentNoEmpty.substring(result.index, contentNoEmpty.length).split('\n', 4).join('\n').length
+            const positionContent = content.substring(0, result.index).split('\n')
+
+            refs.push({
+                label: result[1],
+                kind: vscode.CompletionItemKind.Reference,
+                // One row before, four rows after
+                documentation: contentNoEmpty.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
+                // Here we abuse the definition of range to store the location of the reference definition
+                range: new vscode.Range(positionContent.length - 1, positionContent[positionContent.length - 1].length,
+                                        positionContent.length - 1, positionContent[positionContent.length - 1].length)
+            })
+            refList.push(result[1])
         }
         return refs
     }

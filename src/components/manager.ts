@@ -739,6 +739,8 @@ export class Manager {
         } catch {
             this.extension.logger.addLogMessage(`Cannot parse ${file}. Fall back to regex-based completion.`)
             // Do the update with old style.
+            const contentNoComment = utils.stripComments(content, '%')
+            this.extension.completer.reference.update(file, undefined, undefined, contentNoComment)
         }
     }
 
