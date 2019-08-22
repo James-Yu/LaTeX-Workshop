@@ -125,7 +125,7 @@ export class Environment {
             if (result === null) {
                 break
             }
-            if (result[1] in envList) {
+            if (envList.indexOf(result[1]) > -1) {
                 continue
             }
 

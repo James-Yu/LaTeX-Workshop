@@ -132,7 +132,7 @@ export class Reference {
             if (result === null) {
                 break
             }
-            if (result[1] in refList) {
+            if (refList.indexOf(result[1]) > -1) {
                 continue
             }
             const prevContent = contentNoEmpty.substring(0, contentNoEmpty.substring(0, result.index).lastIndexOf('\n') - 1)

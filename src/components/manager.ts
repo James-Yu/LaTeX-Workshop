@@ -742,6 +742,8 @@ export class Manager {
             const contentNoComment = utils.stripComments(content, '%')
             this.extension.completer.reference.update(file, undefined, undefined, contentNoComment)
             this.extension.completer.environment.update(file, undefined, undefined, contentNoComment)
+            this.extension.completer.command.update(file, undefined, contentNoComment)
+            this.extension.completer.command.updatePkg(file, undefined, contentNoComment)
         }
     }
 
