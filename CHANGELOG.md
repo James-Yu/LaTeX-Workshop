@@ -1,5 +1,15 @@
 # Change Log
 
+## [8.0.5] - 2019-08-22
+
+### Fixed
+- Use the previous regex-based parsing if the extension cannot build AST properly.
+- (#1612) Proper parsing of `tex` input tree.
+- (#1621) Fix command completion from used packages.
+- (#1621) Check argument list length of `renewcommand`.
+- (#1623) Make reverse synctex keybinding configurable.
+- (#1626) Refresh viewer after successful build with external command.
+
 ## [8.0.4] - 2019-08-20
 
 ### Fixed
