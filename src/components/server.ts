@@ -12,8 +12,8 @@ export class Server {
     extension: Extension
     httpServer: http.Server
     wsServer: ws.Server
-    address: string
-    port: number
+    address?: string
+    port?: number
 
     constructor(extension: Extension) {
         this.extension = extension

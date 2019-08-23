@@ -25,6 +25,7 @@ export class BuildInfo {
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10001)
         this.status.command = 'latex-workshop.showCompilationPanel'
         this.status.tooltip = 'Show LaTeX Compilation Info Panel'
+        this.configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.status.show()
     }
 

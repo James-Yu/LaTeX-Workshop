@@ -11,7 +11,6 @@ const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
 export class Input {
     extension: Extension
-    provideRefreshTime: number
     graphicsPath: string[] = []
 
     constructor(extension: Extension) {

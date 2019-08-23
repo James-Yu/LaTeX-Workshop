@@ -38,8 +38,6 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
 
 export class Commander {
     extension: Extension
-    commandTitles: string[]
-    commands: string[]
     snippets: {[key: string]: vscode.SnippetString} = {}
 
     constructor(extension: Extension) {
