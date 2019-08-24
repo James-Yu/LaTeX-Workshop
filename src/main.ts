@@ -331,7 +331,6 @@ export async function activate(context: vscode.ExtensionContext) {
                 }
                 isLaTeXActive = true
             })
-            extension.manager.findRoot()
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
@@ -342,6 +341,7 @@ export async function activate(context: vscode.ExtensionContext) {
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
             extension.linter.lintActiveFileIfEnabled()
+            extension.manager.findRoot()
         } else {
             isLaTeXActive = false
         }
