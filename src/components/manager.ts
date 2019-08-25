@@ -709,7 +709,7 @@ export class Manager {
         this.extension.completer.citation.update(file, content)
         try {
             console.time(`parse ${file}`)
-            const nodes = latexParser.parse(content, { timeout: 10000 }).content
+            const nodes = latexParser.parse(content, { timeout: 1000 }).content
             console.timeEnd(`parse ${file}`)
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
@@ -717,6 +717,7 @@ export class Manager {
             this.extension.completer.command.update(file, nodes)
             this.extension.completer.command.updatePkg(file, nodes)
         } catch (e) {
+            console.timeEnd(`parse ${file}`)
             this.extension.logger.addLogMessage(`Cannot parse ${file}: ${e} Fall back to regex-based completion.`)
             // Do the update with old style.
             const contentNoComment = utils.stripComments(content, '%')
