@@ -705,11 +705,15 @@ export class Manager {
     }
 
     // This function updates all completers upon tex-file changes, or active file content is changed.
-    updateCompleter(file: string, content: string) {
+    async updateCompleter(file: string, content: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.extension.completer.citation.update(file, content)
         try {
             console.time(`parse ${file}`)
-            const nodes = latexParser.parse(content, { timeout: 1000 }).content
+            // Here we use this delay config. Otherwise, multiple updates may run
+            // concurrently if the actual parsing time is greater than that of
+            // the keypress delay.
+            const nodes = latexParser.parse(content, { timeout: configuration.get('intellisense.update.delay', 1000) }).content
             console.timeEnd(`parse ${file}`)
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
