@@ -1,5 +1,14 @@
 # Change Log
 
+## [8.0.7] - 2019-08-26
+
+### Changed
+- (#1635) Add `.nav` and `.snm` to `latex-workshop.latex.clean.fileTypes`.
+
+### Fixed
+- (#1637) Find root only when active editor is tex-like.
+- (#1639) Check pdf writable status before building.
+
 ## [8.0.6] - 2019-08-22
 
 ### Fixed
