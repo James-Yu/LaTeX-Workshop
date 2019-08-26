@@ -96,7 +96,7 @@ export class Completer implements vscode.CompletionItemProvider {
     completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         let reg
         let provider
-        let payload
+        let payload: any
         switch (type) {
             case 'citation':
                 reg = /\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:(?:\[[^[\]]*\])*(?:{[^{}]*})?)*{([^}]*)$/
