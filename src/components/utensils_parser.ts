@@ -7,7 +7,10 @@ export class UtensilsParser {
     pool: workerpool.WorkerPool
     constructor(extension: Extension) {
         this.extension = extension
-        this.pool = workerpool.pool(__dirname + '/utensils_parser_worker.js')
+        this.pool = workerpool.pool(
+            __dirname + '/utensils_parser_worker.js',
+            { maxWorkers: 1 }
+        )
     }
 
     parseLatex(s: string, options: latexParser.ParserOptions): workerpool.Promise<latexParser.LatexAst> {
