@@ -4,7 +4,6 @@ import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import * as utils from '../utils'
-import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../main'
 import {Suggestion as CiteEntry} from '../providers/completer/citation'
@@ -713,7 +712,8 @@ export class Manager {
             // Here we use this delay config. Otherwise, multiple updates may run
             // concurrently if the actual parsing time is greater than that of
             // the keypress delay.
-            const nodes = latexParser.parse(content, { timeout: configuration.get('intellisense.update.delay', 1000) }).content
+            const latexAst = await this.extension.utensilsParser.parseLatex(content, { timeout: configuration.get('intellisense.update.delay', 1000) })
+            const nodes = latexAst.content
             console.timeEnd(`parse ${file}`)
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)

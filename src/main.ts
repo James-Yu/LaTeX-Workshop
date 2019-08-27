@@ -15,6 +15,7 @@ import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {TeXMagician} from './components/texmagician'
+import {UtensilsParser} from './components/utensils_parser'
 import {EnvPair} from './components/envpair'
 
 import {Completer} from './providers/completion'
@@ -436,6 +437,7 @@ export class Extension {
     cleaner: Cleaner
     codeActions: CodeActions
     texMagician: TeXMagician
+    utensilsParser: UtensilsParser
     envPair: EnvPair
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
@@ -461,7 +463,7 @@ export class Extension {
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetPanel = new SnippetPanel(this)
-
+        this.utensilsParser = new UtensilsParser(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }
