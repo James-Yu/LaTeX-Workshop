@@ -711,7 +711,7 @@ export class Manager {
         // Here we use this delay config. Otherwise, multiple updates may run
         // concurrently if the actual parsing time is greater than that of
         // the keypress delay.
-        const latexAst = await this.extension.utensilsParser.parseLatex(content, { timeout: configuration.get('intellisense.update.delay', 1000) / 3 })
+        const latexAst = await this.extension.utensilsParser.parseLatex(content, { timeout: configuration.get('intellisense.update.delay', 1000) })
         console.timeEnd(`parse ${file}`)
         if (latexAst) {
             const nodes = latexAst.content
