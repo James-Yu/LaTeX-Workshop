@@ -1021,10 +1021,15 @@
           "default": 500,
           "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing.\nThis config only matters when `latex-workshop.chktex.run` is set to `onType`."
         },
+        "latex-workshop.intellisense.update.aggressive.enabled": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Defines whether the extension aggressively parses the changed content after stopped typing.\nDisable this config will let the extension only update intellisense after saving changed files."
+        },
         "latex-workshop.intellisense.update.delay": {
           "type": "number",
           "default": 1000,
-          "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing.\nLower this value will let the extension to know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computation burden."
+          "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing.\nThis config works only when `intellisense.update.aggressive.enabled` is enabled. Lower this value will let the extension to know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computation burden."
         },
         "latex-workshop.intellisense.citation.type": {
           "type": "string",

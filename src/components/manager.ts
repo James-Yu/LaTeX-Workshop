@@ -713,7 +713,7 @@ export class Manager {
             // Here we use this delay config. Otherwise, multiple updates may run
             // concurrently if the actual parsing time is greater than that of
             // the keypress delay.
-            const nodes = latexParser.parse(content, { timeout: configuration.get('intellisense.update.delay', 1000) }).content
+            const nodes = latexParser.parse(content, { timeout: configuration.get('intellisense.update.delay', 1000) / 3 }).content
             console.timeEnd(`parse ${file}`)
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
