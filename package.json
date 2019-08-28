@@ -557,6 +557,12 @@
               ]
             },
             {
+              "name": "latexmk (latexmkrc)",
+              "tools": [
+                "latexmk_rconly"
+              ]
+            },
+            {
               "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
               "tools": [
                 "pdflatex",
@@ -593,6 +599,14 @@
                 "-file-line-error",
                 "-pdf",
                 "-outdir=%OUTDIR%",
+                "%DOC%"
+              ],
+              "env": {}
+            },
+            {
+              "name": "latexmk_rconly",
+              "command": "latexmk",
+              "args": [
                 "%DOC%"
               ],
               "env": {}

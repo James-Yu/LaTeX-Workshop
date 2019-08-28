@@ -246,7 +246,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {
         const content = lines.slice(env.start, env.end).join('\n')
-        let result
+        let result: RegExpExecArray | null = null
         if (env.name === 'frame') {
             // Frame titles can be specified as either \begin{frame}{Frame Title}
             // or \begin{frame} \frametitle{Frame Title}
@@ -261,7 +261,12 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         } else {
             const captionRegex = /(?:\\caption(?:\[[^[\]]*\])?){((?:(?:[^{}])|(?:\{[^{}]*\}))+)}/gsm
-            result = captionRegex.exec(content)
+            let captionResult: RegExpExecArray | null
+            // Take the last caption entry to deal with subfigures.
+            // This works most of the time but not always. A definitive solution should use AST
+            while ((captionResult = captionRegex.exec(content))) {
+                result = captionResult
+            }
         }
 
         if (result) {
