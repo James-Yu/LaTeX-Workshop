@@ -308,13 +308,15 @@ export async function activate(context: vscode.ExtensionContext) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const content = e.document.getText()
         extension.manager.cachedContent[e.document.fileName].content = content
-        if (updateCompleter) {
-            clearTimeout(updateCompleter)
+        if (configuration.get('intellisense.update.aggressive.enabled')) {
+            if (updateCompleter) {
+                clearTimeout(updateCompleter)
+            }
+            updateCompleter = setTimeout(() => {
+                const file = e.document.uri.fsPath
+                extension.manager.updateCompleter(file, content)
+            }, configuration.get('intellisense.update.delay', 1000))
         }
-        updateCompleter = setTimeout(() => {
-            const file = e.document.uri.fsPath
-            extension.manager.updateCompleter(file, content)
-        }, configuration.get('intellisense.update.delay', 1000))
     }))
 
     let isLaTeXActive = false
