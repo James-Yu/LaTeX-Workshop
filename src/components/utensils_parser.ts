@@ -1,4 +1,5 @@
 import {Extension} from '../main'
+import * as path from 'path'
 import * as workerpool from 'workerpool'
 import {latexParser} from 'latex-utensils'
 
@@ -8,12 +9,12 @@ export class UtensilsParser {
     constructor(extension: Extension) {
         this.extension = extension
         this.pool = workerpool.pool(
-            __dirname + '/utensils_parser_worker.js',
+            path.join(__dirname, 'utensils_parser_worker.js'),
             { maxWorkers: 1 }
         )
     }
 
-    parseLatex(s: string, options: latexParser.ParserOptions): workerpool.Promise<latexParser.LatexAst> {
+    parseLatex(s: string, options: latexParser.ParserOptions): workerpool.Promise<latexParser.LatexAst | undefined> {
         return this.pool.exec('parseLatex', [s, options])
     }
 }

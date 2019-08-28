@@ -707,22 +707,21 @@ export class Manager {
     async updateCompleter(file: string, content: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.extension.completer.citation.update(file, content)
-        try {
-            console.time(`parse ${file}`)
-            // Here we use this delay config. Otherwise, multiple updates may run
-            // concurrently if the actual parsing time is greater than that of
-            // the keypress delay.
-            const latexAst = await this.extension.utensilsParser.parseLatex(content, { timeout: configuration.get('intellisense.update.delay', 1000) })
+        console.time(`parse ${file}`)
+        // Here we use this delay config. Otherwise, multiple updates may run
+        // concurrently if the actual parsing time is greater than that of
+        // the keypress delay.
+        const latexAst = await this.extension.utensilsParser.parseLatex(content, { timeout: configuration.get('intellisense.update.delay', 1000) })
+        console.timeEnd(`parse ${file}`)
+        if (latexAst) {
             const nodes = latexAst.content
-            console.timeEnd(`parse ${file}`)
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
             this.extension.completer.environment.update(file, nodes, lines)
             this.extension.completer.command.update(file, nodes)
             this.extension.completer.command.updatePkg(file, nodes)
-        } catch (e) {
-            console.timeEnd(`parse ${file}`)
-            this.extension.logger.addLogMessage(`Cannot parse ${file}: ${e} Fall back to regex-based completion.`)
+        } else {
+            this.extension.logger.addLogMessage(`Cannot parse ${file}: Fall back to regex-based completion.`)
             // Do the update with old style.
             const contentNoComment = utils.stripComments(content, '%')
             this.extension.completer.reference.update(file, undefined, undefined, contentNoComment)
