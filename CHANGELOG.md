@@ -1,5 +1,17 @@
 # Change Log
 
+## [8.1.0] - 2019-08-29
+
+### Added
+- Add a config `latex-workshop.intellisense.update.aggressive.enabled` to disable parsing on text change.
+- (#1504) Add a latexmk(rc) recipe.
+
+### Changed
+- (#1647) Syntax parsing is now done in a separate thread. Typing lag should be resolved.
+
+### Fixed
+- (#1555) Use caption of the main figure for outline.
+
 ## [8.0.7] - 2019-08-26
 
 ### Changed
