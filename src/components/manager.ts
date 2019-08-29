@@ -707,14 +707,12 @@ export class Manager {
     async updateCompleter(file: string, content: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.extension.completer.citation.update(file, content)
-        console.time(`parse ${file}`)
         // Here we use this delay config. Otherwise, multiple updates may run
         // concurrently if the actual parsing time is greater than that of
         // the keypress delay.
         const latexAst = await this.extension.pegParser.parseLatex(content,
             { timeout: configuration.get('intellisense.update.delay', 1000) }
         )
-        console.timeEnd(`parse ${file}`)
         if (latexAst) {
             const nodes = latexAst.content
             const lines = content.split('\n')
