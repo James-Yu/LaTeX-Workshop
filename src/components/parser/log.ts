@@ -2,8 +2,8 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 
-import { Extension } from '../main'
-import { convertFilenameEncoding } from '../utils'
+import { Extension } from '../../main'
+import { convertFilenameEncoding } from '../../utils'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm

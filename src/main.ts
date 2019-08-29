@@ -11,12 +11,12 @@ import {Builder} from './components/builder'
 import {Viewer} from './components/viewer'
 import {Server} from './components/server'
 import {Locator} from './components/locator'
-import {Parser} from './components/parser'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {TeXMagician} from './components/texmagician'
-import {UtensilsParser} from './components/utensils_parser'
 import {EnvPair} from './components/envpair'
+import {Parser as LogParser} from './components/parser/log'
+import {UtensilsParser as PEGParser} from './components/parser/syntax'
 
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
@@ -433,13 +433,13 @@ export class Extension {
     viewer: Viewer
     server: Server
     locator: Locator
-    parser: Parser
+    logParser: LogParser
+    pegParser: PEGParser
     completer: Completer
     linter: Linter
     cleaner: Cleaner
     codeActions: CodeActions
     texMagician: TeXMagician
-    utensilsParser: UtensilsParser
     envPair: EnvPair
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
@@ -455,7 +455,7 @@ export class Extension {
         this.viewer = new Viewer(this)
         this.server = new Server(this)
         this.locator = new Locator(this)
-        this.parser = new Parser(this)
+        this.logParser = new LogParser(this)
         this.completer = new Completer(this)
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
@@ -465,7 +465,7 @@ export class Extension {
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetPanel = new SnippetPanel(this)
-        this.utensilsParser = new UtensilsParser(this)
+        this.pegParser = new PEGParser(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }
