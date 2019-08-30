@@ -320,7 +320,7 @@ export async function activate(context: vscode.ExtensionContext) {
     }))
 
     let isLaTeXActive = false
-    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor) => {
+    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
