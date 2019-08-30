@@ -157,7 +157,7 @@ export class Citation {
         }
         this.bibEntries[file] = []
         bibtexParser.parse(fs.readFileSync(file).toString()).content
-            .filter(entry => bibtexParser.isEntry(entry))
+            .filter(bibtexParser.isEntry)
             .forEach((entry: bibtexParser.Entry) => {
                 if (entry.internalKey === undefined) {
                     return
