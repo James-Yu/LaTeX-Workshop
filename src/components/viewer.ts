@@ -124,7 +124,7 @@ export class Viewer {
         // viewer/viewer.js automatically requests the file to server.ts and server.ts decodes the encoded fsPath.
         const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(uri.fsPath)}`
         return `
-            <!DOCTYPE html><html><head></head>
+            <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:${this.extension.server.port}/; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe>
             <script>
