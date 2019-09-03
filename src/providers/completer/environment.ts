@@ -27,7 +27,7 @@ export class Environment {
                 return
             }
             cachedEnvs.forEach(env => {
-                if (envList.indexOf(env.label) > -1) {
+                if (envList.includes(env.label)) {
                     return
                 }
                 suggestions.push(env)
@@ -46,7 +46,7 @@ export class Environment {
             }
             pkgs.forEach(pkg => {
                 this.getEnvFromPkg(pkg).forEach(env => {
-                    if (envList.indexOf(env.label) > -1) {
+                    if (envList.includes(env.label)) {
                         return
                     }
                     suggestions.push(env)
@@ -115,7 +115,7 @@ export class Environment {
             if (result === null) {
                 break
             }
-            if (envList.indexOf(result[1]) > -1) {
+            if (envList.includes(result[1])) {
                 continue
             }
 

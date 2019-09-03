@@ -32,7 +32,7 @@ export class SnippetPanel {
         this.loadSnippets()
     }
 
-    public async showPanel() {
+    public showPanel() {
         if (this.panel) {
             this.panel.reveal(vscode.ViewColumn.Beside)
             return
@@ -93,7 +93,7 @@ export class SnippetPanel {
 
     private mathSymbols: IMathSymbol[] = []
 
-    private async loadSnippets() {
+    private loadSnippets() {
         const snipetsFile = path.join(this.extension.extensionRoot, 'resources', 'snippetpanel', 'snippetpanel.json')
         const snippets: {
             mathSymbols: {
@@ -113,12 +113,12 @@ export class SnippetPanel {
         }
     }
 
-    private async initialisePanel() {
+    private initialisePanel() {
         if (this.panel === undefined) {
             return
         }
 
-        this.mathSymbols.forEach(async mathSymbol => {
+        this.mathSymbols.forEach( mathSymbol => {
             if (this.panel === undefined) {
                 return
             }
@@ -131,7 +131,7 @@ export class SnippetPanel {
         this.panel.webview.postMessage({ type: 'initialise' })
     }
 
-    private async messageReceive(message: { type: string, [param: string]: any }) {
+    private messageReceive(message: { type: string, [param: string]: any }) {
         if (message.type === 'insertSnippet') {
             const editor = this.lastActiveTextEditor
             if (editor) {

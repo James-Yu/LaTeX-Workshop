@@ -71,7 +71,7 @@ export class BuildInfo {
         }
     }
 
-    public async newStdoutLine(lines: string) {
+    public newStdoutLine(lines: string) {
         if (!this.currentBuild) {
             throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
@@ -111,7 +111,7 @@ export class BuildInfo {
             const ruleNameRes = this.currentBuild.stdout.match(latexmkRuleStartedRegex)
             const ruleName = ruleNameRes ? ruleNameRes[1] : ''
             // if rule name does not have own entry
-            if ([...hardcodedRulesPageProducing, ...hardcodedRulesOther].indexOf(ruleName) === -1) {
+            if (![...hardcodedRulesPageProducing, ...hardcodedRulesOther].includes(ruleName)) {
                 this.currentBuild.ruleName = ruleName
                 this.currentBuild.ruleProducesPages = undefined
                 this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
@@ -207,7 +207,7 @@ export class BuildInfo {
                 ).map(pageLabel => Boolean(pageLabel.match(pageAlreadyExistsRegex)))
 
                 let extraTime = 0
-                if (pageMatchArray.indexOf(true) !== -1) {
+                if (pageMatchArray.includes(true)) {
                     extraTime = this.currentBuild.stepTimes[
                         `${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`
                     ][

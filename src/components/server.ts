@@ -26,7 +26,7 @@ export class Server {
             } else {
                 const {address, port} = this.httpServer.address() as AddressInfo
                 this.port = port
-                if (address.indexOf(':') > -1) {
+                if (address.includes(':')) {
                     // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
                     this.address = `[${address}]:${port}`
                 } else {
@@ -52,7 +52,7 @@ export class Server {
             return
         }
 
-        if (request.url.indexOf(pdfFilePrefix) >= 0 && request.url.indexOf('viewer.html') < 0) {
+        if (request.url.includes(pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
             const fileName = decodePathWithPrefix(s)
             try {

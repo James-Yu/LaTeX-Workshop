@@ -46,9 +46,9 @@ export class Command {
                 package: ''
             }
             // Use 'an' or 'a' depending on the first letter
-            const art = ['a', 'e', 'i', 'o', 'u'].indexOf(`${env}`.charAt(0)) >= 0 ? 'an' : 'a'
+            const art = ['a', 'e', 'i', 'o', 'u'].includes(`${env}`.charAt(0)) ? 'an' : 'a'
             suggestion.detail = `Insert ${art} ${env} environment.`
-            if (['enumerate', 'itemize'].indexOf(env) > -1) {
+            if (['enumerate', 'itemize'].includes(env)) {
                 suggestion.insertText = new vscode.SnippetString(`begin{${env}}\n\t\\item $0\n\\\\end{${env}}`)
             } else {
                 suggestion.insertText = new vscode.SnippetString(`begin{${env}}\n\t$0\n\\\\end{${env}}`)
@@ -59,7 +59,7 @@ export class Command {
 
         // Handle special commands with brackets
         const bracketCmds = ['(', '[', '{', 'left(', 'left[', 'left\\{']
-        this.defaultCmds.filter(cmd => bracketCmds.indexOf(this.getCmdName(cmd)) > -1).forEach(cmd => {
+        this.defaultCmds.filter(cmd => bracketCmds.includes(this.getCmdName(cmd))).forEach(cmd => {
             this.bracketCmds[cmd.label.slice(1)] = cmd
         })
     }
@@ -72,7 +72,7 @@ export class Command {
         const cmdList: string[] = [] // This holds defined commands without the backslash
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdName(cmd).indexOf('[') > -1) {
+            if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
                 return
             }
             suggestions.push(cmd)
@@ -115,7 +115,7 @@ export class Command {
                 return
             }
             cmds.forEach(cmd => {
-                if (cmdList.indexOf(this.getCmdName(cmd, true)) < 0) {
+                if (!cmdList.includes(this.getCmdName(cmd, true))) {
                     suggestions.push(cmd)
                     cmdList.push(this.getCmdName(cmd, true))
                 }
@@ -243,7 +243,7 @@ export class Command {
                 }
                 result[1].split(',').forEach(pkg => {
                     pkg = pkg.trim()
-                    if (pkgs.indexOf(pkg) > -1) {
+                    if (pkgs.includes(pkg)) {
                         return
                     }
                     const filePkgs = this.extension.manager.cachedContent[file].element.package
@@ -258,7 +258,7 @@ export class Command {
     private getCmdFromNode(file: string, node: latexParser.Node, cmdList: string[] = []): Suggestion[] {
         const cmds: Suggestion[] = []
         if (latexParser.isCommand(node)) {
-            if (cmdList.indexOf(node.name) < 0) {
+            if (!cmdList.includes(node.name)) {
                 const cmd: Suggestion = {
                     label: `\\${node.name}`,
                     kind: vscode.CompletionItemKind.Function,
@@ -273,7 +273,7 @@ export class Command {
                 cmds.push(cmd)
                 cmdList.push(node.name)
             }
-            if (['newcommand', 'renewcommand', 'providecommand'].indexOf(node.name) > -1 &&
+            if (['newcommand', 'renewcommand', 'providecommand'].includes(node.name) &&
                 Array.isArray(node.args) && node.args.length > 0) {
                 const label = (node.args[0].content[0] as latexParser.Command).name
                 let args = ''
@@ -283,7 +283,7 @@ export class Command {
                         args += '{${' + i + '}}'
                     }
                 }
-                if (cmdList.indexOf(label) < 0) {
+                if (!cmdList.includes(label)) {
                     const cmd: Suggestion = {
                         label: `\\${label}`,
                         kind: vscode.CompletionItemKind.Function,
@@ -335,7 +335,7 @@ export class Command {
             if (result === null) {
                 break
             }
-            if (cmdList.indexOf(result[1]) > -1) {
+            if (cmdList.includes(result[1])) {
                 continue
             }
 
@@ -360,7 +360,7 @@ export class Command {
             if (result === null) {
                 break
             }
-            if (cmdList.indexOf(result[1]) > -1) {
+            if (cmdList.includes(result[1])) {
                 continue
             }
 
@@ -404,7 +404,7 @@ export class Command {
     private entryToCompletion(item: DataItemEntry): Suggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
-        const backslash = item.command[0] === ' ' ? '' : '\\'
+        const backslash = item.command.startsWith(' ') ? '' : '\\'
         const label = item.label ? `${item.label}` : `${backslash}${item.command}`
         const suggestion: Suggestion = {
             label,
@@ -474,10 +474,10 @@ export class Command {
 
         // Insert commands
         this.packageCmds[pkg].forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdName(cmd).indexOf('[') > -1) {
+            if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
                 return
             }
-            if (cmdList.indexOf(this.getCmdName(cmd, true)) < 0) {
+            if (!cmdList.includes(this.getCmdName(cmd, true))) {
                 suggestions.push(cmd)
                 cmdList.push(this.getCmdName(cmd, true))
             }

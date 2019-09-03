@@ -29,7 +29,7 @@ export class Input {
         return files.filter(file => {
             const filePath = path.resolve(baseDir, file)
             /* Check if the file should be ignored */
-            if ((gitIgnoredFiles.indexOf(file) > -1) || micromatch.any(filePath, excludeGlob, {basename: true})) {
+            if ((gitIgnoredFiles.includes(file)) || micromatch.any(filePath, excludeGlob, {basename: true})) {
                 return false
             } else {
                 return true
@@ -45,7 +45,7 @@ export class Input {
             result = regex.exec(content)
             if (result) {
                 for (const dir of result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, ''))) {
-                    if (this.graphicsPath.indexOf(dir) > -1) {
+                    if (this.graphicsPath.includes(dir)) {
                         continue
                     }
                     this.graphicsPath.push(dir)

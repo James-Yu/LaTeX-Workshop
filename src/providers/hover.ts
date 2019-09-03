@@ -44,7 +44,7 @@ export class HoverProvider implements vscode.HoverProvider {
 
     public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken): Thenable<vscode.Hover> {
         this.getColor()
-        return new Promise( async (resolve, _reject) => {
+        return new Promise( (resolve, _reject) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const hov = configuration.get('hover.preview.enabled') as boolean
             const hovReference = configuration.get('hover.ref.enabled') as boolean
@@ -53,9 +53,9 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
-                    const newCommands = await this.findNewCommand(document.getText())
-                    this.provideHoverOnTex(document, tex, newCommands)
-                        .then(hover => resolve(hover))
+                    this.findNewCommand(document.getText()).then( newCommands => {
+                        this.provideHoverOnTex(document, tex, newCommands).then( hover => resolve(hover) )
+                    })
                     return
                 }
             }
@@ -65,7 +65,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 return
             }
             // Test if we are on a command
-            if (token.charAt(0) === '\\') {
+            if (token.startsWith('\\')) {
                 if (!hovCommand) {
                     resolve()
                     return
@@ -126,7 +126,7 @@ export class HoverProvider implements vscode.HoverProvider {
             }
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
-        if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled') as boolean) {
+        if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled')) {
             return commandsString
         }
         let commands: string[] = []
@@ -158,7 +158,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return commandsString + '\n' + commands.join('')
     }
 
-    private async provideHoverOnCommand(token: string): Promise<vscode.Hover | undefined> {
+    private provideHoverOnCommand(token: string): Promise<vscode.Hover | undefined> {
         const signatures: string[] = []
         const pkgs: string[] = []
         const tokenWithoutSlash = token.substring(1)
@@ -179,7 +179,7 @@ export class HoverProvider implements vscode.HoverProvider {
                     }
                     const doc = cmd.documentation as string
                     const packageName = cmd.package
-                    if (packageName && (pkgs.indexOf(packageName) === -1)) {
+                    if (packageName && (!pkgs.includes(packageName))) {
                         pkgs.push(packageName)
                     }
                     signatures.push(doc)
@@ -200,9 +200,9 @@ export class HoverProvider implements vscode.HoverProvider {
             const mdLink = new vscode.MarkdownString(signatures.join('  \n')) // We need two spaces to ensure md newline
             mdLink.appendMarkdown(pkgLink)
             mdLink.isTrusted = true
-            return new vscode.Hover(mdLink)
+            return Promise.resolve(new vscode.Hover(mdLink))
         }
-        return undefined
+        return Promise.resolve(undefined)
     }
 
     addDummyCodeBlock(md: string): string {

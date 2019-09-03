@@ -62,7 +62,7 @@ export class Linter {
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
             }
-            this.linterTimeout = setTimeout(() => this.lintActiveFile(), interval)
+            this.linterTimeout = setTimeout(() => { this.lintActiveFile() }, interval)
         }
     }
 
@@ -77,7 +77,7 @@ export class Linter {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
         const args = [...(configuration.get('chktex.args.active') as string[])]
-        if (args.indexOf('-l') < 0) {
+        if (!args.includes('-l')) {
             const rcPath = this.rcPath
             if (rcPath) {
                 args.push('-l', rcPath)
@@ -111,7 +111,7 @@ export class Linter {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
         const args = [...(configuration.get('chktex.args.active') as string[])]
-        if (args.indexOf('-l') < 0) {
+        if (!args.includes('-l')) {
             const rcPath = this.rcPath
             if (rcPath) {
                 args.push('-l', rcPath)

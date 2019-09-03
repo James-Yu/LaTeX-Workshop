@@ -26,11 +26,14 @@ export class Completer implements vscode.CompletionItemProvider {
         this.reference = new Reference(extension)
         this.package = new Package(extension)
         this.input = new Input(extension)
-        this.loadDefaultItems()
-            .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
+        try {
+            this.loadDefaultItems()
+        } catch (err) {
+            this.extension.logger.addLogMessage(`Error reading data: ${err}.`)
+        }
     }
 
-    async loadDefaultItems() {
+    loadDefaultItems() {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
         const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`,
@@ -63,7 +66,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 if (position.character > 1 && currentLine[position.character - 2] === '\\') {
                     const mathSnippet = Object.assign({}, this.command.bracketCmds[invokeChar])
                     if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
-                        (currentLine.length > position.character && [')', ']', '}'].indexOf(currentLine[position.character]) > -1)) {
+                        (currentLine.length > position.character && [')', ']', '}'].includes(currentLine[position.character]))) {
                         mathSnippet.range = new vscode.Range(position.translate(0, -1), position.translate(0, 1))
                     } else {
                         mathSnippet.range = new vscode.Range(position.translate(0, -1), position)
