@@ -156,19 +156,6 @@ export class Builder {
             return
         }
         const releaseBuildMutex = await this.preprocess()
-        let locked = false
-        try {
-            if (fs.existsSync(this.extension.manager.tex2pdf(rootFile))) {
-                fs.accessSync(this.extension.manager.tex2pdf(rootFile), fs.constants.W_OK)
-            }
-        } catch (err) {
-            this.extension.logger.addLogMessage(`Output PDF ${this.extension.manager.tex2pdf(rootFile)} is locked.`)
-            locked = true
-        }
-        if (locked) {
-            this.extension.logger.showErrorMessage(`Output PDF ${this.extension.manager.tex2pdf(rootFile)} is locked. Is it opened in other applications?`)
-            return
-        }
         this.disableCleanAndRetry = false
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
