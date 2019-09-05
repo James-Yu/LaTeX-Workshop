@@ -115,7 +115,7 @@ export class Viewer {
         })
         panel.webview.html = this.getPDFViewerContent(uri)
         if (editor && sideColumn) {
-            setTimeout(() => vscode.window.showTextDocument(editor.document, editor.viewColumn), 500)
+            setTimeout(() => { vscode.window.showTextDocument(editor.document, editor.viewColumn) }, 500)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }

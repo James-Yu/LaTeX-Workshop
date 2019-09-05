@@ -70,11 +70,11 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
                 resolve(command.location)
                 return
             }
-            if (vscode.window.activeTextEditor && token.indexOf('.') > -1) {
+            if (vscode.window.activeTextEditor && token.includes('.')) {
                 // We skip graphics files
                 const graphicsExtensions = ['.pdf', '.eps', '.jpg', '.jpeg', '.JPG', '.JPEG', '.gif', '.png']
                 const ext = path.extname(token)
-                if (graphicsExtensions.indexOf(ext) > -1) {
+                if (graphicsExtensions.includes(ext)) {
                     resolve()
                 }
                 const absolutePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), token)

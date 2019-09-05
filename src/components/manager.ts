@@ -119,7 +119,7 @@ export class Manager {
         // first one.
         const activeFile = vscode.window.activeTextEditor.document.uri.fsPath
         for (const workspaceFolder of vscode.workspace.workspaceFolders) {
-            if (activeFile.indexOf(workspaceFolder.uri.fsPath) > -1) {
+            if (activeFile.includes(workspaceFolder.uri.fsPath)) {
                 this.workspaceRootDir = workspaceFolder.uri.fsPath
                 return
             }
@@ -181,7 +181,7 @@ export class Manager {
 
             while (result) {
                 file = path.resolve(path.dirname(file), result[1])
-                if (fileStack.indexOf(file) > -1) {
+                if (fileStack.includes(file)) {
                     this.extension.logger.addLogMessage(`Looped root file by magic comment found: ${file}, stop here.`)
                     return file
                 } else {
@@ -253,7 +253,7 @@ export class Manager {
                 if (result) {
                     // Can be a root
                     const children = this.getTeXChildren(file.fsPath, file.fsPath, [], content)
-                    if (vscode.window.activeTextEditor && children.indexOf(vscode.window.activeTextEditor.document.fileName) > -1) {
+                    if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
                         this.extension.logger.addLogMessage(`Found root file from parent: ${file.fsPath}`)
                         return file.fsPath
                     }
@@ -284,7 +284,7 @@ export class Manager {
         }
         includedTeX.push(file)
         for (const child of this.extension.manager.cachedContent[file].children) {
-            if (includedTeX.indexOf(child.file) > -1) {
+            if (includedTeX.includes(child.file)) {
                 // Already included
                 continue
             }
@@ -315,9 +315,9 @@ export class Manager {
        provided `file` is re-parsed, together with any new files that were not
        previously watched/considered. Since this function is called upon content
        changes, this lazy loading should be fine. */
-    async parseFileAndSubs(file: string, onChange: boolean = false) {
+    parseFileAndSubs(file: string, onChange: boolean = false) {
         this.extension.logger.addLogMessage(`Parsing ${file}`)
-        if (this.fileWatcher && this.filesWatched.indexOf(file) < 0) {
+        if (this.fileWatcher && !this.filesWatched.includes(file)) {
             // The file is first time considered by the extension.
             this.fileWatcher.add(file)
             this.filesWatched.push(file)
@@ -362,7 +362,7 @@ export class Manager {
         // messing up the previous line numbers.
         for (let index = this.cachedContent[file].children.length - 1; index >=0; index--) {
             const child = this.cachedContent[file].children[index]
-            if (subFileTrace.indexOf(child.file) > -1) {
+            if (subFileTrace.includes(child.file)) {
                 continue
             }
             // As index can be 1E307 (included by fls file), here we need a min.
@@ -406,7 +406,7 @@ export class Manager {
         }
 
         this.cachedContent[file].children.forEach(child => {
-            if (children.indexOf(child.file) > -1) {
+            if (children.includes(child.file)) {
                 // Already included
                 return
             }
@@ -437,7 +437,7 @@ export class Manager {
                 file: inputFile
             })
 
-            if (this.filesWatched.indexOf(inputFile) > -1) {
+            if (this.filesWatched.includes(inputFile)) {
                 continue
             }
             this.parseFileAndSubs(inputFile)
@@ -484,7 +484,7 @@ export class Manager {
        file. All input files are considered as included subfiles/non-tex files,
        and all output files will be check if there are aux files related. If so,
        the aux files are parsed for any possible bib file. */
-    async parseFlsFile(baseFile: string) {
+    parseFlsFile(baseFile: string) {
         const rootDir = path.dirname(baseFile)
         const outDir = this.getOutDir(baseFile)
         const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
@@ -496,7 +496,7 @@ export class Manager {
         const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
         ioFiles.input.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
-            if (ioFiles.output.indexOf(inputFile) > -1 ||
+            if (ioFiles.output.includes(inputFile) ||
                 micromatch.some(inputFile, globsToIgnore) ||
                 !fs.existsSync(inputFile)) {
                 return
@@ -512,7 +512,7 @@ export class Manager {
                     file: inputFile
                 })
                 this.parseFileAndSubs(inputFile)
-            } else if (this.fileWatcher && this.filesWatched.indexOf(inputFile) < 0) {
+            } else if (this.fileWatcher && !this.filesWatched.includes(inputFile)) {
                 // Watch non-tex files.
                 this.fileWatcher.add(inputFile)
                 this.filesWatched.push(inputFile)
@@ -542,7 +542,7 @@ export class Manager {
                 if (bibPath === undefined) {
                     continue
                 }
-                if (this.rootFile && this.cachedContent[this.rootFile].bibs.indexOf(bibPath) < 0) {
+                if (this.rootFile && !this.cachedContent[this.rootFile].bibs.includes(bibPath)) {
                     this.cachedContent[this.rootFile].bibs.push(bibPath)
                 }
                 this.watchBibFile(bibPath)
@@ -587,7 +587,7 @@ export class Manager {
     private initiateFileWatcher() {
         if (this.fileWatcher !== undefined &&
             this.rootFile !== undefined &&
-            this.filesWatched.indexOf(this.rootFile) < 0) {
+            !this.filesWatched.includes(this.rootFile)) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
             // => the user has changed the root. Clean up the old watcher so we reform it.
             this.resetFileWatcher()
@@ -625,16 +625,16 @@ export class Manager {
 
     private onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
-        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 &&
-            file.indexOf('expl3-code.tex') < 0) {
+        if (['.tex', '.bib'].includes(path.extname(file)) &&
+            !file.includes('expl3-code.tex')) {
             this.updateCompleterOnChange(file)
         }
     }
 
     private onWatchedFileChanged(file: string) {
         // It is possible for either tex or non-tex files in the watcher.
-        if (['.tex', '.bib'].indexOf(path.extname(file)) > -1 &&
-            file.indexOf('expl3-code.tex') < 0) {
+        if (['.tex', '.bib'].includes(path.extname(file)) &&
+            !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
         }
@@ -744,7 +744,7 @@ export class Manager {
     }
 
     private watchBibFile(bibPath: string) {
-        if (this.bibWatcher && this.bibsWatched.indexOf(bibPath) < 0) {
+        if (this.bibWatcher && !this.bibsWatched.includes(bibPath)) {
             this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
             this.bibWatcher.add(bibPath)
             this.bibsWatched.push(bibPath)

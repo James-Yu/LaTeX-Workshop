@@ -63,7 +63,7 @@ export class Reference {
         })
         // Remove references that has been deleted
         Object.keys(this.suggestions).forEach(key => {
-            if (refList.indexOf(key) <= -1) {
+            if (!refList.includes(key)) {
                 delete this.suggestions[key]
             }
         })
@@ -122,7 +122,7 @@ export class Reference {
             if (result === null) {
                 break
             }
-            if (refList.indexOf(result[1]) > -1) {
+            if (refList.includes(result[1])) {
                 continue
             }
             const prevContent = contentNoEmpty.substring(0, contentNoEmpty.substring(0, result.index).lastIndexOf('\n') - 1)

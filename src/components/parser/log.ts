@@ -363,7 +363,7 @@ export class Parser {
         const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
         for (const file in diagsCollection) {
             let file1 = file
-            if (['.tex', '.bbx', '.cbx', '.dtx'].indexOf(path.extname(file)) > -1) {
+            if (['.tex', '.bbx', '.cbx', '.dtx'].includes(path.extname(file))) {
                 // only report ChkTeX errors on TeX files. This is done to avoid
                 // reporting errors in .sty files which for most users is irrelevant.
                 if (!fs.existsSync(file1) && convEnc) {

@@ -196,7 +196,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
                 // Avoid circular inclusion
-                if (inputFilePath === filePath || newFileStack.indexOf(inputFilePath) > -1) {
+                if (inputFilePath === filePath || newFileStack.includes(inputFilePath)) {
                     continue
                 }
                 if (prevSection) {
@@ -318,7 +318,7 @@ export class StructureTreeView {
             if (node.lineNumber <= lineNumber && node.toLine >= lineNumber) {
                 return node
             }
-            if (node.subfiles.length > 0 && node.subfiles.indexOf(fileName) > -1) {
+            if (node.subfiles.length > 0 && node.subfiles.includes(fileName)) {
                 return node
             }
             const res = this.traverseSectionTree(node.children, fileName, lineNumber)

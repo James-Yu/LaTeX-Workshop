@@ -17,7 +17,7 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
     }], {
         placeHolder: 'Subfiles package detected. Which file to build?',
         matchOnDescription: true
-    }).then(async selected => {
+    }).then( selected => {
         if (!selected) {
             return undefined
         }
@@ -203,7 +203,7 @@ export class Commander {
         this.extension.viewer.openTab(uri.fsPath, false, false)
     }
 
-    async synctex() {
+    synctex() {
         this.extension.logger.addLogMessage('SYNCTEX command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
@@ -218,7 +218,7 @@ export class Commander {
         this.extension.locator.syncTeX(undefined, undefined, pdfFile)
     }
 
-    async synctexonref(line: number, filePath: string) {
+    synctexonref(line: number, filePath: string) {
         this.extension.logger.addLogMessage('SYNCTEX command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
@@ -753,7 +753,7 @@ export class Commander {
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
-    async runTexdoc(pkg: string) {
+    runTexdoc(pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
         const texdocArgs = configuration.get('texdoc.args') as string[]

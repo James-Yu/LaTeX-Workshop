@@ -53,7 +53,7 @@ export class Citation {
     browser(_args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             return {
-                label: item.fields.title ? item.fields.title as string : '',
+                label: item.fields.title ? item.fields.title : '',
                 description: `${item.key}`,
                 detail: `Authors: ${item.fields.author ? item.fields.author : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
             }
@@ -99,7 +99,7 @@ export class Citation {
         let bibs = this.extension.manager.cachedContent[file].bibs
         visitedTeX.push(file)
         for (const child of this.extension.manager.cachedContent[file].children) {
-            if (visitedTeX.indexOf(child.file) > -1) {
+            if (visitedTeX.includes(child.file)) {
                 // Already included
                 continue
             }

@@ -273,7 +273,7 @@ export class Builder {
                     }
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
-                    if (['onFailed', 'onBuilt'].indexOf(configuration.get('latex.autoClean.run') as string) > -1) {
+                    if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
                         this.extension.cleaner.clean(rootFile)
                     }
                     const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
@@ -426,7 +426,7 @@ export class Builder {
                 if (!step.args) {
                     step.args = []
                 }
-                if ((step.command === 'latexmk' && step.args.indexOf('-lualatex') === -1 && step.args.indexOf('-pdflua') === -1) || step.command === 'pdflatex') {
+                if ((step.command === 'latexmk' && !step.args.includes('-lualatex') && !step.args.includes('-pdflua')) || step.command === 'pdflatex') {
                     if (this.isMiktex) {
                         step.args.unshift('--max-print-line=' + maxPrintLine)
                     }

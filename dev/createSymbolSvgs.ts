@@ -62,7 +62,7 @@ function loadSnippets() {
                                     height: string,
                                     speakText: string,
                                     style: string,
-                                    svgNode: SVGSVGElement,
+                                    svgNode: any,
                                     width: string
                                 }) => {
                                     let svg = data.svgNode.outerHTML

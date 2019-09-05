@@ -29,11 +29,11 @@ export class Locator {
         const record: { page?: number, x?: number, y?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
-            if (line.indexOf('SyncTeX result begin') > -1) {
+            if (line.includes('SyncTeX result begin')) {
                 started = true
                 continue
             }
-            if (line.indexOf('SyncTeX result end') > -1) {
+            if (line.includes('SyncTeX result end')) {
                 break
             }
             if (!started) {
@@ -61,11 +61,11 @@ export class Locator {
         const record: { input?: string, line?: number, column?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
-            if (line.indexOf('SyncTeX result begin') > -1) {
+            if (line.includes('SyncTeX result begin')) {
                 started = true
                 continue
             }
-            if (line.indexOf('SyncTeX result end') > -1) {
+            if (line.includes('SyncTeX result end')) {
                 break
             }
             if (!started) {
