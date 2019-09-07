@@ -477,9 +477,9 @@ export class Command {
             if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
                 return
             }
-            if (!cmdList.includes(this.getCmdName(cmd, true))) {
+            if (!cmdList.includes(this.getCmdName(cmd))) {
                 suggestions.push(cmd)
-                cmdList.push(this.getCmdName(cmd, true))
+                cmdList.push(this.getCmdName(cmd))
             }
         })
     }
