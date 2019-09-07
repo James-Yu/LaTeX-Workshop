@@ -97,8 +97,8 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 
     completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        let reg
-        let provider
+        let reg: RegExp | undefined
+        let provider: Citation | Reference | Environment | Command | Package | Input | undefined
         let payload: any
         switch (type) {
             case 'citation':
