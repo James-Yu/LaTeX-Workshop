@@ -629,6 +629,16 @@
                 "%DOCFILE%"
               ],
               "env": {}
+            },
+            {
+              "name": "lualatex",
+              "command": "lualatex",
+              "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "%DOC%"
+              ],
+              "env": {}
             }
           ],
           "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOCFILE%`, `%DIR%`, `%TMPDIR%` and `%OUTDIR%` are available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
