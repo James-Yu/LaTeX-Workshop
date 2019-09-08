@@ -48,7 +48,7 @@ export class TextDocumentLike {
             return this._lines.join(this._eol)
         }
         let ret = ''
-        let line
+        let line: string | undefined
         const startLineNum = range.start.line
         const endLineNum = range.end.line
         if (this.lineCount <= startLineNum) {
