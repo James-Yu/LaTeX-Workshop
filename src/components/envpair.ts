@@ -80,7 +80,7 @@ export class EnvPair {
         let lineNumber = pos.line
         let nested = 0
         let line = doc.lineAt(lineNumber).text
-        let startCol
+        let startCol: number | undefined
         /* Drop the pattern on the current line */
         switch (dir) {
             case 1:

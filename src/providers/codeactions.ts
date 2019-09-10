@@ -106,8 +106,8 @@ export class CodeActions {
     }
 
     runCodeAction(document: vs.TextDocument, range: vs.Range, code: number, message: string) {
-        let fixString
-        let regexResult
+        let fixString: string | undefined
+        let regexResult: RegExpExecArray | null
         switch (code) {
             case 24:
             case 26:

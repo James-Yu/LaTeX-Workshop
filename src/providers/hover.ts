@@ -143,7 +143,7 @@ export class HoverProvider implements vscode.HoverProvider {
             commands = []
             const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^[\]{}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
             const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
-            let result
+            let result: RegExpExecArray | null
             do {
                 result = regex.exec(noCommentContent)
                 if (result) {
