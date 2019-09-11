@@ -156,7 +156,9 @@ export class Locator {
             }
         } else {
             this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
-                this.extension.viewer.syncTeX(pdfFile as string, record)
+                if (pdfFile) {
+                    this.extension.viewer.syncTeX(pdfFile, record)
+                }
             })
         }
     }
@@ -353,7 +355,7 @@ export class Locator {
     }
 
     private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
-        let previousColumnMatches: any = {}
+        let previousColumnMatches: { [k: string]: number } = {}
 
         for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
             const columns: number[] = []
@@ -369,7 +371,7 @@ export class Locator {
             }
 
             // Get number or occurrences for each column
-            const columnMatches: any = {}
+            const columnMatches: { [k: string]: number } = {}
             columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
             const values = Object.values(columnMatches).sort()
 
