@@ -174,10 +174,10 @@ export class HoverProvider implements vscode.HoverProvider {
                     ((key.length === tokenWithoutSlash.length) ||
                      (key.charAt(tokenWithoutSlash.length) === '[') ||
                      (key.charAt(tokenWithoutSlash.length) === '{'))) {
-                    if (cmd.documentation === undefined) {
+                    if (typeof cmd.documentation !== 'string') {
                         return
                     }
-                    const doc = cmd.documentation as string
+                    const doc = cmd.documentation
                     const packageName = cmd.package
                     if (packageName && (!pkgs.includes(packageName))) {
                         pkgs.push(packageName)
