@@ -148,8 +148,8 @@ export class LaTexFormatter {
             this.extension.manager.setEnvVar()
             const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
             // handle stdout/stderr
-            const stdoutBuffer = [] as string[]
-            const stderrBuffer = [] as string[]
+            const stdoutBuffer: string[] = []
+            const stderrBuffer: string[] = []
             worker.stdout.on('data', chunk => stdoutBuffer.push(chunk.toString()))
             worker.stderr.on('data', chunk => stderrBuffer.push(chunk.toString()))
             worker.on('error', err => {
