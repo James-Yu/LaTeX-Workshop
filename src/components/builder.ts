@@ -210,16 +210,17 @@ export class Builder {
         this.extension.manager.setEnvVar()
         const envVars: ProcessEnv = {}
         Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
-        if (steps[index].env) {
-            const currentEnv = steps[index].env as ProcessEnv
+        const currentEnv = steps[index].env
+        if (currentEnv) {
             Object.keys(currentEnv).forEach(key => envVars[key] = currentEnv[key])
         }
         envVars['max_print_line'] = maxPrintLine
         if (steps[index].name === texMagicProgramName || steps[index].name === bibMagicProgramName) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
             let command = steps[index].command
-            if (steps[index].args) {
-                command += ' ' + (steps[index].args as string[])[0]
+            const args = steps[index].args
+            if (args) {
+                command += ' ' + args[0]
             }
             this.currentProcess = cp.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
         } else {
@@ -412,8 +413,8 @@ export class Builder {
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
-                    if (step.env && step.env[v]) {
-                        const e = step.env[v] as string
+                    const e = step.env && step.env[v]
+                    if (step.env && e) {
                         step.env[v] = e.replace(/%DOC%/g, docker ? docfile : doc)
                                                  .replace(/%DOCFILE%/g, docfile)
                                                  .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
