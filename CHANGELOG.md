@@ -1,5 +1,15 @@
 # Change Log
 
+## [8.1.1] - 2019-09-12
+
+### Changed
+- (#1672) Revert #1639: "Check pdf writable status before building."
+- Remove the snippet of `\setminus`.
+
+### Fixed
+- (#1653) Enables hover on refs with spaces in them.
+- (#1661) Allow the same commands with different arguments.
+
 ## [8.1.0] - 2019-08-29
 
 ### Added
