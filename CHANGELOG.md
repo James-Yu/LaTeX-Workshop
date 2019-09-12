@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.1.2] - 2019-09-12
+
+### Fixed
+- Re-compile the project to include changed should be presented in `8.1.1`.
+
 ## [8.1.1] - 2019-09-12
 
 ### Changed
