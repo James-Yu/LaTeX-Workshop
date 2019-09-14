@@ -14,6 +14,20 @@ Then run
 
 inside the extension workspace to download the node modules needed to build the extension.
 
+## Development
+
+To lint changes, run
+
+    npm run lint
+
+To compile, run
+
+    npm run compile
+
+To build a release image, run
+
+    npm run release
+
 ## Testing the extension
 
 In VS Code, simply press `<F5>` (or run `Debug: Start Debugging` from the command palette) and a new window will pop up where you can test the extension.
