@@ -247,7 +247,7 @@ export class BuildInfo {
         }
 
         const generateProgressBar = (proportion: number, length: number) => {
-            const wholeCharacters = Math.trunc(length * proportion)
+            const wholeCharacters = Math.min(length, Math.trunc(length * proportion))
 
             interface IProgressBarCharacterSets {
                 [settingsName: string]: {
