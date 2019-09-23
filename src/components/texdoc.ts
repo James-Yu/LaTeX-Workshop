@@ -12,21 +12,21 @@ export class TeXDoc {
 
     constructor(e: Extension) {
         this.extension = e
-        setImmediate( () => this.packageItems = this.readPackages() )
+        setImmediate( () => this.readPackages() )
     }
 
     private readPackages() {
         const json = fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString()
-        const ret: vscode.QuickPickItem[] = []
-        this.pkgs = JSON.parse(json)
-        const pkgs = this.pkgs
+        const items: vscode.QuickPickItem[] = []
+        const pkgs: Packages = JSON.parse(json)
         for ( const pkg of Object.values(pkgs) ) {
             const item = this.quickItemize(pkg)
             if (item) {
-                ret.push(item)
+                items.push(item)
             }
         }
-        return ret
+        this.packageItems = items
+        this.pkgs = pkgs
     }
 
     private quickItemize(pkg: Packages[string]) {
