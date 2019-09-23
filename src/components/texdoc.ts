@@ -1,14 +1,43 @@
 import * as vscode from 'vscode'
 import * as cp from 'child_process'
+import * as fs from 'fs'
 import {Extension} from 'src/main'
+
+type Packages = {[key: string]: {command: string, detail: string, documentation: string}}
 
 export class TeXDoc {
     extension: Extension
+    pkgs: Packages = {}
+    packageItems: vscode.QuickPickItem[] = []
+
     constructor(e: Extension) {
         this.extension = e
+        setImmediate( () => this.packageItems = this.readPackages() )
     }
 
-    runTexdoc(pkg: string) {
+    private readPackages() {
+        const json = fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString()
+        const ret: vscode.QuickPickItem[] = []
+        this.pkgs = JSON.parse(json)
+        const pkgs = this.pkgs
+        for ( const pkg of Object.values(pkgs) ) {
+            const item = this.quickItemize(pkg)
+            if (item) {
+                ret.push(item)
+            }
+        }
+        return ret
+    }
+
+    private quickItemize(pkg: Packages[string]) {
+        if ( !(pkg.command && pkg.documentation) ) {
+            return undefined
+        } else {
+            return { label: pkg.command, detail: pkg.documentation }
+        }
+    }
+
+    private runTexdoc(pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
         const texdocArgs = configuration.get('texdoc.args') as string[]
@@ -51,12 +80,41 @@ export class TeXDoc {
             this.runTexdoc(pkg)
             return
         }
-        vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
+        vscode.window.showQuickPick(this.packageItems).then(selectedPkg => {
             if (!selectedPkg) {
                 return
             }
-            this.runTexdoc(selectedPkg)
+            this.runTexdoc(selectedPkg.label)
         })
     }
 
+    texdocUsepackages() {
+        const items: vscode.QuickPickItem[] = []
+        let names: string[] = []
+        for (const tex of this.extension.manager.getIncludedTeX()) {
+            const content = this.extension.manager.cachedContent[tex]
+            const pkgs = content && content.element.package
+            if (!pkgs) {
+                continue
+            }
+            names = names.concat(pkgs)
+        }
+        const packagenames = Array.from(new Set(names))
+        for (const name of packagenames) {
+            const pkg = this.pkgs[name]
+            if (!pkg) {
+                continue
+            }
+            const item = this.quickItemize(pkg)
+            if (item) {
+                items.push(item)
+            }
+        }
+        vscode.window.showQuickPick(items).then(selectedPkg => {
+            if (!selectedPkg) {
+                return
+            }
+            this.runTexdoc(selectedPkg.label)
+        })
+    }
 }

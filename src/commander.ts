@@ -672,6 +672,10 @@ export class Commander {
         this._texdoc.texdoc(pkg)
     }
 
+    texdocUsepackages() {
+        this._texdoc.texdocUsepackages()
+    }
+
     async saveWithoutBuilding() {
         if (vscode.window.activeTextEditor === undefined) {
             return
