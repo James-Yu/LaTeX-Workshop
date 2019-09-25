@@ -80,11 +80,11 @@ export class TeXDoc {
             this.runTexdoc(pkg)
             return
         }
-        vscode.window.showQuickPick(this.packageItems).then(selectedPkg => {
+        vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
             if (!selectedPkg) {
                 return
             }
-            this.runTexdoc(selectedPkg.label)
+            this.runTexdoc(selectedPkg)
         })
     }
 
@@ -101,14 +101,12 @@ export class TeXDoc {
         }
         const packagenames = Array.from(new Set(names))
         for (const name of packagenames) {
+            let item: vscode.QuickPickItem | undefined = { label: name }
             const pkg = this.pkgs[name]
-            if (!pkg) {
-                continue
+            if (pkg) {
+                item = this.quickItemize(pkg) || item
             }
-            const item = this.quickItemize(pkg)
-            if (item) {
-                items.push(item)
-            }
+            items.push(item)
         }
         vscode.window.showQuickPick(items).then(selectedPkg => {
             if (!selectedPkg) {
