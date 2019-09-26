@@ -208,19 +208,27 @@ export class Command {
     updatePkg(file: string, nodes?: latexParser.Node[], content?: string) {
         if (nodes !== undefined) {
             nodes.forEach(node => {
-                if (latexParser.isCommand(node) && node.name === 'usepackage' && 'args' in node) {
+                if (latexParser.isCommand(node) && node.name === 'usepackage') {
                     node.args.forEach(arg => {
                         if (latexParser.isOptionalArg(arg)) {
                             return
                         }
-                        (arg.content[0] as latexParser.TextString).content.split(',').forEach(pkg => {
-                            const pkgs = this.extension.manager.cachedContent[file].element.package
-                            if (pkgs) {
-                                pkgs.push(pkg)
-                            } else {
-                                this.extension.manager.cachedContent[file].element.package = [pkg]
+                        for (const c of arg.content) {
+                            if (!latexParser.isTextString(c)) {
+                                continue
                             }
-                        })
+                            c.content.split(',').forEach(pkg => {
+                                if (/^\s*$/.exec(pkg)) {
+                                    return
+                                }
+                                const pkgs = this.extension.manager.cachedContent[file].element.package
+                                if (pkgs) {
+                                    pkgs.push(pkg)
+                                } else {
+                                    this.extension.manager.cachedContent[file].element.package = [pkg]
+                                }
+                            })
+                        }
                     })
                 } else {
                     if (latexParser.hasContentArray(node)) {
