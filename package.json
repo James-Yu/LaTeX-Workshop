@@ -572,6 +572,12 @@
               ]
             },
             {
+              "name": "latexmk (lualatex)",
+              "tools": [
+                "lualatexmk"
+              ]
+            },
+            {
               "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
               "tools": [
                 "pdflatex",
@@ -607,6 +613,19 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+              ],
+              "env": {}
+            },
+            {
+              "name": "lualatexmk",
+              "command": "latexmk",
+              "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-lualatex",
                 "-outdir=%OUTDIR%",
                 "%DOC%"
               ],
