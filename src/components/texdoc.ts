@@ -1,40 +1,12 @@
 import * as vscode from 'vscode'
 import * as cp from 'child_process'
-import * as fs from 'fs'
 import {Extension} from 'src/main'
-
-type Packages = {[key: string]: {command: string, detail: string, documentation: string}}
 
 export class TeXDoc {
     extension: Extension
-    pkgs: Packages = {}
-    packageItems: vscode.QuickPickItem[] = []
 
     constructor(e: Extension) {
         this.extension = e
-        setImmediate( () => this.readPackages() )
-    }
-
-    private readPackages() {
-        const json = fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString()
-        const items: vscode.QuickPickItem[] = []
-        const pkgs: Packages = JSON.parse(json)
-        for ( const pkg of Object.values(pkgs) ) {
-            const item = this.quickItemize(pkg)
-            if (item) {
-                items.push(item)
-            }
-        }
-        this.packageItems = items
-        this.pkgs = pkgs
-    }
-
-    private quickItemize(pkg: Packages[string]) {
-        if ( !(pkg.command && pkg.documentation) ) {
-            return undefined
-        } else {
-            return { label: pkg.command, detail: pkg.documentation }
-        }
     }
 
     private runTexdoc(pkg: string) {
@@ -89,7 +61,6 @@ export class TeXDoc {
     }
 
     texdocUsepackages() {
-        const items: vscode.QuickPickItem[] = []
         let names: string[] = []
         for (const tex of this.extension.manager.getIncludedTeX()) {
             const content = this.extension.manager.cachedContent[tex]
@@ -100,14 +71,9 @@ export class TeXDoc {
             names = names.concat(pkgs)
         }
         const packagenames = Array.from(new Set(names))
-        for (const name of packagenames) {
-            let item: vscode.QuickPickItem | undefined = { label: name }
-            const pkg = this.pkgs[name]
-            if (pkg) {
-                item = this.quickItemize(pkg) || item
-            }
-            items.push(item)
-        }
+        const items: vscode.QuickPickItem[] = packagenames.map( name => {
+            return { label: name }
+        })
         vscode.window.showQuickPick(items).then(selectedPkg => {
             if (!selectedPkg) {
                 return
