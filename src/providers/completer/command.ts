@@ -218,7 +218,8 @@ export class Command {
                                 continue
                             }
                             c.content.split(',').forEach(pkg => {
-                                if (/^\s*$/.exec(pkg)) {
+                                pkg = pkg.trim()
+                                if (pkg === '') {
                                     return
                                 }
                                 const pkgs = this.extension.manager.cachedContent[file].element.package
