@@ -101,34 +101,45 @@ export class HoverProvider implements vscode.HoverProvider {
         })
     }
 
-    private async findNewCommand(content: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    private async loadNewcommandFromConfigFile(newCommandFile: string) {
         let commandsString = ''
-        const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
-        if (newCommandFile !== '') {
-            if (path.isAbsolute(newCommandFile)) {
-                if (fs.existsSync(newCommandFile)) {
-                    commandsString = fs.readFileSync(newCommandFile, {encoding: 'utf8'})
-                }
-            } else {
-                if (this.extension.manager.rootFile === undefined) {
-                    await this.extension.manager.findRoot()
-                }
-                const rootDir = this.extension.manager.rootDir
-                if (rootDir === undefined) {
-                    this.extension.logger.addLogMessage(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
-                    return ''
-                }
-                const newCommandFileAbs = path.join(rootDir, newCommandFile)
-                if (fs.existsSync(newCommandFileAbs)) {
-                    commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})
-                }
+        if (newCommandFile === '') {
+            return commandsString
+        }
+        if (path.isAbsolute(newCommandFile)) {
+            if (fs.existsSync(newCommandFile)) {
+                commandsString = fs.readFileSync(newCommandFile, {encoding: 'utf8'})
+            }
+        } else {
+            if (this.extension.manager.rootFile === undefined) {
+                await this.extension.manager.findRoot()
+            }
+            const rootDir = this.extension.manager.rootDir
+            if (rootDir === undefined) {
+                this.extension.logger.addLogMessage(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
+                return ''
+            }
+            const newCommandFileAbs = path.join(rootDir, newCommandFile)
+            if (fs.existsSync(newCommandFileAbs)) {
+                commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})
             }
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
-        if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled')) {
-            return commandsString
+        return commandsString
+    }
+
+    private async findNewCommand(content: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
+        let commandsInConfigFile = ''
+        if (newCommandFile !== '') {
+            commandsInConfigFile = await this.loadNewcommandFromConfigFile(newCommandFile)
         }
+
+        if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled')) {
+            return commandsInConfigFile
+        }
+
         let commands: string[] = []
         try {
             const ast = latexParser.parsePreamble(content)
@@ -155,7 +166,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 }
             } while (result)
         }
-        return commandsString + '\n' + commands.join('')
+        return commandsInConfigFile + '\n' + commands.join('')
     }
 
     private provideHoverOnCommand(token: string): Promise<vscode.Hover | undefined> {
