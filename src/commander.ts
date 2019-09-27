@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import * as cp from 'child_process'
 import {latexParser, bibtexParser} from 'latex-utensils'
 
 import {Extension} from './main'
 import {getLongestBalancedString} from './utils'
+import {TeXDoc} from './components/texdoc'
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
     const pickedRootFile = await vscode.window.showQuickPick([{
@@ -38,10 +38,12 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
 
 export class Commander {
     extension: Extension
+    private _texdoc: TeXDoc
     snippets: {[key: string]: vscode.SnippetString} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
+        this._texdoc = new TeXDoc(extension)
         let extensionSnippets: string
         fs.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
             .then(data => {extensionSnippets = data.toString()})
@@ -666,55 +668,12 @@ export class Commander {
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
-    runTexdoc(pkg: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const texdocPath = configuration.get('texdoc.path') as string
-        const texdocArgs = configuration.get('texdoc.args') as string[]
-        texdocArgs.push(pkg)
-        const proc = cp.spawn(texdocPath, texdocArgs)
-
-        let stdout = ''
-        proc.stdout.on('data', newStdout => {
-            stdout += newStdout
-        })
-
-        let stderr = ''
-        proc.stderr.on('data', newStderr => {
-            stderr += newStderr
-        })
-
-        proc.on('error', err => {
-            this.extension.logger.addLogMessage(`Cannot run texdoc: ${err.message}, ${stderr}`)
-            this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
-        })
-
-        proc.on('exit', exitCode => {
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
-                this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
-            } else {
-                const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
-                if (stdout.match(regex) || stderr.match(regex)) {
-                    this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
-                    this.extension.logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
-                } else {
-                    this.extension.logger.addLogMessage(`Opening documentation for ${pkg}.`)
-                }
-            }
-        })
+    texdoc(pkg?: string) {
+        this._texdoc.texdoc(pkg)
     }
 
-    texdoc(pkg?: string) {
-        if (pkg) {
-            this.runTexdoc(pkg)
-            return
-        }
-        vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
-            if (!selectedPkg) {
-                return
-            }
-            this.runTexdoc(selectedPkg)
-        })
+    texdocUsepackages() {
+        this._texdoc.texdocUsepackages()
     }
 
     async saveWithoutBuilding() {
