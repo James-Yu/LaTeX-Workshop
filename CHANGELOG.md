@@ -1,5 +1,19 @@
 # Change Log
 
+## [8.2.0] - 2019-09-28
+
+### Added
+- (#1712) Texdoc completion.
+
+### Fixed
+- (#1644) Fix build brogress bar length.
+- (#1655) Highlight `mpost` environments as plain tex.
+- (#1679) Add `latexmk` recipe for `lualatex`.
+- (#1689) Use local cpp grammar with bailout pattern.
+- (#1711) Restrict some keybindings to latex files.
+- (#1714) Declare `.ctx` files as a LaTeX filetype.
+- (#1720) Fix parsing `\usepackage`.
+
 ## [8.1.2] - 2019-09-12
 
 ### Fixed
