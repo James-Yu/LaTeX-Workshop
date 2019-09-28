@@ -74,22 +74,23 @@
             <div>
                 <svg>
                     <line x1="15%" y1="50%" x2="100%" y2="50%"
-                        style="stroke-width: 0.8; shape-rendering: crispEdges;">
+                        style="stroke-width: 0.8; shape-rendering: crispEdges;"/>
                 </svg>
                 <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) -- (${3:B});" data-description="line">\path (A) -- (B)</a>
                 <a class="cmd" data-snippet=" -- (${1:C})" data-description="extend line">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- (C)</a>
                 <a class="cmd" data-snippet=" -- cycle;" data-description="joint to start">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- cycle</a>
-                <svg>
-                    <line x1="15%" y1="50%" x2="100%" y2="50%"
-                        style="stroke-width: 0.8; shape-rendering: crispEdges;">
+                <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="10" y1="100" x2="80" y2="15" style="stroke-width: 16; shape-rendering: crispEdges;"></line>
+    				<line x1="180" y1="100" x2="110" y2="15" style="stroke-width: 16;shape-rendering: crispEdges;"></line>
+                    <path d="M 10 100 Q 95 0 180 100" style="stroke-width:16;" fill="transparent"></path>
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[out=${4:θ}, in=${5:θ}] (${3:B});" data-description="line"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[out=${4:θ}, in=${5:θ}] (${3:B});" data-description="line with tweaked entry and exit angles"
                     >\path (A) to[out=θ, in=θ] (B)</a>
-                <svg>
-                    <line x1="15%" y1="50%" x2="100%" y2="50%"
-                        style="stroke-width: 0.8; shape-rendering: crispEdges;"/>
+                <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
+                    <line x1="95" y1="55" x2="95" y2="110" style="stroke-width: 16; shape-rendering: crispEdges;"/>
+                    <path d="M 10 100 Q 95 0 180 100" style="stroke-width:16;" fill="transparent"/>
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[bend ${4|left,right|}=${5:θ}] (${3:B});" data-description="line"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[bend ${4|left,right|}=${5:θ}] (${3:B});" data-description="line with center displaced"
                     >\path (A) to[bend left=θ] (B)</a>
                 <svg>
                     <rect
