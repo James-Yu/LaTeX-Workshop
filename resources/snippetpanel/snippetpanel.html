@@ -11,7 +11,7 @@
 
         <div class="tab">
             <button class="tablinks active" onclick="openTab(event, 'Symbols')">Symbols</button>
-            <button class="tablinks" onclick="openTab(event, 'Tikz')">Tikz</button>
+            <button class="tablinks" onclick="openTab(event, 'TikZ')">TikZ</button>
         </div>
 
         <div id="Symbols" class="tabcontent">
@@ -23,15 +23,15 @@
             <div class="grid"></div>
         </div>
 
-        <div id="Tikz" class="tabcontent">
+        <div id="TikZ" class="tabcontent">
             <h3>General</h3>
             <div>
-                <a class="cmd" data-snippet="\n\coordinate (${1:id}) at ${2:position};$0" data-description="name a point X"
+                <a class="cmd" data-snippet="\n\\coordinate (${1:id}) at ${2:position};" data-description="name a point X"
                     >\coordinate (X) at (3,5)</a
                 >
                 <a
                     class="cmd"
-                    data-snippet="\n\node[${4:options}] (${1:id}) at ${2:position} {${3:label}};$0"
+                    data-snippet="\n\\node[${4:options}] (${1:id}) at ${2:position} {${3:label}};"
                     data-description="place a node and name it X"
                     >\node (X) at (3,5) {}</a
                 >
@@ -65,7 +65,7 @@
                 <small>Using <span class="tt">positioning</span> library</small>
                 <a
                     class="cmd"
-                    data-snippet="\n\node[${3|above,below|} ${4|left,right|}=${2:dist} of ${1:node}${5|.north,.center,.south|} ${6|west,east|}] (${7:id}) {${8:label}};"
+                    data-snippet="\n\\node[${3|above,below|} ${4|left,right|}=${2:dist} of ${1:node}${5|.north,.center,.south|} ${6|west,east|}] (${7:id}) {${8:label}};"
                     data-description="Position new node 1cm above existing anchor"
                     >\node[above=1cm of node.north]</a
                 >
@@ -76,9 +76,21 @@
                     <line x1="15%" y1="50%" x2="100%" y2="50%"
                         style="stroke-width: 0.8; shape-rendering: crispEdges;">
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|path,draw,fill,node|}[$4] (${2:A}) -- (${3:B});$0" data-description="line">\path (A) -- (B)</a>
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) -- (${3:B});" data-description="line">\path (A) -- (B)</a>
                 <a class="cmd" data-snippet=" -- (${1:C})" data-description="extend line">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- (C)</a>
-                <a class="cmd" data-snippet=" -- cycle" data-description="joint to start">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- cycle</a>
+                <a class="cmd" data-snippet=" -- cycle;" data-description="joint to start">&emsp;&emsp;&emsp;&emsp;&thinsp;&#8202-- cycle</a>
+                <svg>
+                    <line x1="15%" y1="50%" x2="100%" y2="50%"
+                        style="stroke-width: 0.8; shape-rendering: crispEdges;">
+                </svg>
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[out=${4:θ}, in=${5:θ}] (${3:B});" data-description="line"
+                    >\path (A) to[out=θ, in=θ] (B)</a>
+                <svg>
+                    <line x1="15%" y1="50%" x2="100%" y2="50%"
+                        style="stroke-width: 0.8; shape-rendering: crispEdges;"/>
+                </svg>
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$6] (${2:A}) to[bend ${4|left,right|}=${5:θ}] (${3:B});" data-description="line"
+                    >\path (A) to[bend left=θ] (B)</a>
                 <svg>
                     <rect
                         width="100%"
@@ -88,7 +100,7 @@
                         style="stroke-width:2"
                     />
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|path,draw,fill,node|}[$4] (${2:A}) rectangle (${3:B});$0" data-description="rectangle"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) rectangle (${3:B});" data-description="rectangle"
                     >\path (A) rectangle (B)</a
                 >
                 <svg>
@@ -101,7 +113,7 @@
                         style="stroke-width:1"
                     />
                 </svg>
-                <a class="cmd" data-snippet="\n\\${1|path,draw,fill,node|}[$4] (${2:A}) circle (${3:r});$0" data-description="circle"
+                <a class="cmd" data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:A}) circle (${3:r});" data-description="circle"
                     >\path (A) circle (r)</a
                 >
                 <svg>
@@ -109,7 +121,7 @@
                 </svg>
                 <a
                     class="cmd"
-                    data-snippet="\n\\${1|path,draw,fill,node|}[$4] (${2:center}) ellipse (${3:width} and ${4:height});$0"
+                    data-snippet="\n\\${1|draw,path,fill,node|}[$4] (${2:center}) ellipse (${3:width} and ${4:height});"
                     data-description="ellipse"
                     >\path (A) ellipse (3 and 2)</a
                 >
@@ -118,7 +130,7 @@
                 </svg>
                 <a
                     class="cmd"
-                    data-snippet="\n\\${1|path,draw,fill,node|}[$7] (${2:A}) arc(${4:θ1}:${5:θ2}:${6:r}) (${3:B});$0"
+                    data-snippet="\n\\${1|draw,path,fill,node|}[$7] (${2:A}) arc(${4:θ1}:${5:θ2}:${6:r}) (${3:B});"
                     data-description="circular arc"
                     >\path (A) arc(θ1:θ2:r) (B)</a
                 >
@@ -127,7 +139,7 @@
                 </svg>
                 <a
                     class="cmd"
-                    data-snippet="\n\\${1|path,draw,fill,node|}[$7] (${2:A}) arc(${4:θ1}:${5:θ2}:${6:r1} and ${7:r2}) (${3:B});$0"
+                    data-snippet="\n\\${1|draw,path,fill,node|}[$7] (${2:A}) arc(${4:θ1}:${5:θ2}:${6:r1} and ${7:r2}) (${3:B});"
                     data-description="elliptic arc"
                     >\path (A) arc(θ1:θ2:r1 and r2) (B)</a
                 >
@@ -136,17 +148,39 @@
                 </svg>
                 <a
                     class="cmd"
-                    data-snippet="\n\\${1|path,draw,fill,node|}[$7] (${2:A}) .. controls (${3:C1}) and (${4:C2}) .. (${3:B});$0"
+                    data-snippet="\n\\${1|draw,path,fill,node|}[$7] (${2:A}) .. controls (${3:C1}) and (${4:C2}) .. (${3:B});"
                     data-description="Bezier curve"
                     >\path (A) .. controls (C1) and (C2) .. (B)</a
                 >
+                <svg>
+                    <line x1="0%" y1="33%" x2="100%" y2="33%"
+                        style="stroke-width: 1; shape-rendering: crispEdges;"/>
+                    <line x1="0%" y1="67%" x2="100%" y2="67%"
+                        style="stroke-width: 1; shape-rendering: crispEdges;"/>
+                    <line y1="0%" x1="33%" y2="100%" x2="33%"
+                        style="stroke-width: 1; shape-rendering: crispEdges;"/>
+                    <line y1="0%" x1="67%" y2="100%" x2="67%"
+                        style="stroke-width: 1; shape-rendering: crispEdges;"/>
+                </svg>
+                <a
+                    class="cmd"
+                    data-snippet="\n\\${1|draw,path,fill,node|}[${5:step=1}] (${2:A}) grid[$4] (${3:B});"
+                    data-description="grid"
+                    >\path (A) grid (B);</a
+                >
+                <!-- <a
+                    class="cmd"
+                    data-snippet="\n\\${1|draw,path,fill,node|}[$5] (${2:A}) parabola[$4] (${3:B});"
+                    data-description="parabola"
+                    >\path (A) parabola (B);</a
+                > -->
             </div>
             <h3>Path Options</h3>
             <div>
-                <div class="col">
+                <div class="col3">
                     <svg>
                         <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 0.4; shape-rendering: crispEdges;">
+                            style="stroke-width: 0.4; shape-rendering: crispEdges;"/>
                     </svg>
                     <a
                     class="cmd"
@@ -154,7 +188,7 @@
                     >ultra thin</a>
                     <svg>
                         <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 0.6; shape-rendering: crispEdges;">
+                            style="stroke-width: 0.6; shape-rendering: crispEdges;"/>
                     </svg>
                     <a
                     class="cmd"
@@ -162,7 +196,7 @@
                     >very thin</a>
                     <svg>
                         <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 0.8; shape-rendering: crispEdges;">
+                            style="stroke-width: 0.8; shape-rendering: crispEdges;"/>
                     </svg>
                     <a
                     class="cmd"
@@ -170,7 +204,7 @@
                     >thin</a>
                     <svg>
                         <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 1.0; shape-rendering: crispEdges;">
+                            style="stroke-width: 1.0; shape-rendering: crispEdges;"/>
                     </svg>
                     <a
                     class="cmd"
@@ -178,9 +212,9 @@
                     >semithick</a>
                     <svg>
                         <line x1="0%" y1="60%" x2="100%" y2="60%"
-                            style="stroke-width: 2; shape-rendering: crispEdges;">
+                            style="stroke-width: 2; shape-rendering: crispEdges;"/>
                         <line x1="0%" y1="40%" x2="100%" y2="40%"
-                            style="stroke-width: 2; shape-rendering: crispEdges;">
+                            style="stroke-width: 2; shape-rendering: crispEdges;"/>
                     </svg>
                     <a
                     class="cmd"
@@ -188,7 +222,7 @@
                     >thick</a>
                     <svg>
                         <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 3; shape-rendering: crispEdges;">
+                            style="stroke-width: 3; shape-rendering: crispEdges;"/>
                     </svg>
                     <a
                     class="cmd"
@@ -196,17 +230,17 @@
                     >very thick</a>
                     <svg>
                         <line x1="0%" y1="50%" x2="100%" y2="50%"
-                            style="stroke-width: 5; shape-rendering: crispEdges;">
+                            style="stroke-width: 5; shape-rendering: crispEdges;"/>
                     </svg>
                     <a
                     class="cmd"
                     data-snippet="ultra thick"
                     >ultra thick</a>
                 </div>
-                <div class="col widesvg">
+                <div class="col3 widesvg">
                         <svg>
                             <line x1="0%" y1="50%" x2="100%" y2="50%"
-                                style="stroke-width: 1; shape-rendering: crispEdges;">
+                                style="stroke-width: 1; shape-rendering: crispEdges;"/>
                         </svg>
                         <a
                         class="cmd"
@@ -215,7 +249,7 @@
                         <svg>
                             <line x1="0%" y1="50%" x2="100%" y2="50%"
                                 stroke-dasharray="6%,31%"  stroke-linecap="round"
-                                style="stroke-width: 1; shape-rendering: crispEdges;">
+                                style="stroke-width: 1; shape-rendering: crispEdges;"/>
                         </svg>
                         <a
                         class="cmd"
@@ -224,7 +258,7 @@
                         <svg>
                             <line x1="0%" y1="50%" x2="100%" y2="50%"
                                 stroke-dasharray="6%,17%"  stroke-linecap="round"
-                                style="stroke-width: 1; shape-rendering: crispEdges;">
+                                style="stroke-width: 1; shape-rendering: crispEdges;"/>
                         </svg>
                         <a
                         class="cmd"
@@ -233,7 +267,7 @@
                         <svg>
                             <line x1="0%" y1="50%" x2="100%" y2="50%"
                                 stroke-dasharray="6%,47%"  stroke-linecap="round"
-                                style="stroke-width: 1; shape-rendering: crispEdges;">
+                                style="stroke-width: 1; shape-rendering: crispEdges;"/>
                         </svg>
                         <a
                         class="cmd"
@@ -242,7 +276,7 @@
                         <svg>
                                 <line x1="0%" y1="50%" x2="100%" y2="50%"
                                 stroke-dasharray="18%,32%"
-                                style="stroke-width: 1; shape-rendering: crispEdges;">
+                                style="stroke-width: 1; shape-rendering: crispEdges;"/>
                         </svg>
                         <a
                         class="cmd"
@@ -251,7 +285,7 @@
                         <svg>
                             <line x1="0%" y1="50%" x2="100%" y2="50%"
                                 stroke-dasharray="18%,18%"
-                                style="stroke-width: 1; shape-rendering: crispEdges;">
+                                style="stroke-width: 1; shape-rendering: crispEdges;"/>
                         </svg>
                         <a
                         class="cmd"
@@ -260,14 +294,14 @@
                         <svg>
                             <line x1="0%" y1="50%" x2="100%" y2="50%"
                                 stroke-dasharray="18%,82%"
-                                style="stroke-width: 1; shape-rendering: crispEdges;">
+                                style="stroke-width: 1; shape-rendering: crispEdges;"/>
                         </svg>
                         <a
                         class="cmd"
                         data-snippet="loosely dashed"
                         >loosely dashed</a>
                 </div>
-                <div class="col widesvg">
+                <div class="col3 widesvg">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 350 100">
                         <defs>
                             <marker id="arrowhead" markerWidth="5" markerHeight="4" refX="1" refY="2" orient="auto" fill="currentColor">
@@ -306,6 +340,87 @@
                     class="cmd"
                     data-snippet="-to"
                     >-to</a>
+                </div>
+            </div>
+            <h3>Colour</h3>
+            <div>
+                <div class="col4">
+                        <svg  viewBox="0 0 100 100">
+                            <polygon points="0,0 100,0 0,100" fill="currentColor"/>
+                            <rect
+                                width="100%"
+                                height="100%"
+                                fill="none"
+                                style="stroke-width:20"
+                            />
+                        </svg>
+                        <a class="cmd" data-snippet="color=${1|red,green,blue,cyan,magenta,yellow,black,gray,darkgray,lightgray,brown,lime,olive,orange,pink,purple,teal,violet,white|}"
+                            >color</a>
+                </div>
+                <div class="col4">
+                        <svg>
+                            <rect
+                                width="100%"
+                                height="100%"
+                                fill="none"
+                                style="stroke-width:2"
+                            />
+                        </svg>
+                        <a class="cmd" data-snippet="draw=${1|red,green,blue,cyan,magenta,yellow,black,gray,darkgray,lightgray,brown,lime,olive,orange,pink,purple,teal,violet,white|}"
+                            >draw color</a>
+                </div>
+                <div class="col4">
+                    <svg>
+                        <rect
+                            width="100%"
+                            height="100%"
+                            fill="currentColor"
+                            style="stroke-width:2"
+                        />
+                    </svg>
+                    <a class="cmd" data-snippet="fill=${1|red,green,blue,cyan,magenta,yellow,black,gray,darkgray,lightgray,brown,lime,olive,orange,pink,purple,teal,violet,white|}"
+                        >fill color</a>
+                </div>
+                <div class="col4">
+                    <svg>
+                        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" style="stop-color:currentColor;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:currentColor;stop-opacity:0" />
+                        </linearGradient>
+                        <rect
+                            width="100%"
+                            height="100%"
+                            fill="url(#grad1)"
+                            style="stroke-width:2"
+                        />
+                    </svg>
+                    <a class="cmd" data-snippet="opacity=${1|0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9|}"
+                        >opacity</a>
+                </div>
+            </div>
+            <h3>Maths</h3>
+            <div>
+                <div class="col3">
+                    <svg viewBox="0 0 190 160" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M 10 60 Q 52.5 0, 95 90 T 180 80" style="stroke-width:16;" fill="transparent"/>
+                        <line x1="0%" y1="50%" x2="100%" y2="50%"
+                                style="stroke-width: 10; shape-rendering: crispEdges;"/>
+                        <line x1="0%" y1="0%" x2="0%" y2="100%"
+                                style="stroke-width: 16; shape-rendering: crispEdges;"/>
+                    </svg>
+                    <a class="cmd"
+                    data-snippet="\n\\${1|draw,path,fill,node|}[$5] plot[$4] (${2:X(\\x)},${3:Y(\\x)});"
+                        >Plot</a>
+                </div>
+                <div class="col3">
+                    <a class="cmd"
+                    data-snippet="\n\\pgfmath${1|set,truncate|}macro{\\${2:command}}{${3:expression}}"
+                        >Set Value</a>
+                </div>
+                <div class="col3">
+                    <a class="cmd"
+                    data-snippet="\n\\pgfmathdeclarefunction{\\${1:command}}{${2:nargs}}{\\pgfmathparse{${3:expression}}}"
+                        >Set Function</a>
                 </div>
             </div>
         </div>

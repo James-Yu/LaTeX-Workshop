@@ -80,7 +80,7 @@ function getSearchText(symbol) {
 }
 
 function tikzInitialise() {
-    document.querySelectorAll('#Tikz a.cmd').forEach(elem => {
+    document.querySelectorAll('#TikZ a.cmd').forEach(elem => {
         elem.addEventListener('click', _evt => {
             vscode.postMessage({
                 type: 'insertSnippet',
