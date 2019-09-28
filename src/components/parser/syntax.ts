@@ -10,7 +10,7 @@ export class UtensilsParser {
         this.extension = extension
         this.pool = workerpool.pool(
             path.join(__dirname, 'syntax_worker.js'),
-            { maxWorkers: 1 }
+            { maxWorkers: 1, workerType: 'process' }
         )
     }
 
