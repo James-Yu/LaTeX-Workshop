@@ -10,8 +10,10 @@ var vscode;
 
 window.addEventListener('message', event => {
     const data = event.data;
-    if (data.type === 'mathSymbol') {
-        processMathSymbol(data);
+    if (data.type === 'mathSymbols') {
+        data.mathSymbols.forEach(symbol => {
+            processMathSymbol(symbol);
+        })
     }
 });
 
