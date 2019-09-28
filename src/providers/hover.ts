@@ -101,7 +101,7 @@ export class HoverProvider implements vscode.HoverProvider {
         })
     }
 
-    private async loadNewcommandFromConfigFile(newCommandFile: string) {
+    private async loadNewCommandFromConfigFile(newCommandFile: string) {
         let commandsString = ''
         if (newCommandFile === '') {
             return commandsString
@@ -133,7 +133,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
         let commandsInConfigFile = ''
         if (newCommandFile !== '') {
-            commandsInConfigFile = await this.loadNewcommandFromConfigFile(newCommandFile)
+            commandsInConfigFile = await this.loadNewCommandFromConfigFile(newCommandFile)
         }
 
         if (!configuration.get('hover.preview.newcommand.parseTeXFile.enabled')) {
