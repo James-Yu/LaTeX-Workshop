@@ -118,14 +118,9 @@ export class SnippetPanel {
             return
         }
 
-        this.mathSymbols.forEach( mathSymbol => {
-            if (this.panel === undefined) {
-                return
-            }
-            this.panel.webview.postMessage({
-                type: 'mathSymbol',
-                ...mathSymbol
-            })
+        this.panel.webview.postMessage({
+            type: 'mathSymbols',
+            mathSymbols: this.mathSymbols
         })
 
         this.panel.webview.postMessage({ type: 'initialise' })
