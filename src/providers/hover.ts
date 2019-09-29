@@ -53,7 +53,7 @@ export class HoverProvider implements vscode.HoverProvider {
             if (hov) {
                 const tex = this.findHoverOnTex(document, position)
                 if (tex) {
-                    this.findNewCommandProject().then( newCommands => {
+                    this.findProjectNewCommand().then( newCommands => {
                         this.provideHoverOnTex(document, tex, newCommands).then( hover => resolve(hover) )
                     })
                     return
@@ -128,7 +128,7 @@ export class HoverProvider implements vscode.HoverProvider {
         return commandsString
     }
 
-    private async findNewCommandProject() {
+    private async findProjectNewCommand() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
         let commandsInConfigFile = ''
@@ -257,7 +257,7 @@ export class HoverProvider implements vscode.HoverProvider {
         if (configuration.get('hover.ref.enabled') as boolean) {
             const tex = this.findHoverOnRef(document, position, token, refData)
             if (tex) {
-                const newCommands = await this.findNewCommandProject()
+                const newCommands = await this.findProjectNewCommand()
                 return this.provideHoverPreviewOnRef(tex, newCommands, refData)
             }
         }
