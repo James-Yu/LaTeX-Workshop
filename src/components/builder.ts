@@ -161,7 +161,7 @@ export class Builder {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
             this.extension.buildInfo.buildStarted()
-            pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
+            pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc) => {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
             // Create sub directories of output directory
