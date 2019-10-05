@@ -15,6 +15,7 @@ export class Reference {
     extension: Extension
     // Here we use an object instead of an array for de-duplication
     private suggestions: {[id: string]: Suggestion} = {}
+    private prevIndexObj: { [k: string]: {refNumber: string, pageNumber: string} } = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -57,6 +58,7 @@ export class Reference {
                     file: cachedFile,
                     position: ref.range.start,
                     range: args ? args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/) : undefined,
+                    prevIndex: this.prevIndexObj[ref.label]
                 }
                 refList.push(ref.label)
             })
@@ -150,6 +152,7 @@ export class Reference {
         Object.keys(this.suggestions).forEach(key => {
             this.suggestions[key].prevIndex = undefined
         })
+        this.prevIndexObj = {}
         if (!fs.existsSync(auxFile)) {
             return
         }
@@ -160,6 +163,7 @@ export class Reference {
             if (result === null) {
                 break
             }
+            this.prevIndexObj[result[1]] = {refNumber: result[2], pageNumber: result[3]}
             if (result[1] in this.suggestions) {
                 this.suggestions[result[1]].prevIndex = {refNumber: result[2], pageNumber: result[3]}
             }
