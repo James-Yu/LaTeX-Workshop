@@ -5,6 +5,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 
 import { Extension } from '../main'
+import {Mutex} from '../lib/await-semaphore'
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -30,6 +31,7 @@ export class LaTexFormatter {
     private currentOs?: OperatingSystem
     private formatter: string
     private formatterArgs: string[]
+    private formatMutex: Mutex = new Mutex()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -57,31 +59,30 @@ export class LaTexFormatter {
             || ['-c', '%DIR%/', '%TMPFILE%', '-y=defaultIndent: \'%INDENT%\'']
     }
 
-    public formatDocument(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
-        return new Promise((resolve, _reject) => {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            const pathMeta = configuration.inspect('latexindent.path')
-
+    public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const pathMeta = configuration.inspect('latexindent.path')
+        const releaseMutex = await this.formatMutex.acquire()
+        try {
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
-                this.format(document, range).then((edit) => {
-                    return resolve(edit)
-                })
+                const edit = await this.format(document, range)
+                return edit
             } else {
                 if (!this.currentOs) {
-                    return
+                    return []
                 }
-                this.checkPath(this.currentOs.checker).then((latexindentPresent) => {
-                    if (!latexindentPresent) {
-                        this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
-                        this.extension.logger.showErrorMessage('Can not find latexindent in PATH!')
-                        return resolve()
-                    }
-                    this.format(document, range).then((edit) => {
-                        return resolve(edit)
-                    })
-                })
+                const latexindentPresent = await this.checkPath(this.currentOs.checker)
+                if (!latexindentPresent) {
+                    this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
+                    this.extension.logger.showErrorMessage('Can not find latexindent in PATH!')
+                    return []
+                }
+                const edit = await this.format(document, range)
+                return edit
             }
-        })
+        } finally {
+            releaseMutex()
+        }
     }
 
     private checkPath(checker: string): Thenable<boolean> {
