@@ -108,6 +108,19 @@
         "extensions": [
           ".pdf"
         ]
+      },
+      {
+        "id": "rsweave",
+        "aliases": [
+          "R Sweave"
+        ],
+        "extensions": [
+          ".rnw",
+          ".Rnw",
+          ".Rtex",
+          ".rtex"
+        ],
+        "configuration": "./syntax/syntax-rsweave.json"
       }
     ],
     "grammars": [
@@ -138,8 +151,7 @@
           "source.python": "python",
           "source.scala": "scala",
           "text.xtml": "xtml",
-          "source.yaml": "yaml",
-          "source.r": "r"
+          "source.yaml": "yaml"
         }
       },
       {
@@ -168,6 +180,14 @@
         "path": "./syntax/cpp-grammar-bailout.tmLanguage.json",
         "embeddedLanguages": {
           "meta.embedded.assembly.cpp": "asm"
+        }
+      },
+      {
+        "language": "rsweave",
+        "scopeName": "text.tex.latex.rsweave",
+        "path": "./syntax/RSweave.tmLanguage.json",
+        "embeddedLanguages": {
+            "source.r": "r"
         }
       }
     ],

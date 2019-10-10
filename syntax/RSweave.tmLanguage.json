@@ -1,0 +1,50 @@
+{
+    "name": "RSweave",
+    "scopeName": "text.tex.latex.rsweave",
+    "fileTypes": [
+        "rnw",
+        "Rnw"
+    ],
+    "patterns": [
+        {
+            "include": "text.tex.latex"
+        },
+        {
+            "name": "text.tex.latex.rsweave.codeblock",
+            "begin": "^(\\s*?)(<<)(.*?)(>>=)\\s*?(\\S*?)\\s*?\\n",
+            "end": "^\\1(@)\\s*?(\\S*?)\\s*?\\n",
+            "endCaptures": {
+                "1": {
+                    "name": "meta.tag.rsweave"
+                },
+                "2": {
+                    "name": "invalid.illegal.rsweave"
+                }
+            },
+            "beginCaptures": {
+                "2": {
+                    "name": "meta.tag.rsweave"
+                },
+                "4": {
+                    "name": "meta.tag.rsweave"
+                },
+                "5": {
+                    "name": "invalid.illegal.rsweave"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "source.r#function-parameters"
+                        }
+                    ]
+                }
+            },
+            "contentName": "source.r",
+            "patterns": [
+                {
+                    "include": "source.r"
+                }
+            ]
+        }
+    ]
+}
