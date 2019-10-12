@@ -881,7 +881,7 @@ var PDFViewerApplication = {
       }
     }
 
-    this.setTitle(title);
+    // this.setTitle(title);
   },
   setTitle: function setTitle(title) {
     if (this.isViewerEmbedded) {
@@ -4258,7 +4258,7 @@ var defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   eventBusDispatchToDOM: {
-    value: false,
+    value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   externalLinkRel: {
@@ -4323,7 +4323,7 @@ var defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: '../web/cmaps/',
+    value: '../cmaps/',
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -5077,7 +5077,7 @@ function () {
         return;
       }
 
-      if (!this._switchView(view, true)) {
+      if (!this._switchView(view, false)) {
         this._dispatchEvent();
       }
     }
@@ -6690,7 +6690,7 @@ var FindState = {
 };
 exports.FindState = FindState;
 var FIND_TIMEOUT = 250;
-var MATCH_SCROLL_OFFSET_TOP = -50;
+var MATCH_SCROLL_OFFSET_TOP = -100;
 var MATCH_SCROLL_OFFSET_LEFT = -400;
 var CHARACTERS_TO_NORMALIZE = {
   "\u2018": '\'',
@@ -10424,7 +10424,7 @@ function () {
     this.linkService = options.linkService || new _pdf_link_service.SimpleLinkService();
     this.downloadManager = options.downloadManager || null;
     this.findController = options.findController || null;
-    this.removePageBorders = options.removePageBorders || false;
+    this.removePageBorders = options.removePageBorders || true;
     this.textLayerMode = Number.isInteger(options.textLayerMode) ? options.textLayerMode : _ui_utils.TextLayerMode.ENABLE;
     this.imageResourcesPath = options.imageResourcesPath || '';
     this.renderInteractiveForms = options.renderInteractiveForms || false;
@@ -13551,7 +13551,7 @@ function () {
             switch (_context.prev = _context.next) {
               case 0:
                 databaseStr = JSON.stringify(this.database);
-                localStorage.setItem('pdfjs.history', databaseStr);
+                // localStorage.setItem('pdfjs.history', databaseStr);
 
               case 2:
               case "end":
@@ -13577,7 +13577,7 @@ function () {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", localStorage.getItem('pdfjs.history'));
+                // return _context2.abrupt("return", localStorage.getItem('pdfjs.history'));
 
               case 1:
               case "end":
@@ -13807,7 +13807,7 @@ function (_BasePreferences) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
+                // localStorage.setItem('pdfjs.preferences', JSON.stringify(prefObj));
 
               case 1:
               case "end":
@@ -13833,7 +13833,7 @@ function (_BasePreferences) {
           while (1) {
             switch (_context2.prev = _context2.next) {
               case 0:
-                return _context2.abrupt("return", JSON.parse(localStorage.getItem('pdfjs.preferences')));
+                // return _context2.abrupt("return", JSON.parse(localStorage.getItem('pdfjs.preferences')));
 
               case 1:
               case "end":
@@ -13910,7 +13910,7 @@ function getDefaultPreferences() {
       "disablePageLabels": false,
       "enablePrintAutoRotate": false,
       "enableWebGL": false,
-      "eventBusDispatchToDOM": false,
+      "eventBusDispatchToDOM": true,
       "externalLinkTarget": 0,
       "historyUpdateUrl": false,
       "pdfBugEnabled": false,
