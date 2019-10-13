@@ -8,12 +8,12 @@ export class PDFRenderer {
     constructor(extension: Extension) {
         this.extension = extension
         this.pool = workerpool.pool(
-            path.join(__dirname, 'pdf2svg_worker.js'),
+            path.join(__dirname, 'pdfrenderer_worker.js'),
             { maxWorkers: 1, workerType: 'process' }
         )
     }
 
-    renderToSVG(pdfPath: string): workerpool.Promise<string | undefined> {
+    renderToSVG(pdfPath: string): workerpool.Promise<string> {
         return this.pool.exec('renderToSvg', [pdfPath])
     }
 }

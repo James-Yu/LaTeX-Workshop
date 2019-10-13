@@ -28,6 +28,10 @@ export class HoverProvider implements vscode.HoverProvider {
         if (!token) {
             return undefined
         }
+        const graphicsHover = await this.extension.graphicsPreview.provideHover(document, position)
+        if (graphicsHover) {
+            return graphicsHover
+        }
         // Test if we are on a command
         if (token.startsWith('\\')) {
             if (!hovCommand) {
