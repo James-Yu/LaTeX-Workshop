@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import {Extension} from '../../main'
 import {PDFRenderer} from './pdfrenderer'
+import {svgToDataUrl} from '../../utils'
 
 export class GraphicsPreview {
     extension: Extension
@@ -12,37 +13,39 @@ export class GraphicsPreview {
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position) {
-        const pat = /includegraphics\{(.*?)\}/
+        const pat = /\\includegraphics\{(.*?)\}/
         const range = document.getWordRangeAtPosition(position, pat)
         if (!range) {
             return undefined
         }
         const cmdString = document.getText(range)
         const execArray = pat.exec(cmdString)
-        const filePath = execArray && execArray[1]
-        if (!execArray || !filePath) {
+        const relPath = execArray && execArray[1]
+        if (!execArray || !relPath) {
             return undefined
         }
-        if (/\.pdf$/i.exec(filePath)) {
-            let pdfPath: string
-            if (path.isAbsolute(filePath)) {
-                pdfPath = filePath
-            } else {
-                const docPath = document.uri.fsPath
-                const dirPath = path.dirname(docPath)
-                pdfPath = path.join(dirPath, filePath)
-            }
-            const svg = await this.pdfRenderer.renderToSVG(pdfPath)
-            const dataUrl = this.svgToDataUrl(svg)
+        let filePath: string
+        if (path.isAbsolute(relPath)) {
+            filePath = relPath
+        } else {
+            filePath = this.joinFilePath(document, relPath)
+        }
+        if (/\.pdf$/i.exec(relPath)) {
+            const svg = await this.pdfRenderer.renderToSVG(filePath, { height: 250, width: 500 })
+            const dataUrl = svgToDataUrl(svg)
             const md = new vscode.MarkdownString(`![pdf](${dataUrl})`)
-            return new vscode.Hover(md)
+            return new vscode.Hover(md, range)
+        } else if (/\.(png|jpg|jpeg)/i.exec(filePath)) {
+            const uri = vscode.Uri.file(filePath).toString()
+            const md = new vscode.MarkdownString(`![image](${uri})`)
+            return new vscode.Hover(md, range)
         }
         return undefined
     }
 
-    private svgToDataUrl(xml: string): string {
-        const svg64 = Buffer.from(unescape(encodeURIComponent(xml)), 'binary').toString('base64')
-        const b64Start = 'data:image/svg+xml;base64,'
-        return b64Start + svg64
+    joinFilePath(document: vscode.TextDocument, relPath: string) {
+        const docPath = document.uri.fsPath
+        const dirPath = path.dirname(docPath)
+        return path.join(dirPath, relPath)
     }
 }
