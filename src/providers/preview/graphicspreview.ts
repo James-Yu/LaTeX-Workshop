@@ -1,8 +1,12 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import Jimp from 'jimp'
+import * as JimpLib0 from 'jimp'
 import {Extension} from '../../main'
 import {PDFRenderer} from './pdfrenderer'
 import {svgToDataUrl} from '../../utils'
+
+const JimpLib = JimpLib0 as unknown as Jimp
 
 export class GraphicsPreview {
     extension: Extension
@@ -35,9 +39,11 @@ export class GraphicsPreview {
             const dataUrl = svgToDataUrl(svg)
             const md = new vscode.MarkdownString(`![pdf](${dataUrl})`)
             return new vscode.Hover(md, range)
-        } else if (/\.(png|jpg|jpeg)/i.exec(filePath)) {
-            const uri = vscode.Uri.file(filePath).toString()
-            const md = new vscode.MarkdownString(`![image](${uri})`)
+        }
+        if (/\.(bmp|jpg|jpeg|gif|png)/i.exec(filePath)) {
+            const image = await (JimpLib as unknown as Jimp).read(filePath)
+            const dataUrl = await image.contain(300, 250).getBase64Async(image.getMIME())
+            const md = new vscode.MarkdownString(`![image](${dataUrl})`)
             return new vscode.Hover(md, range)
         }
         return undefined
