@@ -12,66 +12,54 @@ export class HoverProvider implements vscode.HoverProvider {
         this.extension = extension
     }
 
-    public provideHover(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken): Thenable<vscode.Hover> {
+    public async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
         this.extension.mathPreview.getColor()
-        return new Promise( (resolve, _reject) => {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            const hov = configuration.get('hover.preview.enabled') as boolean
-            const hovReference = configuration.get('hover.ref.enabled') as boolean
-            const hovCitation = configuration.get('hover.citation.enabled') as boolean
-            const hovCommand = configuration.get('hover.command.enabled') as boolean
-            if (hov) {
-                const tex = this.extension.mathPreview.findHoverOnTex(document, position)
-                if (tex) {
-                    this.extension.mathPreview.findProjectNewCommand().then( newCommands => {
-                        this.extension.mathPreview.provideHoverOnTex(document, tex, newCommands).then( hover => resolve(hover) )
-                    })
-                    return
-                }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const hov = configuration.get('hover.preview.enabled') as boolean
+        const hovReference = configuration.get('hover.ref.enabled') as boolean
+        const hovCitation = configuration.get('hover.citation.enabled') as boolean
+        const hovCommand = configuration.get('hover.command.enabled') as boolean
+        if (hov) {
+            const tex = this.extension.mathPreview.findHoverOnTex(document, position)
+            if (tex) {
+                const newCommands = await this.extension.mathPreview.findProjectNewCommand()
+                const hover = await this.extension.mathPreview.provideHoverOnTex(document, tex, newCommands)
+                return hover
             }
-            const token = tokenizer(document, position)
-            if (!token) {
-                resolve()
-                return
+        }
+        const token = tokenizer(document, position)
+        if (!token) {
+            return undefined
+        }
+        // Test if we are on a command
+        if (token.startsWith('\\')) {
+            if (!hovCommand) {
+                return undefined
             }
-            // Test if we are on a command
-            if (token.startsWith('\\')) {
-                if (!hovCommand) {
-                    resolve()
-                    return
-                }
-                this.provideHoverOnCommand(token).then(hover => resolve(hover))
-                return
-            }
-            if (onAPackage(document, position, token)) {
-                const pkg = encodeURIComponent(JSON.stringify(token))
-                const md = `Package **${token}** \n\n`
-                const mdLink = new vscode.MarkdownString(`[View documentation](command:latex-workshop.texdoc?${pkg})`)
-                mdLink.isTrusted = true
-                resolve(new vscode.Hover([md, mdLink]))
-                return
-            }
-            const refs = this.extension.completer.reference.getRefDict()
-            if (hovReference && token in refs) {
-                const refData = refs[token]
-                this.extension.mathPreview.provideHoverOnRef(document, position, refData, token)
-                .then( hover => resolve(hover))
-                return
-            }
-            const cites = this.extension.completer.citation.getEntryDict()
-            if (hovCitation && token in cites) {
-                const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
-                resolve(new vscode.Hover(
-                    '```\n' + cites[token].detail + '\n```\n',
-                    range
-                ))
-                return
-            }
-            resolve()
-        })
+            return this.provideHoverOnCommand(token)
+        }
+        if (onAPackage(document, position, token)) {
+            const pkg = encodeURIComponent(JSON.stringify(token))
+            const md = `Package **${token}** \n\n`
+            const mdLink = new vscode.MarkdownString(`[View documentation](command:latex-workshop.texdoc?${pkg})`)
+            mdLink.isTrusted = true
+            return new vscode.Hover([md, mdLink])
+        }
+        const refs = this.extension.completer.reference.getRefDict()
+        if (hovReference && token in refs) {
+            const refData = refs[token]
+            const hover = await this.extension.mathPreview.provideHoverOnRef(document, position, refData, token)
+            return hover
+        }
+        const cites = this.extension.completer.citation.getEntryDict()
+        if (hovCitation && token in cites) {
+            const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
+            return new vscode.Hover('```\n' + cites[token].detail + '\n```\n', range)
+        }
+        return undefined
     }
 
-    private provideHoverOnCommand(token: string): Promise<vscode.Hover | undefined> {
+    private provideHoverOnCommand(token: string): vscode.Hover | undefined {
         const signatures: string[] = []
         const pkgs: string[] = []
         const tokenWithoutSlash = token.substring(1)
@@ -113,9 +101,8 @@ export class HoverProvider implements vscode.HoverProvider {
             const mdLink = new vscode.MarkdownString(signatures.join('  \n')) // We need two spaces to ensure md newline
             mdLink.appendMarkdown(pkgLink)
             mdLink.isTrusted = true
-            return Promise.resolve(new vscode.Hover(mdLink))
+            return new vscode.Hover(mdLink)
         }
-        return Promise.resolve(undefined)
+        return undefined
     }
-
 }
