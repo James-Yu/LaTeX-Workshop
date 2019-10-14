@@ -176,6 +176,59 @@ export class BuildInfo {
         }
     }
 
+    private generateProgressBar(proportion: number, length: number): string {
+        const wholeCharacters = Math.min(length, Math.trunc(length * proportion))
+
+        interface IProgressBarCharacterSets {
+            [settingsName: string]: {
+                wholeCharacter: string,
+                partialCharacters: string[],
+                blankCharacter: string
+            }
+        }
+
+        const characterSets: IProgressBarCharacterSets = {
+            none: {
+                wholeCharacter: '',
+                partialCharacters: [''],
+                blankCharacter: ''
+            },
+            'Block Width': {
+                wholeCharacter: '█',
+                partialCharacters: ['', '▏', '▎', '▍', '▌ ', '▋', '▊', '▉', '█ '],
+                blankCharacter: '░'
+            },
+            'Block Shading': {
+                wholeCharacter: '█',
+                partialCharacters: ['', '░', '▒', '▓'],
+                blankCharacter: '░'
+            },
+            'Block Quadrants': {
+                wholeCharacter: '█',
+                partialCharacters: ['', '▖', '▚', '▙'],
+                blankCharacter: '░'
+            }
+        }
+
+        const selectedCharacterSet = this.configuration.get('progress.barStyle') as string
+
+        const wholeCharacter = characterSets[selectedCharacterSet].wholeCharacter
+        const partialCharacter =
+            characterSets[selectedCharacterSet].partialCharacters[
+                Math.round(
+                    (length * proportion - wholeCharacters) *
+                        (characterSets[selectedCharacterSet].partialCharacters.length - 1)
+                )
+            ]
+        const blankCharacter = characterSets[selectedCharacterSet].blankCharacter
+
+        return (
+            wholeCharacter.repeat(wholeCharacters) +
+            partialCharacter +
+            blankCharacter.repeat(Math.max(0, length - wholeCharacters - partialCharacter.length))
+        )
+    }
+
     private displayProgress(current: string | number) {
         if (!this.currentBuild) {
             throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
@@ -241,59 +294,6 @@ export class BuildInfo {
                 stepTimes: this.currentBuild.stepTimes,
                 pageTotal: this.currentBuild.pageTotal
             })
-        }
-
-        const generateProgressBar = (proportion: number, length: number) => {
-            const wholeCharacters = Math.min(length, Math.trunc(length * proportion))
-
-            interface IProgressBarCharacterSets {
-                [settingsName: string]: {
-                    wholeCharacter: string,
-                    partialCharacters: string[],
-                    blankCharacter: string
-                }
-            }
-
-            const characterSets: IProgressBarCharacterSets = {
-                none: {
-                    wholeCharacter: '',
-                    partialCharacters: [''],
-                    blankCharacter: ''
-                },
-                'Block Width': {
-                    wholeCharacter: '█',
-                    partialCharacters: ['', '▏', '▎', '▍', '▌ ', '▋', '▊', '▉', '█ '],
-                    blankCharacter: '░'
-                },
-                'Block Shading': {
-                    wholeCharacter: '█',
-                    partialCharacters: ['', '░', '▒', '▓'],
-                    blankCharacter: '░'
-                },
-                'Block Quadrants': {
-                    wholeCharacter: '█',
-                    partialCharacters: ['', '▖', '▚', '▙'],
-                    blankCharacter: '░'
-                }
-            }
-
-            const selectedCharacterSet = this.configuration.get('progress.barStyle') as string
-
-            const wholeCharacter = characterSets[selectedCharacterSet].wholeCharacter
-            const partialCharacter =
-                characterSets[selectedCharacterSet].partialCharacters[
-                    Math.round(
-                        (length * proportion - wholeCharacters) *
-                            (characterSets[selectedCharacterSet].partialCharacters.length - 1)
-                    )
-                ]
-            const blankCharacter = characterSets[selectedCharacterSet].blankCharacter
-
-            return (
-                wholeCharacter.repeat(wholeCharacters) +
-                partialCharacter +
-                blankCharacter.repeat(Math.max(0, length - wholeCharacters - partialCharacter.length))
-            )
         }
 
         const enclosedNumbers = {
@@ -390,12 +390,14 @@ export class BuildInfo {
                 20: '⒛'
             }
         }
+
         const padRight = (str: string, desiredMinLength: number) => {
             if (str.length < desiredMinLength) {
                 str = str + ' '.repeat(desiredMinLength - str.length)
             }
             return str
         }
+
         const runIconType = this.configuration.get('progress.runIconType') as keyof typeof enclosedNumbers
         const index = this.currentBuild.ruleNumber as keyof typeof enclosedNumbers[keyof typeof enclosedNumbers]
         const runIcon: string = enclosedNumbers[runIconType][index]
@@ -410,7 +412,7 @@ export class BuildInfo {
             const currentAsString = current.toString()
             const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString(): ''
             const barAsString = this.currentBuild.pageTotal
-                ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
+                ? this.generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
                       'progress.barLength'
                   ) as number)
                 : ''
