@@ -160,9 +160,30 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
-            this.extension.buildInfo.buildStarted()
-            pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
-                this.extension.buildInfo.setPageTotal(doc.numPages)
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            let location: vscode.ProgressLocation
+            let title: string
+            if ((configuration.get('progress.location') as string) === 'Status Bar') {
+                location = vscode.ProgressLocation.Window
+                title = ''
+            } else {
+                location = vscode.ProgressLocation.Notification
+                title = 'Running build process'
+            }
+            vscode.window.withProgress({
+                location,
+                title,
+                cancellable: true
+            }, (progress, token) => {
+                token.onCancellationRequested(this.kill.bind(this))
+                this.extension.buildInfo.buildStarted(progress)
+                pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
+                    this.extension.buildInfo.setPageTotal(doc.numPages)
+                })
+                const p = new Promise(resolve => {
+                    this.extension.buildInfo.setResolveToken(resolve)
+                })
+                return p
             })
             // Create sub directories of output directory
             // This was supposed to create the outputDir as latexmk does not

@@ -19,6 +19,8 @@ export class BuildInfo {
         ruleName: string,
         ruleProducesPages: boolean | undefined
     } | undefined
+    progress: vscode.Progress<{ message?: string, increment?: number }> | undefined
+    resolve: () => void
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -27,9 +29,11 @@ export class BuildInfo {
         this.status.tooltip = 'Show LaTeX Compilation Info Panel'
         this.configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.status.show()
+        this.resolve = () => {}
     }
 
-    public buildStarted() {
+    public buildStarted(progress: vscode.Progress<{ message?: string, increment?: number }>) {
+        this.progress = progress
         this.currentBuild = {
             buildStart: +new Date(),
             pageTotal: undefined,
@@ -63,12 +67,17 @@ export class BuildInfo {
                 this.panel.webview.postMessage({ type: 'finished' })
             }
         }
+        this.resolve()
     }
 
     public setPageTotal(count: number) {
         if (this.currentBuild) {
             this.currentBuild.pageTotal = count
         }
+    }
+
+    public setResolveToken(resolve: () => void) {
+        this.resolve = resolve
     }
 
     public newStdoutLine(lines: string) {
@@ -402,7 +411,10 @@ export class BuildInfo {
         const index = this.currentBuild.ruleNumber as keyof typeof enclosedNumbers[keyof typeof enclosedNumbers]
         const runIcon: string = enclosedNumbers[runIconType][index]
         // set generic status text
-        this.status.text = `${runIcon} ${this.currentBuild.ruleName}`
+        if (!this.progress) {
+            return
+        }
+        this.progress.report({message: `${runIcon} ${this.currentBuild.ruleName}`})
 
         // if we have a page no. we can do better
         if (this.currentBuild.ruleProducesPages) {
@@ -416,10 +428,13 @@ export class BuildInfo {
                       'progress.barLength'
                   ) as number)
                 : ''
-            this.status.text = `${runIcon}  Page ${padRight(
-                currentAsString + endpointAsString,
-                this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
-            )} ${barAsString}`
+            this.progress.report({
+                message: `${runIcon}  Page ${padRight(
+                        currentAsString + endpointAsString,
+                        this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
+                    )} ${barAsString}`,
+                increment: this.currentBuild.pageTotal ? current / this.currentBuild.pageTotal * 100 : undefined
+            })
         }
     }
 }
