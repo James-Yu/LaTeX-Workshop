@@ -4,9 +4,6 @@ import {tokenizer, onAPackage} from './tokenizer'
 
 export class HoverProvider implements vscode.HoverProvider {
     extension: Extension
-    jaxInitialized = false
-    color: any
-    mj: any
 
     constructor(extension: Extension) {
         this.extension = extension
