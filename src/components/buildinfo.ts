@@ -91,12 +91,15 @@ export class BuildInfo {
         const hardcodedRulesPageProducing = ['pdflatex', 'pdftex', 'lualatex']
         const hardcodedRulesOther = ['sage']
 
-        const rulePdfLatexStart = /This is pdfTeX, Version [\d.-]+[^\n]*$/
-        const ruleSageStart = /Processing Sage code for [\w.\- "]+\.\.\.$/
-        const ruleBibtexStart = /This is BibTeX[\w.\- ",()]+$/
-        const ruleLuaTexStart = /This is LuaTeX, Version [\d.]+[^\n]*$/
-
-        // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
+        // A rule consists of a regex to catch the program starting and a boolean of whether
+        // or not the program produces pages in the PDF
+        // TODO: Add more rules
+        const rules = {
+            pdfTeX: [ /This is pdfTeX, Version [\d.-]+[^\n]*$/, true ],
+            BibTeX: [ /This is BibTeX[\w.\- ",()]+$/, false ],
+            Sage: [ /Processing Sage code for [\w.\- "]+\.\.\.$/, false ],
+            LuaTeX: [ /This is LuaTeX, Version [\d.]+[^\n]*$/, true ]
+        }
 
         if (!this.currentBuild) {
             return
@@ -118,32 +121,18 @@ export class BuildInfo {
                 this.displayProgress(0)
                 this.currentBuild.lastStepTime = +new Date()
             }
-        } else if (this.currentBuild.stdout.match(rulePdfLatexStart)) {
-            this.currentBuild.ruleName = 'pdfLaTeX'
-            this.currentBuild.ruleProducesPages = true
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
-        } else if (this.currentBuild.stdout.match(ruleBibtexStart)) {
-            this.currentBuild.ruleName = 'BibTeX'
-            this.currentBuild.ruleProducesPages = false
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
-        } else if (this.currentBuild.stdout.match(ruleSageStart)) {
-            this.currentBuild.ruleName = 'Sage'
-            this.currentBuild.ruleProducesPages = false
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
-        } else if (this.currentBuild.stdout.match(ruleLuaTexStart)) {
-            this.currentBuild.ruleName = 'LuaTex'
-            this.currentBuild.ruleProducesPages = true
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
+        } else {
+            for(const [ruleName, ruleData] of Object.entries(rules)) {
+                if (this.currentBuild.stdout.match(ruleData[0] as RegExp)) {
+                    this.currentBuild.ruleName = ruleName
+                    this.currentBuild.ruleProducesPages = ruleData[1] as boolean
+                    this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
+                    this.displayProgress(0)
+                    this.currentBuild.lastStepTime = +new Date()
+                    break
+                }
+            }
         }
-        // TODO: Add more rules
     }
 
     public showPanel() {
