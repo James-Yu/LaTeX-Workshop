@@ -240,7 +240,7 @@ export class MathPreview {
     }
 
     private svgToDataUrl(xml: string): string {
-        const svg64 = Buffer.from(unescape(encodeURIComponent(xml))).toString('base64')
+        const svg64 = Buffer.from(unescape(encodeURIComponent(xml)), 'binary').toString('base64')
         const b64Start = 'data:image/svg+xml;base64,'
         return b64Start + svg64
     }
