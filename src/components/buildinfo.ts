@@ -32,7 +32,7 @@ export class BuildInfo {
         this.resolve = () => {}
     }
 
-    public buildStarted(progress: vscode.Progress<{ message?: string, increment?: number }>) {
+    public buildStarted(progress?: vscode.Progress<{ message?: string, increment?: number }>) {
         this.progress = progress
         this.currentBuild = {
             buildStart: +new Date(),
@@ -410,36 +410,43 @@ export class BuildInfo {
         const runIconType = this.configuration.get('progress.runIconType') as keyof typeof enclosedNumbers
         const index = this.currentBuild.ruleNumber as keyof typeof enclosedNumbers[keyof typeof enclosedNumbers]
         const runIcon: string = enclosedNumbers[runIconType][index]
-        // set generic status text
-        if (!this.progress) {
-            return
-        }
-        // reset progress bar
-        if (reset) {
+
+        // Reset progress bar on each run
+        if (this.progress && reset) {
             this.progress.report({increment: -100})
         }
-        this.progress.report({message: `${runIcon} ${this.currentBuild.ruleName}`})
 
-        // if we have a page no. we can do better
-        if (this.currentBuild.ruleProducesPages) {
+        if (this.currentBuild.ruleProducesPages === false) {
+            // set generic status text
+            if (this.progress) {
+                this.progress.report({message: `Run ${this.currentBuild.ruleNumber}, ${this.currentBuild.ruleName}`})
+            } else {
+                this.status.text = `${runIcon} ${this.currentBuild.ruleName}`
+            }
+        } else {
+            // if we have a page no. we can do better
             if (typeof current === 'string') {
                 current = parseInt(current)
             }
             const currentAsString = current.toString()
             const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString(): ''
-            const barAsString = this.currentBuild.pageTotal
+            if (this.progress) {
+                this.progress.report({
+                    message: `Run ${this.currentBuild.ruleNumber}, processing page ${currentAsString + endpointAsString}`,
+                    increment: current === 0 ? 0 :
+                            this.currentBuild.pageTotal ? 1 / this.currentBuild.pageTotal * 100 : undefined
+                })
+            } else {
+                const barAsString = this.currentBuild.pageTotal
                 ? this.generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
                       'progress.barLength'
                   ) as number)
                 : ''
-            this.progress.report({
-                message: `${runIcon}  Page ${padRight(
-                        currentAsString + endpointAsString,
-                        this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
-                    )} ${barAsString}`,
-                increment: current === 0 ? 0 :
-                           this.currentBuild.pageTotal ? 1 / this.currentBuild.pageTotal * 100 : undefined
-            })
+                this.status.text = `${runIcon}, Page ${padRight(
+                    currentAsString + endpointAsString,
+                    this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
+                )} ${barAsString}`
+            }
         }
     }
 }

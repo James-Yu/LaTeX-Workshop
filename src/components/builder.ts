@@ -161,29 +161,24 @@ export class Builder {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            let location: vscode.ProgressLocation
-            let title: string
             if ((configuration.get('progress.location') as string) === 'Status Bar') {
-                location = vscode.ProgressLocation.Window
-                title = ''
+                this.extension.buildInfo.buildStarted()
             } else {
-                location = vscode.ProgressLocation.Notification
-                title = 'Running build process'
+                vscode.window.withProgress({
+                    location: vscode.ProgressLocation.Notification,
+                    title: 'Running build process',
+                    cancellable: true
+                }, (progress, token) => {
+                    token.onCancellationRequested(this.kill.bind(this))
+                    this.extension.buildInfo.buildStarted(progress)
+                    const p = new Promise(resolve => {
+                        this.extension.buildInfo.setResolveToken(resolve)
+                    })
+                    return p
+                })
             }
-            vscode.window.withProgress({
-                location,
-                title,
-                cancellable: true
-            }, (progress, token) => {
-                token.onCancellationRequested(this.kill.bind(this))
-                this.extension.buildInfo.buildStarted(progress)
-                pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
-                    this.extension.buildInfo.setPageTotal(doc.numPages)
-                })
-                const p = new Promise(resolve => {
-                    this.extension.buildInfo.setResolveToken(resolve)
-                })
-                return p
+            pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
+                this.extension.buildInfo.setPageTotal(doc.numPages)
             })
             // Create sub directories of output directory
             // This was supposed to create the outputDir as latexmk does not
