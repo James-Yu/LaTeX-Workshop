@@ -127,7 +127,7 @@ export class BuildInfo {
                 this.currentBuild.ruleName = ruleName
                 this.currentBuild.ruleProducesPages = undefined
                 this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-                this.displayProgress(0)
+                this.displayProgress(0, true)
                 this.currentBuild.lastStepTime = +new Date()
             }
         } else {
@@ -136,7 +136,7 @@ export class BuildInfo {
                     this.currentBuild.ruleName = ruleName
                     this.currentBuild.ruleProducesPages = ruleData[1] as boolean
                     this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-                    this.displayProgress(0)
+                    this.displayProgress(0, true)
                     this.currentBuild.lastStepTime = +new Date()
                     break
                 }
@@ -238,7 +238,7 @@ export class BuildInfo {
         )
     }
 
-    private displayProgress(current: string | number) {
+    private displayProgress(current: (string | number), reset: boolean = false) {
         if (!this.currentBuild) {
             throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
@@ -414,6 +414,10 @@ export class BuildInfo {
         if (!this.progress) {
             return
         }
+        // reset progress bar
+        if (reset) {
+            this.progress.report({increment: -100})
+        }
         this.progress.report({message: `${runIcon} ${this.currentBuild.ruleName}`})
 
         // if we have a page no. we can do better
@@ -433,7 +437,8 @@ export class BuildInfo {
                         currentAsString + endpointAsString,
                         this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
                     )} ${barAsString}`,
-                increment: this.currentBuild.pageTotal ? current / this.currentBuild.pageTotal * 100 : undefined
+                increment: current === 0 ? 0 :
+                           this.currentBuild.pageTotal ? 1 / this.currentBuild.pageTotal * 100 : undefined
             })
         }
     }
