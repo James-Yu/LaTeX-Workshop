@@ -1462,8 +1462,7 @@
     "lint": "eslint --cache --ext .ts,.js .",
     "lint:fix": "eslint --fix --cache --ext .ts,.js .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
-    "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "watch": "tsc -watch -p ./"
   },
   "husky": {
     "hooks": {
@@ -1501,6 +1500,7 @@
     "@types/micromatch": "^3.0.0",
     "@types/node": "^10.12.12",
     "@types/tmp": "^0.0.33",
+    "@types/vscode": "1.34.0",
     "@types/workerpool": "^5.0.0",
     "@types/ws": "^4.0.2",
     "@typescript-eslint/eslint-plugin": "^2.1.0",
@@ -1512,7 +1512,6 @@
     "rimraf": "^3.0.0",
     "typescript": "^3.5.3",
     "vsce": "^1.66.0",
-    "vscode": "^1.1.14",
     "webpack": "^4.20.2"
   }
 }
