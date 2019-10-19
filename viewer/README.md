@@ -6,7 +6,7 @@ Mozilla [asks](https://mozilla.github.io/pdf.js/getting_started/) web developers
 
 We provide additional features by setting up new event listeners in `latexworkshop.js` for DOM objects in `viewer.html`. We do not and should not override functions defined by PDF.js.
 
-We can see the [changes](https://github.com/James-Yu/LaTeX-Workshop/compare/a0b97a9...a5f8c04#diff-ff661e0ff756ae1ff026c0e8f4561d0e) we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
+We can see the [changes](https://github.com/James-Yu/LaTeX-Workshop/commit/c015e2a4aeb56c18c3f8430b9bea63ab4db27b01#diff-ff661e0ff756ae1ff026c0e8f4561d0e) we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
 
 
 ### refreshing operation
@@ -19,7 +19,7 @@ When refreshExistingViewer (viewer.ts) called:
 server (viewer.ts) -> JSON (type "refresh")  -> pdf viewer (latexworkshop.js)
 server (viewer.ts) <- JSON (type "position") <- pdf viewer (latexworkshop.js)
 
-After pageinit:
+After pagesinit:
 
 server (viewer.ts) <- JSON (type "loaded")   <-  pdf viewer (latexworkshop.js)
 server (viewer.ts) -> JSON (type "position") ->  pdf viewer (latexworkshop.js)
