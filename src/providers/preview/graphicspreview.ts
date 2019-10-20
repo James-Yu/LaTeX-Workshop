@@ -17,14 +17,15 @@ export class GraphicsPreview {
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position) {
-        const pat = /\\includegraphics\{(.*?)\}/
+        const pat = /\\includegraphics\s*(?:\[(.*?)\])?\s*\{(.*?)\}/
         const range = document.getWordRangeAtPosition(position, pat)
         if (!range) {
             return undefined
         }
         const cmdString = document.getText(range)
         const execArray = pat.exec(cmdString)
-        const relPath = execArray && execArray[1]
+        const relPath = execArray && execArray[2]
+        const includeGraphicsArgs = execArray && execArray[1]
         if (!execArray || !relPath) {
             return undefined
         }
@@ -34,8 +35,15 @@ export class GraphicsPreview {
         } else {
             filePath = this.joinFilePath(document, relPath)
         }
+        let pageNumber = 1
+        if (includeGraphicsArgs) {
+            const m = /page\s*=\s*(\d+)/.exec(includeGraphicsArgs)
+            if (m && m[1]) {
+                pageNumber = Number(m[1])
+            }
+        }
         if (/\.pdf$/i.exec(relPath)) {
-            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: 250, width: 500 })
+            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: 250, width: 500, page: pageNumber })
             const svg = this.setBackgroundColor(svg0)
             const dataUrl = svgToDataUrl(svg)
             const md = new vscode.MarkdownString(`![pdf](${dataUrl})`)
