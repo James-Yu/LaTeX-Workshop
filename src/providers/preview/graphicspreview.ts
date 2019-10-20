@@ -35,7 +35,8 @@ export class GraphicsPreview {
             filePath = this.joinFilePath(document, relPath)
         }
         if (/\.pdf$/i.exec(relPath)) {
-            const svg = await this.pdfRenderer.renderToSVG(filePath, { height: 250, width: 500 })
+            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: 250, width: 500 })
+            const svg = this.setBackgroundColor(svg0)
             const dataUrl = svgToDataUrl(svg)
             const md = new vscode.MarkdownString(`![pdf](${dataUrl})`)
             return new vscode.Hover(md, range)
@@ -47,6 +48,10 @@ export class GraphicsPreview {
             return new vscode.Hover(md, range)
         }
         return undefined
+    }
+
+    setBackgroundColor(svg: string): string {
+        return svg.replace(/(<\/svg:style>)/, 'svg { background-color: white };$1')
     }
 
     joinFilePath(document: vscode.TextDocument, relPath: string) {
