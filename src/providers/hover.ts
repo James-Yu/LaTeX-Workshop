@@ -23,14 +23,14 @@ export class HoverProvider implements vscode.HoverProvider {
                 const hover = await this.extension.mathPreview.provideHoverOnTex(document, tex, newCommands)
                 return hover
             }
+            const graphicsHover = await this.extension.graphicsPreview.provideHover(document, position)
+            if (graphicsHover) {
+                return graphicsHover
+            }
         }
         const token = tokenizer(document, position)
         if (!token) {
             return undefined
-        }
-        const graphicsHover = await this.extension.graphicsPreview.provideHover(document, position)
-        if (graphicsHover) {
-            return graphicsHover
         }
         // Test if we are on a command
         if (token.startsWith('\\')) {
