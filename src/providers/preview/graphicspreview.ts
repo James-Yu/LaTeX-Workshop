@@ -1,11 +1,13 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import Jimp from 'jimp'
-import * as JimpLib0 from 'jimp'
 import {Extension} from '../../main'
 import {PDFRenderer} from './pdfrenderer'
 import {svgToDataUrl} from '../../utils'
 
+// workaround to avoid enabling esModuleInterop in tsconfig.json
+// If esModuleInterop enabled, some other packages do not work.
+import Jimp from 'jimp'
+import * as JimpLib0 from 'jimp'
 const JimpLib = JimpLib0 as unknown as Jimp
 
 export class GraphicsPreview {
