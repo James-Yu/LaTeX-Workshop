@@ -24,7 +24,19 @@ export class Reference {
     provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion object to array
         this.updateAll(args)
-        return Object.keys(this.suggestions).map(key => this.suggestions[key])
+        let keys = Object.keys(this.suggestions)
+        keys = keys.concat(Object.keys(this.prevIndexObj))
+        keys = Array.from(new Set(keys))
+        const items: vscode.CompletionItem[] = []
+        for (const key of keys) {
+            const sug = this.suggestions[key]
+            if (sug) {
+                items.push(sug)
+            } else {
+                items.push({label: key})
+            }
+        }
+        return items
     }
 
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
