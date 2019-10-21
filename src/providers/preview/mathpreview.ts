@@ -134,8 +134,7 @@ export class MathPreview {
             svgNode: true,
         })
         this.scaleSVG(data, scale)
-        this.colorSVG(data)
-        const xml = data.svgNode.outerHTML
+        const xml = this.colorSVG(data.svgNode.outerHTML)
         const md = this.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
@@ -184,8 +183,7 @@ export class MathPreview {
             state: {AMS: obj}
         })
         this.scaleSVG(data, scale)
-        this.colorSVG(data)
-        const xml = data.svgNode.outerHTML
+        const xml = this.colorSVG(data.svgNode.outerHTML)
         const md = this.svgToDataUrl(xml)
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
@@ -254,10 +252,9 @@ export class MathPreview {
         } : null
     }
 
-    private colorSVG(data: any) {
-        const svgelm = data.svgNode
-        const g = svgelm.getElementsByTagName('g')[0]
-        g.setAttribute('fill', this.color)
+    private colorSVG(svg: string): string {
+        const ret = svg.replace('</title>', `</title><style> * { color: ${this.color} }</style>`)
+        return ret
     }
 
     private stripTeX(tex: string): string {
