@@ -33,15 +33,7 @@ export class Command {
     }
 
     initialize(defaultCmds: {[key: string]: DataItemEntry}, defaultEnvs: string[]) {
-        const replacementConfig = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as string[][]
-        const snippetReplacements: {[key: string]: string} = {}
-        replacementConfig.forEach(item => {
-            if (item.length !== 2) {
-                this.extension.logger.showErrorMessage('Elements of latex-workshop.intellisense.commandsJSON.replace must have length 2')
-            } else {
-                snippetReplacements[item[0]] = item[1]
-            }
-        })
+        const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
 
         // Initialize default commands and `latex-mathsymbols`
         Object.keys(defaultCmds).forEach(key => {
