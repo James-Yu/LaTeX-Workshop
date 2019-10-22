@@ -1350,6 +1350,14 @@
           "default": true,
           "markdownDescription": "Many snippets use PlaceHolders of the form ${\\d:some_text} for their argument. You may prefer to use TabStops ${\\d} instead, which allows for direct call to intellisense again. Default is true.\nReload vscode to make this configuration effective."
         },
+        "latex-workshop.intellisense.commandsJSON.replace": {
+          "type": "array",
+          "default": [],
+          "items": {
+            "type": "array"
+          },
+          "markdownDescription": "Array of pairs `[\"snippet name\", \"snippet action\"]` to replace the default snippets in `data/commands.json`. Snippet actions should not begin with a `\\`. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `[ [\"latexdisplaymath\", \"[ ${1} \\\\]\"], [\"figure\", \"\"] ]`. Reload vscode to make any change in this configuration effective."
+        },
         "latex-workshop.texdoc.path": {
           "type": "string",
           "default": "texdoc",

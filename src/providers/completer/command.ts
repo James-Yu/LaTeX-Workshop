@@ -33,9 +33,27 @@ export class Command {
     }
 
     initialize(defaultCmds: {[key: string]: DataItemEntry}, defaultEnvs: string[]) {
+        const replacementConfig = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as string[][]
+        const snippetReplacements: {[key: string]: string} = {}
+        replacementConfig.forEach(item => {
+            if (item.length !== 2) {
+                this.extension.logger.showErrorMessage('Elements of latex-workshop.intellisense.commandsJSON.replace must have length 2')
+            } else {
+                snippetReplacements[item[0]] = item[1]
+            }
+        })
+
         // Initialize default commands and `latex-mathsymbols`
         Object.keys(defaultCmds).forEach(key => {
-            this.defaultCmds.push(this.entryToCompletion(defaultCmds[key]))
+            if (key in snippetReplacements) {
+                const action = snippetReplacements[key]
+                if (action !== '') {
+                    defaultCmds[key].snippet = action
+                    this.defaultCmds.push(this.entryToCompletion(defaultCmds[key]))
+                }
+            } else {
+                this.defaultCmds.push(this.entryToCompletion(defaultCmds[key]))
+            }
         })
 
         // Initialize default env begin-end pairs, de-duplication
