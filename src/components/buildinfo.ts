@@ -19,6 +19,8 @@ export class BuildInfo {
         ruleName: string,
         ruleProducesPages: boolean | undefined
     } | undefined
+    progress: vscode.Progress<{ message?: string, increment?: number }> | undefined
+    resolve: () => void
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -27,9 +29,11 @@ export class BuildInfo {
         this.status.tooltip = 'Show LaTeX Compilation Info Panel'
         this.configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.status.show()
+        this.resolve = () => {}
     }
 
-    public buildStarted() {
+    public buildStarted(progress?: vscode.Progress<{ message?: string, increment?: number }>) {
+        this.progress = progress
         this.currentBuild = {
             buildStart: +new Date(),
             pageTotal: undefined,
@@ -63,12 +67,17 @@ export class BuildInfo {
                 this.panel.webview.postMessage({ type: 'finished' })
             }
         }
+        this.resolve()
     }
 
     public setPageTotal(count: number) {
         if (this.currentBuild) {
             this.currentBuild.pageTotal = count
         }
+    }
+
+    public setResolveToken(resolve: () => void) {
+        this.resolve = resolve
     }
 
     public newStdoutLine(lines: string) {
@@ -91,12 +100,15 @@ export class BuildInfo {
         const hardcodedRulesPageProducing = ['pdflatex', 'pdftex', 'lualatex']
         const hardcodedRulesOther = ['sage']
 
-        const rulePdfLatexStart = /This is pdfTeX, Version [\d.-]+[^\n]*$/
-        const ruleSageStart = /Processing Sage code for [\w.\- "]+\.\.\.$/
-        const ruleBibtexStart = /This is BibTeX[\w.\- ",()]+$/
-        const ruleLuaTexStart = /This is LuaTeX, Version [\d.]+[^\n]*$/
-
-        // TODO: refactor code below, it could be a lot more efficiently (to look at, not computationally)
+        // A rule consists of a regex to catch the program starting and a boolean of whether
+        // or not the program produces pages in the PDF
+        // TODO: Add more rules
+        const rules = {
+            pdfTeX: [ /This is pdfTeX, Version [\d.-]+[^\n]*$/, true ],
+            BibTeX: [ /This is BibTeX[\w.\- ",()]+$/, false ],
+            Sage: [ /Processing Sage code for [\w.\- "]+\.\.\.$/, false ],
+            LuaTeX: [ /This is LuaTeX, Version [\d.]+[^\n]*$/, true ]
+        }
 
         if (!this.currentBuild) {
             return
@@ -115,35 +127,21 @@ export class BuildInfo {
                 this.currentBuild.ruleName = ruleName
                 this.currentBuild.ruleProducesPages = undefined
                 this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-                this.displayProgress(0)
+                this.displayProgress(0, true)
                 this.currentBuild.lastStepTime = +new Date()
             }
-        } else if (this.currentBuild.stdout.match(rulePdfLatexStart)) {
-            this.currentBuild.ruleName = 'pdfLaTeX'
-            this.currentBuild.ruleProducesPages = true
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
-        } else if (this.currentBuild.stdout.match(ruleBibtexStart)) {
-            this.currentBuild.ruleName = 'BibTeX'
-            this.currentBuild.ruleProducesPages = false
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
-        } else if (this.currentBuild.stdout.match(ruleSageStart)) {
-            this.currentBuild.ruleName = 'Sage'
-            this.currentBuild.ruleProducesPages = false
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
-        } else if (this.currentBuild.stdout.match(ruleLuaTexStart)) {
-            this.currentBuild.ruleName = 'LuaTex'
-            this.currentBuild.ruleProducesPages = true
-            this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
-            this.displayProgress(0)
-            this.currentBuild.lastStepTime = +new Date()
+        } else {
+            for(const [ruleName, ruleData] of Object.entries(rules)) {
+                if (this.currentBuild.stdout.match(ruleData[0] as RegExp)) {
+                    this.currentBuild.ruleName = ruleName
+                    this.currentBuild.ruleProducesPages = ruleData[1] as boolean
+                    this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
+                    this.displayProgress(0, true)
+                    this.currentBuild.lastStepTime = +new Date()
+                    break
+                }
+            }
         }
-        // TODO: Add more rules
     }
 
     public showPanel() {
@@ -187,7 +185,60 @@ export class BuildInfo {
         }
     }
 
-    private displayProgress(current: string | number) {
+    private generateProgressBar(proportion: number, length: number): string {
+        const wholeCharacters = Math.min(length, Math.trunc(length * proportion))
+
+        interface IProgressBarCharacterSets {
+            [settingsName: string]: {
+                wholeCharacter: string,
+                partialCharacters: string[],
+                blankCharacter: string
+            }
+        }
+
+        const characterSets: IProgressBarCharacterSets = {
+            none: {
+                wholeCharacter: '',
+                partialCharacters: [''],
+                blankCharacter: ''
+            },
+            'Block Width': {
+                wholeCharacter: '█',
+                partialCharacters: ['', '▏', '▎', '▍', '▌ ', '▋', '▊', '▉', '█ '],
+                blankCharacter: '░'
+            },
+            'Block Shading': {
+                wholeCharacter: '█',
+                partialCharacters: ['', '░', '▒', '▓'],
+                blankCharacter: '░'
+            },
+            'Block Quadrants': {
+                wholeCharacter: '█',
+                partialCharacters: ['', '▖', '▚', '▙'],
+                blankCharacter: '░'
+            }
+        }
+
+        const selectedCharacterSet = this.configuration.get('progress.barStyle') as string
+
+        const wholeCharacter = characterSets[selectedCharacterSet].wholeCharacter
+        const partialCharacter =
+            characterSets[selectedCharacterSet].partialCharacters[
+                Math.round(
+                    (length * proportion - wholeCharacters) *
+                        (characterSets[selectedCharacterSet].partialCharacters.length - 1)
+                )
+            ]
+        const blankCharacter = characterSets[selectedCharacterSet].blankCharacter
+
+        return (
+            wholeCharacter.repeat(wholeCharacters) +
+            partialCharacter +
+            blankCharacter.repeat(Math.max(0, length - wholeCharacters - partialCharacter.length))
+        )
+    }
+
+    private displayProgress(current: (string | number), reset: boolean = false) {
         if (!this.currentBuild) {
             throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
@@ -252,59 +303,6 @@ export class BuildInfo {
                 stepTimes: this.currentBuild.stepTimes,
                 pageTotal: this.currentBuild.pageTotal
             })
-        }
-
-        const generateProgressBar = (proportion: number, length: number) => {
-            const wholeCharacters = Math.min(length, Math.trunc(length * proportion))
-
-            interface IProgressBarCharacterSets {
-                [settingsName: string]: {
-                    wholeCharacter: string,
-                    partialCharacters: string[],
-                    blankCharacter: string
-                }
-            }
-
-            const characterSets: IProgressBarCharacterSets = {
-                none: {
-                    wholeCharacter: '',
-                    partialCharacters: [''],
-                    blankCharacter: ''
-                },
-                'Block Width': {
-                    wholeCharacter: '█',
-                    partialCharacters: ['', '▏', '▎', '▍', '▌ ', '▋', '▊', '▉', '█ '],
-                    blankCharacter: '░'
-                },
-                'Block Shading': {
-                    wholeCharacter: '█',
-                    partialCharacters: ['', '░', '▒', '▓'],
-                    blankCharacter: '░'
-                },
-                'Block Quadrants': {
-                    wholeCharacter: '█',
-                    partialCharacters: ['', '▖', '▚', '▙'],
-                    blankCharacter: '░'
-                }
-            }
-
-            const selectedCharacterSet = this.configuration.get('progress.barStyle') as string
-
-            const wholeCharacter = characterSets[selectedCharacterSet].wholeCharacter
-            const partialCharacter =
-                characterSets[selectedCharacterSet].partialCharacters[
-                    Math.round(
-                        (length * proportion - wholeCharacters) *
-                            (characterSets[selectedCharacterSet].partialCharacters.length - 1)
-                    )
-                ]
-            const blankCharacter = characterSets[selectedCharacterSet].blankCharacter
-
-            return (
-                wholeCharacter.repeat(wholeCharacters) +
-                partialCharacter +
-                blankCharacter.repeat(Math.max(0, length - wholeCharacters - partialCharacter.length))
-            )
         }
 
         const enclosedNumbers = {
@@ -401,34 +399,54 @@ export class BuildInfo {
                 20: '⒛'
             }
         }
+
         const padRight = (str: string, desiredMinLength: number) => {
             if (str.length < desiredMinLength) {
                 str = str + ' '.repeat(desiredMinLength - str.length)
             }
             return str
         }
+
         const runIconType = this.configuration.get('progress.runIconType') as keyof typeof enclosedNumbers
         const index = this.currentBuild.ruleNumber as keyof typeof enclosedNumbers[keyof typeof enclosedNumbers]
         const runIcon: string = enclosedNumbers[runIconType][index]
-        // set generic status text
-        this.status.text = `${runIcon} ${this.currentBuild.ruleName}`
 
-        // if we have a page no. we can do better
-        if (this.currentBuild.ruleProducesPages) {
+        // Reset progress bar on each run
+        if (this.progress && reset) {
+            this.progress.report({increment: -100})
+        }
+
+        if (this.currentBuild.ruleProducesPages === false) {
+            // set generic status text
+            if (this.progress) {
+                this.progress.report({message: `Run ${this.currentBuild.ruleNumber}, ${this.currentBuild.ruleName}`})
+            } else {
+                this.status.text = `${runIcon} ${this.currentBuild.ruleName}`
+            }
+        } else {
+            // if we have a page no. we can do better
             if (typeof current === 'string') {
                 current = parseInt(current)
             }
             const currentAsString = current.toString()
             const endpointAsString = this.currentBuild.pageTotal ? '/' + this.currentBuild.pageTotal.toString(): ''
-            const barAsString = this.currentBuild.pageTotal
-                ? generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
+            if (this.progress) {
+                this.progress.report({
+                    message: `Run ${this.currentBuild.ruleNumber}, processing page ${currentAsString + endpointAsString}`,
+                    increment: current === 0 ? 0 :
+                            this.currentBuild.pageTotal ? 1 / this.currentBuild.pageTotal * 100 : undefined
+                })
+            } else {
+                const barAsString = this.currentBuild.pageTotal
+                ? this.generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
                       'progress.barLength'
                   ) as number)
                 : ''
-            this.status.text = `${runIcon}  Page ${padRight(
-                currentAsString + endpointAsString,
-                this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
-            )} ${barAsString}`
+                this.status.text = `${runIcon}, Page ${padRight(
+                    currentAsString + endpointAsString,
+                    this.currentBuild.pageTotal ? this.currentBuild.pageTotal.toString().length * 2 + 2 : 6
+                )} ${barAsString}`
+            }
         }
     }
 }

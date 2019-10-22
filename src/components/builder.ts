@@ -160,7 +160,23 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
-            this.extension.buildInfo.buildStarted()
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            if ((configuration.get('progress.location') as string) === 'Status Bar') {
+                this.extension.buildInfo.buildStarted()
+            } else {
+                vscode.window.withProgress({
+                    location: vscode.ProgressLocation.Notification,
+                    title: 'Running build process',
+                    cancellable: true
+                }, (progress, token) => {
+                    token.onCancellationRequested(this.kill.bind(this))
+                    this.extension.buildInfo.buildStarted(progress)
+                    const p = new Promise(resolve => {
+                        this.extension.buildInfo.setResolveToken(resolve)
+                    })
+                    return p
+                })
+            }
             pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
                 this.extension.buildInfo.setPageTotal(doc.numPages)
             })
