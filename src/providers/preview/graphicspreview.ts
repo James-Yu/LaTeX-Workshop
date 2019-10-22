@@ -6,9 +6,12 @@ import {svgToDataUrl} from '../../utils'
 
 // workaround to avoid enabling esModuleInterop in tsconfig.json
 // If esModuleInterop enabled, some other packages do not work.
-import Jimp from 'jimp'
+import JimpT from 'jimp'
 import * as JimpLib0 from 'jimp'
-const JimpLib = JimpLib0 as unknown as Jimp
+const JimpLib = JimpLib0 as unknown as JimpT
+
+const maxHeight = 250
+const maxWidth = 500
 
 export class GraphicsPreview {
     extension: Extension
@@ -45,15 +48,16 @@ export class GraphicsPreview {
             }
         }
         if (/\.pdf$/i.exec(relPath)) {
-            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: 250, width: 500, page: pageNumber })
+            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: maxHeight, width: maxWidth, page: pageNumber })
             const svg = this.setBackgroundColor(svg0)
             const dataUrl = svgToDataUrl(svg)
             const md = new vscode.MarkdownString(`![pdf](${dataUrl})`)
             return new vscode.Hover(md, range)
         }
-        if (/\.(bmp|jpg|jpeg|gif|png)/i.exec(filePath)) {
-            const image = await (JimpLib as unknown as Jimp).read(filePath)
-            const dataUrl = await image.contain(300, 250).getBase64Async(image.getMIME())
+        if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
+            const image = await JimpLib.read(filePath)
+            const scale = Math.min(maxHeight/image.getHeight(), maxWidth/image.getWidth(), 1)
+            const dataUrl = await image.scale(scale).getBase64Async(image.getMIME())
             const md = new vscode.MarkdownString(`![image](${dataUrl})`)
             return new vscode.Hover(md, range)
         }
