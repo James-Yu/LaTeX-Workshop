@@ -4,11 +4,24 @@ import {Extension} from '../../main'
 import {PDFRenderer} from './pdfrenderer'
 import {svgToDataUrl} from '../../utils'
 
+import * as configure0 from '@jimp/custom'
+import * as bmp from '@jimp/bmp'
+import * as png from '@jimp/png'
+import * as jpeg from '@jimp/types'
+import * as resize from '@jimp/plugin-resize'
+import * as scal from '@jimp/plugin-scale'
+
+const configure = configure0 as any
+const j = configure({
+  types: [bmp, jpeg, png],
+  plugins: [resize, scal]
+})
+
 // workaround to avoid enabling esModuleInterop in tsconfig.json
 // If esModuleInterop enabled, some other packages do not work.
 import JimpT from 'jimp'
-import * as JimpLib0 from 'jimp'
-const JimpLib = JimpLib0 as unknown as JimpT
+//import * as JimpLib0 from 'jimp'
+const JimpLib = j as unknown as JimpT
 
 export class GraphicsPreview {
     extension: Extension
@@ -55,7 +68,7 @@ export class GraphicsPreview {
     async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
         if (/\.pdf$/i.exec(filePath)) {
             const svg0 = await this.pdfRenderer.renderToSVG(
-                filePath, 
+                filePath,
                 { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
             )
             const svg = this.setBackgroundColor(svg0)
