@@ -21,7 +21,7 @@ export class GraphicsPreview {
         this.pdfRenderer = new PDFRenderer(e)
     }
 
-    async provideHover(document: vscode.TextDocument, position: vscode.Position) {
+    async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
         const pat = /\\includegraphics\s*(?:\[(.*?)\])?\s*\{(.*?)\}/
         const range = document.getWordRangeAtPosition(position, pat)
         if (!range) {
@@ -48,7 +48,7 @@ export class GraphicsPreview {
             }
         }
         if (/\.pdf$/i.exec(relPath)) {
-            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: maxHeight, width: maxWidth, page: pageNumber })
+            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: maxHeight, width: maxWidth, pageNumber })
             const svg = this.setBackgroundColor(svg0)
             const dataUrl = svgToDataUrl(svg)
             const md = new vscode.MarkdownString(`![pdf](${dataUrl})`)
@@ -68,7 +68,7 @@ export class GraphicsPreview {
         return svg.replace(/(<\/svg:style>)/, 'svg { background-color: white };$1')
     }
 
-    joinFilePath(document: vscode.TextDocument, relPath: string) {
+    joinFilePath(document: vscode.TextDocument, relPath: string): string {
         const docPath = document.uri.fsPath
         const dirPath = path.dirname(docPath)
         return path.join(dirPath, relPath)

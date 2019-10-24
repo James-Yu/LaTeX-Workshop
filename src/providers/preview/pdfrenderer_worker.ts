@@ -26,7 +26,7 @@ class NodeCMapReaderFactory {
     }
 }
 
-async function renderToSvg(pdfPath: string, options: { height: number, width: number, page: number }) {
+async function renderToSvg(pdfPath: string, options: { height: number, width: number, pageNumber: number }): Promise<string> {
     const data = new Uint8Array(fs.readFileSync(pdfPath))
     const loadingTask = pdfjsLib.getDocument({
         data,
@@ -34,7 +34,7 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
         CMapReaderFactory: NodeCMapReaderFactory
     })
     const doc = await loadingTask.promise
-    const page = await doc.getPage(options.page)
+    const page = await doc.getPage(options.pageNumber)
 
     let viewport = page.getViewport({ scale: 1.0, })
     const height = options.height
