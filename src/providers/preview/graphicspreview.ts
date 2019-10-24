@@ -10,9 +10,6 @@ import JimpT from 'jimp'
 import * as JimpLib0 from 'jimp'
 const JimpLib = JimpLib0 as unknown as JimpT
 
-const maxHeight = 250
-const maxWidth = 500
-
 export class GraphicsPreview {
     extension: Extension
     pdfRenderer: PDFRenderer
@@ -47,19 +44,29 @@ export class GraphicsPreview {
                 pageNumber = Number(m[1])
             }
         }
-        if (/\.pdf$/i.exec(relPath)) {
-            const svg0 = await this.pdfRenderer.renderToSVG(filePath, { height: maxHeight, width: maxWidth, pageNumber })
+        const dataUrl = await this.renderGraphics(filePath, { height: 250, width: 500, pageNumber })
+        if (dataUrl !== undefined) {
+            const md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
+            return new vscode.Hover(md, range)
+        }
+        return undefined
+    }
+
+    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
+        if (/\.pdf$/i.exec(filePath)) {
+            const svg0 = await this.pdfRenderer.renderToSVG(
+                filePath, 
+                { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
+            )
             const svg = this.setBackgroundColor(svg0)
             const dataUrl = svgToDataUrl(svg)
-            const md = new vscode.MarkdownString(`![pdf](${dataUrl})`)
-            return new vscode.Hover(md, range)
+            return dataUrl
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
             const image = await JimpLib.read(filePath)
-            const scale = Math.min(maxHeight/image.getHeight(), maxWidth/image.getWidth(), 1)
+            const scale = Math.min(opts.height/image.getHeight(), opts.width/image.getWidth(), 1)
             const dataUrl = await image.scale(scale).getBase64Async(image.getMIME())
-            const md = new vscode.MarkdownString(`![image](${dataUrl})`)
-            return new vscode.Hover(md, range)
+            return dataUrl
         }
         return undefined
     }
