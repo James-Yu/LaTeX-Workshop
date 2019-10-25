@@ -2,33 +2,19 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import {Extension} from '../../main'
 import {PDFRenderer} from './pdfrenderer'
+import {GraphicsScaler} from './graphicsscaler'
 import {svgToDataUrl} from '../../utils'
 
-import * as configure0 from '@jimp/custom'
-import * as bmp from '@jimp/bmp'
-import * as png from '@jimp/png'
-import * as jpeg from '@jimp/types'
-import * as resize from '@jimp/plugin-resize'
-import * as scal from '@jimp/plugin-scale'
-
-const configure = configure0 as any
-const j = configure({
-  types: [bmp, jpeg, png],
-  plugins: [resize, scal]
-})
-
-// workaround to avoid enabling esModuleInterop in tsconfig.json
-// If esModuleInterop enabled, some other packages do not work.
-import JimpT from 'jimp'
-//import * as JimpLib0 from 'jimp'
-const JimpLib = j as unknown as JimpT
 
 export class GraphicsPreview {
     extension: Extension
     pdfRenderer: PDFRenderer
+    graphicsScaler: GraphicsScaler
+
     constructor(e: Extension) {
         this.extension = e
         this.pdfRenderer = new PDFRenderer(e)
+        this.graphicsScaler = new GraphicsScaler(e)
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
@@ -76,9 +62,7 @@ export class GraphicsPreview {
             return dataUrl
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
-            const image = await JimpLib.read(filePath)
-            const scale = Math.min(opts.height/image.getHeight(), opts.width/image.getWidth(), 1)
-            const dataUrl = await image.scale(scale).getBase64Async(image.getMIME())
+            const dataUrl = await this.graphicsScaler.scale(filePath, opts)
             return dataUrl
         }
         return undefined
