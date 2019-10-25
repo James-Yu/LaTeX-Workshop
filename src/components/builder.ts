@@ -48,7 +48,11 @@ export class Builder {
         const proc = this.currentProcess
         if (proc) {
             const pid = proc.pid
-            proc.kill()
+            if (process.platform === 'linux') {
+                cp.exec(`pkill -P ${pid}`)
+            } else {
+               proc.kill()
+            }
             this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
         } else {
             this.extension.logger.addLogMessage('LaTeX build process to kill is not found.')
