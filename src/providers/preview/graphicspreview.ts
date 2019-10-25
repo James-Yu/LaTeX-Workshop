@@ -43,7 +43,7 @@ export class GraphicsPreview {
                 pageNumber = Number(m[1])
             }
         }
-        const dataUrl = await this.renderGraphics(filePath, { height: 250, width: 500, pageNumber })
+        const dataUrl = await this.renderGraphics(filePath, { height: 230, width: 500, pageNumber })
         if (dataUrl !== undefined) {
             const md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
             return new vscode.Hover(md, range)
