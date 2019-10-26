@@ -127,32 +127,32 @@ declare module "pdfjs-dist" {
      *   PDF.js (see `web/debugger.js`). The default value is `false`.
      */
     type DocumentInitParameters = {
-        url: string;
-        data: TypedArray | number[] | string;
-        httpHeaders: any;
-        withCredentials: boolean;
-        password: string;
-        initialData: TypedArray;
-        length: number;
-        range: PDFDataRangeTransport;
-        rangeChunkSize: number;
-        worker: PDFWorker;
-        postMessageTransfers: boolean;
-        verbosity: number;
-        docBaseUrl: string;
-        nativeImageDecoderSupport: string;
-        cMapUrl: string;
-        cMapPacked: boolean;
-        CMapReaderFactory: any;
-        stopAtErrors: boolean;
-        maxImageSize: number;
-        isEvalSupported: boolean;
-        disableFontFace: boolean;
-        disableRange: boolean;
-        disableStream: boolean;
-        disableAutoFetch: boolean;
-        disableCreateObjectURL: boolean;
-        pdfBug: boolean;
+        url?: string;
+        data?: TypedArray | number[] | string;
+        httpHeaders?: any;
+        withCredentials?: boolean;
+        password?: string;
+        initialData?: TypedArray;
+        length?: number;
+        range?: PDFDataRangeTransport;
+        rangeChunkSize?: number;
+        worker?: PDFWorker;
+        postMessageTransfers?: boolean;
+        verbosity?: number;
+        docBaseUrl?: string;
+        nativeImageDecoderSupport?: string;
+        cMapUrl?: string;
+        cMapPacked?: boolean;
+        CMapReaderFactory?: any;
+        stopAtErrors?: boolean;
+        maxImageSize?: number;
+        isEvalSupported?: boolean;
+        disableFontFace?: boolean;
+        disableRange?: boolean;
+        disableStream?: boolean;
+        disableAutoFetch?: boolean;
+        disableCreateObjectURL?: boolean;
+        pdfBug?: boolean;
     };
     /**
      * @typedef {Object} PDFDocumentStats
@@ -491,12 +491,12 @@ declare module "pdfjs-dist" {
         canvasContext: any;
         viewport: PageViewport;
         intent: string;
-        enableWebGL: boolean;
-        renderInteractiveForms: boolean;
-        transform: any[];
-        imageLayer: any;
-        canvasFactory: any;
-        background: any;
+        enableWebGL?: boolean;
+        renderInteractiveForms?: boolean;
+        transform?: any[];
+        imageLayer?: any;
+        canvasFactory?: any;
+        background?: any;
     };
     /**
      * PDF page operator list.
