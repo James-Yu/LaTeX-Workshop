@@ -21,6 +21,7 @@ import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Completer} from './providers/completion'
 import {CodeActions} from './providers/codeactions'
 import {HoverProvider} from './providers/hover'
+import {GraphicsPreview} from './providers/preview/graphicspreview'
 import {MathPreview} from './providers/preview/mathpreview'
 import {DocSymbolProvider} from './providers/docsymbol'
 import {ProjectSymbolProvider} from './providers/projectsymbol'
@@ -446,6 +447,7 @@ export class Extension {
     structureProvider: SectionNodeProvider
     structureViewer: StructureTreeView
     snippetPanel: SnippetPanel
+    graphicsPreview: GraphicsPreview
     mathPreview: MathPreview
 
     constructor() {
@@ -469,6 +471,7 @@ export class Extension {
         this.structureViewer = new StructureTreeView(this)
         this.snippetPanel = new SnippetPanel(this)
         this.pegParser = new PEGParser(this)
+        this.graphicsPreview = new GraphicsPreview(this)
         this.mathPreview = new MathPreview(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
