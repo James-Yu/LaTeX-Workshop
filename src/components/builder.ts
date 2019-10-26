@@ -48,6 +48,9 @@ export class Builder {
         const proc = this.currentProcess
         if (proc) {
             const pid = proc.pid
+            if (process.platform === 'linux') {
+                cp.exec(`pkill -P ${pid}`)
+            }
             proc.kill()
             this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
         } else {
