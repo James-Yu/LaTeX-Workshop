@@ -72,6 +72,7 @@ export class Input {
         let baseDir: string[] = []
         const mode = payload[0]
         const currentFile = payload[1]
+        const command = payload[2]
         const typedFolder = payload[3]
         const importfromDir = payload[4]
         switch (mode) {
@@ -98,7 +99,6 @@ export class Input {
                 }
                 // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
                 const rootDir = this.extension.manager.rootDir
-                const command = payload[2]
                 if (command === 'includegraphics' && this.graphicsPath.length > 0) {
                     baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
                 } else {
@@ -145,6 +145,10 @@ export class Input {
                         suggestions.push(item)
                     } else if (! provideDirOnly) {
                         const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
+                        const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.preview.enabled') as boolean
+                        if (preview && command === 'includegraphics') {
+                            item.documentation = filePath
+                        }
                         item.detail = dir
                         suggestions.push(item)
                     }

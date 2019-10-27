@@ -96,6 +96,30 @@ export class Completer implements vscode.CompletionItemProvider {
         })
     }
 
+    async resolveCompletionItem(item: vscode.CompletionItem): Promise<vscode.CompletionItem> {
+        if (item.kind !== vscode.CompletionItemKind.File) {
+            return item
+        }
+        const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.preview.enabled') as boolean
+        if (!preview) {
+            return item
+        }
+        const filePath = item.documentation
+        if (typeof filePath !== 'string') {
+            return item
+        }
+        const dataUrl = await this.extension.graphicsPreview.renderGraphics(filePath, {height: 190, width: 300})
+        if (dataUrl === undefined) {
+            return item
+        }
+        // \u{2001} is a unicode character of space with width of one em.
+        const spacer = '\n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n'
+        const md = new vscode.MarkdownString(`![graphics](${dataUrl})` + spacer)
+        const ret = new vscode.CompletionItem(item.label, vscode.CompletionItemKind.File)
+        ret.documentation = md
+        return ret
+    }
+
     completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         let reg: RegExp | undefined
         let provider: Citation | Reference | Environment | Command | Package | Input | undefined

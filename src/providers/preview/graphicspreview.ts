@@ -51,6 +51,9 @@ export class GraphicsPreview {
     }
 
     async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
+        if (!fs.existsSync(filePath)) {
+            return undefined
+        }
         if (/\.pdf$/i.exec(filePath)) {
             const promise = this.pdfRenderer.renderToSVG(
                 filePath,
