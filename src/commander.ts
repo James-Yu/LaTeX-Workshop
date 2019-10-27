@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import {latexParser, bibtexParser} from 'latex-utensils'
+import * as bibtidy from 'bibtex-tidy'
 
 import {Extension} from './main'
 import {getLongestBalancedString} from './utils'
@@ -666,6 +667,24 @@ export class Commander {
         }
         const ast = bibtexParser.parse(vscode.window.activeTextEditor.document.getText())
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
+    }
+
+    bibtidy() {
+        const editor = vscode.window.activeTextEditor
+        if (editor === undefined || editor.document.languageId !== 'bibtex') {
+            return
+        }
+        const document = editor.document
+        const tidyResult = bibtidy.tidy(document.getText(), {})
+        const lineCount = document.lineCount - 1
+        const range = new vscode.Range(0,0,lineCount,document.lineAt(lineCount).range.end.character)
+        const edit = new vscode.WorkspaceEdit()
+        edit.replace(document.uri, range, tidyResult.bibtex)
+        vscode.workspace.applyEdit(edit).then(success => {
+            if (success) {
+                this.extension.logger.addLogMessage(`Called bibtex-tidy on ${document.fileName}.`)
+            }
+        })
     }
 
     texdoc(pkg?: string) {
