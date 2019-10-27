@@ -96,6 +96,21 @@ export class Completer implements vscode.CompletionItemProvider {
         })
     }
 
+    async resolveCompletionItem(item: vscode.CompletionItem): Promise<vscode.CompletionItem> {
+        const filePath = item.documentation
+        if (typeof filePath === 'string') {
+            const dataUrl = await this.extension.graphicsPreview.renderGraphics(filePath, {height: 190, width: 300})
+            if (dataUrl === undefined) {
+                return item
+            }
+            const md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
+            const ret = new vscode.CompletionItem(item.label, vscode.CompletionItemKind.File)
+            ret.documentation = md
+            return ret
+        }
+        return item
+    }
+
     completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         let reg: RegExp | undefined
         let provider: Citation | Reference | Environment | Command | Package | Input | undefined
