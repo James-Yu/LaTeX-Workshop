@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as fs from 'fs'
 import * as path from 'path'
 import {Extension} from '../../main'
 import {PDFRenderer} from './pdfrenderer'
@@ -30,11 +31,9 @@ export class GraphicsPreview {
         if (!execArray || !relPath) {
             return undefined
         }
-        let filePath: string
-        if (path.isAbsolute(relPath)) {
-            filePath = relPath
-        } else {
-            filePath = this.joinFilePath(document, relPath)
+        const filePath = this.findFilePath(relPath)
+        if (filePath === undefined) {
+            return undefined
         }
         let pageNumber = 1
         if (includeGraphicsArgs) {
@@ -76,9 +75,28 @@ export class GraphicsPreview {
         return svg.replace(/(<\/svg:style>)/, 'svg { background-color: white };$1')
     }
 
-    joinFilePath(document: vscode.TextDocument, relPath: string): string {
-        const docPath = document.uri.fsPath
-        const dirPath = path.dirname(docPath)
-        return path.join(dirPath, relPath)
+    findFilePath(relPath: string): string | undefined {
+        if (path.isAbsolute(relPath)) {
+            if (fs.existsSync(relPath)) {
+                return relPath
+            } else {
+                return undefined
+            }
+        }
+        const rootDir = this.extension.manager.rootDir
+        if (rootDir === undefined) {
+            return undefined
+        }
+        const filePath0 = path.join(rootDir, relPath)
+        if (fs.existsSync(filePath0)) {
+            return filePath0
+        }
+        for (const dirPath of this.extension.completer.input.graphicsPath) {
+            const filePath = path.join(rootDir, dirPath, relPath)
+            if (fs.existsSync(filePath)) {
+                return filePath
+            }
+        }
+        return undefined
     }
 }
