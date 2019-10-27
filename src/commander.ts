@@ -674,8 +674,11 @@ export class Commander {
         if (editor === undefined || editor.document.languageId !== 'bibtex') {
             return
         }
+        const configuration = vscode.workspace.getConfiguration()
+        const options = configuration.get('latex-workshop.bibtex-tidy.options') as bibtidy.bibtexTidyOptions
+
         const document = editor.document
-        const tidyResult = bibtidy.tidy(document.getText(), {})
+        const tidyResult = bibtidy.tidy(document.getText(), options)
         const lineCount = document.lineCount - 1
         const range = new vscode.Range(0,0,lineCount,document.lineAt(lineCount).range.end.character)
         const edit = new vscode.WorkspaceEdit()

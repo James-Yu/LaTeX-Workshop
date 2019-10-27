@@ -1421,6 +1421,102 @@
             "Status Bar",
             "Notification Dialogue"
           ]
+        },
+        "latex-workshop.bibtex-tidy.options": {
+          "type": "object",
+          "default": {},
+          "properties": {
+            "omit": {
+              "title": "Remove specified fields",
+              "description": "Provide a list of fields which should be removed from every bibliography entry.",
+              "type": "array",
+              "default": []
+            },
+            "curly": {
+              "title": "Enclose defaults in curly braces",
+              "description": "Setting this to true will cause all property defaults to be enclosed in braces. Quoted defaults will be converted to braces.",
+              "type": "boolean",
+              "default": false
+            },
+            "numeric": {
+              "title": "Use numeric defaults where possible",
+              "description": "Setting this to true will strip quotes and braces from numeric/month defaults. For example, {1998} will become 1998.",
+              "type": "boolean",
+              "default": false
+            },
+            "space": {
+              "title": "Indent with spaces",
+              "description": "Providing a number causes all fields to be prefixed with the corresponding number of spaces. This is ignored if tab is true.",
+              "type": "number",
+              "default": 2
+            },
+            "tab": {
+              "title": "Indent with tabs",
+              "description": "If this is set then all fields will be prefixed with a tab.",
+              "type": "boolean",
+              "default": false
+            },
+            "align": {
+              "title": "Align defaults",
+              "description": "Insert whitespace between fields and defaults so that defaults are visually aligned.",
+              "type": "number",
+              "default": 14
+            },
+            "sort": {
+              "title": "Sort bibliography entries",
+              "description": "Sort entries alphabetically by id (or other provided fields).",
+              "type": "array",
+              "default": false
+            },
+            "merge": {
+              "title": "Merge duplicate entries",
+              "description": "Two entries are considered duplicates in the following cases: (a) their DOIs are identical, (b) their abstracts are identical, or (c) their authors and titles are both identical. The firstmost entry is kept and any extra properties from duplicate entries are incorporated.",
+              "type": "boolean",
+              "default": false
+            },
+            "stripEnclosingBraces": {
+              "title": "Strip double-braced defaults.",
+              "description": "Where an entire default is enclosed in double braces, remove the extra braces. For example, convert {{Journal of Tea}} to {Journal of Tea}.",
+              "type": "boolean",
+              "default": false
+            },
+            "dropAllCaps": {
+              "title": "Drop all caps",
+              "description": "Where defaults are all caps, make them title case. For example, convert {JOURNAL OF TEA} to {Journal of Tea}.",
+              "type": "boolean",
+              "default": false
+            },
+            "escape": {
+              "title": "Escape special characters",
+              "description": "Escape special characters, such as umlaut. This ensures correct typesetting with latex.",
+              "type": "boolean",
+              "default": true
+            },
+            "sortFields": {
+              "title": "Sort fields",
+              "description": "Sort the fields within entries. The default sort order is: title, shorttitle, author, year, month, day, journal, booktitle, location, on, publisher, address, series, volume, number, pages, doi, isbn, issn, url, urldate, copyright, category, note, metadata. Alternatively you can specify space delimited properties.",
+              "type": "array",
+              "default": false
+            },
+            "stripComments": {
+              "title": "Remove comments",
+              "description": "Remove all comments from the bibtex source.",
+              "type": "boolean",
+              "default": false
+            },
+            "encodeUrls": {
+              "title": "Encode URLs",
+              "description": "Replace invalid URL characters with percent encoded defaults.",
+              "type": "boolean",
+              "default": false
+            },
+            "tidyComments": {
+              "title": "Tidy comments",
+              "description": "Remove whitespace surrounding comments.",
+              "type": "boolean",
+              "default": true
+            }
+          }
         }
       }
     },
