@@ -87,12 +87,12 @@ export class GraphicsPreview {
         if (rootDir === undefined) {
             return undefined
         }
-        const filePath0 = path.join(rootDir, relPath)
-        if (fs.existsSync(filePath0)) {
-            return filePath0
+        const fPath = path.resolve(rootDir, relPath)
+        if (fs.existsSync(fPath)) {
+            return fPath
         }
         for (const dirPath of this.extension.completer.input.graphicsPath) {
-            const filePath = path.join(rootDir, dirPath, relPath)
+            const filePath = path.resolve(rootDir, dirPath, relPath)
             if (fs.existsSync(filePath)) {
                 return filePath
             }
