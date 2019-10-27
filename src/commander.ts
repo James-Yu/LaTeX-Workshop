@@ -685,6 +685,16 @@ export class Commander {
         edit.replace(document.uri, range, tidyResult.bibtex)
         vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
+                if (tidyResult.warnings.length !== 0) {
+                    vscode.window.showWarningMessage('BibTeX-tidy produced warnings, check the log for details.', 'Show Log').then(item => {
+                        if (item === 'Show Log') {
+                            this.extension.logger.showLog()
+                        }
+                    })
+                    tidyResult.warnings.forEach(warning => {
+                        this.extension.logger.addLogMessage('BibTeX-tidy: ' + warning.message)
+                    })
+                }
                 this.extension.logger.addLogMessage(`Called bibtex-tidy on ${document.fileName}.`)
             }
         })

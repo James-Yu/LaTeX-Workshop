@@ -16,4 +16,11 @@ export interface bibtexTidyOptions {
     tidyComments?: boolean
 }
 
-export function tidy(input: string, options: bibtexTidyOptions): {bibtex: string, warnings: any, entries: any}
+export interface bibtexTidyWarning {
+    code: string,
+    message: string,
+    entry: object,
+    duplicateOf?: object
+}
+
+export function tidy(input: string, options: bibtexTidyOptions): {bibtex: string, warnings: bibtexTidyWarning[], entries: any}
