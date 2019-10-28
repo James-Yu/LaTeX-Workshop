@@ -2,12 +2,11 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import * as path from 'path'
-import * as stripJsonComments from 'strip-json-comments'
 import * as utils from '../../utils/utils'
 import {TextDocumentLike} from '../../components/textdocumentlike'
 import {Extension} from '../../main'
 import {Suggestion as ReferenceEntry} from '../completer/reference'
-import {themeColorMap} from '../../utils/utils'
+import {getCurrentThemeLightness} from '../../utils/theme'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
@@ -237,15 +236,6 @@ export class MathPreview {
         svgelm.setAttribute('height', h + h0[2])
     }
 
-    private hexToRgb(hex: string) {
-        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex)
-        return result ? {
-            r: parseInt(result[1], 16) / 255,
-            g: parseInt(result[2], 16) / 255,
-            b: parseInt(result[3], 16) / 255
-        } : null
-    }
-
     private colorSVG(svg: string): string {
         const ret = svg.replace('</title>', `</title><style> * { color: ${this.color} }</style>`)
         return ret
@@ -265,58 +255,12 @@ export class MathPreview {
     }
 
     getColor() {
-        const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme') as string
-        for (const extension of vscode.extensions.all) {
-            if (extension.packageJSON === undefined || extension.packageJSON.contributes === undefined || extension.packageJSON.contributes.themes === undefined) {
-                continue
-            }
-            const candidateThemes = extension.packageJSON.contributes.themes.filter( (themePkg: any) => themePkg.label === colorTheme || themePkg.id === colorTheme)
-            if (candidateThemes.length === 0) {
-                continue
-            }
-            try {
-                const themePath = path.resolve(extension.extensionPath, candidateThemes[0].path)
-                let theme = JSON.parse(stripJsonComments(fs.readFileSync(themePath, 'utf8')))
-                while (theme.include) {
-                    const includedTheme = JSON.parse(stripJsonComments(fs.readFileSync(path.resolve(path.dirname(themePath), theme.include), 'utf8')))
-                    theme.include = undefined
-                    theme = {... theme, ...includedTheme}
-                }
-                const bgColor = this.hexToRgb(theme.colors['editor.background'])
-                if (bgColor) {
-                    // http://stackoverflow.com/a/3943023/112731
-                    const r = bgColor.r <= 0.03928 ? bgColor.r / 12.92 : Math.pow((bgColor.r + 0.055) / 1.055, 2.4)
-                    const g = bgColor.r <= 0.03928 ? bgColor.g / 12.92 : Math.pow((bgColor.g + 0.055) / 1.055, 2.4)
-                    const b = bgColor.r <= 0.03928 ? bgColor.b / 12.92 : Math.pow((bgColor.b + 0.055) / 1.055, 2.4)
-                    const L = 0.2126 * r + 0.7152 * g + 0.0722 * b
-                    if (L > 0.179) {
-                        this.color = '#000000'
-                    } else {
-                        this.color = '#ffffff'
-                    }
-                    return
-                } else if (theme.type && theme.type === 'dark') {
-                    this.color = '#ffffff'
-                    return
-                }
-            } catch (e) {
-                console.log('Error when JSON.parse theme files.')
-                console.log(e.message)
-            }
-            const uiTheme = candidateThemes[0].uiTheme
-            if (!uiTheme || uiTheme === 'vs') {
-                this.color = '#000000'
-                return
-            } else {
-                this.color = '#ffffff'
-                return
-            }
-        }
-        if (themeColorMap[colorTheme] === 'dark') {
+        const lightness = getCurrentThemeLightness()
+        if (lightness === 'light') {
+            this.color = '#000000'
+        } else {
             this.color = '#ffffff'
-            return
         }
-        this.color = '#000000'
     }
 
     // Test whether cursor is in tex command strings
