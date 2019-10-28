@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as stripJsonComments from 'strip-json-comments'
 
 
-export const themeColorMap: { [theme: string]: 'light' | 'dark' } = {
+const themeColorMap: { [theme: string]: 'light' | 'dark' } = {
     'Abyss': 'dark',
     'Default Dark+': 'dark',
     'Default Light+': 'light',
@@ -47,7 +47,7 @@ function hexToRgb(hex: string) {
     } : null
 }
 
-export function getCurrentThemeLightness() {
+export function getCurrentThemeLightness(): 'light' | 'dark' {
     const colorTheme = vscode.workspace.getConfiguration('workbench').get('colorTheme') as string
     for (const extension of vscode.extensions.all) {
         if (extension.packageJSON === undefined || extension.packageJSON.contributes === undefined || extension.packageJSON.contributes.themes === undefined) {

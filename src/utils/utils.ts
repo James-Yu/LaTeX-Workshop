@@ -1,5 +1,5 @@
 import * as path from 'path'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
 
 export function escapeRegExp(str: string) {
