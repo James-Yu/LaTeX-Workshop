@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import { Extension } from '../main'
-import * as utils from '../utils'
+import * as utils from '../utils/utils'
 
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {

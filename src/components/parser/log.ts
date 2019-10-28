@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 import { Extension } from '../../main'
-import { convertFilenameEncoding } from '../../utils'
+import { convertFilenameEncoding } from '../../utils/utils'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm

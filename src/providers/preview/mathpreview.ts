@@ -3,11 +3,11 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import * as path from 'path'
 import * as stripJsonComments from 'strip-json-comments'
-import * as utils from '../../utils'
+import * as utils from '../../utils/utils'
 import {TextDocumentLike} from '../../components/textdocumentlike'
 import {Extension} from '../../main'
 import {Suggestion as ReferenceEntry} from '../completer/reference'
-import {themeColorMap} from '../../utils'
+import {themeColorMap} from '../../utils/utils'
 
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 

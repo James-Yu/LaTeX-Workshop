@@ -6,7 +6,7 @@ import * as cp from 'child_process'
 
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
-import {encodePathWithPrefix} from '../utils'
+import {encodePathWithPrefix} from '../utils/utils'
 
 interface Client {
     viewer: 'browser' | 'tab',

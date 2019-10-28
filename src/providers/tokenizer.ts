@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as utils from '../utils'
+import * as utils from '../utils/utils'
 
 export function tokenizer(document: vscode.TextDocument, position: vscode.Position): string | undefined {
     const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(/[\\{,](?=[^\\{,]*$)/)

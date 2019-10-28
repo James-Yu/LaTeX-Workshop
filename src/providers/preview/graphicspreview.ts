@@ -4,7 +4,7 @@ import * as path from 'path'
 import {Extension} from '../../main'
 import {PDFRenderer} from './pdfrenderer'
 import {GraphicsScaler} from './graphicsscaler'
-import {svgToDataUrl} from '../../utils'
+import {svgToDataUrl} from '../../utils/utils'
 
 
 export class GraphicsPreview {

@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
-import * as utils from '../utils'
+import * as utils from '../utils/utils'
 
 import {Extension} from '../main'
 import {Suggestion as CiteEntry} from '../providers/completer/citation'

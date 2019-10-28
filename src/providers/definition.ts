@@ -4,7 +4,7 @@ import * as path from 'path'
 
 import {Extension} from '../main'
 import {tokenizer} from './tokenizer'
-import * as utils from '../utils'
+import * as utils from '../utils/utils'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
     extension: Extension

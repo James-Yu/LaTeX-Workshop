@@ -4,7 +4,7 @@ import * as path from 'path'
 import {latexParser, bibtexParser} from 'latex-utensils'
 
 import {Extension} from './main'
-import {getLongestBalancedString} from './utils'
+import {getLongestBalancedString} from './utils/utils'
 import {TeXDoc} from './components/texdoc'
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {

@@ -3,7 +3,7 @@ import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 import * as cp from 'child_process'
-import * as utils from '../../utils'
+import * as utils from '../../utils/utils'
 
 import {Extension} from '../../main'
 
