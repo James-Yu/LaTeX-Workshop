@@ -135,7 +135,7 @@ export class MathPreview {
         })
         this.scaleSVG(data, scale)
         const xml = this.colorSVG(data.svgNode.outerHTML)
-        const md = this.svgToDataUrl(xml)
+        const md = utils.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
 
@@ -184,7 +184,7 @@ export class MathPreview {
         })
         this.scaleSVG(data, scale)
         const xml = this.colorSVG(data.svgNode.outerHTML)
-        const md = this.svgToDataUrl(xml)
+        const md = utils.svgToDataUrl(xml)
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
@@ -235,12 +235,6 @@ export class MathPreview {
         const h = scale * Number(h0[1])
         svgelm.setAttribute('width', w + w0[2])
         svgelm.setAttribute('height', h + h0[2])
-    }
-
-    private svgToDataUrl(xml: string): string {
-        const svg64 = Buffer.from(unescape(encodeURIComponent(xml)), 'binary').toString('base64')
-        const b64Start = 'data:image/svg+xml;base64,'
-        return b64Start + svg64
     }
 
     private hexToRgb(hex: string) {
