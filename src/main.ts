@@ -273,7 +273,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
-    vscode.commands.registerCommand('latex-workshop.bibtidy', () => extension.commander.bibtidy())
+    vscode.commands.registerCommand('latex-workshop.bibtidy.config', () => extension.commander.bibtidy('config'))
+    vscode.commands.registerCommand('latex-workshop.bibtidy.align', () => extension.commander.bibtidy('align'))
+    vscode.commands.registerCommand('latex-workshop.bibtidy.sort', () => extension.commander.bibtidy('sort'))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {

@@ -669,13 +669,36 @@ export class Commander {
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
-    bibtidy() {
+    bibtidy(action: string) {
         const editor = vscode.window.activeTextEditor
         if (editor === undefined || editor.document.languageId !== 'bibtex') {
             return
         }
-        const configuration = vscode.workspace.getConfiguration()
-        const options = configuration.get('latex-workshop.bibtex-tidy.options') as bibtidy.bibtexTidyOptions
+        let options: bibtidy.bibtexTidyOptions = {}
+        const config = vscode.workspace.getConfiguration().get('latex-workshop.bibtex-tidy.options') as bibtidy.bibtexTidyOptions
+        switch (action){
+            case 'config':
+                options = config
+                break
+            case 'sort':
+                options.space = config.space
+                options.tab = config.tab
+                options.escape = false
+                options.tidyComments = false
+                options.align = (config.align === undefined) ? 14 : config.align
+                options.sort = true
+                break
+            case 'align':
+                options.space = config.space
+                options.tab = config.tab
+                options.escape = false
+                options.tidyComments = false
+                options.align = (config.align === undefined) ? 14 : config.align
+                options.sort = false
+                break
+            default:
+                options = {}
+        }
 
         const document = editor.document
         const tidyResult = bibtidy.tidy(document.getText(), options)
