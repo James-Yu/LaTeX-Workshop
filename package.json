@@ -1429,7 +1429,7 @@
             "omit": {
               "title": "Remove specified fields",
               "description": "Provide a list of fields which should be removed from every bibliography entry.",
-              "type": "array",
+              "type": ["array", "boolean"],
               "default": []
             },
             "curly": {
@@ -1447,7 +1447,7 @@
             "space": {
               "title": "Indent with spaces",
               "description": "Providing a number causes all fields to be prefixed with the corresponding number of spaces. This is ignored if tab is true.",
-              "type": "number",
+              "type": ["number", "boolean"],
               "default": 2
             },
             "tab": {
@@ -1459,13 +1459,13 @@
             "align": {
               "title": "Align defaults",
               "description": "Insert whitespace between fields and defaults so that defaults are visually aligned.",
-              "type": "number",
+              "type": ["number", "boolean"],
               "default": 14
             },
             "sort": {
               "title": "Sort bibliography entries",
               "description": "Sort entries alphabetically by id (or other provided fields).",
-              "type": "array",
+              "type": ["array", "boolean"],
               "default": false
             },
             "merge": {
@@ -1495,7 +1495,7 @@
             "sortFields": {
               "title": "Sort fields",
               "description": "Sort the fields within entries. The default sort order is: title, shorttitle, author, year, month, day, journal, booktitle, location, on, publisher, address, series, volume, number, pages, doi, isbn, issn, url, urldate, copyright, category, note, metadata. Alternatively you can specify space delimited properties.",
-              "type": "array",
+              "type": ["array", "boolean"],
               "default": false
             },
             "stripComments": {
