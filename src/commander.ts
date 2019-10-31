@@ -669,41 +669,48 @@ export class Commander {
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
+    // Using https://github.com/FlamingTempura/bibtex-tidy (MIT License)
     bibtidy(action: string) {
         const editor = vscode.window.activeTextEditor
         if (editor === undefined || editor.document.languageId !== 'bibtex') {
             return
         }
+
         let options: bibtidy.bibtexTidyOptions = {}
         const config = vscode.workspace.getConfiguration().get('latex-workshop.bibtex-tidy.options') as bibtidy.bibtexTidyOptions
+        const defaultAlign = 14 // just longer than any bibtex field
+
         switch (action){
-            case 'config':
+            case 'config': // all options from config
                 options = config
                 break
-            case 'sort':
+            case 'sort': // minimal config to sort entries by key
                 options.space = config.space
                 options.tab = config.tab
                 options.escape = false
                 options.tidyComments = false
-                options.align = (config.align === undefined) ? 14 : config.align
+                options.align = (config.align === undefined) ? defaultAlign : config.align
                 options.sort = true
                 break
-            case 'align':
+            case 'align': // minimal config (only aligns fields)
                 options.space = config.space
                 options.tab = config.tab
                 options.escape = false
                 options.tidyComments = false
-                options.align = (config.align === undefined) ? 14 : config.align
+                options.align = (config.align === undefined) ? defaultAlign : config.align
                 options.sort = false
                 break
             default:
-                options = {}
+                break
         }
 
         const document = editor.document
         const tidyResult = bibtidy.tidy(document.getText(), options)
+
+        // create a range for the entire document
         const lineCount = document.lineCount - 1
         const range = new vscode.Range(0,0,lineCount,document.lineAt(lineCount).range.end.character)
+
         const edit = new vscode.WorkspaceEdit()
         edit.replace(document.uri, range, tidyResult.bibtex)
         vscode.workspace.applyEdit(edit).then(success => {
