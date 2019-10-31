@@ -204,6 +204,13 @@ function newVersionMessage(extensionPath: string, extension: Extension) {
     })
 }
 
+function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
+   const selector = ids.map( (id) => {
+       return { scheme: 'file', language: id }
+   })
+   return selector
+}
+
 export function activate(context: vscode.ExtensionContext) {
     const extension = new Extension()
     vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
@@ -352,11 +359,12 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }))
 
+    const latexSelector = selectDocumentsWithId(['latex'])
+    const latexBibtexSelector = selectDocumentsWithId(['latex', 'bibtex'])
+    const latexDoctexSelector = selectDocumentsWithId(['latex', 'doctex'])
     const formatter = new LatexFormatterProvider(extension)
-    vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'latex'}, formatter)
-    vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
-    vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'latex'}, formatter)
-    vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, formatter)
+    vscode.languages.registerDocumentFormattingEditProvider(latexBibtexSelector, formatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider(latexBibtexSelector, formatter)
 
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-commands', new LaTeXCommander(extension)))
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
@@ -366,15 +374,14 @@ export function activate(context: vscode.ExtensionContext) {
         extension.structureViewer.showCursorIteme(e)
     }))
 
-    context.subscriptions.push(vscode.languages.registerHoverProvider({ scheme: 'file', language: 'latex'}, new HoverProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerDefinitionProvider({ scheme: 'file', language: 'latex'}, new DefinitionProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider({ scheme: 'file', language: 'latex'}, new DocSymbolProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider(extension)))
     context.subscriptions.push(vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension)))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'latex'}, extension.completer, '\\', '{', ',', '(', '['))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'doctex'}, extension.completer, '\\', '{', ',', '(', '['))
-    context.subscriptions.push(vscode.languages.registerCodeActionsProvider({ scheme: 'file', language: 'latex'}, extension.codeActions))
-    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider({ scheme: 'file', language: 'latex'}, new FoldingProvider(extension)))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, '\\', '{', ',', '(', '['))
+    context.subscriptions.push(vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions))
+    context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider(extension)))
 
     extension.manager.findRoot()
     extension.linter.lintRootFileIfEnabled()
