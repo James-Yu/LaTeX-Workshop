@@ -359,9 +359,9 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    const latexSelector = selectDocumentsWithId(['latex'])
-    const latexBibtexSelector = selectDocumentsWithId(['latex', 'bibtex'])
-    const latexDoctexSelector = selectDocumentsWithId(['latex', 'doctex'])
+    const latexSelector = selectDocumentsWithId(['latex', 'rsweave'])
+    const latexBibtexSelector = selectDocumentsWithId(['latex', 'rsweave', 'bibtex'])
+    const latexDoctexSelector = selectDocumentsWithId(['latex', 'rsweave', ',doctex'])
     const formatter = new LatexFormatterProvider(extension)
     vscode.languages.registerDocumentFormattingEditProvider(latexBibtexSelector, formatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider(latexBibtexSelector, formatter)
