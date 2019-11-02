@@ -350,7 +350,7 @@ document.addEventListener('pagesinit', () => {
   document.getElementById('historyForward').addEventListener('click', () => {
     viewerHistory.forward()
   })
-});
+}, { once: true });
 
 // keyboard bindings
 window.addEventListener('keydown', (evt) => {
