@@ -201,7 +201,8 @@ export class MathPreview {
     }
 
     replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): string {
-        let newTex = tex.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
+        const texWithoutTag = tex.replace(/\\tag\{(\{[^{}]*?\}|.)*?\}/g, '')
+        let newTex = texWithoutTag.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
             if (refLabel) {
                 if (refLabel === matchLabel) {
                     if (tag) {
