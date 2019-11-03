@@ -19,6 +19,8 @@ export function bibtexSort(keys: string[]): (a: bibtexParser.Entry, b: bibtexPar
             // Select the appropriate sort function
             if (key === 'key') {
                 r = bibtexSortByKey(a, b)
+            } else if (key === 'year-desc') {
+                r = -bibtexSortByField('year', a, b)
             } else {
                 r = bibtexSortByField(key, a, b)
             }
