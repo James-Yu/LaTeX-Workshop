@@ -1438,6 +1438,43 @@
             "Status Bar",
             "Notification Dialogue"
           ]
+        },
+        "latex-workshop.bibtex-format": {
+          "type": "object",
+          "default": {
+            "tab": "  ",
+            "left": "{",
+            "right": "}",
+            "case": "lower",
+            "sort": "key"
+          },
+          "properties": {
+            "tab": {
+              "description": "Indentation for each field.",
+              "type": "string",
+              "default": "  "
+            },
+            "left": {
+              "description": "Either { or \". Goes before every field value.",
+              "type": "string",
+              "default": "{"
+            },
+            "right": {
+              "description": "Either } or \". Goes after every field value.",
+              "type": "string",
+              "default": "}"
+            },
+            "case": {
+              "description": "Either \"upper\" or \"lower\". Determines if field names should be formatted like 'AUTHOR' or 'author'.",
+              "type": "string",
+              "default": "lower"
+            },
+            "sort": {
+              "description": "What to sort by. Either the entry \"key\", \"author\" or \"title\".",
+              "type": "string",
+              "default": "key"
+            }
+          }
         }
       }
     },

@@ -677,6 +677,8 @@ export class Commander {
         const t0 = performance.now() // Measure performance
         const ast = bibtexParser.parse(vscode.window.activeTextEditor.document.getText())
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop').get('bibtex-format') as bibtexUtils.BibtexFormatConfig
+
         const entries: bibtexParser.Entry[] = []
         const entryLocations: vscode.Range[] = []
         ast.content.forEach(item => {
@@ -693,15 +695,7 @@ export class Commander {
 
         let sortedEntryLocations: vscode.Range[] = []
         if (sort) {
-            entries.sort((a, b) => {
-                if (!a.internalKey) {
-                    return -1 // sort undefined keys first
-                } else if (!b.internalKey) {
-                    return 1
-                } else {
-                    return a.internalKey.localeCompare(b.internalKey)
-                }
-            }).forEach(entry => {
+            entries.sort(bibtexUtils.bibtexSortBy(configuration.sort)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
@@ -718,7 +712,7 @@ export class Commander {
         let text: string
         for (let i = 0; i < entries.length; i++) {
             if (align) {
-                text = bibtexUtils.bibtexFormat(entries[i])
+                text = bibtexUtils.bibtexFormat(entries[i], configuration)
             } else {
                 text = vscode.window.activeTextEditor.document.getText(sortedEntryLocations[i])
             }
