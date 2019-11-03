@@ -1,5 +1,20 @@
 # Change Log
 
+## [8.3.0] - 2019-11-03
+
+### Added
+- (#1751) Add option to display progress as a notification.
+- (#1765) Enable hover on `\includegraphics`.
+
+### Fixed
+- (#1589) Change symbol loading method.
+- (#1600) Improve TikZ snippet panel.
+- (#1676) Add Content Security Policy to WebViews.
+- (#1680) Kill all child processes when killing their parents.
+- (#1729) Scan for `newcommand`s in the whole project for preview.
+- (#1734) Use Mutex for `latexindent`.
+- (#1750) Chinese/Japanese characters in formula preview not rendered correctly.
+
 ## [8.2.0] - 2019-09-28
 
 ### Added
