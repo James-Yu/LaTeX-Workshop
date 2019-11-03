@@ -5,7 +5,9 @@ import {latexParser, bibtexParser} from 'latex-utensils'
 
 import {Extension} from './main'
 import {getLongestBalancedString} from './utils/utils'
+import * as bibtexUtils from './utils/bibtexutils'
 import {TeXDoc} from './components/texdoc'
+import {performance} from 'perf_hooks'
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
     const pickedRootFile = await vscode.window.showQuickPick([{
@@ -668,10 +670,11 @@ export class Commander {
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
-    bibSort() {
+    bibtexFormat(sort: boolean, align: boolean) {
         if (vscode.window.activeTextEditor === undefined || vscode.window.activeTextEditor.document.languageId !== 'bibtex') {
             return
         }
+        const t0 = performance.now() // Measure performance
         const ast = bibtexParser.parse(vscode.window.activeTextEditor.document.getText())
 
         const entries: bibtexParser.Entry[] = []
@@ -688,36 +691,46 @@ export class Commander {
             }
         })
 
-        // Sort entries by key
-        const sortedEntryLocations: vscode.Range[] = []
-        entries.sort((a, b) => {
-            if (!a.internalKey) {
-                return -1 // sort undefined keys first
-            } else if (!b.internalKey) {
-                return 1
-            } else {
-                return a.internalKey.localeCompare(b.internalKey)
-            }
-        }).forEach(entry => {
-            sortedEntryLocations.push((new vscode.Range(
-                entry.location.start.line - 1,
-                entry.location.start.column - 1,
-                entry.location.end.line - 1,
-                entry.location.end.column - 1)))
-        })
+        let sortedEntryLocations: vscode.Range[] = []
+        if (sort) {
+            entries.sort((a, b) => {
+                if (!a.internalKey) {
+                    return -1 // sort undefined keys first
+                } else if (!b.internalKey) {
+                    return 1
+                } else {
+                    return a.internalKey.localeCompare(b.internalKey)
+                }
+            }).forEach(entry => {
+                sortedEntryLocations.push((new vscode.Range(
+                    entry.location.start.line - 1,
+                    entry.location.start.column - 1,
+                    entry.location.end.line - 1,
+                    entry.location.end.column - 1)))
+            })
+        } else {
+            sortedEntryLocations = entryLocations
+        }
 
         // Successively replace the text in the current location from the sorted location
         const edit = new vscode.WorkspaceEdit()
         const uri = vscode.window.activeTextEditor.document.uri
+        let text: string
         for (let i = 0; i < entries.length; i++) {
-            edit.replace(uri, entryLocations[i], vscode.window.activeTextEditor.document.getText(sortedEntryLocations[i]))
+            if (align) {
+                text = bibtexUtils.bibtexFormat(entries[i])
+            } else {
+                text = vscode.window.activeTextEditor.document.getText(sortedEntryLocations[i])
+            }
+            edit.replace(uri, entryLocations[i], text)
         }
 
         vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
-                this.extension.logger.addLogMessage('Successfully sorted bibliography')
+                const t1 = performance.now()
+                this.extension.logger.addLogMessage(`BibTeX action successful. Took ${t1 - t0} ms.`)
             } else {
-                this.extension.logger.showErrorMessage('Something went wrong while sorting the bibliography')
+                this.extension.logger.showErrorMessage('Something went wrong while processing the bibliography.')
             }
         })
     }
