@@ -5,53 +5,64 @@ export interface BibtexFormatConfig {
     left: string,
     right: string,
     case: 'upper' | 'lower',
-    sort: string
+    sort: string[]
 }
 
 /**
- * Returns a sorting function to sort two bibtexParser.Entry's
- * @param key which key to sort by (e.g. `key`, `author` or `title`)
+ * Sorting function for bibtex entries
+ * @param keys Array of sorting keys
  */
-export function bibtexSortBy(key: string): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
-    if (key === 'key') {
-        return bibtexSortByKey
-    } else {
-        return bibtexSortByField(key)
+export function bibtexSort(keys: string[]): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
+    return function (a, b) {
+        let r = 0
+        for (const key of keys) {
+            // Select the appropriate sort function
+            if (key === 'key') {
+                r = bibtexSortByKey(a, b)
+            } else {
+                r = bibtexSortByField(key, a, b)
+            }
+            // Compare until different
+            if (r !== 0) {
+                break
+            }
+        }
+        return r
     }
 }
 
 /**
- * A closure that handles all sorting keys that are some bibtex field name
+ * Handles all sorting keys that are some bibtex field name
  * @param fieldName which field name to sort by
  */
-function bibtexSortByField(fieldName: string): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
-    return function (a, b) {
-        let fieldA: string = ''
-        let fieldB: string = ''
+function bibtexSortByField(fieldName: string, a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+    let fieldA: string = ''
+    let fieldB: string = ''
 
-        for(let i = 0; i < a.content.length; i++) {
-            if (a.content[i].name === fieldName) {
-                fieldA = fieldToString(a.content[i].value, '', '')
-                break
-            }
+    for(let i = 0; i < a.content.length; i++) {
+        if (a.content[i].name === fieldName) {
+            fieldA = fieldToString(a.content[i].value, '', '')
+            break
         }
-        for(let i = 0; i < b.content.length; i++) {
-            if (b.content[i].name === fieldName) {
-                fieldB = fieldToString(b.content[i].value, '', '')
-                break
-            }
-        }
-
-        // Remove braces to sort properly
-        fieldA = fieldA.replace(/{|}/, '')
-        fieldB = fieldB.replace(/{|}/, '')
-
-        return fieldA.localeCompare(fieldB)
     }
+    for(let i = 0; i < b.content.length; i++) {
+        if (b.content[i].name === fieldName) {
+            fieldB = fieldToString(b.content[i].value, '', '')
+            break
+        }
+    }
+
+    // Remove braces to sort properly
+    fieldA = fieldA.replace(/{|}/, '')
+    fieldB = fieldB.replace(/{|}/, '')
+
+    return fieldA.localeCompare(fieldB)
 }
 
 function bibtexSortByKey(a: bibtexParser.Entry, b: bibtexParser.Entry): number {
-    if (!a.internalKey) {
+    if (!a.internalKey && !b.internalKey) {
+        return 0
+    } else if (!a.internalKey) {
         return -1 // sort undefined keys first
     } else if (!b.internalKey) {
         return 1

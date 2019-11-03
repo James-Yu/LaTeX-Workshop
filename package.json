@@ -1446,7 +1446,7 @@
             "left": "{",
             "right": "}",
             "case": "lower",
-            "sort": "key"
+            "sort": ["key"]
           },
           "properties": {
             "tab": {
@@ -1470,9 +1470,9 @@
               "default": "lower"
             },
             "sort": {
-              "description": "What to sort by. Either the entry \"key\", \"author\" or \"title\".",
-              "type": "string",
-              "default": "key"
+              "description": "An array of strings to sort by. Either a bibtex field name (title, author, year, etc.) or \"key\" for the entry key. E.g. [\"author\", \"year\", \"title\"].",
+              "type": "array",
+              "default": ["key"]
             }
           }
         }

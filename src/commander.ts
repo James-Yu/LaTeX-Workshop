@@ -695,7 +695,7 @@ export class Commander {
 
         let sortedEntryLocations: vscode.Range[] = []
         if (sort) {
-            entries.sort(bibtexUtils.bibtexSortBy(configuration.sort)).forEach(entry => {
+            entries.sort(bibtexUtils.bibtexSort(configuration.sort)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
