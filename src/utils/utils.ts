@@ -105,8 +105,8 @@ export function decodePath(b64url: string) {
     return decodeURIComponent(s)
 }
 
-export function encodePathWithPrefix(url: string) {
-    return pdfFilePrefix + encodePath(url)
+export function encodePathWithPrefix(pdfFilePath: string) {
+    return pdfFilePrefix + encodePath(pdfFilePath)
 }
 
 export function decodePathWithPrefix(b64urlWithPrefix: string) {

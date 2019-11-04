@@ -106,23 +106,22 @@ export class Viewer {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         this.clients[pdfFile.toLocaleUpperCase()] = this.clients[pdfFile.toLocaleUpperCase()] || []
 
-        const uri = vscode.Uri.file(pdfFile).with({scheme: 'latex-workshop-pdf'})
         const editor = vscode.window.activeTextEditor
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
             enableScripts: true,
             retainContextWhenHidden: true,
             portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
         })
-        panel.webview.html = this.getPDFViewerContent(uri)
+        panel.webview.html = this.getPDFViewerContent(pdfFile)
         if (editor && sideColumn) {
             setTimeout(() => { vscode.window.showTextDocument(editor.document, editor.viewColumn) }, 500)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
-    getPDFViewerContent(uri: vscode.Uri): string {
+    getPDFViewerContent(pdfFile: string): string {
         // viewer/viewer.js automatically requests the file to server.ts and server.ts decodes the encoded fsPath.
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(uri.fsPath)}`
+        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
         return `
             <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:* http://127.0.0.1:*; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
