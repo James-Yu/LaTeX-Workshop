@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.3.1] - 2019-11-04
+
+### Changed
+- (#1669) Activity icon. Sorry! @trevorgunn
+
 ## [8.3.0] - 2019-11-03
 
 ### Added
