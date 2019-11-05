@@ -120,7 +120,7 @@ export class Viewer {
     }
 
     getPDFViewerContent(pdfFile: string): string {
-        // viewer/viewer.js automatically requests the file to server.ts and server.ts decodes the encoded fsPath.
+        // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
         const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
         return `
             <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:* http://127.0.0.1:*; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
