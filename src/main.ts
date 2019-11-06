@@ -299,7 +299,7 @@ export function activate(context: vscode.ExtensionContext) {
             extension.structureProvider.update()
         }
 
-        if (e.languageId === 'pdf' && e.uri.scheme !== 'latex-workshop-pdf') {
+        if (e.languageId === 'pdf') {
             vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
                 extension.commander.pdf(e.uri)
             })
@@ -392,7 +392,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.window.visibleTextEditors.forEach(editor => {
         const e = editor.document
-        if (e.languageId === 'pdf' && e.uri.scheme !== 'latex-workshop-pdf') {
+        if (e.languageId === 'pdf') {
             vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
                 extension.commander.pdf(e.uri)
             })
