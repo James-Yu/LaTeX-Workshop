@@ -544,8 +544,8 @@ export class Commander {
      * Shift the level sectioning in the selection by one (up or down)
      * @param change
      */
-    shiftSectioningLevel(change: 'increment' | 'decrement') {
-        if (change !== 'increment' && change !== 'decrement') {
+    shiftSectioningLevel(change: 'promote' | 'demote') {
+        if (change !== 'promote' && change !== 'demote') {
             throw TypeError(
             `Invalid value of function parameter 'change' (=${change})`
             )
@@ -556,7 +556,7 @@ export class Commander {
             return
         }
 
-        const increments = {
+        const promotes = {
             part: 'part',
             chapter: 'part',
             section: 'chapter',
@@ -565,7 +565,7 @@ export class Commander {
             paragraph: 'subsubsection',
             subparagraph: 'paragraph'
         }
-        const decrements = {
+        const demotes = {
             part: 'chapter',
             chapter: 'section',
             section: 'subsection',
@@ -577,15 +577,15 @@ export class Commander {
 
         function replacer(
             _match: string,
-            sectionName: keyof typeof increments ,
+            sectionName: keyof typeof promotes ,
             options: string,
             contents: string
         ) {
-            if (change === 'increment') {
-                return '\\' + increments[sectionName] + (options ? options : '') + contents
+            if (change === 'promote') {
+                return '\\' + promotes[sectionName] + (options ? options : '') + contents
             } else {
-                // if (change === 'decrement')
-                return '\\' + decrements[sectionName] + (options ? options : '') + contents
+                // if (change === 'demote')
+                return '\\' + demotes[sectionName] + (options ? options : '') + contents
             }
         }
 
