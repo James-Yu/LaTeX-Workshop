@@ -12,14 +12,12 @@ type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
 export class MathPreview {
     extension: Extension
-    jaxInitialized = false
     color: any
     mj: any
 
     constructor(extension: Extension) {
         this.extension = extension
         import('mathjax-node').then(mj => {
-            this.mj = mj
             mj.config({
                 MathJax: {
                     jax: ['input/TeX', 'output/SVG'],
@@ -36,7 +34,7 @@ export class MathPreview {
                 }
             })
             mj.start()
-            this.jaxInitialized = true
+            this.mj = mj
         })
     }
 
