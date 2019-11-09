@@ -61,9 +61,12 @@ export class Server {
                 fs.createReadStream(fileName).pipe(response)
                 this.extension.logger.addLogMessage(`Preview PDF file: ${fileName}`)
             } catch (e) {
+                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileName}`)
+                if (e instanceof Error) {
+                    this.extension.logger.logError(e)
+                }
                 response.writeHead(404)
                 response.end()
-                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileName}`)
             }
             return
         } else {

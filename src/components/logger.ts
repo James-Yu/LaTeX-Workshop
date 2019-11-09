@@ -31,6 +31,13 @@ export class Logger {
         this.compilerLogPanel.append(message)
     }
 
+    logError(e: Error) {
+        this.addLogMessage(e.message)
+        if (e.stack) {
+            this.addLogMessage(e.stack)
+        }
+    }
+
     clearCompilerMessage() {
         this.compilerLogPanel.clear()
     }

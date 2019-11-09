@@ -51,6 +51,9 @@ export class Cleaner {
             () => {} // Do not pass results to Promise returned by clean()
         ).catch(err => {
             this.extension.logger.addLogMessage(`Error during deletion of files: ${err}`)
+            if (err instanceof Error) {
+                this.extension.logger.logError(err)
+            }
         })
     }
 
