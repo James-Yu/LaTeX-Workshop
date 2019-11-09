@@ -1439,42 +1439,43 @@
             "Notification Dialogue"
           ]
         },
-        "latex-workshop.bibtex-format": {
-          "type": "object",
-          "default": {
-            "tab": "  ",
-            "left": "{",
-            "right": "}",
-            "case": "lower",
-            "sort": ["key"]
+        "latex-workshop.bibtex-format.tab": {
+          "type": "string",
+          "enum": [
+            "2 spaces",
+            "4 spaces",
+            "tab"
+          ],
+          "default": "2 spaces",
+          "description": "Indentation for each field."
+        },
+        "latex-workshop.bibtex-format.surround": {
+          "type": "string",
+          "enum": [
+            "Curly braces",
+            "Quotation marks"
+          ],
+          "default": "Curly braces",
+          "description": "Surround each field value with either {Curly braces} or \"Quotation marks\"."
+        },
+        "latex-workshop.bibtex-format.case": {
+          "type": "string",
+          "enum": [
+            "UPPERCASE",
+            "lowercase"
+          ],
+          "default": "lowercase",
+          "description": "Determines if field names should be formatted like 'AUTHOR' or 'author'."
+        },
+        "latex-workshop.bibtex-format.sortby": {
+          "type": "array",
+          "items": {
+            "type": "string"
           },
-          "properties": {
-            "tab": {
-              "description": "Indentation for each field.",
-              "type": "string",
-              "default": "  "
-            },
-            "left": {
-              "description": "Either { or \". Goes before every field value.",
-              "type": "string",
-              "default": "{"
-            },
-            "right": {
-              "description": "Either } or \". Goes after every field value.",
-              "type": "string",
-              "default": "}"
-            },
-            "case": {
-              "description": "Either \"upper\" or \"lower\". Determines if field names should be formatted like 'AUTHOR' or 'author'.",
-              "type": "string",
-              "default": "lower"
-            },
-            "sort": {
-              "description": "An array of strings to sort by. Either a bibtex field name (title, author, year, etc.), or \"year-desc\" to sort by year in descending order, or \"key\" for the entry key. E.g. [\"author\", \"year-desc\", \"title\"].",
-              "type": "array",
-              "default": ["key"]
-            }
-          }
+          "markdownDescription": "An array of strings to sort by. Either a bibtex field name (title, author, year, etc.), or `\"year-desc\"` to sort by year in descending order, or `\"key\"` for the entry key. E.g. `[\"author\", \"year-desc\", \"title\"]`.",
+          "default": [
+            "key"
+          ]
         }
       }
     },

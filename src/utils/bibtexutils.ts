@@ -4,7 +4,7 @@ export interface BibtexFormatConfig {
     tab: string,
     left: string,
     right: string,
-    case: 'upper' | 'lower',
+    case: 'UPPERCASE' | 'lowercase',
     sort: string[]
 }
 
@@ -90,7 +90,7 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
     })
 
     entry.content.forEach(field => {
-        s += ',\n' + config.tab + (config.case === 'lower' ? field.name : field.name.toUpperCase())
+        s += ',\n' + config.tab + (config.case === 'lowercase' ? field.name : field.name.toUpperCase())
         s += ' '.repeat(maxFieldLength - field.name.length) + ' = '
         s += fieldToString(field.value, config.left, config.right)
     })

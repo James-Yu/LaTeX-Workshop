@@ -677,7 +677,16 @@ export class Commander {
         const t0 = performance.now() // Measure performance
         const ast = bibtexParser.parse(vscode.window.activeTextEditor.document.getText())
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop').get('bibtex-format') as bibtexUtils.BibtexFormatConfig
+        const config = vscode.workspace.getConfiguration('latex-workshop')
+        const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
+        const tabs = { '2 spaces': '  ', '4 spaces': '    ', 'tab': '\t' }
+        const configuration: bibtexUtils.BibtexFormatConfig = {
+            tab: tabs[config.get('bibtex-format.tab') as ('2 spaces' | '4 spaces' | 'tab')],
+            case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
+            left: leftright[0],
+            right: leftright[1],
+            sort: config.get('bibtex-format.sortby') as string[]
+        }
 
         const entries: bibtexParser.Entry[] = []
         const entryLocations: vscode.Range[] = []
