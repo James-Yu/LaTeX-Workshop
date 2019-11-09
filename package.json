@@ -39,7 +39,10 @@
     "onCommand:latex-workshop.citation",
     "onCommand:latex-workshop.compilerlog",
     "onCommand:latex-workshop.log",
-    "onCommand:latex-workshop.actions"
+    "onCommand:latex-workshop.actions",
+    "onCommand:latex-workshop.bibsort",
+    "onCommand:latex-workshop.bibalign",
+    "onCommand:latex-workshop.bibalignsort"
   ],
   "main": "./out/src/main.js",
   "contributes": {
@@ -314,6 +317,21 @@
       {
         "command": "latex-workshop.showSnippetPanel",
         "title": "Show Snippet Panel",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.bibsort",
+        "title": "Sort BibTeX file",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.bibalign",
+        "title": "Align BibTeX file",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.bibalignsort",
+        "title": "Sort and align BibTeX file",
         "category": "LaTeX Workshop"
       }
     ],
@@ -1419,6 +1437,44 @@
           "enum": [
             "Status Bar",
             "Notification Dialogue"
+          ]
+        },
+        "latex-workshop.bibtex-format.tab": {
+          "type": "string",
+          "enum": [
+            "2 spaces",
+            "4 spaces",
+            "tab"
+          ],
+          "default": "2 spaces",
+          "description": "Indentation for each field."
+        },
+        "latex-workshop.bibtex-format.surround": {
+          "type": "string",
+          "enum": [
+            "Curly braces",
+            "Quotation marks"
+          ],
+          "default": "Curly braces",
+          "description": "Surround each field value with either {Curly braces} or \"Quotation marks\"."
+        },
+        "latex-workshop.bibtex-format.case": {
+          "type": "string",
+          "enum": [
+            "UPPERCASE",
+            "lowercase"
+          ],
+          "default": "lowercase",
+          "description": "Determines if field names should be formatted like 'AUTHOR' or 'author'."
+        },
+        "latex-workshop.bibtex-format.sortby": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "An array of strings to sort by. Either a bibtex field name (title, author, year, etc.), or `\"year-desc\"` to sort by year in descending order, or `\"key\"` for the entry key. E.g. `[\"author\", \"year-desc\", \"title\"]`.",
+          "default": [
+            "key"
           ]
         }
       }
