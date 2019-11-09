@@ -485,10 +485,12 @@ export class Manager {
        and all output files will be check if there are aux files related. If so,
        the aux files are parsed for any possible bib file. */
     parseFlsFile(baseFile: string) {
+        this.extension.logger.addLogMessage('Parse fls file.')
         const rootDir = path.dirname(baseFile)
         const outDir = this.getOutDir(baseFile)
         const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
         if (!fs.existsSync(flsFile)) {
+            this.extension.logger.addLogMessage('Cannot find fls file.')
             return
         }
         const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), flsFile)
