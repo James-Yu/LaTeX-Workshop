@@ -769,6 +769,16 @@
           "default": true,
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When set to `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands. Note that this setting does not affect the `build` and `view` command as they both ask the user's choice first."
         },
+        "latex-workshop.latex.watch.usePolling": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "When set to true, polling is used to watch changes on files. When TeX files are placed on network drives or OneDrive, this option should be turned on. Setting this option to true might lead to high CPU utilization."
+        },
+        "latex-workshop.latex.watch.interval": {
+          "type": "number",
+          "default": 300,
+          "markdownDescription": "Interval of polling, in milliseconds."
+        },
         "latex-workshop.latex.watch.files.ignore": {
           "type": "array",
           "items": {

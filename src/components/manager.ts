@@ -35,14 +35,20 @@ export class Manager {
     private bibWatcher?: chokidar.FSWatcher
     private filesWatched: string[] = []
     private bibsWatched: string[] = []
-    private watcherOptions: chokidar.WatchOptions = {
-        usePolling: true,
-        interval: 300,
-        binaryInterval: 1000
-    }
+    private watcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
         this.extension = extension
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const usePolling = configuration.get('latex.watch.usePolling') as boolean
+        const interval = configuration.get('latex.watch.interval') as number
+        console.log(interval)
+        this.watcherOptions = {
+            useFsEvents: false,
+            usePolling,
+            interval,
+            binaryInterval: Math.max(interval, 1000)
+        }
     }
 
     /* Returns the output directory developed according to the input tex path
