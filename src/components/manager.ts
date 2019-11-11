@@ -42,7 +42,6 @@ export class Manager {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const usePolling = configuration.get('latex.watch.usePolling') as boolean
         const interval = configuration.get('latex.watch.interval') as number
-        console.log(interval)
         this.watcherOptions = {
             useFsEvents: false,
             usePolling,
