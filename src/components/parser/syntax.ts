@@ -26,6 +26,10 @@ export class UtensilsParser {
         }
     }
 
+    async parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {
+        return await this.pool.exec('parseLatexPreamble', [s]).timeout(500)
+    }
+
     async parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
         return await this.pool.exec('parseBibtex', [s, options])
     }

@@ -61,17 +61,17 @@ export class MathPreview {
             return commandsInConfigFile
         }
         let commands: string[] = []
-        this.extension.manager.getIncludedTeX().forEach(tex => {
+        for (const tex of this.extension.manager.getIncludedTeX()) {
             const content = this.extension.manager.cachedContent[tex].content
-            commands = commands.concat(this.findNewCommand(content))
-        })
+            commands = commands.concat(await this.findNewCommand(content))
+        }
         return commandsInConfigFile + '\n' + commands.join('')
     }
 
-    private findNewCommand(content: string): string[] {
+    private async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
         try {
-            const ast = latexParser.parsePreamble(content)
+            const ast = await this.extension.pegParser.parseLatexPreamble(content)
             const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
             for (const node of ast.content) {
                 if (latexParser.isCommand(node) && node.name.match(regex)) {
