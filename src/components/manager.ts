@@ -639,13 +639,13 @@ export class Manager {
     }
 
     private onWatchedFileChanged(file: string) {
+        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
         }
-        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         this.buildOnFileChanged(file)
     }
 
