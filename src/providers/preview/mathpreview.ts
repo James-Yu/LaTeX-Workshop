@@ -61,7 +61,12 @@ export class MathPreview {
             return commandsInConfigFile
         }
         let commands: string[] = []
+        let exceeded = false
+        setTimeout( () => { exceeded = true }, 5000)
         for (const tex of this.extension.manager.getIncludedTeX()) {
+            if (exceeded) {
+                throw new Error('Timeout Error in findProjectNewCommand')
+            }
             const content = this.extension.manager.cachedContent[tex].content
             commands = commands.concat(await this.findNewCommand(content))
         }
