@@ -23,7 +23,12 @@ export class MathJaxPool {
     }
 
     async typeset(arg: TypesetArg, opts: { scale: number, color: string }): Promise<string> {
-        return await this.pool.exec('typeset', [arg, opts]).timeout(3000)
+        try {
+            return await this.pool.exec('typeset', [arg, opts]).timeout(3000)
+        } catch(e) {
+            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${arg.math}`)
+            throw e
+        }
     }
 
 }
