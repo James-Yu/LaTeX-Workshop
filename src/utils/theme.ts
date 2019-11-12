@@ -81,8 +81,7 @@ export function getCurrentThemeLightness(): 'light' | 'dark' {
                 return 'dark'
             }
         } catch (e) {
-            console.log('Error when JSON.parse theme files.')
-            console.log(e.message)
+
         }
         const uiTheme = candidateThemes[0].uiTheme
         if (!uiTheme || uiTheme === 'vs') {

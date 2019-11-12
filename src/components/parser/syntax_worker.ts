@@ -5,9 +5,6 @@ function parseLatex(s: string, options: latexParser.ParserOptions) {
     try {
         return latexParser.parse(s, options)
     } catch (e) {
-        if (e.name && e.message) {
-            console.log(`${e.name}: ${e.message}`)
-        }
         return undefined
     }
 }
