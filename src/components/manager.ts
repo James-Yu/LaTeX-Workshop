@@ -639,13 +639,13 @@ export class Manager {
     }
 
     private onWatchedFileChanged(file: string) {
+        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
         }
-        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         this.buildOnFileChanged(file)
     }
 
@@ -712,14 +712,11 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes, or active file content is changed.
     async updateCompleter(file: string, content: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.extension.completer.citation.update(file, content)
         // Here we use this delay config. Otherwise, multiple updates may run
         // concurrently if the actual parsing time is greater than that of
         // the keypress delay.
-        const latexAst = await this.extension.pegParser.parseLatex(content,
-            { timeout: configuration.get('intellisense.update.delay', 1000) }
-        )
+        const latexAst = await this.extension.pegParser.parseLatex(content)
         if (latexAst) {
             const nodes = latexAst.content
             const lines = content.split('\n')

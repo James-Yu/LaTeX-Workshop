@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
-import {latexParser, bibtexParser} from 'latex-utensils'
+import {bibtexParser} from 'latex-utensils'
 
 import {Extension} from './main'
 import {getLongestBalancedString} from './utils/utils'
@@ -654,28 +654,28 @@ export class Commander {
         this.extension.logParser.parse(vscode.window.activeTextEditor.document.getText())
     }
 
-    devParseTeX() {
+    async devParseTeX() {
         if (vscode.window.activeTextEditor === undefined) {
             return
         }
-        const ast = latexParser.parse(vscode.window.activeTextEditor.document.getText())
+        const ast = await this.extension.pegParser.parseLatex(vscode.window.activeTextEditor.document.getText())
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
-    devParseBib() {
+    async devParseBib() {
         if (vscode.window.activeTextEditor === undefined) {
             return
         }
-        const ast = bibtexParser.parse(vscode.window.activeTextEditor.document.getText())
+        const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
-    bibtexFormat(sort: boolean, align: boolean) {
+    async bibtexFormat(sort: boolean, align: boolean) {
         if (vscode.window.activeTextEditor === undefined || vscode.window.activeTextEditor.document.languageId !== 'bibtex') {
             return
         }
         const t0 = performance.now() // Measure performance
-        const ast = bibtexParser.parse(vscode.window.activeTextEditor.document.getText())
+        const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
 
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
