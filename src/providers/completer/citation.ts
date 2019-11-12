@@ -145,7 +145,7 @@ export class Citation {
         return suggestions
     }
 
-    parseBibFile(file: string) {
+    async parseBibFile(file: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (fs.statSync(file).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
@@ -156,7 +156,9 @@ export class Citation {
             return
         }
         this.bibEntries[file] = []
-        bibtexParser.parse(fs.readFileSync(file).toString()).content
+        const bibtex = fs.readFileSync(file).toString()
+        const ast = await this.extension.pegParser.parseBibtex(bibtex)
+        ast.content
             .filter(bibtexParser.isEntry)
             .forEach((entry: bibtexParser.Entry) => {
                 if (entry.internalKey === undefined) {
