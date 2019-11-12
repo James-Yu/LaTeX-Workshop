@@ -14,6 +14,6 @@ export class GraphicsScaler {
     }
 
     scale(filePath: string, options: { height: number, width: number }): workerpool.Promise<string> {
-        return this.pool.exec('scale', [filePath, options])
+        return this.pool.exec('scale', [filePath, options]).timeout(3000)
     }
 }

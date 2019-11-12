@@ -55,20 +55,16 @@ export class GraphicsPreview {
             return undefined
         }
         if (/\.pdf$/i.exec(filePath)) {
-            const promise = this.pdfRenderer.renderToSVG(
+            const svg0 = await this.pdfRenderer.renderToSVG(
                 filePath,
                 { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
             )
-            promise.timeout(3000)
-            const svg0 = await promise
             const svg = this.setBackgroundColor(svg0)
             const dataUrl = svgToDataUrl(svg)
             return dataUrl
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
-            const promise = this.graphicsScaler.scale(filePath, opts)
-            promise.timeout(3000)
-            const dataUrl = await promise
+            const dataUrl = await this.graphicsScaler.scale(filePath, opts)
             return dataUrl
         }
         return undefined
