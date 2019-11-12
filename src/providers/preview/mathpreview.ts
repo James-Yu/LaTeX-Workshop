@@ -2,6 +2,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import * as path from 'path'
+
+import {MathJaxPool} from './mathjaxpool'
 import * as utils from '../../utils/utils'
 import {TextDocumentLike} from '../../components/textdocumentlike'
 import {Extension} from '../../main'
@@ -12,30 +14,12 @@ type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
 export class MathPreview {
     extension: Extension
-    color: any
-    mj: any
+    color: string = '#000000'
+    mj: MathJaxPool
 
     constructor(extension: Extension) {
         this.extension = extension
-        import('mathjax-node').then(mj => {
-            mj.config({
-                MathJax: {
-                    jax: ['input/TeX', 'output/SVG'],
-                    extensions: ['tex2jax.js', 'MathZoom.js'],
-                    showMathMenu: false,
-                    showProcessingMessages: false,
-                    messageStyle: 'none',
-                    SVG: {
-                        useGlobalCache: false
-                    },
-                    TeX: {
-                        extensions: ['AMSmath.js', 'AMSsymbols.js', 'autoload-all.js', 'color.js', 'noUndefined.js']
-                    }
-                }
-            })
-            mj.start()
-            this.mj = mj
-        })
+        this.mj = new MathJaxPool(extension)
     }
 
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
@@ -125,13 +109,13 @@ export class MathPreview {
         const scale = configuration.get('hover.preview.scale') as number
         let s = this.renderCursor(document, tex.range)
         s = this.mathjaxify(s, tex.envname)
-        const data = await this.mj.typeset({
+        const typesetArg = {
             math: newCommand + this.stripTeX(s),
             format: 'TeX',
             svgNode: true,
-        })
-        this.scaleSVG(data, scale)
-        const xml = this.colorSVG(data.svgNode.outerHTML)
+        }
+        const typesetOpts = { scale, color: this.color }
+        const xml = await this.mj.typeset(typesetArg, typesetOpts)
         const md = utils.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
@@ -171,16 +155,16 @@ export class MathPreview {
         const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
         const s = this.mathjaxify(newTex, tex.envname, {stripLabel: false})
         const obj = { labels : {}, IDs: {}, startNumber: 0 }
-        const data = await this.mj.typeset({
+        const typesetArg = {
             width: 50,
             equationNumbers: 'AMS',
             math: newCommand + this.stripTeX(s),
             format: 'TeX',
             svgNode: true,
             state: {AMS: obj}
-        })
-        this.scaleSVG(data, scale)
-        const xml = this.colorSVG(data.svgNode.outerHTML)
+        }
+        const typesetOpts = { scale, color: this.color }
+        const xml = await this.mj.typeset(typesetArg, typesetOpts)
         const md = utils.svgToDataUrl(xml)
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
@@ -222,22 +206,6 @@ export class MathPreview {
         newTex = newTex.replace(/^\\begin\{(\w+?)\}/, '\\begin{$1*}')
         newTex = newTex.replace(/\\end\{(\w+?)\}$/, '\\end{$1*}')
         return newTex
-    }
-
-    private scaleSVG(data: any, scale: number) {
-        const svgelm = data.svgNode
-        // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
-        const w0 = svgelm.getAttribute('width').match(/([.\d]+)(\w*)/)
-        const h0 = svgelm.getAttribute('height').match(/([.\d]+)(\w*)/)
-        const w = scale * Number(w0[1])
-        const h = scale * Number(h0[1])
-        svgelm.setAttribute('width', w + w0[2])
-        svgelm.setAttribute('height', h + h0[2])
-    }
-
-    private colorSVG(svg: string): string {
-        const ret = svg.replace('</title>', `</title><style> * { color: ${this.color} }</style>`)
-        return ret
     }
 
     private stripTeX(tex: string): string {
