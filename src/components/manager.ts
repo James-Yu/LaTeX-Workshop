@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
@@ -501,10 +502,16 @@ export class Manager {
         const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), flsFile)
 
         const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
+        const format = (str: string): string => {
+            if (os.platform() === 'win32') {
+                return str.replace(/\\/g, '/')
+            }
+            return str
+        }
         ioFiles.input.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (ioFiles.output.includes(inputFile) ||
-                micromatch.some(inputFile, globsToIgnore) ||
+                micromatch.some(inputFile, globsToIgnore, { format } as any) ||
                 !fs.existsSync(inputFile)) {
                 return
             }

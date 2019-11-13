@@ -815,9 +815,14 @@
             "**/*.code.tex",
             "**.*.sty",
             "**/texmf-{dist,var}/**",
-            "C:/**texmf/**",
+            "**/Local/MiKTeX/**",
+            "**/Local/Programs/MiKTeX/**",
+            "**/Roaming/MiKTeX/**",
+            "**/Program*/MiKTeX*/**",
+            "**/.miktex/texmfs/**",
+            "/var/cache/miktex-texmf/**",
             "/usr/local/share/miktex-texmf/**",
-            "/Library/Application Support/MiKTeX/texmfs/**",
+            "**/Library/Application Support/MiKTeX/texmfs/**",
             "/dev/null"
           ],
           "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild.\nThis property must be an array of globs pattern. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
