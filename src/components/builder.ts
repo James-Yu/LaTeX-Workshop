@@ -180,9 +180,12 @@ export class Builder {
                     return p
                 })
             }
-            pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
+            try {
+                const doc = await pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise
                 this.extension.buildInfo.setPageTotal(doc.numPages)
-            })
+            } catch(e) {
+
+            }
             // Create sub directories of output directory
             // This was supposed to create the outputDir as latexmk does not
             // take care of it (neither does any of latex command). If the
@@ -252,7 +255,11 @@ export class Builder {
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
-            this.extension.buildInfo.newStdoutLine(newStdout.toString())
+            try {
+                this.extension.buildInfo.newStdoutLine(newStdout.toString())
+            } catch(e) {
+
+            }
         })
 
         let stderr = ''
