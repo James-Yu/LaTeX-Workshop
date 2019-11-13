@@ -502,7 +502,7 @@ export class Manager {
         const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), flsFile)
 
         const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
-        const format = (str: string) => {
+        const format = (str: string): string => {
             if (os.platform() === 'win32') {
                 return str.replace(/\\/g, '/')
             }
