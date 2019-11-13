@@ -111,8 +111,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal'))
     vscode.commands.registerCommand('latex-workshop.surround', () => extension.completer.command.surround())
 
-    vscode.commands.registerCommand('latex-workshop.increment-sectioning', () => extension.commander.shiftSectioningLevel('increment'))
-    vscode.commands.registerCommand('latex-workshop.decrement-sectioning', () => extension.commander.shiftSectioningLevel('decrement'))
+    vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => extension.commander.shiftSectioningLevel('promote'))
+    vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote'))
 
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
