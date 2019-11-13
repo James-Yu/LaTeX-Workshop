@@ -55,6 +55,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#files)
 - [Snippets and shortcuts](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets)
   - [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Environments)
+  - [Sectioning](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Sectioning)
   - [Inserting Greek letters](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Inserting-Greek-letters)
   - [Handy mathematical snippets](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Handy-mathematical-snippets)
   - [Font commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Font-commands)
