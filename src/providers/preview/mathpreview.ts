@@ -22,6 +22,10 @@ export class MathPreview {
         this.mj = new MathJaxPool(extension)
     }
 
+    private postProcessNewCommands(commands: string): string {
+        return commands.replace(/\\providecommand/g, '\\newcommand')
+    }
+
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
         let commandsString = ''
         if (newCommandFile === '') {
@@ -46,6 +50,7 @@ export class MathPreview {
             }
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
+        commandsString = this.postProcessNewCommands(commandsString)
         return commandsString
     }
 
@@ -70,7 +75,7 @@ export class MathPreview {
             const content = this.extension.manager.cachedContent[tex].content
             commands = commands.concat(await this.findNewCommand(content))
         }
-        return commandsInConfigFile + '\n' + commands.join('')
+        return commandsInConfigFile + '\n' + this.postProcessNewCommands(commands.join(''))
     }
 
     private async findNewCommand(content: string): Promise<string[]> {
