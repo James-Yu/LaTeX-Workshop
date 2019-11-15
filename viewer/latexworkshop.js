@@ -151,6 +151,7 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
 
 
 function callCbOnDidOpenWebSocket(socket, cb) {
+  // check whether WebSocket is already open (readyState === 1).
   if (socket.readyState === 1) {
     cb()
   } else {
@@ -288,7 +289,6 @@ function setupWebSocket() {
 setupWebSocket()
 
 document.addEventListener('pagesinit', () => {
-  // check whether WebSocket is open (readyState === 1).
   callCbOnDidOpenWebSocket(socket, () => {
     socket.send(JSON.stringify({type:'loaded', path:pdfFilePath}))
   })
