@@ -148,13 +148,32 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
       }, {once: true})
     }
 }
+
+
+function callCbOnDidOpenWebSocket(socket, cb) {
+  if (socket.readyState === 1) {
+    cb()
+  } else {
+    socket.addEventListener('open', () => {
+      cb()
+    }, {once: true})
+  }
+}
+
 const server = `ws://${window.location.hostname}:${window.location.port}`
 
 let reverseSynctexKeybinding
 let socket = new WebSocket(server)
 
 function setupWebSocket() {
-  socket.addEventListener('open', () => socket.send(JSON.stringify({type:'open', path:pdfFilePath, viewer:(embedded ? 'tab' : 'browser')})))
+  callCbOnDidOpenWebSocket(socket, () => {
+    const pack = {
+      type: 'open',
+      path: pdfFilePath,
+      viewer: (embedded ? 'tab' : 'browser')
+    }
+    socket.send(JSON.stringify(pack))
+  })
   socket.addEventListener('message', (event) => {
     const data = JSON.parse(event.data)
     switch (data.type) {
@@ -258,17 +277,11 @@ function setupWebSocket() {
     setTimeout( () => {
       console.log('Try to reconnect to LaTeX Workshop.')
       socket = new WebSocket(server)
-      if (socket.readyState === 1) {
-        setupWebSocket()
+      callCbOnDidOpenWebSocket(socket, () => {
         document.title = documentTitle
+        setupWebSocket()
         console.log('Reconnected: WebScocket to LaTeX Workshop.')
-      } else {
-        socket.addEventListener('open', () => {
-          setupWebSocket()
-          document.title = documentTitle
-          console.log('Reconnected: WebScocket to LaTeX Workshop.')
-        }, { once: true })
-      }
+      })
     }, 3000)
   }
 }
@@ -276,13 +289,9 @@ setupWebSocket()
 
 document.addEventListener('pagesinit', () => {
   // check whether WebSocket is open (readyState === 1).
-  if (socket.readyState === 1) {
+  callCbOnDidOpenWebSocket(socket, () => {
     socket.send(JSON.stringify({type:'loaded', path:pdfFilePath}))
-  } else {
-    socket.addEventListener('open', () => {
-      socket.send(JSON.stringify({type:'loaded', path:pdfFilePath}))
-    }, {once: true})
-  }
+  })
 })
 
 // Send packets every 30 sec to prevent the connection closed by timeout.
