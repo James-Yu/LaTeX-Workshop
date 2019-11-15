@@ -151,101 +151,114 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
 const server = `ws://${window.location.hostname}:${window.location.port}`
 
 let reverseSynctexKeybinding
-const socket = new WebSocket(server)
-socket.addEventListener('open', () => socket.send(JSON.stringify({type:'open', path:pdfFilePath, viewer:(embedded ? 'tab' : 'browser')})))
-socket.addEventListener('message', (event) => {
+let socket = new WebSocket(server)
+
+function setupWebSocket() {
+  socket.addEventListener('open', () => socket.send(JSON.stringify({type:'open', path:pdfFilePath, viewer:(embedded ? 'tab' : 'browser')})))
+  socket.addEventListener('message', (event) => {
     const data = JSON.parse(event.data)
     switch (data.type) {
-        case 'synctex':
-            // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
-            const container = document.getElementById('viewerContainer')
-            const pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
-            const page = document.getElementsByClassName('page')[data.data.page - 1]
-            const scrollX = page.offsetLeft + pos[0]
-            const scrollY = page.offsetTop + page.offsetHeight - pos[1]
+      case 'synctex':
+        // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
+        const container = document.getElementById('viewerContainer')
+        const pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
+        const page = document.getElementsByClassName('page')[data.data.page - 1]
+        const scrollX = page.offsetLeft + pos[0]
+        const scrollY = page.offsetTop + page.offsetHeight - pos[1]
 
-            // set positions before and after SyncTeX to viewerHistory
-            viewerHistory.set(container.scrollTop)
-            container.scrollTop = scrollY - document.body.offsetHeight * 0.4
-            viewerHistory.set(container.scrollTop)
+        // set positions before and after SyncTeX to viewerHistory
+        viewerHistory.set(container.scrollTop)
+        container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+        viewerHistory.set(container.scrollTop)
 
-            const indicator = document.getElementById('synctex-indicator')
-            indicator.className = 'show'
-            indicator.style.left = `${scrollX}px`
-            indicator.style.top = `${scrollY}px`
-            setTimeout(() => indicator.className = 'hide', 10)
-            break
-        case 'refresh':
-            // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
-            // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-            socket.send(JSON.stringify({type:'position', path:pdfFilePath,
-                                        scale:PDFViewerApplication.pdfViewer.currentScaleValue,
-                                        scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
-                                        spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
-                                        scrollTop:document.getElementById('viewerContainer').scrollTop,
-                                        scrollLeft:document.getElementById('viewerContainer').scrollLeft,
-                                        viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
-            PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
-            PDFViewerApplication.open(`${pdfFilePrefix}${encodedPdfFilePath}`).then( () => {
-              // reset the document title to the original value to avoid duplication
-              document.title = documentTitle
+        const indicator = document.getElementById('synctex-indicator')
+        indicator.className = 'show'
+        indicator.style.left = `${scrollX}px`
+        indicator.style.top = `${scrollY}px`
+        setTimeout(() => indicator.className = 'hide', 10)
+        break
+      case 'refresh':
+        // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
+        // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
+        socket.send(JSON.stringify({type:'position', path:pdfFilePath,
+        scale:PDFViewerApplication.pdfViewer.currentScaleValue,
+        scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
+        spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
+        scrollTop:document.getElementById('viewerContainer').scrollTop,
+        scrollLeft:document.getElementById('viewerContainer').scrollLeft,
+        viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
+        PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
+        PDFViewerApplication.open(`${pdfFilePrefix}${encodedPdfFilePath}`).then( () => {
+          // reset the document title to the original value to avoid duplication
+          document.title = documentTitle
 
-              // ensure that trimming is invoked if needed.
-              setTimeout(() => {
-                window.dispatchEvent( new Event('pagerendered') );
-              }, 2000);
-              setTimeout(() => {
-                window.dispatchEvent( new Event('refreshed') );
-              }, 2000);
-            });
-            break
-        case 'position':
-            PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
-            PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
-            PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
-            document.getElementById('viewerContainer').scrollTop = data.scrollTop
-            document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
-            viewerHistory = new ViewerHistory()
-            viewerHistory._history = data.viewerHistory.history
-            viewerHistory._currentIndex = data.viewerHistory.currentIndex
-            break
-        case 'params':
-            if (data.scale) {
-              PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
-            }
-            if (data.scrollMode) {
-              PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
-            }
-            if (data.spreadMode) {
-              PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
-            }
-            if (data.hand) {
-                PDFViewerApplication.pdfCursorTools.handTool.activate()
-            } else {
-                PDFViewerApplication.pdfCursorTools.handTool.deactivate()
-            }
-            if (data.trim) {
-              const trimSelect = document.getElementById('trimSelect')
-              const e = new Event('change')
-              if (trimSelect) {
-                trimSelect.selectedIndex = data.trim
-                trimSelect.dispatchEvent(e)
-              }
-            }
-            if (data.invert > 0) {
-              document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
-              document.querySelector('#viewer').style.background = 'white'
-            }
-            if (data.keybindings) {
-              reverseSynctexKeybinding = data.keybindings['synctex']
-              registerSynctexKeybinding(reverseSynctexKeybinding)
-            }
-            break
-        default:
-            break
+          // ensure that trimming is invoked if needed.
+          setTimeout(() => {
+            window.dispatchEvent( new Event('pagerendered') );
+          }, 2000);
+          setTimeout(() => {
+            window.dispatchEvent( new Event('refreshed') );
+          }, 2000);
+        });
+        break
+      case 'position':
+        PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
+        PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
+        PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
+        document.getElementById('viewerContainer').scrollTop = data.scrollTop
+        document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
+        viewerHistory = new ViewerHistory()
+        viewerHistory._history = data.viewerHistory.history
+        viewerHistory._currentIndex = data.viewerHistory.currentIndex
+        break
+      case 'params':
+        if (data.scale) {
+          PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
+        }
+        if (data.scrollMode) {
+          PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
+        }
+        if (data.spreadMode) {
+          PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
+        }
+        if (data.hand) {
+          PDFViewerApplication.pdfCursorTools.handTool.activate()
+        } else {
+          PDFViewerApplication.pdfCursorTools.handTool.deactivate()
+        }
+        if (data.trim) {
+          const trimSelect = document.getElementById('trimSelect')
+          const e = new Event('change')
+          if (trimSelect) {
+            trimSelect.selectedIndex = data.trim
+            trimSelect.dispatchEvent(e)
+          }
+        }
+        if (data.invert > 0) {
+          document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
+          document.querySelector('#viewer').style.background = 'white'
+        }
+        if (data.keybindings) {
+          reverseSynctexKeybinding = data.keybindings['synctex']
+          registerSynctexKeybinding(reverseSynctexKeybinding)
+        }
+        break
+      default:
+        break
     }
-})
-socket.onclose = () => { document.title = `[Disconnected] ${document.title}` }
+  })
+  socket.onclose = () => {
+    setTimeout( () => {
+      try {
+        socket = new WebSocket(server)
+        setupWebSocket()
+      } catch(e) {
+        document.title = `[Disconnected] ${document.title}`
+      }
+    }, 3000)
+  }
+}
+setupWebSocket()
 
 document.addEventListener('pagesinit', () => {
   // check whether WebSocket is open (readyState === 1).
