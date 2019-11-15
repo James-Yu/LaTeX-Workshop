@@ -180,17 +180,21 @@ function setupWebSocket() {
       case 'refresh':
         // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
         // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-        socket.send(JSON.stringify({type:'position', path:pdfFilePath,
-        scale:PDFViewerApplication.pdfViewer.currentScaleValue,
-        scrollMode:PDFViewerApplication.pdfViewer.scrollMode,
-        spreadMode:PDFViewerApplication.pdfViewer.spreadMode,
-        scrollTop:document.getElementById('viewerContainer').scrollTop,
-        scrollLeft:document.getElementById('viewerContainer').scrollLeft,
-        viewerHistory:{history: viewerHistory._history, currentIndex: viewerHistory._currentIndex}}))
+        const pack = {
+          type: 'position',
+          path: pdfFilePath,
+          scale: PDFViewerApplication.pdfViewer.currentScaleValue,
+          scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
+          spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
+          scrollTop: document.getElementById('viewerContainer').scrollTop,
+          scrollLeft: document.getElementById('viewerContainer').scrollLeft,
+          viewerHistory: { history: viewerHistory._history, currentIndex: viewerHistory._currentIndex }
+        }
+        socket.send(JSON.stringify(pack))
         PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
         PDFViewerApplication.open(`${pdfFilePrefix}${encodedPdfFilePath}`).then( () => {
           // reset the document title to the original value to avoid duplication
-          document.title = documentTitle
+          document.title = docTitle
 
           // ensure that trimming is invoked if needed.
           setTimeout(() => {
@@ -247,13 +251,23 @@ function setupWebSocket() {
         break
     }
   })
+
   socket.onclose = () => {
+    document.title = `[Disconnected] ${documentTitle}`
+    console.log('Closed: WebScocket to LaTeX Workshop.')
     setTimeout( () => {
-      try {
-        socket = new WebSocket(server)
+      console.log('Try to reconnect to LaTeX Workshop.')
+      socket = new WebSocket(server)
+      if (socket.readyState === 1) {
         setupWebSocket()
-      } catch(e) {
-        document.title = `[Disconnected] ${document.title}`
+        document.title = documentTitle
+        console.log('Reconnected: WebScocket to LaTeX Workshop.')
+      } else {
+        socket.addEventListener('open', () => {
+          setupWebSocket()
+          document.title = documentTitle
+          console.log('Reconnected: WebScocket to LaTeX Workshop.')
+        }, { once: true })
       }
     }, 3000)
   }
