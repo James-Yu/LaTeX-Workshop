@@ -194,7 +194,7 @@ function setupWebSocket() {
         PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false);
         PDFViewerApplication.open(`${pdfFilePrefix}${encodedPdfFilePath}`).then( () => {
           // reset the document title to the original value to avoid duplication
-          document.title = docTitle
+          document.title = documentTitle
 
           // ensure that trimming is invoked if needed.
           setTimeout(() => {
