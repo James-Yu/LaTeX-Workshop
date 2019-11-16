@@ -592,7 +592,7 @@ export class Commander {
         }
 
         // when supported, negative lookbehind at start would be nice --- (?<!\\)
-        const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\[.+?\])?(\{.*\})/g
+        const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\[.+?\])?(\{.*?\})/g
 
         function getLastLineLength(someText: string) {
             const lines = someText.split(/\n/)
