@@ -54,7 +54,7 @@ export class MathPreview {
         return commandsString
     }
 
-    async findProjectNewCommand() {
+    async findProjectNewCommand(ctoken: vscode.CancellationToken): Promise<string> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
         let commandsInConfigFile = ''
@@ -69,6 +69,9 @@ export class MathPreview {
         let exceeded = false
         setTimeout( () => { exceeded = true }, 5000)
         for (const tex of this.extension.manager.getIncludedTeX()) {
+            if (ctoken.isCancellationRequested) {
+                return ''
+            }
             if (exceeded) {
                 this.extension.logger.addLogMessage('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
@@ -131,7 +134,13 @@ export class MathPreview {
         return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
 
-    async provideHoverOnRef(document: vscode.TextDocument, position: vscode.Position, refData: ReferenceEntry, token: string): Promise<vscode.Hover> {
+    async provideHoverOnRef(
+        document: vscode.TextDocument,
+        position: vscode.Position,
+        refData: ReferenceEntry,
+        token: string,
+        ctoken: vscode.CancellationToken
+    ): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
@@ -140,7 +149,7 @@ export class MathPreview {
         if (configuration.get('hover.ref.enabled') as boolean) {
             const tex = this.findHoverOnRef(document, position, token, refData)
             if (tex) {
-                const newCommands = await this.findProjectNewCommand()
+                const newCommands = await this.findProjectNewCommand(ctoken)
                 return this.provideHoverPreviewOnRef(tex, newCommands, refData)
             }
         }
