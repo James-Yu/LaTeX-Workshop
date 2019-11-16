@@ -48,7 +48,7 @@ Please paste the whole log messages here, not parts of ones. It is very importan
 ### LaTeX Workshop Output [Required]
 
 ```
-To access the log, click the 'problems' icons on the statusbar, select 'OUTPUT', then select 'LaTeX Workshop' from the dropdown menu on the right.
+To access the log, click the 'TeX' icon on the Activity Bar on the left side, select 'View Log Messages', then select 'View LaTeX Workshop extension log'.
 
 [Paste the log here]
 ```
