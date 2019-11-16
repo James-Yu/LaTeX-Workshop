@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.4.1] - 2019-11-16
+
+### Fixed
+- Version 8.4.0 did not show up in the marketplace.
+
 ## [8.4.0] - 2019-11-16
 
 ### Added
