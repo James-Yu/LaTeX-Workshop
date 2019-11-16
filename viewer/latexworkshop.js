@@ -150,12 +150,12 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
 }
 
 
-function callCbOnDidOpenWebSocket(socket, cb) {
+function callCbOnDidOpenWebSocket(sock, cb) {
   // check whether WebSocket is already open (readyState === 1).
-  if (socket.readyState === 1) {
+  if (sock.readyState === 1) {
     cb()
   } else {
-    socket.addEventListener('open', () => {
+    sock.addEventListener('open', () => {
       cb()
     }, {once: true})
   }
