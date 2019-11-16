@@ -1,5 +1,21 @@
 # Change Log
 
+## [8.4.0] - 2019-11-16
+
+### Added
+- (#1780) Add commands to sort and align bibtex files.
+- (#1808) Add commands of `\bigl` and others.
+
+### Changed
+- (#1798) Tweaked promote/demote sectioning feature.
+  - Please read the wiki [Sectioning](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Sectioning) page for details. The actions of `ctrl+[` and `ctrl+]` are exchanged.
+
+### Fixed
+- (#1785) Do not reopen all documentations every time.
+- (#1788) A lot of tweaks related to extension freezing issue.
+- (#1804) Reconnect WebSocket after closed by sleep and wake.
+- (#1805) Turn `\providecommand` into `\newcommand` for mathjax preview.
+
 ## [8.3.1] - 2019-11-04
 
 ### Changed
