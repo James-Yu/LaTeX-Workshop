@@ -70,6 +70,7 @@ export class MathPreview {
         setTimeout( () => { exceeded = true }, 5000)
         for (const tex of this.extension.manager.getIncludedTeX()) {
             if (exceeded) {
+                this.extension.logger.addLogMessage('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
             const content = this.extension.manager.cachedContent[tex].content
