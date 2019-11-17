@@ -68,13 +68,13 @@ export class Commander {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as string
         const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
+        if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            rootFile = await this.extension.manager.findRoot()
+        }
         if (externalBuildCommand) {
             const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
             await this.extension.builder.buildWithExternalCommand(externalBuildCommand, externalBuildArgs, pwd, rootFile)
             return
-        }
-        if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            rootFile = await this.extension.manager.findRoot()
         }
         if (rootFile === undefined) {
             this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
