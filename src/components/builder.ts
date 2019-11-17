@@ -87,7 +87,7 @@ export class Builder {
         }
         this.currentProcess = cp.spawn(command, args, {cwd: wd})
         const pid = this.currentProcess.pid
-        this.extension.logger.addLogMessage(`LaTeX buid process as an external command spawned. PID: ${pid}.`)
+        this.extension.logger.addLogMessage(`External build process spawned. PID: ${pid}.`)
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
