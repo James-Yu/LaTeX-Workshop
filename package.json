@@ -946,10 +946,20 @@
             "[Experimental] Open PDF with the external viewer set in \"View > Pdf > External: command\"."
           ]
         },
-        "latex-workshop.view.pdf.tab.useNewGroup": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "When set to true, the viewer is opened in a new editor group, otherwise the current one is used."
+        "latex-workshop.view.pdf.tab.group": {
+          "type": "string",
+          "default": "right",
+          "enum": [
+            "current",
+            "left",
+            "right"
+          ],
+          "markdownDescription": "The editor group in which to open the tab viewer.",
+          "enumDescriptions": [
+            "Use the current editor group",
+            "Put the viewer tab in a new group on the left of the current one",
+            "Put the viewer tab in a new group on the right of the current one"
+          ]
         },
         "latex-workshop.view.pdf.ref.viewer": {
           "type": "string",

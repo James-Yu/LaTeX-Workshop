@@ -94,7 +94,7 @@ export class Viewer {
         }
     }
 
-    openTab(sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) {
+    openTab(sourceFile: string, respectOutDir: boolean = true, tabEditorGroup: string) {
         const url = this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
             return
@@ -107,14 +107,23 @@ export class Viewer {
         this.clients[pdfFile.toLocaleUpperCase()] = this.clients[pdfFile.toLocaleUpperCase()] || []
 
         const editor = vscode.window.activeTextEditor
-        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), sideColumn ? vscode.ViewColumn.Beside : vscode.ViewColumn.Active, {
+        let viewColumn: vscode.ViewColumn = vscode.ViewColumn.Beside
+        if (tabEditorGroup === 'same') {
+            viewColumn = vscode.ViewColumn.Active
+        } else {
+            viewColumn = vscode.ViewColumn.Beside
+        }
+        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), viewColumn, {
             enableScripts: true,
             retainContextWhenHidden: true,
             portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
         })
         panel.webview.html = this.getPDFViewerContent(pdfFile)
-        if (editor && sideColumn) {
-            setTimeout(() => { vscode.window.showTextDocument(editor.document, editor.viewColumn) }, 500)
+        if (editor && viewColumn !== vscode.ViewColumn.Active) {
+            setTimeout(() => { vscode.window.showTextDocument(editor.document, editor.viewColumn).then(() => {
+                if (tabEditorGroup === 'left') {
+                vscode.commands.executeCommand('workbench.action.moveActiveEditorGroupRight')
+            }}) }, 500)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
