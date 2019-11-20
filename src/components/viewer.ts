@@ -107,7 +107,7 @@ export class Viewer {
         this.clients[pdfFile.toLocaleUpperCase()] = this.clients[pdfFile.toLocaleUpperCase()] || []
 
         const editor = vscode.window.activeTextEditor
-        let viewColumn: vscode.ViewColumn = vscode.ViewColumn.Beside
+        let viewColumn: vscode.ViewColumn
         if (tabEditorGroup === 'same') {
             viewColumn = vscode.ViewColumn.Active
         } else {
