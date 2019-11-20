@@ -155,7 +155,7 @@ export class Commander {
             }
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const tabEditorGroup = configuration.get('view.pdf.tab.group') as string
+        const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
         if (mode === 'browser') {
             this.extension.viewer.openBrowser(pickedRootFile)
             return
