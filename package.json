@@ -29,6 +29,7 @@
     "onLanguage:tex",
     "onLanguage:latex",
     "onLanguage:doctex",
+    "onLanguage:rsweave",
     "onLanguage:pdf",
     "onCommand:latex-workshop.build",
     "onCommand:latex-workshop.recipes",
@@ -111,6 +112,19 @@
         "extensions": [
           ".pdf"
         ]
+      },
+      {
+        "id": "rsweave",
+        "aliases": [
+          "R Sweave"
+        ],
+        "extensions": [
+          ".rnw",
+          ".Rnw",
+          ".Rtex",
+          ".rtex"
+        ],
+        "configuration": "./syntax/syntax-rsweave.json"
       }
     ],
     "grammars": [
@@ -170,6 +184,14 @@
         "path": "./syntax/cpp-grammar-bailout.tmLanguage.json",
         "embeddedLanguages": {
           "meta.embedded.assembly.cpp": "asm"
+        }
+      },
+      {
+        "language": "rsweave",
+        "scopeName": "text.tex.latex.rsweave",
+        "path": "./syntax/RSweave.tmLanguage.json",
+        "embeddedLanguages": {
+            "source.r": "r"
         }
       }
     ],
