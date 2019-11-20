@@ -108,7 +108,7 @@ export class Viewer {
 
         const editor = vscode.window.activeTextEditor
         let viewColumn: vscode.ViewColumn
-        if (tabEditorGroup === 'same') {
+        if (tabEditorGroup === 'current') {
             viewColumn = vscode.ViewColumn.Active
         } else {
             viewColumn = vscode.ViewColumn.Beside
