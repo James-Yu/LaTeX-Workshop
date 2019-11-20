@@ -259,8 +259,8 @@ function setupWebSocket() {
           }
         }
         if (data.invert > 0) {
-          document.querySelector('#viewer').style.filter = `invert(${data.invert * 100}%)`
-          document.querySelector('#viewer').style.background = 'white'
+          document.querySelector('html').style.filter = `invert(${data.invert * 100}%)`
+          document.querySelector('html').style.background = 'white'
         }
         if (data.keybindings) {
           reverseSynctexKeybinding = data.keybindings['synctex']
