@@ -15,12 +15,10 @@ window.addEventListener('message', event => {
 
         progressManager.start(10);
     } else if (data.type === 'finished') {
-        console.log('finished');
         progressManager.stop();
 
         // if nothing happened i.e. latexmk ran and did nothing, keep the old data
         if (Object.keys(progressManager.stepTimes).length === 0) {
-            console.log('restoring to previous state');
             progressManager.stepTimes = progressManager.backupStepTimes;
             progressManager.updateStepTimesUl();
             progressManager.drawGraph();
@@ -29,7 +27,6 @@ window.addEventListener('message', event => {
             }
         }
     } else if (data.type === 'update') {
-        console.log('update');
         progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
         progressManager.pageTotal = data.pageTotal;
 

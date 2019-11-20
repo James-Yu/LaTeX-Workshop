@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "8.2.0",
+  "version": "8.4.1",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -40,7 +40,10 @@
     "onCommand:latex-workshop.citation",
     "onCommand:latex-workshop.compilerlog",
     "onCommand:latex-workshop.log",
-    "onCommand:latex-workshop.actions"
+    "onCommand:latex-workshop.actions",
+    "onCommand:latex-workshop.bibsort",
+    "onCommand:latex-workshop.bibalign",
+    "onCommand:latex-workshop.bibalignsort"
   ],
   "main": "./out/src/main.js",
   "contributes": {
@@ -324,6 +327,16 @@
         "category": "LaTeX Workshop"
       },
       {
+        "command": "latex-workshop.promote-sectioning",
+        "title": "Promote all the section levels used in the selection",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.demote-sectioning",
+        "title": "Demote all the section levels used in the selection",
+        "category": "LaTeX Workshop"
+      },
+      {
         "command": "latex-workshop.showCompilationPanel",
         "title": "Show LaTeX Compilation Info",
         "category": "LaTeX Workshop"
@@ -336,6 +349,21 @@
       {
         "command": "latex-workshop.showSnippetPanel",
         "title": "Show Snippet Panel",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.bibsort",
+        "title": "Sort BibTeX file",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.bibalign",
+        "title": "Align BibTeX file",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.bibalignsort",
+        "title": "Sort and align BibTeX file",
         "category": "LaTeX Workshop"
       }
     ],
@@ -401,28 +429,28 @@
         "when": "!config.latex-workshop.bind.altKeymap.enabled"
       },
       {
-        "key": "ctrl+l ]",
-        "mac": "cmd+l ]",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && config.latex-workshop.bind.altKeymap.enabled",
-        "command": "latex-workshop.increment-sectioning"
-      },
-      {
         "key": "ctrl+l [",
         "mac": "cmd+l [",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'&& config.latex-workshop.bind.altKeymap.enabled",
-        "command": "latex-workshop.decrement-sectioning"
+        "command": "latex-workshop.promote-sectioning"
       },
       {
-        "key": "ctrl+alt+]",
-        "mac": "cmd+alt+]",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !config.latex-workshop.bind.altKeymap.enabled",
-        "command": "latex-workshop.increment-sectioning"
+        "key": "ctrl+l ]",
+        "mac": "cmd+l ]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && config.latex-workshop.bind.altKeymap.enabled",
+        "command": "latex-workshop.demote-sectioning"
       },
       {
         "key": "ctrl+alt+[",
         "mac": "cmd+alt+[",
         "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex'&& !config.latex-workshop.bind.altKeymap.enabled",
-        "command": "latex-workshop.decrement-sectioning"
+        "command": "latex-workshop.promote-sectioning"
+      },
+      {
+        "key": "ctrl+alt+]",
+        "mac": "cmd+alt+]",
+        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !config.latex-workshop.bind.altKeymap.enabled",
+        "command": "latex-workshop.demote-sectioning"
       },
       {
         "key": "ctrl+l ctrl+enter",
@@ -773,6 +801,16 @@
           "default": true,
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When set to `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands. Note that this setting does not affect the `build` and `view` command as they both ask the user's choice first."
         },
+        "latex-workshop.latex.watch.usePolling": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "When set to true, polling is used to watch changes on files. When TeX files are placed on network drives or OneDrive, this option should be turned on. Setting this option to true might lead to high CPU utilization."
+        },
+        "latex-workshop.latex.watch.interval": {
+          "type": "number",
+          "default": 300,
+          "markdownDescription": "Interval of polling, in milliseconds."
+        },
         "latex-workshop.latex.watch.files.ignore": {
           "type": "array",
           "items": {
@@ -796,7 +834,17 @@
             "**/*.pfb",
             "**/*.tfm",
             "**/*.vf",
+            "**/*.code.tex",
+            "**.*.sty",
             "**/texmf-{dist,var}/**",
+            "**/Local/MiKTeX/**",
+            "**/Local/Programs/MiKTeX/**",
+            "**/Roaming/MiKTeX/**",
+            "**/Program*/MiKTeX*/**",
+            "**/.miktex/texmfs/**",
+            "/var/cache/miktex-texmf/**",
+            "/usr/local/share/miktex-texmf/**",
+            "**/Library/Application Support/MiKTeX/texmfs/**",
             "/dev/null"
           ],
           "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild.\nThis property must be an array of globs pattern. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
@@ -870,7 +918,6 @@
             "*.glg",
             "*.glo",
             "*.gls",
-            "*.ist",
             "*.fls",
             "*.log",
             "*.fdb_latexmk",
@@ -1442,6 +1489,44 @@
             "Status Bar",
             "Notification Dialogue"
           ]
+        },
+        "latex-workshop.bibtex-format.tab": {
+          "type": "string",
+          "enum": [
+            "2 spaces",
+            "4 spaces",
+            "tab"
+          ],
+          "default": "2 spaces",
+          "description": "Indentation for each field."
+        },
+        "latex-workshop.bibtex-format.surround": {
+          "type": "string",
+          "enum": [
+            "Curly braces",
+            "Quotation marks"
+          ],
+          "default": "Curly braces",
+          "description": "Surround each field value with either {Curly braces} or \"Quotation marks\"."
+        },
+        "latex-workshop.bibtex-format.case": {
+          "type": "string",
+          "enum": [
+            "UPPERCASE",
+            "lowercase"
+          ],
+          "default": "lowercase",
+          "description": "Determines if field names should be formatted like 'AUTHOR' or 'author'."
+        },
+        "latex-workshop.bibtex-format.sortby": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "markdownDescription": "An array of strings to sort by. Either a bibtex field name (title, author, year, etc.), or `\"year-desc\"` to sort by year in descending order, or `\"key\"` for the entry key. E.g. `[\"author\", \"year-desc\", \"title\"]`.",
+          "default": [
+            "key"
+          ]
         }
       }
     },
@@ -1520,7 +1605,7 @@
   },
   "dependencies": {
     "@tamuratak/domstubs": "^0.1.1",
-    "chokidar": "^2.0.3",
+    "chokidar": "^3.2.3",
     "fs-extra": "^5.0.0",
     "glob": "^7.1.1",
     "iconv-lite": "^0.4.24",
@@ -1528,7 +1613,7 @@
     "latex-utensils": "^1.1.4",
     "mathjax": "^2.7.5",
     "mathjax-node": "2.1.1",
-    "micromatch": "^3.0.0",
+    "micromatch": "^4.0.2",
     "pdfjs-dist": "2.2.228",
     "strip-json-comments": "^3.0.1",
     "tmp": "^0.0.33",
@@ -1544,15 +1629,15 @@
     "@types/vscode": "1.34.0",
     "@types/workerpool": "^5.0.0",
     "@types/ws": "^5.1.1",
-    "@typescript-eslint/eslint-plugin": "^2.1.0",
-    "@typescript-eslint/parser": "^2.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.6.0",
+    "@typescript-eslint/parser": "^2.6.0",
     "acorn": "^6.2.1",
-    "eslint": "^6.3.0",
+    "eslint": "^6.6.0",
     "husky": "^3.0.2",
     "textmate-bailout": "^1.1.0",
     "rimraf": "^3.0.0",
-    "typescript": "^3.5.3",
-    "vsce": "^1.66.0",
+    "typescript": "~3.6.4",
+    "vsce": "^1.69.0",
     "webpack": "^4.20.2"
   }
 }

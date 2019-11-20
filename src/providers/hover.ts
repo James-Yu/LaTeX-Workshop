@@ -9,7 +9,7 @@ export class HoverProvider implements vscode.HoverProvider {
         this.extension = extension
     }
 
-    public async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
+    public async provideHover(document: vscode.TextDocument, position: vscode.Position, ctoken: vscode.CancellationToken): Promise<vscode.Hover | undefined> {
         this.extension.mathPreview.getColor()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const hov = configuration.get('hover.preview.enabled') as boolean
@@ -19,7 +19,7 @@ export class HoverProvider implements vscode.HoverProvider {
         if (hov) {
             const tex = this.extension.mathPreview.findHoverOnTex(document, position)
             if (tex) {
-                const newCommands = await this.extension.mathPreview.findProjectNewCommand()
+                const newCommands = await this.extension.mathPreview.findProjectNewCommand(ctoken)
                 const hover = await this.extension.mathPreview.provideHoverOnTex(document, tex, newCommands)
                 return hover
             }
@@ -49,7 +49,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const refs = this.extension.completer.reference.getRefDict()
         if (hovReference && token in refs) {
             const refData = refs[token]
-            const hover = await this.extension.mathPreview.provideHoverOnRef(document, position, refData, token)
+            const hover = await this.extension.mathPreview.provideHoverOnRef(document, position, refData, token, ctoken)
             return hover
         }
         const cites = this.extension.completer.citation.getEntryDict()

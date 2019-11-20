@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
@@ -35,14 +36,19 @@ export class Manager {
     private bibWatcher?: chokidar.FSWatcher
     private filesWatched: string[] = []
     private bibsWatched: string[] = []
-    private watcherOptions: chokidar.WatchOptions = {
-        usePolling: true,
-        interval: 300,
-        binaryInterval: 1000
-    }
+    private watcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
         this.extension = extension
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const usePolling = configuration.get('latex.watch.usePolling') as boolean
+        const interval = configuration.get('latex.watch.interval') as number
+        this.watcherOptions = {
+            useFsEvents: false,
+            usePolling,
+            interval,
+            binaryInterval: Math.max(interval, 1000)
+        }
     }
 
     /* Returns the output directory developed according to the input tex path
@@ -485,19 +491,27 @@ export class Manager {
        and all output files will be check if there are aux files related. If so,
        the aux files are parsed for any possible bib file. */
     parseFlsFile(baseFile: string) {
+        this.extension.logger.addLogMessage('Parse fls file.')
         const rootDir = path.dirname(baseFile)
         const outDir = this.getOutDir(baseFile)
         const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
         if (!fs.existsSync(flsFile)) {
+            this.extension.logger.addLogMessage('Cannot find fls file.')
             return
         }
         const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), flsFile)
 
         const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
+        const format = (str: string): string => {
+            if (os.platform() === 'win32') {
+                return str.replace(/\\/g, '/')
+            }
+            return str
+        }
         ioFiles.input.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (ioFiles.output.includes(inputFile) ||
-                micromatch.some(inputFile, globsToIgnore) ||
+                micromatch.some(inputFile, globsToIgnore, { format } as any) ||
                 !fs.existsSync(inputFile)) {
                 return
             }
@@ -632,13 +646,13 @@ export class Manager {
     }
 
     private onWatchedFileChanged(file: string) {
+        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib', '.rnw', '.Rnw', '.rtex', '.Rtex'].includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
         }
-        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         this.buildOnFileChanged(file)
     }
 
@@ -647,7 +661,7 @@ export class Manager {
             return
         }
         this.extension.logger.addLogMessage('Creating file watcher for .bib files.')
-        this.bibWatcher = chokidar.watch('', this.watcherOptions)
+        this.bibWatcher = chokidar.watch([], this.watcherOptions)
         this.bibWatcher.on('change', (file: string) => this.onWatchedBibChanged(file))
         this.bibWatcher.on('unlink', (file: string) => this.onWatchedBibDeleted(file))
     }
@@ -705,14 +719,11 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes, or active file content is changed.
     async updateCompleter(file: string, content: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.extension.completer.citation.update(file, content)
         // Here we use this delay config. Otherwise, multiple updates may run
         // concurrently if the actual parsing time is greater than that of
         // the keypress delay.
-        const latexAst = await this.extension.pegParser.parseLatex(content,
-            { timeout: configuration.get('intellisense.update.delay', 1000) }
-        )
+        const latexAst = await this.extension.pegParser.parseLatex(content)
         if (latexAst) {
             const nodes = latexAst.content
             const lines = content.split('\n')

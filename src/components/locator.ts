@@ -146,13 +146,8 @@ export class Locator {
             } catch (e) {
                 this.extension.logger.addLogMessage('SyncTeX failed.')
                 if (e instanceof Error) {
-                    if (e.stack !== undefined) {
-                        this.extension.logger.addLogMessage(e.stack)
-                    } else {
-                        this.extension.logger.addLogMessage(e.message)
-                    }
+                    this.extension.logger.logError(e)
                 }
-                console.log(e)
             }
         } else {
             this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
@@ -275,15 +270,10 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
-            } catch ( e ) {
+            } catch (e) {
                 if (e instanceof Error) {
-                    if (e.stack !== undefined) {
-                        this.extension.logger.addLogMessage(e.stack)
-                    } else {
-                        this.extension.logger.addLogMessage(e.message)
-                    }
+                    this.extension.logger.logError(e)
                 }
-                console.log(e)
                 return
             }
         } else {

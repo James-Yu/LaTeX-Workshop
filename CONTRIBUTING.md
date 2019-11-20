@@ -10,7 +10,7 @@ Make sure you have installed:
 
 Then run
 
-    npm install --save-dev
+    npm install --no-optional
 
 inside the extension workspace to download the node modules needed to build the extension.
 

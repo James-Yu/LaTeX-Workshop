@@ -2,6 +2,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import * as path from 'path'
+
+import {MathJaxPool} from './mathjaxpool'
 import * as utils from '../../utils/utils'
 import {TextDocumentLike} from '../../components/textdocumentlike'
 import {Extension} from '../../main'
@@ -12,32 +14,18 @@ type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
 export class MathPreview {
     extension: Extension
-    jaxInitialized = false
-    color: any
-    mj: any
+    color: string = '#000000'
+    mj: MathJaxPool
 
     constructor(extension: Extension) {
         this.extension = extension
-        import('mathjax-node').then(mj => {
-            this.mj = mj
-            mj.config({
-                MathJax: {
-                    jax: ['input/TeX', 'output/SVG'],
-                    extensions: ['tex2jax.js', 'MathZoom.js'],
-                    showMathMenu: false,
-                    showProcessingMessages: false,
-                    messageStyle: 'none',
-                    SVG: {
-                        useGlobalCache: false
-                    },
-                    TeX: {
-                        extensions: ['AMSmath.js', 'AMSsymbols.js', 'autoload-all.js', 'color.js', 'noUndefined.js']
-                    }
-                }
-            })
-            mj.start()
-            this.jaxInitialized = true
-        })
+        this.mj = new MathJaxPool(extension)
+    }
+
+    private postProcessNewCommands(commands: string): string {
+        return commands.replace(/\\providecommand/g, '\\newcommand')
+                       .replace(/\\newcommand\*/g, '\\newcommand')
+                       .replace(/\\renewcommand\*/g, '\\renewcommand')
     }
 
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
@@ -64,10 +52,11 @@ export class MathPreview {
             }
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
+        commandsString = this.postProcessNewCommands(commandsString)
         return commandsString
     }
 
-    async findProjectNewCommand() {
+    async findProjectNewCommand(ctoken: vscode.CancellationToken): Promise<string> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
         let commandsInConfigFile = ''
@@ -79,17 +68,26 @@ export class MathPreview {
             return commandsInConfigFile
         }
         let commands: string[] = []
-        this.extension.manager.getIncludedTeX().forEach(tex => {
+        let exceeded = false
+        setTimeout( () => { exceeded = true }, 5000)
+        for (const tex of this.extension.manager.getIncludedTeX()) {
+            if (ctoken.isCancellationRequested) {
+                return ''
+            }
+            if (exceeded) {
+                this.extension.logger.addLogMessage('Timeout error when parsing preambles in findProjectNewCommand.')
+                throw new Error('Timeout Error in findProjectNewCommand')
+            }
             const content = this.extension.manager.cachedContent[tex].content
-            commands = commands.concat(this.findNewCommand(content))
-        })
-        return commandsInConfigFile + '\n' + commands.join('')
+            commands = commands.concat(await this.findNewCommand(content))
+        }
+        return commandsInConfigFile + '\n' + this.postProcessNewCommands(commands.join(''))
     }
 
-    private findNewCommand(content: string): string[] {
+    private async findNewCommand(content: string): Promise<string[]> {
         let commands: string[] = []
         try {
-            const ast = latexParser.parsePreamble(content)
+            const ast = await this.extension.pegParser.parseLatexPreamble(content)
             const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
             for (const node of ast.content) {
                 if (latexParser.isCommand(node) && node.name.match(regex)) {
@@ -127,18 +125,24 @@ export class MathPreview {
         const scale = configuration.get('hover.preview.scale') as number
         let s = this.renderCursor(document, tex.range)
         s = this.mathjaxify(s, tex.envname)
-        const data = await this.mj.typeset({
+        const typesetArg = {
             math: newCommand + this.stripTeX(s),
             format: 'TeX',
             svgNode: true,
-        })
-        this.scaleSVG(data, scale)
-        const xml = this.colorSVG(data.svgNode.outerHTML)
+        }
+        const typesetOpts = { scale, color: this.color }
+        const xml = await this.mj.typeset(typesetArg, typesetOpts)
         const md = utils.svgToDataUrl(xml)
         return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
     }
 
-    async provideHoverOnRef(document: vscode.TextDocument, position: vscode.Position, refData: ReferenceEntry, token: string): Promise<vscode.Hover> {
+    async provideHoverOnRef(
+        document: vscode.TextDocument,
+        position: vscode.Position,
+        refData: ReferenceEntry,
+        token: string,
+        ctoken: vscode.CancellationToken
+    ): Promise<vscode.Hover> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
@@ -147,7 +151,7 @@ export class MathPreview {
         if (configuration.get('hover.ref.enabled') as boolean) {
             const tex = this.findHoverOnRef(document, position, token, refData)
             if (tex) {
-                const newCommands = await this.findProjectNewCommand()
+                const newCommands = await this.findProjectNewCommand(ctoken)
                 return this.provideHoverPreviewOnRef(tex, newCommands, refData)
             }
         }
@@ -173,16 +177,16 @@ export class MathPreview {
         const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
         const s = this.mathjaxify(newTex, tex.envname, {stripLabel: false})
         const obj = { labels : {}, IDs: {}, startNumber: 0 }
-        const data = await this.mj.typeset({
+        const typesetArg = {
             width: 50,
             equationNumbers: 'AMS',
             math: newCommand + this.stripTeX(s),
             format: 'TeX',
             svgNode: true,
             state: {AMS: obj}
-        })
-        this.scaleSVG(data, scale)
-        const xml = this.colorSVG(data.svgNode.outerHTML)
+        }
+        const typesetOpts = { scale, color: this.color }
+        const xml = await this.mj.typeset(typesetArg, typesetOpts)
         const md = utils.svgToDataUrl(xml)
         const line = refData.position.line
         const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
@@ -201,7 +205,8 @@ export class MathPreview {
     }
 
     replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): string {
-        let newTex = tex.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
+        const texWithoutTag = tex.replace(/\\tag\{(\{[^{}]*?\}|.)*?\}/g, '')
+        let newTex = texWithoutTag.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
             if (refLabel) {
                 if (refLabel === matchLabel) {
                     if (tag) {
@@ -223,22 +228,6 @@ export class MathPreview {
         newTex = newTex.replace(/^\\begin\{(\w+?)\}/, '\\begin{$1*}')
         newTex = newTex.replace(/\\end\{(\w+?)\}$/, '\\end{$1*}')
         return newTex
-    }
-
-    private scaleSVG(data: any, scale: number) {
-        const svgelm = data.svgNode
-        // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
-        const w0 = svgelm.getAttribute('width').match(/([.\d]+)(\w*)/)
-        const h0 = svgelm.getAttribute('height').match(/([.\d]+)(\w*)/)
-        const w = scale * Number(w0[1])
-        const h = scale * Number(h0[1])
-        svgelm.setAttribute('width', w + w0[2])
-        svgelm.setAttribute('height', h + h0[2])
-    }
-
-    private colorSVG(svg: string): string {
-        const ret = svg.replace('</title>', `</title><style> * { color: ${this.color} }</style>`)
-        return ret
     }
 
     private stripTeX(tex: string): string {

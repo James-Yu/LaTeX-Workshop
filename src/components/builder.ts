@@ -79,15 +79,19 @@ export class Builder {
         }
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args ? args.join(' '): ''}`)
+        this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args.length > 0 ? args.join(' '): ''}`)
         let wd = pwd
         const ws = vscode.workspace.workspaceFolders
         if (ws && ws.length > 0) {
             wd = ws[0].uri.fsPath
         }
+
+        if (rootFile !== undefined) {
+            args = args.map(this.replaceArgumentPlaceholders(rootFile, this.tmpDir))
+        }
         this.currentProcess = cp.spawn(command, args, {cwd: wd})
         const pid = this.currentProcess.pid
-        this.extension.logger.addLogMessage(`LaTeX buid process as an external command spawned. PID: ${pid}.`)
+        this.extension.logger.addLogMessage(`External build process spawned. PID: ${pid}.`)
 
         let stdout = ''
         this.currentProcess.stdout.on('data', newStdout => {
@@ -180,9 +184,12 @@ export class Builder {
                     return p
                 })
             }
-            pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise.then((doc: any) => {
+            try {
+                const doc = await pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise
                 this.extension.buildInfo.setPageTotal(doc.numPages)
-            })
+            } catch(e) {
+
+            }
             // Create sub directories of output directory
             // This was supposed to create the outputDir as latexmk does not
             // take care of it (neither does any of latex command). If the
@@ -252,7 +259,11 @@ export class Builder {
         this.currentProcess.stdout.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
-            this.extension.buildInfo.newStdoutLine(newStdout.toString())
+            try {
+                this.extension.buildInfo.newStdoutLine(newStdout.toString())
+            } catch(e) {
+
+            }
         })
 
         let stderr = ''
@@ -420,25 +431,14 @@ export class Builder {
                         break
                 }
             }
-            const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
-            const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
-            const outDir = this.extension.manager.getOutDir()
             if (step.args) {
-                step.args = step.args.map(arg => arg.replace(/%DOC%/g, docker ? docfile : doc)
-                                                    .replace(/%DOCFILE%/g, docfile)
-                                                    .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
-                                                    .replace(/%TMPDIR%/g, this.tmpDir)
-                                                    .replace(/%OUTDIR%/g, outDir))
+                step.args = step.args.map(this.replaceArgumentPlaceholders(rootFile, this.tmpDir))
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
                     const e = step.env && step.env[v]
                     if (step.env && e) {
-                        step.env[v] = e.replace(/%DOC%/g, docker ? docfile : doc)
-                                                 .replace(/%DOCFILE%/g, docfile)
-                                                 .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
-                                                 .replace(/%TMPDIR%/g, this.tmpDir)
-                                                 .replace(/%OUTDIR%/g, outDir)
+                        step.env[v] = this.replaceArgumentPlaceholders(rootFile, this.tmpDir)(e)
                     }
                 })
             }
@@ -495,6 +495,22 @@ export class Builder {
         }
 
         return [texCommand, bibCommand]
+    }
+
+    replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
+        return (arg: string) => {
+            const docker = vscode.workspace.getConfiguration('latex-workshop').get('docker.enabled')
+
+            const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
+            const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+            const outDir = this.extension.manager.getOutDir()
+
+            return arg.replace(/%DOC%/g, docker ? docfile : doc)
+                      .replace(/%DOCFILE%/g, docfile)
+                      .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
+                      .replace(/%TMPDIR%/g, tmpDir)
+                      .replace(/%OUTDIR%/g, outDir)
+        }
     }
 }
 
