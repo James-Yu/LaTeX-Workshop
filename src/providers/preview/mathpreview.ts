@@ -24,6 +24,8 @@ export class MathPreview {
 
     private postProcessNewCommands(commands: string): string {
         return commands.replace(/\\providecommand/g, '\\newcommand')
+                       .replace(/\\newcommand\*/g, '\\newcommand')
+                       .replace(/\\renewcommand\*/g, '\\renewcommand')
     }
 
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
