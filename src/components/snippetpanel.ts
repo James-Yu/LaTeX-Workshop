@@ -135,9 +135,7 @@ export class SnippetPanel {
             const editor = this.lastActiveTextEditor
             if (editor) {
                 editor.insertSnippet(new vscode.SnippetString(message.snippet.replace(/\\\n/g, '\\n'))).then(
-                    msg => {
-                        console.log(msg)
-                    },
+                    () => {},
                     err => {
                         vscode.window.showWarningMessage(`Unable to insert symbol, ${err}`)
                     }
