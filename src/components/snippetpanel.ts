@@ -23,8 +23,12 @@ export class SnippetPanel {
     constructor(extension: Extension) {
         this.extension = extension
 
+        const editor = vscode.window.activeTextEditor
+        if (editor && this.extension.manager.hasTexId(editor.document.languageId)) {
+            this.lastActiveTextEditor = editor
+        }
         vscode.window.onDidChangeActiveTextEditor(textEditor => {
-            if (textEditor) {
+            if (textEditor && this.extension.manager.hasTexId(textEditor.document.languageId)) {
                 this.lastActiveTextEditor = textEditor
             }
         })
