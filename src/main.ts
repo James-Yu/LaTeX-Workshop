@@ -245,7 +245,7 @@ export function activate(context: vscode.ExtensionContext) {
         viewer: {
             clients: extension.viewer.clients,
             refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
-            openTab: (sourceFile: string, respectOutDir: boolean = true, sideColumn: boolean = true) => extension.viewer.openTab(sourceFile, respectOutDir, sideColumn)
+            openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
         },
         manager: {
             findRoot: () => extension.manager.findRoot(),

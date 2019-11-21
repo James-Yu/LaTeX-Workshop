@@ -155,12 +155,12 @@ export class Commander {
             }
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useActiveGroup = configuration.get('view.pdf.tab.useNewGroup') as boolean
+        const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
         if (mode === 'browser') {
             this.extension.viewer.openBrowser(pickedRootFile)
             return
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(pickedRootFile, true, useActiveGroup)
+            this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
             return
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(pickedRootFile)
@@ -180,7 +180,7 @@ export class Commander {
                     break
                 case 'tab':
                 default:
-                    this.extension.viewer.openTab(pickedRootFile, true, useActiveGroup)
+                    this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
                     break
                 case 'external':
                     this.extension.viewer.openExternal(pickedRootFile)
@@ -204,7 +204,7 @@ export class Commander {
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        this.extension.viewer.openTab(uri.fsPath, false, false)
+        this.extension.viewer.openTab(uri.fsPath, false, 'current')
     }
 
     synctex() {
