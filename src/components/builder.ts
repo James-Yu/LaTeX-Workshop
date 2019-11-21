@@ -94,13 +94,13 @@ export class Builder {
         this.extension.logger.addLogMessage(`External build process spawned. PID: ${pid}.`)
 
         let stdout = ''
-        this.currentProcess.stdout.on('data', newStdout => {
+        this.currentProcess.stdout?.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
         })
 
         let stderr = ''
-        this.currentProcess.stderr.on('data', newStderr => {
+        this.currentProcess.stderr?.on('data', newStderr => {
             stderr += newStderr
             this.extension.logger.addCompilerMessage(newStderr.toString())
         })
@@ -256,7 +256,7 @@ export class Builder {
         this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${pid}.`)
 
         let stdout = ''
-        this.currentProcess.stdout.on('data', newStdout => {
+        this.currentProcess.stdout?.on('data', newStdout => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
             try {
@@ -267,7 +267,7 @@ export class Builder {
         })
 
         let stderr = ''
-        this.currentProcess.stderr.on('data', newStderr => {
+        this.currentProcess.stderr?.on('data', newStderr => {
             stderr += newStderr
             this.extension.logger.addCompilerMessage(newStderr.toString())
         })

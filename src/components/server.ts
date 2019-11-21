@@ -20,20 +20,16 @@ export class Server {
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
-        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, (err: Error) => {
-            if (err) {
-                this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
+        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, () => {
+            const {address, port} = this.httpServer.address() as AddressInfo
+            this.port = port
+            if (address.includes(':')) {
+                // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
+                this.address = `[${address}]:${port}`
             } else {
-                const {address, port} = this.httpServer.address() as AddressInfo
-                this.port = port
-                if (address.includes(':')) {
-                    // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
-                    this.address = `[${address}]:${port}`
-                } else {
-                    this.address = `${address}:${port}`
-                }
-                this.extension.logger.addLogMessage(`Server created on ${this.address}`)
+                this.address = `${address}:${port}`
             }
+            this.extension.logger.addLogMessage(`Server created on ${this.address}`)
         })
         this.httpServer.on('error', (err) => {
             this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)

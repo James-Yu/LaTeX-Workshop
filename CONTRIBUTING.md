@@ -4,7 +4,7 @@
 
 Make sure you have installed:
 
-- [`node.js`](https://nodejs.org/) v10
+- [`node.js`](https://nodejs.org/) v12
 - `npm`
 - the [`eslint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) extension for VS Code (recommended)
 

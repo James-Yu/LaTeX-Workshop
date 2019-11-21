@@ -141,16 +141,16 @@ export class Linter {
             const startTime = process.hrtime()
             this.currentProcesses[linterId] = spawn(command, args, options)
             const proc = this.currentProcesses[linterId]
-            proc.stdout.setEncoding('binary')
-            proc.stderr.setEncoding('binary')
+            proc.stdout?.setEncoding('binary')
+            proc.stderr?.setEncoding('binary')
 
             let stdout = ''
-            proc.stdout.on('data', newStdout => {
+            proc.stdout?.on('data', newStdout => {
                 stdout += newStdout
             })
 
             let stderr = ''
-            proc.stderr.on('data', newStderr => {
+            proc.stderr?.on('data', newStderr => {
                 stderr += newStderr
             })
 
@@ -171,12 +171,12 @@ export class Linter {
             })
 
             if (stdin !== undefined) {
-                proc.stdin.write(stdin)
+                proc.stdin?.write(stdin)
                 if (!stdin.endsWith(EOL)) {
                     // Always ensure we end with EOL otherwise ChkTeX will report line numbers as off by 1.
-                    proc.stdin.write(EOL)
+                    proc.stdin?.write(EOL)
                 }
-                proc.stdin.end()
+                proc.stdin?.end()
             }
         })
     }
