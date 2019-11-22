@@ -59,19 +59,26 @@ export class GraphicsPreview {
         }
         const mode = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.preview.render') as string
         if (/\.pdf$/i.exec(filePath)) {
+            let svgPath = undefined
+            if (mode === 'file' && this.cacheDir !== undefined) {
+                svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
+                if(fs.existsSync(svgPath) && fs.statSync(svgPath).mtime >= fs.statSync(filePath).mtime) {
+                    return svgPath
+                }
+            }
             const svg0 = await this.pdfRenderer.renderToSVG(
                 filePath,
                 { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
             )
             const svg = this.setBackgroundColor(svg0)
             if (mode === 'dataUrl') {
-            const dataUrl = svgToDataUrl(svg)
-            return dataUrl
+                const dataUrl = svgToDataUrl(svg)
+                return dataUrl
             } else if (mode === 'file') {
                 if(this.cacheDir === undefined) {
                     this.cacheDir = fs.mkdtempSync(path.join(os.tmpdir(), 'latex-workshop-svg-'))
                 }
-                const svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
+                svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
                 if(!fs.existsSync(svgPath) || fs.statSync(svgPath).mtime < fs.statSync(filePath).mtime) {
                     fs.writeFileSync(svgPath, svg)
                 }
