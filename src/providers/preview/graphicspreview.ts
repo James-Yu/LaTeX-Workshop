@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
+import * as os from 'os'
 import { Extension } from '../../main'
 import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
@@ -8,6 +9,8 @@ import { svgToDataUrl, encodePath } from '../../utils/utils'
 
 
 export class GraphicsPreview {
+    private cacheDir: string | undefined = undefined
+
     extension: Extension
     pdfRenderer: PDFRenderer
     graphicsScaler: GraphicsScaler
@@ -65,9 +68,13 @@ export class GraphicsPreview {
             const dataUrl = svgToDataUrl(svg)
             return dataUrl
             } else if (mode === 'file') {
-                const name = encodePath(filePath)
-                const svgPath = `/tmp/${name}.svg`
-                fs.writeFileSync(svgPath, svg)
+                if(this.cacheDir === undefined) {
+                    this.cacheDir = fs.mkdtempSync(path.join(os.tmpdir(), 'latex-workshop-svg-'))
+                }
+                const svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
+                if(!fs.existsSync(svgPath) || fs.statSync(svgPath).mtime < fs.statSync(filePath).mtime) {
+                    fs.writeFileSync(svgPath, svg)
+                }
                 return svgPath
             }
         }
