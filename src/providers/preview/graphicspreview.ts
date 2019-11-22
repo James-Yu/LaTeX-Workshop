@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import {Extension} from '../../main'
-import {PDFRenderer} from './pdfrenderer'
-import {GraphicsScaler} from './graphicsscaler'
-import {svgToDataUrl} from '../../utils/utils'
+import { Extension } from '../../main'
+import { PDFRenderer } from './pdfrenderer'
+import { GraphicsScaler } from './graphicsscaler'
+import { svgToDataUrl, encodePath } from '../../utils/utils'
 
 
 export class GraphicsPreview {
@@ -54,14 +54,22 @@ export class GraphicsPreview {
         if (!fs.existsSync(filePath)) {
             return undefined
         }
+        const mode = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.preview.render') as string
         if (/\.pdf$/i.exec(filePath)) {
             const svg0 = await this.pdfRenderer.renderToSVG(
                 filePath,
                 { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
             )
             const svg = this.setBackgroundColor(svg0)
+            if (mode === 'dataUrl') {
             const dataUrl = svgToDataUrl(svg)
             return dataUrl
+            } else if (mode === 'file') {
+                const name = encodePath(filePath)
+                const svgPath = `/tmp/${name}.svg`
+                fs.writeFileSync(svgPath, svg)
+                return svgPath
+            }
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
             const dataUrl = await this.graphicsScaler.scale(filePath, opts)
