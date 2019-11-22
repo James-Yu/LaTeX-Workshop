@@ -171,7 +171,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // resolve the path
                 let inputFilePath: string | null
                 if (result[1].startsWith('\\subimport')) {
-                    inputFilePath = utils.resolveFile([path.dirname(filePath)], path.resolve(result[2], result[3]))
+                    inputFilePath = utils.resolveFile([path.dirname(filePath)], path.join(result[2], result[3]))
                 } else if (result[1].startsWith('\\import')) {
                     inputFilePath = utils.resolveFile([result[2]], result[3])
                 } else {
