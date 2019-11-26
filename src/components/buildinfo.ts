@@ -97,7 +97,7 @@ export class BuildInfo {
         const latexmkRuleStartedRegex = /Latexmk: applying rule '([A-Za-z\s/]+)'\.\.\.\n$/
         // const auxOutfileReference = /\(\.[\/\w ]+\.aux\)[\w\s\/\(\)\-\.]*$/
 
-        const hardcodedRulesPageProducing = ['pdflatex', 'pdftex', 'lualatex']
+        const hardcodedRulesPageProducing = ['pdflatex', 'pdftex', 'lualatex', 'xelatex']
         const hardcodedRulesOther = ['sage']
 
         // A rule consists of a regex to catch the program starting and a boolean of whether
@@ -107,7 +107,8 @@ export class BuildInfo {
             pdfTeX: [ /This is pdfTeX, Version [\d.-]+[^\n]*$/, true ],
             BibTeX: [ /This is BibTeX[\w.\- ",()]+$/, false ],
             Sage: [ /Processing Sage code for [\w.\- "]+\.\.\.$/, false ],
-            LuaTeX: [ /This is LuaTeX, Version [\d.]+[^\n]*$/, true ]
+            LuaTeX: [ /This is LuaTeX, Version [\d.]+[^\n]*$/, true ],
+            XeTex: [ /This is XeTeX, Version [\d.-]+[^\n]*$/, true ]
         }
 
         if (!this.currentBuild) {
