@@ -1,6 +1,9 @@
 const embedded = window.parent !== window
 let documentTitle = ''
 
+let PDFViewerApplication: any
+let PDFViewerApplicationOptions: any
+
 document.addEventListener('webviewerloaded', () => {
   // PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
   // and if so it behaves more "discretely", eg it disables its history mechanism.
@@ -10,6 +13,9 @@ document.addEventListener('webviewerloaded', () => {
 });
 
 class ViewerHistory {
+  _history: { scroll: number, temporary: boolean}[]
+  _currentIndex: number | undefined
+
   constructor() {
     this._history = []
     this._currentIndex = undefined
@@ -141,7 +147,7 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
         document.title = documentTitle
     } else if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
       document.addEventListener('pagesinit', () => {
-        const dom = document.getElementsByClassName('print')
+        const dom = document.getElementsByClassName('print') as HTMLCollectionOf<HTMLElement>
         for (let j = 0; j < dom.length; ++j) {
           dom.item(j).style.display='none'
         }
@@ -182,7 +188,7 @@ function setupWebSocket() {
         // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
         const container = document.getElementById('viewerContainer')
         const pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
-        const page = document.getElementsByClassName('page')[data.data.page - 1]
+        const page = document.getElementsByClassName('page')[data.data.page - 1] as HTMLElement
         const scrollX = page.offsetLeft + pos[0]
         const scrollY = page.offsetTop + page.offsetHeight - pos[1]
 
@@ -251,7 +257,7 @@ function setupWebSocket() {
           PDFViewerApplication.pdfCursorTools.handTool.deactivate()
         }
         if (data.trim) {
-          const trimSelect = document.getElementById('trimSelect')
+          const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
           const e = new Event('change')
           if (trimSelect) {
             trimSelect.selectedIndex = data.trim
@@ -305,8 +311,9 @@ setInterval( () => {
 // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
 if (embedded) {
   document.addEventListener('click', (e) => {
-      if (e.target.nodeName === 'A' && !e.target.href.startsWith(window.location.href)) { // is external link
-        socket.send(JSON.stringify({type:'external_link', url:e.target.href}))
+      const target = e.target as HTMLAnchorElement
+      if (target.nodeName === 'A' && !target.href.startsWith(window.location.href)) { // is external link
+        socket.send(JSON.stringify({type:'external_link', url:target.href}))
         e.preventDefault();
       }
   })
@@ -324,7 +331,7 @@ function callSynctex(e, page, pageDom, viewerContainer) {
       textBeforeSelection = text.substring(0, selection.anchorOffset);
       textAfterSelection = text.substring(selection.anchorOffset);
     }
-    const trimSelect = document.getElementById('trimSelect')
+    const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
     let left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft
     const top = e.pageY - pageDom.offsetTop + viewerContainer.scrollTop
     if (trimSelect.selectedIndex > 0) {
@@ -338,7 +345,7 @@ function callSynctex(e, page, pageDom, viewerContainer) {
 
 function registerSynctexKeybinding(keybinding) {
   const viewerDom = document.getElementById('viewer')
-  for (const pageDom of viewerDom.childNodes) {
+  for (const pageDom of viewerDom.childNodes as NodeListOf<HTMLElement>) {
     const page = pageDom.dataset.pageNumber
     const viewerContainer = document.getElementById('viewerContainer')
     switch (keybinding) {
@@ -392,7 +399,8 @@ document.addEventListener('pagesinit', () => {
 // keyboard bindings
 window.addEventListener('keydown', (evt) => {
   // F opens find bar, cause Ctrl-F is handled by vscode
-  if(evt.keyCode === 70 && evt.target.nodeName !== 'INPUT') { // ignore F typed in the search box
+  const target = evt.target as HTMLElement
+  if(evt.keyCode === 70 && target.nodeName !== 'INPUT') { // ignore F typed in the search box
     showToolbar(false)
     PDFViewerApplication.findBar.open()
     evt.preventDefault()
@@ -438,26 +446,26 @@ let currentUserSelectScale = undefined;
 let originalUserSelectIndex = undefined;
 
 const getTrimScale = () => {
-  const trimSelect = document.getElementById('trimSelect');
+  const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
   if (trimSelect.selectedIndex <= 0) {
     return 1.0;
   }
   const trimValue = trimSelect.options[trimSelect.selectedIndex].value;
-  return 1.0/(1 - 2*trimValue);
+  return 1.0/(1 - 2*Number(trimValue));
 };
 
 document.addEventListener('pagesinit', () => {
   document.getElementById('trimSelect').addEventListener('change', () => {
     const trimScale = getTrimScale();
-    const trimSelect = document.getElementById('trimSelect');
-    const scaleSelect = document.getElementById('scaleSelect');
+    const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
+    const scaleSelect = document.getElementById('scaleSelect')  as HTMLSelectElement
     const e = new Event('change');
     let o;
     if (trimSelect.selectedIndex <= 0) {
       for ( o of scaleSelect.options ) {
         o.disabled = false;
       }
-      document.getElementById('trimOption').disabled = true;
+      (document.getElementById('trimOption') as HTMLOptionElement).disabled = true;
       document.getElementById('trimOption').hidden = true;
       if (originalUserSelectIndex !== undefined) {
         scaleSelect.selectedIndex = originalUserSelectIndex;
@@ -539,7 +547,7 @@ const trimPage = (page) => {
 
 window.addEventListener('pagerendered', () => {
   const container = document.getElementById('trimSelectContainer');
-  const select = document.getElementById('trimSelect');
+  const select = document.getElementById('trimSelect') as HTMLSelectElement
   container.setAttribute('style', 'display: inherit;');
   if (container.clientWidth > 0) {
     select.setAttribute('style', 'min-width: inherit;');
@@ -558,7 +566,7 @@ window.addEventListener('pagerendered', () => {
 
 const setObserverToTrim = () => {
   const observer = new MutationObserver(records => {
-    const trimSelect = document.getElementById('trimSelect');
+    const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
     if (trimSelect.selectedIndex <= 0) {
         return;
     }
@@ -568,7 +576,7 @@ const setObserverToTrim = () => {
     })
   })
   const viewer = document.getElementById('viewer');
-  for( const page of viewer.getElementsByClassName('page') ){
+  for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
     if (page.dataset.isObserved !== 'observed') {
       observer.observe(page, {attributes: true, childList: true, attributeFilter: ['style']});
       page.setAttribute('data-is-observed', 'observed');
@@ -578,7 +586,7 @@ const setObserverToTrim = () => {
 
 // We need to recaluculate scale and left offset for trim mode on each resize event.
 window.addEventListener('resize', () =>{
-  const trimSelect = document.getElementById('trimSelect');
+  const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
   const ind = trimSelect.selectedIndex;
   if (!trimSelect || ind <= 0) {
     return;
