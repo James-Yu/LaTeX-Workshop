@@ -476,7 +476,7 @@ export class Builder {
             this.extension.logger.addLogMessage(`Found TeX program by magic comment: ${texCommand.command}`)
             const res = content.match(regexTexOptions)
             if (res) {
-                texCommand.args = [res[1]]
+                texCommand.args = res[1].split(' ')
                 this.extension.logger.addLogMessage(`Found TeX options by magic comment: ${texCommand.args}`)
             }
         }
