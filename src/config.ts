@@ -109,6 +109,7 @@ export function obsoleteConfigCheck(extension: Extension) {
     renameConfig('latex-workshop.view.pdf.tab.useNewGroup', 'view.pdf.tab.editorGroup')
     splitCommand(extension, 'latex.external.build.command', 'latex.external.build.command', 'latex.external.build.args')
     splitCommand(extension, 'view.pdf.external.command', 'view.pdf.external.viewer.command', 'view.pdf.external.viewer.args')
+    renameConfig('intellisense.preview.enabled', 'intellisense.includegraphics.preview.enabled')
 }
 
 export function checkDeprecatedFeatures(extension: Extension) {

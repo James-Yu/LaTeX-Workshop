@@ -100,7 +100,7 @@ export class Completer implements vscode.CompletionItemProvider {
         if (item.kind !== vscode.CompletionItemKind.File) {
             return item
         }
-        const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.preview.enabled') as boolean
+        const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
         if (!preview) {
             return item
         }
