@@ -262,6 +262,7 @@ function setupWebSocket() {
           document.querySelector('html').style.filter = `invert(${data.invert * 100}%)`
           document.querySelector('html').style.background = 'white'
         }
+        document.querySelector('#viewerContainer').style.background = data.bgColor
         if (data.keybindings) {
           reverseSynctexKeybinding = data.keybindings['synctex']
           registerSynctexKeybinding(reverseSynctexKeybinding)
