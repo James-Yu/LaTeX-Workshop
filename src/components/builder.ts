@@ -405,12 +405,21 @@ export class Builder {
                     const candidates = tools.filter(candidate => candidate.name === tool)
                     if (candidates.length < 1) {
                         this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
+                        return
                     } else {
-                        steps.push(candidates[0])
+                        tool = candidates[0]
                     }
-                } else {
-                    steps.push(tool)
                 }
+                if (tool.command === 'latexmk' && magicTex) {
+                    if (!tool.args) {
+                        tool.args = []
+                    }
+                    tool.args.push(`-${magicTex.command}`)
+                    if(magicTex.args) {
+                        tool.args.push(`-${magicTex.command}="${magicTex.args.join(' ').replace('"','\\"')}"`)
+                    }
+                }
+                steps.push(tool)
             })
         }
         steps = JSON.parse(JSON.stringify(steps))
