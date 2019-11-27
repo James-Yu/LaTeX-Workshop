@@ -145,7 +145,7 @@ export class Input {
                         suggestions.push(item)
                     } else if (! provideDirOnly) {
                         const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
-                        const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.preview.enabled') as boolean
+                        const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
                         if (preview && command === 'includegraphics') {
                             item.documentation = filePath
                         }
