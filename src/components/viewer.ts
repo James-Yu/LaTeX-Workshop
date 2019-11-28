@@ -242,7 +242,7 @@ export class Viewer {
                             spreadMode: configuration.get('view.pdf.spreadMode'),
                             hand: configuration.get('view.pdf.hand'),
                             invert: configuration.get('view.pdf.invert'),
-                            bgColor: configuration.get('view.pdf.tab.backgroundColor'),
+                            bgColor: configuration.get('view.pdf.backgroundColor'),
                             keybindings: {
                                 synctex: configuration.get('view.pdf.internal.synctex.keybinding')
                             }
