@@ -106,6 +106,7 @@ export class BuildInfo {
         const rules = {
             pdfTeX: [ /This is pdfTeX, Version [\d.-]+[^\n]*$/, true ],
             BibTeX: [ /This is BibTeX[\w.\- ",()]+$/, false ],
+            Biber: [ /This is Biber[\w.\- ",()]+$/, false ],
             Sage: [ /Processing Sage code for [\w.\- "]+\.\.\.$/, false ],
             LuaTeX: [ /This is LuaTeX, Version [\d.]+[^\n]*$/, true ],
             XeTex: [ /This is XeTeX, Version [\d.-]+[^\n]*$/, true ]
