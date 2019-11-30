@@ -73,6 +73,10 @@ export class Server {
             let root: string
             if (request.url.startsWith('/build/') || request.url.startsWith('/cmaps/')) {
                 root = path.resolve(`${this.extension.extensionRoot}/node_modules/pdfjs-dist`)
+            } else if (request.url.startsWith('/out/viewer/') || request.url.startsWith('/viewer/')) {
+                // For requests to /out/viewer/*.js and requests to /viewer/*.ts.
+                // The latter is for debugging with sourcemap.
+                root = path.resolve(this.extension.extensionRoot)
             } else {
                 root = path.resolve(`${this.extension.extensionRoot}/viewer`)
             }

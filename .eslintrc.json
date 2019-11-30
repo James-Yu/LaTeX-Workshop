@@ -106,17 +106,13 @@
     },
     "overrides": [
       {
-        "files": ["latexworkshop.js"],
+        "files": ["viewer/**/*.ts"],
+        "parserOptions": {
+          "ecmaVersion": 2018,
+          "project": "./tsconfig.eslint.viewer.json"
+        },
         "rules": {
-          "@typescript-eslint/ban-ts-ignore": "off",
-          "@typescript-eslint/camelcase": "off",
-          "@typescript-eslint/class-name-casing": "off",
-          "@typescript-eslint/type-annotation-spacing": "off",
-          "@typescript-eslint/no-unused-vars": "off",
-          "@typescript-eslint/no-require-imports": "off",
-          "@typescript-eslint/semi": "off",
-          "@typescript-eslint/member-delimiter-style": "off",
-          "no-case-declarations": "off"
+          "@typescript-eslint/no-unnecessary-type-assertion": "off"
         }
       }
     ]
