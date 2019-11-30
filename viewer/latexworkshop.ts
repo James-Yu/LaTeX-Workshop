@@ -37,7 +37,7 @@ class ViewerHistory {
     return this._history.length
   }
 
-  set(scroll, force = false) {
+  set(scroll: number, force = false) {
     if (this._history.length === 0) {
       this._history.push({scroll, temporary: false})
       this._currentIndex = 0
@@ -129,7 +129,7 @@ function encodePath(path) {
 }
 */
 
-function decodePath(b64url) {
+function decodePath(b64url: string) {
   const tmp = b64url + '='.repeat((4 - b64url.length % 4) % 4)
   const b64 = tmp.replace(/-/g, '+').replace(/_/g, '/')
   const s = window.atob(b64)
@@ -138,8 +138,8 @@ function decodePath(b64url) {
 
 const query = document.location.search.substring(1)
 const parts = query.split('&')
-let encodedPdfFilePath
-let pdfFilePath
+let encodedPdfFilePath: string
+let pdfFilePath: string
 for (let i = 0, ii = parts.length; i < ii; ++i) {
     const param = parts[i].split('=')
     if (param[0].toLowerCase() === 'file') {
@@ -158,7 +158,7 @@ for (let i = 0, ii = parts.length; i < ii; ++i) {
 }
 
 
-function callCbOnDidOpenWebSocket(sock, cb) {
+function callCbOnDidOpenWebSocket(sock: WebSocket, cb: () => void) {
   // check whether WebSocket is already open (readyState === 1).
   if (sock.readyState === 1) {
     cb()
@@ -171,7 +171,7 @@ function callCbOnDidOpenWebSocket(sock, cb) {
 
 const server = `ws://${window.location.hostname}:${window.location.port}`
 
-let reverseSynctexKeybinding
+let reverseSynctexKeybinding: string
 let socket = new WebSocket(server)
 
 function setupWebSocket() {
@@ -324,7 +324,7 @@ if (embedded) {
 }
 
 
-function callSynctex(e, page, pageDom, viewerContainer) {
+function callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
   const canvasDom = pageDom.getElementsByTagName('canvas')[0]
   const selection = window.getSelection()
     let textBeforeSelection = ''
@@ -347,10 +347,10 @@ function callSynctex(e, page, pageDom, viewerContainer) {
     socket.send(JSON.stringify({type: 'reverse_synctex', path:pdfFilePath, pos, page, textBeforeSelection, textAfterSelection}))
 }
 
-function registerSynctexKeybinding(keybinding) {
+function registerSynctexKeybinding(keybinding: string) {
   const viewerDom = document.getElementById('viewer')
   for (const pageDom of viewerDom.childNodes as NodeListOf<HTMLElement>) {
-    const page = pageDom.dataset.pageNumber
+    const page = Number(pageDom.dataset.pageNumber)
     const viewerContainer = document.getElementById('viewerContainer')
     switch (keybinding) {
       case 'ctrl-click':
@@ -421,8 +421,8 @@ window.addEventListener('keydown', (evt) => {
   }
 })
 
-let hideToolbarInterval = undefined
-function showToolbar(animate) {
+let hideToolbarInterval: any
+function showToolbar(animate: boolean) {
   if (hideToolbarInterval) {
     clearInterval(hideToolbarInterval)
   }
@@ -446,8 +446,8 @@ document.addEventListener('pagesinit', () => {
   }
 })
 
-let currentUserSelectScale = undefined
-let originalUserSelectIndex = undefined
+let currentUserSelectScale: number | undefined
+let originalUserSelectIndex: number | undefined
 
 const getTrimScale = () => {
   const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
@@ -498,17 +498,17 @@ document.addEventListener('pagesinit', () => {
     if (originalUserSelectIndex === undefined) {
       originalUserSelectIndex = scaleSelect.selectedIndex
     }
-    o = document.getElementById('trimOption')
-    o.value = currentUserSelectScale * trimScale
+    o = document.getElementById('trimOption') as HTMLOptionElement
+    o.value = (currentUserSelectScale * trimScale).toString()
     o.selected = true
     scaleSelect.dispatchEvent(e)
   })
 })
 
-const trimPage = (page) => {
+const trimPage = (page: HTMLElement) => {
   const trimScale = getTrimScale()
-  const textLayer = page.getElementsByClassName('textLayer')[0]
-  const canvasWrapper = page.getElementsByClassName('canvasWrapper')[0]
+  const textLayer = page.getElementsByClassName('textLayer')[0] as HTMLElement
+  const canvasWrapper = page.getElementsByClassName('canvasWrapper')[0] as HTMLElement
   const canvas = page.getElementsByTagName('canvas')[0]
   if ( !canvasWrapper || !canvas ) {
     if (page.style.width !== '250px') {
@@ -563,7 +563,7 @@ window.addEventListener('pagerendered', () => {
       return
   }
   const viewer = document.getElementById('viewer')
-  for( const page of viewer.getElementsByClassName('page') ){
+  for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
     trimPage(page)
   }
 })
@@ -575,7 +575,7 @@ const setObserverToTrim = () => {
         return
     }
     records.forEach(record => {
-      const page = record.target
+      const page = record.target as HTMLElement
       trimPage(page)
     })
   })
