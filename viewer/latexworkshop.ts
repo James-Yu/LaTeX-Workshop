@@ -421,7 +421,7 @@ window.addEventListener('keydown', (evt) => {
   }
 })
 
-let hideToolbarInterval: any
+let hideToolbarInterval: number | undefined
 function showToolbar(animate: boolean) {
   if (hideToolbarInterval) {
     clearInterval(hideToolbarInterval)
