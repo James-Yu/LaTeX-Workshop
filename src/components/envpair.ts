@@ -276,9 +276,9 @@ export class EnvPair {
             const beginIndentRange = new vscode.Range(beginStartOfLine, resMatchingPair.pos.translate(0, -1))
             const beginIndent = editor.document.getText(beginIndentRange)
             const endStartOfLine = curPos.with(undefined, 0)
-            const endIndentRange = new vscode.Range(endStartOfLine, curPos.translate(0, -1))
+            const endIndentRange = new vscode.Range(endStartOfLine, curPos)
             const endIndent = editor.document.getText(endIndentRange)
-            // If both \begin and the current position are preceeded by
+            // If both \begin and the current position are preceded by
             // whitespace only in their respective lines, we mimic the exact
             // kind of indentation of \begin when inserting \end.
             if (/^\s*$/.test(beginIndent) && /^\s*$/.test(endIndent)) {
