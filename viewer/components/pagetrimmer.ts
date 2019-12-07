@@ -12,52 +12,52 @@ const getTrimScale = () => {
     return 1.0/(1 - 2*Number(trimValue))
 }
 
-document.addEventListener('pagesinit', () => {
-    document.getElementById('trimSelect').addEventListener('change', () => {
-        const trimScale = getTrimScale()
-        const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-        const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
-        const e = new Event('change')
-        let o
-        if (trimSelect.selectedIndex <= 0) {
-            for ( o of scaleSelect.options ) {
-                o.disabled = false
-            }
-            (document.getElementById('trimOption') as HTMLOptionElement).disabled = true
-            document.getElementById('trimOption').hidden = true
-            if (originalUserSelectIndex !== undefined) {
-                scaleSelect.selectedIndex = originalUserSelectIndex
-            }
-            scaleSelect.dispatchEvent(e)
-            currentUserSelectScale = undefined
-            originalUserSelectIndex = undefined
-            const viewer = document.getElementById('viewer')
-            for ( const page of viewer.getElementsByClassName('page') ) {
-                for ( const layer of page.getElementsByClassName('annotationLayer') ) {
-                    for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
-                        if (secionOfAnnotation.dataset.originalLeft !== undefined) {
-                            secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft
-                        }
+
+document.getElementById('trimSelect').addEventListener('change', () => {
+    const trimScale = getTrimScale()
+    const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
+    const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
+    const e = new Event('change')
+    let o
+    if (trimSelect.selectedIndex <= 0) {
+        for ( o of scaleSelect.options ) {
+            o.disabled = false
+        }
+        (document.getElementById('trimOption') as HTMLOptionElement).disabled = true
+        document.getElementById('trimOption').hidden = true
+        if (originalUserSelectIndex !== undefined) {
+            scaleSelect.selectedIndex = originalUserSelectIndex
+        }
+        scaleSelect.dispatchEvent(e)
+        currentUserSelectScale = undefined
+        originalUserSelectIndex = undefined
+        const viewer = document.getElementById('viewer')
+        for ( const page of viewer.getElementsByClassName('page') ) {
+            for ( const layer of page.getElementsByClassName('annotationLayer') ) {
+                for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
+                    if (secionOfAnnotation.dataset.originalLeft !== undefined) {
+                        secionOfAnnotation.style.left = secionOfAnnotation.dataset.originalLeft
                     }
                 }
             }
-            return
         }
-        for ( o of scaleSelect.options ) {
-            o.disabled = true
-        }
-        if (currentUserSelectScale === undefined) {
-            currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale
-        }
-        if (originalUserSelectIndex === undefined) {
-            originalUserSelectIndex = scaleSelect.selectedIndex
-        }
-        o = document.getElementById('trimOption') as HTMLOptionElement
-        o.value = (currentUserSelectScale * trimScale).toString()
-        o.selected = true
-        scaleSelect.dispatchEvent(e)
-    })
+        return
+    }
+    for ( o of scaleSelect.options ) {
+        o.disabled = true
+    }
+    if (currentUserSelectScale === undefined) {
+        currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale
+    }
+    if (originalUserSelectIndex === undefined) {
+        originalUserSelectIndex = scaleSelect.selectedIndex
+    }
+    o = document.getElementById('trimOption') as HTMLOptionElement
+    o.value = (currentUserSelectScale * trimScale).toString()
+    o.selected = true
+    scaleSelect.dispatchEvent(e)
 })
+
 
 const trimPage = (page: HTMLElement) => {
     const trimScale = getTrimScale()

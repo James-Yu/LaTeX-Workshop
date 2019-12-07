@@ -282,19 +282,19 @@ const setHistory = () => {
   setTimeout(() => {viewerHistory.set(container.scrollTop)}, 500)
 }
 
-document.addEventListener('pagesinit', () => {
-  document.getElementById('viewerContainer').addEventListener('click', setHistory)
-  document.getElementById('sidebarContainer').addEventListener('click', setHistory)
 
-  // back button (mostly useful for the embedded viewer)
-  document.getElementById('historyBack').addEventListener('click', () => {
-    viewerHistory.back()
-  })
+document.getElementById('viewerContainer').addEventListener('click', setHistory)
+document.getElementById('sidebarContainer').addEventListener('click', setHistory)
 
-  document.getElementById('historyForward').addEventListener('click', () => {
-    viewerHistory.forward()
-  })
-}, { once: true })
+// back button (mostly useful for the embedded viewer)
+document.getElementById('historyBack').addEventListener('click', () => {
+  viewerHistory.back()
+})
+
+document.getElementById('historyForward').addEventListener('click', () => {
+  viewerHistory.forward()
+})
+
 
 // keyboard bindings
 window.addEventListener('keydown', (evt) => {
@@ -334,10 +334,9 @@ function showToolbar(animate: boolean) {
   }, 3000)
 }
 
-document.addEventListener('pagesinit', () => {
-  document.getElementById('outerContainer').onmousemove = (e) => {
-    if (e.clientY <= 64) {
-      showToolbar(true)
-    }
+
+document.getElementById('outerContainer').onmousemove = (e) => {
+  if (e.clientY <= 64) {
+    showToolbar(true)
   }
-})
+}
