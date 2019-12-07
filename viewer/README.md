@@ -8,19 +8,4 @@ We provide additional features by setting up new event listeners in `latexworksh
 
 We can see the [changes](https://github.com/James-Yu/LaTeX-Workshop/commit/c015e2a4aeb56c18c3f8430b9bea63ab4db27b01#diff-ff661e0ff756ae1ff026c0e8f4561d0e) we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
 
-
-### refreshing operation
-
-Since the operation when refreshing the PDF viewer is complicated, we explain. When the PDF viewer is ordered refreshing through WebSocket with a JSON string (type `refresh`), the viewer sends the current position to the server. After a new PDF file loaded, the server sends the position to the viewer with a JSON string (type `position`).
-
-```
-When refreshExistingViewer (viewer.ts) called:
-
-server (viewer.ts) -> JSON (type "refresh")  -> pdf viewer (latexworkshop.js)
-server (viewer.ts) <- JSON (type "position") <- pdf viewer (latexworkshop.js)
-
-After pagesinit:
-
-server (viewer.ts) <- JSON (type "loaded")   <-  pdf viewer (latexworkshop.js)
-server (viewer.ts) -> JSON (type "position") ->  pdf viewer (latexworkshop.js)
-```
+JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files.
