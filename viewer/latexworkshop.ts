@@ -115,10 +115,8 @@ function setupWebSocket() {
           scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
           spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
           scrollTop: document.getElementById('viewerContainer').scrollTop,
-          scrollLeft: document.getElementById('viewerContainer').scrollLeft,
-          viewerHistory: { history: viewerHistory._history, currentIndex: viewerHistory._currentIndex }
+          scrollLeft: document.getElementById('viewerContainer').scrollLeft
         }
-        socket.send(JSON.stringify(pack))
         PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
         PDFViewerApplication.open(`${pdfFilePrefix}${encodedPdfFilePath}`).then( () => {
           // reset the document title to the original value to avoid duplication
@@ -132,15 +130,15 @@ function setupWebSocket() {
             window.dispatchEvent( new Event('refreshed') )
           }, 2000)
         })
+        document.addEventListener('pagesinit', () => {
+          PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
+          PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
+          PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode
+          document.getElementById('viewerContainer').scrollTop = pack.scrollTop
+          document.getElementById('viewerContainer').scrollLeft = pack.scrollLeft
+        }, {once: true})
         break
       }
-      case 'position':
-        PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
-        PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
-        PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
-        document.getElementById('viewerContainer').scrollTop = data.scrollTop
-        document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
-        break
       case 'params':
         if (data.scale) {
           PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
@@ -199,7 +197,7 @@ document.addEventListener('pagesinit', () => {
   callCbOnDidOpenWebSocket(socket, () => {
     socket.send(JSON.stringify({type:'loaded', path:pdfFilePath}))
   })
-})
+}, {once: true})
 
 // Send packets every 30 sec to prevent the connection closed by timeout.
 setInterval( () => {
