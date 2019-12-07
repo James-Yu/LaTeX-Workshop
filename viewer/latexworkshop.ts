@@ -15,7 +15,7 @@ document.addEventListener('webviewerloaded', () => {
   PDFViewerApplication.isViewerEmbedded = false
 })
 
-let viewerHistory = new ViewerHistory()
+const viewerHistory = new ViewerHistory()
 
 const pdfFilePrefix = 'pdf..'
 
@@ -140,9 +140,6 @@ function setupWebSocket() {
         PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
         document.getElementById('viewerContainer').scrollTop = data.scrollTop
         document.getElementById('viewerContainer').scrollLeft = data.scrollLeft
-        viewerHistory = new ViewerHistory()
-        viewerHistory._history = data.viewerHistory.history
-        viewerHistory._currentIndex = data.viewerHistory.currentIndex
         break
       case 'params':
         if (data.scale) {
