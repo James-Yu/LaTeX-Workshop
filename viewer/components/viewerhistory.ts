@@ -1,51 +1,77 @@
-export class ViewerHistory {
-    _history: { scroll: number, temporary: boolean}[]
-    _currentIndex: number | undefined
+import {ILatexWorkshopPdfViewer} from './interface.js'
 
-    constructor() {
-        this._history = []
-        this._currentIndex = undefined
+export class ViewerHistory {
+    private history: { scroll: number, temporary: boolean}[]
+    private currentIndex: number | undefined
+    private readonly lwApp: ILatexWorkshopPdfViewer
+
+    constructor(lwApp: ILatexWorkshopPdfViewer) {
+        this.history = []
+        this.currentIndex = undefined
+        this.lwApp = lwApp
+        this.registerKeybinding()
+    }
+
+    registerKeybinding() {
+        const setHistory = () => {
+            const container = document.getElementById('viewerContainer')
+            // set positions before and after clicking to viewerHistory
+            this.lwApp.viewerHistory.set(container.scrollTop)
+            setTimeout(() => {this.lwApp.viewerHistory.set(container.scrollTop)}, 500)
+        }
+
+        document.getElementById('viewerContainer').addEventListener('click', setHistory)
+        document.getElementById('sidebarContainer').addEventListener('click', setHistory)
+
+        // back button (mostly useful for the embedded viewer)
+        document.getElementById('historyBack').addEventListener('click', () => {
+            this.lwApp.viewerHistory.back()
+        })
+
+        document.getElementById('historyForward').addEventListener('click', () => {
+            this.lwApp.viewerHistory.forward()
+        })
     }
 
     last() {
-        return this._history[this._history.length-1]
+        return this.history[this.history.length-1]
     }
 
     lastIndex() {
-        if (this._history.length === 0) {
+        if (this.history.length === 0) {
             return undefined
         } else {
-            return this._history.length - 1
+            return this.history.length - 1
         }
     }
 
     length() {
-        return this._history.length
+        return this.history.length
     }
 
     set(scroll: number, force = false) {
-        if (this._history.length === 0) {
-            this._history.push({scroll, temporary: false})
-            this._currentIndex = 0
+        if (this.history.length === 0) {
+            this.history.push({scroll, temporary: false})
+            this.currentIndex = 0
             return
         }
 
-        if (this._currentIndex === undefined) {
+        if (this.currentIndex === undefined) {
             console.log('this._current === undefined never happens here.')
             return
         }
 
-        const curScroll = this._history[this._currentIndex].scroll
+        const curScroll = this.history[this.currentIndex].scroll
         if (curScroll !== scroll || force) {
-            this._history = this._history.slice(0, this._currentIndex + 1)
+            this.history = this.history.slice(0, this.currentIndex + 1)
             if (this.last()) {
                 this.last().temporary = false
             }
-            this._history.push({scroll, temporary: false})
+            this.history.push({scroll, temporary: false})
             if (this.length() > 30) {
-                this._history = this._history.slice(this.length() - 30)
+                this.history = this.history.slice(this.length() - 30)
             }
-            this._currentIndex = this.lastIndex()
+            this.currentIndex = this.lastIndex()
         }
     }
 
@@ -54,49 +80,49 @@ export class ViewerHistory {
             return
         }
         const container = document.getElementById('viewerContainer')
-        let cur = this._currentIndex
-        let prevScroll = this._history[cur].scroll
+        let cur = this.currentIndex
+        let prevScroll = this.history[cur].scroll
         if (this.length() > 0 && prevScroll !== container.scrollTop) {
-            if (this._currentIndex === this.lastIndex() && this.last()) {
+            if (this.currentIndex === this.lastIndex() && this.last()) {
                 if (this.last().temporary) {
                     this.last().scroll = container.scrollTop
                     cur = cur - 1
-                    prevScroll = this._history[cur].scroll
+                    prevScroll = this.history[cur].scroll
                 } else {
                     const tmp = {scroll: container.scrollTop, temporary: true}
-                    this._history.push(tmp)
+                    this.history.push(tmp)
                 }
             }
         }
         if (prevScroll !== container.scrollTop) {
-            this._currentIndex = cur
+            this.currentIndex = cur
             container.scrollTop = prevScroll
         } else {
             if (cur === 0) {
                 return
             }
-            const scrl = this._history[cur-1].scroll
-            this._currentIndex = cur - 1
+            const scrl = this.history[cur-1].scroll
+            this.currentIndex = cur - 1
             container.scrollTop = scrl
         }
     }
 
     forward() {
-        if (this._currentIndex === this.lastIndex()) {
+        if (this.currentIndex === this.lastIndex()) {
             return
         }
         const container = document.getElementById('viewerContainer')
-        const cur = this._currentIndex
-        const nextScroll = this._history[cur+1].scroll
+        const cur = this.currentIndex
+        const nextScroll = this.history[cur+1].scroll
         if (nextScroll !== container.scrollTop) {
-            this._currentIndex = cur + 1
+            this.currentIndex = cur + 1
             container.scrollTop = nextScroll
         } else {
-            if (cur >= this._history.length - 2) {
+            if (cur >= this.history.length - 2) {
                 return
             }
-            const scrl = this._history[cur+2].scroll
-            this._currentIndex = cur + 2
+            const scrl = this.history[cur+2].scroll
+            this.currentIndex = cur + 2
             container.scrollTop = scrl
         }
     }

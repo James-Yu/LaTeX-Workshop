@@ -1,9 +1,11 @@
-declare let PDFViewerApplication: any
+import {ILatexWorkshopPdfViewer} from './interface.js'
+
+declare const PDFViewerApplication: any
 
 let currentUserSelectScale: number | undefined
 let originalUserSelectIndex: number | undefined
 
-const getTrimScale = () => {
+function getTrimScale() {
     const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
     if (trimSelect.selectedIndex <= 0) {
         return 1.0
@@ -59,7 +61,7 @@ document.getElementById('trimSelect').addEventListener('change', () => {
 })
 
 
-const trimPage = (page: HTMLElement) => {
+function trimPage(page: HTMLElement) {
     const trimScale = getTrimScale()
     const textLayer = page.getElementsByClassName('textLayer')[0] as HTMLElement
     const canvasWrapper = page.getElementsByClassName('canvasWrapper')[0] as HTMLElement
@@ -122,7 +124,7 @@ window.addEventListener('pagerendered', () => {
     }
 })
 
-const setObserverToTrim = () => {
+function setObserverToTrim() {
     const observer = new MutationObserver(records => {
         const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
         if (trimSelect.selectedIndex <= 0) {
@@ -156,7 +158,17 @@ window.addEventListener('resize', () =>{
     trimSelect.dispatchEvent(e)
 })
 
-// Set observers after a pdf file is loaded in the first time.
-window.addEventListener('pagerendered', setObserverToTrim, {once: true})
-// Set observers each time a pdf file is refresed.
-window.addEventListener('refreshed', setObserverToTrim)
+export class PageTrimmer {
+    private readonly lwApp: ILatexWorkshopPdfViewer
+
+    constructor(lwApp: ILatexWorkshopPdfViewer) {
+        this.lwApp = lwApp
+        // Set observers after a pdf file is loaded in the first time.
+        this.lwApp.onDidRenderPdfFile(setObserverToTrim, {once: true})
+        // Skip the first loading
+        this.lwApp.onDidLoadPdfFile( () => {
+            // Set observers each time a pdf file is refresed.
+            this.lwApp.onDidLoadPdfFile(setObserverToTrim)
+        }, {once: true})
+    }
+}
