@@ -1,5 +1,7 @@
 export const pdfFilePrefix = 'pdf..'
 
+// We use base64url to encode the path of PDF file.
+// https://github.com/James-Yu/LaTeX-Workshop/pull/1501
 export function encodePath(path: string): string {
   const s = encodeURIComponent(path)
   const b64 = window.btoa(s)

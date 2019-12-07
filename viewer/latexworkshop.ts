@@ -41,7 +41,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             // PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
             // and if so it behaves more "discretely", eg it disables its history mechanism.
             // We dont want that, so we unset the flag here (to keep viewer.js as vanilla as possible)
-            //
+            // https://github.com/James-Yu/LaTeX-Workshop/pull/447
             PDFViewerApplication.isViewerEmbedded = false
         })
 
@@ -56,34 +56,21 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startConnectionKeeper()
     }
 
-    /**
-     * `cb` is called immediately before the viewer will starts.
-     * Can be used to override the settings of PDFViewerApplication.
-     */
     onWillStartPdfViewer(cb: (e: Event) => any): IDisposable {
         document.addEventListener('webviewerloaded', cb, {once: true})
         return { dispose: () => document.removeEventListener('webviewerloaded', cb) }
     }
 
-    /**
-     * `cb` is called after the viewer started.
-     */
     onDidStartPdfViewer(cb: (e: Event) => any): IDisposable {
         document.addEventListener('documentloaded', cb, {once: true})
         return { dispose: () => document.removeEventListener('documentloaded', cb) }
     }
 
-    /**
-     * `cb` is called after a PDF document is loaded and reloaded.
-     */
     onDidLoadPdfFile(cb: (e: Event) => any, option?: {once: boolean}): IDisposable {
         document.addEventListener('pagesinit', cb, option)
         return { dispose: () => document.removeEventListener('pagesinit', cb) }
     }
 
-    /**
-     * `cb` is called after the a PDF document is rendered.
-     */
     onDidRenderPdfFile(cb: (e: Event) => any, option?: {once: boolean}): IDisposable {
         document.addEventListener('pagerendered', cb, option)
         return { dispose: () => document.removeEventListener('pagerendered', cb) }
@@ -192,6 +179,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         socket.onclose = () => {
             document.title = `[Disconnected] ${this.documentTitle}`
             console.log('Closed: WebScocket to LaTeX Workshop.')
+
+            // Since WebSockets are disconnected when PC resumes from sleep,
+            // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
             setTimeout( () => {
                 console.log('Try to reconnect to LaTeX Workshop.')
                 const sock = new WebSocket(this.server)

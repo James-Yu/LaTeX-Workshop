@@ -155,6 +155,8 @@ export class PageTrimmer {
         this.lwApp.onDidRenderPdfFile( () => {
             const container = document.getElementById('trimSelectContainer')
             const select = document.getElementById('trimSelect') as HTMLSelectElement
+
+            // tweak UI https://github.com/James-Yu/LaTeX-Workshop/pull/979
             container.setAttribute('style', 'display: inherit;')
             if (container.clientWidth > 0) {
                 select.setAttribute('style', 'min-width: inherit;')
@@ -162,6 +164,7 @@ export class PageTrimmer {
                 select.setAttribute('style', 'min-width: ' + (width + 22) + 'px;')
                 container.setAttribute('style', 'min-width: ' + width + 'px; ' + 'max-width: ' + width + 'px;')
             }
+
             if (select.selectedIndex <= 0) {
                 return
             }
