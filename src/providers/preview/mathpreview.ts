@@ -90,7 +90,7 @@ export class MathPreview {
             const ast = await this.extension.pegParser.parseLatexPreamble(content)
             const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
             for (const node of ast.content) {
-                if (latexParser.isCommand(node) && node.name.match(regex)) {
+                if (latexParser.isCommand(node) && node.name.match(regex) && node.args.length > 0) {
                     const s = latexParser.stringify(node)
                     commands.push(s)
                 }
