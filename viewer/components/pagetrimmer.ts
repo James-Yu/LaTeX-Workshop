@@ -105,25 +105,6 @@ function trimPage(page: HTMLElement) {
     }
 }
 
-window.addEventListener('pagerendered', () => {
-    const container = document.getElementById('trimSelectContainer')
-    const select = document.getElementById('trimSelect') as HTMLSelectElement
-    container.setAttribute('style', 'display: inherit;')
-    if (container.clientWidth > 0) {
-        select.setAttribute('style', 'min-width: inherit;')
-        const width = select.clientWidth + 8
-        select.setAttribute('style', 'min-width: ' + (width + 22) + 'px;')
-        container.setAttribute('style', 'min-width: ' + width + 'px; ' + 'max-width: ' + width + 'px;')
-    }
-    if (select.selectedIndex <= 0) {
-        return
-    }
-    const viewer = document.getElementById('viewer')
-    for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
-        trimPage(page)
-    }
-})
-
 function setObserverToTrim() {
     const observer = new MutationObserver(records => {
         const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
@@ -170,5 +151,24 @@ export class PageTrimmer {
             // Set observers each time a pdf file is refresed.
             this.lwApp.onDidLoadPdfFile(setObserverToTrim)
         }, {once: true})
+
+        this.lwApp.onDidRenderPdfFile( () => {
+            const container = document.getElementById('trimSelectContainer')
+            const select = document.getElementById('trimSelect') as HTMLSelectElement
+            container.setAttribute('style', 'display: inherit;')
+            if (container.clientWidth > 0) {
+                select.setAttribute('style', 'min-width: inherit;')
+                const width = select.clientWidth + 8
+                select.setAttribute('style', 'min-width: ' + (width + 22) + 'px;')
+                container.setAttribute('style', 'min-width: ' + width + 'px; ' + 'max-width: ' + width + 'px;')
+            }
+            if (select.selectedIndex <= 0) {
+                return
+            }
+            const viewer = document.getElementById('viewer')
+            for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
+                trimPage(page)
+            }
+        })
     }
 }
