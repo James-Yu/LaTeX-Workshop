@@ -10,8 +10,7 @@ import {encodePathWithPrefix} from '../utils/utils'
 
 interface Client {
     viewer: 'browser' | 'tab',
-    websocket: ws,
-    position?: {}
+    websocket: ws
 }
 
 export class Viewer {
@@ -216,14 +215,6 @@ export class Viewer {
                     }
                 }
                 break
-            case 'position':
-                clients = this.clients[data.path.toLocaleUpperCase()]
-                for (const client of clients) {
-                    if (client.websocket === websocket) {
-                        client.position = data
-                    }
-                }
-                break
             case 'loaded':
                 clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
@@ -231,23 +222,19 @@ export class Viewer {
                         continue
                     }
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                    if (client.position !== undefined) {
-                        client.websocket.send(JSON.stringify(client.position))
-                    } else {
-                        client.websocket.send(JSON.stringify({
-                            type: 'params',
-                            scale: configuration.get('view.pdf.zoom'),
-                            trim: configuration.get('view.pdf.trim'),
-                            scrollMode: configuration.get('view.pdf.scrollMode'),
-                            spreadMode: configuration.get('view.pdf.spreadMode'),
-                            hand: configuration.get('view.pdf.hand'),
-                            invert: configuration.get('view.pdf.invert'),
-                            bgColor: configuration.get('view.pdf.backgroundColor'),
-                            keybindings: {
-                                synctex: configuration.get('view.pdf.internal.synctex.keybinding')
-                            }
-                        }))
-                    }
+                    client.websocket.send(JSON.stringify({
+                        type: 'params',
+                        scale: configuration.get('view.pdf.zoom'),
+                        trim: configuration.get('view.pdf.trim'),
+                        scrollMode: configuration.get('view.pdf.scrollMode'),
+                        spreadMode: configuration.get('view.pdf.spreadMode'),
+                        hand: configuration.get('view.pdf.hand'),
+                        invert: configuration.get('view.pdf.invert'),
+                        bgColor: configuration.get('view.pdf.backgroundColor'),
+                        keybindings: {
+                            synctex: configuration.get('view.pdf.internal.synctex.keybinding')
+                        }
+                    }))
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                         this.extension.logger.addLogMessage('SyncTex after build invoked.')
                         this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
