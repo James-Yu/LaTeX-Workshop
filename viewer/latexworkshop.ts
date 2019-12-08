@@ -1,11 +1,11 @@
-import {IDisposable, ILatexWorkshopPdfViewer} from './components/interface.js'
+import {IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
 import * as utils from './components/utils.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
-declare const PDFViewerApplication: any
-declare const PDFViewerApplicationOptions: any
+declare const PDFViewerApplication: IPDFViewerApplication
+declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
 class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly documentTitle: string = ''

@@ -1,6 +1,6 @@
-import {ILatexWorkshopPdfViewer} from './interface.js'
+import {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
 
-declare const PDFViewerApplication: any
+declare const PDFViewerApplication: IPDFViewerApplication
 
 let currentUserSelectScale: number | undefined
 let originalUserSelectIndex: number | undefined

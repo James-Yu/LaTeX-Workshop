@@ -39,3 +39,39 @@ export interface ILatexWorkshopPdfViewer {
      */
     onDidRenderPdfFile(cb: (e: Event) => any, option?: {once: boolean}): IDisposable
 }
+
+export interface IPDFViewerApplication {
+    findBar: {
+        opened: boolean,
+        open(): void
+    },
+    isViewerEmbedded: boolean,
+    pdfViewer: {
+        _currentScale: number,
+        _pages: {
+            viewport: {
+                convertToViewportPoint: (x: number, y: number) => [number, number]
+            }
+        }[],
+        currentScaleValue: number,
+        scrollMode: number,
+        spreadMode: number
+    },
+    pdfCursorTools: {
+        handTool: {
+            activate(): void,
+            deactivate(): void
+        }
+    },
+    pdfSidebar: {
+        isOpen: boolean
+    },
+    secondaryToolbar: {
+        isOpen: boolean
+    },
+    open(filePath: string): Promise<void>
+}
+
+export interface IPDFViewerApplicationOptions {
+    set(name: string, value: any): void
+}
