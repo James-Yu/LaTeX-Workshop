@@ -38,7 +38,7 @@ export type ClientRequest = {
 } | {
     type: 'reverse_synctex',
     path: string,
-    pos: any,
+    pos: [number, number],
     page: number,
     textBeforeSelection: string,
     textAfterSelection: string
