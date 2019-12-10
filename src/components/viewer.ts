@@ -8,9 +8,20 @@ import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
 import {encodePathWithPrefix} from '../utils/utils'
 
-interface Client {
-    viewer: 'browser' | 'tab',
+import {ClientRequest, ServerResponse} from '../../viewer/components/protocol'
+
+class Client {
+    viewer: 'browser' | 'tab'
     websocket: ws
+
+    constructor(arg: {viewer: 'browser' | 'tab', websocket: ws}) {
+        this.viewer = arg.viewer
+        this.websocket = arg.websocket
+    }
+
+    send(message: ServerResponse) {
+        this.websocket.send(JSON.stringify(message))
+    }
 }
 
 export class Viewer {
@@ -26,7 +37,7 @@ export class Viewer {
         if (!sourceFile) {
             Object.keys(this.clients).forEach(key => {
                 this.clients[key].forEach(client => {
-                    client.websocket.send(JSON.stringify({type: 'refresh'}))
+                    client.send({type: 'refresh'})
                 })
             })
             return true
@@ -184,7 +195,7 @@ export class Viewer {
     }
 
     handler(websocket: ws, msg: string) {
-        const data = JSON.parse(msg)
+        const data: ClientRequest = JSON.parse(msg)
         let clients: Client[] | undefined
         if (data.type !== 'ping') {
             this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
@@ -195,10 +206,7 @@ export class Viewer {
                 if (clients === undefined) {
                     return
                 }
-                clients.push({
-                    viewer: data.viewer,
-                    websocket
-                })
+                clients.push( new Client({ viewer: data.viewer, websocket }) )
                 break
             case 'close':
                 for (const key in this.clients) {
@@ -222,19 +230,19 @@ export class Viewer {
                         continue
                     }
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                    client.websocket.send(JSON.stringify({
+                    client.send({
                         type: 'params',
-                        scale: configuration.get('view.pdf.zoom'),
-                        trim: configuration.get('view.pdf.trim'),
-                        scrollMode: configuration.get('view.pdf.scrollMode'),
-                        spreadMode: configuration.get('view.pdf.spreadMode'),
-                        hand: configuration.get('view.pdf.hand'),
-                        invert: configuration.get('view.pdf.invert'),
-                        bgColor: configuration.get('view.pdf.backgroundColor'),
+                        scale: configuration.get('view.pdf.zoom') as string,
+                        trim: configuration.get('view.pdf.trim') as number,
+                        scrollMode: configuration.get('view.pdf.scrollMode') as number,
+                        spreadMode: configuration.get('view.pdf.spreadMode') as number,
+                        hand: configuration.get('view.pdf.hand') as boolean,
+                        invert: configuration.get('view.pdf.invert') as number,
+                        bgColor: configuration.get('view.pdf.backgroundColor') as string,
                         keybindings: {
-                            synctex: configuration.get('view.pdf.internal.synctex.keybinding')
+                            synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
                         }
-                    }))
+                    })
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                         this.extension.logger.addLogMessage('SyncTex after build invoked.')
                         this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
@@ -263,7 +271,7 @@ export class Viewer {
             return
         }
         for (const client of clients) {
-            client.websocket.send(JSON.stringify({type: 'synctex', data: record}))
+            client.send({type: 'synctex', data: record})
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
     }
