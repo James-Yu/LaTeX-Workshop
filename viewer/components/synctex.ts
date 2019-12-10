@@ -1,6 +1,6 @@
-import {ILatexWorkshopPdfViewer} from './interface.js'
+import {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
 
-declare const PDFViewerApplication: any
+declare const PDFViewerApplication: IPDFViewerApplication
 
 export class SyncTex {
     private readonly lwApp: ILatexWorkshopPdfViewer

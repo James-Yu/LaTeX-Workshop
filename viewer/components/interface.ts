@@ -50,8 +50,9 @@ export interface IPDFViewerApplication {
         _currentScale: number,
         _pages: {
             viewport: {
-                convertToViewportPoint: (x: number, y: number) => [number, number]
-            }
+                convertToViewportPoint(x: number, y: number): [number, number]
+            },
+            getPagePoint(x: number, y: number): [number, number]
         }[],
         currentScaleValue: number,
         scrollMode: number,
