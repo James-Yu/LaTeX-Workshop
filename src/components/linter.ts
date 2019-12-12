@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-import {ChildProcess, spawn, SpawnOptions} from 'child_process'
+import {ChildProcessWithoutNullStreams, spawn, SpawnOptionsWithoutStdio} from 'child_process'
 import {EOL} from 'os'
 
 import {Extension} from '../main'
@@ -9,7 +9,7 @@ import {Extension} from '../main'
 export class Linter {
     extension: Extension
     linterTimeout?: NodeJS.Timer
-    currentProcesses: {[linterId: string]: ChildProcess} = {}
+    currentProcesses: {[linterId: string]: ChildProcessWithoutNullStreams} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -132,7 +132,7 @@ export class Linter {
         this.extension.logParser.parseLinter(stdout)
     }
 
-    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptions, stdin?: string): Promise<string> {
+    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptionsWithoutStdio, stdin?: string): Promise<string> {
         this.extension.logger.addLogMessage(`Linter for ${linterId} running command ${command} with arguments ${args}`)
         return new Promise((resolve, reject) => {
             if (this.currentProcesses[linterId]) {

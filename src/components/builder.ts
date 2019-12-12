@@ -15,7 +15,7 @@ const bibMagicProgramName = 'BibMagicProgram'
 export class Builder {
     extension: Extension
     tmpDir: string
-    currentProcess: cp.ChildProcess | undefined
+    currentProcess: cp.ChildProcessWithoutNullStreams | undefined
     disableBuildAfterSave: boolean = false
     disableCleanAndRetry: boolean = false
     buildMutex: Mutex
