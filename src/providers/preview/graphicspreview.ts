@@ -1,13 +1,17 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import {Extension} from '../../main'
-import {PDFRenderer} from './pdfrenderer'
-import {GraphicsScaler} from './graphicsscaler'
-import {svgToDataUrl} from '../../utils/utils'
+import * as tmpFile from 'tmp'
+import { Extension } from '../../main'
+import { PDFRenderer } from './pdfrenderer'
+import { GraphicsScaler } from './graphicsscaler'
+import { encodePath } from '../../utils/utils'
 
 
 export class GraphicsPreview {
+    private cacheDir: string
+    private pdfFileInodeMap: Map<string, number>
+
     extension: Extension
     pdfRenderer: PDFRenderer
     graphicsScaler: GraphicsScaler
@@ -16,6 +20,9 @@ export class GraphicsPreview {
         this.extension = e
         this.pdfRenderer = new PDFRenderer(e)
         this.graphicsScaler = new GraphicsScaler(e)
+        const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
+        this.cacheDir = tmpdir.name
+        this.pdfFileInodeMap = new Map<string, number>()
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
@@ -50,18 +57,25 @@ export class GraphicsPreview {
         return undefined
     }
 
-    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
+    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | vscode.Uri | undefined> {
         if (!fs.existsSync(filePath)) {
             return undefined
         }
         if (/\.pdf$/i.exec(filePath)) {
+            const svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
+            const curStat = fs.statSync(filePath)
+            const prevInode = this.pdfFileInodeMap.get(filePath)
+            if( fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && prevInode === curStat.ino ) {
+                return vscode.Uri.file(svgPath)
+            }
+            this.pdfFileInodeMap.set(filePath, curStat.ino)
             const svg0 = await this.pdfRenderer.renderToSVG(
                 filePath,
                 { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
             )
             const svg = this.setBackgroundColor(svg0)
-            const dataUrl = svgToDataUrl(svg)
-            return dataUrl
+            fs.writeFileSync(svgPath, svg)
+            return vscode.Uri.file(svgPath)
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
             const dataUrl = await this.graphicsScaler.scale(filePath, opts)

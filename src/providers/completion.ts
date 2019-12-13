@@ -108,13 +108,14 @@ export class Completer implements vscode.CompletionItemProvider {
         if (typeof filePath !== 'string') {
             return item
         }
-        const dataUrl = await this.extension.graphicsPreview.renderGraphics(filePath, {height: 190, width: 300})
-        if (dataUrl === undefined) {
+        const rsc = await this.extension.graphicsPreview.renderGraphics(filePath, { height: 190, width: 300 })
+        if (rsc === undefined) {
             return item
         }
+
         // \u{2001} is a unicode character of space with width of one em.
         const spacer = '\n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n'
-        const md = new vscode.MarkdownString(`![graphics](${dataUrl})` + spacer)
+        const md = new vscode.MarkdownString(`![graphics](${rsc})` + spacer)
         const ret = new vscode.CompletionItem(item.label, vscode.CompletionItemKind.File)
         ret.documentation = md
         return ret
