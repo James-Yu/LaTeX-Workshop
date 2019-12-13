@@ -1,24 +1,28 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as os from 'os'
+import * as tmpfs from 'tmp'
 import { Extension } from '../../main'
 import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
-import { svgToDataUrl, encodePath } from '../../utils/utils'
+import { encodePath } from '../../utils/utils'
 
 
 export class GraphicsPreview {
-    private cacheDir: string | undefined = undefined
+    private cacheDir: string
 
     extension: Extension
     pdfRenderer: PDFRenderer
     graphicsScaler: GraphicsScaler
+    pdfFileInodeMap: Map<string, number>
 
     constructor(e: Extension) {
         this.extension = e
         this.pdfRenderer = new PDFRenderer(e)
         this.graphicsScaler = new GraphicsScaler(e)
+        const tmpdir = tmpfs.dirSync({ unsafeCleanup: true })
+        this.cacheDir = tmpdir.name
+        this.pdfFileInodeMap = new Map<string, number>()
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
@@ -53,37 +57,25 @@ export class GraphicsPreview {
         return undefined
     }
 
-    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
+    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | vscode.Uri | undefined> {
         if (!fs.existsSync(filePath)) {
             return undefined
         }
-        const mode = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.preview.render') as string
         if (/\.pdf$/i.exec(filePath)) {
-            let svgPath = undefined
-            if (mode === 'file' && this.cacheDir !== undefined) {
-                svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
-                if(fs.existsSync(svgPath) && fs.statSync(svgPath).mtime >= fs.statSync(filePath).mtime) {
-                    return svgPath
-                }
+            const svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
+            const curStat = fs.statSync(filePath)
+            const prevInode = this.pdfFileInodeMap.get(filePath)
+            if( fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && prevInode === curStat.ino ) {
+                return vscode.Uri.file(svgPath)
             }
+            this.pdfFileInodeMap.set(filePath, curStat.ino)
             const svg0 = await this.pdfRenderer.renderToSVG(
                 filePath,
                 { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
             )
             const svg = this.setBackgroundColor(svg0)
-            if (mode === 'dataUrl') {
-                const dataUrl = svgToDataUrl(svg)
-                return dataUrl
-            } else if (mode === 'file') {
-                if(this.cacheDir === undefined) {
-                    this.cacheDir = fs.mkdtempSync(path.join(os.tmpdir(), 'latex-workshop-svg-'))
-                }
-                svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
-                if(!fs.existsSync(svgPath) || fs.statSync(svgPath).mtime < fs.statSync(filePath).mtime) {
-                    fs.writeFileSync(svgPath, svg)
-                }
-                return svgPath
-            }
+            fs.writeFileSync(svgPath, svg)
+            return vscode.Uri.file(svgPath)
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
             const dataUrl = await this.graphicsScaler.scale(filePath, opts)
