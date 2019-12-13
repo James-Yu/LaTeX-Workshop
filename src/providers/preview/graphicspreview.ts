@@ -20,7 +20,6 @@ export class GraphicsPreview {
         this.extension = e
         this.pdfRenderer = new PDFRenderer(e)
         this.graphicsScaler = new GraphicsScaler(e)
-        tmpFile.setGracefulCleanup()
         const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
         this.cacheDir = tmpdir.name
         this.pdfFileInodeMap = new Map<string, number>()
