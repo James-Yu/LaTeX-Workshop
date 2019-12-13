@@ -62,11 +62,20 @@ export class Manager {
         if (texPath === undefined) {
             return './'
         }
+
+        /* if current file is a localRootFile, then we take the rootFile for computing
+           placeholders substitution.
+           We add to outdir the extra directory levels relative to the rootFile. */
+        let relativePath: string = ''
+        if (this.localRootFile === texPath && this.rootFile !== undefined) {
+           relativePath = path.relative(path.dirname(this.rootFile), path.dirname(texPath))
+           texPath = this.rootFile
+        }
         const doc = texPath.replace(/\.tex$/, '').split(path.sep).join('/')
         const docfile = path.basename(texPath, '.tex')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        const out = (configuration.get('latex.outDir') as string)
+        const out = path.join(configuration.get('latex.outDir') as string, relativePath)
         return out.replace(/%DOC%/g, docker ? docfile : doc)
                   .replace(/%DOCFILE%/g, docfile)
                   .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))

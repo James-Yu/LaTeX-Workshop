@@ -196,7 +196,7 @@ export class Builder {
             //output directory does not exist, the latex commands simply fail.
             if (this.extension.manager.rootDir !== undefined) {
                 const rootDir = this.extension.manager.rootDir
-                let outDir = this.extension.manager.getOutDir()
+                let outDir = this.extension.manager.getOutDir(rootFile)
                 if (!path.isAbsolute(outDir)) {
                     outDir = path.resolve(this.extension.manager.rootDir, outDir)
                 }
@@ -503,7 +503,7 @@ export class Builder {
 
             const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
             const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
-            const outDir = this.extension.manager.getOutDir()
+            const outDir = this.extension.manager.getOutDir(rootFile)
 
             return arg.replace(/%DOC%/g, docker ? docfile : doc)
                       .replace(/%DOCFILE%/g, docfile)
