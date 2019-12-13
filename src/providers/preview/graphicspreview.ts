@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as tmpfs from 'tmp'
+import * as tmpFile from 'tmp'
 import { Extension } from '../../main'
 import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
@@ -10,17 +10,18 @@ import { encodePath } from '../../utils/utils'
 
 export class GraphicsPreview {
     private cacheDir: string
+    private pdfFileInodeMap: Map<string, number>
 
     extension: Extension
     pdfRenderer: PDFRenderer
     graphicsScaler: GraphicsScaler
-    pdfFileInodeMap: Map<string, number>
 
     constructor(e: Extension) {
         this.extension = e
         this.pdfRenderer = new PDFRenderer(e)
         this.graphicsScaler = new GraphicsScaler(e)
-        const tmpdir = tmpfs.dirSync({ unsafeCleanup: true })
+        tmpFile.setGracefulCleanup()
+        const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
         this.cacheDir = tmpdir.name
         this.pdfFileInodeMap = new Map<string, number>()
     }
