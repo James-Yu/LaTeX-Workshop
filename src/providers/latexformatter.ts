@@ -139,7 +139,7 @@ export class LaTexFormatter {
                 .replace(/%TMPFILE%/g, temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent))
 
-            this.extension.logger.addLogMessage(`Formatting with arguments ${args}`)
+            this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
             this.extension.manager.setEnvVar()
             const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
             // handle stdout/stderr
