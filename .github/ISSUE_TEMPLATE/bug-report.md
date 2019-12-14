@@ -74,6 +74,7 @@ If applicable, add screenshots to help explain your problem.
  - OS: [e.g. Windows 10]
  - VS Code version: [e.g. 1.20.0]
  - Extension version: [e.g. 5.0.0]
+ - TeX distribution version: [e.g. TeX Live 2019/MiKTeX 2.9.7250]
 
 
 
