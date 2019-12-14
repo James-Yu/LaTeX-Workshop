@@ -30,7 +30,7 @@ export class LaTexFormatter {
     private machineOs: string
     private currentOs?: OperatingSystem
     private formatter: string
-    private formatterArgs: string[]
+    private formatterArgs: string[] = []
     private formatMutex: Mutex = new Mutex()
 
     constructor(extension: Extension) {
@@ -62,6 +62,7 @@ export class LaTexFormatter {
     public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const pathMeta = configuration.inspect('latexindent.path')
+        this.formatterArgs = configuration.get('latexindent.args') as string[]
         const releaseMutex = await this.formatMutex.acquire()
         try {
             if (pathMeta && pathMeta.defaultValue && pathMeta.defaultValue !== this.formatter) {
