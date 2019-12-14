@@ -5,12 +5,12 @@ import * as tmpFile from 'tmp'
 import { Extension } from '../../main'
 import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
-import { encodePath } from '../../utils/utils'
 
 
 export class GraphicsPreview {
     private cacheDir: string
-    private pdfFileInodeMap: Map<string, number>
+    private pdfFileCacheMap: Map<string, {cacheFileName: string, inode: number}>
+    private curCacheName = 0
 
     extension: Extension
     pdfRenderer: PDFRenderer
@@ -22,7 +22,7 @@ export class GraphicsPreview {
         this.graphicsScaler = new GraphicsScaler(e)
         const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
         this.cacheDir = tmpdir.name
-        this.pdfFileInodeMap = new Map<string, number>()
+        this.pdfFileCacheMap = new Map<string, {cacheFileName: string, inode: number}>()
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
@@ -57,18 +57,25 @@ export class GraphicsPreview {
         return undefined
     }
 
+    private newSvgCacheName(): string {
+        const name = this.curCacheName.toString() + '.svg'
+        this.curCacheName += 1
+        return name
+    }
+
     async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | vscode.Uri | undefined> {
         if (!fs.existsSync(filePath)) {
             return undefined
         }
         if (/\.pdf$/i.exec(filePath)) {
-            const svgPath = path.join(this.cacheDir, `${encodePath(filePath)}.svg`)
+            const cache = this.pdfFileCacheMap.get(filePath)
+            const cacheFileName = cache?.cacheFileName ?? this.newSvgCacheName()
+            const svgPath = path.join(this.cacheDir, cacheFileName)
             const curStat = fs.statSync(filePath)
-            const prevInode = this.pdfFileInodeMap.get(filePath)
-            if( fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && prevInode === curStat.ino ) {
+            if( cache && fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && cache.inode === curStat.ino ) {
                 return vscode.Uri.file(svgPath)
             }
-            this.pdfFileInodeMap.set(filePath, curStat.ino)
+            this.pdfFileCacheMap.set(filePath, {cacheFileName, inode: curStat.ino})
             const svg0 = await this.pdfRenderer.renderToSVG(
                 filePath,
                 { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
