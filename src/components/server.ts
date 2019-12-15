@@ -51,6 +51,10 @@ export class Server {
         if (request.url.includes(pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
             const fileName = decodePathWithPrefix(s)
+            if (this.extension.viewer.getClients(fileName) === undefined) {
+                this.extension.logger.addLogMessage(`Invalid PDF request: ${fileName}`)
+                return
+            }
             try {
                 const pdfSize = fs.statSync(fileName).size
                 response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})
@@ -76,7 +80,8 @@ export class Server {
             } else {
                 root = path.resolve(`${this.extension.extensionRoot}/viewer`)
             }
-            const fileName = path.resolve(root, '.' + request.url.split('?')[0])
+            const reqFileName = path.posix.resolve('/', request.url.split('?')[0])
+            const fileName = path.resolve(root, '.' + reqFileName)
             let contentType = 'text/html'
             switch (path.extname(fileName)) {
                 case '.js':
