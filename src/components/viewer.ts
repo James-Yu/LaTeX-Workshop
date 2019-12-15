@@ -11,12 +11,12 @@ import {encodePathWithPrefix} from '../utils/utils'
 import {ClientRequest, ServerResponse} from '../../viewer/components/protocol'
 
 class Client {
-    viewer: 'browser' | 'tab'
-    websocket: ws
+    readonly viewer: 'browser' | 'tab'
+    readonly websocket: ws
 
-    constructor(arg: {viewer: 'browser' | 'tab', websocket: ws}) {
-        this.viewer = arg.viewer
-        this.websocket = arg.websocket
+    constructor(viewer: 'browser' | 'tab', websocket: ws) {
+        this.viewer = viewer
+        this.websocket = websocket
     }
 
     send(message: ServerResponse) {
@@ -27,7 +27,6 @@ class Client {
 export class Viewer {
     extension: Extension
     clients: {[key: string]: Client[]} = {}
-    positions = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -55,7 +54,7 @@ export class Viewer {
                 // Refresh only correct type
                 if (viewer === undefined || client.viewer === viewer) {
                     this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-                    client.websocket.send(JSON.stringify({type: 'refresh'}))
+                    client.send({type: 'refresh'})
                     refreshed = true
                 }
             })
@@ -206,7 +205,7 @@ export class Viewer {
                 if (clients === undefined) {
                     return
                 }
-                clients.push( new Client({ viewer: data.viewer, websocket }) )
+                clients.push( new Client(data.viewer, websocket) )
                 break
             case 'close':
                 for (const key in this.clients) {
