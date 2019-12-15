@@ -47,10 +47,6 @@ export class Viewer {
             let refreshed = false
             // Check all viewer clients with the same path
             clients.forEach(client => {
-                // Skip disconnected
-                if (client.websocket === undefined) {
-                    return
-                }
                 // Refresh only correct type
                 if (viewer === undefined || client.viewer === viewer) {
                     this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
@@ -200,14 +196,15 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
         }
         switch (data.type) {
-            case 'open':
+            case 'open': {
                 clients = this.clients[data.path.toLocaleUpperCase()]
                 if (clients === undefined) {
                     return
                 }
                 clients.push( new Client(data.viewer, websocket) )
                 break
-            case 'close':
+            }
+            case 'close': {
                 for (const key in this.clients) {
                     clients = this.clients[key]
                     let index = -1
@@ -222,7 +219,8 @@ export class Viewer {
                     }
                 }
                 break
-            case 'loaded':
+            }
+            case 'loaded': {
                 clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
                     if (client.websocket !== websocket) {
@@ -248,18 +246,23 @@ export class Viewer {
                     }
                 }
                 break
-            case 'reverse_synctex':
+            }
+            case 'reverse_synctex': {
                 this.extension.locator.locate(data, data.path)
                 break
-            case 'external_link':
+            }
+            case 'external_link': {
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
                 break
-            case 'ping':
+            }
+            case 'ping': {
                 // nothing to do
                 break
-            default:
+            }
+            default: {
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
                 break
+            }
         }
     }
 
