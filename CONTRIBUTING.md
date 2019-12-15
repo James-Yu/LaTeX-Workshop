@@ -1,5 +1,15 @@
 # Contributing to LaTeX-Workshop
 
+## Quickstart (mac/linux)
+
+```bash
+git clone https://github.com/James-Yu/LaTeX-Workshop.git
+cd ./LaTeX-Workshop
+npm install --no-optional
+command code .
+```
+Press <kbd>F5</kbd> in vscode to start the development version in debug mode.
+
 ## Prerequisites for building the extension
 
 Make sure you have installed:
@@ -30,7 +40,7 @@ To build a release image, run
 
 ## Testing and debugging the extension
 
-In VS Code, simply press `<F5>` (or run `Debug: Start Debugging` from the command palette) and a new window will pop up where you can test the extension.
+In VS Code, simply press <kbd>F5</kbd> (or run `Debug: Start Debugging` from the command palette) and a new window will pop up where you can test the extension.
 
 ### Debugging PDF viewer
 
