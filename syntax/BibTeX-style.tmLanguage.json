@@ -1,5 +1,5 @@
 {
-  "name": "BibTeX style",
+  "name": "BibTeX Style",
   "scopeName": "source.bst",
   "fileTypes": [
     "bst"
@@ -9,19 +9,40 @@
       "include": "#comments"
     },
     {
+      "include": "#function-declaration"
+    },
+    {
       "include": "#command-keywords"
     },
     {
-      "include": "#statements"
+      "include": "#operators"
+    },
+    {
+      "include": "#builtin-objects"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#number"
     }
   ],
   "repository": {
+    "function-declaration": {
+      "name": "meta.function.bst",
+      "begin": "\\b(FUNCTION)\\s*\\{\\s*([[:alpha:]_.\\$]*\\$?)",
+      "end": "\\}",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.function.bst"
+        },
+        "2": {
+          "name": "entity.name.function.bst"
+        }
+      }
+    },
     "command-keywords": {
       "patterns": [
-        {
-          "name": "storage.type.function.bst",
-          "match": "\\b(?<!\\.)FUNCTION\\b(?!\\.)"
-        },
         {
           "name": "storage.type.int.bst",
           "match": "\\b(?<!\\.)INTEGERS\\b(?!\\.)"
@@ -33,22 +54,6 @@
         {
           "name": "support.function.bst",
           "match": "\\b(?<!\\.)READ|EXECUTE|ITERATE|REVERSE|SORT\\b(?!\\.)"
-        }
-      ]
-    },
-    "statements": {
-      "patterns": [
-        {
-          "include": "#builtin-objects"
-        },
-        {
-          "include": "#operators"
-        },
-        {
-          "include": "#string"
-        },
-        {
-          "include": "#number"
         }
       ]
     },
@@ -69,6 +74,10 @@
         {
           "name": "keyword.operator.assignment.bst",
           "match": ":\\="
+        },
+        {
+          "name": "keyword.operator.logic.bst",
+          "match": "\\b(?<!\\.)and|or|not(?!(\\w|\\.))"
         }
       ]
     },
@@ -76,27 +85,19 @@
       "patterns": [
         {
           "name": "keyword.control.bst",
-          "match": "\\b(?<!\\.)if\\$|while\\$\\$(?=\\s)"
+          "match": "\\b(?<!\\.)if\\$|while\\$(?!(\\w|\\.))"
         },
         {
           "name": "support.function.bst",
-          "match": "\\b(?<!\\.)(add.period\\$|call.type\\$|change.case\\$|chr.to.int\\$|cite\\$|duplicate\\$|empty\\$|format.name\\$|int.to.chr\\$|int.to.chr\\$|int.to.str\\$|missing\\$|newline\\$|num.names\\$|pop\\$|preamble\\$|purify\\$|quote\\$|skip\\$|stack\\$|substring\\$|swap\\$|text.length\\$|text.prefix\\$|top\\$|type\\$|warning\\$|width\\$|write\\$)(?=\\s)"
+          "match": "\\b(?<!\\.)(add\\.period\\$|call\\.type\\$|change\\.case\\$|chr\\.to\\.int\\$|cite\\$|duplicate\\$|empty\\$|format\\.name\\$|int\\.to\\.chr\\$|int\\.to\\.chr\\$|int\\.to\\.str\\$|missing\\$|newline\\$|num\\.names\\$|pop\\$|preamble\\$|purify\\$|quote\\$|skip\\$|stack\\$|substring\\$|swap\\$|text\\.length\\$|text\\.prefix\\$|top\\$|type\\$|warning\\$|width\\$|write\\$)(?!(\\w|\\.))"
         },
         {
           "name": "support.constant.bst",
-          "match": "\\b(?<!\\.)(entry.max\\$|global.max\\$)(?=\\s)"
+          "match": "\\b(?<!\\.)(entry\\.max\\$|global\\.max\\$)(?!(\\w|\\.))"
         },
         {
           "name": "support.variable.bst",
-          "match": "\\b(?<!\\.)sort.key\\$(?=\\s)"
-        },
-        {
-          "name": "support.function.entrytype.bst",
-          "match": "\\b(?<!\\.)(article|book|booklet|conference|inbook|incollection|inproceedings|manual|mastersthesis|misc|phdthesis|proceedings|techreport|unpublished|default.type)\\b(?![.$])"
-        },
-        {
-          "name": "support.variable.field.bst",
-          "match": "\\b(?<!\\.)(address|author|booktitle|chapter|edition|editor|howpublished|institution|journal|key|month|note|number|organization|pages|publisher|school|series|title|type|volume|year)\\b(?![.$])"
+          "match": "\\b(?<!\\.)sort\\.key\\$(?!(\\w|\\.))"
         }
       ]
     },
@@ -113,7 +114,7 @@
     },
     "number": {
       "name": "constant.numeric.bst",
-      "match": "\\#\\d+\\b"
+      "match": "\\#-?\\d+\\b"
     },
     "comments": {
       "name": "comment.line.percentage.bst",
