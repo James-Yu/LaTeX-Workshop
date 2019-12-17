@@ -1,5 +1,24 @@
 # Change Log
 
+## [8.5.0] - 2019-12-17
+
+### Added
+- (#1826) Load (and cache) PDF preview directly from disk for `\includegraphics` completion.
+- (#1843) Set the background color of the internal PDF viewer.
+- (#1846) Add regex for `biber` to live compilation info.
+
+### Changed
+- (#1842) Rename `intellisense.preview.enabled` to `latex-workshop.intellisense.includegraphics.preview.enabled`.
+- (#1856) Add `*.syntex(busy)` and `*.synctex.gz(busy)` to files to clean.
+
+### Fixed
+- (#1841) Quotes break syntax highlighting in `.bib` files.
+- (#1848) `close-env` fails at beginning of line.
+- (#1851) Preview fails when anything starting with `\par` is inside a `\newcommand`.
+- (#1853) Accept white space between dirs in `\graphicspath`.
+- (#1860) Accept subdirectories when using subfiles.
+- (#1863) Refactor `latexindent` detection.
+
 ## [8.4.2] - 2019-11-27
 
 ### Added
@@ -8,15 +27,15 @@
 - (#1777) Declare a new language id for `.rnw` documents.
 - (#1833) XeLateX live compilation progress.
 
+### Changed
+- (#1818) Do not clean `.ist` files.
+
 ### Fixed
 - Fine tune some log messages.
 - (#1793) Broken pdf viewer with inverted color.
 - (#1822) Output window messes with LATEX Snippet Panel.
 - (#1823) Drop the star when passing `newcommand`s to mathjax.
 - (#1827) `subimport` `path.resolve` issue.
-
-### Changed
-- (#1818) Do not clean `.ist` files.
 
 ## [8.4.1] - 2019-11-16
 
