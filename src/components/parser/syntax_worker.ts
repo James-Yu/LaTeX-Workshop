@@ -5,7 +5,7 @@ function parseLatex(s: string, options?: latexParser.ParserOptions): latexParser
     return latexParser.parse(s, options)
 }
 
-function parseLatexPreamble(s: string): latexParser.LatexAst {
+function parseLatexPreamble(s: string): latexParser.AstPreamble {
     return latexParser.parsePreamble(s)
 }
 
@@ -13,8 +13,12 @@ function parseBibtex(s: string, options?: bibtexParser.ParserOptions): bibtexPar
     return bibtexParser.parse(s, options)
 }
 
-workerpool.worker({
+const workers = {
     parseLatex,
     parseLatexPreamble,
     parseBibtex
-})
+}
+
+export type IWorker = typeof workers
+
+workerpool.worker(workers)

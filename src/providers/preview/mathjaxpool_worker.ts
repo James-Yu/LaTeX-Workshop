@@ -41,6 +41,8 @@ export async function typeset(arg: any, opts: { scale: number, color: string }):
     return xml
 }
 
-workerpool.worker({
-    typeset
-})
+const workers = {typeset}
+
+export type IWorker = typeof workers
+
+workerpool.worker(workers)

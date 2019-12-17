@@ -13,6 +13,8 @@ async function scale(filePath: string, opts: { height: number, width: number }):
   return dataUrl
 }
 
-workerpool.worker({
-  scale
-})
+const workers = {scale}
+
+export type IWorker = typeof workers
+
+workerpool.worker(workers)

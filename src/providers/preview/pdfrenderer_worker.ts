@@ -49,6 +49,8 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
     return svg.toString()
 }
 
-workerpool.worker({
-    renderToSvg
-})
+const workers = {renderToSvg}
+
+export type IWorker = typeof workers
+
+workerpool.worker(workers)
