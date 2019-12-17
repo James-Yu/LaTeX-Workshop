@@ -19,6 +19,6 @@ const workers = {
     parseBibtex
 }
 
-export type IWorker = typeof workers
+export type ISyntaxWorker = typeof workers
 
 workerpool.worker(workers)

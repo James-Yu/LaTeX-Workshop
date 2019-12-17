@@ -51,6 +51,6 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
 
 const workers = {renderToSvg}
 
-export type IWorker = typeof workers
+export type IPdfRendererWorker = typeof workers
 
 workerpool.worker(workers)

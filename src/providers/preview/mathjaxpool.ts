@@ -1,8 +1,8 @@
 import {Extension} from '../../main'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-
-import {IWorker} from './mathjaxpool_worker'
+import {Proxy} from 'workerpool'
+import {IMathJaxWorker} from './mathjaxpool_worker'
 
 type TypesetArg = {
     width?: number,
@@ -16,7 +16,7 @@ type TypesetArg = {
 export class MathJaxPool {
     extension: Extension
     pool: workerpool.WorkerPool
-    proxy: workerpool.Promise<workerpool.Proxy<IWorker>>
+    proxy: workerpool.Promise<Proxy<IMathJaxWorker>>
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -24,7 +24,7 @@ export class MathJaxPool {
             path.join(__dirname, 'mathjaxpool_worker.js'),
             { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
         )
-        this.proxy = this.pool.proxy<IWorker>()
+        this.proxy = this.pool.proxy<IMathJaxWorker>()
     }
 
     async typeset(arg: TypesetArg, opts: { scale: number, color: string }): Promise<string> {

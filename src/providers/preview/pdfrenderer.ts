@@ -1,13 +1,13 @@
 import {Extension} from '../../main'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-
-import {IWorker} from './pdfrenderer_worker'
+import {Proxy} from 'workerpool'
+import {IPdfRendererWorker} from './pdfrenderer_worker'
 
 export class PDFRenderer {
     extension: Extension
     pool: workerpool.WorkerPool
-    proxy: workerpool.Promise<workerpool.Proxy<IWorker>>
+    proxy: workerpool.Promise<Proxy<IPdfRendererWorker>>
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -15,7 +15,7 @@ export class PDFRenderer {
             path.join(__dirname, 'pdfrenderer_worker.js'),
             { maxWorkers: 1, workerType: 'process' }
         )
-        this.proxy = this.pool.proxy<IWorker>()
+        this.proxy = this.pool.proxy<IPdfRendererWorker>()
     }
 
     async renderToSVG(pdfPath: string, options: { height: number, width: number, pageNumber: number }): Promise<string> {

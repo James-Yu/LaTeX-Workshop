@@ -43,6 +43,6 @@ export async function typeset(arg: any, opts: { scale: number, color: string }):
 
 const workers = {typeset}
 
-export type IWorker = typeof workers
+export type IMathJaxWorker = typeof workers
 
 workerpool.worker(workers)

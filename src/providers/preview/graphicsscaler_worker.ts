@@ -15,6 +15,6 @@ async function scale(filePath: string, opts: { height: number, width: number }):
 
 const workers = {scale}
 
-export type IWorker = typeof workers
+export type IGraphicsScalerWorker = typeof workers
 
 workerpool.worker(workers)

@@ -1,14 +1,14 @@
 import {latexParser, bibtexParser} from 'latex-utensils'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-
+import {Proxy} from 'workerpool'
 import {Extension} from '../../main'
-import {IWorker} from './syntax_worker'
+import {ISyntaxWorker} from './syntax_worker'
 
 export class UtensilsParser {
     extension: Extension
     pool: workerpool.WorkerPool
-    proxy: workerpool.Promise<workerpool.Proxy<IWorker>>
+    proxy: workerpool.Promise<Proxy<ISyntaxWorker>>
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -16,7 +16,7 @@ export class UtensilsParser {
             path.join(__dirname, 'syntax_worker.js'),
             { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
         )
-        this.proxy = this.pool.proxy<IWorker>()
+        this.proxy = this.pool.proxy<ISyntaxWorker>()
     }
 
     async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
