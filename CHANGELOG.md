@@ -2,17 +2,21 @@
 
 ## [8.4.2] - 2019-11-27
 
+### Added
+- (#1819) Add an open on the left mode for the viewer tab, controlled by `view.pdf.tab.editorGroup`.
+- (#1817) Replace placeholders in external build arguments.
+- (#1777) Declare a new language id for `.rnw` documents.
+- (#1833) XeLateX live compilation progress.
+
 ### Fixed
 - Fine tune some log messages.
-- (#1777) Declare a new language id for `.rnw` documents.
 - (#1793) Broken pdf viewer with inverted color.
-- (#1817) Replace placeholders in external build arguments.
-- (#1818) Do not clean `.ist` files.
-- (#1819) Add an open on the left mode for the viewer tab, controlled by `view.pdf.tab.editorGroup`.
 - (#1822) Output window messes with LATEX Snippet Panel.
 - (#1823) Drop the star when passing `newcommand`s to mathjax.
 - (#1827) `subimport` `path.resolve` issue.
-- (#1833) XeLateX live compilation progress.
+
+### Changed
+- (#1818) Do not clean `.ist` files.
 
 ## [8.4.1] - 2019-11-16
 
