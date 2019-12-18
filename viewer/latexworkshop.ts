@@ -154,10 +154,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     if (data.trim) {
                         const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
                         const e = new Event('change')
-                        if (trimSelect) {
+                        // We have to wait for currentScaleValue set above to be effected.
+                        // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
+                        this.onDidRenderPdfFile(() => {
                             trimSelect.selectedIndex = data.trim
                             trimSelect.dispatchEvent(e)
-                        }
+                        }, {once: true})
                     }
                     if (data.invert > 0) {
                         document.querySelector('html').style.filter = `invert(${data.invert * 100}%)`
