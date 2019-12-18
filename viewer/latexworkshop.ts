@@ -16,9 +16,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly pageTrimmer: PageTrimmer
     readonly pdfFilePath: string
     readonly server: string
-    socket: WebSocket
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
+
+    private socket: WebSocket
 
     constructor() {
         this.embedded = window.parent !== window

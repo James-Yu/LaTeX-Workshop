@@ -15,7 +15,6 @@ export interface ILatexWorkshopPdfViewer {
     readonly pageTrimmer: PageTrimmer,
     readonly pdfFilePath: string,
     readonly server: string,
-    readonly socket: WebSocket,
     readonly synctex: SyncTex,
     readonly viewerHistory: ViewerHistory,
 
