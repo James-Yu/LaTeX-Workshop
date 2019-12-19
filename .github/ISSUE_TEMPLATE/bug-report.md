@@ -43,7 +43,7 @@ A clear and concise description of what you expected to happen.
 
 ## Logs [Required]
 
-Please paste the whole log messages here, not parts of ones. It is very important to identify problems. If you think the logs are unrelated, please say so.
+Please paste the whole log messages here, not parts of ones. It is very important to identify problems.
 
 ### LaTeX Workshop Output [Required]
 
@@ -72,8 +72,8 @@ If applicable, add screenshots to help explain your problem.
 
 ## Desktop [Required]
  - OS: [e.g. Windows 10]
- - VS Code version: [e.g. 1.20.0]
- - Extension version: [e.g. 5.0.0]
+ - VS Code version: [e.g. 1.41.0]
+ - Extension version: [e.g. 8.5.0]
  - TeX distribution version: [e.g. TeX Live 2019/MiKTeX 2.9.7250]
 
 
@@ -88,7 +88,7 @@ Yes/No
 If the answer is Yes, please write which one you are using. Write the versions of the remote extension.
 
 - Remote Containers/Remote SSH/Remote WSL
-- Remote Extension Version: [e.g. 5.0.0]
+- Remote Extension Version: [e.g. 0.48.0]
 
 ### Additional context
 
