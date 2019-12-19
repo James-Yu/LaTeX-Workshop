@@ -1,6 +1,7 @@
 import {IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
+import {ClientRequest, ServerResponse} from './components/protocol.js'
 import * as utils from './components/utils.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
@@ -15,9 +16,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly pageTrimmer: PageTrimmer
     readonly pdfFilePath: string
     readonly server: string
-    socket: WebSocket
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
+
+    private socket: WebSocket
 
     constructor() {
         this.embedded = window.parent !== window
@@ -47,7 +49,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         this.onDidStartPdfViewer(() => {
             utils.callCbOnDidOpenWebSocket(this.socket, () => {
-                this.socket.send(JSON.stringify({type:'loaded', path:this.pdfFilePath}))
+                this.send({type:'loaded', path:this.pdfFilePath})
             })
         })
 
@@ -76,17 +78,21 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return { dispose: () => document.removeEventListener('pagerendered', cb) }
     }
 
+    send(message: ClientRequest) {
+        this.socket.send(JSON.stringify(message))
+    }
+
     setupWebSocket(socket: WebSocket) {
         utils.callCbOnDidOpenWebSocket(socket, () => {
-            const pack = {
+            const pack: ClientRequest = {
                 type: 'open',
                 path: this.pdfFilePath,
                 viewer: (this.embedded ? 'tab' : 'browser')
             }
-            socket.send(JSON.stringify(pack))
+            this.send(pack)
         })
         socket.addEventListener('message', (event) => {
-            const data = JSON.parse(event.data)
+            const data: ServerResponse = JSON.parse(event.data)
             switch (data.type) {
                 case 'synctex': {
                     // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
@@ -248,7 +254,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             document.addEventListener('click', (e) => {
                 const target = e.target as HTMLAnchorElement
                 if (target.nodeName === 'A' && !target.href.startsWith(window.location.href)) { // is external link
-                    this.socket.send(JSON.stringify({type:'external_link', url:target.href}))
+                    this.send({type:'external_link', url:target.href})
                     e.preventDefault()
                 }
             })
@@ -286,7 +292,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // Send packets every 30 sec to prevent the connection closed by timeout.
         setInterval( () => {
             if (this.socket.readyState === 1) {
-                this.socket.send(JSON.stringify({type: 'ping'}))
+                this.send({type: 'ping'})
             }
         }, 30000)
     }

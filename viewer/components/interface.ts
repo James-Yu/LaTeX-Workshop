@@ -1,4 +1,5 @@
 import {PageTrimmer} from './pagetrimmer.js'
+import {ClientRequest} from './protocol.js'
 import {SyncTex} from './synctex.js'
 import {ViewerHistory} from './viewerhistory.js'
 
@@ -14,7 +15,6 @@ export interface ILatexWorkshopPdfViewer {
     readonly pageTrimmer: PageTrimmer,
     readonly pdfFilePath: string,
     readonly server: string,
-    readonly socket: WebSocket,
     readonly synctex: SyncTex,
     readonly viewerHistory: ViewerHistory,
 
@@ -37,7 +37,9 @@ export interface ILatexWorkshopPdfViewer {
     /**
      * `cb` is called after the a PDF document is rendered.
      */
-    onDidRenderPdfFile(cb: (e: Event) => any, option?: {once: boolean}): IDisposable
+    onDidRenderPdfFile(cb: (e: Event) => any, option?: {once: boolean}): IDisposable,
+
+    send(message: ClientRequest): void
 }
 
 export interface IPDFViewerApplication {
@@ -54,7 +56,7 @@ export interface IPDFViewerApplication {
             },
             getPagePoint(x: number, y: number): [number, number]
         }[],
-        currentScaleValue: number,
+        currentScaleValue: string,
         scrollMode: number,
         spreadMode: number
     },

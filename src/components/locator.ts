@@ -5,6 +5,7 @@ import * as cp from 'child_process'
 import * as synctexjs from './synctex'
 
 import {Extension} from '../main'
+import {ClientRequest} from '../../viewer/components/protocol'
 
 export type SyncTeXRecordForward = {
     page: number,
@@ -261,7 +262,7 @@ export class Locator {
         })
     }
 
-    async locate(data: any, pdfPath: string) {
+    async locate(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const useSyncTexJs = configuration.get('synctex.synctexjs.enabled') as boolean

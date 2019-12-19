@@ -8,16 +8,25 @@ import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
 import {encodePathWithPrefix} from '../utils/utils'
 
-interface Client {
-    viewer: 'browser' | 'tab',
-    websocket: ws,
-    position?: {}
+import {ClientRequest, ServerResponse} from '../../viewer/components/protocol'
+
+class Client {
+    readonly viewer: 'browser' | 'tab'
+    readonly websocket: ws
+
+    constructor(viewer: 'browser' | 'tab', websocket: ws) {
+        this.viewer = viewer
+        this.websocket = websocket
+    }
+
+    send(message: ServerResponse) {
+        this.websocket.send(JSON.stringify(message))
+    }
 }
 
 export class Viewer {
     extension: Extension
     clients: {[key: string]: Client[]} = {}
-    positions = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -27,7 +36,7 @@ export class Viewer {
         if (!sourceFile) {
             Object.keys(this.clients).forEach(key => {
                 this.clients[key].forEach(client => {
-                    client.websocket.send(JSON.stringify({type: 'refresh'}))
+                    client.send({type: 'refresh'})
                 })
             })
             return true
@@ -38,14 +47,10 @@ export class Viewer {
             let refreshed = false
             // Check all viewer clients with the same path
             clients.forEach(client => {
-                // Skip disconnected
-                if (client.websocket === undefined) {
-                    return
-                }
                 // Refresh only correct type
                 if (viewer === undefined || client.viewer === viewer) {
                     this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-                    client.websocket.send(JSON.stringify({type: 'refresh'}))
+                    client.send({type: 'refresh'})
                     refreshed = true
                 }
             })
@@ -185,23 +190,21 @@ export class Viewer {
     }
 
     handler(websocket: ws, msg: string) {
-        const data = JSON.parse(msg)
+        const data: ClientRequest = JSON.parse(msg)
         let clients: Client[] | undefined
         if (data.type !== 'ping') {
             this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
         }
         switch (data.type) {
-            case 'open':
+            case 'open': {
                 clients = this.clients[data.path.toLocaleUpperCase()]
                 if (clients === undefined) {
                     return
                 }
-                clients.push({
-                    viewer: data.viewer,
-                    websocket
-                })
+                clients.push( new Client(data.viewer, websocket) )
                 break
-            case 'close':
+            }
+            case 'close': {
                 for (const key in this.clients) {
                     clients = this.clients[key]
                     let index = -1
@@ -216,56 +219,50 @@ export class Viewer {
                     }
                 }
                 break
-            case 'position':
-                clients = this.clients[data.path.toLocaleUpperCase()]
-                for (const client of clients) {
-                    if (client.websocket === websocket) {
-                        client.position = data
-                    }
-                }
-                break
-            case 'loaded':
+            }
+            case 'loaded': {
                 clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
                     if (client.websocket !== websocket) {
                         continue
                     }
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                    if (client.position !== undefined) {
-                        client.websocket.send(JSON.stringify(client.position))
-                    } else {
-                        client.websocket.send(JSON.stringify({
-                            type: 'params',
-                            scale: configuration.get('view.pdf.zoom'),
-                            trim: configuration.get('view.pdf.trim'),
-                            scrollMode: configuration.get('view.pdf.scrollMode'),
-                            spreadMode: configuration.get('view.pdf.spreadMode'),
-                            hand: configuration.get('view.pdf.hand'),
-                            invert: configuration.get('view.pdf.invert'),
-                            bgColor: configuration.get('view.pdf.backgroundColor'),
-                            keybindings: {
-                                synctex: configuration.get('view.pdf.internal.synctex.keybinding')
-                            }
-                        }))
-                    }
+                    client.send({
+                        type: 'params',
+                        scale: configuration.get('view.pdf.zoom') as string,
+                        trim: configuration.get('view.pdf.trim') as number,
+                        scrollMode: configuration.get('view.pdf.scrollMode') as number,
+                        spreadMode: configuration.get('view.pdf.spreadMode') as number,
+                        hand: configuration.get('view.pdf.hand') as boolean,
+                        invert: configuration.get('view.pdf.invert') as number,
+                        bgColor: configuration.get('view.pdf.backgroundColor') as string,
+                        keybindings: {
+                            synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
+                        }
+                    })
                     if (configuration.get('synctex.afterBuild.enabled') as boolean) {
                         this.extension.logger.addLogMessage('SyncTex after build invoked.')
                         this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
                     }
                 }
                 break
-            case 'reverse_synctex':
+            }
+            case 'reverse_synctex': {
                 this.extension.locator.locate(data, data.path)
                 break
-            case 'external_link':
+            }
+            case 'external_link': {
                 vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
                 break
-            case 'ping':
+            }
+            case 'ping': {
                 // nothing to do
                 break
-            default:
+            }
+            default: {
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
                 break
+            }
         }
     }
 
@@ -276,7 +273,7 @@ export class Viewer {
             return
         }
         for (const client of clients) {
-            client.websocket.send(JSON.stringify({type: 'synctex', data: record}))
+            client.send({type: 'synctex', data: record})
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
     }
