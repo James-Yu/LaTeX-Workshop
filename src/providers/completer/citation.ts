@@ -158,8 +158,8 @@ export class Citation {
         this.bibEntries[file] = []
         const bibtex = fs.readFileSync(file).toString()
         const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
-            const line = e.location?.start?.line
-            if (line) {
+            if (bibtexParser.isSyntaxError(e)) {
+                const line = e.location.start.line
                 this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${file}.`)
             }
             throw e
