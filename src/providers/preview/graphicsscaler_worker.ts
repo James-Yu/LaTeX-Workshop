@@ -13,6 +13,11 @@ async function scale(filePath: string, opts: { height: number, width: number }):
   return dataUrl
 }
 
-workerpool.worker({
-  scale
-})
+const workers = {scale}
+
+// workerpool passes the resolved value of Promise, not Promise.
+export type IGraphicsScalerWorker = {
+  scale: (...args: Parameters<typeof scale>) => string
+}
+
+workerpool.worker(workers)
