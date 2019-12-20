@@ -51,6 +51,9 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
 
 const workers = {renderToSvg}
 
-export type IPdfRendererWorker = typeof workers
+// workerpool passes the resolved value of Promise, not Promise.
+export type IPdfRendererWorker = {
+    renderToSvg: (...args: Parameters<typeof renderToSvg>) => string
+}
 
 workerpool.worker(workers)
