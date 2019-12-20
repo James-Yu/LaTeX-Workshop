@@ -43,6 +43,9 @@ export async function typeset(arg: any, opts: { scale: number, color: string }):
 
 const workers = {typeset}
 
-export type IMathJaxWorker = typeof workers
+// workerpool passes the resolved value of Promise, not Promise.
+export type IMathJaxWorker = {
+    typeset: (...args: Parameters<typeof typeset>) => string
+}
 
 workerpool.worker(workers)
