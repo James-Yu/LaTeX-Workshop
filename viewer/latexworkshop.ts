@@ -37,7 +37,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.synctex = new SyncTex(this)
         this.pageTrimmer = new PageTrimmer(this)
 
-        this.setupWebSocket(this.socket)
+        this.setupWebSocket()
 
         this.onWillStartPdfViewer( () => {
             // PDFViewerApplication detects whether it's embedded in an iframe (window.parent !== window)
@@ -82,8 +82,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.socket.send(JSON.stringify(message))
     }
 
-    setupWebSocket(socket: WebSocket) {
-        utils.callCbOnDidOpenWebSocket(socket, () => {
+    setupWebSocket() {
+        utils.callCbOnDidOpenWebSocket(this.socket, () => {
             const pack: ClientRequest = {
                 type: 'open',
                 path: this.pdfFilePath,
@@ -91,7 +91,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             this.send(pack)
         })
-        socket.addEventListener('message', (event) => {
+        this.socket.addEventListener('message', (event) => {
             const data: ServerResponse = JSON.parse(event.data)
             switch (data.type) {
                 case 'synctex': {
@@ -184,7 +184,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
         })
 
-        socket.onclose = () => {
+        this.socket.onclose = () => {
             document.title = `[Disconnected] ${this.documentTitle}`
             console.log('Closed: WebScocket to LaTeX Workshop.')
 
@@ -196,7 +196,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 this.socket = sock
                 utils.callCbOnDidOpenWebSocket(sock, () => {
                     document.title = this.documentTitle
-                    this.setupWebSocket(sock)
+                    this.setupWebSocket()
                     console.log('Reconnected: WebScocket to LaTeX Workshop.')
                 })
             }, 3000)
