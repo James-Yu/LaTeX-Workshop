@@ -115,8 +115,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'refresh': {
-                    // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
-                    // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
                     const pack = {
                         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
                         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
@@ -124,7 +122,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         scrollTop: document.getElementById('viewerContainer').scrollTop,
                         scrollLeft: document.getElementById('viewerContainer').scrollLeft
                     }
+
+                    // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
+                    // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
                     PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
+                    // Override the spread mode specified in PDF documents with the current one.
+                    // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
+                    PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
+
                     PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then( () => {
                         // reset the document title to the original value to avoid duplication
                         document.title = this.documentTitle
