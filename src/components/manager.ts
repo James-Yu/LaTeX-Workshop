@@ -576,12 +576,7 @@ export class Manager {
     private parseFlsContent(content: string, flsFile: string): {input: string[], output: string[]} {
         const inputFiles: Set<string> = new Set()
         const outputFiles: Set<string> = new Set()
-        let pwd = path.dirname(flsFile)
-        const pwdRes = /^PWD\s*(.*)$/m.exec(content)
-        if (pwdRes) {
-            pwd = pwdRes[1]
-        }
-
+        const pwd = path.dirname(flsFile)
         const regex = /^(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
         // regex groups
         // #1: an INPUT entry --> #2 input file path
