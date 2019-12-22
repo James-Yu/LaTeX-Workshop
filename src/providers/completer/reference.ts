@@ -99,12 +99,14 @@ export class Reference {
 
     // This function will return the reference defined by the node, or all references in `content`
     private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): vscode.CompletionItem[] {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useLabelKeyVal = configuration.get('intellisense.label.keyval')
         const refs: vscode.CompletionItem[] = []
         let label = ''
         if (latexParser.isCommand(node) && node.name === 'label') {
             // \label{some-text}
             label = (node.args.filter(latexParser.isGroup)[0].content[0] as latexParser.TextString).content
-        } else if (latexParser.isTextString(node) && node.content === 'label=' && nextNode !== undefined) {
+        } else if (latexParser.isTextString(node) && node.content === 'label=' && useLabelKeyVal && nextNode !== undefined) {
             // label={some=text}
             label = ((nextNode as latexParser.Group).content[0] as latexParser.TextString).content
         }
