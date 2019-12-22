@@ -1,0 +1,125 @@
+{
+  "name": "BibTeX Style",
+  "scopeName": "source.bst",
+  "fileTypes": [
+    "bst"
+  ],
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#function-declaration"
+    },
+    {
+      "include": "#command-keywords"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#builtin-objects"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#number"
+    }
+  ],
+  "repository": {
+    "function-declaration": {
+      "name": "meta.function.bst",
+      "begin": "\\b(FUNCTION)\\s*\\{\\s*([[:alpha:]_.\\$]*\\$?)",
+      "end": "\\}",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.function.bst"
+        },
+        "2": {
+          "name": "entity.name.function.bst"
+        }
+      }
+    },
+    "command-keywords": {
+      "patterns": [
+        {
+          "name": "storage.type.int.bst",
+          "match": "\\b(?<!\\.)INTEGERS\\b(?!\\.)"
+        },
+        {
+          "name": "storage.type.var.bst",
+          "match": "\\b(?<!\\.)(ENTRY|MACRO|STRINGS)\\b(?!\\.)"
+        },
+        {
+          "name": "support.function.bst",
+          "match": "\\b(?<!\\.)(READ|EXECUTE|ITERATE|REVERSE|SORT)\\b(?!\\.)"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.relational.bst",
+          "match": "<|>"
+        },
+        {
+          "name": "keyword.operator.comparison.bst",
+          "match": "\\="
+        },
+        {
+          "name": "keyword.operator.arithmetic.bst",
+          "match": "\\+|-|\\*"
+        },
+        {
+          "name": "keyword.operator.assignment.bst",
+          "match": ":\\="
+        },
+        {
+          "name": "keyword.operator.logic.bst",
+          "match": "\\b(?<!\\.)(and|or|not)(?!(\\w|\\.))"
+        }
+      ]
+    },
+    "builtin-objects": {
+      "patterns": [
+        {
+          "name": "keyword.control.bst",
+          "match": "\\b(?<!\\.)(if\\$|while\\$)(?!(\\w|\\.))"
+        },
+        {
+          "name": "support.function.bst",
+          "match": "\\b(?<!\\.)(add\\.period\\$|call\\.type\\$|change\\.case\\$|chr\\.to\\.int\\$|cite\\$|duplicate\\$|empty\\$|format\\.name\\$|int\\.to\\.chr\\$|int\\.to\\.chr\\$|int\\.to\\.str\\$|missing\\$|newline\\$|num\\.names\\$|pop\\$|preamble\\$|purify\\$|quote\\$|skip\\$|stack\\$|substring\\$|swap\\$|text\\.length\\$|text\\.prefix\\$|top\\$|type\\$|warning\\$|width\\$|write\\$)(?!(\\w|\\.))"
+        },
+        {
+          "name": "support.constant.bst",
+          "match": "\\b(?<!\\.)(entry\\.max\\$|global\\.max\\$)(?!(\\w|\\.))"
+        },
+        {
+          "name": "support.variable.bst",
+          "match": "\\b(?<!\\.)sort\\.key\\$(?!(\\w|\\.))"
+        }
+      ]
+    },
+    "string": {
+      "name": "string.quoted.double.bst",
+      "begin": "\\\"",
+      "end": "\\\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.bst",
+          "match": "\\\\\\\""
+        }
+      ]
+    },
+    "number": {
+      "name": "constant.numeric.bst",
+      "match": "\\#-?\\d+\\b"
+    },
+    "comments": {
+      "name": "comment.line.percentage.bst",
+      "begin": "%",
+      "end": "$"
+    }
+  }
+}
