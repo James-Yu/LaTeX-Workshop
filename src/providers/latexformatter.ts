@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as cp from 'child_process'
+import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
@@ -141,7 +142,7 @@ export class LaTexFormatter {
 
             this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
             this.extension.manager.setEnvVar()
-            const worker = cp.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
+            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
             const stderrBuffer: string[] = []
