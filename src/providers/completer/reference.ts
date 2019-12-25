@@ -125,6 +125,9 @@ export class Reference {
         if (latexParser.hasContentArray(node)) {
             return this.getRefFromNodeArray(node.content, lines)
         }
+        if (latexParser.hasArgsArray(node)) {
+            return this.getRefFromNodeArray(node.args, lines)
+        }
         return refs
     }
 
