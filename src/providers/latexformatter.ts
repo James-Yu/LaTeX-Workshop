@@ -109,7 +109,8 @@ export class LaTexFormatter {
 
     private format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
         return new Promise((resolve, _reject) => {
-            const configuration = vscode.workspace.getConfiguration('editor', document.uri)
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const useDocker = configuration.get('docker.enabled') as boolean
 
             if (!vscode.window.activeTextEditor) {
                 return
@@ -133,11 +134,11 @@ export class LaTexFormatter {
             // generate command line arguments
             const args = this.formatterArgs.map(arg => arg
                 // taken from ../components/builder.ts
-                .replace(/%DOC%/g, configuration.get('docker.enabled') ? docfile : doc)
+                .replace(/%DOC%/g, useDocker ? docfile : doc)
                 .replace(/%DOCFILE%/g, docfile)
-                .replace(/%DIR%/g, path.dirname(document.fileName).split(path.sep).join('/'))
+                .replace(/%DIR%/g, useDocker ? './' : path.dirname(document.fileName).split(path.sep).join('/'))
                 // latexformatter.ts specific tokens
-                .replace(/%TMPFILE%/g, temporaryFile.split(path.sep).join('/'))
+                .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent))
 
             this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
