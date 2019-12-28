@@ -136,7 +136,7 @@ export class LaTexFormatter {
                 // taken from ../components/builder.ts
                 .replace(/%DOC%/g, useDocker ? docfile : doc)
                 .replace(/%DOCFILE%/g, docfile)
-                .replace(/%DIR%/g, useDocker ? './' : path.dirname(document.fileName).split(path.sep).join('/'))
+                .replace(/%DIR%/g, useDocker ? '.' : path.dirname(document.fileName).split(path.sep).join('/'))
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent))
