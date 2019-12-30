@@ -47,11 +47,16 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             PDFViewerApplication.isViewerEmbedded = false
         })
 
-        this.onDidStartPdfViewer(() => {
+        this.onDidStartPdfViewer( () => {
+            utils.callCbOnDidOpenWebSocket(this.socket, () => {
+                this.send({type:'request_params', path:this.pdfFilePath})
+            })
+        })
+        this.onDidRenderPdfFile( () => {
             utils.callCbOnDidOpenWebSocket(this.socket, () => {
                 this.send({type:'loaded', path:this.pdfFilePath})
             })
-        })
+        }, {once: true})
 
         this.hidePrintButton()
         this.registerKeybinding()
@@ -144,6 +149,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode
                         document.getElementById('viewerContainer').scrollTop = pack.scrollTop
                         document.getElementById('viewerContainer').scrollLeft = pack.scrollLeft
+                    }, {once: true})
+                    this.onDidRenderPdfFile( () => {
+                        this.send({type:'loaded', path:this.pdfFilePath})
                     }, {once: true})
                     break
                 }

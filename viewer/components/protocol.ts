@@ -28,6 +28,9 @@ export type ClientRequest = {
 } | {
     type: 'close'
 } | {
+    type: 'request_params',
+    path: string
+} | {
     type: 'loaded',
     path: string
 } | {

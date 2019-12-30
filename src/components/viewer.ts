@@ -220,7 +220,7 @@ export class Viewer {
                 }
                 break
             }
-            case 'loaded': {
+            case 'request_params': {
                 clients = this.clients[data.path.toLocaleUpperCase()]
                 for (const client of clients) {
                     if (client.websocket !== websocket) {
@@ -240,10 +240,14 @@ export class Viewer {
                             synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
                         }
                     })
-                    if (configuration.get('synctex.afterBuild.enabled') as boolean) {
-                        this.extension.logger.addLogMessage('SyncTex after build invoked.')
-                        this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
-                    }
+                }
+                break
+            }
+            case 'loaded': {
+                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                if (configuration.get('synctex.afterBuild.enabled') as boolean) {
+                    this.extension.logger.addLogMessage('SyncTex after build invoked.')
+                    this.extension.locator.syncTeX(undefined, undefined, decodeURIComponent(data.path))
                 }
                 break
             }
