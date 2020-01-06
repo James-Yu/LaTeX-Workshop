@@ -579,20 +579,21 @@ export class Commander {
 
         function replacer(
             _match: string,
-            sectionName: keyof typeof promotes ,
-            options: string,
+            sectionName: keyof typeof promotes,
+            asterisk: string | undefined,
+            options: string | undefined,
             contents: string
         ) {
             if (change === 'promote') {
-                return '\\' + promotes[sectionName] + (options ? options : '') + contents
+                return '\\' + promotes[sectionName] + (asterisk ?? '') + (options ?? '') + contents
             } else {
                 // if (change === 'demote')
-                return '\\' + demotes[sectionName] + (options ? options : '') + contents
+                return '\\' + demotes[sectionName] + (asterisk ?? '') + (options ?? '') + contents
             }
         }
 
         // when supported, negative lookbehind at start would be nice --- (?<!\\)
-        const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\[.+?\])?(\{.*?\})/g
+        const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\*)?(\[.+?\])?(\{.*?\})/g
 
         function getLastLineLength(someText: string) {
             const lines = someText.split(/\n/)
