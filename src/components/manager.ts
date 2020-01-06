@@ -75,11 +75,13 @@ export class Manager {
         const docfile = path.basename(texPath, '.tex')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
-        const out = path.join(configuration.get('latex.outDir') as string, relativePath)
-        return out.replace(/%DOC%/g, docker ? docfile : doc)
+        const outDir = configuration.get('latex.outDir') as string
+        const out = outDir.replace(/%DOC%/g, docker ? docfile : doc)
                   .replace(/%DOCFILE%/g, docfile)
                   .replace(/%DIR%/g, docker ? './' : path.dirname(texPath).split(path.sep).join('/'))
                   .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
+        return path.join(out, relativePath)
+
     }
 
     get rootDir() {
