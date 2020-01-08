@@ -286,7 +286,7 @@ export class Command {
                     filterText: node.name,
                     package: ''
                 }
-                if (node.name.match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|begin/)) {
+                if (node.name.match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|bibentry|begin/)) {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
@@ -366,7 +366,7 @@ export class Command {
                 filterText: result[1],
                 package: ''
             }
-            if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|begin/)) {
+            if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|bibentry|begin/)) {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
             cmds.push(cmd)

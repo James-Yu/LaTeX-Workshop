@@ -127,7 +127,7 @@ export class Completer implements vscode.CompletionItemProvider {
         let payload: any
         switch (type) {
             case 'citation':
-                reg = /\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:(?:\[[^[\]]*\])*(?:{[^{}]*})?)*{([^}]*)$/
+                reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:(?:\[[^[\]]*\])*(?:{[^{}]*})?)*{([^}]*)$)|(?:\\bibentry{([^}]*)$)/
                 provider = this.citation
                 break
             case 'reference':

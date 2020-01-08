@@ -1138,6 +1138,33 @@
       ]
     },
     {
+      "begin": "((\\\\)bibentry)(\\{)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.cite.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.keyword.latex"
+        },
+        "3": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        }
+      },
+      "end": "\\}",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.arguments.end.latex"
+        }
+      },
+      "name": "meta.citation.latex",
+      "patterns": [
+        {
+          "match": "[\\w:.]+",
+          "name": "constant.other.reference.citation.latex"
+        }
+      ]
+    },
+    {
       "begin": "((\\\\)(?:\\w*[r|R]ef\\*?))(\\{)",
       "beginCaptures": {
         "1": {
