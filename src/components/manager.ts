@@ -325,6 +325,17 @@ export class Manager {
         return fileContent
     }
 
+    private isExcluded(file: string): boolean {
+        const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
+        const format = (str: string): string => {
+            if (os.platform() === 'win32') {
+                return str.replace(/\\/g, '/')
+            }
+            return str
+        }
+        return micromatch.some(file, globsToIgnore, { format } as any)
+    }
+
     /* This function is called when a root file is found or a watched file is
        changed (in vscode or externally). It searches the subfiles, including
        \input siblings, bib files, and related fls file to construct a file
@@ -333,6 +344,10 @@ export class Manager {
        previously watched/considered. Since this function is called upon content
        changes, this lazy loading should be fine. */
     parseFileAndSubs(file: string, onChange: boolean = false) {
+        if (this.isExcluded(file)) {
+            this.extension.logger.addLogMessage(`Ignoring ${file}`)
+            return
+        }
         this.extension.logger.addLogMessage(`Parsing ${file}`)
         if (this.fileWatcher && !this.filesWatched.includes(file)) {
             // The file is first time considered by the extension.
@@ -512,17 +527,10 @@ export class Manager {
         }
         const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), flsFile)
 
-        const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
-        const format = (str: string): string => {
-            if (os.platform() === 'win32') {
-                return str.replace(/\\/g, '/')
-            }
-            return str
-        }
         ioFiles.input.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (ioFiles.output.includes(inputFile) ||
-                micromatch.some(inputFile, globsToIgnore, { format } as any) ||
+                this.isExcluded(inputFile) ||
                 !fs.existsSync(inputFile)) {
                 return
             }
