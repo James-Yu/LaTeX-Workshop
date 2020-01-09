@@ -25,7 +25,7 @@ const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
 // const truncatedLine = /(.{77}[^\.](\w|\s|-|\\|\/))(\r\n|\n)/g
-const messageLine = /^l\.\d+\s(.*)$/
+const messageLine = /^l\.\d+\s(\.\.\.)?(.*)$/
 
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Information,
@@ -43,7 +43,7 @@ interface LinterLogEntry {
     text: string
 }
 
-interface LogEntry { type: string, file: string, text: string, line: number }
+interface LogEntry { type: string, file: string, text: string, line: number, errorPosText?: string }
 
 export class Parser {
     extension: Extension
@@ -158,7 +158,7 @@ export class Parser {
             }
             // append the read line, since we have a corresponding result in the making
             if (searchesEmptyLine) {
-                if (line.trim() === '' || (insideError && line.match(/^\s/))) {
+                if (line.trim() === '') {
                     currentResult.text = currentResult.text + '\n'
                     searchesEmptyLine = false
                     insideError = false
@@ -168,8 +168,16 @@ export class Parser {
                         currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + (packageExtraLineResult[4] ? '.' : '')
                         currentResult.line = parseInt(packageExtraLineResult[3], 10)
                     } else if (insideError) {
-                        const subLine = line.replace(messageLine, '$1')
-                        currentResult.text = currentResult.text + '\n' + subLine
+                        const subLine = line.replace(messageLine, '$2')
+                        if (subLine !== line) {
+                            // remember the text where the error message occurred:
+                            currentResult.errorPosText = subLine
+                            // skip rest of error message (usually not useful)
+                            searchesEmptyLine = false
+                            insideError = false
+                        } else {
+                            currentResult.text = currentResult.text + '\n' + subLine
+                        }
                     } else {
                     currentResult.text = currentResult.text + '\n' + line
                     }
@@ -319,11 +327,35 @@ export class Parser {
         this.showLinterDiagnostics(linterLog)
     }
 
-    showCompilerDiagnostics() {
+    async showCompilerDiagnostics() {
         this.compilerDiagnostics.clear()
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of this.buildLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
+            let startChar = 0
+            let endChar = 65535
+            if (item.errorPosText) {
+                // try to find the errorPosText in the respective line of the document
+                try {
+                    const document = await vscode.workspace.openTextDocument(item.file)
+                    const line = document.lineAt(item.line - 1)
+                    if (line) {
+                        let pos = line.text.indexOf(item.errorPosText)
+                        if (pos >= 0) {
+                            pos += item.errorPosText.length
+                            // find the length of the last word in the error
+                            // This is the length of the error-range
+                            const len = item.errorPosText.replace(/^.* (.*)/, '$1').length
+                            if (len > 0) {
+                                startChar = pos - len
+                                endChar = pos
+                            }
+                        }
+                    }
+                } catch (e) {
+                    // ignore error - if we cannot open the text document just continue and highlight the whole line
+                }
+            }
+            const range = new vscode.Range(new vscode.Position(item.line - 1, startChar), new vscode.Position(item.line - 1, endChar))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.source = 'LaTeX'
             if (diagsCollection[item.file] === undefined) {
