@@ -116,7 +116,12 @@ export class Viewer {
         if (tabEditorGroup === 'current') {
             viewColumn = vscode.ViewColumn.Active
         } else {
-            viewColumn = vscode.ViewColumn.Beside
+            // If an editor already exists on the left, use it
+            if (tabEditorGroup === 'left' && editor?.viewColumn === vscode.ViewColumn.Two) {
+                viewColumn = vscode.ViewColumn.One
+            } else {
+                viewColumn = vscode.ViewColumn.Beside
+            }
         }
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), viewColumn, {
             enableScripts: true,
@@ -126,7 +131,7 @@ export class Viewer {
         panel.webview.html = this.getPDFViewerContent(pdfFile)
         if (editor && viewColumn !== vscode.ViewColumn.Active) {
             setTimeout(() => { vscode.window.showTextDocument(editor.document, editor.viewColumn).then(() => {
-                if (tabEditorGroup === 'left') {
+                if (tabEditorGroup === 'left' && viewColumn !== vscode.ViewColumn.One) {
                 vscode.commands.executeCommand('workbench.action.moveActiveEditorGroupRight')
             }}) }, 500)
         }
