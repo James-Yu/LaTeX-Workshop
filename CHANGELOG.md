@@ -1,5 +1,28 @@
 # Change Log
 
+## [8.6.0] - 2020-01-13
+
+### Added
+- (#1862) Syntax highlight for BibTeX style language (`.bst`).
+- (#1878) Add config to scan `label={...}`.
+- (#1891) Support asterisked sections in `shiftSectionLevel`.
+- (#1894) Declare `\bibentry` as a citation command.
+
+### Changed
+- (#1872) Refactoring communications between the WebSocket server and PDF viewers.
+- (#1874) Use typed proxies of workerpool.
+
+### Fixed
+- Fix double `/` in `latexindent -c` when using docker.
+- (#1871) Override the spread mode specified in PDF documents with the current.
+- (#1873) Do not use PWD entry as the cwd for fls files.
+- (#1873) Use `cross-spawn` to run `latexindent`.
+- (#1877) `\def` commands not passed to mathjax for preview.
+- (#1886) Send `type: 'loaded'` to the extension host when PDF files loaded.
+- (#1889) Fix outDir when containing `../`.
+- (#1890) `latex-workshop.latex.watch.files.ignore` not fully honored.
+- (#1899) Activate all keybindings for `rsweave` id.
+
 ## [8.5.0] - 2019-12-17
 
 ### Added
