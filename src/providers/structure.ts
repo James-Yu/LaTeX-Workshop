@@ -169,7 +169,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\InputIfFileExists') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
                 // zoom into this file
                 // resolve the path
-                let inputFilePath: string | null
+                let inputFilePath: string | undefined
                 if (result[1].startsWith('\\subimport')) {
                     inputFilePath = utils.resolveFile([path.dirname(filePath)], path.join(result[2], result[3]))
                 } else if (result[1].startsWith('\\import')) {

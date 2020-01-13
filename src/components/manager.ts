@@ -19,7 +19,7 @@ interface Content {
             bibitem?: CiteEntry[],
             command?: CmdEntry[],
             package?: string[]
-        }, // latex elements for completion, e.g., reference defition
+        }, // latex elements for completion, e.g., reference definition
         children: { // sub-files, should be tex or plain files
             index: number, // the index of character sub-content is inserted
             file: string // the path to the sub-file
@@ -478,7 +478,7 @@ export class Manager {
         }
     }
 
-    private parseInputFilePath(regResult: RegExpExecArray, baseFile: string): string | null {
+    private parseInputFilePath(regResult: RegExpExecArray, baseFile: string): string | undefined {
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
             return utils.resolveFile([path.dirname(baseFile)], path.join(regResult[1], regResult[2]))
