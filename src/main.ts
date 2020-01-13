@@ -187,9 +187,6 @@ export function activate(context: vscode.ExtensionContext) {
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
-        } else if (!configuration.get('view.autoFocus.enabled')) {
-            extension.logger.status.hide()
-            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', false)
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
