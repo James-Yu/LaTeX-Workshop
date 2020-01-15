@@ -55,6 +55,12 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
         const snippetPanelCommand = new LaTeXCommand('Snippet Panel', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.showSnippetPanel', title: ''})
         this.commands.push(snippetPanelCommand)
+
+        const bibtexCommand = new LaTeXCommand('BibTeX actions', vscode.TreeItemCollapsibleState.Collapsed)
+        bibtexCommand.children.push(new LaTeXCommand('Align bibliography', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.bibalign', title: ''}))
+        bibtexCommand.children.push(new LaTeXCommand('Sort bibliography', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.bibsort', title: ''}))
+        bibtexCommand.children.push(new LaTeXCommand('Align and sort bibliography', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.bibalignsort', title: ''}))
+        this.commands.push(bibtexCommand)
     }
 
     getTreeItem(element: LaTeXCommand): vscode.TreeItem {
