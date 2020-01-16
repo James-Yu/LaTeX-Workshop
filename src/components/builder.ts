@@ -250,7 +250,13 @@ export class Builder {
             }
             this.currentProcess = cp.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
         } else {
-            this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: path.dirname(rootFile), env: envVars})
+            let workingDirectory: string
+            if (steps[index].command === 'latexmk' && rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
+                workingDirectory = this.extension.manager.rootDir
+            } else {
+                workingDirectory = path.dirname(rootFile)
+            }
+            this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: workingDirectory, env: envVars})
         }
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${pid}.`)
