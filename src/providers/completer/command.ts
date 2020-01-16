@@ -292,7 +292,7 @@ export class Command {
                 cmds.push(cmd)
                 cmdList.push(node.name)
             }
-            if (['newcommand', 'renewcommand', 'providecommand'].includes(node.name) &&
+            if (['newcommand', 'renewcommand', 'providecommand', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name) &&
                 Array.isArray(node.args) && node.args.length > 0) {
                 const label = (node.args[0].content[0] as latexParser.Command).name
                 let args = ''
@@ -373,7 +373,7 @@ export class Command {
             cmdList.push(result[1])
         }
 
-        const newCommandReg = /\\(?:re|provide)?(?:new)?command(?:{)?\\(\w+)/g
+        const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?))(?:{)?\\(\w+)/g
         while (true) {
             const result = newCommandReg.exec(content)
             if (result === null) {
