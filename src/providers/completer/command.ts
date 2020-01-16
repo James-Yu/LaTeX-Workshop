@@ -276,7 +276,22 @@ export class Command {
 
     private getCmdFromNode(file: string, node: latexParser.Node, cmdList: string[] = []): Suggestion[] {
         const cmds: Suggestion[] = []
-        if (latexParser.isCommand(node)) {
+        if (latexParser.isDefCommand(node)) {
+           const name = node.token.slice(1)
+            if (!cmdList.includes(node.name)) {
+                const cmd: Suggestion = {
+                    label: `\\${name}`,
+                    kind: vscode.CompletionItemKind.Function,
+                    documentation: '`' + name + '`',
+                    insertText: new vscode.SnippetString(name + this.getArgsFromNode(node)),
+                    filterText: name,
+                    package: ''
+                }
+                cmds.push(cmd)
+                cmdList.push(node.name)
+            }
+
+        } else if (latexParser.isCommand(node)) {
             if (!cmdList.includes(node.name)) {
                 const cmd: Suggestion = {
                     label: `\\${node.name}`,
@@ -334,14 +349,26 @@ export class Command {
             return args
         }
         let index = 0
-        node.args.forEach(arg => {
-            ++index
-            if (latexParser.isOptionalArg(arg)) {
-                args += '[${' + index + '}]'
-            } else {
-                args += '{${' + index + '}}'
-            }
-        })
+        if (latexParser.isCommand(node)) {
+            node.args.forEach(arg => {
+                ++index
+                if (latexParser.isOptionalArg(arg)) {
+                    args += '[${' + index + '}]'
+                } else {
+                    args += '{${' + index + '}}'
+                }
+            })
+            return args
+        }
+        if (latexParser.isDefCommand(node)) {
+            node.args.forEach(arg => {
+                ++index
+                if (latexParser.isCommandParameter(arg)) {
+                    args += '{${' + index + '}}'
+                }
+            })
+            return args
+        }
         return args
     }
 
