@@ -654,6 +654,12 @@
                 "pdflatex",
                 "pdflatex"
               ]
+            },
+            {
+              "name": "Compile Rnw files",
+              "tools": [
+                "rnw2pdf"
+              ]
             }
           ],
           "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
@@ -726,6 +732,15 @@
               "command": "bibtex",
               "args": [
                 "%DOCFILE%"
+              ],
+              "env": {}
+            },
+            {
+              "name": "rnw2pdf",
+              "command": "Rscript",
+              "args": [
+                "-e",
+                "knitr::knit2pdf('%DOCFILE%')"
               ],
               "env": {}
             }
