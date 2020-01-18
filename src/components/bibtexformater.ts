@@ -66,18 +66,11 @@ export class BibtexFormater {
             sortedEntryLocations = entryLocations
         }
 
-        // We need to figure out the line changes in order to highlight properly
-        const lineDeltas: number[] = new Array<number>(entryLocations.length)
-        let accumulatedDelta = 0
-        for (let i = 0; i < entryLocations.length; i++) {
-            lineDeltas[i] = accumulatedDelta
-            accumulatedDelta += (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) - (entryLocations[i].end.line - entryLocations[i].start.line)
-        }
-
         // Successively replace the text in the current location from the sorted location
         const edit = new vscode.WorkspaceEdit()
         const uri = vscode.window.activeTextEditor.document.uri
         const diags: vscode.Diagnostic[] = []
+        let lineDelta = 0
         let text: string
         let isDuplicate: boolean
         for (let i = 0; i < entries.length; i++) {
@@ -91,9 +84,9 @@ export class BibtexFormater {
             if (isDuplicate && handleDuplicates !== 'Ignore Duplicates') {
                 if (handleDuplicates === 'Highlight Duplicates') {
                     const highlightRange: vscode.Range = new vscode.Range(
-                        entryLocations[i].start.line + lineDeltas[i],
+                        entryLocations[i].start.line + lineDelta,
                         entryLocations[i].start.character,
-                        entryLocations[i].start.line + lineDeltas[i] + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line),
+                        entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line),
                         entryLocations[i].end.character
                     )
                     diags.push(new vscode.Diagnostic(
@@ -104,13 +97,16 @@ export class BibtexFormater {
                 } else { // 'Comment Duplicates'
                     // Log duplicate entry since we aren't highlighting it
                     this.extension.logger.addLogMessage(
-                        `BibTeX-format: Duplicate entry "${entries[i].internalKey}" at line ${entryLocations[i].start.line + lineDeltas[i] + 1}.`)
+                        `BibTeX-format: Duplicate entry "${entries[i].internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1}.`)
                     text = text.replace(/@/,'')
                 }
             }
 
             // Put text from entry[i] into (sorted)location[i]
             edit.replace(uri, entryLocations[i], text)
+
+            // We need to figure out the line changes in order to highlight properly
+            lineDelta += (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) - (entryLocations[i].end.line - entryLocations[i].start.line)
         }
 
         vscode.workspace.applyEdit(edit).then(success => {
