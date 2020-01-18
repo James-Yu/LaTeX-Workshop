@@ -25,6 +25,7 @@ export class BibtexFormater {
 
         // Get configuration
         const config = vscode.workspace.getConfiguration('latex-workshop')
+        const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
         const tabs = { '2 spaces': '  ', '4 spaces': '    ', 'tab': '\t' }
         const configuration: bibtexUtils.BibtexFormatConfig = {
@@ -70,22 +71,31 @@ export class BibtexFormater {
         const uri = vscode.window.activeTextEditor.document.uri
         const diags: vscode.Diagnostic[] = []
         let text: string
+        let isDuplicate: boolean
         for (let i = 0; i < entries.length; i++) {
             if (align) {
                 text = bibtexUtils.bibtexFormat(entries[i], configuration)
             } else {
                 text = vscode.window.activeTextEditor.document.getText(sortedEntryLocations[i])
             }
+
+            isDuplicate = duplicates.has(entries[i])
+            if (isDuplicate && handleDuplicates !== 'Ignore Duplicates') {
+                if (handleDuplicates === 'Highlight Duplicates') {
+                    diags.push(new vscode.Diagnostic(
+                        entryLocations[i],
+                        `Duplicate entry "${entries[i].internalKey}".`,
+                        vscode.DiagnosticSeverity.Warning
+                    ))
+                } else { // 'Comment Duplicates'
+                    // Log duplicate entry since we aren't highlighting it
+                    this.extension.logger.addLogMessage(`BibTeX-format: Duplicate entry "${entries[i].internalKey}" at line ${entryLocations[i].start.line + 1}.`)
+                    text = text.replace(/@/,'')
+                }
+            }
+
             // Put text from entry[i] into (sorted)location[i]
             edit.replace(uri, entryLocations[i], text)
-            // Push a warning if entry is a duplicate
-            if (duplicates.has(entries[i])) {
-                diags.push(new vscode.Diagnostic(
-                    entryLocations[i],
-                    `Duplicate entry ${entries[i].internalKey}.`,
-                    vscode.DiagnosticSeverity.Warning
-                ))
-            }
         }
 
         vscode.workspace.applyEdit(edit).then(success => {
