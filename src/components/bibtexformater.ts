@@ -8,9 +8,11 @@ import {Extension} from '../main'
 export class BibtexFormater {
 
     extension: Extension
+    duplicatesDiagnostics: vscode.DiagnosticCollection
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
     }
 
     async bibtexFormat(sort: boolean, align: boolean) {
@@ -18,6 +20,7 @@ export class BibtexFormater {
             return
         }
         const t0 = performance.now() // Measure performance
+        this.duplicatesDiagnostics.clear()
         const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
 
         const config = vscode.workspace.getConfiguration('latex-workshop')
@@ -46,8 +49,9 @@ export class BibtexFormater {
         })
 
         let sortedEntryLocations: vscode.Range[] = []
+        const duplicates = new Set<bibtexParser.Entry>()
         if (sort) {
-            entries.sort(bibtexUtils.bibtexSort(configuration.sort)).forEach(entry => {
+            entries.sort(bibtexUtils.bibtexSort(configuration.sort, duplicates)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
@@ -61,6 +65,7 @@ export class BibtexFormater {
         // Successively replace the text in the current location from the sorted location
         const edit = new vscode.WorkspaceEdit()
         const uri = vscode.window.activeTextEditor.document.uri
+        const diags: vscode.Diagnostic[] = []
         let text: string
         for (let i = 0; i < entries.length; i++) {
             if (align) {
@@ -68,11 +73,21 @@ export class BibtexFormater {
             } else {
                 text = vscode.window.activeTextEditor.document.getText(sortedEntryLocations[i])
             }
+            // Put text from entry[i] into (sorted)location[i]
             edit.replace(uri, entryLocations[i], text)
+            // Push a warning if entry is a duplicate
+            if (duplicates.has(entries[i])) {
+                diags.push(new vscode.Diagnostic(
+                    entryLocations[i],
+                    `Duplicate entry ${entries[i].internalKey}.`,
+                    vscode.DiagnosticSeverity.Warning
+                ))
+            }
         }
 
         vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
+                this.duplicatesDiagnostics.set(uri, diags)
                 const t1 = performance.now()
                 this.extension.logger.addLogMessage(`BibTeX action successful. Took ${t1 - t0} ms.`)
             } else {

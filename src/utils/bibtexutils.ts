@@ -12,7 +12,7 @@ export interface BibtexFormatConfig {
  * Sorting function for bibtex entries
  * @param keys Array of sorting keys
  */
-export function bibtexSort(keys: string[]): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
+export function bibtexSort(keys: string[], duplicates: Set<bibtexParser.Entry>): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
     return function (a, b) {
         let r = 0
         for (const key of keys) {
@@ -28,6 +28,10 @@ export function bibtexSort(keys: string[]): (a: bibtexParser.Entry, b: bibtexPar
             if (r !== 0) {
                 break
             }
+        }
+        if (r === 0) {
+            // It seems that items earlier in the list appear as the variable b here, rather than a
+            duplicates.add(a)
         }
         return r
     }
