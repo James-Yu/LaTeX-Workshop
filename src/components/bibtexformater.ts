@@ -23,6 +23,7 @@ export class BibtexFormater {
         this.duplicatesDiagnostics.clear()
         const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
 
+        // Get configuration
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
         const tabs = { '2 spaces': '  ', '4 spaces': '    ', 'tab': '\t' }
@@ -34,6 +35,7 @@ export class BibtexFormater {
             sort: config.get('bibtex-format.sortby') as string[]
         }
 
+        // Create an array of entries and of their starting locations
         const entries: bibtexParser.Entry[] = []
         const entryLocations: vscode.Range[] = []
         ast.content.forEach(item => {
@@ -48,6 +50,7 @@ export class BibtexFormater {
             }
         })
 
+        // Get the sorted locations
         let sortedEntryLocations: vscode.Range[] = []
         const duplicates = new Set<bibtexParser.Entry>()
         if (sort) {
