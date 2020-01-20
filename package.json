@@ -31,6 +31,7 @@
     "onLanguage:doctex",
     "onLanguage:rsweave",
     "onLanguage:pdf",
+    "onLanguage:bibtex",
     "onCommand:latex-workshop.build",
     "onCommand:latex-workshop.recipes",
     "onCommand:latex-workshop.view",
@@ -1580,6 +1581,16 @@
           "default": [
             "key"
           ]
+        },
+        "latex-workshop.bibtex-format.handleDuplicates": {
+          "type": "string",
+          "enum": [
+            "Ignore Duplicates",
+            "Highlight Duplicates",
+            "Comment Duplicates"
+          ],
+          "default": "Highlight Duplicates",
+          "markdownDescription": "How to handle duplicates found by the bibtex sorting functions. Duplicates are decided according to the `bibtex-format.sortby` config."
         }
       }
     },
