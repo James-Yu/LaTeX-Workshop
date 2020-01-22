@@ -372,7 +372,7 @@ export class Command {
     }
 
     private getCmdFromContent(file: string, content: string): Suggestion[] {
-        const cmdReg = /\\([a-zA-Z]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
+        const cmdReg = /\\([a-zA-Z@]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: Suggestion[] = []
         const cmdList: string[] = []
         while (true) {
