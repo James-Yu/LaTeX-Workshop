@@ -278,7 +278,7 @@ export class Command {
         const cmds: Suggestion[] = []
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
-            if (!cmdList.includes(node.name)) {
+            if (!cmdList.includes(name)) {
                 const cmd: Suggestion = {
                     label: `\\${name}`,
                     kind: vscode.CompletionItemKind.Function,
@@ -288,9 +288,8 @@ export class Command {
                     package: ''
                 }
                 cmds.push(cmd)
-                cmdList.push(node.name)
+                cmdList.push(name)
             }
-
         } else if (latexParser.isCommand(node)) {
             if (!cmdList.includes(node.name)) {
                 const cmd: Suggestion = {
