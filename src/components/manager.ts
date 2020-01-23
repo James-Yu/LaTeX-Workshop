@@ -148,6 +148,7 @@ export class Manager {
         this.findWorkspace()
         this.localRootFile = undefined
         const findMethods = [
+            () => this.findRootFromCurrentRoot(),
             () => this.findRootFromMagic(),
             () => this.findRootFromActive(),
             () => this.findRootInWorkspace()
@@ -169,6 +170,16 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
             }
             return rootFile
+        }
+        return undefined
+    }
+
+    private findRootFromCurrentRoot(): string | undefined {
+        if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
+            return undefined
+        }
+        if (this.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
+            return this.rootFile
         }
         return undefined
     }
