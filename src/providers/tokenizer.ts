@@ -13,7 +13,7 @@ export function tokenizer(document: vscode.TextDocument, position: vscode.Positi
     return document.getText(new vscode.Range(
         new vscode.Position(position.line, startIndex),
         new vscode.Position(position.line, position.character + endResult.index)
-    ))
+    )).trim()
 }
 
 export function onAPackage(document: vscode.TextDocument, position: vscode.Position, token: string): boolean {
