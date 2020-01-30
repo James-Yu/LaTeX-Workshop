@@ -1,5 +1,24 @@
 # Change Log
 
+## [8.7.0] - 2020-01-30
+
+### Added
+- (#1913) Add recipe for rwn files.
+- (#1914) Add option to highlight or comment out duplicate entries in BibTeX.
+- (#1918) Declare `\Sexpr` syntax
+
+### Fixed
+- Fix scanning of \def for autocompletion.
+- (#1876) First try current rootFile on editor change.
+- (#1895) Fix subfiles building with `latexmk`.
+- (#1895) Accept roofile without extension in subfiles.
+- (#1902) Do not change the left panel on active editor change when `view.autoFocus.enabled` is set to `false`.
+- (#1904) Always use '/' as path separator.
+- (#1905) Fix keybinding regression for `ctrl+alt+[` and `+]`.
+- (#1911) `vscode.DocumentSymbol` expects non-empty label.
+- (#1915) Accept `@` in command names for intellisense.
+- (#1921) Trim current token for hover.
+
 ## [8.6.0] - 2020-01-13
 
 ### Added
