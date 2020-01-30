@@ -148,9 +148,9 @@ export class Manager {
         this.findWorkspace()
         this.localRootFile = undefined
         const findMethods = [
-            () => this.findRootFromCurrentRoot(),
             () => this.findRootFromMagic(),
             () => this.findRootFromActive(),
+            () => this.findRootFromCurrentRoot(),
             () => this.findRootInWorkspace()
         ]
         for (const method of findMethods) {
