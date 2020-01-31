@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.7.1] - 2020-01-31
+
+### Fixed
+- (#1924) Try magic and active document before current root.
+
 ## [8.7.0] - 2020-01-30
 
 ### Added
