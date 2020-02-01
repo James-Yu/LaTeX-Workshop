@@ -26,6 +26,7 @@ export class MathPreview {
         return commands.replace(/\\providecommand/g, '\\newcommand')
                        .replace(/\\newcommand\*/g, '\\newcommand')
                        .replace(/\\renewcommand\*/g, '\\renewcommand')
+                       .replace(/\\DeclarePairedDelimiter{(\\[a-zA-Z]+)}{([^{}]*)}{([^{}]*)}/g, '\\newcommand{$1}[1]{\\left$2 #1 \\right$3}')
     }
 
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
@@ -93,11 +94,17 @@ export class MathPreview {
                 if (((latexParser.isCommand(node) && node.name.match(regex)) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     const s = latexParser.stringify(node)
                     commands.push(s)
+                } else if (latexParser.isCommand(node) && node.name === 'DeclarePairedDelimiter' && node.args.length === 3) {
+                    const name = latexParser.stringify(node.args[0])
+                    const leftDelim = latexParser.stringify(node.args[1]).slice(1, -1)
+                    const rightDelim = latexParser.stringify(node.args[2]).slice(1, -1)
+                    const s = `\\newcommand${name}[1]{\\left${leftDelim} #1 \\right${rightDelim}}`
+                    commands.push(s)
                 }
             }
         } catch (e) {
             commands = []
-            const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^[\]{}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*}))/gm
+            const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^[\]{}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*})|\\DeclarePairedDelimiter{\\[a-zA-Z]+}{[^{}]*}{[^{}]*})/gm
             const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
             let result: RegExpExecArray | null
             do {
