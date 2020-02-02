@@ -26,7 +26,7 @@ export class MathPreview {
         return commands.replace(/\\providecommand/g, '\\newcommand')
                        .replace(/\\newcommand\*/g, '\\newcommand')
                        .replace(/\\renewcommand\*/g, '\\renewcommand')
-                       .replace(/\\DeclarePairedDelimiter{(\\[a-zA-Z]+)}{([^{}]*)}{([^{}]*)}/g, '\\newcommand{$1}[1]{\\left$2 #1 \\right$3}')
+                       .replace(/\\DeclarePairedDelimiter{(\\[a-zA-Z]+)}{([^{}]*)}{([^{}]*)}/g, '\\newcommand{$1}[2][]{#1$2 #2 #1$3}')
     }
 
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
@@ -98,7 +98,7 @@ export class MathPreview {
                     const name = latexParser.stringify(node.args[0])
                     const leftDelim = latexParser.stringify(node.args[1]).slice(1, -1)
                     const rightDelim = latexParser.stringify(node.args[2]).slice(1, -1)
-                    const s = `\\newcommand${name}[1]{\\left${leftDelim} #1 \\right${rightDelim}}`
+                    const s = `\\newcommand${name}[2][]{#1${leftDelim} #2 #1${rightDelim}}`
                     commands.push(s)
                 }
             }
