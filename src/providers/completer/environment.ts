@@ -75,20 +75,16 @@ export class Environment {
     }
 
     private getEnvFromNode(node: latexParser.Node, lines: string[]): vscode.CompletionItem[] {
-        const envs: vscode.CompletionItem[] = []
+        let envs: vscode.CompletionItem[] = []
         let label = ''
         // Here we only check `isEnvironment`which excludes `align*` and `verbatim`.
         // Nonetheless, they have already been included in `defaultEnvs`.
         if (latexParser.isEnvironment(node)) {
             label = node.name
-            envs.push({
-                label,
-                kind: vscode.CompletionItemKind.Module
-            })
-            return envs
+            envs.push(new vscode.CompletionItem(label, vscode.CompletionItemKind.Module))
         }
         if (latexParser.hasContentArray(node)) {
-            return this.getEnvFromNodeArray(node.content, lines)
+            envs = envs.concat(this.getEnvFromNodeArray(node.content, lines))
         }
         return envs
     }
@@ -119,10 +115,7 @@ export class Environment {
                 continue
             }
 
-            envs.push({
-                label: result[1],
-                kind: vscode.CompletionItemKind.Module
-            })
+            envs.push(new vscode.CompletionItem(result[1], vscode.CompletionItemKind.Module))
             envList.push(result[1])
         }
         return envs
