@@ -452,10 +452,8 @@ export class Builder {
                 if (!step.args) {
                     step.args = []
                 }
-                if ((step.command === 'latexmk' && !step.args.includes('-lualatex') && !step.args.includes('-pdflua')) || step.command === 'pdflatex') {
-                    if (this.isMiktex) {
-                        step.args.unshift('--max-print-line=' + maxPrintLine)
-                    }
+                if (this.isMiktex && ((step.command === 'latexmk' && !step.args.includes('-lualatex') && !step.args.includes('-pdflua')) || step.command === 'pdflatex')) {
+                    step.args.unshift('--max-print-line=' + maxPrintLine)
                 }
             }
         })
