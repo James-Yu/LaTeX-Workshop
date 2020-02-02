@@ -142,6 +142,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         if (e.languageId === 'pdf') {
+            extension.manager.watchPdfFile(e.uri.fsPath)
             vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
                 extension.commander.pdf(e.uri)
             })

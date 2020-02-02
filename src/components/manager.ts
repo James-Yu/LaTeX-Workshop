@@ -33,8 +33,10 @@ export class Manager {
 
     private extension: Extension
     private fileWatcher?: chokidar.FSWatcher
+    private pdfWatcher?: chokidar.FSWatcher
     private bibWatcher?: chokidar.FSWatcher
     private filesWatched: string[] = []
+    private pdfsWatched: string[] = []
     private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
 
@@ -49,6 +51,7 @@ export class Manager {
             interval,
             binaryInterval: Math.max(interval, 1000)
         }
+        this.initiatePdfWatcher()
     }
 
     /* Returns the output directory developed according to the input tex path
@@ -714,6 +717,37 @@ export class Manager {
         if (file === this.rootFile) {
             this.extension.logger.addLogMessage(`Deleted ${file} was root - triggering root search`)
             this.findRoot()
+        }
+    }
+
+    private initiatePdfWatcher() {
+        if (this.pdfWatcher !== undefined) {
+            return
+        }
+        this.extension.logger.addLogMessage('Creating file watcher for .pdf files.')
+        this.pdfWatcher = chokidar.watch([], this.watcherOptions)
+        this.pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
+        this.pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
+    }
+
+    private onWatchedPdfChanged(file: string) {
+        this.extension.logger.addLogMessage(`PDF file watcher - responding to change in ${file}`)
+        this.extension.viewer.refreshExistingViewer()
+    }
+
+    onWatchedPdfDeleted(file: string) {
+        this.extension.logger.addLogMessage(`PDF file watcher: ${file} deleted.`)
+        if (this.pdfWatcher) {
+            this.pdfWatcher.unwatch(file)
+        }
+        this.pdfsWatched.splice(this.pdfsWatched.indexOf(file), 1)
+    }
+
+    watchPdfFile(pdfPath: string) {
+        if (this.pdfWatcher && !this.pdfsWatched.includes(pdfPath)) {
+            this.extension.logger.addLogMessage(`Adding .pdf file ${pdfPath} to pdf file watcher.`)
+            this.pdfWatcher.add(pdfPath)
+            this.pdfsWatched.push(pdfPath)
         }
     }
 
