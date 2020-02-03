@@ -7,6 +7,15 @@ import {getLongestBalancedString} from './utils/utils'
 import {TeXDoc} from './components/texdoc'
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
+    if (doNotPrompt) {
+        if (configuration.get('latex.rootFile.useSubFile')) {
+            return localRootFile
+        } else {
+            return rootFile
+        }
+    }
     const pickedRootFile = await vscode.window.showQuickPick([{
         label: 'Default root file',
         description: `Path: ${rootFile}`
