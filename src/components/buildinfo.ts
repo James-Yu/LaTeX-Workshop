@@ -33,6 +33,9 @@ export class BuildInfo {
     }
 
     public buildStarted(progress?: vscode.Progress<{ message?: string, increment?: number }>) {
+        if (!this.configuration.get('progress.enabled')) {
+            return
+        }
         this.progress = progress
         this.currentBuild = {
             buildStart: +new Date(),
@@ -54,6 +57,9 @@ export class BuildInfo {
         }
     }
     public buildEnded() {
+        if (!this.configuration.get('progress.enabled')) {
+            return
+        }
         if (this.currentBuild) {
             this.status.text = `( ${((+new Date() - this.currentBuild.buildStart) / 1000).toFixed(1)} s )`
             this.currentBuild = undefined
@@ -71,16 +77,25 @@ export class BuildInfo {
     }
 
     public setPageTotal(count: number) {
+        if (!this.configuration.get('progress.enabled')) {
+            return
+        }
         if (this.currentBuild) {
             this.currentBuild.pageTotal = count
         }
     }
 
     public setResolveToken(resolve: () => void) {
+        if (!this.configuration.get('progress.enabled')) {
+            return
+        }
         this.resolve = resolve
     }
 
     public newStdoutLine(lines: string) {
+        if (!this.configuration.get('progress.enabled')) {
+            return
+        }
         if (!this.currentBuild) {
             throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
