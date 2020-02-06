@@ -20,11 +20,7 @@ export class UtensilsParser {
     }
 
     async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-        try {
-            return (await this.proxy).parseLatex(s, options).timeout(3000)
-        } catch(e) {
-            return undefined
-        }
+        return (await this.proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
     }
 
     async parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {
