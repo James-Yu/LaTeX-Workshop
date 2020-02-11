@@ -8,7 +8,6 @@ export class BuildInfo {
     extension: Extension
     status: vscode.StatusBarItem
     panel: vscode.WebviewPanel | undefined
-    configuration: vscode.WorkspaceConfiguration
     currentBuild: {
         buildStart: number,
         pageTotal?: number | undefined,
@@ -27,13 +26,13 @@ export class BuildInfo {
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10001)
         this.status.command = 'latex-workshop.showCompilationPanel'
         this.status.tooltip = 'Show LaTeX Compilation Info Panel'
-        this.configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.status.show()
         this.resolve = () => {}
     }
 
     public buildStarted(progress?: vscode.Progress<{ message?: string, increment?: number }>) {
-        if (!this.configuration.get('progress.enabled')) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('progress.enabled')) {
             return
         }
         this.progress = progress
@@ -57,7 +56,8 @@ export class BuildInfo {
         }
     }
     public buildEnded() {
-        if (!this.configuration.get('progress.enabled')) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('progress.enabled')) {
             return
         }
         if (this.currentBuild) {
@@ -77,7 +77,8 @@ export class BuildInfo {
     }
 
     public setPageTotal(count: number) {
-        if (!this.configuration.get('progress.enabled')) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('progress.enabled')) {
             return
         }
         if (this.currentBuild) {
@@ -86,14 +87,16 @@ export class BuildInfo {
     }
 
     public setResolveToken(resolve: () => void) {
-        if (!this.configuration.get('progress.enabled')) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('progress.enabled')) {
             return
         }
         this.resolve = resolve
     }
 
     public newStdoutLine(lines: string) {
-        if (!this.configuration.get('progress.enabled')) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('progress.enabled')) {
             return
         }
         if (!this.currentBuild) {
@@ -236,7 +239,8 @@ export class BuildInfo {
             }
         }
 
-        const selectedCharacterSet = this.configuration.get('progress.barStyle') as string
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const selectedCharacterSet = configuration.get('progress.barStyle') as string
 
         const wholeCharacter = characterSets[selectedCharacterSet].wholeCharacter
         const partialCharacter =
@@ -259,8 +263,6 @@ export class BuildInfo {
         if (!this.currentBuild) {
             throw Error('Can\'t Display Progress for non-Started build - see BuildInfo.buildStarted()')
         }
-
-        this.configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         if (current === 0) {
             this.currentBuild.stepTimes[`${this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`][
@@ -424,7 +426,8 @@ export class BuildInfo {
             return str
         }
 
-        const runIconType = this.configuration.get('progress.runIconType') as keyof typeof enclosedNumbers
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const runIconType = configuration.get('progress.runIconType') as keyof typeof enclosedNumbers
         const index = this.currentBuild.ruleNumber as keyof typeof enclosedNumbers[keyof typeof enclosedNumbers]
         const runIcon: string = enclosedNumbers[runIconType][index]
 
@@ -455,7 +458,7 @@ export class BuildInfo {
                 })
             } else {
                 const barAsString = this.currentBuild.pageTotal
-                ? this.generateProgressBar(current / this.currentBuild.pageTotal, this.configuration.get(
+                ? this.generateProgressBar(current / this.currentBuild.pageTotal, configuration.get(
                       'progress.barLength'
                   ) as number)
                 : ''
