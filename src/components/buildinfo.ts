@@ -8,6 +8,7 @@ export class BuildInfo {
     extension: Extension
     status: vscode.StatusBarItem
     panel: vscode.WebviewPanel | undefined
+    isProgressBarEnabled: boolean | undefined
     currentBuild: {
         buildStart: number,
         pageTotal?: number | undefined,
@@ -26,13 +27,15 @@ export class BuildInfo {
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10001)
         this.status.command = 'latex-workshop.showCompilationPanel'
         this.status.tooltip = 'Show LaTeX Compilation Info Panel'
+        this.isProgressBarEnabled = undefined
         this.status.show()
         this.resolve = () => {}
     }
 
     public buildStarted(progress?: vscode.Progress<{ message?: string, increment?: number }>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('progress.enabled')) {
+        this.isProgressBarEnabled = configuration.get('progress.enabled')
+        if (!this.isProgressBarEnabled) {
             return
         }
         this.progress = progress
@@ -56,8 +59,7 @@ export class BuildInfo {
         }
     }
     public buildEnded() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('progress.enabled')) {
+        if (!this.isProgressBarEnabled) {
             return
         }
         if (this.currentBuild) {
@@ -77,8 +79,7 @@ export class BuildInfo {
     }
 
     public setPageTotal(count: number) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('progress.enabled')) {
+        if (!this.isProgressBarEnabled) {
             return
         }
         if (this.currentBuild) {
@@ -87,16 +88,14 @@ export class BuildInfo {
     }
 
     public setResolveToken(resolve: () => void) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('progress.enabled')) {
+        if (!this.isProgressBarEnabled) {
             return
         }
         this.resolve = resolve
     }
 
     public newStdoutLine(lines: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!configuration.get('progress.enabled')) {
+        if (!this.isProgressBarEnabled) {
             return
         }
         if (!this.currentBuild) {
