@@ -1,5 +1,20 @@
 # Change Log
 
+## [8.7.2] - 2020-02-12
+
+### Fixed
+- Fix popup severity.
+- (#1811) Wait for write to finish before firing a change event.
+- (#1907) Scan `\DeclarePairedDelimiter` for preview.
+- (#1925) Add setting for prompting user or not with subfile.
+  - The new setting is `latex.rootFile.doNotPrompt`. When set to yes, the file used is decided according to `latex.rootFile.useSubFile`.
+- (#1926) Fix `parseLatex`, which should return `undefined` when parsing fails.
+- (#1927) Scan for already used environments for intellisense.
+- (#1928) Watch external pdf for automatic reload.
+- (#1932) Remove the `-cd` option of `latexmk`.
+- (#1933) Add an option to disable the progress bar of the compilation of LaTeX `progress.enabled`.
+- (#1943) Do not call `document.save()` in formatter.
+
 ## [8.7.1] - 2020-01-31
 
 ### Fixed
