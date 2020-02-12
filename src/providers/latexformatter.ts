@@ -191,15 +191,11 @@ export class LatexFormatterProvider implements vscode.DocumentFormattingEditProv
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken):
         vscode.ProviderResult<vscode.TextEdit[]> {
-        return document.save().then(() => {
             return this.formatter.formatDocument(document)
-        })
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return document.save().then(() => {
             return this.formatter.formatDocument(document, range)
-        })
     }
 
 }
