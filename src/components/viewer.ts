@@ -158,6 +158,12 @@ export class Viewer {
                     iframe.contentWindow.focus();
                 }, 100);
             }
+            // To enable keyboard shortcuts of VS Code when the iframe is focused,
+            // we have to dispatch keyboard events in the parent window.
+            // See https://github.com/microsoft/vscode/issues/65452
+            window.addEventListener('message', (e) => {
+                window.dispatchEvent(new KeyboardEvent('keydown', e.data));
+            }, false);
             </script>
             </body></html>
         `
