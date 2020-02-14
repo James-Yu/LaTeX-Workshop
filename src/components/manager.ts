@@ -49,8 +49,7 @@ export class Manager {
             useFsEvents: false,
             usePolling,
             interval,
-            binaryInterval: Math.max(interval, 1000),
-            awaitWriteFinish: true
+            binaryInterval: Math.max(interval, 1000)
         }
         this.initiatePdfWatcher()
     }
