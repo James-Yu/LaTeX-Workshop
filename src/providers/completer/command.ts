@@ -217,36 +217,7 @@ export class Command {
 
     updatePkg(file: string, nodes?: latexParser.Node[], content?: string) {
         if (nodes !== undefined) {
-            nodes.forEach(node => {
-                if (latexParser.isCommand(node) && node.name === 'usepackage') {
-                    node.args.forEach(arg => {
-                        if (latexParser.isOptionalArg(arg)) {
-                            return
-                        }
-                        for (const c of arg.content) {
-                            if (!latexParser.isTextString(c)) {
-                                continue
-                            }
-                            c.content.split(',').forEach(pkg => {
-                                pkg = pkg.trim()
-                                if (pkg === '') {
-                                    return
-                                }
-                                const pkgs = this.extension.manager.cachedContent[file].element.package
-                                if (pkgs) {
-                                    pkgs.push(pkg)
-                                } else {
-                                    this.extension.manager.cachedContent[file].element.package = [pkg]
-                                }
-                            })
-                        }
-                    })
-                } else {
-                    if (latexParser.hasContentArray(node)) {
-                        this.updatePkg(file, node.content)
-                    }
-                }
-            })
+            this.updatePkgWithNodeArray(file, nodes)
         } else if (content !== undefined) {
             const pkgReg = /\\usepackage(?:\[[^[\]{}]*\])?{(.*)}/g
             const pkgs: string[] = []
@@ -272,6 +243,42 @@ export class Command {
                 })
             }
         }
+    }
+
+    updatePkgWithNodeArray(file: string, nodes: latexParser.Node[]) {
+        nodes.forEach(node => {
+            if ( latexParser.isCommand(node) && (node.name === 'usepackage' || node.name === 'documentclass') ) {
+                node.args.forEach(arg => {
+                    if (latexParser.isOptionalArg(arg)) {
+                        return
+                    }
+                    for (const c of arg.content) {
+                        if (!latexParser.isTextString(c)) {
+                            continue
+                        }
+                        c.content.split(',').forEach(pkg => {
+                            pkg = pkg.trim()
+                            if (pkg === '') {
+                                return
+                            }
+                            if (node.name === 'documentclass') {
+                                pkg = 'class-' + pkg
+                            }
+                            const pkgs = this.extension.manager.cachedContent[file].element.package
+                            if (pkgs) {
+                                pkgs.push(pkg)
+                            } else {
+                                this.extension.manager.cachedContent[file].element.package = [pkg]
+                            }
+                        })
+                    }
+                })
+            } else {
+                if (latexParser.hasContentArray(node)) {
+                    this.updatePkgWithNodeArray(file, node.content)
+                }
+            }
+        })
     }
 
     private getCmdFromNode(file: string, node: latexParser.Node, cmdList: string[] = []): Suggestion[] {
