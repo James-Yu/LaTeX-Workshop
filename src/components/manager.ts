@@ -45,11 +45,13 @@ export class Manager {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const usePolling = configuration.get('latex.watch.usePolling') as boolean
         const interval = configuration.get('latex.watch.interval') as number
+        const delay = configuration.get('latex.watch.delay') as number
         this.watcherOptions = {
             useFsEvents: false,
             usePolling,
             interval,
-            binaryInterval: Math.max(interval, 1000)
+            binaryInterval: Math.max(interval, 1000),
+            awaitWriteFinish: {stabilityThreshold: delay}
         }
         this.initiatePdfWatcher()
     }
