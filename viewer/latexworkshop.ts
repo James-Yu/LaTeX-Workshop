@@ -311,6 +311,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 30000)
     }
 
+    // To enable keyboard shortcuts of VS Code when the iframe is focused,
+    // we have to dispatch keyboard events in the parent window.
+    // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
     startRebroadcastingKeyboardEvent() {
         if (!this.embedded) {
             return
