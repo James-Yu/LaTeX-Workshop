@@ -26,3 +26,48 @@ export function callCbOnDidOpenWebSocket(sock: WebSocket, cb: () => any): void {
         }, {once: true})
     }
 }
+
+export function isPdfjsShortcut(e: Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey' | 'code' | 'key'>) {
+    const ctrlKey = e.ctrlKey || e.metaKey
+    if (!ctrlKey && !e.altKey && !e.shiftKey) {
+        if (/^[ njpkrhs]$/.exec(e.key)) {
+            return true
+        }
+        if (/^(Enter|Home|End|PageUp|PageDown|ArrowUp|ArrowLeft|ArrowRight|ArrowDown|F4)$/.exec(e.code)) {
+            return true
+        }
+        return false
+    }
+    // Ctrl
+    if (ctrlKey && !e.altKey && !e.shiftKey) {
+        if (/^[-+=0fp]$/.exec(e.key)) {
+            return true
+        }
+        return false
+    }
+    // Ctrl + Shift
+    if (ctrlKey && !e.altKey && e.shiftKey) {
+        if (/^[g]$/.exec(e.key)) {
+            return true
+        }
+        return false
+    }
+    // Ctrl + Alt
+    if (ctrlKey && e.altKey && !e.shiftKey) {
+        if (/^[g]$/.exec(e.key)) {
+            return true
+        }
+        return false
+    }
+    // Shift
+    if (!ctrlKey && !e.altKey && e.shiftKey) {
+        if (/^[ r]$/.exec(e.key)) {
+            return true
+        }
+        if (e.code === 'Enter') {
+            return true
+        }
+        return false
+    }
+    return false
+}

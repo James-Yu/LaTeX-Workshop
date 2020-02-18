@@ -162,8 +162,10 @@ export class Viewer {
             // we have to dispatch keyboard events in the parent window.
             // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
             window.addEventListener('message', (e) => {
-                window.dispatchEvent(new KeyboardEvent('keydown', e.data));
-            }, false);
+                if (e.origin === 'http://localhost:${this.extension.server.port}') {
+                    window.dispatchEvent(new KeyboardEvent('keydown', e.data));
+                }
+            });
             </script>
             </body></html>
         `

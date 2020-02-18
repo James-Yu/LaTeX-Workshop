@@ -330,6 +330,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 repeat: e.repeat,
                 shiftKey: e.shiftKey
             }
+            if (utils.isPdfjsShortcut(obj)) {
+                return
+            }
             window.parent.postMessage(obj, '*')
         })
     }
