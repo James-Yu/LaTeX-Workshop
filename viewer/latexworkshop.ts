@@ -336,8 +336,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             window.parent.postMessage(obj, '*')
         })
     }
-
-
 }
 
 new LateXWorkshopPdfViewer()
