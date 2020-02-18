@@ -28,7 +28,8 @@ export function callCbOnDidOpenWebSocket(sock: WebSocket, cb: () => any): void {
 }
 
 export function isPdfjsShortcut(e: Pick<KeyboardEvent, 'altKey' | 'ctrlKey' | 'metaKey' | 'shiftKey' | 'code' | 'key'>) {
-    const ctrlKey = e.ctrlKey || e.metaKey
+    // exclusive or
+    const ctrlKey = (e.ctrlKey && !e.metaKey) || (!e.ctrlKey && e.metaKey)
     if (!ctrlKey && !e.altKey && !e.shiftKey) {
         if (/^[ njpkrhs]$/.exec(e.key)) {
             return true
