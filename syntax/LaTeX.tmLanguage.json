@@ -258,6 +258,25 @@
           "end": "(\\\\end\\{minted\\})"
         },
         {
+          "begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{(ruby)\\})",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#minted-env"
+                }
+              ]
+            }
+          },
+          "contentName": "source.ruby",
+          "patterns": [
+            {
+              "include": "source.ruby"
+            }
+          ],
+          "end": "(\\\\end\\{minted\\})"
+        },
+        {
           "begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{xml\\})",
           "captures": {
             "1": {
