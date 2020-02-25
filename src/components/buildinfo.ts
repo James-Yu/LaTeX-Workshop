@@ -120,7 +120,7 @@ export class BuildInfo {
         // A rule consists of a regex to catch the program starting and a boolean of whether
         // or not the program produces pages in the PDF
         // TODO: Add more rules
-        const rules = {
+        const rules: { [k: string]: [RegExp, boolean] } = {
             pdfTeX: [ /This is pdfTeX, Version [\d.-]+[^\n]*$/, true ],
             BibTeX: [ /This is BibTeX[\w.\- ",()]+$/, false ],
             Biber: [ /This is Biber[\w.\- ",()]+$/, false ],
@@ -151,9 +151,9 @@ export class BuildInfo {
             }
         } else {
             for(const [ruleName, ruleData] of Object.entries(rules)) {
-                if (this.currentBuild.stdout.match(ruleData[0] as RegExp)) {
+                if (this.currentBuild.stdout.match(ruleData[0])) {
                     this.currentBuild.ruleName = ruleName
-                    this.currentBuild.ruleProducesPages = ruleData[1] as boolean
+                    this.currentBuild.ruleProducesPages = ruleData[1]
                     this.currentBuild.stepTimes[`${++this.currentBuild.ruleNumber}-${this.currentBuild.ruleName}`] = {}
                     this.displayProgress(0, true)
                     this.currentBuild.lastStepTime = +new Date()
