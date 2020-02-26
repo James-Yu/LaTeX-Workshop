@@ -64,21 +64,23 @@ export class GraphicsPreview {
     }
 
     async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | vscode.Uri | undefined> {
+        const pageNumber = opts.pageNumber || 1
         if (!fs.existsSync(filePath)) {
             return undefined
         }
         if (/\.pdf$/i.exec(filePath)) {
-            const cache = this.pdfFileCacheMap.get(filePath)
+            const cacheKey = JSON.stringify([filePath, pageNumber])
+            const cache = this.pdfFileCacheMap.get(cacheKey)
             const cacheFileName = cache?.cacheFileName ?? this.newSvgCacheName()
             const svgPath = path.join(this.cacheDir, cacheFileName)
             const curStat = fs.statSync(filePath)
             if( cache && fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && cache.inode === curStat.ino ) {
                 return vscode.Uri.file(svgPath)
             }
-            this.pdfFileCacheMap.set(filePath, {cacheFileName, inode: curStat.ino})
+            this.pdfFileCacheMap.set(cacheKey, {cacheFileName, inode: curStat.ino})
             const svg0 = await this.pdfRenderer.renderToSVG(
                 filePath,
-                { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
+                { height: opts.height, width: opts.width, pageNumber }
             )
             const svg = this.setBackgroundColor(svg0)
             fs.writeFileSync(svgPath, svg)
