@@ -130,7 +130,7 @@ export class SnippetPanel {
         this.panel.webview.postMessage({ type: 'initialise' })
     }
 
-    private messageReceive(message: { type: string, [param: string]: any }) {
+    private messageReceive(message: { type: string, snippet: string }) {
         if (message.type === 'insertSnippet') {
             const editor = this.lastActiveTextEditor
             if (editor) {
