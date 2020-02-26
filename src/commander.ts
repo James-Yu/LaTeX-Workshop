@@ -614,7 +614,7 @@ export class Commander {
 
         for (let selection of selections) {
             let mode: 'selection' | 'cursor' = 'selection'
-            let oldSelection: any = null
+            let oldSelection: vscode.Selection | null = null
             if (selection.isEmpty) {
                 mode = 'cursor'
                 oldSelection = selection
@@ -635,7 +635,7 @@ export class Commander {
                         )
                     )
                 )
-            } else { // mode === 'cursor'
+            } else if (oldSelection) { // mode === 'cursor'
                 const anchorPosition = oldSelection.anchor.character + changeInEndCharacterPosition
                 const activePosition = oldSelection.active.character + changeInEndCharacterPosition
                 newSelections.push(
