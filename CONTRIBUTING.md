@@ -1,12 +1,15 @@
 # Contributing to LaTeX-Workshop
 
-## Quickstart (mac/linux)
+## Quickstart
 
 ```bash
 git clone https://github.com/James-Yu/LaTeX-Workshop.git
 cd ./LaTeX-Workshop
 npm install --no-optional
+# (mac/linux)
 command code .
+# (windows)
+code .
 ```
 Press <kbd>F5</kbd> in vscode to start the development version in debug mode.
 
