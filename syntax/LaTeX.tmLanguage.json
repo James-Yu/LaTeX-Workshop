@@ -500,6 +500,44 @@
       "end": "(\\\\end\\{gnuplot\\}(?:\\s*\\n)?)"
     },
     {
+      "begin": "((\\\\)addplot)(?:\\+?)((?:\\[[^\\[]*\\]))*\\s*(gnuplot)\\s*((?:\\[[^\\[]*\\]))*\\s*(\\{)",
+      "captures": {
+        "1": {
+          "name": "support.function.be.latex"
+        },
+        "2": {
+          "name": "punctuation.definition.function.latex"
+        },
+        "3": {
+          "patterns": [
+            {
+              "include": "#optional-arg"
+            }
+          ]
+        },
+        "4": {
+          "name": "variable.parameter.function.latex"
+        },
+        "5": {
+          "patterns": [
+            {
+              "include": "#optional-arg"
+            }
+          ]
+        },
+        "6": {
+          "name": "punctuation.definition.arguments.begin.latex"
+        }
+      },
+      "contentName": "source.gnuplot",
+      "patterns": [
+        {
+          "include": "source.gnuplot"
+        }
+      ],
+      "end": "\\s*(\\};)"
+    },
+    {
       "begin": "(?:\\s*)((\\\\)begin)(\\{)((?:fboxv|boxedv|V|v)erbatim\\*?)(\\})",
       "captures": {
         "1": {
@@ -855,7 +893,8 @@
       },
       "end": "((\\\\)end)(\\{)(\\4)(\\})(?:\\s*\\n)?",
       "name": "meta.function.environment.latex.mpost"
-    },{
+    },
+    {
       "begin": "(?:\\s*)((\\\\)begin)(\\{)(\\w+[*]?)(\\})",
       "captures": {
         "1": {
