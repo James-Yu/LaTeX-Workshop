@@ -1303,7 +1303,7 @@ var PDFViewerApplication = {
                   });
 
                   if (!_this5.isViewerEmbedded) {
-                    pdfViewer.focus();
+                    // pdfViewer.focus();
                   }
 
                   _context8.next = 18;
