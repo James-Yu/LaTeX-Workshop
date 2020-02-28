@@ -529,8 +529,17 @@
           "name": "punctuation.definition.arguments.begin.latex"
         }
       },
-      "contentName": "source.gnuplot",
       "patterns": [
+        {
+          "begin": "%",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.tex"
+            }
+          },
+          "end": "$\\n?",
+          "name": "comment.line.percentage.tex"
+        },
         {
           "include": "source.gnuplot"
         }
