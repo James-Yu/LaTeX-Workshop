@@ -539,7 +539,7 @@ export class Manager {
             this.extension.logger.addLogMessage('Cannot find fls file.')
             return
         }
-        const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), flsFile)
+        const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
 
         ioFiles.input.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
@@ -597,10 +597,9 @@ export class Manager {
         }
     }
 
-    private parseFlsContent(content: string, flsFile: string): {input: string[], output: string[]} {
+    private parseFlsContent(content: string, rootDir: string): {input: string[], output: string[]} {
         const inputFiles: Set<string> = new Set()
         const outputFiles: Set<string> = new Set()
-        const pwd = path.dirname(flsFile)
         const regex = /^(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
         // regex groups
         // #1: an INPUT entry --> #2 input file path
@@ -611,12 +610,12 @@ export class Manager {
                 break
             }
             if (result[1]) {
-                const inputFilePath = path.resolve(pwd, result[2])
+                const inputFilePath = path.resolve(rootDir, result[2])
                 if (inputFilePath) {
                     inputFiles.add(inputFilePath)
                 }
             } else if (result[3]) {
-                const outputFilePath = path.resolve(pwd, result[4])
+                const outputFilePath = path.resolve(rootDir, result[4])
                 if (outputFilePath) {
                     outputFiles.add(outputFilePath)
                 }
