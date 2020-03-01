@@ -374,8 +374,9 @@ export class Manager {
         this.cachedFullContent = undefined
         this.parseInputFiles(content, file)
         this.parseBibFiles(content, file)
-        // It seems that we do not need to parse so many fls files.
-        // this.parseFlsFile(file)
+        // We need to parse the fls to discover file dependencies when defined by TeX macro
+        // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
+        this.parseFlsFile(file)
     }
 
     private cachedFullContent: string | undefined
