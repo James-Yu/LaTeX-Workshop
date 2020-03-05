@@ -36,7 +36,7 @@ async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promise<void>
         fs.unlinkSync(pdfFilePath)
     }
     await cb()
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 150; i++) {
         if (fs.existsSync(pdfFilePath)) {
             assert.ok(true, 'PDF file generated.')
             return
@@ -85,6 +85,31 @@ suite('Buid TeX files test suite', () => {
         })
     })
 
+    runTestWithFixture('fixture003', 'fixture003: the same multiple placeholders in a recipe', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    })
+
+    runTestWithFixture('fixture004', 'fixture004: automatically detect root', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    })
 
     // Magic comment tests
     runTestWithFixture('fixture020', 'fixture020: build with magic comment', async () => {
