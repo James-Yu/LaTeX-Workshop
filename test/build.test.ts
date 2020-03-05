@@ -85,4 +85,58 @@ suite('Buid TeX files test suite', () => {
             await vscode.commands.executeCommand('latex-workshop.build')
         })
     }, () => process.platform !== 'linux')
+
+
+    // Magic comment tests
+    runTestWithFixture('fixture020', 'fixture020: build with magic comment', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    })
+
+    runTestWithFixture('fixture021', 'fixture021: build with !TEX program and !TEX options', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    })
+
+    runTestWithFixture('fixture022', 'fixture022: build with !TEX root', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 'z.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    })
+
+    runTestWithFixture('fixture023', 'fixture023: build with invalid !TEX program', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    })
 })
