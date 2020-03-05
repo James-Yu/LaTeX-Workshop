@@ -1,4 +1,5 @@
 import * as path from 'path'
+import * as process from 'process'
 import * as glob from 'glob'
 import * as tmpFile from 'tmp'
 import { runTests } from 'vscode-test'
@@ -19,7 +20,8 @@ async function main() {
                     '--user-data-dir=' + tmpdir.name,
                     '--disable-extensions',
                     '--disable-gpu'
-                ]
+                ],
+                extensionTestsEnv: { LATEXWORKSHOP_CI_ENABLE_DOCKER: process.argv.includes('--enable-docker') ? '1' : undefined }
             })
         }
 

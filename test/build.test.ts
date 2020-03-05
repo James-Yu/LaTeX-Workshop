@@ -46,7 +46,19 @@ async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promise<void>
     assert.fail('Timeout Error: PDF file not generated.')
 }
 
+function isDockerEnabled() {
+    return process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER'] ? true : false
+}
+
 suite('Buid TeX files test suite', () => {
+
+    suiteSetup(() => {
+        if (process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER']) {
+            const dockerConfig = vscode.workspace.getConfiguration()
+            dockerConfig.update('latex-workshop.docker.enabled', true, vscode.ConfigurationTarget.Global)
+        }
+    })
+
     runTestWithFixture('fixture001', 'fixture001: basic build', async () => {
         const fixtureDir = getFixtureDir()
         const texFileName = 't.tex'
@@ -73,19 +85,6 @@ suite('Buid TeX files test suite', () => {
         })
     })
 
-    runTestWithFixture('fixture003', 'fixture003: build when Docker enabled', async () => {
-        const fixtureDir = getFixtureDir()
-        const texFileName = 't.tex'
-        const pdfFileName = 't.pdf'
-        const pdfFilePath = path.join(fixtureDir, pdfFileName)
-        await assertPdfIsGenerated(pdfFilePath, async () => {
-            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
-            const doc = await vscode.workspace.openTextDocument(texFilePath)
-            await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
-        })
-    }, () => process.platform !== 'linux')
-
 
     // Magic comment tests
     runTestWithFixture('fixture020', 'fixture020: build with magic comment', async () => {
@@ -99,7 +98,7 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await vscode.commands.executeCommand('latex-workshop.build')
         })
-    })
+    }, () => isDockerEnabled())
 
     runTestWithFixture('fixture021', 'fixture021: build with !TEX program and !TEX options', async () => {
         const fixtureDir = getFixtureDir()

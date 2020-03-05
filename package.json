@@ -1666,6 +1666,7 @@
     "lint:fix": "eslint --fix --cache --ext .ts,.js .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
     "test": "node ./out/test/runTest.js",
+    "test:docker": "node ./out/test/runTest.js --enable-docker",
     "watch": "run-p watch-src watch-viewer",
     "watch-src": "tsc -watch -p tsconfig.json",
     "watch-viewer": "tsc -watch -p viewer/tsconfig.json"

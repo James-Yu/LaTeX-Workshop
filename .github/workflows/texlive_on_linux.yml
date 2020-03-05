@@ -1,4 +1,4 @@
-name: CI on Linux
+name: TeX Live on Linux
 env:
   cache-version: v2
 on: [push]
@@ -41,7 +41,6 @@ jobs:
     - run: |
         npm ci
         npm run compile
-        docker pull tianon/latex
     - name: Run tests
       uses: GabrielBB/xvfb-action@v1.0
       with:
