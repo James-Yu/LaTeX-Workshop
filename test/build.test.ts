@@ -30,7 +30,7 @@ function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms))
 }
 
-async function outputLogMessages() {
+async function printLogMessages() {
     await vscode.commands.executeCommand('latex-workshop.log')
     await sleep(1000)
     await vscode.commands.executeCommand('workbench.action.output.toggleOutput')
@@ -55,7 +55,7 @@ async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promise<void>
         }
         await sleep(100)
     }
-    await outputLogMessages()
+    await printLogMessages()
     assert.fail('Timeout Error: PDF file not generated.')
 }
 
@@ -123,7 +123,6 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await sleep(5000)
             await vscode.commands.executeCommand('latex-workshop.build')
         })
     })
@@ -217,7 +216,7 @@ suite('Buid TeX files test suite', () => {
             })
             await doc.save()
         })
-    })
+    }, () => isDockerEnabled())
 
     runTestWithFixture('fixture032', 'fixture032: auto build with input', async () => {
         const fixtureDir = getFixtureDir()
@@ -233,6 +232,35 @@ suite('Buid TeX files test suite', () => {
                 builder.insert(new vscode.Position(1, 0), ' ')
             })
             await doc.save()
+        })
+    })
+
+    //
+    // Multi-file project build tests
+    //
+    runTestWithFixture('fixture050', 'fixture050: build a subfile with the subfiles package', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 's.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'sub', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    }, () => isDockerEnabled())
+
+    runTestWithFixture('fixture051', 'fixture051: build a root file with the subfiles package', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await vscode.commands.executeCommand('latex-workshop.build')
         })
     })
 
