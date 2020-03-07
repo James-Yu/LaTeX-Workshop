@@ -235,6 +235,45 @@ suite('Buid TeX files test suite', () => {
         })
     })
 
+    runTestWithFixture('fixture033', 'fixture033: auto build main.tex when editing s.tex', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            const editor = await vscode.window.showTextDocument(doc)
+            await sleep(5000)
+            await editor.edit((builder) => {
+                builder.insert(new vscode.Position(1, 0), ' ')
+            })
+            await doc.save()
+        })
+    })
+
+    runTestWithFixture('fixture034', 'fixture034: auto build main.tex when editing a bib file', async () => {
+        const fixtureDir = getFixtureDir()
+        const bibFileName = 'b.bib'
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+        const doc = await vscode.workspace.openTextDocument(texFilePath)
+        await vscode.window.showTextDocument(doc)
+        await sleep(1000)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const bibFilePath = vscode.Uri.file(path.join(fixtureDir, bibFileName))
+            const bibDoc = await vscode.workspace.openTextDocument(bibFilePath)
+            const editor = await vscode.window.showTextDocument(bibDoc)
+            await sleep(1000)
+            await editor.edit((builder) => {
+                builder.insert(new vscode.Position(1, 0), ' ')
+            })
+            await bibDoc.save()
+        })
+    })
+
     //
     // Multi-file project build tests
     //
