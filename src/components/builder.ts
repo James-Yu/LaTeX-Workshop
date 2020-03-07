@@ -89,6 +89,7 @@ export class Builder {
         if (rootFile !== undefined) {
             args = args.map(this.replaceArgumentPlaceholders(rootFile, this.tmpDir))
         }
+        this.extension.logger.addLogMessage(`cwd: ${wd}`)
         this.currentProcess = cp.spawn(command, args, {cwd: wd})
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`External build process spawned. PID: ${pid}.`)
@@ -248,6 +249,7 @@ export class Builder {
             if (args) {
                 command += ' ' + args[0]
             }
+            this.extension.logger.addLogMessage(`cwd: ${path.dirname(rootFile)}`)
             this.currentProcess = cp.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
         } else {
             let workingDirectory: string
@@ -256,6 +258,7 @@ export class Builder {
             } else {
                 workingDirectory = path.dirname(rootFile)
             }
+            this.extension.logger.addLogMessage(`cwd: ${workingDirectory}`)
             this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: workingDirectory, env: envVars})
         }
         const pid = this.currentProcess.pid
