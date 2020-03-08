@@ -39,6 +39,14 @@ To build a release image, run
 
     npm run release
 
+To run tests, run
+
+    npm run test
+
+To run a specific test, run
+
+    npm run test fixture001
+
 ## Testing and debugging the extension
 
 In VS Code, simply press <kbd>F5</kbd> (or run `Debug: Start Debugging` from the command palette) and a new window will pop up where you can test the extension.
