@@ -79,7 +79,6 @@ export class Builder {
         }
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args.length > 0 ? args.join(' '): ''}`)
         let wd = pwd
         const ws = vscode.workspace.workspaceFolders
         if (ws && ws.length > 0) {
@@ -89,6 +88,7 @@ export class Builder {
         if (rootFile !== undefined) {
             args = args.map(this.replaceArgumentPlaceholders(rootFile, this.tmpDir))
         }
+        this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args.length > 0 ? args.join(' '): ''}`)
         this.extension.logger.addLogMessage(`cwd: ${wd}`)
         this.currentProcess = cp.spawn(command, args, {cwd: wd})
         const pid = this.currentProcess.pid
