@@ -156,6 +156,7 @@ export class Citation {
             return
         }
         this.bibEntries[file] = []
+        const fields: string[] = (configuration.get('intellisense.citation.format') as string[]).map(f => { return f.toLowerCase() })
         const bibtex = fs.readFileSync(file).toString()
         const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
@@ -183,7 +184,9 @@ export class Citation {
                     const value = Array.isArray(field.value.content) ?
                         field.value.content.join(' ') : this.deParenthesis(field.value.content)
                     item.fields[field.name] = value
-                    item.detail += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
+                    if (fields.includes(field.name.toLowerCase())) {
+                        item.detail += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
+                    }
                 })
                 this.bibEntries[file].push(item)
             })
