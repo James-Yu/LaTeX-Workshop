@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as ws from 'ws'
 import * as path from 'path'
 import * as cp from 'child_process'
+import {sleep} from '../utils/utils'
 
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
@@ -24,12 +25,22 @@ class Client {
     }
 }
 
+export type ViewerStatus = {
+    path: string,
+    scrollTop: number
+}
+
 export class Viewer {
     extension: Extension
     clients: {[key: string]: Client[]} = {}
+    statusMessageQueue: Map<string, ViewerStatus[]> = new Map()
 
     constructor(extension: Extension) {
         this.extension = extension
+    }
+
+    getClients(pdfFilePath: string): Client[] | undefined {
+        return this.clients[pdfFilePath.toLocaleUpperCase()]
     }
 
     refreshExistingViewer(sourceFile?: string, viewer?: string): boolean {
@@ -276,6 +287,14 @@ export class Viewer {
                 // nothing to do
                 break
             }
+            case 'status': {
+                const results = this.statusMessageQueue.get(data.path)
+                if (!results) {
+                    break
+                }
+                results.push({ path: data.path, scrollTop: data.scrollTop })
+                break
+            }
             default: {
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
                 break
@@ -294,4 +313,25 @@ export class Viewer {
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
     }
+
+    async getViewerStatus(pdfFilePath: string): Promise<ViewerStatus[]> {
+        const clients = this.getClients(pdfFilePath)
+        if (clients === undefined || clients.length === 0) {
+            return []
+        }
+        this.statusMessageQueue.set(pdfFilePath, [])
+        for (const client of clients) {
+            client.send({type: 'request_status'})
+        }
+        for (let i = 0; i < 100; i++) {
+            const results = this.statusMessageQueue.get(pdfFilePath)
+            if (results && results.length > 0) {
+                this.statusMessageQueue.delete(pdfFilePath)
+                return results
+            }
+            await sleep(100)
+        }
+        throw new Error('Cannot get viewer status.')
+    }
+
 }

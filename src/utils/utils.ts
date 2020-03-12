@@ -2,6 +2,10 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
 
+export function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
 export function escapeRegExp(str: string) {
     return str.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
 }

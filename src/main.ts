@@ -90,6 +90,8 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
     vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => extension.commander.devParseTeX())
     vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => extension.commander.devParseBib())
+    vscode.commands.registerCommand('latex-workshop-dev.getViewerStatus', (pdfFilePath: string) => extension.commander.getViewerStatus(pdfFilePath))
+    vscode.commands.registerCommand('latex-workshop-dev.isBuildFinished', () => extension.commander.isBuildFinished())
 
     vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item'))
     vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => extension.commander.toggleSelectedKeyword('emph'))

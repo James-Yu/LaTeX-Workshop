@@ -58,6 +58,13 @@ export class Builder {
         }
     }
 
+    /**
+     * Should not use. Only for integration tests.
+     */
+    isBuildFinished(): boolean {
+        return this.buildMutex.count === 1
+    }
+
     isWaitingForBuildToFinish(): boolean {
         return this.waitingForBuildToFinishMutex.count < 1
     }

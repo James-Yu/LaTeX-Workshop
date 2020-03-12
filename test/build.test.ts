@@ -3,12 +3,14 @@ import * as process from 'process'
 import * as vscode from 'vscode'
 import {
     assertPdfIsGenerated,
+    execCommandThenPick,
     getFixtureDir,
     isDockerEnabled,
     runTestWithFixture,
-    sleep,
-    waitReleaseOf
+    waitReleaseOf,
+    waitlLatexWorkshopActivated
 } from './utils'
+import {sleep} from '../src/utils/utils'
 
 suite('Buid TeX files test suite', () => {
 
@@ -157,7 +159,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await sleep(5000)
+            await waitlLatexWorkshopActivated()
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })
@@ -418,14 +420,19 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            setTimeout(() => {
-                vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+            let done = false
+            setTimeout(async () => {
+                while (!done) {
+                    await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+                    await sleep(3000)
+                }
             }, 3000)
             await vscode.commands.executeCommand('latex-workshop.build')
+            done = true
         })
     })
 
-    runTestWithFixture('fixture05A', 'build s.tex choosing an item in QuickPick', async () => {
+    runTestWithFixture('fixture05a', 'build s.tex choosing an item in QuickPick', async () => {
         const fixtureDir = getFixtureDir()
         const texFileName = 's.tex'
         const pdfFileName = 's.pdf'
@@ -434,11 +441,14 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            setTimeout(async () => {
-                await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
-                await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
-            }, 3000)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await waitlLatexWorkshopActivated()
+            execCommandThenPick(
+                () => vscode.commands.executeCommand('latex-workshop.build'),
+                async () => {
+                    await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
+                    await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+                }
+            )
         })
     }, () => isDockerEnabled())
 

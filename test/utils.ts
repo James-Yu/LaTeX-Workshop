@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
-
+import {sleep} from '../src/utils/utils'
 
 export function getFixtureDir() {
     const fixtureDir = vscode.workspace.workspaceFolders?.[0].uri.fsPath
@@ -25,10 +25,6 @@ export function runTestWithFixture(
     if (rootPath && path.basename(rootPath.uri.fsPath) === fixtureName && !shouldSkip) {
         test( fixtureName + ': ' + label, cb )
     }
-}
-
-export function sleep(ms: number) {
-    return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 export async function waitReleaseOf(filePath: string) {
@@ -60,6 +56,35 @@ export async function printLogMessages() {
     console.log(compilerLogMessage)
 }
 
+export async function execCommandThenPick(
+    command: () => Thenable<void | undefined>,
+    pick: () => Thenable<void | undefined>
+) {
+    let done = false
+    setTimeout(async () => {
+        while (!done) {
+            await pick()
+            await sleep(300)
+        }
+    }, 1000)
+    await command()
+    done = true
+}
+
+export async function busyWait<T>(
+    command: () => Thenable<T | false | undefined | null>,
+    errMessage?: string
+): Promise<T> {
+    for (let i = 0; i < 30; i++) {
+        const result = await command()
+        if (result) {
+            return result
+        }
+        await sleep(300)
+    }
+    assert.fail(errMessage || 'Timeout Error at busyWait')
+}
+
 export async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promise<void>) {
     if (fs.existsSync(pdfFilePath)) {
         fs.unlinkSync(pdfFilePath)
@@ -78,4 +103,10 @@ export async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promis
 
 export function isDockerEnabled() {
     return process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER'] ? true : false
+}
+
+export async function waitlLatexWorkshopActivated() {
+    await busyWait( () => {
+        return Promise.resolve(vscode.extensions.getExtension('James-Yu.latex-workshop'))
+    })
 }
