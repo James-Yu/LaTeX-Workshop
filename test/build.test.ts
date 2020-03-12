@@ -409,4 +409,37 @@ suite('Buid TeX files test suite', () => {
         })
     }, () => isDockerEnabled())
 
+    runTestWithFixture('fixture059', 'build main.tex choosing an item in QuickPick', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            setTimeout(() => {
+                vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+            }, 3000)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    })
+
+    runTestWithFixture('fixture05A', 'build s.tex choosing an item in QuickPick', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 's.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'sub', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            setTimeout(async () => {
+                await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
+                await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+            }, 3000)
+            await vscode.commands.executeCommand('latex-workshop.build')
+        })
+    }, () => isDockerEnabled())
+
 })
