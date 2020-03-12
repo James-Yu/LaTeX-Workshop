@@ -23,6 +23,7 @@ async function main() {
 
         for (const testWorkspace of testBuildWorkspaces) {
             await runTests({
+                version: '1.42.1',
                 extensionDevelopmentPath,
                 extensionTestsPath,
                 launchArgs: [
