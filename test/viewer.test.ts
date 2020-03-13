@@ -9,9 +9,9 @@ import {
     getFixtureDir,
     isDockerEnabled,
     execCommandThenPick,
+    executeVscodeCommandAfterActivation,
     runTestWithFixture,
-    waitlLatexWorkshopActivated
-//    waitReleaseOf
+    waitBuildFinish
 } from './utils'
 import {ViewerStatus} from '../src/components/viewer'
 
@@ -36,9 +36,9 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await waitlLatexWorkshopActivated()
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
+        await waitBuildFinish()
         await vscode.commands.executeCommand('latex-workshop.view')
         const results = await busyWait(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
@@ -56,9 +56,9 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await waitlLatexWorkshopActivated()
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
+        await waitBuildFinish()
         await vscode.commands.executeCommand('latex-workshop.view')
         const results = await busyWait(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
@@ -78,9 +78,9 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await waitlLatexWorkshopActivated()
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
+        await waitBuildFinish()
         await vscode.commands.executeCommand('latex-workshop.view')
         const results = await busyWait(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
@@ -100,15 +100,12 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await waitlLatexWorkshopActivated()
             await execCommandThenPick(
-                () => vscode.commands.executeCommand('latex-workshop.build'),
+                () => executeVscodeCommandAfterActivation('latex-workshop.build'),
                 () => vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             )
         })
-        await busyWait(
-            () => vscode.commands.executeCommand('latex-workshop-dev.isBuildFinished') as Thenable<boolean>
-        )
+        await waitBuildFinish()
         await execCommandThenPick(
             () => vscode.commands.executeCommand('latex-workshop.view'),
             () => vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')

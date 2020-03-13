@@ -32,7 +32,7 @@ export async function waitReleaseOf(filePath: string) {
         await sleep(100)
         try {
             if (!fs.existsSync(filePath)) {
-                return
+                continue
             }
             const fd = fs.openSync(filePath, 'r+')
             fs.closeSync(fd)
@@ -41,6 +41,7 @@ export async function waitReleaseOf(filePath: string) {
 
         }
     }
+    assert.fail(`${filePath}: not found, or not released`)
 }
 
 export async function printLogMessages() {
@@ -57,7 +58,7 @@ export async function printLogMessages() {
 }
 
 export async function execCommandThenPick(
-    command: () => Thenable<void | undefined>,
+    command: () => Thenable<any>,
     pick: () => Thenable<void | undefined>
 ) {
     let done = false
@@ -105,8 +106,23 @@ export function isDockerEnabled() {
     return process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER'] ? true : false
 }
 
-export async function waitlLatexWorkshopActivated() {
+export async function waitLatexWorkshopActivated() {
     await busyWait( () => {
         return Promise.resolve(vscode.extensions.getExtension('James-Yu.latex-workshop'))
     })
+}
+
+export async function waitBuildFinish() {
+    await busyWait(
+        () => vscode.commands.executeCommand('latex-workshop-dev.isBuildFinished') as Thenable<boolean>
+    )
+}
+
+export async function waitRootFileFound() {
+    await busyWait( () => executeVscodeCommandAfterActivation('latex-workshop-dev.currentRootFile'))
+}
+
+export async function executeVscodeCommandAfterActivation(command: string) {
+    await waitLatexWorkshopActivated()
+    return await vscode.commands.executeCommand(command)
 }

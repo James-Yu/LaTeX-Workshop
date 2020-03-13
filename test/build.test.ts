@@ -3,12 +3,14 @@ import * as process from 'process'
 import * as vscode from 'vscode'
 import {
     assertPdfIsGenerated,
+    executeVscodeCommandAfterActivation,
     execCommandThenPick,
     getFixtureDir,
     isDockerEnabled,
     runTestWithFixture,
-    waitReleaseOf,
-    waitlLatexWorkshopActivated
+    waitBuildFinish,
+    waitLatexWorkshopActivated,
+    waitRootFileFound
 } from './utils'
 import {sleep} from '../src/utils/utils'
 
@@ -33,7 +35,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -46,7 +48,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -59,7 +61,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -72,7 +74,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -88,7 +90,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
 
@@ -101,7 +103,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -114,7 +116,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -127,7 +129,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -143,6 +145,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
+            await waitLatexWorkshopActivated()
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(0, 0), ' ')
             })
@@ -159,7 +162,8 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await waitlLatexWorkshopActivated()
+            await waitLatexWorkshopActivated()
+            await waitRootFileFound()
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })
@@ -172,11 +176,12 @@ suite('Buid TeX files test suite', () => {
         const texFileName = 's.tex'
         const pdfFileName = 'main.pdf'
         const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await waitLatexWorkshopActivated()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await sleep(5000)
+            await waitRootFileFound()
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(1, 0), ' ')
             })
@@ -193,7 +198,8 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await sleep(5000)
+            await waitLatexWorkshopActivated()
+            await waitRootFileFound()
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(1, 0), ' ')
             })
@@ -210,7 +216,7 @@ suite('Buid TeX files test suite', () => {
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
         await vscode.window.showTextDocument(doc)
-        await sleep(1000)
+        await waitLatexWorkshopActivated()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const bibFilePath = vscode.Uri.file(path.join(fixtureDir, bibFileName))
             const bibDoc = await vscode.workspace.openTextDocument(bibFilePath)
@@ -231,14 +237,15 @@ suite('Buid TeX files test suite', () => {
         const mainTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'main', 'main.tex'))
         const mainDoc = await vscode.workspace.openTextDocument(mainTexFilePath)
         await vscode.window.showTextDocument(mainDoc)
-        await vscode.commands.executeCommand('latex-workshop.build')
-        await sleep(1000)
-        await waitReleaseOf(pdfFilePath)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await sleep(5000)
+            await sleep(1000)
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(1, 0), ' ')
             })
@@ -254,14 +261,15 @@ suite('Buid TeX files test suite', () => {
         const mainTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'main', 'main.tex'))
         const mainDoc = await vscode.workspace.openTextDocument(mainTexFilePath)
         await vscode.window.showTextDocument(mainDoc)
-        await vscode.commands.executeCommand('latex-workshop.build')
-        await sleep(1000)
-        await waitReleaseOf(pdfFilePath)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await sleep(5000)
+            await sleep(1000)
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(1, 0), ' ')
             })
@@ -281,7 +289,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
 
@@ -294,7 +302,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -307,7 +315,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -323,7 +331,7 @@ suite('Buid TeX files test suite', () => {
             const subTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(subTexFilePath)
             await vscode.window.showTextDocument(doc, vscode.ViewColumn.Beside)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
 
@@ -336,7 +344,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
 
@@ -349,7 +357,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
 
@@ -361,15 +369,15 @@ suite('Buid TeX files test suite', () => {
         const mainTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'main', 'main.tex'))
         const mainDoc = await vscode.workspace.openTextDocument(mainTexFilePath)
         await vscode.window.showTextDocument(mainDoc)
-        await vscode.commands.executeCommand('latex-workshop.build')
-        await sleep(1000)
-        await waitReleaseOf(pdfFilePath)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await sleep(5000)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
 
@@ -381,15 +389,15 @@ suite('Buid TeX files test suite', () => {
         const mainTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'main', 'main.tex'))
         const mainDoc = await vscode.workspace.openTextDocument(mainTexFilePath)
         await vscode.window.showTextDocument(mainDoc)
-        await vscode.commands.executeCommand('latex-workshop.build')
-        await sleep(1000)
-        await waitReleaseOf(pdfFilePath)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await sleep(5000)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
 
@@ -401,13 +409,12 @@ suite('Buid TeX files test suite', () => {
         const mainTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'main', 'main.tex'))
         const mainDoc = await vscode.workspace.openTextDocument(mainTexFilePath)
         await vscode.window.showTextDocument(mainDoc)
-        await sleep(1000)
+        await waitLatexWorkshopActivated()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await sleep(5000)
-            await vscode.commands.executeCommand('latex-workshop.build')
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
 
@@ -420,15 +427,11 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            let done = false
-            setTimeout(async () => {
-                while (!done) {
-                    await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
-                    await sleep(3000)
-                }
-            }, 3000)
-            await vscode.commands.executeCommand('latex-workshop.build')
-            done = true
+            await waitLatexWorkshopActivated()
+            execCommandThenPick(
+                () => vscode.commands.executeCommand('latex-workshop.build'),
+                async () => await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+            )
         })
     })
 
@@ -441,7 +444,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
-            await waitlLatexWorkshopActivated()
+            await waitLatexWorkshopActivated()
             execCommandThenPick(
                 () => vscode.commands.executeCommand('latex-workshop.build'),
                 async () => {

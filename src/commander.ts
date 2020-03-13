@@ -681,8 +681,18 @@ export class Commander {
         return this.extension.viewer.getViewerStatus(pdfFilePath)
     }
 
+    /**
+     * Should not use. Only for integration tests.
+     */
     isBuildFinished(): boolean {
         return this.extension.builder.isBuildFinished()
+    }
+
+    /**
+     * Should not use. Only for integration tests.
+     */
+    currentRootFile() {
+        return this.extension.manager.rootFile
     }
 
     texdoc(pkg?: string) {
