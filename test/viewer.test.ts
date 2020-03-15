@@ -5,7 +5,7 @@ import * as process from 'process'
 import * as vscode from 'vscode'
 import {
     assertPdfIsGenerated,
-    busyWait,
+    waitUntil,
     getFixtureDir,
     isDockerEnabled,
     execCommandThenPick,
@@ -40,7 +40,7 @@ suite('Buid TeX files test suite', () => {
         })
         await waitBuildFinish()
         await vscode.commands.executeCommand('latex-workshop.view')
-        const results = await busyWait(async () => {
+        const results = await waitUntil(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
             return rs.length > 0 ? rs : undefined
         })
@@ -60,7 +60,7 @@ suite('Buid TeX files test suite', () => {
         })
         await waitBuildFinish()
         await vscode.commands.executeCommand('latex-workshop.view')
-        const results = await busyWait(async () => {
+        const results = await waitUntil(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
             return rs.length > 0 ? rs : undefined
         })
@@ -82,7 +82,7 @@ suite('Buid TeX files test suite', () => {
         })
         await waitBuildFinish()
         await vscode.commands.executeCommand('latex-workshop.view')
-        const results = await busyWait(async () => {
+        const results = await waitUntil(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
             return rs.length > 0 ? rs : undefined
         })
@@ -110,7 +110,7 @@ suite('Buid TeX files test suite', () => {
             () => vscode.commands.executeCommand('latex-workshop.view'),
             () => vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
         )
-        const results = await busyWait(async () => {
+        const results = await waitUntil(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
             return rs.length > 0 ? rs : undefined
         })

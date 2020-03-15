@@ -20,28 +20,12 @@ export function runTestWithFixture(
     cb: () => Promise<void>,
     skip?: () => boolean
 ) {
+    setTimeout(() => process.exit(1), 60000)
     const rootPath = vscode.workspace.workspaceFolders?.[0]
     const shouldSkip = skip && skip()
     if (rootPath && path.basename(rootPath.uri.fsPath) === fixtureName && !shouldSkip) {
         test( fixtureName + ': ' + label, cb )
     }
-}
-
-export async function waitReleaseOf(filePath: string) {
-    for (let i = 0; i < 300; i++) {
-        await sleep(100)
-        try {
-            if (!fs.existsSync(filePath)) {
-                continue
-            }
-            const fd = fs.openSync(filePath, 'r+')
-            fs.closeSync(fd)
-            return
-        } catch (e) {
-
-        }
-    }
-    assert.fail(`${filePath}: not found, or not released`)
 }
 
 export async function printLogMessages() {
@@ -72,20 +56,6 @@ export async function execCommandThenPick(
     done = true
 }
 
-export async function busyWait<T>(
-    command: () => Thenable<T | false | undefined | null>,
-    errMessage?: string
-): Promise<T> {
-    for (let i = 0; i < 30; i++) {
-        const result = await command()
-        if (result) {
-            return result
-        }
-        await sleep(300)
-    }
-    assert.fail(errMessage || 'Timeout Error at busyWait')
-}
-
 export async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promise<void>) {
     if (fs.existsSync(pdfFilePath)) {
         fs.unlinkSync(pdfFilePath)
@@ -106,20 +76,36 @@ export function isDockerEnabled() {
     return process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER'] ? true : false
 }
 
+export async function waitUntil<T>(
+    command: () => Thenable<T | false | undefined | null>,
+    errMessage?: string
+): Promise<T> {
+    for (let i = 0; i < 30; i++) {
+        const result = await command()
+        if (result) {
+            return result
+        }
+        await sleep(300)
+    }
+    assert.fail(errMessage || 'Timeout Error at busyWait')
+}
+
 export async function waitLatexWorkshopActivated() {
-    await busyWait( () => {
+    await waitUntil( () => {
         return Promise.resolve(vscode.extensions.getExtension('James-Yu.latex-workshop'))
     })
 }
 
 export async function waitBuildFinish() {
-    await busyWait(
+    await waitUntil(
         () => vscode.commands.executeCommand('latex-workshop-dev.isBuildFinished') as Thenable<boolean>
     )
 }
 
 export async function waitRootFileFound() {
-    await busyWait( () => executeVscodeCommandAfterActivation('latex-workshop-dev.currentRootFile'))
+    return await waitUntil(
+        () => executeVscodeCommandAfterActivation('latex-workshop-dev.currentRootFile') as Thenable<string | undefined>
+    )
 }
 
 export async function executeVscodeCommandAfterActivation(command: string) {

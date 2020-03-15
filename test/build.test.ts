@@ -78,6 +78,19 @@ suite('Buid TeX files test suite', () => {
         })
     })
 
+    runTestWithFixture('fixture005', 'basic build with outDir', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'out', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
+
     //
     // Magic comment tests
     //
@@ -229,7 +242,7 @@ suite('Buid TeX files test suite', () => {
         })
     })
 
-    runTestWithFixture('fixture035', 'auto build with input whose path uses a macro', async () => {
+    runTestWithFixture('fixture035', 'auto build with \\input whose path uses a macro', async () => {
         const fixtureDir = getFixtureDir()
         const texFileName = 's.tex'
         const pdfFileName = 'main.pdf'
@@ -258,6 +271,30 @@ suite('Buid TeX files test suite', () => {
         const texFileName = 's.tex'
         const pdfFileName = 'main.pdf'
         const pdfFilePath = path.join(fixtureDir, 'main', pdfFileName)
+        const mainTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'main', 'main.tex'))
+        const mainDoc = await vscode.workspace.openTextDocument(mainTexFilePath)
+        await vscode.window.showTextDocument(mainDoc)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            const editor = await vscode.window.showTextDocument(doc)
+            await sleep(1000)
+            await editor.edit((builder) => {
+                builder.insert(new vscode.Position(1, 0), ' ')
+            })
+            await doc.save()
+        })
+    }, () => isDockerEnabled())
+
+    runTestWithFixture('fixture037', 'auto build with \\input and outDir', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'main', 'out', pdfFileName)
         const mainTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'main', 'main.tex'))
         const mainDoc = await vscode.workspace.openTextDocument(mainTexFilePath)
         await vscode.window.showTextDocument(mainDoc)
