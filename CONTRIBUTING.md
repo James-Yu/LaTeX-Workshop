@@ -45,7 +45,7 @@ To run tests, run
 
 To run a specific test, run
 
-    npm run test fixture001
+    npm run test build/fixture001
 
 ## Testing and debugging the extension
 

@@ -56,9 +56,11 @@ export class Manager {
         this.initiatePdfWatcher()
     }
 
-    /* Returns the output directory developed according to the input tex path
-       and 'latex.outDir' config. If undefined is passed in, the default root
-       file is used. If there is not root file, './' is output. */
+    /**
+     * Returns the output directory developed according to the input tex path
+     * and 'latex.outDir' config. If undefined is passed in, the default root
+     * file is used. If there is not root file, './' is output.
+     */
     getOutDir(texPath?: string) {
         if (texPath === undefined) {
             texPath = this.rootFile
@@ -300,9 +302,11 @@ export class Manager {
         return undefined
     }
 
-    /* This function returns a string array which holds all imported tex files
-       from the given `file`. If it is undefined, this function traces from the
-       root file, or return empty array if root is undefined */
+    /**
+     * This function returns a string array which holds all imported tex files
+     * from the given `file`. If it is undefined, this function traces from the
+     * root file, or return empty array if root is undefined
+     */
     getIncludedTeX(file?: string, includedTeX: string[] = []) {
         if (file === undefined) {
             file = this.rootFile
@@ -350,13 +354,15 @@ export class Manager {
         return micromatch.some(file, globsToIgnore, { format } as any)
     }
 
-    /* This function is called when a root file is found or a watched file is
-       changed (in vscode or externally). It searches the subfiles, including
-       \input siblings, bib files, and related fls file to construct a file
-       dependency data structure in `this.cachedContent`. Noted that only the
-       provided `file` is re-parsed, together with any new files that were not
-       previously watched/considered. Since this function is called upon content
-       changes, this lazy loading should be fine. */
+    /**
+     * This function is called when a root file is found or a watched file is
+     * changed (in vscode or externally). It searches the subfiles, including
+     * \input siblings, bib files, and related fls file to construct a file
+     * dependency data structure in `this.cachedContent`. Noted that only the
+     * provided `file` is re-parsed, together with any new files that were not
+     * previously watched/considered. Since this function is called upon content
+     * changes, this lazy loading should be fine.
+     */
     parseFileAndSubs(file: string, onChange: boolean = false) {
         if (this.isExcluded(file)) {
             this.extension.logger.addLogMessage(`Ignoring ${file}`)
@@ -380,8 +386,10 @@ export class Manager {
     }
 
     private cachedFullContent: string | undefined
-    /* This function returns the flattened content from the given file,
-       typically the root file. */
+    /**
+     * This function returns the flattened content from the given file,
+     * typically the root file.
+     */
     getContent(file?: string, fileTrace: string[] = []): string {
         // Here we make a copy, so that the tree structure of tex dependency
         // Can be maintained. For instance, main -> s1 and s2, both of which
@@ -527,10 +535,12 @@ export class Manager {
         }
     }
 
-    /* This function parses the content of a fls attached to the given base tex
-       file. All input files are considered as included subfiles/non-tex files,
-       and all output files will be check if there are aux files related. If so,
-       the aux files are parsed for any possible bib file. */
+    /**
+     * This function parses the content of a fls attached to the given base tex
+     * file. All input files are considered as included subfiles/non-tex files,
+     * and all output files will be check if there are aux files related. If so,
+     * the aux files are parsed for any possible bib file.
+     */
     parseFlsFile(baseFile: string) {
         this.extension.logger.addLogMessage('Parse fls file.')
         const rootDir = path.dirname(baseFile)
@@ -776,7 +786,9 @@ export class Manager {
         this.extension.completer.input.getGraphicsPath(file)
     }
 
-    // This function updates all completers upon tex-file changes, or active file content is changed.
+    /**
+     * This function updates all completers upon tex-file changes, or active file content is changed.
+     */
     async updateCompleter(file: string, content: string) {
         this.extension.completer.citation.update(file, content)
         // Here we use this delay config. Otherwise, multiple updates may run

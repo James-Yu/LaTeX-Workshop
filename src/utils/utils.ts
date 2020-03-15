@@ -47,7 +47,9 @@ export function getLongestBalancedString(s: string): string {
     return s.substring(0, i)
 }
 
-// Given an input file determine its full path using the prefixes dirs
+/**
+ * Given an input file determine its full path using the prefixes dirs
+ */
 export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | undefined {
     if (inputFile.startsWith('/')) {
         dirs.unshift('')
@@ -83,18 +85,21 @@ export function convertFilenameEncoding(filePath: string): string | undefined {
     return undefined
 }
 
-// prefix that server.ts uses to distiguish requests on pdf files from others.
-// We use '.' because it is not converted by encodeURIComponent and other functions.
-// See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
-// See https://tools.ietf.org/html/rfc3986#section-2.3
-
+/**
+ * Prefix that server.ts uses to distiguish requests on pdf files from others.
+ * We use '.' because it is not converted by encodeURIComponent and other functions.
+ * See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
+ * See https://tools.ietf.org/html/rfc3986#section-2.3
+ */
 export const pdfFilePrefix = 'pdf..'
 
-// We encode the path with base64url after calling encodeURIComponent.
-// The reason not using base64url directly is that we are not sure that
-// encodeURIComponent, unescape, and btoa trick is valid on node.js.
-// See https://en.wikipedia.org/wiki/Base64#URL_applications
-// See https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
+/**
+ * We encode the path with base64url after calling encodeURIComponent.
+ * The reason not using base64url directly is that we are not sure that
+ * encodeURIComponent, unescape, and btoa trick is valid on node.js.
+ * - https://en.wikipedia.org/wiki/Base64#URL_applications
+ * - https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
+ */
 export function encodePath(url: string) {
     const s = encodeURIComponent(url)
     const b64 = Buffer.from(s).toString('base64')
