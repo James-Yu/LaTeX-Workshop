@@ -455,7 +455,7 @@ suite('Buid TeX files test suite', () => {
         })
     }, () => isDockerEnabled())
 
-    runTestWithFixture('fixture059', 'build main.tex choosing an item in QuickPick', async () => {
+    runTestWithFixture('fixture059', 'build main.tex choosing it in QuickPick', async () => {
         const fixtureDir = getFixtureDir()
         const texFileName = 's.tex'
         const pdfFileName = 'main.pdf'
@@ -472,7 +472,7 @@ suite('Buid TeX files test suite', () => {
         })
     })
 
-    runTestWithFixture('fixture05a', 'build s.tex choosing an item in QuickPick', async () => {
+    runTestWithFixture('fixture05a', 'build s.tex choosing it in QuickPick', async () => {
         const fixtureDir = getFixtureDir()
         const texFileName = 's.tex'
         const pdfFileName = 's.pdf'

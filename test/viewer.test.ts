@@ -91,7 +91,7 @@ suite('Buid TeX files test suite', () => {
         }
     })
 
-    runTestWithFixture('fixture004', 'build main.tex and view it choosing it in QuickPick', async () => {
+    runTestWithFixture('fixture004', 'build main.tex, choose it in QuickPick, and view it', async () => {
         const fixtureDir = getFixtureDir()
         const texFileName = 's.tex'
         const pdfFileName = 'main.pdf'
@@ -119,4 +119,57 @@ suite('Buid TeX files test suite', () => {
         }
     })
 
+    runTestWithFixture('fixture005', 'build s.tex, choose it in QuickPick, and view it', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 's.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'sub', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await execCommandThenPick(
+                () => executeVscodeCommandAfterActivation('latex-workshop.build'),
+                async () => {
+                    await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
+                    await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+                }
+            )
+        })
+        await waitBuildFinish()
+        await execCommandThenPick(
+            () => vscode.commands.executeCommand('latex-workshop.view'),
+            async () => {
+                await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
+                await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+            }
+        )
+        const results = await waitUntil(async () => {
+            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
+            return rs.length > 0 ? rs : undefined
+        })
+        for (const result of results) {
+            assert.strictEqual(result.path, pdfFilePath)
+        }
+    }, () => isDockerEnabled())
+
+    runTestWithFixture('fixture006', 'view a PDF file in outDir', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'out', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
+        await vscode.commands.executeCommand('latex-workshop.view')
+        const results = await waitUntil(async () => {
+            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
+            return rs.length > 0 ? rs : undefined
+        })
+        assert.ok(results.length > 0)
+    })
 })
