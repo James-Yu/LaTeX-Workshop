@@ -18,9 +18,9 @@ import {ViewerStatus} from '../src/components/viewer'
 suite('Buid TeX files test suite', () => {
 
     suiteSetup(() => {
+        const config = vscode.workspace.getConfiguration()
         if (process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER']) {
-            const dockerConfig = vscode.workspace.getConfiguration()
-            dockerConfig.update('latex-workshop.docker.enabled', true, vscode.ConfigurationTarget.Global)
+            config.update('latex-workshop.docker.enabled', true, vscode.ConfigurationTarget.Global)
         }
     })
 

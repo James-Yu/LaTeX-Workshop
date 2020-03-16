@@ -1,8 +1,26 @@
 import * as path from 'path'
 import * as process from 'process'
+import * as fs from 'fs'
 import * as glob from 'glob'
 import * as tmpFile from 'tmp'
 import { runTests } from 'vscode-test'
+
+function writeSettingsJson(userDataDir: string) {
+    const configDir = path.join(userDataDir, 'User')
+    if (!fs.existsSync(configDir)) {
+        fs.mkdirSync(configDir)
+    }
+    const settingFilePath = path.join(configDir, 'settings.json')
+    const settingsJson =
+`
+{
+    "extensions.autoUpdate": false,
+    "extensions.autoCheckUpdates": false,
+    "update.mode": "none"
+}
+`
+    fs.writeFileSync(settingFilePath, settingsJson)
+}
 
 async function runTestsOnEachFixture(targetName: 'build' | 'viewer') {
     const extensionDevelopmentPath = path.resolve(__dirname, '../../')
@@ -19,6 +37,8 @@ async function runTestsOnEachFixture(targetName: 'build' | 'viewer') {
             return fixturePatterns.some( pat => fixture.includes(pat) )
         })
     }
+
+    writeSettingsJson(tmpdir.name)
 
     for (const testWorkspace of testBuildWorkspaces) {
         await runTests({
