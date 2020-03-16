@@ -40,7 +40,9 @@ async function runTestsOnEachFixture(targetName: 'build' | 'viewer') {
 
     writeSettingsJson(tmpdir.name)
 
+    let firstTime = true
     for (const testWorkspace of testBuildWorkspaces) {
+        const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
         await runTests({
             version: '1.42.1',
             extensionDevelopmentPath,
@@ -53,6 +55,8 @@ async function runTestsOnEachFixture(targetName: 'build' | 'viewer') {
             ],
             extensionTestsEnv: { LATEXWORKSHOP_CI_ENABLE_DOCKER: process.argv.includes('--enable-docker') ? '1' : undefined }
         })
+        clearTimeout(nodejsTimeout)
+        firstTime = false
     }
 }
 

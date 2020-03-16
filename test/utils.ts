@@ -20,7 +20,6 @@ export function runTestWithFixture(
     cb: () => Promise<void>,
     skip?: () => boolean
 ) {
-    setTimeout(() => process.exit(1), 60000)
     const rootPath = vscode.workspace.workspaceFolders?.[0]
     const shouldSkip = skip && skip()
     if (rootPath && path.basename(rootPath.uri.fsPath) === fixtureName && !shouldSkip) {
