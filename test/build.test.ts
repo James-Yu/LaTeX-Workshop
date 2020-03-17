@@ -183,7 +183,7 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-    }, () => isDockerEnabled())
+    })
 
     //
     // Auto build tests

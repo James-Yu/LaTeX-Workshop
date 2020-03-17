@@ -172,4 +172,39 @@ suite('Buid TeX files test suite', () => {
         })
         assert.ok(results.length > 0)
     })
+
+    runTestWithFixture('fixture020', 'basic build, view, and synctex', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
+        await vscode.commands.executeCommand('latex-workshop.view')
+        const firstResults = await waitUntil(async () => {
+            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
+            return rs.length > 0 ? rs : undefined
+        })
+        for (const result of firstResults) {
+            assert.strictEqual(result.scrollTop, 0)
+        }
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('latex-workshop.synctex')
+        const secondResults = await waitUntil(async () => {
+            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
+            return rs.length > 0 ? rs : undefined
+        })
+        for (const result of secondResults) {
+            assert.notStrictEqual(result.scrollTop, 0)
+        }
+    })
 })
