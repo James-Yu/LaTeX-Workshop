@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import * as process from 'process'
 
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
@@ -90,9 +91,6 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
     vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => extension.commander.devParseTeX())
     vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => extension.commander.devParseBib())
-    vscode.commands.registerCommand('latex-workshop-dev.getViewerStatus', (pdfFilePath: string) => extension.commander.getViewerStatus(pdfFilePath))
-    vscode.commands.registerCommand('latex-workshop-dev.isBuildFinished', () => extension.commander.isBuildFinished())
-    vscode.commands.registerCommand('latex-workshop-dev.currentRootFile', () => extension.commander.currentRootFile())
 
     vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item'))
     vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => extension.commander.toggleSelectedKeyword('emph'))
@@ -244,8 +242,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     return {
         getGraphicsPath: () => extension.completer.input.graphicsPath,
+        builder: {
+            isBuildFinished: process.env['LATEXWORKSHOP_CI'] ? ( () => extension.builder.isBuildFinished() ) : undefined
+        },
         viewer: {
             clients: extension.viewer.clients,
+            getViewerStatus: process.env['LATEXWORKSHOP_CI'] ? ( (pdfFilePath: string) => extension.viewer.getViewerStatus(pdfFilePath) ) : undefined,
             refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
             openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
         },
@@ -270,7 +272,13 @@ export function activate(context: vscode.ExtensionContext) {
                     })
                     return allPkgs
                 }
-            }
+            },
+            provideCompletionItems: process.env['LATEXWORKSHOP_CI'] ? ((
+                document: vscode.TextDocument,
+                position: vscode.Position,
+                token: vscode.CancellationToken,
+                cxt: vscode.CompletionContext
+            ) => extension.completer.provideCompletionItems(document, position, token, cxt)) : undefined
         }
     }
 }

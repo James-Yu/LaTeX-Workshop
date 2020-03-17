@@ -10,7 +10,6 @@ import {
     getFixtureDir,
     isDockerEnabled,
     runTestWithFixture,
-    waitBuildFinish,
     waitLatexWorkshopActivated,
     waitRootFileFound
 } from './utils'
@@ -231,7 +230,6 @@ suite('Buid TeX files test suite', () => {
         const texFileName = 's.tex'
         const pdfFileName = 'main.pdf'
         const pdfFilePath = path.join(fixtureDir, pdfFileName)
-        await waitLatexWorkshopActivated()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
@@ -295,7 +293,6 @@ suite('Buid TeX files test suite', () => {
         await assertPdfIsGenerated(pdfFilePath, async () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
@@ -319,7 +316,6 @@ suite('Buid TeX files test suite', () => {
         await assertPdfIsGenerated(pdfFilePath, async () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
@@ -343,7 +339,6 @@ suite('Buid TeX files test suite', () => {
         await assertPdfIsGenerated(pdfFilePath, async () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
@@ -368,7 +363,6 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
         fs.unlinkSync(pdfFilePath)
         const subTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', subTexFileName))
         const subDoc = await vscode.workspace.openTextDocument(subTexFilePath)
@@ -477,7 +471,6 @@ suite('Buid TeX files test suite', () => {
         await assertPdfIsGenerated(pdfFilePath, async () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
@@ -497,7 +490,6 @@ suite('Buid TeX files test suite', () => {
         await assertPdfIsGenerated(pdfFilePath, async () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)

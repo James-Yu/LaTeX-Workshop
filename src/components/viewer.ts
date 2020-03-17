@@ -367,7 +367,7 @@ export class Viewer {
         for (const client of clients) {
             client.send({type: 'request_status'})
         }
-        for (let i = 0; i < 100; i++) {
+        for (let i = 0; i < 30; i++) {
             const results = this.statusMessageQueue.get(pdfFilePath)
             if (results && results.length > 0) {
                 this.statusMessageQueue.delete(pdfFilePath)

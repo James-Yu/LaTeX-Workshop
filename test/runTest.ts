@@ -22,7 +22,7 @@ function writeSettingsJson(userDataDir: string) {
     fs.writeFileSync(settingFilePath, settingsJson)
 }
 
-async function runTestsOnEachFixture(targetName: 'build' | 'viewer') {
+async function runTestsOnEachFixture(targetName: 'build' | 'viewer' | 'completion') {
     const extensionDevelopmentPath = path.resolve(__dirname, '../../')
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
@@ -53,7 +53,10 @@ async function runTestsOnEachFixture(targetName: 'build' | 'viewer') {
                 '--disable-extensions',
                 '--disable-gpu'
             ],
-            extensionTestsEnv: { LATEXWORKSHOP_CI_ENABLE_DOCKER: process.argv.includes('--enable-docker') ? '1' : undefined }
+            extensionTestsEnv: {
+                LATEXWORKSHOP_CI_ENABLE_DOCKER: process.argv.includes('--enable-docker') ? '1' : undefined,
+                LATEXWORKSHOP_CI: '1'
+            }
         })
         clearTimeout(nodejsTimeout)
         firstTime = false
@@ -64,6 +67,7 @@ async function main() {
     try {
         await runTestsOnEachFixture('build')
         await runTestsOnEachFixture('viewer')
+        await runTestsOnEachFixture('completion')
     } catch (err) {
         console.error('Failed to run tests')
         process.exit(1)

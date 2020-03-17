@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
 import {sleep} from '../src/utils/utils'
+import {activate} from '../src/main'
 
 export function getFixtureDir() {
     const fixtureDir = vscode.workspace.workspaceFolders?.[0].uri.fsPath
@@ -48,9 +49,9 @@ export async function execCommandThenPick(
     setTimeout(async () => {
         while (!done) {
             await pick()
-            await sleep(300)
+            await sleep(1000)
         }
-    }, 1000)
+    }, 3000)
     await command()
     done = true
 }
@@ -63,6 +64,7 @@ export async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promis
     for (let i = 0; i < 150; i++) {
         if (fs.existsSync(pdfFilePath)) {
             assert.ok(true, 'PDF file generated.')
+            await waitBuildFinish()
             return
         }
         await sleep(100)
@@ -91,24 +93,47 @@ export async function waitUntil<T>(
 }
 
 export async function waitLatexWorkshopActivated() {
-    await waitUntil( () => {
-        return Promise.resolve(vscode.extensions.getExtension('James-Yu.latex-workshop'))
+    return await waitUntil( () => {
+        const extension = vscode.extensions.getExtension('James-Yu.latex-workshop') as vscode.Extension<ReturnType<typeof activate>>
+        return Promise.resolve(extension.isActive && extension)
     })
 }
 
 export async function waitBuildFinish() {
+    const extension = await waitLatexWorkshopActivated()
     await waitUntil(
-        () => vscode.commands.executeCommand('latex-workshop-dev.isBuildFinished') as Thenable<boolean>
+        () => Promise.resolve(extension.exports.builder.isBuildFinished?.())
     )
 }
 
 export async function waitRootFileFound() {
     return await waitUntil(
-        () => executeVscodeCommandAfterActivation('latex-workshop-dev.currentRootFile') as Thenable<string | undefined>
+        async () => {
+            const extension = await waitLatexWorkshopActivated()
+            return extension.exports.manager.rootFile()
+        }
     )
 }
 
 export async function executeVscodeCommandAfterActivation(command: string) {
     await waitLatexWorkshopActivated()
     return await vscode.commands.executeCommand(command)
+}
+
+export async function viewPdf() {
+    await sleep(1000)
+    await executeVscodeCommandAfterActivation('latex-workshop.view')
+    await sleep(1000)
+}
+
+export async function getViewerStatus(pdfFilePath: string) {
+    const extension = await waitLatexWorkshopActivated()
+    return await waitUntil(async () => {
+        try {
+            const rs = await extension.exports.viewer.getViewerStatus?.(pdfFilePath)
+            return rs && rs.length > 0 ? rs : undefined
+        } catch (e) {
+            return
+        }
+    })
 }

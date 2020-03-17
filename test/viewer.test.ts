@@ -5,18 +5,18 @@ import * as process from 'process'
 import * as vscode from 'vscode'
 import {
     assertPdfIsGenerated,
-    waitUntil,
     getFixtureDir,
     isDockerEnabled,
     execCommandThenPick,
     executeVscodeCommandAfterActivation,
+    getViewerStatus,
     runTestWithFixture,
-    waitBuildFinish
+    viewPdf,
+    waitLatexWorkshopActivated
 } from './utils'
-import {ViewerStatus} from '../src/components/viewer'
 import { sleep } from '../src/utils/utils'
 
-suite('Buid TeX files test suite', () => {
+suite('PDF Viewer test suite', () => {
 
     suiteSetup(() => {
         const config = vscode.workspace.getConfiguration()
@@ -39,12 +39,8 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
-        await vscode.commands.executeCommand('latex-workshop.view')
-        const results = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        await viewPdf()
+        const results = await getViewerStatus(pdfFilePath)
         assert.ok(results.length > 0)
     })
 
@@ -59,12 +55,8 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
-        await vscode.commands.executeCommand('latex-workshop.view')
-        const results = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        await viewPdf()
+        const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
             assert.strictEqual(result.path, pdfFilePath)
         }
@@ -81,12 +73,8 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
-        await vscode.commands.executeCommand('latex-workshop.view')
-        const results = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        await viewPdf()
+        const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
             assert.strictEqual(result.path, pdfFilePath)
         }
@@ -101,20 +89,18 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
+            await waitLatexWorkshopActivated()
             await execCommandThenPick(
                 () => executeVscodeCommandAfterActivation('latex-workshop.build'),
                 () => vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             )
         })
-        await waitBuildFinish()
+        await sleep(1000)
         await execCommandThenPick(
-            () => vscode.commands.executeCommand('latex-workshop.view'),
+            () => viewPdf(),
             () => vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
         )
-        const results = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
             assert.strictEqual(result.path, pdfFilePath)
         }
@@ -129,6 +115,7 @@ suite('Buid TeX files test suite', () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
+            await waitLatexWorkshopActivated()
             await execCommandThenPick(
                 () => executeVscodeCommandAfterActivation('latex-workshop.build'),
                 async () => {
@@ -137,18 +124,15 @@ suite('Buid TeX files test suite', () => {
                 }
             )
         })
-        await waitBuildFinish()
+        await sleep(1000)
         await execCommandThenPick(
-            () => vscode.commands.executeCommand('latex-workshop.view'),
+            () => viewPdf(),
             async () => {
                 await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
                 await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             }
         )
-        const results = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
             assert.strictEqual(result.path, pdfFilePath)
         }
@@ -165,12 +149,8 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
-        await vscode.commands.executeCommand('latex-workshop.view')
-        const results = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        await viewPdf()
+        const results = await getViewerStatus(pdfFilePath)
         assert.ok(results.length > 0)
     })
 
@@ -185,12 +165,8 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
-        await vscode.commands.executeCommand('latex-workshop.view')
-        const firstResults = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        await viewPdf()
+        const firstResults = await getViewerStatus(pdfFilePath)
         for (const result of firstResults) {
             assert.ok( Math.abs(result.scrollTop) < 10 )
         }
@@ -202,10 +178,7 @@ suite('Buid TeX files test suite', () => {
         await sleep(3000)
         await vscode.commands.executeCommand('latex-workshop.synctex')
         await sleep(6000)
-        const secondResults = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        const secondResults = await getViewerStatus(pdfFilePath)
         for (const result of secondResults) {
             assert.ok( Math.abs(result.scrollTop) > 10 )
         }
@@ -222,12 +195,8 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
-        await vscode.commands.executeCommand('latex-workshop.view')
-        const firstResults = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        await viewPdf()
+        const firstResults = await getViewerStatus(pdfFilePath)
         for (const result of firstResults) {
             assert.ok( Math.abs(result.scrollTop) < 10 )
         }
@@ -243,12 +212,8 @@ suite('Buid TeX files test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
-        await waitBuildFinish()
         await sleep(6000)
-        const secondResults = await waitUntil(async () => {
-            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
-            return rs.length > 0 ? rs : undefined
-        })
+        const secondResults = await getViewerStatus(pdfFilePath)
         for (const result of secondResults) {
             assert.ok( Math.abs(result.scrollTop) > 10 )
         }

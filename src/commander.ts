@@ -677,24 +677,6 @@ export class Commander {
         vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
-    async getViewerStatus(pdfFilePath: string) {
-        return this.extension.viewer.getViewerStatus(pdfFilePath)
-    }
-
-    /**
-     * Should not use. Only for integration tests.
-     */
-    isBuildFinished(): boolean {
-        return this.extension.builder.isBuildFinished()
-    }
-
-    /**
-     * Should not use. Only for integration tests.
-     */
-    currentRootFile() {
-        return this.extension.manager.rootFile
-    }
-
     texdoc(pkg?: string) {
         this._texdoc.texdoc(pkg)
     }
