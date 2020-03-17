@@ -199,6 +199,7 @@ suite('Buid TeX files test suite', () => {
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
+        await sleep(3000)
         await vscode.commands.executeCommand('latex-workshop.synctex')
         await sleep(6000)
         const secondResults = await waitUntil(async () => {
@@ -235,6 +236,7 @@ suite('Buid TeX files test suite', () => {
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
+        await sleep(3000)
         await assertPdfIsGenerated(pdfFilePath, async () => {
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)

@@ -79,14 +79,14 @@ export async function waitUntil<T>(
     command: () => Thenable<T | false | undefined | null>,
     errMessage?: string
 ): Promise<T> {
-    for (let i = 0; i < 30; i++) {
+    for (let i = 0; i < 70; i++) {
         const result = await command()
         if (result) {
             return result
         }
         await sleep(300)
     }
-    assert.fail(errMessage || 'Timeout Error at busyWait')
+    assert.fail(errMessage || 'Timeout Error at waitUntil')
 }
 
 export async function waitLatexWorkshopActivated() {
