@@ -14,6 +14,7 @@ import {
     waitBuildFinish
 } from './utils'
 import {ViewerStatus} from '../src/components/viewer'
+import { sleep } from '../src/utils/utils'
 
 suite('Buid TeX files test suite', () => {
 
@@ -191,7 +192,7 @@ suite('Buid TeX files test suite', () => {
             return rs.length > 0 ? rs : undefined
         })
         for (const result of firstResults) {
-            assert.strictEqual(result.scrollTop, 0)
+            assert.ok( Math.abs(result.scrollTop) < 10 )
         }
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
@@ -199,12 +200,55 @@ suite('Buid TeX files test suite', () => {
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('latex-workshop.synctex')
+        await sleep(6000)
         const secondResults = await waitUntil(async () => {
             const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
             return rs.length > 0 ? rs : undefined
         })
         for (const result of secondResults) {
-            assert.notStrictEqual(result.scrollTop, 0)
+            assert.ok( Math.abs(result.scrollTop) > 10 )
+        }
+    })
+
+    runTestWithFixture('fixture021', 'basic build, view, and synctex with synctex.afterBuild.enabled', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
+        await vscode.commands.executeCommand('latex-workshop.view')
+        const firstResults = await waitUntil(async () => {
+            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
+            return rs.length > 0 ? rs : undefined
+        })
+        for (const result of firstResults) {
+            assert.ok( Math.abs(result.scrollTop) < 10 )
+        }
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await vscode.commands.executeCommand('cursorDown')
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
+        await sleep(6000)
+        const secondResults = await waitUntil(async () => {
+            const rs = await vscode.commands.executeCommand('latex-workshop-dev.getViewerStatus', pdfFilePath) as ViewerStatus[]
+            return rs.length > 0 ? rs : undefined
+        })
+        for (const result of secondResults) {
+            assert.ok( Math.abs(result.scrollTop) > 10 )
         }
     })
 })
