@@ -220,6 +220,25 @@
           "end": "(\\\\end\\{minted\\})"
         },
         {
+          "begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{(?:ts|typescript)\\})",
+          "captures": {
+            "1": {
+              "patterns": [
+                {
+                  "include": "#minted-env"
+                }
+              ]
+            }
+          },
+          "contentName": "source.ts",
+          "patterns": [
+            {
+              "include": "source.ts"
+            }
+          ],
+          "end": "(\\\\end\\{minted\\})"
+        },
+        {
           "begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{lua\\})",
           "captures": {
             "1": {
