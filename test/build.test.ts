@@ -1,3 +1,5 @@
+import * as assert from 'assert'
+import * as fs from 'fs'
 import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
@@ -13,6 +15,7 @@ import {
     waitRootFileFound
 } from './utils'
 import {sleep} from '../src/utils/utils'
+
 
 suite('Buid TeX files test suite', () => {
 
@@ -352,6 +355,32 @@ suite('Buid TeX files test suite', () => {
             await doc.save()
         })
     }, () => isDockerEnabled())
+
+    runTestWithFixture('fixture038', 'auto build with watch.files.ignore', async () => {
+        const fixtureDir = getFixtureDir()
+        const mainTexFileName = 'main.tex'
+        const subTexFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, mainTexFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+        await waitBuildFinish()
+        fs.unlinkSync(pdfFilePath)
+        const subTexFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', subTexFileName))
+        const subDoc = await vscode.workspace.openTextDocument(subTexFilePath)
+        const editor = await vscode.window.showTextDocument(subDoc)
+        await sleep(1000)
+        await editor.edit((builder) => {
+            builder.insert(new vscode.Position(1, 0), ' ')
+        })
+        await subDoc.save()
+        await sleep(5000)
+        assert.ok( !fs.existsSync(pdfFilePath) )
+    })
 
     //
     // Multi-file project build tests
