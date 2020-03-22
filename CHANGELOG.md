@@ -1,5 +1,24 @@
 # Change Log
 
+## [8.8.0] - 2020-03-22
+
+### Added
+- (#1949) Make the PDF watcher delay configurable via `latex-workshop.latex.watch.delay`.
+- (#1950) Enable keyboard shortcuts of VS Code on the PDF viewer.
+- (#1955) Add embedded language support for minted ruby.
+- (#1963) Add `\addplot` grammar support.
+- (#1985) Improved intellisense for reference via `latex-workshop.intellisense.citation.format`.
+
+### Removed
+- (#1986) Remove `formatOnSave:false` in latex configuration.
+
+### Fixed
+- (#1947) Normalize `outdir` path.
+- (#1953) Fix clean command with relative `outDir`.
+- (#1962) Use page numbers to cache SVG files.
+- (#1965) Ctrl click to open `documentclass` file.
+- (#1972) Use `rootDir` as PWD when parsing `.fls` file.
+
 ## [8.7.2] - 2020-02-12
 
 ### Fixed
