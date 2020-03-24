@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-// import * as os from 'os'
+import * as os from 'os'
 import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
@@ -209,7 +209,7 @@ suite('Buid TeX files test suite', () => {
         for (const result of secondResults) {
             assert.ok( Math.abs(result.scrollTop) > 10 )
         }
-    })
+    }, () => os.platform() === 'win32')
 
     runTestWithFixture('fixture021', 'basic build, view, and synctex with synctex.afterBuild.enabled', async () => {
         const fixtureDir = getFixtureDir()
@@ -252,5 +252,5 @@ suite('Buid TeX files test suite', () => {
         for (const result of secondResults) {
             assert.ok( Math.abs(result.scrollTop) > 10 )
         }
-    })
+    }, () => os.platform() === 'win32')
 })
