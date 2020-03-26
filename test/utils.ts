@@ -86,6 +86,7 @@ export async function waitUntil<T>(
         }
         await sleep(300)
     }
+    await printLogMessages()
     assert.fail(errMessage || 'Timeout Error at waitUntil')
 }
 
