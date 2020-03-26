@@ -33,14 +33,27 @@ export type ViewerStatus = {
 export class Viewer {
     extension: Extension
     clients: {[key: string]: Client[]} = {}
+    webviewPanels: Map<string, Set<vscode.WebviewPanel>> = new Map()
     statusMessageQueue: Map<string, ViewerStatus[]> = new Map()
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
+    createClients(pdfFilePath: string) {
+        const key = pdfFilePath.toLocaleUpperCase()
+        this.clients[key] = this.clients[key] || []
+        if (!this.webviewPanels.has(key)) {
+            this.webviewPanels.set(key, new Set())
+        }
+    }
+
     getClients(pdfFilePath: string): Client[] | undefined {
         return this.clients[pdfFilePath.toLocaleUpperCase()]
+    }
+
+    getPanelSet(pdfFilePath: string) {
+        return this.webviewPanels.get(pdfFilePath.toLocaleUpperCase())
     }
 
     refreshExistingViewer(sourceFile?: string, viewer?: string): boolean {
@@ -53,7 +66,7 @@ export class Viewer {
             return true
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, true)
-        const clients = this.clients[pdfFile.toLocaleUpperCase()]
+        const clients = this.getClients(pdfFile)
         if (clients !== undefined) {
             let refreshed = false
             // Check all viewer clients with the same path
@@ -96,7 +109,7 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        this.clients[pdfFile.toLocaleUpperCase()] = this.clients[pdfFile.toLocaleUpperCase()] || []
+        this.createClients(pdfFile)
 
         try {
             vscode.env.openExternal(vscode.Uri.parse(url))
@@ -120,7 +133,7 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
-        this.clients[pdfFile.toLocaleUpperCase()] = this.clients[pdfFile.toLocaleUpperCase()] || []
+        this.createClients(pdfFile)
 
         const editor = vscode.window.activeTextEditor
         let viewColumn: vscode.ViewColumn
@@ -145,6 +158,13 @@ export class Viewer {
                 if (tabEditorGroup === 'left' && viewColumn !== vscode.ViewColumn.One) {
                 vscode.commands.executeCommand('workbench.action.moveActiveEditorGroupRight')
             }}) }, 500)
+        }
+        const panelSet = this.getPanelSet(pdfFile)
+        if (panelSet) {
+            panelSet.add(panel)
+            panel.onDidDispose(() => {
+                panelSet.delete(panel)
+            })
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
@@ -221,7 +241,7 @@ export class Viewer {
         }
         switch (data.type) {
             case 'open': {
-                clients = this.clients[data.path.toLocaleUpperCase()]
+                clients = this.getClients(data.path)
                 if (clients === undefined) {
                     return
                 }
@@ -245,7 +265,10 @@ export class Viewer {
                 break
             }
             case 'request_params': {
-                clients = this.clients[data.path.toLocaleUpperCase()]
+                clients = this.getClients(data.path)
+                if (!clients) {
+                    break
+                }
                 for (const client of clients) {
                     if (client.websocket !== websocket) {
                         continue
@@ -303,15 +326,36 @@ export class Viewer {
     }
 
     syncTeX(pdfFile: string, record: SyncTeXRecordForward) {
-        const clients = this.clients[pdfFile.toLocaleUpperCase()]
+        const clients = this.getClients(pdfFile)
         if (clients === undefined) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
         }
+        const needDelay = this.revealWebviewPanel(pdfFile)
         for (const client of clients) {
-            client.send({type: 'synctex', data: record})
+            setTimeout(() => {
+                client.send({type: 'synctex', data: record})
+            }, needDelay ? 200 : 0)
             this.extension.logger.addLogMessage(`Try to synctex ${pdfFile}`)
         }
+    }
+
+    revealWebviewPanel(pdfFilePath: string) {
+        const panelSet = this.getPanelSet(pdfFilePath)
+        if (!panelSet) {
+            return
+        }
+        const activeViewColumn = vscode.window.activeTextEditor?.viewColumn
+        for (const panel of panelSet.values()) {
+            if (panel.viewColumn !== activeViewColumn) {
+                if (!panel.visible) {
+                    panel.reveal(undefined, true)
+                    return true
+                }
+                return
+            }
+        }
+        return
     }
 
     async getViewerStatus(pdfFilePath: string): Promise<ViewerStatus[]> {
