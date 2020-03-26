@@ -237,8 +237,10 @@ export class Command {
                         return
                     }
                     const filePkgs = this.extension.manager.cachedContent[file].element.package
-                    if (filePkgs !== undefined) {
+                    if (filePkgs) {
                         filePkgs.push(pkg)
+                    } else {
+                        this.extension.manager.cachedContent[file].element.package = [pkg]
                     }
                 })
             }
