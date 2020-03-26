@@ -1,11 +1,11 @@
 import json
-import os.path
 import urllib.request
 import zipfile
 from os import listdir, remove
-from os.path import isfile, join, basename, splitext
+from os.path import exists, isfile, join, basename, splitext
 import re
-from typing import List, Set, Dict, Tuple, Union, Optional
+from typing import List, Dict, Tuple
+from shutil import copy
 
 commands = json.load(open('../data/commands.json', encoding='utf8'))
 envs = json.load(open('../data/environments.json', encoding='utf8'))
@@ -31,7 +31,7 @@ class PlaceHolder:
 
 
 def get_unimathsymbols_file():
-    if not os.path.exists('unimathsymbols.txt'):
+    if not exists('unimathsymbols.txt'):
         urllib.request.urlretrieve('http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt', # noqa
                                    'unimathsymbols.txt')
 
@@ -63,7 +63,7 @@ def parse_unimathsymbols_file() -> Dict[str, Dict[str, str]]:
 
 def get_cwl_files() -> List[str]:
     """ Get the list of cwl files from github """
-    if not os.path.exists('cwl.zip'):
+    if not exists('cwl.zip'):
         urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip',
                                    'cwl.zip')
     zip_ref = zipfile.ZipFile('cwl.zip', 'r')
@@ -82,7 +82,7 @@ def get_cwl_files() -> List[str]:
 def parse_cwl_file(
         file: str,
         unimath_dict: Dict[str, Dict[str, str]]
-) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
+    ) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
     with open(join('cwl/LaTeX-cwl-master', file), encoding='utf8') as f:
         lines = f.readlines()
     pkgcmds: Dict[str, Dict[str, str]] = {}
@@ -154,3 +154,9 @@ for cwl_file in cwl_files:
                   ensure_ascii=False)
     # for cmd in pkgCmds:
     #     print(cmd, ': ', pkgCmds[cmd], sep = '')
+
+# Handle aggregated files
+for scr in ['scrartcl', 'scrreprt', 'scrbook']:
+    dest = '../data/packages/class-' + scr
+    copy('../data/packages/class-scrartcl,scrreprt,scrbook_cmd.json', dest + '_cmd.json')
+    copy('../data/packages/class-scrartcl,scrreprt,scrbook_env.json', dest + '_env.json')
