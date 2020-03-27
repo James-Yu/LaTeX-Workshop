@@ -1,7 +1,7 @@
 import {IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
-import {ClientRequest, ServerResponse} from './components/protocol.js'
+import {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from './components/protocol.js'
 import * as utils from './components/utils.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
@@ -20,6 +20,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly viewerHistory: ViewerHistory
 
     private socket: WebSocket
+    private pdfViewerStarted: Promise<void> = new Promise((resolve) => {
+        document.addEventListener('documentloaded', () => resolve(), {once: true})
+    })
+    private pdfFileRendered?: Promise<void>
+    private isRestoredWithSerializer: boolean = false
 
     constructor() {
         this.embedded = window.parent !== window
@@ -62,6 +67,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.registerKeybinding()
         this.startConnectionKeeper()
         this.startRebroadcastingKeyboardEvent()
+        this.startSendingState()
+        this.startRecievingPanelManagerResponse()
+
+        this.onDidLoadPdfFile(() => {
+            this.pdfFileRendered = new Promise((resolve) => {
+                this.onDidRenderPdfFile(() => resolve(), {once: true})
+            })
+        })
     }
 
     onWillStartPdfViewer(cb: (e: Event) => any): IDisposable {
@@ -86,6 +99,57 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     send(message: ClientRequest) {
         this.socket.send(JSON.stringify(message))
+    }
+
+    getPdfViewerState(): PdfViewerState {
+        const pack = {
+            path: this.pdfFilePath,
+            scale: PDFViewerApplication.pdfViewer.currentScaleValue,
+            scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
+            spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
+            scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
+            scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
+            trim: (document.getElementById('trimSelect') as HTMLSelectElement).selectedIndex
+        }
+        return pack
+    }
+
+    async restorePdfViewerState(state: PdfViewerState) {
+        await this.pdfViewerStarted
+        if (state.scale !== undefined) {
+            PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
+        }
+        if (state.scrollMode !== undefined) {
+            PDFViewerApplication.pdfViewer.scrollMode = state.scrollMode
+        }
+        if (state.spreadMode !== undefined) {
+            PDFViewerApplication.pdfViewer.spreadMode = state.spreadMode
+        }
+        if (state.scrollTop !== undefined) {
+            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
+        }
+        if (state.scrollLeft !== undefined) {
+            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = state.scrollLeft
+        }
+        if (state.trim !== undefined) {
+            const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
+            const ev = new Event('change')
+            // We have to wait for currentScaleValue set above to be effected.
+            // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
+            this.pdfFileRendered?.then(() => {
+                if (state.trim === undefined) {
+                    return
+                }
+                trimSelect.selectedIndex = state.trim
+                trimSelect.dispatchEvent(ev)
+                if (state.scale !== undefined) {
+                    PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
+                }
+                if (state.scrollTop !== undefined) {
+                    (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
+                }
+            })
+        }
     }
 
     setupWebSocket() {
@@ -157,29 +221,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'params': {
-                    if (data.scale) {
-                        PDFViewerApplication.pdfViewer.currentScaleValue = data.scale
-                    }
-                    if (data.scrollMode) {
-                        PDFViewerApplication.pdfViewer.scrollMode = data.scrollMode
-                    }
-                    if (data.spreadMode) {
-                        PDFViewerApplication.pdfViewer.spreadMode = data.spreadMode
-                    }
                     if (data.hand) {
                         PDFViewerApplication.pdfCursorTools.handTool.activate()
                     } else {
                         PDFViewerApplication.pdfCursorTools.handTool.deactivate()
                     }
-                    if (data.trim) {
-                        const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
-                        const e = new Event('change')
-                        // We have to wait for currentScaleValue set above to be effected.
-                        // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
-                        this.onDidRenderPdfFile(() => {
-                            trimSelect.selectedIndex = data.trim
-                            trimSelect.dispatchEvent(e)
-                        }, {once: true})
+                    if (!this.isRestoredWithSerializer) {
+                        this.restorePdfViewerState(data)
                     }
                     if (data.invert > 0) {
                         (document.querySelector('html') as HTMLHtmlElement).style.filter = `invert(${data.invert * 100}%)`;
@@ -192,9 +240,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     }
                     break
                 }
-                case 'request_status': {
+                case 'request_state': {
                     this.send( {
-                        type: 'status',
+                        type: 'state',
                         path: this.pdfFilePath,
                         scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop
                     })
@@ -319,6 +367,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 30000)
     }
 
+    sendToPanelManager(msg: PanelRequest) {
+        if (!this.embedded) {
+            return
+        }
+        window.parent.postMessage(msg, '*')
+    }
+
     // To enable keyboard shortcuts of VS Code when the iframe is focused,
     // we have to dispatch keyboard events in the parent window.
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
@@ -341,9 +396,50 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             if (utils.isPdfjsShortcut(obj)) {
                 return
             }
-            window.parent.postMessage(obj, '*')
+            this.sendToPanelManager({
+                type: 'keyboard_event',
+                event: obj
+            })
         })
     }
+
+    startSendingState() {
+        if (!this.embedded) {
+            return
+        }
+        const events = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
+        for (const ev of events) {
+            window.addEventListener(ev, () => {
+                const pack = this.getPdfViewerState()
+                this.sendToPanelManager({type: 'state', state: pack})
+            }, true)
+        }
+    }
+
+    async startRecievingPanelManagerResponse() {
+        await this.pdfViewerStarted
+        window.addEventListener('message', (e) => {
+            if (e.origin !== 'null') {
+                return
+            }
+            const data: PanelManagerResponse = e.data
+            switch (data.type) {
+                case 'restore_state': {
+                    this.isRestoredWithSerializer = true
+                    this.restorePdfViewerState(data.state)
+                    break
+                }
+                default: {
+                    break
+                }
+            }
+        })
+        /**
+         * Since this.pdfViewerStarted is resolved, the PDF viewer has started.
+         */
+        this.sendToPanelManager({type: 'initialized'})
+    }
+
 }
 
 new LateXWorkshopPdfViewer()

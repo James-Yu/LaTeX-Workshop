@@ -216,6 +216,8 @@ export function activate(context: vscode.ExtensionContext) {
         extension.structureViewer.showCursorIteme(e)
     }))
 
+    context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer))
+
     context.subscriptions.push(vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider(extension)))
@@ -249,7 +251,7 @@ export function activate(context: vscode.ExtensionContext) {
         },
         viewer: {
             clients: extension.viewer.clients,
-            getViewerStatus: process.env['LATEXWORKSHOP_CI'] ? ( (pdfFilePath: string) => extension.viewer.getViewerStatus(pdfFilePath) ) : undefined,
+            getViewerStatus: process.env['LATEXWORKSHOP_CI'] ? ( (pdfFilePath: string) => extension.viewer.getViewerState(pdfFilePath) ) : undefined,
             refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
             openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
         },
