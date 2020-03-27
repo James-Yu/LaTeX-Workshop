@@ -94,7 +94,13 @@ export class Locator {
         }
     }
 
-    syncTeX(args?: {line: number, filePath: string}, forcedViewer: string = 'auto', pdfFile?: string) {
+    /**
+     * Execute forward SyncTeX with respect to `args`.
+     * @param args If undefined, the document and the cursor position of `activeTextEditor` are used.
+     * @param forcedViewer Indicates a PDF viewer with which SyncTeX is executed.
+     * @param pdfFile The path of a PDF File compiled from the `filePath` of `args`. If `undefined`, it is automatically detected.
+     */
+    syncTeX(args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto', pdfFile?: string) {
         let line: number
         let filePath: string
         let character = 0
@@ -206,7 +212,7 @@ export class Locator {
 
     syncTeXOnRef(args: {line: number, filePath: string}) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const viewer = configuration.get('view.pdf.ref.viewer') as string
+        const viewer = configuration.get('view.pdf.ref.viewer') as 'auto' | 'tabOrBrowser' | 'external'
         args.line += 1
         if (viewer) {
             this.syncTeX(args, viewer)
