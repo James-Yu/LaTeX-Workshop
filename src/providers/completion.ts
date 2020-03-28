@@ -3,6 +3,7 @@ import * as fs from 'fs-extra'
 
 import {Extension} from '../main'
 import {Citation} from './completer/citation'
+import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'
 import {Environment} from './completer/environment'
 import {Reference} from './completer/reference'
@@ -13,6 +14,7 @@ export class Completer implements vscode.CompletionItemProvider {
     extension: Extension
     citation: Citation
     command: Command
+    documentClass: DocumentClass
     environment: Environment
     reference: Reference
     package: Package
@@ -22,6 +24,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.extension = extension
         this.citation = new Citation(extension)
         this.command = new Command(extension)
+        this.documentClass = new DocumentClass(extension)
         this.environment = new Environment(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
@@ -77,7 +80,7 @@ export class Completer implements vscode.CompletionItemProvider {
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
-            for (const type of ['citation', 'reference', 'environment', 'package', 'input', 'subimport', 'import', 'command']) {
+            for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'command']) {
                 const suggestions = this.completion(type, line, {document, position, token, context})
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
@@ -123,7 +126,7 @@ export class Completer implements vscode.CompletionItemProvider {
 
     completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         let reg: RegExp | undefined
-        let provider: Citation | Reference | Environment | Command | Package | Input | undefined
+        let provider: Citation | Reference | Environment | Command | Package | Input | DocumentClass | undefined
         let payload: any
         switch (type) {
             case 'citation':
@@ -146,6 +149,11 @@ export class Completer implements vscode.CompletionItemProvider {
                 reg = /(?:\\usepackage(?:\[[^[\]]*\])*){([^}]*)$/
                 provider = this.package
                 break
+            case 'documentclass':
+                reg = /(?:\\documentclass(?:\[[^[\]]*\])*){([^}]*)$/
+                provider = this.documentClass
+                break
+
             case 'input':
                 reg = /\\(input|include|subfile|includegraphics|lstinputlisting|verbatiminput)\*?(?:\[[^[\]]*\])*{([^}]*)$/
                 provider = this.input
