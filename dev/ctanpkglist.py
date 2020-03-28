@@ -127,7 +127,8 @@ def get_packages(lsRdb, ctanDict):
     for pkg in ctanDict:
         basefile = package2sty(pkg, lsRdb)
         if basefile is not None:
-            package_data[basefile] = ctanDict[pkg]
+            package_data[pkg] = ctanDict[pkg].copy()
+            package_data[pkg]['command'] = basefile
     return package_data
 
 def build_ctanDict(ctanList):
