@@ -578,7 +578,7 @@ export class Manager {
         })
 
         ioFiles.output.forEach((outputFile: string) => {
-            if (path.extname(outputFile) === '.aux' ) {
+            if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
                 this.parseAuxFile(fs.readFileSync(outputFile).toString(),
                                   path.dirname(outputFile).replace(outDir, rootDir))
             }
