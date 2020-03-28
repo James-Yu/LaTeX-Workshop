@@ -16,7 +16,7 @@ export class DocumentClass {
             const item = classes[key]
             const cl = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
             cl.detail = item.detail
-            cl.documentation = item.documentation
+            cl.documentation = new vscode.MarkdownString(`[${item.documentation}](${item.documentation})`)
             this.suggestions.push(cl)
         })
     }

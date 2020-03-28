@@ -106,14 +106,14 @@ def get_classes(all_lsR_files, ctanDict):
             continue
         base = Path(c).stem
         detail = ''
-        description = ''
+        documentation = ''
         if base in ctanDict:
             detail = ctanDict[base]['detail']
-            description = ctanDict[base]['description']
+            documentation = ctanDict[base]['documentation']
         class_data[base] = {}
         class_data[base]['command'] = base
         class_data[base]['detail'] = detail
-        class_data[base]['description'] = description
+        class_data[base]['documentation'] = documentation
     return class_data
 
 def get_packages(lsRdb, ctanDict):
@@ -136,8 +136,8 @@ def build_ctanDict(ctanList):
     for x in ctanList:
         ctanDict[x['key']] = {}
         ctanDict[x['key']]['command'] = x['key']
-        ctanDict[x['key']]['detail'] = 'https://ctan.org/pkg/' + x['key']
-        ctanDict[x['key']]['description'] = x['caption']
+        ctanDict[x['key']]['documentation'] = 'https://ctan.org/pkg/' + x['key']
+        ctanDict[x['key']]['detail'] = x['caption']
     return ctanDict
 
 if __name__ == "__main__":

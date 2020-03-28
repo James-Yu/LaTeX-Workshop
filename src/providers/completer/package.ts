@@ -16,7 +16,7 @@ export class Package {
             const item = defaultPackages[key]
             const pack = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
             pack.detail = item.detail
-            pack.documentation = item.documentation
+            pack.documentation = new vscode.MarkdownString(`[${item.documentation}](${item.documentation})`)
             this.suggestions.push(pack)
         })
     }
