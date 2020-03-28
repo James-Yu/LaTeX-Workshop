@@ -202,6 +202,11 @@ export class Manager {
         const fileStack: string[] = []
         if (result) {
             let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
+            if (!fs.existsSync(file)) {
+                const msg = `Not found root file specified in the magic comment: ${file}`
+                this.extension.logger.addLogMessage(msg)
+                throw new Error(msg)
+            }
             fileStack.push(file)
             this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
 
@@ -218,6 +223,11 @@ export class Manager {
                     this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
                 }
 
+                if (!fs.existsSync(file)) {
+                    const msg = `Not found root file specified in the magic comment: ${file}`
+                    this.extension.logger.addLogMessage(msg)
+                    throw new Error(msg)
+                }
                 content = fs.readFileSync(file).toString()
                 result = content.match(regex)
             }
