@@ -79,7 +79,7 @@ export class Manager {
                   .replace(/%DOCFILE%/g, docfile)
                   .replace(/%DIR%/g, docker ? './' : path.dirname(texPath))
                   .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
-        return path.normalize(out.split(path.sep).join('/'))
+        return path.normalize(out).split(path.sep).join('/')
 
     }
 
