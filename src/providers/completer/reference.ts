@@ -180,6 +180,10 @@ export class Reference {
             if (result === null) {
                 break
             }
+            if (result[1].endsWith('@cref') && result[1].replace('@cref', '') in this.prevIndexObj) {
+                // Drop extra \newlabel entries added by cleveref
+                continue
+            }
             this.prevIndexObj[result[1]] = {refNumber: result[2], pageNumber: result[3]}
             if (result[1] in this.suggestions) {
                 this.suggestions[result[1]].prevIndex = {refNumber: result[2], pageNumber: result[3]}
