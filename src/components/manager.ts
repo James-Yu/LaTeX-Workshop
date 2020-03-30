@@ -105,6 +105,25 @@ export class Manager {
         this.localRootFiles[this.workspaceRootDir] = localRoot
     }
 
+    private rootFilesLanguageIds: { [key: string]: string | undefined } = {}
+    get rootFileLanguageId() {
+        return this.rootFilesLanguageIds[this.workspaceRootDir]
+    }
+    set rootFileLanguageId(id: string | undefined) {
+        this.rootFilesLanguageIds[this.workspaceRootDir] = id
+    }
+
+    private inferLanguageId(filename: string): string | undefined {
+        const ext = path.extname(filename)
+        if (ext === '.tex') {
+            return 'latex'
+        } else if (['.rnw', 'Rnw', '.rtex', '.Rtex'].includes(ext)) {
+            return 'rsweave'
+        } else {
+            return undefined
+        }
+    }
+
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
         let outDir = './'
         if (respectOutDir) {
@@ -161,13 +180,16 @@ export class Manager {
             () => this.findRootInWorkspace()
         ]
         for (const method of findMethods) {
-            const rootFile = await method()
+            const res = await method()
+            const rootFile = res[0]
+            const languageId = res[1]
             if (rootFile === undefined) {
                 continue
             }
             if (this.rootFile !== rootFile) {
                 this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile} to ${rootFile}. Find all dependencies.`)
                 this.rootFile = rootFile
+                this.rootFileLanguageId = languageId
                 this.initiateFileWatcher()
                 this.initiateBibWatcher()
                 this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
@@ -181,19 +203,19 @@ export class Manager {
         return undefined
     }
 
-    private findRootFromCurrentRoot(): string | undefined {
+    private findRootFromCurrentRoot(): [string | undefined, string | undefined] {
         if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
-            return undefined
+            return [undefined, undefined]
         }
         if (this.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
-            return this.rootFile
+            return [this.rootFile, vscode.window.activeTextEditor.document.languageId]
         }
-        return undefined
+        return [undefined, undefined]
     }
 
-    private findRootFromMagic(): string | undefined {
+    private findRootFromMagic(): [string | undefined, string | undefined] {
         if (!vscode.window.activeTextEditor) {
-            return undefined
+            return [undefined, undefined]
         }
         const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.tex)$)/m
         let content = vscode.window.activeTextEditor.document.getText()
@@ -217,7 +239,7 @@ export class Manager {
                 file = path.resolve(path.dirname(file), result[1])
                 if (fileStack.includes(file)) {
                     this.extension.logger.addLogMessage(`Looped root file by magic comment found: ${file}, stop here.`)
-                    return file
+                    return [file, this.inferLanguageId(file)]
                 } else {
                     fileStack.push(file)
                     this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
@@ -231,14 +253,14 @@ export class Manager {
                 content = fs.readFileSync(file).toString()
                 result = content.match(regex)
             }
-            return file
+            return [file, this.inferLanguageId(file)]
         }
-        return undefined
+        return [undefined, undefined]
     }
 
-    private findRootFromActive(): string | undefined {
+    private findRootFromActive(): [string | undefined, string | undefined] {
         if (!vscode.window.activeTextEditor) {
-            return undefined
+            return [undefined, undefined]
         }
         const regex = /\\begin{document}/m
         const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
@@ -246,15 +268,16 @@ export class Manager {
         if (result) {
             const rootSubFile = this.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
+            const languageId = vscode.window.activeTextEditor.document.languageId
             if (rootSubFile) {
                this.localRootFile = file
-               return rootSubFile
+               return [rootSubFile, languageId]
             } else {
                 this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
-                return file
+                return [file, languageId]
             }
         }
-        return undefined
+        return [undefined, undefined]
     }
 
     private findSubFiles(content: string): string | undefined {
@@ -275,11 +298,11 @@ export class Manager {
         return undefined
     }
 
-    private async findRootInWorkspace(): Promise<string | undefined> {
+    private async findRootInWorkspace(): Promise<[string | undefined, string | undefined]> {
         const regex = /\\begin{document}/m
 
         if (!this.workspaceRootDir) {
-            return undefined
+            return [undefined, undefined]
         }
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -298,7 +321,7 @@ export class Manager {
                     const children = this.getTeXChildren(file.fsPath, file.fsPath, [], content)
                     if (vscode.window.activeTextEditor && children.includes(vscode.window.activeTextEditor.document.fileName)) {
                         this.extension.logger.addLogMessage(`Found root file from parent: ${file.fsPath}`)
-                        return file.fsPath
+                        return [file.fsPath, this.inferLanguageId(file.fsPath)]
                     }
                     // Not including the active file, yet can still be a root candidate
                     candidates.push(file.fsPath)
@@ -306,10 +329,10 @@ export class Manager {
             }
             if (candidates.length > 0) {
                 this.extension.logger.addLogMessage(`Found files that might be root, choose the first one: ${candidates}`)
-                return candidates[0]
+                return [candidates[0], this.inferLanguageId(candidates[0])]
             }
         } catch (e) {}
-        return undefined
+        return [undefined, undefined]
     }
 
     /**
@@ -784,9 +807,9 @@ export class Manager {
         }
         this.extension.logger.addLogMessage(`${file} changed. Auto build project.`)
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            this.extension.commander.build(true, this.localRootFile)
+            this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
-            this.extension.commander.build(true, this.rootFile)
+            this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
         }
     }
 

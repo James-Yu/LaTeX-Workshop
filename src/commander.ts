@@ -65,7 +65,7 @@ export class Commander {
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
-    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, recipe: string | undefined = undefined) {
+    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage('BUILD command invoked.')
         if (!vscode.window.activeTextEditor) {
             return
@@ -76,13 +76,14 @@ export class Commander {
         const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
         if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             rootFile = await this.extension.manager.findRoot()
+            languageId = this.extension.manager.rootFileLanguageId
         }
         if (externalBuildCommand) {
             const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
             await this.extension.builder.buildWithExternalCommand(externalBuildCommand, externalBuildArgs, pwd, rootFile)
             return
         }
-        if (rootFile === undefined) {
+        if (rootFile === undefined || languageId === undefined) {
             this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
             return
         }
@@ -95,7 +96,7 @@ export class Commander {
             }
         }
         this.extension.logger.addLogMessage(`Building root file: ${pickedRootFile}`)
-        await this.extension.builder.build(pickedRootFile, recipe)
+        await this.extension.builder.build(pickedRootFile, languageId, recipe)
     }
 
     async revealOutputDir() {
@@ -120,7 +121,7 @@ export class Commander {
             return
         }
         if (recipe) {
-            this.build(false, undefined, recipe)
+            this.build(false, undefined, undefined, recipe)
             return
         }
         vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
@@ -129,7 +130,7 @@ export class Commander {
             if (!selected) {
                 return
             }
-            this.build(false, undefined, selected)
+            this.build(false, undefined, undefined, selected)
         })
     }
 
