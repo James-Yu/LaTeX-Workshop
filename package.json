@@ -662,7 +662,8 @@
             {
               "name": "Compile Rnw files",
               "tools": [
-                "rnw2pdf"
+                "rnw2tex",
+                "latexmk"
               ]
             }
           ],
@@ -738,11 +739,11 @@
               "env": {}
             },
             {
-              "name": "rnw2pdf",
+              "name": "rnw2tex",
               "command": "Rscript",
               "args": [
                 "-e",
-                "knitr::knit2pdf('%DOCFILE%')"
+                "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
               ],
               "env": {}
             }
