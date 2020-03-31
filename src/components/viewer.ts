@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as ws from 'ws'
 import * as path from 'path'
-import * as cp from 'child_process'
+import * as cs from 'cross-spawn'
 import {sleep} from '../utils/utils'
 
 import {Extension} from '../main'
@@ -229,7 +229,7 @@ export class Viewer {
             args = args.map(arg => arg.replace('%PDF%', pdfFile))
         }
         this.extension.manager.setEnvVar()
-        cp.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
+        cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 

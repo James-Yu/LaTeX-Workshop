@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as cp from 'child_process'
+import * as cs from 'cross-spawn'
 import * as tmp from 'tmp'
 import * as pdfjsLib from 'pdfjs-dist'
 import {Mutex} from '../lib/await-semaphore'
@@ -99,7 +100,7 @@ export class Builder {
         }
         this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args.length > 0 ? args.join(' '): ''}`)
         this.extension.logger.addLogMessage(`cwd: ${wd}`)
-        this.currentProcess = cp.spawn(command, args, {cwd: wd})
+        this.currentProcess = cs.spawn(command, args, {cwd: wd})
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`External build process spawned. PID: ${pid}.`)
 
@@ -259,7 +260,7 @@ export class Builder {
                 command += ' ' + args[0]
             }
             this.extension.logger.addLogMessage(`cwd: ${path.dirname(rootFile)}`)
-            this.currentProcess = cp.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
+            this.currentProcess = cs.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
         } else {
             let workingDirectory: string
             if (steps[index].command === 'latexmk' && rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
@@ -268,7 +269,7 @@ export class Builder {
                 workingDirectory = path.dirname(rootFile)
             }
             this.extension.logger.addLogMessage(`cwd: ${workingDirectory}`)
-            this.currentProcess = cp.spawn(steps[index].command, steps[index].args, {cwd: workingDirectory, env: envVars})
+            this.currentProcess = cs.spawn(steps[index].command, steps[index].args, {cwd: workingDirectory, env: envVars})
         }
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${pid}.`)
