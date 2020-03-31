@@ -529,13 +529,19 @@ export class Builder {
         return (arg: string) => {
             const docker = vscode.workspace.getConfiguration('latex-workshop').get('docker.enabled')
 
-            const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
-            const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+            const rootFileParsed = path.parse(rootFile)
+            const docfile = rootFileParsed.name
+            const docfileExt = rootFileParsed.base
+            const dir = path.normalize(rootFileParsed.dir).split(path.sep).join('/')
+            const doc = path.join(dir, docfile)
+            const docExt = path.join(dir, docfileExt)
             const outDir = this.extension.manager.getOutDir(rootFile)
 
             return arg.replace(/%DOC%/g, docker ? docfile : doc)
+                      .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
+                      .replace(/%DOCFILE_EXT%/g, docfileExt)
                       .replace(/%DOCFILE%/g, docfile)
-                      .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
+                      .replace(/%DIR%/g, dir)
                       .replace(/%TMPDIR%/g, tmpDir)
                       .replace(/%OUTDIR%/g, outDir)
         }
