@@ -119,6 +119,20 @@ suite('Buid TeX files test suite', () => {
         })
     }, () => isDockerEnabled())
 
+    runTestWithFixture('fixture008', 'basic build with spaces in names', async () => {
+        const fixtureDir = getFixtureDir()
+        const subDir = 'root dir'
+        const texFileName = path.join(subDir, 'file t.tex')
+        const pdfFileName = path.join(subDir, 'file t.pdf')
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
+
     //
     // Magic comment tests
     //
