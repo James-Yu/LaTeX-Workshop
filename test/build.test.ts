@@ -578,4 +578,17 @@ suite('Buid TeX files test suite', () => {
         })
     }, () => isDockerEnabled())
 
+    runTestWithFixture('fixture05b', 'build a subfile with extra input file', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 's.tex'
+        const pdfFileName = 's.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'sub', 'out', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    }, () => isDockerEnabled())
+
 })
