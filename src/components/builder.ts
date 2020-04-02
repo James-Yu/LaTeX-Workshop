@@ -205,17 +205,15 @@ export class Builder {
             // This was supposed to create the outputDir as latexmk does not
             // take care of it (neither does any of latex command). If the
             //output directory does not exist, the latex commands simply fail.
-            if (this.extension.manager.rootDir !== undefined) {
-                const rootDir = this.extension.manager.rootDir
-                let outDir = this.extension.manager.getOutDir(rootFile)
-                if (!path.isAbsolute(outDir)) {
-                    outDir = path.resolve(this.extension.manager.rootDir, outDir)
-                }
-                this.extension.manager.getIncludedTeX().forEach(file => {
-                    const relativePath = path.dirname(file.replace(rootDir, '.'))
-                    fs.ensureDirSync(path.resolve(outDir, relativePath))
-                })
+            const rootDir = path.dirname(rootFile)
+            let outDir = this.extension.manager.getOutDir(rootFile)
+            if (!path.isAbsolute(outDir)) {
+                outDir = path.resolve(rootDir, outDir)
             }
+            this.extension.manager.getIncludedTeX(rootFile).forEach(file => {
+                const relativePath = path.dirname(file.replace(rootDir, '.'))
+                fs.ensureDirSync(path.resolve(outDir, relativePath))
+            })
             this.buildInitiator(rootFile, recipe, releaseBuildMutex)
         } catch (e) {
             this.extension.buildInfo.buildEnded()
