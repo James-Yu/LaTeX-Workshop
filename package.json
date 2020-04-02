@@ -840,17 +840,22 @@
         "latex-workshop.latex.watch.usePolling": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "When set to true, polling is used to watch changes on files. When TeX files are placed on network drives or OneDrive, this option should be turned on. Setting this option to true might lead to high CPU utilization."
+          "markdownDescription": "When set to true, polling is used to watch changes on files. When TeX files are placed on network drives or OneDrive, this option should be turned on. Setting this option to true might lead to high CPU utilization. You must reload VSCode to take into account a change in this configuration."
         },
         "latex-workshop.latex.watch.interval": {
           "type": "number",
           "default": 300,
-          "markdownDescription": "Interval of polling, in milliseconds."
+          "markdownDescription": "Interval of polling, in milliseconds. You must reload VSCode to take into account a change in this configuration."
         },
         "latex-workshop.latex.watch.delay": {
           "type": "number",
           "default": 250,
-          "markdownDescription": "Delay before starting bulids, in milliseconds."
+          "markdownDescription": "Delay before starting builds, in milliseconds. You must reload VSCode to take into account a change in this configuration."
+        },
+        "latex-workshop.latex.pdfWatch.delay": {
+          "type": "number",
+          "default": 250,
+          "markdownDescription": "Delay before reloading a PDF file after last change, in milliseconds. You must reload VSCode to take into account a change in this configuration."
         },
         "latex-workshop.latex.watch.files.ignore": {
           "type": "array",
@@ -888,7 +893,7 @@
             "**/Library/Application Support/MiKTeX/texmfs/**",
             "/dev/null"
           ],
-          "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild.\nThis property must be an array of globs pattern. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
+          "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild.\nThis property must be an array of glob patterns. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
         },
         "latex-workshop.latex.autoBuild.run": {
           "type": "string",
