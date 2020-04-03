@@ -23,6 +23,7 @@ export class Builder {
     waitingForBuildToFinishMutex: Mutex
     isMiktex: boolean = false
     previouslyUsedRecipe: {name: string, tools: (string | StepCommand)[]} | undefined
+    previousLanguageId: string | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -159,8 +160,8 @@ export class Builder {
         })
     }
 
-    buildInitiator(rootFile: string, recipe: string | undefined = undefined, releaseBuildMutex: () => void) {
-        const steps = this.createSteps(rootFile, recipe)
+    buildInitiator(rootFile: string, languageId: string, recipe: string | undefined = undefined, releaseBuildMutex: () => void) {
+        const steps = this.createSteps(rootFile, languageId, recipe)
         if (steps === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
             return
@@ -168,7 +169,7 @@ export class Builder {
         this.buildStep(rootFile, steps, 0, recipe || 'Build', releaseBuildMutex) // use 'Build' as default name
     }
 
-    async build(rootFile: string, recipe: string | undefined = undefined) {
+    async build(rootFile: string, languageId: string, recipe: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
             this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
             return
@@ -214,7 +215,7 @@ export class Builder {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
                 fs.ensureDirSync(path.resolve(outDir, relativePath))
             })
-            this.buildInitiator(rootFile, recipe, releaseBuildMutex)
+            this.buildInitiator(rootFile, languageId, recipe, releaseBuildMutex)
         } catch (e) {
             this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
@@ -378,7 +379,7 @@ export class Builder {
         }
     }
 
-    createSteps(rootFile: string, recipeName: string | undefined): StepCommand[] | undefined {
+    createSteps(rootFile: string, languageId: string, recipeName: string | undefined): StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
@@ -405,7 +406,10 @@ export class Builder {
                 return undefined
             }
             let recipe = recipes[0]
-            if ((configuration.get('latex.recipe.default') as string === 'lastUsed') && (this.previouslyUsedRecipe !== undefined)) {
+            if (this.previousLanguageId !== languageId) {
+                this.previouslyUsedRecipe = undefined
+            }
+            if ((configuration.get('latex.recipe.default') as string === 'lastUsed') && (this.previouslyUsedRecipe !== undefined) ) {
                 recipe = this.previouslyUsedRecipe
             }
             if (recipeName) {
@@ -415,7 +419,15 @@ export class Builder {
                 }
                 recipe = candidates[0]
             }
+            if (!recipeName && languageId === 'rsweave') {
+                const candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
+                if (candidates.length < 1) {
+                    this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                }
+                recipe = candidates[0]
+            }
             this.previouslyUsedRecipe = recipe
+            this.previousLanguageId = languageId
 
             recipe.tools.forEach(tool => {
                 if (typeof tool === 'string') {
@@ -516,13 +528,19 @@ export class Builder {
         return (arg: string) => {
             const docker = vscode.workspace.getConfiguration('latex-workshop').get('docker.enabled')
 
-            const doc = rootFile.replace(/\.tex$/, '').split(path.sep).join('/')
-            const docfile = path.basename(rootFile, '.tex').split(path.sep).join('/')
+            const rootFileParsed = path.parse(rootFile)
+            const docfile = rootFileParsed.name
+            const docfileExt = rootFileParsed.base
+            const dir = path.normalize(rootFileParsed.dir).split(path.sep).join('/')
+            const doc = path.join(dir, docfile)
+            const docExt = path.join(dir, docfileExt)
             const outDir = this.extension.manager.getOutDir(rootFile)
 
             return arg.replace(/%DOC%/g, docker ? docfile : doc)
+                      .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
+                      .replace(/%DOCFILE_EXT%/g, docfileExt)
                       .replace(/%DOCFILE%/g, docfile)
-                      .replace(/%DIR%/g, path.dirname(rootFile).split(path.sep).join('/'))
+                      .replace(/%DIR%/g, dir)
                       .replace(/%TMPDIR%/g, tmpDir)
                       .replace(/%OUTDIR%/g, outDir)
         }
