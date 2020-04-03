@@ -55,7 +55,8 @@ export class HoverProvider implements vscode.HoverProvider {
         const cites = this.extension.completer.citation.getEntryDict()
         if (hovCitation && token in cites) {
             const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
-            return new vscode.Hover('```\n' + cites[token].detail + '\n```\n', range)
+            // return new vscode.Hover('```\n' + cites[token].detail + '\n```\n', range)
+            return new vscode.Hover(new vscode.MarkdownString('\n' + cites[token].detail.replace(/\n/g,'  \n', ) + '\n\n'), range)
         }
         return undefined
     }
