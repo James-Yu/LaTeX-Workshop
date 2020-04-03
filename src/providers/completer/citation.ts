@@ -230,6 +230,6 @@ export class Citation {
     }
 
     private deParenthesis(str: string) {
-        return str.replace(/{+([^\\{}]+)}+/g, '$1')
+        return str.replace(/\\url{([^\\{}]+)}/g, '$1').replace(/{+([^\\{}]+)}+/g, '$1')
     }
 }
