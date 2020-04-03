@@ -39,6 +39,7 @@ export class Manager {
     private pdfsWatched: string[] = []
     private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
+    private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
     private pdfWatcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
@@ -79,14 +80,16 @@ export class Manager {
             return './'
         }
 
-        const doc = texPath.replace(/\.tex$/, '')
-        const docfile = path.basename(texPath, '.tex')
+        const texPathParsed = path.parse(texPath)
+        const docfile = texPathParsed.name
+        const dir = path.normalize(texPathParsed.dir).split(path.sep).join('/')
+        const doc = path.join(dir, docfile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const outDir = configuration.get('latex.outDir') as string
         const out = outDir.replace(/%DOC%/g, docker ? docfile : doc)
                   .replace(/%DOCFILE%/g, docfile)
-                  .replace(/%DIR%/g, docker ? './' : path.dirname(texPath))
+                  .replace(/%DIR%/g, docker ? './' : dir)
                   .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
         return path.normalize(out).split(path.sep).join('/')
 
@@ -112,6 +115,25 @@ export class Manager {
     }
     set localRootFile(localRoot: string | undefined) {
         this.localRootFiles[this.workspaceRootDir] = localRoot
+    }
+
+    private rootFilesLanguageIds: { [key: string]: string | undefined } = {}
+    get rootFileLanguageId() {
+        return this.rootFilesLanguageIds[this.workspaceRootDir]
+    }
+    set rootFileLanguageId(id: string | undefined) {
+        this.rootFilesLanguageIds[this.workspaceRootDir] = id
+    }
+
+    private inferLanguageId(filename: string): string | undefined {
+        const ext = path.extname(filename)
+        if (ext === '.tex') {
+            return 'latex'
+        } else if (this.rsweaveExt.includes(ext)) {
+            return 'rsweave'
+        } else {
+            return undefined
+        }
     }
 
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
@@ -177,6 +199,7 @@ export class Manager {
             if (this.rootFile !== rootFile) {
                 this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile} to ${rootFile}. Find all dependencies.`)
                 this.rootFile = rootFile
+                this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 this.initiateFileWatcher()
                 this.initiateBibWatcher()
                 this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
@@ -457,7 +480,7 @@ export class Manager {
         // Update children of current file
         if (this.cachedContent[file] === undefined) {
             this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
-            const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
+            const inputReg = /(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
             while (true) {
                 const result = inputReg.exec(content)
                 if (!result) {
@@ -491,7 +514,7 @@ export class Manager {
     }
 
     private parseInputFiles(content: string, baseFile: string) {
-        const inputReg = /(?:\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
+        const inputReg = /(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
@@ -696,7 +719,7 @@ export class Manager {
 
     private onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
-        if (['.tex', '.bib', '.rnw', '.Rnw', '.rtex', '.Rtex'].includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.updateCompleterOnChange(file)
         }
@@ -705,7 +728,7 @@ export class Manager {
     private onWatchedFileChanged(file: string) {
         this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
-        if (['.tex', '.bib', '.rnw', '.Rnw', '.rtex', '.Rtex'].includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
@@ -793,9 +816,9 @@ export class Manager {
         }
         this.extension.logger.addLogMessage(`${file} changed. Auto build project.`)
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            this.extension.commander.build(true, this.localRootFile)
+            this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
-            this.extension.commander.build(true, this.rootFile)
+            this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
         }
     }
 

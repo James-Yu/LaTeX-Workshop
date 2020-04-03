@@ -431,9 +431,13 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('view.pdf.external.synctex.command') as string
         let args = configuration.get('view.pdf.external.synctex.args') as string[]
+        const rootFileParsed = path.parse(rootFile)
+        const docfile = rootFileParsed.name
+        const dir = path.normalize(rootFileParsed.dir).split(path.sep).join('/')
+        const doc = path.join(dir, docfile)
         if (args) {
-            args = args.map(arg => arg.replace(/%DOC%/g, rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                      .replace(/%DOCFILE%/g, path.basename(rootFile, '.tex').split(path.sep).join('/'))
+            args = args.map(arg => arg.replace(/%DOC%/g, doc)
+                                      .replace(/%DOCFILE%/g, docfile)
                                       .replace(/%PDF%/g, pdfFile)
                                       .replace(/%LINE%/g, line.toString())
                                       .replace(/%TEX%/g, texFile))

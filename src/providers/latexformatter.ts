@@ -129,14 +129,16 @@ export class LaTexFormatter {
             const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
             fs.writeFileSync(temporaryFile, textToFormat)
 
-            const doc = document.fileName.replace(/\.tex$/, '').split(path.sep).join('/')
-            const docfile = path.basename(document.fileName, '.tex').split(path.sep).join('/')
+            const fileNameParsed = path.parse(document.fileName)
+            const docfile = fileNameParsed.name
+            const dir = path.normalize(fileNameParsed.dir).split(path.sep).join('/')
+            const doc = path.join(dir, docfile)
             // generate command line arguments
             const args = this.formatterArgs.map(arg => arg
                 // taken from ../components/builder.ts
                 .replace(/%DOC%/g, useDocker ? docfile : doc)
                 .replace(/%DOCFILE%/g, docfile)
-                .replace(/%DIR%/g, useDocker ? '.' : path.dirname(document.fileName).split(path.sep).join('/'))
+                .replace(/%DIR%/g, useDocker ? '.' : dir)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent))

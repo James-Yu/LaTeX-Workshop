@@ -132,7 +132,9 @@
           ".rnw",
           ".Rnw",
           ".Rtex",
-          ".rtex"
+          ".rtex",
+          ".snw",
+          ".Snw"
         ],
         "configuration": "./syntax/syntax-rsweave.json"
       }
@@ -389,19 +391,19 @@
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId == 'latex' && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+c",
         "mac": "cmd+l alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId == 'latex' && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+v",
         "mac": "cmd+l alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId == 'latex' && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+j",
@@ -419,19 +421,19 @@
         "key": "ctrl+alt+b",
         "mac": "cmd+alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId == 'latex' && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId == 'latex' && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+v",
         "mac": "cmd+alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId == 'latex' && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+j",
@@ -660,7 +662,8 @@
             {
               "name": "Compile Rnw files",
               "tools": [
-                "rnw2pdf"
+                "rnw2tex",
+                "latexmk"
               ]
             }
           ],
@@ -736,11 +739,11 @@
               "env": {}
             },
             {
-              "name": "rnw2pdf",
+              "name": "rnw2tex",
               "command": "Rscript",
               "args": [
                 "-e",
-                "knitr::knit2pdf('%DOCFILE%')"
+                "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
               ],
               "env": {}
             }
@@ -815,7 +818,9 @@
             "type": "string"
           },
           "default": [
-            "**/*.tex"
+            "**/*.tex",
+            "**/*.rnw",
+            "**/*.Rnw"
           ],
           "markdownDescription": "Patterns of files to consider for the root detection mechanism.\nRelative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here.\nIf you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
