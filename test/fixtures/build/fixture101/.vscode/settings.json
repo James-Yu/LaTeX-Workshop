@@ -1,0 +1,22 @@
+{
+    "latex-workshop.latex.outDir": "%DIR%/out dir",
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "latexmk",
+            "tools": ["latexmk"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "$pdflatex=q/pdflatex %O -synctex=1 -interaction=nonstopmode -file-line-error %S/",
+                "-outdir=%OUTDIR%",
+                "-pdf",
+                "%DOC%"
+            ],
+            "env": {}
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/out dir",
+    "latex-workshop.latex.recipes": [
+        {
+          "name": "latexmk_copy",
+          "tools": ["latexmk", "copyPDF"]
+        }
+    ],
+    "latex-workshop.latex.tools": [
+        {
+          "name": "latexmk",
+          "command": "latexmk",
+          "args": [
+            "-synctex=1",
+            "-interaction=nonstopmode",
+            "-file-line-error",
+            "-outdir=%OUTDIR%",
+            "-pdf",
+            "%DOC%"
+          ],
+          "env": {}
+        },
+        {
+          "name": "copyPDF",
+          "command": "copy",
+          "args": ["%OUTDIR%/t.pdf", "%OUTDIR%/b.pdf"],
+          "env": {}
+        }
+    ]
+}

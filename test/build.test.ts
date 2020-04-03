@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
+import * as os from 'os'
 import {
     assertPdfIsGenerated,
     executeVscodeCommandAfterActivation,
@@ -145,6 +146,20 @@ suite('Buid TeX files test suite', () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
+
+    runTestWithFixture('fixture010', 'basic build with spaces in outdir', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'out dir', 'subdir', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    }, () => os.platform() !== 'win32')
+
     //
     // Magic comment tests
     //
@@ -590,5 +605,47 @@ suite('Buid TeX files test suite', () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     }, () => isDockerEnabled())
+
+    //
+    // Recipe tests
+    //
+    runTestWithFixture('fixture100', 'test q/.../ on Windows', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    }, () => os.platform() !== 'win32')
+
+    runTestWithFixture('fixture101', 'test q/.../ with spaces in outdir on Windows', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'out dir', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    }, () => os.platform() !== 'win32')
+
+    runTestWithFixture('fixture102', 'test copy on Windows', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 'b.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'out dir', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    }, () => os.platform() !== 'win32')
 
 })
