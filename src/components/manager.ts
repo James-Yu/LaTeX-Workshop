@@ -40,6 +40,7 @@ export class Manager {
     private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
     private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
+    private pdfWatcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -47,12 +48,20 @@ export class Manager {
         const usePolling = configuration.get('latex.watch.usePolling') as boolean
         const interval = configuration.get('latex.watch.interval') as number
         const delay = configuration.get('latex.watch.delay') as number
+        const pdfDelay = configuration.get('latex.watch.pdfDelay') as number
         this.watcherOptions = {
             useFsEvents: false,
             usePolling,
             interval,
             binaryInterval: Math.max(interval, 1000),
             awaitWriteFinish: {stabilityThreshold: delay}
+        }
+        this.pdfWatcherOptions = {
+            useFsEvents: false,
+            usePolling,
+            interval,
+            binaryInterval: Math.max(interval, 1000),
+            awaitWriteFinish: {stabilityThreshold: pdfDelay}
         }
         this.initiatePdfWatcher()
     }
@@ -770,7 +779,7 @@ export class Manager {
             return
         }
         this.extension.logger.addLogMessage('Creating file watcher for .pdf files.')
-        this.pdfWatcher = chokidar.watch([], this.watcherOptions)
+        this.pdfWatcher = chokidar.watch([], this.pdfWatcherOptions)
         this.pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
         this.pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
     }

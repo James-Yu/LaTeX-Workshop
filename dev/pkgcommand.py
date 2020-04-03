@@ -11,6 +11,17 @@ commands = json.load(open('../data/commands.json', encoding='utf8'))
 envs = json.load(open('../data/environments.json', encoding='utf8'))
 
 
+class TabStop:
+    count: int
+
+    def __init__(self):
+        self.count = 0
+
+    def sub(self, matchObject) -> str:
+        self.count += 1
+        return '${' + str(self.count) + '}'
+
+
 class PlaceHolder:
     count: int
     usePlaceHolders: bool
@@ -64,8 +75,7 @@ def parse_unimathsymbols_file() -> Dict[str, Dict[str, str]]:
 def get_cwl_files() -> List[str]:
     """ Get the list of cwl files from github """
     if not exists('cwl.zip'):
-        urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip',
-                                   'cwl.zip')
+        urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', 'cwl.zip')
     zip_ref = zipfile.ZipFile('cwl.zip', 'r')
     zip_ref.extractall('cwl/')
     zip_ref.close()
@@ -129,6 +139,8 @@ def parse_cwl_file(
             snippet = re.sub(r'(\[)([^\[\$]*)(\])', p.sub, snippet)
         else:
             snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
+        t = TabStop()
+        snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
 
         command_dict['snippet'] = snippet
         if unimath_dict.get(name):

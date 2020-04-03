@@ -6,7 +6,7 @@ Mozilla [asks](https://mozilla.github.io/pdf.js/getting_started/) web developers
 
 We provide additional features by setting up new event listeners in `latexworkshop.js` for DOM objects in `viewer.html`. We do not and should not override functions defined by PDF.js.
 
-We can see the [changes](https://github.com/James-Yu/LaTeX-Workshop/commit/c015e2a4aeb56c18c3f8430b9bea63ab4db27b01#diff-ff661e0ff756ae1ff026c0e8f4561d0e) we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
+We can see the changes, [diff1](https://github.com/James-Yu/LaTeX-Workshop/commit/ff39f772296a444c2ddc57e93f3a9928fd0c9030#diff-ff661e0ff756ae1ff026c0e8f4561d0e), [diff2](https://github.com/James-Yu/LaTeX-Workshop/commit/128c9826cda64f7cdcae33490ddec2dc64aafb31#diff-ff661e0ff756ae1ff026c0e8f4561d0e),  we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
 
 JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files.
 

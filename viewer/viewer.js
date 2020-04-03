@@ -15620,6 +15620,9 @@ function renderProgress(index, total, l10n) {
 var hasAttachEvent = !!document.attachEvent;
 window.addEventListener('keydown', function (event) {
   if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
+    if (window.parent !== window) {
+      return;
+    }
     window.print();
 
     if (hasAttachEvent) {

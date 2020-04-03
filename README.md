@@ -32,6 +32,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Requirements](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#requirements)
   - [Installation](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
   - [Setting PATH environment variable](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#setting-path-environment-variable)
+  - [Settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#settings)
   - [Usage](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#usage)
   - [Using Docker](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#using-docker)
   - [Using WSL](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#using-wsl)
