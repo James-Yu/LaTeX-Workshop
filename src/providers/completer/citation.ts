@@ -43,6 +43,7 @@ export class Citation {
             item.filterText = `${item.key} ${item.fields.author} ${item.fields.title} ${item.fields.journal}`
             item.insertText = item.key
             item.documentation = new vscode.MarkdownString(item.detail.replace(/\n/g, '  \n'))
+            item.detail = ''
             if (args) {
                 item.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
             }
