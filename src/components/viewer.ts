@@ -345,6 +345,11 @@ export class Viewer {
         if (!panelSet) {
             return
         }
+        for (const panel of panelSet.values()) {
+            if (panel.visible) {
+                return
+            }
+        }
         const activeViewColumn = vscode.window.activeTextEditor?.viewColumn
         for (const panel of panelSet.values()) {
             if (panel.viewColumn !== activeViewColumn) {
