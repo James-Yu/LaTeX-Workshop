@@ -42,7 +42,8 @@ export class Citation {
             }
             item.filterText = `${item.key} ${item.fields.author} ${item.fields.title} ${item.fields.journal}`
             item.insertText = item.key
-            item.documentation = item.detail
+            item.documentation = new vscode.MarkdownString(item.detail.replace(/\n/g, '  \n'))
+            item.detail = ''
             if (args) {
                 item.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
             }
@@ -230,6 +231,8 @@ export class Citation {
     }
 
     private deParenthesis(str: string) {
-        return str.replace(/{+([^\\{}]+)}+/g, '$1')
+        // Remove wrapping { }
+        // Extract the content of \url{}
+        return str.replace(/\\url{([^\\{}]+)}/g, '$1').replace(/{+([^\\{}]+)}+/g, '$1')
     }
 }
