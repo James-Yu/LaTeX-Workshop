@@ -1,3 +1,4 @@
+import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
@@ -127,4 +128,38 @@ export function svgToDataUrl(xml: string): string {
     const svg64 = Buffer.from(unescape(encodeURIComponent(xml)), 'binary').toString('base64')
     const b64Start = 'data:image/svg+xml;base64,'
     return b64Start + svg64
+}
+
+export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
+    return (arg: string) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const docker = configuration.get('docker.enabled')
+
+        const rootFileParsed = path.parse(rootFile)
+        const docfile = rootFileParsed.name
+        const docfileExt = rootFileParsed.base
+        const dirW32 = path.normalize(rootFileParsed.dir)
+        const dir = dirW32.split(path.sep).join('/')
+        const docW32 = path.join(dirW32, docfile)
+        const doc = docW32.split(path.sep).join('/')
+        const docExtW32 = path.join(dirW32, docfileExt)
+        const docExt = docExtW32.split(path.sep).join('/')
+
+        const expandPlaceHolders = (a: string): string => {
+            return a.replace(/%DOC%/g, docker ? docfile : doc)
+                    .replace(/%DOC_W32%/g, docker ? docfile : docW32)
+                    .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
+                    .replace(/%DOC_EXT_W32%/g, docker ? docfileExt : docExtW32)
+                    .replace(/%DOCFILE_EXT%/g, docfileExt)
+                    .replace(/%DOCFILE%/g, docfile)
+                    .replace(/%DIR%/g, docker ? './' : dir)
+                    .replace(/%DIR_W32%/g, docker ? './' : dirW32)
+                    .replace(/%TMPDIR%/g, tmpDir)
+
+        }
+        const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
+        const outDir = outDirW32.split(path.sep).join('/')
+        return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
+
+    }
 }

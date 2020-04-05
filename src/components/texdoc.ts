@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as cp from 'child_process'
+import * as cs from 'cross-spawn'
 import {Extension} from 'src/main'
 
 export class TeXDoc {
@@ -14,7 +14,7 @@ export class TeXDoc {
         const texdocPath = configuration.get('texdoc.path') as string
         const texdocArgs = Object.assign([], configuration.get('texdoc.args') as string[])
         texdocArgs.push(pkg)
-        const proc = cp.spawn(texdocPath, texdocArgs)
+        const proc = cs.spawn(texdocPath, texdocArgs)
 
         let stdout = ''
         proc.stdout.on('data', newStdout => {

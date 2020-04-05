@@ -70,6 +70,7 @@ export class Manager {
      * Returns the output directory developed according to the input tex path
      * and 'latex.outDir' config. If undefined is passed in, the default root
      * file is used. If there is not root file, './' is output.
+     * The return path always uses `/` even on Windows
      */
     getOutDir(texPath?: string) {
         if (texPath === undefined) {
@@ -80,19 +81,10 @@ export class Manager {
             return './'
         }
 
-        const texPathParsed = path.parse(texPath)
-        const docfile = texPathParsed.name
-        const dir = path.normalize(texPathParsed.dir).split(path.sep).join('/')
-        const doc = path.join(dir, docfile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const docker = configuration.get('docker.enabled')
         const outDir = configuration.get('latex.outDir') as string
-        const out = outDir.replace(/%DOC%/g, docker ? docfile : doc)
-                  .replace(/%DOCFILE%/g, docfile)
-                  .replace(/%DIR%/g, docker ? './' : dir)
-                  .replace(/%TMPDIR%/g, this.extension.builder.tmpDir)
+        const out = utils.replaceArgumentPlaceholders(texPath, this.extension.builder.tmpDir)(outDir)
         return path.normalize(out).split(path.sep).join('/')
-
     }
 
     get rootDir() {

@@ -7,6 +7,7 @@ import * as os from 'os'
 
 import { Extension } from '../main'
 import {Mutex} from '../lib/await-semaphore'
+import {replaceArgumentPlaceholders} from '../utils/utils'
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -129,19 +130,12 @@ export class LaTexFormatter {
             const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
             fs.writeFileSync(temporaryFile, textToFormat)
 
-            const fileNameParsed = path.parse(document.fileName)
-            const docfile = fileNameParsed.name
-            const dir = path.normalize(fileNameParsed.dir).split(path.sep).join('/')
-            const doc = path.join(dir, docfile)
             // generate command line arguments
-            const args = this.formatterArgs.map(arg => arg
-                // taken from ../components/builder.ts
-                .replace(/%DOC%/g, useDocker ? docfile : doc)
-                .replace(/%DOCFILE%/g, docfile)
-                .replace(/%DIR%/g, useDocker ? '.' : dir)
+            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(document.fileName, this.extension.builder.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
-                .replace(/%INDENT%/g, indent))
+                .replace(/%INDENT%/g, indent)
+            })
 
             this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
             this.extension.manager.setEnvVar()
