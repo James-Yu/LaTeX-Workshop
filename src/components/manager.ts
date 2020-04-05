@@ -70,6 +70,7 @@ export class Manager {
      * Returns the output directory developed according to the input tex path
      * and 'latex.outDir' config. If undefined is passed in, the default root
      * file is used. If there is not root file, './' is output.
+     * The return path always uses `/` even on Windows
      */
     getOutDir(texPath?: string) {
         if (texPath === undefined) {

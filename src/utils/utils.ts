@@ -138,20 +138,28 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         const rootFileParsed = path.parse(rootFile)
         const docfile = rootFileParsed.name
         const docfileExt = rootFileParsed.base
-        const dir = path.normalize(rootFileParsed.dir).split(path.sep).join('/')
-        const doc = path.join(dir, docfile)
-        const docExt = path.join(dir, docfileExt)
+        const dirW32 = path.normalize(rootFileParsed.dir)
+        const dir = dirW32.split(path.sep).join('/')
+        const docW32 = path.join(dirW32, docfile)
+        const doc = docW32.split(path.sep).join('/')
+        const docExtW32 = path.join(dirW32, docfileExt)
+        const docExt = docExtW32.split(path.sep).join('/')
 
         const expandPlaceHolders = (a: string): string => {
             return a.replace(/%DOC%/g, docker ? docfile : doc)
+                    .replace(/%DOC_W32%/g, docker ? docfile : docW32)
                     .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
+                    .replace(/%DOC_EXT_W32%/g, docker ? docfileExt : docExtW32)
                     .replace(/%DOCFILE_EXT%/g, docfileExt)
                     .replace(/%DOCFILE%/g, docfile)
-                    .replace(/%DIR%/g, dir)
+                    .replace(/%DIR%/g, docker ? './' : dir)
+                    .replace(/%DIR_W32%/g, docker ? './' : dirW32)
                     .replace(/%TMPDIR%/g, tmpDir)
 
         }
-        const outDir = expandPlaceHolders(configuration.get('latex.outDir') as string)
-        return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir)
+        const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
+        const outDir = outDirW32.split(path.sep).join('/')
+        return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
+
     }
 }
