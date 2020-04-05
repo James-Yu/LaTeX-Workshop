@@ -6,6 +6,7 @@ import * as cs from 'cross-spawn'
 import * as tmp from 'tmp'
 import * as pdfjsLib from 'pdfjs-dist'
 import {Mutex} from '../lib/await-semaphore'
+import {replaceArgumentPlaceholders} from '../utils/utils'
 
 import {Extension} from '../main'
 
@@ -97,7 +98,7 @@ export class Builder {
         }
 
         if (rootFile !== undefined) {
-            args = args.map(this.replaceArgumentPlaceholders(rootFile, this.tmpDir))
+            args = args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
         }
         this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args.length > 0 ? args.join(' '): ''}`)
         this.extension.logger.addLogMessage(`cwd: ${wd}`)
@@ -461,13 +462,13 @@ export class Builder {
                 }
             }
             if (step.args) {
-                step.args = step.args.map(this.replaceArgumentPlaceholders(rootFile, this.tmpDir))
+                step.args = step.args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
             }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
                     const e = step.env && step.env[v]
                     if (step.env && e) {
-                        step.env[v] = this.replaceArgumentPlaceholders(rootFile, this.tmpDir)(e)
+                        step.env[v] = replaceArgumentPlaceholders(rootFile, this.tmpDir)(e)
                     }
                 })
             }
@@ -522,28 +523,6 @@ export class Builder {
         }
 
         return [texCommand, bibCommand]
-    }
-
-    replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
-        return (arg: string) => {
-            const docker = vscode.workspace.getConfiguration('latex-workshop').get('docker.enabled')
-
-            const rootFileParsed = path.parse(rootFile)
-            const docfile = rootFileParsed.name
-            const docfileExt = rootFileParsed.base
-            const dir = path.normalize(rootFileParsed.dir).split(path.sep).join('/')
-            const doc = path.join(dir, docfile)
-            const docExt = path.join(dir, docfileExt)
-            const outDir = this.extension.manager.getOutDir(rootFile)
-
-            return arg.replace(/%DOC%/g, docker ? docfile : doc)
-                      .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
-                      .replace(/%DOCFILE_EXT%/g, docfileExt)
-                      .replace(/%DOCFILE%/g, docfile)
-                      .replace(/%DIR%/g, dir)
-                      .replace(/%TMPDIR%/g, tmpDir)
-                      .replace(/%OUTDIR%/g, outDir)
-        }
     }
 }
 

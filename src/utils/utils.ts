@@ -1,3 +1,4 @@
+import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
@@ -127,4 +128,30 @@ export function svgToDataUrl(xml: string): string {
     const svg64 = Buffer.from(unescape(encodeURIComponent(xml)), 'binary').toString('base64')
     const b64Start = 'data:image/svg+xml;base64,'
     return b64Start + svg64
+}
+
+export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
+    return (arg: string) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const docker = configuration.get('docker.enabled')
+
+        const rootFileParsed = path.parse(rootFile)
+        const docfile = rootFileParsed.name
+        const docfileExt = rootFileParsed.base
+        const dir = path.normalize(rootFileParsed.dir).split(path.sep).join('/')
+        const doc = path.join(dir, docfile)
+        const docExt = path.join(dir, docfileExt)
+
+        const expandPlaceHolders = (a: string): string => {
+            return a.replace(/%DOC%/g, docker ? docfile : doc)
+                    .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
+                    .replace(/%DOCFILE_EXT%/g, docfileExt)
+                    .replace(/%DOCFILE%/g, docfile)
+                    .replace(/%DIR%/g, dir)
+                    .replace(/%TMPDIR%/g, tmpDir)
+
+        }
+        const outDir = expandPlaceHolders(configuration.get('latex.outDir') as string)
+        return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir)
+    }
 }
