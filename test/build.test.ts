@@ -635,17 +635,17 @@ suite('Buid TeX files test suite', () => {
         })
     }, () => os.platform() !== 'win32')
 
-    runTestWithFixture('fixture102', 'test copy on Windows', async () => {
-        const fixtureDir = getFixtureDir()
-        const texFileName = 't.tex'
-        const pdfFileName = 'b.pdf'
-        const pdfFilePath = path.join(fixtureDir, 'out dir', pdfFileName)
-        await assertPdfIsGenerated(pdfFilePath, async () => {
-            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
-            const doc = await vscode.workspace.openTextDocument(texFilePath)
-            await vscode.window.showTextDocument(doc)
-            await executeVscodeCommandAfterActivation('latex-workshop.build')
-        })
-    }, () => os.platform() !== 'win32')
+    // runTestWithFixture('fixture102', 'test copy on Windows', async () => {
+    //     const fixtureDir = getFixtureDir()
+    //     const texFileName = 't.tex'
+    //     const pdfFileName = 'b.pdf'
+    //     const pdfFilePath = path.join(fixtureDir, 'out dir', pdfFileName)
+    //     await assertPdfIsGenerated(pdfFilePath, async () => {
+    //         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+    //         const doc = await vscode.workspace.openTextDocument(texFilePath)
+    //         await vscode.window.showTextDocument(doc)
+    //         await executeVscodeCommandAfterActivation('latex-workshop.build')
+    //     })
+    // }, () => os.platform() !== 'win32')
 
 })
