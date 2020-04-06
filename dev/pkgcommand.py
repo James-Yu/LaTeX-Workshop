@@ -102,6 +102,8 @@ def create_snippet(line: str) -> str:
         snippet = re.sub(r'(\[)([^\[\$]*)(\])', p.sub, snippet)
     else:
         snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
+    snippet = re.sub(r'(?<![\{\s:\[])(\<)([a-zA-Z\s]*)(\>)', p.sub, snippet)
+
     t = TabStop()
     snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
     return snippet
@@ -116,9 +118,8 @@ def parse_cwl_file(
     package = splitext(basename(file))[0]
     with open(join('cwl/LaTeX-cwl-master', file), encoding='utf8') as f:
         lines = f.readlines()
-
     pkgcmds: Dict[str, Dict[str, str]] = {}
-    pkgenvs: List[str] = []
+    pkgenvs: Dict[str, Dict[str, str, str]] = {}
     for line in lines:
         line = line.rstrip()
         index_hash = line.find('#')
@@ -130,7 +131,11 @@ def parse_cwl_file(
             env = line[line.index('{') + 1:line.index('}')]
             if env in envs:
                 continue
-            pkgenvs.append(env)
+            args = line[line.index('}') + 1:]
+            snippet_name = env + ' ' + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
+            snippet_name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', snippet_name)
+            snippet = create_snippet(args)
+            pkgenvs[snippet_name] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
             continue
         if line[:5] == '\\end{':
             continue
@@ -139,7 +144,6 @@ def parse_cwl_file(
             command = line
             name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
             command_dict: Dict[str, str] = {'command': command, 'package': package}
-            print(name)
             if name in commands:
                 continue
 
