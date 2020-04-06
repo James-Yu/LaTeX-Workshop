@@ -748,7 +748,7 @@
               "env": {}
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%` are available. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes."
+          "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%` are available. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
         "latex-workshop.latex.magic.args": {
           "type": "array",
@@ -794,7 +794,7 @@
         "latex-workshop.latex.outDir": {
           "type": "string",
           "default": "%DIR%",
-          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash.\nThe LaTeX toolchain should output files to this path.\nPlaceholders `%DOC%`, `%DOCFILE%`, `%DIR%` and `%TMPDIR%` are available."
+          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash.\nThe LaTeX toolchain should output files to this path.\nFor a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
         "latex-workshop.latex.texDirs": {
           "type": "array",
@@ -1398,7 +1398,7 @@
             "%TMPFILE%",
             "-y=defaultIndent: '%INDENT%'"
           ],
-          "markdownDescription": "Define the command line arguments for latexindent. Available placeholders:\n- %DOC%, %DOCFILE%, %DIR%: same as latex-workshop.latex.toolchain args.\n- %TMPFILE%: would be replaced with the path of file which contains raw TeX source to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: would be replaced with the string which represents indent of the target document.\n\nNote: At this moment -c option requires trailing slash."
+          "markdownDescription": "Define the command line arguments for latexindent. In the addition to the placeholders defined at https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders, the following placeholders are accepted\n- %TMPFILE%: The full path of the raw TeX file to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: The indent character of the file, typically `\t`, `' '`, `' '`.\n\nNote: At this moment -c option requires trailing slash."
         },
         "latex-workshop.docker.enabled": {
           "type": "boolean",

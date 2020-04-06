@@ -17,7 +17,7 @@ import {
 import {sleep} from '../src/utils/utils'
 
 
-suite('Buid TeX files test suite', () => {
+suite('Build TeX files test suite', () => {
 
     suiteSetup(() => {
         const config = vscode.workspace.getConfiguration()
