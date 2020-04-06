@@ -88,24 +88,44 @@ def get_cwl_files() -> List[str]:
             remove(join('cwl/LaTeX-cwl-master', f))
     return files
 
+def create_snippet(line: str) -> str:
+    """
+    Create a placeholder for every argument [], {}
+    """
+    snippet = line
+    curly_index = line.find('{')
+    square_index = line.find('[')
+    p = PlaceHolder()
+    if square_index < curly_index:
+        # If all the optional args are before {}, we number the {} first
+        snippet = re.sub(r'(\{)([^\{\$]*)(\})', p.sub, snippet)
+        snippet = re.sub(r'(\[)([^\[\$]*)(\])', p.sub, snippet)
+    else:
+        snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
+    t = TabStop()
+    snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
+    return snippet
 
 def parse_cwl_file(
         file: str,
         unimath_dict: Dict[str, Dict[str, str]]
     ) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
+    """
+    Parse a CWL file to extract the provided commands and environments
+    """
+    package = splitext(basename(file))[0]
     with open(join('cwl/LaTeX-cwl-master', file), encoding='utf8') as f:
         lines = f.readlines()
+
     pkgcmds: Dict[str, Dict[str, str]] = {}
     pkgenvs: List[str] = []
     for line in lines:
         line = line.rstrip()
-        if not line:
-            continue
-        if line[0] == '#':
-            continue
         index_hash = line.find('#')
         if index_hash >= 0:
             line = line[:index_hash]
+        if not line:
+            continue
         if line[:7] == '\\begin{':
             env = line[line.index('{') + 1:line.index('}')]
             if env in envs:
@@ -114,39 +134,22 @@ def parse_cwl_file(
             continue
         if line[:5] == '\\end{':
             continue
-        if line[0] != '\\':
+        if line[0] == '\\':
+            line = line[1:]  # Remove leading '\'
+            command = line
+            name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
+            command_dict: Dict[str, str] = {'command': command, 'package': package}
+            print(name)
+            if name in commands:
+                continue
+
+            command_dict['snippet'] = create_snippet(line)
+            if unimath_dict.get(name):
+                command_dict['detail'] = unimath_dict[name]['detail']
+                command_dict['documentation'] = unimath_dict[name]['documentation']
+            pkgcmds[name] = command_dict
             continue
-
-        line = line[1:]  # Remove leading '\'
-        curly_index = line.find('{')
-        square_index = line.find('[')
-        # if square_index == -1 and curly_index > -1:
-        #     # If there is no optional argument, do not put the arguments in the snippet command
-        #     command = line[:curly_index]
-        # else:
-        command = line
-        name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
-        package = splitext(basename(file))[0]
-        command_dict: Dict[str, str] = {'command': command, 'package': package}
-        snippet = line
-        if name in commands:
-            continue
-
-        p = PlaceHolder()
-        if square_index < curly_index:
-            # If all the optional args are before {}, we number the {} first
-            snippet = re.sub(r'(\{)([^\{\$]*)(\})', p.sub, snippet)
-            snippet = re.sub(r'(\[)([^\[\$]*)(\])', p.sub, snippet)
-        else:
-            snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
-        t = TabStop()
-        snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
-
-        command_dict['snippet'] = snippet
-        if unimath_dict.get(name):
-            command_dict['detail'] = unimath_dict[name]['detail']
-            command_dict['documentation'] = unimath_dict[name]['documentation']
-        pkgcmds[name] = command_dict
+        continue
     remove(join('cwl/LaTeX-cwl-master', file))
     return (pkgcmds, pkgenvs)
 
