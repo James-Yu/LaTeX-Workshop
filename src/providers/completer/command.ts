@@ -3,8 +3,9 @@ import * as fs from 'fs-extra'
 import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
+import {EnvItemEntry} from './environment'
 
-interface DataItemEntry {
+interface CmdItemEntry {
     command: string, // frame
     snippet: string,
     package?: string,
@@ -32,7 +33,7 @@ export class Command {
         this.extension = extension
     }
 
-    initialize(defaultCmds: {[key: string]: DataItemEntry}, defaultEnvs: string[]) {
+    initialize(defaultCmds: {[key: string]: CmdItemEntry}, defaultEnvs: {[key: string]: EnvItemEntry}) {
         const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
 
         // Initialize default commands and `latex-mathsymbols`
@@ -41,30 +42,16 @@ export class Command {
                 const action = snippetReplacements[key]
                 if (action !== '') {
                     defaultCmds[key].snippet = action
-                    this.defaultCmds.push(this.entryToCompletion(defaultCmds[key]))
+                    this.defaultCmds.push(this.entryCmdToCompletion(defaultCmds[key]))
                 }
             } else {
-                this.defaultCmds.push(this.entryToCompletion(defaultCmds[key]))
+                this.defaultCmds.push(this.entryCmdToCompletion(defaultCmds[key]))
             }
         })
 
         // Initialize default env begin-end pairs, de-duplication
-        Array.from(new Set(defaultEnvs)).forEach(env => {
-            const suggestion: Suggestion = {
-                label: env,
-                kind: vscode.CompletionItemKind.Snippet,
-                package: ''
-            }
-            // Use 'an' or 'a' depending on the first letter
-            const art = ['a', 'e', 'i', 'o', 'u'].includes(`${env}`.charAt(0)) ? 'an' : 'a'
-            suggestion.detail = `Insert ${art} ${env} environment.`
-            if (['enumerate', 'itemize'].includes(env)) {
-                suggestion.insertText = new vscode.SnippetString(`begin{${env}}\n\t\\item $0\n\\\\end{${env}}`)
-            } else {
-                suggestion.insertText = new vscode.SnippetString(`begin{${env}}\n\t$0\n\\\\end{${env}}`)
-            }
-            suggestion.filterText = env
-            this.defaultCmds.push(suggestion)
+        Object.keys(defaultEnvs).forEach(key => {
+            this.defaultCmds.push(this.entryEnvToCompletion(defaultEnvs[key]))
         })
 
         // Handle special commands with brackets
@@ -94,7 +81,7 @@ export class Command {
             if (this.defaultSymbols.length === 0) {
                 const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
                 Object.keys(symbols).forEach(key => {
-                    this.defaultSymbols.push(this.entryToCompletion(symbols[key]))
+                    this.defaultSymbols.push(this.entryCmdToCompletion(symbols[key]))
                 })
             }
             this.defaultSymbols.forEach(symbol => {
@@ -455,7 +442,7 @@ export class Command {
         return text
     }
 
-    private entryToCompletion(item: DataItemEntry): Suggestion {
+    private entryCmdToCompletion(item: CmdItemEntry): Suggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
@@ -492,6 +479,39 @@ export class Command {
         return suggestion
     }
 
+    private entryEnvToCompletion(item: EnvItemEntry): Suggestion {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
+        const label = item.detail ? item.detail : item.name
+        const suggestion: Suggestion = {
+            label,
+            kind: vscode.CompletionItemKind.Function,
+            package: 'latex'
+        }
+
+        let snippet: string = ''
+        if (item.snippet) {
+            if (useTabStops) {
+                snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
+            }
+        }
+        if (snippet.match(/\$\{?0\}?/)) {
+            snippet += '\n'
+        } else {
+            snippet += '\n\t$0\n'
+        }
+        suggestion.insertText = new vscode.SnippetString(`begin{${item.name}}${snippet}\\end{${item.name}}`)
+        const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
+        suggestion.detail = `Insert ${art} ${item.name} environment.`
+        suggestion.documentation = label
+        suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16): c
+        })
+        return suggestion
+    }
+
+
     private provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!(configuration.get('intellisense.package.enabled'))) {
@@ -514,10 +534,8 @@ export class Command {
             if (fs.existsSync(filePath)) {
                 const cmds = JSON.parse(fs.readFileSync(filePath).toString())
                 Object.keys(cmds).forEach(key => {
-                    this.packageCmds[pkg].push(this.entryToCompletion(cmds[key]))
+                    this.packageCmds[pkg].push(this.entryCmdToCompletion(cmds[key]))
                 })
-            } else {
-                this.packageCmds[pkg] = []
             }
         }
 

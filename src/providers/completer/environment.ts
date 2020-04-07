@@ -4,6 +4,13 @@ import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
 
+export interface EnvItemEntry {
+    name: string, // Name of the environment, what comes inside \begin{...}
+    snippet?: string, // To be inserted after \begin{..}
+    package?: string, // The package providing the environment
+    detail?: string
+}
+
 export class Environment {
     extension: Extension
     private defaultEnvs: vscode.CompletionItem[] = []
@@ -13,8 +20,12 @@ export class Environment {
         this.extension = extension
     }
 
-    initialize(envs: string[]) {
-        this.defaultEnvs = envs.map(env => new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+    initialize(envs: {[key: string]: EnvItemEntry}) {
+        this.defaultEnvs = []
+        const envList: string[] = Object.keys(envs).map(key => envs[key].name)
+        Array.from(new Set(envList)).forEach(env => {
+           this.defaultEnvs.push(new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+        })
     }
 
     provide(): vscode.CompletionItem[] {
@@ -97,8 +108,11 @@ export class Environment {
         if (!fs.existsSync(filePath)) {
             return []
         }
-        this.packageEnvs[pkg] = (JSON.parse(fs.readFileSync(filePath).toString()) as string[])
-            .map(env => new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+        this.packageEnvs[pkg] = []
+        const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
+        Array.from(new Set(Object.keys(envs).map(e => envs[e].name))).forEach(env => {
+            this.packageEnvs[pkg].push(new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+        })
         return this.packageEnvs[pkg]
     }
 

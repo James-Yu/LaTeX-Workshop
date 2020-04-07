@@ -39,8 +39,7 @@ export class Completer implements vscode.CompletionItemProvider {
     loadDefaultItems() {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
-        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`,
-                                                        {encoding: 'utf8'})
+        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`, {encoding: 'utf8'})
         const env = JSON.parse(defaultEnvs)
         const cmds = JSON.parse(defaultCommands)
         const maths = JSON.parse(defaultLaTeXMathSymbols)
