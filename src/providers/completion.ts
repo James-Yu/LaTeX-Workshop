@@ -23,9 +23,9 @@ export class Completer implements vscode.CompletionItemProvider {
     constructor(extension: Extension) {
         this.extension = extension
         this.citation = new Citation(extension)
-        this.command = new Command(extension)
+        this.environment = new Environment(extension) // Must be created before command
+        this.command = new Command(extension, this.environment)
         this.documentClass = new DocumentClass(extension)
-        this.environment = new Environment(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
         this.input = new Input(extension)

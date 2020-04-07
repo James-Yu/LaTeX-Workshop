@@ -3,7 +3,7 @@ import * as fs from 'fs-extra'
 import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
-import {EnvItemEntry} from './environment'
+import {EnvItemEntry, Environment} from './environment'
 
 interface CmdItemEntry {
     command: string, // frame
@@ -21,6 +21,7 @@ export interface Suggestion extends vscode.CompletionItem {
 
 export class Command {
     extension: Extension
+    private environment: Environment
 
     packages: string[] = []
     bracketCmds: {[key: string]: Suggestion} = {}
@@ -29,11 +30,14 @@ export class Command {
     private defaultSymbols: Suggestion[] = []
     private packageCmds: {[pkg: string]: Suggestion[]} = {}
 
-    constructor(extension: Extension) {
+    constructor(extension: Extension, environment: Environment) {
         this.extension = extension
+        this.environment = environment
     }
 
     initialize(defaultCmds: {[key: string]: CmdItemEntry}, defaultEnvs: {[key: string]: EnvItemEntry}) {
+        // Make sure to initialize Environment first
+        this.environment.initialize(defaultEnvs)
         const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
 
         // Initialize default commands and `latex-mathsymbols`
@@ -51,7 +55,7 @@ export class Command {
 
         // Initialize default env begin-end pairs, de-duplication
         Object.keys(defaultEnvs).forEach(key => {
-            this.defaultCmds.push(this.entryEnvToCompletion(defaultEnvs[key]))
+            this.defaultCmds.push(this.environment.entryEnvToCompletion(defaultEnvs[key]))
         })
 
         // Handle special commands with brackets
@@ -478,39 +482,6 @@ export class Command {
         }
         return suggestion
     }
-
-    private entryEnvToCompletion(item: EnvItemEntry): Suggestion {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
-        const label = item.detail ? item.detail : item.name
-        const suggestion: Suggestion = {
-            label,
-            kind: vscode.CompletionItemKind.Function,
-            package: 'latex'
-        }
-
-        let snippet: string = ''
-        if (item.snippet) {
-            if (useTabStops) {
-                snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
-            }
-        }
-        if (snippet.match(/\$\{?0\}?/)) {
-            snippet += '\n'
-        } else {
-            snippet += '\n\t$0\n'
-        }
-        suggestion.insertText = new vscode.SnippetString(`begin{${item.name}}${snippet}\\end{${item.name}}`)
-        const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
-        suggestion.detail = `Insert ${art} ${item.name} environment.`
-        suggestion.documentation = label
-        suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
-            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
-            return n !== undefined ? n.toString(16): c
-        })
-        return suggestion
-    }
-
 
     private provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')

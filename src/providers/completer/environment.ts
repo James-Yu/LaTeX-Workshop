@@ -11,8 +11,13 @@ export interface EnvItemEntry {
     detail?: string
 }
 
+export interface Suggestion extends vscode.CompletionItem {
+    package: string
+}
+
 export class Environment {
     extension: Extension
+    private isInitialized: boolean = false
     private defaultEnvs: vscode.CompletionItem[] = []
     private packageEnvs: {[pkg: string]: vscode.CompletionItem[]} = {}
 
@@ -21,11 +26,15 @@ export class Environment {
     }
 
     initialize(envs: {[key: string]: EnvItemEntry}) {
+        if (this.isInitialized) {
+            return
+        }
         this.defaultEnvs = []
         const envList: string[] = Object.keys(envs).map(key => envs[key].name)
         Array.from(new Set(envList)).forEach(env => {
            this.defaultEnvs.push(new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
         })
+        this.isInitialized = true
     }
 
     provide(): vscode.CompletionItem[] {
@@ -134,4 +143,38 @@ export class Environment {
         }
         return envs
     }
+
+
+    entryEnvToCompletion(item: EnvItemEntry): Suggestion {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
+        const label = item.detail ? item.detail : item.name
+        const suggestion: Suggestion = {
+            label,
+            kind: vscode.CompletionItemKind.Function,
+            package: 'latex'
+        }
+
+        let snippet: string = ''
+        if (item.snippet) {
+            if (useTabStops) {
+                snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
+            }
+        }
+        if (snippet.match(/\$\{?0\}?/)) {
+            snippet += '\n'
+        } else {
+            snippet += '\n\t$0\n'
+        }
+        suggestion.insertText = new vscode.SnippetString(`begin{${item.name}}${snippet}\\end{${item.name}}`)
+        const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
+        suggestion.detail = `Insert ${art} ${item.name} environment.`
+        suggestion.documentation = label
+        suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16): c
+        })
+        return suggestion
+    }
+
 }
