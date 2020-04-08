@@ -78,6 +78,10 @@ export class Environment {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
+        if (! configuration.get('intellisense.package.env.enabled')) {
+            return
+        }
+
         // Load environments from the package if not already done
         if (!(pkg in this.packageEnvSnippets)) {
             this.packageEnvSnippets[pkg] = []
@@ -91,7 +95,6 @@ export class Environment {
         if (!(pkg in this.packageEnvSnippets) || this.packageEnvSnippets[pkg].length === 0) {
             return
         }
-
 
         // Insert env snippets
         this.packageEnvSnippets[pkg].forEach(env => {
@@ -205,6 +208,9 @@ export class Environment {
         const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
         suggestion.detail = `Insert ${art} ${item.name} environment.`
         suggestion.documentation = label
+        if (item.package) {
+            suggestion.documentation += '\n' + `Package: ${item.package}`
+        }
         suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
             return n !== undefined ? n.toString(16): c
