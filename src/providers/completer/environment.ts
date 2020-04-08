@@ -43,16 +43,14 @@ export class Environment {
         const envList: string[] = this.defaultEnvs.map(env => env.label)
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedEnvs = this.extension.manager.cachedContent[cachedFile].element.environment
-            if (cachedEnvs === undefined) {
-                return
+            if (cachedEnvs !== undefined) {
+                cachedEnvs.forEach(env => {
+                    if (! envList.includes(env.label)) {
+                        suggestions.push(env)
+                        envList.push(env.label)
+                    }
+                })
             }
-            cachedEnvs.forEach(env => {
-                if (envList.includes(env.label)) {
-                    return
-                }
-                suggestions.push(env)
-                envList.push(env.label)
-            })
         })
         // If no insert package-defined environments
         if (!(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.enabled'))) {
@@ -61,18 +59,16 @@ export class Environment {
         // Insert package environments
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const pkgs = this.extension.manager.cachedContent[tex].element.package
-            if (pkgs === undefined) {
-                return
-            }
-            pkgs.forEach(pkg => {
-                this.getEnvFromPkg(pkg).forEach(env => {
-                    if (envList.includes(env.label)) {
-                        return
-                    }
-                    suggestions.push(env)
-                    envList.push(env.label)
+            if (pkgs !== undefined) {
+                pkgs.forEach(pkg => {
+                    this.getEnvFromPkg(pkg).forEach(env => {
+                        if (!envList.includes(env.label)) {
+                            suggestions.push(env)
+                            envList.push(env.label)
+                        }
+                    })
                 })
-            })
+            }
         })
         return suggestions
     }

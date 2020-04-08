@@ -95,32 +95,32 @@ export class Command {
         }
 
         // Insert commands from packages
-        const extraPackages = configuration.get('intellisense.package.extra') as string[]
-        if (extraPackages) {
-            extraPackages.forEach(pkg => {
-                this.provideCmdInPkg(pkg, suggestions, cmdList)
+        if ((configuration.get('intellisense.package.enabled'))) {
+            const extraPackages = configuration.get('intellisense.package.extra') as string[]
+            if (extraPackages) {
+                extraPackages.forEach(pkg => {
+                    this.provideCmdInPkg(pkg, suggestions, cmdList)
+                })
+            }
+            this.extension.manager.getIncludedTeX().forEach(tex => {
+                const pkgs = this.extension.manager.cachedContent[tex].element.package
+                if (pkgs !== undefined) {
+                    pkgs.forEach(pkg => this.provideCmdInPkg(pkg, suggestions, cmdList))
+                }
             })
         }
-        this.extension.manager.getIncludedTeX().forEach(tex => {
-            const pkgs = this.extension.manager.cachedContent[tex].element.package
-            if (pkgs === undefined) {
-                return
-            }
-            pkgs.forEach(pkg => this.provideCmdInPkg(pkg, suggestions, cmdList))
-        })
 
         // Start working on commands in tex
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.manager.cachedContent[tex].element.command
-            if (cmds === undefined) {
-                return
+            if (cmds !== undefined) {
+                cmds.forEach(cmd => {
+                    if (!cmdList.includes(this.getCmdName(cmd, true))) {
+                        suggestions.push(cmd)
+                        cmdList.push(this.getCmdName(cmd, true))
+                    }
+                })
             }
-            cmds.forEach(cmd => {
-                if (!cmdList.includes(this.getCmdName(cmd, true))) {
-                    suggestions.push(cmd)
-                    cmdList.push(this.getCmdName(cmd, true))
-                }
-            })
         })
 
         return suggestions
@@ -485,9 +485,6 @@ export class Command {
 
     private provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (!(configuration.get('intellisense.package.enabled'))) {
-            return
-        }
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
         if (!(pkg in this.packageCmds)) {
