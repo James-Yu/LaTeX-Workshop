@@ -100,12 +100,16 @@ export class Command {
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
                     this.provideCmdInPkg(pkg, suggestions, cmdList)
+                    this.environment.provideEnvSnippetInPkg(pkg, suggestions, cmdList)
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
                 const pkgs = this.extension.manager.cachedContent[tex].element.package
                 if (pkgs !== undefined) {
-                    pkgs.forEach(pkg => this.provideCmdInPkg(pkg, suggestions, cmdList))
+                    pkgs.forEach(pkg => {
+                        this.provideCmdInPkg(pkg, suggestions, cmdList)
+                        this.environment.provideEnvSnippetInPkg(pkg, suggestions, cmdList)
+                    })
                 }
             })
         }

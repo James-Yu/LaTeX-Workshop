@@ -20,6 +20,7 @@ export class Environment {
     private isInitialized: boolean = false
     private defaultEnvs: vscode.CompletionItem[] = []
     private packageEnvs: {[pkg: string]: vscode.CompletionItem[]} = {}
+    private packageEnvSnippets: {[pkg: string]: vscode.CompletionItem[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -73,6 +74,39 @@ export class Environment {
         return suggestions
     }
 
+    provideEnvSnippetInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
+
+        // Load environments from the package if not already done
+        if (!(pkg in this.packageEnvSnippets)) {
+            this.packageEnvSnippets[pkg] = []
+            const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
+            Object.keys(envs).forEach(env => {
+                this.packageEnvSnippets[pkg].push(this.entryEnvToCompletion(envs[env]))
+            })
+        }
+
+        // No environment defined in package
+        if (!(pkg in this.packageEnvSnippets) || this.packageEnvSnippets[pkg].length === 0) {
+            return
+        }
+
+
+        // Insert env snippets
+        this.packageEnvSnippets[pkg].forEach(env => {
+            const envName = env.filterText ? env.filterText : env.label
+            if (!useOptionalArgsEntries && envName.includes('[')) {
+                return
+            }
+            if (!cmdList.includes(envName)) {
+                suggestions.push(env)
+                cmdList.push(envName)
+            }
+        })
+    }
+
+
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
         if (nodes !== undefined && lines !== undefined) {
             this.extension.manager.cachedContent[file].element.environment = this.getEnvFromNodeArray(nodes, lines)
@@ -105,16 +139,21 @@ export class Environment {
         return envs
     }
 
+    private getEnvItemsFromPkg(pkg: string): {[key: string]: EnvItemEntry} {
+        const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_env.json`
+        if (!fs.existsSync(filePath)) {
+            return {}
+        }
+        const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
+        return envs
+    }
+
     private getEnvFromPkg(pkg: string): vscode.CompletionItem[] {
         if (pkg in this.packageEnvs) {
             return this.packageEnvs[pkg]
         }
-        const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_env.json`
-        if (!fs.existsSync(filePath)) {
-            return []
-        }
         this.packageEnvs[pkg] = []
-        const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
+        const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
         Array.from(new Set(Object.keys(envs).map(e => envs[e].name))).forEach(env => {
             this.packageEnvs[pkg].push(new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
         })
@@ -151,7 +190,7 @@ export class Environment {
             package: 'latex'
         }
 
-        let snippet: string = ''
+        let snippet: string = item.snippet ? item.snippet : ''
         if (item.snippet) {
             if (useTabStops) {
                 snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
@@ -172,5 +211,6 @@ export class Environment {
         })
         return suggestion
     }
+
 
 }
