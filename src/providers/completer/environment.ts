@@ -31,9 +31,8 @@ export class Environment {
             return
         }
         this.defaultEnvs = []
-        const envList: string[] = Object.keys(envs).map(key => envs[key].name)
-        Array.from(new Set(envList)).forEach(env => {
-           this.defaultEnvs.push(new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+        Object.keys(envs).forEach(env => {
+           this.defaultEnvs.push(this.entryEnvToCompletion(envs[env]))
         })
         this.isInitialized = true
     }
@@ -64,6 +63,7 @@ export class Environment {
                 pkgs.forEach(pkg => {
                     this.getEnvFromPkg(pkg).forEach(env => {
                         if (!envList.includes(env.label)) {
+                            // env.kind = vscode.CompletionItemKind.Snippet
                             suggestions.push(env)
                             envList.push(env.label)
                         }
@@ -87,7 +87,7 @@ export class Environment {
             this.packageEnvSnippets[pkg] = []
             const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
             Object.keys(envs).forEach(env => {
-                this.packageEnvSnippets[pkg].push(this.entryEnvToCompletion(envs[env]))
+                this.packageEnvSnippets[pkg].push(this.entryEnvToCompletion(envs[env], 'begin'))
             })
         }
 
@@ -157,8 +157,8 @@ export class Environment {
         }
         this.packageEnvs[pkg] = []
         const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
-        Array.from(new Set(Object.keys(envs).map(e => envs[e].name))).forEach(env => {
-            this.packageEnvs[pkg].push(new vscode.CompletionItem(env, vscode.CompletionItemKind.Module))
+        Object.keys(envs).forEach(env => {
+            this.packageEnvs[pkg].push(this.entryEnvToCompletion(envs[env]))
         })
         return this.packageEnvs[pkg]
     }
@@ -182,8 +182,7 @@ export class Environment {
         return envs
     }
 
-
-    entryEnvToCompletion(item: EnvItemEntry): Suggestion {
+    entryEnvToCompletion(item: EnvItemEntry, prefix: string = ''): Suggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const label = item.detail ? item.detail : item.name
@@ -204,7 +203,7 @@ export class Environment {
         } else {
             snippet += '\n\t$0\n'
         }
-        suggestion.insertText = new vscode.SnippetString(`begin{${item.name}}${snippet}\\end{${item.name}}`)
+        suggestion.insertText = new vscode.SnippetString(`${prefix}${item.name}}${snippet}\\end{${item.name}}`)
         const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
         suggestion.detail = `Insert ${art} ${item.name} environment.`
         suggestion.documentation = label
@@ -217,6 +216,5 @@ export class Environment {
         })
         return suggestion
     }
-
 
 }

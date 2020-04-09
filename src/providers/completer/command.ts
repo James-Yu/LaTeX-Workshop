@@ -55,7 +55,7 @@ export class Command {
 
         // Initialize default env begin-end pairs, de-duplication
         Object.keys(defaultEnvs).forEach(key => {
-            this.defaultCmds.push(this.environment.entryEnvToCompletion(defaultEnvs[key]))
+            this.defaultCmds.push(this.environment.entryEnvToCompletion(defaultEnvs[key], 'begin{'))
         })
 
         // Handle special commands with brackets
