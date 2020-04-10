@@ -32,6 +32,16 @@ export class Environment {
     initialize(envs: {[key: string]: EnvItemEntry}) {
         this.defaultEnvsAsCommand = []
         this.defaultEnvsForBegin = []
+        this.defaultEnvsAsName = []
+        const endCompletion: Suggestion = {
+            label: 'Complete with \\end',
+            sortText: ' ',
+            insertText: new vscode.SnippetString('$1}\n\t$0\n\\end{$1}'),
+            command: { title: 'Post-Action', command: 'editor.action.triggerSuggest' },
+            kind: vscode.CompletionItemKind.Function,
+            package: ''
+        }
+        this.defaultEnvsForBegin.push(endCompletion)
         Object.keys(envs).forEach(env => {
            this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(envs[env], 'begin{'))
            this.defaultEnvsForBegin.push(this.entryEnvToCompletion(envs[env]))
