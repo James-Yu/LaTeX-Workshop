@@ -25,20 +25,28 @@ class TabStop:
 class PlaceHolder:
     count: int
     usePlaceHolders: bool
+    keepDelimiters: bool
 
     def __init__(self):
         self.count = 0
         self.usePlaceHolders = True
+        self.keepDelimiters = True
 
     def setUsePlaceHolders(self, trueOrFalse):
         self.usePlaceHolders = trueOrFalse
+
+    def setKeepDelimiters(self, trueOrFalse):
+        self.keepDelimiters = trueOrFalse
 
     def sub(self, matchObject) -> str:
         self.count += 1
         name = ''
         if self.usePlaceHolders:
             name = ':' + matchObject.group(2)
-        return matchObject.group(1) + '${' + str(self.count) + name + '}' + matchObject.group(3)
+        if self.keepDelimiters:
+            return matchObject.group(1) + '${' + str(self.count) + name + '}' + matchObject.group(3)
+        else:
+            return '${' + str(self.count) + name + '}'
 
 
 def get_unimathsymbols_file():
@@ -103,6 +111,8 @@ def create_snippet(line: str) -> str:
     else:
         snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
     snippet = re.sub(r'(?<![\{\s:\[])(\<)([a-zA-Z\s]*)(\>)', p.sub, snippet)
+    p.setKeepDelimiters(False)
+    snippet = re.sub(r'(?<![\{:\[=-])(%\<)([a-zA-Z\s]*)(%\>)(?!})', p.sub, snippet)
 
     t = TabStop()
     snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
