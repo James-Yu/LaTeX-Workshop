@@ -165,7 +165,7 @@ for cwl_file in cwl_files:
     if pkgEnvs:
         json.dump(pkgEnvs,
                   open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
-                  indent=2)
+                  indent=2, ensure_ascii=False)
     if pkgCmds != {}:
         json.dump(pkgCmds,
                   open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'),
