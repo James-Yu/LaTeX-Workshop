@@ -135,7 +135,7 @@ def parse_cwl_file(
             snippet_name = env + ' ' + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
             snippet_name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', snippet_name)
             snippet = create_snippet(args)
-            pkgenvs[snippet_name] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
+            pkgenvs[snippet_name.rstrip()] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
             continue
         if line[:5] == '\\end{':
             continue
