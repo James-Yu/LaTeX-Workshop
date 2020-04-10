@@ -94,35 +94,42 @@ export class Environment {
         // Extract cached envs and add to default ones
         const suggestions: vscode.CompletionItem[] = Array.from(this.getDefaultEnvs(snippetType))
         const envList: string[] = this.getDefaultEnvs(snippetType).map(env => env.label)
+
+        // Insert package environments
+        if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.enabled')) {
+            this.extension.manager.getIncludedTeX().forEach(tex => {
+                const pkgs = this.extension.manager.cachedContent[tex].element.package
+                if (pkgs !== undefined) {
+                    pkgs.forEach(pkg => {
+                        this.getEnvFromPkg(pkg, snippetType).forEach(env => {
+                            if (!envList.includes(env.label)) {
+                                suggestions.push(env)
+                                envList.push(env.label)
+                            }
+                        })
+                    })
+                }
+            })
+        }
+
+        // Insert environments defined in tex
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedEnvs = this.extension.manager.cachedContent[cachedFile].element.environment
             if (cachedEnvs !== undefined) {
                 cachedEnvs.forEach(env => {
                     if (! envList.includes(env.label)) {
+                        if (snippetType === EnvSnippetType.ForBegin) {
+                            env.insertText = new vscode.SnippetString(`${env.label}}\n\t$0\n\\end{${env.label}}`)
+                        } else {
+                            env.insertText = env.label
+                        }
                         suggestions.push(env)
                         envList.push(env.label)
                     }
                 })
             }
         })
-        // If no insert package-defined environments
-        if (!(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.enabled'))) {
-            return suggestions
-        }
-        // Insert package environments
-        this.extension.manager.getIncludedTeX().forEach(tex => {
-            const pkgs = this.extension.manager.cachedContent[tex].element.package
-            if (pkgs !== undefined) {
-                pkgs.forEach(pkg => {
-                    this.getEnvFromPkg(pkg, snippetType).forEach(env => {
-                        if (!envList.includes(env.label)) {
-                            suggestions.push(env)
-                            envList.push(env.label)
-                        }
-                    })
-                })
-            }
-        })
+
         return suggestions
     }
 
