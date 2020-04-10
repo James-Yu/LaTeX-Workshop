@@ -22,8 +22,8 @@ export class Environment {
     private defaultEnvsAsName: Suggestion[] = []
     private defaultEnvsAsCommand: Suggestion[] = []
     private defaultEnvsForBegin: Suggestion[] = []
-    private packageEnvs: {[pkg: string]: vscode.CompletionItem[]} = {}
-    private packageEnvSnippets: {[pkg: string]: vscode.CompletionItem[]} = {}
+    private packageEnvs: {[pkg: string]: Suggestion[]} = {}
+    private packageEnvSnippets: {[pkg: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -154,22 +154,27 @@ export class Environment {
     }
 
     // This function will return all environments in a node array, including sub-nodes
-    private getEnvFromNodeArray(nodes: latexParser.Node[], lines: string[]): vscode.CompletionItem[] {
-        let envs: vscode.CompletionItem[] = []
+    private getEnvFromNodeArray(nodes: latexParser.Node[], lines: string[]): Suggestion[] {
+        let envs: Suggestion[] = []
         for (let index = 0; index < nodes.length; ++index) {
             envs = envs.concat(this.getEnvFromNode(nodes[index], lines))
         }
         return envs
     }
 
-    private getEnvFromNode(node: latexParser.Node, lines: string[]): vscode.CompletionItem[] {
-        let envs: vscode.CompletionItem[] = []
-        let label = ''
+    private getEnvFromNode(node: latexParser.Node, lines: string[]): Suggestion[] {
+        let envs: Suggestion[] = []
         // Here we only check `isEnvironment`which excludes `align*` and `verbatim`.
         // Nonetheless, they have already been included in `defaultEnvs`.
         if (latexParser.isEnvironment(node)) {
-            label = node.name
-            envs.push(new vscode.CompletionItem(label, vscode.CompletionItemKind.Module))
+            const env: Suggestion = {
+                label: `${node.name}`,
+                kind: vscode.CompletionItemKind.Module,
+                documentation: '`' + node.name + '`',
+                filterText: node.name,
+                package: ''
+            }
+            envs.push(env)
         }
         if (latexParser.hasContentArray(node)) {
             envs = envs.concat(this.getEnvFromNodeArray(node.content, lines))
@@ -186,7 +191,7 @@ export class Environment {
         return envs
     }
 
-    private getEnvFromPkg(pkg: string): vscode.CompletionItem[] {
+    private getEnvFromPkg(pkg: string): Suggestion[] {
         if (pkg in this.packageEnvs) {
             return this.packageEnvs[pkg]
         }
@@ -198,9 +203,9 @@ export class Environment {
         return this.packageEnvs[pkg]
     }
 
-    private getEnvFromContent(content: string): vscode.CompletionItem[] {
+    private getEnvFromContent(content: string): Suggestion[] {
         const envReg = /\\begin\s?{([^{}]*)}/g
-        const envs: vscode.CompletionItem[] = []
+        const envs: Suggestion[] = []
         const envList: string[] = []
         while (true) {
             const result = envReg.exec(content)
@@ -210,8 +215,15 @@ export class Environment {
             if (envList.includes(result[1])) {
                 continue
             }
+            const env: Suggestion = {
+                label: `${result[1]}`,
+                kind: vscode.CompletionItemKind.Module,
+                documentation: '`' + result[1] + '`',
+                filterText: result[1],
+                package: ''
+            }
 
-            envs.push(new vscode.CompletionItem(result[1], vscode.CompletionItemKind.Module))
+            envs.push(env)
             envList.push(result[1])
         }
         return envs
@@ -239,8 +251,7 @@ export class Environment {
             snippet += '\n\t$0\n'
         }
         suggestion.insertText = new vscode.SnippetString(`${prefix}${item.name}}${snippet}\\end{${item.name}}`)
-        const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
-        suggestion.detail = `Insert ${art} ${item.name} environment.`
+        suggestion.detail = `Insert environment ${item.name}.`
         suggestion.documentation = label
         if (item.package) {
             suggestion.documentation += '\n' + `Package: ${item.package}`
