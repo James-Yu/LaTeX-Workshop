@@ -22,8 +22,9 @@ export class Environment {
     private defaultEnvsAsName: Suggestion[] = []
     private defaultEnvsAsCommand: Suggestion[] = []
     private defaultEnvsForBegin: Suggestion[] = []
-    private packageEnvs: {[pkg: string]: Suggestion[]} = {}
-    private packageEnvSnippets: {[pkg: string]: Suggestion[]} = {}
+    private packageEnvsAsName: {[pkg: string]: Suggestion[]} = {}
+    private packageEnvsAsCommand: {[pkg: string]: Suggestion[]} = {}
+    private packageEnvsForBegin: {[pkg: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -43,9 +44,9 @@ export class Environment {
         }
         this.defaultEnvsForBegin.push(endCompletion)
         Object.keys(envs).forEach(env => {
-           this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(envs[env], 'begin{'))
-           this.defaultEnvsForBegin.push(this.entryEnvToCompletion(envs[env]))
-           this.defaultEnvsAsName.push(this.entryEnvToCompletionName(envs[env]))
+           this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(envs[env], EnvSnippetType.AsCommand))
+           this.defaultEnvsForBegin.push(this.entryEnvToCompletion(envs[env], EnvSnippetType.ForBegin))
+           this.defaultEnvsAsName.push(this.entryEnvToCompletion(envs[env], EnvSnippetType.AsName))
         })
     }
 
@@ -64,6 +65,23 @@ export class Environment {
                 return []
         }
     }
+
+    getPackageEnvs(type: EnvSnippetType): {[pkg: string]: Suggestion[]} {
+        switch (type) {
+            case EnvSnippetType.AsName:
+                return this.packageEnvsAsName
+                break
+            case EnvSnippetType.AsCommand:
+                return this.packageEnvsAsCommand
+                break
+            case EnvSnippetType.ForBegin:
+                return this.packageEnvsForBegin
+                break
+            default:
+                return {}
+        }
+    }
+
 
     provide(): vscode.CompletionItem[] {
         if (vscode.window.activeTextEditor === undefined) {
@@ -96,9 +114,8 @@ export class Environment {
             const pkgs = this.extension.manager.cachedContent[tex].element.package
             if (pkgs !== undefined) {
                 pkgs.forEach(pkg => {
-                    this.getEnvFromPkg(pkg).forEach(env => {
+                    this.getEnvFromPkg(pkg, snippetType).forEach(env => {
                         if (!envList.includes(env.label)) {
-                            // env.kind = vscode.CompletionItemKind.Snippet
                             suggestions.push(env)
                             envList.push(env.label)
                         }
@@ -109,7 +126,7 @@ export class Environment {
         return suggestions
     }
 
-    provideEnvSnippetInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
+    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -118,21 +135,21 @@ export class Environment {
         }
 
         // Load environments from the package if not already done
-        if (!(pkg in this.packageEnvSnippets)) {
-            this.packageEnvSnippets[pkg] = []
+        if (!(pkg in this.packageEnvsAsCommand)) {
+            this.packageEnvsAsCommand[pkg] = []
             const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
             Object.keys(envs).forEach(env => {
-                this.packageEnvSnippets[pkg].push(this.entryEnvToCompletion(envs[env], 'begin{'))
+                this.packageEnvsAsCommand[pkg].push(this.entryEnvToCompletion(envs[env], EnvSnippetType.AsCommand))
             })
         }
 
         // No environment defined in package
-        if (!(pkg in this.packageEnvSnippets) || this.packageEnvSnippets[pkg].length === 0) {
+        if (!(pkg in this.packageEnvsAsCommand) || this.packageEnvsAsCommand[pkg].length === 0) {
             return
         }
 
         // Insert env snippets
-        this.packageEnvSnippets[pkg].forEach(env => {
+        this.packageEnvsAsCommand[pkg].forEach(env => {
             const envName = env.filterText ? env.filterText : env.label
             if (!useOptionalArgsEntries && envName.includes('[')) {
                 return
@@ -191,16 +208,17 @@ export class Environment {
         return envs
     }
 
-    private getEnvFromPkg(pkg: string): Suggestion[] {
-        if (pkg in this.packageEnvs) {
-            return this.packageEnvs[pkg]
+    private getEnvFromPkg(pkg: string, type: EnvSnippetType): Suggestion[] {
+        const packageEnvs: {[pkg: string]: Suggestion[]} = this.getPackageEnvs(type)
+        if (pkg in packageEnvs) {
+            return packageEnvs[pkg]
         }
-        this.packageEnvs[pkg] = []
+        packageEnvs[pkg] = []
         const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
         Object.keys(envs).forEach(env => {
-            this.packageEnvs[pkg].push(this.entryEnvToCompletion(envs[env]))
+            packageEnvs[pkg].push(this.entryEnvToCompletion(envs[env], type))
         })
-        return this.packageEnvs[pkg]
+        return packageEnvs[pkg]
     }
 
     private getEnvFromContent(content: string): Suggestion[] {
@@ -229,60 +247,46 @@ export class Environment {
         return envs
     }
 
-    entryEnvToCompletion(item: EnvItemEntry, prefix: string = ''): Suggestion {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
+    entryEnvToCompletion(item: EnvItemEntry, type: EnvSnippetType): Suggestion {
         const label = item.detail ? item.detail : item.name
         const suggestion: Suggestion = {
-            label,
+            label: item.name,
             kind: vscode.CompletionItemKind.Function,
-            package: 'latex'
+            package: 'latex',
+            detail: `Insert environment ${item.name}.`,
+            documentation: item.name
         }
+        if (item.package) {
+            suggestion.documentation += '\n' + `Package: ${item.package}`
+        }
+        suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16): c
+        })
 
-        let snippet: string = item.snippet ? item.snippet : ''
-        if (item.snippet) {
-            if (useTabStops) {
-                snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
-            }
-        }
-        if (snippet.match(/\$\{?0\}?/)) {
-            snippet += '\n'
+        if (type === EnvSnippetType.AsName) {
+            return suggestion
         } else {
-            snippet += '\n\t$0\n'
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const useTabStops = configuration.get('intellisense.useTabStops.enabled')
+            const prefix = (type === EnvSnippetType.ForBegin) ? '' : 'begin{'
+            let snippet: string = item.snippet ? item.snippet : ''
+            if (item.snippet) {
+                if (useTabStops) {
+                    snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
+                }
+            }
+            if (snippet.match(/\$\{?0\}?/)) {
+                snippet += '\n'
+            } else {
+                snippet += '\n\t$0\n'
+            }
+            if (item.detail) {
+                suggestion.label = item.detail
+            }
+            suggestion.insertText = new vscode.SnippetString(`${prefix}${item.name}}${snippet}\\end{${item.name}}`)
+            return suggestion
         }
-        suggestion.insertText = new vscode.SnippetString(`${prefix}${item.name}}${snippet}\\end{${item.name}}`)
-        suggestion.detail = `Insert environment ${item.name}.`
-        suggestion.documentation = label
-        if (item.package) {
-            suggestion.documentation += '\n' + `Package: ${item.package}`
-        }
-        suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
-            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
-            return n !== undefined ? n.toString(16): c
-        })
-        return suggestion
     }
-
-    entryEnvToCompletionName(item: EnvItemEntry): Suggestion {
-        const label = item.name
-        const suggestion: Suggestion = {
-            label,
-            kind: vscode.CompletionItemKind.Function,
-            package: item.package ? item.package : ''
-        }
-
-        const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
-        suggestion.detail = `Insert ${art} ${item.name} environment.`
-        suggestion.documentation = label
-        if (item.package) {
-            suggestion.documentation += '\n' + `Package: ${item.package}`
-        }
-        suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
-            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
-            return n !== undefined ? n.toString(16): c
-        })
-        return suggestion
-    }
-
 
 }

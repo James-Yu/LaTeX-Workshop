@@ -98,7 +98,7 @@ export class Command {
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
                     this.provideCmdInPkg(pkg, suggestions, cmdList)
-                    this.environment.provideEnvSnippetInPkg(pkg, suggestions, cmdList)
+                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdList)
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
@@ -106,7 +106,7 @@ export class Command {
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
                         this.provideCmdInPkg(pkg, suggestions, cmdList)
-                        this.environment.provideEnvSnippetInPkg(pkg, suggestions, cmdList)
+                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdList)
                     })
                 }
             })
