@@ -52,8 +52,9 @@ export class Completer implements vscode.CompletionItemProvider {
             }
         }
         Object.assign(maths, cmds)
-        this.command.initialize(maths, env)
+        // Make sure to initialize environment first
         this.environment.initialize(env)
+        this.command.initialize(maths)
     }
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): Promise<vscode.CompletionItem[]> {

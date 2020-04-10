@@ -3,7 +3,7 @@ import * as fs from 'fs-extra'
 import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
-import {EnvItemEntry, Environment} from './environment'
+import {Environment, EnvSnippetType} from './environment'
 
 interface CmdItemEntry {
     command: string, // frame
@@ -35,9 +35,7 @@ export class Command {
         this.environment = environment
     }
 
-    initialize(defaultCmds: {[key: string]: CmdItemEntry}, defaultEnvs: {[key: string]: EnvItemEntry}) {
-        // Make sure to initialize Environment first
-        this.environment.initialize(defaultEnvs)
+    initialize(defaultCmds: {[key: string]: CmdItemEntry}) {
         const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
 
         // Initialize default commands and `latex-mathsymbols`
@@ -53,9 +51,9 @@ export class Command {
             }
         })
 
-        // Initialize default env begin-end pairs, de-duplication
-        Object.keys(defaultEnvs).forEach(key => {
-            this.defaultCmds.push(this.environment.entryEnvToCompletion(defaultEnvs[key], 'begin{'))
+        // Initialize default env begin-end pairs
+        this.environment.getDefaultEnvs(EnvSnippetType.AsCommand).forEach(cmd => {
+            this.defaultCmds.push(cmd)
         })
 
         // Handle special commands with brackets

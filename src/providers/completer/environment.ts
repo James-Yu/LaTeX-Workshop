@@ -11,14 +11,17 @@ export interface EnvItemEntry {
     detail?: string
 }
 
+export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
+
 export interface Suggestion extends vscode.CompletionItem {
     package: string
 }
 
 export class Environment {
     extension: Extension
-    private isInitialized: boolean = false
-    private defaultEnvs: vscode.CompletionItem[] = []
+    private defaultEnvsAsName: Suggestion[] = []
+    private defaultEnvsAsCommand: Suggestion[] = []
+    private defaultEnvsForBegin: Suggestion[] = []
     private packageEnvs: {[pkg: string]: vscode.CompletionItem[]} = {}
     private packageEnvSnippets: {[pkg: string]: vscode.CompletionItem[]} = {}
 
@@ -27,20 +30,42 @@ export class Environment {
     }
 
     initialize(envs: {[key: string]: EnvItemEntry}) {
-        if (this.isInitialized) {
-            return
-        }
-        this.defaultEnvs = []
+        this.defaultEnvsAsCommand = []
+        this.defaultEnvsForBegin = []
         Object.keys(envs).forEach(env => {
-           this.defaultEnvs.push(this.entryEnvToCompletion(envs[env]))
+           this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(envs[env], 'begin{'))
+           this.defaultEnvsForBegin.push(this.entryEnvToCompletion(envs[env]))
+           this.defaultEnvsAsName.push(this.entryEnvToCompletionName(envs[env]))
         })
-        this.isInitialized = true
+    }
+
+    getDefaultEnvs(type: EnvSnippetType): Suggestion[] {
+        switch (type) {
+            case EnvSnippetType.AsName:
+                return this.defaultEnvsAsName
+                break
+            case EnvSnippetType.AsCommand:
+                return this.defaultEnvsAsCommand
+                break
+            case EnvSnippetType.ForBegin:
+                return this.defaultEnvsForBegin
+                break
+            default:
+                return []
+        }
     }
 
     provide(): vscode.CompletionItem[] {
+        if (vscode.window.activeTextEditor === undefined) {
+            return []
+        }
+        let snippetType: EnvSnippetType = EnvSnippetType.ForBegin
+        if (vscode.window.activeTextEditor.selections.length > 1) {
+            snippetType = EnvSnippetType.AsName
+        }
         // Extract cached envs and add to default ones
-        const suggestions: vscode.CompletionItem[] = Array.from(this.defaultEnvs)
-        const envList: string[] = this.defaultEnvs.map(env => env.label)
+        const suggestions: vscode.CompletionItem[] = Array.from(this.getDefaultEnvs(snippetType))
+        const envList: string[] = this.getDefaultEnvs(snippetType).map(env => env.label)
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedEnvs = this.extension.manager.cachedContent[cachedFile].element.environment
             if (cachedEnvs !== undefined) {
@@ -87,7 +112,7 @@ export class Environment {
             this.packageEnvSnippets[pkg] = []
             const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
             Object.keys(envs).forEach(env => {
-                this.packageEnvSnippets[pkg].push(this.entryEnvToCompletion(envs[env], 'begin'))
+                this.packageEnvSnippets[pkg].push(this.entryEnvToCompletion(envs[env], 'begin{'))
             })
         }
 
@@ -216,5 +241,27 @@ export class Environment {
         })
         return suggestion
     }
+
+    entryEnvToCompletionName(item: EnvItemEntry): Suggestion {
+        const label = item.name
+        const suggestion: Suggestion = {
+            label,
+            kind: vscode.CompletionItemKind.Function,
+            package: item.package ? item.package : ''
+        }
+
+        const art = ['a', 'e', 'i', 'o', 'u'].includes(`${item.name}`.charAt(0)) ? 'an' : 'a'
+        suggestion.detail = `Insert ${art} ${item.name} environment.`
+        suggestion.documentation = label
+        if (item.package) {
+            suggestion.documentation += '\n' + `Package: ${item.package}`
+        }
+        suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
+            const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
+            return n !== undefined ? n.toString(16): c
+        })
+        return suggestion
+    }
+
 
 }
