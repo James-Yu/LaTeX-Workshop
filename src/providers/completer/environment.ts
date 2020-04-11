@@ -39,7 +39,7 @@ export class Environment {
             sortText: ' ',
             insertText: new vscode.SnippetString('$1}\n\t$0\n\\end{$1}'),
             command: { title: 'Post-Action', command: 'editor.action.triggerSuggest' },
-            kind: vscode.CompletionItemKind.Function,
+            kind: vscode.CompletionItemKind.Module,
             package: ''
         }
         this.defaultEnvsForBegin.push(endCompletion)
@@ -258,7 +258,7 @@ export class Environment {
         const label = item.detail ? item.detail : item.name
         const suggestion: Suggestion = {
             label: item.name,
-            kind: vscode.CompletionItemKind.Function,
+            kind: vscode.CompletionItemKind.Module,
             package: 'latex',
             detail: `Insert environment ${item.name}.`,
             documentation: item.name
@@ -274,6 +274,9 @@ export class Environment {
         if (type === EnvSnippetType.AsName) {
             return suggestion
         } else {
+            if (type === EnvSnippetType.AsCommand) {
+                suggestion.kind = vscode.CompletionItemKind.Snippet
+            }
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const useTabStops = configuration.get('intellisense.useTabStops.enabled')
             const prefix = (type === EnvSnippetType.ForBegin) ? '' : 'begin{'
