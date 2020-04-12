@@ -1,5 +1,15 @@
 window.addEventListener('message', event => {
     const data = event.data;
+    const stepTimes = {};
+    // Order steps increasingly to make compatible with 'for in'
+    if (data.stepTimes) {
+        const stepKeys = Object.keys(data.stepTimes).sort((a, b) => {
+            const ia = Number(a.slice(0, a.indexOf('-')));
+            const ib = Number(b.slice(0, b.indexOf('-')));
+            return ia - ib;
+        })
+        stepKeys.forEach(key => stepTimes[key] = data.stepTimes[key]);
+    }
 
     if (data.type === 'init') {
         if (progressManager.startTime) {
@@ -9,7 +19,7 @@ window.addEventListener('message', event => {
         if (progressManager.stepTimes) {
             progressManager.backupStepTimes = progressManager.stepTimes;
         }
-        progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
+        progressManager.stepTimes = stepTimes;
         progressManager.pageTotal = data.pageTotal;
         progressManager.maxTime = 0;
 
@@ -27,7 +37,7 @@ window.addEventListener('message', event => {
             }
         }
     } else if (data.type === 'update') {
-        progressManager.stepTimes = data.stepTimes ? data.stepTimes : {};
+        progressManager.stepTimes = stepTimes
         progressManager.pageTotal = data.pageTotal;
 
         if (!progressManager.graph.doneSetup) {
