@@ -23,9 +23,9 @@ export class Completer implements vscode.CompletionItemProvider {
     constructor(extension: Extension) {
         this.extension = extension
         this.citation = new Citation(extension)
-        this.command = new Command(extension)
+        this.environment = new Environment(extension) // Must be created before command
+        this.command = new Command(extension, this.environment)
         this.documentClass = new DocumentClass(extension)
-        this.environment = new Environment(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
         this.input = new Input(extension)
@@ -39,8 +39,7 @@ export class Completer implements vscode.CompletionItemProvider {
     loadDefaultItems() {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
-        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`,
-                                                        {encoding: 'utf8'})
+        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`, {encoding: 'utf8'})
         const env = JSON.parse(defaultEnvs)
         const cmds = JSON.parse(defaultCommands)
         const maths = JSON.parse(defaultLaTeXMathSymbols)
@@ -53,8 +52,9 @@ export class Completer implements vscode.CompletionItemProvider {
             }
         }
         Object.assign(maths, cmds)
-        this.command.initialize(maths, env)
+        // Make sure to initialize environment first
         this.environment.initialize(env)
+        this.command.initialize(maths)
     }
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): Promise<vscode.CompletionItem[]> {
