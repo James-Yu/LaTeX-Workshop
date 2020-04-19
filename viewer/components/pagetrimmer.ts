@@ -19,18 +19,26 @@ document.getElementById('trimSelect').addEventListener('change', () => {
     const trimScale = getTrimScale()
     const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
     const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
-    const e = new Event('change')
-    let o
+    const ev = new Event('change')
     if (trimSelect.selectedIndex <= 0) {
-        for ( o of scaleSelect.options ) {
-            o.disabled = false
+        for ( const opt of scaleSelect.options ) {
+            opt.disabled = false
         }
         (document.getElementById('trimOption') as HTMLOptionElement).disabled = true
         document.getElementById('trimOption').hidden = true
         if (originalUserSelectIndex !== undefined) {
-            scaleSelect.selectedIndex = originalUserSelectIndex
+            /**
+             * If the original scale is custom, selectedIndex === 4,
+             * we use page-width, selectedIndex === 3.
+             * There is no way to set the custom scale.
+             */
+            if (originalUserSelectIndex === 4) {
+                scaleSelect.selectedIndex = 3
+            } else {
+                scaleSelect.selectedIndex = originalUserSelectIndex
+            }
         }
-        scaleSelect.dispatchEvent(e)
+        scaleSelect.dispatchEvent(ev)
         currentUserSelectScale = undefined
         originalUserSelectIndex = undefined
         const viewer = document.getElementById('viewer')
@@ -45,8 +53,8 @@ document.getElementById('trimSelect').addEventListener('change', () => {
         }
         return
     }
-    for ( o of scaleSelect.options ) {
-        o.disabled = true
+    for ( const opt of scaleSelect.options ) {
+        opt.disabled = true
     }
     if (currentUserSelectScale === undefined) {
         currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale
@@ -54,10 +62,10 @@ document.getElementById('trimSelect').addEventListener('change', () => {
     if (originalUserSelectIndex === undefined) {
         originalUserSelectIndex = scaleSelect.selectedIndex
     }
-    o = document.getElementById('trimOption') as HTMLOptionElement
-    o.value = (currentUserSelectScale * trimScale).toString()
-    o.selected = true
-    scaleSelect.dispatchEvent(e)
+    const opt = document.getElementById('trimOption') as HTMLOptionElement
+    opt.value = (currentUserSelectScale * trimScale).toString()
+    opt.selected = true
+    scaleSelect.dispatchEvent(ev)
 })
 
 
