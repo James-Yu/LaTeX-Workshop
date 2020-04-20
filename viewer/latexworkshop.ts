@@ -31,6 +31,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private readonly webviewLoaded: Promise<void> = new Promise((resolve) => {
         document.addEventListener('webviewerloaded', () => resolve() )
     })
+    private synctexEnabled = true
 
     constructor() {
         this.embedded = window.parent !== window
@@ -69,6 +70,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         this.hidePrintButton()
         this.registerKeybinding()
+        this.registerSynctexButton()
         this.startConnectionKeeper()
         this.startRebroadcastingKeyboardEvent()
         this.startSendingState()
@@ -148,7 +150,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
             scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
             scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
-            trim: (document.getElementById('trimSelect') as HTMLSelectElement).selectedIndex
+            trim: (document.getElementById('trimSelect') as HTMLSelectElement).selectedIndex,
+            synctexEnabled: this.synctexEnabled
         }
         return pack
     }
@@ -171,6 +174,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
         if (state.scrollLeft !== undefined) {
             (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = state.scrollLeft
+        }
+        if (state.synctexEnabled !== undefined) {
+            this.setSynctex(state.synctexEnabled)
         }
         if (state.trim !== undefined) {
             const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
@@ -212,6 +218,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const data = JSON.parse(event.data) as ServerResponse
             switch (data.type) {
                 case 'synctex': {
+                    if (!this.synctexEnabled) {
+                        break
+                    }
                     // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
                     // https://github.com/James-Yu/LaTeX-Workshop/pull/417
                     const container = document.getElementById('viewerContainer') as HTMLElement
@@ -438,7 +447,34 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    private startConnectionKeeper() {
+    setSynctex(flag: boolean) {
+        const synctexOn = document.getElementById('synctexOn') as HTMLButtonElement
+        const synctexOff = document.getElementById('synctexOff') as HTMLButtonElement
+        if (flag) {
+            synctexOn.classList.add('toggled')
+            synctexOff.classList.remove('toggled')
+            this.synctexEnabled = true
+        } else {
+            synctexOn.classList.remove('toggled')
+            synctexOff.classList.add('toggled')
+            this.synctexEnabled = false
+        }
+    }
+
+    registerSynctexButton() {
+        const synctexOn = document.getElementById('synctexOn') as HTMLButtonElement
+        const synctexOff = document.getElementById('synctexOff') as HTMLButtonElement
+        synctexOn.addEventListener('click', () => {
+            this.setSynctex(true)
+            PDFViewerApplication.secondaryToolbar.close()
+        })
+        synctexOff.addEventListener('click', () => {
+            this.setSynctex(false)
+            PDFViewerApplication.secondaryToolbar.close()
+        })
+    }
+
+    startConnectionKeeper() {
         // Send packets every 30 sec to prevent the connection closed by timeout.
         setInterval( () => {
             if (this.socket.readyState === 1) {

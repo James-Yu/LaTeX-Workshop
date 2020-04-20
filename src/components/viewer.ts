@@ -491,14 +491,16 @@ export class Viewer {
             return
         }
         for (const panel of panelSet.values()) {
-            if (panel.webviewPanel.visible) {
+            const isSyntexOn = !panel.state || panel.state.synctexEnabled
+            if (panel.webviewPanel.visible && isSyntexOn) {
                 return
             }
         }
         const activeViewColumn = vscode.window.activeTextEditor?.viewColumn
         for (const panel of panelSet.values()) {
             if (panel.webviewPanel.viewColumn !== activeViewColumn) {
-                if (!panel.webviewPanel.visible) {
+                const isSyntexOn = !panel.state || panel.state.synctexEnabled
+                if (!panel.webviewPanel.visible && isSyntexOn) {
                     panel.webviewPanel.reveal(undefined, true)
                     return true
                 }

@@ -75,6 +75,7 @@ export interface IPDFViewerApplication {
         isOpen: boolean
     },
     secondaryToolbar: {
+        close: () => void,
         isOpen: boolean
     },
     open(filePath: string): Promise<void>
