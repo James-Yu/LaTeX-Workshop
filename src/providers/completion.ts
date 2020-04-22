@@ -38,14 +38,10 @@ export class Completer implements vscode.CompletionItemProvider {
 
     loadDefaultItems() {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
-        const defaultLaTeXEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-document_env.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
-        const defaultLaTeXCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-document_cmd.json`, {encoding: 'utf8'})
         const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`, {encoding: 'utf8'})
         const env = JSON.parse(defaultEnvs)
-        const laTeXEnv = JSON.parse(defaultLaTeXEnvs)
         const cmds = JSON.parse(defaultCommands)
-        const laTeXCmds = JSON.parse(defaultLaTeXCommands)
         const maths = JSON.parse(defaultLaTeXMathSymbols)
         for (const key of Object.keys(maths)) {
             if (key.match(/\{.*?\}/)) {
@@ -56,8 +52,6 @@ export class Completer implements vscode.CompletionItemProvider {
             }
         }
         Object.assign(maths, cmds)
-        Object.assign(maths, laTeXCmds)
-        Object.assign(env, laTeXEnv)
         // Make sure to initialize environment first
         this.environment.initialize(env)
         this.command.initialize(maths)
