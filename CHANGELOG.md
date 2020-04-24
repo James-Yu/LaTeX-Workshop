@@ -1,5 +1,37 @@
 # Change Log
 
+## [8.9.0] - 2020-04-24
+
+### Added
+- Update `PDF.js` to `v2.3.200`.
+- Enhanced `rnw `support.
+- Turn `..` into tabstops in snippets.
+- The new placeholders `%DOC_W32%`, `%DOC_EXT_W32%`, `%DIR_W32%`, `%OUTDIR_W32%` are normalized so that they use `\\` as the path separator on Windows.
+  - Placeholders without the `_W32` suffix always use `/` as the path separator. On Unix platforms, placeholders with and without the `_W32` suffix have the same value.
+- (#1534,#2020) Match `\left`...`\right` brackets.
+- (#1951) Load `data/packages/class-*.json` files to provide completion items specific to `documentclass`es.
+- (#1989) Add syntax highlighting for TypeScript in `minted`.
+- (#2029) Refactor environments snippets.
+- (#2033) Add a completion provider for `bibtex` files.
+- (#2047) Add more default commands in intellisense.
+
+### Changed
+- In `%DOC%` and `%DOCFILE%`, we now remove any extension, not only `.tex`.
+  - Two new placeholders `%DOC_EXT%` and `%DOCFILE_EXT%` are respectively the root file full path and the root file name with the extension kept.
+- Use `cross-spawn` to build and view.
+
+### Fixed
+- Fix `updatePkg` when `latexParser` fails.
+- (#2002) Make sure to kill all child processes.
+- (#2003) Reveal a `WebviewPanel` when executing SyncTeX.
+- (#2010) Force `/` in `%OUTDIR%` even on Windows.
+- (#2011) Check the length of the args of `\label` command.
+- (#2012) Remove `cleveref` intellisense entries.
+- (#2016) Disable Ctrl+P Shortcut in `pdf.js` viewer.
+- (#2017) Use a dedicated option for pdf watch delay.
+- (#2025) Render citation completion and preview as markdown.
+- (#2030) Order latexmk rules numerically in compilation live info.
+
 ## [8.8.0] - 2020-03-22
 
 ### Added
