@@ -126,6 +126,7 @@ export class BuildInfo {
             Biber: [ /This is Biber[\w.\- ",()]+$/, false ],
             Sage: [ /Processing Sage code for [\w.\- "]+\.\.\.$/, false ],
             LuaTeX: [ /This is LuaTeX, Version [\d.]+[^\n]*$/, true ],
+            LuaHBTeX: [ /This is LuaHBTeX, Version [\d.]+[^\n]*$/, true ],
             XeTex: [ /This is XeTeX, Version [\d.-]+[^\n]*$/, true ]
         }
 
