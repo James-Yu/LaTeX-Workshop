@@ -27,7 +27,9 @@ Thank you so much!
 
 The manual of the extension is maintained as a [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki)
 
-- [Home](https://github.com/James-Yu/LaTeX-Workshop/wiki/https://github.com/James-Yu/LaTeX-Workshop/wiki/Home)
+# Table of Contents
+
+- [Home](https://github.com/James-Yu/LaTeX-Workshop/wiki/Home)
 - [Installation and basic settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install)
   - [Requirements](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#requirements)
   - [Installation](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#installation)
@@ -37,7 +39,9 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Using Docker](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#using-docker)
   - [Using WSL](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install#using-wsl)
 - [Compiling](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile)
+  - [Multi file projects](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#Multi-File-Projects)
   - [Building the document](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#building-the-document)
+  - [Building a `.rnw` file](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#building-a-rnw-file)
   - [Terminating the current compilation](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#terminating-the-current-compilation)
   - [Auto build](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#auto-build-latex)
   - [Cleaning generated files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files)
@@ -49,13 +53,13 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
 - [Formatting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format)
   - [LaTeX files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format#LaTeX-files)
   - [Bibtex files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format#Bibtex-files)
-- [Multi file projects](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)
 - [Intellisense](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense)
   - [Citations](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Citations)
   - [References](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#References)
   - [Commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Commands)
   - [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Environments)
   - [Files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#files)
+  - [Bibtex Files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#bibtex-files)
 - [Snippets and shortcuts](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets)
   - [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Environments)
   - [Sectioning](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Sectioning)
