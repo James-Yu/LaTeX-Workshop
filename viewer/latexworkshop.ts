@@ -26,7 +26,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         const pack = this.decodeQuery()
         this.encodedPdfFilePath = pack.encodedPdfFilePath
-        this.documentTitle = pack.documentTitle
+        this.documentTitle = pack.documentTitle || ''
         document.title = this.documentTitle
         this.pdfFilePath = pack.pdfFilePath
 
@@ -102,7 +102,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             switch (data.type) {
                 case 'synctex': {
                     // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
-                    const container = document.getElementById('viewerContainer')
+                    const container = document.getElementById('viewerContainer') as HTMLElement
                     const pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
                     const page = document.getElementsByClassName('page')[data.data.page - 1] as HTMLElement
                     const scrollX = page.offsetLeft + pos[0]
@@ -113,7 +113,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     container.scrollTop = scrollY - document.body.offsetHeight * 0.4
                     this.viewerHistory.set(container.scrollTop)
 
-                    const indicator = document.getElementById('synctex-indicator')
+                    const indicator = document.getElementById('synctex-indicator') as HTMLElement
                     indicator.className = 'show'
                     indicator.style.left = `${scrollX}px`
                     indicator.style.top = `${scrollY}px`
@@ -125,8 +125,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
                         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
                         spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
-                        scrollTop: document.getElementById('viewerContainer').scrollTop,
-                        scrollLeft: document.getElementById('viewerContainer').scrollLeft
+                        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
+                        scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft
                     }
 
                     // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
@@ -147,9 +147,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     this.onDidLoadPdfFile( () => {
                         PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
                         PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
-                        PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode
-                        document.getElementById('viewerContainer').scrollTop = pack.scrollTop
-                        document.getElementById('viewerContainer').scrollLeft = pack.scrollLeft
+                        PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode;
+                        (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
+                        (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
                     }, {once: true})
                     this.onDidRenderPdfFile( () => {
                         this.send({type:'loaded', path:this.pdfFilePath})
@@ -182,8 +182,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         }, {once: true})
                     }
                     if (data.invert > 0) {
-                        document.querySelector('html').style.filter = `invert(${data.invert * 100}%)`
-                        document.querySelector('html').style.background = 'white'
+                        (document.querySelector('html') as HTMLHtmlElement).style.filter = `invert(${data.invert * 100}%)`;
+                        (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
                     }
                     (document.querySelector('#viewerContainer') as HTMLElement).style.background = data.bgColor
                     if (data.keybindings) {
@@ -196,7 +196,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     this.send( {
                         type: 'status',
                         path: this.pdfFilePath,
-                        scrollTop: document.getElementById('viewerContainer').scrollTop
+                        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop
                     })
                     break
                 }
@@ -263,8 +263,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const param = parts[i].split('=')
             if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
                 const dom = document.getElementsByClassName('print') as HTMLCollectionOf<HTMLElement>
-                for (let j = 0; j < dom.length; ++j) {
-                    dom.item(j).style.display='none'
+                for (const item of dom) {
+                    item.style.display='none'
                 }
             }
         }
@@ -301,9 +301,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     this.viewerHistory.forward()
                 }
             }
-        })
+        });
 
-        document.getElementById('outerContainer').onmousemove = (e) => {
+        (document.getElementById('outerContainer') as HTMLElement).onmousemove = (e) => {
             if (e.clientY <= 64) {
                 this.showToolbar(true)
             }

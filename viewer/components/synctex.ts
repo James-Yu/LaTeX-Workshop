@@ -23,8 +23,10 @@ export class SyncTex {
         // workaround for https://github.com/James-Yu/LaTeX-Workshop/issues/1314
         if(selection && selection.anchorNode && selection.anchorNode.nodeName === '#text'){
             const text = selection.anchorNode.textContent
-            textBeforeSelection = text.substring(0, selection.anchorOffset)
-            textAfterSelection = text.substring(selection.anchorOffset)
+            if (text) {
+                textBeforeSelection = text.substring(0, selection.anchorOffset)
+                textAfterSelection = text.substring(selection.anchorOffset)
+            }
         }
         const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
         let left = e.pageX - pageDom.offsetLeft + viewerContainer.scrollLeft
@@ -40,10 +42,10 @@ export class SyncTex {
 
     registerListenerOnEachPage() {
         const keybinding = this.reverseSynctexKeybinding
-        const viewerDom = document.getElementById('viewer')
+        const viewerDom = document.getElementById('viewer') as HTMLElement
         for (const pageDom of viewerDom.childNodes as NodeListOf<HTMLElement>) {
             const page = Number(pageDom.dataset.pageNumber)
-            const viewerContainer = document.getElementById('viewerContainer')
+            const viewerContainer = document.getElementById('viewerContainer') as HTMLElement
             switch (keybinding) {
                 case 'ctrl-click': {
                     pageDom.onclick = (e) => {

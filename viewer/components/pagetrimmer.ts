@@ -15,7 +15,7 @@ function getTrimScale() {
 }
 
 
-document.getElementById('trimSelect').addEventListener('change', () => {
+(document.getElementById('trimSelect') as HTMLElement).addEventListener('change', () => {
     const trimScale = getTrimScale()
     const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
     const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
@@ -24,8 +24,8 @@ document.getElementById('trimSelect').addEventListener('change', () => {
         for ( const opt of scaleSelect.options ) {
             opt.disabled = false
         }
-        (document.getElementById('trimOption') as HTMLOptionElement).disabled = true
-        document.getElementById('trimOption').hidden = true
+        (document.getElementById('trimOption') as HTMLOptionElement).disabled = true;
+        (document.getElementById('trimOption') as HTMLOptionElement).hidden = true
         if (originalUserSelectIndex !== undefined) {
             /**
              * If the original scale is custom, selectedIndex === 4,
@@ -41,7 +41,7 @@ document.getElementById('trimSelect').addEventListener('change', () => {
         scaleSelect.dispatchEvent(ev)
         currentUserSelectScale = undefined
         originalUserSelectIndex = undefined
-        const viewer = document.getElementById('viewer')
+        const viewer = document.getElementById('viewer') as HTMLElement
         for ( const page of viewer.getElementsByClassName('page') ) {
             for ( const layer of page.getElementsByClassName('annotationLayer') ) {
                 for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
@@ -124,7 +124,7 @@ function setObserverToTrim() {
             trimPage(page)
         })
     })
-    const viewer = document.getElementById('viewer')
+    const viewer = document.getElementById('viewer') as HTMLElement
     for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
         if (page.dataset.isObserved !== 'observed') {
             observer.observe(page, {attributes: true, childList: true, attributeFilter: ['style']})
@@ -161,7 +161,7 @@ export class PageTrimmer {
         }, {once: true})
 
         this.lwApp.onDidRenderPdfFile( () => {
-            const container = document.getElementById('trimSelectContainer')
+            const container = document.getElementById('trimSelectContainer') as HTMLElement
             const select = document.getElementById('trimSelect') as HTMLSelectElement
 
             // tweak UI https://github.com/James-Yu/LaTeX-Workshop/pull/979
@@ -176,7 +176,7 @@ export class PageTrimmer {
             if (select.selectedIndex <= 0) {
                 return
             }
-            const viewer = document.getElementById('viewer')
+            const viewer = document.getElementById('viewer') as HTMLElement
             for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
                 trimPage(page)
             }
