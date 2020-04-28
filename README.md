@@ -76,7 +76,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Previewing references](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#previewing-references)
   - [Documentation of a command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Hover#documentation-of-a-command)
 - [Playing with environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments)
-  - [Inserting an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#inserting-an-environments)
+  - [Inserting an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#inserting-an-environment)
   - [Itemize like environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Itemize-like-environments)
   - [Navigating](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Navigating)
   - [Changing between `\[...\]` and `\begin{}...\end{}`](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#changing-between--and-beginend)
