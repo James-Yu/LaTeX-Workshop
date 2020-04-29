@@ -192,7 +192,8 @@ export class Command {
     }
 
     getCmdName(item: Suggestion, removeArgs = false): string {
-        const name = item.filterText ? item.filterText : item.label.slice(1)
+        const label = item.label.startsWith('\\') ? item.label.slice(1) : item.label
+        const name = item.filterText ? item.filterText : label
         if (removeArgs) {
             const i = name.search(/[[{]/)
             return i > -1 ? name.substr(0, i): name
