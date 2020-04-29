@@ -9,7 +9,7 @@ import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
 import {encodePathWithPrefix} from '../utils/utils'
 
-import {ClientRequest, ServerResponse} from '../../viewer/components/protocol'
+import {ClientRequest, ServerResponse, PanelRequest, PdfViewerState} from '../../viewer/components/protocol'
 
 class Client {
     readonly viewer: 'browser' | 'tab'
@@ -25,30 +25,80 @@ class Client {
     }
 }
 
-export type ViewerStatus = {
+export type ViewerState = {
     path: string,
     scrollTop: number
 }
 
-export class Viewer {
+class PdfViewerPanel {
+    readonly webviewPanel: vscode.WebviewPanel
+    readonly pdfFilePath: string
+    private _state?: PdfViewerState
+
+    constructor(pdfFilePath: string, panel: vscode.WebviewPanel) {
+        this.pdfFilePath = pdfFilePath
+        this.webviewPanel = panel
+        panel.webview.onDidReceiveMessage((msg: PanelRequest) => {
+            switch(msg.type) {
+                case 'state': {
+                    this._state = msg.state
+                    break
+                }
+                default: {
+                    break
+                }
+            }
+        })
+    }
+
+    get state() {
+        return this._state
+    }
+
+}
+
+class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     extension: Extension
-    clients: {[key: string]: Client[]} = {}
-    webviewPanels: Map<string, Set<vscode.WebviewPanel>> = new Map()
-    statusMessageQueue: Map<string, ViewerStatus[]> = new Map()
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
+    deserializeWebviewPanel(panel: vscode.WebviewPanel, state0: {state: PdfViewerState}) {
+        const state = state0.state
+        const pdfFilePath = state.path
+        if (!pdfFilePath) {
+            return Promise.reject()
+        }
+        panel.webview.html = this.extension.viewer.getPDFViewerContent(pdfFilePath)
+        const pdfPanel = new PdfViewerPanel(pdfFilePath, panel)
+        this.extension.viewer.pushPdfViewerPanel(pdfPanel)
+        return Promise.resolve()
+    }
+
+}
+
+export class Viewer {
+    extension: Extension
+    clients: {[key: string]: Set<Client>} = {}
+    webviewPanels: Map<string, Set<PdfViewerPanel>> = new Map()
+    stateMessageQueue: Map<string, ViewerState[]> = new Map()
+    pdfViewerPanelSerializer: PdfViewerPanelSerializer
+
+    constructor(extension: Extension) {
+        this.extension = extension
+        this.pdfViewerPanelSerializer = new PdfViewerPanelSerializer(extension)
+    }
+
     createClients(pdfFilePath: string) {
         const key = pdfFilePath.toLocaleUpperCase()
-        this.clients[key] = this.clients[key] || []
+        this.clients[key] = this.clients[key] || new Set()
         if (!this.webviewPanels.has(key)) {
             this.webviewPanels.set(key, new Set())
         }
     }
 
-    getClients(pdfFilePath: string): Client[] | undefined {
+    getClients(pdfFilePath: string): Set<Client> | undefined {
         return this.clients[pdfFilePath.toLocaleUpperCase()]
     }
 
@@ -128,13 +178,7 @@ export class Viewer {
         if (!url) {
             return
         }
-        if (this.extension.server.port === undefined) {
-            this.extension.logger.addLogMessage('Server port is undefined')
-            return
-        }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
-        this.createClients(pdfFile)
-
         const editor = vscode.window.activeTextEditor
         let viewColumn: vscode.ViewColumn
         if (tabEditorGroup === 'current') {
@@ -147,26 +191,48 @@ export class Viewer {
                 viewColumn = vscode.ViewColumn.Beside
             }
         }
-        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFile), viewColumn, {
+        const panel = this.createPdfViewerPanel(pdfFile, viewColumn)
+        if (!panel) {
+            return
+        }
+        if (editor && viewColumn !== vscode.ViewColumn.Active) {
+            setTimeout(async () => {
+                await vscode.window.showTextDocument(editor.document, editor.viewColumn)
+                if (tabEditorGroup === 'left' && viewColumn !== vscode.ViewColumn.One) {
+                    await vscode.commands.executeCommand('workbench.action.moveActiveEditorGroupRight')
+                }
+            }, 500)
+        }
+        this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
+    }
+
+    createPdfViewerPanel(pdfFilePath: string, viewColumn: vscode.ViewColumn): PdfViewerPanel | undefined {
+        if (this.extension.server.port === undefined) {
+            this.extension.logger.addLogMessage('Server port is undefined')
+            return
+        }
+
+        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFilePath), viewColumn, {
             enableScripts: true,
             retainContextWhenHidden: true,
             portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
         })
-        panel.webview.html = this.getPDFViewerContent(pdfFile)
-        if (editor && viewColumn !== vscode.ViewColumn.Active) {
-            setTimeout(() => { vscode.window.showTextDocument(editor.document, editor.viewColumn).then(() => {
-                if (tabEditorGroup === 'left' && viewColumn !== vscode.ViewColumn.One) {
-                vscode.commands.executeCommand('workbench.action.moveActiveEditorGroupRight')
-            }}) }, 500)
+        panel.webview.html = this.getPDFViewerContent(pdfFilePath)
+        const pdfPanel = new PdfViewerPanel(pdfFilePath, panel)
+        this.pushPdfViewerPanel(pdfPanel)
+        return pdfPanel
+    }
+
+    pushPdfViewerPanel(pdfPanel: PdfViewerPanel) {
+        this.createClients(pdfPanel.pdfFilePath)
+        const panelSet = this.getPanelSet(pdfPanel.pdfFilePath)
+        if (!panelSet) {
+            return
         }
-        const panelSet = this.getPanelSet(pdfFile)
-        if (panelSet) {
-            panelSet.add(panel)
-            panel.onDidDispose(() => {
-                panelSet.delete(panel)
-            })
-        }
-        this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
+        panelSet.add(pdfPanel)
+        pdfPanel.webviewPanel.onDidDispose(() => {
+            panelSet.delete(pdfPanel)
+        })
     }
 
     getPDFViewerContent(pdfFile: string): string {
@@ -182,20 +248,40 @@ export class Viewer {
             //
             // Note: this works on first load, or when navigating between groups, but not when
             //       navigating between tabs of the same group for some reason!
-
-            let iframe = document.getElementById('preview-panel');
+            const iframe = document.getElementById('preview-panel');
             window.onfocus = iframe.onload = function() {
                 setTimeout(function() { // doesn't work immediately
                     iframe.contentWindow.focus();
                 }, 100);
             }
+
+            const vsStore = acquireVsCodeApi();
             // To enable keyboard shortcuts of VS Code when the iframe is focused,
             // we have to dispatch keyboard events in the parent window.
             // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
             window.addEventListener('message', (e) => {
-                if (e.origin === 'http://localhost:${this.extension.server.port}') {
-                    window.dispatchEvent(new KeyboardEvent('keydown', e.data));
+                if (e.origin !== 'http://localhost:${this.extension.server.port}') {
+                    return;
                 }
+                switch (e.data.type) {
+                    case 'initialized': {
+                        const state = vsStore.getState();
+                        state.type = 'restore_state';
+                        iframe.contentWindow.postMessage(state, '*');
+                        break;
+                    }
+                    case 'keyboard_event': {
+                        window.dispatchEvent(new KeyboardEvent('keydown', e.data.event));
+                        break;
+                    }
+                    case 'state': {
+                        vsStore.setState(e.data);
+                        break;
+                    }
+                    default:
+                        break;
+                }
+                vsStore.postMessage(e.data)
             });
             </script>
             </body></html>
@@ -235,37 +321,27 @@ export class Viewer {
 
     handler(websocket: ws, msg: string) {
         const data: ClientRequest = JSON.parse(msg)
-        let clients: Client[] | undefined
         if (data.type !== 'ping') {
             this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
         }
         switch (data.type) {
             case 'open': {
-                clients = this.getClients(data.path)
+                const clients = this.getClients(data.path)
                 if (clients === undefined) {
                     return
                 }
-                clients.push( new Client(data.viewer, websocket) )
+                const client = new Client(data.viewer, websocket)
+                clients.add( client )
+                websocket.on('close', () => {
+                    clients.delete(client)
+                })
                 break
             }
             case 'close': {
-                for (const key in this.clients) {
-                    clients = this.clients[key]
-                    let index = -1
-                    for (const client of clients) {
-                        if (client.websocket === websocket) {
-                            index = clients.indexOf(client)
-                            break
-                        }
-                    }
-                    if (index > -1) {
-                        clients.splice(index, 1)
-                    }
-                }
                 break
             }
             case 'request_params': {
-                clients = this.getClients(data.path)
+                const clients = this.getClients(data.path)
                 if (!clients) {
                     break
                 }
@@ -310,8 +386,8 @@ export class Viewer {
                 // nothing to do
                 break
             }
-            case 'status': {
-                const results = this.statusMessageQueue.get(data.path)
+            case 'state': {
+                const results = this.stateMessageQueue.get(data.path)
                 if (!results) {
                     break
                 }
@@ -346,15 +422,15 @@ export class Viewer {
             return
         }
         for (const panel of panelSet.values()) {
-            if (panel.visible) {
+            if (panel.webviewPanel.visible) {
                 return
             }
         }
         const activeViewColumn = vscode.window.activeTextEditor?.viewColumn
         for (const panel of panelSet.values()) {
-            if (panel.viewColumn !== activeViewColumn) {
-                if (!panel.visible) {
-                    panel.reveal(undefined, true)
+            if (panel.webviewPanel.viewColumn !== activeViewColumn) {
+                if (!panel.webviewPanel.visible) {
+                    panel.webviewPanel.reveal(undefined, true)
                     return true
                 }
                 return
@@ -363,24 +439,24 @@ export class Viewer {
         return
     }
 
-    async getViewerStatus(pdfFilePath: string): Promise<ViewerStatus[]> {
+    async getViewerState(pdfFilePath: string): Promise<ViewerState[]> {
         const clients = this.getClients(pdfFilePath)
-        if (clients === undefined || clients.length === 0) {
+        if (clients === undefined || clients.size === 0) {
             return []
         }
-        this.statusMessageQueue.set(pdfFilePath, [])
+        this.stateMessageQueue.set(pdfFilePath, [])
         for (const client of clients) {
-            client.send({type: 'request_status'})
+            client.send({type: 'request_state'})
         }
         for (let i = 0; i < 30; i++) {
-            const results = this.statusMessageQueue.get(pdfFilePath)
+            const results = this.stateMessageQueue.get(pdfFilePath)
             if (results && results.length > 0) {
-                this.statusMessageQueue.delete(pdfFilePath)
+                this.stateMessageQueue.delete(pdfFilePath)
                 return results
             }
             await sleep(100)
         }
-        throw new Error('Cannot get viewer status.')
+        throw new Error('Cannot get viewer state.')
     }
 
 }

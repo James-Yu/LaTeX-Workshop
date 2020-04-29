@@ -1,7 +1,7 @@
 export type ServerResponse = {
     type: 'refresh'
 } | {
-    type: 'request_status'
+    type: 'request_state'
 } | {
     type: 'params',
     scale: string,
@@ -41,7 +41,7 @@ export type ClientRequest = {
 } | {
     type: 'ping'
 } | {
-    type: 'status',
+    type: 'state',
     path: string,
     scrollTop: number
 } | {
@@ -51,4 +51,29 @@ export type ClientRequest = {
     page: number,
     textBeforeSelection: string,
     textAfterSelection: string
+}
+
+export type PanelManagerResponse = {
+    type: 'restore_state',
+    state: PdfViewerState
+}
+
+export type PanelRequest = {
+    type: 'initialized'
+} | {
+    type: 'keyboard_event',
+    event: any
+} | {
+    type: 'state',
+    state: PdfViewerState
+}
+
+export type PdfViewerState = {
+    path?: string,
+    scale?: string,
+    scrollTop?: number,
+    scrollLeft?: number,
+    trim?: number,
+    scrollMode?: number,
+    spreadMode?: number
 }
