@@ -386,7 +386,7 @@ export class Manager {
             }
             return str
         }
-        return micromatch.some(file, globsToIgnore, { format } as any)
+        return micromatch.some(file, globsToIgnore, { format })
     }
 
     /**
