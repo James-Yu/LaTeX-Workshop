@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
+import * as os from 'os'
 import * as ws from 'ws'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
@@ -235,9 +236,22 @@ export class Viewer {
         })
     }
 
+    getKeyboardEventConfig(): boolean {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const setting: 'auto' | 'force' | 'never' = configuration.get('viewer.pdf.internal.keyboardEvent', 'auto')
+        if (setting === 'auto') {
+            return os.platform() !== 'linux'
+        } else if (setting === 'force') {
+            return true
+        } else {
+            return false
+        }
+    }
+
     getPDFViewerContent(pdfFile: string): string {
         // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
         const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
+        const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
             <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:* http://127.0.0.1:*; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
@@ -271,7 +285,9 @@ export class Viewer {
                         break;
                     }
                     case 'keyboard_event': {
-                        window.dispatchEvent(new KeyboardEvent('keydown', e.data.event));
+                        if (${rebroadcast}) {
+                            window.dispatchEvent(new KeyboardEvent('keydown', e.data.event));
+                        }
                         break;
                     }
                     case 'state': {
