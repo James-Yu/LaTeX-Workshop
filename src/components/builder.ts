@@ -311,7 +311,7 @@ export class Builder {
                     this.disableCleanAndRetry = true
                     if (signal !== 'SIGTERM') {
                         this.extension.logger.displayStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
-                        this.extension.logger.addLogMessage('Cleaning auxillary files and retrying build after toolchain error.')
+                        this.extension.logger.addLogMessage('Cleaning auxiliary files and retrying build after toolchain error.')
 
                         this.extension.cleaner.clean(rootFile).then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
