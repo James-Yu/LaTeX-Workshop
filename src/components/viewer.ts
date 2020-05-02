@@ -4,7 +4,7 @@ import * as os from 'os'
 import ws from 'ws'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-import {sleep} from '../utils/utils'
+import {escapeHtml, sleep} from '../utils/utils'
 
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
@@ -69,7 +69,15 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         const state = state0.state
         const pdfFilePath = state.path
         if (!pdfFilePath) {
-            return Promise.reject()
+            this.extension.logger.addLogMessage('Error of restoring PDF viewer: the path of PDF file is undefined.')
+            panel.webview.html = '<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>The path of PDF file is undefined.</html>'
+            return Promise.resolve()
+        }
+        if (!fs.existsSync(pdfFilePath)) {
+            const s = escapeHtml(pdfFilePath)
+            this.extension.logger.addLogMessage('Error of restoring PDF viewer: file not found ${s}.')
+            panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
+            return Promise.resolve()
         }
         panel.webview.html = this.extension.viewer.getPDFViewerContent(pdfFilePath)
         const pdfPanel = new PdfViewerPanel(pdfFilePath, panel)
