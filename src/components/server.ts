@@ -1,5 +1,5 @@
 import * as http from 'http'
-import * as ws from 'ws'
+import ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'

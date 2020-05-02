@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as os from 'os'
-import * as ws from 'ws'
+import ws from 'ws'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import {sleep} from '../utils/utils'

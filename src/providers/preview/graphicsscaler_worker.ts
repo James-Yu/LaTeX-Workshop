@@ -1,10 +1,5 @@
 import * as workerpool from 'workerpool'
-
-// workaround to avoid enabling esModuleInterop in tsconfig.json
-// If esModuleInterop enabled, some other packages do not work.
-import JimpT from 'jimp'
-import * as JimpLib0 from 'jimp'
-const JimpLib = JimpLib0 as unknown as JimpT
+import JimpLib from 'jimp'
 
 async function scale(filePath: string, opts: { height: number, width: number }): Promise<string> {
   const image = await JimpLib.read(filePath)
