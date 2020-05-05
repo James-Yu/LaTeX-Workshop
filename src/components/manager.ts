@@ -138,7 +138,7 @@ export class Manager {
     }
 
     hasTexId(id: string) {
-        return (id === 'tex' || id === 'latex' || id === 'doctex' || id === 'rsweave')
+        return ['tex', 'latex', 'latex-expl3', 'doctex', 'rsweave'].includes(id)
     }
 
     private workspaceRootDir: string = ''
