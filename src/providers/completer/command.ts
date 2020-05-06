@@ -63,7 +63,7 @@ export class Command {
         })
     }
 
-    provide(): vscode.CompletionItem[] {
+    provide(languageId: string): vscode.CompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -92,6 +92,9 @@ export class Command {
             })
         }
 
+        if (languageId === 'latex-expl3') {
+            this.provideCmdInPkg('expl3', suggestions, cmdList)
+        }
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
             const extraPackages = configuration.get('intellisense.package.extra') as string[]
@@ -138,7 +141,7 @@ export class Command {
         }
         const editor = vscode.window.activeTextEditor
         const candidate: string[] = []
-        this.provide().forEach(item => {
+        this.provide(editor.document.languageId).forEach(item => {
             if (item.insertText === undefined) {
                 return
             }
