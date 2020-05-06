@@ -126,7 +126,11 @@ def parse_cwl_file(
     Parse a CWL file to extract the provided commands and environments
     """
     package = splitext(basename(file))[0]
-    with open(join('cwl/LaTeX-cwl-master', file), encoding='utf8') as f:
+    if exists(file):
+        filepath = file
+    else:
+        filepath = join('cwl/LaTeX-cwl-master', file)
+    with open(filepath, encoding='utf8') as f:
         lines = f.readlines()
     pkgcmds: Dict[str, Dict[str, str]] = {}
     pkgenvs: Dict[str, Dict[str, str, str]] = {}
@@ -164,28 +168,33 @@ def parse_cwl_file(
             pkgcmds[name] = command_dict
             continue
         continue
-    remove(join('cwl/LaTeX-cwl-master', file))
+    # remove(join('cwl/LaTeX-cwl-master', file))
     return (pkgcmds, pkgenvs)
 
 
-unimath_dict = parse_unimathsymbols_file()
-cwl_files = get_cwl_files()
-for cwl_file in cwl_files:
-    (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict)
-    if pkgEnvs:
-        json.dump(pkgEnvs,
-                  open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
-                  indent=2, ensure_ascii=False)
-    if pkgCmds != {}:
-        json.dump(pkgCmds,
-                  open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'),
-                  indent=2,
-                  ensure_ascii=False)
-    # for cmd in pkgCmds:
-    #     print(cmd, ': ', pkgCmds[cmd], sep = '')
 
-# Handle aggregated files
-for scr in ['scrartcl', 'scrreprt', 'scrbook']:
-    dest = '../data/packages/class-' + scr
-    copy('../data/packages/class-scrartcl,scrreprt,scrbook_cmd.json', dest + '_cmd.json')
-    copy('../data/packages/class-scrartcl,scrreprt,scrbook_env.json', dest + '_env.json')
+def parse_cwl_files(unimath_dict):
+    cwl_files = get_cwl_files()
+    for cwl_file in cwl_files:
+        (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict)
+        if pkgEnvs:
+            json.dump(pkgEnvs,
+                      open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
+                      indent=2, ensure_ascii=False)
+        if pkgCmds != {}:
+            json.dump(pkgCmds,
+                      open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'),
+                      indent=2,
+                      ensure_ascii=False)
+        # for cmd in pkgCmds:
+        #     print(cmd, ': ', pkgCmds[cmd], sep = '')
+
+
+if __name__ == "__main__":
+    unimath_dict = parse_unimathsymbols_file()
+    parse_cwl_files(unimath_dict)
+    # Handle aggregated files
+    for scr in ['scrartcl', 'scrreprt', 'scrbook']:
+        dest = '../data/packages/class-' + scr
+        copy('../data/packages/class-scrartcl,scrreprt,scrbook_cmd.json', dest + '_cmd.json')
+        copy('../data/packages/class-scrartcl,scrreprt,scrbook_env.json', dest + '_env.json')
