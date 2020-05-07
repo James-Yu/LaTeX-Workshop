@@ -75,7 +75,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         }
         if (!fs.existsSync(pdfFilePath)) {
             const s = escapeHtml(pdfFilePath)
-            this.extension.logger.addLogMessage('Error of restoring PDF viewer: file not found ${s}.')
+            this.extension.logger.addLogMessage(`Error of restoring PDF viewer: file not found ${pdfFilePath}.`)
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
             return Promise.resolve()
         }
