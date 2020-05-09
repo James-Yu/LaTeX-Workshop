@@ -56,7 +56,7 @@ To access the log, click the 'TeX' icon on the Activity Bar on the left side, se
 ### Developer Tools Console [Required]
 
 ```
-To access the log, click 'help' -> 'Toggle Developer Tools. Paste anything suspicious.
+To access the log, click 'help' -> 'Toggle Developer Tools' -> 'Console'. Paste anything suspicious.
 
 [Paste the log here]
 ```
