@@ -218,6 +218,8 @@ export class Builder {
             })
             this.buildInitiator(rootFile, languageId, recipe, releaseBuildMutex)
         } catch (e) {
+            this.extension.logger.addLogMessage('Unexpected Error: please see the console log of the Developer Tools of VS Code.')
+            this.extension.logger.displayStatus('x', 'errorForeground')
             this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
             throw(e)
@@ -403,6 +405,7 @@ export class Builder {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
+                this.extension.logger.addLogMessage('No recipes defined.')
                 this.extension.logger.showErrorMessage('No recipes defined.')
                 return undefined
             }
@@ -416,6 +419,7 @@ export class Builder {
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
                 if (candidates.length < 1) {
+                    this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)
                     this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
                 }
                 recipe = candidates[0]
@@ -423,6 +427,7 @@ export class Builder {
             if (!recipeName && languageId === 'rsweave') {
                 const candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
                 if (candidates.length < 1) {
+                    this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)
                     this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
                 }
                 recipe = candidates[0]
