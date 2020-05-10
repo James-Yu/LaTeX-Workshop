@@ -448,6 +448,9 @@ export class Builder {
                 }
             })
         }
+        /**
+         * Use JSON.parse and JSON.stringify for a deep copy.
+         */
         steps = JSON.parse(JSON.stringify(steps))
 
         const docker = configuration.get('docker.enabled')
