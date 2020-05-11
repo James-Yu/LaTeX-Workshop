@@ -4,23 +4,34 @@ import json
 
 dtx_files = Path('/usr/local/texlive/2019/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
 
+def parse_doc_block(block_content, _type):
+    objs = []
+    for  match in re.findall(rf'\\begin{{{_type}}}(?:\[[^\]]*\])?[\s\n%]*{{([^}}]*)}}', block_content, flags=re.M):
+        obj_str = match.replace('%', '')
+        objs.extend([m for m in (o.strip() for o in ''.join(obj_str).split(',')) if m.startswith('\\')])
+    return objs
+
+
 def parse_file(fpath, _type):
     objs = []
     inside_documentation = False
+    block_start = None
+    block_end = None
     with open(fpath) as fp:
-        for line in fp:
+        lines = fp.readlines()
+        # content = '\n'.join(lines)
+        for i, line in enumerate(lines):
             if re.search(r'\\begin{documentation}', line):
                 inside_documentation = True
+                block_start = i
                 continue
             if not inside_documentation:
                 continue
-            if re.search(r'\\end{documentation}', line):
+            if inside_documentation and re.search(r'\\end{documentation}', line):
                 inside_documentation = False
-                break
-            match = re.search(rf'\\begin{{{_type}}}(?:\[[^\]]*\])?{{([^}}]*)}}', line)
-            if match is not None:
-                obj_str = match.group(1)
-                objs.extend([m for m in (o.strip() for o in obj_str.split(',')) if m.startswith('\\')])
+                block_end = i
+                content = ''.join(lines[block_start:block_end])
+                objs.extend(parse_doc_block(content, _type))
     return objs
 
 
