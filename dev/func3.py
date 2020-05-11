@@ -4,11 +4,14 @@ import json
 
 dtx_files = Path('/usr/local/texlive/2019/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
 
+def exclude(entry: str) -> bool:
+    return not re.match(r'\\(?!(?:::)|(?:__))', entry)
+
 def parse_doc_block(block_content, _type):
     objs = []
     for  match in re.findall(rf'\\begin{{{_type}}}(?:\[[^\]]*\])?[\s\n%]*{{([^}}]*)}}', block_content, flags=re.M):
         obj_str = match.replace('%', '')
-        objs.extend([m for m in (o.strip() for o in ''.join(obj_str).split(',')) if m.startswith('\\')])
+        objs.extend([m for m in (o.strip() for o in ''.join(obj_str).split(',')) if not exclude(m)])
     return objs
 
 
