@@ -38,13 +38,17 @@ def parse_file(fpath, _type):
     return objs
 
 
-functions = {}
-for f in dtx_files:
-    if f.match('l3doc.dtx'):
-        continue
-    ans = parse_file(f.as_posix(), 'function')
-    ans.extend(parse_file(f.as_posix(), 'variable'))
-    if len(ans) > 0:
-        functions[f.name] = list(set(ans))
+def parse_all_files():
+    entries = {}
+    for f in dtx_files:
+        if f.match('l3doc.dtx'):
+            continue
+        ans = parse_file(f.as_posix(), 'function')
+        ans.extend(parse_file(f.as_posix(), 'variable'))
+        if len(ans) > 0:
+            entries[f.name] = list(set(ans))
+    return entries
 
-json.dump(functions, open('funcs.json', 'w'), indent=2)
+entries_dict = parse_all_files()
+json.dump(entries_dict, open('funcs.json', 'w'), indent=2)
+
