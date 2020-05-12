@@ -178,10 +178,12 @@ export class Completer implements vscode.CompletionItemProvider {
                 const editor = vscode.window.activeTextEditor
                 // Make sure to pass the args always in the same order [type, filename, command, typedFolder, importFromDir]
                 if (editor) {
-                    payload = [type, editor.document.fileName, result[1], ...result.slice(2).reverse()]
+                    payload = [type, args.document.fileName, result[1], ...result.slice(2).reverse()]
                 }
             } else if (type === 'reference' || type === 'citation') {
                 payload = args
+            } else if (type === 'environment') {
+                payload = {document: args.document, position: args.position}
             }
             suggestions = provider.provide(payload)
         }

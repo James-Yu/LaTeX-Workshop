@@ -83,14 +83,24 @@ export class Environment {
     }
 
 
-    provide(): vscode.CompletionItem[] {
+    provide(args: {document: vscode.TextDocument, position: vscode.Position}): vscode.CompletionItem[] {
         if (vscode.window.activeTextEditor === undefined) {
             return []
         }
         let snippetType: EnvSnippetType = EnvSnippetType.ForBegin
         if (vscode.window.activeTextEditor.selections.length > 1) {
             snippetType = EnvSnippetType.AsName
+        } else {
+            // If a closing '}' after '\begin{' has already been inserted, we need to remove it as it is already included in the snippets
+            const word = args.document.lineAt(args.position).text.slice(args.position.character - '\\begin{'.length, args.position.character + 2)
+            if (word === '\\begin{}') {
+                vscode.window.activeTextEditor.edit(e => {
+                    e.delete(new vscode.Range(args.position, args.position.translate(0, 1)))
+                })
+            }
+
         }
+
         // Extract cached envs and add to default ones
         const suggestions: vscode.CompletionItem[] = Array.from(this.getDefaultEnvs(snippetType))
         const envList: string[] = this.getDefaultEnvs(snippetType).map(env => env.label)
