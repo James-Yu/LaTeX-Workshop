@@ -90,15 +90,6 @@ export class Environment {
         let snippetType: EnvSnippetType = EnvSnippetType.ForBegin
         if (vscode.window.activeTextEditor.selections.length > 1) {
             snippetType = EnvSnippetType.AsName
-        } else {
-            // If a closing '}' after '\begin{' has already been inserted, we need to remove it as it is already included in the snippets
-            const word = args.document.lineAt(args.position).text.slice(args.position.character - '\\begin{'.length, args.position.character + 2)
-            if (word === '\\begin{}') {
-                vscode.window.activeTextEditor.edit(e => {
-                    e.delete(new vscode.Range(args.position, args.position.translate(0, 1)))
-                })
-            }
-
         }
 
         // Extract cached envs and add to default ones
@@ -140,6 +131,20 @@ export class Environment {
             }
         })
 
+        if (snippetType === EnvSnippetType.ForBegin) {
+            // If a closing '}' after '\begin{' has already been inserted, we need to remove it as it is already included in the snippets
+            const word = args.document.lineAt(args.position).text.slice(args.position.character - '\\begin{'.length, args.position.character + 2)
+            if (word === '\\begin{}') {
+                const snippetRange = new vscode.Range(args.position, args.position.translate(0, 1))
+                suggestions.forEach(c => {c.range = snippetRange} )
+            } else {
+                suggestions.forEach(c => {
+                    if (c.range) {
+                        delete c.range
+                    }
+                })
+            }
+        }
         return suggestions
     }
 
