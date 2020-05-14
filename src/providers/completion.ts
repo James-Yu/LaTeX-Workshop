@@ -178,6 +178,8 @@ export class Completer implements vscode.CompletionItemProvider {
                 payload = [type, args.document.fileName, result[1], ...result.slice(2).reverse()]
             } else if (type === 'reference' || type === 'citation') {
                 payload = args
+            } else if (type === 'environment') {
+                payload = {document: args.document, position: args.position}
             } else if (type === 'command') {
                 payload = args.document.languageId
             }
