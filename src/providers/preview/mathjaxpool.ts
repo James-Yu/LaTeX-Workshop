@@ -4,13 +4,19 @@ import * as workerpool from 'workerpool'
 import {Proxy} from 'workerpool'
 import {IMathJaxWorker} from './mathjaxpool_worker'
 
-type TypesetArg = {
+export type TypesetArg = {
     width?: number,
     equationNumbers?: string,
     math: string,
     format: string,
     svgNode: boolean,
-    state?: any
+    state?: {
+        AMS: {
+            labels: { [k: string]: string },
+            IDs: { [k: string]: string },
+            startNumber: number
+        }
+    }
 }
 
 export class MathJaxPool {

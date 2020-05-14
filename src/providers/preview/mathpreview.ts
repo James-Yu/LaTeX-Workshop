@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import * as path from 'path'
 
-import {MathJaxPool} from './mathjaxpool'
+import {MathJaxPool, TypesetArg} from './mathjaxpool'
 import * as utils from '../../utils/utils'
 import {TextDocumentLike} from '../../components/textdocumentlike'
 import {Extension} from '../../main'
@@ -132,7 +132,7 @@ export class MathPreview {
         const scale = configuration.get('hover.preview.scale') as number
         let s = this.renderCursor(document, tex.range)
         s = this.mathjaxify(s, tex.envname)
-        const typesetArg = {
+        const typesetArg: TypesetArg = {
             math: newCommand + this.stripTeX(s),
             format: 'TeX',
             svgNode: true,
@@ -184,7 +184,7 @@ export class MathPreview {
         const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
         const s = this.mathjaxify(newTex, tex.envname, {stripLabel: false})
         const obj = { labels : {}, IDs: {}, startNumber: 0 }
-        const typesetArg = {
+        const typesetArg: TypesetArg = {
             width: 50,
             equationNumbers: 'AMS',
             math: newCommand + this.stripTeX(s),

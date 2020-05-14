@@ -288,7 +288,7 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 export class Extension {
-    packageInfo: any
+    packageInfo: { version?: string } = {}
     extensionRoot: string
     logger: Logger
     buildInfo: BuildInfo
