@@ -63,7 +63,7 @@ export class Command {
         })
     }
 
-    provide(): vscode.CompletionItem[] {
+    provide(languageId: string): vscode.CompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -92,6 +92,9 @@ export class Command {
             })
         }
 
+        if (languageId === 'latex-expl3') {
+            this.provideCmdInPkg('expl3', suggestions, cmdList)
+        }
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
             const extraPackages = configuration.get('intellisense.package.extra') as string[]
@@ -138,7 +141,7 @@ export class Command {
         }
         const editor = vscode.window.activeTextEditor
         const candidate: string[] = []
-        this.provide().forEach(item => {
+        this.provide(editor.document.languageId).forEach(item => {
             if (item.insertText === undefined) {
                 return
             }
@@ -375,18 +378,33 @@ export class Command {
     }
 
     private getCmdFromContent(file: string, content: string): Suggestion[] {
-        const cmdReg = /\\([a-zA-Z@]+)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
+        const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: Suggestion[] = []
         const cmdList: string[] = []
+        let explSyntaxOn: boolean = false
         while (true) {
             const result = cmdReg.exec(content)
             if (result === null) {
                 break
             }
-            if (cmdList.includes(result[1])) {
+            if (result[1] === 'ExplSyntaxOn') {
+                explSyntaxOn = true
+                continue
+            } else if (result[1] === 'ExplSyntaxOff') {
+                explSyntaxOn = false
                 continue
             }
 
+
+            if (!explSyntaxOn) {
+                const len = result[1].search(/[_:]/)
+                if (len > -1) {
+                    result[1] = result[1].slice(0, len)
+                }
+            }
+            if (cmdList.includes(result[1])) {
+                continue
+            }
             const cmd: Suggestion = {
                 label: `\\${result[1]}`,
                 kind: vscode.CompletionItemKind.Function,

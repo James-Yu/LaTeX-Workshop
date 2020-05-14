@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
+import {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
 
 import {Extension} from '../main'
@@ -138,7 +139,7 @@ export class Manager {
     }
 
     hasTexId(id: string) {
-        return (id === 'tex' || id === 'latex' || id === 'doctex' || id === 'rsweave')
+        return ['tex', 'latex', 'latex-expl3', 'doctex', 'rsweave'].includes(id)
     }
 
     private workspaceRootDir: string = ''
@@ -829,7 +830,12 @@ export class Manager {
         // Here we use this delay config. Otherwise, multiple updates may run
         // concurrently if the actual parsing time is greater than that of
         // the keypress delay.
-        const latexAst = await this.extension.pegParser.parseLatex(content)
+        const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
+        let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
+        if (!languageId || languageId !== 'latex-expl3') {
+            latexAst = await this.extension.pegParser.parseLatex(content)
+        }
+
         if (latexAst) {
             const nodes = latexAst.content
             const lines = content.split('\n')
