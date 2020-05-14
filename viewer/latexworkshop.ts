@@ -166,6 +166,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             switch (data.type) {
                 case 'synctex': {
                     // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
+                    // https://github.com/James-Yu/LaTeX-Workshop/pull/417
                     const container = document.getElementById('viewerContainer') as HTMLElement
                     const pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
                     const page = document.getElementsByClassName('page')[data.data.page - 1] as HTMLElement
