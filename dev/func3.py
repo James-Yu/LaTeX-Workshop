@@ -2,6 +2,7 @@ from pathlib import Path
 import re
 import json
 import itertools
+import pkgcommand
 
 dtx_files = Path('/usr/local/texlive/2019/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
 dtx_files_to_ignore = ['l3doc.dtx']
@@ -75,8 +76,18 @@ def parse_all_files():
             entries[f.name] = list(set(ans))
     return entries
 
-entries_dict = parse_all_files()
-entries_array = list(set(itertools.chain.from_iterable(entries_dict.values())))
-json.dump(entries_dict, open('funcs.json', 'w'), indent=2)
-with open('expl3.cwl', encoding='utf8', mode='w') as fp:
-    fp.writelines([e + '\n' for e in entries_array])
+if __name__ == "__main__":
+    entries_dict = parse_all_files()
+    entries_array = list(set(itertools.chain.from_iterable(entries_dict.values())))
+    # json.dump(entries_dict, open('funcs.json', 'w'), indent=2)
+
+    # Write a .cwl file
+    with open('expl3.cwl', encoding='utf8', mode='w') as fp:
+        fp.writelines([e + '\n' for e in entries_array])
+    (cmds, _envs) = pkgcommand.parse_cwl_file('expl3.cwl', {})
+    cmds['ExplSyntaxBlock'] = {
+        'command': 'ExplSyntaxBlock',
+        'snippet': 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff',
+        'documentation': 'Insert a \\ExplSyntax block'
+    }
+    json.dump(cmds, open('../data/packages/expl3_cmd.json', 'w', encoding='utf8'), indent=2, ensure_ascii=False)
