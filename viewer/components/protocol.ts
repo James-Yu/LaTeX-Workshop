@@ -28,8 +28,6 @@ export type ClientRequest = {
     path: string,
     viewer: 'browser' | 'tab'
 } | {
-    type: 'close'
-} | {
     type: 'request_params',
     path: string
 } | {

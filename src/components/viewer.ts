@@ -361,9 +361,6 @@ export class Viewer {
                 })
                 break
             }
-            case 'close': {
-                break
-            }
             case 'request_params': {
                 const clients = this.getClients(data.path)
                 if (!clients) {
