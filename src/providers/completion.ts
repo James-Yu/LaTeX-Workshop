@@ -80,7 +80,7 @@ export class Completer implements vscode.CompletionItemProvider {
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
-            for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'command']) {
+            for (const type of ['command', 'environment', 'citation', 'reference', 'package', 'documentclass', 'input', 'includeonly', 'subimport', 'import']) {
                 const suggestions = this.completion(type, line, {document, position, token, context})
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
@@ -153,9 +153,12 @@ export class Completer implements vscode.CompletionItemProvider {
                 reg = /(?:\\documentclass(?:\[[^[\]]*\])*){([^}]*)$/
                 provider = this.documentClass
                 break
-
             case 'input':
                 reg = /\\(input|include|subfile|includegraphics|lstinputlisting|verbatiminput)\*?(?:\[[^[\]]*\])*{([^}]*)$/
+                provider = this.input
+                break
+            case 'includeonly':
+                reg = /\\(includeonly|excludeonly){(?:{[^}]*},)*(?:[^,]*,)*{?([^},]*)$/
                 provider = this.input
                 break
             case 'import':
@@ -174,7 +177,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            if (type === 'input' || type === 'import' || type === 'subimport') {
+            if (type === 'input' || type === 'import' || type === 'subimport' || type === 'includeonly') {
                 payload = [type, args.document.fileName, result[1], ...result.slice(2).reverse()]
             } else if (type === 'reference' || type === 'citation') {
                 payload = args
