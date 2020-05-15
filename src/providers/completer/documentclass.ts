@@ -2,8 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 
 import {Extension} from '../../main'
+import {IProvider} from './interface'
 
-export class DocumentClass {
+export class DocumentClass implements IProvider {
     extension: Extension
     suggestions: vscode.CompletionItem[] = []
 
@@ -19,6 +20,10 @@ export class DocumentClass {
             cl.documentation = new vscode.MarkdownString(`[${item.documentation}](${item.documentation})`)
             this.suggestions.push(cl)
         })
+    }
+
+    provideFrom() {
+        return this.provide()
     }
 
     provide(): vscode.CompletionItem[] {

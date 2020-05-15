@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 
 import {Extension} from '../main'
+import {IProvider} from './completer/interface'
 import {Citation} from './completer/citation'
 import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'
@@ -126,8 +127,7 @@ export class Completer implements vscode.CompletionItemProvider {
 
     completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         let reg: RegExp | undefined
-        let provider: Citation | Reference | Environment | Command | Package | Input | DocumentClass | undefined
-        let payload: any
+        let provider: IProvider | undefined
         switch (type) {
             case 'citation':
                 reg = /(?:\\[a-zA-Z]*[Cc]ite[a-zA-Z]*\*?(?:\([^[)]*\)){0,2}(?:(?:\[[^[\]]*\])*(?:{[^{}]*})?)*{([^}]*)$)|(?:\\bibentry{([^}]*)$)/
@@ -177,16 +177,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            if (type === 'input' || type === 'import' || type === 'subimport' || type === 'includeonly') {
-                payload = [type, args.document.fileName, result[1], ...result.slice(2).reverse()]
-            } else if (type === 'reference' || type === 'citation') {
-                payload = args
-            } else if (type === 'environment') {
-                payload = {document: args.document, position: args.position}
-            } else if (type === 'command') {
-                payload = args.document.languageId
-            }
-            suggestions = provider.provide(payload)
+            suggestions = provider.provideFrom(type, result, args)
         }
         return suggestions
     }

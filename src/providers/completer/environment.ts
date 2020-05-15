@@ -3,6 +3,7 @@ import * as fs from 'fs-extra'
 import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
+import {IProvider} from './interface'
 
 export interface EnvItemEntry {
     name: string, // Name of the environment, what comes inside \begin{...}
@@ -17,7 +18,7 @@ export interface Suggestion extends vscode.CompletionItem {
     package: string
 }
 
-export class Environment {
+export class Environment implements IProvider {
     extension: Extension
     private defaultEnvsAsName: Suggestion[] = []
     private defaultEnvsAsCommand: Suggestion[] = []
@@ -82,6 +83,10 @@ export class Environment {
         }
     }
 
+    provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        const payload = {document: args.document, position: args.position}
+        return this.provide(payload)
+    }
 
     provide(args: {document: vscode.TextDocument, position: vscode.Position}): vscode.CompletionItem[] {
         if (vscode.window.activeTextEditor === undefined) {
