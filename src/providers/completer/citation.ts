@@ -6,7 +6,6 @@ import {Extension} from '../../main'
 
 export interface Suggestion extends vscode.CompletionItem {
     key: string,
-    detail: string,
     fields: {[key: string]: string},
     file: string,
     position: vscode.Position
@@ -176,7 +175,6 @@ export class Citation {
                     file,
                     position: new vscode.Position(entry.location.start.line - 1, entry.location.start.column - 1),
                     kind: vscode.CompletionItemKind.Reference,
-                    detail: '',
                     fields: {}
                 }
                 let doc: string = ''
