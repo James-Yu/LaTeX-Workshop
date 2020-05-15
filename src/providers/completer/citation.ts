@@ -6,7 +6,6 @@ import {Extension} from '../../main'
 
 export interface Suggestion extends vscode.CompletionItem {
     key: string,
-    detail: string,
     fields: {[key: string]: string},
     file: string,
     position: vscode.Position
@@ -42,8 +41,6 @@ export class Citation {
             }
             item.filterText = `${item.key} ${item.fields.author} ${item.fields.title} ${item.fields.journal}`
             item.insertText = item.key
-            item.documentation = new vscode.MarkdownString(item.detail.replace(/\n/g, '  \n'))
-            item.detail = ''
             if (args) {
                 item.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
             }
@@ -178,17 +175,19 @@ export class Citation {
                     file,
                     position: new vscode.Position(entry.location.start.line - 1, entry.location.start.column - 1),
                     kind: vscode.CompletionItemKind.Reference,
-                    detail: '',
                     fields: {}
                 }
+                let doc: string = ''
                 entry.content.forEach(field => {
                     const value = Array.isArray(field.value.content) ?
                         field.value.content.join(' ') : this.deParenthesis(field.value.content)
                     item.fields[field.name] = value
                     if (fields.includes(field.name.toLowerCase())) {
-                        item.detail += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
+                        doc += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
                     }
                 })
+                // We need two spaces to ensure md newline
+                item.documentation = new vscode.MarkdownString( '\n' + doc.replace(/\n/g, '  \n') + '\n\n' )
                 this.bibEntries[file].push(item)
             })
         this.extension.logger.addLogMessage(`Parsed ${this.bibEntries[file].length} bib entries from ${file}.`)

@@ -55,7 +55,13 @@ export class HoverProvider implements vscode.HoverProvider {
         const cites = this.extension.completer.citation.getEntryDict()
         if (hovCitation && token in cites) {
             const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
-            return new vscode.Hover(new vscode.MarkdownString('\n' + cites[token].detail.replace(/\n/g,'  \n', ) + '\n\n'), range) // We need two spaces to ensure md newline
+            const cite = cites[token]
+            if (cite) {
+                const md = cite.documentation || cite.detail
+                if (md) {
+                    return new vscode.Hover(md, range)
+                }
+            }
         }
         return undefined
     }
