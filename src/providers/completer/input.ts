@@ -62,7 +62,7 @@ export class Input {
      * Provide file name intellissense
      *
      * @param payload an array of string
-     *      payload[0]: the input command type  (input, import, subimport)
+     *      payload[0]: the input command type  (input, import, subimport, includeonly)
      *      payload[1]: the current file name
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
@@ -92,6 +92,7 @@ export class Input {
                     provideDirOnly = true
                 }
                 break
+            case 'includeonly':
             case 'input': {
                 if (this.extension.manager.rootDir === undefined) {
                     this.extension.logger.addLogMessage(`No root dir can be found. The current root file should be undefined, is ${this.extension.manager.rootFile}. How did you get here?`)
@@ -103,15 +104,20 @@ export class Input {
                     baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
                 } else {
                     const baseConfig = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.base')
+                    const baseDirCurrentFile = path.dirname(currentFile)
                     switch (baseConfig) {
                         case 'root relative':
                             baseDir = [rootDir]
                             break
                         case 'file relative':
-                            baseDir = [path.dirname(currentFile)]
+                            baseDir = [baseDirCurrentFile]
                             break
                         case 'both':
-                            baseDir = [path.dirname(currentFile), rootDir]
+                            if (baseDirCurrentFile !== rootDir) {
+                                baseDir = [baseDirCurrentFile, rootDir]
+                            } else {
+                                baseDir = [rootDir]
+                            }
                             break
                         default:
                     }
