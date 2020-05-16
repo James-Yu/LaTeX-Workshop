@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="default-src vscode-resource:; style-src 'unsafe-inline';">
+        <meta http-equiv="Content-Security-Policy" content="default-src %VSCODE_CSP%; style-src 'unsafe-inline';">
         <style>
             #stepTimes div.column {
                 display: inline-block;
@@ -162,6 +162,6 @@
         </div>
         <div id="stepTimes"></div>
 
-        <script src="vscode-resource:./buildinfo.js"></script>
+        <script src="%VSCODE_RES%/buildinfo/buildinfo.js"></script>
     </body>
 </html>

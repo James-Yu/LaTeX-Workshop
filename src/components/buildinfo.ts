@@ -3,6 +3,7 @@ import * as path from 'path'
 import { readFileSync } from 'fs'
 
 import { Extension } from '../main'
+import {replaceWebviewPlaceholders} from '../utils/webview'
 
 export class BuildInfo {
     extension: Extension
@@ -184,14 +185,7 @@ export class BuildInfo {
 
         const webviewSourcePath = path.join(this.extension.extensionRoot, 'resources', 'buildinfo', 'buildinfo.html')
         let webviewHtml = readFileSync(webviewSourcePath, { encoding: 'utf8' })
-        webviewHtml = webviewHtml.replace(
-            /vscode-resource:\.\//,
-            'vscode-resource:' +
-                vscode.Uri.file(path.join(this.extension.extensionRoot, 'resources', 'buildinfo')).with({
-                    scheme: 'vscode-resource'
-                }).path +
-                '/'
-        )
+        webviewHtml = replaceWebviewPlaceholders(webviewHtml, this.extension, this.panel.webview)
         this.panel.webview.html = webviewHtml
 
         if (this.currentBuild) {
