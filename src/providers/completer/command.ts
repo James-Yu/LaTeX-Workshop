@@ -4,6 +4,7 @@ import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
+import {IProvider} from './interface'
 
 interface CmdItemEntry {
     command: string, // frame
@@ -19,7 +20,7 @@ export interface Suggestion extends vscode.CompletionItem {
     package: string
 }
 
-export class Command {
+export class Command implements IProvider {
     extension: Extension
     private environment: Environment
 
@@ -61,6 +62,11 @@ export class Command {
         this.defaultCmds.filter(cmd => bracketCmds.includes(this.getCmdName(cmd))).forEach(cmd => {
             this.bracketCmds[cmd.label.slice(1)] = cmd
         })
+    }
+
+    provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        const payload = args.document.languageId
+        return this.provide(payload)
     }
 
     provide(languageId: string): vscode.CompletionItem[] {

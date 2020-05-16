@@ -6,10 +6,11 @@ import * as cp from 'child_process'
 import * as utils from '../../utils/utils'
 
 import {Extension} from '../../main'
+import {IProvider} from './interface'
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
-export class Input {
+export class Input implements IProvider {
     extension: Extension
     graphicsPath: string[] = []
 
@@ -56,6 +57,11 @@ export class Input {
 
     reset() {
         this.graphicsPath = []
+    }
+
+    provideFrom(type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        const payload = [type, args.document.fileName, result[1], ...result.slice(2).reverse()]
+        return this.provide(payload)
     }
 
     /**

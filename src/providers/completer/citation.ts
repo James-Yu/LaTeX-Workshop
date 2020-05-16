@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
+import {IProvider} from './interface'
 
 export interface Suggestion extends vscode.CompletionItem {
     key: string,
@@ -11,12 +12,16 @@ export interface Suggestion extends vscode.CompletionItem {
     position: vscode.Position
 }
 
-export class Citation {
+export class Citation implements IProvider {
     extension: Extension
     private bibEntries: {[file: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
+    }
+
+    provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        return this.provide(args)
     }
 
     provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {

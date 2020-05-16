@@ -4,6 +4,7 @@ import * as path from 'path'
 import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
+import {IProvider} from './interface'
 
 export interface Suggestion extends vscode.CompletionItem {
     file: string, // The file that defines the ref
@@ -11,7 +12,7 @@ export interface Suggestion extends vscode.CompletionItem {
     prevIndex?: {refNumber: string, pageNumber: string} // Stores the ref number
 }
 
-export class Reference {
+export class Reference implements IProvider {
     extension: Extension
     // Here we use an object instead of an array for de-duplication
     private suggestions: {[id: string]: Suggestion} = {}
@@ -19,6 +20,10 @@ export class Reference {
 
     constructor(extension: Extension) {
         this.extension = extension
+    }
+
+    provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        return this.provide(args)
     }
 
     provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
