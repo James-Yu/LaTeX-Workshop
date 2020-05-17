@@ -376,7 +376,7 @@ export class Builder {
             this.extension.logger.addLogMessage('SyncTex after build invoked.')
             this.extension.locator.syncTeX(undefined, undefined, pdfFile)
         }
-        if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
+        if (['onSuccess', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
             this.extension.cleaner.clean(rootFile)
         }

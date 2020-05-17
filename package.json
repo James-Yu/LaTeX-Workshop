@@ -985,15 +985,17 @@
           "enum": [
             "never",
             "onFailed",
+            "onSuccess",
             "onBuilt"
           ],
           "enumDescriptions": [
             "Never clean the project",
-            "Clean compilation fails",
+            "Clean when compilation fails",
+            "Clean when compilation succeeds",
             "Clean after build, be it successful or not"
           ],
           "default": "never",
-          "markdownDescription": "When LaTeX auxiliary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` cleans the project when compilation fails. `onBuilt` cleans the project when compilation is terminated, whether successful or failed."
+          "markdownDescription": "When LaTeX auxiliary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` cleans the project when compilation fails. `onSuccess` cleans the project when compilation succeeds. `onBuilt` cleans the project when compilation is terminated, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "type": "boolean",
