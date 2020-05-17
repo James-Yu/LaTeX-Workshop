@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="default-src vscode-resource:; script-src vscode-resource: 'unsafe-inline'; style-src vscode-resource: 'unsafe-inline';">
-        <link rel="stylesheet" href="vscode-resource:./snippetpanel.css">
+        <meta http-equiv="Content-Security-Policy" content="default-src %VSCODE_CSP%; script-src %VSCODE_CSP% 'unsafe-inline'; style-src %VSCODE_CSP% 'unsafe-inline';">
+        <link rel="stylesheet" href="%VSCODE_RES%/snippetpanel/snippetpanel.css">
     </head>
     <body>
         <h2><span class="latex">L<sup>A</sup>T<sub>E</sub>X</span> Snippet Panel</h2>
@@ -426,6 +426,6 @@
             </div>
         </div>
 
-        <script src="vscode-resource:./snippetpanel.js"></script>
+        <script src="%VSCODE_RES%/snippetpanel/snippetpanel.js"></script>
     </body>
 </html>
