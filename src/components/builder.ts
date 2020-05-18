@@ -413,8 +413,11 @@ export class Builder {
             if (this.previousLanguageId !== languageId) {
                 this.previouslyUsedRecipe = undefined
             }
-            if ((configuration.get('latex.recipe.default') as string === 'lastUsed') && (this.previouslyUsedRecipe !== undefined) ) {
+            const defaultRecipe = configuration.get('latex.recipe.default') as string
+            if ((defaultRecipe === 'lastUsed') && (this.previouslyUsedRecipe !== undefined)) {
                 recipe = this.previouslyUsedRecipe
+            } else if ((defaultRecipe !== 'first') && (defaultRecipe !== 'lastUsed') && recipeName === undefined) {
+               recipeName = defaultRecipe
             }
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
