@@ -1,14 +1,15 @@
 '''
-This script fetch latest list of packages and their descriptions
+This script fetch the latest list of packages and their descriptions
 from CTAN at https://ctan.org/pkg and save the result as a json file.
+
 The result is used to generate usepackage and documentclass
 intellisense for LaTeX Workshop.
 '''
 
 from pathlib import Path
 import json
-import requests
 from sys import argv
+import requests
 
 CHECK_IF_PKG_EXISTS = True
 CTAN_SOURCE = 'https://ctan.org/json/2.0/packages'
@@ -21,6 +22,11 @@ def load_texmfbd(lsR, ctanDict):
 
     :param lsR: The path to the TEXMF/ls-R
     :param ctanDict: A dictionnary built from the CTAN package list
+
+    :return: a tuple (lsRdb, allfiles)
+        - lsRdb is a dictionnary mapping for every package in ctanDict all the .sty, .cls, .def
+          files listed under that dictionnary in lsR
+        - allfiles is an array of all the .sty, .cls, .def files listed in lsR
     """
     lsRdb = {}
     pkg = None
@@ -57,7 +63,7 @@ def load_texmfbd(lsR, ctanDict):
     return (lsRdb, allfiles)
 
 
-def package2sty(pkgname, lsRdb):
+def package2sty(pkgname, lsRdb, allsty):
     """
     Find the main .sty file for a given package
 
@@ -66,6 +72,9 @@ def package2sty(pkgname, lsRdb):
 
     :return a filename without the .sty extension or None
     """
+    styname = pkgname + '.sty'
+    if styname in allsty:
+        return pkgname
     if pkgname in lsRdb:
         files = lsRdb[pkgname]
         if pkgname + '.sty' in files:
@@ -116,7 +125,7 @@ def get_classes(all_lsR_files, ctanDict):
         class_data[base]['documentation'] = documentation
     return class_data
 
-def get_packages(lsRdb, ctanDict):
+def get_packages(lsRdb, ctanDict, allsty):
     """
     Get the package for which a .sty file exists
 
@@ -125,7 +134,7 @@ def get_packages(lsRdb, ctanDict):
     """
     package_data = {}
     for pkg in ctanDict:
-        basefile = package2sty(pkg, lsRdb)
+        basefile = package2sty(pkg, lsRdb, allsty)
         if basefile is not None:
             package_data[pkg] = ctanDict[pkg].copy()
             package_data[pkg]['command'] = basefile
@@ -147,7 +156,7 @@ if __name__ == "__main__":
     ctanDict = build_ctanDict(json.loads(requests.get(CTAN_SOURCE).content))
     lsRdb, all_lsR_files = load_texmfbd(TEXMF + '/ls-R', ctanDict)
 
-    package_data = get_packages(lsRdb, ctanDict)
+    package_data = get_packages(lsRdb, ctanDict, all_lsR_files)
     json.dump(package_data, open('../data/packagenames.json', 'w+', encoding='utf-8'),
               separators=(',', ': '), sort_keys=True, indent=2, ensure_ascii=False)
 
