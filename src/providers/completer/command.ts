@@ -45,10 +45,10 @@ export class Command implements IProvider {
                 const action = snippetReplacements[key]
                 if (action !== '') {
                     defaultCmds[key].snippet = action
-                    this.defaultCmds.push(this.entryCmdToCompletion(defaultCmds[key]))
+                    this.defaultCmds.push(this.entryCmdToCompletion(key, defaultCmds[key]))
                 }
             } else {
-                this.defaultCmds.push(this.entryCmdToCompletion(defaultCmds[key]))
+                this.defaultCmds.push(this.entryCmdToCompletion(key, defaultCmds[key]))
             }
         })
 
@@ -89,7 +89,7 @@ export class Command implements IProvider {
             if (this.defaultSymbols.length === 0) {
                 const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
                 Object.keys(symbols).forEach(key => {
-                    this.defaultSymbols.push(this.entryCmdToCompletion(symbols[key]))
+                    this.defaultSymbols.push(this.entryCmdToCompletion(key, symbols[key]))
                 })
             }
             this.defaultSymbols.forEach(symbol => {
@@ -473,7 +473,7 @@ export class Command implements IProvider {
         return text
     }
 
-    private entryCmdToCompletion(item: CmdItemEntry): Suggestion {
+    private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): Suggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
@@ -492,9 +492,7 @@ export class Command implements IProvider {
         } else {
             suggestion.insertText = item.command
         }
-        if (item.label) {
-            suggestion.filterText = item.command
-        }
+        suggestion.filterText = itemKey
         suggestion.detail = item.detail
         suggestion.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
         suggestion.sortText = item.command.replace(/^[a-zA-Z]/, c => {
@@ -529,7 +527,7 @@ export class Command implements IProvider {
             if (fs.existsSync(filePath)) {
                 const cmds = JSON.parse(fs.readFileSync(filePath).toString())
                 Object.keys(cmds).forEach(key => {
-                    this.packageCmds[pkg].push(this.entryCmdToCompletion(cmds[key]))
+                    this.packageCmds[pkg].push(this.entryCmdToCompletion(key, cmds[key]))
                 })
             }
         }

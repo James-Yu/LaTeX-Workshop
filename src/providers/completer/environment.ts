@@ -44,10 +44,10 @@ export class Environment implements IProvider {
             package: ''
         }
         this.defaultEnvsForBegin.push(endCompletion)
-        Object.keys(envs).forEach(env => {
-           this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(envs[env], EnvSnippetType.AsCommand))
-           this.defaultEnvsForBegin.push(this.entryEnvToCompletion(envs[env], EnvSnippetType.ForBegin))
-           this.defaultEnvsAsName.push(this.entryEnvToCompletion(envs[env], EnvSnippetType.AsName))
+        Object.keys(envs).forEach(key => {
+           this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
+           this.defaultEnvsForBegin.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.ForBegin))
+           this.defaultEnvsAsName.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsName))
         })
     }
 
@@ -165,8 +165,8 @@ export class Environment implements IProvider {
         if (!(pkg in this.packageEnvsAsCommand)) {
             this.packageEnvsAsCommand[pkg] = []
             const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
-            Object.keys(envs).forEach(env => {
-                this.packageEnvsAsCommand[pkg].push(this.entryEnvToCompletion(envs[env], EnvSnippetType.AsCommand))
+            Object.keys(envs).forEach(key => {
+                this.packageEnvsAsCommand[pkg].push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
             })
         }
 
@@ -242,8 +242,8 @@ export class Environment implements IProvider {
         }
         packageEnvs[pkg] = []
         const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
-        Object.keys(envs).forEach(env => {
-            packageEnvs[pkg].push(this.entryEnvToCompletion(envs[env], type))
+        Object.keys(envs).forEach(key => {
+            packageEnvs[pkg].push(this.entryEnvToCompletion(key, envs[key], type))
         })
         return packageEnvs[pkg]
     }
@@ -274,7 +274,7 @@ export class Environment implements IProvider {
         return envs
     }
 
-    entryEnvToCompletion(item: EnvItemEntry, type: EnvSnippetType): Suggestion {
+    entryEnvToCompletion(itemKey: string, item: EnvItemEntry, type: EnvSnippetType): Suggestion {
         const label = item.detail ? item.detail : item.name
         const suggestion: Suggestion = {
             label: item.name,
@@ -314,6 +314,7 @@ export class Environment implements IProvider {
             if (item.detail) {
                 suggestion.label = item.detail
             }
+            suggestion.filterText = itemKey
             suggestion.insertText = new vscode.SnippetString(`${prefix}${item.name}}${snippet}\\end{${item.name}}`)
             return suggestion
         }

@@ -146,7 +146,7 @@ def parse_cwl_file(
             if env in envs:
                 continue
             args = line[line.index('}') + 1:]
-            snippet_name = env + ' ' + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
+            snippet_name = env + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
             snippet_name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', snippet_name)
             snippet = create_snippet(args)
             pkgenvs[snippet_name.rstrip()] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
@@ -157,6 +157,7 @@ def parse_cwl_file(
             line = line[1:]  # Remove leading '\'
             command = line
             name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
+            name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
             command_dict: Dict[str, str] = {'command': command, 'package': package}
             if name in commands:
                 continue
