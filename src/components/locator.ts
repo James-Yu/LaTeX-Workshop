@@ -296,14 +296,22 @@ export class Locator {
         // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
         // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
         for (const ed in this.extension.manager.cachedContent) {
-            if (fs.realpathSync(record.input) === fs.realpathSync(ed)) {
-                record.input = ed
-                break
+            try {
+                if (fs.realpathSync(record.input) === fs.realpathSync(ed)) {
+                    record.input = ed
+                    break
+                }
+            } catch(e) {
+                this.extension.logger.addLogMessage(`Error while calling fs.realpathSync for ${record.input} and ${ed}`)
             }
         }
 
         const filePath = path.resolve(record.input)
         this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
+        if (!fs.existsSync(filePath)) {
+            this.extension.logger.addLogMessage(`Not found: ${filePath}`)
+            return
+        }
         vscode.workspace.openTextDocument(filePath).then((doc) => {
             let viewColumn: vscode.ViewColumn | undefined = undefined
             for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
