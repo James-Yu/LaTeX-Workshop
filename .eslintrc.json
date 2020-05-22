@@ -5,9 +5,7 @@
     },
     "extends": [
         "eslint:recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        "plugin:@typescript-eslint/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -22,13 +20,28 @@
         "no-undef": "off",
         "no-unused-vars": "off",
         "no-constant-condition": "off",
-        "@typescript-eslint/ban-ts-ignore": "error",
+        "@typescript-eslint/ban-ts-comment": "error",
         "@typescript-eslint/prefer-interface": "off",
-        "@typescript-eslint/explicit-function-return-type": "off",
-        "@typescript-eslint/explicit-member-accessibility": "off",
-        "@typescript-eslint/indent": "off",
-        "@typescript-eslint/interface-name-prefix": "off",
-        "@typescript-eslint/class-name-casing": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "@typescript-eslint/naming-convention": ["error",
+          {
+            "selector": "default",
+            "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+            "leadingUnderscore": "allow"
+          },
+          {
+            "selector": "method",
+            "format": ["camelCase"]
+          },
+          {
+            "selector": "function",
+            "format": ["camelCase"]
+          },
+          {
+            "selector": "typeLike",
+            "format": ["PascalCase"]
+          }
+        ],
         "@typescript-eslint/no-use-before-define": "off",
         "@typescript-eslint/type-annotation-spacing": ["error", { "before": false, "after": true, "overrides": { "arrow": { "before": true, "after": true }}}],
         "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
@@ -37,7 +50,6 @@
         "@typescript-eslint/no-parameter-properties": "off",
         "@typescript-eslint/no-explicit-any": "off",
         "@typescript-eslint/no-inferrable-types": "off",
-        "@typescript-eslint/prefer-regexp-exec": "off",
         "@typescript-eslint/no-empty-function": "off",
         "@typescript-eslint/no-misused-promises": [ "error", { "checksVoidReturn": false } ],
         "curly": "error",
@@ -119,7 +131,7 @@
           "project": "./tsconfig.eslint.viewer.json"
         },
         "rules": {
-          "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always" }],
+          "@typescript-eslint/naming-convention": ["error", { "selector": "interface", "prefix": ["I"], "format": ["PascalCase"] }],
           "@typescript-eslint/no-unnecessary-type-assertion": "off",
           "import/no-unresolved": "off",
           "import/extensions": ["error", "always"]
