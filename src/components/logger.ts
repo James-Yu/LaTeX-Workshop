@@ -38,6 +38,14 @@ export class Logger {
         }
     }
 
+    logOnRejected(e: unknown) {
+        if (e instanceof Error) {
+            this.logError(e)
+        } else {
+            this.addLogMessage(String(e))
+        }
+    }
+
     clearCompilerMessage() {
         this.compilerLogPanel.clear()
     }

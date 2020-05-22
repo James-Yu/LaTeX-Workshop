@@ -333,8 +333,8 @@ export class Locator {
                 editor.selection = new vscode.Selection(pos, pos)
                 vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
                 this.animateToNotify(editor, pos)
-            })
-        })
+            }, (r) => this.extension.logger.logOnRejected(r))
+        }, (r) => this.extension.logger.logOnRejected(r))
     }
 
     private getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
