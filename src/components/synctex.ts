@@ -24,7 +24,7 @@ export function parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
       return parseSyncTex(s)
     }
 
-    throw new SyncTexJsError('synctex file, .synctex and .synctex.gz, not found in the file system.')
+    throw new SyncTexJsError(`Synctex file, .synctex and .synctex.gz, not found in the file system for ${pdfFile}`)
   }
 
 function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
@@ -52,7 +52,8 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     const pdfSyncObject = parseSyncTexForPdf(pdfFile)
     const inputFilePath = findInputFilePathForward(filePath, pdfSyncObject)
     if (inputFilePath === undefined) {
-      throw new SyncTexJsError('no relevant entry of tex file found in the synctex file.')
+      const inputFiles = JSON.stringify(pdfSyncObject.files, null, ' ')
+      throw new SyncTexJsError(`No relevant entry of the tex file found in the synctex file. Entries: ${inputFiles}`)
     }
 
     const linePageBlocks = pdfSyncObject.blockNumberLine[inputFilePath]
@@ -84,7 +85,7 @@ function getBlocks(linePageBlocks: { [inputLineNum: number]: { [pageNum: number]
     const pageBlocks = linePageBlocks[lineNum]
     const pageNums = Object.keys(pageBlocks)
     if (pageNums.length === 0) {
-      throw new SyncTexJsError('no page number found in the synctex file.')
+      throw new SyncTexJsError('No page number found in the synctex file.')
     }
     const page = pageNums[0]
     return pageBlocks[Number(page)]
@@ -159,7 +160,8 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
     const fileNames = Object.keys(pdfSyncObject.blockNumberLine)
 
     if (fileNames.length === 0) {
-      throw new SyncTexJsError('no entry of tex file found in the synctex file.')
+      const inputFiles = JSON.stringify(pdfSyncObject.files, null, ' ')
+      throw new SyncTexJsError(`No entry of the tex file found in the synctex file. Entries: ${inputFiles}`)
     }
 
     const record = {
@@ -199,7 +201,7 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
     }
 
     if (record.input === '') {
-      throw new SyncTexJsError('cannot find any line to jump to.')
+      throw new SyncTexJsError('Cannot find any line to jump to.')
     }
 
     return { input: convInputFilePath(record.input), line: record.line, column: 0 }
@@ -220,5 +222,5 @@ function convInputFilePath(inputFilePath: string): string {
     }
   }
 
-  throw new SyncTexJsError('input file to jump to does not exist in the file system.')
+  throw new SyncTexJsError(`Input file to jump to does not exist in the file system: ${inputFilePath}`)
 }
