@@ -29,15 +29,19 @@ export function parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
 
 function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
   for (const inputFilePath in pdfSyncObject.blockNumberLine) {
-    if (path.resolve(inputFilePath) === filePath) {
-       return inputFilePath
+    try {
+      if (fs.realpathSync(path.resolve(inputFilePath)) === fs.realpathSync(filePath)) {
+        return inputFilePath
+      }
+    } catch(e) {
+
     }
   }
   for (const inputFilePath in pdfSyncObject.blockNumberLine) {
     for (const enc of iconvLiteSupportedEncodings) {
       try {
         const s = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
-        if (path.resolve(s) === filePath) {
+        if (fs.realpathSync(path.resolve(s)) === fs.realpathSync(filePath)) {
           return inputFilePath
         }
       } catch (e) {
@@ -52,8 +56,9 @@ export function syncTexJsForward(line: number, filePath: string, pdfFile: string
     const pdfSyncObject = parseSyncTexForPdf(pdfFile)
     const inputFilePath = findInputFilePathForward(filePath, pdfSyncObject)
     if (inputFilePath === undefined) {
-      const inputFiles = JSON.stringify(pdfSyncObject.files, null, ' ')
-      throw new SyncTexJsError(`No relevant entry of the tex file found in the synctex file. Entries: ${inputFiles}`)
+      const inputFiles = Object.keys(pdfSyncObject.blockNumberLine)
+      const inputFilesStr = JSON.stringify(inputFiles, null, ' ')
+      throw new SyncTexJsError(`No relevant entry of the tex file found in the synctex file. File path: ${filePath} Entries: ${inputFilesStr}`)
     }
 
     const linePageBlocks = pdfSyncObject.blockNumberLine[inputFilePath]
@@ -160,7 +165,7 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
     const fileNames = Object.keys(pdfSyncObject.blockNumberLine)
 
     if (fileNames.length === 0) {
-      const inputFiles = JSON.stringify(pdfSyncObject.files, null, ' ')
+      const inputFiles = JSON.stringify(fileNames, null, ' ')
       throw new SyncTexJsError(`No entry of the tex file found in the synctex file. Entries: ${inputFiles}`)
     }
 
