@@ -217,6 +217,7 @@ export class Commander {
     synctex() {
         this.extension.logger.addLogMessage('SYNCTEX command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -232,6 +233,7 @@ export class Commander {
     synctexonref(line: number, filePath: string) {
         this.extension.logger.addLogMessage('SYNCTEX command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
             return
         }
         this.extension.locator.syncTeXOnRef({line, filePath})
