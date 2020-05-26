@@ -96,7 +96,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
                 // Complete an entry name
                 resolve(this.entryItems)
                 return
-            } else if (currentLine.match(/\s*[a-zA-z]*/) && prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
+            } else if (currentLine.match(/^\s*[a-zA-Z]*/) && prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
                 // Add optional fields
                 const optFields = this.provideOptFields(document, position)
                 resolve(optFields)
