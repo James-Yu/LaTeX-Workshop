@@ -34,12 +34,7 @@ export class MathJaxPool {
     }
 
     async typeset(arg: TypesetArg, opts: { scale: number, color: string }): Promise<string> {
-        try {
-            return (await this.proxy).typeset(arg, opts).timeout(3000)
-        } catch(e) {
-            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${arg.math}`)
-            throw e
-        }
+        return (await this.proxy).typeset(arg, opts).timeout(3000)
     }
 
 }

@@ -138,9 +138,15 @@ export class MathPreview {
             svgNode: true,
         }
         const typesetOpts = { scale, color: this.color }
-        const xml = await this.mj.typeset(typesetArg, typesetOpts)
-        const md = utils.svgToDataUrl(xml)
-        return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
+        try {
+            const xml = await this.mj.typeset(typesetArg, typesetOpts)
+            const md = utils.svgToDataUrl(xml)
+            return new vscode.Hover(new vscode.MarkdownString(this.addDummyCodeBlock(`![equation](${md})`)), tex.range )
+        } catch(e) {
+            this.extension.logger.logOnRejected(e)
+            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg.math}`)
+            throw e
+        }
     }
 
     async provideHoverOnRef(
@@ -193,13 +199,19 @@ export class MathPreview {
             state: {AMS: obj}
         }
         const typesetOpts = { scale, color: this.color }
-        const xml = await this.mj.typeset(typesetArg, typesetOpts)
-        const md = utils.svgToDataUrl(xml)
-        const line = refData.position.line
-        const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
-        const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
-        mdLink.isTrusted = true
-        return new vscode.Hover( [this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+        try {
+            const xml = await this.mj.typeset(typesetArg, typesetOpts)
+            const md = utils.svgToDataUrl(xml)
+            const line = refData.position.line
+            const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
+            const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
+            mdLink.isTrusted = true
+            return new vscode.Hover( [this.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+        } catch(e) {
+            this.extension.logger.logOnRejected(e)
+            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg.math}`)
+            throw e
+        }
     }
 
     refNumberMessage(refData: ReferenceEntry): string | undefined {
