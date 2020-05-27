@@ -440,6 +440,10 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('view.pdf.external.synctex.command') as string
         let args = configuration.get('view.pdf.external.synctex.args') as string[]
+        if (command === '') {
+            this.extension.logger.addLogMessage('Error: the external SyncTeX command is an empty string. See view.pdf.external.synctex.command')
+            return
+        }
         if (args) {
             args = args.map(arg => {
                 return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
@@ -448,6 +452,7 @@ export class Locator {
                         .replace(/%TEX%/g, texFile)
             })
         }
+        this.extension.logger.addLogMessage(`Execute external SyncTeX command: command ${command}, args ${args}`)
         this.extension.manager.setEnvVar()
         cp.spawn(command, args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
