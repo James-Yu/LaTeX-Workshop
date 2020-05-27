@@ -215,19 +215,26 @@ export class Commander {
     }
 
     synctex() {
-        this.extension.logger.addLogMessage('SYNCTEX command invoked.')
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
-            return
+        try {
+            this.extension.logger.addLogMessage('SYNCTEX command invoked.')
+            if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+                this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
+                return
+            }
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            let pdfFile: string | undefined = undefined
+            if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
+                pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
+            } else if (this.extension.manager.rootFile !== undefined) {
+                pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
+            }
+            this.extension.locator.syncTeX(undefined, undefined, pdfFile)
+        } catch(e) {
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
+            throw e
         }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let pdfFile: string | undefined = undefined
-        if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
-        } else if (this.extension.manager.rootFile !== undefined) {
-            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        }
-        this.extension.locator.syncTeX(undefined, undefined, pdfFile)
     }
 
     synctexonref(line: number, filePath: string) {
