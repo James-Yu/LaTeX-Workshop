@@ -40,6 +40,7 @@
     "onCommand:latex-workshop.synctex",
     "onCommand:latex-workshop.clean",
     "onCommand:latex-workshop.citation",
+    "onCommand:latex-workshop.wordcount",
     "onCommand:latex-workshop.compilerlog",
     "onCommand:latex-workshop.log",
     "onCommand:latex-workshop.actions",
@@ -318,6 +319,11 @@
       {
         "command": "latex-workshop.addtexroot",
         "title": "Insert %!TeX root magic comment",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.wordcount",
+        "title": "Count words in LaTeX document",
         "category": "LaTeX Workshop"
       },
       {
@@ -1258,6 +1264,19 @@
           "type": "number",
           "default": 500,
           "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing.\nThis config only matters when `latex-workshop.chktex.run` is set to `onType`."
+        },
+        "latex-workshop.texcount.path": {
+          "type": "string",
+          "default": "texcount",
+          "markdownDescription": "Define the location of TeXCount executive file/script.\nThis command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
+        },
+        "latex-workshop.texcount.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
         },
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "type": "boolean",
