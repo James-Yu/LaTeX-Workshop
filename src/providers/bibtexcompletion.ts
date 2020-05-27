@@ -34,24 +34,42 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
             sort: config.get('bibtex-format.sortby') as string[]
         }
 
+        const maxLengths: {[key: string]: number} = this.computeMaxLengths(entries, optFields)
         const entriesList: string[] = []
         Object.keys(entries).forEach(entry => {
             if (entry in entriesList) {
                 return
             }
             if (entry in entriesReplacements) {
-                this.entryItems.push(this.entryToCompletion(entry, entriesReplacements[entry], bibtexFormat))
+                this.entryItems.push(this.entryToCompletion(entry, entriesReplacements[entry], bibtexFormat, maxLengths))
             } else {
-                this.entryItems.push(this.entryToCompletion(entry, entries[entry], bibtexFormat))
+                this.entryItems.push(this.entryToCompletion(entry, entries[entry], bibtexFormat, maxLengths))
             }
             entriesList.push(entry)
         })
         Object.keys(optFields).forEach(entry => {
-            this.optFieldItems[entry] = this.fieldsToCompletion(optFields[entry])
+            this.optFieldItems[entry] = this.fieldsToCompletion(entry, optFields[entry], bibtexFormat, maxLengths)
         })
     }
 
-    entryToCompletion(itemName: string, itemFields: string[], config: bibtexUtils.BibtexFormatConfig): vscode.CompletionItem {
+    computeMaxLengths(entries: {[key: string]: string[]}, optFields: {[key: string]: string[]}): {[key: string]: number} {
+        const maxLengths: {[key: string]: number} = {}
+        Object.keys(entries).forEach(key => {
+            let maxFieldLength = 0
+            entries[key].forEach(field => {
+                maxFieldLength = Math.max(maxFieldLength, field.length)
+            })
+            if (key in optFields) {
+                optFields[key].forEach(field => {
+                    maxFieldLength = Math.max(maxFieldLength, field.length)
+                })
+            }
+            maxLengths[key] = maxFieldLength
+        })
+        return maxLengths
+    }
+
+    entryToCompletion(itemName: string, itemFields: string[], config: bibtexUtils.BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem {
         const suggestion: vscode.CompletionItem = new vscode.CompletionItem(itemName, vscode.CompletionItemKind.Snippet)
         suggestion.detail = itemName
         suggestion.documentation = `Add a @${itemName} entry`
@@ -59,15 +77,10 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
 
         // The following code is copied from bibtexutils.ts:bibtexFormat
         // Find the longest field name in entry
-        let maxFieldLength = 0
-        itemFields.forEach(field => {
-            maxFieldLength = Math.max(maxFieldLength, field.length)
-        })
-
         let s: string = itemName + '{${0:key}'
         itemFields.forEach(field => {
             s += ',\n' + config.tab + (config.case === 'lowercase' ? field : field.toUpperCase())
-            s += ' '.repeat(maxFieldLength - field.length) + ' = '
+            s += ' '.repeat(maxLengths[itemName] - field.length) + ' = '
             s += config.left + `$${count}` + config.right
             count++
         })
@@ -76,13 +89,13 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         return suggestion
     }
 
-    fieldsToCompletion(fields: string[]): vscode.CompletionItem[] {
+    fieldsToCompletion(itemName: string, fields: string[], config: bibtexUtils.BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem[] {
         const suggestions: vscode.CompletionItem[] = []
         fields.forEach(field => {
             const suggestion: vscode.CompletionItem = new vscode.CompletionItem(field, vscode.CompletionItemKind.Snippet)
             suggestion.detail = field
-            suggestion.documentation = `Add ${field} = {}`
-            suggestion.insertText = new vscode.SnippetString(`${field} = {$1}`)
+            suggestion.documentation = `Add ${field} = ${config.left}${config.right}`
+            suggestion.insertText = new vscode.SnippetString(`${field}` + ' '.repeat(maxLengths[itemName] - field.length) + ` = ${config.left}$1${config.right},`)
             suggestions.push(suggestion)
         })
         return suggestions
