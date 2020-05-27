@@ -12,6 +12,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     private hierarchy: string[]
     private sectionDepths: { [key: string]: number } = {}
+    private showLabels: boolean
     public root: string = ''
 
     // our data source is a set multi-rooted set of trees
@@ -26,6 +27,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 this.sectionDepths[sec] = index
             })
         })
+        this.showLabels = configuration.get('view.outline.labels.enabled') as boolean
     }
 
     refresh(): Section[] {
@@ -208,16 +210,17 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
 
             // Labels part
-            result = labelReg.exec(line)
-            if (result) {
-                const depth = noRoot() ? 0 : currentRoot().depth + 1
-                const newLabel = new Section(`#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
-                if (noRoot()) {
-                    children.push(newLabel)
-                } else {
-                    currentRoot().children.push(newLabel)
+            if (this.showLabels) {
+                result = labelReg.exec(line)
+                if (result) {
+                    const depth = noRoot() ? 0 : currentRoot().depth + 1
+                    const newLabel = new Section(`#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
+                    if (noRoot()) {
+                        children.push(newLabel)
+                    } else {
+                        currentRoot().children.push(newLabel)
+                    }
                 }
-
             }
         }
         return children
