@@ -270,6 +270,20 @@ export class Commander {
         this.extension.completer.citation.browser()
     }
 
+    wordcount() {
+        this.extension.logger.addLogMessage('WORDCOUNT command invoked.')
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
+            this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
+            if (this.extension.manager.rootFile) {
+                this.extension.counter.count(this.extension.manager.rootFile)
+            } else {
+                this.extension.logger.addLogMessage('WORDCOUNT: No rootFile defined.')
+            }
+        } else {
+            this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
+        }
+    }
+
     log(compiler?: string) {
         this.extension.logger.addLogMessage('LOG command invoked.')
         if (compiler) {
