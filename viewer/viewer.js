@@ -4380,7 +4380,7 @@ var defaultOptions = {
     kind: OptionKind.API
   },
   workerPort: {
-    value: null,
+    value: new Worker('/build/pdf.worker.js'),
     kind: OptionKind.WORKER
   },
   workerSrc: {
