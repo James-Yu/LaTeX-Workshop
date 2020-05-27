@@ -89,11 +89,13 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'm')
         const envReg = /(?:\\(begin|end)(?:\[[^[\]]*\])?){(?:(figure|frame|table)\*?)}/m
+        const labelReg = /\\label{([^}]*)}/m
 
         const lines = content.split('\n')
         for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
             const line = lines[lineNumber]
             envReg.lastIndex = 0
+            labelReg.lastIndex = 0
             inputReg.lastIndex = 0
             let result = envReg.exec(line)
             if (result && result[1] === 'begin') {
@@ -203,6 +205,19 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     prevSection.subfiles.push(inputFilePath)
                 }
                 this.buildModel(inputFilePath, newFileStack, rootStack, children)
+            }
+
+            // Labels part
+            result = labelReg.exec(line)
+            if (result) {
+                const depth = noRoot() ? 0 : currentRoot().depth + 1
+                const newLabel = new Section(`#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
+                if (noRoot()) {
+                    children.push(newLabel)
+                } else {
+                    currentRoot().children.push(newLabel)
+                }
+
             }
         }
         return children
