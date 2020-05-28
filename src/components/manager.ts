@@ -200,7 +200,7 @@ export class Manager {
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
-                this.extension.logger.addLogMessage(`Root file remains unchanged from: ${this.rootFile}.`)
+                this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}.`)
             }
             return rootFile
         }
