@@ -48,6 +48,9 @@ class PlaceHolder:
         else:
             return '${' + str(self.count) + name + '}'
 
+def apply_caption_tweaks(content: List[str]) -> List[str]:
+    return [re.sub(r'#([0-9])', r'arg\1', line, flags=re.A) for line in content]
+
 
 def get_unimathsymbols_file():
     if not exists('unimathsymbols.txt'):
@@ -134,6 +137,8 @@ def parse_cwl_file(
         lines = f.readlines()
     pkgcmds: Dict[str, Dict[str, str]] = {}
     pkgenvs: Dict[str, Dict[str, str, str]] = {}
+    if file == 'caption.cwl':
+        lines = apply_caption_tweaks(lines)
     for line in lines:
         line = line.rstrip()
         index_hash = line.find('#')
