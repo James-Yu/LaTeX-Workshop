@@ -159,6 +159,7 @@ export function activate(context: vscode.ExtensionContext) {
             return
         }
         extension.linter.lintActiveFileIfEnabledAfterInterval()
+        handleAutoClose(e)
         if (extension.manager.cachedContent[e.document.fileName] === undefined) {
             return
         }
@@ -285,6 +286,36 @@ export function activate(context: vscode.ExtensionContext) {
                 token: vscode.CancellationToken,
                 cxt: vscode.CompletionContext
             ) => extension.completer.provideCompletionItems(document, position, token, cxt)) : undefined
+        }
+    }
+}
+
+function handleAutoClose(event: vscode.TextDocumentChangeEvent): void {
+    if (!event.contentChanges[0]) {
+        return
+    }
+
+    const editor = vscode.window.activeTextEditor
+    if (!editor) {
+        return
+    }
+
+    const selection = editor.selection
+    const originalPosition = selection.start.translate(0, 1)
+
+    if (event.contentChanges[0].text === '(') {
+        const lineText = editor.document.getText(new vscode.Range(new vscode.Position(0, 0), originalPosition))
+        let last2chars = ''
+        if (lineText.length > 2) {
+            last2chars = lineText.substr(lineText.length - 2)
+        }
+        if (last2chars === '\\(') {
+            // Auto-close inline math
+            editor.insertSnippet(new vscode.SnippetString(' $1 \\)$0'), originalPosition)
+        } else {
+            // Auto-close bracket
+            editor.edit((editBuilder) => editBuilder.insert(originalPosition, ')'))
+                .then(() => editor.selection = new vscode.Selection(originalPosition, originalPosition))
         }
     }
 }
