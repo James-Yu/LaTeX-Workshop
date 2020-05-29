@@ -160,7 +160,7 @@ def parse_cwl_file(
             continue
         if line[0] == '\\':
             line = line[1:]  # Remove leading '\'
-            command = line
+            command = line.rstrip()
             name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
             name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
             command_dict: Dict[str, str] = {'command': command, 'package': package}
