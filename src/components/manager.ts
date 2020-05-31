@@ -583,9 +583,10 @@ export class Manager {
         const outDir = this.getOutDir(baseFile)
         const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
         if (!fs.existsSync(flsFile)) {
-            this.extension.logger.addLogMessage('Cannot find fls file.')
+            this.extension.logger.addLogMessage(`Cannot find fls file: ${flsFile}`)
             return
         }
+        this.extension.logger.addLogMessage(`Fls file found: ${flsFile}`)
         const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
 
         ioFiles.input.forEach((inputFile: string) => {
