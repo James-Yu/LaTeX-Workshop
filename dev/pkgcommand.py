@@ -123,7 +123,8 @@ def create_snippet(line: str) -> str:
 
 def parse_cwl_file(
         file: str,
-        unimath_dict: Dict[str, Dict[str, str]]
+        unimath_dict: Dict[str, Dict[str, str]],
+        remove_spaces: bool = False
     ) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
     """
     Parse a CWL file to extract the provided commands and environments
@@ -153,8 +154,12 @@ def parse_cwl_file(
             args = line[line.index('}') + 1:]
             snippet_name = env + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
             snippet_name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', snippet_name)
+            if remove_spaces:
+                snippet_name = snippet_name.replace(' ', '')
+            else:
+                snippet_name = snippet_name.strip()
             snippet = create_snippet(args)
-            pkgenvs[snippet_name.rstrip()] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
+            pkgenvs[snippet_name] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
             continue
         if line[:5] == '\\end{':
             continue
@@ -163,6 +168,10 @@ def parse_cwl_file(
             command = line.rstrip()
             name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
             name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
+            if remove_spaces:
+                name = name.replace(' ', '')
+            else:
+                name = name.strip()
             command_dict: Dict[str, str] = {'command': command, 'package': package}
             if name in commands:
                 continue
@@ -182,7 +191,10 @@ def parse_cwl_file(
 def parse_cwl_files(unimath_dict):
     cwl_files = get_cwl_files()
     for cwl_file in cwl_files:
-        (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict)
+        remove_spaces = False
+        if cwl_file in ['context-document.cwl', 'class-beamer.cwl']:
+            remove_spaces = True
+        (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict, remove_spaces)
         if pkgEnvs:
             json.dump(pkgEnvs,
                       open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
