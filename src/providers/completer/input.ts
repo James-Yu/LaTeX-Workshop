@@ -137,7 +137,11 @@ export class Input implements IProvider {
         const suggestions: vscode.CompletionItem[] = []
         baseDir.forEach(dir => {
             if (typedFolder !== '') {
-                dir = path.resolve(dir, typedFolder)
+                let currentFolder = typedFolder
+                if (! typedFolder.endsWith('/')) {
+                    currentFolder = path.dirname(typedFolder)
+                }
+                dir = path.resolve(dir, currentFolder)
             }
             try {
                 let files = fs.readdirSync(dir)
