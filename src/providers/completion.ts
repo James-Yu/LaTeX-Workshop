@@ -81,7 +81,7 @@ export class Completer implements vscode.CompletionItemProvider {
             }
 
             const line = document.lineAt(position.line).text.substr(0, position.character)
-            for (const type of ['command', 'environment', 'citation', 'reference', 'package', 'documentclass', 'input', 'includeonly', 'subimport', 'import']) {
+            for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'command']) {
                 const suggestions = this.completion(type, line, {document, position, token, context})
                 if (suggestions.length > 0) {
                     if (type === 'citation') {
