@@ -7,6 +7,9 @@ import re
 from typing import List, Dict, Tuple
 from shutil import copy
 
+FILES_TO_IGNORE = ['diagxy.cwl']
+FILES_TO_REMOVE_SPACES_IN = ['chemformula.cwl', 'context-document.cwl', 'class-beamer.cwl', 'csquotes.cwl', 'datatool.cwl', 'newclude.cwl', 'pgfplots.cwl', 'tabu.cwl', 'tikz.cwl']
+
 commands = json.load(open('../data/commands.json', encoding='utf8'))
 envs = json.load(open('../data/environments.json', encoding='utf8'))
 
@@ -192,10 +195,10 @@ def parse_cwl_files(unimath_dict):
     cwl_files = get_cwl_files()
     for cwl_file in cwl_files:
         # Skip some files
-        if cwl_file == 'diagxy.cwl':
+        if cwl_file in FILES_TO_IGNORE:
             continue
         remove_spaces = False
-        if cwl_file in ['context-document.cwl', 'class-beamer.cwl']:
+        if cwl_file in FILES_TO_REMOVE_SPACES_IN:
             remove_spaces = True
         (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict, remove_spaces)
         if pkgEnvs:
