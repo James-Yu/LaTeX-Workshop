@@ -191,6 +191,9 @@ def parse_cwl_file(
 def parse_cwl_files(unimath_dict):
     cwl_files = get_cwl_files()
     for cwl_file in cwl_files:
+        # Skip some files
+        if cwl_file == 'diagxy.cwl':
+            continue
         remove_spaces = False
         if cwl_file in ['context-document.cwl', 'class-beamer.cwl']:
             remove_spaces = True
