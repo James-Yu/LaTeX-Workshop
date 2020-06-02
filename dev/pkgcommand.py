@@ -7,6 +7,9 @@ import re
 from typing import List, Dict, Tuple
 from shutil import copy
 
+FILES_TO_IGNORE = ['diagxy.cwl']
+FILES_TO_REMOVE_SPACES_IN = ['chemformula.cwl', 'context-document.cwl', 'class-beamer.cwl', 'csquotes.cwl', 'datatool.cwl', 'newclude.cwl', 'pgfplots.cwl', 'tabu.cwl', 'tikz.cwl']
+
 commands = json.load(open('../data/commands.json', encoding='utf8'))
 envs = json.load(open('../data/environments.json', encoding='utf8'))
 
@@ -38,7 +41,16 @@ class PlaceHolder:
     def setKeepDelimiters(self, trueOrFalse):
         self.keepDelimiters = trueOrFalse
 
+    def isToSkip(self, delimiters: str, string: str):
+        if delimiters == '()' and string in ['s', 'en anglais', 'en français']:
+            return True
+        else:
+            return False
+
     def sub(self, matchObject) -> str:
+        if self.isToSkip(matchObject.group(1) + matchObject.group(3), matchObject.group(2)):
+            return matchObject.group(1) + matchObject.group(2) + matchObject.group(3)
+
         self.count += 1
         name = ''
         if self.usePlaceHolders:
@@ -47,6 +59,9 @@ class PlaceHolder:
             return matchObject.group(1) + '${' + str(self.count) + name + '}' + matchObject.group(3)
         else:
             return '${' + str(self.count) + name + '}'
+
+def apply_caption_tweaks(content: List[str]) -> List[str]:
+    return [re.sub(r'#([0-9])', r'arg\1', line, flags=re.A) for line in content]
 
 
 def get_unimathsymbols_file():
@@ -111,6 +126,7 @@ def create_snippet(line: str) -> str:
     else:
         snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
     snippet = re.sub(r'(?<![\{\s:\[])(\<)([a-zA-Z\s]*)(\>)', p.sub, snippet)
+    snippet = re.sub(r'(\()([^\{\}\[\]\(\)]*)(\))', p.sub, snippet)
     p.setKeepDelimiters(False)
     snippet = re.sub(r'(?<![\{:\[=-])(%\<)([a-zA-Z\s]*)(%\>)(?!})', p.sub, snippet)
 
@@ -120,7 +136,8 @@ def create_snippet(line: str) -> str:
 
 def parse_cwl_file(
         file: str,
-        unimath_dict: Dict[str, Dict[str, str]]
+        unimath_dict: Dict[str, Dict[str, str]],
+        remove_spaces: bool = False
     ) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
     """
     Parse a CWL file to extract the provided commands and environments
@@ -134,6 +151,8 @@ def parse_cwl_file(
         lines = f.readlines()
     pkgcmds: Dict[str, Dict[str, str]] = {}
     pkgenvs: Dict[str, Dict[str, str, str]] = {}
+    if file == 'caption.cwl':
+        lines = apply_caption_tweaks(lines)
     for line in lines:
         line = line.rstrip()
         index_hash = line.find('#')
@@ -148,16 +167,25 @@ def parse_cwl_file(
             args = line[line.index('}') + 1:]
             snippet_name = env + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
             snippet_name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', snippet_name)
+            if remove_spaces:
+                snippet_name = snippet_name.replace(' ', '')
+            else:
+                snippet_name = snippet_name.strip()
             snippet = create_snippet(args)
-            pkgenvs[snippet_name.rstrip()] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
+            pkgenvs[snippet_name] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
             continue
         if line[:5] == '\\end{':
             continue
         if line[0] == '\\':
             line = line[1:]  # Remove leading '\'
-            command = line
+            command = line.rstrip()
             name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
+            name = re.sub(r'\([^\{\}\[\]\(\)]*\)', r'()', name)
             name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
+            if remove_spaces:
+                name = name.replace(' ', '')
+            else:
+                name = name.strip()
             command_dict: Dict[str, str] = {'command': command, 'package': package}
             if name in commands:
                 continue
@@ -177,7 +205,13 @@ def parse_cwl_file(
 def parse_cwl_files(unimath_dict):
     cwl_files = get_cwl_files()
     for cwl_file in cwl_files:
-        (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict)
+        # Skip some files
+        if cwl_file in FILES_TO_IGNORE:
+            continue
+        remove_spaces = False
+        if cwl_file in FILES_TO_REMOVE_SPACES_IN:
+            remove_spaces = True
+        (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict, remove_spaces)
         if pkgEnvs:
             json.dump(pkgEnvs,
                       open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
