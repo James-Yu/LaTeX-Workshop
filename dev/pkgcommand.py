@@ -41,7 +41,16 @@ class PlaceHolder:
     def setKeepDelimiters(self, trueOrFalse):
         self.keepDelimiters = trueOrFalse
 
+    def isToSkip(self, delimiters: str, string: str):
+        if delimiters == '()' and string in ['s', 'en anglais', 'en français']:
+            return True
+        else:
+            return False
+
     def sub(self, matchObject) -> str:
+        if self.isToSkip(matchObject.group(1) + matchObject.group(3), matchObject.group(2)):
+            return matchObject.group(1) + matchObject.group(2) + matchObject.group(3)
+
         self.count += 1
         name = ''
         if self.usePlaceHolders:
@@ -117,6 +126,7 @@ def create_snippet(line: str) -> str:
     else:
         snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
     snippet = re.sub(r'(?<![\{\s:\[])(\<)([a-zA-Z\s]*)(\>)', p.sub, snippet)
+    snippet = re.sub(r'(\()([^\{\}\[\]\(\)]*)(\))', p.sub, snippet)
     p.setKeepDelimiters(False)
     snippet = re.sub(r'(?<![\{:\[=-])(%\<)([a-zA-Z\s]*)(%\>)(?!})', p.sub, snippet)
 
@@ -170,6 +180,7 @@ def parse_cwl_file(
             line = line[1:]  # Remove leading '\'
             command = line.rstrip()
             name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
+            name = re.sub(r'\([^\{\}\[\]\(\)]*\)', r'()', name)
             name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
             if remove_spaces:
                 name = name.replace(' ', '')
