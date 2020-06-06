@@ -1,5 +1,29 @@
 # Change Log
 
+## [8.10.0] - 2020-06-06
+
+### Added
+- Enhance LaTeX3 support.
+- Activate extension for `latex-expl3` language id.
+- (#2018) Support restoring PDF viewers.
+- (#2088) Add completion support for `includeonly`/`excludeonly`.
+- (#2099) Set default recipe by name.
+- (#2115) Add intellisense for optional `bibtex` fields.
+- (#2118) Texcount comes back.
+- (#2136) Filename completion with already typed path.
+
+### Fixed
+- Fix double `}}` in env completion.
+- (#1523) Match `\autocite`s syntax highlight.
+- (#2049) Add `luahbtex` rule for build info.
+- (#2052) Add standard math envs to the default list.
+- (#2052) Set `intellisense.package.enabled` to true to populate intellisense based on the used packages.
+- (#2054) Declare more cite commands for syntax highlighting.
+- (#2055) Stop rebroadcasting keyboard events on Linux.
+- (#2056) Remove duplicate `\env` commands.
+- (#2120) Show labels in structure/outline.
+- (#2131) Fix spaces in suggestions.
+
 ## [8.9.0] - 2020-04-24
 
 ### Added
