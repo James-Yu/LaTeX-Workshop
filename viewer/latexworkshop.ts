@@ -20,14 +20,18 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly viewerHistory: ViewerHistory
 
     private socket: WebSocket
-    private pdfViewerStarted: Promise<void> = new Promise((resolve) => {
-        document.addEventListener('documentloaded', () => resolve(), {once: true})
-    })
-    private pdfFileRendered?: Promise<void>
+    private pdfViewerStarted: Promise<void>
+    private pdfFileRendered: Promise<void>
     private isRestoredWithSerializer: boolean = false
+    private webviewLoaded: Promise<void> = new Promise((resolve) => {
+        document.addEventListener('webviewerloaded', () => resolve() )
+    })
 
     constructor() {
         this.embedded = window.parent !== window
+        this.pdfViewerStarted = new Promise((resolve) => {
+            this.onDidStartPdfViewer(() => resolve())
+        })
 
         const pack = this.decodeQuery()
         this.encodedPdfFilePath = pack.encodedPdfFilePath
@@ -70,6 +74,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startSendingState()
         this.startRecievingPanelManagerResponse()
 
+        this.pdfFileRendered = new Promise((resolve) => {
+            this.onDidRenderPdfFile(() => resolve(), {once: true})
+        })
         this.onDidLoadPdfFile(() => {
             this.pdfFileRendered = new Promise((resolve) => {
                 this.onDidRenderPdfFile(() => resolve(), {once: true})
@@ -77,24 +84,52 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
+    async getEventBus() {
+        await this.webviewLoaded
+        await PDFViewerApplication.initializedPromise
+        return PDFViewerApplication.eventBus
+    }
+
     onWillStartPdfViewer(cb: (e: Event) => any): IDisposable {
         document.addEventListener('webviewerloaded', cb, {once: true})
         return { dispose: () => document.removeEventListener('webviewerloaded', cb) }
     }
 
-    onDidStartPdfViewer(cb: (e: Event) => any): IDisposable {
-        document.addEventListener('documentloaded', cb, {once: true})
-        return { dispose: () => document.removeEventListener('documentloaded', cb) }
+    onDidStartPdfViewer(cb: () => any): IDisposable {
+        const cb0 = () => {
+            cb()
+            PDFViewerApplication.eventBus.off('documentloaded', cb0)
+        }
+        this.getEventBus().then(eventBus => {
+            eventBus.on('documentloaded', cb0)
+        })
+        return { dispose: () => PDFViewerApplication.eventBus.off('documentloaded', cb0) }
     }
 
-    onDidLoadPdfFile(cb: (e: Event) => any, option?: {once: boolean}): IDisposable {
-        document.addEventListener('pagesinit', cb, option)
-        return { dispose: () => document.removeEventListener('pagesinit', cb) }
+    onDidLoadPdfFile(cb: () => any, option?: {once: boolean}): IDisposable {
+        const cb0 = () => {
+            cb()
+            if (option?.once) {
+                PDFViewerApplication.eventBus.off('pagesinit', cb0)
+            }
+        }
+        this.getEventBus().then(eventBus => {
+            eventBus.on('pagesinit', cb0)
+        })
+        return { dispose: () => PDFViewerApplication.eventBus.off('pagesinit', cb0) }
     }
 
-    onDidRenderPdfFile(cb: (e: Event) => any, option?: {once: boolean}): IDisposable {
-        document.addEventListener('pagerendered', cb, option)
-        return { dispose: () => document.removeEventListener('pagerendered', cb) }
+    onDidRenderPdfFile(cb: () => any, option?: {once: boolean}): IDisposable {
+        const cb0 = () => {
+            cb()
+            if (option?.once) {
+                PDFViewerApplication.eventBus.off('pagerendered', cb0)
+            }
+        }
+        this.getEventBus().then(eventBus => {
+            eventBus.on('pagerendered', cb0)
+        })
+        return { dispose: () => PDFViewerApplication.eventBus.off('pagerendered', cb0) }
     }
 
     send(message: ClientRequest) {
@@ -136,7 +171,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const ev = new Event('change')
             // We have to wait for currentScaleValue set above to be effected.
             // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
-            this.pdfFileRendered?.then(() => {
+            this.pdfFileRendered.then(() => {
                 if (state.trim === undefined) {
                     return
                 }
@@ -402,12 +437,18 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (!this.embedded) {
             return
         }
+        window.addEventListener('scroll', () => {
+            const pack = this.getPdfViewerState()
+            this.sendToPanelManager({type: 'state', state: pack})
+        }, true)
         const events = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
         for (const ev of events) {
-            window.addEventListener(ev, () => {
-                const pack = this.getPdfViewerState()
-                this.sendToPanelManager({type: 'state', state: pack})
-            }, true)
+            this.getEventBus().then(eventBus => {
+                eventBus.on(ev, () => {
+                    const pack = this.getPdfViewerState()
+                    this.sendToPanelManager({type: 'state', state: pack})
+                })
+            })
         }
     }
 
