@@ -6,9 +6,21 @@ Mozilla [asks](https://mozilla.github.io/pdf.js/getting_started/) web developers
 
 We provide additional features by setting up new event listeners in `latexworkshop.js` for DOM objects in `viewer.html`. We do not and should not override functions defined by PDF.js.
 
-We can see the changes, [diff1](https://github.com/James-Yu/LaTeX-Workshop/commit/ff39f772296a444c2ddc57e93f3a9928fd0c9030#diff-ff661e0ff756ae1ff026c0e8f4561d0e), [diff2](https://github.com/James-Yu/LaTeX-Workshop/commit/128c9826cda64f7cdcae33490ddec2dc64aafb31#diff-ff661e0ff756ae1ff026c0e8f4561d0e),  we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
+We can see the changes, [diff1](https://github.com/James-Yu/LaTeX-Workshop/commit/ff39f772296a444c2ddc57e93f3a9928fd0c9030#diff-ff661e0ff756ae1ff026c0e8f4561d0e), [diff2](https://github.com/James-Yu/LaTeX-Workshop/commit/128c9826cda64f7cdcae33490ddec2dc64aafb31#diff-ff661e0ff756ae1ff026c0e8f4561d0e), and [diff3](https://github.com/James-Yu/LaTeX-Workshop/commit/1b1b58a2fe8ed33a2e7fa765b78f6ea1614f217b),  we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
 
 JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files.
+
+### PDFWorker
+
+By default, PDFWorker is recreated every time reopening a PDF file. By setting `workerPort`,
+we can reuse the PDFWorker:
+``` javascript
+  workerPort: {
+    value: new Worker('/build/pdf.worker.js'),
+    kind: OptionKind.WORKER
+  },
+```
+See [mozilla/pdf.js/pull/8107](https://github.com/mozilla/pdf.js/pull/8107) for the details of the setting.
 
 ### Events emitted by `viewer.js`
 
