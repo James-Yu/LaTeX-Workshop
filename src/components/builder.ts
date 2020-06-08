@@ -426,9 +426,13 @@ export class Builder {
                     this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
                 }
                 recipe = candidates[0]
-            }
-            if (!recipeName && languageId === 'rsweave') {
-                const candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
+            } else {
+               let candidates: {name: string, tools: (string | StepCommand)[]}[] = recipes
+               if (languageId === 'rsweave') {
+                    candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
+               } else if (languageId === 'jlweave') {
+                    candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('jnw|jlweave|weave.jl'))
+               }
                 if (candidates.length < 1) {
                     this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)
                     this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)

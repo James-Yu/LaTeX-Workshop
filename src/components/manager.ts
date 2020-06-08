@@ -42,6 +42,8 @@ export class Manager {
     private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
     private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
+    private jlweaveExt: string[] = ['.jnw', '.jtexw']
+    private weaveExt: string[] = []
     private pdfWatcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
@@ -51,6 +53,7 @@ export class Manager {
         const interval = configuration.get('latex.watch.interval') as number
         const delay = configuration.get('latex.watch.delay') as number
         const pdfDelay = configuration.get('latex.watch.pdfDelay') as number
+        this.weaveExt = this.jlweaveExt.concat(this.rsweaveExt)
         this.watcherOptions = {
             useFsEvents: false,
             usePolling,
@@ -123,6 +126,8 @@ export class Manager {
         const ext = path.extname(filename)
         if (ext === '.tex') {
             return 'latex'
+        } else if (this.jlweaveExt.includes(ext)) {
+            return 'jlweave'
         } else if (this.rsweaveExt.includes(ext)) {
             return 'rsweave'
         } else {
@@ -139,7 +144,7 @@ export class Manager {
     }
 
     hasTexId(id: string) {
-        return ['tex', 'latex', 'latex-expl3', 'doctex', 'rsweave'].includes(id)
+        return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
 
     private workspaceRootDir: string = ''
@@ -714,7 +719,7 @@ export class Manager {
 
     private onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
-        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.updateCompleterOnChange(file)
         }
@@ -723,7 +728,7 @@ export class Manager {
     private onWatchedFileChanged(file: string) {
         this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
-        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
