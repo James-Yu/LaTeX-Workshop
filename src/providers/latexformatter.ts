@@ -131,7 +131,8 @@ export class LaTexFormatter {
             fs.writeFileSync(temporaryFile, textToFormat)
 
             // generate command line arguments
-            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(document.fileName, this.extension.builder.tmpDir)(arg)
+            const rootFile = this.extension.manager.rootFile ? this.extension.manager.rootFile : document.fileName
+            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent)
@@ -139,7 +140,7 @@ export class LaTexFormatter {
 
             this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
             this.extension.manager.setEnvVar()
-            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
+            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
             const stderrBuffer: string[] = []
