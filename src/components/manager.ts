@@ -406,10 +406,10 @@ export class Manager {
      */
     parseFileAndSubs(file: string, onChange: boolean = false) {
         if (this.isExcluded(file)) {
-            this.extension.logger.addLogMessage(`Ignoring ${file}`)
+            this.extension.logger.addLogMessage(`Ignoring: ${file}`)
             return
         }
-        this.extension.logger.addLogMessage(`Parsing ${file}`)
+        this.extension.logger.addLogMessage(`Parsing a file and its subfiles: ${file}`)
         if (this.fileWatcher && !this.filesWatched.includes(file)) {
             // The file is first time considered by the extension.
             this.fileWatcher.add(file)
@@ -718,7 +718,7 @@ export class Manager {
     }
 
     private onWatchingNewFile(file: string) {
-        this.extension.logger.addLogMessage(`Adding ${file} to file watcher.`)
+        this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.updateCompleterOnChange(file)
@@ -726,7 +726,7 @@ export class Manager {
     }
 
     private onWatchedFileChanged(file: string) {
-        this.extension.logger.addLogMessage(`File watcher: responding to change in ${file}`)
+        this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
@@ -747,13 +747,13 @@ export class Manager {
     }
 
     private onWatchedBibChanged(file: string) {
-        this.extension.logger.addLogMessage(`Bib file watcher - responding to change in ${file}`)
+        this.extension.logger.addLogMessage(`Bib file watcher - file changed: ${file}`)
         this.extension.completer.citation.parseBibFile(file)
         this.buildOnFileChanged(file, true)
     }
 
     private onWatchedBibDeleted(file: string) {
-        this.extension.logger.addLogMessage(`Bib file watcher: ${file} deleted.`)
+        this.extension.logger.addLogMessage(`Bib file watcher - file deleted: ${file}`)
         if (this.bibWatcher) {
             this.bibWatcher.unwatch(file)
         }
@@ -762,14 +762,15 @@ export class Manager {
     }
 
     private onWatchedFileDeleted(file: string) {
-        this.extension.logger.addLogMessage(`File watcher: ${file} deleted.`)
+        this.extension.logger.addLogMessage(`File watcher - file deleted: ${file}`)
         if (this.fileWatcher) {
             this.fileWatcher.unwatch(file)
         }
         this.filesWatched.splice(this.filesWatched.indexOf(file), 1)
         delete this.cachedContent[file]
         if (file === this.rootFile) {
-            this.extension.logger.addLogMessage(`Deleted ${file} was root - triggering root search`)
+            this.extension.logger.addLogMessage(`Root file deleted: ${file}`)
+            this.extension.logger.addLogMessage('Start searching a new root file.')
             this.findRoot()
         }
     }
@@ -785,12 +786,12 @@ export class Manager {
     }
 
     private onWatchedPdfChanged(file: string) {
-        this.extension.logger.addLogMessage(`PDF file watcher - responding to change in ${file}`)
+        this.extension.logger.addLogMessage(`PDF file watcher - file changed: ${file}`)
         this.extension.viewer.refreshExistingViewer()
     }
 
     onWatchedPdfDeleted(file: string) {
-        this.extension.logger.addLogMessage(`PDF file watcher: ${file} deleted.`)
+        this.extension.logger.addLogMessage(`PDF file watcher - file deleted: ${file}`)
         if (this.pdfWatcher) {
             this.pdfWatcher.unwatch(file)
         }
@@ -799,7 +800,7 @@ export class Manager {
 
     watchPdfFile(pdfPath: string) {
         if (this.pdfWatcher && !this.pdfsWatched.includes(pdfPath)) {
-            this.extension.logger.addLogMessage(`Adding .pdf file ${pdfPath} to pdf file watcher.`)
+            this.extension.logger.addLogMessage(`Added to PDF file watcher: ${pdfPath}`)
             this.pdfWatcher.add(pdfPath)
             this.pdfsWatched.push(pdfPath)
         }
@@ -814,7 +815,7 @@ export class Manager {
             this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
             return
         }
-        this.extension.logger.addLogMessage(`${file} changed. Auto build project.`)
+        this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
@@ -850,7 +851,8 @@ export class Manager {
             this.extension.completer.command.update(file, nodes)
             this.extension.completer.command.updatePkg(file, nodes)
         } else {
-            this.extension.logger.addLogMessage(`Cannot parse ${file}: Fall back to regex-based completion.`)
+            this.extension.logger.addLogMessage(`Cannot parse a TeX file: ${file}`)
+            this.extension.logger.addLogMessage('Fall back to regex-based completion.')
             // Do the update with old style.
             const contentNoComment = utils.stripComments(content, '%')
             this.extension.completer.reference.update(file, undefined, undefined, contentNoComment)
@@ -865,16 +867,16 @@ export class Manager {
         const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
 
         if (!bibPath) {
-            this.extension.logger.addLogMessage(`Cannot find .bib file ${bib}`)
+            this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
             return undefined
         }
-        this.extension.logger.addLogMessage(`Found .bib file ${bibPath}`)
+        this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
         return bibPath
     }
 
     private watchBibFile(bibPath: string) {
         if (this.bibWatcher && !this.bibsWatched.includes(bibPath)) {
-            this.extension.logger.addLogMessage(`Adding .bib file ${bibPath} to bib file watcher.`)
+            this.extension.logger.addLogMessage(`Added to bib file watcher: ${bibPath}`)
             this.bibWatcher.add(bibPath)
             this.bibsWatched.push(bibPath)
             this.extension.completer.citation.parseBibFile(bibPath)
