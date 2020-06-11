@@ -191,7 +191,8 @@ export class Manager {
                 continue
             }
             if (this.rootFile !== rootFile) {
-                this.extension.logger.addLogMessage(`Root file changed from: ${this.rootFile} to ${rootFile}. Find all dependencies.`)
+                this.extension.logger.addLogMessage(`Root file changed: from ${this.rootFile} to ${rootFile}`)
+                this.extension.logger.addLogMessage('Start to find all dependencies.')
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 this.initiateFileWatcher()
