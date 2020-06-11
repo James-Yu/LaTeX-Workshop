@@ -723,6 +723,13 @@
                 "rnw2tex",
                 "latexmk"
               ]
+            },
+            {
+              "name": "Compile Jnw files",
+              "tools": [
+                "jnw2tex",
+                "latexmk"
+              ]
             }
           ],
           "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
@@ -818,6 +825,15 @@
               "args": [
                 "-e",
                 "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
+              ],
+              "env": {}
+            },
+            {
+              "name": "jnw2tex",
+              "command": "julia",
+              "args": [
+                "-e",
+                "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
               ],
               "env": {}
             }
