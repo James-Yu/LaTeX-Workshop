@@ -43,7 +43,7 @@ A clear and concise description of what you expected to happen.
 
 ## Logs [Required]
 
-Please paste the whole log messages here, not parts of ones. It is very important to identify problems.
+Please paste the whole log messages here, not parts of ones. The log should start with `Initializing LaTeX Workshop`. It is very important to identify problems.
 
 ### LaTeX Workshop Output [Required]
 
