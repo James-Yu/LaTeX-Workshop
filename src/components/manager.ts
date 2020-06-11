@@ -616,6 +616,7 @@ export class Manager {
 
         ioFiles.output.forEach((outputFile: string) => {
             if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
+                this.extension.logger.addLogMessage(`Parse aux file: ${outputFile}`)
                 this.parseAuxFile(fs.readFileSync(outputFile).toString(),
                                   path.dirname(outputFile).replace(outDir, rootDir))
             }
@@ -735,7 +736,7 @@ export class Manager {
         if (this.bibWatcher !== undefined) {
             return
         }
-        this.extension.logger.addLogMessage('Creating file watcher for .bib files.')
+        this.extension.logger.addLogMessage('Creating Bib file watcher.')
         this.bibWatcher = chokidar.watch([], this.watcherOptions)
         this.bibWatcher.on('change', (file: string) => this.onWatchedBibChanged(file))
         this.bibWatcher.on('unlink', (file: string) => this.onWatchedBibDeleted(file))
@@ -774,7 +775,7 @@ export class Manager {
         if (this.pdfWatcher !== undefined) {
             return
         }
-        this.extension.logger.addLogMessage('Creating file watcher for .pdf files.')
+        this.extension.logger.addLogMessage('Creating PDF file watcher.')
         this.pdfWatcher = chokidar.watch([], this.pdfWatcherOptions)
         this.pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
         this.pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
