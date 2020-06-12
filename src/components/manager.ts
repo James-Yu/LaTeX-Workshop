@@ -582,11 +582,12 @@ export class Manager {
      * and all output files will be check if there are aux files related. If so,
      * the aux files are parsed for any possible bib file.
      */
-    parseFlsFile(baseFile: string) {
+    parseFlsFile(srcFile: string) {
         this.extension.logger.addLogMessage('Parse fls file.')
-        const rootDir = path.dirname(baseFile)
-        const outDir = this.getOutDir(baseFile)
-        const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
+        const rootDir = path.dirname(srcFile)
+        const outDir = this.getOutDir(srcFile)
+        const baseName = path.parse(srcFile).name
+        const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
         if (!fs.existsSync(flsFile)) {
             this.extension.logger.addLogMessage(`Cannot find fls file: ${flsFile}`)
             return
@@ -602,12 +603,12 @@ export class Manager {
                 return
             }
             // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (baseFile === inputFile || inputFile in this.cachedContent) {
+            if (srcFile === inputFile || inputFile in this.cachedContent) {
                 return
             }
             if (path.extname(inputFile) === '.tex') {
                 // Parse tex files as imported subfiles.
-                this.cachedContent[baseFile].children.push({
+                this.cachedContent[srcFile].children.push({
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
