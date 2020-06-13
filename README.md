@@ -82,6 +82,9 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Changing between `\[...\]` and `\begin{}...\end{}`](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#changing-between--and-beginend)
   - [Closing the current environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Closing-the-current-environment)
   - [Surrounding selection with an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Surrounding-selection-with-an-environment)
+- [Extra features](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures)
+  - [Structure of the document](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#structure-of-the-document)
+  - [Counting words](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#counting-words)
 - [VS Code Remote Development](https://github.com/James-Yu/LaTeX-Workshop/wiki/Remote)
 - [FAQ and common issues](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ)
 
