@@ -378,7 +378,13 @@ export class Viewer {
                         scrollMode: configuration.get('view.pdf.scrollMode') as number,
                         spreadMode: configuration.get('view.pdf.spreadMode') as number,
                         hand: configuration.get('view.pdf.hand') as boolean,
-                        invert: configuration.get('view.pdf.invert') as number,
+                        invertMode: {
+                            brightness: configuration.get('view.pdf.invertMode.brightness') as number,
+                            grayscale: configuration.get('view.pdf.invertMode.grayscale') as number,
+                            hueRotate: configuration.get('view.pdf.invertMode.hueRotate') as number,
+                            invert: configuration.get('view.pdf.invert') as number,
+                            sepia: configuration.get('view.pdf.invertMode.sepia') as number,
+                        },
                         bgColor: configuration.get('view.pdf.backgroundColor') as string,
                         keybindings: {
                             synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
