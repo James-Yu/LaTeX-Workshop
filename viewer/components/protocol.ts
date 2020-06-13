@@ -9,7 +9,13 @@ export type ServerResponse = {
     scrollMode: number,
     spreadMode: number,
     hand: boolean,
-    invert: number,
+    invertMode: {
+        brightness: number,
+        grayscale: number,
+        hueRotate: number,
+        invert: number,
+        sepia: number
+    },
     bgColor: string,
     keybindings: {
         synctex: 'ctrl-click' | 'double-click'
