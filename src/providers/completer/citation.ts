@@ -152,7 +152,7 @@ export class Citation implements IProvider {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (fs.statSync(file).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
-            this.extension.logger.addLogMessage(`${file} is too large, ignoring it.`)
+            this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${file}`)
             if (file in this.bibEntries) {
                 delete this.bibEntries[file]
             }
