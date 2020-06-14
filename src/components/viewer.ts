@@ -4,7 +4,7 @@ import * as os from 'os'
 import ws from 'ws'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-import {escapeHtml, sleep} from '../utils/utils'
+import {escapeHtml} from '../utils/utils'
 
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
@@ -24,11 +24,6 @@ class Client {
     send(message: ServerResponse) {
         this.websocket.send(JSON.stringify(message))
     }
-}
-
-export type ViewerState = {
-    path: string,
-    scrollTop: number
 }
 
 class PdfViewerPanel {
@@ -91,7 +86,6 @@ export class Viewer {
     extension: Extension
     clients: {[key: string]: Set<Client>} = {}
     webviewPanels: Map<string, Set<PdfViewerPanel>> = new Map()
-    stateMessageQueue: Map<string, ViewerState[]> = new Map()
     pdfViewerPanelSerializer: PdfViewerPanelSerializer
 
     constructor(extension: Extension) {
@@ -413,14 +407,6 @@ export class Viewer {
                 // nothing to do
                 break
             }
-            case 'state': {
-                const results = this.stateMessageQueue.get(data.path)
-                if (!results) {
-                    break
-                }
-                results.push({ path: data.path, scrollTop: data.scrollTop })
-                break
-            }
             default: {
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
                 break
@@ -466,24 +452,12 @@ export class Viewer {
         return
     }
 
-    async getViewerState(pdfFilePath: string): Promise<ViewerState[]> {
-        const clients = this.getClients(pdfFilePath)
-        if (clients === undefined || clients.size === 0) {
+    getViewerState(pdfFilePath: string): (PdfViewerState | undefined)[] {
+        const panelSet = this.getPanelSet(pdfFilePath)
+        if (!panelSet) {
             return []
         }
-        this.stateMessageQueue.set(pdfFilePath, [])
-        for (const client of clients) {
-            client.send({type: 'request_state'})
-        }
-        for (let i = 0; i < 30; i++) {
-            const results = this.stateMessageQueue.get(pdfFilePath)
-            if (results && results.length > 0) {
-                this.stateMessageQueue.delete(pdfFilePath)
-                return results
-            }
-            await sleep(100)
-        }
-        throw new Error('Cannot get viewer state.')
+        return Array.from(panelSet).map( e => e.state )
     }
 
 }

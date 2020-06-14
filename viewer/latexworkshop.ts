@@ -243,14 +243,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     }
                     break
                 }
-                case 'request_state': {
-                    this.send( {
-                        type: 'state',
-                        path: this.pdfFilePath,
-                        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop
-                    })
-                    break
-                }
                 default: {
                     break
                 }

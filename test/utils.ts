@@ -130,8 +130,13 @@ export async function getViewerStatus(pdfFilePath: string) {
     const extension = await waitLatexWorkshopActivated()
     return await waitUntil(async () => {
         try {
-            const rs = await extension.exports.viewer.getViewerStatus?.(pdfFilePath)
-            return rs && rs.length > 0 ? rs : undefined
+            const rs = extension.exports.viewer.getViewerStatus?.(pdfFilePath)
+            const ret = rs && rs.find(st => st)
+            if (ret && ret.path !== undefined && ret.scrollTop !== undefined) {
+                return [{ path: ret.path, scrollTop: ret.scrollTop }]
+            } else {
+                return undefined
+            }
         } catch (e) {
             return
         }
