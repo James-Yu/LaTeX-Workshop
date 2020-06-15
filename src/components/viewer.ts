@@ -384,6 +384,7 @@ export class Viewer {
                             hueRotate: configuration.get('view.pdf.invertMode.hueRotate') as number,
                             invert: configuration.get('view.pdf.invert') as number,
                             sepia: configuration.get('view.pdf.invertMode.sepia') as number,
+                            darkModeOnly: configuration.get('view.pdf.invertMode.darkModeOnly') as boolean,
                         },
                         bgColor: configuration.get('view.pdf.backgroundColor') as string,
                         keybindings: {
