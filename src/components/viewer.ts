@@ -372,7 +372,8 @@ export class Viewer {
                         continue
                     }
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                    const invert = ((configuration.get('view.pdf.invertMode.darkModeOnly') && getCurrentThemeLightness() == 'dark') || !configuration.get('view.pdf.invertMode.darkModeOnly')) ? configuration.get('view.pdf.invert') as number : 0
+                    const darkModeOnly = configuration.get('view.pdf.invertMode.darkModeOnly') as boolean
+                    const invert = (!darkModeOnly || (darkModeOnly && (getCurrentThemeLightness() == 'dark'))) ? configuration.get('view.pdf.invert') as number : 0
                     client.send({
                         type: 'params',
                         scale: configuration.get('view.pdf.zoom') as string,
