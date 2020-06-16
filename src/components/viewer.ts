@@ -11,6 +11,7 @@ import {SyncTeXRecordForward} from './locator'
 import {encodePathWithPrefix} from '../utils/utils'
 
 import {ClientRequest, ServerResponse, PanelRequest, PdfViewerState} from '../../viewer/components/protocol'
+import {getCurrentThemeLightness} from '../utils/theme'
 
 class Client {
     readonly viewer: 'browser' | 'tab'
@@ -371,6 +372,7 @@ export class Viewer {
                         continue
                     }
                     const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                    const invert = ((configuration.get('view.pdf.invertMode.darkModeOnly') && getCurrentThemeLightness() == 'dark') || !configuration.get('view.pdf.invertMode.darkModeOnly')) ? configuration.get('view.pdf.invert') as number : 0
                     client.send({
                         type: 'params',
                         scale: configuration.get('view.pdf.zoom') as string,
@@ -382,9 +384,8 @@ export class Viewer {
                             brightness: configuration.get('view.pdf.invertMode.brightness') as number,
                             grayscale: configuration.get('view.pdf.invertMode.grayscale') as number,
                             hueRotate: configuration.get('view.pdf.invertMode.hueRotate') as number,
-                            invert: configuration.get('view.pdf.invert') as number,
+                            invert: invert,
                             sepia: configuration.get('view.pdf.invertMode.sepia') as number,
-                            darkModeOnly: configuration.get('view.pdf.invertMode.darkModeOnly') as boolean,
                         },
                         bgColor: configuration.get('view.pdf.backgroundColor') as string,
                         keybindings: {

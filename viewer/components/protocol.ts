@@ -14,8 +14,7 @@ export type ServerResponse = {
         grayscale: number,
         hueRotate: number,
         invert: number,
-        sepia: number,
-        darkModeOnly: boolean
+        sepia: number
     },
     bgColor: string,
     keybindings: {
