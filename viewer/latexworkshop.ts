@@ -4,6 +4,7 @@ import {PageTrimmer} from './components/pagetrimmer.js'
 import {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from './components/protocol.js'
 import * as utils from './components/utils.js'
 import {ViewerHistory} from './components/viewerhistory.js'
+import {getCurrentThemeLightness} from '../src/utils/theme'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -230,7 +231,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     if (!this.isRestoredWithSerializer) {
                         this.restorePdfViewerState(data)
                     }
-                    if (((data.invertMode.darkModeOnly && window.matchMedia(`(prefers-color-scheme: dark)`).matches) || !data.invertMode.darkModeOnly) && (data.invertMode.invert > 0)) {
+                    if (((data.invertMode.darkModeOnly && getCurrentThemeLightness() == 'dark') || !data.invertMode.darkModeOnly) && (data.invertMode.invert > 0)) {
                         const { brightness, grayscale, hueRotate, invert, sepia } = data.invertMode
                         const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`;
                         (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
