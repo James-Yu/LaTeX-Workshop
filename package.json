@@ -833,6 +833,15 @@
               "command": "julia",
               "args": [
                 "-e",
+                "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
+              ],
+              "env": {}
+            },
+            {
+              "name": "jnw2texmintex",
+              "command": "julia",
+              "args": [
+                "-e",
                 "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
               ],
               "env": {}
