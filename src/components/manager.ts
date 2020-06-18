@@ -42,6 +42,8 @@ export class Manager {
     private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
     private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
+    private jlweaveExt: string[] = ['.jnw', '.jtexw']
+    private weaveExt: string[] = []
     private pdfWatcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
@@ -51,6 +53,7 @@ export class Manager {
         const interval = configuration.get('latex.watch.interval') as number
         const delay = configuration.get('latex.watch.delay') as number
         const pdfDelay = configuration.get('latex.watch.pdfDelay') as number
+        this.weaveExt = this.jlweaveExt.concat(this.rsweaveExt)
         this.watcherOptions = {
             useFsEvents: false,
             usePolling,
@@ -123,6 +126,8 @@ export class Manager {
         const ext = path.extname(filename)
         if (ext === '.tex') {
             return 'latex'
+        } else if (this.jlweaveExt.includes(ext)) {
+            return 'jlweave'
         } else if (this.rsweaveExt.includes(ext)) {
             return 'rsweave'
         } else {
@@ -139,7 +144,7 @@ export class Manager {
     }
 
     hasTexId(id: string) {
-        return ['tex', 'latex', 'latex-expl3', 'doctex', 'rsweave'].includes(id)
+        return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
 
     private workspaceRootDir: string = ''
@@ -578,11 +583,12 @@ export class Manager {
      * and all output files will be check if there are aux files related. If so,
      * the aux files are parsed for any possible bib file.
      */
-    parseFlsFile(baseFile: string) {
+    parseFlsFile(srcFile: string) {
         this.extension.logger.addLogMessage('Parse fls file.')
-        const rootDir = path.dirname(baseFile)
-        const outDir = this.getOutDir(baseFile)
-        const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
+        const rootDir = path.dirname(srcFile)
+        const outDir = this.getOutDir(srcFile)
+        const baseName = path.parse(srcFile).name
+        const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
         if (!fs.existsSync(flsFile)) {
             this.extension.logger.addLogMessage(`Cannot find fls file: ${flsFile}`)
             return
@@ -598,12 +604,12 @@ export class Manager {
                 return
             }
             // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (baseFile === inputFile || inputFile in this.cachedContent) {
+            if (srcFile === inputFile || inputFile in this.cachedContent) {
                 return
             }
             if (path.extname(inputFile) === '.tex') {
                 // Parse tex files as imported subfiles.
-                this.cachedContent[baseFile].children.push({
+                this.cachedContent[srcFile].children.push({
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
@@ -716,7 +722,7 @@ export class Manager {
 
     private onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
-        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.updateCompleterOnChange(file)
         }
@@ -725,7 +731,7 @@ export class Manager {
     private onWatchedFileChanged(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
-        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
