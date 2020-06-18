@@ -1,15 +1,19 @@
 export type ServerResponse = {
     type: 'refresh'
 } | {
-    type: 'request_state'
-} | {
     type: 'params',
     scale: string,
     trim: number,
     scrollMode: number,
     spreadMode: number,
     hand: boolean,
-    invert: number,
+    invertMode: {
+        brightness: number,
+        grayscale: number,
+        hueRotate: number,
+        invert: number,
+        sepia: number
+    },
     bgColor: string,
     keybindings: {
         synctex: 'ctrl-click' | 'double-click'
@@ -38,10 +42,6 @@ export type ClientRequest = {
     url: string
 } | {
     type: 'ping'
-} | {
-    type: 'state',
-    path: string,
-    scrollTop: number
 } | {
     type: 'reverse_synctex',
     path: string,

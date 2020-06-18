@@ -230,8 +230,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     if (!this.isRestoredWithSerializer) {
                         this.restorePdfViewerState(data)
                     }
-                    if (data.invert > 0) {
-                        (document.querySelector('html') as HTMLHtmlElement).style.filter = `invert(${data.invert * 100}%)`;
+                    if (data.invertMode.invert > 0) {
+                        const { brightness, grayscale, hueRotate, invert, sepia } = data.invertMode
+                        const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`;
+                        (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
                         (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
                     }
                     (document.querySelector('#viewerContainer') as HTMLElement).style.background = data.bgColor
@@ -239,14 +241,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         this.synctex.reverseSynctexKeybinding = data.keybindings['synctex']
                         this.synctex.registerListenerOnEachPage()
                     }
-                    break
-                }
-                case 'request_state': {
-                    this.send( {
-                        type: 'state',
-                        path: this.pdfFilePath,
-                        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop
-                    })
                     break
                 }
                 default: {

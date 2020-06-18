@@ -9,7 +9,10 @@
 [![Average time to resolve an issue](https://isitmaintained.com/badge/resolution/James-Yu/LaTeX-Workshop.svg)](https://github.com/James-Yu/LaTeX-Workshop/issues)
 [![Percentage of issues still open](https://isitmaintained.com/badge/open/James-Yu/LaTeX-Workshop.svg)](https://github.com/James-Yu/LaTeX-Workshop/issues)
 
-[![TeX Live on Windows](https://img.shields.io/github/workflow/status/James-Yu/LaTeX-Workshop/TeX%20Live%20on%20Windows.svg?logo=github)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+Windows%22) [![TeX Live on macOS](https://img.shields.io/github/workflow/status/James-Yu/LaTeX-Workshop/TeX%20Live%20on%20macOS.svg?logo=github)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+macOS%22) [![TeX Live on Linux](https://img.shields.io/github/workflow/status/James-Yu/LaTeX-Workshop/TeX%20Live%20on%20Linux.svg?logo=github)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+Linux%22) [![Docker on Linux](https://img.shields.io/github/workflow/status/James-Yu/LaTeX-Workshop/Docker%20on%20Linux.svg?logo=github)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22Docker+on+Linux%22)
+[![TeX Live on Windows](https://github.com/James-Yu/LaTeX-Workshop/workflows/TeX%20Live%20on%20Windows/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+Windows%22)
+[![TeX Live on macOS](https://github.com/James-Yu/LaTeX-Workshop/workflows/TeX%20Live%20on%20macOS/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+macOS%22)
+[![TeX Live on Linux](https://github.com/James-Yu/LaTeX-Workshop/workflows/TeX%20Live%20on%20Linux/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22TeX+Live+on+Linux%22)
+[![Docker on Linux](https://github.com/James-Yu/LaTeX-Workshop/workflows/Docker%20on%20Linux/badge.svg)](https://github.com/James-Yu/LaTeX-Workshop/actions?query=workflow%3A%22Docker+on+Linux%22)
 
 LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudio.com/), aiming to provide core features for LaTeX typesetting with Visual Studio Code.
 
@@ -49,7 +52,10 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Magic comments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#magic-comments)
   - [Catching errors](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#catching-errors-and-warnings)
 - [Linting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters)
-- [Viewing & synctex](https://github.com/James-Yu/LaTeX-Workshop/wiki/View)
+- [Viewing & SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View)
+  - [Internal PDF viewer](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#internal-pdf-viewer)
+  - [SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#synctex)
+  - [Relevant Settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#relevant-settings)
 - [Formatting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format)
   - [LaTeX files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format#LaTeX-files)
   - [Bibtex files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Format#Bibtex-files)
@@ -82,6 +88,9 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Changing between `\[...\]` and `\begin{}...\end{}`](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#changing-between--and-beginend)
   - [Closing the current environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Closing-the-current-environment)
   - [Surrounding selection with an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Surrounding-selection-with-an-environment)
+- [Extra features](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures)
+  - [Structure of the document](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#structure-of-the-document)
+  - [Counting words](https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#counting-words)
 - [VS Code Remote Development](https://github.com/James-Yu/LaTeX-Workshop/wiki/Remote)
 - [FAQ and common issues](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ)
 
