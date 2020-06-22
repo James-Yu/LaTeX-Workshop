@@ -152,6 +152,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private async restorePdfViewerState(state: PdfViewerState) {
         await this.pdfViewerStarted
+        // By setting the scale, scaling will be invoked if necessary.
         if (state.scale !== undefined) {
             PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
         }
@@ -178,7 +179,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 }
                 trimSelect.selectedIndex = state.trim
                 trimSelect.dispatchEvent(ev)
-                if (state.scale !== undefined) {
+                // By setting the scale, the callbacks of trimming pages are invoked.
+                // However, given "auto" and other non-number scales, the scale will be
+                // unnecessarily recalculated, which we must avoid.
+                if (state.scale !== undefined && /\d/.exec(state.scale)) {
                     PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
                 }
                 if (state.scrollTop !== undefined) {
