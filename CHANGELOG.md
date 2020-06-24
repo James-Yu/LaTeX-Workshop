@@ -1,5 +1,23 @@
 # Change Log
 
+## [8.11.0] - 2020-06-24
+
+### Added
+- (#2149) Add support for `weave.jl`.
+- (#2154) Add section numbers in outline.
+  - This feature can be deactivated by setting `latex-workshop.view.outline.numbers.enabled: false`.
+
+### Improved
+- (#2109) Improve PDF viewer refresh speed.
+- (#2157) Improve the invert mode of the PDF viewer with additional filters.
+
+### Fixed
+- Activate `onEnterKey` even when suggestion is visible.
+  - Always activate `onEnterKey` when `acceptSuggestionOnEnter`.
+  - (#2167) Do not activate `onEnterKey` when `suggestWidgetVisible`.
+- (#2107) Use `fs.realpathSync` to compare file paths for SyncTeX.
+- (#2146) Use `rootFile` to expand placeholders when formatting.
+
 ## [8.10.0] - 2020-06-06
 
 ### Added
