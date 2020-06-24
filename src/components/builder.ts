@@ -14,6 +14,11 @@ const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'
 const bibMagicProgramName = 'BibMagicProgram'
 
+interface Recipe {
+    name: string,
+    tools: (string | StepCommand)[]
+}
+
 export class Builder {
     extension: Extension
     tmpDir: string
@@ -23,7 +28,7 @@ export class Builder {
     buildMutex: Mutex
     waitingForBuildToFinishMutex: Mutex
     isMiktex: boolean = false
-    previouslyUsedRecipe: {name: string, tools: (string | StepCommand)[]} | undefined
+    previouslyUsedRecipe: Recipe | undefined
     previousLanguageId: string | undefined
 
     constructor(extension: Extension) {
@@ -161,16 +166,16 @@ export class Builder {
         })
     }
 
-    buildInitiator(rootFile: string, languageId: string, recipe: string | undefined = undefined, releaseBuildMutex: () => void) {
-        const steps = this.createSteps(rootFile, languageId, recipe)
+    buildInitiator(rootFile: string, languageId: string, recipeName: string | undefined = undefined, releaseBuildMutex: () => void) {
+        const steps = this.createSteps(rootFile, languageId, recipeName)
         if (steps === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
             return
         }
-        this.buildStep(rootFile, steps, 0, recipe || 'Build', releaseBuildMutex) // use 'Build' as default name
+        this.buildStep(rootFile, steps, 0, recipeName || 'Build', releaseBuildMutex) // use 'Build' as default name
     }
 
-    async build(rootFile: string, languageId: string, recipe: string | undefined = undefined) {
+    async build(rootFile: string, languageId: string, recipeName: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
             this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
             return
@@ -216,7 +221,7 @@ export class Builder {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
                 fs.ensureDirSync(path.resolve(outDir, relativePath))
             })
-            this.buildInitiator(rootFile, languageId, recipe, releaseBuildMutex)
+            this.buildInitiator(rootFile, languageId, recipeName, releaseBuildMutex)
         } catch (e) {
             this.extension.logger.addLogMessage('Unexpected Error: please see the console log of the Developer Tools of VS Code.')
             this.extension.logger.displayStatus('x', 'errorForeground')
@@ -403,21 +408,19 @@ export class Builder {
             }
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
+            const defaultRecipe = configuration.get('latex.recipe.default') as string
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
                 this.extension.logger.addLogMessage('No recipes defined.')
                 this.extension.logger.showErrorMessage('No recipes defined.')
                 return undefined
             }
-            let recipe = recipes[0]
+            let recipe: Recipe | undefined = undefined
             if (this.previousLanguageId !== languageId) {
                 this.previouslyUsedRecipe = undefined
             }
-            const defaultRecipe = configuration.get('latex.recipe.default') as string
-            if ((defaultRecipe === 'lastUsed') && (this.previouslyUsedRecipe !== undefined)) {
-                recipe = this.previouslyUsedRecipe
-            } else if ((defaultRecipe !== 'first') && (defaultRecipe !== 'lastUsed') && recipeName === undefined) {
-               recipeName = defaultRecipe
+            if (!recipeName && ! ['first', 'lastUsed'].includes(defaultRecipe)) {
+                recipeName = defaultRecipe
             }
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
@@ -426,18 +429,27 @@ export class Builder {
                     this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
                 }
                 recipe = candidates[0]
-            } else {
-               let candidates: {name: string, tools: (string | StepCommand)[]}[] = recipes
-               if (languageId === 'rsweave') {
-                    candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
-               } else if (languageId === 'jlweave') {
-                    candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('jnw|jlweave|weave.jl'))
-               }
-                if (candidates.length < 1) {
-                    this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)
-                    this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+            }
+            if (recipe === undefined) {
+                if (defaultRecipe === 'lastUsed') {
+                    recipe = this.previouslyUsedRecipe
                 }
-                recipe = candidates[0]
+                if (defaultRecipe === 'first' || recipe === undefined) {
+                   let candidates: Recipe[] = recipes
+                   if (languageId === 'rsweave') {
+                        candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
+                   } else if (languageId === 'jlweave') {
+                        candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('jnw|jlweave|weave.jl'))
+                   }
+                    if (candidates.length < 1) {
+                        this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)
+                        this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                    }
+                    recipe = candidates[0]
+                }
+            }
+            if (recipe === undefined) {
+                return undefined
             }
             this.previouslyUsedRecipe = recipe
             this.previousLanguageId = languageId
@@ -446,7 +458,7 @@ export class Builder {
                 if (typeof tool === 'string') {
                     const candidates = tools.filter(candidate => candidate.name === tool)
                     if (candidates.length < 1) {
-                        this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
+                        this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe?.name}."`)
                     } else {
                         steps.push(candidates[0])
                     }
