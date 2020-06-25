@@ -408,7 +408,7 @@ export class Builder {
             }
         } else {
             const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
-            const defaultRecipe = configuration.get('latex.recipe.default') as string
+            const defaultRecipeName = configuration.get('latex.recipe.default') as string
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
                 this.extension.logger.addLogMessage('No recipes defined.')
@@ -419,8 +419,8 @@ export class Builder {
             if (this.previousLanguageId !== languageId) {
                 this.previouslyUsedRecipe = undefined
             }
-            if (!recipeName && ! ['first', 'lastUsed'].includes(defaultRecipe)) {
-                recipeName = defaultRecipe
+            if (!recipeName && ! ['first', 'lastUsed'].includes(defaultRecipeName)) {
+                recipeName = defaultRecipeName
             }
             if (recipeName) {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
@@ -431,10 +431,10 @@ export class Builder {
                 recipe = candidates[0]
             }
             if (recipe === undefined) {
-                if (defaultRecipe === 'lastUsed') {
+                if (defaultRecipeName === 'lastUsed') {
                     recipe = this.previouslyUsedRecipe
                 }
-                if (defaultRecipe === 'first' || recipe === undefined) {
+                if (defaultRecipeName === 'first' || recipe === undefined) {
                    let candidates: Recipe[] = recipes
                    if (languageId === 'rsweave') {
                         candidates = recipes.filter(candidate => candidate.name.toLowerCase().match('rnw|rsweave'))
