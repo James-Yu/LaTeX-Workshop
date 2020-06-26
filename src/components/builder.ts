@@ -14,11 +14,6 @@ const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'
 const bibMagicProgramName = 'BibMagicProgram'
 
-interface Recipe {
-    name: string,
-    tools: (string | StepCommand)[]
-}
-
 export class Builder {
     extension: Extension
     tmpDir: string
@@ -407,7 +402,7 @@ export class Builder {
                 steps = [magicTex]
             }
         } else {
-            const recipes = configuration.get('latex.recipes') as {name: string, tools: (string | StepCommand)[]}[]
+            const recipes = configuration.get('latex.recipes') as Recipe[]
             const defaultRecipeName = configuration.get('latex.recipe.default') as string
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
@@ -562,4 +557,9 @@ interface StepCommand {
     command: string,
     args?: string[],
     env?: ProcessEnv
+}
+
+interface Recipe {
+    name: string,
+    tools: (string | StepCommand)[]
 }
