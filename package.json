@@ -918,13 +918,18 @@
           "default": [],
           "markdownDescription": "List of directories where to look for extra input `.tex` files. \nAbsolute paths are required. You may also need to set the environment variable `TEXINPUTS` properly for the LaTeX compiler to find the `.tex` files, see the `env` parameter of [recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)."
         },
+        "latex-workshop.kpsewhich.path": {
+          "type": "string",
+          "default": "kpsewhich",
+          "markdownDescription": "Define the location of the kpsewhich executable file."
+        },
         "latex-workshop.latex.bibDirs": {
           "type": "array",
           "items": {
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "List of directories where to look for `.bib` files.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
+          "markdownDescription": "List of directories where to look for `.bib` files on top of the directories returned by `kpsewhich -show-path=bib`.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
         "latex-workshop.latex.search.rootFiles.include": {
           "type": "array",
