@@ -868,6 +868,7 @@ export class Manager {
 
     private kpsewhichBibPath(bib: string): string | undefined {
         const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
+        this.extension.logger.addLogMessage(`Calling ${kpsewhich} to resolve file: ${bib}`)
         try {
             const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
             if (kpsewhichReturn.status === 0) {
@@ -891,7 +892,6 @@ export class Manager {
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
-            this.extension.logger.addLogMessage('Trying to use kpsewhich')
             return this.kpsewhichBibPath(bib)
         }
         this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
