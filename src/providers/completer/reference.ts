@@ -50,6 +50,7 @@ export class Reference implements IProvider {
      * and the result is used to update the cache.
      * @param file The path of a LaTeX file.
      * @param nodes AST of a LaTeX file.
+     * @param lines The lines of the content. They are used to generate the documentation of completion items.
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
