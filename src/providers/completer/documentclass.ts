@@ -5,8 +5,8 @@ import {Extension} from '../../main'
 import {IProvider} from './interface'
 
 export class DocumentClass implements IProvider {
-    extension: Extension
-    suggestions: vscode.CompletionItem[] = []
+    private extension: Extension
+    private suggestions: vscode.CompletionItem[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -26,7 +26,7 @@ export class DocumentClass implements IProvider {
         return this.provide()
     }
 
-    provide(): vscode.CompletionItem[] {
+    private provide(): vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
             const allClasses = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/classnames.json`).toString())
             this.initialize(allClasses)

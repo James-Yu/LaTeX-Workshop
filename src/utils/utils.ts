@@ -56,8 +56,8 @@ export function getLongestBalancedString(s: string): string {
 }
 
 /**
- * Resolve an input file to the absolute path using the prefixes `dirs`.
- * Return `undefined` if the file does not exist.
+ * Resolves an input file to the absolute path using the prefixes `dirs`.
+ * Returns `undefined` if the file does not exist.
  */
 export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | undefined {
     if (inputFile.startsWith('/')) {
