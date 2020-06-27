@@ -837,9 +837,6 @@ export class Manager {
      */
     async updateCompleter(file: string, content: string) {
         this.extension.completer.citation.update(file, content)
-        // Here we use this delay config. Otherwise, multiple updates may run
-        // concurrently if the actual parsing time is greater than that of
-        // the keypress delay.
         const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
         let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
         if (!languageId || languageId !== 'latex-expl3') {
