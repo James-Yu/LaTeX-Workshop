@@ -54,6 +54,7 @@ export class LaTexFormatter {
         const useDocker = configuration.get('docker.enabled') as boolean
         const pathMeta = configuration.get('latexindent.path') as string
         this.formatterArgs = configuration.get('latexindent.args') as string[]
+        this.extension.logger.addLogMessage('Start formatting with latexindent.')
         const releaseMutex = await this.formatMutex.acquire()
         try {
             if (!this.currentOs) {
@@ -114,6 +115,7 @@ export class LaTexFormatter {
             const useDocker = configuration.get('docker.enabled') as boolean
 
             if (!vscode.window.activeTextEditor) {
+                this.extension.logger.addLogMessage('Exit formatting. The active textEditor is undefined.')
                 return
             }
             const options = vscode.window.activeTextEditor.options
