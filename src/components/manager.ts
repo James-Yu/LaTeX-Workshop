@@ -887,12 +887,17 @@ export class Manager {
     }
 
     private resolveBibPath(bib: string, rootDir: string) {
-        const bibDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.bibDirs') as string[]
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const bibDirs = configuration.get('latex.bibDirs') as string[]
         const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
-            return this.kpsewhichBibPath(bib)
+            if (configuration.get('kpsewhich.enabled')) {
+                return this.kpsewhichBibPath(bib)
+            } else {
+                return undefined
+            }
         }
         this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
         return bibPath
