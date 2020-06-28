@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs-extra'
+import * as cs from 'cross-spawn'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import {latexParser} from 'latex-utensils'
@@ -862,13 +863,38 @@ export class Manager {
         }
     }
 
+    private kpsewhichBibPath(bib: string): string | undefined {
+        const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
+        this.extension.logger.addLogMessage(`Calling ${kpsewhich} to resolve file: ${bib}`)
+        try {
+            const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
+            if (kpsewhichReturn.status === 0) {
+                const bibPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+                if (bibPath === '') {
+                    return undefined
+                } else {
+                    this.extension.logger.addLogMessage(`Found .bib file using kpsewhich: ${bibPath}`)
+                    return bibPath
+                }
+            }
+        } catch(e) {
+            this.extension.logger.addLogMessage(`Cannot run kpsewhich to resolve .bib file: ${bib}`)
+        }
+        return undefined
+    }
+
     private resolveBibPath(bib: string, rootDir: string) {
-        const bibDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.bibDirs') as string[]
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const bibDirs = configuration.get('latex.bibDirs') as string[]
         const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
-            return undefined
+            if (configuration.get('kpsewhich.enabled')) {
+                return this.kpsewhichBibPath(bib)
+            } else {
+                return undefined
+            }
         }
         this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
         return bibPath
