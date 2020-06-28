@@ -414,9 +414,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     async startRecievingPanelManagerResponse() {
         await this.pdfViewerStarted
         window.addEventListener('message', (e) => {
-            if (e.origin !== 'null') {
-                return
-            }
             const data: PanelManagerResponse = e.data
             switch (data.type) {
                 case 'restore_state': {
