@@ -883,10 +883,18 @@ export class Manager {
         return undefined
     }
 
-    private resolveBibPath(bib: string, rootDir: string) {
+    private resolveBibPath(bib: string, baseDir: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const bibDirs = configuration.get('latex.bibDirs') as string[]
-        const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
+        let searchDirs: string[]
+        if (this.rootDir) {
+            // chapterbib requires to load the .bib file in every chapter using
+            // the path relative to the rootDir
+            searchDirs = [this.rootDir, baseDir, ...bibDirs]
+        } else {
+            searchDirs = [baseDir, ...bibDirs]
+        }
+        const bibPath = utils.resolveFile(searchDirs, bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
