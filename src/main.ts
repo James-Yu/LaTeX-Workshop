@@ -318,7 +318,7 @@ export class Extension {
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
-        this.logger = new Logger(this)
+        this.logger = new Logger()
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)

@@ -1,15 +1,11 @@
 import * as vscode from 'vscode'
 
-import { Extension } from '../main'
-
 export class Logger {
-    extension: Extension
-    logPanel: vscode.OutputChannel
-    compilerLogPanel: vscode.OutputChannel
-    status: vscode.StatusBarItem
+    private readonly logPanel: vscode.OutputChannel
+    private readonly compilerLogPanel: vscode.OutputChannel
+    readonly status: vscode.StatusBarItem
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
         this.compilerLogPanel = vscode.window.createOutputChannel('LaTeX Compiler')
         this.compilerLogPanel.append('Ready')
