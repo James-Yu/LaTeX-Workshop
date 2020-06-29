@@ -15,16 +15,16 @@ const texMagicProgramName = 'TeXMagicProgram'
 const bibMagicProgramName = 'BibMagicProgram'
 
 export class Builder {
-    extension: Extension
-    tmpDir: string
-    currentProcess: cp.ChildProcessWithoutNullStreams | undefined
+    private readonly extension: Extension
+    readonly tmpDir: string
+    private currentProcess: cp.ChildProcessWithoutNullStreams | undefined
     disableBuildAfterSave: boolean = false
     disableCleanAndRetry: boolean = false
-    buildMutex: Mutex
-    waitingForBuildToFinishMutex: Mutex
-    isMiktex: boolean = false
-    previouslyUsedRecipe: Recipe | undefined
-    previousLanguageId: string | undefined
+    private readonly buildMutex: Mutex
+    private readonly waitingForBuildToFinishMutex: Mutex
+    private readonly isMiktex: boolean = false
+    private previouslyUsedRecipe: Recipe | undefined
+    private previousLanguageId: string | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -47,6 +47,9 @@ export class Builder {
         }
     }
 
+    /**
+     * Kills the current building process.
+     */
     kill() {
         const proc = this.currentProcess
         if (proc) {
@@ -70,11 +73,11 @@ export class Builder {
         return this.buildMutex.count === 1
     }
 
-    isWaitingForBuildToFinish(): boolean {
+    private isWaitingForBuildToFinish(): boolean {
         return this.waitingForBuildToFinishMutex.count < 1
     }
 
-    async preprocess(): Promise<() => void> {
+    private async preprocess(): Promise<() => void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
@@ -85,6 +88,14 @@ export class Builder {
         return releaseBuildMutex
     }
 
+    /**
+     * Executes a command building LaTeX files.
+     *
+     * @param command The name of the command to build LaTeX files.
+     * @param args The arguments of the command.
+     * @param pwd The path of the working directory of building.
+     * @param rootFile The root file to be compiled.
+     */
     async buildWithExternalCommand(command: string, args: string[], pwd: string, rootFile: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
             return
@@ -161,7 +172,7 @@ export class Builder {
         })
     }
 
-    buildInitiator(rootFile: string, languageId: string, recipeName: string | undefined = undefined, releaseBuildMutex: () => void) {
+    private buildInitiator(rootFile: string, languageId: string, recipeName: string | undefined = undefined, releaseBuildMutex: () => void) {
         const steps = this.createSteps(rootFile, languageId, recipeName)
         if (steps === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
@@ -170,6 +181,13 @@ export class Builder {
         this.buildStep(rootFile, steps, 0, recipeName || 'Build', releaseBuildMutex) // use 'Build' as default name
     }
 
+    /**
+     * Builds a LaTeX file with user-defined recipes.
+     *
+     * @param rootFile The root file to be compiled.
+     * @param languageId The name of the language of a file to be compiled.
+     * @param recipeName The name of a recipe to be used.
+     */
     async build(rootFile: string, languageId: string, recipeName: string | undefined = undefined) {
         if (this.isWaitingForBuildToFinish()) {
             this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
@@ -226,7 +244,7 @@ export class Builder {
         }
     }
 
-    progressString(recipeName: string, steps: StepCommand[], index: number) {
+    private progressString(recipeName: string, steps: StepCommand[], index: number) {
         if (steps.length < 2) {
             return recipeName
         } else {
@@ -234,7 +252,7 @@ export class Builder {
         }
     }
 
-    buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string, releaseBuildMutex: () => void) {
+    private buildStep(rootFile: string, steps: StepCommand[], index: number, recipeName: string, releaseBuildMutex: () => void) {
         if (index === 0) {
             this.extension.logger.clearCompilerMessage()
         }
@@ -360,7 +378,7 @@ export class Builder {
         })
     }
 
-    buildFinished(rootFile: string) {
+    private buildFinished(rootFile: string) {
         this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
@@ -382,7 +400,7 @@ export class Builder {
         }
     }
 
-    createSteps(rootFile: string, languageId: string, recipeName: string | undefined): StepCommand[] | undefined {
+    private createSteps(rootFile: string, languageId: string, recipeName: string | undefined): StepCommand[] | undefined {
         let steps: StepCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
@@ -506,7 +524,7 @@ export class Builder {
         return steps
     }
 
-    findProgramMagic(rootFile: string): [StepCommand | undefined, StepCommand | undefined] {
+    private findProgramMagic(rootFile: string): [StepCommand | undefined, StepCommand | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
