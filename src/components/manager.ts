@@ -32,9 +32,9 @@ interface Content {
 }
 
 export class Manager {
-    cachedContent: Content = {}
+    readonly cachedContent: Content = {}
 
-    private extension: Extension
+    private readonly extension: Extension
     private fileWatcher?: chokidar.FSWatcher
     private pdfWatcher?: chokidar.FSWatcher
     private bibWatcher?: chokidar.FSWatcher
@@ -794,7 +794,7 @@ export class Manager {
         this.extension.viewer.refreshExistingViewer()
     }
 
-    onWatchedPdfDeleted(file: string) {
+    private onWatchedPdfDeleted(file: string) {
         this.extension.logger.addLogMessage(`PDF file watcher - file deleted: ${file}`)
         if (this.pdfWatcher) {
             this.pdfWatcher.unwatch(file)

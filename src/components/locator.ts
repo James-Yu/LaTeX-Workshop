@@ -21,13 +21,13 @@ export type SyncTeXRecordBackward = {
 }
 
 export class Locator {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    parseSyncTeXForward(result: string): SyncTeXRecordForward {
+    private parseSyncTeXForward(result: string): SyncTeXRecordForward {
         const record: { page?: number, x?: number, y?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
@@ -59,7 +59,7 @@ export class Locator {
         }
     }
 
-    parseSyncTeXBackward(result: string): SyncTeXRecordBackward {
+    private parseSyncTeXBackward(result: string): SyncTeXRecordBackward {
         const record: { input?: string, line?: number, column?: number } = {}
         let started = false
         for (const line of result.split('\n')) {
@@ -97,7 +97,7 @@ export class Locator {
 
     /**
      * Execute forward SyncTeX with respect to `args`.
-     * @param args If undefined, the document and the cursor position of `activeTextEditor` are used.
+     * @param args The arguments of forward SyncTeX. If `undefined`, the document and the cursor position of `activeTextEditor` are used.
      * @param forcedViewer Indicates a PDF viewer with which SyncTeX is executed.
      * @param pdfFile The path of a PDF File compiled from the `filePath` of `args`. If `undefined`, it is automatically detected.
      */
@@ -166,7 +166,7 @@ export class Locator {
         }
     }
 
-    invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordForward> {
+    private invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordForward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
@@ -222,7 +222,7 @@ export class Locator {
         }
     }
 
-    invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string): Thenable<SyncTeXRecordBackward> {
+    private invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string): Thenable<SyncTeXRecordBackward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const docker = configuration.get('docker.enabled')
@@ -269,6 +269,11 @@ export class Locator {
         })
     }
 
+    /**
+     *
+     * @param data
+     * @param pdfPath
+     */
     async locate(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
@@ -432,7 +437,7 @@ export class Locator {
         setTimeout(() => { deco.dispose() }, 500)
     }
 
-    syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
+    private syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
         if (!vscode.window.activeTextEditor) {
             return
         }

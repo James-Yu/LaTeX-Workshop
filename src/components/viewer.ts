@@ -54,7 +54,7 @@ class PdfViewerPanel {
 }
 
 class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -83,17 +83,17 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 }
 
 export class Viewer {
-    extension: Extension
-    clients: {[key: string]: Set<Client>} = {}
-    webviewPanels: Map<string, Set<PdfViewerPanel>> = new Map()
-    pdfViewerPanelSerializer: PdfViewerPanelSerializer
+    private readonly extension: Extension
+    private readonly webviewPanels: Map<string, Set<PdfViewerPanel>> = new Map()
+    readonly clients: {[key: string]: Set<Client>} = {}
+    readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
 
     constructor(extension: Extension) {
         this.extension = extension
         this.pdfViewerPanelSerializer = new PdfViewerPanelSerializer(extension)
     }
 
-    createClients(pdfFilePath: string) {
+    private createClients(pdfFilePath: string) {
         const key = pdfFilePath.toLocaleUpperCase()
         this.clients[key] = this.clients[key] || new Set()
         if (!this.webviewPanels.has(key)) {
@@ -105,7 +105,7 @@ export class Viewer {
         return this.clients[pdfFilePath.toLocaleUpperCase()]
     }
 
-    getPanelSet(pdfFilePath: string) {
+    private getPanelSet(pdfFilePath: string) {
         return this.webviewPanels.get(pdfFilePath.toLocaleUpperCase())
     }
 
@@ -140,7 +140,7 @@ export class Viewer {
         return false
     }
 
-    checkViewer(sourceFile: string, respectOutDir: boolean = true): string | undefined {
+    private checkViewer(sourceFile: string, respectOutDir: boolean = true): string | undefined {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
@@ -209,7 +209,7 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
-    createPdfViewerPanel(pdfFilePath: string, viewColumn: vscode.ViewColumn): PdfViewerPanel | undefined {
+    private createPdfViewerPanel(pdfFilePath: string, viewColumn: vscode.ViewColumn): PdfViewerPanel | undefined {
         if (this.extension.server.port === undefined) {
             this.extension.logger.addLogMessage('Server port is undefined')
             return
@@ -238,7 +238,7 @@ export class Viewer {
         })
     }
 
-    getKeyboardEventConfig(): boolean {
+    private getKeyboardEventConfig(): boolean {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const setting: 'auto' | 'force' | 'never' = configuration.get('viewer.pdf.internal.keyboardEvent', 'auto')
         if (setting === 'auto') {

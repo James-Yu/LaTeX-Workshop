@@ -12,14 +12,14 @@ import {Package} from './completer/package'
 import {Input} from './completer/input'
 
 export class Completer implements vscode.CompletionItemProvider {
-    extension: Extension
-    citation: Citation
-    command: Command
-    documentClass: DocumentClass
-    environment: Environment
-    reference: Reference
-    package: Package
-    input: Input
+    private readonly extension: Extension
+    readonly citation: Citation
+    readonly command: Command
+    readonly documentClass: DocumentClass
+    readonly environment: Environment
+    readonly reference: Reference
+    readonly package: Package
+    readonly input: Input
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -125,7 +125,7 @@ export class Completer implements vscode.CompletionItemProvider {
         return ret
     }
 
-    completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    private completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         let reg: RegExp | undefined
         let provider: IProvider | undefined
         switch (type) {
