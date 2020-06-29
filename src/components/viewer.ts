@@ -101,6 +101,12 @@ export class Viewer {
         }
     }
 
+    /**
+     * Returns the set of client instances of a PDF file.
+     * Returns `undefined` if the viewer have not recieved any request for the PDF file.
+     *
+     * @param pdfFilePath The path of a PDF file.
+     */
     getClients(pdfFilePath: string): Set<Client> | undefined {
         return this.clients[pdfFilePath.toLocaleUpperCase()]
     }
@@ -109,6 +115,14 @@ export class Viewer {
         return this.webviewPanels.get(pdfFilePath.toLocaleUpperCase())
     }
 
+    /**
+     * Refreshes PDF viewers of `sourceFile`. If `sourceFile` is `undefined`,
+     * refreshes all the PDF viewers. If `sourceFile` and `viewer` are not `undefined`,
+     * only the `viewer` is refreshed.
+     *
+     * @param sourceFile The path of a LaTeX file.
+     * @param viewer The PDF viewer to be refreshed.
+     */
     refreshExistingViewer(sourceFile?: string, viewer?: string): boolean {
         if (!sourceFile) {
             Object.keys(this.clients).forEach(key => {
@@ -156,6 +170,11 @@ export class Viewer {
         return url
     }
 
+    /**
+     * Opens the PDF file of `sourceFile` in the browser.
+     *
+     * @param sourceFile The path of a LaTeX file.
+     */
     openBrowser(sourceFile: string) {
         const url = this.checkViewer(sourceFile, true)
         if (!url) {
@@ -176,6 +195,13 @@ export class Viewer {
         }
     }
 
+    /**
+     * Opens the PDF file of `sourceFile` in the internal PDF viewer.
+     *
+     * @param sourceFile The path of a LaTeX file.
+     * @param respectOutDir
+     * @param tabEditorGroup
+     */
     openTab(sourceFile: string, respectOutDir: boolean = true, tabEditorGroup: string) {
         const url = this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
@@ -250,6 +276,11 @@ export class Viewer {
         }
     }
 
+    /**
+     * Returns the HTML content of the internal PDF viewer.
+     *
+     * @param pdfFile The path of a PDF file to be opened.
+     */
     getPDFViewerContent(pdfFile: string): string {
         // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
         const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
@@ -306,6 +337,11 @@ export class Viewer {
         `
     }
 
+    /**
+     * Opens the PDF file of `sourceFile` in the external PDF viewer.
+     *
+     * @param sourceFile The path of a LaTeX file.
+     */
     openExternal(sourceFile: string) {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -337,6 +373,12 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 
+    /**
+     * Handles the request from the internal PDF viewer.
+     *
+     * @param websocket The WebSocket connecting with the viewer.
+     * @param msg A message from the viewer in JSON fromat.
+     */
     handler(websocket: ws, msg: string) {
         const data: ClientRequest = JSON.parse(msg)
         if (data.type !== 'ping') {
@@ -414,6 +456,12 @@ export class Viewer {
         }
     }
 
+    /**
+     * Reveals the position of `record` on the internal PDF viewers.
+     *
+     * @param pdfFile The path of a PDF file.
+     * @param record The position to be revealed.
+     */
     syncTeX(pdfFile: string, record: SyncTeXRecordForward) {
         const clients = this.getClients(pdfFile)
         if (clients === undefined) {
@@ -429,6 +477,12 @@ export class Viewer {
         }
     }
 
+    /**
+     * Reveals the internal PDF viewer of `pdfFilePath`.
+     * The first one is revealed.
+     *
+     * @param pdfFilePath The path of a PDF file.
+     */
     revealWebviewPanel(pdfFilePath: string) {
         const panelSet = this.getPanelSet(pdfFilePath)
         if (!panelSet) {
@@ -452,6 +506,11 @@ export class Viewer {
         return
     }
 
+    /**
+     * Returns the state of the internal PDF viewer of `pdfFilePath`.
+     *
+     * @param pdfFilePath The path of a PDF file.
+     */
     getViewerState(pdfFilePath: string): (PdfViewerState | undefined)[] {
         const panelSet = this.getPanelSet(pdfFilePath)
         if (!panelSet) {

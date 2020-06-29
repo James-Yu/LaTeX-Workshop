@@ -74,9 +74,11 @@ export class Manager {
 
     /**
      * Returns the output directory developed according to the input tex path
-     * and 'latex.outDir' config. If undefined is passed in, the default root
-     * file is used. If there is not root file, './' is output.
-     * The return path always uses `/` even on Windows
+     * and 'latex.outDir' config. If `texPath` is `undefined`, the default root
+     * file is used. If there is not root file, returns './'.
+     * The returned path always uses `/` even on Windows.
+     *
+     * @param texPath The path of a LaTeX file.
      */
     getOutDir(texPath?: string) {
         if (texPath === undefined) {
@@ -136,6 +138,12 @@ export class Manager {
         }
     }
 
+    /**
+     * Returns the path of a PDF file with respect to `texPath`.
+     *
+     * @param texPath The path of a LaTeX file.
+     * @param respectOutDir If `true`, the 'latex.outDir' config is respected.
+     */
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
         let outDir = './'
         if (respectOutDir) {
@@ -144,6 +152,11 @@ export class Manager {
         return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
+    /**
+     * Returns `true` if the language of `id` is one of supported languages.
+     *
+     * @param id The identifier of language.
+     */
     hasTexId(id: string) {
         return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
@@ -178,9 +191,8 @@ export class Manager {
     }
 
     /**
-     * This function is used to actually find the root file with respect to the
-     * current workspace. The found roots will be saved in rootFiles, and can be
-     * retrieved by the public rootFile variable/getter.
+     * Finds the root file with respect to the current workspace and returns it.
+     * The found root is also set to `rootFile`.
      */
     async findRoot(): Promise<string | undefined> {
         this.findWorkspace()
@@ -346,9 +358,11 @@ export class Manager {
     }
 
     /**
-     * This function returns a string array which holds all imported tex files
-     * from the given `file`. If it is undefined, this function traces from the
-     * root file, or return empty array if root is undefined
+     * Returns a string array which holds all imported tex files
+     * from the given `file`. If `file` is `undefined`, traces from the
+     * root file, or return empty array if the root file is `undefined`
+     *
+     * @param file The path of a LaTeX file
      */
     getIncludedTeX(file?: string, includedTeX: string[] = []) {
         if (file === undefined) {
@@ -405,6 +419,9 @@ export class Manager {
      * provided `file` is re-parsed, together with any new files that were not
      * previously watched/considered. Since this function is called upon content
      * changes, this lazy loading should be fine.
+     *
+     * @param file
+     * @param onChange
      */
     parseFileAndSubs(file: string, onChange: boolean = false) {
         if (this.isExcluded(file)) {
@@ -430,8 +447,10 @@ export class Manager {
 
     private cachedFullContent: string | undefined
     /**
-     * This function returns the flattened content from the given file,
+     * Returns the flattened content from the given `file`,
      * typically the root file.
+     *
+     * @param file The path of a LaTeX file.
      */
     getContent(file?: string, fileTrace: string[] = []): string {
         // Here we make a copy, so that the tree structure of tex dependency
@@ -579,10 +598,12 @@ export class Manager {
     }
 
     /**
-     * This function parses the content of a fls attached to the given base tex
-     * file. All input files are considered as included subfiles/non-tex files,
+     * Parses the content of a fls attached to the given `srcFile`.
+     * All input files are considered as included subfiles/non-tex files,
      * and all output files will be check if there are aux files related. If so,
      * the aux files are parsed for any possible bib file.
+     *
+     * @param srcFile The path of a LaTeX file.
      */
     parseFlsFile(srcFile: string) {
         this.extension.logger.addLogMessage('Parse fls file.')
@@ -834,7 +855,7 @@ export class Manager {
     }
 
     /**
-     * This function updates all completers upon tex-file changes, or active file content is changed.
+     * Updates all completers upon tex-file changes, or active file content is changed.
      */
     async updateCompleter(file: string, content: string) {
         this.extension.completer.citation.update(file, content)

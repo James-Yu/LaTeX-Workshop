@@ -97,6 +97,7 @@ export class Locator {
 
     /**
      * Execute forward SyncTeX with respect to `args`.
+     *
      * @param args The arguments of forward SyncTeX. If `undefined`, the document and the cursor position of `activeTextEditor` are used.
      * @param forcedViewer Indicates a PDF viewer with which SyncTeX is executed.
      * @param pdfFile The path of a PDF File compiled from the `filePath` of `args`. If `undefined`, it is automatically detected.
@@ -270,9 +271,10 @@ export class Locator {
     }
 
     /**
+     * Execute backward SyncTeX.
      *
-     * @param data
-     * @param pdfPath
+     * @param data The page number and the position on the page of a PDF file.
+     * @param pdfPath The path of a PDF file as the input of backward SyncTeX.
      */
     async locate(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')

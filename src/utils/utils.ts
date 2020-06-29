@@ -59,7 +59,7 @@ export function getLongestBalancedString(s: string): string {
  * Resolves an input file to the absolute path using the prefixes `dirs`.
  * Returns `undefined` if the file does not exist.
  *
- * @param dirs
+ * @param dirs An array of the paths of directories. They are used as prefixes for `inputFile`.
  * @param inputFile The path of a input file to be resolved.
  * @param suffix The sufix of the input file
  */
