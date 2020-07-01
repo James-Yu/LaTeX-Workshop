@@ -95,6 +95,9 @@ export class Manager {
         return path.normalize(out).split(path.sep).join('/')
     }
 
+    /**
+     * The path of the directory of the root file.
+     */
     get rootDir() {
         return this.rootFile ? path.dirname(this.rootFile) : undefined
     }
@@ -102,9 +105,15 @@ export class Manager {
     // Here we have something complex. We use a private rootFiles to hold the
     // roots of each workspace, and use rootFile to return the cached content.
     private rootFiles: { [key: string]: string | undefined } = {}
+
+    /**
+     * The path of the root LaTeX file of the current workspace.
+     * It is `undefined` before `findRoot` called.
+     */
     get rootFile() {
         return this.rootFiles[this.workspaceRootDir]
     }
+
     set rootFile(root: string | undefined) {
         this.rootFiles[this.workspaceRootDir] = root
     }

@@ -318,6 +318,8 @@ export class Extension {
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
+        // We must create an instance of Logger first to enable
+        // adding log messages during initialization.
         this.logger = new Logger()
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
