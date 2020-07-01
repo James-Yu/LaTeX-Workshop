@@ -918,6 +918,16 @@
           "default": [],
           "markdownDescription": "List of directories where to look for extra input `.tex` files. \nAbsolute paths are required. You may also need to set the environment variable `TEXINPUTS` properly for the LaTeX compiler to find the `.tex` files, see the `env` parameter of [recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)."
         },
+        "latex-workshop.kpsewhich.path": {
+          "type": "string",
+          "default": "kpsewhich",
+          "markdownDescription": "Define the location of the kpsewhich executable file."
+        },
+        "latex-workshop.kpsewhich.enabled": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Use kpsewhich as defined by `latex-workshop.kpsewhich.path` to resolve bibliography files in addition to looking into the directories listed in `latex-workshop.latex.bibDirs`."
+        },
         "latex-workshop.latex.bibDirs": {
           "type": "array",
           "items": {
@@ -1701,7 +1711,7 @@
             "type": "string"
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Snippet actions should not begin with a `\\`. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"latexdisplaymath\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Snippet actions should not begin with a `\\`. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.texdoc.path": {
           "type": "string",
@@ -1885,15 +1895,6 @@
     "hooks": {
       "pre-commit": "eslint --cache --ext .ts,.js ."
     }
-  },
-  "capabilities": {
-    "completionProvider": {
-      "resolveProvider": "true"
-    },
-    "hoverProvider": "true",
-    "definitionProvider": "true",
-    "documentSymbolProvider": "true",
-    "workspaceSymbolProvider": "true"
   },
   "dependencies": {
     "@tamuratak/domstubs": "^0.1.1",

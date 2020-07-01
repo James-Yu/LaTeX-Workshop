@@ -13,7 +13,7 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Citation implements IProvider {
-    extension: Extension
+    private extension: Extension
     private bibEntries: {[file: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
@@ -24,7 +24,7 @@ export class Citation implements IProvider {
         return this.provide(args)
     }
 
-    provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    private provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion array to vscode completion array
         const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
         return this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
@@ -203,7 +203,13 @@ export class Citation implements IProvider {
         delete this.bibEntries[file]
     }
 
-    /* This function parses the bibitem entries defined in tex files */
+    /**
+     * Updates the Manager cache for bibitems defined in `file`.
+     * `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     * @param file The path of a LaTeX file.
+     * @param content The content of a LaTeX file.
+     */
     update(file: string, content: string) {
         this.extension.manager.cachedContent[file].element.bibitem =
             this.parseContent(file, content)

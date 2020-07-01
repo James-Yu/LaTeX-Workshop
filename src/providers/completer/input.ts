@@ -11,7 +11,7 @@ import {IProvider} from './interface'
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
 export class Input implements IProvider {
-    extension: Extension
+    private extension: Extension
     graphicsPath: string[] = []
 
     constructor(extension: Extension) {
@@ -73,7 +73,7 @@ export class Input implements IProvider {
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
      */
-    provide(payload: string[]): vscode.CompletionItem[] {
+    private provide(payload: string[]): vscode.CompletionItem[] {
         let provideDirOnly = false
         let baseDir: string[] = []
         const mode = payload[0]

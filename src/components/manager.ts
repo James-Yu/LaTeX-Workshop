@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs-extra'
+import * as cs from 'cross-spawn'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import {latexParser} from 'latex-utensils'
@@ -837,9 +838,6 @@ export class Manager {
      */
     async updateCompleter(file: string, content: string) {
         this.extension.completer.citation.update(file, content)
-        // Here we use this delay config. Otherwise, multiple updates may run
-        // concurrently if the actual parsing time is greater than that of
-        // the keypress delay.
         const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
         let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
         if (!languageId || languageId !== 'latex-expl3') {
@@ -865,13 +863,46 @@ export class Manager {
         }
     }
 
-    private resolveBibPath(bib: string, rootDir: string) {
-        const bibDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.bibDirs') as string[]
-        const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
+    private kpsewhichBibPath(bib: string): string | undefined {
+        const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
+        this.extension.logger.addLogMessage(`Calling ${kpsewhich} to resolve file: ${bib}`)
+        try {
+            const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
+            if (kpsewhichReturn.status === 0) {
+                const bibPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+                if (bibPath === '') {
+                    return undefined
+                } else {
+                    this.extension.logger.addLogMessage(`Found .bib file using kpsewhich: ${bibPath}`)
+                    return bibPath
+                }
+            }
+        } catch(e) {
+            this.extension.logger.addLogMessage(`Cannot run kpsewhich to resolve .bib file: ${bib}`)
+        }
+        return undefined
+    }
+
+    private resolveBibPath(bib: string, baseDir: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const bibDirs = configuration.get('latex.bibDirs') as string[]
+        let searchDirs: string[]
+        if (this.rootDir) {
+            // chapterbib requires to load the .bib file in every chapter using
+            // the path relative to the rootDir
+            searchDirs = [this.rootDir, baseDir, ...bibDirs]
+        } else {
+            searchDirs = [baseDir, ...bibDirs]
+        }
+        const bibPath = utils.resolveFile(searchDirs, bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
-            return undefined
+            if (configuration.get('kpsewhich.enabled')) {
+                return this.kpsewhichBibPath(bib)
+            } else {
+                return undefined
+            }
         }
         this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
         return bibPath
