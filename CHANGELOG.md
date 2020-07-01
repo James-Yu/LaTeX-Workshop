@@ -1,5 +1,14 @@
 # Change Log
 
+## [8.11.1] - 2020-07-01
+
+### Fixed
+- Restoring PDF viewers does not work well with VS Code 1.47.
+- (#2172) `"latex-workshop.latex.recipe.default": "lastUsed"` doesn't work.
+- (#2176) No need to put the closing `}` on its own line in `.bib`.
+- (#2177) Use `kpsewhich` to resolve bibliography files.
+- (#2182) Also search for `.bib` files in `rootDir`.
+
 ## [8.11.0] - 2020-06-24
 
 ### Added
