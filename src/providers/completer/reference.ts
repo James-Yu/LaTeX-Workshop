@@ -13,7 +13,7 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Reference implements IProvider {
-    extension: Extension
+    private extension: Extension
     // Here we use an object instead of an array for de-duplication
     private suggestions: {[id: string]: Suggestion} = {}
     private prevIndexObj: { [k: string]: {refNumber: string, pageNumber: string} } = {}
@@ -26,7 +26,7 @@ export class Reference implements IProvider {
         return this.provide(args)
     }
 
-    provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion object to array
         this.updateAll(args)
         let keys = Object.keys(this.suggestions)
@@ -44,6 +44,15 @@ export class Reference implements IProvider {
         return items
     }
 
+    /**
+     * Updates the Manager cache for references defined in `file` with `nodes`.
+     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     * @param file The path of a LaTeX file.
+     * @param nodes AST of a LaTeX file.
+     * @param lines The lines of the content. They are used to generate the documentation of completion items.
+     * @param content The content of a LaTeX file.
+     */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
         if (nodes !== undefined && lines !== undefined) {
             this.extension.manager.cachedContent[file].element.reference = this.getRefFromNodeArray(nodes, lines)

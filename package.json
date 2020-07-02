@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "8.10.0",
+  "version": "8.11.1",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -30,6 +30,7 @@
     "onLanguage:latex",
     "onLanguage:latex-expl3",
     "onLanguage:doctex",
+    "onLanguage:jlweave",
     "onLanguage:rsweave",
     "onLanguage:pdf",
     "onLanguage:bibtex",
@@ -127,6 +128,17 @@
         ]
       },
       {
+        "id": "jlweave",
+        "aliases": [
+          "Weave.jl"
+        ],
+        "extensions": [
+          ".jnw",
+          ".jtexw"
+        ],
+        "configuration": "./syntax/syntax-weave.json"
+      },
+      {
         "id": "rsweave",
         "aliases": [
           "R Sweave"
@@ -139,7 +151,7 @@
           ".snw",
           ".Snw"
         ],
-        "configuration": "./syntax/syntax-rsweave.json"
+        "configuration": "./syntax/syntax-weave.json"
       }
     ],
     "grammars": [
@@ -209,6 +221,14 @@
         }
       },
       {
+        "language": "jlweave",
+        "scopeName": "text.tex.latex.jlweave",
+        "path": "./syntax/JLweave.tmLanguage.json",
+        "embeddedLanguages": {
+          "source.julia": "julia"
+        }
+      },
+      {
         "language": "rsweave",
         "scopeName": "text.tex.latex.rsweave",
         "path": "./syntax/RSweave.tmLanguage.json",
@@ -220,6 +240,10 @@
     "snippets": [
       {
         "language": "latex",
+        "path": "./snippets/latex.json"
+      },
+      {
+        "language": "jlweave",
         "path": "./snippets/latex.json"
       },
       {
@@ -407,19 +431,19 @@
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /latex|rsweave/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+c",
         "mac": "cmd+l alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /latex|rsweave/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+v",
         "mac": "cmd+l alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /latex|rsweave/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+j",
@@ -437,19 +461,19 @@
         "key": "ctrl+alt+b",
         "mac": "cmd+alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /latex|rsweave/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /latex|rsweave/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+v",
         "mac": "cmd+alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /latex|rsweave/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+j",
@@ -466,173 +490,188 @@
       {
         "key": "ctrl+l [",
         "mac": "cmd+l [",
-        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.promote-sectioning"
       },
       {
         "key": "ctrl+l ]",
         "mac": "cmd+l ]",
-        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.demote-sectioning"
       },
       {
         "key": "ctrl+alt+[",
         "mac": "cmd+alt+[",
-        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.promote-sectioning"
       },
       {
         "key": "ctrl+alt+]",
         "mac": "cmd+alt+]",
-        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.demote-sectioning"
       },
       {
         "key": "ctrl+l ctrl+enter",
         "mac": "cmd+l cmd+enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.item"
       },
       {
         "key": "ctrl+l ctrl+b",
         "mac": "cmd+l cmd+b",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textbf"
       },
       {
         "key": "ctrl+l ctrl+i",
         "mac": "cmd+l cmd+i",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textit"
       },
       {
         "key": "ctrl+l ctrl+u",
         "mac": "cmd+l cmd+u",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.underline"
       },
       {
         "key": "ctrl+l ctrl+e",
         "mac": "cmd+l cmd+e",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.emph"
       },
       {
         "key": "ctrl+l ctrl+r",
         "mac": "cmd+l cmd+r",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textrm"
       },
       {
         "key": "ctrl+l ctrl+t",
         "mac": "cmd+l cmd+t",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.texttt"
       },
       {
         "key": "ctrl+l ctrl+s",
         "mac": "cmd+l cmd+s",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textsl"
       },
       {
         "key": "ctrl+l ctrl+c",
         "mac": "cmd+l cmd+c",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textsc"
       },
       {
         "key": "ctrl+l ctrl+n",
         "mac": "cmd+l cmd+n",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textnormal"
       },
       {
         "key": "ctrl+l ctrl+6",
         "mac": "cmd+l cmd+6",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textsuperscript"
       },
       {
         "key": "ctrl+l ctrl+oem_minus",
         "mac": "cmd+l cmd+oem_minus",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.textsubscript"
       },
       {
         "key": "ctrl+m ctrl+b",
         "mac": "cmd+m cmd+b",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.mathbf"
       },
       {
         "key": "ctrl+m ctrl+i",
         "mac": "cmd+m cmd+i",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.mathit"
       },
       {
         "key": "ctrl+m ctrl+r",
         "mac": "cmd+m cmd+r",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.mathrm"
       },
       {
         "key": "ctrl+m ctrl+t",
         "mac": "cmd+m cmd+t",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.mathtt"
       },
       {
         "key": "ctrl+m ctrl+s",
         "mac": "cmd+m cmd+s",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.mathsf"
       },
       {
         "key": "ctrl+m ctrl+shift+b",
         "mac": "cmd+m cmd+shift+b",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.mathbb"
       },
       {
         "key": "ctrl+m ctrl+c",
         "mac": "cmd+m cmd+c",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.shortcut.mathcal"
       },
       {
         "command": "expandLineSelection",
         "key": "ctrl+l ctrl+l",
         "mac": "cmd+l cmd+l",
-        "when": "textInputFocus && editorLangId =~ /latex|rsweave/"
+        "when": "textInputFocus && editorLangId =~ /latex|rsweave|jlweave/"
       },
       {
         "command": "editor.action.toggleTabFocusMode",
         "key": "ctrl+l ctrl+m",
         "mac": "cmd+l cmd+m",
-        "when": "textInputFocus && editorLangId =~ /latex|rsweave/"
+        "when": "textInputFocus && editorLangId =~ /latex|rsweave|jlweave/"
       },
       {
         "key": "ctrl+l ctrl+w",
         "mac": "cmd+l cmd+w",
-        "when": "editorTextFocus && !editorReadonly && editorHasSelection && editorLangId =~ /latex|rsweave/",
+        "when": "editorTextFocus && !editorReadonly && editorHasSelection && editorLangId =~ /latex|rsweave|jlweave/",
         "command": "latex-workshop.surround"
       },
       {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  vim.active && vim.mode == 'Insert'"
+        "when": "editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/ && vim.active && vim.mode == 'Insert'"
       },
       {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible &&  !vim.active"
+        "when": "editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/ && vim.active && vim.mode == 'Insert'"
+      },
+      {
+        "command": "latex-workshop.onEnterKey",
+        "key": "enter",
+        "when": "editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/ && !vim.active"
+      },
+      {
+        "command": "latex-workshop.onEnterKey",
+        "key": "enter",
+        "when": "editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/ && !vim.active"
       },
       {
         "command": "latex-workshop.onAltEnterKey",
         "key": "alt+enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId == 'latex' && !suggestWidgetVisible"
+        "when": "editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/"
+      },
+      {
+        "command": "latex-workshop.onAltEnterKey",
+        "key": "alt+enter",
+        "when": "editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /latex|rsweave|jlweave/"
       }
     ],
     "configurationDefaults": {
@@ -697,6 +736,13 @@
               "name": "Compile Rnw files",
               "tools": [
                 "rnw2tex",
+                "latexmk"
+              ]
+            },
+            {
+              "name": "Compile Jnw files",
+              "tools": [
+                "jnw2tex",
                 "latexmk"
               ]
             }
@@ -796,6 +842,24 @@
                 "knitr::opts_knit$set(concordance = TRUE); knitr::knit('%DOCFILE_EXT%')"
               ],
               "env": {}
+            },
+            {
+              "name": "jnw2tex",
+              "command": "julia",
+              "args": [
+                "-e",
+                "using Weave; weave(\"%DOC_EXT%\", doctype=\"tex\")"
+              ],
+              "env": {}
+            },
+            {
+              "name": "jnw2texmintex",
+              "command": "julia",
+              "args": [
+                "-e",
+                "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+              ],
+              "env": {}
             }
           ],
           "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%` are available. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
@@ -853,6 +917,16 @@
           },
           "default": [],
           "markdownDescription": "List of directories where to look for extra input `.tex` files. \nAbsolute paths are required. You may also need to set the environment variable `TEXINPUTS` properly for the LaTeX compiler to find the `.tex` files, see the `env` parameter of [recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)."
+        },
+        "latex-workshop.kpsewhich.path": {
+          "type": "string",
+          "default": "kpsewhich",
+          "markdownDescription": "Define the location of the kpsewhich executable file."
+        },
+        "latex-workshop.kpsewhich.enabled": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Use kpsewhich as defined by `latex-workshop.kpsewhich.path` to resolve bibliography files in addition to looking into the directories listed in `latex-workshop.latex.bibDirs`."
         },
         "latex-workshop.latex.bibDirs": {
           "type": "array",
@@ -1627,13 +1701,22 @@
         },
         "latex-workshop.intellisense.bibtexJSON.replace": {
           "type": "object",
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
           "default": {},
           "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/bibtex-entries.json`. See `data/bibtex-entries.json` for the list of fields for each entry. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.intellisense.commandsJSON.replace": {
           "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
           "default": {},
-          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Snippet actions should not begin with a `\\`. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"latexdisplaymath\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Snippet actions should not begin with a `\\`. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.texdoc.path": {
           "type": "string",
@@ -1818,22 +1901,13 @@
       "pre-commit": "eslint --cache --ext .ts,.js ."
     }
   },
-  "capabilities": {
-    "completionProvider": {
-      "resolveProvider": "true"
-    },
-    "hoverProvider": "true",
-    "definitionProvider": "true",
-    "documentSymbolProvider": "true",
-    "workspaceSymbolProvider": "true"
-  },
   "dependencies": {
     "@tamuratak/domstubs": "^0.1.1",
     "chokidar": "^3.2.3",
     "cross-spawn": "^7.0.1",
-    "fs-extra": "^5.0.0",
+    "fs-extra": "^9.0.1",
     "glob": "^7.1.1",
-    "iconv-lite": "^0.4.24",
+    "iconv-lite": "^0.6.0",
     "jimp": "^0.10.3",
     "latex-utensils": "^2.0.1",
     "mathjax": "^2.7.5",
@@ -1841,18 +1915,18 @@
     "micromatch": "^4.0.2",
     "pdfjs-dist": "2.3.200",
     "strip-json-comments": "^3.0.1",
-    "tmp": "^0.0.33",
+    "tmp": "^0.2.1",
     "workerpool": "^5.0.4",
     "ws": "^5.1.1"
   },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.1",
-    "@types/fs-extra": "^5.0.0",
+    "@types/fs-extra": "^9.0.1",
     "@types/glob": "^7.1.1",
     "@types/micromatch": "^4.0.1",
     "@types/mocha": "^7.0.2",
     "@types/node": "^12.12.17",
-    "@types/tmp": "^0.0.33",
+    "@types/tmp": "^0.2.0",
     "@types/vscode": "1.38.0",
     "@types/workerpool": "^5.0.2",
     "@types/ws": "^5.1.1",
@@ -1867,7 +1941,7 @@
     "rimraf": "^3.0.0",
     "textmate-bailout": "^1.1.0",
     "typescript": "~3.9.5",
-    "vsce": "^1.76.1",
+    "vsce": "^1.77",
     "vscode-test": "^1.3.0",
     "webpack": "^4.20.2"
   }

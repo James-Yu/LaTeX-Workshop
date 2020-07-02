@@ -19,7 +19,7 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Environment implements IProvider {
-    extension: Extension
+    private extension: Extension
     private defaultEnvsAsName: Suggestion[] = []
     private defaultEnvsAsCommand: Suggestion[] = []
     private defaultEnvsForBegin: Suggestion[] = []
@@ -88,7 +88,7 @@ export class Environment implements IProvider {
         return this.provide(payload)
     }
 
-    provide(args: {document: vscode.TextDocument, position: vscode.Position}): vscode.CompletionItem[] {
+    private provide(args: {document: vscode.TextDocument, position: vscode.Position}): vscode.CompletionItem[] {
         if (vscode.window.activeTextEditor === undefined) {
             return []
         }
@@ -188,7 +188,14 @@ export class Environment implements IProvider {
         })
     }
 
-
+    /**
+     * Updates the Manager cache for environments used in `file` with `nodes`.
+     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     * @param file The path of a LaTeX file.
+     * @param nodes AST of a LaTeX file.
+     * @param content The content of a LaTeX file.
+     */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
         if (nodes !== undefined && lines !== undefined) {
             this.extension.manager.cachedContent[file].element.environment = this.getEnvFromNodeArray(nodes, lines)

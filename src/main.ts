@@ -203,9 +203,9 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'rsweave'])
-    const latexBibtexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'rsweave', 'bibtex'])
-    const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'rsweave', 'doctex'])
+    const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
+    const latexBibtexSelector = selectDocumentsWithId(['latex', 'latex-expl3',' jlweave', 'rsweave', 'bibtex'])
+    const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
     const formatter = new LatexFormatterProvider(extension)
     vscode.languages.registerDocumentFormattingEditProvider(latexBibtexSelector, formatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider(latexBibtexSelector, formatter)
@@ -318,7 +318,9 @@ export class Extension {
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
-        this.logger = new Logger(this)
+        // We must create an instance of Logger first to enable
+        // adding log messages during initialization.
+        this.logger = new Logger()
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)

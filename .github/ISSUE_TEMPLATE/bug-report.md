@@ -81,6 +81,10 @@ If applicable, add screenshots to help explain your problem.
 
 ## Additional questions
 
+### Are you using VSCodium?
+
+Yes/No
+
 ### Are you using LaTeX Workshop with VS Code Remote?
 
 Yes/No

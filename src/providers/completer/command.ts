@@ -21,7 +21,7 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Command implements IProvider {
-    extension: Extension
+    private extension: Extension
     private environment: Environment
 
     packages: string[] = []
@@ -69,7 +69,7 @@ export class Command implements IProvider {
         return this.provide(payload)
     }
 
-    provide(languageId: string): vscode.CompletionItem[] {
+    private provide(languageId: string): vscode.CompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -186,6 +186,14 @@ export class Command implements IProvider {
         return
     }
 
+    /**
+     * Updates the Manager cache for commands used in `file` with `nodes`.
+     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     * @param file The path of a LaTeX file.
+     * @param nodes AST of a LaTeX file.
+     * @param content The content of a LaTeX file.
+     */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
         // Remove newcommand cmds, because they will be re-insert in the next step
         Object.keys(this.definedCmds).forEach(cmd => {
@@ -218,6 +226,14 @@ export class Command implements IProvider {
         return cmds
     }
 
+    /**
+     * Updates the Manager cache for packages used in `file` with `nodes`.
+     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     * @param file The path of a LaTeX file.
+     * @param nodes AST of a LaTeX file.
+     * @param content The content of a LaTeX file.
+     */
     updatePkg(file: string, nodes?: latexParser.Node[], content?: string) {
         if (nodes !== undefined) {
             this.updatePkgWithNodeArray(file, nodes)
@@ -250,7 +266,7 @@ export class Command implements IProvider {
         }
     }
 
-    updatePkgWithNodeArray(file: string, nodes: latexParser.Node[]) {
+    private updatePkgWithNodeArray(file: string, nodes: latexParser.Node[]) {
         nodes.forEach(node => {
             if ( latexParser.isCommand(node) && (node.name === 'usepackage' || node.name === 'documentclass') ) {
                 node.args.forEach(arg => {

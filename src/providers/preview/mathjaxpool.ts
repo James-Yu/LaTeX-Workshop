@@ -1,4 +1,3 @@
-import {Extension} from '../../main'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
 import {Proxy} from 'workerpool'
@@ -20,12 +19,10 @@ export type TypesetArg = {
 }
 
 export class MathJaxPool {
-    extension: Extension
-    pool: workerpool.WorkerPool
-    proxy: workerpool.Promise<Proxy<IMathJaxWorker>>
+    private readonly pool: workerpool.WorkerPool
+    private readonly proxy: workerpool.Promise<Proxy<IMathJaxWorker>>
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.pool = workerpool.pool(
             path.join(__dirname, 'mathjaxpool_worker.js'),
             { minWorkers: 1, maxWorkers: 1, workerType: 'process' }

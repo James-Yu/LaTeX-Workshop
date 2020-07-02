@@ -8,18 +8,18 @@ import { GraphicsScaler } from './graphicsscaler'
 
 
 export class GraphicsPreview {
-    private cacheDir: string
-    private pdfFileCacheMap: Map<string, {cacheFileName: string, inode: number}>
+    private readonly cacheDir: string
+    private readonly pdfFileCacheMap: Map<string, {cacheFileName: string, inode: number}>
     private curCacheName = 0
 
-    extension: Extension
-    pdfRenderer: PDFRenderer
-    graphicsScaler: GraphicsScaler
+    private readonly extension: Extension
+    private readonly pdfRenderer: PDFRenderer
+    private readonly graphicsScaler: GraphicsScaler
 
     constructor(e: Extension) {
         this.extension = e
-        this.pdfRenderer = new PDFRenderer(e)
-        this.graphicsScaler = new GraphicsScaler(e)
+        this.pdfRenderer = new PDFRenderer()
+        this.graphicsScaler = new GraphicsScaler()
         const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
         this.cacheDir = tmpdir.name
         this.pdfFileCacheMap = new Map<string, {cacheFileName: string, inode: number}>()
@@ -93,11 +93,11 @@ export class GraphicsPreview {
         return undefined
     }
 
-    setBackgroundColor(svg: string): string {
+    private setBackgroundColor(svg: string): string {
         return svg.replace(/(<\/svg:style>)/, 'svg { background-color: white };$1')
     }
 
-    findFilePath(relPath: string): string | undefined {
+    private findFilePath(relPath: string): string | undefined {
         if (path.isAbsolute(relPath)) {
             if (fs.existsSync(relPath)) {
                 return relPath

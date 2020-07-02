@@ -9,9 +9,9 @@ import {AddressInfo} from 'net'
 import {decodePathWithPrefix, pdfFilePrefix} from '../utils/utils'
 
 export class Server {
-    extension: Extension
-    httpServer: http.Server
-    wsServer: ws.Server
+    private readonly extension: Extension
+    private httpServer: http.Server
+    private wsServer: ws.Server
     address?: string
     port?: number
 
@@ -42,7 +42,7 @@ export class Server {
         this.extension.logger.addLogMessage('Creating LaTeX Workshop http and websocket server.')
     }
 
-    handler(request: http.IncomingMessage, response: http.ServerResponse) {
+    private handler(request: http.IncomingMessage, response: http.ServerResponse) {
         if (!request.url) {
             return
         }

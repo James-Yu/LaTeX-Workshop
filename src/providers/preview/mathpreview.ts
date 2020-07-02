@@ -13,13 +13,13 @@ import {getCurrentThemeLightness} from '../../utils/theme'
 type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
 export class MathPreview {
-    extension: Extension
-    color: string = '#000000'
-    mj: MathJaxPool
+    private readonly extension: Extension
+    private color: string = '#000000'
+    private readonly mj: MathJaxPool
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.mj = new MathJaxPool(extension)
+        this.mj = new MathJaxPool()
     }
 
     private postProcessNewCommands(commands: string): string {
@@ -121,7 +121,7 @@ export class MathPreview {
         return commands
     }
 
-    addDummyCodeBlock(md: string): string {
+    private addDummyCodeBlock(md: string): string {
         // We need a dummy code block in hover to make the width of hover larger.
         const dummyCodeBlock = '```\n```'
         return dummyCodeBlock + '\n' + md + '\n' + dummyCodeBlock
@@ -214,7 +214,7 @@ export class MathPreview {
         }
     }
 
-    refNumberMessage(refData: ReferenceEntry): string | undefined {
+    private refNumberMessage(refData: ReferenceEntry): string | undefined {
         if (refData.prevIndex) {
             const refNum = refData.prevIndex.refNumber
             const refMessage = `numbered ${refNum} at last compilation`
@@ -223,7 +223,7 @@ export class MathPreview {
         return undefined
     }
 
-    replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): string {
+    private replaceLabelWithTag(tex: string, refLabel?: string, tag?: string): string {
         const texWithoutTag = tex.replace(/\\tag\{(\{[^{}]*?\}|.)*?\}/g, '')
         let newTex = texWithoutTag.replace(/\\label\{(.*?)\}/g, (_matchString, matchLabel, _offset, _s) => {
             if (refLabel) {

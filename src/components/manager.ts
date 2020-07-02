@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs-extra'
+import * as cs from 'cross-spawn'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import {latexParser} from 'latex-utensils'
@@ -31,9 +32,9 @@ interface Content {
 }
 
 export class Manager {
-    cachedContent: Content = {}
+    readonly cachedContent: Content = {}
 
-    private extension: Extension
+    private readonly extension: Extension
     private fileWatcher?: chokidar.FSWatcher
     private pdfWatcher?: chokidar.FSWatcher
     private bibWatcher?: chokidar.FSWatcher
@@ -42,6 +43,8 @@ export class Manager {
     private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
     private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
+    private jlweaveExt: string[] = ['.jnw', '.jtexw']
+    private weaveExt: string[] = []
     private pdfWatcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
@@ -51,6 +54,7 @@ export class Manager {
         const interval = configuration.get('latex.watch.interval') as number
         const delay = configuration.get('latex.watch.delay') as number
         const pdfDelay = configuration.get('latex.watch.pdfDelay') as number
+        this.weaveExt = this.jlweaveExt.concat(this.rsweaveExt)
         this.watcherOptions = {
             useFsEvents: false,
             usePolling,
@@ -70,9 +74,11 @@ export class Manager {
 
     /**
      * Returns the output directory developed according to the input tex path
-     * and 'latex.outDir' config. If undefined is passed in, the default root
-     * file is used. If there is not root file, './' is output.
-     * The return path always uses `/` even on Windows
+     * and 'latex.outDir' config. If `texPath` is `undefined`, the default root
+     * file is used. If there is not root file, returns './'.
+     * The returned path always uses `/` even on Windows.
+     *
+     * @param texPath The path of a LaTeX file.
      */
     getOutDir(texPath?: string) {
         if (texPath === undefined) {
@@ -89,6 +95,9 @@ export class Manager {
         return path.normalize(out).split(path.sep).join('/')
     }
 
+    /**
+     * The path of the directory of the root file.
+     */
     get rootDir() {
         return this.rootFile ? path.dirname(this.rootFile) : undefined
     }
@@ -96,9 +105,15 @@ export class Manager {
     // Here we have something complex. We use a private rootFiles to hold the
     // roots of each workspace, and use rootFile to return the cached content.
     private rootFiles: { [key: string]: string | undefined } = {}
+
+    /**
+     * The path of the root LaTeX file of the current workspace.
+     * It is `undefined` before `findRoot` called.
+     */
     get rootFile() {
         return this.rootFiles[this.workspaceRootDir]
     }
+
     set rootFile(root: string | undefined) {
         this.rootFiles[this.workspaceRootDir] = root
     }
@@ -123,6 +138,8 @@ export class Manager {
         const ext = path.extname(filename)
         if (ext === '.tex') {
             return 'latex'
+        } else if (this.jlweaveExt.includes(ext)) {
+            return 'jlweave'
         } else if (this.rsweaveExt.includes(ext)) {
             return 'rsweave'
         } else {
@@ -130,6 +147,12 @@ export class Manager {
         }
     }
 
+    /**
+     * Returns the path of a PDF file with respect to `texPath`.
+     *
+     * @param texPath The path of a LaTeX file.
+     * @param respectOutDir If `true`, the 'latex.outDir' config is respected.
+     */
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
         let outDir = './'
         if (respectOutDir) {
@@ -138,8 +161,13 @@ export class Manager {
         return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
+    /**
+     * Returns `true` if the language of `id` is one of supported languages.
+     *
+     * @param id The identifier of language.
+     */
     hasTexId(id: string) {
-        return ['tex', 'latex', 'latex-expl3', 'doctex', 'rsweave'].includes(id)
+        return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
 
     private workspaceRootDir: string = ''
@@ -172,9 +200,8 @@ export class Manager {
     }
 
     /**
-     * This function is used to actually find the root file with respect to the
-     * current workspace. The found roots will be saved in rootFiles, and can be
-     * retrieved by the public rootFile variable/getter.
+     * Finds the root file with respect to the current workspace and returns it.
+     * The found root is also set to `rootFile`.
      */
     async findRoot(): Promise<string | undefined> {
         this.findWorkspace()
@@ -340,9 +367,11 @@ export class Manager {
     }
 
     /**
-     * This function returns a string array which holds all imported tex files
-     * from the given `file`. If it is undefined, this function traces from the
-     * root file, or return empty array if root is undefined
+     * Returns a string array which holds all imported tex files
+     * from the given `file`. If `file` is `undefined`, traces from the
+     * root file, or return empty array if the root file is `undefined`
+     *
+     * @param file The path of a LaTeX file
      */
     getIncludedTeX(file?: string, includedTeX: string[] = []) {
         if (file === undefined) {
@@ -399,6 +428,9 @@ export class Manager {
      * provided `file` is re-parsed, together with any new files that were not
      * previously watched/considered. Since this function is called upon content
      * changes, this lazy loading should be fine.
+     *
+     * @param file
+     * @param onChange
      */
     parseFileAndSubs(file: string, onChange: boolean = false) {
         if (this.isExcluded(file)) {
@@ -424,8 +456,10 @@ export class Manager {
 
     private cachedFullContent: string | undefined
     /**
-     * This function returns the flattened content from the given file,
+     * Returns the flattened content from the given `file`,
      * typically the root file.
+     *
+     * @param file The path of a LaTeX file.
      */
     getContent(file?: string, fileTrace: string[] = []): string {
         // Here we make a copy, so that the tree structure of tex dependency
@@ -573,16 +607,19 @@ export class Manager {
     }
 
     /**
-     * This function parses the content of a fls attached to the given base tex
-     * file. All input files are considered as included subfiles/non-tex files,
+     * Parses the content of a fls attached to the given `srcFile`.
+     * All input files are considered as included subfiles/non-tex files,
      * and all output files will be check if there are aux files related. If so,
      * the aux files are parsed for any possible bib file.
+     *
+     * @param srcFile The path of a LaTeX file.
      */
-    parseFlsFile(baseFile: string) {
+    parseFlsFile(srcFile: string) {
         this.extension.logger.addLogMessage('Parse fls file.')
-        const rootDir = path.dirname(baseFile)
-        const outDir = this.getOutDir(baseFile)
-        const flsFile = path.resolve(rootDir, path.join(outDir, path.basename(baseFile, '.tex') + '.fls'))
+        const rootDir = path.dirname(srcFile)
+        const outDir = this.getOutDir(srcFile)
+        const baseName = path.parse(srcFile).name
+        const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
         if (!fs.existsSync(flsFile)) {
             this.extension.logger.addLogMessage(`Cannot find fls file: ${flsFile}`)
             return
@@ -598,12 +635,12 @@ export class Manager {
                 return
             }
             // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (baseFile === inputFile || inputFile in this.cachedContent) {
+            if (srcFile === inputFile || inputFile in this.cachedContent) {
                 return
             }
             if (path.extname(inputFile) === '.tex') {
                 // Parse tex files as imported subfiles.
-                this.cachedContent[baseFile].children.push({
+                this.cachedContent[srcFile].children.push({
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
@@ -716,7 +753,7 @@ export class Manager {
 
     private onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
-        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.updateCompleterOnChange(file)
         }
@@ -725,7 +762,7 @@ export class Manager {
     private onWatchedFileChanged(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
-        if (['.tex', '.bib'].concat(this.rsweaveExt).includes(path.extname(file)) &&
+        if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
             this.updateCompleterOnChange(file)
@@ -787,7 +824,7 @@ export class Manager {
         this.extension.viewer.refreshExistingViewer()
     }
 
-    onWatchedPdfDeleted(file: string) {
+    private onWatchedPdfDeleted(file: string) {
         this.extension.logger.addLogMessage(`PDF file watcher - file deleted: ${file}`)
         if (this.pdfWatcher) {
             this.pdfWatcher.unwatch(file)
@@ -827,13 +864,10 @@ export class Manager {
     }
 
     /**
-     * This function updates all completers upon tex-file changes, or active file content is changed.
+     * Updates all completers upon tex-file changes, or active file content is changed.
      */
     async updateCompleter(file: string, content: string) {
         this.extension.completer.citation.update(file, content)
-        // Here we use this delay config. Otherwise, multiple updates may run
-        // concurrently if the actual parsing time is greater than that of
-        // the keypress delay.
         const languageId: string | undefined = vscode.window.activeTextEditor?.document.languageId
         let latexAst: latexParser.AstRoot | latexParser.AstPreamble | undefined = undefined
         if (!languageId || languageId !== 'latex-expl3') {
@@ -859,13 +893,46 @@ export class Manager {
         }
     }
 
-    private resolveBibPath(bib: string, rootDir: string) {
-        const bibDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.bibDirs') as string[]
-        const bibPath = utils.resolveFile([rootDir, ...bibDirs], bib, '.bib')
+    private kpsewhichBibPath(bib: string): string | undefined {
+        const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
+        this.extension.logger.addLogMessage(`Calling ${kpsewhich} to resolve file: ${bib}`)
+        try {
+            const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
+            if (kpsewhichReturn.status === 0) {
+                const bibPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
+                if (bibPath === '') {
+                    return undefined
+                } else {
+                    this.extension.logger.addLogMessage(`Found .bib file using kpsewhich: ${bibPath}`)
+                    return bibPath
+                }
+            }
+        } catch(e) {
+            this.extension.logger.addLogMessage(`Cannot run kpsewhich to resolve .bib file: ${bib}`)
+        }
+        return undefined
+    }
+
+    private resolveBibPath(bib: string, baseDir: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const bibDirs = configuration.get('latex.bibDirs') as string[]
+        let searchDirs: string[]
+        if (this.rootDir) {
+            // chapterbib requires to load the .bib file in every chapter using
+            // the path relative to the rootDir
+            searchDirs = [this.rootDir, baseDir, ...bibDirs]
+        } else {
+            searchDirs = [baseDir, ...bibDirs]
+        }
+        const bibPath = utils.resolveFile(searchDirs, bib, '.bib')
 
         if (!bibPath) {
             this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
-            return undefined
+            if (configuration.get('kpsewhich.enabled')) {
+                return this.kpsewhichBibPath(bib)
+            } else {
+                return undefined
+            }
         }
         this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
         return bibPath

@@ -28,8 +28,8 @@ export function stripComments(text: string, commentSign: string): string {
 }
 
 /**
- * Finding the longest substring containing balanced {...}
- * @param s a string
+ * Finding the longest substring containing balanced curly braces {...}
+ * @param s A string to be searched.
  */
 export function getLongestBalancedString(s: string): string {
     let nested = 1
@@ -56,7 +56,12 @@ export function getLongestBalancedString(s: string): string {
 }
 
 /**
- * Given an input file determine its full path using the prefixes dirs
+ * Resolves an input file to the absolute path using the prefixes `dirs`.
+ * Returns `undefined` if the file does not exist.
+ *
+ * @param dirs An array of the paths of directories. They are used as prefixes for `inputFile`.
+ * @param inputFile The path of a input file to be resolved.
+ * @param suffix The sufix of the input file
  */
 export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | undefined {
     if (inputFile.startsWith('/')) {
@@ -137,6 +142,12 @@ export function svgToDataUrl(xml: string): string {
     return b64Start + svg64
 }
 
+/**
+ * Returns a function replacing placeholders of LaTeX recipes.
+ * @param rootFile The path of the root file.
+ * @param tmpDir The path of a temporary directory.
+ * @returns A function replacing placeholders.
+ */
 export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
     return (arg: string) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')

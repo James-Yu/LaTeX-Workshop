@@ -243,14 +243,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     }
                     break
                 }
-                case 'request_state': {
-                    this.send( {
-                        type: 'state',
-                        path: this.pdfFilePath,
-                        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop
-                    })
-                    break
-                }
                 default: {
                     break
                 }
@@ -422,9 +414,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     async startRecievingPanelManagerResponse() {
         await this.pdfViewerStarted
         window.addEventListener('message', (e) => {
-            if (e.origin !== 'null') {
-                return
-            }
             const data: PanelManagerResponse = e.data
             switch (data.type) {
                 case 'restore_state': {

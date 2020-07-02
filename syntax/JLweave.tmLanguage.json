@@ -1,0 +1,54 @@
+{
+    "name": "jlweave",
+    "scopeName": "text.tex.latex.jlweave",
+    "fileTypes": [
+        "rnw",
+        "Rnw",
+        "rtex",
+        "Rtex",
+        "snw",
+        "Snw"
+    ],
+    "patterns": [
+        {
+            "include": "text.tex.latex"
+        },
+        {
+            "name": "text.tex.latex.jlweave.codeblock",
+            "begin": "^(\\s*?)(<<)(.*?)(>>=)\\s*(.+)?\\s*\\n",
+            "end": "^\\1(@)\\s*(.+)?\\s*\\n",
+            "endCaptures": {
+                "1": {
+                    "name": "meta.tag.jlweave"
+                },
+                "2": {
+                    "name": "invalid.illegal.jlweave"
+                }
+            },
+            "beginCaptures": {
+                "2": {
+                    "name": "meta.tag.jlweave"
+                },
+                "4": {
+                    "name": "meta.tag.jlweave"
+                },
+                "5": {
+                    "name": "invalid.illegal.jlweave"
+                },
+                "3": {
+                    "patterns": [
+                        {
+                            "include": "source.julia"
+                        }
+                    ]
+                }
+            },
+            "contentName": "source.julia",
+            "patterns": [
+                {
+                    "include": "source.julia"
+                }
+            ]
+        }
+    ]
+}
