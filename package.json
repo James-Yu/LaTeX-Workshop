@@ -1272,7 +1272,24 @@
           "default": false,
           "markdownDescription": "Define if the hand tool is enabled by default in the PDF viewer."
         },
-        "latex-workshop.view.pdf.invert": {
+        "latex-workshop.view.pdf.invertMode.enabled": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "always",
+            "compat",
+            "never"
+          ],
+          "default": "never",
+          "markdownDescription": "Enable the CSS invert filter.",
+          "enumDescriptions": [
+            "Enable the invert filter when using a dark theme.",
+            "Always enable invert filter.",
+            "Enable the invert filter only if `invert > 0`.",
+            "Disable the invert filter"
+          ]
+        },
+        "latex-workshop.view.pdf.invertMode.invert": {
           "type": "number",
           "default": 0,
           "markdownDescription": "Define the CSS invert filter level of the PDF viewer.\nThis config can invert the color of PDF. Possible values are from 0 to 1."
@@ -1296,11 +1313,6 @@
           "type": "number",
           "default": 0,
           "markdownDescription": "Define the CSS sepia filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
-        },
-        "latex-workshop.view.pdf.invertMode.darkModeOnly": {
-          "type": "boolean",
-          "default": false,
-          "markdownDescription": "Apply CSS invert filter for the PDF viewer in dark mode only.\nDefaults to `false`, which applies invert filter, if it is enabled, in both dark and light mode."
         },
         "latex-workshop.view.pdf.backgroundColor": {
           "type": "string",

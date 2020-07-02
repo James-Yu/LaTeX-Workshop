@@ -8,6 +8,7 @@ export type ServerResponse = {
     spreadMode: number,
     hand: boolean,
     invertMode: {
+        enabled: boolean,
         brightness: number,
         grayscale: number,
         hueRotate: number,
