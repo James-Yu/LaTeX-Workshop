@@ -106,7 +106,7 @@ export class Citation implements IProvider {
                 // Already included
                 continue
             }
-            bibs = bibs.concat(this.getIncludedBibs(child.file, visitedTeX))
+            bibs = Array.from(new Set(bibs.concat(this.getIncludedBibs(child.file, visitedTeX))))
         }
         return bibs
     }
