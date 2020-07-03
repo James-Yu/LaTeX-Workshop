@@ -230,7 +230,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     if (!this.isRestoredWithSerializer) {
                         this.restorePdfViewerState(data)
                     }
-                    if (data.invertMode.invert > 0) {
+                    if (data.invertMode.enabled) {
                         const { brightness, grayscale, hueRotate, invert, sepia } = data.invertMode
                         const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`;
                         (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
