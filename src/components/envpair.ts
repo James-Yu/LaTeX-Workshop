@@ -20,15 +20,15 @@ interface MatchEnv {
 }
 
 export class EnvPair {
-    extension: Extension
-    beginLength = '\\begin'.length
-    endLength = '\\end'.length
+    private readonly extension: Extension
+    private readonly beginLength = '\\begin'.length
+    private readonly endLength = '\\end'.length
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    getEnvName(line: string, ind: number, beginOrEnd: string): string | null {
+    private getEnvName(line: string, ind: number, beginOrEnd: string): string | null {
         const subline = line.slice(ind)
         const re = new RegExp('^' + beginOrEnd + '\\{([^\\{\\}]*)\\}')
         const env = subline.match(re)
@@ -38,7 +38,7 @@ export class EnvPair {
         return null
     }
 
-    tokenizeLine(document: vscode.TextDocument, pos: vscode.Position): MatchEnv | null {
+    private tokenizeLine(document: vscode.TextDocument, pos: vscode.Position): MatchEnv | null {
         const line = utils.stripComments(document.lineAt(pos).text, '%')
         const ind = pos.character
         if (ind > line.length) {

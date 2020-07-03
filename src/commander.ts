@@ -45,9 +45,9 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
 
 
 export class Commander {
-    extension: Extension
-    private _texdoc: TeXDoc
-    snippets: {[key: string]: vscode.SnippetString} = {}
+    private readonly extension: Extension
+    private readonly _texdoc: TeXDoc
+    private readonly snippets: {[key: string]: vscode.SnippetString} = {}
 
     constructor(extension: Extension) {
         this.extension = extension

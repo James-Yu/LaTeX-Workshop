@@ -13,9 +13,9 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Reference implements IProvider {
-    private extension: Extension
+    private readonly extension: Extension
     // Here we use an object instead of an array for de-duplication
-    private suggestions: {[id: string]: Suggestion} = {}
+    private readonly suggestions: {[id: string]: Suggestion} = {}
     private prevIndexObj: { [k: string]: {refNumber: string, pageNumber: string} } = {}
 
     constructor(extension: Extension) {

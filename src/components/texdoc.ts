@@ -3,7 +3,7 @@ import * as cs from 'cross-spawn'
 import {Extension} from 'src/main'
 
 export class TeXDoc {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(e: Extension) {
         this.extension = e

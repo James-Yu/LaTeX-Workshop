@@ -6,7 +6,7 @@ import glob from 'glob'
 import {Extension} from '../main'
 
 export class Cleaner {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -59,7 +59,7 @@ export class Cleaner {
 
     // This function wraps the glob package into a promise.
     // It behaves like the original apart from returning a Promise instead of requiring a Callback.
-    globP(pattern: string, options: glob.IOptions): Promise<string[]> {
+    private globP(pattern: string, options: glob.IOptions): Promise<string[]> {
         return new Promise((resolve, reject) => {
             glob(pattern, options, (err, files) => {
                 if (err) {

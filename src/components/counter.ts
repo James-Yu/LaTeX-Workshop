@@ -6,7 +6,7 @@ import * as cp from 'child_process'
 import {Extension} from '../main'
 
 export class Counter {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension

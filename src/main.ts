@@ -291,30 +291,30 @@ export function activate(context: vscode.ExtensionContext) {
 
 export class Extension {
     packageInfo: { version?: string } = {}
-    extensionRoot: string
-    logger: Logger
-    buildInfo: BuildInfo
-    commander: Commander
-    manager: Manager
-    builder: Builder
-    viewer: Viewer
-    server: Server
-    locator: Locator
-    logParser: LogParser
-    pegParser: PEGParser
-    completer: Completer
-    linter: Linter
-    cleaner: Cleaner
-    counter: Counter
-    codeActions: CodeActions
-    texMagician: TeXMagician
-    envPair: EnvPair
-    structureProvider: SectionNodeProvider
-    structureViewer: StructureTreeView
-    snippetPanel: SnippetPanel
-    graphicsPreview: GraphicsPreview
-    mathPreview: MathPreview
-    bibtexFormater: BibtexFormater
+    readonly extensionRoot: string
+    readonly logger: Logger
+    readonly buildInfo: BuildInfo
+    readonly commander: Commander
+    readonly manager: Manager
+    readonly builder: Builder
+    readonly viewer: Viewer
+    readonly server: Server
+    readonly locator: Locator
+    readonly logParser: LogParser
+    readonly pegParser: PEGParser
+    readonly completer: Completer
+    readonly linter: Linter
+    readonly cleaner: Cleaner
+    readonly counter: Counter
+    readonly codeActions: CodeActions
+    readonly texMagician: TeXMagician
+    readonly envPair: EnvPair
+    readonly structureProvider: SectionNodeProvider
+    readonly structureViewer: StructureTreeView
+    readonly snippetPanel: SnippetPanel
+    readonly graphicsPreview: GraphicsPreview
+    readonly mathPreview: MathPreview
+    readonly bibtexFormater: BibtexFormater
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -339,7 +339,7 @@ export class Extension {
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetPanel = new SnippetPanel(this)
-        this.pegParser = new PEGParser(this)
+        this.pegParser = new PEGParser()
         this.graphicsPreview = new GraphicsPreview(this)
         this.mathPreview = new MathPreview(this)
         this.bibtexFormater = new BibtexFormater(this)

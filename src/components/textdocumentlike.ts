@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import { isNumber } from 'util'
 
 export class TextDocumentLike {
-    private _lines: string[]
+    private readonly _lines: string[]
     readonly lineCount: number
     readonly eol: vscode.EndOfLine
     private _eol: string

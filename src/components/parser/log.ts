@@ -46,12 +46,12 @@ interface LinterLogEntry {
 interface LogEntry { type: string, file: string, text: string, line: number }
 
 export class Parser {
-    extension: Extension
+    private readonly extension: Extension
     isLaTeXmkSkipped: boolean = false
-    buildLog: LogEntry[] = []
+    private buildLog: LogEntry[] = []
     buildLogRaw: string = ''
-    compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
-    linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
+    private readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
+    private readonly linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -74,7 +74,7 @@ export class Parser {
         }
     }
 
-    trimLaTeXmk(log: string): string {
+    private trimLaTeXmk(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -96,7 +96,7 @@ export class Parser {
         }
     }
 
-    trimTexify(log: string): string {
+    private trimTexify(log: string): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
@@ -118,7 +118,7 @@ export class Parser {
         }
     }
 
-    latexmkSkipped(log: string): boolean {
+    private latexmkSkipped(log: string): boolean {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics()
@@ -127,7 +127,7 @@ export class Parser {
         return false
     }
 
-    parseLaTeX(log: string, rootFile?: string) {
+    private parseLaTeX(log: string, rootFile?: string) {
         if (rootFile === undefined) {
             rootFile = this.extension.manager.rootFile
         }
@@ -261,7 +261,7 @@ export class Parser {
         this.showCompilerDiagnostics()
     }
 
-    parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
+    private parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substr(result.index + 1)
@@ -319,7 +319,7 @@ export class Parser {
         this.showLinterDiagnostics(linterLog)
     }
 
-    showCompilerDiagnostics() {
+    private showCompilerDiagnostics() {
         this.compilerDiagnostics.clear()
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of this.buildLog) {
@@ -346,7 +346,7 @@ export class Parser {
         }
     }
 
-    showLinterDiagnostics(linterLog: LinterLogEntry[]) {
+    private showLinterDiagnostics(linterLog: LinterLogEntry[]) {
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of linterLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1),

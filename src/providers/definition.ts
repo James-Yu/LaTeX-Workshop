@@ -7,7 +7,7 @@ import {tokenizer} from './tokenizer'
 import * as utils from '../utils/utils'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension

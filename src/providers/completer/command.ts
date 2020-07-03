@@ -21,8 +21,8 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Command implements IProvider {
-    private extension: Extension
-    private environment: Environment
+    private readonly extension: Extension
+    private readonly environment: Environment
 
     packages: string[] = []
     bracketCmds: {[key: string]: Suggestion} = {}

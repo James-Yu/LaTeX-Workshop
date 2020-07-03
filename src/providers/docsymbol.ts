@@ -4,7 +4,7 @@ import {Extension} from '../main'
 import {Section} from './structure'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
-    extension: Extension
+    private readonly extension: Extension
 
     private sections: string[] = []
 
@@ -22,7 +22,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         })
     }
 
-    sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
+    private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
         const symbols: vscode.DocumentSymbol[] = []
 
         sections.forEach(section => {

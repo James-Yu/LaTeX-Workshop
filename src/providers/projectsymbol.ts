@@ -4,7 +4,7 @@ import {Extension} from '../main'
 import {Section} from './structure'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -23,7 +23,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         })
     }
 
-    sectionToSymbols(symbols: vscode.SymbolInformation[], sections: Section[], containerName: string = 'Document') {
+    private sectionToSymbols(symbols: vscode.SymbolInformation[], sections: Section[], containerName: string = 'Document') {
         sections.forEach(section => {
             const location = new vscode.Location(vscode.Uri.file(section.fileName), new vscode.Range(section.lineNumber, 0, section.toLine, 65535))
             symbols.push(new vscode.SymbolInformation(section.label, vscode.SymbolKind.String, containerName, location))

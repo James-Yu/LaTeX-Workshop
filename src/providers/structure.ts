@@ -8,10 +8,10 @@ import * as utils from '../utils/utils'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
-    private _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
+    private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
-    private hierarchy: string[]
-    private sectionDepths: { [key: string]: number } = {}
+    private readonly hierarchy: string[]
+    private readonly sectionDepths: { [key: string]: number } = {}
     private showLabels: boolean
     private showNumbers: boolean
     public root: string = ''

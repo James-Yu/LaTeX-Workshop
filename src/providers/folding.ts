@@ -4,7 +4,7 @@ import {Extension} from '../main'
 
 export class FoldingProvider implements vscode.FoldingRangeProvider {
     extension: Extension
-    sectionRegex: RegExp[] = []
+    private readonly sectionRegex: RegExp[] = []
 
     constructor(extension: Extension) {
         this.extension = extension

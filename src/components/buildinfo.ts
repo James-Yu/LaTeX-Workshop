@@ -6,11 +6,11 @@ import { Extension } from '../main'
 import {replaceWebviewPlaceholders} from '../utils/webview'
 
 export class BuildInfo {
-    extension: Extension
-    status: vscode.StatusBarItem
-    panel: vscode.WebviewPanel | undefined
-    isProgressBarEnabled: boolean | undefined
-    currentBuild: {
+    private readonly extension: Extension
+    private readonly status: vscode.StatusBarItem
+    private panel: vscode.WebviewPanel | undefined
+    private isProgressBarEnabled: boolean | undefined
+    private currentBuild: {
         buildStart: number,
         pageTotal?: number | undefined,
         lastStepTime: number,
@@ -20,8 +20,8 @@ export class BuildInfo {
         ruleName: string,
         ruleProducesPages: boolean | undefined
     } | undefined
-    progress: vscode.Progress<{ message?: string, increment?: number }> | undefined
-    resolve: () => void
+    private progress: vscode.Progress<{ message?: string, increment?: number }> | undefined
+    private resolve: () => void
 
     constructor(extension: Extension) {
         this.extension = extension

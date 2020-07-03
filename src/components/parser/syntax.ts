@@ -2,16 +2,13 @@ import {latexParser, bibtexParser} from 'latex-utensils'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
 import {Proxy} from 'workerpool'
-import {Extension} from '../../main'
 import {ISyntaxWorker} from './syntax_worker'
 
 export class UtensilsParser {
-    extension: Extension
-    pool: workerpool.WorkerPool
-    proxy: workerpool.Promise<Proxy<ISyntaxWorker>>
+    private readonly pool: workerpool.WorkerPool
+    private readonly proxy: workerpool.Promise<Proxy<ISyntaxWorker>>
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.pool = workerpool.pool(
             path.join(__dirname, 'syntax_worker.js'),
             { minWorkers: 1, maxWorkers: 1, workerType: 'process' }

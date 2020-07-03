@@ -5,14 +5,14 @@ import { Extension } from '../main'
 export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
     extension: Extension
-    commands: LaTeXCommand[] = []
+    private readonly commands: LaTeXCommand[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
         this.buildCommander()
     }
 
-    buildCommander() {
+    private buildCommander() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const buildCommand = new LaTeXCommand('Build LaTeX project', vscode.TreeItemCollapsibleState.Collapsed, {command: 'latex-workshop.build', title: ''})

@@ -5,8 +5,8 @@ import {Extension} from '../../main'
 import {IProvider} from './interface'
 
 export class Package implements IProvider {
-    extension: Extension
-    suggestions: vscode.CompletionItem[] = []
+    private readonly extension: Extension
+    private readonly suggestions: vscode.CompletionItem[] = []
 
     constructor(extension: Extension) {
         this.extension = extension

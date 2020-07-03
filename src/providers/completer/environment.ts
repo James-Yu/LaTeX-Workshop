@@ -19,7 +19,7 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Environment implements IProvider {
-    private extension: Extension
+    private readonly extension: Extension
     private defaultEnvsAsName: Suggestion[] = []
     private defaultEnvsAsCommand: Suggestion[] = []
     private defaultEnvsForBegin: Suggestion[] = []

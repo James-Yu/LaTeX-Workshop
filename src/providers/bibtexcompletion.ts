@@ -5,9 +5,9 @@ import * as bibtexUtils from '../utils/bibtexutils'
 import {Extension} from '../main'
 
 export class BibtexCompleter implements vscode.CompletionItemProvider {
-    extension: Extension
-    private entryItems: vscode.CompletionItem[] = []
-    private optFieldItems: {[key: string]: vscode.CompletionItem[]} = {}
+    private readonly extension: Extension
+    private readonly entryItems: vscode.CompletionItem[] = []
+    private readonly optFieldItems: {[key: string]: vscode.CompletionItem[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -19,7 +19,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         }
     }
 
-    loadDefaultItems() {
+    private loadDefaultItems() {
         const entries = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-entries.json`, {encoding: 'utf8'}))
         const optFields = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-optional-entries.json`, {encoding: 'utf8'}))
         const entriesReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.bibtexJSON.replace') as {[key: string]: string[]}
@@ -52,7 +52,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         })
     }
 
-    computeMaxLengths(entries: {[key: string]: string[]}, optFields: {[key: string]: string[]}): {[key: string]: number} {
+    private computeMaxLengths(entries: {[key: string]: string[]}, optFields: {[key: string]: string[]}): {[key: string]: number} {
         const maxLengths: {[key: string]: number} = {}
         Object.keys(entries).forEach(key => {
             let maxFieldLength = 0
@@ -69,7 +69,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         return maxLengths
     }
 
-    entryToCompletion(itemName: string, itemFields: string[], config: bibtexUtils.BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem {
+    private entryToCompletion(itemName: string, itemFields: string[], config: bibtexUtils.BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem {
         const suggestion: vscode.CompletionItem = new vscode.CompletionItem(itemName, vscode.CompletionItemKind.Snippet)
         suggestion.detail = itemName
         suggestion.documentation = `Add a @${itemName} entry`
@@ -89,7 +89,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         return suggestion
     }
 
-    fieldsToCompletion(itemName: string, fields: string[], config: bibtexUtils.BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem[] {
+    private fieldsToCompletion(itemName: string, fields: string[], config: bibtexUtils.BibtexFormatConfig, maxLengths: {[key: string]: number}): vscode.CompletionItem[] {
         const suggestions: vscode.CompletionItem[] = []
         fields.forEach(field => {
             const suggestion: vscode.CompletionItem = new vscode.CompletionItem(field, vscode.CompletionItemKind.Snippet)
@@ -118,7 +118,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         })
     }
 
-    provideOptFields(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
+    private provideOptFields(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
         const pattern = /^\s*@([a-zA-Z]+)\{(?:[^,]*,)?\s$/m
         const content = document.getText(new vscode.Range(new vscode.Position(0, 0), position))
         const reversedContent = content.replace(/(\r\n)|\r/g, '\n').split('\n').reverse().join('\n')

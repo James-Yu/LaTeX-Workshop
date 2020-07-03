@@ -11,7 +11,7 @@ import {IProvider} from './interface'
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
 export class Input implements IProvider {
-    private extension: Extension
+    private readonly extension: Extension
     graphicsPath: string[] = []
 
     constructor(extension: Extension) {

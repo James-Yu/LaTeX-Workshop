@@ -28,12 +28,12 @@ const linux: OperatingSystem = new OperatingSystem('linux', '.pl', 'which')
 const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 
 export class LaTexFormatter {
-    private extension: Extension
-    private machineOs: string
-    private currentOs?: OperatingSystem
+    private readonly extension: Extension
+    private readonly machineOs: string
+    private readonly currentOs?: OperatingSystem
+    private readonly formatMutex: Mutex = new Mutex()
     private formatter: string = ''
     private formatterArgs: string[] = []
-    private formatMutex: Mutex = new Mutex()
 
     constructor(extension: Extension) {
         this.extension = extension

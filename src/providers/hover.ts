@@ -3,7 +3,7 @@ import {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
 
 export class HoverProvider implements vscode.HoverProvider {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension

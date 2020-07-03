@@ -13,11 +13,11 @@ export interface Suggestion extends vscode.CompletionItem {
 }
 
 export class Citation implements IProvider {
-    private extension: Extension
+    private readonly extension: Extension
     /**
      * Bib entries in each bib `file`.
      */
-    private bibEntries: {[file: string]: Suggestion[]} = {}
+    private readonly bibEntries: {[file: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension

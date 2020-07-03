@@ -7,8 +7,8 @@ import {Extension} from '../main'
 
 export class BibtexFormater {
 
-    extension: Extension
-    duplicatesDiagnostics: vscode.DiagnosticCollection
+    private readonly extension: Extension
+    private readonly duplicatesDiagnostics: vscode.DiagnosticCollection
 
     constructor(extension: Extension) {
         this.extension = extension
