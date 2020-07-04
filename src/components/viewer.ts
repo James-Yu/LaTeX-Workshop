@@ -488,6 +488,7 @@ export class Viewer {
      * The first one is revealed.
      *
      * @param pdfFilePath The path of a PDF file.
+     * @returns Returns `true` if `WebviewPanel.reveal` called.
      */
     revealWebviewPanel(pdfFilePath: string) {
         const panelSet = this.getPanelSet(pdfFilePath)

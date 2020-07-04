@@ -19,6 +19,12 @@ export class UtensilsParser {
         this.proxy = this.pool.proxy<ISyntaxWorker>()
     }
 
+    /**
+     * Parse a LaTeX file. Returns `undefined` if the parsing fails.
+     *
+     * @param s The content of a LaTeX file to be parsed.
+     * @param options
+     */
     async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
         return (await this.proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
     }
