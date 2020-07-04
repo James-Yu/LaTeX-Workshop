@@ -14,6 +14,9 @@ export interface Suggestion extends vscode.CompletionItem {
 
 export class Citation implements IProvider {
     private extension: Extension
+    /**
+     * Bib entries in each bib `file`.
+     */
     private bibEntries: {[file: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
@@ -91,6 +94,12 @@ export class Citation implements IProvider {
         return entries
     }
 
+    /**
+     * Returns the array of the paths of `.bib` files referenced from `file`.
+     *
+     * @param file The path of a LaTeX file. If `undefined`, the keys of `bibEntries` are used.
+     * @param visitedTeX Internal use only.
+     */
     private getIncludedBibs(file?: string, visitedTeX: string[] = []) {
         if (file === undefined) {
             // Only happens when rootFile is undefined
@@ -111,6 +120,11 @@ export class Citation implements IProvider {
         return bibs
     }
 
+    /**
+     * Returns aggregated bib entries from `.bib` files and bibitems defined on LaTeX files included in the root file.
+     *
+     * @param bibFiles The array of the paths of `.bib` files. If `undefined`, the keys of `bibEntries` are used.
+     */
     private updateAll(bibFiles?: string[]): Suggestion[] {
         let suggestions: Suggestion[] = []
         // Update the dirty content in active text editor, get bibitems
@@ -148,6 +162,11 @@ export class Citation implements IProvider {
         return suggestions
     }
 
+    /**
+     * Parses `.bib` file. The results are stored in this instance.
+     *
+     * @param file The path of `.bib` file.
+     */
     async parseBibFile(file: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -207,6 +226,7 @@ export class Citation implements IProvider {
      * Updates the Manager cache for bibitems defined in `file`.
      * `content` is parsed with regular expressions,
      * and the result is used to update the cache.
+     *
      * @param file The path of a LaTeX file.
      * @param content The content of a LaTeX file.
      */

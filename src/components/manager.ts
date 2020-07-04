@@ -15,18 +15,36 @@ import {Suggestion as EnvEntry} from '../providers/completer/environment'
 
 interface Content {
     [filepath: string]: { // tex file name
-        content: string, // the dirty (under editing) contents
+        /**
+         * The dirty (under editing) contents
+         */
+        content: string,
+        /**
+         * latex elements for completion, e.g., reference definition
+         */
         element: {
             reference?: vscode.CompletionItem[],
             environment?: EnvEntry[],
             bibitem?: CiteEntry[],
             command?: CmdEntry[],
             package?: string[]
-        }, // latex elements for completion, e.g., reference definition
-        children: { // sub-files, should be tex or plain files
-            index: number, // the index of character sub-content is inserted
-            file: string // the path to the sub-file
+        },
+        /**
+         * sub-files, should be tex or plain files
+         */
+        children: {
+            /**
+             * The index of character sub-content is inserted
+             */
+            index: number,
+            /**
+             * The path of the sub-file
+             */
+            file: string
         }[],
+        /**
+         * The array of the paths of `.bib` files.
+         */
         bibs: string[]
     }
 }
