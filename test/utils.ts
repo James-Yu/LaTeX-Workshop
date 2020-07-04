@@ -15,6 +15,14 @@ export function getFixtureDir() {
     }
 }
 
+/**
+ * Runs `cb` as a test if the basename of the working directory is euqual to `fixtureName`.
+ *
+ * @param fixtureName The name of a fixture directory of the current test.
+ * @param label Used as the title of test.
+ * @param cb Callback executing tests.
+ * @param skip `cb` is skipped if `true` returned.
+ */
 export function runTestWithFixture(
     fixtureName: string,
     label: string,
@@ -77,6 +85,13 @@ export function isDockerEnabled() {
     return process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER'] ? true : false
 }
 
+/**
+ * Executes `command` repeatedly until a certain result obtained.
+ * Since `command` is executed repeatedly until timeout, it must not have any side effects.
+ *
+ * @param command Callback to be executed.
+ * @param errMessage A string to be displayed as an error message.
+ */
 export async function waitUntil<T>(
     command: () => Thenable<T | false | undefined | null>,
     errMessage?: string
