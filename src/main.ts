@@ -70,6 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh())
     vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.view('tab'))
     vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
+    vscode.commands.registerCommand('latex-workshop.toggleAutoBuild', () => extension.commander.toggleAutoBuild())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.texdoc', (pkg) => extension.commander.texdoc(pkg))
     vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => extension.commander.texdocUsepackages())

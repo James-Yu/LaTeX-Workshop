@@ -206,6 +206,11 @@ export class Commander {
         this.extension.builder.kill()
     }
 
+    toggleAutoBuild() {
+        const enabled = this.extension.manager.toggleAutoBuild()
+        vscode.window.showInformationMessage(`LaTeX Workshop AutoBuild is ${enabled ? 'enabled' : 'disabled'}.`)
+    }
+
     pdf(uri: vscode.Uri | undefined) {
         this.extension.logger.addLogMessage('PDF command invoked.')
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
