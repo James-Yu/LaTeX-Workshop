@@ -13,14 +13,17 @@ import {Suggestion as CiteEntry} from '../providers/completer/citation'
 import {Suggestion as CmdEntry} from '../providers/completer/command'
 import {Suggestion as EnvEntry} from '../providers/completer/environment'
 
+/**
+ * The content cache for each LaTeX file `filepath`.
+ */
 interface Content {
-    [filepath: string]: { // tex file name
+    [filepath: string]: { // The path of a LaTeX file.
         /**
-         * The dirty (under editing) contents
+         * The dirty (under editing) content of the LaTeX file.
          */
         content: string,
         /**
-         * latex elements for completion, e.g., reference definition
+         * Completion item and other items for the LaTeX file.
          */
         element: {
             reference?: vscode.CompletionItem[],
@@ -30,7 +33,7 @@ interface Content {
             package?: string[]
         },
         /**
-         * sub-files, should be tex or plain files
+         * The sub-files of the LaTeX file. They should be tex or plain files.
          */
         children: {
             /**
@@ -43,13 +46,16 @@ interface Content {
             file: string
         }[],
         /**
-         * The array of the paths of `.bib` files.
+         * The array of the paths of `.bib` files referenced from the LaTeX file.
          */
         bibs: string[]
     }
 }
 
 export class Manager {
+    /**
+     * The content cache for each LaTeX file.
+     */
     readonly cachedContent: Content = {}
 
     private readonly extension: Extension
@@ -439,18 +445,15 @@ export class Manager {
     }
 
     /**
-     * This function is called when a root file is found or a watched file is
-     * changed (in vscode or externally). It searches the subfiles, including
-     * \input siblings, bib files, and related fls file to construct a file
-     * dependency data structure in `this.cachedContent`. Noted that only the
-     * provided `file` is re-parsed, together with any new files that were not
-     * previously watched/considered. Since this function is called upon content
-     * changes, this lazy loading should be fine.
+     * Searches the subfiles, `\input` siblings, `.bib` files, and related `.fls` file
+     * to construct a file dependency data structure related to `file` in `this.cachedContent`.
      *
-     * @param file
-     * @param onChange
+     * This function is called when the root file is found or a watched file is changed.
+     *
+     * @param file The path of a LaTeX file. It is added to the watcher if not being watched.
+     * @param onChange If `true`, the content of `file` is read from the file system. If `false`, the cache of `file` is used.
      */
-    parseFileAndSubs(file: string, onChange: boolean = false) {
+    private parseFileAndSubs(file: string, onChange: boolean = false) {
         if (this.isExcluded(file)) {
             this.extension.logger.addLogMessage(`Ignoring: ${file}`)
             return
@@ -625,10 +628,10 @@ export class Manager {
     }
 
     /**
-     * Parses the content of a fls attached to the given `srcFile`.
-     * All input files are considered as included subfiles/non-tex files,
-     * and all output files will be check if there are aux files related. If so,
-     * the aux files are parsed for any possible bib file.
+     * Parses the content of a `.fls` file attached to the given `srcFile`.
+     * All `INPUT` files are considered as subfiles/non-tex files included in `srcFile`,
+     * and all `OUTPUT` files will be checked if they are `.aux` files.
+     * If so, the `.aux` files are parsed for any possible `.bib` files.
      *
      * @param srcFile The path of a LaTeX file.
      */
