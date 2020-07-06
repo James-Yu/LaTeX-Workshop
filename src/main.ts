@@ -237,6 +237,7 @@ export function activate(context: vscode.ExtensionContext) {
     checkDeprecatedFeatures(extension)
     newVersionMessage(context.extensionPath, extension)
 
+    // If VS Code started with PDF files, we must explicitly execute `commander.pdf` for the PDF files.
     vscode.window.visibleTextEditors.forEach(editor => {
         const e = editor.document
         if (e.languageId === 'pdf') {

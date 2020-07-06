@@ -138,8 +138,9 @@ export class Command implements IProvider {
     }
 
     /**
-     * @param content a string to be surrounded. If not provided, then we
-     * loop over all the selections and surround each of them
+     * Surrounds `content` with a command picked in QuickPick.
+     *
+     * @param content A string to be surrounded. If not provided, then we loop over all the selections and surround each of them.
      */
     surround(content?: string) {
         if (!vscode.window.activeTextEditor) {
@@ -208,6 +209,12 @@ export class Command implements IProvider {
         }
     }
 
+    /**
+     * Returns the name of `item`. The backward slahsh, `\`, is removed.
+     *
+     * @param item A completion item.
+     * @param removeArgs If `true`, returns a name without arguments.
+     */
     getCmdName(item: Suggestion, removeArgs = false): string {
         const label = item.label.startsWith('\\') ? item.label.slice(1) : item.label
         const name = item.filterText ? item.filterText : label
@@ -230,6 +237,7 @@ export class Command implements IProvider {
      * Updates the Manager cache for packages used in `file` with `nodes`.
      * If `nodes` is `undefined`, `content` is parsed with regular expressions,
      * and the result is used to update the cache.
+     *
      * @param file The path of a LaTeX file.
      * @param nodes AST of a LaTeX file.
      * @param content The content of a LaTeX file.

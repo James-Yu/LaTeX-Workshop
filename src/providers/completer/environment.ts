@@ -67,7 +67,7 @@ export class Environment implements IProvider {
         }
     }
 
-    getPackageEnvs(type: EnvSnippetType): {[pkg: string]: Suggestion[]} {
+    private getPackageEnvs(type: EnvSnippetType): {[pkg: string]: Suggestion[]} {
         switch (type) {
             case EnvSnippetType.AsName:
                 return this.packageEnvsAsName
@@ -281,7 +281,7 @@ export class Environment implements IProvider {
         return envs
     }
 
-    entryEnvToCompletion(itemKey: string, item: EnvItemEntry, type: EnvSnippetType): Suggestion {
+    private entryEnvToCompletion(itemKey: string, item: EnvItemEntry, type: EnvSnippetType): Suggestion {
         const label = item.detail ? item.detail : item.name
         const suggestion: Suggestion = {
             label: item.name,

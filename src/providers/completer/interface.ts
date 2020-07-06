@@ -1,6 +1,10 @@
 import * as vscode from 'vscode'
 
 export interface IProvider {
+
+    /**
+     * Returns the array of completion items. Should be called only from `Completer.completion`.
+     */
     provideFrom(
         type: string,
         result: RegExpMatchArray,
