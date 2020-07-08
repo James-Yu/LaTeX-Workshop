@@ -19,7 +19,10 @@ export function escapeRegExp(str: string) {
 }
 
 /**
- * Remove the comments if any
+ * Removes a comment on each line of `text`.
+ *
+ * @param text A string in which comments get removed.
+ * @param commentSign The character starting a comment. Typically '%'.
  */
 export function stripComments(text: string, commentSign: string): string {
     const pattern = '([^\\\\]|^)' + commentSign + '.*$'
@@ -28,7 +31,8 @@ export function stripComments(text: string, commentSign: string): string {
 }
 
 /**
- * Finding the longest substring containing balanced curly braces {...}
+ * Finds the longest substring containing balanced curly braces {...}
+ *
  * @param s A string to be searched.
  */
 export function getLongestBalancedString(s: string): string {
@@ -144,6 +148,7 @@ export function svgToDataUrl(xml: string): string {
 
 /**
  * Returns a function replacing placeholders of LaTeX recipes.
+ *
  * @param rootFile The path of the root file.
  * @param tmpDir The path of a temporary directory.
  * @returns A function replacing placeholders.
