@@ -58,7 +58,6 @@
           "name": "punctuation.definition.arguments.begin.latex"
         }
       },
-      "contentName": "support.class.latex",
       "end": "\\}",
       "endCaptures": {
         "0": {
@@ -553,11 +552,11 @@
           "begin": "%",
           "beginCaptures": {
             "0": {
-              "name": "punctuation.definition.comment.tex"
+              "name": "punctuation.definition.comment.latex"
             }
           },
           "end": "$\\n?",
-          "name": "comment.line.percentage.tex"
+          "name": "comment.line.percentage.latex"
         },
         {
           "include": "source.gnuplot"
@@ -646,11 +645,11 @@
         {
           "captures": {
             "1": {
-              "name": "punctuation.definition.function.tex"
+              "name": "punctuation.definition.function.latex"
             }
           },
           "match": "(\\\\)[A-Za-z]+",
-          "name": "support.function.general.tex"
+          "name": "support.function.general.latex"
         }
       ]
     },
@@ -673,7 +672,7 @@
           "name": "punctuation.definition.arguments.end.latex"
         }
       },
-      "contentName": "punctuation.definition.comment.tex",
+      "contentName": "punctuation.definition.comment.latex",
       "end": "((\\\\)end)(\\{)(\\4)(\\})",
       "name": "meta.function.verbatim.latex"
     },
@@ -760,7 +759,7 @@
           "name": "punctuation.definition.arguments.end.latex"
         }
       },
-      "contentName": "support.class.math.block.environment.latex",
+      "contentName": "meta.math.block.latex support.class.math.block.environment.latex",
       "end": "(?:\\s*)((\\\\)end)(\\{)(\\4)(\\})(?:\\s*\\n)?",
       "name": "meta.function.environment.math.latex",
       "patterns": [
@@ -961,7 +960,7 @@
           "name": "punctuation.definition.begin.latex"
         },
         "4": {
-          "name": "support.function.general.tex"
+          "name": "support.function.general.latex"
         },
         "5": {
           "name": "punctuation.definition.function.latex"
@@ -1416,7 +1415,7 @@
     },
     {
       "match": "\\\\(?:newline|pagebreak|clearpage|linebreak|pause)(?:\\b)",
-      "name": "keyword.control.layout.tex"
+      "name": "keyword.control.layout.latex"
     },
     {
       "begin": "\\\\\\(",
@@ -1431,7 +1430,7 @@
           "name": "punctuation.definition.string.end.latex"
         }
       },
-      "name": "support.class.math.latex",
+      "name": "meta.math.block.latex support.class.math.block.environment.latex",
       "patterns": [
         {
           "include": "text.tex#math"
@@ -1454,11 +1453,11 @@
           "name": "punctuation.definition.string.end.latex"
         }
       },
-      "name": "support.class.math.latex",
+      "name": "meta.math.block.latex support.class.math.block.environment.latex",
       "patterns": [
         {
           "match": "\\\\\\$",
-          "name": "constant.character.escape.tex"
+          "name": "constant.character.escape.latex"
         },
         {
           "include": "text.tex#math"
@@ -1481,7 +1480,7 @@
           "name": "punctuation.definition.string.end.latex"
         }
       },
-      "name": "support.class.math.latex",
+      "name": "meta.math.block.latex support.class.math.block.environment.latex",
       "patterns": [
         {
           "include": "text.tex#math"
@@ -1525,13 +1524,14 @@
               "name": "punctuation.definition.optional.arguments.begin.latex"
             },
             "2": {
-              "name": "variable.parameter.latex"
+              "name": "variable.parameter.function.latex"
             },
             "3": {
               "name": "punctuation.definition.optional.arguments.end.latex"
             }
           },
-          "match": "(\\[)([^\\[]*?)(\\])"
+          "match": "(\\[)([^\\[]*?)(\\])",
+          "name": "meta.parameter.optional.latex"
         }
       ]
     },
