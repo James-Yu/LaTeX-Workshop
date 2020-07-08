@@ -294,7 +294,8 @@
       {
         "command": "latex-workshop.build",
         "title": "Build LaTeX project",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "icon": "$(rocket)"
       },
       {
         "command": "latex-workshop.recipes",
@@ -1863,7 +1864,12 @@
         {
           "when": "editorLangId == latex",
           "command": "latex-workshop.view",
-          "group": "navigation"
+          "group": "navigation@2"
+        },
+        {
+          "when": "editorLangId == latex",
+          "command": "latex-workshop.build",
+          "group": "navigation@1"
         }
       ],
       "view/title": [
