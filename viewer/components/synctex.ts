@@ -15,7 +15,7 @@ export class SyncTex {
         })
     }
 
-    callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
+    private callSynctex(e: MouseEvent, page: number, pageDom: HTMLElement, viewerContainer: HTMLElement) {
         const canvasDom = pageDom.getElementsByTagName('canvas')[0]
         const selection = window.getSelection()
         let textBeforeSelection = ''

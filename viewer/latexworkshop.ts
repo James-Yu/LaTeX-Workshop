@@ -12,12 +12,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly documentTitle: string = ''
     readonly embedded: boolean
     readonly encodedPdfFilePath: string
-    hideToolbarInterval: number | undefined
     readonly pageTrimmer: PageTrimmer
     readonly pdfFilePath: string
     readonly server: string
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
+
+    private hideToolbarInterval: number | undefined
 
     private socket: WebSocket
     private pdfViewerStarted: Promise<void>
@@ -136,7 +137,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.socket.send(JSON.stringify(message))
     }
 
-    getPdfViewerState(): PdfViewerState {
+    private getPdfViewerState(): PdfViewerState {
         const pack = {
             path: this.pdfFilePath,
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
@@ -149,7 +150,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return pack
     }
 
-    async restorePdfViewerState(state: PdfViewerState) {
+    private async restorePdfViewerState(state: PdfViewerState) {
         await this.pdfViewerStarted
         if (state.scale !== undefined) {
             PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
@@ -187,7 +188,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    setupWebSocket() {
+    private setupWebSocket() {
         utils.callCbOnDidOpenWebSocket(this.socket, () => {
             const pack: ClientRequest = {
                 type: 'open',
@@ -318,7 +319,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 3000)
     }
 
-    decodeQuery() {
+    private decodeQuery() {
         const query = document.location.search.substring(1)
         const parts = query.split('&')
 
@@ -334,7 +335,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         throw new Error('file not given in the query.')
     }
 
-    hidePrintButton() {
+    private hidePrintButton() {
         const query = document.location.search.substring(1)
         const parts = query.split('&')
         for (let i = 0, ii = parts.length; i < ii; ++i) {
@@ -348,7 +349,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    registerKeybinding() {
+    private registerKeybinding() {
         // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
         if (this.embedded) {
             document.addEventListener('click', (e) => {
@@ -388,7 +389,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    startConnectionKeeper() {
+    private startConnectionKeeper() {
         // Send packets every 30 sec to prevent the connection closed by timeout.
         setInterval( () => {
             if (this.socket.readyState === 1) {
@@ -397,7 +398,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 30000)
     }
 
-    sendToPanelManager(msg: PanelRequest) {
+    private sendToPanelManager(msg: PanelRequest) {
         if (!this.embedded) {
             return
         }
@@ -407,7 +408,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     // To enable keyboard shortcuts of VS Code when the iframe is focused,
     // we have to dispatch keyboard events in the parent window.
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
-    startRebroadcastingKeyboardEvent() {
+    private startRebroadcastingKeyboardEvent() {
         if (!this.embedded) {
             return
         }
@@ -433,7 +434,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
-    startSendingState() {
+    private startSendingState() {
         if (!this.embedded) {
             return
         }
@@ -452,7 +453,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    async startRecievingPanelManagerResponse() {
+    private async startRecievingPanelManagerResponse() {
         await this.pdfViewerStarted
         window.addEventListener('message', (e) => {
             const data: PanelManagerResponse = e.data

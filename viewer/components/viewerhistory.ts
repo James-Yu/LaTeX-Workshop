@@ -12,7 +12,7 @@ export class ViewerHistory {
         this.registerKeybinding()
     }
 
-    registerKeybinding() {
+    private registerKeybinding() {
         const setHistory = () => {
             const container = document.getElementById('viewerContainer') as HTMLElement
             // set positions before and after clicking to viewerHistory
@@ -33,11 +33,11 @@ export class ViewerHistory {
         })
     }
 
-    last() {
+    private last() {
         return this.history[this.history.length-1]
     }
 
-    lastIndex() {
+    private lastIndex() {
         if (this.history.length === 0) {
             return undefined
         } else {
@@ -45,7 +45,7 @@ export class ViewerHistory {
         }
     }
 
-    length() {
+    private length() {
         return this.history.length
     }
 
