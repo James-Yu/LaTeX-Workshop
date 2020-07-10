@@ -346,6 +346,14 @@ export class Commander {
         this.extension.envPair.gotoPair()
     }
 
+    selectEnv() {
+        this.extension.logger.addLogMessage('SelectEnv command invoked.')
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            return
+        }
+        this.extension.envPair.selectEnv()
+    }
+
     selectEnvName() {
         this.extension.logger.addLogMessage('SelectEnvName command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {

@@ -15,7 +15,7 @@ function regexpAllMatches(str: string, reg: RegExp) {
 
 interface MatchEnv {
     name: string,
-    type: string, // 'begin' or 'end'
+    type: string, // 'begin', 'end', '[', ']', '(', ')'
     pos: vscode.Position
 }
 
@@ -23,9 +23,13 @@ export class EnvPair {
     private readonly extension: Extension
     private readonly beginLength = '\\begin'.length
     private readonly endLength = '\\end'.length
+    private readonly delimiters: {[key: string]: {end: string, splitCharacter: string}} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.delimiters['begin'] = {end: 'end', splitCharacter: '}'}
+        this.delimiters['['] = {end: ']', splitCharacter: '['}
+        this.delimiters['('] = {end: ')', splitCharacter: '('}
     }
 
     private getEnvName(line: string, ind: number, beginOrEnd: string): string | null {
@@ -63,13 +67,10 @@ export class EnvPair {
 
     /**
      * Searches upwards or downwards for a begin or end environment captured by `pattern`.
-     * Begin environment can also be `\[` and end environment can also be `\]`
+     * The environment can also be \[...\] or \(...\)
      *
-     * @param pattern A regex that matches begin or end environments.
-     *
-     * Note: the regex must capture (`begin` or `[`) or (`end` or `]`) in the first
-     * capturing group. If nesting is possible, the pattern must capture *both* `begin` and `end`.
-     * If `dir` is -1, regex must capture `begin` and/or `[` and likewise if `dir` is +1.
+     * @param pattern A regex that matches begin or end environments. Note that the regex
+     * must capture the delimiters
      * @param dir +1 to search downwards, -1 to search upwards
      * @param pos starting position (e.g. cursor position)
      * @param doc the document in which the search is performed
@@ -99,6 +100,10 @@ export class EnvPair {
                 this.extension.logger.addLogMessage('Direction error in locateMatchingPair')
                 return null
         }
+        const begins = Object.keys(this.delimiters)
+        const ends = Object.keys(this.delimiters).map((key) => {
+            return this.delimiters[key].end
+        })
         while (true) {
             line = utils.stripComments(line, '%')
             let allMatches = regexpAllMatches(line, patRegexp)
@@ -106,10 +111,10 @@ export class EnvPair {
                 allMatches = allMatches.reverse()
             }
             for (const m of allMatches) {
-                if ((dir === 1 && (m[1] === 'begin' || m[1] === '[')) || (dir === -1 && (m[1] === 'end' || m[1] === ']'))) {
+                if ((dir === 1 && begins.includes(m[1])) || (dir === -1 && ends.includes(m[1]))) {
                     nested += 1
                 }
-                if ((dir === 1 && (m[1] === 'end' || m[1] === ']')) || (dir === -1 && (m[1] === 'begin' || m[1] === '['))) {
+                if ((dir === 1 && ends.includes(m[1])) || (dir === -1 && begins.includes(m[1]))) {
                     if (nested === 0) {
                         const col = m.index + 1 + startCol
                         const matchPos = new vscode.Position(lineNumber, col)
@@ -191,7 +196,7 @@ export class EnvPair {
             return
         }
         const dirDown = 1
-        const endEnv = this.locateMatchingPair(pattern, dirDown, beginEnv.pos, document, beginEnv.type === '[' ? '[' : '}')
+        const endEnv = this.locateMatchingPair(pattern, dirDown, beginEnv.pos, document, this.delimiters[beginEnv.type].splitCharacter)
         if (!endEnv) {
             return
         }
@@ -253,6 +258,50 @@ export class EnvPair {
                     default:
                         this.extension.logger.addLogMessage('Error - while selecting environment name')
                 }
+            }
+        })
+
+        // editor.revealRange(new vscode.Range(beginEnvStartPos, endEnvStartPos))
+    }
+
+    /**
+     * Select an environment
+     */
+    selectEnv() {
+        const editor = vscode.window.activeTextEditor
+        if (!editor || editor.document.languageId !== 'latex') {
+            return
+        }
+        const startingPos = editor.selection.active
+        const document = editor.document
+        const searchEnvs = '[^\\{\\}]*'
+        const pattern = `(?<!\\\\)\\\\(\\(|\\)|\\[|\\]|(?:begin|end)(?=\\{(${searchEnvs})\\}))`
+        const dirUp = -1
+        const beginEnv = this.locateMatchingPair(pattern, dirUp, startingPos, document)
+        if (!beginEnv) {
+            return
+        }
+        const dirDown = 1
+        const endEnv = this.locateMatchingPair(pattern, dirDown, beginEnv.pos, document, this.delimiters[beginEnv.type].splitCharacter)
+        if (!endEnv) {
+            return
+        }
+
+        let envNameLength: number = 0
+        const edit = new vscode.WorkspaceEdit()
+
+        if (beginEnv.type === 'begin' && endEnv.type === 'end') {
+            envNameLength = beginEnv.name.length + 2 // for '{' and '}'
+            if (beginEnv.name !== endEnv.name) {
+                return // bad match
+            }
+        }
+
+        vscode.workspace.applyEdit(edit).then(success => {
+            if (success) {
+                const beginEnvPos = beginEnv.pos.translate(0, -1)
+                const endEnvPos = endEnv.pos.translate(0, envNameLength + beginEnv.type.length)
+                editor.selections = [new vscode.Selection(beginEnvPos, endEnvPos)]
             }
         })
 
