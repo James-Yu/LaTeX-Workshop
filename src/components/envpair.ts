@@ -170,7 +170,7 @@ export class EnvPair {
      *      - 'cursor': a multicursor is added at the beginning of the environment name is selected both in the begin and end part
      *      - 'equationToggle': toggles between `\[...\]` and `\begin{}...\end{}`
      */
-    envAction(action: 'selection'|'cursor'|'equationToggle') {
+    envNameAction(action: 'selection'|'cursor'|'equationToggle') {
         const editor = vscode.window.activeTextEditor
         if (!editor || editor.document.languageId !== 'latex') {
             return
