@@ -16,7 +16,8 @@
 
 LaTeX Workshop is an extension for [Visual Studio Code](https://code.visualstudio.com/), aiming to provide core features for LaTeX typesetting with Visual Studio Code.
 
-This project won't be successful without contributions from the community, especially the current and past key contributors:
+This project won't be successful without contributions from the community, especially from the current and past key contributors:
+
 - Jerome Lelong [`@jlelong`](https://github.com/jlelong)
 - Takashi Tamura [`@tamuratak`](https://github.com/tamuratak)
 - Tecosaur [`@tecosaur`](https://github.com/tecosaur)
@@ -30,7 +31,7 @@ Thank you so much!
 
 The manual of the extension is maintained as a [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki)
 
-# Table of Contents
+### Table of Contents
 
 - [Home](https://github.com/James-Yu/LaTeX-Workshop/wiki/Home)
 - [Installation and basic settings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Install)
