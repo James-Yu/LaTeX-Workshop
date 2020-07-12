@@ -86,7 +86,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
 - [Playing with environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments)
   - [Inserting an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#inserting-an-environment)
   - [Itemize like environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Itemize-like-environments)
-  - [Navigating](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Navigating)
+  - [Navigating and selecting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#navigating-and-selecting)
   - [Changing between `\[...\]` and `\begin{}...\end{}`](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#changing-between--and-beginend)
   - [Closing the current environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Closing-the-current-environment)
   - [Surrounding selection with an environment](https://github.com/James-Yu/LaTeX-Workshop/wiki/Environments#Surrounding-selection-with-an-environment)
