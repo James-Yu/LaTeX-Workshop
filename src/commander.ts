@@ -346,7 +346,7 @@ export class Commander {
         this.extension.envPair.gotoPair()
     }
 
-    selectEnv() {
+    selectEnvContent() {
         this.extension.logger.addLogMessage('SelectEnv command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
