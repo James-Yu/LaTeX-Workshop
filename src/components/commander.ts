@@ -43,6 +43,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         this.commands.push(navCommand)
         navCommand.children.push(new LaTeXCommand('SyncTeX from cursor', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.synctex', title: ''}))
         navCommand.children.push(new LaTeXCommand('Navigate to matching begin/end', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.navigate-envpair', title: ''}))
+        navCommand.children.push(new LaTeXCommand('Select current environment content', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.select-envcontent', title: ''}))
         navCommand.children.push(new LaTeXCommand('Select current environment name', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.select-envname', title: ''}))
         navCommand.children.push(new LaTeXCommand('Close current environment', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.close-env', title: ''}))
         navCommand.children.push(new LaTeXCommand('Surround with begin{}...\\end{}', vscode.TreeItemCollapsibleState.None, {command: 'latex-workshop.wrap-env', title: ''}))

@@ -346,12 +346,20 @@ export class Commander {
         this.extension.envPair.gotoPair()
     }
 
+    selectEnvContent() {
+        this.extension.logger.addLogMessage('SelectEnv command invoked.')
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            return
+        }
+        this.extension.envPair.selectEnv()
+    }
+
     selectEnvName() {
         this.extension.logger.addLogMessage('SelectEnvName command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.envAction('selection')
+        this.extension.envPair.envNameAction('selection')
     }
 
     multiCursorEnvName() {
@@ -359,7 +367,7 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.envAction('cursor')
+        this.extension.envPair.envNameAction('cursor')
     }
 
     toggleEquationEnv() {
@@ -367,7 +375,7 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.envAction('equationToggle')
+        this.extension.envPair.envNameAction('equationToggle')
     }
 
     closeEnv() {
