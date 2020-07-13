@@ -215,7 +215,7 @@ export class Viewer {
             return
         }
         if (editor) {
-            // We need to make the viewer the active editor to move it to an other editor group
+            // We need to turn the viewer into the active editor to move it to an other editor group
             panel.webviewPanel.reveal(undefined, false)
             switch (tabEditorGroup) {
                 case 'left':
