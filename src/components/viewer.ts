@@ -210,27 +210,32 @@ export class Viewer {
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         const editor = vscode.window.activeTextEditor
-        let viewColumn: vscode.ViewColumn
-        if (tabEditorGroup === 'current') {
-            viewColumn = vscode.ViewColumn.Active
-        } else {
-            // If an editor already exists on the left, use it
-            if (tabEditorGroup === 'left' && editor?.viewColumn === vscode.ViewColumn.Two) {
-                viewColumn = vscode.ViewColumn.One
-            } else {
-                viewColumn = vscode.ViewColumn.Beside
-            }
-        }
-        const panel = this.createPdfViewerPanel(pdfFile, viewColumn)
+        const panel = this.createPdfViewerPanel(pdfFile, vscode.ViewColumn.Active)
         if (!panel) {
             return
         }
-        if (editor && viewColumn !== vscode.ViewColumn.Active) {
+        if (editor) {
+            // We need to make the viewer the active editor to move it to an other editor group
+            panel.webviewPanel.reveal(undefined, false)
+            switch (tabEditorGroup) {
+                case 'left':
+                    vscode.commands.executeCommand('workbench.action.moveEditorToLeftGroup')
+                    break
+                case 'right':
+                    vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup')
+                    break
+                case 'above':
+                    vscode.commands.executeCommand('workbench.action.moveEditorToAboveGroup')
+                    break
+                case 'below':
+                    vscode.commands.executeCommand('workbench.action.moveEditorToBelowGroup')
+                    break
+                default:
+                    break
+            }
+            // Then, we set the focus back to the .tex file
             setTimeout(async () => {
-                await vscode.window.showTextDocument(editor.document, editor.viewColumn)
-                if (tabEditorGroup === 'left' && viewColumn !== vscode.ViewColumn.One) {
-                    await vscode.commands.executeCommand('workbench.action.moveActiveEditorGroupRight')
-                }
+                await vscode.window.showTextDocument(editor.document, undefined, false)
             }, 500)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
