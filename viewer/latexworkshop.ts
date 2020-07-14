@@ -12,12 +12,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly documentTitle: string = ''
     readonly embedded: boolean
     readonly encodedPdfFilePath: string
-    hideToolbarInterval: number | undefined
     readonly pageTrimmer: PageTrimmer
     readonly pdfFilePath: string
     readonly server: string
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
+
+    private hideToolbarInterval: number | undefined
 
     private socket: WebSocket
     private pdfViewerStarted: Promise<void>
@@ -136,7 +137,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.socket.send(JSON.stringify(message))
     }
 
-    getPdfViewerState(): PdfViewerState {
+    private getPdfViewerState(): PdfViewerState {
         const pack = {
             path: this.pdfFilePath,
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
@@ -149,8 +150,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return pack
     }
 
-    async restorePdfViewerState(state: PdfViewerState) {
+    private async restorePdfViewerState(state: PdfViewerState) {
         await this.pdfViewerStarted
+        // By setting the scale, scaling will be invoked if necessary.
         if (state.scale !== undefined) {
             PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
         }
@@ -177,17 +179,22 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 }
                 trimSelect.selectedIndex = state.trim
                 trimSelect.dispatchEvent(ev)
-                if (state.scale !== undefined) {
+                // By setting the scale, the callbacks of trimming pages are invoked.
+                // However, given "auto" and other non-number scales, the scale will be
+                // unnecessarily recalculated, which we must avoid.
+                if (state.scale !== undefined && /\d/.exec(state.scale)) {
                     PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
                 }
                 if (state.scrollTop !== undefined) {
                     (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
                 }
+                this.sendCurrentStateToPanelManager()
             })
         }
+        this.sendCurrentStateToPanelManager()
     }
 
-    setupWebSocket() {
+    private setupWebSocket() {
         utils.callCbOnDidOpenWebSocket(this.socket, () => {
             const pack: ClientRequest = {
                 type: 'open',
@@ -318,7 +325,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 3000)
     }
 
-    decodeQuery() {
+    private decodeQuery() {
         const query = document.location.search.substring(1)
         const parts = query.split('&')
 
@@ -334,7 +341,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         throw new Error('file not given in the query.')
     }
 
-    hidePrintButton() {
+    private hidePrintButton() {
         const query = document.location.search.substring(1)
         const parts = query.split('&')
         for (let i = 0, ii = parts.length; i < ii; ++i) {
@@ -348,7 +355,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    registerKeybinding() {
+    private registerKeybinding() {
         // if we're embedded we cannot open external links here. So we intercept clicks and forward them to the extension
         if (this.embedded) {
             document.addEventListener('click', (e) => {
@@ -388,7 +395,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    startConnectionKeeper() {
+    private startConnectionKeeper() {
         // Send packets every 30 sec to prevent the connection closed by timeout.
         setInterval( () => {
             if (this.socket.readyState === 1) {
@@ -397,17 +404,22 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 30000)
     }
 
-    sendToPanelManager(msg: PanelRequest) {
+    private sendToPanelManager(msg: PanelRequest) {
         if (!this.embedded) {
             return
         }
         window.parent.postMessage(msg, '*')
     }
 
+    private sendCurrentStateToPanelManager() {
+        const pack = this.getPdfViewerState()
+        this.sendToPanelManager({type: 'state', state: pack})
+    }
+
     // To enable keyboard shortcuts of VS Code when the iframe is focused,
     // we have to dispatch keyboard events in the parent window.
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
-    startRebroadcastingKeyboardEvent() {
+    private startRebroadcastingKeyboardEvent() {
         if (!this.embedded) {
             return
         }
@@ -433,7 +445,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
-    startSendingState() {
+    private startSendingState() {
         if (!this.embedded) {
             return
         }
@@ -445,14 +457,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         for (const ev of events) {
             this.getEventBus().then(eventBus => {
                 eventBus.on(ev, () => {
-                    const pack = this.getPdfViewerState()
-                    this.sendToPanelManager({type: 'state', state: pack})
+                    this.sendCurrentStateToPanelManager()
                 })
             })
         }
     }
 
-    async startRecievingPanelManagerResponse() {
+    private async startRecievingPanelManagerResponse() {
         await this.pdfViewerStarted
         window.addEventListener('message', (e) => {
             const data: PanelManagerResponse = e.data

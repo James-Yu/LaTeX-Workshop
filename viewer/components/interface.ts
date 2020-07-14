@@ -11,7 +11,6 @@ export interface ILatexWorkshopPdfViewer {
     readonly documentTitle: string,
     readonly embedded: boolean,
     readonly encodedPdfFilePath: string,
-    readonly hideToolbarInterval: number | undefined,
     readonly pageTrimmer: PageTrimmer,
     readonly pdfFilePath: string,
     readonly server: string,

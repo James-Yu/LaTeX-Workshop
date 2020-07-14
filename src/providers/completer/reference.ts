@@ -82,7 +82,7 @@ export class Reference implements IProvider {
                 }
                 this.suggestions[ref.label] = {...ref,
                     file: cachedFile,
-                    position: ref.range.start,
+                    position: ref.range instanceof vscode.Range ? ref.range.start : ref.range.inserting.start,
                     range: args ? args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/) : undefined,
                     prevIndex: this.prevIndexObj[ref.label]
                 }

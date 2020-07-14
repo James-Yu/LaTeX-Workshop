@@ -51,21 +51,17 @@ export class LaTexFormatter {
 
     public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useDocker = configuration.get('docker.enabled') as boolean
         const pathMeta = configuration.get('latexindent.path') as string
         this.formatterArgs = configuration.get('latexindent.args') as string[]
         this.extension.logger.addLogMessage('Start formatting with latexindent.')
         const releaseMutex = await this.formatMutex.acquire()
         try {
-            if (!this.currentOs) {
-                return []
-            }
             if (pathMeta !== this.formatter) {
                 this.formatter = pathMeta
-                const latexindentPresent = await this.checkPath(this.currentOs.checker, useDocker)
+                const latexindentPresent = await this.checkPath()
                 if (!latexindentPresent) {
-                    this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
-                    this.extension.logger.showErrorMessage('Can not find latexindent in PATH!')
+                    this.extension.logger.addLogMessage(`Can not find latexindent in PATH: ${this.formatter}`)
+                    this.extension.logger.showErrorMessage('Can not find latexindent in PATH.')
                     return []
                 }
             }
@@ -76,7 +72,9 @@ export class LaTexFormatter {
         }
     }
 
-    private checkPath(checker: string, useDocker: boolean): Thenable<boolean> {
+    private checkPath(): Thenable<boolean> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useDocker = configuration.get('docker.enabled') as boolean
         if (useDocker) {
             if (process.platform === 'win32') {
                 this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
@@ -87,21 +85,42 @@ export class LaTexFormatter {
             return Promise.resolve(true)
         }
 
+        if (path.isAbsolute(this.formatter)) {
+            if (fs.existsSync(this.formatter)) {
+                return Promise.resolve(true)
+            } else {
+                this.extension.logger.addLogMessage(`The path of latexindent is absolute and not found: ${this.formatter}`)
+                return Promise.resolve(false)
+            }
+        }
+
+        if (!this.currentOs) {
+            this.extension.logger.addLogMessage('The current platform is undefined.')
+            return Promise.resolve(false)
+        }
+        const checker = this.currentOs.checker
+        const fileExt = this.currentOs.fileExt
+
         return new Promise((resolve, _reject) => {
-            cp.exec(checker + ' ' + this.formatter, (err, _stdout, _stderr) => {
+            const checkCommand = checker + ' ' + this.formatter
+            this.extension.logger.addLogMessage(`Checking latexindent: ${checkCommand}`)
+            cp.exec(checkCommand, (err, stdout, stderr) => {
                 if (err) {
-                    if (!this.currentOs) {
-                        return
-                    }
-                    this.formatter += this.currentOs.fileExt
-                    cp.exec(checker + ' ' + this.formatter, (err1, _stdout1, _stderr1) => {
+                    this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr}`)
+                    this.formatter += fileExt
+                    const checkCommand1 = checker + ' ' + this.formatter
+                    this.extension.logger.addLogMessage(`Checking latexindent: ${checkCommand1}`)
+                    cp.exec(checkCommand1, (err1, stdout1, stderr1) => {
                         if (err1) {
+                            this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr1}`)
                             resolve(false)
                         } else {
+                            this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout1}`)
                             resolve(true)
                         }
                     })
                 } else {
+                    this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout}`)
                     resolve(true)
                 }
             })

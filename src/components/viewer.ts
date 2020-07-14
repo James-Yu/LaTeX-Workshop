@@ -62,6 +62,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     }
 
     deserializeWebviewPanel(panel: vscode.WebviewPanel, state0: {state: PdfViewerState}) {
+        this.extension.logger.addLogMessage(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(state0)}`)
         const state = state0.state
         const pdfFilePath = state.path
         if (!pdfFilePath) {
@@ -424,7 +425,7 @@ export class Viewer {
                     const invertEnabled = (invertType === 'auto' && (getCurrentThemeLightness() === 'dark')) ||
                         invertType === 'always' ||
                         (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
-                    client.send({
+                    const pack: ServerResponse = {
                         type: 'params',
                         scale: configuration.get('view.pdf.zoom') as string,
                         trim: configuration.get('view.pdf.trim') as number,
@@ -443,7 +444,9 @@ export class Viewer {
                         keybindings: {
                             synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
                         }
-                    })
+                    }
+                    this.extension.logger.addLogMessage(`Sending the settings of the PDF viewer for initialization: ${JSON.stringify(pack)}`)
+                    client.send(pack)
                 }
                 break
             }
