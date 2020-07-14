@@ -21,10 +21,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private hideToolbarInterval: number | undefined
 
     private socket: WebSocket
-    private pdfViewerStarted: Promise<void>
     private pdfFileRendered: Promise<void>
     private isRestoredWithSerializer: boolean = false
-    private webviewLoaded: Promise<void> = new Promise((resolve) => {
+    private readonly pdfViewerStarted: Promise<void>
+    private readonly webviewLoaded: Promise<void> = new Promise((resolve) => {
         document.addEventListener('webviewerloaded', () => resolve() )
     })
 
@@ -85,7 +85,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
-    async getEventBus() {
+    private async getEventBus() {
         await this.webviewLoaded
         await PDFViewerApplication.initializedPromise
         return PDFViewerApplication.eventBus
@@ -153,6 +153,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private async restorePdfViewerState(state: PdfViewerState) {
         await this.pdfViewerStarted
         // By setting the scale, scaling will be invoked if necessary.
+        // The scale can be a non-number one.
         if (state.scale !== undefined) {
             PDFViewerApplication.pdfViewer.currentScaleValue = state.scale
         }
@@ -171,7 +172,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (state.trim !== undefined) {
             const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
             const ev = new Event('change')
-            // We have to wait for currentScaleValue set above to be effected.
+            // We have to wait for currentScaleValue set above to be effected
+            // especially for cases of non-number scales.
             // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
             this.pdfFileRendered.then(() => {
                 if (state.trim === undefined) {
@@ -310,7 +312,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    showToolbar(animate: boolean) {
+    private showToolbar(animate: boolean) {
         if (this.hideToolbarInterval) {
             clearInterval(this.hideToolbarInterval)
         }
