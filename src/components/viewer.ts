@@ -203,7 +203,7 @@ export class Viewer {
      * @param respectOutDir
      * @param tabEditorGroup
      */
-    openTab(sourceFile: string, respectOutDir: boolean = true, tabEditorGroup: string) {
+    async openTab(sourceFile: string, respectOutDir: boolean = true, tabEditorGroup: string) {
         const url = this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
             return
@@ -217,25 +217,32 @@ export class Viewer {
         if (editor) {
             // We need to turn the viewer into the active editor to move it to an other editor group
             panel.webviewPanel.reveal(undefined, false)
+            let focusAction: string | undefined
             switch (tabEditorGroup) {
                 case 'left':
-                    vscode.commands.executeCommand('workbench.action.moveEditorToLeftGroup')
+                    await vscode.commands.executeCommand('workbench.action.moveEditorToLeftGroup')
+                    focusAction = 'workbench.action.focusRightGroup'
                     break
                 case 'right':
-                    vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup')
+                    await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup')
+                    focusAction = 'workbench.action.focusLeftGroup'
                     break
                 case 'above':
-                    vscode.commands.executeCommand('workbench.action.moveEditorToAboveGroup')
+                    await vscode.commands.executeCommand('workbench.action.moveEditorToAboveGroup')
+                    focusAction = 'workbench.action.focusBelowGroup'
                     break
                 case 'below':
-                    vscode.commands.executeCommand('workbench.action.moveEditorToBelowGroup')
+                    await vscode.commands.executeCommand('workbench.action.moveEditorToBelowGroup')
+                    focusAction = 'workbench.action.focusAboveGroup'
                     break
                 default:
                     break
             }
             // Then, we set the focus back to the .tex file
             setTimeout(async () => {
-                await vscode.window.showTextDocument(editor.document, undefined, false)
+                if (focusAction ) {
+                    await vscode.commands.executeCommand(focusAction)
+                }
             }, 500)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
