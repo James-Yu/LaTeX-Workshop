@@ -184,8 +184,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 if (state.scrollTop !== undefined) {
                     (document.getElementById('viewerContainer') as HTMLElement).scrollTop = state.scrollTop
                 }
+                this.sendCurrentStateToPanelManager()
             })
         }
+        this.sendCurrentStateToPanelManager()
     }
 
     private setupWebSocket() {
@@ -405,6 +407,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         window.parent.postMessage(msg, '*')
     }
 
+    private sendCurrentStateToPanelManager() {
+        const pack = this.getPdfViewerState()
+        this.sendToPanelManager({type: 'state', state: pack})
+    }
+
     // To enable keyboard shortcuts of VS Code when the iframe is focused,
     // we have to dispatch keyboard events in the parent window.
     // See https://github.com/microsoft/vscode/issues/65452#issuecomment-586036474
@@ -446,8 +453,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         for (const ev of events) {
             this.getEventBus().then(eventBus => {
                 eventBus.on(ev, () => {
-                    const pack = this.getPdfViewerState()
-                    this.sendToPanelManager({type: 'state', state: pack})
+                    this.sendCurrentStateToPanelManager()
                 })
             })
         }
