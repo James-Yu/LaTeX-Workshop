@@ -34,14 +34,16 @@ export function stripComments(text: string, commentSign: string): string {
  * Remove comments and verbatim content
  *
  * @param text A multiline string to be stripped
+ * @return the input text with comments and verbatim content removed.
+ * Note the number lines of the output matches the input
  */
 export function stripCommentsAndVerbatim(text: string): string {
-    let content = text.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
+    let content = text.replace(/([^\\]|^)%.*$/gm, '$1')
     content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*\1/, '')
     const verbatimPattern = '\\\\begin{verbatim}.*\\\\end{verbatim}'
     const reg = RegExp(verbatimPattern, 'gms')
     content = content.replace(reg, (match, ..._args) => {
-        const len = match.split('\n').length
+        const len = Math.max(match.split('\n').length, 1)
         return '\n'.repeat(len - 1)
     })
     return content
