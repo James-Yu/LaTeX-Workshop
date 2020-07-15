@@ -244,6 +244,7 @@ export class Viewer {
                 if (focusAction ) {
                     await vscode.commands.executeCommand(focusAction)
                 }
+                await vscode.window.showTextDocument(editor.document, vscode.ViewColumn.Active)
             }, 500)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
