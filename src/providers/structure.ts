@@ -79,7 +79,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
 
         let content = fs.readFileSync(filePath, 'utf-8')
-        content = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
+        content = utils.stripCommentsAndVerbatim(content)
         const endPos = content.search(/\\end{document}/gm)
         if (endPos > -1) {
             content = content.substr(0, endPos)

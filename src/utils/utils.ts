@@ -31,6 +31,23 @@ export function stripComments(text: string, commentSign: string): string {
 }
 
 /**
+ * Remove comments and verbatim content
+ *
+ * @param text A multiline string to be stripped
+ */
+export function stripCommentsAndVerbatim(text: string): string {
+    let content = text.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
+    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*\1/, '')
+    const verbatimPattern = '\\\\begin{verbatim}.*\\\\end{verbatim}'
+    const reg = RegExp(verbatimPattern, 'gms')
+    content = content.replace(reg, (match, ..._args) => {
+        const len = match.split('\n').length
+        return '\n'.repeat(len - 1)
+    })
+    return content
+}
+
+/**
  * Finds the longest substring containing balanced curly braces {...}
  *
  * @param s A string to be searched.
