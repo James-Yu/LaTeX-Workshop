@@ -75,7 +75,6 @@ export class Manager {
     private jlweaveExt: string[] = ['.jnw', '.jtexw']
     private weaveExt: string[] = []
     private pdfWatcherOptions: chokidar.WatchOptions
-    private disableAutoBuild: boolean = false
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -869,16 +868,20 @@ export class Manager {
 
     // This function toggles the autobuild state and returns whether autobuild is enabled.
     toggleAutoBuild() {
-        this.disableAutoBuild = !this.disableAutoBuild
-        return !this.disableAutoBuild
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const oldState = configuration.get('latex.autoBuild.run') as BuildEvents
+        if (oldState === BuildEvents.onFileChange) {
+            configuration.update('latex.autoBuild.run', BuildEvents.never)
+            return false
+        } else {
+            configuration.update('latex.autoBuild.run', BuildEvents.onFileChange)
+            return true
+        }
     }
 
     private buildOnFileChanged(file: string, bibChanged: boolean = false) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('latex.autoBuild.run') as BuildEvents !== BuildEvents.onFileChange) {
-            return
-        }
-        if (this.disableAutoBuild) {
             return
         }
         if (this.extension.builder.disableBuildAfterSave) {
