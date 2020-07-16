@@ -52,6 +52,11 @@ interface Content {
     }
 }
 
+const enum BuildEvents {
+    never = 'never',
+    onFileChange = 'onFileChange'
+}
+
 export class Manager {
     /**
      * The content cache for each LaTeX file.
@@ -870,7 +875,7 @@ export class Manager {
 
     private buildOnFileChanged(file: string, bibChanged: boolean = false) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('latex.autoBuild.run') as string !== 'onFileChange') {
+        if (configuration.get('latex.autoBuild.run') as BuildEvents !== BuildEvents.onFileChange) {
             return
         }
         if (this.disableAutoBuild) {
