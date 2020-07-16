@@ -1031,14 +1031,16 @@
           "type": "string",
           "enum": [
             "never",
+            "onSave",
             "onFileChange"
           ],
           "enumDescriptions": [
             "Never run auto build",
+            "Auto build whenever a file is saved",
             "Auto build whenever a dependency file changes on disk"
           ],
           "default": "onFileChange",
-          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications."
+          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n`onSave` builds the project upon saving a `tex` file in vscode.\n`onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications.\nNote `onSave` is more restrictive than `onFileChange` "
         },
         "latex-workshop.latex.autoBuild.interval": {
           "type": "integer",

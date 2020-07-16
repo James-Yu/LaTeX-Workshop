@@ -4,20 +4,6 @@ import * as fs from 'fs'
 
 import {Extension} from './main'
 
-function renameValue(config: string, oldValue: string, newValue: string) {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    if (!configuration.has(config)) {
-        return
-    }
-    const originalSetting = configuration.inspect(config)
-    if (originalSetting && originalSetting.globalValue === oldValue) {
-        configuration.update(config, newValue, true)
-    }
-    if (originalSetting && originalSetting.workspaceValue === oldValue) {
-        configuration.update(config, newValue, false)
-    }
-}
-
 function renameConfig(originalConfig: string, newConfig: string) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (!configuration.has(originalConfig)) {
@@ -104,7 +90,6 @@ export function obsoleteConfigCheck(extension: Extension) {
         'truefalse': 'onFileChange',
         'truetrue': 'onFileChange'
     })
-    renameValue('latex.autoBuild.run', 'onSave', 'onFileChange')
     renameConfig('hover.ref.numberAtLastCompilation.enabled', 'hover.ref.number.enabled')
     renameConfig('latex-workshop.view.pdf.tab.useNewGroup', 'view.pdf.tab.editorGroup')
     splitCommand(extension, 'latex.external.build.command', 'latex.external.build.command', 'latex.external.build.args')
