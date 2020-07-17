@@ -61,6 +61,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             utils.callCbOnDidOpenWebSocket(this.socket, () => {
                 this.send({type:'request_params', path:this.pdfFilePath})
             })
+            this.setCssRule()
         })
         this.onDidRenderPdfFile( () => {
             utils.callCbOnDidOpenWebSocket(this.socket, () => {
@@ -325,6 +326,35 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 clearInterval(this.hideToolbarInterval)
             }
         }, 3000)
+    }
+
+    private setCssRule() {
+        let styleSheet: CSSStyleSheet | undefined
+        for (const style of document.styleSheets) {
+            if (style.href && /latexworkshop.css/.exec(style.href)) {
+                styleSheet = style
+            }
+        }
+        if (!styleSheet) {
+            return
+        }
+        const scaleSelectContainer = document.getElementById('scaleSelectContainer') as HTMLElement
+        const scaleWidth = utils.elementWidth(scaleSelectContainer)
+        const numPages = document.getElementById('numPages') as HTMLElement
+        const numPagesWidth = utils.elementWidth(numPages)
+        const printerButtonWidth = this.embedded ? 0 : 34
+        const smallViewMaxWidth = 580 + numPagesWidth + scaleWidth + printerButtonWidth
+        const smallViewRule = `@media all and (max-width: ${smallViewMaxWidth}px) { .hiddenSmallView, .hiddenSmallView * { display: none; } }`
+        styleSheet.insertRule(smallViewRule)
+        const buttonSpacerMaxWidth = 520 + numPagesWidth + scaleWidth + printerButtonWidth
+        const buttonSpacerRule = `@media all and (max-width: ${buttonSpacerMaxWidth}px) { .toolbarButtonSpacer { width: 0; } }`
+        styleSheet.insertRule(buttonSpacerRule)
+        const scaleMaxWidth = 480 + numPagesWidth + scaleWidth + printerButtonWidth
+        const scaleRule = `@media all and (max-width: ${scaleMaxWidth}px) { #scaleSelectContainer { display: none; } }`
+        styleSheet.insertRule(scaleRule)
+        const trimMaxWidth = 480 + numPagesWidth + printerButtonWidth
+        const trimRule = `@media all and (max-width: ${trimMaxWidth}px) { #trimSelectContainer { display: none; } }`
+        styleSheet.insertRule(trimRule)
     }
 
     private decodeQuery() {
