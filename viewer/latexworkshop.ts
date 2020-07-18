@@ -333,6 +333,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         for (const style of document.styleSheets) {
             if (style.href && /latexworkshop.css/.exec(style.href)) {
                 styleSheet = style
+                break
             }
         }
         if (!styleSheet) {
