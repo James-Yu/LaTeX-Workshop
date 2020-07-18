@@ -24,6 +24,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private pdfFileRendered: Promise<void>
     private isRestoredWithSerializer: boolean = false
     private readonly pdfViewerStarted: Promise<void>
+    // The 'webviewerloaded' event is fired just before the initialization of PDF.js.
+    // We can set PDFViewerApplicationOptions at the time.
+    // - https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage#initialization-promise
+    // - https://github.com/mozilla/pdf.js/pull/10318
     private readonly webviewLoaded: Promise<void> = new Promise((resolve) => {
         document.addEventListener('webviewerloaded', () => resolve() )
     })
@@ -86,6 +90,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
+    // For the details of the initialization of PDF.js,
+    // see https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage
     private async getEventBus() {
         await this.webviewLoaded
         await PDFViewerApplication.initializedPromise
@@ -500,6 +506,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         await this.pdfViewerStarted
         window.addEventListener('message', (e) => {
             const data: PanelManagerResponse = e.data
+            if (!data.type) {
+                console.log('LateXWorkshopPdfViewer received a message of unknown type: ' + JSON.stringify(data))
+                return
+            }
             switch (data.type) {
                 case 'restore_state': {
                     this.isRestoredWithSerializer = true
