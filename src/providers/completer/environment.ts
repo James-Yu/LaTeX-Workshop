@@ -102,7 +102,19 @@ export class Environment implements IProvider {
         const envList: string[] = this.getDefaultEnvs(snippetType).map(env => env.label)
 
         // Insert package environments
-        if (vscode.workspace.getConfiguration('latex-workshop').get('intellisense.package.enabled')) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('intellisense.package.enabled')) {
+            const extraPackages = this.extension.completer.command.getExtraPkgs(args.document.languageId)
+            if (extraPackages) {
+                extraPackages.forEach(pkg => {
+                    this.getEnvFromPkg(pkg, snippetType).forEach(env => {
+                        if (!envList.includes(env.label)) {
+                            suggestions.push(env)
+                            envList.push(env.label)
+                        }
+                    })
+                })
+            }
             this.extension.manager.getIncludedTeX().forEach(tex => {
                 const pkgs = this.extension.manager.cachedContent[tex].element.package
                 if (pkgs !== undefined) {

@@ -98,12 +98,9 @@ export class Command implements IProvider {
             })
         }
 
-        if (languageId === 'latex-expl3') {
-            this.provideCmdInPkg('expl3', suggestions, cmdList)
-        }
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
-            const extraPackages = configuration.get('intellisense.package.extra') as string[]
+            const extraPackages = this.extension.completer.command.getExtraPkgs(languageId)
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
                     this.provideCmdInPkg(pkg, suggestions, cmdList)
@@ -231,6 +228,17 @@ export class Command implements IProvider {
             cmds = cmds.concat(this.getCmdFromNode(file, node, cmdList))
         })
         return cmds
+    }
+
+    getExtraPkgs(languageId: string): string[] {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const extraPackages = Object.assign(configuration.get('intellisense.package.extra') as string[])
+        if (languageId === 'latex-expl3') {
+            extraPackages.push('expl3')
+        } else if (languageId === 'latex') {
+            extraPackages.push('latex-document')
+        }
+        return extraPackages
     }
 
     /**
