@@ -34,6 +34,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     constructor() {
         this.embedded = window.parent !== window
+        // When the promise is resolved, the initialization
+        // of LateXWorkshopPdfViewer and PDF.js is completed.
         this.pdfViewerStarted = new Promise((resolve) => {
             this.onDidStartPdfViewer(() => resolve())
         })
@@ -78,7 +80,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startConnectionKeeper()
         this.startRebroadcastingKeyboardEvent()
         this.startSendingState()
-        this.startRecievingPanelManagerResponse()
+        this.startReceivingPanelManagerResponse()
 
         this.pdfFileRendered = new Promise((resolve) => {
             this.onDidRenderPdfFile(() => resolve(), {once: true})
@@ -92,6 +94,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     // For the details of the initialization of PDF.js,
     // see https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage
+    // We should use only the promises provided by PDF.js here, not the ones defined by us,
+    // to avoid deadlock.
     private async getEventBus() {
         await this.webviewLoaded
         await PDFViewerApplication.initializedPromise
@@ -334,6 +338,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 3000)
     }
 
+    // Since the width of the selector of scaling depends on each locale,
+    // we have to set its `max-width` dynamically on initialization.
     private setCssRule() {
         let styleSheet: CSSStyleSheet | undefined
         for (const style of document.styleSheets) {
@@ -502,7 +508,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    private async startRecievingPanelManagerResponse() {
+    private async startReceivingPanelManagerResponse() {
         await this.pdfViewerStarted
         window.addEventListener('message', (e) => {
             const data: PanelManagerResponse = e.data
