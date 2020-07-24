@@ -84,7 +84,7 @@ This file is based on the list provided by [CTAN](https://ctan.org/json/2.0/pack
 
 - We use the local `ls-R` file to
   - List all the `.sty` files provided by the local LaTeX installation.
-  - For every directory in `texmf`, list the `.sty` files it contains. The last component of a directory inside `texmf` is typically the package name as defined by CTAN, hence the name to passe `\usepackage` is the base name of one of the `.sty` files inside it.
+  - For every directory in `texmf`, list the `.sty` files it contains. The last component of a directory name inside `texmf` is typically the package name as defined by CTAN, hence the name to pass to `\usepackage` is the base name of one of the `.sty` files inside it.
 - For every package `pkg` listed by CTAN
   - If `pkg.sty` exists on the local installation, store `pkg` for package intellisense.
   - If not, search if a directory `pkg/` exists and look up a file whose lowercase name matches `pkg`. If it is found, then save it for package intellisense.
