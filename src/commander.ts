@@ -588,6 +588,10 @@ export class Commander {
        this.extension.section.shiftSectioningLevel(change)
     }
 
+    selectSection() {
+        this.extension.section.selectSection()
+    }
+
     devParseLog() {
         if (vscode.window.activeTextEditor === undefined) {
             return

@@ -1,5 +1,11 @@
 import * as vscode from 'vscode'
 import { Extension } from '../main'
+import { stripCommentsAndVerbatim } from '../utils/utils'
+
+interface MatchSection {
+    level: string,
+    pos: vscode.Position
+}
 
 export class Section {
     private readonly extension: Extension
@@ -106,6 +112,58 @@ export class Section {
                 editor.selections = newSelections
             }
         })
+    }
+
+    private searchLevelUp(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): MatchSection | undefined{
+
+        const range = new vscode.Range(new vscode.Position(0, 0), pos.translate(-1, 0))
+                // range = new vscode.Range(pos, new vscode.Position(doc.lineCount, 0))
+        const content = stripCommentsAndVerbatim(doc.getText(range)).split('\n')
+        const pattern = '\\\\(' + levels.join('|') + ')\\*?(?:\\[.+?\\])?\\{.*?\\}'
+        const regex = new RegExp(pattern)
+        for (let i = pos.line - 1; i >= 0; i -= 1) {
+            const line = content[i]
+            const res = line.match(regex)
+            if (res) {
+                return {level: res[1], pos: new vscode.Position(i, 0)}
+            }
+        }
+        return undefined
+    }
+
+
+    private searchLevelDown(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): vscode.Position {
+
+        const range = new vscode.Range(pos, new vscode.Position(doc.lineCount, 0))
+        const content = stripCommentsAndVerbatim(doc.getText(range)).split('\n')
+        const pattern = '\\\\(?:(' + levels.join('|') + ')\\*?(?:\\[.+?\\])?\\{.*?\\})|appendix|\\\\end{document}'
+        const regex = new RegExp(pattern)
+        for (let i = 0; i < content.length; i += 1) {
+            const line = content[i]
+            const res = line.match(regex)
+            if (res) {
+                return new vscode.Position(i + pos.line - 1, Math.max(content[i-1].length - 1, 0))
+            }
+        }
+        return new vscode.Position(doc.lineCount - 1, doc.lineAt(doc.lineCount - 1).text.length - 1)
+    }
+
+    selectSection() {
+        this.extension.logger.addLogMessage('Calling selectSection.')
+
+        const editor = vscode.window.activeTextEditor
+        if (editor === undefined) {
+            return
+        }
+        const beginLevel = this.searchLevelUp(this.levels, editor.selection.anchor, editor.document)
+        if (!beginLevel) {
+            this.extension.logger.addLogMessage('Cannot find any section command above current line.')
+            return
+        }
+        const levelIndex = this.levels.indexOf(beginLevel.level)
+        const levels = this.levels.slice(0, levelIndex + 1)
+        const endPosition = this.searchLevelDown(levels, editor.selection.end, editor.document)
+        editor.selection = new vscode.Selection(beginLevel.pos, endPosition)
     }
 
 }
