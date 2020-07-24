@@ -114,16 +114,21 @@ export class Section {
         })
     }
 
+    /**
+     * Find the first sectioning command above the current position
+     *
+     * @param levels the list of sectioning commands
+     * @param pos the current position in the document
+     * @param doc the text document
+     */
     private searchLevelUp(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): MatchSection | undefined{
 
         const range = new vscode.Range(new vscode.Position(0, 0), pos.translate(-1, 0))
-                // range = new vscode.Range(pos, new vscode.Position(doc.lineCount, 0))
         const content = stripCommentsAndVerbatim(doc.getText(range)).split('\n')
         const pattern = '\\\\(' + levels.join('|') + ')\\*?(?:\\[.+?\\])?\\{.*?\\}'
         const regex = new RegExp(pattern)
         for (let i = pos.line - 1; i >= 0; i -= 1) {
-            const line = content[i]
-            const res = line.match(regex)
+            const res = content[i].match(regex)
             if (res) {
                 return {level: res[1], pos: new vscode.Position(i, 0)}
             }
@@ -132,6 +137,14 @@ export class Section {
     }
 
 
+    /**
+     * Find the first sectioning command below the current position.
+     * Stop at \appendix or \end{document}
+     *
+     * @param levels the list of sectioning commands
+     * @param pos the current position in the document
+     * @param doc the text document
+     */
     private searchLevelDown(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): vscode.Position {
 
         const range = new vscode.Range(pos, new vscode.Position(doc.lineCount, 0))
@@ -139,12 +152,12 @@ export class Section {
         const pattern = '\\\\(?:(' + levels.join('|') + ')\\*?(?:\\[.+?\\])?\\{.*?\\})|appendix|\\\\end{document}'
         const regex = new RegExp(pattern)
         for (let i = 0; i < content.length; i += 1) {
-            const line = content[i]
-            const res = line.match(regex)
+            const res = content[i].match(regex)
             if (res) {
                 return new vscode.Position(i + pos.line - 1, Math.max(content[i-1].length - 1, 0))
             }
         }
+        // Return the end of file position
         return new vscode.Position(doc.lineCount - 1, doc.lineAt(doc.lineCount - 1).text.length - 1)
     }
 
