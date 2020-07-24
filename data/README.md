@@ -88,3 +88,5 @@ This file is based on the list provided by [CTAN](https://ctan.org/json/2.0/pack
 - For every package `pkg` listed by CTAN
   - If `pkg.sty` exists on the local installation, store `pkg` for package intellisense.
   - If not, search if a directory `pkg/` exists and look up a file whose lowercase name matches `pkg`. If it is found, then save it for package intellisense.
+
+As some packages cannot be properly detected using the above mechanism, we maintain a list of extra packages to be added to the list in [extra-packagenames.json](../dev/extra-packagenames.json). These packages are automatically added at the end of [`ctanpkglist.py`](../dev/ctanpkglist.py) script.

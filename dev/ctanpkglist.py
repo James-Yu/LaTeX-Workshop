@@ -140,6 +140,12 @@ def get_packages(lsRdb, ctanDict, allsty):
             package_data[pkg]['command'] = basefile
     return package_data
 
+def add_extra_packages(packages, extra_packages):
+    for pkg in extra_packages:
+        if pkg not in packages.keys():
+            packages[pkg] = extra_packages[pkg].copy()
+
+
 def build_ctanDict(ctanList):
     ctanDict = {}
     for x in ctanList:
@@ -157,6 +163,7 @@ if __name__ == "__main__":
     lsRdb, all_lsR_files = load_texmfbd(TEXMF + '/ls-R', ctanDict)
 
     package_data = get_packages(lsRdb, ctanDict, all_lsR_files)
+    add_extra_packages(package_data, json.load(open('./extra-packagenames.json')))
     json.dump(package_data, open('../data/packagenames.json', 'w+', encoding='utf-8'),
               separators=(',', ': '), sort_keys=True, indent=2, ensure_ascii=False)
 
