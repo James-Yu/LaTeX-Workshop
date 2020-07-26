@@ -16,6 +16,7 @@ import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
 import {TeXMagician} from './components/texmagician'
 import {EnvPair} from './components/envpair'
+import {Section} from './components/section'
 import {Parser as LogParser} from './components/parser/log'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
 
@@ -119,6 +120,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => extension.commander.shiftSectioningLevel('promote'))
     vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote'))
+    vscode.commands.registerCommand('latex-workshop.select-section', () => extension.commander.selectSection())
 
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
@@ -320,6 +322,7 @@ export class Extension {
     readonly codeActions: CodeActions
     readonly texMagician: TeXMagician
     readonly envPair: EnvPair
+    readonly section: Section
     readonly structureProvider: SectionNodeProvider
     readonly structureViewer: StructureTreeView
     readonly snippetPanel: SnippetPanel
@@ -347,6 +350,7 @@ export class Extension {
         this.codeActions = new CodeActions(this)
         this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
+        this.section = new Section(this)
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetPanel = new SnippetPanel(this)
