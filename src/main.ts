@@ -36,6 +36,7 @@ import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormater } from './components/bibtexformater'
 
 import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
+import { LiveShare } from './components/liveshare'
 
 function conflictExtensionCheck() {
     function check(extensionID: string, name: string, suggestion: string) {
@@ -306,6 +307,7 @@ export class Extension {
     packageInfo: { version?: string } = {}
     readonly extensionRoot: string
     readonly logger: Logger
+    readonly liveshare: LiveShare
     readonly buildInfo: BuildInfo
     readonly commander: Commander
     readonly manager: Manager
@@ -335,6 +337,7 @@ export class Extension {
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
         this.logger = new Logger()
+        this.liveshare = new LiveShare()
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)

@@ -184,6 +184,9 @@ export class Manager {
      * @param respectOutDir If `true`, the 'latex.outDir' config is respected.
      */
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
+        if (this.extension.liveshare.isGuest) {
+            return `${os.tmpdir}\\LiveShareLatex\\${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`
+        }
         let outDir = './'
         if (respectOutDir) {
             outDir = this.getOutDir(texPath)
