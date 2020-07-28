@@ -312,7 +312,10 @@ export class Commander {
         this.extension.logger.addLogMessage(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
         const activeEditor = vscode.window.activeTextEditor
 
-        vscode.workspace.openTextDocument(filePath).then((doc) => {
+        const openDocPromise = this.extension.liveshare.isGuest
+                                                ? vscode.workspace.openTextDocument(vscode.Uri.parse(filePath.replace(/\\/g, '/')).with({ scheme: 'vsls' }))
+                                                : vscode.workspace.openTextDocument(filePath)
+        openDocPromise.then((doc) => {
             vscode.window.showTextDocument(doc).then(() => {
                 vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
                 if (activeEditor) {

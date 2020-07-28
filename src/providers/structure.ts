@@ -78,7 +78,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return rootStack.length === 0
         }
 
-        let content = fs.readFileSync(filePath, 'utf-8')
+        let content: string
+        if (this.extension.liveshare.isGuest) {
+            const doc = vscode.workspace.textDocuments.find(d => d.uri.fsPath === filePath)
+            content = doc?.getText() || ''
+        } else {
+            content = fs.readFileSync(filePath, 'utf-8')
+        }
+
         content = utils.stripCommentsAndVerbatim(content)
         const endPos = content.search(/\\end{document}/gm)
         if (endPos > -1) {
