@@ -135,7 +135,6 @@ export class Viewer {
             return true
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, true)
-        this.extension.liveshare.sendFileUpdateToGuests(pdfFile)
         const clients = this.getClients(pdfFile)
         if (clients !== undefined) {
             let refreshed = false

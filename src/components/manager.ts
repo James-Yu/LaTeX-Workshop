@@ -111,6 +111,9 @@ export class Manager {
      * @param texPath The path of a LaTeX file.
      */
     getOutDir(texPath?: string) {
+        if (this.extension.liveshare.isGuest) {
+            return this.extension.liveshare.getOutDir(texPath)
+        }
         if (texPath === undefined) {
             texPath = this.rootFile
         }
@@ -185,7 +188,14 @@ export class Manager {
      */
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
         if (this.extension.liveshare.isGuest) {
-            return `${os.tmpdir}\\LiveShareLatex\\${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`
+            const livesharePdfPath = path.join(this.getOutDir(texPath), path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
+            if (!fs.existsSync(livesharePdfPath)) {
+                this.extension.liveshare.requestPdf(texPath).then(() => {
+                    this.extension.logger.addLogMessage(`Live Share downloaded PDF to ${livesharePdfPath}`)
+                })
+            }
+            this.watchPdfFile(livesharePdfPath)
+            return livesharePdfPath
         }
         let outDir = './'
         if (respectOutDir) {
@@ -850,6 +860,9 @@ export class Manager {
     }
 
     private onWatchedPdfChanged(file: string) {
+        if (this.extension.liveshare.isHost) {
+            this.extension.liveshare.sendPdfUpdateToGuests(file)
+        }
         this.extension.logger.addLogMessage(`PDF file watcher - file changed: ${file}`)
         this.extension.viewer.refreshExistingViewer()
     }

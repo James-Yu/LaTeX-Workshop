@@ -337,7 +337,7 @@ export class Extension {
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
         this.logger = new Logger()
-        this.liveshare = new LiveShare()
+        this.liveshare = new LiveShare(this)
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
