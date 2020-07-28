@@ -161,6 +161,14 @@ export class Commander {
                 return
             }
         }
+
+        if (this.extension.liveshare.isGuest) {
+            const pdfFile = this.extension.manager.tex2pdf(pickedRootFile, true)
+            if (!fs.existsSync(pdfFile)) {
+                await this.extension.liveshare.getPdfPromise
+            }
+        }
+
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
         if (mode === 'browser') {
