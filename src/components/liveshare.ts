@@ -9,6 +9,8 @@ const serviceName = 'pdfSync'
 const pdfUpdateNotificationName = 'pdfUpdated'
 const requestPdfRequestName = 'getPdf'
 const invokeRemoteCommandRequestName = 'invokeRemoteCommand'
+const logUpdateNotificationName = 'logUpdated'
+const compilerUpdateNotificationName = 'compilerUpdated'
 
 interface PdfArgs {
     relativePath: string,
@@ -122,6 +124,18 @@ export class LiveShare {
         }
     }
 
+    sendLogUpdateToGuests(message: string) {
+        if (this.hostService) {
+            this.hostService.notify(logUpdateNotificationName, { message })
+        }
+    }
+
+    sendCompilerUpdateToGuests(message: string) {
+        if (this.hostService) {
+            this.hostService.notify(compilerUpdateNotificationName, { message })
+        }
+    }
+
     /********************************************************************
      *
      * Guest
@@ -133,6 +147,8 @@ export class LiveShare {
             this.guestService = await this.liveshare.getSharedService(serviceName)
             if (this.guestService) {
                 this.guestService.onNotify(pdfUpdateNotificationName, async (args) => await this.onPdfUpdated(args as PdfArgs))
+                this.guestService.onNotify(logUpdateNotificationName, async (args) => await this.onLogUpdated((args as any).message))
+                this.guestService.onNotify(compilerUpdateNotificationName, async (args) => await this.onCompilerUpdated((args as any).message))
             }
         }
     }
@@ -153,6 +169,14 @@ export class LiveShare {
 
     private async onPdfUpdated(fileArgs: PdfArgs) {
         await this.writePdf(fileArgs)
+    }
+
+    private async onLogUpdated(message: string) {
+        this.extension.logger.addLogMessage(`[Remote] ${message}`)
+    }
+
+    private async onCompilerUpdated(message: string) {
+        this.extension.logger.addCompilerMessage(`[Remote] ${message}`)
     }
 
     async requestPdf(texPath: string) {

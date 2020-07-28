@@ -336,7 +336,7 @@ export class Extension {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
-        this.logger = new Logger()
+        this.logger = new Logger(this)
         this.liveshare = new LiveShare(this)
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)

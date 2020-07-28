@@ -1,11 +1,14 @@
 import * as vscode from 'vscode'
+import { Extension } from 'src/main'
 
 export class Logger {
+    private readonly extension: Extension
     private readonly logPanel: vscode.OutputChannel
     private readonly compilerLogPanel: vscode.OutputChannel
     readonly status: vscode.StatusBarItem
 
-    constructor() {
+    constructor(extension: Extension) {
+        this.extension = extension
         this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
         this.compilerLogPanel = vscode.window.createOutputChannel('LaTeX Compiler')
         this.compilerLogPanel.append('Ready')
@@ -21,10 +24,16 @@ export class Logger {
         if (configuration.get('message.log.show')) {
             this.logPanel.append(`[${new Date().toLocaleTimeString('en-US', { hour12: false })}] ${message}\n`)
         }
+        if (this.extension.liveshare?.isHost) {
+            this.extension.liveshare?.sendLogUpdateToGuests(message)
+        }
     }
 
     addCompilerMessage(message: string) {
         this.compilerLogPanel.append(message)
+        if (this.extension.liveshare?.isHost) {
+            this.extension.liveshare?.sendCompilerUpdateToGuests(message)
+        }
     }
 
     logError(e: Error) {
