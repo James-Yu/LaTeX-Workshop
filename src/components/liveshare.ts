@@ -187,9 +187,9 @@ export class LiveShare {
         this.extension.logger.addCompilerMessage(`[Remote] ${message}`)
     }
 
-    async requestPdf(texPath: string) {
+    async requestPdf(texPath: string, forceFetch = false) {
         if (this.guestService) {
-            if (this.requestedPdfs.indexOf(texPath) < 0) {
+            if (this.requestedPdfs.indexOf(texPath) < 0 || forceFetch) {
                 this.requestedPdfs.push(texPath)
                 const p = async () => {
                     const results = await this.guestService?.request(requestPdfRequestName, [texPath])
