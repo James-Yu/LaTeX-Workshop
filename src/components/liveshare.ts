@@ -26,6 +26,7 @@ export class LiveShare {
     private guestService: vsls.SharedServiceProxy | undefined | null
     private role: vsls.Role = vsls.Role.None
     private pdfPromise: Promise<void> = Promise.resolve()
+    private requestedPdfs: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -187,14 +188,17 @@ export class LiveShare {
     }
 
     async requestPdf(texPath: string) {
-        const p = async () => {
-            if (this.guestService) {
-                const results = await this.guestService.request(requestPdfRequestName, [texPath])
-                await this.writePdf(results)
+        if (this.requestedPdfs.indexOf(texPath) < 0) {
+            this.requestedPdfs.push(texPath)
+            const p = async () => {
+                if (this.guestService) {
+                    const results = await this.guestService.request(requestPdfRequestName, [texPath])
+                    await this.writePdf(results)
+                }
             }
+            this.pdfPromise = p()
+            await this.pdfPromise
         }
-        this.pdfPromise = p()
-        await this.pdfPromise
     }
 
 }

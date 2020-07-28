@@ -188,12 +188,8 @@ export class Manager {
      */
     tex2pdf(texPath: string, respectOutDir: boolean = true) {
         if (this.extension.liveshare.isGuest) {
+            this.extension.liveshare.requestPdf(texPath)
             const livesharePdfPath = path.join(this.getOutDir(texPath), path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
-            if (!fs.existsSync(livesharePdfPath)) {
-                this.extension.liveshare.requestPdf(texPath).then(() => {
-                    this.extension.logger.addLogMessage(`Live Share downloaded PDF to ${livesharePdfPath}`)
-                })
-            }
             this.watchPdfFile(livesharePdfPath)
             return livesharePdfPath
         }
