@@ -8,6 +8,7 @@ import { Extension } from 'src/main'
 const serviceName = 'pdfSync'
 const pdfUpdateNotificationName = 'pdfUpdated'
 const requestPdfRequestName = 'getPdf'
+const invokeRemoteCommandRequestName = 'invokeRemoteCommand'
 
 interface PdfArgs {
     relativePath: string,
@@ -62,6 +63,17 @@ export class LiveShare {
         return this.role === vsls.Role.Host
     }
 
+    remoteCommand(command: string, callback: (...args: any[]) => any) {
+        return (...args: any[]) => {
+            if (!this.isGuest) {
+                return callback(...args)
+            }
+            if (this.guestService) {
+                this.guestService.request(invokeRemoteCommandRequestName, [command, args])
+            }
+        }
+    }
+
     /********************************************************************
      *
      * Host
@@ -73,6 +85,7 @@ export class LiveShare {
             this.hostService = await this.liveshare.shareService(serviceName)
             if (this.hostService) {
                 this.hostService.onRequest(requestPdfRequestName, async (args: any[]) => await this.onRequestPdf(args[0]))
+                this.hostService.onRequest(invokeRemoteCommandRequestName, (args: any[]) => { this.invokeRemoteCommand(args[0], args[1]) })
             }
         }
     }
@@ -96,6 +109,10 @@ export class LiveShare {
         this.extension.manager.watchPdfFile(pdfPath)
         const fileArgs = await this.getPdfArgs(pdfPath)
         return fileArgs
+    }
+
+    private invokeRemoteCommand(command: string, rest: any[]) {
+        return vscode.commands.executeCommand(command, ...rest)
     }
 
     async sendPdfUpdateToGuests(pdfPath: string) {
