@@ -52,7 +52,9 @@ export class LiveShare {
 
     getOutDir(fullPath: string | undefined): string {
         if (this.role === vsls.Role.Guest) {
-            return `${os.tmpdir}/LiveShareLatex`
+            const config = vscode.workspace.getConfiguration('latex-workshop')
+            const outDir = config.get<string>('liveshare.outDir')
+            return outDir || `${os.tmpdir}/latex-workshop-liveshare`
         } else {
             return this.extension.manager.getOutDir(fullPath)
         }
