@@ -5,9 +5,9 @@ import * as vscode from 'vscode'
 import * as vsls from 'vsls/vscode'
 import { Extension } from 'src/main'
 
-const serviceName = 'pdfSync'
+const serviceName = 'latex-workshop'
 const pdfUpdateNotificationName = 'pdfUpdated'
-const requestPdfRequestName = 'getPdf'
+const requestPdfRequestName = 'requestPdf'
 const invokeRemoteCommandRequestName = 'invokeRemoteCommand'
 const logUpdateNotificationName = 'logUpdated'
 const compilerUpdateNotificationName = 'compilerUpdated'
@@ -51,16 +51,6 @@ export class LiveShare {
         }
     }
 
-    getOutDir(fullPath: string | undefined): string {
-        if (this.role === vsls.Role.Guest) {
-            const config = vscode.workspace.getConfiguration('latex-workshop')
-            const outDir = config.get<string>('liveshare.outDir')
-            return outDir || `${os.tmpdir}/latex-workshop-liveshare`
-        } else {
-            return this.extension.manager.getOutDir(fullPath)
-        }
-    }
-
     get isGuest(): boolean {
         return this.role === vsls.Role.Guest
     }
@@ -71,6 +61,16 @@ export class LiveShare {
 
     get getPdfPromise() {
         return this.pdfPromise
+    }
+
+    getOutDir(fullPath: string | undefined): string {
+        if (this.role === vsls.Role.Guest) {
+            const config = vscode.workspace.getConfiguration('latex-workshop')
+            const outDir = config.get<string>('liveshare.outDir')
+            return outDir || `${os.tmpdir}/latex-workshop-liveshare`
+        } else {
+            return this.extension.manager.getOutDir(fullPath)
+        }
     }
 
     remoteCommand(command: string, callback: (...args: any[]) => any) {
@@ -188,16 +188,16 @@ export class LiveShare {
     }
 
     async requestPdf(texPath: string) {
-        if (this.requestedPdfs.indexOf(texPath) < 0) {
-            this.requestedPdfs.push(texPath)
-            const p = async () => {
-                if (this.guestService) {
-                    const results = await this.guestService.request(requestPdfRequestName, [texPath])
+        if (this.guestService) {
+            if (this.requestedPdfs.indexOf(texPath) < 0) {
+                this.requestedPdfs.push(texPath)
+                const p = async () => {
+                    const results = await this.guestService?.request(requestPdfRequestName, [texPath])
                     await this.writePdf(results)
                 }
+                this.pdfPromise = p()
+                await this.pdfPromise
             }
-            this.pdfPromise = p()
-            await this.pdfPromise
         }
     }
 

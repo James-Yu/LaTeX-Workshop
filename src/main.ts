@@ -19,6 +19,7 @@ import {EnvPair} from './components/envpair'
 import {Section} from './components/section'
 import {Parser as LogParser} from './components/parser/log'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
+import { LiveShare } from './components/liveshare'
 
 import {Completer} from './providers/completion'
 import {BibtexCompleter} from './providers/bibtexcompletion'
@@ -36,7 +37,6 @@ import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormater } from './components/bibtexformater'
 
 import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
-import { LiveShare } from './components/liveshare'
 
 function conflictExtensionCheck() {
     function check(extensionID: string, name: string, suggestion: string) {
