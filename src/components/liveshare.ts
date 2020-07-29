@@ -114,7 +114,10 @@ export class LiveShare {
     }
 
     private async onRequestPdf(relativeTexPath: string) {
-        const texPath = this.liveshare?.convertSharedUriToLocal(vscode.Uri.parse(relativeTexPath).with({ scheme: 'vsls' })) as vscode.Uri
+        if (!this.liveshare) {
+            throw new Error('Live Share should be initialized')
+        }
+        const texPath = this.liveshare.convertSharedUriToLocal(vscode.Uri.parse(relativeTexPath).with({ scheme: 'vsls' }))
         const pdfPath = this.extension.manager.tex2pdf(texPath.fsPath)
         this.extension.manager.watchPdfFile(pdfPath)
         const fileArgs = await this.getPdfArgs(pdfPath)
