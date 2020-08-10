@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
-import * as synctexjs from './synctex'
+import {SyncTexJs} from './synctex'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
 import {Extension} from '../main'
@@ -22,9 +22,11 @@ export type SyncTeXRecordBackward = {
 
 export class Locator {
     private readonly extension: Extension
+    private readonly synctexjs: SyncTexJs
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.synctexjs = new SyncTexJs(extension)
     }
 
     private parseSyncTeXForward(result: string): SyncTeXRecordForward {
@@ -151,7 +153,7 @@ export class Locator {
         if (useSyncTexJs) {
             try {
                 this.extension.logger.addLogMessage('Execute syncTexJsForward for the internal PDF viewer.')
-                const record = synctexjs.syncTexJsForward(line, filePath, pdfFile)
+                const record = this.synctexjs.syncTexJsForward(line, filePath, pdfFile)
                 this.extension.viewer.syncTeX(pdfFile, record)
             } catch (e) {
                 this.extension.logger.addLogMessage('SyncTeX failed.')
@@ -285,7 +287,7 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
-                record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
+                record = this.synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch (e) {
                 if (e instanceof Error) {
                     this.extension.logger.logError(e)
