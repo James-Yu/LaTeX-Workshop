@@ -10,3 +10,7 @@ We start a new VS Code instance each `fixture` directory in `fixtures/build/` an
 - `*.index.ts` runs all the tests defined in `*.test.ts`.
 - Tests in `*.test.ts` are executed through `runTestWithFixture`.
 - `runTestWithFixture` skip tests in `*.test.ts` if they are not related to the current `fixture` directory.
+
+### Executing Tests on GitHub Actions
+
+Read [.github/workflows](https://github.com/James-Yu/LaTeX-Workshop/tree/master/.github/workflows) to see how tests are executed on GitHub Actions.
