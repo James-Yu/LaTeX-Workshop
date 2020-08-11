@@ -15,7 +15,7 @@ jobs:
         echo "##[add-path]D:\texlive\bin\win32"
     - name: Cache TeX Live
       id: cache-texlive
-      uses: actions/cache@v2
+      uses: actions/cache@v1
       with:
         path: D:\texlive
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
