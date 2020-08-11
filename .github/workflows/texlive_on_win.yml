@@ -8,14 +8,14 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Set up PATH
       run: |
         echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
         echo "##[add-path]D:\texlive\bin\win32"
     - name: Cache TeX Live
       id: cache-texlive
-      uses: actions/cache@v1
+      uses: actions/cache@v2
       with:
         path: D:\texlive
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
@@ -37,11 +37,11 @@ jobs:
         tlmgr install latex-bin platex uplatex tex xetex
         tlmgr install amsmath graphics tools import subfiles latexmk
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 12.x
-    - run: |
-        npm ci
-        npm run compile
-    - name: Run tests
-      run: npm run test
+    # - uses: actions/setup-node@v1
+    #   with:
+    #     node-version: 12.x
+    # - run: |
+    #     npm ci
+    #     npm run compile
+    # - name: Run tests
+    #   run: npm run test
