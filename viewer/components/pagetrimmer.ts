@@ -1,4 +1,4 @@
-import {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
+import type {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
