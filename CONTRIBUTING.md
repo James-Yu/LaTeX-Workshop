@@ -54,3 +54,15 @@ In VS Code, simply press <kbd>F5</kbd> (or run `Debug: Start Debugging` from the
 ### Debugging PDF viewer
 
 To debug the internal PDF viewer, select `View LaTeX PDF > View in web browser,` and view a PDF file in Google Chrome. You can debug the viewer with [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/) as a general web application.
+
+## Documents
+
+You can refer to:
+
+- https://github.com/James-Yu/LaTeX-Workshop/wiki
+- https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/README.md
+- https://github.com/James-Yu/LaTeX-Workshop/blob/master/viewer/README.md
+- https://github.com/James-Yu/LaTeX-Workshop/blob/master/data/README.md
+- https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/snippetpanel/README.md
+- https://github.com/James-Yu/LaTeX-Workshop/blob/master/test/README.md
+- https://github.com/James-Yu/LaTeX-Workshop/blob/master/.github/workflows/README.md
