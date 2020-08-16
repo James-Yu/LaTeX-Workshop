@@ -94,9 +94,9 @@ export function isDockerEnabled() {
  */
 export async function waitUntil<T>(
     command: () => Thenable<T | false | undefined | null>,
-    errMessage?: string
+    limit = 70
 ): Promise<T> {
-    for (let i = 0; i < 70; i++) {
+    for (let i = 0; i < limit; i++) {
         const result = await command()
         if (result) {
             return result
@@ -104,7 +104,7 @@ export async function waitUntil<T>(
         await sleep(300)
     }
     await printLogMessages()
-    assert.fail(errMessage || 'Timeout Error at waitUntil')
+    assert.fail('Timeout Error at waitUntil')
 }
 
 export async function waitLatexWorkshopActivated() {
@@ -155,5 +155,5 @@ export async function getViewerStatus(pdfFilePath: string) {
         } catch (e) {
             return
         }
-    })
+    }, process.platform === 'win32' ? 600 : undefined)
 }
