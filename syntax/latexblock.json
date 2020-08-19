@@ -9,7 +9,7 @@
 	],
 	"repository": {
 		"fenced_code_block_latex": {
-			"begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(latex)\\s*(?:\\{[^\\{\\}]*\\})?\\s*$",
+			"begin": "(^|\\G)(\\s*)(`{3,}|~{3,})\\s*(?i:(latex)((\\s+|:|\\{)[^`~]*)?$)",
 			"name": "markup.fenced_code.block.markdown",
 			"end": "(^|\\G)(\\2|\\s{0,3})(\\3)\\s*$",
 			"beginCaptures": {
@@ -17,7 +17,10 @@
 						"name": "punctuation.definition.markdown"
 				},
 				"4": {
-						"name": "fenced_code.block.language"
+					"name": "fenced_code.block.language.markdown"
+				},
+				"5": {
+					"name": "fenced_code.block.language.attributes.markdown"
 				}
 			},
 			"endCaptures": {
