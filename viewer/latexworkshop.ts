@@ -1,7 +1,7 @@
-import {IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
+import type {IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
-import {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from './components/protocol.js'
+import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from './components/protocol.js'
 import * as utils from './components/utils.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
@@ -405,7 +405,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (this.embedded) {
             document.addEventListener('click', (e) => {
                 const target = e.target as HTMLAnchorElement
-                if (target.nodeName === 'A' && !target.href.startsWith(window.location.href)) { // is external link
+                if (target.nodeName === 'A' && !target.href.startsWith(window.location.href) && !target.href.startsWith('blob:')) { // is external link
                     this.send({type:'external_link', url:target.href})
                     e.preventDefault()
                 }

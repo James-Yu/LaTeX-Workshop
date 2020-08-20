@@ -235,6 +235,9 @@ export class Manager {
      */
     async findRoot(): Promise<string | undefined> {
         this.findWorkspace()
+        const wsfolders = vscode.workspace.workspaceFolders?.map(e => e.uri.toString(true))
+        this.extension.logger.addLogMessage(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
+        this.extension.logger.addLogMessage(`Current workspaceRootDir: ${this.workspaceRootDir}`)
         this.localRootFile = undefined
         const findMethods = [
             () => this.findRootFromMagic(),

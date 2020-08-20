@@ -1,7 +1,7 @@
-import {PageTrimmer} from './pagetrimmer.js'
-import {ClientRequest} from './protocol.js'
-import {SyncTex} from './synctex.js'
-import {ViewerHistory} from './viewerhistory.js'
+import type {PageTrimmer} from './pagetrimmer.js'
+import type {ClientRequest} from './protocol.js'
+import type {SyncTex} from './synctex.js'
+import type {ViewerHistory} from './viewerhistory.js'
 
 export interface IDisposable {
     dispose(): any
