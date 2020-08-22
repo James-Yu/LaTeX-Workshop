@@ -464,7 +464,7 @@ export class Viewer {
                 break
             }
             case 'external_link': {
-                vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(data.url))
+                vscode.env.openExternal(vscode.Uri.parse(data.url))
                 break
             }
             case 'ping': {

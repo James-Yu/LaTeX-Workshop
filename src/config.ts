@@ -138,12 +138,10 @@ export function newVersionMessage(extensionPath: string, extension: Extension) {
         .then(option => {
             switch (option) {
                 case 'Change log':
-                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                        'https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
+                    vscode.env.openExternal(vscode.Uri.parse('https://github.com/James-Yu/LaTeX-Workshop/blob/master/CHANGELOG.md'))
                     break
                 case 'Star the project':
-                    vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(
-                        'https://github.com/James-Yu/LaTeX-Workshop'))
+                    vscode.env.openExternal(vscode.Uri.parse('https://github.com/James-Yu/LaTeX-Workshop'))
                     break
                 case 'Disable this message':
                     configuration.update('message.update.show', false, true)
