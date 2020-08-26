@@ -69,6 +69,11 @@ export class GraphicsPreview {
             return undefined
         }
         if (/\.pdf$/i.exec(filePath)) {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const preview = configuration.get('intellisense.includegraphics.preview.pdf.enabled') as boolean
+            if (!preview) {
+                return undefined
+            }
             const cacheKey = JSON.stringify([filePath, pageNumber])
             const cache = this.pdfFileCacheMap.get(cacheKey)
             const cacheFileName = cache?.cacheFileName ?? this.newSvgCacheName()
