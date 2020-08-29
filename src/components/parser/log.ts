@@ -10,6 +10,7 @@ const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
+const latexBoxOutput = /^((?:Over|Under)full \\[vh]box \([^)]*\)) has occurred while \\output is active/
 const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX) (Warning|Info|Font Warning):\s+(.*?)(?: on input line (\d+))?(\.|\?|)$/
 const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: +on input line (\d+))?(\.)?$/
 const bibEmpty = /^Empty `thebibliography' environment/
@@ -202,6 +203,20 @@ export class Parser {
                 }
                 searchesEmptyLine = false
                 insideBoxWarn = true
+                continue
+            }
+            result = line.match(latexBoxOutput)
+            if (result && configuration.get('message.badbox.show')) {
+                if (currentResult.type !== '') {
+                    this.buildLog.push(currentResult)
+                }
+                currentResult = {
+                    type: 'typesetting',
+                    file: filename,
+                    line: 1,
+                    text: result[1]
+                }
+                searchesEmptyLine = false
                 continue
             }
             result = line.match(latexWarn)
