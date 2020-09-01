@@ -5,23 +5,45 @@ import {performance} from 'perf_hooks'
 import * as bibtexUtils from '../utils/bibtexutils'
 import {Extension} from '../main'
 
-export class BibtexFormater {
+export class BibtexFormatter {
 
     private readonly extension: Extension
     private readonly duplicatesDiagnostics: vscode.DiagnosticCollection
+    private diags: vscode.Diagnostic[]
 
     constructor(extension: Extension) {
         this.extension = extension
         this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
+        this.diags = []
     }
 
     async bibtexFormat(sort: boolean, align: boolean) {
         if (vscode.window.activeTextEditor === undefined || vscode.window.activeTextEditor.document.languageId !== 'bibtex') {
             return
         }
+        const doc = vscode.window.activeTextEditor.document
         const t0 = performance.now() // Measure performance
         this.duplicatesDiagnostics.clear()
-        const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
+        const edits = await this.formatDocument(doc, sort, align)
+        const edit = new vscode.WorkspaceEdit()
+        edits.forEach(e => {
+            edit.replace(doc.uri, e.range, e.newText)
+        })
+
+        vscode.workspace.applyEdit(edit).then(success => {
+            if (success) {
+                this.duplicatesDiagnostics.set(doc.uri, this.diags)
+                const t1 = performance.now()
+                this.extension.logger.addLogMessage(`BibTeX action successful. Took ${t1 - t0} ms.`)
+            } else {
+                this.extension.logger.showErrorMessage('Something went wrong while processing the bibliography.')
+            }
+        })
+
+    }
+
+    public async formatDocument(document: vscode.TextDocument, sort: boolean, align: boolean, range?: vscode.Range): Promise<vscode.TextEdit[]> {
+        const ast = await this.extension.pegParser.parseBibtex(document.getText(range))
 
         // Get configuration
         const config = vscode.workspace.getConfiguration('latex-workshop')
@@ -67,9 +89,8 @@ export class BibtexFormater {
         }
 
         // Successively replace the text in the current location from the sorted location
-        const edit = new vscode.WorkspaceEdit()
-        const uri = vscode.window.activeTextEditor.document.uri
-        const diags: vscode.Diagnostic[] = []
+        const edits: vscode.TextEdit[] = []
+        this.diags = []
         let lineDelta = 0
         let text: string
         let isDuplicate: boolean
@@ -77,7 +98,7 @@ export class BibtexFormater {
             if (align) {
                 text = bibtexUtils.bibtexFormat(entries[i], configuration)
             } else {
-                text = vscode.window.activeTextEditor.document.getText(sortedEntryLocations[i])
+                text = document.getText(sortedEntryLocations[i])
             }
 
             isDuplicate = duplicates.has(entries[i])
@@ -89,7 +110,7 @@ export class BibtexFormater {
                         entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line),
                         entryLocations[i].end.character
                     )
-                    diags.push(new vscode.Diagnostic(
+                    this.diags.push(new vscode.Diagnostic(
                         highlightRange,
                         `Duplicate entry "${entries[i].internalKey}".`,
                         vscode.DiagnosticSeverity.Warning
@@ -103,20 +124,28 @@ export class BibtexFormater {
             }
 
             // Put text from entry[i] into (sorted)location[i]
-            edit.replace(uri, entryLocations[i], text)
+            edits.push(new vscode.TextEdit(entryLocations[i], text))
 
             // We need to figure out the line changes in order to highlight properly
             lineDelta += (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) - (entryLocations[i].end.line - entryLocations[i].start.line)
         }
-
-        vscode.workspace.applyEdit(edit).then(success => {
-            if (success) {
-                this.duplicatesDiagnostics.set(uri, diags)
-                const t1 = performance.now()
-                this.extension.logger.addLogMessage(`BibTeX action successful. Took ${t1 - t0} ms.`)
-            } else {
-                this.extension.logger.showErrorMessage('Something went wrong while processing the bibliography.')
-            }
-        })
+        return edits
     }
+}
+
+export class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
+    private formatter: BibtexFormatter
+
+    constructor(extension: Extension) {
+        this.formatter = new BibtexFormatter(extension)
+    }
+
+    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        return this.formatter.formatDocument(document, true, true)
+    }
+
+    public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        return this.formatter.formatDocument(document, true, true, range)
+    }
+
 }

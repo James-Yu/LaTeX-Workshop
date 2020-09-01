@@ -33,7 +33,7 @@ import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 import { SnippetPanel } from './components/snippetpanel'
-import { BibtexFormatter } from './providers/bibtexformater'
+import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformater'
 
 import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
 
@@ -217,9 +217,12 @@ export function activate(context: vscode.ExtensionContext) {
 
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
-    const formatter = new LatexFormatterProvider(extension)
-    vscode.languages.registerDocumentFormattingEditProvider(latexSelector, formatter)
-    vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, formatter)
+    const latexFormatter = new LatexFormatterProvider(extension)
+    const bibtexFormatter = new BibtexFormatterProvider(extension)
+    vscode.languages.registerDocumentFormattingEditProvider(latexSelector, latexFormatter)
+    vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
 
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-commands', new LaTeXCommander(extension)))
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
