@@ -4,7 +4,6 @@ import * as fs from 'fs-extra'
 import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as tmp from 'tmp'
-import * as pdfjsLib from 'pdfjs-dist'
 import {Mutex} from '../lib/await-semaphore'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
@@ -216,8 +215,9 @@ export class Builder {
                 })
             }
             try {
-                const doc = await pdfjsLib.getDocument(this.extension.manager.tex2pdf(rootFile, true)).promise
-                this.extension.buildInfo.setPageTotal(doc.numPages)
+                const pdfPath = this.extension.manager.tex2pdf(rootFile, true)
+                const numPage = await this.extension.graphicsPreview.getPdfNumPages(pdfPath)
+                this.extension.buildInfo.setPageTotal(numPage)
             } catch(e) {
 
             }

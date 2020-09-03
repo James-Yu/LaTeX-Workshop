@@ -7,7 +7,7 @@ import * as domstubs from '@tamuratak/domstubs'
 import * as fs from 'fs'
 import * as path from 'path'
 // eslint-disable-next-line
-const pdfjsLib = require('pdfjs-dist/es5/build/pdf.js')
+const pdfjsLib: typeof import('pdfjs-dist') = require('pdfjs-dist/es5/build/pdf.js')
 import * as workerpool from 'workerpool'
 
 domstubs.setStubs(global)
@@ -55,11 +55,17 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
     return svg.toString()
 }
 
-const workers = {renderToSvg}
+async function getNumPages(pdfPath: string): Promise<number> {
+    const doc = await pdfjsLib.getDocument(pdfPath).promise
+    return doc.numPages
+}
+
+const workers = {renderToSvg, getNumPages}
 
 // workerpool passes the resolved value of Promise, not Promise.
 export type IPdfRendererWorker = {
-    renderToSvg: (...args: Parameters<typeof renderToSvg>) => string
+    renderToSvg: (...args: Parameters<typeof renderToSvg>) => string,
+    getNumPages: (...args: Parameters<typeof getNumPages>) => number
 }
 
 workerpool.worker(workers)

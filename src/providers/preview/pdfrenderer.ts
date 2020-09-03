@@ -18,4 +18,9 @@ export class PDFRenderer {
     async renderToSVG(pdfPath: string, options: { height: number, width: number, pageNumber: number }): Promise<string> {
         return (await this.proxy).renderToSvg(pdfPath, options).timeout(3000)
     }
+
+    async getNumPages(pdfPath: string): Promise<number> {
+        return (await this.proxy).getNumPages(pdfPath).timeout(3000)
+    }
+
 }
