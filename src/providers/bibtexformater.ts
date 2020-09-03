@@ -58,6 +58,8 @@ export class BibtexFormatter {
             sort: config.get('bibtex-format.sortby') as string[]
         }
 
+        const lineOffset = range ? range.start.line : 0
+
         // Create an array of entries and of their starting locations
         const entries: bibtexParser.Entry[] = []
         const entryLocations: vscode.Range[] = []
@@ -118,13 +120,13 @@ export class BibtexFormatter {
                 } else { // 'Comment Duplicates'
                     // Log duplicate entry since we aren't highlighting it
                     this.extension.logger.addLogMessage(
-                        `BibTeX-format: Duplicate entry "${entries[i].internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1}.`)
+                        `BibTeX-format: Duplicate entry "${entries[i].internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1 + lineOffset}.`)
                     text = text.replace(/@/,'')
                 }
             }
 
             // Put text from entry[i] into (sorted)location[i]
-            edits.push(new vscode.TextEdit(entryLocations[i], text))
+            edits.push(new vscode.TextEdit(new vscode.Range(entryLocations[i].start.translate(range?.start.line, range?.start.character), entryLocations[i].end.translate(range?.start.line)), text))
 
             // We need to figure out the line changes in order to highlight properly
             lineDelta += (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) - (entryLocations[i].end.line - entryLocations[i].start.line)
