@@ -98,6 +98,9 @@ export class Server {
                 case '.jpg':
                     contentType = 'image/jpg'
                     break
+                case '.svg':
+                    contentType = 'image/svg+xml'
+                    break
                 case '.ico':
                     contentType = 'image/x-icon'
                     break
