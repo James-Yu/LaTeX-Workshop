@@ -1,6 +1,7 @@
 import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
 import * as path from 'path'
+import * as vscode from 'vscode'
 import * as zlib from 'zlib'
 import { SyncTeXRecordForward, SyncTeXRecordBackward } from './locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../lib/synctexjs'
@@ -34,7 +35,17 @@ function findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject
         return inputFilePath
       }
     } catch(e) {
-
+    }
+    try {
+      const workspaceFolders = vscode.workspace.workspaceFolders
+      if (workspaceFolders && workspaceFolders.length > 0) {
+        const inputFilePathAbs = path.resolve(workspaceFolders[0].uri.fsPath, inputFilePath)
+        if (fs.realpathSync(path.resolve(inputFilePathAbs)) === fs.realpathSync(filePath)) {
+            return inputFilePath
+        }
+      }
+    }
+    catch (e) {
     }
   }
   for (const inputFilePath in pdfSyncObject.blockNumberLine) {
@@ -215,6 +226,13 @@ export function syncTexJsBackward(page: number, x: number, y: number, pdfPath: s
 function convInputFilePath(inputFilePath: string): string {
   if (fs.existsSync(inputFilePath)) {
     return inputFilePath
+  }
+  const workspaceFolders = vscode.workspace.workspaceFolders
+  if (workspaceFolders && workspaceFolders.length > 0) {
+    const inputFilePathAbs = path.resolve(workspaceFolders[0].uri.fsPath, inputFilePath)
+    if (fs.existsSync(inputFilePathAbs)) {
+        return inputFilePathAbs
+    }
   }
   for (const enc of iconvLiteSupportedEncodings) {
     try {
