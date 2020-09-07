@@ -8,8 +8,8 @@ import {Extension} from '../main'
 export class BibtexFormatter {
 
     private readonly extension: Extension
-    private readonly duplicatesDiagnostics: vscode.DiagnosticCollection
-    private diags: vscode.Diagnostic[]
+    readonly duplicatesDiagnostics: vscode.DiagnosticCollection
+    diags: vscode.Diagnostic[]
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -48,8 +48,6 @@ export class BibtexFormatter {
     }
 
     public async formatDocument(document: vscode.TextDocument, sort: boolean, align: boolean, range?: vscode.Range): Promise<vscode.TextEdit[]> {
-        const ast = await this.extension.pegParser.parseBibtex(document.getText(range))
-
         // Get configuration
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
@@ -62,7 +60,6 @@ export class BibtexFormatter {
             right: leftright[1],
             sort: config.get('bibtex-format.sortby') as string[]
         }
-
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
@@ -99,6 +96,7 @@ export class BibtexFormatter {
         }
 
         // Successively replace the text in the current location from the sorted location
+        this.duplicatesDiagnostics.clear()
         const edits: vscode.TextEdit[] = []
         this.diags = []
         let lineDelta = 0
@@ -146,17 +144,27 @@ export class BibtexFormatter {
 
 export class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private formatter: BibtexFormatter
+    extension: Extension
 
     constructor(extension: Extension) {
+        this.extension = extension
         this.formatter = new BibtexFormatter(extension)
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter.formatDocument(document, true, true)
+        return this.formatter.formatDocument(document, true, true).then(edits => {
+            this.formatter.duplicatesDiagnostics.set(document.uri, this.formatter.diags)
+            this.extension.logger.addLogMessage('BibTeX action successful.')
+            return edits
+            })
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter.formatDocument(document, true, true, range)
+        return this.formatter.formatDocument(document, true, true, range).then(edits => {
+            this.formatter.duplicatesDiagnostics.set(document.uri, this.formatter.diags)
+            this.extension.logger.addLogMessage('BibTeX action successful.')
+            return edits
+            })
     }
 
 }
