@@ -18,7 +18,12 @@ export class BibtexFormatter {
     }
 
     async bibtexFormat(sort: boolean, align: boolean) {
-        if (vscode.window.activeTextEditor === undefined || vscode.window.activeTextEditor.document.languageId !== 'bibtex') {
+        if (!vscode.window.activeTextEditor) {
+            this.extension.logger.addLogMessage('Exit formatting. The active textEditor is undefined.')
+            return
+        }
+        if (vscode.window.activeTextEditor.document.languageId !== 'bibtex') {
+            this.extension.logger.addLogMessage('Exit formatting. The active textEditor is not of bibtex type.')
             return
         }
         const doc = vscode.window.activeTextEditor.document
@@ -59,7 +64,10 @@ export class BibtexFormatter {
         }
 
         const lineOffset = range ? range.start.line : 0
+        const columnOffset = range ? range.start.character : 0
 
+        this.extension.logger.addLogMessage('Start bibtex formatting.')
+        const ast = await this.extension.pegParser.parseBibtex(document.getText(range))
         // Create an array of entries and of their starting locations
         const entries: bibtexParser.Entry[] = []
         const entryLocations: vscode.Range[] = []
@@ -107,9 +115,9 @@ export class BibtexFormatter {
             if (isDuplicate && handleDuplicates !== 'Ignore Duplicates') {
                 if (handleDuplicates === 'Highlight Duplicates') {
                     const highlightRange: vscode.Range = new vscode.Range(
-                        entryLocations[i].start.line + lineDelta,
-                        entryLocations[i].start.character,
-                        entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line),
+                        entryLocations[i].start.line + lineDelta + lineOffset,
+                        entryLocations[i].start.character + columnOffset,
+                        entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) + lineOffset,
                         entryLocations[i].end.character
                     )
                     this.diags.push(new vscode.Diagnostic(
@@ -131,6 +139,7 @@ export class BibtexFormatter {
             // We need to figure out the line changes in order to highlight properly
             lineDelta += (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) - (entryLocations[i].end.line - entryLocations[i].start.line)
         }
+        this.extension.logger.addLogMessage('Formatted ' + document.fileName)
         return edits
     }
 }
