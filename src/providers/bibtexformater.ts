@@ -152,19 +152,11 @@ export class BibtexFormatterProvider implements vscode.DocumentFormattingEditPro
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter.formatDocument(document, true, true).then(edits => {
-            this.formatter.duplicatesDiagnostics.set(document.uri, this.formatter.diags)
-            this.extension.logger.addLogMessage('BibTeX action successful.')
-            return edits
-            })
+        return this.formatter.formatDocument(document, true, true)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return this.formatter.formatDocument(document, true, true, range).then(edits => {
-            this.formatter.duplicatesDiagnostics.set(document.uri, this.formatter.diags)
-            this.extension.logger.addLogMessage('BibTeX action successful.')
-            return edits
-            })
+        return this.formatter.formatDocument(document, true, true, range)
     }
 
 }
