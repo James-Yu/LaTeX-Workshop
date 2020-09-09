@@ -29,6 +29,7 @@ export class BibtexFormatter {
         const doc = vscode.window.activeTextEditor.document
         const t0 = performance.now() // Measure performance
         this.duplicatesDiagnostics.clear()
+        this.extension.logger.addLogMessage('Start bibtex formatting on user request.')
         const edits = await this.formatDocument(doc, sort, align)
         const edit = new vscode.WorkspaceEdit()
         edits.forEach(e => {
@@ -63,7 +64,6 @@ export class BibtexFormatter {
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
-        this.extension.logger.addLogMessage('Start bibtex formatting.')
         const ast = await this.extension.pegParser.parseBibtex(document.getText(range))
         // Create an array of entries and of their starting locations
         const entries: bibtexParser.Entry[] = []
@@ -152,10 +152,12 @@ export class BibtexFormatterProvider implements vscode.DocumentFormattingEditPro
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        this.extension.logger.addLogMessage('Start bibtex formatting on behalf of VSCode\'s formatter.')
         return this.formatter.formatDocument(document, true, true)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        this.extension.logger.addLogMessage('Start bibtex selection formatting on behalf of VSCode\'s formatter.')
         return this.formatter.formatDocument(document, true, true, range)
     }
 
