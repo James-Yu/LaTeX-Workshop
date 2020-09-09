@@ -152,13 +152,15 @@ export class BibtexFormatterProvider implements vscode.DocumentFormattingEditPro
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        const sort = vscode.workspace.getConfiguration('latex-workshop').get('bibtex-format.sort.enabled') as boolean
         this.extension.logger.addLogMessage('Start bibtex formatting on behalf of VSCode\'s formatter.')
-        return this.formatter.formatDocument(document, true, true)
+        return this.formatter.formatDocument(document, sort, true)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        const sort = vscode.workspace.getConfiguration('latex-workshop').get('bibtex-format.sort.enabled') as boolean
         this.extension.logger.addLogMessage('Start bibtex selection formatting on behalf of VSCode\'s formatter.')
-        return this.formatter.formatDocument(document, true, true, range)
+        return this.formatter.formatDocument(document, sort, true, range)
     }
 
 }
