@@ -31,6 +31,9 @@ export class BibtexFormatter {
         this.duplicatesDiagnostics.clear()
         this.extension.logger.addLogMessage('Start bibtex formatting on user request.')
         const edits = await this.formatDocument(doc, sort, align)
+        if (edits.length === 0) {
+            return
+        }
         const edit = new vscode.WorkspaceEdit()
         edits.forEach(e => {
             edit.replace(doc.uri, e.range, e.newText)
