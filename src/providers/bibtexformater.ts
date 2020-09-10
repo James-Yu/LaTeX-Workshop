@@ -64,7 +64,17 @@ export class BibtexFormatter {
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
-        const ast = await this.extension.pegParser.parseBibtex(document.getText(range))
+        const ast = await this.extension.pegParser.parseBibtex(document.getText(range)).catch((error) => {
+            if (error instanceof(Error)) {
+                this.extension.logger.addLogMessage('Bibtex parser failed.')
+                this.extension.logger.addLogMessage(error.message)
+                this.extension.logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
+            }
+            return undefined
+        })
+        if (! ast) {
+            return []
+        }
         // Create an array of entries and of their starting locations
         const entries: bibtexParser.Entry[] = []
         const entryLocations: vscode.Range[] = []
