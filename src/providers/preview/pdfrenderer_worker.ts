@@ -36,6 +36,7 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
     const data = new Uint8Array(fs.readFileSync(pdfPath))
     const loadingTask = pdfjsLib.getDocument({
         data,
+        fontExtraProperties: true,
         nativeImageDecoderSupport: 'display',
         CMapReaderFactory: NodeCMapReaderFactory
     })
