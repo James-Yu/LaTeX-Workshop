@@ -33,7 +33,7 @@ import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 import { SnippetPanel } from './components/snippetpanel'
-import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformater'
+import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 
 import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
 
@@ -125,9 +125,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
-    vscode.commands.registerCommand('latex-workshop.bibsort', () => extension.bibtexFormater.bibtexFormat(true, false))
-    vscode.commands.registerCommand('latex-workshop.bibalign', () => extension.bibtexFormater.bibtexFormat(false, true))
-    vscode.commands.registerCommand('latex-workshop.bibalignsort', () => extension.bibtexFormater.bibtexFormat(true, true))
+    vscode.commands.registerCommand('latex-workshop.bibsort', () => extension.bibtexFormatter.bibtexFormat(true, false))
+    vscode.commands.registerCommand('latex-workshop.bibalign', () => extension.bibtexFormatter.bibtexFormat(false, true))
+    vscode.commands.registerCommand('latex-workshop.bibalignsort', () => extension.bibtexFormatter.bibtexFormat(true, true))
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
@@ -330,7 +330,7 @@ export class Extension {
     readonly snippetPanel: SnippetPanel
     readonly graphicsPreview: GraphicsPreview
     readonly mathPreview: MathPreview
-    readonly bibtexFormater: BibtexFormatter
+    readonly bibtexFormatter: BibtexFormatter
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -360,7 +360,7 @@ export class Extension {
         this.pegParser = new PEGParser()
         this.graphicsPreview = new GraphicsPreview(this)
         this.mathPreview = new MathPreview(this)
-        this.bibtexFormater = new BibtexFormatter(this)
+        this.bibtexFormatter = new BibtexFormatter(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }
