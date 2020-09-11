@@ -1,5 +1,13 @@
 # Change Log
 
+## [8.13.0] - 2020-09-11
+
+### Added
+- (#2261) Declare a formatter provider for `bibtex`.
+
+### Fixed
+- (#2270) Extension work again with Remote Development extension.
+
 ## [8.12.0] - 2020-09-11
 
 ### Added
