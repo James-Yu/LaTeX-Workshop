@@ -1,5 +1,34 @@
 # Change Log
 
+## [8.12.0] - 2020-09-11
+
+### Added
+- (#2198) Add a command to select the full content of the current environment.
+- (#2225) Enable `latex-workshop.surround` on the Command Palette.
+- (#2249) Improve support for LaTeX fenced code block in Markdown.
+
+### Changed
+- Update PDF.js to v2.4.456.
+- Drop support for vscode < 1.42.
+- (#2158) Add invert PDF in dark mode only.
+  - Made invertMode configuration more intuitive.
+  - Set default for invertMode.enabled.
+
+### Fixed
+- (#2117) Add a build icon.
+- (#2126) Improve scope names.
+- (#2169) Fix the trim mode of the PDF viewer.
+- (#2189) Duplicate cite entries.
+- (#2203) Refactor and add above/below to `view.pdf.tab.editorGroup`.
+- (#2207) Ignore verbatim content when computing structure.
+- (#2211) Add `onSave` option to `latex.autoBuild.run`
+  - Reverts `4d3ea8b`
+- (#2223) Remove `press a-z and space for greek letter`.
+- (#2229) Add TBA snippet for table.
+- (#2232) Fix XML & HTML scopes.
+- (#2245) Should not treat blob URLs, `blob:...`, as external links.
+- (#2265) Use `px` instead of `rem` for padding of SVG images on the snippet panel.
+
 ## [8.11.1] - 2020-07-01
 
 ### Fixed
