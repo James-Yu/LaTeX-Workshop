@@ -33,7 +33,7 @@ import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 import { SnippetPanel } from './components/snippetpanel'
-import { BibtexFormater } from './components/bibtexformater'
+import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformater'
 
 import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
 
@@ -216,11 +216,13 @@ export function activate(context: vscode.ExtensionContext) {
     }))
 
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
-    const latexBibtexSelector = selectDocumentsWithId(['latex', 'latex-expl3',' jlweave', 'rsweave', 'bibtex'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
-    const formatter = new LatexFormatterProvider(extension)
-    vscode.languages.registerDocumentFormattingEditProvider(latexBibtexSelector, formatter)
-    vscode.languages.registerDocumentRangeFormattingEditProvider(latexBibtexSelector, formatter)
+    const latexFormatter = new LatexFormatterProvider(extension)
+    const bibtexFormatter = new BibtexFormatterProvider(extension)
+    vscode.languages.registerDocumentFormattingEditProvider(latexSelector, latexFormatter)
+    vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter)
+    vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
 
     context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-commands', new LaTeXCommander(extension)))
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
@@ -328,7 +330,7 @@ export class Extension {
     readonly snippetPanel: SnippetPanel
     readonly graphicsPreview: GraphicsPreview
     readonly mathPreview: MathPreview
-    readonly bibtexFormater: BibtexFormater
+    readonly bibtexFormater: BibtexFormatter
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -358,7 +360,7 @@ export class Extension {
         this.pegParser = new PEGParser()
         this.graphicsPreview = new GraphicsPreview(this)
         this.mathPreview = new MathPreview(this)
-        this.bibtexFormater = new BibtexFormater(this)
+        this.bibtexFormater = new BibtexFormatter(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }
