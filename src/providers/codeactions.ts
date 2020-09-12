@@ -85,7 +85,7 @@ export class CodeActions {
     provideCodeActions(document: vs.TextDocument, _range: vs.Range, context: vs.CodeActionContext, _token: vs.CancellationToken): vs.Command[] {
         const actions: vs.Command[] = []
         context.diagnostics.filter(d => d.source === 'ChkTeX').forEach(d => {
-            let code = d.code
+            let code = typeof d.code === 'object' ? d.code.value : d.code
             if (!code) {
                 return
             }

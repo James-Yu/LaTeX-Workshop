@@ -35,6 +35,7 @@ import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
+import {SnippetViewProvider} from './providers/snippetviewprovider'
 
 import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
 
@@ -252,6 +253,8 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@'))
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions))
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider(extension)))
+
+    context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-snippet-view', new SnippetViewProvider(extension), {webviewOptions: {retainContextWhenHidden: true}}))
 
     extension.manager.findRoot()
     extension.linter.lintRootFileIfEnabled()
