@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.13.1] - 2020-09-12
+
+### Fixed
+- (#2274) Fix spelling error `formater` -> `formatter`.
+
 ## [8.13.0] - 2020-09-11
 
 ### Added
