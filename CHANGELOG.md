@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.13.2] - 2020-09-12
+
+### Fixed
+- Extension within WSL uses the wrong un-polyfilled `pdf.js`.
+
 ## [8.13.1] - 2020-09-12
 
 ### Fixed
