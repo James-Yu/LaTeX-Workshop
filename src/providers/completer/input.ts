@@ -60,12 +60,13 @@ export class Input implements IProvider {
     }
 
     provideFrom(type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        const payload = [type, args.document.fileName, result[1], ...result.slice(2).reverse()]
-        return this.provide(payload)
+        const command = result[1]
+        const payload = [...result.slice(2).reverse()]
+        return this.provide(type, args.document, command, payload)
     }
 
     /**
-     * Provide file name intellissense
+     * Provide file name intellisense
      *
      * @param payload an array of string
      *      payload[0]: the input command type  (input, import, subimport, includeonly)
@@ -73,26 +74,24 @@ export class Input implements IProvider {
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
      */
-    private provide(payload: string[]): vscode.CompletionItem[] {
+    private provide(mode: string, document: vscode.TextDocument, command: string, payload: string[]): vscode.CompletionItem[] {
         let provideDirOnly = false
         let baseDir: string[] = []
-        const mode = payload[0]
-        const currentFile = payload[1]
-        const command = payload[2]
-        const typedFolder = payload[3]
-        const importfromDir = payload[4]
+        const currentFile = document.fileName
+        const typedFolder = payload[0]
+        const importFromDir = payload[1]
         switch (mode) {
             case 'import':
-                if (importfromDir) {
-                    baseDir = [importfromDir]
+                if (importFromDir) {
+                    baseDir = [importFromDir]
                 } else {
                     baseDir = ['/']
                     provideDirOnly = true
                 }
                 break
             case 'subimport':
-                if (importfromDir) {
-                    baseDir = [path.join(path.dirname(currentFile), importfromDir)]
+                if (importFromDir) {
+                    baseDir = [path.join(path.dirname(currentFile), importFromDir)]
                 } else {
                     baseDir = [path.dirname(currentFile)]
                     provideDirOnly = true
