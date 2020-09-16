@@ -65,14 +65,19 @@ export class Command implements IProvider {
     }
 
     provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        const payload = args.document.languageId
-        return this.provide(payload)
+        return this.provide(args.document.languageId, args.document, args.position)
     }
 
-    private provide(languageId: string): vscode.CompletionItem[] {
+    private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): vscode.CompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
-
+        let range: vscode.Range | undefined = undefined
+        if (document && position) {
+            const startPos = document.lineAt(position).text.lastIndexOf('\\', position.character)
+            if (startPos >= 0) {
+                range = new vscode.Range(position.line, startPos + 1, position.line, position.character)
+            }
+        }
         const suggestions: Suggestion[] = []
         const cmdList: string[] = [] // This holds defined commands without the backslash
         // Insert default commands
@@ -80,6 +85,7 @@ export class Command implements IProvider {
             if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
                 return
             }
+            cmd.range = range
             suggestions.push(cmd)
             cmdList.push(this.getCmdName(cmd, true))
         })
@@ -124,6 +130,7 @@ export class Command implements IProvider {
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
                     if (!cmdList.includes(this.getCmdName(cmd, true))) {
+                        cmd.range = range
                         suggestions.push(cmd)
                         cmdList.push(this.getCmdName(cmd, true))
                     }

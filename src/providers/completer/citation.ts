@@ -30,6 +30,13 @@ export class Citation implements IProvider {
     private provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion array to vscode completion array
         const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
+        let range: vscode.Range | undefined = undefined
+        if (args) {
+            const startPos = args.document.lineAt(args.position).text.lastIndexOf('{', args.position.character)
+            if (startPos >= 0) {
+                range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
+            }
+        }
         return this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             // Compile the completion item label
             switch(label) {
@@ -49,9 +56,7 @@ export class Citation implements IProvider {
             }
             item.filterText = `${item.key} ${item.fields.author} ${item.fields.title} ${item.fields.journal}`
             item.insertText = item.key
-            if (args) {
-                item.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
-            }
+            item.range = range
             return item
         })
     }
