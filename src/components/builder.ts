@@ -314,7 +314,7 @@ export class Builder {
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
             this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${process.env.PATH}`)
-            this.extension.logger.addLogMessage(`The current SHELL: ${process.env.SHELL}`)
+            this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`, 'error')
             this.currentProcess = undefined
             this.extension.buildInfo.buildEnded()
