@@ -71,6 +71,14 @@ export class Reference implements IProvider {
     private updateAll(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         // Extract cached references
         const refList: string[] = []
+        let range: vscode.Range | undefined = undefined
+        if (args) {
+            const startPos = args.document.lineAt(args.position).text.lastIndexOf('{', args.position.character)
+            if (startPos < 0) {
+                return
+            }
+            range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
+        }
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.manager.cachedContent[cachedFile].element.reference
             if (cachedRefs === undefined) {
@@ -83,7 +91,7 @@ export class Reference implements IProvider {
                 this.suggestions[ref.label] = {...ref,
                     file: cachedFile,
                     position: ref.range instanceof vscode.Range ? ref.range.start : ref.range.inserting.start,
-                    range: args ? args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/) : undefined,
+                    range,
                     prevIndex: this.prevIndexObj[ref.label]
                 }
                 refList.push(ref.label)

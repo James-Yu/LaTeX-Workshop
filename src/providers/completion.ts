@@ -144,7 +144,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.environment
                 break
             case 'command':
-                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_]*(?::[a-zA-Z]*)?)$/ : /\\([a-zA-Z]*)$/
+                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\([a-zA-Z]*)$/
                 provider = this.command
                 break
             case 'package':

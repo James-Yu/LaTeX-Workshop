@@ -62,7 +62,7 @@ export class Input implements IProvider {
     provideFrom(type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         const command = result[1]
         const payload = [...result.slice(2).reverse()]
-        return this.provide(type, args.document, command, payload)
+        return this.provide(type, args.document, args.position, command, payload)
     }
 
     /**
@@ -74,12 +74,14 @@ export class Input implements IProvider {
      *      payload[2]: When defined, the path from which completion is triggered
      *      payload[3]: The already typed path
      */
-    private provide(mode: string, document: vscode.TextDocument, command: string, payload: string[]): vscode.CompletionItem[] {
+    private provide(mode: string, document: vscode.TextDocument, position: vscode.Position, command: string, payload: string[]): vscode.CompletionItem[] {
         let provideDirOnly = false
         let baseDir: string[] = []
         const currentFile = document.fileName
         const typedFolder = payload[0]
         const importFromDir = payload[1]
+        const startPos = Math.max(document.lineAt(position).text.lastIndexOf('{', position.character), document.lineAt(position).text.lastIndexOf('/', position.character))
+        const range: vscode.Range | undefined = startPos >= 0 ? new vscode.Range(position.line, startPos + 1, position.line, position.character) : undefined
         switch (mode) {
             case 'import':
                 if (importFromDir) {
@@ -155,6 +157,7 @@ export class Input implements IProvider {
 
                     if (fs.lstatSync(filePath).isDirectory()) {
                         const item = new vscode.CompletionItem(`${file}/`, vscode.CompletionItemKind.Folder)
+                        item.range = range
                         item.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                         item.detail = dir
                         suggestions.push(item)
@@ -164,6 +167,7 @@ export class Input implements IProvider {
                         if (preview && command === 'includegraphics') {
                             item.documentation = filePath
                         }
+                        item.range = range
                         item.detail = dir
                         suggestions.push(item)
                     }
