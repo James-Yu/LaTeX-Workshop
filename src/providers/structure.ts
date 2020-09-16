@@ -277,24 +277,24 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return treeItem
     }
 
-    getChildren(element?: Section): Thenable<Section[]> {
+    getChildren(element?: Section): Section[] {
         if (this.extension.manager.rootFile === undefined) {
-            return Promise.resolve([])
+            return []
         }
         // if the root doesn't exist, we need
         // to explicitly build the model from disk
         if (!element) {
-            return Promise.resolve(this.refresh())
+            return this.refresh()
         }
 
-        return Promise.resolve(element.children)
+        return element.children
     }
 
-    getParent(element?: Section): Thenable<Section | undefined> {
+    getParent(element?: Section): Section | undefined {
         if (this.extension.manager.rootFile === undefined || !element) {
-            return Promise.resolve(undefined)
+            return undefined
         }
-        return Promise.resolve(element.parent)
+        return element.parent
     }
 
     getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {

@@ -16,10 +16,8 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         })
     }
 
-    public provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
-        return new Promise((resolve, _reject) => {
-            resolve(this.sectionToSymbols(this.extension.structureProvider.buildModel(document.fileName, undefined, undefined, undefined, undefined, false)))
-        })
+    provideDocumentSymbols(document: vscode.TextDocument): vscode.DocumentSymbol[] {
+        return this.sectionToSymbols(this.extension.structureProvider.buildModel(document.fileName, undefined, undefined, undefined, undefined, false))
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {

@@ -101,21 +101,18 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         return suggestions
     }
 
-    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken, _context: vscode.CompletionContext): Promise<vscode.CompletionItem[]> {
-        return new Promise((resolve, _reject) => {
-            const currentLine = document.lineAt(position.line).text
-            const prevLine = document.lineAt(position.line - 1).text
-            if (currentLine.match(/@[a-zA-Z]*$/)) {
-                // Complete an entry name
-                resolve(this.entryItems)
-                return
-            } else if (currentLine.match(/^\s*[a-zA-Z]*/) && prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
-                // Add optional fields
-                const optFields = this.provideOptFields(document, position)
-                resolve(optFields)
-            }
-            resolve()
-        })
+    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] | undefined {
+        const currentLine = document.lineAt(position.line).text
+        const prevLine = document.lineAt(position.line - 1).text
+        if (currentLine.match(/@[a-zA-Z]*$/)) {
+            // Complete an entry name
+            return this.entryItems
+        } else if (currentLine.match(/^\s*[a-zA-Z]*/) && prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
+            // Add optional fields
+            const optFields = this.provideOptFields(document, position)
+            return optFields
+        }
+        return
     }
 
     private provideOptFields(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
