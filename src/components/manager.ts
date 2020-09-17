@@ -27,6 +27,7 @@ interface Content {
          */
         element: {
             reference?: vscode.CompletionItem[],
+            glossary?: vscode.CompletionItem[],
             environment?: EnvEntry[],
             bibitem?: CiteEntry[],
             command?: CmdEntry[],
@@ -908,6 +909,7 @@ export class Manager {
             const nodes = latexAst.content
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
+            this.extension.completer.glossary.update(file, nodes)
             this.extension.completer.environment.update(file, nodes, lines)
             this.extension.completer.command.update(file, nodes)
             this.extension.completer.command.updatePkg(file, nodes)
@@ -917,6 +919,7 @@ export class Manager {
             // Do the update with old style.
             const contentNoComment = utils.stripComments(content, '%')
             this.extension.completer.reference.update(file, undefined, undefined, contentNoComment)
+            this.extension.completer.glossary.update(file, undefined, contentNoComment)
             this.extension.completer.environment.update(file, undefined, undefined, contentNoComment)
             this.extension.completer.command.update(file, undefined, contentNoComment)
             this.extension.completer.command.updatePkg(file, undefined, contentNoComment)

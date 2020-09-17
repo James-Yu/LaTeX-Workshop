@@ -32,7 +32,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.reference = new Reference(extension)
         this.package = new Package(extension)
         this.input = new Input(extension)
-        this.glossary = new Glossary()
+        this.glossary = new Glossary(extension)
         try {
             this.loadDefaultItems()
         } catch (err) {
