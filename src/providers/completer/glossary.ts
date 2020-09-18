@@ -74,6 +74,16 @@ export class Glossary implements IProvider {
         return refs
     }
 
+    /**
+     * Parses the second entry of a \newacronym command
+     *
+     * Fairly straightforward, a \newacronym command takes the form
+     *     \newacronym{lw}{LW}{LaTeX Workshop}
+     *
+     * Simply turn the third argument into a string.
+     *
+     * @param node the \newacronym node from the parser
+     */
     private getAcronymNodeDetail(node: latexParser.Command): string | undefined {
         const arr: string[] = []
         if (node.args[2]?.kind === 'arg.group') {
@@ -90,6 +100,17 @@ export class Glossary implements IProvider {
         return undefined
     }
 
+    /**
+     * Parses the description from a \newglossaryentry
+     *
+     * Example glossary entries:
+     *     \newglossaryentry{lw}{name={LaTeX Workshop}, description={What this extension is}}
+     *     \newglossaryentry{vscode}{name=VSCode, description=Editor}
+     *
+     * Note: descriptions can be single words or a {group of words}
+     *
+     * @param node the \newglossaryentry node from the parser
+     */
     private getGlossaryNodeDetail(node: latexParser.Command): string | undefined {
         const arr: string[] = []
         let result: RegExpExecArray | null
