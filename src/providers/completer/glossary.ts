@@ -1,6 +1,7 @@
-import { latexParser } from 'latex-utensils'
-import { Extension } from 'src/main'
 import * as vscode from 'vscode'
+import {latexParser} from 'latex-utensils'
+
+import {Extension} from '../../main'
 import {IProvider} from './interface'
 
 export interface Suggestion extends vscode.CompletionItem {
