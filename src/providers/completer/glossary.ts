@@ -53,9 +53,11 @@ export class Glossary implements IProvider {
         nodes.forEach(node => {
             if (latexParser.isCommand(node) && node.args.length > 0) {
                 if (node.name === 'newglossaryentry' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
+                    detail = this.getGlossaryNodeDetail(node)
                     refs.push({
                         type: 'glossary',
                         label: node.args[0].content[0].content,
+                        detail,
                         kind: vscode.CompletionItemKind.Reference
                     })
                 } else if (node.name === 'newacronym' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
@@ -78,6 +80,37 @@ export class Glossary implements IProvider {
             node.args[2].content.forEach(subNode => {
                 if (subNode.kind === 'text.string') {
                     arr.push(subNode.content)
+                }
+            })
+        }
+
+        if (arr.length > 0) {
+            return arr.join(' ')
+        }
+        return undefined
+    }
+
+    private getGlossaryNodeDetail(node: latexParser.Command): string | undefined {
+        const arr: string[] = []
+        let result: RegExpExecArray | null
+        let lastNodeWasDescription = false
+
+        if (node.args[1]?.kind === 'arg.group') {
+            node.args[1].content.forEach(subNode => {
+                if (subNode.kind === 'text.string') {
+                    // check if we have a description of the form description=single_word
+                    if ((result = /description=(.*)/.exec(subNode.content)) !== null) {
+                        arr.push(result[1]) // possibly undefined
+                        lastNodeWasDescription = true
+                    }
+                    // otherwise we might have description={group of words}
+                } else if (lastNodeWasDescription && subNode.kind === 'arg.group') {
+                    subNode.content.forEach(subSubNode => {
+                        if (subSubNode.kind === 'text.string') {
+                            arr.push(subSubNode.content)
+                        }
+                    })
+                    lastNodeWasDescription = false
                 }
             })
         }
