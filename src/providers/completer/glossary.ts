@@ -48,23 +48,44 @@ export class Glossary implements IProvider {
 
     private getRefFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
         const refs: Suggestion[] = []
+        let detail: string | undefined
 
         nodes.forEach(node => {
             if (latexParser.isCommand(node) && node.args.length > 0) {
                 if (node.name === 'newglossaryentry' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
                     refs.push({
                         type: 'glossary',
-                        label: node.args[0].content[0].content
+                        label: node.args[0].content[0].content,
+                        kind: vscode.CompletionItemKind.Reference
                     })
                 } else if (node.name === 'newacronym' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
+                    detail = this.getAcronymNodeDetail(node)
                     refs.push({
                         type: 'acronym',
-                        label: node.args[0].content[0].content
+                        label: node.args[0].content[0].content,
+                        detail,
+                        kind: vscode.CompletionItemKind.Reference
                     })
                 }
             }
         })
         return refs
+    }
+
+    private getAcronymNodeDetail(node: latexParser.Command): string | undefined {
+        const arr: string[] = []
+        if (node.args[2]?.kind === 'arg.group') {
+            node.args[2].content.forEach(subNode => {
+                if (subNode.kind === 'text.string') {
+                    arr.push(subNode.content)
+                }
+            })
+        }
+
+        if (arr.length > 0) {
+            return arr.join(' ')
+        }
+        return undefined
     }
 
     private updateAll() {
