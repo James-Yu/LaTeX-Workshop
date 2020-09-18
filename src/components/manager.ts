@@ -12,6 +12,7 @@ import {Extension} from '../main'
 import {Suggestion as CiteEntry} from '../providers/completer/citation'
 import {Suggestion as CmdEntry} from '../providers/completer/command'
 import {Suggestion as EnvEntry} from '../providers/completer/environment'
+import {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
 
 /**
  * The content cache for each LaTeX file `filepath`.
@@ -27,7 +28,7 @@ interface Content {
          */
         element: {
             reference?: vscode.CompletionItem[],
-            glossary?: vscode.CompletionItem[],
+            glossary?: GlossEntry[],
             environment?: EnvEntry[],
             bibitem?: CiteEntry[],
             command?: CmdEntry[],
