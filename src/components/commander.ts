@@ -76,12 +76,12 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         return treeItem
     }
 
-    getChildren(element?: LaTeXCommand): Thenable<LaTeXCommand[]> {
+    getChildren(element?: LaTeXCommand): LaTeXCommand[] {
         if (!element) {
-            return Promise.resolve(this.commands)
+            return this.commands
         }
 
-        return Promise.resolve(element.children)
+        return element.children
     }
 }
 

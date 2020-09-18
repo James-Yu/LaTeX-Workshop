@@ -58,48 +58,47 @@ export class Completer implements vscode.CompletionItemProvider {
         this.command.initialize(maths)
     }
 
-    provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext): Promise<vscode.CompletionItem[]> {
-        return new Promise((resolve, _reject) => {
-            const invokeChar = document.lineAt(position.line).text[position.character - 1]
-            const currentLine = document.lineAt(position.line).text
-            if (position.character > 1 && currentLine[position.character - 1] === '\\' && currentLine[position.character - 2] === '\\') {
-                resolve()
-                return
-            }
-            if (this.command.bracketCmds && this.command.bracketCmds[invokeChar]) {
-                if (position.character > 1 && currentLine[position.character - 2] === '\\') {
-                    const mathSnippet = Object.assign({}, this.command.bracketCmds[invokeChar])
-                    if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
-                        (currentLine.length > position.character && [')', ']', '}'].includes(currentLine[position.character]))) {
-                        mathSnippet.range = new vscode.Range(position.translate(0, -1), position.translate(0, 1))
-                    } else {
-                        mathSnippet.range = new vscode.Range(position.translate(0, -1), position)
-                    }
-                    resolve([mathSnippet])
-                    return
+    provideCompletionItems(
+        document: vscode.TextDocument,
+        position: vscode.Position,
+        token: vscode.CancellationToken,
+        context: vscode.CompletionContext
+    ): vscode.CompletionItem[] | undefined {
+        const invokeChar = document.lineAt(position.line).text[position.character - 1]
+        const currentLine = document.lineAt(position.line).text
+        if (position.character > 1 && currentLine[position.character - 1] === '\\' && currentLine[position.character - 2] === '\\') {
+            return
+        }
+        if (this.command.bracketCmds && this.command.bracketCmds[invokeChar]) {
+            if (position.character > 1 && currentLine[position.character - 2] === '\\') {
+                const mathSnippet = Object.assign({}, this.command.bracketCmds[invokeChar])
+                if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
+                    (currentLine.length > position.character && [')', ']', '}'].includes(currentLine[position.character]))) {
+                    mathSnippet.range = new vscode.Range(position.translate(0, -1), position.translate(0, 1))
+                } else {
+                    mathSnippet.range = new vscode.Range(position.translate(0, -1), position)
                 }
+                return [mathSnippet]
             }
+        }
 
-            const line = document.lineAt(position.line).text.substr(0, position.character)
-            // Note that the order of the following array affects the result.
-            // 'command' must be at the last because it matches any commands.
-            for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'command']) {
-                const suggestions = this.completion(type, line, {document, position, token, context})
-                if (suggestions.length > 0) {
-                    if (type === 'citation') {
-                        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                        if (configuration.get('intellisense.citation.type') as string === 'browser') {
-                            resolve()
-                            setTimeout(() => this.citation.browser({document, position, token, context}), 10)
-                            return
-                        }
+        const line = document.lineAt(position.line).text.substr(0, position.character)
+        // Note that the order of the following array affects the result.
+        // 'command' must be at the last because it matches any commands.
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'command']) {
+            const suggestions = this.completion(type, line, {document, position, token, context})
+            if (suggestions.length > 0) {
+                if (type === 'citation') {
+                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                    if (configuration.get('intellisense.citation.type') as string === 'browser') {
+                        setTimeout(() => this.citation.browser({document, position, token, context}), 10)
+                        return
                     }
-                    resolve(suggestions)
-                    return
                 }
+                return suggestions
             }
-            resolve()
-        })
+        }
+        return
     }
 
     async resolveCompletionItem(item: vscode.CompletionItem): Promise<vscode.CompletionItem> {
