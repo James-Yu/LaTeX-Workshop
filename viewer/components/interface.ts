@@ -4,7 +4,7 @@ import type {SyncTex} from './synctex.js'
 import type {ViewerHistory} from './viewerhistory.js'
 
 export interface IDisposable {
-    dispose(): any
+    dispose(): unknown
 }
 
 export interface ILatexWorkshopPdfViewer {
@@ -21,22 +21,22 @@ export interface ILatexWorkshopPdfViewer {
      * `cb` is called immediately before the viewer will starts.
      * Can be used to override the settings of PDFViewerApplication.
      */
-    onWillStartPdfViewer(cb: () => any): IDisposable,
+    onWillStartPdfViewer(cb: () => unknown): IDisposable,
 
     /**
      * `cb` is called after the viewer started.
      */
-    onDidStartPdfViewer(cb: () => any): IDisposable,
+    onDidStartPdfViewer(cb: () => unknown): IDisposable,
 
     /**
      * `cb` is called after a PDF document is loaded and reloaded.
      */
-    onDidLoadPdfFile(cb: () => any, option?: {once: boolean}): IDisposable,
+    onDidLoadPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable,
 
     /**
      * `cb` is called after the a PDF document is rendered.
      */
-    onDidRenderPdfFile(cb: () => any, option?: {once: boolean}): IDisposable,
+    onDidRenderPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable,
 
     send(message: ClientRequest): void
 }
@@ -81,5 +81,5 @@ export interface IPDFViewerApplication {
 }
 
 export interface IPDFViewerApplicationOptions {
-    set(name: string, value: any): void
+    set(name: string, value: unknown): void
 }

@@ -102,12 +102,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return PDFViewerApplication.eventBus
     }
 
-    onWillStartPdfViewer(cb: (e: Event) => any): IDisposable {
+    onWillStartPdfViewer(cb: (e: Event) => unknown): IDisposable {
         document.addEventListener('webviewerloaded', cb, {once: true})
         return { dispose: () => document.removeEventListener('webviewerloaded', cb) }
     }
 
-    onDidStartPdfViewer(cb: () => any): IDisposable {
+    onDidStartPdfViewer(cb: () => unknown): IDisposable {
         const cb0 = () => {
             cb()
             PDFViewerApplication.eventBus.off('documentloaded', cb0)
@@ -118,7 +118,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return { dispose: () => PDFViewerApplication.eventBus.off('documentloaded', cb0) }
     }
 
-    onDidLoadPdfFile(cb: () => any, option?: {once: boolean}): IDisposable {
+    onDidLoadPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable {
         const cb0 = () => {
             cb()
             if (option?.once) {
@@ -131,7 +131,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return { dispose: () => PDFViewerApplication.eventBus.off('pagesinit', cb0) }
     }
 
-    onDidRenderPdfFile(cb: () => any, option?: {once: boolean}): IDisposable {
+    onDidRenderPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable {
         const cb0 = () => {
             cb()
             if (option?.once) {

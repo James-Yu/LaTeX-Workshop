@@ -16,7 +16,7 @@ export function decodePath(b64url: string): string {
   return decodeURIComponent(s)
 }
 
-export function callCbOnDidOpenWebSocket(sock: WebSocket, cb: () => any): void {
+export function callCbOnDidOpenWebSocket(sock: WebSocket, cb: () => unknown): void {
     // check whether WebSocket is already open (readyState === 1).
     if (sock.readyState === 1) {
         cb()

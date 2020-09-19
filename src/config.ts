@@ -20,7 +20,7 @@ function renameConfig(originalConfig: string, newConfig: string) {
     }
 }
 
-function combineConfig(extension: Extension, originalConfig1: string, originalConfig2: string, newConfig: string, truthTable: {[key: string]: any}) {
+function combineConfig(extension: Extension, originalConfig1: string, originalConfig2: string, newConfig: string, truthTable: {[key: string]: unknown}) {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     if (!configuration.has(originalConfig1) && !configuration.has(originalConfig2)) {
         return
@@ -50,7 +50,7 @@ function splitCommand(extension: Extension, config: string, newCommandConfig: st
     if (!configuration.has(config)) {
         return
     }
-    const originalConfig: { [key: string]: any } = configuration.get(config, {})
+    const originalConfig: { [key: string]: unknown } = configuration.get(config, {})
     if (originalConfig === undefined || !Object.keys(originalConfig).includes('command')) {
         return
     }
