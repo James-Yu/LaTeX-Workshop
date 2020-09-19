@@ -208,7 +208,7 @@ export class Builder {
                 }, (progress, token) => {
                     token.onCancellationRequested(this.kill.bind(this))
                     this.extension.buildInfo.buildStarted(progress)
-                    const p = new Promise(resolve => {
+                    const p = new Promise<void>(resolve => {
                         this.extension.buildInfo.setResolveToken(resolve)
                     })
                     return p

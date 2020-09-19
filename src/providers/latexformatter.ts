@@ -171,14 +171,14 @@ export class LaTexFormatter {
                 this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
                 this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
-                resolve()
+                resolve([])
             })
             worker.on('close', code => {
                 if (code !== 0) {
                     this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                     this.extension.logger.addLogMessage(`Formatting failed with exit code ${code}`)
                     this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
-                    return resolve()
+                    return resolve([])
                 }
                 const stdout = stdoutBuffer.join('')
                 if (stdout !== '') {
@@ -193,7 +193,7 @@ export class LaTexFormatter {
                     return resolve(edit)
                 }
 
-                return resolve()
+                return resolve([])
             })
         })
 

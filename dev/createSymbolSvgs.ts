@@ -44,7 +44,7 @@ function loadSnippets() {
         }
     } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' }))
 
-    const mathSymbolPromises: Promise<any>[] = []
+    const mathSymbolPromises: Promise<void>[] = []
     for (const category in snippets.mathSymbols) {
         for (let i = 0; i < snippets.mathSymbols[category].length; i++) {
             const symbol = snippets.mathSymbols[category][i]
