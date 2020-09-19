@@ -73,7 +73,7 @@ export class Command implements IProvider {
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         let range: vscode.Range | undefined = undefined
         if (document && position) {
-            const startPos = document.lineAt(position).text.lastIndexOf('\\', position.character)
+            const startPos = document.lineAt(position).text.lastIndexOf('\\', position.character - 1)
             if (startPos >= 0) {
                 range = new vscode.Range(position.line, startPos + 1, position.line, position.character)
             }
