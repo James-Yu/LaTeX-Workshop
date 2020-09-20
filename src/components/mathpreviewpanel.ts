@@ -21,13 +21,13 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
 }
 
 export class MathPreviewPanel {
-    extension: Extension
-    mathPreview: MathPreview
-    panel?: vscode.WebviewPanel
-    prevDocumentUri?: string
-    prevCursorPosition?: vscode.Position
-    prevNewCommands?: string
-    mathPreviewPanelSerializer: MathPreviewPanelSerializer
+    private readonly extension: Extension
+    private readonly mathPreview: MathPreview
+    private panel?: vscode.WebviewPanel
+    private prevDocumentUri?: string
+    private prevCursorPosition?: vscode.Position
+    private prevNewCommands?: string
+    readonly mathPreviewPanelSerializer: MathPreviewPanelSerializer
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -53,7 +53,7 @@ export class MathPreviewPanel {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
         await openWebviewPanel(panel, editorGroup)
-        this.extension.mathPreview.getColor()
+        this.mathPreview.getColor()
         setTimeout(() => this.update(), 700)
     }
 
@@ -72,7 +72,7 @@ export class MathPreviewPanel {
         this.clearCache()
     }
 
-    clearCache() {
+    private clearCache() {
         this.prevDocumentUri = undefined
         this.prevCursorPosition = undefined
         this.prevNewCommands = undefined
@@ -133,7 +133,7 @@ export class MathPreviewPanel {
         return this.panel.webview.postMessage({type: 'mathImage', src: svgDataUrl })
     }
 
-    getTexMath(document: vscode.TextDocument, position: vscode.Position) {
+    private getTexMath(document: vscode.TextDocument, position: vscode.Position) {
         const texMath = this.mathPreview.findMathEnvIncludingPosition(document, position)
         if (texMath) {
             // this.renderCursor(document, texMath)
