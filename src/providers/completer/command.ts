@@ -43,13 +43,18 @@ export class Command implements IProvider {
         Object.keys(defaultCmds).forEach(key => {
             if (key in snippetReplacements) {
                 const action = snippetReplacements[key]
-                if (action !== '') {
-                    defaultCmds[key].snippet = action
-                    this.defaultCmds.push(this.entryCmdToCompletion(key, defaultCmds[key]))
+                if (action === '') {
+                    return
                 }
-            } else {
-                this.defaultCmds.push(this.entryCmdToCompletion(key, defaultCmds[key]))
+                defaultCmds[key].snippet = action
+            } else if (key === 'begin') {
+                // Tweak \begin{
+                const autoClosing = vscode.workspace.getConfiguration('editor').get('autoClosingBrackets') as string
+                if (autoClosing !== 'never') {
+                    defaultCmds[key].snippet = 'begin{$0}'
+                }
             }
+            this.defaultCmds.push(this.entryCmdToCompletion(key, defaultCmds[key]))
         })
 
         // Initialize default env begin-end pairs
@@ -62,6 +67,7 @@ export class Command implements IProvider {
         this.defaultCmds.filter(cmd => bracketCmds.includes(this.getCmdName(cmd))).forEach(cmd => {
             this.bracketCmds[cmd.label.slice(1)] = cmd
         })
+
     }
 
     provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
@@ -73,7 +79,7 @@ export class Command implements IProvider {
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         let range: vscode.Range | undefined = undefined
         if (document && position) {
-            const startPos = document.lineAt(position).text.lastIndexOf('\\', position.character)
+            const startPos = document.lineAt(position).text.lastIndexOf('\\', position.character - 1)
             if (startPos >= 0) {
                 range = new vscode.Range(position.line, startPos + 1, position.line, position.character)
             }

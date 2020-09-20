@@ -150,9 +150,12 @@ export class Environment implements IProvider {
 
         if (snippetType === EnvSnippetType.ForBegin) {
             // If a closing '}' after '\begin{' has already been inserted, we need to remove it as it is already included in the snippets
-            const word = args.document.lineAt(args.position).text.slice(args.position.character - '\\begin{'.length, args.position.character + 2)
-            if (word === '\\begin{}') {
-                const snippetRange = new vscode.Range(args.position, args.position.translate(0, 1))
+            const autoClosing = vscode.workspace.getConfiguration('editor').get('autoClosingBrackets') as string
+            const line = args.document.lineAt(args.position).text
+            const word = line.slice(line.lastIndexOf('\\', args.position.character), args.position.character + 2)
+            if (autoClosing !== 'never' && word.match(/\\begin{[a-zA-Z]*}/)) {
+                const rangeBegin = line.lastIndexOf('{', args.position.character) + 1
+                const snippetRange = new vscode.Range(args.position.line, rangeBegin, args.position.line, args.position.character + 1)
                 suggestions.forEach(c => {c.range = snippetRange} )
             } else {
                 suggestions.forEach(c => {
