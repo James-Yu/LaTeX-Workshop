@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import {MathPreview, TexMathEnv} from '../providers/preview/mathpreview'
+import type {MathPreview, TexMathEnv} from '../providers/preview/mathpreview'
 import {openWebviewPanel} from '../utils/webview'
 import type {Extension} from '../main'
 
