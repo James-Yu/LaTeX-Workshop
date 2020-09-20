@@ -5,6 +5,14 @@ import {openWebviewPanel} from '../utils/webview'
 import type {Extension} from '../main'
 
 
+type UpdateEvent = {
+    type: 'edit',
+    event: vscode.TextDocumentChangeEvent
+} | {
+    type: 'selection',
+    event: vscode.TextEditorSelectionChangeEvent
+}
+
 export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
     private readonly extension: Extension
 
@@ -24,6 +32,7 @@ export class MathPreviewPanel {
     private readonly extension: Extension
     private readonly mathPreview: MathPreview
     private panel?: vscode.WebviewPanel
+    private prevEditTime = 0
     private prevDocumentUri?: string
     private prevCursorPosition?: vscode.Position
     private prevNewCommands?: string
@@ -58,10 +67,24 @@ export class MathPreviewPanel {
     }
 
     initializePanel(panel: vscode.WebviewPanel) {
+        const disposable = vscode.Disposable.from(
+            vscode.workspace.onDidChangeTextDocument( (event) => {
+                this.extension.mathPreviewPanel.update({type: 'edit', event})
+            }),
+            vscode.window.onDidChangeTextEditorSelection( (event) => {
+                this.extension.mathPreviewPanel.update({type: 'selection', event})
+            })
+        )
         this.panel = panel
         panel.onDidDispose(() => {
+            disposable.dispose()
             this.clearCache()
             this.panel = undefined
+        })
+        panel.onDidChangeViewState((ev) => {
+            if (ev.webviewPanel.visible) {
+                this.update()
+            }
         })
         panel.webview.onDidReceiveMessage(() => this.update())
     }
@@ -73,6 +96,7 @@ export class MathPreviewPanel {
     }
 
     private clearCache() {
+        this.prevEditTime = 0
         this.prevDocumentUri = undefined
         this.prevCursorPosition = undefined
         this.prevNewCommands = undefined
@@ -105,9 +129,16 @@ export class MathPreviewPanel {
         </html>`
     }
 
-    async update() {
+    async update(ev?: UpdateEvent) {
         if (!this.panel || !this.panel.visible) {
             return
+        }
+        if (ev?.type === 'edit') {
+            this.prevEditTime = Date.now()
+        } else if (ev?.type === 'selection') {
+            if (Date.now() - this.prevEditTime < 100) {
+                return
+            }
         }
         const editor = vscode.window.activeTextEditor
         const document = editor?.document

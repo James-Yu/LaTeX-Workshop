@@ -196,13 +196,6 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    context.subscriptions.push(vscode.workspace.onDidChangeTextDocument( () => {
-        extension.mathPreviewPanel.update()
-    }))
-    context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection( () => {
-        extension.mathPreviewPanel.update()
-    }))
-
     let isLaTeXActive = false
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
