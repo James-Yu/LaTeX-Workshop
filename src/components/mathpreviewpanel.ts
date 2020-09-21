@@ -51,6 +51,7 @@ export class MathPreviewPanel {
             }
             return
         }
+        this.mathPreview.getColor()
         const panel = vscode.window.createWebviewPanel(
             'latex-workshop-mathpreview',
             'Math Preview',
@@ -62,8 +63,6 @@ export class MathPreviewPanel {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
         await openWebviewPanel(panel, editorGroup)
-        this.mathPreview.getColor()
-        setTimeout(() => this.update(), 700)
     }
 
     initializePanel(panel: vscode.WebviewPanel) {
