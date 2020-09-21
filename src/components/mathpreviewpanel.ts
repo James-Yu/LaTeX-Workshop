@@ -70,9 +70,6 @@ export class MathPreviewPanel {
     initializePanel(panel: vscode.WebviewPanel) {
         const disposable = vscode.Disposable.from(
             vscode.workspace.onDidChangeTextDocument( (event) => {
-                if (!this.extension.manager.hasTexId(event.document.languageId)) {
-                    return
-                }
                 this.extension.mathPreviewPanel.update({type: 'edit', event})
             }),
             vscode.window.onDidChangeTextEditorSelection( (event) => {
@@ -155,6 +152,9 @@ export class MathPreviewPanel {
             return
         }
         const documentUri = document.uri.toString()
+        if (ev?.type === 'edit' && documentUri !== ev.event.document.uri.toString()) {
+            return
+        }
         const position = editor.selection.active
         const texMath = this.getTexMath(document, position)
         if (!texMath) {
