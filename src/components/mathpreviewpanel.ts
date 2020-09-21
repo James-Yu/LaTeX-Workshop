@@ -118,7 +118,6 @@ export class MathPreviewPanel {
                 #math {
                     padding-top: 35px;
                     padding-left: 50px;
-                    visibility: hidden;
                 }
             </style>
             <script src='${jsPathSrc}' defer></script>
