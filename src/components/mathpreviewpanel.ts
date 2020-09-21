@@ -23,6 +23,7 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
     deserializeWebviewPanel(panel: vscode.WebviewPanel) {
         this.extension.mathPreviewPanel.initializePanel(panel)
         panel.webview.html = this.extension.mathPreviewPanel.getHtml(panel.webview)
+        this.extension.logger.addLogMessage('Math preview panel: restored')
         return Promise.resolve()
     }
 
@@ -63,11 +64,15 @@ export class MathPreviewPanel {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
         await openWebviewPanel(panel, editorGroup)
+        this.extension.logger.addLogMessage('Math preview panel: opened')
     }
 
     initializePanel(panel: vscode.WebviewPanel) {
         const disposable = vscode.Disposable.from(
             vscode.workspace.onDidChangeTextDocument( (event) => {
+                if (!this.extension.manager.hasTexId(event.document.languageId)) {
+                    return
+                }
                 this.extension.mathPreviewPanel.update({type: 'edit', event})
             }),
             vscode.window.onDidChangeTextEditorSelection( (event) => {
@@ -79,19 +84,24 @@ export class MathPreviewPanel {
             disposable.dispose()
             this.clearCache()
             this.panel = undefined
+            this.extension.logger.addLogMessage('Math preview panel: disposed')
         })
         panel.onDidChangeViewState((ev) => {
             if (ev.webviewPanel.visible) {
                 this.update()
             }
         })
-        panel.webview.onDidReceiveMessage(() => this.update())
+        panel.webview.onDidReceiveMessage(() => {
+            this.extension.logger.addLogMessage('Math preview panel: initialized')
+            this.update()
+        })
     }
 
     close() {
         this.panel?.dispose()
         this.panel = undefined
         this.clearCache()
+        this.extension.logger.addLogMessage('Math preview panel: closed')
     }
 
     private clearCache() {
@@ -140,7 +150,7 @@ export class MathPreviewPanel {
         }
         const editor = vscode.window.activeTextEditor
         const document = editor?.document
-        if (!editor || document?.languageId !== 'latex') {
+        if (!editor || !document?.languageId || !this.extension.manager.hasTexId(document.languageId)) {
             this.clearCache()
             return
         }
