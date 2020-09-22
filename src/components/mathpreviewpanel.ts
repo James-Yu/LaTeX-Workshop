@@ -165,11 +165,14 @@ export class MathPreviewPanel {
         if ( position.line === this.prevCursorPosition?.line && documentUri === this.prevDocumentUri ) {
             cachedCommands = this.prevNewCommands
         }
-        const {svgDataUrl, newCommands} = await this.mathPreview.generateSVG(document, texMath, cachedCommands)
+        const result = await this.mathPreview.generateSVG(document, texMath, cachedCommands).catch(() => undefined)
+        if (!result) {
+            return
+        }
         this.prevDocumentUri = documentUri
-        this.prevNewCommands = newCommands
+        this.prevNewCommands = result.newCommands
         this.prevCursorPosition = position
-        return this.panel.webview.postMessage({type: 'mathImage', src: svgDataUrl })
+        return this.panel.webview.postMessage({type: 'mathImage', src: result.svgDataUrl })
     }
 
     private getTexMath(document: vscode.TextDocument, position: vscode.Position) {
