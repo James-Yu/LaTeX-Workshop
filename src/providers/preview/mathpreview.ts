@@ -10,7 +10,7 @@ import {Extension} from '../../main'
 import {Suggestion as ReferenceEntry} from '../completer/reference'
 import {getCurrentThemeLightness} from '../../utils/theme'
 
-type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
+export type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
 export class MathPreview {
     private readonly extension: Extension
@@ -20,6 +20,7 @@ export class MathPreview {
     constructor(extension: Extension) {
         this.extension = extension
         this.mj = new MathJaxPool()
+        vscode.workspace.onDidChangeConfiguration(() => this.getColor())
     }
 
     private postProcessNewCommands(commands: string): string {
@@ -249,6 +250,19 @@ export class MathPreview {
         return newTex
     }
 
+    async generateSVG(document: vscode.TextDocument, tex: TexMathEnv, newCommands0?: string) {
+        const newCommands: string = newCommands0 ?? (await this.findNewCommand(document.getText())).join('')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const scale = configuration.get('hover.preview.scale') as number
+        const s = this.mathjaxify(tex.texString, tex.envname)
+        const xml = await this.mj.typeset({
+            math: newCommands + this.stripTeX(s),
+            format: 'TeX',
+            svgNode: true,
+        }, {scale, color: this.color})
+        return {svgDataUrl: utils.svgToDataUrl(xml), newCommands}
+    }
+
     private stripTeX(tex: string): string {
         if (tex.startsWith('$$') && tex.endsWith('$$')) {
             tex = tex.slice(2, tex.length - 2)
@@ -286,7 +300,7 @@ export class MathPreview {
         return false
     }
 
-    private renderCursor(document: vscode.TextDocument, range: vscode.Range): string {
+    renderCursor(document: vscode.TextDocument, range: vscode.Range): string {
         const editor = vscode.window.activeTextEditor
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const conf = configuration.get('hover.preview.cursor.enabled') as boolean
@@ -357,6 +371,26 @@ export class MathPreview {
             }
         }
         return undefined
+    }
+
+    findMathEnvIncludingPosition(document: vscode.TextDocument, position: vscode.Position): TexMathEnv | undefined {
+        const envNamePatMathMode = /(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)/
+        const envBeginPatMathMode = /\\\[|\\\(|\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
+        let texMath = this.findHoverOnTex(document, position)
+        if (texMath && (texMath.envname === '$' || texMath.envname.match(envNamePatMathMode))) {
+            return texMath
+        }
+        const beginPos = this.findBeginPair(document, envBeginPatMathMode, position)
+        if (beginPos) {
+            texMath = this.findHoverOnTex(document, beginPos)
+            if (texMath) {
+                const beginEndRange = texMath.range
+                if (beginEndRange.contains(position)) {
+                    return texMath
+                }
+            }
+        }
+        return
     }
 
     private getFirstRmemberedSubstring(s: string, pat: RegExp): string {

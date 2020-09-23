@@ -457,9 +457,24 @@
         "command": "latex-workshop.bibalignsort",
         "title": "Sort and align BibTeX file",
         "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.openMathPreviewPanel",
+        "title": "Open Math Preview Panel",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.closeMathPreviewPanel",
+        "title": "Close Math Preview Panel",
+        "category": "LaTeX Workshop"
       }
     ],
     "keybindings": [
+      {
+        "key": "ctrl+alt+m",
+        "mac": "cmd+alt+m",
+        "command": "latex-workshop.openMathPreviewPanel"
+      },
       {
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
@@ -1892,6 +1907,25 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "Sort content when calling VSCode format on a .bib file."
+        },
+        "latex-workshop.mathpreviewpanel.editorGroup": {
+          "type": "string",
+          "default": "below",
+          "enum": [
+            "current",
+            "left",
+            "right",
+            "above",
+            "below"
+          ],
+          "markdownDescription": "The editor group in which to open the math preview panel.",
+          "enumDescriptions": [
+            "Use the current editor group",
+            "Put the math preview panel in a new group on the left of the current one",
+            "Put the math preview panel in a new group on the right of the current one",
+            "Put the math preview panel in a new group above the current one",
+            "Put the math preview panel in a new group below the current one"
+          ]
         }
       }
     },
