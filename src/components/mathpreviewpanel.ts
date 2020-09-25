@@ -46,10 +46,19 @@ export class MathPreviewPanel {
     private prevCursorPosition?: vscode.Position
     private prevNewCommands?: string
     readonly mathPreviewPanelSerializer: MathPreviewPanelSerializer
+    private needCursor: boolean
 
     constructor(extension: Extension) {
         this.extension = extension
         this.mathPreviewPanelSerializer = new MathPreviewPanelSerializer(extension)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.needCursor = configuration.get('mathpreviewpanel.curosr.enabled', false)
+        vscode.workspace.onDidChangeConfiguration((e) => {
+            if (e.affectsConfiguration('latex-workshop.mathpreviewpanel.curosr.enabled')) {
+                const conf = vscode.workspace.getConfiguration('latex-workshop')
+                this.needCursor = conf.get('mathpreviewpanel.curosr.enabled', false)
+            }
+        })
     }
 
     private get mathPreview() {
@@ -164,11 +173,14 @@ export class MathPreviewPanel {
         if (!this.panel || !this.panel.visible) {
             return
         }
-        if (ev?.type === 'edit') {
-            this.prevEditTime = Date.now()
-        } else if (ev?.type === 'selection') {
-            if (Date.now() - this.prevEditTime < 100) {
+        if (!this.needCursor) {
+            if (ev?.type === 'edit') {
+                this.prevEditTime = Date.now()
                 return
+            } else if (ev?.type === 'selection') {
+                if (Date.now() - this.prevEditTime < 100) {
+                    return
+                }
             }
         }
         const editor = vscode.window.activeTextEditor
@@ -191,6 +203,9 @@ export class MathPreviewPanel {
         if ( position.line === this.prevCursorPosition?.line && documentUri === this.prevDocumentUri ) {
             cachedCommands = this.prevNewCommands
         }
+        if (this.needCursor) {
+            await this.renderCursor(document, texMath)
+        }
         const result = await this.mathPreview.generateSVG(texMath, cachedCommands).catch(() => undefined)
         if (!result) {
             return
@@ -204,7 +219,6 @@ export class MathPreviewPanel {
     private getTexMath(document: vscode.TextDocument, position: vscode.Position) {
         const texMath = this.mathPreview.findMathEnvIncludingPosition(document, position)
         if (texMath) {
-            // this.renderCursor(document, texMath)
             if (texMath.envname !== '$') {
                 return texMath
             }
@@ -215,8 +229,8 @@ export class MathPreviewPanel {
         return
     }
 
-    renderCursor(document: vscode.TextDocument, tex: TexMathEnv) {
-        const s = this.mathPreview.renderCursor(document, tex.range)
+    async renderCursor(document: vscode.TextDocument, tex: TexMathEnv) {
+        const s = await this.mathPreview.renderCursor(document, tex)
         tex.texString = s
     }
 
