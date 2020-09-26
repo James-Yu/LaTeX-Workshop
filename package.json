@@ -793,6 +793,12 @@
                 "jnw2tex",
                 "latexmk"
               ]
+            },
+            {
+              "name": "tectonic",
+              "tools": [
+                "tectonic"
+              ]
             }
           ],
           "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
@@ -906,6 +912,16 @@
               "args": [
                 "-e",
                 "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+              ],
+              "env": {}
+            },
+            {
+              "name": "tectonic",
+              "command": "tectonic",
+              "args": [
+                "--synctex",
+                "--keep-logs",
+                "%DOC%.tex"
               ],
               "env": {}
             }
