@@ -150,6 +150,7 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
+                this.extension.logger.addLogMessage('Execute syncTexJsForward for the internal PDF viewer.')
                 const record = synctexjs.syncTexJsForward(line, filePath, pdfFile)
                 this.extension.viewer.syncTeX(pdfFile, record)
             } catch (e) {
