@@ -464,12 +464,9 @@ export class Commander {
                 itemString += '\\item '
                 newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length)
             }
-            return editor.edit(editBuilder => {
-                editBuilder.insert(cursorPos, '\n' + itemString)
-                }).then(() => {
-                    editor.selection = new vscode.Selection(newCursorPos, newCursorPos)
-                }
-            ).then(() => { editor.revealRange(editor.selection) })
+            return editor.edit(editBuilder => { editBuilder.insert(cursorPos, '\n' + itemString) })
+                         .then(() => { editor.selection = new vscode.Selection(newCursorPos, newCursorPos) })
+                         .then(() => { editor.revealRange(editor.selection) })
         }
         return editor.edit(() => {
             vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
