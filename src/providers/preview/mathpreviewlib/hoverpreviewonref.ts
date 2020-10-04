@@ -4,15 +4,18 @@ import {MathJaxPool, TypesetArg} from '../mathjaxpool'
 import type {Suggestion as ReferenceEntry} from '../../completer/reference'
 import type {Extension} from '../../../main'
 import type {TexMathEnv} from './texmathenvfinder'
-import * as mputils from './mathpreviewutils'
+import type {MathPreviewUtils} from './mathpreviewutils'
+
 
 export class HoverPreviewOnRefProvider {
     private readonly extension: Extension
     private readonly mj: MathJaxPool
+    private readonly mputils: MathPreviewUtils
 
-    constructor(extension: Extension, mj: MathJaxPool) {
+    constructor(extension: Extension, mj: MathJaxPool, mputils: MathPreviewUtils) {
         this.extension = extension
         this.mj = mj
+        this.mputils = mputils
     }
 
     async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
@@ -26,12 +29,12 @@ export class HoverPreviewOnRefProvider {
             tag = refData.label
         }
         const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
-        const s = mputils.mathjaxify(newTex, tex.envname, {stripLabel: false})
+        const s = this.mputils.mathjaxify(newTex, tex.envname, {stripLabel: false})
         const obj = { labels : {}, IDs: {}, startNumber: 0 }
         const typesetArg: TypesetArg = {
             width: 50,
             equationNumbers: 'AMS',
-            math: newCommand + mputils.stripTeX(s),
+            math: newCommand + this.mputils.stripTeX(s),
             format: 'TeX',
             svgNode: true,
             state: {AMS: obj}
@@ -44,7 +47,7 @@ export class HoverPreviewOnRefProvider {
             const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
             const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
             mdLink.isTrusted = true
-            return new vscode.Hover( [mputils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+            return new vscode.Hover( [this.mputils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
         } catch(e) {
             this.extension.logger.logOnRejected(e)
             this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg.math}`)

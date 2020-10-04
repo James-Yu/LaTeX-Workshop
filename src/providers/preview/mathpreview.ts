@@ -11,7 +11,7 @@ import {TextDocumentLike} from './mathpreviewlib/textdocumentlike'
 import {NewCommandFinder} from './mathpreviewlib/newcommandfinder'
 import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
 import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
-import * as mputils from './mathpreviewlib/mathpreviewutils'
+import {MathPreviewUtils} from './mathpreviewlib/mathpreviewutils'
 
 export {TexMathEnv} from './mathpreviewlib/texmathenvfinder'
 
@@ -24,15 +24,17 @@ export class MathPreview {
     private readonly newCommandFinder: NewCommandFinder
     private readonly texMathEnvFinder: TeXMathEnvFinder
     private readonly hoverPreviewOnRefProvider: HoverPreviewOnRefProvider
+    readonly mputils: MathPreviewUtils
 
     constructor(extension: Extension) {
         this.extension = extension
         this.mj = new MathJaxPool()
         vscode.workspace.onDidChangeConfiguration(() => this.getColor())
         this.cursorRenderer = new CursorRenderer()
+        this.mputils = new MathPreviewUtils()
         this.newCommandFinder = new NewCommandFinder(extension)
         this.texMathEnvFinder = new TeXMathEnvFinder()
-        this.hoverPreviewOnRefProvider = new HoverPreviewOnRefProvider(extension, this.mj)
+        this.hoverPreviewOnRefProvider = new HoverPreviewOnRefProvider(extension, this.mj, this.mputils)
     }
 
     findProjectNewCommand(ctoken: vscode.CancellationToken): Promise<string> {
@@ -43,9 +45,9 @@ export class MathPreview {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
         let s = this.cursorRenderer.renderCursor(document, tex.range, this.color)
-        s = mputils.mathjaxify(s, tex.envname)
+        s = this.mputils.mathjaxify(s, tex.envname)
         const typesetArg: TypesetArg = {
-            math: newCommand + mputils.stripTeX(s),
+            math: newCommand + this.mputils.stripTeX(s),
             format: 'TeX',
             svgNode: true,
         }
@@ -53,7 +55,7 @@ export class MathPreview {
         try {
             const xml = await this.mj.typeset(typesetArg, typesetOpts)
             const md = utils.svgToDataUrl(xml)
-            return new vscode.Hover(new vscode.MarkdownString(mputils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
+            return new vscode.Hover(new vscode.MarkdownString(this.mputils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
         } catch(e) {
             this.extension.logger.logOnRejected(e)
             this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg.math}`)
@@ -102,9 +104,9 @@ export class MathPreview {
         const newCommands: string = newCommands0 ?? (await this.newCommandFinder.findNewCommand(document.getText())).join('')
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
-        const s = mputils.mathjaxify(tex.texString, tex.envname)
+        const s = this.mputils.mathjaxify(tex.texString, tex.envname)
         const xml = await this.mj.typeset({
-            math: newCommands + mputils.stripTeX(s),
+            math: newCommands + this.mputils.stripTeX(s),
             format: 'TeX',
             svgNode: true,
         }, {scale, color: this.color})
