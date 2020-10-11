@@ -62,11 +62,23 @@ export class Glossary implements IProvider {
                 switch (node.name) {
                     case 'newglossaryentry':
                         type = GlossaryType.glossary
-                        detail = this.getGlossaryNodeDetail(node)
+                        detail = this.getShortNodeDetail(node)
+                        break
+                    case 'provideglossaryentry':
+                        type = GlossaryType.glossary
+                        detail = this.getShortNodeDetail(node)
+                        break
+                    case 'longnewglossaryentry':
+                        type = GlossaryType.glossary
+                        detail = this.getLongNodeDetail(node)
+                        break
+                    case 'longprovideglossaryentry':
+                        type = GlossaryType.glossary
+                        detail = this.getLongNodeDetail(node)
                         break
                     case 'newacronym':
                         type = GlossaryType.acronym
-                        detail = this.getAcronymNodeDetail(node)
+                        detail = this.getLongNodeDetail(node)
                         break
                     default:
                         break
@@ -85,7 +97,9 @@ export class Glossary implements IProvider {
     }
 
     /**
-     * Parses the second entry of a \newacronym command
+     * Parses "long nodes" such as \newacronym
+     *
+     * Spec: \newacronym[〈key-val list〉]{〈label〉}{〈abbrv〉}{〈long〉}
      *
      * Fairly straightforward, a \newacronym command takes the form
      *     \newacronym{lw}{LW}{LaTeX Workshop}
@@ -94,7 +108,7 @@ export class Glossary implements IProvider {
      *
      * @param node the \newacronym node from the parser
      */
-    private getAcronymNodeDetail(node: latexParser.Command): string | undefined {
+    private getLongNodeDetail(node: latexParser.Command): string | undefined {
         const arr: string[] = []
         if (node.args[2]?.kind === 'arg.group') {
             node.args[2].content.forEach(subNode => {
@@ -111,7 +125,9 @@ export class Glossary implements IProvider {
     }
 
     /**
-     * Parses the description from a \newglossaryentry
+     * Parses the description from "short nodes" like \newglossaryentry
+     *
+     * Spec: \newglossaryentry{〈label〉}{〈key=value list〉}
      *
      * Example glossary entries:
      *     \newglossaryentry{lw}{name={LaTeX Workshop}, description={What this extension is}}
@@ -121,7 +137,7 @@ export class Glossary implements IProvider {
      *
      * @param node the \newglossaryentry node from the parser
      */
-    private getGlossaryNodeDetail(node: latexParser.Command): string | undefined {
+    private getShortNodeDetail(node: latexParser.Command): string | undefined {
         const arr: string[] = []
         let result: RegExpExecArray | null
         let lastNodeWasDescription = false
