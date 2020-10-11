@@ -4,8 +4,13 @@ import {latexParser} from 'latex-utensils'
 import {Extension} from '../../main'
 import {IProvider} from './interface'
 
+enum GlossaryType {
+    glossary,
+    acronym
+}
+
 export interface Suggestion extends vscode.CompletionItem {
-    type: 'glossary' | 'acronym'
+    type: GlossaryType
 }
 
 export class Glossary implements IProvider {
@@ -50,21 +55,25 @@ export class Glossary implements IProvider {
     private getRefFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
         const refs: Suggestion[] = []
         let detail: string | undefined
+        let type: GlossaryType | undefined
 
         nodes.forEach(node => {
             if (latexParser.isCommand(node) && node.args.length > 0) {
-                if (node.name === 'newglossaryentry' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-                    detail = this.getGlossaryNodeDetail(node)
+                switch (node.name) {
+                    case 'newglossaryentry':
+                        type = GlossaryType.glossary
+                        detail = this.getGlossaryNodeDetail(node)
+                        break
+                    case 'newacronym':
+                        type = GlossaryType.acronym
+                        detail = this.getAcronymNodeDetail(node)
+                        break
+                    default:
+                        break
+                }
+                if (type !== undefined && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
                     refs.push({
-                        type: 'glossary',
-                        label: node.args[0].content[0].content,
-                        detail,
-                        kind: vscode.CompletionItemKind.Reference
-                    })
-                } else if (node.name === 'newacronym' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-                    detail = this.getAcronymNodeDetail(node)
-                    refs.push({
-                        type: 'acronym',
+                        type,
                         label: node.args[0].content[0].content,
                         detail,
                         kind: vscode.CompletionItemKind.Reference
@@ -153,7 +162,7 @@ export class Glossary implements IProvider {
                 return
             }
             cachedRefs.forEach(ref => {
-                if (ref.type === 'glossary') {
+                if (ref.type === GlossaryType.glossary) {
                     this.glossaries[ref.label] = ref
                 } else {
                     this.acronyms[ref.label] = ref
