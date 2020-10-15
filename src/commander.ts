@@ -241,9 +241,9 @@ export class Commander {
     }
 
     synctexonref(line: number, filePath: string) {
-        this.extension.logger.addLogMessage('SYNCTEX command invoked.')
+        this.extension.logger.addLogMessage('SYNCTEX command invoked on a reference.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
+            this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
             return
         }
         this.extension.locator.syncTeXOnRef({line, filePath})
