@@ -178,6 +178,7 @@ export class Locator {
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
+            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
@@ -235,6 +236,7 @@ export class Locator {
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
+            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {

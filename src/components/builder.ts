@@ -493,6 +493,7 @@ export class Builder {
             if (docker) {
                 switch (step.command) {
                     case 'latexmk':
+                        this.extension.logger.addLogMessage('Use Docker to invoke the command.')
                         if (process.platform === 'win32') {
                             step.command = path.resolve(this.extension.extensionRoot, './scripts/latexmk.bat')
                         } else {

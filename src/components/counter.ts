@@ -23,6 +23,7 @@ export class Counter {
         }
         let command = configuration.get('texcount.path') as string
         if (configuration.get('docker.enabled')) {
+            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/texcount.bat')
             } else {
