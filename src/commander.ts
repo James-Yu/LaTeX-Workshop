@@ -71,6 +71,8 @@ export class Commander {
             this.extension.logger.addLogMessage('Cannot start to build because the active editor is undefined.')
             return
         }
+        this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString()}`)
+        this.extension.logger.addLogMessage(`The languageId of the document: ${vscode.window.activeTextEditor.document.languageId}`)
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as string
