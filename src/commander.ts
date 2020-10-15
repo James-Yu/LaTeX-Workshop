@@ -68,6 +68,7 @@ export class Commander {
     async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage('BUILD command invoked.')
         if (!vscode.window.activeTextEditor) {
+            this.extension.logger.addLogMessage('Cannot start to build because the active editor is undefined.')
             return
         }
 
