@@ -325,6 +325,8 @@ export class Builder {
             this.extension.logParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
+                this.extension.logger.addLogMessage(`The environment variable $PATH: ${process.env.PATH}`)
+                this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
                 this.extension.buildInfo.buildEnded()
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
