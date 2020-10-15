@@ -221,7 +221,7 @@ export class Commander {
         try {
             this.extension.logger.addLogMessage('SYNCTEX command invoked.')
             if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-                this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
+                this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
                 return
             }
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
