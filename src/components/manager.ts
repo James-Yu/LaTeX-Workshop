@@ -165,7 +165,7 @@ export class Manager {
     }
 
     private inferLanguageId(filename: string): string | undefined {
-        const ext = path.extname(filename)
+        const ext = path.extname(filename).toLocaleLowerCase()
         if (ext === '.tex') {
             return 'latex'
         } else if (this.jlweaveExt.includes(ext)) {
