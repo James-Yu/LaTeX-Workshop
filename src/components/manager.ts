@@ -255,13 +255,14 @@ export class Manager {
                 this.extension.logger.addLogMessage('Start to find all dependencies.')
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
+                this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 this.initiateFileWatcher()
                 this.initiateBibWatcher()
                 this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
-                this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}.`)
+                this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)
             }
             return rootFile
         }
