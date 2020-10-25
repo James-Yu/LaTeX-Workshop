@@ -14,15 +14,18 @@ export class Server {
     private wsServer: ws.Server
     address?: string
     port?: number
+    url?: string
 
     constructor(extension: Extension) {
         this.extension = extension
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
+        const viewerURL = configuration.get('viewer.pdf.internal.url') as string
         this.httpServer.listen(viewerPort, '127.0.0.1', undefined, () => {
             const {address, port} = this.httpServer.address() as AddressInfo
             this.port = port
+            this.url = viewerURL.replace('%p', port.toString())
             if (address.includes(':')) {
                 // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
                 this.address = `[${address}]:${port}`
