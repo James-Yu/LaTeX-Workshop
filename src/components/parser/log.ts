@@ -157,7 +157,7 @@ export class Parser {
                 insideBoxWarn = false
                 continue
             }
-            // append the read line, since we have a corresponding result in the making
+            // Append the read line, since we have a corresponding result in the matching
             if (searchesEmptyLine) {
                 if (line.trim() === '' || (insideError && line.match(/^\s/))) {
                     currentResult.text = currentResult.text + '\n'
@@ -268,7 +268,7 @@ export class Parser {
                 fileStack.push(rootFile)
             }
         }
-        // push final result
+        // Push final result
         if (currentResult.type !== '' && !currentResult.text.match(bibEmpty)) {
             this.buildLog.push(currentResult)
         }
@@ -307,7 +307,7 @@ export class Parser {
         const linterLog: LinterLogEntry[] = []
         let match = re.exec(log)
         while (match) {
-            // this log may be for a single file in memory, in which case we override the
+            // This log may be for a single file in memory, in which case we override the
             // path with what is provided
             const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
             linterLog.push({
@@ -379,8 +379,8 @@ export class Parser {
         for (const file in diagsCollection) {
             let file1 = file
             if (['.tex', '.bbx', '.cbx', '.dtx'].includes(path.extname(file))) {
-                // only report ChkTeX errors on TeX files. This is done to avoid
-                // reporting errors in .sty files which for most users is irrelevant.
+                // Only report ChkTeX errors on TeX files. This is done to avoid
+                // reporting errors in .sty files, which are irrelevant for most users.
                 if (!fs.existsSync(file1) && convEnc) {
                     const f = convertFilenameEncoding(file1)
                     if (f !== undefined) {

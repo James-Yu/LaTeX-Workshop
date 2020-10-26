@@ -66,7 +66,7 @@ export class EnvPair {
     }
 
     /**
-     * Searches upwards or downwards for a begin or end environment captured by `pattern`.
+     * Search upwards or downwards for a begin or end environment captured by `pattern`.
      * The environment can also be \[...\] or \(...\)
      *
      * @param pattern A regex that matches begin or end environments. Note that the regex

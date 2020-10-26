@@ -61,7 +61,7 @@ function replaceMathDelimitersInRange(document: vs.TextDocument, range: vs.Range
     const oldDelimLength = oldDelim.length
     const endRange = range.with(range.end.translate(0, - oldDelimLength), range.end)
     const text = document.getText(endRange)
-    // Check if the end position really contains the end delimiter. This is not the cause when the opening and closing delimeters are on different lines
+    // Check if the end position really contains the end delimiter. This is not the cause when the opening and closing delimiters are on different lines
     const regex = new RegExp('^' + oldDelim.replace(/\$/g, '\\$') + '$')
     const regexResult = regex.exec(text)
     if (!regexResult) {
@@ -119,7 +119,7 @@ export class CodeActions {
             case 4:
             case 5:
             case 28:
-                // In all these cases just clear what ChxTeX highlighted.
+                // In all these cases just clear what ChkTeX highlighted.
                 replaceRangeWithString(document, range, '')
                 break
             case 1:

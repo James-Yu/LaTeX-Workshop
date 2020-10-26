@@ -439,7 +439,7 @@ export class Commander {
             })
         }
 
-        // if the line only constists of \item or \item[], delete its content
+        // if the line only consists of \item or \item[], delete its content
         if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
             const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
 
