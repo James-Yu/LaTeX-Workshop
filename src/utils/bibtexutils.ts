@@ -5,6 +5,7 @@ export interface BibtexFormatConfig {
     left: string,
     right: string,
     case: 'UPPERCASE' | 'lowercase',
+    trailingComma: boolean,
     sort: string[]
 }
 
@@ -108,6 +109,10 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
         s += ' '.repeat(maxFieldLength - field.name.length) + ' = '
         s += fieldToString(field.value, config.left, config.right)
     })
+
+    if (config.trailingComma) {
+        s += ','
+    }
 
     s += '\n}'
 
