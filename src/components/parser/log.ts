@@ -47,7 +47,7 @@ interface LinterLogEntry {
 interface LogEntry { type: string, file: string, text: string, line: number }
 
 class ParserState {
-    searchesEmptyLine = false
+    searchEmptyLine = false
     insideBoxWarn = false
     insideError = false
     currentResult: LogEntry = { type: '', file: '', text: '', line: 1 }
@@ -154,10 +154,10 @@ export class Parser {
             return
         }
         // Append the read line, since we have a corresponding result in the matching
-        if (state.searchesEmptyLine) {
+        if (state.searchEmptyLine) {
             if (line.trim() === '' || (state.insideError && line.match(/^\s/))) {
                 state.currentResult.text = state.currentResult.text + '\n'
-                state.searchesEmptyLine = false
+                state.searchEmptyLine = false
                 state.insideError = false
             } else {
                 const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
@@ -192,7 +192,7 @@ export class Parser {
                 line: parseInt(result[2], 10),
                 text: result[1]
             }
-            state.searchesEmptyLine = false
+            state.searchEmptyLine = false
             state.insideBoxWarn = true
             this.parseLine(line.substring(result[0].length), state, buildLog)
             return
@@ -208,7 +208,7 @@ export class Parser {
                 line: 1,
                 text: result[1]
             }
-            state.searchesEmptyLine = false
+            state.searchEmptyLine = false
             this.parseLine(line.substring(result[0].length), state, buildLog)
             return
         }
@@ -223,7 +223,7 @@ export class Parser {
                 line: parseInt(result[4], 10),
                 text: result[3] + result[5]
             }
-            state.searchesEmptyLine = true
+            state.searchEmptyLine = true
             this.parseLine(line.substring(result[0].length), state, buildLog)
             return
         }
@@ -238,7 +238,7 @@ export class Parser {
                 line: 1,
                 text: `No bib entry found for '${result[1]}'`
             }
-            state.searchesEmptyLine = false
+            state.searchEmptyLine = false
             this.parseLine(line.substring(result[0].length), state, buildLog)
             return
         }
@@ -254,7 +254,7 @@ export class Parser {
                 file: result[1] ? path.resolve(path.dirname(state.rootFile), result[1]) : filename,
                 line: result[2] ? parseInt(result[2], 10) : 1
             }
-            state.searchesEmptyLine = true
+            state.searchEmptyLine = true
             state.insideError = true
             this.parseLine(line.substring(result[0].length), state, buildLog)
             return
