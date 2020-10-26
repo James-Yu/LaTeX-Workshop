@@ -224,7 +224,6 @@ export class Parser {
                 text: result[3] + result[5]
             }
             state.searchEmptyLine = true
-            this.parseLine(line.substring(result[0].length), state, buildLog)
             return
         }
         result = line.match(biberWarn)
@@ -256,7 +255,6 @@ export class Parser {
             }
             state.searchEmptyLine = true
             state.insideError = true
-            this.parseLine(line.substring(result[0].length), state, buildLog)
             return
         }
         state.nested = this.parseLaTeXFileStack(line, state.fileStack, state.nested)
