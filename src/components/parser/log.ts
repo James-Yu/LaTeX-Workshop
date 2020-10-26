@@ -46,6 +46,21 @@ interface LinterLogEntry {
 
 interface LogEntry { type: string, file: string, text: string, line: number }
 
+class ParserState {
+    searchesEmptyLine = false
+    insideBoxWarn = false
+    insideError = false
+    currentResult: LogEntry = { type: '', file: '', text: '', line: 1 }
+    nested = 0
+    rootFile: string
+    fileStack: string[]
+
+    constructor(rootFilename: string) {
+        this.rootFile = rootFilename
+        this.fileStack = [this.rootFile]
+    }
+}
+
 export class Parser {
     private readonly extension: Extension
     isLaTeXmkSkipped: boolean = false
@@ -60,7 +75,7 @@ export class Parser {
 
     parse(log: string, rootFile?: string) {
         this.isLaTeXmkSkipped = false
-        // canonicalize line-endings
+        // Canonicalize line-endings
         log = log.replace(/(\r\n)|\r/g, '\n')
 
         if (log.match(latexmkPattern)) {
@@ -128,6 +143,129 @@ export class Parser {
         return false
     }
 
+   private parseLine(line: string, state: ParserState, buildLog: LogEntry[]) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
+        // Compose the current file
+        const filename = path.resolve(path.dirname(state.rootFile), state.fileStack[state.fileStack.length - 1])
+        // Skip the first line after a box warning, this is just garbage
+        if (state.insideBoxWarn) {
+            state.insideBoxWarn = false
+            return
+        }
+        // Append the read line, since we have a corresponding result in the matching
+        if (state.searchesEmptyLine) {
+            if (line.trim() === '' || (state.insideError && line.match(/^\s/))) {
+                state.currentResult.text = state.currentResult.text + '\n'
+                state.searchesEmptyLine = false
+                state.insideError = false
+            } else {
+                const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
+                if (packageExtraLineResult) {
+                    state.currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + (packageExtraLineResult[4] ? '.' : '')
+                    state.currentResult.line = parseInt(packageExtraLineResult[3], 10)
+                } else if (state.insideError) {
+                    const subLine = line.replace(messageLine, '$1')
+                    state.currentResult.text = state.currentResult.text + '\n' + subLine
+                } else {
+                    state.currentResult.text = state.currentResult.text + '\n' + line
+                }
+            }
+            return
+        }
+        for (const regexp of excludeRegexp) {
+            if (line.match(regexp)) {
+                return
+            }
+        }
+        let result = line.match(latexBox)
+        if (!result) {
+            result = line.match(latexBoxAlt)
+        }
+        if (result && configuration.get('message.badbox.show')) {
+            if (state.currentResult.type !== '') {
+                buildLog.push(state.currentResult)
+            }
+            state.currentResult = {
+                type: 'typesetting',
+                file: filename,
+                line: parseInt(result[2], 10),
+                text: result[1]
+            }
+            state.searchesEmptyLine = false
+            state.insideBoxWarn = true
+            this.parseLine(line.substring(result[0].length), state, buildLog)
+            return
+        }
+        result = line.match(latexBoxOutput)
+        if (result && configuration.get('message.badbox.show')) {
+            if (state.currentResult.type !== '') {
+                buildLog.push(state.currentResult)
+            }
+            state.currentResult = {
+                type: 'typesetting',
+                file: filename,
+                line: 1,
+                text: result[1]
+            }
+            state.searchesEmptyLine = false
+            this.parseLine(line.substring(result[0].length), state, buildLog)
+            return
+        }
+        result = line.match(latexWarn)
+        if (result) {
+            if (state.currentResult.type !== '') {
+                buildLog.push(state.currentResult)
+            }
+            state.currentResult = {
+                type: 'warning',
+                file: filename,
+                line: parseInt(result[4], 10),
+                text: result[3] + result[5]
+            }
+            state.searchesEmptyLine = true
+            this.parseLine(line.substring(result[0].length), state, buildLog)
+            return
+        }
+        result = line.match(biberWarn)
+        if (result) {
+            if (state.currentResult.type !== '') {
+                buildLog.push(state.currentResult)
+            }
+            state.currentResult = {
+                type: 'warning',
+                file: '',
+                line: 1,
+                text: `No bib entry found for '${result[1]}'`
+            }
+            state.searchesEmptyLine = false
+            this.parseLine(line.substring(result[0].length), state, buildLog)
+            return
+        }
+
+        result = line.match(latexError)
+        if (result) {
+            if (state.currentResult.type !== '') {
+                buildLog.push(state.currentResult)
+            }
+            state.currentResult = {
+                type: 'error',
+                text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
+                file: result[1] ? path.resolve(path.dirname(state.rootFile), result[1]) : filename,
+                line: result[2] ? parseInt(result[2], 10) : 1
+            }
+            state.searchesEmptyLine = true
+            state.insideError = true
+            this.parseLine(line.substring(result[0].length), state, buildLog)
+            return
+        }
+        state.nested = this.parseLaTeXFileStack(line, state.fileStack, state.nested)
+        if (state.fileStack.length === 0) {
+            state.fileStack.push(state.rootFile)
+        }
+    }
+
+
     private parseLaTeX(log: string, rootFile?: string) {
         if (rootFile === undefined) {
             rootFile = this.extension.manager.rootFile
@@ -136,156 +274,14 @@ export class Parser {
             this.extension.logger.addLogMessage('How can you reach this point?')
             return
         }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
 
         this.buildLogRaw = log
         const lines = log.split('\n')
         this.buildLog = []
 
-        class ParserState {
-            searchesEmptyLine = false
-            insideBoxWarn = false
-            insideError = false
-            currentResult: LogEntry = { type: '', file: '', text: '', line: 1 }
-            nested = 0
-            rootFile: string
-            fileStack: string[]
-
-            constructor(rootFilename: string) {
-                this.rootFile = rootFilename
-                this.fileStack = [this.rootFile]
-            }
-        }
-
-        function parseLine(line: string, state: ParserState, buildLog: LogEntry[]) {
-            // Compose the current file
-            const filename = path.resolve(path.dirname(state.rootFile), state.fileStack[state.fileStack.length - 1])
-            // Skip the first line after a box warning, this is just garbage
-            if (state.insideBoxWarn) {
-                state.insideBoxWarn = false
-                return
-            }
-            // Append the read line, since we have a corresponding result in the matching
-            if (state.searchesEmptyLine) {
-                if (line.trim() === '' || (state.insideError && line.match(/^\s/))) {
-                    state.currentResult.text = state.currentResult.text + '\n'
-                    state.searchesEmptyLine = false
-                    state.insideError = false
-                } else {
-                    const packageExtraLineResult = line.match(latexPackageWarningExtraLines)
-                    if (packageExtraLineResult) {
-                        state.currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + (packageExtraLineResult[4] ? '.' : '')
-                        state.currentResult.line = parseInt(packageExtraLineResult[3], 10)
-                    } else if (state.insideError) {
-                        const subLine = line.replace(messageLine, '$1')
-                        state.currentResult.text = state.currentResult.text + '\n' + subLine
-                    } else {
-                        state.currentResult.text = state.currentResult.text + '\n' + line
-                    }
-                }
-                return
-            }
-            let excluded = false
-            for (const regexp of excludeRegexp) {
-                if (line.match(regexp)) {
-                    excluded = true
-                    break
-                }
-            }
-            if (excluded) {
-                return
-            }
-            let result = line.match(latexBox)
-            if (!result) {
-                result = line.match(latexBoxAlt)
-            }
-            if (result && configuration.get('message.badbox.show')) {
-                if (state.currentResult.type !== '') {
-                    buildLog.push(state.currentResult)
-                }
-                state.currentResult = {
-                    type: 'typesetting',
-                    file: filename,
-                    line: parseInt(result[2], 10),
-                    text: result[1]
-                }
-                state.searchesEmptyLine = false
-                state.insideBoxWarn = true
-                parseLine(line.substring(result[0].length), state, buildLog)
-                return
-            }
-            result = line.match(latexBoxOutput)
-            if (result && configuration.get('message.badbox.show')) {
-                if (state.currentResult.type !== '') {
-                    buildLog.push(state.currentResult)
-                }
-                state.currentResult = {
-                    type: 'typesetting',
-                    file: filename,
-                    line: 1,
-                    text: result[1]
-                }
-                state.searchesEmptyLine = false
-                parseLine(line.substring(result[0].length), state, buildLog)
-                return
-            }
-            result = line.match(latexWarn)
-            if (result) {
-                if (state.currentResult.type !== '') {
-                    buildLog.push(state.currentResult)
-                }
-                state.currentResult = {
-                    type: 'warning',
-                    file: filename,
-                    line: parseInt(result[4], 10),
-                    text: result[3] + result[5]
-                }
-                state.searchesEmptyLine = true
-                parseLine(line.substring(result[0].length), state, buildLog)
-                return
-            }
-            result = line.match(biberWarn)
-            if (result) {
-                if (state.currentResult.type !== '') {
-                    buildLog.push(state.currentResult)
-                }
-                state.currentResult = {
-                    type: 'warning',
-                    file: '',
-                    line: 1,
-                    text: `No bib entry found for '${result[1]}'`
-                }
-                state.searchesEmptyLine = false
-                parseLine(line.substring(result[0].length), state, buildLog)
-                return
-            }
-
-            result = line.match(latexError)
-            if (result) {
-                if (state.currentResult.type !== '') {
-                    buildLog.push(state.currentResult)
-                }
-                state.currentResult = {
-                    type: 'error',
-                    text: (result[3] && result[3] !== 'LaTeX') ? `${result[3]}: ${result[4]}` : result[4],
-                    file: result[1] ? path.resolve(path.dirname(state.rootFile), result[1]) : filename,
-                    line: result[2] ? parseInt(result[2], 10) : 1
-                }
-                state.searchesEmptyLine = true
-                state.insideError = true
-                parseLine(line.substring(result[0].length), state, buildLog)
-                return
-            }
-            state.nested = Parser.parseLaTeXFileStack(line, state.fileStack, state.nested)
-            if (state.fileStack.length === 0) {
-                state.fileStack.push(state.rootFile)
-            }
-        }
-
         const state: ParserState = new ParserState(rootFile)
         for(const line of lines) {
-            parseLine(line, state, this.buildLog)
+            this.parseLine(line, state, this.buildLog)
         }
 
         // Push the final result
@@ -296,7 +292,7 @@ export class Parser {
         this.showCompilerDiagnostics()
     }
 
-    private static parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
+    private parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
             line = line.substr(result.index + 1)
