@@ -8,9 +8,18 @@ import {IProvider} from './interface'
 import {TexMathEnv} from '../preview/mathpreview'
 
 export interface ReferenceEntry extends vscode.CompletionItem {
-    file: string, // The file that defines the ref
-    position: vscode.Position, // The position that defines the ref
-    prevIndex?: {refNumber: string, pageNumber: string} // Stores the ref number
+    /**
+     *  The file that defines the ref.
+     */
+    file: string,
+    /**
+     * The position that defines the ref.
+     */
+    position: vscode.Position,
+    /**
+     *  Stores the ref number.
+     */
+    prevIndex?: {refNumber: string, pageNumber: string}
 }
 
 export type ReferenceDocType = {
