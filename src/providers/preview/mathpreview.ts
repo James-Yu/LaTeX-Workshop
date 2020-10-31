@@ -3,7 +3,7 @@ import * as vscode from 'vscode'
 import {MathJaxPool, TypesetArg} from './mathjaxpool'
 import * as utils from '../../utils/utils'
 import {Extension} from '../../main'
-import {Suggestion as ReferenceEntry} from '../completer/reference'
+import {ReferenceEntry} from '../completer/reference'
 import {getCurrentThemeLightness} from '../../utils/theme'
 
 import {CursorRenderer} from './mathpreviewlib/cursorrenderer'

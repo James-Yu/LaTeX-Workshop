@@ -6,7 +6,7 @@ import {latexParser} from 'latex-utensils'
 import {Extension} from '../../main'
 import {IProvider} from './interface'
 
-export interface Suggestion extends vscode.CompletionItem {
+export interface ReferenceEntry extends vscode.CompletionItem {
     file: string, // The file that defines the ref
     position: vscode.Position, // The position that defines the ref
     prevIndex?: {refNumber: string, pageNumber: string} // Stores the ref number
@@ -15,7 +15,7 @@ export interface Suggestion extends vscode.CompletionItem {
 export class Reference implements IProvider {
     private readonly extension: Extension
     // Here we use an object instead of an array for de-duplication
-    private readonly suggestions: {[id: string]: Suggestion} = {}
+    private readonly suggestions: {[id: string]: ReferenceEntry} = {}
     private prevIndexObj: { [k: string]: {refNumber: string, pageNumber: string} } = {}
 
     constructor(extension: Extension) {
@@ -61,7 +61,7 @@ export class Reference implements IProvider {
         }
     }
 
-    getRefDict(): {[key: string]: Suggestion} {
+    getRefDict(): {[key: string]: ReferenceEntry} {
         if (this.suggestions) {
             this.updateAll()
         }

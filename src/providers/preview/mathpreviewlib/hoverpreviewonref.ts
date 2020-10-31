@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as utils from '../../../utils/utils'
 import {MathJaxPool, TypesetArg} from '../mathjaxpool'
-import type {Suggestion as ReferenceEntry} from '../../completer/reference'
+import type {ReferenceEntry} from '../../completer/reference'
 import type {Extension} from '../../../main'
 import type {TexMathEnv} from './texmathenvfinder'
 import type {MathPreviewUtils} from './mathpreviewutils'
