@@ -130,6 +130,14 @@ export class MathPreview {
         return this.texMathEnvFinder.findHoverOnTex(document, position)
     }
 
+    findHoverOnRef( document: vscode.TextDocument | TextDocumentLike, position: vscode.Position, refData: ReferenceEntry, token: string) {
+        return this.texMathEnvFinder.findHoverOnRef(document, position, token, refData)
+    }
+
+    renderSvgOnRef(tex: TexMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>) {
+        return this.hoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, this.color)
+    }
+
     findMathEnvIncludingPosition(document: vscode.TextDocument, position: vscode.Position): TexMathEnv | undefined {
         return this.texMathEnvFinder.findMathEnvIncludingPosition(document, position)
     }
