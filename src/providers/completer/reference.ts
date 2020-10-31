@@ -5,11 +5,18 @@ import {latexParser} from 'latex-utensils'
 
 import {Extension} from '../../main'
 import {IProvider} from './interface'
+import {TexMathEnv} from '../preview/mathpreview'
 
 export interface ReferenceEntry extends vscode.CompletionItem {
     file: string, // The file that defines the ref
     position: vscode.Position, // The position that defines the ref
     prevIndex?: {refNumber: string, pageNumber: string} // Stores the ref number
+}
+
+export type ReferenceDocType = {
+    tex: TexMathEnv,
+    label: ReferenceEntry['label'],
+    prevIndex: ReferenceEntry['prevIndex']
 }
 
 export class Reference implements IProvider {
@@ -38,7 +45,8 @@ export class Reference implements IProvider {
             if (sug) {
                 const tex = this.extension.mathPreview.findHoverOnRef(args.document, args.position, sug, key)
                 if (tex) {
-                    sug.documentation = JSON.stringify({tex, label: sug.label, prevIndex: sug.prevIndex})
+                    const data: ReferenceDocType = {tex, label: sug.label, prevIndex: sug.prevIndex}
+                    sug.documentation = JSON.stringify(data)
                 } else {
                     sug.documentation = JSON.stringify(sug.documentation)
                 }

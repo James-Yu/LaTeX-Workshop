@@ -134,7 +134,8 @@ export class MathPreview {
         return this.texMathEnvFinder.findHoverOnRef(document, position, token, refData)
     }
 
-    renderSvgOnRef(tex: TexMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>) {
+    async renderSvgOnRef(tex: TexMathEnv, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, ctoken: vscode.CancellationToken) {
+        const newCommand = await this.findProjectNewCommand(ctoken)
         return this.hoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, this.color)
     }
 
