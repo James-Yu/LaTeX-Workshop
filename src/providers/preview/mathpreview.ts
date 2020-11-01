@@ -131,11 +131,11 @@ export class MathPreview {
     }
 
     findHoverOnRef(
-        document: vscode.TextDocument | TextDocumentLike,
-        position: vscode.Position,
         refData: Pick<ReferenceEntry, 'file' | 'position'>,
         token: string
     ) {
+        const document = TextDocumentLike.load(refData.file)
+        const position = refData.position
         return this.texMathEnvFinder.findHoverOnRef(document, position, refData, token)
     }
 

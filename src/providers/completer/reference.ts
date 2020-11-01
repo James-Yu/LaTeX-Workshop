@@ -52,7 +52,7 @@ export class Reference implements IProvider {
         for (const key of keys) {
             const sug = this.suggestions[key]
             if (sug) {
-                const tex = this.extension.mathPreview.findHoverOnRef(args.document, args.position, sug, key)
+                const tex = this.extension.mathPreview.findHoverOnRef(sug, key)
                 if (tex) {
                     const data: ReferenceDocType = {tex, label: sug.label, prevIndex: sug.prevIndex}
                     sug.documentation = JSON.stringify(data)
