@@ -76,7 +76,7 @@ export class MathPreview {
         const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
         mdLink.isTrusted = true
         if (configuration.get('hover.ref.enabled') as boolean) {
-            const tex = this.texMathEnvFinder.findHoverOnRef(document, position, token, refData)
+            const tex = this.texMathEnvFinder.findHoverOnRef(document, position, refData, token)
             if (tex) {
                 const newCommands = await this.findProjectNewCommand(ctoken)
                 return this.hoverPreviewOnRefProvider.provideHoverPreviewOnRef(tex, newCommands, refData, this.color)
@@ -91,7 +91,7 @@ export class MathPreview {
         return new vscode.Hover([md, mdLink], refRange)
     }
 
-    private refNumberMessage(refData: ReferenceEntry): string | undefined {
+    private refNumberMessage(refData: Pick<ReferenceEntry, 'prevIndex'>): string | undefined {
         if (refData.prevIndex) {
             const refNum = refData.prevIndex.refNumber
             const refMessage = `numbered ${refNum} at last compilation`
@@ -130,8 +130,13 @@ export class MathPreview {
         return this.texMathEnvFinder.findHoverOnTex(document, position)
     }
 
-    findHoverOnRef( document: vscode.TextDocument | TextDocumentLike, position: vscode.Position, refData: ReferenceEntry, token: string) {
-        return this.texMathEnvFinder.findHoverOnRef(document, position, token, refData)
+    findHoverOnRef(
+        document: vscode.TextDocument | TextDocumentLike,
+        position: vscode.Position,
+        refData: Pick<ReferenceEntry, 'file' | 'position'>,
+        token: string
+    ) {
+        return this.texMathEnvFinder.findHoverOnRef(document, position, refData, token)
     }
 
     async renderSvgOnRef(tex: TexMathEnv, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, ctoken: vscode.CancellationToken) {

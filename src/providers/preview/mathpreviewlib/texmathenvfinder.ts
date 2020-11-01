@@ -24,7 +24,12 @@ export class TeXMathEnvFinder {
         return this.findHoverOnInline(document, position)
     }
 
-    findHoverOnRef(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position, token: string, refData: ReferenceEntry): TexMathEnv | undefined {
+    findHoverOnRef(
+        document: vscode.TextDocument | TextDocumentLike,
+        position: vscode.Position,
+        refData: Pick<ReferenceEntry, 'file' | 'position'>,
+        token: string,
+    ): TexMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
         const docOfRef = TextDocumentLike.load(refData.file)
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
