@@ -11,7 +11,7 @@ import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input} from './completer/input'
 import {Glossary} from './completer/glossary'
-import {ReferenceDocType} from './completer/reference'
+import type {ReferenceDocType} from './completer/reference'
 
 export class Completer implements vscode.CompletionItemProvider {
     private readonly extension: Extension
@@ -110,15 +110,20 @@ export class Completer implements vscode.CompletionItemProvider {
             if (typeof item.documentation !== 'string') {
                 return item
             }
-            const data: ReferenceDocType | string = JSON.parse(item.documentation)
-            if (typeof data === 'string') {
-                item.documentation = data
+            const data: ReferenceDocType = JSON.parse(item.documentation)
+            const sug = {
+                file: data.file,
+                position: new vscode.Position(data.position.line, data.position.character)
+            }
+            const tex = this.extension.mathPreview.findHoverOnRef(sug, data.key)
+            if (tex) {
+                const svgDataUrl = await this.extension.mathPreview.renderSvgOnRef(tex, data, token)
+                item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
+                return item
+            } else {
+                item.documentation = data.documentation
                 return item
             }
-            const tex = data.tex
-            const svgDataUrl = await this.extension.mathPreview.renderSvgOnRef(tex, data, token)
-            item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
-            return item
         } else if (item.kind === vscode.CompletionItemKind.File) {
             const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
             if (!preview) {

@@ -2,8 +2,8 @@ import * as vscode from 'vscode'
 
 import {MathJaxPool, TypesetArg} from './mathjaxpool'
 import * as utils from '../../utils/utils'
-import {Extension} from '../../main'
-import {ReferenceEntry} from '../completer/reference'
+import type {Extension} from '../../main'
+import type {ReferenceEntry} from '../completer/reference'
 import {getCurrentThemeLightness} from '../../utils/theme'
 
 import {CursorRenderer} from './mathpreviewlib/cursorrenderer'
@@ -13,7 +13,7 @@ import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
 import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
 import {MathPreviewUtils} from './mathpreviewlib/mathpreviewutils'
 
-export {TexMathEnv} from './mathpreviewlib/texmathenvfinder'
+export type {TexMathEnv} from './mathpreviewlib/texmathenvfinder'
 
 
 export class MathPreview {

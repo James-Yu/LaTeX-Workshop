@@ -3,9 +3,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
 
-import {Extension} from '../../main'
-import {IProvider} from './interface'
-import {TexMathEnv} from '../preview/mathpreview'
+import type {Extension} from '../../main'
+import type {IProvider} from './interface'
 
 export interface ReferenceEntry extends vscode.CompletionItem {
     /**
@@ -23,7 +22,10 @@ export interface ReferenceEntry extends vscode.CompletionItem {
 }
 
 export type ReferenceDocType = {
-    tex: TexMathEnv,
+    documentation: ReferenceEntry['documentation'],
+    file: ReferenceEntry['file'],
+    position: {line: number, character: number},
+    key: string,
     label: ReferenceEntry['label'],
     prevIndex: ReferenceEntry['prevIndex']
 }
@@ -52,13 +54,18 @@ export class Reference implements IProvider {
         for (const key of keys) {
             const sug = this.suggestions[key]
             if (sug) {
-                const tex = this.extension.mathPreview.findHoverOnRef(sug, key)
-                if (tex) {
-                    const data: ReferenceDocType = {tex, label: sug.label, prevIndex: sug.prevIndex}
-                    sug.documentation = JSON.stringify(data)
-                } else {
-                    sug.documentation = JSON.stringify(sug.documentation)
+                const data: ReferenceDocType = {
+                    documentation: sug.documentation,
+                    file: sug.file,
+                    position: {
+                        line: sug.position.line,
+                        character: sug.position.character
+                    },
+                    key,
+                    label: sug.label,
+                    prevIndex: sug.prevIndex
                 }
+                sug.documentation = JSON.stringify(data)
                 items.push(sug)
             } else {
                 items.push({label: key})
