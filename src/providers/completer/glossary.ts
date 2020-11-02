@@ -48,47 +48,58 @@ export class Glossary implements IProvider {
     }
 
     private getGlossaryFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
-        const refs: Suggestion[] = []
-        let description: string | undefined
+        const glossaries: Suggestion[] = []
 
         nodes.forEach(node => {
             if (latexParser.isCommand(node) && node.args.length > 0) {
                 if (node.name === 'newglossaryentry' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
                     const description: string | undefined = this.getGlossaryNodeDescription(node)
-                    refs.push({
+                    glossaries.push({
                         type: 'glossary',
                         label: node.args[0].content[0].content,
                         detail: description,
                         kind: vscode.CompletionItemKind.Reference
                     })
-                } else if (node.name === 'newacronym' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-                    const description: string | undefined = this.getAcronymNodeDetail(node)
-                    refs.push({
-                        type: 'acronym',
-                        label: node.args[0].content[0].content,
-                        detail: description,
-                        kind: vscode.CompletionItemKind.Reference
-                    })
+                } else if (node.name === 'newacronym') {
+                    let label: string | undefined = undefined
+                    let description: string | undefined = undefined
+                    if (node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
+                        label = node.args[0].content[0].content
+                        description = this.getAcronymNodeDetail(node, false)
+                    } else if (node.args[0].kind === 'arg.optional' && node.args[1].kind === 'arg.group' && node.args[1].content[0].kind === 'text.string') {
+                        label = node.args[1].content[0].content
+                        description = this.getAcronymNodeDetail(node, true)
+                    }
+                    if (label) {
+                        glossaries.push({
+                            type: 'acronym',
+                            label,
+                            detail: description,
+                            kind: vscode.CompletionItemKind.Reference
+                        })
+                    }
                 }
             }
         })
-        return refs
+        return glossaries
     }
 
     /**
      * Parse the second entry of a \newacronym command
      *
      * Fairly straightforward, a \newacronym command takes the form
-     *     \newacronym{lw}{LW}{LaTeX Workshop}
+     *     \newacronym[optional parameters]{lw}{LW}{LaTeX Workshop}
      *
      * Simply turn the third argument into a string.
      *
      * @param node the \newacronym node from the parser
+     * @param hasOptionalArg are there any optional parameters?
      */
-    private getAcronymNodeDetail(node: latexParser.Command): string | undefined {
+    private getAcronymNodeDetail(node: latexParser.Command, hasOptionalArg: boolean = false): string | undefined {
         const arr: string[] = []
-        if (node.args[2]?.kind === 'arg.group') {
-            node.args[2].content.forEach(subNode => {
+        const index: number = hasOptionalArg ? 3 : 2
+        if (node.args[index]?.kind === 'arg.group') {
+            node.args[index].content.forEach(subNode => {
                 if (subNode.kind === 'text.string') {
                     arr.push(subNode.content)
                 }
