@@ -47,26 +47,26 @@ export class Glossary implements IProvider {
         return items
     }
 
-    private getRefFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
+    private getGlossaryFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
         const refs: Suggestion[] = []
-        let detail: string | undefined
+        let description: string | undefined
 
         nodes.forEach(node => {
             if (latexParser.isCommand(node) && node.args.length > 0) {
                 if (node.name === 'newglossaryentry' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-                    detail = this.getGlossaryNodeDetail(node)
+                    const description: string | undefined = this.getGlossaryNodeDescription(node)
                     refs.push({
                         type: 'glossary',
                         label: node.args[0].content[0].content,
-                        detail,
+                        detail: description,
                         kind: vscode.CompletionItemKind.Reference
                     })
                 } else if (node.name === 'newacronym' && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-                    detail = this.getAcronymNodeDetail(node)
+                    const description: string | undefined = this.getAcronymNodeDetail(node)
                     refs.push({
                         type: 'acronym',
                         label: node.args[0].content[0].content,
-                        detail,
+                        detail: description,
                         kind: vscode.CompletionItemKind.Reference
                     })
                 }
@@ -76,7 +76,7 @@ export class Glossary implements IProvider {
     }
 
     /**
-     * Parses the second entry of a \newacronym command
+     * Parse the second entry of a \newacronym command
      *
      * Fairly straightforward, a \newacronym command takes the form
      *     \newacronym{lw}{LW}{LaTeX Workshop}
@@ -102,7 +102,7 @@ export class Glossary implements IProvider {
     }
 
     /**
-     * Parses the description from a \newglossaryentry
+     * Parse the description from a \newglossaryentry
      *
      * Example glossary entries:
      *     \newglossaryentry{lw}{name={LaTeX Workshop}, description={What this extension is}}
@@ -111,8 +111,9 @@ export class Glossary implements IProvider {
      * Note: descriptions can be single words or a {group of words}
      *
      * @param node the \newglossaryentry node from the parser
+     * @returns the value of the description field
      */
-    private getGlossaryNodeDetail(node: latexParser.Command): string | undefined {
+    private getGlossaryNodeDescription(node: latexParser.Command): string | undefined {
         const arr: string[] = []
         let result: RegExpExecArray | null
         let lastNodeWasDescription = false
@@ -176,7 +177,7 @@ export class Glossary implements IProvider {
     }
 
     /**
-     * Updates the Manager cache for references defined in `file` with `nodes`.
+     * Update the Manager cache for references defined in `file` with `nodes`.
      * If `nodes` is `undefined`, `content` is parsed with regular expressions,
      * and the result is used to update the cache.
      * @param file The path of a LaTeX file.
@@ -185,7 +186,7 @@ export class Glossary implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
         if (nodes !== undefined) {
-            this.extension.manager.cachedContent[file].element.glossary = this.getRefFromNodeArray(nodes)
+            this.extension.manager.cachedContent[file].element.glossary = this.getGlossaryFromNodeArray(nodes)
         } else if (content !== undefined) {
             this.extension.manager.cachedContent[file].element.glossary = [] // TODO: implement regex parser
         }
