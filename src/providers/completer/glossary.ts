@@ -146,31 +146,31 @@ export class Glossary implements IProvider {
 
     private updateAll() {
         // Extract cached references
-        const refList: string[] = []
+        const glossaryList: string[] = []
 
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.cachedContent[cachedFile].element.glossary
-            if (cachedRefs === undefined) {
+            const cachedGlossaries = this.extension.manager.cachedContent[cachedFile].element.glossary
+            if (cachedGlossaries === undefined) {
                 return
             }
-            cachedRefs.forEach(ref => {
+            cachedGlossaries.forEach(ref => {
                 if (ref.type === 'glossary') {
                     this.glossaries[ref.label] = ref
                 } else {
                     this.acronyms[ref.label] = ref
                 }
-                refList.push(ref.label)
+                glossaryList.push(ref.label)
             })
         })
 
         // Remove references that has been deleted
         Object.keys(this.glossaries).forEach(key => {
-            if (!refList.includes(key)) {
+            if (!glossaryList.includes(key)) {
                 delete this.glossaries[key]
             }
         })
         Object.keys(this.acronyms).forEach(key => {
-            if (!refList.includes(key)) {
+            if (!glossaryList.includes(key)) {
                 delete this.acronyms[key]
             }
         })
