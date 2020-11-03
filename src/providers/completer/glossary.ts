@@ -199,7 +199,47 @@ export class Glossary implements IProvider {
         if (nodes !== undefined) {
             this.extension.manager.cachedContent[file].element.glossary = this.getGlossaryFromNodeArray(nodes)
         } else if (content !== undefined) {
-            this.extension.manager.cachedContent[file].element.glossary = [] // TODO: implement regex parser
+            this.extension.manager.cachedContent[file].element.glossary = this.getGlossaryFromContent(content)
         }
+    }
+
+    getGlossaryFromContent(content: string): Suggestion[] {
+        const glossaries: Suggestion[] = []
+        const glossaryList: string[] = []
+        const glossaryReg = /\\newglossaryentry{([^{}]*)}{(?:(?!description).)*description=(?:([^{},]*)|{([^{}]*)})[,}]/gms
+        const acronymReg = /\\newacronym(?:\[[^[\]]*\]){([^{}]*)}{[^{}]*}{([^{}]*)}/gm
+        while (true) {
+            const result = glossaryReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (glossaryList.includes(result[1])) {
+                continue
+            }
+            const description = result[2] ? result[2] : result[3]
+            glossaries.push({
+                type: 'glossary',
+                label: result[1],
+                detail: description,
+                kind: vscode.CompletionItemKind.Reference
+            })
+        }
+        while (true) {
+            const result = acronymReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (glossaryList.includes(result[1])) {
+                continue
+            }
+            glossaries.push({
+                type: 'acronym',
+                label: result[1],
+                detail: result[2],
+                kind: vscode.CompletionItemKind.Reference
+            })
+        }
+
+        return glossaries
     }
 }
