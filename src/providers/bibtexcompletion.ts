@@ -31,6 +31,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
             case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
             left: leftright[0],
             right: leftright[1],
+            trailingComma: config.get('bibtex-format.trailingComma') as boolean,
             sort: config.get('bibtex-format.sortby') as string[]
         }
 

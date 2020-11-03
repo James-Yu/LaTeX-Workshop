@@ -68,8 +68,11 @@ export class Commander {
     async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage('BUILD command invoked.')
         if (!vscode.window.activeTextEditor) {
+            this.extension.logger.addLogMessage('Cannot start to build because the active editor is undefined.')
             return
         }
+        this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString()}`)
+        this.extension.logger.addLogMessage(`The languageId of the document: ${vscode.window.activeTextEditor.document.languageId}`)
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as string
@@ -218,7 +221,7 @@ export class Commander {
         try {
             this.extension.logger.addLogMessage('SYNCTEX command invoked.')
             if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-                this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
+                this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
                 return
             }
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -238,9 +241,9 @@ export class Commander {
     }
 
     synctexonref(line: number, filePath: string) {
-        this.extension.logger.addLogMessage('SYNCTEX command invoked.')
+        this.extension.logger.addLogMessage('SYNCTEX command invoked on a reference.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            this.extension.logger.addLogMessage('SyncTeX fails. The document of the active TextEditor is not a TeX document.')
+            this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
             return
         }
         this.extension.locator.syncTeXOnRef({line, filePath})
@@ -436,7 +439,7 @@ export class Commander {
             })
         }
 
-        // if the line only constists of \item or \item[], delete its content
+        // if the line only consists of \item or \item[], delete its content
         if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
             const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
 
@@ -631,4 +634,13 @@ export class Commander {
         await vscode.window.activeTextEditor.document.save()
         setTimeout(() => this.extension.builder.disableBuildAfterSave = false, 1000)
     }
+
+    openMathPreviewPanel() {
+        this.extension.mathPreviewPanel.open()
+    }
+
+    closeMathPreviewPanel() {
+        this.extension.mathPreviewPanel.close()
+    }
+
 }

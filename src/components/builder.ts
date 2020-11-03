@@ -47,7 +47,7 @@ export class Builder {
     }
 
     /**
-     * Kills the current building process.
+     * Kill the current building process.
      */
     kill() {
         const proc = this.currentProcess
@@ -88,7 +88,7 @@ export class Builder {
     }
 
     /**
-     * Executes a command building LaTeX files.
+     * Execute a command building LaTeX files.
      *
      * @param command The name of the command to build LaTeX files.
      * @param args The arguments of the command.
@@ -181,7 +181,7 @@ export class Builder {
     }
 
     /**
-     * Builds a LaTeX file with user-defined recipes.
+     * Build a LaTeX file with user-defined recipes.
      *
      * @param rootFile The root file to be compiled.
      * @param languageId The name of the language of a file to be compiled.
@@ -325,6 +325,8 @@ export class Builder {
             this.extension.logParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
+                this.extension.logger.addLogMessage(`The environment variable $PATH: ${process.env.PATH}`)
+                this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
                 this.extension.buildInfo.buildEnded()
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')

@@ -25,7 +25,7 @@ export function tokenizer(document: vscode.TextDocument, position: vscode.Positi
 }
 
 /**
- * Returns `true` if the `posion` of the `document` is on a command `\usepackage{...}` including
+ * Return `true` if the `position` of the `document` is on a command `\usepackage{...}` including
  * `token`
  * @param document The document to be scanned.
  * @param position The position to be scanned at.

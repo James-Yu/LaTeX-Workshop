@@ -145,6 +145,26 @@
 		"body": "\\begin{align*}\n\t$0\n\\end{align*}",
 		"description": "Insert an align* environment"
 	},
+	"gather": {
+		"prefix": "BGA",
+		"body": "\\begin{gather}\n\t$0\n\\end{gather}",
+		"description": "Insert a gather environment"
+	},
+	"gather*": {
+		"prefix": "BSGA",
+		"body": "\\begin{gather*}\n\t$0\n\\end{gather*}",
+		"description": "Insert a gather* environment"
+	},
+	"multline": {
+		"prefix": "BMU",
+		"body": "\\begin{multline}\n\t$0\n\\end{multline}",
+		"description": "Insert a multline environment"
+	},
+	"multline*": {
+		"prefix": "BSMU",
+		"body": "\\begin{multline*}\n\t$0\n\\end{multline*}",
+		"description": "Insert a multline* environment"
+	},	
 	"itemize": {
 		"prefix": "BIT",
 		"body": "\\begin{itemize}\n\t\\item $0\n\\end{itemize}",
@@ -178,7 +198,7 @@
 	"table": {
 		"prefix": "BTA",
 		"body": "\\begin{table}[${1:htbp}]\n\t\\centering\\begin{tabular}{${4:<columns>}}\n\t\t$0\n\t\\end{tabular}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{table}",
-		"description": "Insert a new figure"
+		"description": "Insert a new table"
 	},
 	"tikzpicture": {
 		"prefix": "BTP",
@@ -251,13 +271,13 @@
 		"description": "Use a bold font"
 	},
 	"textsuperscript": {
-		"pre": "FSS",
-		"body": "\\testsuperscript{${1:${TM_SELECTED_TEXT:text}}}",
+		"prefix": "FSS",
+		"body": "\\textsuperscript{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Make text a superscript"
 	},
 	"textsubscript": {
-		"pre": "FBS",
-		"body": "\\testsubscript{${1:${TM_SELECTED_TEXT:text}}}",
+		"prefix": "FBS",
+		"body": "\\textsubscript{${1:${TM_SELECTED_TEXT:text}}}",
 		"description": "Make text a superscript"
 	},
 	"mathrm": {

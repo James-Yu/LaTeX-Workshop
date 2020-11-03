@@ -19,10 +19,12 @@ export function escapeRegExp(str: string) {
 }
 
 /**
- * Removes a comment on each line of `text`.
+ * Remove comments
  *
  * @param text A string in which comments get removed.
  * @param commentSign The character starting a comment. Typically '%'.
+ * @return the input text with comments removed.
+ * Note the number lines of the output matches the input
  */
 export function stripComments(text: string, commentSign: string): string {
     const pattern = '([^\\\\]|^)' + commentSign + '.*$'
@@ -50,7 +52,7 @@ export function stripCommentsAndVerbatim(text: string): string {
 }
 
 /**
- * Finds the longest substring containing balanced curly braces {...}
+ * Find the longest substring containing balanced curly braces {...}
  *
  * @param s A string to be searched.
  */
@@ -79,12 +81,12 @@ export function getLongestBalancedString(s: string): string {
 }
 
 /**
- * Resolves an input file to the absolute path using the prefixes `dirs`.
- * Returns `undefined` if the file does not exist.
+ * Resolve a relative file path to an absolute path using the prefixes `dirs`.
  *
  * @param dirs An array of the paths of directories. They are used as prefixes for `inputFile`.
  * @param inputFile The path of a input file to be resolved.
- * @param suffix The sufix of the input file
+ * @param suffix The suffix of the input file
+ * @return an absolute path or undefined if the file does not exist
  */
 export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | undefined {
     if (inputFile.startsWith('/')) {
@@ -166,7 +168,7 @@ export function svgToDataUrl(xml: string): string {
 }
 
 /**
- * Returns a function replacing placeholders of LaTeX recipes.
+ * Return a function replacing placeholders of LaTeX recipes.
  *
  * @param rootFile The path of the root file.
  * @param tmpDir The path of a temporary directory.

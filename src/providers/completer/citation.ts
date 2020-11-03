@@ -32,7 +32,10 @@ export class Citation implements IProvider {
         const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
         let range: vscode.Range | undefined = undefined
         if (args) {
-            const startPos = args.document.lineAt(args.position).text.lastIndexOf('{', args.position.character)
+            const line = args.document.lineAt(args.position).text
+            const curlyStart = line.lastIndexOf('{', args.position.character)
+            const commaStart = line.lastIndexOf(',', args.position.character)
+            const startPos = Math.max(curlyStart, commaStart)
             if (startPos >= 0) {
                 range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
             }
