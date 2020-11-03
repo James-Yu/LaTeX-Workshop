@@ -1,6 +1,6 @@
 ## Overview
 
-Providers are defined under `provider/` and are registered in `main.ts`. All other components of the extension are defined under `components/` and are properties of the class `Extension` defined in `main.ts`, which can be accessed when needed.
+Providers are defined under `provider/` and are registered in `main.ts`. All other components of the extension are defined under `components/` and are properties of the `Extension` class defined in `main.ts`, which can be accessed when needed. The `Extension` class is a kind of [service locator](https://martinfowler.com/articles/injection.html#UsingAServiceLocator).
 
 ### Root file
 
