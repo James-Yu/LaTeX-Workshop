@@ -97,9 +97,9 @@ export class Glossary implements IProvider {
     }
 
     /**
-     * Parse "long nodes" such as \newacronym
+     * Parse the description from "long nodes" such as \newacronym and \longnewglossaryentry
      *
-     * Spec: \newacronym[〈key-val list〉]{〈label〉}{〈abbrv〉}{〈long〉}
+     * Spec: \newacronym[〈key-val list〉]{〈label〉}{〈abbrv〉}{〈description〉}
      *
      * Fairly straightforward, a \newacronym command takes the form
      *     \newacronym[optional parameters]{lw}{LW}{LaTeX Workshop}
