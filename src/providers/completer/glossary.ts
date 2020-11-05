@@ -222,8 +222,8 @@ export class Glossary implements IProvider {
     getGlossaryFromContent(content: string): Suggestion[] {
         const glossaries: Suggestion[] = []
         const glossaryList: string[] = []
-        const glossaryReg = /\\newglossaryentry{([^{}]*)}{(?:(?!description).)*description=(?:([^{},]*)|{([^{}]*)})[,}]/gms
-        const acronymReg = /\\newacronym(?:\[[^[\]]*\]){([^{}]*)}{[^{}]*}{([^{}]*)}/gm
+        const glossaryReg = /\\(?:provide|new)glossaryentry{([^{}]*)}{(?:(?!description).)*description=(?:([^{},]*)|{([^{}]*))[,}]/gms
+        const acronymReg = /\\newacronym(?:\[[^[\]]*\])?{([^{}]*)}{[^{}]*}{([^{}]*)}/gm
         while (true) {
             const result = glossaryReg.exec(content)
             if (result === null) {
