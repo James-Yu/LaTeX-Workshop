@@ -222,38 +222,47 @@ export class Glossary implements IProvider {
     getGlossaryFromContent(content: string): Suggestion[] {
         const glossaries: Suggestion[] = []
         const glossaryList: string[] = []
-        const glossaryReg = /\\(?:provide|new)glossaryentry{([^{}]*)}{(?:(?!description).)*description=(?:([^{},]*)|{([^{}]*))[,}]/gms
-        const acronymReg = /\\newacronym(?:\[[^[\]]*\])?{([^{}]*)}{[^{}]*}{([^{}]*)}/gm
-        while (true) {
-            const result = glossaryReg.exec(content)
-            if (result === null) {
-                break
+
+        // We assume that the label is always result[1] and use getDescription(result) for the description
+        const regexes: {
+            [key: string]: {
+                regex: RegExp,
+                type: GlossaryType,
+                getDescription: (result: RegExpMatchArray) => string
             }
-            if (glossaryList.includes(result[1])) {
-                continue
-            }
-            const description = result[2] ? result[2] : result[3]
-            glossaries.push({
+        } = {
+            'glossary': {
+                regex: /\\(?:provide|new)glossaryentry{([^{}]*)}\s*{(?:(?!description).)*description=(?:([^{},]*)|{([^{}]*))[,}]/gms,
                 type: GlossaryType.glossary,
-                label: result[1],
-                detail: description,
-                kind: vscode.CompletionItemKind.Reference
-            })
-        }
-        while (true) {
-            const result = acronymReg.exec(content)
-            if (result === null) {
-                break
-            }
-            if (glossaryList.includes(result[1])) {
-                continue
-            }
-            glossaries.push({
+                getDescription: (result) => { return result[2] ? result[2] : result[3] }
+            },
+            'longGlossary': {
+                regex: /\\long(?:provide|new)glossaryentry{([^{}]*)}\s*{[^{}]*}\s*{([^{}]*)}/gms,
+                type: GlossaryType.glossary,
+                getDescription: (result) => { return result[2] }
+            },
+            'acronym': {
+                regex: /\\newacronym(?:\[[^[\]]*\])?{([^{}]*)}{[^{}]*}{([^{}]*)}/gm,
                 type: GlossaryType.acronym,
-                label: result[1],
-                detail: result[2],
-                kind: vscode.CompletionItemKind.Reference
-            })
+                getDescription: (result) => { return result[2] }
+            }
+        }
+        for(const key in regexes){
+            while(true) {
+                const result = regexes[key].regex.exec(content)
+                if (result === null) {
+                    break
+                }
+                if (glossaryList.includes(result[1])) {
+                    continue
+                }
+                glossaries.push({
+                    type: regexes[key].type,
+                    label: result[1],
+                    detail: regexes[key].getDescription(result),
+                    kind: vscode.CompletionItemKind.Reference
+                })
+            }
         }
 
         return glossaries
