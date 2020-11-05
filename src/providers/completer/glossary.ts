@@ -52,9 +52,9 @@ export class Glossary implements IProvider {
         return items
     }
 
-    private getRefFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
-        const refs: Suggestion[] = []
-        let detail: string | undefined
+    private getGlossaryFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
+        const glossaries: Suggestion[] = []
+        let description: string | undefined
         let type: GlossaryType | undefined
 
         nodes.forEach(node => {
@@ -62,56 +62,58 @@ export class Glossary implements IProvider {
                 switch (node.name) {
                     case 'newglossaryentry':
                         type = GlossaryType.glossary
-                        detail = this.getShortNodeDetail(node)
+                        description = this.getShortNodeDescription(node)
                         break
                     case 'provideglossaryentry':
                         type = GlossaryType.glossary
-                        detail = this.getShortNodeDetail(node)
+                        description = this.getShortNodeDescription(node)
                         break
                     case 'longnewglossaryentry':
                         type = GlossaryType.glossary
-                        detail = this.getLongNodeDetail(node)
+                        description = this.getLongNodeDescription(node)
                         break
                     case 'longprovideglossaryentry':
                         type = GlossaryType.glossary
-                        detail = this.getLongNodeDetail(node)
+                        description = this.getLongNodeDescription(node)
                         break
                     case 'newacronym':
                         type = GlossaryType.acronym
-                        detail = this.getLongNodeDetail(node)
+                        description = this.getLongNodeDescription(node)
                         break
                     default:
                         break
                 }
                 if (type !== undefined && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-                    refs.push({
+                    glossaries.push({
                         type,
                         label: node.args[0].content[0].content,
-                        detail,
+                        detail: description,
                         kind: vscode.CompletionItemKind.Reference
                     })
                 }
             }
         })
-        return refs
+        return glossaries
     }
 
     /**
-     * Parses "long nodes" such as \newacronym
+     * Parse "long nodes" such as \newacronym
      *
      * Spec: \newacronym[〈key-val list〉]{〈label〉}{〈abbrv〉}{〈long〉}
      *
      * Fairly straightforward, a \newacronym command takes the form
-     *     \newacronym{lw}{LW}{LaTeX Workshop}
+     *     \newacronym[optional parameters]{lw}{LW}{LaTeX Workshop}
      *
      * Simply turn the third argument into a string.
      *
      * @param node the \newacronym node from the parser
+     * @param hasOptionalArg are there any optional parameters?
      */
-    private getLongNodeDetail(node: latexParser.Command): string | undefined {
+    private getLongNodeDescription(node: latexParser.Command, hasOptionalArg: boolean = false): string | undefined {
         const arr: string[] = []
-        if (node.args[2]?.kind === 'arg.group') {
-            node.args[2].content.forEach(subNode => {
+        const index: number = hasOptionalArg ? 3 : 2
+        if (node.args[index]?.kind === 'arg.group') {
+            node.args[index].content.forEach(subNode => {
                 if (subNode.kind === 'text.string') {
                     arr.push(subNode.content)
                 }
@@ -125,7 +127,7 @@ export class Glossary implements IProvider {
     }
 
     /**
-     * Parses the description from "short nodes" like \newglossaryentry
+     * Parse the description from "short nodes" like \newglossaryentry
      *
      * Spec: \newglossaryentry{〈label〉}{〈key=value list〉}
      *
@@ -136,8 +138,9 @@ export class Glossary implements IProvider {
      * Note: descriptions can be single words or a {group of words}
      *
      * @param node the \newglossaryentry node from the parser
+     * @returns the value of the description field
      */
-    private getShortNodeDetail(node: latexParser.Command): string | undefined {
+    private getShortNodeDescription(node: latexParser.Command): string | undefined {
         const arr: string[] = []
         let result: RegExpExecArray | null
         let lastNodeWasDescription = false
@@ -170,38 +173,38 @@ export class Glossary implements IProvider {
 
     private updateAll() {
         // Extract cached references
-        const refList: string[] = []
+        const glossaryList: string[] = []
 
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.cachedContent[cachedFile].element.glossary
-            if (cachedRefs === undefined) {
+            const cachedGlossaries = this.extension.manager.cachedContent[cachedFile].element.glossary
+            if (cachedGlossaries === undefined) {
                 return
             }
-            cachedRefs.forEach(ref => {
+            cachedGlossaries.forEach(ref => {
                 if (ref.type === GlossaryType.glossary) {
                     this.glossaries[ref.label] = ref
                 } else {
                     this.acronyms[ref.label] = ref
                 }
-                refList.push(ref.label)
+                glossaryList.push(ref.label)
             })
         })
 
         // Remove references that has been deleted
         Object.keys(this.glossaries).forEach(key => {
-            if (!refList.includes(key)) {
+            if (!glossaryList.includes(key)) {
                 delete this.glossaries[key]
             }
         })
         Object.keys(this.acronyms).forEach(key => {
-            if (!refList.includes(key)) {
+            if (!glossaryList.includes(key)) {
                 delete this.acronyms[key]
             }
         })
     }
 
     /**
-     * Updates the Manager cache for references defined in `file` with `nodes`.
+     * Update the Manager cache for references defined in `file` with `nodes`.
      * If `nodes` is `undefined`, `content` is parsed with regular expressions,
      * and the result is used to update the cache.
      * @param file The path of a LaTeX file.
@@ -210,9 +213,49 @@ export class Glossary implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
         if (nodes !== undefined) {
-            this.extension.manager.cachedContent[file].element.glossary = this.getRefFromNodeArray(nodes)
+            this.extension.manager.cachedContent[file].element.glossary = this.getGlossaryFromNodeArray(nodes)
         } else if (content !== undefined) {
-            this.extension.manager.cachedContent[file].element.glossary = [] // TODO: implement regex parser
+            this.extension.manager.cachedContent[file].element.glossary = this.getGlossaryFromContent(content)
         }
+    }
+
+    getGlossaryFromContent(content: string): Suggestion[] {
+        const glossaries: Suggestion[] = []
+        const glossaryList: string[] = []
+        const glossaryReg = /\\newglossaryentry{([^{}]*)}{(?:(?!description).)*description=(?:([^{},]*)|{([^{}]*)})[,}]/gms
+        const acronymReg = /\\newacronym(?:\[[^[\]]*\]){([^{}]*)}{[^{}]*}{([^{}]*)}/gm
+        while (true) {
+            const result = glossaryReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (glossaryList.includes(result[1])) {
+                continue
+            }
+            const description = result[2] ? result[2] : result[3]
+            glossaries.push({
+                type: GlossaryType.glossary,
+                label: result[1],
+                detail: description,
+                kind: vscode.CompletionItemKind.Reference
+            })
+        }
+        while (true) {
+            const result = acronymReg.exec(content)
+            if (result === null) {
+                break
+            }
+            if (glossaryList.includes(result[1])) {
+                continue
+            }
+            glossaries.push({
+                type: GlossaryType.acronym,
+                label: result[1],
+                detail: result[2],
+                kind: vscode.CompletionItemKind.Reference
+            })
+        }
+
+        return glossaries
     }
 }

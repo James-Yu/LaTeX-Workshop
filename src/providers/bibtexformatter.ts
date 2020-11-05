@@ -62,6 +62,7 @@ export class BibtexFormatter {
             case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
             left: leftright[0],
             right: leftright[1],
+            trailingComma: config.get('bibtex-format.trailingComma') as boolean,
             sort: config.get('bibtex-format.sortby') as string[]
         }
         const lineOffset = range ? range.start.line : 0

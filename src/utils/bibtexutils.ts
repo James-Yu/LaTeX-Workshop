@@ -5,6 +5,7 @@ export interface BibtexFormatConfig {
     left: string,
     right: string,
     case: 'UPPERCASE' | 'lowercase',
+    trailingComma: boolean,
     sort: string[]
 }
 
@@ -17,12 +18,18 @@ export function bibtexSort(keys: string[], duplicates: Set<bibtexParser.Entry>):
         let r = 0
         for (const key of keys) {
             // Select the appropriate sort function
-            if (key === 'key') {
-                r = bibtexSortByKey(a, b)
-            } else if (key === 'year-desc') {
-                r = -bibtexSortByField('year', a, b)
-            } else {
-                r = bibtexSortByField(key, a, b)
+            switch (key) {
+                case 'key':
+                    r = bibtexSortByKey(a, b)
+                    break
+                case 'year-desc':
+                    r = -bibtexSortByField('year', a, b)
+                    break
+                case 'type':
+                    r = bibtexSortByType(a, b)
+                    break
+                default:
+                    r = bibtexSortByField(key, a, b)
             }
             // Compare until different
             if (r !== 0) {
@@ -77,6 +84,10 @@ function bibtexSortByKey(a: bibtexParser.Entry, b: bibtexParser.Entry): number {
     }
 }
 
+function bibtexSortByType(a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+    return a.entryType.localeCompare(b.entryType)
+}
+
 /**
  * Creates an aligned string from a bibtexParser.Entry
  * @param entry the bibtexParser.Entry
@@ -98,6 +109,10 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
         s += ' '.repeat(maxFieldLength - field.name.length) + ' = '
         s += fieldToString(field.value, config.left, config.right)
     })
+
+    if (config.trailingComma) {
+        s += ','
+    }
 
     s += '\n}'
 

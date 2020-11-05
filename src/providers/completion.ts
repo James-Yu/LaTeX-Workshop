@@ -174,7 +174,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.input
                 break
             case 'glossary':
-                reg = /\\(gls|acr(?:full|long|short))(?:pl)?{([^}]*)$/i
+                reg = /\\(gls|acr(?:full|long|short))(?:pl)?(?:\[[^[\]]*\])?{([^}]*)$/i
                 provider = this.glossary
                 break
             default:

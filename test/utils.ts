@@ -109,8 +109,8 @@ export async function waitUntil<T>(
 
 export async function waitLatexWorkshopActivated() {
     return await waitUntil( () => {
-        const extension = vscode.extensions.getExtension('James-Yu.latex-workshop') as vscode.Extension<ReturnType<typeof activate>>
-        return Promise.resolve(extension.isActive && extension)
+        const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')
+        return Promise.resolve(extension?.isActive && extension)
     })
 }
 

@@ -9,6 +9,7 @@ import {escapeHtml} from '../utils/utils'
 import {Extension} from '../main'
 import {SyncTeXRecordForward} from './locator'
 import {encodePathWithPrefix} from '../utils/utils'
+import {openWebviewPanel} from '../utils/webview'
 
 import {ClientRequest, ServerResponse, PanelRequest, PdfViewerState} from '../../viewer/components/protocol'
 import {getCurrentThemeLightness} from '../utils/theme'
@@ -210,43 +211,11 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
-        const editor = vscode.window.activeTextEditor
         const panel = this.createPdfViewerPanel(pdfFile, vscode.ViewColumn.Active)
         if (!panel) {
             return
         }
-        if (editor) {
-            // We need to turn the viewer into the active editor to move it to an other editor group
-            panel.webviewPanel.reveal(undefined, false)
-            let focusAction: string | undefined
-            switch (tabEditorGroup) {
-                case 'left':
-                    await vscode.commands.executeCommand('workbench.action.moveEditorToLeftGroup')
-                    focusAction = 'workbench.action.focusRightGroup'
-                    break
-                case 'right':
-                    await vscode.commands.executeCommand('workbench.action.moveEditorToRightGroup')
-                    focusAction = 'workbench.action.focusLeftGroup'
-                    break
-                case 'above':
-                    await vscode.commands.executeCommand('workbench.action.moveEditorToAboveGroup')
-                    focusAction = 'workbench.action.focusBelowGroup'
-                    break
-                case 'below':
-                    await vscode.commands.executeCommand('workbench.action.moveEditorToBelowGroup')
-                    focusAction = 'workbench.action.focusAboveGroup'
-                    break
-                default:
-                    break
-            }
-            // Then, we set the focus back to the .tex file
-            setTimeout(async () => {
-                if (focusAction ) {
-                    await vscode.commands.executeCommand(focusAction)
-                }
-                await vscode.window.showTextDocument(editor.document, vscode.ViewColumn.Active)
-            }, 500)
-        }
+        await openWebviewPanel(panel.webviewPanel, tabEditorGroup)
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 

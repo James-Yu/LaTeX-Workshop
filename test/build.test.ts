@@ -295,7 +295,7 @@ suite('Build TeX files test suite', () => {
             await waitLatexWorkshopActivated()
             await waitRootFileFound()
             await editor.edit((builder) => {
-                builder.insert(new vscode.Position(1, 0), ' ')
+                builder.insert(new vscode.Position(2, 0), ' ')
             })
             await doc.save()
         })

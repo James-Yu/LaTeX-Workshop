@@ -457,9 +457,24 @@
         "command": "latex-workshop.bibalignsort",
         "title": "Sort and align BibTeX file",
         "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.openMathPreviewPanel",
+        "title": "Open Math Preview Panel",
+        "category": "LaTeX Workshop"
+      },
+      {
+        "command": "latex-workshop.closeMathPreviewPanel",
+        "title": "Close Math Preview Panel",
+        "category": "LaTeX Workshop"
       }
     ],
     "keybindings": [
+      {
+        "key": "ctrl+alt+m",
+        "mac": "cmd+alt+m",
+        "command": "latex-workshop.openMathPreviewPanel"
+      },
       {
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
@@ -778,6 +793,12 @@
                 "jnw2tex",
                 "latexmk"
               ]
+            },
+            {
+              "name": "tectonic",
+              "tools": [
+                "tectonic"
+              ]
             }
           ],
           "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
@@ -891,6 +912,16 @@
               "args": [
                 "-e",
                 "using Weave; weave(\"%DOC_EXT%\", doctype=\"texminted\")"
+              ],
+              "env": {}
+            },
+            {
+              "name": "tectonic",
+              "command": "tectonic",
+              "args": [
+                "--synctex",
+                "--keep-logs",
+                "%DOC%.tex"
               ],
               "env": {}
             }
@@ -1240,7 +1271,7 @@
             "force",
             "never"
           ],
-          "markdownDescription": "Rebroadcasting KeyboardEvent on the internal viewers. If keyboard shortcus on the internal viewer do not work well, change this setting."
+          "markdownDescription": "Rebroadcasting KeyboardEvent on the internal viewers. If keyboard shortcuts on the internal viewer do not work well, change this setting."
         },
         "latex-workshop.view.pdf.external.viewer.command": {
           "type": "string",
@@ -1868,12 +1899,17 @@
           "default": "lowercase",
           "description": "Determines if field names should be formatted like 'AUTHOR' or 'author'."
         },
+        "latex-workshop.bibtex-format.trailingComma": {
+          "type": "boolean",
+          "default": false,
+          "description": "Keep the trailing comma of the last field item."
+        },
         "latex-workshop.bibtex-format.sortby": {
           "type": "array",
           "items": {
             "type": "string"
           },
-          "markdownDescription": "An array of strings to sort by. Either a bibtex field name (title, author, year, etc.), or `\"year-desc\"` to sort by year in descending order, or `\"key\"` for the entry key. E.g. `[\"author\", \"year-desc\", \"title\"]`.",
+          "markdownDescription": "An array of strings to sort by. Either a bibtex field name (title, author, year, etc.), or `\"year-desc\"` to sort by year in descending order, or `\"key\"` for the entry key, or `\"type\"` for the entry type (article, book, misc, etc.). E.g. `[\"author\", \"year-desc\", \"title\"]`.",
           "default": [
             "key"
           ]
@@ -1892,6 +1928,25 @@
           "type": "boolean",
           "default": false,
           "markdownDescription": "Sort content when calling VSCode format on a .bib file."
+        },
+        "latex-workshop.mathpreviewpanel.editorGroup": {
+          "type": "string",
+          "default": "below",
+          "enum": [
+            "current",
+            "left",
+            "right",
+            "above",
+            "below"
+          ],
+          "markdownDescription": "The editor group in which to open the math preview panel.",
+          "enumDescriptions": [
+            "Use the current editor group",
+            "Put the math preview panel in a new group on the left of the current one",
+            "Put the math preview panel in a new group on the right of the current one",
+            "Put the math preview panel in a new group above the current one",
+            "Put the math preview panel in a new group below the current one"
+          ]
         }
       }
     },
@@ -1996,18 +2051,18 @@
     "@types/vscode": "1.42.0",
     "@types/workerpool": "^6.0.0",
     "@types/ws": "^5.1.1",
-    "@typescript-eslint/eslint-plugin": "^4.1.1",
-    "@typescript-eslint/parser": "^4.1.1",
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
     "acorn": "^6.4.1",
-    "eslint": "^7.9.0",
-    "eslint-plugin-import": "^2.22.0",
+    "eslint": "^7.11.0",
+    "eslint-plugin-import": "^2.22.1",
     "husky": "^3.0.2",
     "mocha": "^7.1.2",
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.0",
     "textmate-bailout": "^1.1.0",
-    "typescript": "~4.0.2",
-    "vsce": "^1.79.5",
+    "typescript": "~4.0.3",
+    "vsce": "^1.81.1",
     "vscode-test": "^1.4.0"
   }
 }

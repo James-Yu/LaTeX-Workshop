@@ -26,6 +26,7 @@ import {CodeActions} from './providers/codeactions'
 import {HoverProvider} from './providers/hover'
 import {GraphicsPreview} from './providers/preview/graphicspreview'
 import {MathPreview} from './providers/preview/mathpreview'
+import {MathPreviewPanel} from './components/mathpreviewpanel'
 import {DocSymbolProvider} from './providers/docsymbol'
 import {ProjectSymbolProvider} from './providers/projectsymbol'
 import {SectionNodeProvider, StructureTreeView} from './providers/structure'
@@ -133,6 +134,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.bibalign', () => extension.bibtexFormatter.bibtexFormat(false, true))
     vscode.commands.registerCommand('latex-workshop.bibalignsort', () => extension.bibtexFormatter.bibtexFormat(true, true))
 
+    vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => extension.commander.openMathPreviewPanel())
+    vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => extension.commander.closeMathPreviewPanel())
+
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
             extension.linter.lintRootFileIfEnabled()
@@ -237,6 +241,7 @@ export function activate(context: vscode.ExtensionContext) {
     }))
 
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer))
+    context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', extension.mathPreviewPanel.mathPreviewPanelSerializer))
 
     context.subscriptions.push(vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider(extension)))
@@ -335,6 +340,7 @@ export class Extension {
     readonly graphicsPreview: GraphicsPreview
     readonly mathPreview: MathPreview
     readonly bibtexFormatter: BibtexFormatter
+    readonly mathPreviewPanel: MathPreviewPanel
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -365,6 +371,7 @@ export class Extension {
         this.graphicsPreview = new GraphicsPreview(this)
         this.mathPreview = new MathPreview(this)
         this.bibtexFormatter = new BibtexFormatter(this)
+        this.mathPreviewPanel = new MathPreviewPanel(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 }
