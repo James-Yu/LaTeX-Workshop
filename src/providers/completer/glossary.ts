@@ -9,6 +9,11 @@ enum GlossaryType {
     acronym
 }
 
+interface GlossaryEntry {
+    label: string |undefined,
+    description: string | undefined
+}
+
 export interface Suggestion extends vscode.CompletionItem {
     type: GlossaryType
 }
@@ -54,7 +59,7 @@ export class Glossary implements IProvider {
 
     private getGlossaryFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
         const glossaries: Suggestion[] = []
-        let description: string | undefined
+        let entry: GlossaryEntry
         let type: GlossaryType | undefined
 
         nodes.forEach(node => {
@@ -62,32 +67,32 @@ export class Glossary implements IProvider {
                 switch (node.name) {
                     case 'newglossaryentry':
                         type = GlossaryType.glossary
-                        description = this.getShortNodeDescription(node)
+                        entry = this.getShortNodeDescription(node)
                         break
                     case 'provideglossaryentry':
                         type = GlossaryType.glossary
-                        description = this.getShortNodeDescription(node)
+                        entry = this.getShortNodeDescription(node)
                         break
                     case 'longnewglossaryentry':
                         type = GlossaryType.glossary
-                        description = this.getLongNodeDescription(node)
+                        entry = this.getLongNodeLabelDescription(node)
                         break
                     case 'longprovideglossaryentry':
                         type = GlossaryType.glossary
-                        description = this.getLongNodeDescription(node)
+                        entry = this.getLongNodeLabelDescription(node)
                         break
                     case 'newacronym':
                         type = GlossaryType.acronym
-                        description = this.getLongNodeDescription(node)
+                        entry = this.getLongNodeLabelDescription(node)
                         break
                     default:
                         break
                 }
-                if (type !== undefined && node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
+                if (type !== undefined && entry.description !== undefined && entry.label !== undefined) {
                     glossaries.push({
                         type,
-                        label: node.args[0].content[0].content,
-                        detail: description,
+                        label: entry.label,
+                        detail: entry.description,
                         kind: vscode.CompletionItemKind.Reference
                     })
                 }
@@ -107,13 +112,17 @@ export class Glossary implements IProvider {
      * Simply turn the third argument into a string.
      *
      * @param node the \newacronym node from the parser
-     * @param hasOptionalArg are there any optional parameters?
+     * @return the pair (label, description)
      */
-    private getLongNodeDescription(node: latexParser.Command, hasOptionalArg: boolean = false): string | undefined {
+    private getLongNodeLabelDescription(node: latexParser.Command): GlossaryEntry {
         const arr: string[] = []
-        const index: number = hasOptionalArg ? 3 : 2
-        if (node.args[index]?.kind === 'arg.group') {
-            node.args[index].content.forEach(subNode => {
+        let description: string | undefined = undefined
+        let label: string | undefined = undefined
+        const hasOptionalArg: boolean = node.args[0].kind === 'arg.optional'
+        const labelNode = hasOptionalArg ? node.args[1] : node.args[0]
+        const descriptionNode = hasOptionalArg ? node.args[3] : node.args[2]
+        if (descriptionNode?.kind === 'arg.group') {
+            descriptionNode.content.forEach(subNode => {
                 if (subNode.kind === 'text.string') {
                     arr.push(subNode.content)
                 }
@@ -121,9 +130,14 @@ export class Glossary implements IProvider {
         }
 
         if (arr.length > 0) {
-            return arr.join(' ')
+            description = arr.join(' ')
         }
-        return undefined
+
+        if (labelNode.kind === 'arg.group' && labelNode.content[0].kind === 'text.string') {
+            label = labelNode.content[0].content
+        }
+
+        return {label, description}
     }
 
     /**
@@ -140,9 +154,11 @@ export class Glossary implements IProvider {
      * @param node the \newglossaryentry node from the parser
      * @returns the value of the description field
      */
-    private getShortNodeDescription(node: latexParser.Command): string | undefined {
+    private getShortNodeDescription(node: latexParser.Command): GlossaryEntry {
         const arr: string[] = []
         let result: RegExpExecArray | null
+        let description: string | undefined = undefined
+        let label: string | undefined = undefined
         let lastNodeWasDescription = false
 
         if (node.args[1]?.kind === 'arg.group') {
@@ -166,9 +182,14 @@ export class Glossary implements IProvider {
         }
 
         if (arr.length > 0) {
-            return arr.join(' ')
+            description = arr.join(' ')
         }
-        return undefined
+
+        if (node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
+            label = node.args[0].content[0].content
+        }
+
+        return {label, description}
     }
 
     private updateAll() {
