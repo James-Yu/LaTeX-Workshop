@@ -20,6 +20,14 @@ export interface Suggestion extends vscode.CompletionItem {
     package: string
 }
 
+function isTriggerSuggestNeeded(name: string): boolean {
+    const reg = /[a-z]*(cite|ref|input)[a-z]*|begin|bibitem|(sub)?(import|includefrom|inputfrom)|gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?/i
+    if (name.match(reg)) {
+        return true
+    }
+    return false
+}
+
 export class Command implements IProvider {
     private readonly extension: Extension
     private readonly environment: Environment
@@ -357,7 +365,7 @@ export class Command implements IProvider {
                     filterText: node.name,
                     package: ''
                 }
-                if (node.name.match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|bibentry|begin/)) {
+                if (isTriggerSuggestNeeded(node.name)) {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
@@ -464,7 +472,7 @@ export class Command implements IProvider {
                 filterText: result[1],
                 package: ''
             }
-            if (result[1].match(/([a-zA-Z]*(cite|ref)[a-zA-Z]*)|bibentry|begin/)) {
+            if (isTriggerSuggestNeeded(result[1])) {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
             cmds.push(cmd)
@@ -546,8 +554,8 @@ export class Command implements IProvider {
         })
         if (item.postAction) {
             suggestion.command = { title: 'Post-Action', command: item.postAction }
-        } else if (/[a-zA-Z]*([Cc]ite|ref|input)[a-zA-Z]*|(sub)?(import|includefrom|inputfrom)/.exec(item.command)) {
-            // Automatically trigger completion if the command is for citation, filename or reference
+        } else if (isTriggerSuggestNeeded(item.command)) {
+            // Automatically trigger completion if the command is for citation, filename, reference or glossary
             suggestion.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
         }
         return suggestion
