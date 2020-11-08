@@ -36,10 +36,10 @@ export class Glossary implements IProvider {
         this.updateAll()
         let suggestions
 
-        if (result[1] && result[1].match(/^[Gg]/)) {
-            suggestions = this.glossaries
-        } else {
+        if (result[1] && result[1].match(/^ac/i)) {
             suggestions = this.acronyms
+        } else {
+            suggestions = Object.assign({}, this.acronyms, this.glossaries)
         }
 
         // Compile the suggestion object to array
@@ -109,7 +109,6 @@ export class Glossary implements IProvider {
      * Fairly straightforward, a \newacronym command takes the form
      *     \newacronym[optional parameters]{lw}{LW}{LaTeX Workshop}
      *
-     * Simply turn the third argument into a string.
      *
      * @param node the \newacronym node from the parser
      * @return the pair (label, description)
