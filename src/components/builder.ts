@@ -232,7 +232,12 @@ export class Builder {
             }
             this.extension.manager.getIncludedTeX(rootFile).forEach(file => {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
-                fs.ensureDirSync(path.resolve(outDir, relativePath))
+                const fullOutDir = path.resolve(outDir, relativePath)
+                // To avoid issues when fullOutDir is the root dir
+                // Using fs.mkdir() on the root directory even with recursion will result in an error
+                if (! (fs.pathExistsSync(fullOutDir) && fs.statSync(fullOutDir).isDirectory())) {
+                    fs.ensureDirSync(fullOutDir)
+                }
             })
             this.buildInitiator(rootFile, languageId, recipeName, releaseBuildMutex)
         } catch (e) {
