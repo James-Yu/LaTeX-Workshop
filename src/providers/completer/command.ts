@@ -22,10 +22,7 @@ export interface Suggestion extends vscode.CompletionItem {
 
 function isTriggerSuggestNeeded(name: string): boolean {
     const reg = /[a-z]*(cite|ref|input)[a-z]*|begin|bibitem|(sub)?(import|includefrom|inputfrom)|gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?/i
-    if (name.match(reg)) {
-        return true
-    }
-    return false
+    return reg.test(name)
 }
 
 export class Command implements IProvider {

@@ -10,7 +10,7 @@ enum GlossaryType {
 }
 
 interface GlossaryEntry {
-    label: string |undefined,
+    label: string | undefined,
     description: string | undefined
 }
 
@@ -117,6 +117,7 @@ export class Glossary implements IProvider {
         const arr: string[] = []
         let description: string | undefined = undefined
         let label: string | undefined = undefined
+
         const hasOptionalArg: boolean = node.args[0].kind === 'arg.optional'
         const labelNode = hasOptionalArg ? node.args[1] : node.args[0]
         const descriptionNode = hasOptionalArg ? node.args[3] : node.args[2]
@@ -267,6 +268,7 @@ export class Glossary implements IProvider {
                 getDescription: (result) => { return result[2] }
             }
         }
+
         for(const key in regexes){
             while(true) {
                 const result = regexes[key].regex.exec(content)
