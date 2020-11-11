@@ -1,5 +1,31 @@
 # Change Log
 
+## [8.14.0] - 2020-11-11
+
+### Added
+- (#516,#2298) Glossary completion.
+- (#2276) Add tool and recipe definitions for `Tectonic`.
+- (#2294) Support real-time math preview panel.
+- (#2322) Add option to sort `bib` files by entry type.
+
+### Changed
+- (#2279) Update to `PDF.js 2.5.207`.
+- (#2291) Tweak the transition of the toolbar of the PDF viewer.
+
+### Fixed
+- (#2277) Label completion broken when labels contain spaces.
+- (#2290) Extra closing brace when inserting `split` environment.
+- (#2292) Fix `\textins` command completion.
+- (#2325) Keep trailing comma in last `bibtex` field.
+- (#2327) Highlight `&` in `longtable`.
+- (#2328) Invoke `toLocaleLowerCase` for the suffix of filenames.
+- (#2344) Allow multiple `args` completion with `\cite`.
+- (#2339,#2342) Parts of `Compiler Log` are not parsed.
+- (#2347) Highlight `optidef` envs.
+- (#2356) No leading space allowed before `#begin{document}` when using `subfiles`.
+- (#1423,#1820,#2368) Deactivate auto-closing for snippet prefixes.
+
+
 ## [8.13.2] - 2020-09-12
 
 ### Fixed
