@@ -10,6 +10,7 @@ import {Environment} from './completer/environment'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input} from './completer/input'
+import {Glossary} from './completer/glossary'
 
 export class Completer implements vscode.CompletionItemProvider {
     private readonly extension: Extension
@@ -20,6 +21,7 @@ export class Completer implements vscode.CompletionItemProvider {
     readonly reference: Reference
     readonly package: Package
     readonly input: Input
+    readonly glossary: Glossary
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -30,6 +32,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.reference = new Reference(extension)
         this.package = new Package(extension)
         this.input = new Input(extension)
+        this.glossary = new Glossary(extension)
         try {
             this.loadDefaultItems()
         } catch (err) {
@@ -85,7 +88,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const line = document.lineAt(position.line).text.substr(0, position.character)
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
-        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'command']) {
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'command']) {
             const suggestions = this.completion(type, line, {document, position, token, context})
             if (suggestions.length > 0) {
                 if (type === 'citation') {
@@ -169,6 +172,10 @@ export class Completer implements vscode.CompletionItemProvider {
             case 'subimport':
                 reg = /\\(sub(?:import|includefrom|inputfrom))\*?(?:{([^}]*)})?{([^}]*)$/
                 provider = this.input
+                break
+            case 'glossary':
+                reg = /\\(gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
+                provider = this.glossary
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.

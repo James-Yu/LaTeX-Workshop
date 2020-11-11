@@ -12,6 +12,7 @@ import {Extension} from '../main'
 import {Suggestion as CiteEntry} from '../providers/completer/citation'
 import {Suggestion as CmdEntry} from '../providers/completer/command'
 import {Suggestion as EnvEntry} from '../providers/completer/environment'
+import {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
 
 /**
  * The content cache for each LaTeX file `filepath`.
@@ -27,6 +28,7 @@ interface Content {
          */
         element: {
             reference?: vscode.CompletionItem[],
+            glossary?: GlossEntry[],
             environment?: EnvEntry[],
             bibitem?: CiteEntry[],
             command?: CmdEntry[],
@@ -909,6 +911,7 @@ export class Manager {
             const nodes = latexAst.content
             const lines = content.split('\n')
             this.extension.completer.reference.update(file, nodes, lines)
+            this.extension.completer.glossary.update(file, nodes)
             this.extension.completer.environment.update(file, nodes, lines)
             this.extension.completer.command.update(file, nodes)
             this.extension.completer.command.updatePkg(file, nodes)
@@ -918,6 +921,7 @@ export class Manager {
             // Do the update with old style.
             const contentNoComment = utils.stripComments(content, '%')
             this.extension.completer.reference.update(file, undefined, undefined, contentNoComment)
+            this.extension.completer.glossary.update(file, undefined, contentNoComment)
             this.extension.completer.environment.update(file, undefined, undefined, contentNoComment)
             this.extension.completer.command.update(file, undefined, contentNoComment)
             this.extension.completer.command.updatePkg(file, undefined, contentNoComment)
