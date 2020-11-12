@@ -1,0 +1,1 @@
+We have to use four backslashes `\\\\` in some snippet definitions. See [microsoft/vscode/issues/32020](https://github.com/microsoft/vscode/issues/32020) and [microsoft/vscode/issues/33933](https://github.com/microsoft/vscode/issues/33933) for the details.

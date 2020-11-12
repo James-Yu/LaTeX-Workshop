@@ -90,3 +90,7 @@ This file is based on the list provided by [CTAN](https://ctan.org/json/2.0/pack
   - If not, search if a directory `pkg/` exists and look up a file whose lowercase name matches `pkg`. If it is found, then save it for package intellisense.
 
 As some packages cannot be properly detected using the above mechanism, we maintain a list of extra packages to be added to the list in [extra-packagenames.json](../dev/extra-packagenames.json). These packages are automatically added at the end of [`ctanpkglist.py`](../dev/ctanpkglist.py) script.
+
+## Misc
+
+We have to use four backslashes `\\\\` in some snippet definitions. See [microsoft/vscode/issues/32020](https://github.com/microsoft/vscode/issues/32020) and [microsoft/vscode/issues/33933](https://github.com/microsoft/vscode/issues/33933) for the details.
