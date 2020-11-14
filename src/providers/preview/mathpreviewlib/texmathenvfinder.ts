@@ -12,13 +12,13 @@ export class TeXMathEnvFinder {
         const envBeginPat = /\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/
         let r = document.getWordRangeAtPosition(position, envBeginPat)
         if (r) {
-            const envname = this.getFirstRmemberedSubstring(document.getText(r), envBeginPat)
+            const envname = this.getFirstRememberedSubstring(document.getText(r), envBeginPat)
             return this.findHoverOnEnv(document, envname, r.start)
         }
         const parenBeginPat = /(\\\[|\\\(|\$\$)/
         r = document.getWordRangeAtPosition(position, parenBeginPat)
         if (r) {
-            const paren = this.getFirstRmemberedSubstring(document.getText(r), parenBeginPat)
+            const paren = this.getFirstRememberedSubstring(document.getText(r), parenBeginPat)
             return this.findHoverOnParen(document, paren, r.start)
         }
         return this.findHoverOnInline(document, position)
@@ -68,7 +68,7 @@ export class TeXMathEnvFinder {
         return
     }
 
-    private getFirstRmemberedSubstring(s: string, pat: RegExp): string {
+    private getFirstRememberedSubstring(s: string, pat: RegExp): string {
         const m = s.match(pat)
         if (m && m[1]) {
             return m[1]
