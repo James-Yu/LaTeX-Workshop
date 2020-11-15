@@ -44,7 +44,7 @@ async function runTestsOnEachFixture(targetName: 'build' | 'viewer' | 'completio
     for (const testWorkspace of testBuildWorkspaces) {
         const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
         await runTests({
-            version: '1.50.0',
+            version: '1.51.1',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [
