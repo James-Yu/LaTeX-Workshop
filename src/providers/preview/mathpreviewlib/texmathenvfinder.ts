@@ -25,6 +25,7 @@ export class TeXMathEnvFinder {
     }
 
     findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token: string, refData: ReferenceEntry): TexMathEnv | undefined {
+        const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.math.preview.maxLines') as number
         const docOfRef = TextDocumentLike.load(refData.file)
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         const l = docOfRef.lineAt(refData.position.line).text
@@ -32,7 +33,7 @@ export class TeXMathEnvFinder {
         const m = l.match(pat)
         if (m && m.index !== undefined) {
             const labelPos = new vscode.Position(refData.position.line, m.index)
-            const beginPos = this.findBeginPair(docOfRef, envBeginPatMathMode, labelPos)
+            const beginPos = this.findBeginPair(docOfRef, envBeginPatMathMode, labelPos, limit)
             if (beginPos) {
                 const t = this.findHoverOnTex(docOfRef, beginPos)
                 if (t) {
@@ -49,13 +50,14 @@ export class TeXMathEnvFinder {
     }
 
     findMathEnvIncludingPosition(document: vscode.TextDocument, position: vscode.Position): TexMathEnv | undefined {
+        const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.math.preview.maxLines') as number
         const envNamePatMathMode = /(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)/
         const envBeginPatMathMode = /\\\[|\\\(|\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         let texMath = this.findHoverOnTex(document, position)
         if (texMath && (texMath.envname === '$' || texMath.envname.match(envNamePatMathMode))) {
             return texMath
         }
-        const beginPos = this.findBeginPair(document, envBeginPatMathMode, position)
+        const beginPos = this.findBeginPair(document, envBeginPatMathMode, position, limit)
         if (beginPos) {
             texMath = this.findHoverOnTex(document, beginPos)
             if (texMath) {
@@ -105,7 +107,7 @@ export class TeXMathEnvFinder {
     //  \begin{...}                \end{...}
     //  ^                          ^
     //  return pos                 endPos1
-    private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit= 20): vscode.Position | undefined {
+    private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit: number): vscode.Position | undefined {
         const currentLine = document.lineAt(endPos1).text.substr(0, endPos1.character)
         let l = this.removeComment(currentLine)
         let m = l.match(beginPat)
