@@ -25,7 +25,7 @@ export class TeXMathEnvFinder {
     }
 
     findHoverOnRef(document: vscode.TextDocument, position: vscode.Position, token: string, refData: ReferenceEntry): TexMathEnv | undefined {
-        const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.math.preview.maxLines') as number
+        const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
         const docOfRef = TextDocumentLike.load(refData.file)
         const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         const l = docOfRef.lineAt(refData.position.line).text
@@ -50,7 +50,7 @@ export class TeXMathEnvFinder {
     }
 
     findMathEnvIncludingPosition(document: vscode.TextDocument, position: vscode.Position): TexMathEnv | undefined {
-        const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.math.preview.maxLines') as number
+        const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
         const envNamePatMathMode = /(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)/
         const envBeginPatMathMode = /\\\[|\\\(|\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
         let texMath = this.findHoverOnTex(document, position)
