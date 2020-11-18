@@ -11,8 +11,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set up PATH
       run: |
-        echo "##[add-path]C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin"
-        echo "##[add-path]D:\texlive\bin\win32"
+        echo "C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin" >> $GITHUB_PATH
+        echo "D:\texlive\bin\win32" >> $GITHUB_PATH
+      shell: bash
     - name: Cache TeX Live
       id: cache-texlive
       uses: actions/cache@v1
