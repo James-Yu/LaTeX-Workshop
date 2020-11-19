@@ -799,7 +799,14 @@
               "tools": [
                 "tectonic"
               ]
-            }
+            },
+						{
+							"name": "Image Convert",
+							"tools": [
+								"pdflatex",
+								"convert"
+							]
+						}
           ],
           "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
         },
@@ -924,7 +931,26 @@
                 "%DOC%.tex"
               ],
               "env": {}
-            }
+            },
+						{
+							"name": "convert",
+							"command": "convert",
+							"args": [
+								"-density",
+								"300",
+								"%DOC%.pdf",
+								"-quality",
+								"60",
+								"-background",
+								"white",
+								"-alpha",
+								"remove",
+								"-alpha",
+								"off",
+								"%DOC%.png"
+							],
+							"env": {}
+						}
           ],
           "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%` are available. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
