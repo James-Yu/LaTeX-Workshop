@@ -476,9 +476,10 @@
     ],
     "keybindings": [
       {
-        "key": "ctrl+alt+m",
-        "mac": "cmd+alt+m",
-        "command": "latex-workshop.toggleMathPreviewPanel"
+        "key": "ctrl+l alt+m",
+        "mac": "cmd+l alt+m",
+        "command": "latex-workshop.toggleMathPreviewPanel",
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+b",
@@ -509,6 +510,12 @@
         "mac": "cmd+l alt+x",
         "command": "workbench.view.extension.latex",
         "when": "config.latex-workshop.bind.altKeymap.enabled"
+      },
+      {
+        "key": "ctrl+alt+m",
+        "mac": "cmd+alt+m",
+        "command": "latex-workshop.toggleMathPreviewPanel",
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+b",
