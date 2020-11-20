@@ -106,6 +106,7 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 
     async resolveCompletionItem(item: vscode.CompletionItem, token: vscode.CancellationToken): Promise<vscode.CompletionItem> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (item.kind === vscode.CompletionItemKind.Reference) {
             if (typeof item.documentation !== 'string') {
                 return item
@@ -114,6 +115,10 @@ export class Completer implements vscode.CompletionItemProvider {
             const sug = {
                 file: data.file,
                 position: new vscode.Position(data.position.line, data.position.character)
+            }
+            if (!configuration.get('hover.ref.enabled')) {
+                item.documentation = data.documentation
+                return item
             }
             const tex = this.extension.mathPreview.findHoverOnRef(sug, data.key)
             if (tex) {
@@ -125,7 +130,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 return item
             }
         } else if (item.kind === vscode.CompletionItemKind.File) {
-            const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
+            const preview = configuration.get('intellisense.includegraphics.preview.enabled') as boolean
             if (!preview) {
                 return item
             }
