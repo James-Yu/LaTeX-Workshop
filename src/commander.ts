@@ -640,4 +640,8 @@ export class Commander {
         this.extension.mathPreviewPanel.close()
     }
 
+    toggleMathPreviewPanel() {
+        this.extension.mathPreviewPanel.toggle()
+    }
+
 }

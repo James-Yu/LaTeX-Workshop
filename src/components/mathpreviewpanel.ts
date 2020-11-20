@@ -101,6 +101,14 @@ export class MathPreviewPanel {
         this.extension.logger.addLogMessage('Math preview panel: closed')
     }
 
+    toggle() {
+        if (this.panel) {
+            this.close()
+        } else {
+            this.open()
+        }
+    }
+
     private clearCache() {
         this.prevEditTime = 0
         this.prevDocumentUri = undefined
