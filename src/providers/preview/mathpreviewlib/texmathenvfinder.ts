@@ -43,7 +43,7 @@ export class TeXMathEnvFinder {
                 const t = this.findHoverOnTex(docOfRef, beginPos)
                 if (t) {
                     const beginEndRange = t.range
-                    const refRange = document.getWordRangeAtPosition(position, /\S+\{.*?\}/)
+                    const refRange = document.getWordRangeAtPosition(position, /\S+?\{.*?\}/)
                     if (refRange && beginEndRange.contains(labelPos)) {
                         t.range = refRange
                         return t
