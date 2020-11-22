@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as utils from '../../../utils/utils'
 import {MathJaxPool, TypesetArg} from '../mathjaxpool'
-import type {Suggestion as ReferenceEntry} from '../../completer/reference'
+import type {ReferenceEntry} from '../../completer/reference'
 import type {Extension} from '../../../main'
 import type {TexMathEnv} from './texmathenvfinder'
 import type {MathPreviewUtils} from './mathpreviewutils'
@@ -19,6 +19,15 @@ export class HoverPreviewOnRefProvider {
     }
 
     async provideHoverPreviewOnRef(tex: TexMathEnv, newCommand: string, refData: ReferenceEntry, color: string): Promise<vscode.Hover> {
+        const md = await this.renderSvgOnRef(tex, newCommand, refData, color)
+        const line = refData.position.line
+        const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
+        const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
+        mdLink.isTrusted = true
+        return new vscode.Hover( [this.mputils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+    }
+
+    async renderSvgOnRef(tex: TexMathEnv, newCommand: string, refData: Pick<ReferenceEntry, 'label' | 'prevIndex'>, color: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
 
@@ -42,12 +51,8 @@ export class HoverPreviewOnRefProvider {
         const typesetOpts = { scale, color }
         try {
             const xml = await this.mj.typeset(typesetArg, typesetOpts)
-            const md = utils.svgToDataUrl(xml)
-            const line = refData.position.line
-            const link = vscode.Uri.parse('command:latex-workshop.synctexto').with({ query: JSON.stringify([line, refData.file]) })
-            const mdLink = new vscode.MarkdownString(`[View on pdf](${link})`)
-            mdLink.isTrusted = true
-            return new vscode.Hover( [this.mputils.addDummyCodeBlock(`![equation](${md})`), mdLink], tex.range )
+            const svg = utils.svgToDataUrl(xml)
+            return svg
         } catch(e) {
             this.extension.logger.logOnRejected(e)
             this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg.math}`)

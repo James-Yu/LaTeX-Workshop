@@ -11,6 +11,7 @@ import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input} from './completer/input'
 import {Glossary} from './completer/glossary'
+import type {ReferenceDocType} from './completer/reference'
 
 export class Completer implements vscode.CompletionItemProvider {
     private readonly extension: Extension
@@ -104,29 +105,53 @@ export class Completer implements vscode.CompletionItemProvider {
         return
     }
 
-    async resolveCompletionItem(item: vscode.CompletionItem): Promise<vscode.CompletionItem> {
-        if (item.kind !== vscode.CompletionItemKind.File) {
-            return item
-        }
-        const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
-        if (!preview) {
-            return item
-        }
-        const filePath = item.documentation
-        if (typeof filePath !== 'string') {
-            return item
-        }
-        const rsc = await this.extension.graphicsPreview.renderGraphics(filePath, { height: 190, width: 300 })
-        if (rsc === undefined) {
-            return item
-        }
+    async resolveCompletionItem(item: vscode.CompletionItem, token: vscode.CancellationToken): Promise<vscode.CompletionItem> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (item.kind === vscode.CompletionItemKind.Reference) {
+            if (typeof item.documentation !== 'string') {
+                return item
+            }
+            const data: ReferenceDocType = JSON.parse(item.documentation)
+            const sug = {
+                file: data.file,
+                position: new vscode.Position(data.position.line, data.position.character)
+            }
+            if (!configuration.get('hover.ref.enabled')) {
+                item.documentation = data.documentation
+                return item
+            }
+            const tex = this.extension.mathPreview.findHoverOnRef(sug, data.key)
+            if (tex) {
+                const svgDataUrl = await this.extension.mathPreview.renderSvgOnRef(tex, data, token)
+                item.documentation = new vscode.MarkdownString(`![equation](${svgDataUrl})`)
+                return item
+            } else {
+                item.documentation = data.documentation
+                return item
+            }
+        } else if (item.kind === vscode.CompletionItemKind.File) {
+            const preview = configuration.get('intellisense.includegraphics.preview.enabled') as boolean
+            if (!preview) {
+                return item
+            }
+            const filePath = item.documentation
+            if (typeof filePath !== 'string') {
+                return item
+            }
+            const rsc = await this.extension.graphicsPreview.renderGraphics(filePath, { height: 190, width: 300 })
+            if (rsc === undefined) {
+                return item
+            }
 
-        // \u{2001} is a unicode character of space with width of one em.
-        const spacer = '\n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n'
-        const md = new vscode.MarkdownString(`![graphics](${rsc})` + spacer)
-        const ret = new vscode.CompletionItem(item.label, vscode.CompletionItemKind.File)
-        ret.documentation = md
-        return ret
+            // \u{2001} is a unicode character of space with width of one em.
+            const spacer = '\n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n'
+            const md = new vscode.MarkdownString(`![graphics](${rsc})` + spacer)
+            const ret = new vscode.CompletionItem(item.label, vscode.CompletionItemKind.File)
+            ret.documentation = md
+            return ret
+        } else {
+            return item
+        }
     }
 
     private completion(type: string, line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
