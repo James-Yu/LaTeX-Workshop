@@ -128,10 +128,7 @@ export class Completer implements vscode.CompletionItemProvider {
             if (rsc === undefined) {
                 return item
             }
-
-            // \u{2001} is a unicode character of space with width of one em.
-            const spacer = '\n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n\u{2001}  \n\n'
-            const md = new vscode.MarkdownString(`![graphics](${rsc})` + spacer)
+            const md = new vscode.MarkdownString(`![graphics](${rsc})`)
             const ret = new vscode.CompletionItem(item.label, vscode.CompletionItemKind.File)
             ret.documentation = md
             return ret
