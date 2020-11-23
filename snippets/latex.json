@@ -6,12 +6,12 @@
 	},
 	"subscript": {
 		"prefix": "__",
-		"body": "_{$1}",
+		"body": "_{${1:$TM_SELECTED_TEXT}}",
 		"description": "subscript"
 	},
 	"superscript": {
 		"prefix": "**",
-		"body": "^{$1}",
+		"body": "^{${1:$TM_SELECTED_TEXT}}",
 		"description": "superscript"
 	},
 	"etc": {
@@ -46,12 +46,12 @@
 	},
 	"hat": {
 		"prefix": "@^",
-		"body": "\\Hat{$1}$0",
+		"body": "\\Hat{${1:$TM_SELECTED_TEXT}}$0",
 		"description": "hat"
 	},
 	"bar": {
 		"prefix": "@_",
-		"body": "\\bar{$1}$0",
+		"body": "\\bar{${1:$TM_SELECTED_TEXT}}$0",
 		"description": "bar"
 	},
 	"circ": {
@@ -66,12 +66,12 @@
 	},
 	"dot": {
 		"prefix": "@;",
-		"body": "\\dot{$1}$0",
+		"body": "\\dot{${1:$TM_SELECTED_TEXT}}$0",
 		"description": "dot"
 	},
 	"ddot": {
 		"prefix": "@:",
-		"body": "\\ddot{$1}$0",
+		"body": "\\ddot{${1:$TM_SELECTED_TEXT}}$0",
 		"description": "ddot"
 	},
 
@@ -97,7 +97,7 @@
 	},
 	"sqrt": {
 		"prefix": "@2",
-		"body": "\\sqrt{$1}$0",
+		"body": "\\sqrt{${1:$TM_SELECTED_TEXT}}$0",
 		"description": "sqrt command"
 	},
 	"int": {
@@ -127,82 +127,82 @@
 	},
 	"equation": {
 		"prefix": "BEQ",
-		"body": "\\begin{equation}\n\t$0\n\\end{equation}",
+		"body": "\\begin{equation}\n\t${0:$TM_SELECTED_TEXT}\n\\end{equation}",
 		"description": "equation environment"
 	},
 	"equation*": {
 		"prefix": "BSEQ",
-		"body": "\\begin{equation*}\n\t$0\n\\end{equation*}",
+		"body": "\\begin{equation*}\n\t${0:$TM_SELECTED_TEXT}\n\\end{equation*}",
 		"description": "equation* environment"
 	},
 	"align": {
 		"prefix": "BAL",
-		"body": "\\begin{align}\n\t$0\n\\end{align}",
+		"body": "\\begin{align}\n\t${0:$TM_SELECTED_TEXT}\n\\end{align}",
 		"description": "align environment"
 	},
 	"align*": {
 		"prefix": "BSAL",
-		"body": "\\begin{align*}\n\t$0\n\\end{align*}",
+		"body": "\\begin{align*}\n\t${0:$TM_SELECTED_TEXT}\n\\end{align*}",
 		"description": "align* environment"
 	},
 	"gather": {
 		"prefix": "BGA",
-		"body": "\\begin{gather}\n\t$0\n\\end{gather}",
+		"body": "\\begin{gather}\n\t${0:$TM_SELECTED_TEXT}\n\\end{gather}",
 		"description": "gather environment"
 	},
 	"gather*": {
 		"prefix": "BSGA",
-		"body": "\\begin{gather*}\n\t$0\n\\end{gather*}",
+		"body": "\\begin{gather*}\n\t${0:$TM_SELECTED_TEXT}\n\\end{gather*}",
 		"description": "gather* environment"
 	},
 	"multline": {
 		"prefix": "BMU",
-		"body": "\\begin{multline}\n\t$0\n\\end{multline}",
+		"body": "\\begin{multline}\n\t${0:$TM_SELECTED_TEXT}\n\\end{multline}",
 		"description": "multline environment"
 	},
 	"multline*": {
 		"prefix": "BSMU",
-		"body": "\\begin{multline*}\n\t$0\n\\end{multline*}",
+		"body": "\\begin{multline*}\n\t${0:$TM_SELECTED_TEXT}\n\\end{multline*}",
 		"description": "multline* environment"
 	},	
 	"itemize": {
 		"prefix": "BIT",
-		"body": "\\begin{itemize}\n\t\\item $0\n\\end{itemize}",
+		"body": "\\begin{itemize}\n\t\\item ${0:$TM_SELECTED_TEXT}\n\\end{itemize}",
 		"description": "itemize environment"
 	},
 	"enumerate": {
 		"prefix": "BEN",
-		"body": "\\begin{enumerate}\n\t\\item $0\n\\end{enumerate}",
+		"body": "\\begin{enumerate}\n\t\\item ${0:$TM_SELECTED_TEXT}\n\\end{enumerate}",
 		"description": "enumerate environment"
 	},
 	"split": {
 		"prefix": "BSPL",
-		"body": "\\begin{split}\n\t$0\n\\end{split}",
+		"body": "\\begin{split}\n\t${0:$TM_SELECTED_TEXT}\n\\end{split}",
 		"description": "split environment"
 	},
 	"cases": {
 		"prefix": "BCAS",
-		"body": "\\begin{cases}\n\t$0\n\\end{cases}",
+		"body": "\\begin{cases}\n\t${0:$TM_SELECTED_TEXT}\n\\end{cases}",
 		"description": "cases environment"
 	},
 	"frame": {
 		"prefix": "BFR",
-		"body": "\\begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t$0\n\n\\end{frame}",
+		"body": "\\begin{frame}\n\t\\frametitle{${1:<title>}}\n\n\t${0:$TM_SELECTED_TEXT}\n\n\\end{frame}",
 		"description": "frame"
 	},
 	"figure": {
 		"prefix": "BFI",
-		"body": "\\begin{figure}[${1:htbp}]\n\t\\centering\n\t$0\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{figure}",
+		"body": "\\begin{figure}[${1:htbp}]\n\t\\centering\n\t${0:$TM_SELECTED_TEXT}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{figure}",
 		"description": "figure"
 	},
 	"table": {
 		"prefix": "BTA",
-		"body": "\\begin{table}[${1:htbp}]\n\t\\centering\\begin{tabular}{${4:<columns>}}\n\t\t$0\n\t\\end{tabular}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{table}",
+		"body": "\\begin{table}[${1:htbp}]\n\t\\centering\\begin{tabular}{${4:<columns>}}\n\t\t${0:$TM_SELECTED_TEXT}\n\t\\end{tabular}\n\t\\caption{${2:<caption>}}\n\t\\label{${3:<label>}}\n\\end{table}",
 		"description": "table"
 	},
 	"tikzpicture": {
 		"prefix": "BTP",
-		"body": "\\begin{tikzpicture}\n\t$0\n\\end{tikzpicture}",
+		"body": "\\begin{tikzpicture}\n\t${0:$TM_SELECTED_TEXT}\n\\end{tikzpicture}",
 		"description": "tikzpicture"
 	},
 	"set font size": {
@@ -502,17 +502,17 @@
 	},
 	"(": {
 		"prefix": "@(",
-		"body": "\\left( $1 \\right)",
+		"body": "\\left( ${1:$TM_SELECTED_TEXT} \\right)",
 		"description": "left( ... right)"
 	},
 	"{": {
 		"prefix": "@{",
-		"body": "\\left\\{ $1 \\right\\\\}",
+		"body": "\\left\\{ ${1:$TM_SELECTED_TEXT} \\right\\\\}",
 		"description": "left{ ... right}"
 	},
 	"[": {
 		"prefix": "@[",
-		"body": "\\left[ $1 \\right]",
+		"body": "\\left[ ${1:$TM_SELECTED_TEXT} \\right]",
 		"description": "left[ ... right]"
 	},
 	"wrapEnv": {
@@ -521,38 +521,38 @@
 	},
 	"part": {
 		"prefix": "SPA",
-		"body": "\\part{$1}",
+		"body": "\\part{${1:$TM_SELECTED_TEXT}}",
 		"description": "part"
 		},
 	"chapter": {
 		"prefix": "SCH",
-		"body": "\\chapter{$1}",
+		"body": "\\chapter{${1:$TM_SELECTED_TEXT}}",
 		"description": "chapter"
 	},
 	"section": {
 		"prefix": "SSE",
-		"body": "\\section{$1}",
+		"body": "\\section{${1:$TM_SELECTED_TEXT}}",
 		"description": "section"
 
 	},
 	"subsection": {
 		"prefix": "SSS",
-		"body": "\\subsection{$1}",
+		"body": "\\subsection{${1:$TM_SELECTED_TEXT}}",
 		"description": "subsection"
 	},
 	"subsubsection": {
 		"prefix": "SS2",
-		"body": "\\subsubsection{$1}",
+		"body": "\\subsubsection{${1:$TM_SELECTED_TEXT}}",
 		"description": "subsubsection"
 	},
 	"paragraph": {
 		"prefix": "SPG",
-		"body": "\\paragraph{$1}",
+		"body": "\\paragraph{${1:$TM_SELECTED_TEXT}}",
 		"description": "paragraph"
 	},
 	"subparagraph": {
 		"prefix": "SSP",
-		"body": "\\subparagraph{$1}",
+		"body": "\\subparagraph{${1:$TM_SELECTED_TEXT}}",
 		"description": "subparagraph"
 	}
 }
