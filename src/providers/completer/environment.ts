@@ -329,9 +329,10 @@ export class Environment implements IProvider {
                 }
             }
             if (snippet.match(/\$\{?0\}?/)) {
+                snippet = snippet.replace(/\$\{?0\}?/, '$${0:$${TM_SELECTED_TEXT}}')
                 snippet += '\n'
             } else {
-                snippet += '\n\t$0\n'
+                snippet += '\n\t${0:${TM_SELECTED_TEXT}}\n'
             }
             if (item.detail) {
                 suggestion.label = item.detail

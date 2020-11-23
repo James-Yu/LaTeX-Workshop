@@ -536,7 +536,7 @@ export class Command implements IProvider {
 
         if (item.snippet) {
             if (useTabStops) {
-                item.snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
+                item.snippet = item.snippet.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}')
             }
             suggestion.insertText = new vscode.SnippetString(item.snippet)
         } else {
