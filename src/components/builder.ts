@@ -269,6 +269,7 @@ export class Builder {
         }
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
+        this.extension.logger.addLogMessage(`Recipe env: ${JSON.stringify(steps[index].env)}`)
         this.extension.manager.setEnvVar()
         const envVars: ProcessEnv = {}
         Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
