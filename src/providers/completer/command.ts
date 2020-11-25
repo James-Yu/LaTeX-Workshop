@@ -172,7 +172,7 @@ export class Command implements IProvider {
             }
             const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
             if (command.match(/(.*)(\${\d.*?})/)) {
-                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\'))
+                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\').replace(':${TM_SELECTED_TEXT}', ''))
             }
         })
         vscode.window.showQuickPick(candidate, {
