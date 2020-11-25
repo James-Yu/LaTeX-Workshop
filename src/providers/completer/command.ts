@@ -538,6 +538,10 @@ export class Command implements IProvider {
             if (useTabStops) {
                 item.snippet = item.snippet.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}')
             }
+            // Wrap the selected text when there is a single placeholder
+            if (! (item.snippet.match(/\$\{?2/) || (item.snippet.match(/\$\{?0/) && item.snippet.match(/\$\{?1/)))) {
+                item.snippet = item.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')
+            }
             suggestion.insertText = new vscode.SnippetString(item.snippet)
         } else {
             suggestion.insertText = item.command
