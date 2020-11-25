@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import { readFileSync } from 'fs'
-import * as fs from 'fs'
 
 import { Extension } from '../main'
 import {replaceWebviewPlaceholders} from '../utils/webview'
@@ -72,15 +71,6 @@ export class SnippetPanel {
 
         this.panel.webview.onDidReceiveMessage(this.messageReceive.bind(this))
 
-        fs.watchFile(webviewSourcePath, () => {
-            {
-                if (this.panel) {
-                    const htmlStr = readFileSync(webviewSourcePath, { encoding: 'utf8' })
-                    this.panel.webview.html = replaceWebviewPlaceholders(htmlStr, this.extension, this.panel.webview)
-                    this.initialisePanel()
-                }
-            }
-        })
     }
 
     private mathSymbols: IMathSymbol[] = []
