@@ -35,7 +35,7 @@ import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider} from './providers/folding'
 import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
-import {SnippetViewProvider} from './providers/snippetviewprovider'
+import {SnippetViewProvider} from './providers/snippetview'
 
 import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
 
