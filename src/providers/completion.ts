@@ -68,24 +68,10 @@ export class Completer implements vscode.CompletionItemProvider {
         token: vscode.CancellationToken,
         context: vscode.CompletionContext
     ): vscode.CompletionItem[] | undefined {
-        const invokeChar = document.lineAt(position.line).text[position.character - 1]
         const currentLine = document.lineAt(position.line).text
         if (position.character > 1 && currentLine[position.character - 1] === '\\' && currentLine[position.character - 2] === '\\') {
             return
         }
-        if (this.command.bracketCmds && this.command.bracketCmds[invokeChar]) {
-            if (position.character > 1 && currentLine[position.character - 2] === '\\') {
-                const mathSnippet = Object.assign({}, this.command.bracketCmds[invokeChar])
-                if (vscode.workspace.getConfiguration('editor', document.uri).get('autoClosingBrackets') &&
-                    (currentLine.length > position.character && [')', ']', '}'].includes(currentLine[position.character]))) {
-                    mathSnippet.range = new vscode.Range(position.translate(0, -1), position.translate(0, 1))
-                } else {
-                    mathSnippet.range = new vscode.Range(position.translate(0, -1), position)
-                }
-                return [mathSnippet]
-            }
-        }
-
         const line = document.lineAt(position.line).text.substr(0, position.character)
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
@@ -171,7 +157,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.environment
                 break
             case 'command':
-                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\([a-zA-Z]*)$/
+                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\([a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
                 provider = this.command
                 break
             case 'package':
