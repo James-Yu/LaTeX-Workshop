@@ -172,7 +172,7 @@ export class Command implements IProvider {
             }
             const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
             if (command.match(/(.*)(\${\d.*?})/)) {
-                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\'))
+                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\').replace(':${TM_SELECTED_TEXT}', ''))
             }
         })
         vscode.window.showQuickPick(candidate, {
@@ -536,7 +536,11 @@ export class Command implements IProvider {
 
         if (item.snippet) {
             if (useTabStops) {
-                item.snippet = item.snippet.replace(/\$\{(\d+):[^}]*\}/g, '$${$1}')
+                item.snippet = item.snippet.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}')
+            }
+            // Wrap the selected text when there is a single placeholder
+            if (! (item.snippet.match(/\$\{?2/) || (item.snippet.match(/\$\{?0/) && item.snippet.match(/\$\{?1/)))) {
+                item.snippet = item.snippet.replace(/\$1|\$\{1\}/, '$${1:$${TM_SELECTED_TEXT}}').replace(/\$\{1:([^$}]+)\}/, '$${1:$${TM_SELECTED_TEXT:$1}}')
             }
             suggestion.insertText = new vscode.SnippetString(item.snippet)
         } else {

@@ -35,15 +35,6 @@ export class Environment implements IProvider {
         this.defaultEnvsAsCommand = []
         this.defaultEnvsForBegin = []
         this.defaultEnvsAsName = []
-        const endCompletion: Suggestion = {
-            label: 'Complete with \\end',
-            sortText: ' ',
-            insertText: new vscode.SnippetString('$1}\n\t$0\n\\end{$1}'),
-            command: { title: 'Post-Action', command: 'editor.action.triggerSuggest' },
-            kind: vscode.CompletionItemKind.Module,
-            package: ''
-        }
-        this.defaultEnvsForBegin.push(endCompletion)
         Object.keys(envs).forEach(key => {
            this.defaultEnvsAsCommand.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
            this.defaultEnvsForBegin.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.ForBegin))
@@ -329,9 +320,10 @@ export class Environment implements IProvider {
                 }
             }
             if (snippet.match(/\$\{?0\}?/)) {
+                snippet = snippet.replace(/\$\{?0\}?/, '$${0:$${TM_SELECTED_TEXT}}')
                 snippet += '\n'
             } else {
-                snippet += '\n\t$0\n'
+                snippet += '\n\t${0:${TM_SELECTED_TEXT}}\n'
             }
             if (item.detail) {
                 suggestion.label = item.detail
