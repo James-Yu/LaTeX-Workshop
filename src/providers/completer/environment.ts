@@ -93,7 +93,7 @@ export class Environment implements IProvider {
             return []
         }
         let snippetType: EnvSnippetType = EnvSnippetType.ForBegin
-        if (vscode.window.activeTextEditor.selections.length > 1) {
+        if (vscode.window.activeTextEditor.selections.length > 1 || args.document.lineAt(args.position.line).text.slice(args.position.character).match(/[a-zA-Z*]*}/)) {
             snippetType = EnvSnippetType.AsName
         }
 
