@@ -52,12 +52,6 @@ export class Command implements IProvider {
                     return
                 }
                 defaultCmds[key].snippet = action
-            } else if (key === 'begin') {
-                // Tweak \begin{
-                const autoClosing = vscode.workspace.getConfiguration('editor').get('autoClosingBrackets') as string
-                if (autoClosing !== 'never') {
-                    defaultCmds[key].snippet = 'begin{$0}'
-                }
             }
             this.defaultCmds.push(this.entryCmdToCompletion(key, defaultCmds[key]))
         })
