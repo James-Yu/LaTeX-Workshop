@@ -16,6 +16,28 @@
 		["\\left<", "\\right>"]
 	],
 	"autoClosingPairs": [
+		["\\begin{", ""],
+		["\\left(", ""],
+		["\\left[", ""],
+		["\\left{", ""],
+		["\\bigl(", ""],
+		["\\bigl[", ""],
+		["\\bigl{", ""],
+		["\\Bigl(", ""],
+		["\\Bigl[", ""],
+		["\\Bigl{", ""],
+		["\\biggl(", ""],
+		["\\biggl[", ""],
+		["\\biggl{", ""],
+		["\\Biggl(", ""],
+		["\\Biggl[", ""],
+		["\\Biggl{", ""],
+		["\\(", ""],
+		["\\[", ""],
+		["\\{", ""],
+		["@(", ""],
+		["@[", ""],
+		["@{", ""],
 		["{", "}"],
 		["[", "]"],
 		["(", ")"],
@@ -31,8 +53,8 @@
 		["$", "$"]
 	],
 	"indentationRules": {
-		"increaseIndentPattern": "(\\\\begin{(?!document))",
-		"decreaseIndentPattern": "(\\\\end{(?!document))"
+		"increaseIndentPattern": "\\\\begin{(?!document)([^}]*)}(?!.*\\\\end{\\1})",
+		"decreaseIndentPattern": "^\\s*\\\\end{(?!document)"
 	},
 	"folding": {
 		"markers": {
