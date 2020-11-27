@@ -65,12 +65,13 @@ export class Command implements IProvider {
     provideFrom(_type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         const suggestions = this.provide(args.document.languageId, args.document, args.position)
         // Commands ending with (, { or [ are not filtered properly by vscode intellisense. So we do it by hand.
-        const exactSuggestion = suggestions.filter(entry => entry.label === result[0])
-        if (exactSuggestion.length > 0) {
-            return exactSuggestion
-        } else {
-            return suggestions
+        if (result[0].match(/[({[]$/)) {
+            const exactSuggestion = suggestions.filter(entry => entry.label === result[0])
+            if (exactSuggestion.length > 0) {
+                return exactSuggestion
+            }
         }
+        return suggestions
     }
 
     private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): vscode.CompletionItem[] {
