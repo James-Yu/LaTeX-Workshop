@@ -157,7 +157,7 @@ export class Command implements IProvider {
             return
         }
         const editor = vscode.window.activeTextEditor
-        const candidate: string[] = []
+        const candidate: {command: string, label: string}[] = []
         this.provide(editor.document.languageId).forEach(item => {
             if (item.insertText === undefined) {
                 return
@@ -167,7 +167,10 @@ export class Command implements IProvider {
             }
             const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
             if (command.match(/(.*)(\${\d.*?})/)) {
-                candidate.push(command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\').replace(':${TM_SELECTED_TEXT}', ''))
+                candidate.push({
+                    command: command.replace(/\n/g, '').replace(/\t/g, '').replace('\\\\', '\\').replace(':${TM_SELECTED_TEXT}', ''),
+                    label: item.label
+                })
             }
         })
         vscode.window.showQuickPick(candidate, {
@@ -179,12 +182,12 @@ export class Command implements IProvider {
                 return
             }
             editor.edit( editBuilder => {
-                let selectedCommand = selected
+                let selectedCommand = selected.command
                 let selectedContent = content
                 for (const selection of editor.selections) {
-                    if (!content) {
+                    if (!selectedContent) {
                         selectedContent = editor.document.getText(selection)
-                        selectedCommand = '\\' + selected
+                        selectedCommand = '\\' + selected.command
                     }
                     editBuilder.replace(new vscode.Range(selection.start, selection.end),
                         selectedCommand.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
