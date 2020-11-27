@@ -60,17 +60,18 @@ export class Command implements IProvider {
         this.environment.getDefaultEnvs(EnvSnippetType.AsCommand).forEach(cmd => {
             this.defaultCmds.push(cmd)
         })
-
-        // Handle special commands with brackets
-        const bracketCmds = ['(', '[', '{', 'left(', 'left[', 'left\\{']
-        this.defaultCmds.filter(cmd => bracketCmds.includes(this.getCmdName(cmd))).forEach(cmd => {
-            this.bracketCmds[cmd.label.slice(1)] = cmd
-        })
-
     }
 
-    provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        return this.provide(args.document.languageId, args.document, args.position)
+    provideFrom(_type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        const suggestions = this.provide(args.document.languageId, args.document, args.position)
+        // Commands ending with (, { or [ are not filtered properly by vscode intellisense. So we do it by hand.
+        if (result[0].match(/[({[]$/)) {
+            const exactSuggestion = suggestions.filter(entry => entry.label === result[0])
+            if (exactSuggestion.length > 0) {
+                return exactSuggestion
+            }
+        }
+        return suggestions
     }
 
     private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): vscode.CompletionItem[] {
