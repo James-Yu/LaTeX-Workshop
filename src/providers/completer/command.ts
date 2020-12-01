@@ -157,7 +157,7 @@ export class Command implements IProvider {
             return
         }
         const editor = vscode.window.activeTextEditor
-        const candidate: {command: string, label: string}[] = []
+        const candidate: {command: string, detail: string, label: string}[] = []
         this.provide(editor.document.languageId).forEach(item => {
             if (item.insertText === undefined) {
                 return
@@ -167,16 +167,18 @@ export class Command implements IProvider {
             }
             const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
             if (command.match(/(.*)(\${\d.*?})/)) {
+                const commandStr = command.replace('\\\\', '\\').replace(':${TM_SELECTED_TEXT}', '')
                 candidate.push({
-                    command: command.replace('\\\\', '\\').replace(':${TM_SELECTED_TEXT}', ''),
+                    command: commandStr,
+                    detail: '\\' + commandStr.replace(/[\n\t]/g, '').replace(/\$\{(\d+)\}/g, '$$$1'),
                     label: item.label
                 })
             }
         })
         vscode.window.showQuickPick(candidate, {
             placeHolder: 'Press ENTER to surround previous selection with selected command',
-            matchOnDetail: true,
-            matchOnDescription: true
+            matchOnDetail: false,
+            matchOnDescription: false
         }).then(selected => {
             if (selected === undefined) {
                 return
