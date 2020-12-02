@@ -125,3 +125,49 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         return ranges
     }
 }
+
+export class WeaveFoldingProvider implements vscode.FoldingRangeProvider {
+    extension: Extension
+
+    constructor(extension: Extension) {
+        this.extension = extension
+    }
+
+    public provideFoldingRanges(
+        document: vscode.TextDocument,
+        _context: vscode.FoldingContext,
+        _token: vscode.CancellationToken
+    ): vscode.ProviderResult<vscode.FoldingRange[]> {
+        const ranges: vscode.FoldingRange[] = []
+        const opStack: { keyword: string, index: number }[] = []
+        const text: string = document.getText()
+        const envRegex = /^([\t ]*<<.*>>=)\s*$|[\t ]*(@)\s*$/gm
+        while (true) {
+            const match = envRegex.exec(text)
+            if (match === null) {
+                return ranges
+            }
+            let keyword: string = ''
+            if (match[1]) {
+                keyword = 'begin'
+            } else if (match[2]) {
+                keyword = 'end'
+            }
+            const item = {
+                keyword,
+                index: match.index
+            }
+            const lastItem = opStack[opStack.length - 1]
+
+            if (keyword === 'end' && lastItem && lastItem.keyword === 'begin') { // match 'end' with its 'begin'
+                opStack.pop()
+                ranges.push(new vscode.FoldingRange(
+                    document.positionAt(lastItem.index).line,
+                    document.positionAt(item.index).line - 1
+                ))
+            } else {
+                opStack.push(item)
+            }
+        }
+     }
+}
