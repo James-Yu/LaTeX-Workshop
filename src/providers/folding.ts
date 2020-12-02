@@ -82,10 +82,14 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         const ranges: vscode.FoldingRange[] = []
         const opStack: { keyword: string, index: number }[] = []
         const text: string = document.getText()
-        const envRegex = /(?:\\(begin){(.*?)})|(?:\\(begingroup)(?=$|%|\s|\\))|(?:\\(end){(.*?)})|(?:\\(endgroup)(?=$|%|\s|\\))|(?:%\s*#?([rR]egion))|(?:%\s*#?([eE]ndregion))/g //to match one 'begin' OR 'end'
+        const envRegex = /\\(begin){(.*?)}|\\(begingroup)[%\s\\]|\\(end){(.*?)}|\\(endgroup)[%\s\\]|^%\s*#?([rR]egion)|^%\s*#?([eE]ndregion)/gm //to match one 'begin' OR 'end'
 
-        let match = envRegex.exec(text) // init regex search
-        while (match) {
+        while (true) {
+            const match = envRegex.exec(text)
+            if (match === null) {
+                //TODO: if opStack still not empty
+                return ranges
+            }
             //for 'begin': match[1] contains 'begin', match[2] contains keyword
             //for 'end':   match[4] contains 'end',   match[5] contains keyword
             //for 'begingroup': match[3] contains 'begingroup', keyword is 'group'
@@ -118,11 +122,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             } else {
                 opStack.push(item)
             }
-
-            match = envRegex.exec(text) //iterate regex search
         }
-        //TODO: if opStack still not empty
-        return ranges
     }
 }
 
