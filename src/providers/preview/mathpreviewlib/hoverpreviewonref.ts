@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
+import type {TypesetArg} from 'mathjax-node'
 import * as utils from '../../../utils/utils'
-import {MathJaxPool, TypesetArg} from '../mathjaxpool'
+import {MathJaxPool} from '../mathjaxpool'
 import type {ReferenceEntry} from '../../completer/reference'
 import type {Extension} from '../../../main'
 import type {TexMathEnv} from './texmathenvfinder'

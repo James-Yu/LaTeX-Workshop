@@ -34,7 +34,7 @@ function colorSVG(svg: string, color: string): string {
     return ret
 }
 
-export async function typeset(arg: any, opts: { scale: number, color: string }): Promise<string> {
+export async function typeset(arg: mj.TypesetArg, opts: { scale: number, color: string }): Promise<string> {
     const data = await mj.typeset(arg)
     scaleSVG(data, opts.scale)
     const xml = colorSVG(data.svgNode.outerHTML, opts.color)
