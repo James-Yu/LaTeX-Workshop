@@ -38,7 +38,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         const logCommand = new LaTeXCommand('View Log messages', Collapsed, {command: 'latex-workshop.log', title: ''}, 'output')
         this.commands.push(logCommand)
         logCommand.children.push(new LaTeXCommand('View LaTeX Workshop extension log', None, {command: 'latex-workshop.log', title: ''}, 'output'))
-        logCommand.children.push(new LaTeXCommand('View LaTeX compiler log', None, {command: 'latex-workshop.log', title: '', arguments: ['compiler']}, 'output'))
+        logCommand.children.push(new LaTeXCommand('View LaTeX compiler log', None, {command: 'latex-workshop.compilerlog', title: ''}, 'output'))
 
         const navCommand = new LaTeXCommand('Navigate, select, and edit', Collapsed, undefined, 'edit')
         this.commands.push(navCommand)

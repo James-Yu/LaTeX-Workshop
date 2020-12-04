@@ -295,7 +295,7 @@ export class Commander {
     }
 
     log(compiler?: string) {
-        this.extension.logger.addLogMessage('LOG command invoked.')
+        this.extension.logger.addLogMessage(`LOG command invoked: ${compiler || 'default'}`)
         if (compiler) {
             this.extension.logger.showCompilerLog()
             return
