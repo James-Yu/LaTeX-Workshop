@@ -33,6 +33,9 @@ export class CommandFinder {
                     filterText: name,
                     package: ''
                 }
+                if (isTriggerSuggestNeeded(name)) {
+                    cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
+                }
                 cmds.push(cmd)
                 cmdList.push(name)
             }
@@ -70,6 +73,9 @@ export class CommandFinder {
                         insertText: new vscode.SnippetString(label + args),
                         filterText: label,
                         package: 'user-defined'
+                    }
+                    if (isTriggerSuggestNeeded(label)) {
+                        cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                     }
                     cmds.push(cmd)
                     this.definedCmds[label] = {
