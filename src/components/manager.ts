@@ -15,6 +15,7 @@ import {Suggestion as EnvEntry} from '../providers/completer/environment'
 import {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
+import {BibWatcher} from './managerlib/bibwatcher'
 
 /**
  * The content cache for each LaTeX file `filepath`.
@@ -70,10 +71,9 @@ export class Manager {
 
     private readonly extension: Extension
     private fileWatcher?: chokidar.FSWatcher
-    private bibWatcher?: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
+    private readonly bibWatcher: BibWatcher
     private filesWatched: string[] = []
-    private bibsWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
     private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
     private jlweaveExt: string[] = ['.jnw', '.jtexw']
@@ -94,6 +94,7 @@ export class Manager {
             awaitWriteFinish: {stabilityThreshold: delay}
         }
         this.pdfWatcher = new PdfWatcher(extension)
+        this.bibWatcher = new BibWatcher(extension)
     }
 
     /**
@@ -251,7 +252,7 @@ export class Manager {
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 this.initiateFileWatcher()
-                this.initiateBibWatcher()
+                this.bibWatcher.initiateBibWatcher()
                 this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
@@ -626,7 +627,7 @@ export class Manager {
                     continue
                 }
                 this.cachedContent[baseFile].bibs.push(bibPath)
-                this.watchBibFile(bibPath)
+                this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }
@@ -704,7 +705,7 @@ export class Manager {
                 if (this.rootFile && !this.cachedContent[this.rootFile].bibs.includes(bibPath)) {
                     this.cachedContent[this.rootFile].bibs.push(bibPath)
                 }
-                this.watchBibFile(bibPath)
+                this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }
@@ -795,31 +796,6 @@ export class Manager {
         this.buildOnFileChanged(file)
     }
 
-    private initiateBibWatcher() {
-        if (this.bibWatcher !== undefined) {
-            return
-        }
-        this.extension.logger.addLogMessage('Creating Bib file watcher.')
-        this.bibWatcher = chokidar.watch([], this.watcherOptions)
-        this.bibWatcher.on('change', (file: string) => this.onWatchedBibChanged(file))
-        this.bibWatcher.on('unlink', (file: string) => this.onWatchedBibDeleted(file))
-    }
-
-    private onWatchedBibChanged(file: string) {
-        this.extension.logger.addLogMessage(`Bib file watcher - file changed: ${file}`)
-        this.extension.completer.citation.parseBibFile(file)
-        this.buildOnFileChanged(file, true)
-    }
-
-    private onWatchedBibDeleted(file: string) {
-        this.extension.logger.addLogMessage(`Bib file watcher - file deleted: ${file}`)
-        if (this.bibWatcher) {
-            this.bibWatcher.unwatch(file)
-        }
-        this.bibsWatched.splice(this.bibsWatched.indexOf(file), 1)
-        this.extension.completer.citation.removeEntriesInFile(file)
-    }
-
     private onWatchedFileDeleted(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file deleted: ${file}`)
         if (this.fileWatcher) {
@@ -838,7 +814,7 @@ export class Manager {
         this.pdfWatcher.watchPdfFile(pdfPath)
     }
 
-    private buildOnFileChanged(file: string, bibChanged: boolean = false) {
+    buildOnFileChanged(file: string, bibChanged: boolean = false) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
             return
@@ -936,15 +912,6 @@ export class Manager {
         }
         this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
         return bibPath
-    }
-
-    private watchBibFile(bibPath: string) {
-        if (this.bibWatcher && !this.bibsWatched.includes(bibPath)) {
-            this.extension.logger.addLogMessage(`Added to bib file watcher: ${bibPath}`)
-            this.bibWatcher.add(bibPath)
-            this.bibsWatched.push(bibPath)
-            this.extension.completer.citation.parseBibFile(bibPath)
-        }
     }
 
     setEnvVar() {
