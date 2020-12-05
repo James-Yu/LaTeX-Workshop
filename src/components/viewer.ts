@@ -204,8 +204,9 @@ export class Viewer {
      * @param sourceFile The path of a LaTeX file.
      * @param respectOutDir
      * @param tabEditorGroup
+     * @param preserveFocus
      */
-    async openTab(sourceFile: string, respectOutDir: boolean = true, tabEditorGroup: string) {
+    async openTab(sourceFile: string, respectOutDir: boolean, tabEditorGroup: string, preserveFocus = true) {
         const url = this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
             return
@@ -215,7 +216,7 @@ export class Viewer {
         if (!panel) {
             return
         }
-        await openWebviewPanel(panel.webviewPanel, tabEditorGroup)
+        await openWebviewPanel(panel.webviewPanel, tabEditorGroup, preserveFocus)
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
