@@ -11,7 +11,7 @@ export function replaceWebviewPlaceholders(content: string, extension: Extension
                   .replace(/%VSCODE_CSP%/g, webview.cspSource)
 }
 
-export async function openWebviewPanel(panel: vscode.WebviewPanel, tabEditorGroup: string) {
+export async function openWebviewPanel(panel: vscode.WebviewPanel, tabEditorGroup: string, preserveFocus = true) {
     const editor = vscode.window.activeTextEditor
     if (!editor) {
         return
@@ -46,9 +46,11 @@ export async function openWebviewPanel(panel: vscode.WebviewPanel, tabEditorGrou
     }
     // Then, we set the focus back to the .tex file
     setTimeout(async () => {
-        if (focusAction ) {
+        if (focusAction) {
             await vscode.commands.executeCommand(focusAction)
         }
-        await vscode.window.showTextDocument(editor.document, vscode.ViewColumn.Active)
+        if (preserveFocus) {
+            await vscode.window.showTextDocument(editor.document, vscode.ViewColumn.Active)
+        }
     }, 500)
 }
