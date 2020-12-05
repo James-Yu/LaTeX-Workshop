@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs-extra'
-import * as cs from 'cross-spawn'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import {latexParser} from 'latex-utensils'
@@ -17,6 +16,7 @@ import {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
+import {PathUtils} from './managerlib/pathutils'
 
 /**
  * The content cache for each LaTeX file `filepath`.
@@ -75,6 +75,7 @@ export class Manager {
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
     private readonly finderUtils: FinderUtils
+    private readonly pathUtils: PathUtils
     private filesWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
     private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
@@ -98,6 +99,7 @@ export class Manager {
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
         this.finderUtils = new FinderUtils(extension)
+        this.pathUtils = new PathUtils(extension)
     }
 
     /**
@@ -276,7 +278,6 @@ export class Manager {
         }
         return undefined
     }
-
 
     private findRootFromActive(): string | undefined {
         if (!vscode.window.activeTextEditor) {
@@ -483,7 +484,7 @@ export class Manager {
                     break
                 }
 
-                const inputFile = this.parseInputFilePath(result, baseFile)
+                const inputFile = this.pathUtils.parseInputFilePath(result, baseFile)
 
                 if (!inputFile ||
                     !fs.existsSync(inputFile) ||
@@ -517,7 +518,7 @@ export class Manager {
                 break
             }
 
-            const inputFile = this.parseInputFilePath(result, baseFile)
+            const inputFile = this.pathUtils.parseInputFilePath(result, baseFile)
 
             if (!inputFile ||
                 !fs.existsSync(inputFile) ||
@@ -537,21 +538,6 @@ export class Manager {
         }
     }
 
-    private parseInputFilePath(regResult: RegExpExecArray, baseFile: string): string | undefined {
-        const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
-        if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
-            return utils.resolveFile([path.dirname(baseFile)], path.join(regResult[1], regResult[2]))
-        } else if (regResult[0].startsWith('\\import') || regResult[0].startsWith('\\inputfrom') || regResult[0].startsWith('\\includefrom')) {
-            return utils.resolveFile([regResult[1]], regResult[2])
-        } else {
-            if (this.rootFile) {
-                return utils.resolveFile([path.dirname(baseFile), path.dirname(this.rootFile), ...texDirs], regResult[2])
-            } else {
-                return utils.resolveFile([path.dirname(baseFile), ...texDirs], regResult[2])
-            }
-        }
-    }
-
     private parseBibFiles(content: string, baseFile: string) {
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
@@ -563,7 +549,7 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                const bibPath = this.resolveBibPath(bib, path.dirname(baseFile))
+                const bibPath = this.pathUtils.resolveBibPath(bib, path.dirname(baseFile))
                 if (bibPath === undefined) {
                     continue
                 }
@@ -592,7 +578,7 @@ export class Manager {
             return
         }
         this.extension.logger.addLogMessage(`Fls file found: ${flsFile}`)
-        const ioFiles = this.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
+        const ioFiles = this.pathUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
 
         ioFiles.input.forEach((inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
@@ -639,7 +625,7 @@ export class Manager {
                 return bib.trim()
             })
             for (const bib of bibs) {
-                const bibPath = this.resolveBibPath(bib, srcDir)
+                const bibPath = this.pathUtils.resolveBibPath(bib, srcDir)
                 if (bibPath === undefined) {
                     continue
                 }
@@ -649,34 +635,6 @@ export class Manager {
                 this.bibWatcher.watchBibFile(bibPath)
             }
         }
-    }
-
-    private parseFlsContent(content: string, rootDir: string): {input: string[], output: string[]} {
-        const inputFiles: Set<string> = new Set()
-        const outputFiles: Set<string> = new Set()
-        const regex = /^(?:(INPUT)\s*(.*))|(?:(OUTPUT)\s*(.*))$/gm
-        // regex groups
-        // #1: an INPUT entry --> #2 input file path
-        // #3: an OUTPUT entry --> #4: output file path
-        while (true) {
-            const result = regex.exec(content)
-            if (!result) {
-                break
-            }
-            if (result[1]) {
-                const inputFilePath = path.resolve(rootDir, result[2])
-                if (inputFilePath) {
-                    inputFiles.add(inputFilePath)
-                }
-            } else if (result[3]) {
-                const outputFilePath = path.resolve(rootDir, result[4])
-                if (outputFilePath) {
-                    outputFiles.add(outputFilePath)
-                }
-            }
-        }
-
-        return {input: Array.from(inputFiles), output: Array.from(outputFiles)}
     }
 
     private initiateFileWatcher() {
@@ -808,51 +766,6 @@ export class Manager {
             this.extension.completer.command.update(file, undefined, contentNoComment)
             this.extension.completer.command.updatePkg(file, undefined, contentNoComment)
         }
-    }
-
-    private kpsewhichBibPath(bib: string): string | undefined {
-        const kpsewhich = vscode.workspace.getConfiguration('latex-workshop').get('kpsewhich.path') as string
-        this.extension.logger.addLogMessage(`Calling ${kpsewhich} to resolve file: ${bib}`)
-        try {
-            const kpsewhichReturn = cs.sync(kpsewhich, ['-format=.bib', bib])
-            if (kpsewhichReturn.status === 0) {
-                const bibPath = kpsewhichReturn.stdout.toString().replace(/\r?\n/, '')
-                if (bibPath === '') {
-                    return undefined
-                } else {
-                    this.extension.logger.addLogMessage(`Found .bib file using kpsewhich: ${bibPath}`)
-                    return bibPath
-                }
-            }
-        } catch(e) {
-            this.extension.logger.addLogMessage(`Cannot run kpsewhich to resolve .bib file: ${bib}`)
-        }
-        return undefined
-    }
-
-    private resolveBibPath(bib: string, baseDir: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const bibDirs = configuration.get('latex.bibDirs') as string[]
-        let searchDirs: string[]
-        if (this.rootDir) {
-            // chapterbib requires to load the .bib file in every chapter using
-            // the path relative to the rootDir
-            searchDirs = [this.rootDir, baseDir, ...bibDirs]
-        } else {
-            searchDirs = [baseDir, ...bibDirs]
-        }
-        const bibPath = utils.resolveFile(searchDirs, bib, '.bib')
-
-        if (!bibPath) {
-            this.extension.logger.addLogMessage(`Cannot find .bib file: ${bib}`)
-            if (configuration.get('kpsewhich.enabled')) {
-                return this.kpsewhichBibPath(bib)
-            } else {
-                return undefined
-            }
-        }
-        this.extension.logger.addLogMessage(`Found .bib file: ${bibPath}`)
-        return bibPath
     }
 
     setEnvVar() {
