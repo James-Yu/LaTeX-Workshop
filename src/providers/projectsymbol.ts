@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
-import {Section} from './structure'
+import type {Extension} from '../main'
+import type {Section} from './structure'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
     private readonly extension: Extension

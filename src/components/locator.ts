@@ -5,8 +5,8 @@ import * as cp from 'child_process'
 import {SyncTexJs} from './synctex'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
-import {Extension} from '../main'
-import {ClientRequest} from '../../viewer/components/protocol'
+import type {Extension} from '../main'
+import type {ClientRequest} from '../../viewer/components/protocol'
 
 export type SyncTeXRecordForward = {
     page: number,

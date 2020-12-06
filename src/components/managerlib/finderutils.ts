@@ -3,8 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as utils from '../../utils/utils'
 
-import {Extension} from '../../main'
-
+import type {Extension} from '../../main'
 
 export class FinderUtils {
     private readonly extension: Extension

@@ -4,8 +4,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
-import {AddressInfo} from 'net'
+import type {Extension} from '../main'
+import type {AddressInfo} from 'net'
 import {decodePathWithPrefix, pdfFilePrefix} from '../utils/utils'
 
 export class Server {

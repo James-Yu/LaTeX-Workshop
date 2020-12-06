@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 
 export function replaceWebviewPlaceholders(content: string, extension: Extension, webview: vscode.Webview): string {

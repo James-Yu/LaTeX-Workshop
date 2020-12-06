@@ -4,7 +4,7 @@ import * as fs from 'fs'
 import {ChildProcessWithoutNullStreams, spawn, SpawnOptionsWithoutStdio} from 'child_process'
 import {EOL} from 'os'
 
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 export class Linter {
     private readonly extension: Extension

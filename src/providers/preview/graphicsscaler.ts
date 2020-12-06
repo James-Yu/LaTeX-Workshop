@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-import {Proxy} from 'workerpool'
-import {IGraphicsScalerWorker} from './graphicsscaler_worker'
+import type {Proxy} from 'workerpool'
+import type {IGraphicsScalerWorker} from './graphicsscaler_worker'
 
 export class GraphicsScaler {
     private readonly pool: workerpool.WorkerPool

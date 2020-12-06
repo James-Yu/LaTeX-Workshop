@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 
-import {Extension} from '../main'
-import {IProvider} from './completer/interface'
+import type {Extension} from '../main'
+import type {IProvider} from './completer/interface'
 import {Citation} from './completer/citation'
 import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'

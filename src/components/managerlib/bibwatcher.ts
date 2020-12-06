@@ -1,13 +1,13 @@
 import * as vscode from 'vscode'
 import * as chokidar from 'chokidar'
 
-import {Extension} from '../../main'
+import type {Extension} from '../../main'
 
 export class BibWatcher {
     private readonly extension: Extension
     private bibWatcher?: chokidar.FSWatcher
-    private bibsWatched: string[] = []
-    private watcherOptions: chokidar.WatchOptions
+    private readonly bibsWatched: string[] = []
+    private readonly watcherOptions: chokidar.WatchOptions
 
     constructor(extension: Extension) {
         this.extension = extension

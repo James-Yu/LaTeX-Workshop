@@ -1,8 +1,8 @@
-import {latexParser, bibtexParser} from 'latex-utensils'
+import type {latexParser, bibtexParser} from 'latex-utensils'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-import {Proxy} from 'workerpool'
-import {ISyntaxWorker} from './syntax_worker'
+import type {Proxy} from 'workerpool'
+import type {ISyntaxWorker} from './syntax_worker'
 
 export class UtensilsParser {
     private readonly pool: workerpool.WorkerPool

@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
 
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 export class Counter {
     private readonly extension: Extension

@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import * as path from 'path'
 
-import {Extension} from '../../../main'
+import type {Extension} from '../../../main'
 
 export class NewCommandFinder {
     private readonly extension: Extension

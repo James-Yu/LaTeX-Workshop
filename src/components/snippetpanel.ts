@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import { readFileSync } from 'fs'
 
-import { Extension } from '../main'
+import type { Extension } from '../main'
 import {replaceWebviewPlaceholders} from '../utils/webview'
 
 type IMathSymbol = {

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import {Extension} from '../main'
+import type {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
 
 export class HoverProvider implements vscode.HoverProvider {

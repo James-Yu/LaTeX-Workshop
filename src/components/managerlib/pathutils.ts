@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as cs from 'cross-spawn'
 import * as utils from '../../utils/utils'
 
-import {Extension} from '../../main'
+import type {Extension} from '../../main'
 
 export class PathUtils {
     private readonly extension: Extension

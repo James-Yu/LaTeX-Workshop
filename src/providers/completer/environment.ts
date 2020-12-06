@@ -2,8 +2,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import {latexParser} from 'latex-utensils'
 
-import {Extension} from '../../main'
-import {IProvider} from './interface'
+import type {Extension} from '../../main'
+import type {IProvider} from './interface'
 
 export interface EnvItemEntry {
     name: string, // Name of the environment, what comes inside \begin{...}

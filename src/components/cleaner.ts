@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import glob from 'glob'
 
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 export class Cleaner {
     private readonly extension: Extension

@@ -7,7 +7,7 @@ import * as tmp from 'tmp'
 import {Mutex} from '../lib/await-semaphore'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'

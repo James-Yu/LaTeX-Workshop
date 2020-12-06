@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 
-import { Extension } from '../../main'
+import type { Extension } from '../../main'
 import { convertFilenameEncoding } from '../../utils/utils'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm

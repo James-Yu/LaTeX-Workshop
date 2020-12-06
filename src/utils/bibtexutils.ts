@@ -1,4 +1,4 @@
-import {bibtexParser} from 'latex-utensils'
+import type {bibtexParser} from 'latex-utensils'
 
 export interface BibtexFormatConfig {
     tab: string,

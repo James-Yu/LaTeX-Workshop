@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as utils from '../utils/utils'
-import { Extension } from '../main'
+import type { Extension } from '../main'
 
 
 function regexpAllMatches(str: string, reg: RegExp) {

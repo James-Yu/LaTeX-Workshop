@@ -1,17 +1,17 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as os from 'os'
-import ws from 'ws'
+import type ws from 'ws'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import {escapeHtml} from '../utils/utils'
 
-import {Extension} from '../main'
-import {SyncTeXRecordForward} from './locator'
+import type {Extension} from '../main'
+import type {SyncTeXRecordForward} from './locator'
 import {encodePathWithPrefix} from '../utils/utils'
 import {openWebviewPanel} from '../utils/webview'
 
-import {ClientRequest, ServerResponse, PanelRequest, PdfViewerState} from '../../viewer/components/protocol'
+import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerState} from '../../viewer/components/protocol'
 import {getCurrentThemeLightness} from '../utils/theme'
 
 class Client {

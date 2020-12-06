@@ -1,6 +1,6 @@
 import * as vs from 'vscode'
 
-import { Extension } from '../main'
+import type { Extension } from '../main'
 
 const CODE_TO_ACTION_STRING: {[key: number]: string} = {
     1: 'Terminate command with empty statement',

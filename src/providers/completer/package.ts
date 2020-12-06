@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 
-import {Extension} from '../../main'
-import {IProvider} from './interface'
+import type {Extension} from '../../main'
+import type {IProvider} from './interface'
 
 export class Package implements IProvider {
     private readonly extension: Extension

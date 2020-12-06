@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import {latexParser} from 'latex-utensils'
 
-import {Extension} from '../../main'
+import type {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
 import type {IProvider} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'

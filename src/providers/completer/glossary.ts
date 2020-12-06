@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
 
-import {Extension} from '../../main'
-import {IProvider} from './interface'
+import type {Extension} from '../../main'
+import type {IProvider} from './interface'
 
 enum GlossaryType {
     glossary,

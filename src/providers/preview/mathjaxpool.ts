@@ -1,8 +1,8 @@
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-import {Proxy} from 'workerpool'
+import type {Proxy} from 'workerpool'
 import type {TypesetArg} from 'mathjax-node'
-import {IMathJaxWorker} from './mathjaxpool_worker'
+import type {IMathJaxWorker} from './mathjaxpool_worker'
 
 
 export class MathJaxPool {

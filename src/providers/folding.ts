@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 export class FoldingProvider implements vscode.FoldingRangeProvider {
     extension: Extension

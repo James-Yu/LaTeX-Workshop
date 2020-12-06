@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-import {Proxy} from 'workerpool'
-import {IPdfRendererWorker} from './pdfrenderer_worker'
+import type {Proxy} from 'workerpool'
+import type {IPdfRendererWorker} from './pdfrenderer_worker'
 
 export class PDFRenderer {
     private readonly pool: workerpool.WorkerPool

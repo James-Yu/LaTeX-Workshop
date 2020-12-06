@@ -5,8 +5,8 @@ import * as micromatch from 'micromatch'
 import * as cp from 'child_process'
 import * as utils from '../../utils/utils'
 
-import {Extension} from '../../main'
-import {IProvider} from './interface'
+import type {Extension} from '../../main'
+import type {IProvider} from './interface'
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 

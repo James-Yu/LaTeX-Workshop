@@ -2,8 +2,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 
-import {Extension} from '../../main'
-import {IProvider} from './interface'
+import type {Extension} from '../../main'
+import type {IProvider} from './interface'
 
 export interface Suggestion extends vscode.CompletionItem {
     key: string,

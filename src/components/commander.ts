@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import { Extension } from '../main'
+import type { Extension } from '../main'
 
 export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 

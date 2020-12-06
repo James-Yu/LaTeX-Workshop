@@ -3,7 +3,7 @@ import {bibtexParser} from 'latex-utensils'
 import {performance} from 'perf_hooks'
 
 import * as bibtexUtils from '../utils/bibtexutils'
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 export class BibtexFormatter {
 

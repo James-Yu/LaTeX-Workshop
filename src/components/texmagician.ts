@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import { EOL } from 'os'
-import { Extension } from '../main'
+import type { Extension } from '../main'
 
 export class TeXMagician {
     extension: Extension

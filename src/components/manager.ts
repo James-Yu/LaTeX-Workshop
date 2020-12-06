@@ -4,14 +4,14 @@ import * as path from 'path'
 import * as fs from 'fs-extra'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
-import {latexParser} from 'latex-utensils'
+import type {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
 
-import {Extension} from '../main'
-import {Suggestion as CiteEntry} from '../providers/completer/citation'
-import {Suggestion as CmdEntry} from '../providers/completer/command'
-import {Suggestion as EnvEntry} from '../providers/completer/environment'
-import {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
+import type {Extension} from '../main'
+import type {Suggestion as CiteEntry} from '../providers/completer/citation'
+import type {Suggestion as CmdEntry} from '../providers/completer/command'
+import type {Suggestion as EnvEntry} from '../providers/completer/environment'
+import type {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
@@ -77,10 +77,10 @@ export class Manager {
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
     private filesWatched: string[] = []
-    private watcherOptions: chokidar.WatchOptions
-    private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
-    private jlweaveExt: string[] = ['.jnw', '.jtexw']
-    private weaveExt: string[] = []
+    private readonly watcherOptions: chokidar.WatchOptions
+    private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
+    private readonly jlweaveExt: string[] = ['.jnw', '.jtexw']
+    private readonly weaveExt: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension

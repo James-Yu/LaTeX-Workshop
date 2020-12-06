@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as tmpFile from 'tmp'
-import { Extension } from '../../main'
+import type { Extension } from '../../main'
 import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
 

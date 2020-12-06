@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
 import {sleep} from '../src/utils/utils'
-import {activate} from '../src/main'
+import type {activate} from '../src/main'
 
 export function getFixtureDir() {
     const fixtureDir = vscode.workspace.workspaceFolders?.[0].uri.fsPath

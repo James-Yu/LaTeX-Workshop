@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 
-import * as bibtexUtils from '../utils/bibtexutils'
-import {Extension} from '../main'
+import type * as bibtexUtils from '../utils/bibtexutils'
+import type {Extension} from '../main'
 
 export class BibtexCompleter implements vscode.CompletionItemProvider {
     private readonly extension: Extension

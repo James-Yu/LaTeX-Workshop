@@ -25,7 +25,7 @@ export class MathPreview {
     private readonly newCommandFinder: NewCommandFinder
     private readonly texMathEnvFinder: TeXMathEnvFinder
     private readonly hoverPreviewOnRefProvider: HoverPreviewOnRefProvider
-    readonly mputils: MathPreviewUtils
+    private readonly mputils: MathPreviewUtils
 
     constructor(extension: Extension) {
         this.extension = extension
