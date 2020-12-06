@@ -6,6 +6,7 @@ import type {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
 import type {IProvider} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
+import {SurroundCommand} from './commandlib/surround'
 
 interface CmdItemEntry {
     command: string, // frame
@@ -26,6 +27,7 @@ export class Command implements IProvider {
     private readonly extension: Extension
     private readonly environment: Environment
     private readonly commandFinder: CommandFinder
+    private readonly surroundCommand: SurroundCommand
 
     private defaultCmds: Suggestion[] = []
     private defaultSymbols: Suggestion[] = []
@@ -35,6 +37,7 @@ export class Command implements IProvider {
         this.extension = extension
         this.environment = environment
         this.commandFinder = new CommandFinder()
+        this.surroundCommand = new SurroundCommand()
     }
 
     initialize(defaultCmds: {[key: string]: CmdItemEntry}) {
@@ -157,49 +160,8 @@ export class Command implements IProvider {
             return
         }
         const editor = vscode.window.activeTextEditor
-        const candidate: {command: string, detail: string, label: string}[] = []
-        this.provide(editor.document.languageId).forEach(item => {
-            if (item.insertText === undefined) {
-                return
-            }
-            if (item.label === '\\begin') { // Causing a lot of trouble
-                return
-            }
-            const command = (typeof item.insertText !== 'string') ? item.insertText.value : item.insertText
-            if (command.match(/(.*)(\${\d.*?})/)) {
-                const commandStr = command.replace('\\\\', '\\').replace(':${TM_SELECTED_TEXT}', '')
-                candidate.push({
-                    command: commandStr,
-                    detail: '\\' + commandStr.replace(/[\n\t]/g, '').replace(/\$\{(\d+)\}/g, '$$$1'),
-                    label: item.label
-                })
-            }
-        })
-        vscode.window.showQuickPick(candidate, {
-            placeHolder: 'Press ENTER to surround previous selection with selected command',
-            matchOnDetail: false,
-            matchOnDescription: false
-        }).then(selected => {
-            if (selected === undefined) {
-                return
-            }
-            editor.edit( editBuilder => {
-                let selectedCommand = selected.command
-                let selectedContent = content
-                for (const selection of editor.selections) {
-                    if (!selectedContent) {
-                        selectedContent = editor.document.getText(selection)
-                        selectedCommand = '\\' + selected.command
-                    }
-                    editBuilder.replace(new vscode.Range(selection.start, selection.end),
-                        selectedCommand.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
-                            .replace(/\${\d:?(.*?)}/g, '$1') // Remove snippet placeholders
-                            .replace('\\\\', '\\') // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
-                            .replace(/\$\d/, '')) // Remove $2 etc
-                }
-            })
-        })
-        return
+        const cmdItems = this.provide(editor.document.languageId)
+        this.surroundCommand.surround(content, cmdItems)
     }
 
     /**
