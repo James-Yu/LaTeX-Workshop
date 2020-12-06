@@ -1,5 +1,27 @@
 # Change Log
 
+## [8.15.0] - 2020-12-06
+
+### Added
+- Add Snippet View.
+- Add `latex-workshop.hover.preview.maxLines` to limit how much we go upward to find the beginning of the math environment.
+- (#2380) Add toggle math preview.
+- (#2384) Enable math preview on suggest detail widgets for references.
+- (#2388) Add `bibtex` support for `markdown`.
+
+### Changed
+- Update syntax files for weave, dtx, LaTeX3.
+- (#2392) Keep selected text in autocompletion/snippets.
+- (#2408) Remove `subfileincludegraphics` in `data/commands.json`.
+
+### Fixed
+- Escape `}` properly in the snippet panel.
+- (#2394) Refactor fix for double `}}` in completion.
+- (#2395) Update `cpp` grammar with bailout.
+- (#2397) Autocomplete big parenthesis commands: `left(` -> `\left( ... \right)`.
+- (#2415) Add `triggerSuggest` to user-defined commands when needed.
+- (#2421) Fix a focus issue when opening PDF files through the explorer.
+
 ## [8.14.0] - 2020-11-11
 
 ### Added
