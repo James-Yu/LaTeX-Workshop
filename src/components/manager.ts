@@ -16,6 +16,7 @@ import {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
+import {FinderUtils} from './managerlib/finderutils'
 
 /**
  * The content cache for each LaTeX file `filepath`.
@@ -73,6 +74,7 @@ export class Manager {
     private fileWatcher?: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
+    private readonly finderUtils: FinderUtils
     private filesWatched: string[] = []
     private watcherOptions: chokidar.WatchOptions
     private rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
@@ -95,6 +97,7 @@ export class Manager {
         }
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
+        this.finderUtils = new FinderUtils(extension)
     }
 
     /**
@@ -235,7 +238,7 @@ export class Manager {
         this.extension.logger.addLogMessage(`Current workspaceRootDir: ${this.workspaceRootDir}`)
         this.localRootFile = undefined
         const findMethods = [
-            () => this.findRootFromMagic(),
+            () => this.finderUtils.findRootFromMagic(),
             () => this.findRootFromActive(),
             () => this.findRootFromCurrentRoot(),
             () => this.findRootInWorkspace()
@@ -274,50 +277,6 @@ export class Manager {
         return undefined
     }
 
-    private findRootFromMagic(): string | undefined {
-        if (!vscode.window.activeTextEditor) {
-            return undefined
-        }
-        const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.tex)$)/m
-        let content = vscode.window.activeTextEditor.document.getText()
-
-        let result = content.match(regex)
-        const fileStack: string[] = []
-        if (result) {
-            let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
-            if (!fs.existsSync(file)) {
-                const msg = `Not found root file specified in the magic comment: ${file}`
-                this.extension.logger.addLogMessage(msg)
-                throw new Error(msg)
-            }
-            fileStack.push(file)
-            this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
-
-            content = fs.readFileSync(file).toString()
-            result = content.match(regex)
-
-            while (result) {
-                file = path.resolve(path.dirname(file), result[1])
-                if (fileStack.includes(file)) {
-                    this.extension.logger.addLogMessage(`Looped root file by magic comment found: ${file}, stop here.`)
-                    return file
-                } else {
-                    fileStack.push(file)
-                    this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
-                }
-
-                if (!fs.existsSync(file)) {
-                    const msg = `Not found root file specified in the magic comment: ${file}`
-                    this.extension.logger.addLogMessage(msg)
-                    throw new Error(msg)
-                }
-                content = fs.readFileSync(file).toString()
-                result = content.match(regex)
-            }
-            return file
-        }
-        return undefined
-    }
 
     private findRootFromActive(): string | undefined {
         if (!vscode.window.activeTextEditor) {
@@ -327,7 +286,7 @@ export class Manager {
         const content = utils.stripComments(vscode.window.activeTextEditor.document.getText(), '%')
         const result = content.match(regex)
         if (result) {
-            const rootSubFile = this.findSubFiles(content)
+            const rootSubFile = this.finderUtils.findSubFiles(content)
             const file = vscode.window.activeTextEditor.document.fileName
             if (rootSubFile) {
                this.localRootFile = file
@@ -336,24 +295,6 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Found root file from active editor: ${file}`)
                 return file
             }
-        }
-        return undefined
-    }
-
-    private findSubFiles(content: string): string | undefined {
-        if (!vscode.window.activeTextEditor) {
-            return undefined
-        }
-        const regex = /(?:\\documentclass\[(.*)\]{subfiles})/
-        const result = content.match(regex)
-        if (result) {
-            const file = utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], result[1])
-            if (file) {
-                this.extension.logger.addLogMessage(`Found root file of this subfile from active editor: ${file}`)
-            } else {
-                this.extension.logger.addLogMessage(`Cannot find root file of this subfile from active editor: ${result[1]}`)
-            }
-            return file
         }
         return undefined
     }
