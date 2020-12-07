@@ -27,8 +27,6 @@ export class Command implements IProvider {
     private readonly environment: Environment
     private readonly commandFinder: CommandFinder
 
-    packages: string[] = []
-    bracketCmds: {[key: string]: Suggestion} = {}
     private defaultCmds: Suggestion[] = []
     private defaultSymbols: Suggestion[] = []
     private packageCmds: {[pkg: string]: Suggestion[]} = {}
