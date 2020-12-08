@@ -319,7 +319,7 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
-            this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${process.env.PATH}`)
+            this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${envVars['PATH']}`)
             this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`, 'error')
             this.currentProcess = undefined
@@ -331,7 +331,7 @@ export class Builder {
             this.extension.logParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
-                this.extension.logger.addLogMessage(`The environment variable $PATH: ${process.env.PATH}`)
+                this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVars['PATH']}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
                 this.extension.buildInfo.buildEnded()
 
