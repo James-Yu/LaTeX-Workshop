@@ -607,6 +607,22 @@ suite('Build TeX files test suite', () => {
     }, () => isDockerEnabled())
 
     //
+    // Build with makeindex
+    //
+    runTestWithFixture('fixture060', 'basic build with makeindex', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const pdfFileName = 't.pdf'
+        const pdfFilePath = path.join(fixtureDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
+
+    //
     // Recipe tests
     //
     runTestWithFixture('fixture100', 'test q/.../ on Windows', async () => {

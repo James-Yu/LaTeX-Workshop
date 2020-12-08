@@ -1,6 +1,6 @@
 name: TeX Live on Windows
 env:
-  cache-version: v2
+  cache-version: v6
 on: [push]
 
 jobs:
@@ -36,11 +36,15 @@ jobs:
     - name: Run tlmgr install
       run: |
         tlmgr install latex-bin platex uplatex tex xetex
-        tlmgr install amsmath graphics tools import subfiles latexmk
+        tlmgr install amsmath graphics tools import subfiles latexmk makeindex
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v1
       with:
         node-version: 12.x
+    - run: latex -v
+    - run: perl -v
+    - run: perl -MCwd -e 'print $Cwd::VERSION."\n";'
+    - run: latexmk -v
     - run: |
         npm ci
         npm run compile
