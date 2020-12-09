@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import type {MathPreview, TexMathEnv} from '../providers/preview/mathpreview'
+import type {TexMathEnv} from '../providers/preview/mathpreview'
 import {openWebviewPanel} from '../utils/webview'
 import type {Extension} from '../main'
 
@@ -31,7 +31,6 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
 
 export class MathPreviewPanel {
     private readonly extension: Extension
-    private readonly mathPreview: MathPreview
     private panel?: vscode.WebviewPanel
     private prevEditTime = 0
     private prevDocumentUri?: string
@@ -41,8 +40,11 @@ export class MathPreviewPanel {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.mathPreview = extension.mathPreview
         this.mathPreviewPanelSerializer = new MathPreviewPanelSerializer(extension)
+    }
+
+    private get mathPreview() {
+        return this.extension.mathPreview
     }
 
     async open() {
