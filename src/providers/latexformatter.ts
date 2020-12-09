@@ -61,6 +61,7 @@ export class LaTexFormatter {
                 const latexindentPresent = await this.checkPath()
                 if (!latexindentPresent) {
                     this.extension.logger.addLogMessage(`Can not find latexindent in PATH: ${this.formatter}`)
+                    this.extension.logger.addLogMessage(`PATH: ${process.env.PATH}`)
                     this.extension.logger.showErrorMessage('Can not find latexindent in PATH.')
                     return []
                 }
