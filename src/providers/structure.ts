@@ -13,6 +13,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private readonly hierarchy: string[]
     private readonly sectionDepths: { [key: string]: number } = {}
     private showLabels: boolean
+    private showFloats: boolean
     private showNumbers: boolean
     public root: string = ''
 
@@ -29,6 +30,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             })
         })
         this.showLabels = configuration.get('view.outline.labels.enabled') as boolean
+        this.showFloats = configuration.get('view.outline.floats.enabled') as boolean
         this.showNumbers = configuration.get('view.outline.numbers.enabled') as boolean
     }
 
@@ -96,7 +98,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'm')
-        const envReg = /(?:\\(begin|end)(?:\[[^[\]]*\])?){(?:(figure|frame|table)\*?)}/m
+        const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
+        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
         const labelReg = /\\label{([^}]*)}/m
 
         const lines = content.split('\n')
@@ -121,7 +124,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 const depth = noRoot() ? 0 : currentRoot().depth + 1
                 sectionNumber = this.increment(sectionNumber, depth)
-                const newEnv = new Section(this. formatSectionNumber(sectionNumber) + `${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
+                const newEnv = new Section(this.formatSectionNumber(sectionNumber) + `${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
                 if (noRoot()) {
                     children.push(newEnv)
                 } else {
