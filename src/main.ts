@@ -55,16 +55,7 @@ function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
    return selector
 }
 
-export function activate(context: vscode.ExtensionContext) {
-    const extension = new Extension()
-    vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
-
-    // let configuration = vscode.workspace.getConfiguration('latex-workshop')
-    // if (configuration.get('bind.altKeymap.enabled')) {
-    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', true)
-    // } else {
-    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', false)
-    // }
+function registerLatexWorkshopCommands(extension: Extension) {
 
     vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveWithoutBuilding())
     vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
@@ -138,6 +129,21 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => extension.commander.openMathPreviewPanel())
     vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => extension.commander.closeMathPreviewPanel())
     vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => extension.commander.toggleMathPreviewPanel())
+
+}
+
+export function activate(context: vscode.ExtensionContext) {
+    const extension = new Extension()
+    vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
+
+    // let configuration = vscode.workspace.getConfiguration('latex-workshop')
+    // if (configuration.get('bind.altKeymap.enabled')) {
+    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', true)
+    // } else {
+    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', false)
+    // }
+
+    registerLatexWorkshopCommands(extension)
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
