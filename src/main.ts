@@ -204,11 +204,8 @@ export function activate(context: vscode.ExtensionContext) {
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
             vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
-                const gits = vscode.window.visibleTextEditors.filter(editor => editor.document.uri.scheme === 'git')
-                if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive && gits.length === 0) {
+                if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
                     vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
-                } else if (gits.length > 0) {
-                    vscode.commands.executeCommand('workbench.view.scm').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
                 }
                 isLaTeXActive = true
             })
