@@ -211,12 +211,15 @@ export class Viewer {
         if (!url) {
             return
         }
+        const activeDocument = vscode.window.activeTextEditor?.document
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         const panel = this.createPdfViewerPanel(pdfFile, vscode.ViewColumn.Active)
         if (!panel) {
             return
         }
-        await openWebviewPanel(panel.webviewPanel, tabEditorGroup, preserveFocus)
+        if (activeDocument) {
+            await openWebviewPanel(panel.webviewPanel, tabEditorGroup, activeDocument, preserveFocus)
+        }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 

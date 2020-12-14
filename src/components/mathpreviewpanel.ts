@@ -48,6 +48,7 @@ export class MathPreviewPanel {
     }
 
     async open() {
+        const activeDocument = vscode.window.activeTextEditor?.document
         if (this.panel) {
             if (!this.panel.visible) {
                 this.panel.reveal(undefined, true)
@@ -65,7 +66,9 @@ export class MathPreviewPanel {
         panel.webview.html = this.getHtml(panel.webview)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const editorGroup = configuration.get('mathpreviewpanel.editorGroup') as string
-        await openWebviewPanel(panel, editorGroup)
+        if (activeDocument) {
+            await openWebviewPanel(panel, editorGroup, activeDocument)
+        }
         this.extension.logger.addLogMessage('Math preview panel: opened')
     }
 
