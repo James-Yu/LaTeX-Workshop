@@ -62,25 +62,25 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         this.extension = extension
     }
 
-    deserializeWebviewPanel(panel: vscode.WebviewPanel, state0: {state: PdfViewerState}) {
+    async deserializeWebviewPanel(panel: vscode.WebviewPanel, state0: {state: PdfViewerState}) {
         this.extension.logger.addLogMessage(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(state0)}`)
         const state = state0.state
         const pdfFilePath = state.path
         if (!pdfFilePath) {
             this.extension.logger.addLogMessage('Error of restoring PDF viewer: the path of PDF file is undefined.')
             panel.webview.html = '<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>The path of PDF file is undefined.</html>'
-            return Promise.resolve()
+            return
         }
         if (!fs.existsSync(pdfFilePath)) {
             const s = escapeHtml(pdfFilePath)
             this.extension.logger.addLogMessage(`Error of restoring PDF viewer: file not found ${pdfFilePath}.`)
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
-            return Promise.resolve()
+            return
         }
-        panel.webview.html = this.extension.viewer.getPDFViewerContent(pdfFilePath)
+        panel.webview.html = await this.extension.viewer.getPDFViewerContent(pdfFilePath)
         const pdfPanel = new PdfViewerPanel(pdfFilePath, panel)
         this.extension.viewer.pushPdfViewerPanel(pdfPanel)
-        return Promise.resolve()
+        return
     }
 
 }
@@ -213,7 +213,7 @@ export class Viewer {
         }
         const activeDocument = vscode.window.activeTextEditor?.document
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
-        const panel = this.createPdfViewerPanel(pdfFile, vscode.ViewColumn.Active)
+        const panel = await this.createPdfViewerPanel(pdfFile, vscode.ViewColumn.Active)
         if (!panel) {
             return
         }
@@ -223,7 +223,7 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
     }
 
-    private createPdfViewerPanel(pdfFilePath: string, viewColumn: vscode.ViewColumn): PdfViewerPanel | undefined {
+    private async createPdfViewerPanel(pdfFilePath: string, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel | undefined> {
         if (this.extension.server.port === undefined) {
             this.extension.logger.addLogMessage('Server port is undefined')
             return
@@ -234,7 +234,7 @@ export class Viewer {
             retainContextWhenHidden: true,
             portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
         })
-        panel.webview.html = this.getPDFViewerContent(pdfFilePath)
+        panel.webview.html = await this.getPDFViewerContent(pdfFilePath)
         const pdfPanel = new PdfViewerPanel(pdfFilePath, panel)
         this.pushPdfViewerPanel(pdfPanel)
         return pdfPanel
@@ -269,13 +269,14 @@ export class Viewer {
      *
      * @param pdfFile The path of a PDF file to be opened.
      */
-    getPDFViewerContent(pdfFile: string): string {
+    async getPDFViewerContent(pdfFile: string): Promise<string> {
         // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-        const url = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
+        const url0 = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
+        const url = await vscode.env.asExternalUri(vscode.Uri.parse(url0))
         const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
             <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:* http://127.0.0.1:*; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
-            <body><iframe id="preview-panel" class="preview-panel" src="${url}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
+            <body><iframe id="preview-panel" class="preview-panel" src="${url.toString(true)}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe>
             <script>
             // when the iframe loads, or when the tab gets focus again later, move the
