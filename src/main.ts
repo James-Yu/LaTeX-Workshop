@@ -247,9 +247,16 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider(extension)))
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider(extension)))
     context.subscriptions.push(vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension)))
+
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const userTriggersLatex = configuration.get('intellisense.triggers.latex') as string[]
+    const latexTriggers = ['\\', '{', ',', '(', '['].concat(userTriggersLatex)
+    extension.logger.addLogMessage(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
+
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, '\\', '{', ',', '(', '['))
+    context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, ...latexTriggers))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@'))
+
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions))
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider(extension)))
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider(extension)))
