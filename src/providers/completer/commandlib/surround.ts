@@ -37,7 +37,7 @@ export class SurroundCommand {
                 let selectedCommand = selected.command
                 let selectedContent = content
                 for (const selection of editor.selections) {
-                    if (!selectedContent) {
+                    if (!content) {
                         selectedContent = editor.document.getText(selection)
                         selectedCommand = '\\' + selected.command
                     }
