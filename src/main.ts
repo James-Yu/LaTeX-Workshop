@@ -358,6 +358,8 @@ export class Extension {
         // adding log messages during initialization.
         this.logger = new Logger()
         this.logger.addLogMessage(`Extension root: ${this.extensionRoot}`)
+        this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
+        this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)

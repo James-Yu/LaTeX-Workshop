@@ -14,6 +14,9 @@ export class TeXDoc {
         const texdocPath = configuration.get('texdoc.path') as string
         const texdocArgs = Object.assign([], configuration.get('texdoc.args') as string[])
         texdocArgs.push(pkg)
+        this.extension.logger.addLogMessage('Run texdoc.')
+        this.extension.logger.addLogMessage(`texdoc path: ${texdocPath}`)
+        this.extension.logger.addLogMessage(`texdoc args: ${texdocArgs}`)
         const proc = cs.spawn(texdocPath, texdocArgs)
 
         let stdout = ''
@@ -44,6 +47,8 @@ export class TeXDoc {
                     this.extension.logger.addLogMessage(`Opening documentation for ${pkg}.`)
                 }
             }
+            this.extension.logger.addLogMessage(`texdoc stdout: ${stdout}`)
+            this.extension.logger.addLogMessage(`texdoc stderr: ${stderr}`)
         })
     }
 
