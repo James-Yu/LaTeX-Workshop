@@ -228,13 +228,13 @@ export class Viewer {
             this.extension.logger.addLogMessage('Server port is undefined')
             return
         }
-
+        const htmlContent = await this.getPDFViewerContent(pdfFilePath)
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFilePath), viewColumn, {
             enableScripts: true,
             retainContextWhenHidden: true,
             portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
         })
-        panel.webview.html = await this.getPDFViewerContent(pdfFilePath)
+        panel.webview.html = htmlContent
         const pdfPanel = new PdfViewerPanel(pdfFilePath, panel)
         this.pushPdfViewerPanel(pdfPanel)
         return pdfPanel
