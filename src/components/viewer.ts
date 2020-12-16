@@ -62,7 +62,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         this.extension = extension
     }
 
-    async deserializeWebviewPanel(panel: vscode.WebviewPanel, state0: {state: PdfViewerState}) {
+    async deserializeWebviewPanel(panel: vscode.WebviewPanel, state0: {state: PdfViewerState}): Promise<void> {
         this.extension.logger.addLogMessage(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(state0)}`)
         const state = state0.state
         const pdfFilePath = state.path
@@ -271,12 +271,14 @@ export class Viewer {
      */
     async getPDFViewerContent(pdfFile: string): Promise<string> {
         // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-        const url0 = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
-        const url = await vscode.env.asExternalUri(vscode.Uri.parse(url0))
+        const origUrl = `http://localhost:${this.extension.server.port}/viewer.html?incode=1&file=${encodePathWithPrefix(pdfFile)}`
+        const url = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl))
+        const iframeSrcUrl = url.toString(true)
+        this.extension.logger.addLogMessage(`The internal PDF viewer url: ${iframeSrcUrl}`)
         const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
             <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:* http://127.0.0.1:*; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
-            <body><iframe id="preview-panel" class="preview-panel" src="${url.toString(true)}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
+            <body><iframe id="preview-panel" class="preview-panel" src="${iframeSrcUrl}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe>
             <script>
             // when the iframe loads, or when the tab gets focus again later, move the
