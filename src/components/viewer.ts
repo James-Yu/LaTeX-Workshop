@@ -231,8 +231,7 @@ export class Viewer {
         const htmlContent = await this.getPDFViewerContent(pdfFilePath)
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFilePath), viewColumn, {
             enableScripts: true,
-            retainContextWhenHidden: true,
-            portMapping : [{webviewPort: this.extension.server.port, extensionHostPort: this.extension.server.port}]
+            retainContextWhenHidden: true
         })
         panel.webview.html = htmlContent
         const pdfPanel = new PdfViewerPanel(pdfFilePath, panel)
