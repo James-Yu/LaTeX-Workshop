@@ -155,13 +155,13 @@ export class Command implements IProvider {
      *
      * @param content A string to be surrounded. If not provided, then we loop over all the selections and surround each of them.
      */
-    surround(content?: string) {
+    surround() {
         if (!vscode.window.activeTextEditor) {
             return
         }
         const editor = vscode.window.activeTextEditor
         const cmdItems = this.provide(editor.document.languageId)
-        this.surroundCommand.surround(content, cmdItems)
+        this.surroundCommand.surround(cmdItems)
     }
 
     /**

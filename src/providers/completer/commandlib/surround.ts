@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 
 export class SurroundCommand {
 
-    surround(content: string | undefined, cmdItems: vscode.CompletionItem[]) {
+    surround(cmdItems: vscode.CompletionItem[]) {
         if (!vscode.window.activeTextEditor) {
             return
         }
@@ -34,18 +34,14 @@ export class SurroundCommand {
                 return
             }
             editor.edit( editBuilder => {
-                let selectedCommand = selected.command
-                let selectedContent = content
                 for (const selection of editor.selections) {
-                    if (!content) {
-                        selectedContent = editor.document.getText(selection)
-                        selectedCommand = '\\' + selected.command
-                    }
+                    const selectedContent = editor.document.getText(selection)
+                    const selectedCommand = '\\' + selected.command
                     editBuilder.replace(new vscode.Range(selection.start, selection.end),
                         selectedCommand.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
-                            .replace(/\${\d:?(.*?)}/g, '$1') // Remove snippet placeholders
-                            .replace('\\\\', '\\') // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
-                            .replace(/\$\d/, '')) // Remove $2 etc
+                                       .replace(/\${\d:?(.*?)}/g, '$1')                    // Remove snippet placeholders
+                                       .replace('\\\\', '\\')                              // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
+                                       .replace(/\$\d/, ''))                               // Remove $2 etc
                 }
             })
         })
