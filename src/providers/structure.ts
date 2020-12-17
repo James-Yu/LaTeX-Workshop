@@ -12,15 +12,15 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     private readonly hierarchy: string[]
     private readonly sectionDepths: { [key: string]: number } = {}
-    private showLabels: boolean
-    private showFloats: boolean
-    private showNumbers: boolean
+    private readonly showLabels: boolean
+    private readonly showFloats: boolean
+    private readonly showNumbers: boolean
     public root: string = ''
 
     // our data source is a set multi-rooted set of trees
     public ds: Section[] = []
 
-    constructor(private extension: Extension) {
+    constructor(private readonly extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.hierarchy = configuration.get('view.outline.sections') as string[]
@@ -353,12 +353,12 @@ export class Section extends vscode.TreeItem {
 }
 
 export class StructureTreeView {
-    private _viewer: vscode.TreeView<Section | undefined>
-    private _treeDataProvider: SectionNodeProvider
+    private readonly _viewer: vscode.TreeView<Section | undefined>
+    private readonly _treeDataProvider: SectionNodeProvider
     private _followCursor: boolean = true
 
 
-    constructor(private extension: Extension) {
+    constructor(private readonly extension: Extension) {
         this._treeDataProvider = this.extension.structureProvider
         this._viewer = vscode.window.createTreeView('latex-structure', { treeDataProvider: this._treeDataProvider })
         vscode.commands.registerCommand('latex-structure.toggle-follow-cursor', () => {

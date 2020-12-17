@@ -203,7 +203,7 @@ export class LaTexFormatter {
 }
 
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
-    private formatter: LaTexFormatter
+    private readonly formatter: LaTexFormatter
 
     constructor(extension: Extension) {
         this.formatter = new LaTexFormatter(extension)
