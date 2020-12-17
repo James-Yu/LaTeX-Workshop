@@ -6,7 +6,7 @@ export class TextDocumentLike {
     private readonly _lines: string[]
     readonly lineCount: number
     readonly eol: vscode.EndOfLine
-    private _eol: string
+    private readonly _eol: string
 
     static load(filePath: string): TextDocumentLike | vscode.TextDocument {
         const uri = vscode.Uri.file(filePath)

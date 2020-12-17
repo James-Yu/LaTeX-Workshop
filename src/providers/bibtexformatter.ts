@@ -157,7 +157,7 @@ export class BibtexFormatter {
 }
 
 export class BibtexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
-    private formatter: BibtexFormatter
+    private readonly formatter: BibtexFormatter
     extension: Extension
 
     constructor(extension: Extension) {

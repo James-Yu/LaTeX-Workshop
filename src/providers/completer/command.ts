@@ -29,8 +29,8 @@ export class Command implements IProvider {
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
 
-    private defaultCmds: Suggestion[] = []
-    private defaultSymbols: Suggestion[] = []
+    private readonly defaultCmds: Suggestion[] = []
+    private readonly defaultSymbols: Suggestion[] = []
     private packageCmds: {[pkg: string]: Suggestion[]} = {}
 
     constructor(extension: Extension, environment: Environment) {

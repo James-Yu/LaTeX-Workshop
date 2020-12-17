@@ -23,9 +23,9 @@ export class Environment implements IProvider {
     private defaultEnvsAsName: Suggestion[] = []
     private defaultEnvsAsCommand: Suggestion[] = []
     private defaultEnvsForBegin: Suggestion[] = []
-    private packageEnvsAsName: {[pkg: string]: Suggestion[]} = {}
+    private readonly packageEnvsAsName: {[pkg: string]: Suggestion[]} = {}
     private packageEnvsAsCommand: {[pkg: string]: Suggestion[]} = {}
-    private packageEnvsForBegin: {[pkg: string]: Suggestion[]} = {}
+    private readonly packageEnvsForBegin: {[pkg: string]: Suggestion[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension

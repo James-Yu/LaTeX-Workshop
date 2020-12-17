@@ -10,8 +10,8 @@ import {decodePathWithPrefix, pdfFilePrefix} from '../utils/utils'
 
 export class Server {
     private readonly extension: Extension
-    private httpServer: http.Server
-    private wsServer: ws.Server
+    private readonly httpServer: http.Server
+    private readonly wsServer: ws.Server
     address?: string
     port?: number
 

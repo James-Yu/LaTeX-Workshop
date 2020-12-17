@@ -73,7 +73,7 @@ export class SnippetPanel {
 
     }
 
-    private mathSymbols: IMathSymbol[] = []
+    private readonly mathSymbols: IMathSymbol[] = []
 
     private loadSnippets() {
         const snipetsFile = path.join(this.extension.extensionRoot, 'resources', 'snippetpanel', 'snippetpanel.json')
