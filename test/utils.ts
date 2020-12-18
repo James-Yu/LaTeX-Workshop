@@ -107,8 +107,8 @@ export async function waitUntil<T>(
     assert.fail('Timeout Error at waitUntil')
 }
 
-export async function waitLatexWorkshopActivated() {
-    return await waitUntil( () => {
+export function waitLatexWorkshopActivated() {
+    return waitUntil( () => {
         const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')
         return Promise.resolve(extension?.isActive && extension)
     })
@@ -121,8 +121,8 @@ export async function waitBuildFinish() {
     )
 }
 
-export async function waitRootFileFound() {
-    return await waitUntil(
+export function waitRootFileFound() {
+    return waitUntil(
         async () => {
             const extension = await waitLatexWorkshopActivated()
             return extension.exports.manager.rootFile()
@@ -132,7 +132,7 @@ export async function waitRootFileFound() {
 
 export async function executeVscodeCommandAfterActivation(command: string) {
     await waitLatexWorkshopActivated()
-    return await vscode.commands.executeCommand(command)
+    return vscode.commands.executeCommand(command)
 }
 
 export async function viewPdf() {
@@ -143,7 +143,7 @@ export async function viewPdf() {
 
 export async function getViewerStatus(pdfFilePath: string) {
     const extension = await waitLatexWorkshopActivated()
-    return await waitUntil(async () => {
+    return waitUntil(async () => {
         try {
             const rs = extension.exports.viewer.getViewerStatus?.(pdfFilePath)
             const ret = rs && rs.find(st => st)

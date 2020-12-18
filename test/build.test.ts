@@ -568,7 +568,7 @@ suite('Build TeX files test suite', () => {
             await waitLatexWorkshopActivated()
             execCommandThenPick(
                 () => vscode.commands.executeCommand('latex-workshop.build'),
-                async () => await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+                () => vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             )
         })
     })
