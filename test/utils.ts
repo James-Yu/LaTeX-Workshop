@@ -85,6 +85,8 @@ export function isDockerEnabled() {
     return process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER'] ? true : false
 }
 
+type PickTruthy<T> = T | false | undefined | null
+
 /**
  * Executes `command` repeatedly until a certain result obtained.
  * Since `command` is executed repeatedly until timeout, it must not have any side effects.
@@ -93,7 +95,7 @@ export function isDockerEnabled() {
  * @param errMessage A string to be displayed as an error message.
  */
 export async function waitUntil<T>(
-    command: () => Thenable<T | false | undefined | null>,
+    command: () => PickTruthy<T> | Thenable<PickTruthy<T>>,
     limit = 70
 ): Promise<T> {
     for (let i = 0; i < limit; i++) {
@@ -143,7 +145,7 @@ export async function viewPdf() {
 
 export async function getViewerStatus(pdfFilePath: string) {
     const extension = await waitLatexWorkshopActivated()
-    return waitUntil(async () => {
+    return waitUntil(() => {
         try {
             const rs = extension.exports.viewer.getViewerStatus?.(pdfFilePath)
             const ret = rs && rs.find(st => st)
