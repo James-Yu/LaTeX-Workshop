@@ -304,8 +304,10 @@ export class Viewer {
                 switch (e.data.type) {
                     case 'initialized': {
                         const state = vsStore.getState();
-                        state.type = 'restore_state';
-                        iframe.contentWindow.postMessage(state, '*');
+                        if (state) {
+                            state.type = 'restore_state';
+                            iframe.contentWindow.postMessage(state, '*');
+                        }
                         break;
                     }
                     case 'keyboard_event': {
