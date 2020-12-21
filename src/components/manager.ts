@@ -316,6 +316,11 @@ export class Manager {
             const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             const candidates: string[] = []
             for (const file of files) {
+                const flsChildren = this.getTeXChildrenFromFls(file.fsPath)
+                if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
+                    this.extension.logger.addLogMessage(`Found root file from '.fls': ${file.fsPath}`)
+                    return file.fsPath
+                }
                 const content = utils.stripComments(fs.readFileSync(file.fsPath).toString(), '%')
                 const result = content.match(regex)
                 if (result) {
@@ -510,6 +515,16 @@ export class Manager {
         return children
     }
 
+    private getTeXChildrenFromFls(texFile: string) {
+        const flsFile = this.pathUtils.getFlsFilePath(texFile)
+        if (flsFile === undefined) {
+            return []
+        }
+        const rootDir = path.dirname(texFile)
+        const ioFiles = this.pathUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
+        return ioFiles.input
+    }
+
     private parseInputFiles(content: string, baseFile: string) {
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
         while (true) {
@@ -565,19 +580,16 @@ export class Manager {
      * and all `OUTPUT` files will be checked if they are `.aux` files.
      * If so, the `.aux` files are parsed for any possible `.bib` files.
      *
-     * @param srcFile The path of a LaTeX file.
+     * @param texFile The path of a LaTeX file.
      */
-    parseFlsFile(srcFile: string) {
+    parseFlsFile(texFile: string) {
         this.extension.logger.addLogMessage('Parse fls file.')
-        const rootDir = path.dirname(srcFile)
-        const outDir = this.getOutDir(srcFile)
-        const baseName = path.parse(srcFile).name
-        const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
-        if (!fs.existsSync(flsFile)) {
-            this.extension.logger.addLogMessage(`Cannot find fls file: ${flsFile}`)
+        const flsFile = this.pathUtils.getFlsFilePath(texFile)
+        if (flsFile === undefined) {
             return
         }
-        this.extension.logger.addLogMessage(`Fls file found: ${flsFile}`)
+        const rootDir = path.dirname(texFile)
+        const outDir = this.getOutDir(texFile)
         const ioFiles = this.pathUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
 
         ioFiles.input.forEach((inputFile: string) => {
@@ -588,12 +600,12 @@ export class Manager {
                 return
             }
             // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (srcFile === inputFile || inputFile in this.cachedContent) {
+            if (texFile === inputFile || inputFile in this.cachedContent) {
                 return
             }
             if (path.extname(inputFile) === '.tex') {
                 // Parse tex files as imported subfiles.
-                this.cachedContent[srcFile].children.push({
+                this.cachedContent[texFile].children.push({
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })

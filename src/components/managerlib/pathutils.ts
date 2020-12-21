@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
+import * as fs from 'fs-extra'
 import * as utils from '../../utils/utils'
 
 import type {Extension} from '../../main'
@@ -20,6 +21,10 @@ export class PathUtils {
         return this.extension.manager.rootFile
     }
 
+    private getOutDir(texFile: string) {
+        return this.extension.manager.getOutDir(texFile)
+    }
+
     parseInputFilePath(regResult: RegExpExecArray, baseFile: string): string | undefined {
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
@@ -33,6 +38,24 @@ export class PathUtils {
                 return utils.resolveFile([path.dirname(baseFile), ...texDirs], regResult[2])
             }
         }
+    }
+
+    /**
+     * Search for a `.fls` file associated to a tex file
+     * @param texFile The path of LaTeX file
+     * @return The path of the .fls file or undefined
+     */
+    getFlsFilePath(texFile: string): string | undefined {
+        const rootDir = path.dirname(texFile)
+        const outDir = this.getOutDir(texFile)
+        const baseName = path.parse(texFile).name
+        const flsFile = path.resolve(rootDir, path.join(outDir, baseName + '.fls'))
+        if (!fs.existsSync(flsFile)) {
+            this.extension.logger.addLogMessage(`Cannot find fls file: ${flsFile}`)
+            return undefined
+        }
+        this.extension.logger.addLogMessage(`Fls file found: ${flsFile}`)
+        return flsFile
     }
 
     parseFlsContent(content: string, rootDir: string): {input: string[], output: string[]} {
