@@ -8,7 +8,7 @@ labels:
 
 ## Preliminary questions [Required]
 
-### Disable all the other extensions except for LaTeX Workshop, and check that you still see this issue. [Required]
+### Disable all the other extensions except for LaTeX Workshop, restart VS Code, and check that you still see this issue. [Required]
 
 You still see this issue?: Yes/No
 
