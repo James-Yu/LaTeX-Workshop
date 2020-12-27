@@ -136,7 +136,7 @@ export class Builder {
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
-            this.extension.logParser.parse(stdout)
+            this.extension.latexLogParser.parse(stdout)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
                 this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error', 'warning')
@@ -328,7 +328,7 @@ export class Builder {
         })
 
         this.currentProcess.on('exit', (exitCode, signal) => {
-            this.extension.logParser.parse(stdout, rootFile)
+            this.extension.latexLogParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
                 this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVars['PATH']}`)
@@ -391,7 +391,7 @@ export class Builder {
         this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
-        if (this.extension.logParser.isLaTeXmkSkipped) {
+        if (this.extension.latexLogParser.isLaTeXmkSkipped) {
             return
         }
         this.extension.viewer.refreshExistingViewer(rootFile)
