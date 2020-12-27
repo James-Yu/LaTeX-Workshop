@@ -97,7 +97,7 @@ export class Linter {
         }
         // provide the original path to the active file as the second argument, so
         // we report this second path in the diagnostics instead of the temporary one.
-        this.extension.logParser.parseLinter(stdout, filePath)
+        this.extension.linterLogParser.parse(stdout, filePath)
     }
 
     async lintRootFile() {
@@ -129,7 +129,7 @@ export class Linter {
                 return
             }
         }
-        this.extension.logParser.parseLinter(stdout)
+        this.extension.linterLogParser.parse(stdout)
     }
 
     processWrapper(linterId: string, command: string, args: string[], options: SpawnOptionsWithoutStdio, stdin?: string): Promise<string> {

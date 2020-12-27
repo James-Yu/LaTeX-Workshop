@@ -596,7 +596,7 @@ export class Commander {
         if (vscode.window.activeTextEditor === undefined) {
             return
         }
-        this.extension.logParser.parse(vscode.window.activeTextEditor.document.getText())
+        this.extension.latexLogParser.parse(vscode.window.activeTextEditor.document.getText())
     }
 
     async devParseTeX() {
