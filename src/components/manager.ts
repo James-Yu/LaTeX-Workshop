@@ -695,10 +695,14 @@ export class Manager {
     }
 
     private createFileWatcher() {
-        this.extension.logger.addLogMessage(`Instantiating a new file watcher for ${this.rootFile}`)
+        this.extension.logger.addLogMessage(`Creating a new file watcher for ${this.rootFile}`)
         if (this.rootFile) {
+            this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.watcherOptions)}`)
             this.fileWatcher = chokidar.watch(this.rootFile, this.watcherOptions)
             this.filesWatched.push(this.rootFile)
+        } else {
+            this.extension.logger.addLogMessage('Cannot find rootFile.')
+            this.extension.logger.addLogMessage('Cannot create a new file watcher.')
         }
         if (this.fileWatcher) {
             this.fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))

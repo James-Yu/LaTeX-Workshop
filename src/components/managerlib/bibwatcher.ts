@@ -29,6 +29,7 @@ export class BibWatcher {
             return
         }
         this.extension.logger.addLogMessage('Creating Bib file watcher.')
+        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.watcherOptions)}`)
         this.bibWatcher = chokidar.watch([], this.watcherOptions)
         this.bibWatcher.on('change', (file: string) => this.onWatchedBibChanged(file))
         this.bibWatcher.on('unlink', (file: string) => this.onWatchedBibDeleted(file))

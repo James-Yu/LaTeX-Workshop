@@ -30,6 +30,7 @@ export class PdfWatcher {
             return
         }
         this.extension.logger.addLogMessage('Creating PDF file watcher.')
+        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.pdfWatcherOptions)}`)
         this.pdfWatcher = chokidar.watch([], this.pdfWatcherOptions)
         this.pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
         this.pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
