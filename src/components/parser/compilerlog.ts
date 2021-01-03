@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import type { Extension } from '../../main'
 import { convertFilenameEncoding } from '../../utils/utils'
 import { LatexLogParser } from './latexlog'
+import { BibLogParser } from './biblogparser'
 
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
@@ -17,6 +18,8 @@ const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
 const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
 const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
 
+const bibtexPattern = /^This is BibTeX, Version.*$/m
+
 const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'typesetting': vscode.DiagnosticSeverity.Information,
     'warning': vscode.DiagnosticSeverity.Warning,
@@ -28,11 +31,13 @@ export interface LogEntry { type: string, file: string, text: string, line: numb
 export class CompilerLogParser {
     // private readonly extension: Extension
     private readonly latexLogParser: LatexLogParser
+    private readonly bibLogParser: BibLogParser
     isLaTeXmkSkipped: boolean = false
 
     constructor(extension: Extension) {
         // this.extension = extension
         this.latexLogParser = new LatexLogParser(extension)
+        this.bibLogParser = new BibLogParser(extension)
     }
 
     parse(log: string, rootFile?: string) {
@@ -40,6 +45,9 @@ export class CompilerLogParser {
         // Canonicalize line-endings
         log = log.replace(/(\r\n)|\r/g, '\n')
 
+        if (log.match(bibtexPattern)) {
+            this.bibLogParser.parse(log, rootFile)
+        }
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
         } else if (log.match(texifyPattern)) {
@@ -99,19 +107,19 @@ export class CompilerLogParser {
     private latexmkSkipped(log: string): boolean {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
-            this.showCompilerDiagnostics(this.latexLogParser.compilerDiagnostics, this.latexLogParser.buildLog)
+            this.showCompilerDiagnostics(this.latexLogParser.compilerDiagnostics, this.latexLogParser.buildLog, 'LaTeX')
             return true
         }
         return false
     }
 
-    showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[]) {
+    showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
         compilerDiagnostics.clear()
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of buildLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
-            diag.source = 'LaTeX'
+            diag.source = source
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }

@@ -342,14 +342,44 @@ export class Manager {
         return undefined
     }
 
-    /**
-     * Returns a string array which holds all imported tex files
-     * from the given `file`. If `file` is `undefined`, traces from the
+        /**
+     * Return a string array which holds all imported bib files
+     * from the given tex `file`. If `file` is `undefined`, traces from the
      * root file, or return empty array if the root file is `undefined`
      *
      * @param file The path of a LaTeX file
      */
-    getIncludedTeX(file?: string, includedTeX: string[] = []) {
+    getIncludedBib(file?: string, includedBib: string[] = [], children: string[] = []): string[] {
+        if (file === undefined) {
+            file = this.rootFile
+        }
+        if (file === undefined) {
+            return []
+        }
+        if (!(file in this.extension.manager.cachedContent)) {
+            return []
+        }
+        children.push(file)
+        includedBib.push(...this.extension.manager.cachedContent[file].bibs)
+        for (const child of this.extension.manager.cachedContent[file].children) {
+            if (children.includes(child.file)) {
+                // Already parsed
+                continue
+            }
+            this.getIncludedBib(child.file, includedBib)
+        }
+        // Make sure to return an array with unique entries
+        return Array.from(new Set(includedBib))
+    }
+
+    /**
+     * Return a string array which holds all imported tex files
+     * from the given `file`. If `file` is `undefined`, trace from the
+     * root file, or return empty array if the root file is `undefined`
+     *
+     * @param file The path of a LaTeX file
+     */
+    getIncludedTeX(file?: string, includedTeX: string[] = []): string[] {
         if (file === undefined) {
             file = this.rootFile
         }
