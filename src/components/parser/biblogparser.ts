@@ -3,6 +3,7 @@ import type { Extension } from '../../main'
 import type { LogEntry } from './compilerlog'
 
 const multiLineWarning = /^Warning--(.+)\n--line (\d+) of file (.+)$/gm
+const singleLineWarning = /^Warning--(.+) in ([^\s]+)\s*$/gm
 const multiLineError = /^(.*)---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this entry$/gm
 const badCrossReference = /^(A bad cross reference---entry ".+?"\nrefers to entry.+?, which doesn't exist)$/gm
 const multiLineCommandError = /^(.*)\n?---line (\d+) of file (.*)\n([^]+?)\nI'm skipping whatever remains of this command$/gm
@@ -29,6 +30,17 @@ export class BibLogParser {
         this.buildLog = []
 
         let result = undefined
+        while ((result = singleLineWarning.exec(log))) {
+            const cites = this.extension.completer.citation.getEntryDict()
+            const key = result[2]
+            if (key in cites) {
+                const filename = cites[key].file
+                const line = cites[key].position.line + 1
+                this.buildLog.push({ type: 'warning', file: filename, text: result[1], line })
+            } else {
+                this.extension.logger.addLogMessage(`Cannot find key when parsing BibTeX log: ${key}`)
+            }
+        }
         while ((result = multiLineWarning.exec(log))) {
             const filename = this.resolveBibFile(result[3], rootFile)
             this.buildLog.push({ type: 'warning', file: filename, text: result[1], line: parseInt(result[2], 10) })
