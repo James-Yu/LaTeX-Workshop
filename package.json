@@ -788,6 +788,15 @@
               ]
             },
             {
+              "name": "pdflatex ➞ biber ➞ pdflatex × 2",
+              "tools": [
+                "pdflatex",
+                "biber",
+                "pdflatex",
+                "pdflatex"
+              ]
+            },
+            {
               "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
               "tools": [
                 "pdflatex",
@@ -893,6 +902,14 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "%DOC%"
+              ],
+              "env": {}
+            },
+            {
+              "name": "biber",
+              "command": "biber",
+              "args": [
+                "%DOCFILE%"
               ],
               "env": {}
             },
