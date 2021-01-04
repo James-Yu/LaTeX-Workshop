@@ -1,0 +1,53 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage[acronym, toc]{glossaries}
+
+\usepackage[backend=bibtex]{biblatex}
+\addbibresource{references.bib}
+
+\makeglossaries
+
+\input{glossary.tex}
+
+\newcommand{\addDividingLine}{\vspace{1cm}\hrule\vspace{1cm}}
+
+\begin{document}
+
+\tableofcontents
+
+\addDividingLine
+
+\section{First Section}
+
+The \Gls{latex} typesetting markup language is specially suitable for documents that include \gls{maths}. \Glspl{formula} are rendered properly an easily once one gets used to the commands.
+
+\addDividingLine
+
+\section{Second Section}
+
+\vspace{5mm}
+
+Given a set of numbers, there are elementary methods to compute its \acrlong{gcd}, which is abbreviated \acrshort{gcd}. This process is similar to that used for the \acrfull{lcm}.
+
+\addDividingLine
+
+\printglossary
+
+\addDividingLine
+
+\printglossary[type=\acronymtype]
+
+\addDividingLine
+
+\section{Third Section}
+
+\vspace{5mm}
+
+Let's cite! The Einstein's journal paper \cite{einstein} and the Dirac's book \cite{dirac} are physics related items.
+
+\addDividingLine
+
+\printbibliography
+
+\end{document}
