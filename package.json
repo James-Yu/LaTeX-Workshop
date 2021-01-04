@@ -867,8 +867,8 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
-                "-pdf",
-                "-outdir=%OUTDIR%",
+                "-pdflatex",
+                "-output-directory=%OUTDIR%",
                 "%DOC%"
               ],
               "env": {}
@@ -881,7 +881,7 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-lualatex",
-                "-outdir=%OUTDIR%",
+                "-output-directory=%OUTDIR%",
                 "%DOC%"
               ],
               "env": {}
@@ -901,6 +901,7 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
+                "-output-directory=%OUTDIR%",
                 "%DOC%"
               ],
               "env": {}
@@ -909,6 +910,7 @@
               "name": "biber",
               "command": "biber",
               "args": [
+                "--output-directory=%OUTDIR%",
                 "%DOCFILE%"
               ],
               "env": {}
@@ -917,9 +919,11 @@
               "name": "bibtex",
               "command": "bibtex",
               "args": [
-                "%DOCFILE%"
+                "out/%DOCFILE%"
               ],
-              "env": {}
+              "env": {
+                "BIBINPUTS": "%OUTDIR%:"
+              }
             },
             {
               "name": "rnw2tex",
@@ -954,6 +958,8 @@
               "args": [
                 "--synctex",
                 "--keep-logs",
+                "--outdir",
+                "%OUTDIR%",
                 "%DOC%.tex"
               ],
               "env": {}
@@ -970,6 +976,7 @@
             "-synctex=1",
             "-interaction=nonstopmode",
             "-file-line-error",
+            "-output-directory=%OUTDIR%",
             "%DOC%"
           ],
           "markdownDescription": "Define the arguments to be input to magic command executable. This can be overridden by using \"% !TeX options\"."
@@ -980,6 +987,7 @@
             "type": "string"
           },
           "default": [
+            "--output-directory=%OUTDIR%",
             "%DOCFILE%"
           ],
           "markdownDescription": "Define the arguments to be input to BIB magic command executable. This can be overridden by using \"% !BIB options\"."
@@ -1004,7 +1012,7 @@
         },
         "latex-workshop.latex.outDir": {
           "type": "string",
-          "default": "%DIR%",
+          "default": "%DIR%/out",
           "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash.\nThe LaTeX toolchain should output files to this path.\nFor a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
         "latex-workshop.latex.texDirs": {
