@@ -12,7 +12,7 @@ const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexmkPattern = /^Latexmk:\sapplying\srule/gm
 const latexmkLog = /^Latexmk:\sapplying\srule/
 const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
-const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
+const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/m
 
 const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
 const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
@@ -105,8 +105,7 @@ export class CompilerLogParser {
     }
 
     private latexmkSkipped(log: string): boolean {
-        const lines = log.split('\n')
-        if (lines[0].match(latexmkUpToDate)) {
+        if (log.match(latexmkUpToDate) && !log.match(latexmkPattern)) {
             this.showCompilerDiagnostics(this.latexLogParser.compilerDiagnostics, this.latexLogParser.buildLog, 'LaTeX')
             this.showCompilerDiagnostics(this.bibLogParser.compilerDiagnostics, this.bibLogParser.buildLog, 'BibTeX')
             return true
