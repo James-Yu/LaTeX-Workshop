@@ -108,6 +108,7 @@ export class CompilerLogParser {
         const lines = log.split('\n')
         if (lines[0].match(latexmkUpToDate)) {
             this.showCompilerDiagnostics(this.latexLogParser.compilerDiagnostics, this.latexLogParser.buildLog, 'LaTeX')
+            this.showCompilerDiagnostics(this.bibLogParser.compilerDiagnostics, this.bibLogParser.buildLog, 'BibTeX')
             return true
         }
         return false

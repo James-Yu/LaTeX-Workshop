@@ -12,7 +12,7 @@ const errorAuxFile = /^(.*)---while reading file (.*)$/gm
 export class BibLogParser {
     private readonly extension: Extension
     buildLog: LogEntry[] = []
-    private readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
+    readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
 
     constructor(extension: Extension) {
         this.extension = extension
