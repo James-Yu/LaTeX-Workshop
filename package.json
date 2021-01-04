@@ -824,6 +824,12 @@
               "tools": [
                 "tectonic"
               ]
+            },
+            {
+              "name": "makeglossaries",
+              "tools": [
+                "makeglossaries"
+              ]
             }
           ],
           "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
@@ -961,6 +967,16 @@
                 "--outdir",
                 "%OUTDIR%",
                 "%DOC%.tex"
+              ],
+              "env": {}
+            },
+            {
+              "name": "makeglossaries",
+              "command": "makeglossaries",
+              "args": [
+                "-d",
+                "%OUTDIR%",
+                "%DOCFILE%"
               ],
               "env": {}
             }
