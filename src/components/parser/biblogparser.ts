@@ -31,14 +31,9 @@ export class BibLogParser {
 
         let result = undefined
         while ((result = singleLineWarning.exec(log))) {
-            const cites = this.extension.completer.citation.getEntryDict()
-            const key = result[2]
-            if (key in cites) {
-                const filename = cites[key].file
-                const line = cites[key].position.line + 1
-                this.buildLog.push({ type: 'warning', file: filename, text: result[1], line })
-            } else {
-                this.extension.logger.addLogMessage(`Cannot find key when parsing BibTeX log: ${key}`)
+            const location = this.findKeyLocation(result[2])
+            if (location) {
+                this.buildLog.push({ type: 'warning', file: location.file, text: result[1], line: location.line })
             }
         }
         while ((result = multiLineWarning.exec(log))) {
@@ -92,6 +87,18 @@ export class BibLogParser {
         }
         this.extension.logger.addLogMessage(`Cannot resolve file while parsing BibTeX log: ${filename}`)
         return filename
+    }
+
+    private findKeyLocation(key: string): {file: string, line: number} | undefined {
+        const cites = this.extension.completer.citation.getEntryDict()
+        if (key in cites) {
+            const file = cites[key].file
+            const line = cites[key].position.line + 1
+            return {file, line}
+        } else {
+            this.extension.logger.addLogMessage(`Cannot find key when parsing BibTeX log: ${key}`)
+            return undefined
+        }
     }
 
 }
