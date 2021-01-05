@@ -65,7 +65,7 @@ export function getLongestBalancedString(s: string): string {
                 nested++
                 break
             case '}':
-                nested --
+                nested--
                 break
             case '\\':
                 // skip an escaped character
@@ -198,12 +198,12 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
                     .replace(/%DOCFILE%/g, docfile)
                     .replace(/%DIR%/g, docker ? './' : dir)
                     .replace(/%DIR_W32%/g, docker ? './' : dirW32)
+                    .replace(/%SEP%/g, docker ? '/' : path.sep)
+                    .replace(/%DELIM%/g, docker ? ':' : path.delimiter)
                     .replace(/%TMPDIR%/g, tmpDir)
-
         }
         const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
         const outDir = outDirW32.split(path.sep).join('/')
         return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
-
     }
 }
