@@ -29,13 +29,11 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
 export interface LogEntry { type: string, file: string, text: string, line: number }
 
 export class CompilerLogParser {
-    // private readonly extension: Extension
     private readonly latexLogParser: LatexLogParser
     private readonly bibLogParser: BibLogParser
     isLaTeXmkSkipped: boolean = false
 
     constructor(extension: Extension) {
-        // this.extension = extension
         this.latexLogParser = new LatexLogParser(extension)
         this.bibLogParser = new BibLogParser(extension)
     }

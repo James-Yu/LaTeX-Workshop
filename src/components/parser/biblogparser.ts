@@ -61,7 +61,7 @@ export class BibLogParser {
     }
 
     private resolveAuxFile(filename: string, rootFile: string): string {
-        filename = filename.replace('.aux', '.tex')
+        filename = filename.replace(/\.aux$/, '.tex')
         if (!(rootFile in this.extension.manager.cachedContent)) {
             return filename
         }

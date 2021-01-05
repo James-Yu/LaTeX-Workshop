@@ -342,7 +342,7 @@ export class Manager {
         return undefined
     }
 
-        /**
+    /**
      * Return a string array which holds all imported bib files
      * from the given tex `file`. If `file` is `undefined`, traces from the
      * root file, or return empty array if the root file is `undefined`
