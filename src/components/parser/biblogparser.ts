@@ -29,7 +29,7 @@ export class BibLogParser {
 
         this.buildLog = []
 
-        let result = undefined
+        let result: RegExpExecArray | null
         while ((result = singleLineWarning.exec(log))) {
             const location = this.findKeyLocation(result[2])
             if (location) {
