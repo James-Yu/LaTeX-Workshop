@@ -44,7 +44,11 @@ export class CompilerLogParser {
         log = log.replace(/(\r\n)|\r/g, '\n')
 
         if (log.match(bibtexPattern)) {
-            this.bibLogParser.parse(log, rootFile)
+            if (log.match(latexmkPattern)) {
+                this.bibLogParser.parse(this.trimLaTeXmkBibTeX(log), rootFile)
+            } else {
+                this.bibLogParser.parse(log, rootFile)
+            }
         }
         if (log.match(latexmkPattern)) {
             log = this.trimLaTeXmk(log)
@@ -59,16 +63,34 @@ export class CompilerLogParser {
     }
 
     private trimLaTeXmk(log: string): string {
+        return this.trimPattern(log, latexmkLogLatex, latexmkLog)
+    }
+
+    private trimLaTeXmkBibTeX(log: string): string {
+        return this.trimPattern(log, bibtexPattern, latexmkLogLatex)
+    }
+
+    private trimTexify(log: string): string {
+        return this.trimPattern(log, texifyLogLatex, texifyLog)
+    }
+
+
+    /**
+     * Return the lines between the last occurrences of `beginPattern` and `endPattern`.
+     * If `endPattern` is not found, the lines from the last occurrence of
+     * `beginPattern` up to the end is returned.
+     */
+    private trimPattern(log: string, beginPattern: RegExp, endPattern: RegExp): string {
         const lines = log.split('\n')
         let startLine = -1
         let finalLine = -1
         for (let index = 0; index < lines.length; index++) {
             const line = lines[index]
-            let result = line.match(latexmkLogLatex)
+            let result = line.match(beginPattern)
             if (result) {
                 startLine = index
             }
-            result = line.match(latexmkLog)
+            result = line.match(endPattern)
             if (result) {
                 finalLine = index
             }
@@ -80,27 +102,6 @@ export class CompilerLogParser {
         }
     }
 
-    private trimTexify(log: string): string {
-        const lines = log.split('\n')
-        let startLine = -1
-        let finalLine = -1
-        for (let index = 0; index < lines.length; index++) {
-            const line = lines[index]
-            let result = line.match(texifyLogLatex)
-            if (result) {
-                startLine = index
-            }
-            result = line.match(texifyLog)
-            if (result) {
-                finalLine = index
-            }
-        }
-        if (finalLine <= startLine) {
-            return lines.slice(startLine).join('\n')
-        } else {
-            return lines.slice(startLine, finalLine).join('\n')
-        }
-    }
 
     private latexmkSkipped(log: string): boolean {
         if (log.match(latexmkUpToDate) && !log.match(latexmkPattern)) {
