@@ -31,6 +31,7 @@ export class Builder {
             this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
         } catch (e) {
             vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
+            console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
             throw e
         }
         this.buildMutex = new Mutex()
