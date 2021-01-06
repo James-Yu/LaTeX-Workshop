@@ -1,12 +1,9 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 
 import type { Extension } from '../../main'
-import { convertFilenameEncoding } from '../../utils/utils'
+import type { LogEntry } from './compilerlog'
 
-const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
-const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
@@ -16,25 +13,8 @@ const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: +on input line (\d+)
 const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
-const latexmkPattern = /^Latexmk:\sapplying\srule/gm
-const latexmkLog = /^Latexmk:\sapplying\srule/
-const latexmkLogLatex = /^Latexmk:\sapplying\srule\s'(pdf|lua|xe)?latex'/
-const latexmkUpToDate = /^Latexmk: All targets \(.*\) are up-to-date/
-
-const texifyPattern = /^running\s(pdf|lua|xe)?latex/gm
-const texifyLog = /^running\s((pdf|lua|xe)?latex|miktex-bibtex)/
-const texifyLogLatex = /^running\s(pdf|lua|xe)?latex/
-
 // const truncatedLine = /(.{77}[^\.](\w|\s|-|\\|\/))(\r\n|\n)/g
 const messageLine = /^l\.\d+\s(.*)$/
-
-const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
-    'typesetting': vscode.DiagnosticSeverity.Information,
-    'warning': vscode.DiagnosticSeverity.Warning,
-    'error': vscode.DiagnosticSeverity.Error,
-}
-
-interface LogEntry { type: string, file: string, text: string, line: number }
 
 class ParserState {
     searchEmptyLine = false
@@ -54,82 +34,36 @@ class ParserState {
 export class LatexLogParser {
     private readonly extension: Extension
     isLaTeXmkSkipped: boolean = false
-    private buildLog: LogEntry[] = []
-    buildLogRaw: string = ''
-    private readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
+    buildLog: LogEntry[] = []
+    readonly compilerDiagnostics = vscode.languages.createDiagnosticCollection('LaTeX')
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
     parse(log: string, rootFile?: string) {
-        this.isLaTeXmkSkipped = false
-        // Canonicalize line-endings
-        log = log.replace(/(\r\n)|\r/g, '\n')
-
-        if (log.match(latexmkPattern)) {
-            log = this.trimLaTeXmk(log)
-        } else if (log.match(texifyPattern)) {
-            log = this.trimTexify(log)
+        if (rootFile === undefined) {
+            rootFile = this.extension.manager.rootFile
         }
-        if (log.match(latexPattern) || log.match(latexFatalPattern)) {
-            this.parseLaTeX(log, rootFile)
-        } else if (this.latexmkSkipped(log)) {
-            this.isLaTeXmkSkipped = true
+        if (rootFile === undefined) {
+            this.extension.logger.addLogMessage('How can you reach this point?')
+            return
         }
-    }
 
-    private trimLaTeXmk(log: string): string {
         const lines = log.split('\n')
-        let startLine = -1
-        let finalLine = -1
-        for (let index = 0; index < lines.length; index++) {
-            const line = lines[index]
-            let result = line.match(latexmkLogLatex)
-            if (result) {
-                startLine = index
-            }
-            result = line.match(latexmkLog)
-            if (result) {
-                finalLine = index
-            }
-        }
-        if (finalLine <= startLine) {
-            return lines.slice(startLine).join('\n')
-        } else {
-            return lines.slice(startLine, finalLine).join('\n')
-        }
-    }
+        this.buildLog = []
 
-    private trimTexify(log: string): string {
-        const lines = log.split('\n')
-        let startLine = -1
-        let finalLine = -1
-        for (let index = 0; index < lines.length; index++) {
-            const line = lines[index]
-            let result = line.match(texifyLogLatex)
-            if (result) {
-                startLine = index
-            }
-            result = line.match(texifyLog)
-            if (result) {
-                finalLine = index
-            }
+        const state: ParserState = new ParserState(rootFile)
+        for(const line of lines) {
+            this.parseLine(line, state, this.buildLog)
         }
-        if (finalLine <= startLine) {
-            return lines.slice(startLine).join('\n')
-        } else {
-            return lines.slice(startLine, finalLine).join('\n')
-        }
-    }
 
-    private latexmkSkipped(log: string): boolean {
-        const lines = log.split('\n')
-        if (lines[0].match(latexmkUpToDate)) {
-            this.showCompilerDiagnostics()
-            return true
+        // Push the final result
+        if (state.currentResult.type !== '' && !state.currentResult.text.match(bibEmpty)) {
+            this.buildLog.push(state.currentResult)
         }
-        return false
+        this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
+        this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'LaTeX')
     }
 
    private parseLine(line: string, state: ParserState, buildLog: LogEntry[]) {
@@ -252,33 +186,6 @@ export class LatexLogParser {
         }
     }
 
-
-    private parseLaTeX(log: string, rootFile?: string) {
-        if (rootFile === undefined) {
-            rootFile = this.extension.manager.rootFile
-        }
-        if (rootFile === undefined) {
-            this.extension.logger.addLogMessage('How can you reach this point?')
-            return
-        }
-
-        this.buildLogRaw = log
-        const lines = log.split('\n')
-        this.buildLog = []
-
-        const state: ParserState = new ParserState(rootFile)
-        for(const line of lines) {
-            this.parseLine(line, state, this.buildLog)
-        }
-
-        // Push the final result
-        if (state.currentResult.type !== '' && !state.currentResult.text.match(bibEmpty)) {
-            this.buildLog.push(state.currentResult)
-        }
-        this.extension.logger.addLogMessage(`LaTeX log parsed with ${this.buildLog.length} messages.`)
-        this.showCompilerDiagnostics()
-    }
-
     private parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
@@ -303,32 +210,5 @@ export class LatexLogParser {
             nested = this.parseLaTeXFileStack(line, fileStack, nested)
         }
         return nested
-    }
-
-    private showCompilerDiagnostics() {
-        this.compilerDiagnostics.clear()
-        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
-        for (const item of this.buildLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
-            const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
-            diag.source = 'LaTeX'
-            if (diagsCollection[item.file] === undefined) {
-                diagsCollection[item.file] = []
-            }
-            diagsCollection[item.file].push(diag)
-        }
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const convEnc = configuration.get('message.convertFilenameEncoding') as boolean
-        for (const file in diagsCollection) {
-            let file1 = file
-            if (!fs.existsSync(file1) && convEnc) {
-                const f = convertFilenameEncoding(file1)
-                if (f !== undefined) {
-                    file1 = f
-                }
-            }
-            this.compilerDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
-        }
     }
 }

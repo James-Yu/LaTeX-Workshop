@@ -17,7 +17,7 @@ import {Counter} from './components/counter'
 import {TeXMagician} from './components/texmagician'
 import {EnvPair} from './components/envpair'
 import {Section} from './components/section'
-import {LatexLogParser} from './components/parser/latexlog'
+import {CompilerLogParser} from './components/parser/compilerlog'
 import {LinterLogParser} from './components/parser/linterlog'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
 
@@ -341,7 +341,7 @@ export class Extension {
     readonly viewer: Viewer
     readonly server: Server
     readonly locator: Locator
-    readonly latexLogParser: LatexLogParser
+    readonly compilerLogParser: CompilerLogParser
     readonly linterLogParser: LinterLogParser
     readonly pegParser: PEGParser
     readonly completer: Completer
@@ -375,7 +375,7 @@ export class Extension {
         this.viewer = new Viewer(this)
         this.server = new Server(this)
         this.locator = new Locator(this)
-        this.latexLogParser = new LatexLogParser(this)
+        this.compilerLogParser = new CompilerLogParser(this)
         this.linterLogParser = new LinterLogParser(this)
         this.completer = new Completer(this)
         this.linter = new Linter(this)
