@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as micromatch from 'micromatch'
 import * as cp from 'child_process'
 import * as utils from '../../utils/utils'
+import * as os from 'os'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -24,6 +25,12 @@ export class Input implements IProvider {
         /* Check .gitignore if needed */
         if (vscode.workspace.getConfiguration('search', null).get('useIgnoreFiles')) {
             try {
+                /* OSX pops up a dialog box to install `git` when it is not available.
+                The `which` command exits with a non-zero return code when `git` is not found,
+                which makes `execSync` throw an error */
+                if (os.platform() === 'darwin') {
+                    cp.execSync('which git')
+                }
                 gitIgnoredFiles = (cp.execSync('git check-ignore ' + files.join(' '), {cwd: baseDir})).toString().split('\n')
             } catch (ex) { }
         }
