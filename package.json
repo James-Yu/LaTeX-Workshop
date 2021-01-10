@@ -1185,6 +1185,36 @@
           ],
           "markdownDescription": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
         },
+        "latex-workshop.latex.clean.command": {
+          "type": "string",
+          "default": "latexmk",
+          "markdownDescription": "The command to be used to remove temporary files when `latex-workshop.latex.clean.method` is set to `cleanMethod`."
+        },
+        "latex-workshop.latex.clean.args": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "-c",
+            "%TEX%"
+          ],
+          "markdownDescription": "The arguments of `latex-workshop.latex.clean.command`. The `%TEX%` placeholder is the full path of the tex file from which the clean command is called."
+        },
+
+        "latex-workshop.latex.clean.method": {
+          "type": "string",
+          "default": "glob",
+          "enum": [
+            "glob",
+            "cleanCommand"
+          ],
+          "markdownEnumDescriptions": [
+            "Clean all the files located in `latex-workshop.latex.outDir` and matching the glob patterns listed in `latex-workshop.latex.clean.fileTypes`.",
+            "Run `latex-workshop.latex.clean.command` to clean temporary files."
+          ],
+          "markdownDescription": "Define the method used by the `clean` command to remove temporary files."
+        },
         "latex-workshop.latex.option.maxPrintLine.enabled": {
           "type": "boolean",
           "default": true,
