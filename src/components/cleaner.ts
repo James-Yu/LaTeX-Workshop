@@ -96,14 +96,12 @@ export class Cleaner {
             args = args.map(arg => arg.replace('%TEX%', rootFile))
         }
         this.extension.logger.addLogMessage(`Clean temporary files using: ${command}, ${args}`)
-        const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
-
-        let stderr = ''
-        proc.stderr.on('data', newStderr => {
-            stderr += newStderr
-        })
-
-        return new Promise( (resolve, reject) => {
+        return new Promise((resolve, reject) => {
+            const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
+            let stderr = ''
+            proc.stderr.on('data', newStderr => {
+                stderr += newStderr
+            })
             proc.on('error', err => {
                 this.extension.logger.addLogMessage(`Cannot run ${command}: ${err.message}, ${stderr}`)
                 if (err instanceof Error) {
