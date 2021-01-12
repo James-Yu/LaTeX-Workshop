@@ -20,6 +20,7 @@ export class Cleaner {
             }
             rootFile = this.extension.manager.rootFile
             if (! rootFile) {
+                this.extension.logger.addLogMessage('Cannot determine the root file to be cleaned.')
                 return
             }
         }
@@ -113,7 +114,6 @@ export class Cleaner {
                 } else {
                     this.extension.logger.addLogMessage(`The clean command failed with exit code ${exitCode}`)
                     this.extension.logger.addLogMessage(`Clean command stderr: ${stderr}`)
-                    reject(stderr)
                 }
             })
 
