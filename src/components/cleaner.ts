@@ -95,7 +95,7 @@ export class Cleaner {
             args = args.map(arg => arg.replace('%TEX%', rootFile))
         }
         this.extension.logger.addLogMessage(`Clean temporary files using: ${command}, ${args}`)
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve, _reject) => {
             const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
             let stderr = ''
             proc.stderr.on('data', newStderr => {
@@ -106,15 +106,14 @@ export class Cleaner {
                 if (err instanceof Error) {
                     this.extension.logger.logError(err)
                 }
-                reject(err)
+                resolve()
             })
             proc.on('exit', exitCode => {
-                if (exitCode === 0) {
-                    resolve()
-                } else {
+                if (exitCode !== 0) {
                     this.extension.logger.addLogMessage(`The clean command failed with exit code ${exitCode}`)
                     this.extension.logger.addLogMessage(`Clean command stderr: ${stderr}`)
                 }
+                resolve()
             })
 
         })
