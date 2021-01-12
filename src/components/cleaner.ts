@@ -28,17 +28,15 @@ export class Cleaner {
         switch (cleanMethod) {
             case 'glob':
                 return this.cleanGlob(rootFile)
-                break
             case 'cleanCommand':
                 return this.cleanCommand(rootFile)
-                break
             default:
                 this.extension.logger.addLogMessage(`Unknown cleaning method: ${cleanMethod}`)
                 return
         }
     }
 
-    async cleanGlob(rootFile: string): Promise<void> {
+    private cleanGlob(rootFile: string): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         let globs = configuration.get('latex.clean.fileTypes') as string[]
         const outdir = path.resolve(path.dirname(rootFile), this.extension.manager.getOutDir(rootFile))
@@ -88,7 +86,7 @@ export class Cleaner {
         })
     }
 
-    cleanCommand(rootFile: string): Promise<void> {
+    private cleanCommand(rootFile: string): Promise<void> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('latex.clean.command') as string
         let args = configuration.get('latex.clean.args') as string[]
