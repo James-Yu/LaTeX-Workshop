@@ -1506,6 +1506,16 @@
           "default": 500,
           "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing.\nThis config only matters when `latex-workshop.chktex.run` is set to `onType`."
         },
+        "latex-workshop.chktex.convertOutput.column.enabled": {
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable converting ChkTeX outputs' column numbers for non-ASCII characters."
+        },
+        "latex-workshop.chktex.convertOutput.column.chktexrcTabSize": {
+          "type": "string",
+          "default": "auto",
+          "markdownDescription": "Write the `TabSize` number in `.chktexrc`. If the value is `auto`, LaTeX Workshop will try to read the value from `.chktexrc`. The file in the home directory will not be read."
+        },
         "latex-workshop.texcount.path": {
           "type": "string",
           "default": "texcount",

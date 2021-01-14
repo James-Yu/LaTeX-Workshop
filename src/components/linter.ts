@@ -97,7 +97,8 @@ export class Linter {
         }
         // provide the original path to the active file as the second argument, so
         // we report this second path in the diagnostics instead of the temporary one.
-        this.extension.linterLogParser.parse(stdout, filePath)
+        const tabSize = this.getChktexrcTabSize()
+        this.extension.linterLogParser.parse(stdout, filePath, tabSize)
     }
 
     async lintRootFile() {
@@ -129,7 +130,24 @@ export class Linter {
                 return
             }
         }
-        this.extension.linterLogParser.parse(stdout)
+        const tabSize = this.getChktexrcTabSize()
+        this.extension.linterLogParser.parse(stdout, undefined, tabSize)
+    }
+
+    private getChktexrcTabSize(): number | undefined {
+        const filePath = this.rcPath
+        if (!filePath) {
+            this.extension.logger.addLogMessage('The .chktexrc file not found.')
+            return
+        }
+        const rcFile = fs.readFileSync(filePath).toString()
+        const reg = /^\s*TabSize\s*=\s*(\d+)\s*$/m
+        const match = reg.exec(rcFile)
+        if (match) {
+            return parseInt(match[1])
+        }
+        this.extension.logger.addLogMessage(`TabSize not found in the .chktexrc file: ${filePath}`)
+        return
     }
 
     processWrapper(linterId: string, command: string, args: string[], options: SpawnOptionsWithoutStdio, stdin?: string): Promise<string> {
