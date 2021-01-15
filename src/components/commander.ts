@@ -64,6 +64,9 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         bibtexCommand.children.push(new LaTeXCommand('Sort bibliography', None, {command: 'latex-workshop.bibsort', title: ''}, 'sort-precedence'))
         bibtexCommand.children.push(new LaTeXCommand('Align and sort bibliography', None, {command: 'latex-workshop.bibalignsort', title: ''}))
         this.commands.push(bibtexCommand)
+
+        const showConfigCommand = new LaTeXCommand('Extension Settings', None, {command: 'workbench.action.openSettings', arguments: ['@ext:james-yu.latex-workshop'], title: ''}, 'settings-gear')
+        this.commands.push(showConfigCommand)
     }
 
     getTreeItem(element: LaTeXCommand): vscode.TreeItem {
