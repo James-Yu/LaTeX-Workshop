@@ -77,13 +77,9 @@ export class LinterLogParser {
         }
         const lineString = fs.readFileSync(filePath).toString().split('\n')[line-1]
         let tabSize: number | undefined
-        const tabSizeConfig = configuration.get('chktex.convertOutput.column.chktexrcTabSize', 'auto')
-        if (tabSizeConfig !== 'auto') {
-            tabSize = parseInt(tabSizeConfig)
-            if (Number.isNaN(tabSize)) {
-                this.extension.logger.addLogMessage(`Fail to parseInt chktexrcTabSize: ${tabSizeConfig}`)
-                return column
-            }
+        const tabSizeConfig = configuration.get('chktex.convertOutput.column.chktexrcTabSize', -1)
+        if (tabSizeConfig >= 0) {
+            tabSize = tabSizeConfig
         } else {
             tabSize = tabSizeArg
         }

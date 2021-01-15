@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as os from 'os'
 import {ChildProcessWithoutNullStreams, spawn, SpawnOptionsWithoutStdio} from 'child_process'
 import {EOL} from 'os'
 
@@ -37,6 +38,37 @@ export class Linter {
             return rcPath
         }
         return undefined
+    }
+
+    private globalRcPath(): string | undefined {
+        const rcPathArray: string[] = []
+        if (os.platform() === 'win32') {
+            if (process.env.CHKTEXRC) {
+                rcPathArray.push(path.join(process.env.CHKTEXRC, 'chktexrc'))
+            }
+            if (process.env.CHKTEX_HOME) {
+                rcPathArray.push(path.join(process.env.CHKTEX_HOME, 'chktexrc'))
+            }
+            if (process.env.EMTEXDIR) {
+                rcPathArray.push(path.join(process.env.EMTEXDIR, 'data', 'chktexrc'))
+            }
+        } else {
+            if (process.env.HOME) {
+                rcPathArray.push(path.join(process.env.HOME, '.chktexrc'))
+            }
+            if (process.env.LOGDIR) {
+                rcPathArray.push(path.join(process.env.LOGDIR, '.chktexrc'))
+            }
+            if (process.env.CHKTEXRC) {
+                rcPathArray.push(path.join(process.env.CHKTEXRC, '.chktexrc'))
+            }
+        }
+        for (const rcPath of rcPathArray) {
+            if (fs.existsSync(rcPath)) {
+                return rcPath
+            }
+        }
+        return
     }
 
     lintRootFileIfEnabled() {
@@ -135,7 +167,24 @@ export class Linter {
     }
 
     private getChktexrcTabSize(): number | undefined {
-        const filePath = this.rcPath
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const args = configuration.get('chktex.args.active') as string[]
+        let filePath: string | undefined
+        if (args.includes('-l')) {
+            const idx = args.indexOf('-l')
+            if (idx > 0) {
+                const rcpath = args[idx+1]
+                if (fs.existsSync(rcpath)) {
+                    filePath = rcpath
+                }
+            }
+        } else {
+            if (this.rcPath) {
+                filePath = this.rcPath
+            } else {
+                filePath = this.globalRcPath()
+            }
+        }
         if (!filePath) {
             this.extension.logger.addLogMessage('The .chktexrc file not found.')
             return
@@ -144,7 +193,7 @@ export class Linter {
         const reg = /^\s*TabSize\s*=\s*(\d+)\s*$/m
         const match = reg.exec(rcFile)
         if (match) {
-            return parseInt(match[1])
+            return Number(match[1])
         }
         this.extension.logger.addLogMessage(`TabSize not found in the .chktexrc file: ${filePath}`)
         return
