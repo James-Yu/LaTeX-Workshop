@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as os from 'os'
 import {ChildProcessWithoutNullStreams, spawn, SpawnOptionsWithoutStdio} from 'child_process'
 import {EOL} from 'os'
 
@@ -37,6 +38,37 @@ export class Linter {
             return rcPath
         }
         return undefined
+    }
+
+    private globalRcPath(): string | undefined {
+        const rcPathArray: string[] = []
+        if (os.platform() === 'win32') {
+            if (process.env.CHKTEXRC) {
+                rcPathArray.push(path.join(process.env.CHKTEXRC, 'chktexrc'))
+            }
+            if (process.env.CHKTEX_HOME) {
+                rcPathArray.push(path.join(process.env.CHKTEX_HOME, 'chktexrc'))
+            }
+            if (process.env.EMTEXDIR) {
+                rcPathArray.push(path.join(process.env.EMTEXDIR, 'data', 'chktexrc'))
+            }
+        } else {
+            if (process.env.HOME) {
+                rcPathArray.push(path.join(process.env.HOME, '.chktexrc'))
+            }
+            if (process.env.LOGDIR) {
+                rcPathArray.push(path.join(process.env.LOGDIR, '.chktexrc'))
+            }
+            if (process.env.CHKTEXRC) {
+                rcPathArray.push(path.join(process.env.CHKTEXRC, '.chktexrc'))
+            }
+        }
+        for (const rcPath of rcPathArray) {
+            if (fs.existsSync(rcPath)) {
+                return rcPath
+            }
+        }
+        return
     }
 
     lintRootFileIfEnabled() {
@@ -97,7 +129,8 @@ export class Linter {
         }
         // provide the original path to the active file as the second argument, so
         // we report this second path in the diagnostics instead of the temporary one.
-        this.extension.linterLogParser.parse(stdout, filePath)
+        const tabSize = this.getChktexrcTabSize()
+        this.extension.linterLogParser.parse(stdout, filePath, tabSize)
     }
 
     async lintRootFile() {
@@ -129,7 +162,43 @@ export class Linter {
                 return
             }
         }
-        this.extension.linterLogParser.parse(stdout)
+        const tabSize = this.getChktexrcTabSize()
+        this.extension.linterLogParser.parse(stdout, undefined, tabSize)
+    }
+
+    private getChktexrcTabSize(): number | undefined {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const args = configuration.get('chktex.args.active') as string[]
+        let filePath: string | undefined
+        if (args.includes('-l')) {
+            const idx = args.indexOf('-l')
+            if (idx >= 0) {
+                const rcpath = args[idx+1]
+                if (fs.existsSync(rcpath)) {
+                    filePath = rcpath
+                }
+            }
+        } else {
+            if (this.rcPath) {
+                filePath = this.rcPath
+            } else {
+                filePath = this.globalRcPath()
+            }
+        }
+        if (!filePath) {
+            this.extension.logger.addLogMessage('The .chktexrc file not found.')
+            return
+        }
+        const rcFile = fs.readFileSync(filePath).toString()
+        const reg = /^\s*TabSize\s*=\s*(\d+)\s*$/m
+        const match = reg.exec(rcFile)
+        if (match) {
+            const ret = Number(match[1])
+            this.extension.logger.addLogMessage(`TabSize and .chktexrc: ${ret}, ${filePath}`)
+            return ret
+        }
+        this.extension.logger.addLogMessage(`TabSize not found in the .chktexrc file: ${filePath}`)
+        return
     }
 
     processWrapper(linterId: string, command: string, args: string[], options: SpawnOptionsWithoutStdio, stdin?: string): Promise<string> {

@@ -8,7 +8,7 @@ import { convertFilenameEncoding } from '../../utils/utils'
 interface LinterLogEntry {
     file: string,
     line: number,
-    position: number,
+    column: number,
     length: number,
     type: string,
     code: number,
@@ -29,19 +29,23 @@ export class LinterLogParser {
         this.extension = extension
     }
 
-    parse(log: string, singleFileOriginalPath?: string) {
+    parse(log: string, singleFileOriginalPath?: string, tabSizeArg?: number) {
         const re = /^(.*?):(\d+):(\d+):(\d+):(.*?):(\d+):(.*?)$/gm
         const linterLog: LinterLogEntry[] = []
         let match = re.exec(log)
         while (match) {
             // This log may be for a single file in memory, in which case we override the
             // path with what is provided
-            const filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
+            let filePath = singleFileOriginalPath ? singleFileOriginalPath : match[1]
+            if (!path.isAbsolute(filePath) && this.extension.manager.rootDir !== undefined) {
+                filePath = path.resolve(this.extension.manager.rootDir, filePath)
+            }
+            const line = parseInt(match[2])
+            const column = this.callConvertColumn(parseInt(match[3]), filePath, line, tabSizeArg)
             linterLog.push({
-                file: (!path.isAbsolute(filePath) && this.extension.manager.rootDir !== undefined) ?
-                    path.resolve(this.extension.manager.rootDir, filePath) : filePath,
-                line: parseInt(match[2]),
-                position: parseInt(match[3]),
+                file: filePath,
+                line,
+                column,
                 length: parseInt(match[4]),
                 type: match[5].toLowerCase(),
                 code: parseInt(match[6]),
@@ -61,11 +65,62 @@ export class LinterLogParser {
         this.showLinterDiagnostics(linterLog)
     }
 
+    private callConvertColumn(column: number, filePathArg: string, line: number, tabSizeArg?: number): number {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (!configuration.get('chktex.convertOutput.column.enabled', true)) {
+            return column
+        }
+        const filePath = convertFilenameEncoding(filePathArg)
+        if (!filePath){
+            this.extension.logger.addLogMessage(`Stop converting chktex's column numbers. File not found: ${filePathArg}`)
+            return column
+        }
+        const lineString = fs.readFileSync(filePath).toString().split('\n')[line-1]
+        let tabSize: number | undefined
+        const tabSizeConfig = configuration.get('chktex.convertOutput.column.chktexrcTabSize', -1)
+        if (tabSizeConfig >= 0) {
+            tabSize = tabSizeConfig
+        } else {
+            tabSize = tabSizeArg
+        }
+        if (lineString === undefined) {
+            this.extension.logger.addLogMessage(`Stop converting chktex's column numbers. Invalid line number: ${line}`)
+            return column
+        }
+        return this.convertColumn(column, lineString, tabSize)
+    }
+
+    /**
+     * @param colArg One-based value.
+     * @param tabSize The default value used by chktex is 8.
+     * @returns One-based value.
+     */
+    private convertColumn(colArg: number, lineString: string, tabSize = 8): number {
+        const col = colArg - 1
+        const charByteArray = lineString.split('').map((c) => Buffer.byteLength(c))
+        let i = 0
+        let pos = 0
+        while (i < charByteArray.length) {
+            if (col <= pos) {
+                break
+            }
+            if (lineString[i] === '\t') {
+                pos += tabSize
+            } else {
+                pos += charByteArray[i]
+            }
+            i += 1
+        }
+        return i + 1
+    }
+
     private showLinterDiagnostics(linterLog: LinterLogEntry[]) {
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
         for (const item of linterLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, item.position - 1),
-                new vscode.Position(item.line - 1, item.position - 1 + item.length))
+            const range = new vscode.Range(
+                new vscode.Position(item.line - 1, item.column - 1),
+                new vscode.Position(item.line - 1, item.column - 1 + item.length)
+            )
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.code = item.code
             diag.source = 'ChkTeX'
