@@ -172,7 +172,7 @@ export class Linter {
         let filePath: string | undefined
         if (args.includes('-l')) {
             const idx = args.indexOf('-l')
-            if (idx > 0) {
+            if (idx >= 0) {
                 const rcpath = args[idx+1]
                 if (fs.existsSync(rcpath)) {
                     filePath = rcpath
