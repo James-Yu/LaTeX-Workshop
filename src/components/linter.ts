@@ -193,7 +193,9 @@ export class Linter {
         const reg = /^\s*TabSize\s*=\s*(\d+)\s*$/m
         const match = reg.exec(rcFile)
         if (match) {
-            return Number(match[1])
+            const ret = Number(match[1])
+            this.extension.logger.addLogMessage(`TabSize and .chktexrc: ${ret}, ${filePath}`)
+            return ret
         }
         this.extension.logger.addLogMessage(`TabSize not found in the .chktexrc file: ${filePath}`)
         return
