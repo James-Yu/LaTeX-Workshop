@@ -6,7 +6,8 @@ export interface BibtexFormatConfig {
     right: string,
     case: 'UPPERCASE' | 'lowercase',
     trailingComma: boolean,
-    sort: string[]
+    sort: string[],
+    alignOnEqual: boolean
 }
 
 /**
@@ -100,13 +101,18 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
 
     // Find the longest field name in entry
     let maxFieldLength = 0
-    entry.content.forEach(field => {
-        maxFieldLength = Math.max(maxFieldLength, field.name.length)
-    })
+    if (config.alignOnEqual) {
+        entry.content.forEach(field => {
+            maxFieldLength = Math.max(maxFieldLength, field.name.length)
+        })
+    }
 
     entry.content.forEach(field => {
         s += ',\n' + config.tab + (config.case === 'lowercase' ? field.name : field.name.toUpperCase())
-        s += ' '.repeat(maxFieldLength - field.name.length) + ' = '
+        if (config.alignOnEqual) {
+            s += ' '.repeat(maxFieldLength - field.name.length)
+        }
+        s += ' = '
         s += fieldToString(field.value, config.left, config.right)
     })
 

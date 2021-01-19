@@ -63,7 +63,8 @@ export class BibtexFormatter {
             left: leftright[0],
             right: leftright[1],
             trailingComma: config.get('bibtex-format.trailingComma') as boolean,
-            sort: config.get('bibtex-format.sortby') as string[]
+            sort: config.get('bibtex-format.sortby') as string[],
+            alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean
         }
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
