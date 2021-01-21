@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 
-import type * as bibtexUtils from '../utils/bibtexutils'
+import * as bibtexUtils from '../utils/bibtexutils'
 import type {Extension} from '../main'
 
 export class BibtexCompleter implements vscode.CompletionItemProvider {
@@ -25,9 +25,14 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         const entriesReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.bibtexJSON.replace') as {[key: string]: string[]}
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
-        const tabs = { '2 spaces': '  ', '4 spaces': '    ', 'tab': '\t' }
+        let tabs: string | undefined = bibtexUtils.getBibtexFormatTab(config)
+        if (tabs === undefined) {
+            this.extension.logger.addLogMessage(`Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
+            this.extension.logger.addLogMessage('Setting bibtex-format.tab to \'2 spaces\'')
+            tabs = '  '
+        }
         const bibtexFormat: bibtexUtils.BibtexFormatConfig = {
-            tab: tabs[config.get('bibtex-format.tab') as ('2 spaces' | '4 spaces' | 'tab')],
+            tab: tabs,
             case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
             left: leftright[0],
             right: leftright[1],
