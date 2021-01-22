@@ -22,6 +22,10 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
 
     deserializeWebviewPanel(panel: vscode.WebviewPanel) {
         this.extension.mathPreviewPanel.initializePanel(panel)
+        panel.webview.options = {
+            enableScripts: true,
+            localResourceRoots: [vscode.Uri.file(this.extension.extensionRoot)]
+        }
         panel.webview.html = this.extension.mathPreviewPanel.getHtml(panel.webview)
         this.extension.logger.addLogMessage('Math preview panel: restored')
         return Promise.resolve()
@@ -60,7 +64,11 @@ export class MathPreviewPanel {
             'latex-workshop-mathpreview',
             'Math Preview',
             { viewColumn: vscode.ViewColumn.Active, preserveFocus: true },
-            { enableScripts: true, retainContextWhenHidden: true }
+            {
+                enableScripts: true,
+                localResourceRoots: [vscode.Uri.file(this.extension.extensionRoot)],
+                retainContextWhenHidden: true
+            }
         )
         this.initializePanel(panel)
         panel.webview.html = this.getHtml(panel.webview)
