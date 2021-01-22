@@ -1,3 +1,4 @@
+import * as vscode from 'vscode'
 import type {bibtexParser} from 'latex-utensils'
 
 export interface BibtexFormatConfig {
@@ -8,6 +9,27 @@ export interface BibtexFormatConfig {
     trailingComma: boolean,
     sort: string[],
     alignOnEqual: boolean
+}
+
+/**
+ * Read the indentation from vscode configuration
+ *
+ * @param config VSCode workspace configuration
+ * @return the indentation as a string or undefined if the configuration variable is not correct
+ */
+export function getBibtexFormatTab(config: vscode.WorkspaceConfiguration): string | undefined {
+    const tab = config.get('bibtex-format.tab') as string
+    if (tab === 'tab') {
+        return '\t'
+    } else {
+        const res = /^(\d+)( spaces)?$/.exec(tab)
+        if (res) {
+            const nSpaces = parseInt(res[1], 10)
+            return ' '.repeat(nSpaces)
+        } else {
+            return undefined
+        }
+    }
 }
 
 /**

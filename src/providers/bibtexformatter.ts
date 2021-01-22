@@ -56,9 +56,14 @@ export class BibtexFormatter {
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
-        const tabs = { '2 spaces': '  ', '4 spaces': '    ', 'tab': '\t' }
+        let tabs: string | undefined = bibtexUtils.getBibtexFormatTab(config)
+        if (tabs === undefined) {
+            this.extension.logger.addLogMessage(`Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
+            this.extension.logger.addLogMessage('Setting bibtex-format.tab to \'2 spaces\'')
+            tabs = '  '
+        }
         const configuration: bibtexUtils.BibtexFormatConfig = {
-            tab: tabs[config.get('bibtex-format.tab') as ('2 spaces' | '4 spaces' | 'tab')],
+            tab: tabs,
             case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
             left: leftright[0],
             right: leftright[1],
