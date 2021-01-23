@@ -13,6 +13,11 @@ type UpdateEvent = {
     event: vscode.TextEditorSelectionChangeEvent
 }
 
+function resourcesFolder(extensionRoot: string) {
+    const folder = path.join(extensionRoot, 'resources', 'mathpreviewpanel')
+    return vscode.Uri.file(folder)
+}
+
 export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer {
     private readonly extension: Extension
 
@@ -24,7 +29,7 @@ export class MathPreviewPanelSerializer implements vscode.WebviewPanelSerializer
         this.extension.mathPreviewPanel.initializePanel(panel)
         panel.webview.options = {
             enableScripts: true,
-            localResourceRoots: [vscode.Uri.file(this.extension.extensionRoot)]
+            localResourceRoots: [resourcesFolder(this.extension.extensionRoot)]
         }
         panel.webview.html = this.extension.mathPreviewPanel.getHtml(panel.webview)
         this.extension.logger.addLogMessage('Math preview panel: restored')
@@ -66,7 +71,7 @@ export class MathPreviewPanel {
             { viewColumn: vscode.ViewColumn.Active, preserveFocus: true },
             {
                 enableScripts: true,
-                localResourceRoots: [vscode.Uri.file(this.extension.extensionRoot)],
+                localResourceRoots: [resourcesFolder(this.extension.extensionRoot)],
                 retainContextWhenHidden: true
             }
         )
