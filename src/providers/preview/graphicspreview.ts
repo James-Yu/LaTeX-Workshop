@@ -38,7 +38,7 @@ export class GraphicsPreview {
         if (!execArray || !relPath) {
             return undefined
         }
-        const filePath = this.findFilePath(relPath)
+        const filePath = this.findFilePath(relPath, document)
         if (filePath === undefined) {
             return undefined
         }
@@ -102,7 +102,7 @@ export class GraphicsPreview {
         return svg.replace(/(<\/svg:style>)/, 'svg { background-color: white };$1')
     }
 
-    private findFilePath(relPath: string): string | undefined {
+    private findFilePath(relPath: string, document: vscode.TextDocument): string | undefined {
         if (path.isAbsolute(relPath)) {
             if (fs.existsSync(relPath)) {
                 return relPath
@@ -110,19 +110,27 @@ export class GraphicsPreview {
                 return undefined
             }
         }
+
+        const activeDir = path.dirname(document.uri.fsPath)
+        for (const dirPath of this.extension.completer.input.graphicsPath) {
+            const filePath = path.resolve(activeDir, dirPath, relPath)
+            if (fs.existsSync(filePath)) {
+                return filePath
+            }
+        }
+
+        const fPath = path.resolve(activeDir, relPath)
+        if (fs.existsSync(fPath)) {
+            return fPath
+        }
+
         const rootDir = this.extension.manager.rootDir
         if (rootDir === undefined) {
             return undefined
         }
-        const fPath = path.resolve(rootDir, relPath)
-        if (fs.existsSync(fPath)) {
-            return fPath
-        }
-        for (const dirPath of this.extension.completer.input.graphicsPath) {
-            const filePath = path.resolve(rootDir, dirPath, relPath)
-            if (fs.existsSync(filePath)) {
-                return filePath
-            }
+        const frPath = path.resolve(rootDir, relPath)
+        if (fs.existsSync(frPath)) {
+            return frPath
         }
         return undefined
     }
