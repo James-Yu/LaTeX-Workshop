@@ -55,9 +55,9 @@ export class Builder {
         if (proc) {
             const pid = proc.pid
             if (process.platform === 'linux' || process.platform === 'darwin') {
-                cp.exec(`pkill -P ${pid}`)
+                cp.execSync(`pkill -P ${pid}`)
             } else if (process.platform === 'win32') {
-                cp.exec(`taskkill /F /T /PID ${pid}`)
+                cp.execSync(`taskkill /F /T /PID ${pid}`)
             }
             proc.kill()
             this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
