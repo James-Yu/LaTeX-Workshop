@@ -20,7 +20,7 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         this.commands.push(buildCommand)
         const recipes = configuration.get('latex.recipes') as {name: string}[]
         buildCommand.children.push(new LaTeXCommand('Clean up auxiliary files', None, {command: 'latex-workshop.clean', title: ''}, 'clear-all'))
-        buildCommand.children.push(new LaTeXCommand('Terminate current compilation', None, {command: 'latex-workshop.kill', title: ''}, 'debug-stop'))
+        buildCommand.children.push(new LaTeXCommand('Stop current build', None, {command: 'latex-workshop.stop', title: ''}, 'debug-stop'))
         if (recipes) {
             recipes.forEach(recipe => {
                 buildCommand.children.push(new LaTeXCommand(`Recipe: ${recipe.name}`, None, {command: 'latex-workshop.recipes', title: '', arguments: [recipe.name]}, 'debug-start'))

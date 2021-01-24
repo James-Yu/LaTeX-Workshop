@@ -67,7 +67,7 @@ function registerLatexWorkshopCommands(extension: Extension) {
     vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => extension.commander.view('browser'))
     vscode.commands.registerCommand('latex-workshop.viewExternal', () => extension.commander.view('external'))
     vscode.commands.registerCommand('latex-workshop.setViewer', () => extension.commander.view('set'))
-    vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
+    vscode.commands.registerCommand('latex-workshop.stop', () => extension.commander.stop())
     vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
     vscode.commands.registerCommand('latex-workshop.texdoc', (pkg) => extension.commander.texdoc(pkg))
     vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => extension.commander.texdocUsepackages())

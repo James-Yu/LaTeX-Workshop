@@ -204,9 +204,9 @@ export class Commander {
         this.extension.viewer.refreshExistingViewer()
     }
 
-    kill() {
-        this.extension.logger.addLogMessage('KILL command invoked.')
-        this.extension.builder.kill()
+    stop() {
+        this.extension.logger.addLogMessage('STOP command invoked.')
+        this.extension.builder.stop()
     }
 
     pdf(uri: vscode.Uri | undefined) {

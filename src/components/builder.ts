@@ -48,9 +48,9 @@ export class Builder {
     }
 
     /**
-     * Kill the current build process.
+     * Stop the current build process.
      */
-    async kill() {
+    async stop() {
         if (this.currentProcess) {
             const envVarsPosix: ProcessEnv = {PATH: '/bin:/usr/bin'}
             const envVarsWindows: ProcessEnv = {PATH: '%SystemRoot%\\system32;%SystemRoot%;%SystemRoot%\\System32\\Wbem'}
@@ -253,7 +253,7 @@ export class Builder {
                     title: 'Running build process',
                     cancellable: true
                 }, (progress, token) => {
-                    token.onCancellationRequested(this.kill.bind(this))
+                    token.onCancellationRequested(this.stop.bind(this))
                     this.extension.buildInfo.buildStarted(progress)
                     const p = new Promise<void>(resolve => {
                         this.extension.buildInfo.setResolveToken(resolve)
