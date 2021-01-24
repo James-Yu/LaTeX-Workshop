@@ -5,7 +5,7 @@ import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as tmp from 'tmp'
 import {Mutex} from '../lib/await-semaphore'
-import {replaceArgumentPlaceholders} from '../utils/utils'
+import {replaceArgumentPlaceholders, sleep} from '../utils/utils'
 
 import type {Extension} from '../main'
 
@@ -48,22 +48,66 @@ export class Builder {
     }
 
     /**
-     * Kill the current building process.
+     * Kill the current build process.
      */
-    kill() {
-        const proc = this.currentProcess
-        if (proc) {
-            const pid = proc.pid
+    async kill() {
+        if (this.currentProcess) {
+            const envVarsPosix: ProcessEnv = {PATH: '/bin:/usr/bin'}
+            const envVarsWindows: ProcessEnv = {PATH: '%SystemRoot%\\system32;%SystemRoot%;%SystemRoot%\\System32\\Wbem'}
+
+            const currentProcessExit = new Promise(listener => this.currentProcess?.on('exit', listener))
+            const pid = this.currentProcess.pid
+
+            // Try to terminate the build process gracefully first.
             if (process.platform === 'linux' || process.platform === 'darwin') {
-                cp.execSync(`pkill -P ${pid}`)
+                try {
+                    // Terminate build process and all its child processes.
+                    await this.spawnAndWait('pkill', ['-TERM', '-P', pid.toString()], {env: envVarsPosix})
+                    await this.spawnAndWait('kill', ['-TERM', pid.toString()], {env: envVarsPosix})
+                    await Promise.race([currentProcessExit, sleep(1000)])
+                } catch (e) {
+                    if (this.currentProcess) {
+                        this.extension.logger.addLogMessage(`Unable to gracefully terminate the current build proccess. PID: ${pid}. Code: ${e.code}. Message: '${e.stderr}'`)
+                        // Forcefully kill build process and all its child processes. This should always work.
+                        await this.spawnAndWait('pkill', ['-KILL', '-P', pid.toString()], {env: envVarsPosix})
+                        await this.spawnAndWait('kill', ['-KILL', pid.toString()], {env: envVarsPosix})
+                    }
+                }
             } else if (process.platform === 'win32') {
-                cp.execSync(`taskkill /F /T /PID ${pid}`)
+                try {
+                    // Terminate build process and all its child processes.
+                    await this.spawnAndWait('taskkill', ['/t', '/pid', pid.toString()], {env: envVarsWindows})
+                    await Promise.race([currentProcessExit, sleep(1000)])
+                } catch (e) {
+                    if (this.currentProcess) {
+                        this.extension.logger.addLogMessage(`Unable to gracefully terminate the current build proccess. PID: ${pid}. Code: ${e.code}. Message: '${e.stderr}'`)
+                        // Forcefully kill build process and all its child processes. This should always work.
+                        await this.spawnAndWait('taskkill', ['/f', '/t', '/pid', pid.toString()], {env: envVarsWindows})
+                    }
+                }
             }
-            proc.kill()
-            this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
+
+            if (!this.currentProcess) {
+                this.extension.logger.addLogMessage(`Gracefully terminated the current build process. PID: ${pid}.`)
+                return
+            }
+
+            await Promise.race([currentProcessExit, sleep(1000)])
+            if (!this.currentProcess) {
+                this.extension.logger.addLogMessage(`Forcefully killed the current build process. PID: ${pid}.`)
+                return
+            }
+
+            this.extension.logger.addLogMessage(`Unable to forcefully kill the current build proccess. PID: ${pid}.`)
         } else {
-            this.extension.logger.addLogMessage('LaTeX build process to kill is not found.')
+            this.extension.logger.addLogMessage('Did not find build process to kill.')
         }
+    }
+
+    private async spawnAndWait(command: string, args?: ReadonlyArray<string>, options?: cp.SpawnOptionsWithoutStdio) {
+        const spawnedProcess = cp.spawn(command, args, options)
+        const spawnedProcessExit = new Promise(listener => spawnedProcess.on('exit', listener))
+        await spawnedProcessExit
     }
 
     /**
@@ -138,8 +182,8 @@ export class Builder {
 
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.compilerLogParser.parse(stdout)
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
+            if (exitCode) {
+                this.extension.logger.addLogMessage(`Build process returned with error: ${exitCode}/${signal}. PID: ${pid}.`)
                 this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error', 'warning')
                 const res = this.extension.logger.showErrorMessage('Build terminated with error.', 'Open compiler log')
                 if (res) {
@@ -153,6 +197,8 @@ export class Builder {
                         }
                     })
                 }
+            } else if (signal) {
+                this.extension.logger.addLogMessage(`Build process returned with signal: ${exitCode}/${signal}. PID: ${pid}.`)
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
                 this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
@@ -220,7 +266,6 @@ export class Builder {
                 const numPage = await this.extension.graphicsPreview.getPdfNumPages(pdfPath)
                 this.extension.buildInfo.setPageTotal(numPage)
             } catch(e) {
-
             }
             // Create sub directories of output directory
             // This was supposed to create the outputDir as latexmk does not
@@ -330,8 +375,8 @@ export class Builder {
 
         this.currentProcess.on('exit', (exitCode, signal) => {
             this.extension.compilerLogParser.parse(stdout, rootFile)
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
+            if (exitCode) {
+                this.extension.logger.addLogMessage(`Recipe process returned with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
                 this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVars['PATH']}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
                 this.extension.buildInfo.buildEnded()
@@ -371,6 +416,14 @@ export class Builder {
                     this.currentProcess = undefined
                     releaseBuildMutex()
                 }
+            } else if (signal) {
+                this.extension.logger.addLogMessage(`Recipe process returned with signal: ${exitCode}/${signal}. PID: ${pid}.`)
+                this.extension.logger.displayStatus('x', 'errorForeground')
+                this.extension.buildInfo.buildEnded()
+
+                this.disableCleanAndRetry = true
+                this.currentProcess = undefined
+                releaseBuildMutex()
             } else {
                 if (index === steps.length - 1) {
                     this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished. PID: ${pid}.`)
