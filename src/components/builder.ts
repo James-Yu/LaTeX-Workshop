@@ -57,9 +57,9 @@ export class Builder {
             try {
                 this.extension.logger.addLogMessage(`Kill child processes of the current process. PPID: ${pid}`)
                 if (process.platform === 'linux' || process.platform === 'darwin') {
-                    cp.execSync(`pkill -P ${pid}`, { timeout: 100 })
+                    cp.execSync(`pkill -P ${pid}`, { timeout: 1000 })
                 } else if (process.platform === 'win32') {
-                    cp.execSync(`taskkill /F /T /PID ${pid}`, { timeout: 100 })
+                    cp.execSync(`taskkill /F /T /PID ${pid}`, { timeout: 1000 })
                 }
             } catch (e) {
                 if (e instanceof Error) {
