@@ -55,18 +55,19 @@ export class Builder {
         if (proc) {
             const pid = proc.pid
             try {
+                this.extension.logger.addLogMessage(`Kill child processes of the current process. PPID: ${pid}`)
                 if (process.platform === 'linux' || process.platform === 'darwin') {
-                    cp.execSync(`pkill -P ${pid}`)
+                    cp.execSync(`pkill -P ${pid}`, { timeout: 100 })
                 } else if (process.platform === 'win32') {
-                    cp.execSync(`taskkill /F /T /PID ${pid}`)
+                    cp.execSync(`taskkill /F /T /PID ${pid}`, { timeout: 100 })
                 }
             } catch (e) {
                 if (e instanceof Error) {
-                    this.extension.logger.addLogMessage(`Error when killing child processes of the current build process. ${e.message}`)
+                    this.extension.logger.addLogMessage(`Error when killing child processes of the current process. ${e.message}`)
                 }
             } finally {
                 proc.kill()
-                this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}.`)
+                this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}`)
             }
         } else {
             this.extension.logger.addLogMessage('LaTeX build process to kill is not found.')
