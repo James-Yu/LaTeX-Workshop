@@ -68,7 +68,15 @@ export class LatexLogParser {
 
    private parseLine(line: string, state: ParserState, buildLog: LogEntry[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
+        let excludeRegexp: RegExp[]
+        try {
+            excludeRegexp = (configuration.get('message.latexlog.exclude') as string[]).map(regexp => RegExp(regexp))
+        } catch (e) {
+            if (e instanceof Error) {
+                this.extension.logger.addLogMessage(`latex-workshop.message.latexlog.exclude is invalid: ${e.message}`)
+            }
+            return
+        }
         // Compose the current file
         const filename = path.resolve(path.dirname(state.rootFile), state.fileStack[state.fileStack.length - 1])
         // Skip the first line after a box warning, this is just garbage
