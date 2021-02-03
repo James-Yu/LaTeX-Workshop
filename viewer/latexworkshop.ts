@@ -230,7 +230,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
                     // set positions before and after SyncTeX to viewerHistory
                     this.viewerHistory.set(container.scrollTop)
-                    container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+                    if (PDFViewerApplication.pdfViewer.scrollMode === 1) {
+                        // horizontal scrolling
+                        container.scrollLeft = page.offsetLeft
+                    } else {
+                        // vertical scrolling
+                        container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+                    }
                     this.viewerHistory.set(container.scrollTop)
 
                     const indicator = document.getElementById('synctex-indicator') as HTMLElement
