@@ -38,7 +38,9 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
             right: leftright[1],
             trailingComma: config.get('bibtex-format.trailingComma') as boolean,
             sort: config.get('bibtex-format.sortby') as string[],
-            alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean
+            alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean,
+            sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
+            fieldsOrder: config.get('bibtex-fields.order') as string[]
         }
 
         const maxLengths: {[key: string]: number} = this.computeMaxLengths(entries, optFields)

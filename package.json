@@ -2002,6 +2002,19 @@
           "default": true,
           "markdownDescription": "Align equal signs when calling VSCode format on a .bib file."
         },
+        "latex-workshop.bibtex-fields.sort.enabled": {
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Sort fields inside each entry according. It also implies aligning fields. The sorting order is defined by `latex-workshop.bibtex-fields.order`."
+        },
+        "latex-workshop.bibtex-fields.order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDescription": "When `latex-workshop.bibtex-fields.sort.enabled` is true, sort entries according the order defined here and then alphabetically for not listed fields."
+        },
         "latex-workshop.mathpreviewpanel.editorGroup": {
           "type": "string",
           "default": "below",
