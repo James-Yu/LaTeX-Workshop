@@ -8,7 +8,9 @@ export interface BibtexFormatConfig {
     case: 'UPPERCASE' | 'lowercase',
     trailingComma: boolean,
     sort: string[],
-    alignOnEqual: boolean
+    alignOnEqual: boolean,
+    sortFields: boolean,
+    fieldsOrder: string[]
 }
 
 /**
@@ -114,7 +116,7 @@ function bibtexSortByType(a: bibtexParser.Entry, b: bibtexParser.Entry): number 
 /**
  * Creates an aligned string from a bibtexParser.Entry
  * @param entry the bibtexParser.Entry
- * @param config from `latex-workshop.bibtex-format`
+ * @param config the bibtex format options
  */
 export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConfig): string {
     let s = ''
@@ -129,7 +131,12 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
         })
     }
 
-    entry.content.forEach(field => {
+    let fields: bibtexParser.Field[] = entry.content
+    if (config.sortFields) {
+        fields = entry.content.sort(bibtexSortFields(config.fieldsOrder))
+    }
+
+    fields.forEach(field => {
         s += ',\n' + config.tab + (config.case === 'lowercase' ? field.name : field.name.toUpperCase())
         if (config.alignOnEqual) {
             s += ' '.repeat(maxFieldLength - field.name.length)
@@ -164,5 +171,26 @@ function fieldToString(field: bibtexParser.FieldValue, left: string, right: stri
             return field.content.map(value => fieldToString(value, left, right)).reduce((acc, cur) => {return acc + ' # ' + cur})
         default:
             return ''
+    }
+}
+
+/**
+ * Sorting function for bibtex entries
+ * @param keys Array of sorting keys
+ */
+export function bibtexSortFields(keys: string[]): (a: bibtexParser.Field, b: bibtexParser.Field) => number {
+    return function (a, b) {
+        const indexA = keys.indexOf(a.name)
+        const indexB = keys.indexOf(b.name)
+
+        if (indexA === -1 && indexB === -1) {
+            return a.name.localeCompare(b.name)
+        } else if (indexA === -1) {
+           return 1
+        } else if (indexB === -1) {
+           return -1
+        } else {
+            return indexA - indexB
+        }
     }
 }
