@@ -42,6 +42,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
             sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
             fieldsOrder: config.get('bibtex-fields.order') as string[]
         }
+        this.extension.logger.addLogMessage(`Bibtex format config: ${JSON.stringify(bibtexFormat)}`)
 
         const maxLengths: {[key: string]: number} = this.computeMaxLengths(entries, optFields)
         const entriesList: string[] = []

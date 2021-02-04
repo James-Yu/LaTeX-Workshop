@@ -73,6 +73,7 @@ export class BibtexFormatter {
             sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
             fieldsOrder: config.get('bibtex-fields.order') as string[]
         }
+        this.extension.logger.addLogMessage(`Bibtex format config: ${JSON.stringify(configuration)}`)
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
