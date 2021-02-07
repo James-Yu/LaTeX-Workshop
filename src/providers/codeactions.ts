@@ -178,12 +178,16 @@ export class CodeActions {
         const regex = new RegExp('^' + oldDelim.replace(/\$/g, '\\$') + '$')
         const regexResult = regex.exec(text)
         if (!regexResult) {
-            const pat = new RegExp(oldDelim.replace(/\$/g, '\\$') + '(?!\\$)')
-            const endPos = this.extension.mathPreview.texMathEnvFinder.findEndPair(document, pat, endRange.start)
-            if (!endPos) {
+            if (oldDelim === '$$') {
+                const pat = new RegExp(oldDelim.replace(/\$/g, '\\$') + '(?!\\$)')
+                const endPos = this.extension.mathPreview.texMathEnvFinder.findEndPair(document, pat, endRange.start)
+                if (!endPos) {
+                    return
+                }
+                endRange = new vs.Range(endPos.translate(0, - oldDelimLength), endPos)
+            } else {
                 return
             }
-            endRange = new vs.Range(endPos.translate(0, - oldDelimLength), endPos)
         }
         const edit = new vs.WorkspaceEdit()
         edit.replace(document.uri, endRange, endDelim)
