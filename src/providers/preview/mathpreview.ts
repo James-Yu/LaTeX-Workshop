@@ -23,7 +23,7 @@ export class MathPreview {
     private readonly mj: MathJaxPool
     private readonly cursorRenderer: CursorRenderer
     private readonly newCommandFinder: NewCommandFinder
-    private readonly texMathEnvFinder: TeXMathEnvFinder
+    readonly texMathEnvFinder: TeXMathEnvFinder
     private readonly hoverPreviewOnRefProvider: HoverPreviewOnRefProvider
     private readonly mputils: MathPreviewUtils
 
