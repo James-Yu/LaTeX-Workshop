@@ -1,6 +1,7 @@
 import * as vs from 'vscode'
 
 import type { Extension } from '../main'
+import { TeXMathEnvFinder } from '../providers/preview/mathpreviewlib/texmathenvfinder'
 
 const CODE_TO_ACTION_STRING: {[key: number]: string} = {
     1: 'Terminate command with empty statement',
@@ -59,13 +60,20 @@ function isOpeningQuote(document: vs.TextDocument, range: vs.Range) {
 
 function replaceMathDelimitersInRange(document: vs.TextDocument, range: vs.Range, oldDelim: string, startDelim: string, endDelim: string) {
     const oldDelimLength = oldDelim.length
-    const endRange = range.with(range.end.translate(0, - oldDelimLength), range.end)
+    let endRange = range.with(range.end.translate(0, - oldDelimLength), range.end)
     const text = document.getText(endRange)
-    // Check if the end position really contains the end delimiter. This is not the cause when the opening and closing delimiters are on different lines
+    // Check if the end position really contains the end delimiter.
+    // This is not the case when the opening and closing delimiters are on different lines
     const regex = new RegExp('^' + oldDelim.replace(/\$/g, '\\$') + '$')
     const regexResult = regex.exec(text)
     if (!regexResult) {
-        return
+        const texMathEnvFinder = new TeXMathEnvFinder()
+        const pat = new RegExp(oldDelim.replace(/\$/g, '\\$') + '(?!\\$)')
+        const endPos = texMathEnvFinder.findEndPair(document, pat, endRange.start)
+        if (!endPos) {
+            return
+        }
+        endRange = new vs.Range(endPos.translate(0, - oldDelimLength), endPos)
     }
     const edit = new vs.WorkspaceEdit()
     edit.replace(document.uri, endRange, endDelim)
