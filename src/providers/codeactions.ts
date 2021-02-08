@@ -175,11 +175,9 @@ export class CodeActions {
         const text = document.getText(endRange)
         // Check if the end position really contains the end delimiter.
         // This is not the case when the opening and closing delimiters are on different lines
-        const regex = new RegExp('^' + oldDelim.replace(/\$/g, '\\$') + '$')
-        const regexResult = regex.exec(text)
-        if (!regexResult) {
+        if (text !== oldDelim) {
             if (oldDelim === '$$') {
-                const pat = new RegExp(oldDelim.replace(/\$/g, '\\$') + '(?!\\$)')
+                const pat = /(?<!\\)\$\$/
                 const endPos = this.extension.mathPreview.texMathEnvFinder.findEndPair(document, pat, endRange.start)
                 if (!endPos) {
                     return
