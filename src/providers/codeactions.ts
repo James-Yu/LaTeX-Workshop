@@ -169,7 +169,7 @@ export class CodeActions {
         return this.replaceRangeWithString(document, range, replacementString.repeat(range.end.character - range.start.character))
     }
 
-    private replaceMathDelimitersInRange(document: vs.TextDocument, range: vs.Range, oldDelim: string, startDelim: string, endDelim: string) {
+    private replaceMathDelimitersInRange(document: vs.TextDocument, range: vs.Range, oldDelim: '$' | '$$', startDelim: string, endDelim: string) {
         const oldDelimLength = oldDelim.length
         let endRange = range.with(range.end.translate(0, - oldDelimLength), range.end)
         const text = document.getText(endRange)
