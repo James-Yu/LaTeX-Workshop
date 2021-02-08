@@ -1,3 +1,7 @@
+"""
+This script generates intellisense data for LaTeX
+    ../data/expl3_cmd.json
+"""
 from pathlib import Path
 import re
 import json
