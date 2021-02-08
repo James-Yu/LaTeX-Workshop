@@ -90,7 +90,7 @@ export class TeXMathEnvFinder {
     //  \begin{...}                \end{...}
     //             ^
     //             startPos1
-    private findEndPair(document: vscode.TextDocument | TextDocumentLike, endPat: RegExp, startPos1: vscode.Position): vscode.Position | undefined {
+    findEndPair(document: vscode.TextDocument | TextDocumentLike, endPat: RegExp, startPos1: vscode.Position): vscode.Position | undefined {
         const currentLine = document.lineAt(startPos1).text.substring(startPos1.character)
         const l = this.removeComment(currentLine)
         let m = l.match(endPat)
