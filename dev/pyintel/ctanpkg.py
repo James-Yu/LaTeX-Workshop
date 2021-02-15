@@ -153,7 +153,7 @@ class CtanPkg:
 
     def get_packages(self):
         """
-        Get the packages for which a .sty file exists and the extra packages liste in 
+        Get the packages for which a .sty file exists and the extra_packages
         """
         packages = {}
         for pkg in self.ctan_dict:
