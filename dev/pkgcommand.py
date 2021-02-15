@@ -1,235 +1,56 @@
 import json
 import urllib.request
 import zipfile
-from os import listdir, remove
-from os.path import exists, isfile, join, basename, splitext
-import re
-from typing import List, Dict, Tuple
 from shutil import copy
+from pathlib import Path
+from typing import List
+from pyintel import CwlIntel
 
 FILES_TO_IGNORE = ['diagxy.cwl']
 FILES_TO_REMOVE_SPACES_IN = ['chemformula.cwl', 'context-document.cwl', 'class-beamer.cwl', 'csquotes.cwl', 'datatool.cwl', 'newclude.cwl', 'pgfplots.cwl', 'tabu.cwl', 'tikz.cwl']
 
-commands = json.load(open('../data/commands.json', encoding='utf8'))
-envs = json.load(open('../data/environments.json', encoding='utf8'))
+CWD = Path(__file__).expanduser().resolve().parent
+UNIMATHSYMBOLS = CWD.joinpath('unimathsymbols.txt').resolve()
+COMMANDS_FILE = CWD.joinpath('../data/commands.json').resolve()
+ENVS_FILE = CWD.joinpath('../data/environments.json').resolve()
+OUT_DIR = CWD.joinpath('../data/packages').resolve()
 
 
-class TabStop:
-    count: int
-
-    def __init__(self):
-        self.count = 0
-
-    def sub(self, matchObject) -> str:
-        self.count += 1
-        return '${' + str(self.count) + '}'
-
-
-class PlaceHolder:
-    count: int
-    usePlaceHolders: bool
-    keepDelimiters: bool
-
-    def __init__(self):
-        self.count = 0
-        self.usePlaceHolders = True
-        self.keepDelimiters = True
-
-    def setUsePlaceHolders(self, trueOrFalse):
-        self.usePlaceHolders = trueOrFalse
-
-    def setKeepDelimiters(self, trueOrFalse):
-        self.keepDelimiters = trueOrFalse
-
-    def isToSkip(self, delimiters: str, string: str):
-        if delimiters == '()' and string in ['s', 'en anglais', 'en français']:
-            return True
-        else:
-            return False
-
-    def sub(self, matchObject) -> str:
-        if self.isToSkip(matchObject.group(1) + matchObject.group(3), matchObject.group(2)):
-            return matchObject.group(1) + matchObject.group(2) + matchObject.group(3)
-
-        self.count += 1
-        name = ''
-        if self.usePlaceHolders:
-            name = ':' + matchObject.group(2)
-        if self.keepDelimiters:
-            return matchObject.group(1) + '${' + str(self.count) + name + '}' + matchObject.group(3)
-        else:
-            return '${' + str(self.count) + name + '}'
-
-def apply_caption_tweaks(content: List[str]) -> List[str]:
-    return [re.sub(r'#([0-9])', r'arg\1', line, flags=re.A) for line in content]
-
-
-def get_unimathsymbols_file():
-    if not exists('unimathsymbols.txt'):
-        urllib.request.urlretrieve('http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt', # noqa
-                                   'unimathsymbols.txt')
-
-
-def parse_unimathsymbols_file() -> Dict[str, Dict[str, str]]:
-    get_unimathsymbols_file()
-    with open(join('unimathsymbols.txt'), encoding='utf8') as f:
-        lines = f.readlines()
-    unimath_dict: Dict[str, Dict[str, str]] = {}
-    for line in lines:
-        cmds: List[str] = []
-        if line[0] == '#':
-            continue
-        line = line.strip()
-        arry = line.split('^')
-        cmds.append(re.sub(r'^\\', '', arry[2]))
-        cmds.append(re.sub(r'^\\', '', arry[3]))
-        for m in re.finditer(r'= \\(\w+)[ ,]', arry[-1]):
-            cmds.append(m.group(1))
-        doc = re.sub(r'\s*[=#xt]\s*\\\w+(\{.*?\})?\s*(\(.*?\))?\s*,', '', arry[-1])
-        doc = re.sub(r'\s*[=#xt]\s*\S+\s*,', '', doc)
-        doc = doc.strip()
-        for c in cmds:
-            if c == '' or re.search('{', c):
-                continue
-            unimath_dict[c] = {'detail': arry[1], 'documentation': doc}
-    return unimath_dict
-
-
-def get_cwl_files() -> List[str]:
-    """ Get the list of cwl files from github """
-    if not exists('cwl.zip'):
-        urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', 'cwl.zip')
-    zip_ref = zipfile.ZipFile('cwl.zip', 'r')
-    zip_ref.extractall('cwl/')
+def get_cwl_files() -> List[Path]:
+    """ Get the list of cwl files from github if not already available on disk."""
+    cwl_zip = CWD.joinpath('cwl.zip')
+    if not cwl_zip.exists:
+        urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', cwl_zip)
+    zip_ref = zipfile.ZipFile(cwl_zip, 'r')
+    zip_ref.extractall(CWD.joinpath('cwl/'))
     zip_ref.close()
-#    remove('cwl.zip')
     files = []
-    for f in listdir('cwl/LaTeX-cwl-master'):
-        if isfile(join('cwl/LaTeX-cwl-master', f)) and f[-4:] == '.cwl':
+    for f in CWD.joinpath('cwl/LaTeX-cwl-master').iterdir():
+        if f.suffix == '.cwl':
             files.append(f)
-        else:
-            remove(join('cwl/LaTeX-cwl-master', f))
     return files
 
-def create_snippet(line: str) -> str:
-    """
-    Create a placeholder for every argument [], {}
-    """
-    snippet = line
-    curly_index = line.find('{')
-    square_index = line.find('[')
-    p = PlaceHolder()
-    if square_index < curly_index:
-        # If all the optional args are before {}, we number the {} first
-        snippet = re.sub(r'(\{)([^\{\$]*)(\})', p.sub, snippet)
-        snippet = re.sub(r'(\[)([^\[\$]*)(\])', p.sub, snippet)
-    else:
-        snippet = re.sub(r'(\{|\[)([^\{\[\$]*)(\}|\])', p.sub, snippet)
-    snippet = re.sub(r'(?<![\{\s:\[])(\<)([a-zA-Z\s]*)(\>)', p.sub, snippet)
-    snippet = re.sub(r'(\()([^\{\}\[\]\(\)]*)(\))', p.sub, snippet)
-    p.setKeepDelimiters(False)
-    snippet = re.sub(r'(?<![\{:\[=-])(%\<)([a-zA-Z\s]*)(%\>)(?!})', p.sub, snippet)
 
-    t = TabStop()
-    snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
-    return snippet
-
-def parse_cwl_file(
-        file: str,
-        unimath_dict: Dict[str, Dict[str, str]],
-        remove_spaces: bool = False
-    ) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
-    """
-    Parse a CWL file to extract the provided commands and environments
-    """
-    package = splitext(basename(file))[0]
-    if exists(file):
-        filepath = file
-    else:
-        filepath = join('cwl/LaTeX-cwl-master', file)
-    with open(filepath, encoding='utf8') as f:
-        lines = f.readlines()
-    pkgcmds: Dict[str, Dict[str, str]] = {}
-    pkgenvs: Dict[str, Dict[str, str, str]] = {}
-    if file == 'caption.cwl':
-        lines = apply_caption_tweaks(lines)
-    for line in lines:
-        line = line.rstrip()
-        index_hash = line.find('#')
-        if index_hash >= 0:
-            line = line[:index_hash]
-        if not line:
-            continue
-        if line[:7] == '\\begin{':
-            env = line[line.index('{') + 1:line.index('}')]
-            if env in envs:
-                continue
-            args = line[line.index('}') + 1:]
-            snippet_name = env + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
-            snippet_name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', snippet_name)
-            if remove_spaces:
-                snippet_name = snippet_name.replace(' ', '')
-            else:
-                snippet_name = snippet_name.strip()
-            snippet = create_snippet(args)
-            pkgenvs[snippet_name] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
-            continue
-        if line[:5] == '\\end{':
-            continue
-        if line[0] == '\\':
-            line = line[1:]  # Remove leading '\'
-            command = line.rstrip()
-            name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
-            name = re.sub(r'\([^\{\}\[\]\(\)]*\)', r'()', name)
-            name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
-            if remove_spaces:
-                name = name.replace(' ', '')
-            else:
-                name = name.strip()
-            command_dict: Dict[str, str] = {'command': command, 'package': package}
-            if name in commands:
-                continue
-
-            command_dict['snippet'] = create_snippet(line)
-            if unimath_dict.get(name):
-                command_dict['detail'] = unimath_dict[name]['detail']
-                command_dict['documentation'] = unimath_dict[name]['documentation']
-            pkgcmds[name] = command_dict
-            continue
-        continue
-    # remove(join('cwl/LaTeX-cwl-master', file))
-    return (pkgcmds, pkgenvs)
-
-
-
-def parse_cwl_files(unimath_dict):
+def parse_cwl_files():
     cwl_files = get_cwl_files()
+    cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
     for cwl_file in cwl_files:
         # Skip some files
-        if cwl_file in FILES_TO_IGNORE:
+        if cwl_file.name in FILES_TO_IGNORE:
             continue
         remove_spaces = False
-        if cwl_file in FILES_TO_REMOVE_SPACES_IN:
+        if cwl_file.name in FILES_TO_REMOVE_SPACES_IN:
             remove_spaces = True
-        (pkgCmds, pkgEnvs) = parse_cwl_file(cwl_file, unimath_dict, remove_spaces)
-        if pkgEnvs:
-            json.dump(pkgEnvs,
-                      open(f'../data/packages/{cwl_file[:-4]}_env.json', 'w', encoding='utf8'),
-                      indent=2, ensure_ascii=False)
-        if pkgCmds != {}:
-            json.dump(pkgCmds,
-                      open(f'../data/packages/{cwl_file[:-4]}_cmd.json', 'w', encoding='utf8'),
-                      indent=2,
-                      ensure_ascii=False)
-        # for cmd in pkgCmds:
-        #     print(cmd, ': ', pkgCmds[cmd], sep = '')
+        (pkg_cmds, pkg_envs) = cwlIntel.parse_cwl_file(cwl_file, remove_spaces)
+        if pkg_envs:
+            json.dump(pkg_envs, open(OUT_DIR.joinpath(cwl_file.stem + '_env.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
+        if pkg_cmds != {}:
+            json.dump(pkg_cmds, open(OUT_DIR.joinpath(cwl_file.stem + '_cmd.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
 
 
-if __name__ == "__main__":
-    unimath_dict = parse_unimathsymbols_file()
-    parse_cwl_files(unimath_dict)
-    # Handle aggregated files
-    for scr in ['scrartcl', 'scrreprt', 'scrbook']:
-        dest = '../data/packages/class-' + scr
-        copy('../data/packages/class-scrartcl,scrreprt,scrbook_cmd.json', dest + '_cmd.json')
-        copy('../data/packages/class-scrartcl,scrreprt,scrbook_env.json', dest + '_env.json')
+parse_cwl_files()
+# Handle aggregated files
+for scr in ['scrartcl', 'scrreprt', 'scrbook']:
+    dest = OUT_DIR.joinpath('class-' + scr)
+    copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_cmd.json'), dest.as_posix() + '_cmd.json')
+    copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_env.json'), dest.as_posix() + '_env.json')
