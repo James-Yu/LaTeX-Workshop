@@ -5,7 +5,7 @@ import {latexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
 import type {IProvider} from './interface'
-import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
+import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 
 interface CmdItemEntry {
@@ -335,18 +335,9 @@ export class Command implements IProvider {
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
         if (!(pkg in this.packageCmds)) {
-            let filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_cmd.json`
-            if (!fs.existsSync(filePath)) {
-                // Many package with names like toppackage-config.sty are just wrappers around
-                // the general package toppacke.sty and do not define commands on their own.
-                const indexDash = pkg.lastIndexOf('-')
-                if (indexDash > - 1) {
-                    const generalPkg = pkg.substring(0, indexDash)
-                    filePath = `${this.extension.extensionRoot}/data/packages/${generalPkg}_cmd.json`
-                }
-            }
+            const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_cmd.json`, `${this.extension.extensionRoot}/data/packages/`)
             this.packageCmds[pkg] = []
-            if (fs.existsSync(filePath)) {
+            if (filePath !== undefined) {
                 const cmds = JSON.parse(fs.readFileSync(filePath).toString())
                 Object.keys(cmds).forEach(key => {
                     this.packageCmds[pkg].push(this.entryCmdToCompletion(key, cmds[key]))

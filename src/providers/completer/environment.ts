@@ -4,6 +4,7 @@ import {latexParser} from 'latex-utensils'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
+import {resolveCmdEnvFile} from './commandlib/commandfinder'
 
 export interface EnvItemEntry {
     name: string, // Name of the environment, what comes inside \begin{...}
@@ -223,8 +224,8 @@ export class Environment implements IProvider {
     }
 
     private getEnvItemsFromPkg(pkg: string): {[key: string]: EnvItemEntry} {
-        const filePath = `${this.extension.extensionRoot}/data/packages/${pkg}_env.json`
-        if (!fs.existsSync(filePath)) {
+        const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_env.json`, `${this.extension.extensionRoot}/data/packages/`)
+        if (filePath === undefined) {
             return {}
         }
         const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
