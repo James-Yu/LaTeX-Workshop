@@ -2,6 +2,8 @@ import json
 import urllib.request
 import zipfile
 from shutil import copy
+import argparse
+import sys
 from pathlib import Path
 from typing import List
 from pyintel import CwlIntel
@@ -14,6 +16,20 @@ UNIMATHSYMBOLS = CWD.joinpath('unimathsymbols.txt').resolve()
 COMMANDS_FILE = CWD.joinpath('../data/commands.json').resolve()
 ENVS_FILE = CWD.joinpath('../data/environments.json').resolve()
 OUT_DIR = CWD.joinpath('../data/packages').resolve()
+INFILES = None
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-o', '--outdir', help='Directory where to write the JSON files. Default is {}'.format(OUT_DIR), type=str)
+parser.add_argument('-i', '--infile', help='Files to process. Default is the content of https://github.com/LaTeXing/LaTeX-cwl/', type=str, nargs='+')
+args = parser.parse_args()
+
+if args.outdir:
+    OUT_DIR = Path(args.outdir).expanduser().resolve()
+    if not OUT_DIR.is_dir():
+        print('The path passed to --outdir is not a directory: {}'.format(args.outdir))
+        sys.exit(0)
+if args.infile:
+    INFILES = args.infile
 
 
 def get_cwl_files() -> List[Path]:
@@ -30,9 +46,12 @@ def get_cwl_files() -> List[Path]:
             files.append(f)
     return files
 
+def dump_dict(dictionnary, out_json):
+    if dictionnary != {}:
+        json.dump(dictionnary, open(out_json, 'w', encoding='utf8'), indent=2, ensure_ascii=False)
 
-def parse_cwl_files():
-    cwl_files = get_cwl_files()
+
+def parse_cwl_files(cwl_files):
     cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
     for cwl_file in cwl_files:
         # Skip some files
@@ -42,15 +61,24 @@ def parse_cwl_files():
         if cwl_file.name in FILES_TO_REMOVE_SPACES_IN:
             remove_spaces = True
         (pkg_cmds, pkg_envs) = cwlIntel.parse_cwl_file(cwl_file, remove_spaces)
-        if pkg_envs:
-            json.dump(pkg_envs, open(OUT_DIR.joinpath(cwl_file.stem + '_env.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
-        if pkg_cmds != {}:
-            json.dump(pkg_cmds, open(OUT_DIR.joinpath(cwl_file.stem + '_cmd.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
+        dump_dict(pkg_envs, OUT_DIR.joinpath(cwl_file.stem + '_env.json'))
+        dump_dict(pkg_cmds, OUT_DIR.joinpath(cwl_file.stem + '_cmd.json'))
 
 
-parse_cwl_files()
-# Handle aggregated files
-for scr in ['scrartcl', 'scrreprt', 'scrbook']:
-    dest = OUT_DIR.joinpath('class-' + scr)
-    copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_cmd.json'), dest.as_posix() + '_cmd.json')
-    copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_env.json'), dest.as_posix() + '_env.json')
+if __name__ == '__main__':
+    do_copy = False
+    if INFILES is None:
+        cwl_files = get_cwl_files()
+        do_copy = True
+    else:
+        # Convert to an array of Path objects
+        cwl_files = [Path(f) for f in INFILES]
+
+    parse_cwl_files(cwl_files)
+
+    if do_copy:
+        # Handle aggregated files
+        for scr in ['scrartcl', 'scrreprt', 'scrbook']:
+            dest = OUT_DIR.joinpath('class-' + scr)
+            copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_cmd.json'), dest.as_posix() + '_cmd.json')
+            copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_env.json'), dest.as_posix() + '_env.json')

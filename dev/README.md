@@ -1,6 +1,8 @@
 # Development scripts
 
-We describe the purpose of the scripts found in directory `dev/`.
+We describe the purpose of the scripts found in the current directory.
+
+These scripts are actually only frontend to the `pyintel` package, which implements the core mechanisms.
 
 ## ctanpkglist.py
 
@@ -29,7 +31,21 @@ It parses uni-math symbols from http://milde.users.sourceforge.net/LUCR/Math/dat
 
 ## pkgcommand.py
 
-This script generates intellisense data from [https://github.com/LaTeXing/LaTeX-cwl/](https://github.com/LaTeXing/LaTeX-cwl/). For every package or class, two files are generated:
+```
+usage: pkgcommand.py [-h] [-o OUTDIR] [-i INFILE [INFILE ...]]
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTDIR, --outdir OUTDIR
+                        Directory where to write the JSON files. Default is /Users/jl/devel/LaTeX-
+                        Workshop/data/packages
+  -i INFILE [INFILE ...], --infile INFILE [INFILE ...]
+                        Files to process. Default is the content of https://github.com/LaTeXing/LaTeX-cwl/o
+```
+
+This script generates intellisense data from the files given by `-i` option and writes the generated `.json` files to the directory specified by `-o`. Note that the directory must already exist.
+
+For every package or class, two files are generated:
 
 - a `_cmd.json` file containing the data for the commands defined in the `.cwl` file. Entry example
 
