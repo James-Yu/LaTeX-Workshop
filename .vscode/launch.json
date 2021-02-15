@@ -1,47 +1,54 @@
 // A launch configuration that compiles the extension and then opens it inside a new window
 {
-    "version":"0.2.0",
-    "configurations":[
+    "version": "0.2.0",
+    "configurations": [
         {
-            "name":"Run Extension",
-            "type":"extensionHost",
-            "request":"launch",
-            "runtimeExecutable":"${execPath}",
-            "args":[
-                "--extensionDevelopmentPath=${workspaceFolder}"
-            ],
-            "outFiles":[
-                "${workspaceFolder}/out/src/**/*.js"
-            ],
-            "preLaunchTask":"npm: watch"
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
         },
         {
-            "name":"Run Extension With Sample",
-            "type":"extensionHost",
-            "request":"launch",
-            "runtimeExecutable":"${execPath}",
-            "args":[
+            "name": "Run Extension",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "--extensionDevelopmentPath=${workspaceFolder}"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/src/**/*.js"
+            ],
+            "preLaunchTask": "npm: watch"
+        },
+        {
+            "name": "Run Extension With Sample",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}",
                 "${workspaceFolder}/sample"
             ],
-            "outFiles":[
+            "outFiles": [
                 "${workspaceFolder}/out/src/**/*.js"
             ],
-            "preLaunchTask":"npm: watch"
+            "preLaunchTask": "npm: watch"
         },
         {
-            "name":"Run Extension Tests",
-            "type":"extensionHost",
-            "request":"launch",
-            "runtimeExecutable":"${execPath}",
-            "args":[
+            "name": "Run Extension Tests",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
                 "--extensionDevelopmentPath=${workspaceFolder}",
                 "--extensionTestsPath=${workspaceFolder}/out/test/index"
             ],
-            "outFiles":[
+            "outFiles": [
                 "${workspaceFolder}/out/test/**/*.js"
             ],
-            "preLaunchTask":"npm: watch"
+            "preLaunchTask": "npm: watch"
         }
     ]
 }
