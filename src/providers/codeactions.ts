@@ -2,6 +2,9 @@ import * as vs from 'vscode'
 
 import type { Extension } from '../main'
 
+/**
+ * Each number corresponds to the warning number of ChkTeX.
+ */
 const CODE_TO_ACTION_STRING: {[key: number]: string} = {
     1: 'Terminate command with empty statement',
     2: 'Convert to non-breaking space (~)',
@@ -34,8 +37,8 @@ function isOpeningQuote(document: vs.TextDocument, range: vs.Range) {
 }
 
 
-export class CodeActions {
-    extension: Extension
+export class CodeActions implements vs.CodeActionProvider {
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
