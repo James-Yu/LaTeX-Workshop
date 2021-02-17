@@ -18,6 +18,10 @@ interface CmdItemEntry {
     postAction?: string
 }
 
+function isCmdItemEntry(obj: any): obj is CmdItemEntry {
+    return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
+}
+
 export interface Suggestion extends vscode.CompletionItem {
     package: string
 }
@@ -338,10 +342,19 @@ export class Command implements IProvider {
             const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_cmd.json`, `${this.extension.extensionRoot}/data/packages/`)
             this.packageCmds[pkg] = []
             if (filePath !== undefined) {
-                const cmds = JSON.parse(fs.readFileSync(filePath).toString())
-                Object.keys(cmds).forEach(key => {
-                    this.packageCmds[pkg].push(this.entryCmdToCompletion(key, cmds[key]))
-                })
+                try {
+                    const cmds: {[key: string]: CmdItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
+                    Object.keys(cmds).forEach(key => {
+                        if (isCmdItemEntry(cmds[key])) {
+                            this.packageCmds[pkg].push(this.entryCmdToCompletion(key, cmds[key]))
+                        } else {
+                            this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
+                            this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}`)
+                        }
+                    })
+                } catch (e) {
+                    this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
+                }
             }
         }
 

@@ -13,6 +13,10 @@ export interface EnvItemEntry {
     detail?: string
 }
 
+function isEnvItemEntry(obj: any): obj is EnvItemEntry {
+    return (typeof obj.name === 'string')
+}
+
 export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
 
 export interface Suggestion extends vscode.CompletionItem {
@@ -228,8 +232,20 @@ export class Environment implements IProvider {
         if (filePath === undefined) {
             return {}
         }
-        const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
-        return envs
+        try {
+            const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
+            Object.keys(envs).forEach(key => {
+                if (! isEnvItemEntry(envs[key])) {
+                    this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
+                    this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
+                    delete envs[key]
+                }
+            })
+            return envs
+        } catch (e) {
+            this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
+        }
+        return {}
     }
 
     private getEnvFromPkg(pkg: string, type: EnvSnippetType): Suggestion[] {
