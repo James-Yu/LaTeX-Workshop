@@ -237,7 +237,7 @@ export class Environment implements IProvider {
             Object.keys(envs).forEach(key => {
                 if (! isEnvItemEntry(envs[key])) {
                     this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
-                    this.extension.logger.addLogMessage(`Missing field in entry: ${JSON.stringify(envs[key])}`)
+                    this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
                     delete envs[key]
                 }
             })

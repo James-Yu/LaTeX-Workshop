@@ -349,7 +349,7 @@ export class Command implements IProvider {
                             this.packageCmds[pkg].push(this.entryCmdToCompletion(key, cmds[key]))
                         } else {
                             this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
-                            this.extension.logger.addLogMessage(`Missing field in entry: ${JSON.stringify(cmds[key])}`)
+                            this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}`)
                         }
                     })
                 } catch (e) {
