@@ -183,7 +183,7 @@ export class Reference implements IProvider {
         return refs
     }
 
-    private getRefFromContent(content: string) {
+    private getRefFromContent(content: string): vscode.CompletionItem[] {
         const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
         const refs: vscode.CompletionItem[] = []
         const refList: string[] = []
