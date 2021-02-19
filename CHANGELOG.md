@@ -1,10 +1,38 @@
 # Change Log
 
+## [8.16.0] - 2021-02-19
+
+### Added
+- (#2427) Add a config to show floats or not in outline `view.outline.floats.enabled`.
+- (#2432) Make trigger characters for intellisense of LaTeX documents configurable.
+- (#2461) Implement a `BibTeX` log parser.
+- (#2471) Add a configurable clean command.
+  - A fully configurable `clean` command and add three new configuration variables.
+  - `latex.clean.method` can be `glob` (default) or `cleanCommand`.
+- (#2476) Enable converting ChkTeX outputs' column numbers.
+- (#2485) Configure align on equal signs for bibtex formatter `bibtex-format.align-equal.enabled`.
+- (#2488) Accept any number of spaces for bibtex indentation given as a string in `bibtex-format.tab`.
+- (#2508) Sorting fields can be enabled by `bibtex-fields.sort.enabled`.
+- (#2512) Enable autofix on multiline maths.
+- (#2529) Users can provide package intellisense data from `intellisense.package.dirs`. 
+
+### Changed
+- Use `.fls` file when finding the root file.
+- (#2439) Use `vscode.env.asExternalUri` for the internal PDF viewer.
+
+### Fixed
+- (#2429) Fix quote escaping for `bst` language.
+- (#2430) Stop opening scm view when focusing `tex` file in `diff` mode.
+- (#2457) Check if git is available on OSX to prevent dev tools pop up.
+- (#2458,#2503) Treat `\left.` `\right)]}` and `\left([{` `\right.` as bracket pairs.
+- (#2484) Killing the build process makes vscode crash when `pkill` is provided by `proctools`.
+- (#2504) Fix SyncTeX on horizonal scrolling.
+
 ## [8.15.0] - 2020-12-06
 
 ### Added
 - Add Snippet View.
-- Add `latex-workshop.hover.preview.maxLines` to limit how much we go upward to find the beginning of the math environment.
+- Add `hover.preview.maxLines` to limit how much we go upward to find the beginning of the math environment.
 - (#2380) Add toggle math preview.
 - (#2384) Enable math preview on suggest detail widgets for references.
 - (#2388) Add `bibtex` support for `markdown`.
@@ -99,7 +127,7 @@
 
 ### Fixed
 - Restoring PDF viewers does not work well with VS Code 1.47.
-- (#2172) `"latex-workshop.latex.recipe.default": "lastUsed"` doesn't work.
+- (#2172) `"latex.recipe.default": "lastUsed"` doesn't work.
 - (#2176) No need to put the closing `}` on its own line in `.bib`.
 - (#2177) Use `kpsewhich` to resolve bibliography files.
 - (#2182) Also search for `.bib` files in `rootDir`.
@@ -109,7 +137,7 @@
 ### Added
 - (#2149) Add support for `weave.jl`.
 - (#2154) Add section numbers in outline.
-  - This feature can be deactivated by setting `latex-workshop.view.outline.numbers.enabled: false`.
+  - This feature can be deactivated by setting `view.outline.numbers.enabled: false`.
 
 ### Improved
 - (#2109) Improve PDF viewer refresh speed.
@@ -181,11 +209,11 @@
 ## [8.8.0] - 2020-03-22
 
 ### Added
-- (#1949) Make the PDF watcher delay configurable via `latex-workshop.latex.watch.delay`.
+- (#1949) Make the PDF watcher delay configurable via `latex.watch.delay`.
 - (#1950) Enable keyboard shortcuts of VS Code on the PDF viewer.
 - (#1955) Add embedded language support for minted ruby.
 - (#1963) Add `\addplot` grammar support.
-- (#1985) Improved intellisense for reference via `latex-workshop.intellisense.citation.format`.
+- (#1985) Improved intellisense for reference via `intellisense.citation.format`.
 
 ### Removed
 - (#1986) Remove `formatOnSave:false` in latex configuration.
@@ -256,7 +284,7 @@
 - (#1877) `\def` commands not passed to mathjax for preview.
 - (#1886) Send `type: 'loaded'` to the extension host when PDF files loaded.
 - (#1889) Fix outDir when containing `../`.
-- (#1890) `latex-workshop.latex.watch.files.ignore` not fully honored.
+- (#1890) `latex.watch.files.ignore` not fully honored.
 - (#1899) Activate all keybindings for `rsweave` id.
 
 ## [8.5.0] - 2019-12-17
@@ -267,7 +295,7 @@
 - (#1846) Add regex for `biber` to live compilation info.
 
 ### Changed
-- (#1842) Rename `intellisense.preview.enabled` to `latex-workshop.intellisense.includegraphics.preview.enabled`.
+- (#1842) Rename `intellisense.preview.enabled` to `intellisense.includegraphics.preview.enabled`.
 - (#1856) Add `*.syntex(busy)` and `*.synctex.gz(busy)` to files to clean.
 
 ### Fixed
@@ -369,7 +397,7 @@
 ## [8.1.0] - 2019-08-29
 
 ### Added
-- Add a config `latex-workshop.intellisense.update.aggressive.enabled` to disable parsing on text change.
+- Add a config `intellisense.update.aggressive.enabled` to disable parsing on text change.
 - (#1504) Add a latexmk(rc) recipe.
 
 ### Changed
@@ -381,7 +409,7 @@
 ## [8.0.7] - 2019-08-26
 
 ### Changed
-- (#1635) Add `.nav` and `.snm` to `latex-workshop.latex.clean.fileTypes`.
+- (#1635) Add `.nav` and `.snm` to `latex.clean.fileTypes`.
 
 ### Fixed
 - (#1637) Find root only when active editor is tex-like.
@@ -560,7 +588,7 @@
 - (#1263) Add accent commands.
 - (#1265) Make port of viewer configurable.
 - (#1267) Add label field to `AutocompleteEntry`.
-- (#1273) Configure the editor group for the tab viewer with `latex-workshop.view.pdf.tab.useNewGroup`.
+- (#1273) Configure the editor group for the tab viewer with `view.pdf.tab.useNewGroup`.
 
 ### Changed
 - Deprecate the old action dropdown, replace with side view.
@@ -571,7 +599,7 @@
 - Skip postprocessing (e.g., refresh viewer) if latexmk is skipped, i.e., no change.
 - (#1272) Root file detection with auto build and `subfiles` package.
 - (#1278) Support preview for `$$...$$`.
-- (#1281) Allow using previous recipe by default, configurable at `latex-workshop.latex.recipe.default`.
+- (#1281) Allow using previous recipe by default, configurable at `latex.recipe.default`.
 - (#1288) Use file pooling for `chokidar` watch.
 - (#1290) Expand all placeholders.
 
@@ -624,8 +652,8 @@
 ### Added
 - Support `\def` in addition to `\newcommand` in mathjax preview.
 - (#731) Narrow search of root file with two new settings to include or exclude files from the root file search mechanism
-  - `latex-workshop.latex.search.rootFiles.include`
-  - `latex-workshop.latex.search.rootFiles.exclude`
+  - `latex.search.rootFiles.include`
+  - `latex.search.rootFiles.exclude`
 - (#1188) Add support for sage environments.
 - (#1191) QoL changes to make log messages better.
 - (#1192) Literate haskell.
@@ -677,7 +705,7 @@
 - (#1127) Not throw when a parse error occurs in `synctexjs`.
 - (#1132) Do not provide 'Definition' for graphics files.
 - (#1134) Use `path.resolve` to replace `path.join` when applicable.
-- (#1137) Use `%DIR%` as the default value for `latex-workshop.latex.outDir`.
+- (#1137) Use `%DIR%` as the default value for `latex.outDir`.
 
 ## [5.20.2] - 2019-01-20
 
@@ -738,7 +766,7 @@
 
 ### Added
 - Comprehensive `cite` and `ref` intellisense improvements.
-- (#1018) Add placeholder `%TMPDIR%` to `latex-workshop.latex.outputDir`.
+- (#1018) Add placeholder `%TMPDIR%` to `latex.outputDir`.
 - (#1022) Add documentation for `pdf.js` shortcuts.
 - (#1024) Add support for `pyglist` env (`verbments` package).
 - (#1028) Add command `view in external viewer` to menu.
@@ -819,7 +847,7 @@
 
 ### Fixed
 - Unified PDF viewer dropdown menu style.
-- (#957) Allow `latex-workshop.latex.outputDir` to be an absolute path.
+- (#957) Allow `latex.outputDir` to be an absolute path.
 - (#972) Add space after `\item` in snippets.
 
 ## [5.15.1] - 2018-11-07
@@ -1287,7 +1315,7 @@
 - (#343) Move mouse on viewer to show toolbar, revert viewer style.
 
 ### Fixed
-- (#341) Clarify `latex-workshop.latex.outputDir` usage.
+- (#341) Clarify `latex.outputDir` usage.
 
 ## [3.8.0] - 2017-12-01
 ### Added
@@ -1322,7 +1350,7 @@
 
 ## [3.6.0] - 2017-11-01
 ### Added
-- (#288) New `latex-workshop.intellisense.surroundCommand.enabled` config to control command surrounding feature.
+- (#288) New `intellisense.surroundCommand.enabled` config to control command surrounding feature.
 
 ## [3.5.5] - 2017-10-03
 ### Fixed
@@ -1462,7 +1490,7 @@
 
 ## [2.10.0] - 2017-07-06
 ### Added
-- (#182) Use `|` as delimiters for outline section tags (`latex-workshop.view.outline.sections`) in the same level.
+- (#182) Use `|` as delimiters for outline section tags (`view.outline.sections`) in the same level.
 - Supporting entries in the dropdown quick menu.
 - Version update notice with small candies.
 
@@ -1497,7 +1525,7 @@
 
 ## [2.7.0] - 2017-06-26
 ### Added
-- (#169) Add new configuration entry `latex-workshop.latex.additionalBib` to auto-complete globally included `.bib` files.
+- (#169) Add new configuration entry `latex.additionalBib` to auto-complete globally included `.bib` files.
 
 ### Fixed
 - Chokidar watches the same file multiple times if multi-included.
