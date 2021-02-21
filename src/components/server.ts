@@ -20,7 +20,7 @@ export class Server {
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
-        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, () => {
+        this.httpServer.listen(viewerPort, '0.0.0.0', undefined, () => {
             const {address, port} = this.httpServer.address() as AddressInfo
             this.port = port
             if (address.includes(':')) {
