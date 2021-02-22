@@ -1516,6 +1516,21 @@
           "default": -1,
           "markdownDescription": "Write the `TabSize` number from `.chktexrc`. The default value \"-1\" means that LaTeX Workshop will try to find `.chktexrc` and to read the value from it."
         },
+        "latex-workshop.check.duplicatedLabels.run": {
+          "type": "string",
+          "enum": [
+            "onSave",
+            "onIntellisenseUpdate",
+            "never"
+          ],
+          "default": "onSave",
+          "markdownDescription": "Enable checking for duplicated labels.",
+          "markdownEnumDescriptions": [
+            "The whole project is checked every time any of the files is saved.",
+            "If `latex-workshop.intellisense.update.aggressive.enabled` is set to `true`, the checking is done `latex-workshop.intellisense.update.delay` milliseconds after having stopped typing. Otherwise, this is equivalent to `onSave`.",
+            "Never check for duplicated labels."
+          ]
+        },
         "latex-workshop.texcount.path": {
           "type": "string",
           "default": "texcount",

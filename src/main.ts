@@ -24,6 +24,7 @@ import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Completer} from './providers/completion'
 import {BibtexCompleter} from './providers/bibtexcompletion'
 import {CodeActions} from './providers/codeactions'
+import {DuplicateLabels} from './providers/duplicatelabels'
 import {HoverProvider} from './providers/hover'
 import {GraphicsPreview} from './providers/preview/graphicspreview'
 import {MathPreview} from './providers/preview/mathpreview'
@@ -200,7 +201,11 @@ export function activate(context: vscode.ExtensionContext) {
             }
             updateCompleter = setTimeout(() => {
                 const file = e.document.uri.fsPath
-                extension.manager.updateCompleter(file, content)
+                extension.manager.updateCompleter(file, content).then(() => {
+                    if (configuration.get('check.duplicatedLabels.run') === 'onIntellisenseUpdate') {
+                        extension.duplicateLabels.run(file)
+                    }
+                })
             }, configuration.get('intellisense.update.delay', 1000))
         }
     }))
@@ -359,6 +364,7 @@ export class Extension {
     readonly mathPreview: MathPreview
     readonly bibtexFormatter: BibtexFormatter
     readonly mathPreviewPanel: MathPreviewPanel
+    readonly duplicateLabels: DuplicateLabels
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -378,6 +384,7 @@ export class Extension {
         this.compilerLogParser = new CompilerLogParser(this)
         this.linterLogParser = new LinterLogParser(this)
         this.completer = new Completer(this)
+        this.duplicateLabels = new DuplicateLabels(this)
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
         this.counter = new Counter(this)

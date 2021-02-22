@@ -256,6 +256,7 @@ export class Manager {
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
+                this.extension.duplicateLabels.reset()
                 this.initiateFileWatcher()
                 this.bibWatcher.initiateBibWatcher()
                 this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
@@ -726,7 +727,12 @@ export class Manager {
         this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            this.updateCompleterOnChange(file)
+            this.updateCompleterOnChange(file).then(() => {
+                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                if (['onIntellisenseUpdate', 'onSave'].includes(configuration.get('check.duplicatedLabels.run') as string)) {
+                    this.extension.duplicateLabels.run(file)
+                }
+            })
         }
     }
 
@@ -736,7 +742,12 @@ export class Manager {
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
-            this.updateCompleterOnChange(file)
+            this.updateCompleterOnChange(file).then(() => {
+                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                if (configuration.get('check.duplicatedLabels.run') === 'onSave') {
+                    this.extension.duplicateLabels.run(file)
+                }
+            })
         }
         this.buildOnFileChanged(file)
     }
@@ -777,9 +788,9 @@ export class Manager {
     }
 
     // This function updates all completers upon tex-file changes.
-    private updateCompleterOnChange(file: string) {
-        fs.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
+    private async updateCompleterOnChange(file: string) {
         this.extension.completer.input.getGraphicsPath(file)
+        return fs.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
     }
 
     /**
