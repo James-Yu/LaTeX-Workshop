@@ -45,10 +45,16 @@ export class DuplicateLabels {
         })
     }
 
+    /**
+     * Delete all labels
+     *  - that were attached to file
+     *  - that are attached to a file not in getTeXChildren()
+     */
     private deleteOldLabels(file: string) {
+        const allFiles = this.extension.manager.getIncludedTeX()
         Object.keys(this.labelEntries).forEach(label => {
             this.labelEntries[label] = this.labelEntries[label].filter(entry => {
-                return entry.file !== file
+                return (entry.file !== file) && allFiles.includes(entry.file)
             })
         })
     }
