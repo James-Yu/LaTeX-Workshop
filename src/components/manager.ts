@@ -256,7 +256,6 @@ export class Manager {
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
-                this.extension.duplicateLabels.reset()
                 this.initiateFileWatcher()
                 this.bibWatcher.initiateBibWatcher()
                 this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
@@ -721,6 +720,7 @@ export class Manager {
         this.filesWatched = []
         // We also clean the completions from the old project
         this.extension.completer.input.reset()
+        this.extension.duplicateLabels.reset()
     }
 
     private onWatchingNewFile(file: string) {
