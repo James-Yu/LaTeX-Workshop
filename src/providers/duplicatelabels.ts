@@ -3,17 +3,12 @@ import * as path from 'path'
 
 import type {Extension} from '../main'
 
-type LabelEntries = {
-    [key: string]: {
-        file: string,
-        range: vscode.Range
-    }[]
-}
+type LabelEntries = Map<string, {file: string, range: vscode.Range}[]>
 
 export class DuplicateLabels {
     private readonly extension: Extension
     private readonly duplicatedLabelsDiagnostics = vscode.languages.createDiagnosticCollection('Duplicate Labels')
-    private labelEntries: LabelEntries = {}
+    private readonly labelEntries: LabelEntries = new Map()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -35,10 +30,12 @@ export class DuplicateLabels {
             if (ref.range === undefined) {
                 return
             }
-            if (! (ref.label in this.labelEntries)) {
-                this.labelEntries[ref.label] = []
+            let locations = this.labelEntries.get(ref.label)
+            if (locations === undefined) {
+                locations = []
+                this.labelEntries.set(ref.label, locations)
             }
-            this.labelEntries[ref.label].push({
+            locations.push({
                 file,
                 range: ref.range instanceof vscode.Range ? ref.range : ref.range.inserting
             })
@@ -52,11 +49,14 @@ export class DuplicateLabels {
      */
     private deleteOldLabels(file: string) {
         const allFiles = this.extension.manager.getIncludedTeX()
-        Object.keys(this.labelEntries).forEach(label => {
-            this.labelEntries[label] = this.labelEntries[label].filter(entry => {
-                return (entry.file !== file) && allFiles.includes(entry.file)
-            })
-        })
+        for (const label of this.labelEntries.keys()) {
+            const locations = this.labelEntries.get(label)
+            if (locations !== undefined) {
+                this.labelEntries.set(label, locations.filter(entry => {
+                    return (entry.file !== file) && allFiles.includes(entry.file)
+                }))
+            }
+        }
     }
 
     /**
@@ -73,17 +73,17 @@ export class DuplicateLabels {
         this.duplicatedLabelsDiagnostics.clear()
         const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
 
-        for (const label in this.labelEntries) {
-            if (this.labelEntries[label].length < 2) {
+        for (const [label, locations] of this.labelEntries.entries()) {
+            if (locations.length < 2) {
                 continue
             }
-            for (const occur of this.labelEntries[label]) {
-                if (!(occur.file in diagsCollection)) {
-                    diagsCollection[occur.file] = []
+            for (const loc of locations) {
+                if (!(loc.file in diagsCollection)) {
+                    diagsCollection[loc.file] = []
                 }
-                const diag = new vscode.Diagnostic(occur.range, `Duplicate label ${label}`, vscode.DiagnosticSeverity.Warning)
+                const diag = new vscode.Diagnostic(loc.range, `Duplicate label ${label}`, vscode.DiagnosticSeverity.Warning)
                 diag.source = 'DuplicateLabels'
-                diagsCollection[occur.file].push(diag)
+                diagsCollection[loc.file].push(diag)
             }
         }
 
@@ -95,7 +95,7 @@ export class DuplicateLabels {
     }
 
     reset() {
-        this.labelEntries = {}
+        this.labelEntries.clear()
         this.duplicatedLabelsDiagnostics.clear()
     }
 }
