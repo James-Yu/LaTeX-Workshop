@@ -723,31 +723,29 @@ export class Manager {
         this.extension.duplicateLabels.reset()
     }
 
-    private onWatchingNewFile(file: string) {
+    private async onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            this.updateCompleterOnChange(file).then(() => {
-                const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                if (['onIntellisenseUpdate', 'onSave'].includes(configuration.get('check.duplicatedLabels.run') as string)) {
-                    this.extension.duplicateLabels.run(file)
-                }
-            })
+            await this.updateCompleterOnChange(file)
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            if (['onIntellisenseUpdate', 'onSave'].includes(configuration.get('check.duplicatedLabels.run') as string)) {
+                this.extension.duplicateLabels.run(file)
+            }
         }
     }
 
-    private onWatchedFileChanged(file: string) {
+    private async onWatchedFileChanged(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
-            this.updateCompleterOnChange(file).then(() => {
-                const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                if (configuration.get('check.duplicatedLabels.run') === 'onSave') {
-                    this.extension.duplicateLabels.run(file)
-                }
-            })
+            await this.updateCompleterOnChange(file)
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            if (configuration.get('check.duplicatedLabels.run') === 'onSave') {
+                this.extension.duplicateLabels.run(file)
+            }
         }
         this.buildOnFileChanged(file)
     }
