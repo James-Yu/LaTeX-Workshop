@@ -435,7 +435,7 @@ export class Manager {
      * @param file The path of a LaTeX file. It is added to the watcher if not being watched.
      * @param onChange If `true`, the content of `file` is read from the file system. If `false`, the cache of `file` is used.
      */
-    private parseFileAndSubs(file: string, onChange: boolean = false) {
+    parseFileAndSubs(file: string, onChange: boolean = false) {
         if (this.isExcluded(file)) {
             this.extension.logger.addLogMessage(`Ignoring: ${file}`)
             return
@@ -577,6 +577,7 @@ export class Manager {
             })
 
             if (this.filesWatched.includes(inputFile)) {
+                /* We already watch this file, no need to enforce a new parsing */
                 continue
             }
             this.parseFileAndSubs(inputFile)

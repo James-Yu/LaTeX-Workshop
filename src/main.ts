@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as process from 'process'
 
+import * as utils from './utils/utils'
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
@@ -192,7 +193,7 @@ export function activate(context: vscode.ExtensionContext) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const content = e.document.getText()
+        const content = utils.stripComments(e.document.getText(), '%')
         extension.manager.cachedContent[e.document.fileName].content = content
         if (configuration.get('intellisense.update.aggressive.enabled')) {
             if (updateCompleter) {
@@ -200,6 +201,7 @@ export function activate(context: vscode.ExtensionContext) {
             }
             updateCompleter = setTimeout(() => {
                 const file = e.document.uri.fsPath
+                extension.manager.parseFileAndSubs(file)
                 extension.manager.updateCompleter(file, content)
             }, configuration.get('intellisense.update.delay', 1000))
         }
