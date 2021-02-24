@@ -75,7 +75,7 @@ export class Manager {
     private fileWatcher?: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
-    private readonly intellisenseWatcher: IntellisenseWatcher
+    readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
     private filesWatched: string[] = []
@@ -100,7 +100,7 @@ export class Manager {
         }
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
-        this.intellisenseWatcher = new IntellisenseWatcher(extension)
+        this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
     }
