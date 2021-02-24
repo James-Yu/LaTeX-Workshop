@@ -75,7 +75,7 @@ export class Manager {
     private fileWatcher?: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
-    readonly intellisenseWatcher: IntellisenseWatcher
+    private readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
     private filesWatched: string[] = []
@@ -757,6 +757,10 @@ export class Manager {
             this.extension.logger.addLogMessage('Start searching a new root file.')
             this.findRoot()
         }
+    }
+
+    onDidUpdateIntellisense(cb: (file: string) => void) {
+        return this.intellisenseWatcher.onDidUpdateIntellisense(cb)
     }
 
     watchPdfFile(pdfPath: string) {

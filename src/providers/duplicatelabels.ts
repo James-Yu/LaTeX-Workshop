@@ -12,7 +12,7 @@ export class DuplicateLabels {
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.extension.manager.intellisenseWatcher.onDidUpdateIntellisense((file: string) => {
+        this.extension.manager.onDidUpdateIntellisense((file: string) => {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             if (configuration.get('check.duplicatedLabels.enabled')) {
                 this.run(file)
@@ -58,9 +58,14 @@ export class DuplicateLabels {
         for (const label of this.labelEntries.keys()) {
             const locations = this.labelEntries.get(label)
             if (locations !== undefined) {
-                this.labelEntries.set(label, locations.filter(entry => {
+                const newLocations = locations.filter(entry => {
                     return (entry.file !== file) && allFiles.includes(entry.file)
-                }))
+                })
+                if (newLocations.length === 0) {
+                    this.labelEntries.delete(label)
+                } else {
+                    this.labelEntries.set(label, newLocations)
+                }
             }
         }
     }
