@@ -199,12 +199,9 @@ export function activate(context: vscode.ExtensionContext) {
             if (updateCompleter) {
                 clearTimeout(updateCompleter)
             }
-            updateCompleter = setTimeout(async () => {
+            updateCompleter = setTimeout(() => {
                 const file = e.document.uri.fsPath
-                await extension.manager.updateCompleter(file, content)
-                if (configuration.get('check.duplicatedLabels.run') === 'onIntellisenseUpdate') {
-                    extension.duplicateLabels.run(file)
-                }
+                extension.manager.updateCompleter(file, content)
             }, configuration.get('intellisense.update.delay', 1000))
         }
     }))

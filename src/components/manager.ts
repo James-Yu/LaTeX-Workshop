@@ -17,6 +17,7 @@ import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
 import {PathUtils} from './managerlib/pathutils'
+import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
 /**
  * The content cache for each LaTeX file `filepath`.
@@ -74,6 +75,7 @@ export class Manager {
     private fileWatcher?: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
+    private readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
     private filesWatched: string[] = []
@@ -98,6 +100,7 @@ export class Manager {
         }
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
+        this.intellisenseWatcher = new IntellisenseWatcher(extension)
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
     }
@@ -723,29 +726,21 @@ export class Manager {
         this.extension.duplicateLabels.reset()
     }
 
-    private async onWatchingNewFile(file: string) {
+    private onWatchingNewFile(file: string) {
         this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            await this.updateCompleterOnChange(file)
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (['onIntellisenseUpdate', 'onSave'].includes(configuration.get('check.duplicatedLabels.run') as string)) {
-                this.extension.duplicateLabels.run(file)
-            }
+            this.updateCompleterOnChange(file)
         }
     }
 
-    private async onWatchedFileChanged(file: string) {
+    private onWatchedFileChanged(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.parseFileAndSubs(file, true)
-            await this.updateCompleterOnChange(file)
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if (configuration.get('check.duplicatedLabels.run') === 'onSave') {
-                this.extension.duplicateLabels.run(file)
-            }
+            this.updateCompleterOnChange(file)
         }
         this.buildOnFileChanged(file)
     }
@@ -786,9 +781,9 @@ export class Manager {
     }
 
     // This function updates all completers upon tex-file changes.
-    private async updateCompleterOnChange(file: string) {
+    private updateCompleterOnChange(file: string) {
+        fs.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
         this.extension.completer.input.getGraphicsPath(file)
-        return fs.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
     }
 
     /**
@@ -821,6 +816,7 @@ export class Manager {
             this.extension.completer.command.update(file, undefined, contentNoComment)
             this.extension.completer.command.updatePkg(file, undefined, contentNoComment)
         }
+        this.extension.manager.intellisenseWatcher.emitUpdate(file)
     }
 
     setEnvVar() {
