@@ -1,8 +1,3 @@
-// We have to remove `process.versions.electron` to work around a bug of PDF.js.
-// With `process.versions.electron`, PDF.js misinterprets the context of the runtime as
-// the renderer of the browser.
-delete (process.versions as any).electron
-
 import * as domstubs from '@tamuratak/domstubs'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -37,7 +32,6 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
     const loadingTask = pdfjsLib.getDocument({
         data,
         fontExtraProperties: true,
-        nativeImageDecoderSupport: 'display',
         CMapReaderFactory: NodeCMapReaderFactory
     })
     const doc = await loadingTask.promise
