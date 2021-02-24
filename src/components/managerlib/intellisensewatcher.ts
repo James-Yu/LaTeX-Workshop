@@ -1,3 +1,4 @@
+import * as vscode from 'vscode'
 import * as events from 'events'
 import type {Extension} from '../../main'
 
@@ -12,7 +13,10 @@ export class IntellisenseWatcher {
     }
 
     private onDidUpdateIntellisense(file: string) {
-        this.extension.duplicateLabels.run(file)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('check.duplicatedLabels.enabled')) {
+            this.extension.duplicateLabels.run(file)
+        }
     }
 
     emitUpdate(file: string) {
