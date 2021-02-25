@@ -17,6 +17,7 @@ import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
 import {PathUtils} from './managerlib/pathutils'
+import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
 /**
  * The content cache for each LaTeX file `filepath`.
@@ -74,6 +75,7 @@ export class Manager {
     private fileWatcher?: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
+    private readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
     private filesWatched: string[] = []
@@ -98,6 +100,7 @@ export class Manager {
         }
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
+        this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
     }
@@ -721,6 +724,7 @@ export class Manager {
         this.filesWatched = []
         // We also clean the completions from the old project
         this.extension.completer.input.reset()
+        this.extension.duplicateLabels.reset()
     }
 
     private onWatchingNewFile(file: string) {
@@ -754,6 +758,10 @@ export class Manager {
             this.extension.logger.addLogMessage('Start searching a new root file.')
             this.findRoot()
         }
+    }
+
+    onDidUpdateIntellisense(cb: (file: string) => void) {
+        return this.intellisenseWatcher.onDidUpdateIntellisense(cb)
     }
 
     watchPdfFile(pdfPath: string) {
@@ -813,6 +821,7 @@ export class Manager {
             this.extension.completer.command.update(file, undefined, contentNoComment)
             this.extension.completer.command.updatePkg(file, undefined, contentNoComment)
         }
+        this.extension.manager.intellisenseWatcher.emitUpdate(file)
     }
 
     setEnvVar() {

@@ -127,7 +127,7 @@ export class Reference implements IProvider {
                 refList.push(ref.label)
             })
         })
-        // Remove references that has been deleted
+        // Remove references that have been deleted
         Object.keys(this.suggestions).forEach(key => {
             if (!refList.includes(key)) {
                 delete this.suggestions[key]
