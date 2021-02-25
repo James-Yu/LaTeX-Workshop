@@ -3,8 +3,7 @@
 import * as domstubs from '@tamuratak/domstubs'
 import * as fs from 'fs'
 import * as path from 'path'
-// eslint-disable-next-line
-const pdfjsLib: typeof import('pdfjs-dist') = require('pdfjs-dist/es5/build/pdf.js')
+import * as pdfjsLib from 'pdfjs-dist/es5/build/pdf'
 import * as workerpool from 'workerpool'
 
 domstubs.setStubs(global)
