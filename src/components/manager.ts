@@ -261,7 +261,7 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 this.initiateFileWatcher()
                 this.bibWatcher.initiateBibWatcher()
-                this.parseFileAndSubs(this.rootFile) // finish the parsing is required for subsequent refreshes.
+                this.parseFileAndSubs(this.rootFile, this.rootFile) // finish the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
@@ -436,12 +436,16 @@ export class Manager {
      * This function is called when the root file is found or a watched file is changed.
      *
      * @param file The path of a LaTeX file. It is added to the watcher if not being watched.
+     * @param baseFile The file currently considered as the rootFile. If undefined, we use `file`
      * @param onChange If `true`, the content of `file` is read from the file system. If `false`, the cache of `file` is used.
      */
-    parseFileAndSubs(file: string, onChange: boolean = false) {
+    parseFileAndSubs(file: string, baseFile: string | undefined, onChange: boolean = false) {
         if (this.isExcluded(file)) {
             this.extension.logger.addLogMessage(`Ignoring: ${file}`)
             return
+        }
+        if (baseFile === undefined) {
+            baseFile = file
         }
         this.extension.logger.addLogMessage(`Parsing a file and its subfiles: ${file}`)
         if (this.fileWatcher && !this.filesWatched.includes(file)) {
@@ -453,7 +457,7 @@ export class Manager {
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
         this.cachedFullContent = undefined
-        this.parseInputFiles(content, file)
+        this.parseInputFiles(content, file, baseFile)
         this.parseBibFiles(content, file)
         // We need to parse the fls to discover file dependencies when defined by TeX macro
         // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
@@ -507,6 +511,14 @@ export class Manager {
         return content
     }
 
+    /**
+     * Return the list of files (recursively) included in `file`
+     *
+     * @param file The file in which children are recursively computed
+     * @param baseFile The file currently considered as the rootFile
+     * @param children The list of already computed children
+     * @param content The content of `file`. If undefined, it is read from disk
+     */
     private getTeXChildren(file: string, baseFile: string, children: string[], content?: string): string[] {
         if (content === undefined) {
             content = utils.stripComments(fs.readFileSync(file).toString(), '%')
@@ -522,7 +534,7 @@ export class Manager {
                     break
                 }
 
-                const inputFile = this.pathUtils.parseInputFilePath(result, baseFile)
+                const inputFile = this.pathUtils.parseInputFilePath(result, file, baseFile)
 
                 if (!inputFile ||
                     !fs.existsSync(inputFile) ||
@@ -558,7 +570,7 @@ export class Manager {
         return ioFiles.input
     }
 
-    private parseInputFiles(content: string, baseFile: string) {
+    private parseInputFiles(content: string, currentFile: string, baseFile: string) {
         const inputReg = /(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
         while (true) {
             const result = inputReg.exec(content)
@@ -566,7 +578,7 @@ export class Manager {
                 break
             }
 
-            const inputFile = this.pathUtils.parseInputFilePath(result, baseFile)
+            const inputFile = this.pathUtils.parseInputFilePath(result, currentFile, baseFile)
 
             if (!inputFile ||
                 !fs.existsSync(inputFile) ||
@@ -583,7 +595,7 @@ export class Manager {
                 /* We already watch this file, no need to enforce a new parsing */
                 continue
             }
-            this.parseFileAndSubs(inputFile)
+            this.parseFileAndSubs(inputFile, baseFile)
         }
     }
 
@@ -643,7 +655,7 @@ export class Manager {
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
-                this.parseFileAndSubs(inputFile)
+                this.parseFileAndSubs(inputFile, texFile)
             } else if (this.fileWatcher && !this.filesWatched.includes(inputFile)) {
                 // Watch non-tex files.
                 this.fileWatcher.add(inputFile)
@@ -740,7 +752,7 @@ export class Manager {
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            this.parseFileAndSubs(file, true)
+            this.parseFileAndSubs(file, this.rootFile, true)
             this.updateCompleterOnChange(file)
         }
         this.buildOnFileChanged(file)

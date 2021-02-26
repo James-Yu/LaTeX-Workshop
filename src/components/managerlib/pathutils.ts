@@ -17,26 +17,18 @@ export class PathUtils {
         return this.extension.manager.rootDir
     }
 
-    private get rootFile() {
-        return this.extension.manager.rootFile
-    }
-
     private getOutDir(texFile: string) {
         return this.extension.manager.getOutDir(texFile)
     }
 
-    parseInputFilePath(regResult: RegExpExecArray, baseFile: string): string | undefined {
+    parseInputFilePath(regResult: RegExpExecArray, currentFile: string, rootFile: string): string | undefined {
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
         if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
-            return utils.resolveFile([path.dirname(baseFile)], path.join(regResult[1], regResult[2]))
+            return utils.resolveFile([path.dirname(currentFile)], path.join(regResult[1], regResult[2]))
         } else if (regResult[0].startsWith('\\import') || regResult[0].startsWith('\\inputfrom') || regResult[0].startsWith('\\includefrom')) {
-            return utils.resolveFile([regResult[1]], regResult[2])
+            return utils.resolveFile([regResult[1], path.join(path.dirname(rootFile), regResult[1])], regResult[2])
         } else {
-            if (this.rootFile) {
-                return utils.resolveFile([path.dirname(baseFile), path.dirname(this.rootFile), ...texDirs], regResult[2])
-            } else {
-                return utils.resolveFile([path.dirname(baseFile), ...texDirs], regResult[2])
-            }
+            return utils.resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], regResult[2])
         }
     }
 

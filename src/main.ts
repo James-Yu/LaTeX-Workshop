@@ -202,7 +202,7 @@ export function activate(context: vscode.ExtensionContext) {
             }
             updateCompleter = setTimeout(() => {
                 const file = e.document.uri.fsPath
-                extension.manager.parseFileAndSubs(file)
+                extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
                 extension.manager.updateCompleter(file, content)
             }, configuration.get('intellisense.update.delay', 1000))
         }
