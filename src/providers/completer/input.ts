@@ -31,7 +31,9 @@ export class Input implements IProvider {
                 if (os.platform() === 'darwin') {
                     cp.execSync('which git')
                 }
-                gitIgnoredFiles = (cp.execSync('git check-ignore ' + files.join(' '), {cwd: baseDir})).toString().split('\n')
+                const command = 'git'
+                const args = ['check-ignore'].concat(files)
+                gitIgnoredFiles = (cp.spawnSync(command, args, {cwd: baseDir})).stdout.toString().split('\n')
             } catch (ex) { }
         }
         return files.filter(file => {
