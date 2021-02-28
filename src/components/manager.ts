@@ -261,7 +261,7 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 this.initiateFileWatcher()
                 this.bibWatcher.initiateBibWatcher()
-                this.parseFileAndSubs(this.rootFile, this.rootFile) // finish the parsing is required for subsequent refreshes.
+                this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
