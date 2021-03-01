@@ -208,7 +208,7 @@ export class Command implements IProvider {
 
     getExtraPkgs(languageId: string): string[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const extraPackages = Object.assign(configuration.get('intellisense.package.extra') as string[])
+        const extraPackages = Array.from(configuration.get('intellisense.package.extra') as string[])
         if (languageId === 'latex-expl3') {
             extraPackages.push('expl3')
         } else if (languageId === 'latex') {

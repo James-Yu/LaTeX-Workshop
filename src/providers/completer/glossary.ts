@@ -34,7 +34,7 @@ export class Glossary implements IProvider {
 
     private provide(result: RegExpMatchArray): vscode.CompletionItem[] {
         this.updateAll()
-        let suggestions
+        let suggestions: {[id: string]: Suggestion}
 
         if (result[1] && result[1].match(/^ac/i)) {
             suggestions = this.acronyms

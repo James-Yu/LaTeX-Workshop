@@ -12,7 +12,7 @@ export class TeXDoc {
     private runTexdoc(pkg: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const texdocPath = configuration.get('texdoc.path') as string
-        const texdocArgs = Object.assign([], configuration.get('texdoc.args') as string[])
+        const texdocArgs = Array.from(configuration.get('texdoc.args') as string[])
         texdocArgs.push(pkg)
         this.extension.logger.addLogMessage('Run texdoc.')
         this.extension.logger.addLogMessage(`texdoc path: ${texdocPath}`)
