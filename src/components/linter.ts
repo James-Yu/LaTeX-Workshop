@@ -140,7 +140,7 @@ export class Linter {
             return
         }
 
-        const filePath = this.extension.manager.rootFile
+        const projectFiles = this.extension.manager.getIncludedTeX()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
         const args = [...(configuration.get('chktex.args.active') as string[])]
@@ -150,7 +150,7 @@ export class Linter {
                 args.push('-l', rcPath)
             }
         }
-        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', filePath]
+        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', ...projectFiles]
 
         let stdout: string
         try {
