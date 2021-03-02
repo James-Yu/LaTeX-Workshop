@@ -66,9 +66,9 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
 async function main() {
     try {
         await runTestsOnEachFixture('rootfile')
-        // await runTestsOnEachFixture('build')
-        // await runTestsOnEachFixture('viewer')
-        // await runTestsOnEachFixture('completion')
+        await runTestsOnEachFixture('build')
+        await runTestsOnEachFixture('viewer')
+        await runTestsOnEachFixture('completion')
     } catch (err) {
         console.error('Failed to run tests')
         process.exit(1)
