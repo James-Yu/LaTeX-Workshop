@@ -16,7 +16,7 @@ export class Linter {
         this.extension = extension
     }
 
-    get rcPath() {
+    private get rcPath() {
         let rcPath: string
         // 0. root file folder
         const root = this.extension.manager.rootFile
@@ -98,7 +98,7 @@ export class Linter {
         }
     }
 
-    async lintActiveFile() {
+    private async lintActiveFile() {
         if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.getText()) {
             return
         }
@@ -133,14 +133,14 @@ export class Linter {
         this.extension.linterLogParser.parse(stdout, filePath, tabSize)
     }
 
-    async lintRootFile() {
+    private async lintRootFile() {
         this.extension.logger.addLogMessage('Linter for root file started.')
         if (this.extension.manager.rootFile === undefined) {
             this.extension.logger.addLogMessage('No root file found for linting.')
             return
         }
 
-        const filePath = this.extension.manager.rootFile
+        const projectFiles = this.extension.manager.getIncludedTeX()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('chktex.path') as string
         const args = [...(configuration.get('chktex.args.active') as string[])]
@@ -150,7 +150,7 @@ export class Linter {
                 args.push('-l', rcPath)
             }
         }
-        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', filePath]
+        const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', ...projectFiles]
 
         let stdout: string
         try {
@@ -201,7 +201,7 @@ export class Linter {
         return
     }
 
-    processWrapper(linterId: string, command: string, args: string[], options: SpawnOptionsWithoutStdio, stdin?: string): Promise<string> {
+    private processWrapper(linterId: string, command: string, args: string[], options: SpawnOptionsWithoutStdio, stdin?: string): Promise<string> {
         this.extension.logger.addLogMessage(`Linter for ${linterId} running command ${command} with arguments ${args}`)
         return new Promise((resolve, reject) => {
             if (this.currentProcesses[linterId]) {

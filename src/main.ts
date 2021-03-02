@@ -225,8 +225,8 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
-            extension.linter.lintActiveFileIfEnabled()
             extension.manager.findRoot()
+            extension.linter.lintRootFileIfEnabled()
         } else {
             isLaTeXActive = false
         }

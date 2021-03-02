@@ -377,8 +377,9 @@ export class Manager {
 
     /**
      * Return a string array which holds all imported tex files
-     * from the given `file`. If `file` is `undefined`, trace from the
-     * root file, or return empty array if the root file is `undefined`
+     * from the given `file` including the `file` itself.
+     * If `file` is `undefined`, trace from the * root file,
+     * or return empty array if the root file is `undefined`
      *
      * @param file The path of a LaTeX file
      */
