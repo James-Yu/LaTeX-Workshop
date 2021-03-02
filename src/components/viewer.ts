@@ -161,6 +161,7 @@ export class Viewer {
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, respectOutDir)
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
+            this.extension.logger.displayStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfFile}`, 'warning')
             return
         }
         if (this.extension.server.address === undefined) {
