@@ -1,5 +1,15 @@
 # Change Log
 
+## [8.16.1] - 2021-03-03
+
+### Fixed
+- (#2536) Check for duplicate labels.
+- (#2542) Highlight `pythontex` environments.
+- (#2543) Make `import` accept a relative path starting from the `rootDir`.
+- (#2547) Use `spawnSync` to prevent code injection.
+- (#2549) `LintRoot` should lint the whole LaTeX project.
+- (#2550) Raise a warning message when viewer cannot find PDF file.
+
 ## [8.16.0] - 2021-02-19
 
 ### Added
