@@ -8,14 +8,17 @@ var vscode;
     tikzInitialise();
 })();
 
-window.addEventListener('message', event => {
-    const data = event.data;
-    if (data.type === 'mathSymbols') {
-        data.mathSymbols.forEach(symbol => {
-            processMathSymbol(symbol);
-        })
+async function loadMathSymbols() {
+    const res = await fetch(mathSymbolsJsonUrl);
+    const mathSymbols = (await res.json()).mathSymbols;
+    for (const category in mathSymbols) {
+        for (const index in mathSymbols[category]) {
+            const symbol = mathSymbols[category][index];
+            processMathSymbol({category, ...symbol});
+        }
     }
-});
+}
+loadMathSymbols();
 
 function processMathSymbol(mathSymbol) {
     mathSymbol.searchText = getSearchText(mathSymbol);
