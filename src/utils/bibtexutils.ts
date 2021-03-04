@@ -91,8 +91,8 @@ function bibtexSortByField(fieldName: string, a: bibtexParser.Entry, b: bibtexPa
     }
 
     // Remove braces to sort properly
-    fieldA = fieldA.replace(/{|}/, '')
-    fieldB = fieldB.replace(/{|}/, '')
+    fieldA = fieldA.replace(/{|}/g, '')
+    fieldB = fieldB.replace(/{|}/g, '')
 
     return fieldA.localeCompare(fieldB)
 }
