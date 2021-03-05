@@ -83,16 +83,12 @@ export class TeXMathEnvFinder {
         return 'never return here'
     }
 
-    private removeComment(line: string): string {
-        return line.replace(/^((?:\\.|[^%])*).*$/, '$1')
-    }
-
     //  \begin{...}                \end{...}
     //             ^
     //             startPos1
     findEndPair(document: vscode.TextDocument | TextDocumentLike, endPat: RegExp, startPos1: vscode.Position): vscode.Position | undefined {
         const currentLine = document.lineAt(startPos1).text.substring(startPos1.character)
-        const l = this.removeComment(currentLine)
+        const l = utils.stripComments(currentLine)
         let m = l.match(endPat)
         if (m && m.index !== undefined) {
             return new vscode.Position(startPos1.line, startPos1.character + m.index + m[0].length)
@@ -100,7 +96,7 @@ export class TeXMathEnvFinder {
 
         let lineNum = startPos1.line + 1
         while (lineNum <= document.lineCount) {
-            m = this.removeComment(document.lineAt(lineNum).text).match(endPat)
+            m = utils.stripComments(document.lineAt(lineNum).text).match(endPat)
             if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
@@ -114,7 +110,7 @@ export class TeXMathEnvFinder {
     //  return pos                 endPos1
     private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit: number): vscode.Position | undefined {
         const currentLine = document.lineAt(endPos1).text.substr(0, endPos1.character)
-        let l = this.removeComment(currentLine)
+        let l = utils.stripComments(currentLine)
         let m = l.match(beginPat)
         if (m && m.index !== undefined) {
             return new vscode.Position(endPos1.line, m.index)
@@ -123,7 +119,7 @@ export class TeXMathEnvFinder {
         let i = 0
         while (lineNum >= 0 && i < limit) {
             l = document.lineAt(lineNum).text
-            l = this.removeComment(l)
+            l = utils.stripComments(l)
             m = l.match(beginPat)
             if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index)
