@@ -38,7 +38,7 @@ export function stripComments(text: string): string {
  * Note the number lines of the output matches the input
  */
 export function stripCommentsAndVerbatim(text: string): string {
-    let content = text.replace(/([^\\]|^)%.*$/gm, '$1')
+    let content = stripComments(text)
     content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*\1/, '')
     const verbatimPattern = '\\\\begin{verbatim}.*\\\\end{verbatim}'
     const reg = RegExp(verbatimPattern, 'gms')

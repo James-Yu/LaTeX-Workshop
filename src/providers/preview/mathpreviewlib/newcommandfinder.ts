@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
+import {stripComments} from '../../../utils/utils'
 import * as path from 'path'
 
 import type {Extension} from '../../../main'
@@ -95,7 +96,7 @@ export class NewCommandFinder {
         } catch (e) {
             commands = []
             const regex = /(\\(?:(?:(?:(?:re)?new|provide)command|DeclareMathOperator)(\*)?{\\[a-zA-Z]+}(?:\[[^[\]{}]*\])*{.*})|\\(?:def\\[a-zA-Z]+(?:#[0-9])*{.*})|\\DeclarePairedDelimiter{\\[a-zA-Z]+}{[^{}]*}{[^{}]*})/gm
-            const noCommentContent = content.replace(/([^\\]|^)%.*$/gm, '$1') // Strip comments
+            const noCommentContent = stripComments(content)
             let result: RegExpExecArray | null
             do {
                 result = regex.exec(noCommentContent)
