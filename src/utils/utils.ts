@@ -26,7 +26,7 @@ export function escapeRegExp(str: string) {
  * Note the number lines of the output matches the input
  */
 export function stripComments(text: string): string {
-    const reg = /(^|[^\\]|(?:(?<!\\)\\\\))%.*$/gm
+    const reg = /(^|[^\\]|(?:(?<!\\)(?:\\\\)+))%.*$/gm
     return text.replace(reg, '$1')
 }
 
