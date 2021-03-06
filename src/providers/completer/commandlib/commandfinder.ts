@@ -79,7 +79,7 @@ export class CommandFinder {
                 cmds.push(cmd)
                 cmdList.push(node.name)
             }
-            if (['newcommand', 'renewcommand', 'providecommand', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name) &&
+            if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
                 Array.isArray(node.args) && node.args.length > 0) {
                 const label = (node.args[0].content[0] as latexParser.Command).name
                 let args = ''
@@ -190,7 +190,7 @@ export class CommandFinder {
             cmdList.push(result[1])
         }
 
-        const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?))(?:{)?\\(\w+)/g
+        const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?(?:{)?\\(\w+)/g
         while (true) {
             const result = newCommandReg.exec(content)
             if (result === null) {
