@@ -148,7 +148,7 @@ export class CommandFinder {
     }
 
     getCmdFromContent(file: string, content: string): Suggestion[] {
-        const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
+        const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: Suggestion[] = []
         const cmdList: string[] = []
         let explSyntaxOn: boolean = false
@@ -190,7 +190,7 @@ export class CommandFinder {
             cmdList.push(result[1])
         }
 
-        const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?(?:{)?\\(\w+)/g
+        const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?{?\\(\w+)}?(?:\[([1-9])\])?/g
         while (true) {
             const result = newCommandReg.exec(content)
             if (result === null) {
@@ -200,11 +200,19 @@ export class CommandFinder {
                 continue
             }
 
+            let args = ''
+            if (result[2]) {
+                const numArgs = parseInt(result[2])
+                for (let i = 1; i <= numArgs; ++i) {
+                    args += '{${' + i + '}}'
+                }
+            }
+
             const cmd: Suggestion = {
                 label: `\\${result[1]}`,
                 kind: vscode.CompletionItemKind.Function,
                 documentation: '`' + result[1] + '`',
-                insertText: result[1],
+                insertText: new vscode.SnippetString(result[1] + args),
                 filterText: result[1],
                 package: 'user-defined'
             }
