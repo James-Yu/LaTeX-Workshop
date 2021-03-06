@@ -77,7 +77,6 @@ export class HoverPreviewOnRefProvider {
                 return `\\tag{${matchLabel}}`
             }
         })
-        newTex = newTex.replace(/^$/g, '')
         // To work around a bug of \tag with multi-line environments,
         // we have to put \tag after the environments.
         // See https://github.com/mathjax/MathJax/issues/1020
