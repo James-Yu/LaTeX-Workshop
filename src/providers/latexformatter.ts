@@ -104,30 +104,41 @@ export class LaTexFormatter {
         const fileExt = this.currentOs.fileExt
 
         return new Promise((resolve, _reject) => {
-            const checkCommand = checker + ' ' + this.formatter
-            this.extension.logger.addLogMessage(`Checking latexindent: ${checkCommand}`)
-            cp.exec(checkCommand, (err, stdout, stderr) => {
-                if (err) {
-                    this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr}`)
+            this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
+            const check1 = cp.spawn(checker, [this.formatter])
+            let stdout1: string = ''
+            let stderr1: string = ''
+            check1.stdout.setEncoding('utf8')
+            check1.stderr.setEncoding('utf8')
+            check1.stdout.on('data', d => { stdout1 += d})
+            check1.stderr.on('data', d => { stderr1 += d})
+            check1.on('close', code1 => {
+                if (code1) {
+                    this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr1}`)
                     this.formatter += fileExt
-                    const checkCommand1 = checker + ' ' + this.formatter
-                    this.extension.logger.addLogMessage(`Checking latexindent: ${checkCommand1}`)
-                    cp.exec(checkCommand1, (err1, stdout1, stderr1) => {
-                        if (err1) {
-                            this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr1}`)
+                    this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
+                    const check2 = cp.spawn(checker, [this.formatter])
+                    let stdout2: string = ''
+                    let stderr2: string = ''
+                    check2.stdout.setEncoding('utf8')
+                    check2.stderr.setEncoding('utf8')
+                    check2.stdout.on('data', d => { stdout2 += d})
+                    check2.stderr.on('data', d => { stderr2 += d})
+                    check2.on('close', code2 => {
+                        if (code2) {
                             resolve(false)
+                            this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr2}`)
                         } else {
-                            this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout1}`)
+                            this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout2}`)
                             resolve(true)
                         }
                     })
                 } else {
-                    this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout}`)
+                    this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout1}`)
                     resolve(true)
                 }
             })
         })
-
     }
 
     private format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
