@@ -71,6 +71,9 @@ If applicable, add screenshots to help explain your problem.
 
 
 ## Desktop [Required]
+
+Please write exact version numbers. Please don't write `latest` instead of exact numbers.
+
  - OS: [e.g. Windows 10]
  - VS Code version: [e.g. 1.41.0]
  - Extension version: [e.g. 8.5.0]
