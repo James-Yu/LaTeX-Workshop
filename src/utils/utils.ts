@@ -22,13 +22,11 @@ export function escapeRegExp(str: string) {
  * Remove comments
  *
  * @param text A string in which comments get removed.
- * @param commentSign The character starting a comment. Typically '%'.
  * @return the input text with comments removed.
  * Note the number lines of the output matches the input
  */
-export function stripComments(text: string, commentSign: string): string {
-    const pattern = '([^\\\\]|^)' + commentSign + '.*$'
-    const reg = RegExp(pattern, 'gm')
+export function stripComments(text: string): string {
+    const reg = /(^|[^\\]|(?:(?<!\\)(?:\\\\)+))%.*$/gm
     return text.replace(reg, '$1')
 }
 
@@ -40,7 +38,7 @@ export function stripComments(text: string, commentSign: string): string {
  * Note the number lines of the output matches the input
  */
 export function stripCommentsAndVerbatim(text: string): string {
-    let content = text.replace(/([^\\]|^)%.*$/gm, '$1')
+    let content = stripComments(text)
     content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*\1/, '')
     const verbatimPattern = '\\\\begin{verbatim}.*\\\\end{verbatim}'
     const reg = RegExp(verbatimPattern, 'gms')

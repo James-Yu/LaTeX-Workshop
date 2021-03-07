@@ -1,3 +1,5 @@
+import {stripComments} from '../../../utils/utils'
+
 export class MathPreviewUtils {
     addDummyCodeBlock(md: string): string {
         // We need a dummy code block in hover to make the width of hover larger.
@@ -21,8 +23,7 @@ export class MathPreviewUtils {
 
     mathjaxify(tex: string, envname: string, opt = { stripLabel: true }): string {
         // remove TeX comments
-        let s = tex.replace(/^\s*%.*\r?\n/mg, '')
-        s = s.replace(/^((?:\\.|[^%])*).*$/mg, '$1')
+        let s = stripComments(tex)
         // remove \label{...}
         if (opt.stripLabel) {
             s = s.replace(/\\label\{.*?\}/g, '')
