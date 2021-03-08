@@ -1,5 +1,7 @@
 # Contributing to LaTeX-Workshop
 
+Please notice that we can reject any kinds of pull requests.
+
 ## Quickstart
 
 ```bash
