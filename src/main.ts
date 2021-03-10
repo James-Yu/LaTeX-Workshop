@@ -171,9 +171,6 @@ export function activate(context: vscode.ExtensionContext) {
         if (extension.manager.hasTexId(e.languageId)) {
             obsoleteConfigCheck(extension)
             await extension.manager.findRoot()
-
-            extension.structureProvider.refresh()
-            extension.structureProvider.update()
         }
 
         if (e.languageId === 'pdf') {
