@@ -166,11 +166,11 @@ export function activate(context: vscode.ExtensionContext) {
         }
     }))
 
-    context.subscriptions.push(vscode.workspace.onDidOpenTextDocument((e: vscode.TextDocument) => {
+    context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
         // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
         if (extension.manager.hasTexId(e.languageId)) {
             obsoleteConfigCheck(extension)
-            extension.manager.findRoot()
+            await extension.manager.findRoot()
 
             extension.structureProvider.refresh()
             extension.structureProvider.update()
@@ -209,7 +209,7 @@ export function activate(context: vscode.ExtensionContext) {
     }))
 
     let isLaTeXActive = false
-    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+    context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
@@ -225,7 +225,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
-            extension.manager.findRoot()
+            await extension.manager.findRoot()
             extension.linter.lintRootFileIfEnabled()
         } else {
             isLaTeXActive = false
@@ -273,8 +273,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-snippet-view', new SnippetViewProvider(extension), {webviewOptions: {retainContextWhenHidden: true}}))
 
-    extension.manager.findRoot()
-    extension.linter.lintRootFileIfEnabled()
+    extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
     obsoleteConfigCheck(extension)
     conflictExtensionCheck()
     checkDeprecatedFeatures(extension)
