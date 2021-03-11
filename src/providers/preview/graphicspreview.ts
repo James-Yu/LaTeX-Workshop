@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as tmpFile from 'tmp'
 import type { Extension } from '../../main'
+import * as utils from '../../utils/utils'
 import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
 
@@ -63,7 +64,7 @@ export class GraphicsPreview {
         return name
     }
 
-    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | vscode.Uri | undefined> {
+    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
         const pageNumber = opts.pageNumber || 1
         if (!fs.existsSync(filePath)) {
             return undefined
@@ -80,7 +81,8 @@ export class GraphicsPreview {
             const svgPath = path.join(this.cacheDir, cacheFileName)
             const curStat = fs.statSync(filePath)
             if( cache && fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && cache.inode === curStat.ino ) {
-                return vscode.Uri.file(svgPath)
+                const xml = (await fs.promises.readFile(svgPath)).toString()
+                return utils.svgToDataUrl(xml)
             }
             this.pdfFileCacheMap.set(cacheKey, {cacheFileName, inode: curStat.ino})
             const svg0 = await this.pdfRenderer.renderToSVG(
@@ -89,7 +91,7 @@ export class GraphicsPreview {
             )
             const svg = this.setBackgroundColor(svg0)
             fs.writeFileSync(svgPath, svg)
-            return vscode.Uri.file(svgPath)
+            return utils.svgToDataUrl(svg)
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
             const dataUrl = await this.graphicsScaler.scale(filePath, opts)
