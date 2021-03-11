@@ -136,7 +136,6 @@ export class Locator {
             return
         }
         if (!pdfFile) {
-            this.extension.manager.findRoot()
             pdfFile = this.extension.manager.tex2pdf(rootFile)
         }
         if (vscode.window.activeTextEditor.document.lineCount === line &&
