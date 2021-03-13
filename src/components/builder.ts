@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as tmp from 'tmp'
@@ -220,8 +220,8 @@ export class Builder {
                 const fullOutDir = path.resolve(outDir, relativePath)
                 // To avoid issues when fullOutDir is the root dir
                 // Using fs.mkdir() on the root directory even with recursion will result in an error
-                if (! (fs.pathExistsSync(fullOutDir) && fs.statSync(fullOutDir).isDirectory())) {
-                    fs.ensureDirSync(fullOutDir)
+                if (! (fs.existsSync(fullOutDir) && fs.statSync(fullOutDir).isDirectory())) {
+                    fs.mkdirSync(fullOutDir, { recursive: true })
                 }
             })
             this.buildInitiator(rootFile, languageId, recipeName, releaseBuildMutex)
