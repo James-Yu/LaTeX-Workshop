@@ -450,6 +450,10 @@ export class Viewer {
                 // nothing to do
                 break
             }
+            case 'add_log': {
+                this.extension.logger.addLogMessage(data.message)
+                break
+            }
             default: {
                 this.extension.logger.addLogMessage(`Unknown websocket message: ${msg}`)
                 break

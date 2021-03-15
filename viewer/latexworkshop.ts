@@ -144,6 +144,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.socket.send(JSON.stringify(message))
     }
 
+    addLogMessage(message: string) {
+        this.send({ type: 'add_log', message})
+    }
+
     private getPdfViewerState(): PdfViewerState {
         const pack = {
             path: this.pdfFilePath,

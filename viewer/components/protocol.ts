@@ -50,6 +50,9 @@ export type ClientRequest = {
     page: number,
     textBeforeSelection: string,
     textAfterSelection: string
+} | {
+    type: 'add_log',
+    message: string
 }
 
 export type PanelManagerResponse = {
