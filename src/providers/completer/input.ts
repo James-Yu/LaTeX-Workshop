@@ -32,8 +32,8 @@ export class Input implements IProvider {
                     cp.execSync('which git')
                 }
                 const command = 'git'
-                const args = ['check-ignore', '-z', '--'].concat(files)
-                gitIgnoredFiles = (cp.spawnSync(command, args, {cwd: baseDir})).stdout.toString().split('\x00')
+                const args = ['check-ignore', '-z', '--stdin']
+                gitIgnoredFiles = (cp.spawnSync(command, args, {cwd: baseDir, input: files.join('\x00')})).stdout.toString().split('\x00')
             } catch (ex) { }
         }
         return files.filter(file => {
