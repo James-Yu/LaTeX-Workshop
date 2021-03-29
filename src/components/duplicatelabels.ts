@@ -78,11 +78,11 @@ export class DuplicateLabels {
                 if (duplicates.includes(ref.label)) {
                    if (! (cachedFile in diagsCollection)) {
                         diagsCollection[cachedFile] = []
-                        const range = ref.range instanceof vscode.Range ? ref.range : ref.range.inserting
-                        const diag = new vscode.Diagnostic(range, `Duplicate label ${ref.label}`, vscode.DiagnosticSeverity.Warning)
-                        diag.source = 'DuplicateLabels'
-                        diagsCollection[cachedFile].push(diag)
-                   }
+                    }
+                    const range = ref.range instanceof vscode.Range ? ref.range : ref.range.inserting
+                    const diag = new vscode.Diagnostic(range, `Duplicate label ${ref.label}`, vscode.DiagnosticSeverity.Warning)
+                    diag.source = 'DuplicateLabels'
+                    diagsCollection[cachedFile].push(diag)
                 }
             })
         })
