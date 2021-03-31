@@ -306,7 +306,7 @@ export class Locator {
         // kpathsea/SyncTeX follow symlinks.
         // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
         // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
-        for (const ed in this.extension.manager.cachedContent) {
+        for (const ed in this.extension.manager.cachedFilePaths) {
             try {
                 if (fs.realpathSync(record.input) === fs.realpathSync(ed)) {
                     record.input = ed

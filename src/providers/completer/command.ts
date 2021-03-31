@@ -129,7 +129,7 @@ export class Command implements IProvider {
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
-                const pkgs = this.extension.manager.cachedContent[tex].element.package
+                const pkgs = this.extension.manager.getCachedContent(tex).element.package
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
                         this.provideCmdInPkg(pkg, suggestions, cmdList)
@@ -141,7 +141,7 @@ export class Command implements IProvider {
 
         // Start working on commands in tex
         this.extension.manager.getIncludedTeX().forEach(tex => {
-            const cmds = this.extension.manager.cachedContent[tex].element.command
+            const cmds = this.extension.manager.getCachedContent(tex).element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
                     if (!cmdList.includes(this.getCmdName(cmd, true))) {
@@ -188,9 +188,9 @@ export class Command implements IProvider {
             }
         })
         if (nodes !== undefined) {
-            this.extension.manager.cachedContent[file].element.command = this.commandFinder.getCmdFromNodeArray(file, nodes)
+            this.extension.manager.getCachedContent(file).element.command = this.commandFinder.getCmdFromNodeArray(file, nodes)
         } else if (content !== undefined) {
-            this.extension.manager.cachedContent[file].element.command = this.commandFinder.getCmdFromContent(file, content)
+            this.extension.manager.getCachedContent(file).element.command = this.commandFinder.getCmdFromContent(file, content)
         }
     }
 
@@ -246,10 +246,10 @@ export class Command implements IProvider {
                     if (pkg === '') {
                         return
                     }
-                    let filePkgs = this.extension.manager.cachedContent[file].element.package
+                    let filePkgs = this.extension.manager.getCachedContent(file).element.package
                     if (!filePkgs) {
                         filePkgs = new Set<string>()
-                        this.extension.manager.cachedContent[file].element.package = filePkgs
+                        this.extension.manager.getCachedContent(file).element.package = filePkgs
                     }
                     filePkgs.add(pkg)
                 })
@@ -276,10 +276,18 @@ export class Command implements IProvider {
                             if (node.name === 'documentclass') {
                                 pkg = 'class-' + pkg
                             }
+<<<<<<< HEAD
                             let pkgs = this.extension.manager.cachedContent[file].element.package
                             if (!pkgs) {
                                 pkgs = new Set<string>()
                                 this.extension.manager.cachedContent[file].element.package = pkgs
+=======
+                            const pkgs = this.extension.manager.getCachedContent(file).element.package
+                            if (pkgs) {
+                                pkgs.push(pkg)
+                            } else {
+                                this.extension.manager.getCachedContent(file).element.package = [pkg]
+>>>>>>> Make cachedContent private.
                             }
                             pkgs.add(pkg)
                         })
