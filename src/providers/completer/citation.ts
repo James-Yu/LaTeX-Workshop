@@ -113,7 +113,7 @@ export class Citation implements IProvider {
             // Only happens when rootFile is undefined
             return Object.keys(this.bibEntries)
         }
-        if (!(file in this.extension.manager.cachedFilePaths)) {
+        if (!this.extension.manager.getCachedContent(file)) {
             return []
         }
         let bibs = this.extension.manager.getCachedContent(file).bibs

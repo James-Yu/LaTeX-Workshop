@@ -22,7 +22,7 @@ export class DuplicateLabels {
      * Compute the dictionary of labels holding their file and position
      */
     private computeDuplicates(file: string): string[] {
-        if (! (file in this.extension.manager.cachedFilePaths)) {
+        if (!this.extension.manager.getCachedContent(file)) {
             this.extension.logger.addLogMessage(`Cannot check for duplicate labels in a file not in manager: ${file}.`)
             return []
         }

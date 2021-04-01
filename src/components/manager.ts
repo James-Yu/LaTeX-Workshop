@@ -124,6 +124,10 @@ export class Manager {
         return this.cachedContent[filePath]
     }
 
+    private setCachedContent(filePath: string, cacheEntry: Content[string]) {
+        return this.cachedContent[filePath] = cacheEntry
+    }
+
     get cachedFilePaths() {
         return Object.keys(this.cachedContent)
     }
@@ -485,7 +489,7 @@ export class Manager {
             return this.cachedContent[cachedFile].content
         }
         const fileContent = utils.stripComments(fs.readFileSync(file).toString())
-        this.cachedContent[file] = {content: fileContent, element: {}, children: [], bibs: []}
+        this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
         return fileContent
     }
 

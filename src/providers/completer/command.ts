@@ -276,18 +276,10 @@ export class Command implements IProvider {
                             if (node.name === 'documentclass') {
                                 pkg = 'class-' + pkg
                             }
-<<<<<<< HEAD
-                            let pkgs = this.extension.manager.cachedContent[file].element.package
+                            let pkgs = this.extension.manager.getCachedContent(file).element.package
                             if (!pkgs) {
                                 pkgs = new Set<string>()
-                                this.extension.manager.cachedContent[file].element.package = pkgs
-=======
-                            const pkgs = this.extension.manager.getCachedContent(file).element.package
-                            if (pkgs) {
-                                pkgs.push(pkg)
-                            } else {
-                                this.extension.manager.getCachedContent(file).element.package = [pkg]
->>>>>>> Make cachedContent private.
+                                this.extension.manager.getCachedContent(file).element.package = pkgs
                             }
                             pkgs.add(pkg)
                         })
