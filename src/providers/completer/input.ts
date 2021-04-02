@@ -2,9 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs-extra'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
-import * as cp from 'child_process'
 import * as utils from '../../utils/utils'
-import * as os from 'os'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -21,29 +19,9 @@ export class Input implements IProvider {
 
     private filterIgnoredFiles(files: string[], baseDir: string): string[] {
         const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
-        let gitIgnoredFiles: string[] = []
-        /* Check .gitignore if needed */
-        if (vscode.workspace.getConfiguration('search', null).get('useIgnoreFiles')) {
-            try {
-                /* OSX pops up a dialog box to install `git` when it is not available.
-                The `which` command exits with a non-zero return code when `git` is not found,
-                which makes `execSync` throw an error */
-                if (os.platform() === 'darwin') {
-                    cp.execSync('which git')
-                }
-                const command = 'git'
-                const args = ['check-ignore'].concat(files)
-                gitIgnoredFiles = (cp.spawnSync(command, args, {cwd: baseDir})).stdout.toString().split('\n')
-            } catch (ex) { }
-        }
         return files.filter(file => {
             const filePath = path.resolve(baseDir, file)
-            /* Check if the file should be ignored */
-            if ((gitIgnoredFiles.includes(file)) || micromatch.any(filePath, excludeGlob, {basename: true})) {
-                return false
-            } else {
-                return true
-            }
+            return !micromatch.isMatch(filePath, excludeGlob, {basename: true})
         })
     }
 
