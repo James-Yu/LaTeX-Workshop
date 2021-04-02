@@ -94,7 +94,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 pattern += '|'
             }
         })
-        pattern += ')(?:\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}))'
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}))'
 
         // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'm')
@@ -153,10 +153,13 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // is it a section, a subsection, etc?
                 const heading = result[5]
                 const depth = this.sectionDepths[heading]
-                const title = utils.getLongestBalancedString(result[6])
-
-                sectionNumber = this.increment(sectionNumber, depth)
-                const newSection = new Section(this.formatSectionNumber(sectionNumber) + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
+                const title = utils.getLongestBalancedString(result[7])
+                let sectionNumberStr: string = ''
+                if (result[6] === undefined) {
+                    sectionNumber = this.increment(sectionNumber, depth)
+                    sectionNumberStr = this.formatSectionNumber(sectionNumber)
+                }
+                const newSection = new Section(sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
                 if (prevSection) {
                     prevSection.toLine = lineNumber - 1
                 }
