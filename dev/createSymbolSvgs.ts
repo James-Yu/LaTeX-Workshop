@@ -11,7 +11,7 @@ type IMathSymbol = {
     shrink?: boolean
 }
 
-let mathJax: any
+let mathJax: typeof import('mathjax-node')
 import('mathjax-node')
     .then(mj => {
         mathJax = mj
@@ -58,13 +58,7 @@ function loadSnippets() {
                                 svgNode: true
                             })
                             .then(
-                                (data: {
-                                    height: string,
-                                    speakText: string,
-                                    style: string,
-                                    svgNode: any,
-                                    width: string
-                                }) => {
+                                (data) => {
                                     let svg = data.svgNode.outerHTML
                                     svg = svg.replace(
                                         /<title([^>]*)>(.*)<\/title>/,

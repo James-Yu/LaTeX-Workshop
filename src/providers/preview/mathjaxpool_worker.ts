@@ -18,15 +18,17 @@ mj.config({
 })
 mj.start()
 
-function scaleSVG(data: any, scale: number) {
+function scaleSVG(data: mj.TypesetReturnType, scale: number) {
     const svgelm = data.svgNode
     // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
     const w0 = svgelm.getAttribute('width').match(/([.\d]+)(\w*)/)
     const h0 = svgelm.getAttribute('height').match(/([.\d]+)(\w*)/)
-    const w = scale * Number(w0[1])
-    const h = scale * Number(h0[1])
-    svgelm.setAttribute('width', w + w0[2])
-    svgelm.setAttribute('height', h + h0[2])
+    if (w0 && h0) {
+        const w = scale * Number(w0[1])
+        const h = scale * Number(h0[1])
+        svgelm.setAttribute('width', w + w0[2])
+        svgelm.setAttribute('height', h + h0[2])
+    }
 }
 
 function colorSVG(svg: string, color: string): string {
