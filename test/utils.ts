@@ -51,7 +51,7 @@ export async function printLogMessages() {
 
 export async function execCommandThenPick(
     command: () => Thenable<unknown>,
-    pick: () => Thenable<void | undefined>
+    pick: () => Thenable<undefined>
 ) {
     let done = false
     setTimeout(async () => {

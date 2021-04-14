@@ -121,6 +121,7 @@ suite('PDF Viewer test suite', () => {
                 async () => {
                     await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
                     await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+                    return undefined
                 }
             )
         })
@@ -130,6 +131,7 @@ suite('PDF Viewer test suite', () => {
             async () => {
                 await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
                 await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+                return undefined
             }
         )
         const results = await getViewerStatus(pdfFilePath)

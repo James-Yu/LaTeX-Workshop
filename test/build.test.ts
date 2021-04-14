@@ -588,6 +588,7 @@ suite('Build TeX files test suite', () => {
                 async () => {
                     await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')
                     await vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
+                    return undefined
                 }
             )
         })

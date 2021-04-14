@@ -4,6 +4,12 @@ import * as fs from 'fs-extra'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 
+type ClassItemEntry = {
+    command: string,
+    detail: string,
+    documentation: string
+}
+
 export class DocumentClass implements IProvider {
     private readonly extension: Extension
     private readonly suggestions: vscode.CompletionItem[] = []
@@ -12,7 +18,7 @@ export class DocumentClass implements IProvider {
         this.extension = extension
     }
 
-    initialize(classes: {[key: string]: {command: string, detail: string, documentation: string}}) {
+    initialize(classes: {[key: string]: ClassItemEntry}) {
         Object.keys(classes).forEach(key => {
             const item = classes[key]
             const cl = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
@@ -28,7 +34,7 @@ export class DocumentClass implements IProvider {
 
     private provide(): vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
-            const allClasses = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/classnames.json`).toString())
+            const allClasses: {[key: string]: ClassItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/classnames.json`).toString())
             this.initialize(allClasses)
         }
         return this.suggestions

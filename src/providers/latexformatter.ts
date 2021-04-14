@@ -178,8 +178,8 @@ export class LaTexFormatter {
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
             const stderrBuffer: string[] = []
-            worker.stdout.on('data', chunk => stdoutBuffer.push(chunk.toString()))
-            worker.stderr.on('data', chunk => stderrBuffer.push(chunk.toString()))
+            worker.stdout.on('data', (chunk: Buffer | string) => stdoutBuffer.push(chunk.toString()))
+            worker.stderr.on('data', (chunk: Buffer | string) => stderrBuffer.push(chunk.toString()))
             worker.on('error', err => {
                 this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)

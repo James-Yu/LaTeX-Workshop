@@ -4,6 +4,12 @@ import * as fs from 'fs-extra'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 
+type PackageItemEntry = {
+    command: string,
+    detail: string,
+    documentation: string
+}
+
 export class Package implements IProvider {
     private readonly extension: Extension
     private readonly suggestions: vscode.CompletionItem[] = []
@@ -12,7 +18,7 @@ export class Package implements IProvider {
         this.extension = extension
     }
 
-    initialize(defaultPackages: {[key: string]: {command: string, detail: string, documentation: string}}) {
+    initialize(defaultPackages: {[key: string]: PackageItemEntry}) {
         Object.keys(defaultPackages).forEach(key => {
             const item = defaultPackages[key]
             const pack = new vscode.CompletionItem(item.command, vscode.CompletionItemKind.Module)
@@ -28,7 +34,7 @@ export class Package implements IProvider {
 
     private provide(): vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
-            const pkgs = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString())
+            const pkgs: {[key: string]: PackageItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString())
             this.initialize(pkgs)
         }
         return this.suggestions

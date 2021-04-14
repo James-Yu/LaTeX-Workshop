@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
 const duplicateForEmbedding = require('textmate-bailout')
 const request = require('sync-request')
 const fs = require('fs')
