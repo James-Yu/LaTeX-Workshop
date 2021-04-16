@@ -209,7 +209,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.send(pack)
         })
         this.socket.addEventListener('message', (event: MessageEvent<string>) => {
-            const data: ServerResponse = JSON.parse(event.data)
+            const data = JSON.parse(event.data) as ServerResponse
             switch (data.type) {
                 case 'synctex': {
                     // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
@@ -509,7 +509,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private async startReceivingPanelManagerResponse() {
         await this.pdfViewerStarted
         window.addEventListener('message', (e) => {
-            const data: PanelManagerResponse = e.data
+            const data = e.data as PanelManagerResponse
             if (!data.type) {
                 console.log('LateXWorkshopPdfViewer received a message of unknown type: ' + JSON.stringify(data))
                 return

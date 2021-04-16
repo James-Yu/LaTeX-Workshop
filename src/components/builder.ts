@@ -501,7 +501,7 @@ export class Builder {
         /**
          * Use JSON.parse and JSON.stringify for a deep copy.
          */
-        steps = JSON.parse(JSON.stringify(steps))
+        steps = JSON.parse(JSON.stringify(steps)) as StepCommand[]
 
         const docker = configuration.get('docker.enabled')
         steps.forEach(step => {

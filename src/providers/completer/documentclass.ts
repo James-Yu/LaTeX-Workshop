@@ -4,6 +4,8 @@ import * as fs from 'fs-extra'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 
+type DataClassnamesJsonType = typeof import('../../../data/classnames.json')
+
 type ClassItemEntry = {
     command: string,
     detail: string,
@@ -34,7 +36,7 @@ export class DocumentClass implements IProvider {
 
     private provide(): vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
-            const allClasses: {[key: string]: ClassItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/classnames.json`).toString())
+            const allClasses: {[key: string]: ClassItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/classnames.json`).toString()) as DataClassnamesJsonType
             this.initialize(allClasses)
         }
         return this.suggestions

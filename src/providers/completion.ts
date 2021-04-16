@@ -15,6 +15,10 @@ import {Input} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 
+type DataEnvsJsonType = typeof import('../../data/environments.json')
+type DataCmdsJsonType = typeof import('../../data/commands.json')
+type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols_cmd.json')
+
 export class Completer implements vscode.CompletionItemProvider {
     private readonly extension: Extension
     readonly citation: Citation
@@ -47,9 +51,9 @@ export class Completer implements vscode.CompletionItemProvider {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
         const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`, {encoding: 'utf8'})
-        const env: { [key: string]: EnvItemEntry } = JSON.parse(defaultEnvs)
-        const cmds = JSON.parse(defaultCommands)
-        const maths: { [key: string]: CmdItemEntry } = JSON.parse(defaultLaTeXMathSymbols)
+        const env: { [key: string]: EnvItemEntry } = JSON.parse(defaultEnvs) as DataEnvsJsonType
+        const cmds = JSON.parse(defaultCommands) as DataCmdsJsonType
+        const maths: { [key: string]: CmdItemEntry } = JSON.parse(defaultLaTeXMathSymbols) as DataLatexMathSymbolsJsonType
         for (const key of Object.keys(maths)) {
             if (key.match(/\{.*?\}/)) {
                 const ent = maths[key]
@@ -99,7 +103,7 @@ export class Completer implements vscode.CompletionItemProvider {
             if (typeof item.documentation !== 'string') {
                 return item
             }
-            const data: ReferenceDocType = JSON.parse(item.documentation)
+            const data = JSON.parse(item.documentation) as ReferenceDocType
             const sug = {
                 file: data.file,
                 position: new vscode.Position(data.position.line, data.position.character)

@@ -87,7 +87,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 
 export class Viewer {
     private readonly extension: Extension
-    private readonly webviewPanels: Map<string, Set<PdfViewerPanel>> = new Map()
+    private readonly webviewPanels = new Map<string, Set<PdfViewerPanel>>()
     readonly clients: {[key: string]: Set<Client>} = {}
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
 
@@ -374,7 +374,7 @@ export class Viewer {
      * @param msg A message from the viewer in JSON fromat.
      */
     handler(websocket: ws, msg: string) {
-        const data: ClientRequest = JSON.parse(msg)
+        const data = JSON.parse(msg) as ClientRequest
         if (data.type !== 'ping') {
             this.extension.logger.addLogMessage(`Handle data type: ${data.type}`)
         }

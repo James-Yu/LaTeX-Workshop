@@ -1,6 +1,8 @@
 import { readFileSync, writeFileSync } from 'fs'
 import * as path from 'path'
 
+type SnippetPanelJsonType = typeof import('../resources/snippetpanel/snippetpanel.json')
+
 type IMathSymbol = {
     name: string,
     keywords?: string,
@@ -42,7 +44,7 @@ function loadSnippets() {
         mathSymbols: {
             [category: string]: IMathSymbol[]
         }
-    } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' }))
+    } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' })) as SnippetPanelJsonType
 
     const mathSymbolPromises: Promise<void>[] = []
     for (const category in snippets.mathSymbols) {

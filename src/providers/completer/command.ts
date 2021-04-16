@@ -8,9 +8,11 @@ import type {IProvider} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 
+type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
+
 export interface CmdItemEntry {
     command: string, // frame
-    snippet: string,
+    snippet?: string,
     package?: string,
     label?: string, // \\begin{frame} ... \\end{frame}
     detail?: string,
@@ -106,7 +108,7 @@ export class Command implements IProvider {
         // Insert unimathsymbols
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
             if (this.defaultSymbols.length === 0) {
-                const symbols: { [key: string]: CmdItemEntry } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
+                const symbols: { [key: string]: CmdItemEntry } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
                 Object.keys(symbols).forEach(key => {
                     this.defaultSymbols.push(this.entryCmdToCompletion(key, symbols[key]))
                 })
@@ -343,7 +345,7 @@ export class Command implements IProvider {
             this.packageCmds[pkg] = []
             if (filePath !== undefined) {
                 try {
-                    const cmds: {[key: string]: CmdItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
+                    const cmds = JSON.parse(fs.readFileSync(filePath).toString()) as {[key: string]: CmdItemEntry}
                     Object.keys(cmds).forEach(key => {
                         if (isCmdItemEntry(cmds[key])) {
                             this.packageCmds[pkg].push(this.entryCmdToCompletion(key, cmds[key]))
