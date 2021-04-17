@@ -4,6 +4,8 @@ import * as fs from 'fs-extra'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 
+type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
+
 type PackageItemEntry = {
     command: string,
     detail: string,
@@ -34,7 +36,7 @@ export class Package implements IProvider {
 
     private provide(): vscode.CompletionItem[] {
         if (this.suggestions.length === 0) {
-            const pkgs: {[key: string]: PackageItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString())
+            const pkgs: {[key: string]: PackageItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/packagenames.json`).toString()) as DataPackagesJsonType
             this.initialize(pkgs)
         }
         return this.suggestions

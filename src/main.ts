@@ -40,7 +40,7 @@ import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetViewProvider} from './providers/snippetview'
 
-import {checkDeprecatedFeatures, newVersionMessage, obsoleteConfigCheck} from './config'
+import {checkDeprecatedFeatures, obsoleteConfigCheck} from './config'
 
 function conflictExtensionCheck() {
     function check(extensionID: string, name: string, suggestion: string) {
@@ -274,7 +274,6 @@ export function activate(context: vscode.ExtensionContext) {
     obsoleteConfigCheck(extension)
     conflictExtensionCheck()
     checkDeprecatedFeatures(extension)
-    newVersionMessage(context.extensionPath, extension)
 
     // If VS Code started with PDF files, we must explicitly execute `commander.pdf` for the PDF files.
     vscode.window.visibleTextEditors.forEach(editor => {

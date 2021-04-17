@@ -5,6 +5,7 @@ import * as path from 'path'
 import type {Extension} from './main'
 import {getLongestBalancedString} from './utils/utils'
 import {TeXDoc} from './components/texdoc'
+type SnippetsLatexJsonType = typeof import('../snippets/latex.json')
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -56,7 +57,7 @@ export class Commander {
         fs.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
             .then(data => {extensionSnippets = data.toString()})
             .then(() => {
-                const snipObj: { [key: string]: { body: string } } = JSON.parse(extensionSnippets)
+                const snipObj: { [key: string]: { body: string } } = JSON.parse(extensionSnippets) as SnippetsLatexJsonType
                 Object.keys(snipObj).forEach(key => {
                     this.snippets[key] = new vscode.SnippetString(snipObj[key]['body'])
                 })

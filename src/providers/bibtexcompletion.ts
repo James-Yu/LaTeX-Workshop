@@ -4,6 +4,9 @@ import * as fs from 'fs-extra'
 import * as bibtexUtils from '../utils/bibtexutils'
 import type {Extension} from '../main'
 
+type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
+type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entries.json')
+
 export class BibtexCompleter implements vscode.CompletionItemProvider {
     private readonly extension: Extension
     private readonly entryItems: vscode.CompletionItem[] = []
@@ -20,8 +23,8 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
     }
 
     private loadDefaultItems() {
-        const entries: { [key: string]: string[] } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-entries.json`, {encoding: 'utf8'}))
-        const optFields: { [key: string]: string[] } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-optional-entries.json`, {encoding: 'utf8'}))
+        const entries: { [key: string]: string[] } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-entries.json`, {encoding: 'utf8'})) as DataBibtexJsonType
+        const optFields: { [key: string]: string[] } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-optional-entries.json`, {encoding: 'utf8'})) as DataBibtexOptionalJsonType
         const entriesReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.bibtexJSON.replace') as {[key: string]: string[]}
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']

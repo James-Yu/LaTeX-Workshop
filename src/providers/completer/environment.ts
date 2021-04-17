@@ -6,6 +6,8 @@ import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
 
+type DataEnvsJsonType = typeof import('../../../data/environments.json')
+
 export interface EnvItemEntry {
     name: string, // Name of the environment, what comes inside \begin{...}
     snippet?: string, // To be inserted after \begin{..}
@@ -233,7 +235,7 @@ export class Environment implements IProvider {
             return {}
         }
         try {
-            const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString())
+            const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString()) as DataEnvsJsonType
             Object.keys(envs).forEach(key => {
                 if (! isEnvItemEntry(envs[key])) {
                     this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)

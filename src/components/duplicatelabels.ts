@@ -26,7 +26,7 @@ export class DuplicateLabels {
             this.extension.logger.addLogMessage(`Cannot check for duplicate labels in a file not in manager: ${file}.`)
             return []
         }
-        const labelsCount: Map<string, number> = new Map()
+        const labelsCount = new Map<string, number>()
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.manager.cachedContent[cachedFile].element.reference
             if (cachedRefs === undefined) {

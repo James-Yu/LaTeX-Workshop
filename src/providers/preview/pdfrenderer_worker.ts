@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 import * as domstubs from '@tamuratak/domstubs'
 import * as fs from 'fs'
