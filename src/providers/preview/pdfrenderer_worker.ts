@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-call */
 import * as domstubs from '@tamuratak/domstubs'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -47,7 +48,7 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
     const svgGfx = new pdfjsLib.SVGGraphics(page.commonObjs, page.objs)
     svgGfx.embedFonts = true
     const svg = await svgGfx.getSVG(opList, viewport)
-    return svg.toString()
+    return svg.toString() as string
 }
 
 async function getNumPages(pdfPath: string): Promise<number> {

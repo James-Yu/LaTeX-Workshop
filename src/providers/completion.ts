@@ -6,7 +6,9 @@ import type {IProvider} from './completer/interface'
 import {Citation} from './completer/citation'
 import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'
+import type {CmdItemEntry} from './completer/command'
 import {Environment} from './completer/environment'
+import type {EnvItemEntry} from './completer/environment'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input} from './completer/input'
@@ -45,9 +47,9 @@ export class Completer implements vscode.CompletionItemProvider {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
         const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`, {encoding: 'utf8'})
-        const env = JSON.parse(defaultEnvs)
+        const env: { [key: string]: EnvItemEntry } = JSON.parse(defaultEnvs)
         const cmds = JSON.parse(defaultCommands)
-        const maths = JSON.parse(defaultLaTeXMathSymbols)
+        const maths: { [key: string]: CmdItemEntry } = JSON.parse(defaultLaTeXMathSymbols)
         for (const key of Object.keys(maths)) {
             if (key.match(/\{.*?\}/)) {
                 const ent = maths[key]

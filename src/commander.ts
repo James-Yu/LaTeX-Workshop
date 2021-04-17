@@ -56,7 +56,7 @@ export class Commander {
         fs.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
             .then(data => {extensionSnippets = data.toString()})
             .then(() => {
-                const snipObj = JSON.parse(extensionSnippets)
+                const snipObj: { [key: string]: { body: string } } = JSON.parse(extensionSnippets)
                 Object.keys(snipObj).forEach(key => {
                     this.snippets[key] = new vscode.SnippetString(snipObj[key]['body'])
                 })

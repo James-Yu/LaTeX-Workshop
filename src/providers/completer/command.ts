@@ -8,7 +8,7 @@ import type {IProvider} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 
-interface CmdItemEntry {
+export interface CmdItemEntry {
     command: string, // frame
     snippet: string,
     package?: string,
@@ -106,7 +106,7 @@ export class Command implements IProvider {
         // Insert unimathsymbols
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
             if (this.defaultSymbols.length === 0) {
-                const symbols = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
+                const symbols: { [key: string]: CmdItemEntry } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString())
                 Object.keys(symbols).forEach(key => {
                     this.defaultSymbols.push(this.entryCmdToCompletion(key, symbols[key]))
                 })

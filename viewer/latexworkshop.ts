@@ -208,7 +208,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             this.send(pack)
         })
-        this.socket.addEventListener('message', (event) => {
+        this.socket.addEventListener('message', (event: MessageEvent<string>) => {
             const data: ServerResponse = JSON.parse(event.data)
             switch (data.type) {
                 case 'synctex': {

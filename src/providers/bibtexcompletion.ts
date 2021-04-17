@@ -20,8 +20,8 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
     }
 
     private loadDefaultItems() {
-        const entries = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-entries.json`, {encoding: 'utf8'}))
-        const optFields = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-optional-entries.json`, {encoding: 'utf8'}))
+        const entries: { [key: string]: string[] } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-entries.json`, {encoding: 'utf8'}))
+        const optFields: { [key: string]: string[] } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/bibtex-optional-entries.json`, {encoding: 'utf8'}))
         const entriesReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.bibtexJSON.replace') as {[key: string]: string[]}
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
