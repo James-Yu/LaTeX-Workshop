@@ -8,9 +8,11 @@ import type {Extension} from '../../main'
 
 export class PathUtils {
     private readonly extension: Extension
+    readonly inputRegex: RegExp
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.inputRegex = /(?:(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)})|(?:<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=)/g
     }
 
     private get rootDir() {

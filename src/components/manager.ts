@@ -528,7 +528,7 @@ export class Manager {
         // Update children of current file
         if (this.cachedContent[file] === undefined) {
             this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
-            const inputReg = /(?:(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)})|(?:<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=)/g
+            const inputReg = this.pathUtils.inputRegex
             while (true) {
                 const result = inputReg.exec(content)
                 if (!result) {
@@ -572,7 +572,7 @@ export class Manager {
     }
 
     private parseInputFiles(content: string, currentFile: string, baseFile: string) {
-        const inputReg = /(?:(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)})|(?:<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=)/g
+        const inputReg = this.pathUtils.inputRegex
         while (true) {
             const result = inputReg.exec(content)
             if (!result) {
