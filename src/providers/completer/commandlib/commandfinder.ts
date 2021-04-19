@@ -3,6 +3,7 @@ import * as fs from 'fs-extra'
 import {latexParser} from 'latex-utensils'
 
 import type {Suggestion} from '../command'
+import type {Extension} from '../../../main'
 
 
 export function isTriggerSuggestNeeded(name: string): boolean {
@@ -34,7 +35,12 @@ export function resolveCmdEnvFile(name: string, dataDir: string): string | undef
 }
 
 export class CommandFinder {
+    private readonly extension: Extension
     definedCmds: {[key: string]: {file: string, location: vscode.Location}} = {}
+
+    constructor(extension: Extension) {
+        this.extension = extension
+    }
 
     getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdList: string[] = []): Suggestion[] {
         let cmds: Suggestion[] = []
@@ -71,7 +77,7 @@ export class CommandFinder {
                     documentation: '`' + node.name + '`',
                     insertText: new vscode.SnippetString(node.name + this.getArgsFromNode(node)),
                     filterText: node.name,
-                    package: ''
+                    package: this.whichPackageProvidesCommand(node.name)
                 }
                 if (isTriggerSuggestNeeded(node.name)) {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
@@ -181,7 +187,7 @@ export class CommandFinder {
                 documentation: '`' + result[1] + '`',
                 insertText: new vscode.SnippetString(this.getArgsFromRegResult(result)),
                 filterText: result[1],
-                package: ''
+                package: this.whichPackageProvidesCommand(result[1])
             }
             if (isTriggerSuggestNeeded(result[1])) {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
@@ -243,6 +249,37 @@ export class CommandFinder {
             text += '{${3}}'
         }
         return text
+    }
+
+    /**
+     * Return the name of the package providing cmdName among all the packages
+     * including in the rootFile. If no package matches, return ''
+     *
+     * @param cmdName the name of a command (without the leading '\')
+     */
+    private whichPackageProvidesCommand(cmdName: string): string {
+        if (this.extension.manager.rootFile !== undefined) {
+            for (const file of this.extension.manager.getIncludedTeX()) {
+                const cachedPkgs = this.extension.manager.cachedContent[file].element.package
+                if (cachedPkgs === undefined) {
+                    continue
+                }
+                for (const pkg of cachedPkgs) {
+                    const commands: vscode.CompletionItem[] = []
+                    this.extension.completer.command.provideCmdInPkg(pkg, commands, [])
+                    for (const cmd of commands) {
+                        const label = cmd.label.slice(1)
+                        if (label.startsWith(cmdName) &&
+                            ((label.length === cmdName.length) ||
+                            (label.charAt(cmdName.length) === '[') ||
+                            (label.charAt(cmdName.length) === '{'))) {
+                            return pkg
+                        }
+                    }
+                }
+            }
+        }
+        return ''
     }
 
 }

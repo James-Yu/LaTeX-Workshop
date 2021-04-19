@@ -42,7 +42,7 @@ export class Command implements IProvider {
     constructor(extension: Extension, environment: Environment) {
         this.extension = extension
         this.environment = environment
-        this.commandFinder = new CommandFinder()
+        this.commandFinder = new CommandFinder(extension)
         this.surroundCommand = new SurroundCommand()
     }
 
@@ -179,6 +179,8 @@ export class Command implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
+        // First, we must update the package list
+        this.updatePkg(file, nodes, content)
         // Remove newcommand cmds, because they will be re-insert in the next step
         Object.keys(this.definedCmds).forEach(cmd => {
             if (this.definedCmds[cmd].file === file) {
@@ -228,7 +230,7 @@ export class Command implements IProvider {
      * @param nodes AST of a LaTeX file.
      * @param content The content of a LaTeX file.
      */
-    updatePkg(file: string, nodes?: latexParser.Node[], content?: string) {
+    private updatePkg(file: string, nodes?: latexParser.Node[], content?: string) {
         if (nodes !== undefined) {
             this.updatePkgWithNodeArray(file, nodes)
         } else if (content !== undefined) {
@@ -336,7 +338,7 @@ export class Command implements IProvider {
         return suggestion
     }
 
-    private provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
+    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
