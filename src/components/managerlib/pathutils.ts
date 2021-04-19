@@ -23,12 +23,18 @@ export class PathUtils {
 
     parseInputFilePath(regResult: RegExpExecArray, currentFile: string, rootFile: string): string | undefined {
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
-        if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
-            return utils.resolveFile([path.dirname(currentFile)], path.join(regResult[1], regResult[2]))
-        } else if (regResult[0].startsWith('\\import') || regResult[0].startsWith('\\inputfrom') || regResult[0].startsWith('\\includefrom')) {
-            return utils.resolveFile([regResult[1], path.join(path.dirname(rootFile), regResult[1])], regResult[2])
+        if (regResult[3]) {
+            /* Case <<child='...'>>= for Rnw files */
+            return utils.resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], regResult[3])
         } else {
-            return utils.resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], regResult[2])
+            /* Standard LaTeX input case */
+            if (regResult[0].startsWith('\\subimport') || regResult[0].startsWith('\\subinputfrom') || regResult[0].startsWith('\\subincludefrom')) {
+                return utils.resolveFile([path.dirname(currentFile)], path.join(regResult[1], regResult[2]))
+            } else if (regResult[0].startsWith('\\import') || regResult[0].startsWith('\\inputfrom') || regResult[0].startsWith('\\includefrom')) {
+                return utils.resolveFile([regResult[1], path.join(path.dirname(rootFile), regResult[1])], regResult[2])
+            } else {
+                return utils.resolveFile([path.dirname(currentFile), path.dirname(rootFile), ...texDirs], regResult[2])
+            }
         }
     }
 
