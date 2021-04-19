@@ -16,7 +16,7 @@ export class FinderUtils {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
-        const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.tex)$)/m
+        const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
         let content = vscode.window.activeTextEditor.document.getText()
 
         let result = content.match(regex)
