@@ -529,8 +529,12 @@ export class Manager {
         if (this.cachedContent[file] === undefined) {
             this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
             const inputReg = this.pathUtils.inputRegex
+            const childReg = this.pathUtils.childRegex
             while (true) {
-                const result = inputReg.exec(content)
+                let result = inputReg.exec(content)
+                if (!result) {
+                    result = childReg.exec(content)
+                }
                 if (!result) {
                     break
                 }

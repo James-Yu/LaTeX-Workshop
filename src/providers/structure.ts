@@ -91,16 +91,18 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         // The first part of pattern must match this.pathUtils.inputRegex so that
         // we can use this.pathUtils.parseInputFilePath to analyse the regex match.
-        let pattern = '(?:(?:\\\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|(?:<<(?:[^,]*,)*\\s*child=\'([^\']*)\'\\s*(?:,[^,]*)*>>=)|(?:\\\\('
+        let pattern = '\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
                 pattern += '|'
             }
         })
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}'
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
 
-        const inputReg = RegExp(pattern, 'm')
+        const childReg = this.pathUtils.childRegex
+        const inputReg = this.pathUtils.inputRegex
+        const headingReg = RegExp(pattern, 'm')
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
         const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
         const labelReg = /\\label{([^}]*)}/m
@@ -136,30 +138,41 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 continue
             }
 
-            result = inputReg.exec(line)
+            // inputs part
+            if (imports) {
+                result = inputReg.exec(line)
+                if (!result) {
+                    result = childReg.exec(line)
+                }
+                if (result) {
+                    // zoom into this file
+                    // resolve the path
+                    const inputFilePath: string | undefined = this.pathUtils.parseInputFilePath(result, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
+                    if (!inputFilePath) {
+                        this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
+                        continue
+                    }
+                    // Avoid circular inclusion
+                    if (inputFilePath === filePath || newFileStack.includes(inputFilePath)) {
+                        continue
+                    }
+                    if (prevSection) {
+                        prevSection.subfiles.push(inputFilePath)
+                    }
+                    this.buildModel(inputFilePath, newFileStack, rootStack, children, sectionNumber)
+                    continue
+                }
+            }
 
-            // if it's a section elements 4 = sectioning name
-            // element 5 = * if present.
-            // element 6 = the title
-
-            // if it's an input, include, or subfile:
-            // element 2 is the file (needs to be resolved)
-            // element 0 starts with \input, include, or subfile
-
-            // if it's a subimport or an import
-            // element 0 starts with \subimport or \import
-            // element 1 is the directory part
-            // element 2 is the file
-
-            // if it's <<child='xxxx'>>=
-            // element 3 is the file name of the child (needs to be resolved)
-            if (result && result[4] && result[4] in this.sectionDepths) {
+            // Headings part
+            result = headingReg.exec(line)
+            if (result) {
                 // is it a section, a subsection, etc?
-                const heading = result[4]
+                const heading = result[1]
                 const depth = this.sectionDepths[heading]
-                const title = utils.getLongestBalancedString(result[6])
+                const title = utils.getLongestBalancedString(result[3])
                 let sectionNumberStr: string = ''
-                if (result[5] === undefined) {
+                if (result[2] === undefined) {
                     sectionNumber = this.increment(sectionNumber, depth)
                     sectionNumberStr = this.formatSectionNumber(sectionNumber)
                 }
@@ -187,23 +200,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     currentRoot().children.push(newSection)
                 }
                 rootStack.push(newSection)
-
-            } else if (imports && result && result[3]) {
-                // zoom into this file
-                // resolve the path
-                const inputFilePath: string | undefined = this.pathUtils.parseInputFilePath(result, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
-                if (!inputFilePath) {
-                    this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                    continue
-                }
-                // Avoid circular inclusion
-                if (inputFilePath === filePath || newFileStack.includes(inputFilePath)) {
-                    continue
-                }
-                if (prevSection) {
-                    prevSection.subfiles.push(inputFilePath)
-                }
-                this.buildModel(inputFilePath, newFileStack, rootStack, children, sectionNumber)
             }
 
             // Labels part
