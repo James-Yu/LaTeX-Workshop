@@ -822,7 +822,6 @@ export class Manager {
             this.extension.completer.glossary.update(file, nodes)
             this.extension.completer.environment.update(file, nodes, lines)
             this.extension.completer.command.update(file, nodes)
-            this.extension.completer.command.updatePkg(file, nodes)
         } else {
             this.extension.logger.addLogMessage(`Cannot parse a TeX file: ${file}`)
             this.extension.logger.addLogMessage('Fall back to regex-based completion.')
@@ -832,7 +831,6 @@ export class Manager {
             this.extension.completer.glossary.update(file, undefined, contentNoComment)
             this.extension.completer.environment.update(file, undefined, undefined, contentNoComment)
             this.extension.completer.command.update(file, undefined, contentNoComment)
-            this.extension.completer.command.updatePkg(file, undefined, contentNoComment)
         }
         this.extension.manager.intellisenseWatcher.emitUpdate(file)
     }
