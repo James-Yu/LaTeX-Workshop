@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import * as path from 'path'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
+import {PathUtils} from '../components/managerlib/pathutils'
 
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
@@ -15,6 +15,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private readonly showLabels: boolean
     private readonly showFloats: boolean
     private readonly showNumbers: boolean
+    private readonly pathUtils: PathUtils
     public root: string = ''
 
     // our data source is a set multi-rooted set of trees
@@ -32,6 +33,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.showLabels = configuration.get('view.outline.labels.enabled') as boolean
         this.showFloats = configuration.get('view.outline.floats.enabled') as boolean
         this.showNumbers = configuration.get('view.outline.numbers.enabled') as boolean
+        this.pathUtils = new PathUtils(extension)
     }
 
     refresh(): Section[] {
@@ -87,16 +89,17 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '(?:((?:\\\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?import\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        // The first part of pattern must match this.pathUtils.inputRegex so that
+        // we can use this.pathUtils.parseInputFilePath to analyse the regex match.
+        let pattern = '(?:(?:\\\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|(?:<<(?:[^,]*,)*\\s*child=\'([^\']*)\'\\s*(?:,[^,]*)*>>=)|(?:\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
                 pattern += '|'
             }
         })
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}))'
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}'
 
-        // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
         const inputReg = RegExp(pattern, 'm')
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
         const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
@@ -135,27 +138,28 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
             result = inputReg.exec(line)
 
-            // if it's a section elements 5 = section
-            // element 6 = title.
-
-            // if it's a subsection:
-            // element X = title
+            // if it's a section elements 4 = sectioning name
+            // element 5 = * if present.
+            // element 6 = the title
 
             // if it's an input, include, or subfile:
-            // element 3 is the file (need to resolve the path)
-            // element 1 starts with \input, include, or subfile
+            // element 2 is the file (needs to be resolved)
+            // element 0 starts with \input, include, or subfile
 
             // if it's a subimport or an import
-            // element 1 starts with \subimport or \import
-            // element 2 is the directory part
-            // element 3 is the file
-            if (result && result[5] in this.sectionDepths) {
+            // element 0 starts with \subimport or \import
+            // element 1 is the directory part
+            // element 2 is the file
+
+            // if it's <<child='xxxx'>>=
+            // element 3 is the file name of the child (needs to be resolved)
+            if (result && result[4] && result[4] in this.sectionDepths) {
                 // is it a section, a subsection, etc?
-                const heading = result[5]
+                const heading = result[4]
                 const depth = this.sectionDepths[heading]
-                const title = utils.getLongestBalancedString(result[7])
+                const title = utils.getLongestBalancedString(result[6])
                 let sectionNumberStr: string = ''
-                if (result[6] === undefined) {
+                if (result[5] === undefined) {
                     sectionNumber = this.increment(sectionNumber, depth)
                     sectionNumberStr = this.formatSectionNumber(sectionNumber)
                 }
@@ -184,32 +188,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
                 rootStack.push(newSection)
 
-            } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\InputIfFileExists') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
+            } else if (imports && result && result[3]) {
                 // zoom into this file
                 // resolve the path
-                let inputFilePath: string | undefined
-                if (result[1].startsWith('\\subimport')) {
-                    inputFilePath = utils.resolveFile([path.dirname(filePath)], path.join(result[2], result[3]))
-                } else if (result[1].startsWith('\\import')) {
-                    inputFilePath = utils.resolveFile([result[2]], result[3])
-                } else {
-                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                    const texDirs = configuration.get('latex.texDirs') as string[]
-                    inputFilePath = utils.resolveFile([...texDirs, path.dirname(filePath),
-                        this.extension.manager.rootDir ? this.extension.manager.rootDir : '.'], result[3])
-                }
-
+                const inputFilePath: string | undefined = this.pathUtils.parseInputFilePath(result, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
                 if (!inputFilePath) {
-                    this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                    continue
-                }
-                if (path.extname(inputFilePath) === '') {
-                    inputFilePath += '.tex'
-                }
-                if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + '.tex')) {
-                    inputFilePath += '.tex'
-                }
-                if (fs.existsSync(inputFilePath) === false) {
                     this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
                     continue
                 }
