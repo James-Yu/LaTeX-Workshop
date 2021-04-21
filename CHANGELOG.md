@@ -1,5 +1,22 @@
 # Change Log
 
+## [8.17.0] - 2021-04-21
+
+### Added
+- (#2566) Add IntelliSense for `\DeclareMathOperator` and any `\newcommand*` & co declarations.
+- (#2584) Generate a `cpp` embedded language configuration.
+
+### Fixed
+- (#2542) Python code highlighting for all environments of the package `pythontex`.
+- (#2561) Fix a regexp which might causes ReDoS.
+- (#2562) Fix potential exponential backtracking when removing comments.
+- (#2565) Use `spawn` instead of `exec` when looking for `latexindent`.
+- (#2575) Make sure to wait for `findRoot` to return before proceeding.
+- (#2600) Duplicate labels in the same file not spotted.
+- (#2601) Do not filter files using `git`.
+- (#2624) The outline view in the sidebar of the internal pdf viewer is too dark to see the content.
+- (#2626) Set correct package field in cached element.command.
+
 ## [8.16.1] - 2021-03-03
 
 ### Fixed
