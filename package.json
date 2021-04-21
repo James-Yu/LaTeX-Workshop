@@ -893,9 +893,19 @@
                 "-synctex=1",
                 "-interaction=nonstopmode",
                 "-file-line-error",
+                "-output-directory=%OUTDIR%",
                 "%DOC%"
               ],
               "env": {}
+            },            
+            {
+                "name": "biber",
+                "command": "biber",
+                "args": [
+                    "--output-directory=%OUTDIR%",
+                    "%DOCFILE%"
+                ],
+                "env": {}
             },
             {
               "name": "bibtex",
