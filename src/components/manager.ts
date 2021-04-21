@@ -529,10 +529,11 @@ export class Manager {
         // Update children of current file
         if (this.cachedContent[file] === undefined) {
             this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
-            const inputReg = this.pathUtils.inputRegex
-            const childReg = this.pathUtils.childRegex
+            // We must create copies of the regexp to handle lastIndex properly
+            const inputRegex = new RegExp(this.pathUtils.inputRegex)
+            const childRegex = new RegExp(this.pathUtils.childRegex)
             while (true) {
-                const result: MatchPath | undefined = this.pathUtils.exec(inputReg, childReg, content)
+                const result: MatchPath | undefined = this.pathUtils.exec(inputRegex, childRegex, content)
                 if (!result) {
                     break
                 }
@@ -574,10 +575,11 @@ export class Manager {
     }
 
     private parseInputFiles(content: string, currentFile: string, baseFile: string) {
-        const inputReg = this.pathUtils.inputRegex
-        const childReg = this.pathUtils.childRegex
+        // We must create copies of the regexp to handle lastIndex properly
+        const inputRegex = new RegExp(this.pathUtils.inputRegex)
+        const childRegex = new RegExp(this.pathUtils.childRegex)
         while (true) {
-            const result: MatchPath | undefined = this.pathUtils.exec(inputReg, childReg, content)
+            const result: MatchPath | undefined = this.pathUtils.exec(inputRegex, childRegex, content)
             if (!result) {
                 break
             }

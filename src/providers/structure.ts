@@ -101,8 +101,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         })
         pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
 
-        const childReg = this.pathUtils.childRegex
-        const inputReg = this.pathUtils.inputRegex
+        // We must create copies of the regexp to handle lastIndex properly.
+        const inputRegex = new RegExp(this.pathUtils.inputRegex)
+        const childRegex = new RegExp(this.pathUtils.childRegex)
         const headingReg = RegExp(pattern, 'm')
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
         const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
@@ -111,8 +112,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const lines = content.split('\n')
         for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
             const line = lines[lineNumber]
-            inputReg.lastIndex = 0
-            childReg.lastIndex = 0
+            inputRegex.lastIndex = 0
+            childRegex.lastIndex = 0
             let result = envReg.exec(line)
             if (result && result[1] === 'begin') {
                 envStack.push({name: result[2], start: lineNumber, end: lineNumber})
@@ -140,7 +141,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
             // inputs part
             if (imports) {
-                const matchPath: MatchPath | undefined = this.pathUtils.exec(inputReg, childReg, line)
+                const matchPath: MatchPath | undefined = this.pathUtils.exec(inputRegex, childRegex, line)
                 if (matchPath) {
                     // zoom into this file
                     // resolve the path
