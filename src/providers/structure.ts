@@ -4,6 +4,7 @@ import * as fs from 'fs'
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
 import {PathUtils} from '../components/managerlib/pathutils'
+import type {MatchPath} from '../components/managerlib/pathutils'
 
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
@@ -110,9 +111,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const lines = content.split('\n')
         for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
             const line = lines[lineNumber]
-            envReg.lastIndex = 0
-            labelReg.lastIndex = 0
             inputReg.lastIndex = 0
+            childReg.lastIndex = 0
             let result = envReg.exec(line)
             if (result && result[1] === 'begin') {
                 envStack.push({name: result[2], start: lineNumber, end: lineNumber})
@@ -140,14 +140,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
             // inputs part
             if (imports) {
-                result = inputReg.exec(line)
-                if (!result) {
-                    result = childReg.exec(line)
-                }
-                if (result) {
+                const matchPath: MatchPath | undefined = this.pathUtils.exec(inputReg, childReg, line)
+                if (matchPath) {
                     // zoom into this file
                     // resolve the path
-                    const inputFilePath: string | undefined = this.pathUtils.parseInputFilePath(result, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
+                    const inputFilePath: string | undefined = this.pathUtils.parseInputFilePath(matchPath, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
                     if (!inputFilePath) {
                         this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
                         continue

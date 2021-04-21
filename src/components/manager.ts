@@ -17,6 +17,7 @@ import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
 import {PathUtils} from './managerlib/pathutils'
+import type {MatchPath} from './managerlib/pathutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
 /**
@@ -531,10 +532,7 @@ export class Manager {
             const inputReg = this.pathUtils.inputRegex
             const childReg = this.pathUtils.childRegex
             while (true) {
-                let result = inputReg.exec(content)
-                if (!result) {
-                    result = childReg.exec(content)
-                }
+                const result: MatchPath | undefined = this.pathUtils.exec(inputReg, childReg, content)
                 if (!result) {
                     break
                 }
@@ -577,12 +575,12 @@ export class Manager {
 
     private parseInputFiles(content: string, currentFile: string, baseFile: string) {
         const inputReg = this.pathUtils.inputRegex
+        const childReg = this.pathUtils.childRegex
         while (true) {
-            const result = inputReg.exec(content)
+            const result: MatchPath | undefined = this.pathUtils.exec(inputReg, childReg, content)
             if (!result) {
                 break
             }
-
             const inputFile = this.pathUtils.parseInputFilePath(result, currentFile, baseFile)
 
             if (!inputFile ||
