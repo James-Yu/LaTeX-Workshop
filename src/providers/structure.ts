@@ -1,9 +1,10 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import * as path from 'path'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
+import {PathRegExp} from '../components/managerlib/pathutils'
+import type {MatchPath} from '../components/managerlib/pathutils'
 
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
@@ -87,17 +88,19 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '(?:((?:\\\\(?:input|InputIfFileExists|include|subfile|(?:(?:sub)?import\\*?{([^}]*)}))(?:\\[[^\\[\\]\\{\\}]*\\])?){([^}]*)})|((?:\\\\('
+        // The first part of pattern must match this.pathUtils.inputRegex so that
+        // we can use this.pathUtils.parseInputFilePath to analyse the regex match.
+        let pattern = '\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section
             if (index < this.hierarchy.length - 1) {
                 pattern += '|'
             }
         })
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?){(.*)}))'
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
 
-        // const inputReg = /^((?:\\(?:input|include|subfile)(?:\[[^\[\]\{\}]*\])?){([^}]*)})|^((?:\\((sub)?section)(?:\[[^\[\]\{\}]*\])?){([^}]*)})/gm
-        const inputReg = RegExp(pattern, 'm')
+        const pathRegexp = new PathRegExp()
+        const headingReg = RegExp(pattern, 'm')
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
         const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
         const labelReg = /\\label{([^}]*)}/m
@@ -105,9 +108,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const lines = content.split('\n')
         for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
             const line = lines[lineNumber]
-            envReg.lastIndex = 0
-            labelReg.lastIndex = 0
-            inputReg.lastIndex = 0
+            pathRegexp.resetLastIndex()
             let result = envReg.exec(line)
             if (result && result[1] === 'begin') {
                 envStack.push({name: result[2], start: lineNumber, end: lineNumber})
@@ -133,29 +134,38 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 continue
             }
 
-            result = inputReg.exec(line)
+            // inputs part
+            if (imports) {
+                const matchPath: MatchPath | undefined = pathRegexp.exec(line)
+                if (matchPath) {
+                    // zoom into this file
+                    // resolve the path
+                    const inputFilePath: string | undefined = pathRegexp.parseInputFilePath(matchPath, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
+                    if (!inputFilePath) {
+                        this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
+                        continue
+                    }
+                    // Avoid circular inclusion
+                    if (inputFilePath === filePath || newFileStack.includes(inputFilePath)) {
+                        continue
+                    }
+                    if (prevSection) {
+                        prevSection.subfiles.push(inputFilePath)
+                    }
+                    this.buildModel(inputFilePath, newFileStack, rootStack, children, sectionNumber)
+                    continue
+                }
+            }
 
-            // if it's a section elements 5 = section
-            // element 6 = title.
-
-            // if it's a subsection:
-            // element X = title
-
-            // if it's an input, include, or subfile:
-            // element 3 is the file (need to resolve the path)
-            // element 1 starts with \input, include, or subfile
-
-            // if it's a subimport or an import
-            // element 1 starts with \subimport or \import
-            // element 2 is the directory part
-            // element 3 is the file
-            if (result && result[5] in this.sectionDepths) {
+            // Headings part
+            result = headingReg.exec(line)
+            if (result) {
                 // is it a section, a subsection, etc?
-                const heading = result[5]
+                const heading = result[1]
                 const depth = this.sectionDepths[heading]
-                const title = utils.getLongestBalancedString(result[7])
+                const title = utils.getLongestBalancedString(result[3])
                 let sectionNumberStr: string = ''
-                if (result[6] === undefined) {
+                if (result[2] === undefined) {
                     sectionNumber = this.increment(sectionNumber, depth)
                     sectionNumberStr = this.formatSectionNumber(sectionNumber)
                 }
@@ -183,44 +193,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     currentRoot().children.push(newSection)
                 }
                 rootStack.push(newSection)
-
-            } else if (imports && result && (result[1].startsWith('\\input') || result[1].startsWith('\\InputIfFileExists') || result[1].startsWith('\\include') || result[1].startsWith('\\subfile') || result[1].startsWith('\\subimport') || result[1].startsWith('\\import') )) {
-                // zoom into this file
-                // resolve the path
-                let inputFilePath: string | undefined
-                if (result[1].startsWith('\\subimport')) {
-                    inputFilePath = utils.resolveFile([path.dirname(filePath)], path.join(result[2], result[3]))
-                } else if (result[1].startsWith('\\import')) {
-                    inputFilePath = utils.resolveFile([result[2]], result[3])
-                } else {
-                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                    const texDirs = configuration.get('latex.texDirs') as string[]
-                    inputFilePath = utils.resolveFile([...texDirs, path.dirname(filePath),
-                        this.extension.manager.rootDir ? this.extension.manager.rootDir : '.'], result[3])
-                }
-
-                if (!inputFilePath) {
-                    this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                    continue
-                }
-                if (path.extname(inputFilePath) === '') {
-                    inputFilePath += '.tex'
-                }
-                if (!fs.existsSync(inputFilePath) && fs.existsSync(inputFilePath + '.tex')) {
-                    inputFilePath += '.tex'
-                }
-                if (fs.existsSync(inputFilePath) === false) {
-                    this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                    continue
-                }
-                // Avoid circular inclusion
-                if (inputFilePath === filePath || newFileStack.includes(inputFilePath)) {
-                    continue
-                }
-                if (prevSection) {
-                    prevSection.subfiles.push(inputFilePath)
-                }
-                this.buildModel(inputFilePath, newFileStack, rootStack, children, sectionNumber)
             }
 
             // Labels part

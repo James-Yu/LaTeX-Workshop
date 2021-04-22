@@ -16,7 +16,8 @@ import type {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
-import {PathUtils} from './managerlib/pathutils'
+import {PathUtils, PathRegExp} from './managerlib/pathutils'
+import type {MatchPath} from './managerlib/pathutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
 /**
@@ -528,14 +529,14 @@ export class Manager {
         // Update children of current file
         if (this.cachedContent[file] === undefined) {
             this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
-            const inputReg = /(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
+            const pathRegexp = new PathRegExp()
             while (true) {
-                const result = inputReg.exec(content)
+                const result: MatchPath | undefined = pathRegexp.exec(content)
                 if (!result) {
                     break
                 }
 
-                const inputFile = this.pathUtils.parseInputFilePath(result, file, baseFile)
+                const inputFile = pathRegexp.parseInputFilePath(result, file, baseFile)
 
                 if (!inputFile ||
                     !fs.existsSync(inputFile) ||
@@ -572,14 +573,13 @@ export class Manager {
     }
 
     private parseInputFiles(content: string, currentFile: string, baseFile: string) {
-        const inputReg = /(?:\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?){([^}]*)}/g
+        const pathRegexp = new PathRegExp()
         while (true) {
-            const result = inputReg.exec(content)
+            const result: MatchPath | undefined = pathRegexp.exec(content)
             if (!result) {
                 break
             }
-
-            const inputFile = this.pathUtils.parseInputFilePath(result, currentFile, baseFile)
+            const inputFile = pathRegexp.parseInputFilePath(result, currentFile, baseFile)
 
             if (!inputFile ||
                 !fs.existsSync(inputFile) ||
