@@ -19,34 +19,27 @@ export interface MatchPath {
     index: number
 }
 
-export class PathUtils {
-    private readonly extension: Extension
-    readonly inputRegex: RegExp
-    readonly childRegex: RegExp
+export class PathRegExp {
+    private readonly inputRegexp: RegExp
+    private readonly childRegexp: RegExp
 
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.inputRegex = /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g
-        this.childRegex = /<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=/g
+    constructor() {
+        this.inputRegexp = /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g
+        this.childRegexp = /<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=/g
     }
 
-    private get rootDir() {
-        return this.extension.manager.rootDir
-    }
-
-    private getOutDir(texFile: string) {
-        return this.extension.manager.getOutDir(texFile)
+    resetLastIndex() {
+        this.inputRegexp.lastIndex = 0
+        this.childRegexp.lastIndex = 0
     }
 
     /**
      * Return the matched input or child path. If there is no match, return undefined
      *
-     * @param inputReg a copy of this.inputRegex. We must use a copy to properly handle the .lastIndex property of RegExp.
-     * @param childReg a copy of this.childRegex. We must use a copy to properly handle the .lastIndex property of RegExp.
      * @param content the string to match the regex on
      */
-    exec(inputReg: RegExp, childReg: RegExp, content: string): MatchPath | undefined {
-        let result = inputReg.exec(content)
+    exec(content: string): MatchPath | undefined {
+        let result = this.inputRegexp.exec(content)
         if (result) {
             return {
                 type: MatchType.Input,
@@ -56,7 +49,7 @@ export class PathUtils {
                 index: result.index
             }
         }
-        result = childReg.exec(content)
+        result = this.childRegexp.exec(content)
         if (result) {
             return {
                 type: MatchType.Child,
@@ -93,6 +86,27 @@ export class PathUtils {
             }
         }
         return undefined
+    }
+
+}
+
+export class PathUtils {
+    private readonly extension: Extension
+    readonly inputRegex: RegExp
+    readonly childRegex: RegExp
+
+    constructor(extension: Extension) {
+        this.extension = extension
+        this.inputRegex = /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g
+        this.childRegex = /<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=/g
+    }
+
+    private get rootDir() {
+        return this.extension.manager.rootDir
+    }
+
+    private getOutDir(texFile: string) {
+        return this.extension.manager.getOutDir(texFile)
     }
 
     /**
