@@ -74,7 +74,6 @@
   cursor: default;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -278,6 +277,184 @@
   cursor: pointer;
 }
 
+*/* Copyright 2021 Mozilla Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+.xfaLayer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  transform-origin: 0 0;
+}
+
+.xfaLayer * {
+  color: inherit;
+  font: inherit;
+  -webkit-font-kerning: inherit;
+          font-kerning: inherit;
+  letter-spacing: inherit;
+  text-align: inherit;
+  text-decoration: inherit;
+  vertical-align: inherit;
+  box-sizing: border-box;
+}
+
+.xfaFont {
+  color: black;
+  font-weight: normal;
+  -webkit-font-kerning: none;
+          font-kerning: none;
+  font-size: 10px;
+  font-style: normal;
+  letter-spacing: 0;
+  text-decoration: none;
+  vertical-align: 0;
+}
+
+.xfaDraw {
+  z-index: 200;
+}
+
+.xfaExclgroup {
+  z-index: 300;
+}
+
+.xfaField {
+  z-index: 300;
+}
+
+.xfaSubform {
+  z-index: 100;
+}
+
+.xfaLabel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.xfaCaption {
+  flex: 1 1 auto;
+}
+
+.xfaTextfield,
+.xfaSelect {
+  width: 100%;
+  height: 100%;
+  flex: 1 1 auto;
+  border: none;
+}
+
+.xfaLabel > input[type="checkbox"] {
+  /* Use this trick to make the checkbox invisible but
+       but still focusable. */
+  position: absolute;
+  left: -99999px;
+}
+
+.xfaLabel > input[type="checkbox"]:focus + .xfaCheckboxMark {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.xfaCheckboxMark {
+  cursor: pointer;
+  flex: 0 0 auto;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #8f8f9d;
+  font-size: 10px;
+  line-height: 10px;
+  width: 10px;
+  height: 10px;
+  text-align: center;
+  vertical-align: middle;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.xfaCheckbox:checked + .xfaCheckboxMark::after {
+  content: attr(mark);
+}
+
+.xfaButton {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  border: none;
+  text-align: center;
+}
+
+.xfaButton:hover {
+  background: Highlight;
+}
+
+.xfaLrTb,
+.xfaRlTb,
+.xfaTb,
+.xfaPosition {
+  display: block;
+}
+
+.xfaPosition {
+  position: relative;
+}
+
+.xfaValignMiddle {
+  display: flex;
+  align-items: center;
+}
+
+.xfaLrTb > div {
+  display: inline;
+  float: left;
+}
+
+.xfaRlTb > div {
+  display: inline;
+  float: right;
+}
+
+.xfaTable {
+  display: flex;
+  flex-direction: column;
+}
+
+.xfaTable .xfaRow {
+  display: flex;
+  flex-direction: row;
+  flex: 1 1 auto;
+}
+
+.xfaTable .xfaRow > div {
+  flex: 1 1 auto;
+}
+
+.xfaTable .xfaRlRow {
+  display: flex;
+  flex-direction: row-reverse;
+  flex: 1;
+}
+
+.xfaTable .xfaRlRow > div {
+  flex: 1;
+}
+
 .pdfViewer .canvasWrapper {
   overflow: hidden;
 }
@@ -398,11 +575,6 @@
   border: 0;
 }
 
-.pdfPresentationMode:-ms-fullscreen .pdfViewer .page {
-  margin-bottom: 100%;
-  border: 0;
-}
-
 .pdfPresentationMode:fullscreen .pdfViewer .page {
   margin-bottom: 100%;
   border: 0;
@@ -427,7 +599,8 @@
   --scrollbar-bg-color: auto;
   --toolbar-icon-bg-color: rgba(0, 0, 0, 1);
 
-  --sidebar-bg-color: rgba(245, 246, 247, 1);
+  --sidebar-narrow-bg-color: rgba(237, 237, 240, 0.9);
+  --sidebar-toolbar-bg-color: rgba(245, 246, 247, 1);
   --toolbar-bg-color: rgba(249, 249, 250, 1);
   --toolbar-border-color: rgba(204, 204, 204, 1);
   --button-hover-color: rgba(221, 222, 223, 1);
@@ -501,7 +674,8 @@
     --scrollbar-bg-color: rgba(35, 35, 39, 1);
     --toolbar-icon-bg-color: rgba(255, 255, 255, 1);
 
-    --sidebar-bg-color: rgba(50, 50, 52, 1);
+    --sidebar-narrow-bg-color: rgba(42, 42, 46, 0.9);
+    --sidebar-toolbar-bg-color: rgba(50, 50, 52, 1);
     --toolbar-bg-color: rgba(56, 56, 61, 1);
     --toolbar-border-color: rgba(12, 12, 13, 1);
     --button-hover-color: rgba(102, 102, 103, 1);
@@ -547,172 +721,16 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background-color: rgba(237, 237, 240, 1);
   background-color: var(--body-bg-color);
 }
 
-@media (prefers-color-scheme: dark) {
-
-  body {
-  background-color: rgba(42, 42, 46, 1);
-  background-color: var(--body-bg-color);
-  }
-}
-
-body {
-  font: message-box;
-  outline: none;
-  scrollbar-color: auto auto;
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  body {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  body {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  body {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  body {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-input {
-  font: message-box;
-  outline: none;
-  scrollbar-color: auto auto;
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  input {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  input {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  input {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  input {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-button {
-  font: message-box;
-  outline: none;
-  scrollbar-color: auto auto;
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  button {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  button {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  button {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  button {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
+body,
+input,
+button,
 select {
   font: message-box;
   outline: none;
-  scrollbar-color: auto auto;
   scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  select {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  select {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  select {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  select {
-  scrollbar-color: rgba(121, 121, 123, 1) rgba(35, 35, 39, 1);
-  scrollbar-color: var(--scrollbar-color) var(--scrollbar-bg-color);
-  }
 }
 
 .hidden {
@@ -725,7 +743,6 @@ select {
 .pdfViewer.enablePermissions .textLayer > span {
   -webkit-user-select: none !important;
      -moz-user-select: none !important;
-      -ms-user-select: none !important;
           user-select: none !important;
   cursor: not-allowed;
 }
@@ -754,18 +771,6 @@ select {
        user-select: none;
 }
 
-#viewerContainer.pdfPresentationMode:-ms-fullscreen {
-  top: 0;
-  border-top: 2px solid rgba(0, 0, 0, 0);
-  background-color: rgba(0, 0, 0, 1);
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  cursor: none;
-  -ms-user-select: none;
-      user-select: none;
-}
-
 #viewerContainer.pdfPresentationMode:fullscreen {
   top: 0;
   border-top: 2px solid rgba(0, 0, 0, 0);
@@ -776,7 +781,6 @@ select {
   cursor: none;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -785,10 +789,6 @@ select {
 }
 
 .pdfPresentationMode:-moz-full-screen a:not(.internalLink) {
-  display: none;
-}
-
-.pdfPresentationMode:-ms-fullscreen a:not(.internalLink) {
   display: none;
 }
 
@@ -801,10 +801,6 @@ select {
 }
 
 .pdfPresentationMode:-moz-full-screen .textLayer > span {
-  cursor: none;
-}
-
-.pdfPresentationMode:-ms-fullscreen .textLayer > span {
   cursor: none;
 }
 
@@ -827,24 +823,19 @@ select {
   position: absolute;
   top: 32px;
   bottom: 0;
-  width: 200px;
   width: var(--sidebar-width);
   visibility: hidden;
   z-index: 100;
   border-top: 1px solid rgba(51, 51, 51, 1);
-  transition-duration: 200ms;
   transition-duration: var(--sidebar-transition-duration);
-  transition-timing-function: ease;
   transition-timing-function: var(--sidebar-transition-timing-function);
 }
 html[dir="ltr"] #sidebarContainer {
   transition-property: left;
-  left: -200px;
   left: calc(0px - var(--sidebar-width));
 }
 html[dir="rtl"] #sidebarContainer {
   transition-property: right;
-  right: -200px;
   right: calc(0px - var(--sidebar-width));
 }
 
@@ -854,7 +845,6 @@ html[dir="rtl"] #sidebarContainer {
   /* Prevent e.g. the thumbnails being selected when the sidebar is resized. */
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -907,9 +897,7 @@ html[dir="rtl"] #sidebarContent {
   outline: none;
 }
 #viewerContainer:not(.pdfPresentationMode) {
-  transition-duration: 200ms;
   transition-duration: var(--sidebar-transition-duration);
-  transition-timing-function: ease;
   transition-timing-function: var(--sidebar-transition-timing-function);
 }
 
@@ -922,14 +910,12 @@ html[dir="ltr"]
   #outerContainer.sidebarOpen
   #viewerContainer:not(.pdfPresentationMode) {
   transition-property: left;
-  left: 200px;
   left: var(--sidebar-width);
 }
 html[dir="rtl"]
   #outerContainer.sidebarOpen
   #viewerContainer:not(.pdfPresentationMode) {
   transition-property: right;
-  right: 200px;
   right: var(--sidebar-width);
 }
 
@@ -948,16 +934,7 @@ html[dir="rtl"]
 #toolbarSidebar {
   width: 100%;
   height: 32px;
-  background-color: rgba(245, 246, 247, 1);
-  background-color: var(--sidebar-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #toolbarSidebar {
-  background-color: rgba(50, 50, 52, 1);
-  background-color: var(--sidebar-bg-color);
-  }
+  background-color: var(--sidebar-toolbar-bg-color);
 }
 html[dir="ltr"] #toolbarSidebar {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25), 0 1px 0 rgba(0, 0, 0, 0.15),
@@ -997,79 +974,13 @@ html[dir="rtl"] #sidebarResizer {
   left: -6px;
 }
 
-#toolbarContainer {
-  position: relative;
-  height: 32px;
-  background-color: rgba(249, 249, 250, 1);
-  background-color: var(--toolbar-bg-color);
-  box-shadow: 0 1px 0 rgba(204, 204, 204, 1);
-  box-shadow: 0 1px 0 var(--toolbar-border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #toolbarContainer {
-  box-shadow: 0 1px 0 rgba(12, 12, 13, 1);
-  box-shadow: 0 1px 0 var(--toolbar-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #toolbarContainer {
-  background-color: rgba(56, 56, 61, 1);
-  background-color: var(--toolbar-bg-color);
-  }
-}
-
-.findbar {
-  position: relative;
-  height: 32px;
-  background-color: rgba(249, 249, 250, 1);
-  background-color: var(--toolbar-bg-color);
-  box-shadow: 0 1px 0 rgba(204, 204, 204, 1);
-  box-shadow: 0 1px 0 var(--toolbar-border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar {
-  box-shadow: 0 1px 0 rgba(12, 12, 13, 1);
-  box-shadow: 0 1px 0 var(--toolbar-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar {
-  background-color: rgba(56, 56, 61, 1);
-  background-color: var(--toolbar-bg-color);
-  }
-}
-
+#toolbarContainer,
+.findbar,
 .secondaryToolbar {
   position: relative;
   height: 32px;
-  background-color: rgba(249, 249, 250, 1);
   background-color: var(--toolbar-bg-color);
-  box-shadow: 0 1px 0 rgba(204, 204, 204, 1);
   box-shadow: 0 1px 0 var(--toolbar-border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbar {
-  box-shadow: 0 1px 0 rgba(12, 12, 13, 1);
-  box-shadow: 0 1px 0 var(--toolbar-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbar {
-  background-color: rgba(56, 56, 61, 1);
-  background-color: var(--toolbar-bg-color);
-  }
 }
 
 #toolbarViewer {
@@ -1079,52 +990,27 @@ html[dir="rtl"] #sidebarResizer {
 #loadingBar {
   position: absolute;
   height: 4px;
-  background-color: rgba(237, 237, 240, 1);
   background-color: var(--body-bg-color);
-  border-bottom: 1px solid rgba(204, 204, 204, 1);
   border-bottom: 1px solid var(--toolbar-border-color);
-
-  transition-duration: 200ms;
 
   transition-duration: var(--sidebar-transition-duration);
-  transition-timing-function: ease;
   transition-timing-function: var(--sidebar-transition-timing-function);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar {
-  border-bottom: 1px solid rgba(12, 12, 13, 1);
-  border-bottom: 1px solid var(--toolbar-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar {
-  background-color: rgba(42, 42, 46, 1);
-  background-color: var(--body-bg-color);
-  }
 }
 html[dir="ltr"] #loadingBar {
   transition-property: left;
   left: 0;
-  right: 0;
   right: var(--loadingBar-end-offset);
 }
 html[dir="rtl"] #loadingBar {
   transition-property: right;
-  left: 0;
   left: var(--loadingBar-end-offset);
   right: 0;
 }
 
 html[dir="ltr"] #outerContainer.sidebarOpen #loadingBar {
-  left: 200px;
   left: var(--sidebar-width);
 }
 html[dir="rtl"] #outerContainer.sidebarOpen #loadingBar {
-  right: 200px;
   right: var(--sidebar-width);
 }
 
@@ -1139,18 +1025,9 @@ html[dir="rtl"] #outerContainer.sidebarOpen #loadingBar {
   left: 0;
   width: 0%;
   height: 100%;
-  background-color: rgba(10, 132, 255, 1);
   background-color: var(--progressBar-color);
   overflow: hidden;
   transition: width 200ms;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress {
-  background-color: rgba(0, 96, 223, 1);
-  background-color: var(--progressBar-color);
-  }
 }
 
 @-webkit-keyframes progressIndeterminate {
@@ -1172,17 +1049,8 @@ html[dir="rtl"] #outerContainer.sidebarOpen #loadingBar {
 }
 
 #loadingBar .progress.indeterminate {
-  background-color: rgba(221, 221, 222, 1);
   background-color: var(--progressBar-indeterminate-bg-color);
   transition: none;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate {
-  background-color: rgba(40, 40, 43, 1);
-  background-color: var(--progressBar-indeterminate-bg-color);
-  }
 }
 
 #loadingBar .progress.indeterminate .glimmer {
@@ -1191,15 +1059,6 @@ html[dir="rtl"] #outerContainer.sidebarOpen #loadingBar {
   left: 0;
   height: 100%;
   width: calc(100% + 150px);
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(116, 177, 239, 1) 0,
-    rgba(221, 221, 222, 1) 5px,
-    rgba(221, 221, 222, 1) 45px,
-    rgba(10, 132, 255, 1) 55px,
-    rgba(10, 132, 255, 1) 95px,
-    rgba(116, 177, 239, 1) 100px
-  );
   background: repeating-linear-gradient(
     135deg,
     var(--progressBar-indeterminate-blend-color) 0,
@@ -1211,222 +1070,6 @@ html[dir="rtl"] #outerContainer.sidebarOpen #loadingBar {
   );
   -webkit-animation: progressIndeterminate 1s linear infinite;
           animation: progressIndeterminate 1s linear infinite;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #loadingBar .progress.indeterminate .glimmer {
-  background: repeating-linear-gradient(
-    135deg,
-    rgba(20, 68, 133, 1) 0,
-    rgba(40, 40, 43, 1) 5px,
-    rgba(40, 40, 43, 1) 45px,
-    rgba(0, 96, 223, 1) 55px,
-    rgba(0, 96, 223, 1) 95px,
-    rgba(20, 68, 133, 1) 100px
-  );
-  background: repeating-linear-gradient(
-    135deg,
-    var(--progressBar-indeterminate-blend-color) 0,
-    var(--progressBar-indeterminate-bg-color) 5px,
-    var(--progressBar-indeterminate-bg-color) 45px,
-    var(--progressBar-color) 55px,
-    var(--progressBar-color) 95px,
-    var(--progressBar-indeterminate-blend-color) 100px
-  );
-  }
 }
 
 .findbar,
@@ -1447,16 +1090,7 @@ html[dir="rtl"] #outerContainer.sidebarOpen #loadingBar {
 
 .findbar {
   min-width: 300px;
-  background-color: rgba(249, 249, 250, 1);
   background-color: var(--toolbar-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar {
-  background-color: rgba(56, 56, 61, 1);
-  background-color: var(--toolbar-bg-color);
-  }
 }
 .findbar > div {
   height: 32px;
@@ -1487,38 +1121,11 @@ html[dir="rtl"] .findbar .splitToolbarButton {
 }
 
 .findbar .splitToolbarButton > .toolbarButton {
-  background-color: rgba(227, 228, 230, 1);
   background-color: var(--findbar-nextprevious-btn-bg-color);
   border-radius: 0;
   height: 26px;
-  border-top: 1px solid rgba(187, 187, 188, 1);
   border-top: 1px solid var(--field-border-color);
-  border-bottom: 1px solid rgba(187, 187, 188, 1);
   border-bottom: 1px solid var(--field-border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar .splitToolbarButton > .toolbarButton {
-  border-bottom: 1px solid rgba(115, 115, 115, 1);
-  border-bottom: 1px solid var(--field-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar .splitToolbarButton > .toolbarButton {
-  border-top: 1px solid rgba(115, 115, 115, 1);
-  border-top: 1px solid var(--field-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar .splitToolbarButton > .toolbarButton {
-  background-color: rgba(89, 89, 89, 1);
-  background-color: var(--findbar-nextprevious-btn-bg-color);
-  }
 }
 
 .findbar .splitToolbarButton > .toolbarButton::before {
@@ -1531,28 +1138,12 @@ html[dir="rtl"] .findbar .splitToolbarButton {
 html[dir="ltr"] .findbar .splitToolbarButton > .findNext {
   border-bottom-right-radius: 2px;
   border-top-right-radius: 2px;
-  border-right: 1px solid rgba(187, 187, 188, 1);
   border-right: 1px solid var(--field-border-color);
-}
-@media (prefers-color-scheme: dark) {
-
-  html[dir="ltr"] .findbar .splitToolbarButton > .findNext {
-  border-right: 1px solid rgba(115, 115, 115, 1);
-  border-right: 1px solid var(--field-border-color);
-  }
 }
 html[dir="rtl"] .findbar .splitToolbarButton > .findNext {
   border-bottom-left-radius: 2px;
   border-top-left-radius: 2px;
-  border-left: 1px solid rgba(187, 187, 188, 1);
   border-left: 1px solid var(--field-border-color);
-}
-@media (prefers-color-scheme: dark) {
-
-  html[dir="rtl"] .findbar .splitToolbarButton > .findNext {
-  border-left: 1px solid rgba(115, 115, 115, 1);
-  border-left: 1px solid var(--field-border-color);
-  }
 }
 
 .findbar input[type="checkbox"] {
@@ -1562,34 +1153,12 @@ html[dir="rtl"] .findbar .splitToolbarButton > .findNext {
 .findbar label {
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
-.findbar label:hover {
-  background-color: rgba(221, 222, 223, 1);
-  background-color: var(--button-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar label:hover {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
-}
-
+.findbar label:hover,
 .findbar input:focus + label {
-  background-color: rgba(221, 222, 223, 1);
   background-color: var(--button-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar input:focus + label {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
 }
 
 html[dir="ltr"] #findInput {
@@ -1602,16 +1171,7 @@ html[dir="rtl"] #findInput {
 }
 
 .findbar .toolbarField[type="checkbox"]:checked + .toolbarLabel {
-  background-color: rgba(0, 0, 0, 0.3) !important;
   background-color: var(--toggled-btn-bg-color) !important;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar .toolbarField[type="checkbox"]:checked + .toolbarLabel {
-  background-color: rgba(0, 0, 0, 0.3) !important;
-  background-color: var(--toggled-btn-bg-color) !important;
-  }
 }
 
 #findInput {
@@ -1623,24 +1183,13 @@ html[dir="rtl"] #findInput {
 #findInput::-moz-placeholder {
   font-style: normal;
 }
-#findInput:-ms-input-placeholder {
-  font-style: normal;
-}
 #findInput::placeholder {
   font-style: normal;
 }
 #findInput[data-status="pending"] {
-  background-image: url(images/loading.svg);
   background-image: var(--loading-icon);
   background-repeat: no-repeat;
   background-position: 98%;
-}
-@media (prefers-color-scheme: dark) {
-
-  #findInput[data-status="pending"] {
-  background-image: url(images/loading-dark.svg);
-  background-image: var(--loading-icon);
-  }
 }
 html[dir="rtl"] #findInput[data-status="pending"] {
   background-position: 3px;
@@ -1653,16 +1202,7 @@ html[dir="rtl"] #findInput[data-status="pending"] {
   padding: 6px 0 10px;
   height: auto;
   z-index: 30000;
-  background-color: rgba(255, 255, 255, 1);
   background-color: var(--doorhanger-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbar {
-  background-color: rgba(74, 74, 79, 1);
-  background-color: var(--doorhanger-bg-color);
-  }
 }
 html[dir="ltr"] .secondaryToolbar {
   right: 4px;
@@ -1684,40 +1224,11 @@ html[dir="rtl"] .secondaryToolbar {
   display: none !important;
 }
 
-.doorHanger {
-  border-radius: 2px;
-  box-shadow: 0 1px 5px rgba(12, 12, 13, 0.2),
-    0 0 0 1px rgba(12, 12, 13, 0.2);
-  box-shadow: 0 1px 5px var(--doorhanger-border-color),
-    0 0 0 1px var(--doorhanger-border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .doorHanger {
-  box-shadow: 0 1px 5px rgba(39, 39, 43, 1),
-    0 0 0 1px rgba(39, 39, 43, 1);
-  box-shadow: 0 1px 5px var(--doorhanger-border-color),
-    0 0 0 1px var(--doorhanger-border-color);
-  }
-}
-
+.doorHanger,
 .doorHangerRight {
   border-radius: 2px;
-  box-shadow: 0 1px 5px rgba(12, 12, 13, 0.2),
-    0 0 0 1px rgba(12, 12, 13, 0.2);
   box-shadow: 0 1px 5px var(--doorhanger-border-color),
     0 0 0 1px var(--doorhanger-border-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .doorHangerRight {
-  box-shadow: 0 1px 5px rgba(39, 39, 43, 1),
-    0 0 0 1px rgba(39, 39, 43, 1);
-  box-shadow: 0 1px 5px var(--doorhanger-border-color),
-    0 0 0 1px var(--doorhanger-border-color);
-  }
 }
 .doorHanger:after,
 .doorHanger:before,
@@ -1736,50 +1247,15 @@ html[dir="rtl"] .secondaryToolbar {
   border-width: 8px;
 }
 .doorHanger:after {
-  border-bottom-color: rgba(249, 249, 250, 1);
   border-bottom-color: var(--toolbar-bg-color);
-}
-@media (prefers-color-scheme: dark) {
-
-  .doorHanger:after {
-  border-bottom-color: rgba(56, 56, 61, 1);
-  border-bottom-color: var(--toolbar-bg-color);
-  }
 }
 .doorHangerRight:after {
-  border-bottom-color: rgba(255, 255, 255, 1);
   border-bottom-color: var(--doorhanger-bg-color);
 }
-@media (prefers-color-scheme: dark) {
-
-  .doorHangerRight:after {
-  border-bottom-color: rgba(74, 74, 79, 1);
-  border-bottom-color: var(--doorhanger-bg-color);
-  }
-}
-.doorHanger:before {
-  border-bottom-color: rgba(12, 12, 13, 0.2);
-  border-bottom-color: var(--doorhanger-border-color);
-  border-width: 9px;
-}
-@media (prefers-color-scheme: dark) {
-
-  .doorHanger:before {
-  border-bottom-color: rgba(39, 39, 43, 1);
-  border-bottom-color: var(--doorhanger-border-color);
-  }
-}
+.doorHanger:before,
 .doorHangerRight:before {
-  border-bottom-color: rgba(12, 12, 13, 0.2);
   border-bottom-color: var(--doorhanger-border-color);
   border-width: 9px;
-}
-@media (prefers-color-scheme: dark) {
-
-  .doorHangerRight:before {
-  border-bottom-color: rgba(39, 39, 43, 1);
-  border-bottom-color: var(--doorhanger-border-color);
-  }
 }
 
 html[dir="ltr"] .doorHanger:after,
@@ -1878,41 +1354,12 @@ html[dir="rtl"] .splitToolbarButton > .toolbarButton {
   height: 28px;
 }
 .overlayButton {
-  background-color: rgba(12, 12, 13, 0.1);
   background-color: var(--overlay-button-bg-color);
 }
-@media (prefers-color-scheme: dark) {
 
-  .overlayButton {
-  background-color: rgba(92, 92, 97, 1);
-  background-color: var(--overlay-button-bg-color);
-  }
-}
-
-.overlayButton:hover {
-  background-color: rgba(12, 12, 13, 0.3);
-  background-color: var(--overlay-button-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .overlayButton:hover {
-  background-color: rgba(115, 115, 115, 1);
-  background-color: var(--overlay-button-hover-color);
-  }
-}
-
+.overlayButton:hover,
 .overlayButton:focus {
-  background-color: rgba(12, 12, 13, 0.3);
   background-color: var(--overlay-button-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .overlayButton:focus {
-  background-color: rgba(115, 115, 115, 1);
-  background-color: var(--overlay-button-hover-color);
-  }
 }
 
 .toolbarButton > span {
@@ -1932,74 +1379,13 @@ html[dir="rtl"] .splitToolbarButton > .toolbarButton {
   margin: 0;
 }
 
-.splitToolbarButton > .toolbarButton:hover {
-  background-color: rgba(221, 222, 223, 1);
-  background-color: var(--button-hover-color);
-  z-index: 199;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .splitToolbarButton > .toolbarButton:hover {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
-}
-
-.splitToolbarButton > .toolbarButton:focus {
-  background-color: rgba(221, 222, 223, 1);
-  background-color: var(--button-hover-color);
-  z-index: 199;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .splitToolbarButton > .toolbarButton:focus {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
-}
-
-.dropdownToolbarButton:hover {
-  background-color: rgba(221, 222, 223, 1);
-  background-color: var(--button-hover-color);
-  z-index: 199;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton:hover {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
-}
-
-.toolbarButton.textButton:hover {
-  background-color: rgba(221, 222, 223, 1);
-  background-color: var(--button-hover-color);
-  z-index: 199;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton.textButton:hover {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
-}
-
+.splitToolbarButton > .toolbarButton:hover,
+.splitToolbarButton > .toolbarButton:focus,
+.dropdownToolbarButton:hover,
+.toolbarButton.textButton:hover,
 .toolbarButton.textButton:focus {
-  background-color: rgba(221, 222, 223, 1);
   background-color: var(--button-hover-color);
   z-index: 199;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton.textButton:focus {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
 }
 .splitToolbarButton > .toolbarButton {
   position: relative;
@@ -2015,33 +1401,16 @@ html[dir="rtl"] .splitToolbarButton > .toolbarButton:first-child {
 .splitToolbarButtonSeparator {
   padding: 10px 0;
   width: 1px;
-  background-color: rgba(0, 0, 0, 0.3);
   background-color: var(--separator-color);
   z-index: 99;
   display: inline-block;
   margin: 4px 0;
 }
-@media (prefers-color-scheme: dark) {
-
-  .splitToolbarButtonSeparator {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--separator-color);
-  }
-}
 
 .findbar .splitToolbarButtonSeparator {
-  background-color: rgba(187, 187, 188, 1);
   background-color: var(--field-border-color);
   margin: 0;
   padding: 13px 0;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .findbar .splitToolbarButtonSeparator {
-  background-color: rgba(115, 115, 115, 1);
-  background-color: var(--field-border-color);
-  }
 }
 
 html[dir="ltr"] .splitToolbarButtonSeparator {
@@ -2051,108 +1420,23 @@ html[dir="rtl"] .splitToolbarButtonSeparator {
   float: right;
 }
 
-.toolbarButton {
-  min-width: 16px;
-  margin: 2px 1px;
-  padding: 2px 6px 0;
-  border: none;
-  border-radius: 2px;
-  color: rgba(12, 12, 13, 1);
-  color: var(--main-color);
-  font-size: 12px;
-  line-height: 14px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: default;
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
-}
-
-.dropdownToolbarButton {
-  min-width: 16px;
-  margin: 2px 1px;
-  padding: 2px 6px 0;
-  border: none;
-  border-radius: 2px;
-  color: rgba(12, 12, 13, 1);
-  color: var(--main-color);
-  font-size: 12px;
-  line-height: 14px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: default;
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
-}
-
-.secondaryToolbarButton {
-  min-width: 16px;
-  margin: 2px 1px;
-  padding: 2px 6px 0;
-  border: none;
-  border-radius: 2px;
-  color: rgba(12, 12, 13, 1);
-  color: var(--main-color);
-  font-size: 12px;
-  line-height: 14px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: default;
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbarButton {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
-}
-
+.toolbarButton,
+.dropdownToolbarButton,
+.secondaryToolbarButton,
 .overlayButton {
   min-width: 16px;
   margin: 2px 1px;
   padding: 2px 6px 0;
   border: none;
   border-radius: 2px;
-  color: rgba(12, 12, 13, 1);
   color: var(--main-color);
   font-size: 12px;
   line-height: 14px;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: default;
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .overlayButton {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
 }
 
 html[dir="ltr"] #toolbarViewerLeft > .toolbarButton:first-child,
@@ -2164,153 +1448,39 @@ html[dir="ltr"] #toolbarViewerRight > .toolbarButton:last-child,
 html[dir="rtl"] #toolbarViewerLeft > .toolbarButton:first-child {
   margin-right: 2px;
 }
-.toolbarButton:hover {
-  background-color: rgba(221, 222, 223, 1);
-  background-color: var(--button-hover-color);
-}
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton:hover {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
-}
+.toolbarButton:hover,
 .toolbarButton:focus {
-  background-color: rgba(221, 222, 223, 1);
   background-color: var(--button-hover-color);
 }
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton:focus {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
-}
-.secondaryToolbarButton:hover {
-  background-color: rgba(237, 237, 237, 1);
-  background-color: var(--doorhanger-hover-color);
-}
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbarButton:hover {
-  background-color: rgba(93, 94, 98, 1);
-  background-color: var(--doorhanger-hover-color);
-  }
-}
+.secondaryToolbarButton:hover,
 .secondaryToolbarButton:focus {
-  background-color: rgba(237, 237, 237, 1);
   background-color: var(--doorhanger-hover-color);
 }
-@media (prefers-color-scheme: dark) {
 
-  .secondaryToolbarButton:focus {
-  background-color: rgba(93, 94, 98, 1);
-  background-color: var(--doorhanger-hover-color);
-  }
-}
-
-.toolbarButton.toggled {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--toggled-btn-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton.toggled {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--toggled-btn-bg-color);
-  }
-}
-
-.splitToolbarButton.toggled > .toolbarButton.toggled {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--toggled-btn-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .splitToolbarButton.toggled > .toolbarButton.toggled {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--toggled-btn-bg-color);
-  }
-}
-
+.toolbarButton.toggled,
+.splitToolbarButton.toggled > .toolbarButton.toggled,
 .secondaryToolbarButton.toggled {
-  background-color: rgba(0, 0, 0, 0.3);
   background-color: var(--toggled-btn-bg-color);
 }
 
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbarButton.toggled {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--toggled-btn-bg-color);
-  }
-}
-
-.toolbarButton.toggled:hover:active {
-  background-color: rgba(0, 0, 0, 0.4);
-  background-color: var(--toggled-hover-active-btn-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton.toggled:hover:active {
-  background-color: rgba(0, 0, 0, 0.4);
-  background-color: var(--toggled-hover-active-btn-color);
-  }
-}
-
-.splitToolbarButton.toggled > .toolbarButton.toggled:hover:active {
-  background-color: rgba(0, 0, 0, 0.4);
-  background-color: var(--toggled-hover-active-btn-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .splitToolbarButton.toggled > .toolbarButton.toggled:hover:active {
-  background-color: rgba(0, 0, 0, 0.4);
-  background-color: var(--toggled-hover-active-btn-color);
-  }
-}
-
+.toolbarButton.toggled:hover:active,
+.splitToolbarButton.toggled > .toolbarButton.toggled:hover:active,
 .secondaryToolbarButton.toggled:hover:active {
-  background-color: rgba(0, 0, 0, 0.4);
   background-color: var(--toggled-hover-active-btn-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbarButton.toggled:hover:active {
-  background-color: rgba(0, 0, 0, 0.4);
-  background-color: var(--toggled-hover-active-btn-color);
-  }
 }
 
 .dropdownToolbarButton {
   width: 140px;
   padding: 0;
   overflow: hidden;
-  background-color: rgba(215, 215, 219, 1);
   background-color: var(--dropdown-btn-bg-color);
   margin-top: 2px !important;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton {
-  background-color: rgba(74, 74, 79, 1);
-  background-color: var(--dropdown-btn-bg-color);
-  }
 }
 .dropdownToolbarButton::after {
   top: 6px;
   pointer-events: none;
 
-  -webkit-mask-image: url(images/toolbarButton-menuArrow.svg);
-
   -webkit-mask-image: var(--toolbarButton-menuArrow-icon);
-  mask-image: url(images/toolbarButton-menuArrow.svg);
   mask-image: var(--toolbarButton-menuArrow-icon);
 }
 html[dir="ltr"] .dropdownToolbarButton::after {
@@ -2324,29 +1494,11 @@ html[dir="rtl"] .dropdownToolbarButton::after {
   width: 162px;
   height: 28px;
   font-size: 12px;
-  color: rgba(12, 12, 13, 1);
   color: var(--main-color);
   margin: 0;
   padding: 1px 0 2px;
   border: none;
-  background-color: rgba(215, 215, 219, 1);
   background-color: var(--dropdown-btn-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton > select {
-  background-color: rgba(74, 74, 79, 1);
-  background-color: var(--dropdown-btn-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton > select {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
 }
 html[dir="ltr"] .dropdownToolbarButton > select {
   padding-left: 4px;
@@ -2355,41 +1507,15 @@ html[dir="rtl"] .dropdownToolbarButton > select {
   padding-right: 4px;
 }
 .dropdownToolbarButton > select:hover {
-  background-color: rgba(221, 222, 223, 1);
   background-color: var(--button-hover-color);
-}
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton > select:hover {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
 }
 
 .dropdownToolbarButton > select:focus {
-  background-color: rgba(221, 222, 223, 1);
   background-color: var(--button-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton > select:focus {
-  background-color: rgba(102, 102, 103, 1);
-  background-color: var(--button-hover-color);
-  }
 }
 
 .dropdownToolbarButton > select > option {
-  background: rgba(255, 255, 255, 1);
   background: var(--doorhanger-bg-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton > select > option {
-  background: rgba(74, 74, 79, 1);
-  background: var(--doorhanger-bg-color);
-  }
 }
 
 #customScaleOption {
@@ -2406,75 +1532,9 @@ html[dir="rtl"] .dropdownToolbarButton > select {
   height: 1px;
 }
 
-.toolbarButton::before {
-  /* All matching images have a size of 16x16
-   * All relevant containers have a size of 28x28 */
-  position: absolute;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-
-  content: "";
-  background-color: rgba(0, 0, 0, 1);
-  background-color: var(--toolbar-icon-bg-color);
-  -webkit-mask-size: cover;
-  mask-size: cover;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarButton::before {
-  background-color: rgba(255, 255, 255, 1);
-  background-color: var(--toolbar-icon-bg-color);
-  }
-}
-
-.secondaryToolbarButton::before {
-  /* All matching images have a size of 16x16
-   * All relevant containers have a size of 28x28 */
-  position: absolute;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-
-  content: "";
-  background-color: rgba(0, 0, 0, 1);
-  background-color: var(--toolbar-icon-bg-color);
-  -webkit-mask-size: cover;
-  mask-size: cover;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .secondaryToolbarButton::before {
-  background-color: rgba(255, 255, 255, 1);
-  background-color: var(--toolbar-icon-bg-color);
-  }
-}
-
-.dropdownToolbarButton::after {
-  /* All matching images have a size of 16x16
-   * All relevant containers have a size of 28x28 */
-  position: absolute;
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-
-  content: "";
-  background-color: rgba(0, 0, 0, 1);
-  background-color: var(--toolbar-icon-bg-color);
-  -webkit-mask-size: cover;
-  mask-size: cover;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dropdownToolbarButton::after {
-  background-color: rgba(255, 255, 255, 1);
-  background-color: var(--toolbar-icon-bg-color);
-  }
-}
-
+.toolbarButton::before,
+.secondaryToolbarButton::before,
+.dropdownToolbarButton::after,
 .treeItemToggler::before {
   /* All matching images have a size of 16x16
    * All relevant containers have a size of 28x28 */
@@ -2484,29 +1544,18 @@ html[dir="rtl"] .dropdownToolbarButton > select {
   height: 16px;
 
   content: "";
-  background-color: rgba(0, 0, 0, 1);
   background-color: var(--toolbar-icon-bg-color);
   -webkit-mask-size: cover;
   mask-size: cover;
 }
 
-@media (prefers-color-scheme: dark) {
-
-  .treeItemToggler::before {
-  background-color: rgba(255, 255, 255, 1);
-  background-color: var(--toolbar-icon-bg-color);
-  }
-}
-
 .toolbarButton::before {
-  opacity: 0.7;
   opacity: var(--toolbar-icon-opacity);
   top: 6px;
   left: 6px;
 }
 
 .secondaryToolbarButton::before {
-  opacity: 0.9;
   opacity: var(--doorhanger-icon-opacity);
   top: 5px;
 }
@@ -2518,9 +1567,7 @@ html[dir="rtl"] .secondaryToolbarButton::before {
 }
 
 .toolbarButton#sidebarToggle::before {
-  -webkit-mask-image: url(images/toolbarButton-sidebarToggle.svg);
   -webkit-mask-image: var(--toolbarButton-sidebarToggle-icon);
-  mask-image: url(images/toolbarButton-sidebarToggle.svg);
   mask-image: var(--toolbarButton-sidebarToggle-icon);
 }
 html[dir="rtl"] .toolbarButton#sidebarToggle::before {
@@ -2528,9 +1575,7 @@ html[dir="rtl"] .toolbarButton#sidebarToggle::before {
 }
 
 .toolbarButton#secondaryToolbarToggle::before {
-  -webkit-mask-image: url(images/toolbarButton-secondaryToolbarToggle.svg);
   -webkit-mask-image: var(--toolbarButton-secondaryToolbarToggle-icon);
-  mask-image: url(images/toolbarButton-secondaryToolbarToggle.svg);
   mask-image: var(--toolbarButton-secondaryToolbarToggle-icon);
 }
 html[dir="rtl"] .toolbarButton#secondaryToolbarToggle::before {
@@ -2538,100 +1583,56 @@ html[dir="rtl"] .toolbarButton#secondaryToolbarToggle::before {
 }
 
 .toolbarButton.findPrevious::before {
-  -webkit-mask-image: url(images/findbarButton-previous.svg);
   -webkit-mask-image: var(--findbarButton-previous-icon);
-  mask-image: url(images/findbarButton-previous.svg);
   mask-image: var(--findbarButton-previous-icon);
 }
 
 .toolbarButton.findNext::before {
-  -webkit-mask-image: url(images/findbarButton-next.svg);
   -webkit-mask-image: var(--findbarButton-next-icon);
-  mask-image: url(images/findbarButton-next.svg);
   mask-image: var(--findbarButton-next-icon);
 }
 
 .toolbarButton.pageUp::before {
-  -webkit-mask-image: url(images/toolbarButton-pageUp.svg);
   -webkit-mask-image: var(--toolbarButton-pageUp-icon);
-  mask-image: url(images/toolbarButton-pageUp.svg);
   mask-image: var(--toolbarButton-pageUp-icon);
 }
 
 .toolbarButton.pageDown::before {
-  -webkit-mask-image: url(images/toolbarButton-pageDown.svg);
   -webkit-mask-image: var(--toolbarButton-pageDown-icon);
-  mask-image: url(images/toolbarButton-pageDown.svg);
   mask-image: var(--toolbarButton-pageDown-icon);
 }
 
 .toolbarButton.zoomOut::before {
-  -webkit-mask-image: url(images/toolbarButton-zoomOut.svg);
   -webkit-mask-image: var(--toolbarButton-zoomOut-icon);
-  mask-image: url(images/toolbarButton-zoomOut.svg);
   mask-image: var(--toolbarButton-zoomOut-icon);
 }
 
 .toolbarButton.zoomIn::before {
-  -webkit-mask-image: url(images/toolbarButton-zoomIn.svg);
   -webkit-mask-image: var(--toolbarButton-zoomIn-icon);
-  mask-image: url(images/toolbarButton-zoomIn.svg);
   mask-image: var(--toolbarButton-zoomIn-icon);
 }
 
-.toolbarButton.presentationMode::before {
-  -webkit-mask-image: url(images/toolbarButton-presentationMode.svg);
-  -webkit-mask-image: var(--toolbarButton-presentationMode-icon);
-  mask-image: url(images/toolbarButton-presentationMode.svg);
-  mask-image: var(--toolbarButton-presentationMode-icon);
-}
-
+.toolbarButton.presentationMode::before,
 .secondaryToolbarButton.presentationMode::before {
-  -webkit-mask-image: url(images/toolbarButton-presentationMode.svg);
   -webkit-mask-image: var(--toolbarButton-presentationMode-icon);
-  mask-image: url(images/toolbarButton-presentationMode.svg);
   mask-image: var(--toolbarButton-presentationMode-icon);
 }
 
-.toolbarButton.print::before {
-  -webkit-mask-image: url(images/toolbarButton-print.svg);
-  -webkit-mask-image: var(--toolbarButton-print-icon);
-  mask-image: url(images/toolbarButton-print.svg);
-  mask-image: var(--toolbarButton-print-icon);
-}
-
+.toolbarButton.print::before,
 .secondaryToolbarButton.print::before {
-  -webkit-mask-image: url(images/toolbarButton-print.svg);
   -webkit-mask-image: var(--toolbarButton-print-icon);
-  mask-image: url(images/toolbarButton-print.svg);
   mask-image: var(--toolbarButton-print-icon);
 }
 
-.toolbarButton.openFile::before {
-  -webkit-mask-image: url(images/toolbarButton-openFile.svg);
-  -webkit-mask-image: var(--toolbarButton-openFile-icon);
-  mask-image: url(images/toolbarButton-openFile.svg);
-  mask-image: var(--toolbarButton-openFile-icon);
-}
-
+.toolbarButton.openFile::before,
 .secondaryToolbarButton.openFile::before {
-  -webkit-mask-image: url(images/toolbarButton-openFile.svg);
   -webkit-mask-image: var(--toolbarButton-openFile-icon);
-  mask-image: url(images/toolbarButton-openFile.svg);
   mask-image: var(--toolbarButton-openFile-icon);
 }
 
-.toolbarButton.download::before {
-  -webkit-mask-image: url(images/toolbarButton-download.svg);
-  -webkit-mask-image: var(--toolbarButton-download-icon);
-  mask-image: url(images/toolbarButton-download.svg);
-  mask-image: var(--toolbarButton-download-icon);
-}
-
+.toolbarButton.download::before,
 .secondaryToolbarButton.download::before {
-  -webkit-mask-image: url(images/toolbarButton-download.svg);
   -webkit-mask-image: var(--toolbarButton-download-icon);
-  mask-image: url(images/toolbarButton-download.svg);
   mask-image: var(--toolbarButton-download-icon);
 }
 
@@ -2645,31 +1646,19 @@ html[dir="rtl"] .toolbarButton#secondaryToolbarToggle::before {
   pointer-events: none;
 }
 
-.toolbarButton.bookmark::before {
-  -webkit-mask-image: url(images/toolbarButton-bookmark.svg);
-  -webkit-mask-image: var(--toolbarButton-bookmark-icon);
-  mask-image: url(images/toolbarButton-bookmark.svg);
-  mask-image: var(--toolbarButton-bookmark-icon);
-}
-
+.toolbarButton.bookmark::before,
 .secondaryToolbarButton.bookmark::before {
-  -webkit-mask-image: url(images/toolbarButton-bookmark.svg);
   -webkit-mask-image: var(--toolbarButton-bookmark-icon);
-  mask-image: url(images/toolbarButton-bookmark.svg);
   mask-image: var(--toolbarButton-bookmark-icon);
 }
 
 #viewThumbnail.toolbarButton::before {
-  -webkit-mask-image: url(images/toolbarButton-viewThumbnail.svg);
   -webkit-mask-image: var(--toolbarButton-viewThumbnail-icon);
-  mask-image: url(images/toolbarButton-viewThumbnail.svg);
   mask-image: var(--toolbarButton-viewThumbnail-icon);
 }
 
 #viewOutline.toolbarButton::before {
-  -webkit-mask-image: url(images/toolbarButton-viewOutline.svg);
   -webkit-mask-image: var(--toolbarButton-viewOutline-icon);
-  mask-image: url(images/toolbarButton-viewOutline.svg);
   mask-image: var(--toolbarButton-viewOutline-icon);
 }
 html[dir="rtl"] #viewOutline.toolbarButton::before {
@@ -2677,23 +1666,17 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
 }
 
 #viewAttachments.toolbarButton::before {
-  -webkit-mask-image: url(images/toolbarButton-viewAttachments.svg);
   -webkit-mask-image: var(--toolbarButton-viewAttachments-icon);
-  mask-image: url(images/toolbarButton-viewAttachments.svg);
   mask-image: var(--toolbarButton-viewAttachments-icon);
 }
 
 #viewLayers.toolbarButton::before {
-  -webkit-mask-image: url(images/toolbarButton-viewLayers.svg);
   -webkit-mask-image: var(--toolbarButton-viewLayers-icon);
-  mask-image: url(images/toolbarButton-viewLayers.svg);
   mask-image: var(--toolbarButton-viewLayers-icon);
 }
 
 #currentOutlineItem.toolbarButton::before {
-  -webkit-mask-image: url(images/toolbarButton-currentOutlineItem.svg);
   -webkit-mask-image: var(--toolbarButton-currentOutlineItem-icon);
-  mask-image: url(images/toolbarButton-currentOutlineItem.svg);
   mask-image: var(--toolbarButton-currentOutlineItem-icon);
 }
 html[dir="rtl"] #currentOutlineItem.toolbarButton::before {
@@ -2701,9 +1684,7 @@ html[dir="rtl"] #currentOutlineItem.toolbarButton::before {
 }
 
 #viewFind.toolbarButton::before {
-  -webkit-mask-image: url(images/toolbarButton-search.svg);
   -webkit-mask-image: var(--toolbarButton-search-icon);
-  mask-image: url(images/toolbarButton-search.svg);
   mask-image: var(--toolbarButton-search-icon);
 }
 
@@ -2754,93 +1735,67 @@ html[dir="rtl"] .secondaryToolbarButton > span {
 }
 
 .secondaryToolbarButton.firstPage::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-firstPage.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-firstPage-icon);
-  mask-image: url(images/secondaryToolbarButton-firstPage.svg);
   mask-image: var(--secondaryToolbarButton-firstPage-icon);
 }
 
 .secondaryToolbarButton.lastPage::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-lastPage.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-lastPage-icon);
-  mask-image: url(images/secondaryToolbarButton-lastPage.svg);
   mask-image: var(--secondaryToolbarButton-lastPage-icon);
 }
 
 .secondaryToolbarButton.rotateCcw::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-rotateCcw.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-rotateCcw-icon);
-  mask-image: url(images/secondaryToolbarButton-rotateCcw.svg);
   mask-image: var(--secondaryToolbarButton-rotateCcw-icon);
 }
 
 .secondaryToolbarButton.rotateCw::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-rotateCw.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-rotateCw-icon);
-  mask-image: url(images/secondaryToolbarButton-rotateCw.svg);
   mask-image: var(--secondaryToolbarButton-rotateCw-icon);
 }
 
 .secondaryToolbarButton.selectTool::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-selectTool.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-selectTool-icon);
-  mask-image: url(images/secondaryToolbarButton-selectTool.svg);
   mask-image: var(--secondaryToolbarButton-selectTool-icon);
 }
 
 .secondaryToolbarButton.handTool::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-handTool.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-handTool-icon);
-  mask-image: url(images/secondaryToolbarButton-handTool.svg);
   mask-image: var(--secondaryToolbarButton-handTool-icon);
 }
 
 .secondaryToolbarButton.scrollVertical::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-scrollVertical.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-scrollVertical-icon);
-  mask-image: url(images/secondaryToolbarButton-scrollVertical.svg);
   mask-image: var(--secondaryToolbarButton-scrollVertical-icon);
 }
 
 .secondaryToolbarButton.scrollHorizontal::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-scrollHorizontal.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-scrollHorizontal-icon);
-  mask-image: url(images/secondaryToolbarButton-scrollHorizontal.svg);
   mask-image: var(--secondaryToolbarButton-scrollHorizontal-icon);
 }
 
 .secondaryToolbarButton.scrollWrapped::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-scrollWrapped.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-scrollWrapped-icon);
-  mask-image: url(images/secondaryToolbarButton-scrollWrapped.svg);
   mask-image: var(--secondaryToolbarButton-scrollWrapped-icon);
 }
 
 .secondaryToolbarButton.spreadNone::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-spreadNone.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-spreadNone-icon);
-  mask-image: url(images/secondaryToolbarButton-spreadNone.svg);
   mask-image: var(--secondaryToolbarButton-spreadNone-icon);
 }
 
 .secondaryToolbarButton.spreadOdd::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-spreadOdd.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-spreadOdd-icon);
-  mask-image: url(images/secondaryToolbarButton-spreadOdd.svg);
   mask-image: var(--secondaryToolbarButton-spreadOdd-icon);
 }
 
 .secondaryToolbarButton.spreadEven::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-spreadEven.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-spreadEven-icon);
-  mask-image: url(images/secondaryToolbarButton-spreadEven.svg);
   mask-image: var(--secondaryToolbarButton-spreadEven-icon);
 }
 
 .secondaryToolbarButton.documentProperties::before {
-  -webkit-mask-image: url(images/secondaryToolbarButton-documentProperties.svg);
   -webkit-mask-image: var(--secondaryToolbarButton-documentProperties-icon);
-  mask-image: url(images/secondaryToolbarButton-documentProperties.svg);
   mask-image: var(--secondaryToolbarButton-documentProperties-icon);
 }
 
@@ -2849,16 +1804,7 @@ html[dir="rtl"] .secondaryToolbarButton > span {
   padding: 11px 0;
   margin: 5px 2px;
   width: 1px;
-  background-color: rgba(0, 0, 0, 0.3);
   background-color: var(--separator-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .verticalToolbarSeparator {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--separator-color);
-  }
 }
 html[dir="ltr"] .verticalToolbarSeparator {
   margin-left: 2px;
@@ -2872,59 +1818,23 @@ html[dir="rtl"] .verticalToolbarSeparator {
   margin: 6px 0 5px;
   height: 1px;
   width: 100%;
-  border-top: 1px solid rgba(222, 222, 222, 1);
   border-top: 1px solid var(--doorhanger-separator-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .horizontalToolbarSeparator {
-  border-top: 1px solid rgba(92, 92, 97, 1);
-  border-top: 1px solid var(--doorhanger-separator-color);
-  }
 }
 
 .toolbarField {
   padding: 4px 7px;
   margin: 3px 0;
   border-radius: 2px;
-  background-color: rgba(255, 255, 255, 1);
   background-color: var(--field-bg-color);
   background-clip: padding-box;
   border-width: 1px;
   border-style: solid;
-  border-color: rgba(187, 187, 188, 1);
   border-color: var(--field-border-color);
   box-shadow: none;
-  color: rgba(6, 6, 6, 1);
   color: var(--field-color);
   font-size: 12px;
   line-height: 16px;
   outline-style: none;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarField {
-  color: rgba(250, 250, 250, 1);
-  color: var(--field-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarField {
-  border-color: rgba(115, 115, 115, 1);
-  border-color: var(--field-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarField {
-  background-color: rgba(64, 64, 68, 1);
-  background-color: var(--field-bg-color);
-  }
 }
 
 .toolbarField[type="checkbox"] {
@@ -2949,18 +1859,9 @@ html[dir="rtl"] .toolbarField[type="checkbox"] {
 }
 
 .toolbarField.pageNumber.visiblePageIsLoading {
-  background-image: url(images/loading.svg);
   background-image: var(--loading-icon);
   background-repeat: no-repeat;
   background-position: 3px;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarField.pageNumber.visiblePageIsLoading {
-  background-image: url(images/loading-dark.svg);
-  background-image: var(--loading-icon);
-  }
 }
 
 .toolbarField.pageNumber::-webkit-inner-spin-button,
@@ -2979,24 +1880,14 @@ html[dir="rtl"] .toolbarField[type="checkbox"] {
   margin: 2px;
   border: 1px solid rgba(0, 0, 0, 0);
   border-radius: 2px;
-  color: rgba(12, 12, 13, 1);
   color: var(--main-color);
   font-size: 12px;
   line-height: 14px;
   text-align: left;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: default;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .toolbarLabel {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
 }
 
 html[dir="ltr"] #numPages.toolbarLabel {
@@ -3063,34 +1954,11 @@ a:focus > .thumbnail > .thumbnailSelectionRing > .thumbnailImage,
   opacity: 0.9;
 }
 
-a:focus > .thumbnail > .thumbnailSelectionRing {
-  background-color: rgba(0, 0, 0, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  background-clip: padding-box;
-  color: rgba(255, 255, 255, 0.9);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  a:focus > .thumbnail > .thumbnailSelectionRing {
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  }
-}
-
+a:focus > .thumbnail > .thumbnailSelectionRing,
 .thumbnail:hover > .thumbnailSelectionRing {
-  background-color: rgba(0, 0, 0, 0.15);
   background-color: var(--sidebaritem-bg-color);
   background-clip: padding-box;
   color: rgba(255, 255, 255, 0.9);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .thumbnail:hover > .thumbnailSelectionRing {
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  }
 }
 
 .thumbnail.selected > .thumbnailSelectionRing > .thumbnailImage {
@@ -3098,18 +1966,9 @@ a:focus > .thumbnail > .thumbnailSelectionRing {
 }
 
 .thumbnail.selected > .thumbnailSelectionRing {
-  background-color: rgba(0, 0, 0, 0.15);
   background-color: var(--sidebaritem-bg-color);
   background-clip: padding-box;
   color: rgba(255, 255, 255, 1);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .thumbnail.selected > .thumbnailSelectionRing {
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  }
 }
 
 #outlineView,
@@ -3124,7 +1983,6 @@ a:focus > .thumbnail > .thumbnailSelectionRing {
   -webkit-overflow-scrolling: touch;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 
@@ -3147,24 +2005,14 @@ html[dir="rtl"] .treeItem > .treeItems {
   height: auto;
   margin-bottom: 1px;
   border-radius: 2px;
-  color: rgba(0, 0, 0, 0.8);
   color: var(--treeitem-color);
   font-size: 13px;
   line-height: 15px;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   white-space: normal;
   cursor: pointer;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItem > a {
-  color: rgba(255, 255, 255, 0.8);
-  color: var(--treeitem-color);
-  }
 }
 html[dir="ltr"] .treeItem > a {
   padding: 2px 0 5px 4px;
@@ -3190,15 +2038,11 @@ html[dir="rtl"] #layersView .treesItem > a > label {
   color: rgba(255, 255, 255, 0.5);
 }
 .treeItemToggler::before {
-  -webkit-mask-image: url(images/treeitem-expanded.svg);
   -webkit-mask-image: var(--treeitem-expanded-icon);
-  mask-image: url(images/treeitem-expanded.svg);
   mask-image: var(--treeitem-expanded-icon);
 }
 .treeItemToggler.treeItemsHidden::before {
-  -webkit-mask-image: url(images/treeitem-collapsed.svg);
   -webkit-mask-image: var(--treeitem-collapsed-icon);
-  mask-image: url(images/treeitem-collapsed.svg);
   mask-image: var(--treeitem-collapsed-icon);
 }
 html[dir="rtl"] .treeItemToggler.treeItemsHidden::before {
@@ -3221,126 +2065,18 @@ html[dir="rtl"] .treeItemToggler::before {
 }
 
 .treeItem.selected > a {
-  background-color: rgba(0, 0, 0, 0.25);
   background-color: var(--treeitem-selected-bg-color);
-  color: rgba(0, 0, 0, 0.9);
   color: var(--treeitem-selected-color);
 }
 
-@media (prefers-color-scheme: dark) {
-
-  .treeItem.selected > a {
-  color: rgba(255, 255, 255, 0.9);
-  color: var(--treeitem-selected-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItem.selected > a {
-  background-color: rgba(255, 255, 255, 0.25);
-  background-color: var(--treeitem-selected-bg-color);
-  }
-}
-
-.treeItemToggler:hover {
-  background-color: rgba(0, 0, 0, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  background-clip: padding-box;
-  border-radius: 2px;
-  color: rgba(0, 0, 0, 0.9);
-  color: var(--treeitem-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItemToggler:hover {
-  color: rgba(255, 255, 255, 0.9);
-  color: var(--treeitem-hover-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItemToggler:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  }
-}
-
-.treeItemToggler:hover + a {
-  background-color: rgba(0, 0, 0, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  background-clip: padding-box;
-  border-radius: 2px;
-  color: rgba(0, 0, 0, 0.9);
-  color: var(--treeitem-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItemToggler:hover + a {
-  color: rgba(255, 255, 255, 0.9);
-  color: var(--treeitem-hover-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItemToggler:hover + a {
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  }
-}
-
-.treeItemToggler:hover ~ .treeItems {
-  background-color: rgba(0, 0, 0, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  background-clip: padding-box;
-  border-radius: 2px;
-  color: rgba(0, 0, 0, 0.9);
-  color: var(--treeitem-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItemToggler:hover ~ .treeItems {
-  color: rgba(255, 255, 255, 0.9);
-  color: var(--treeitem-hover-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItemToggler:hover ~ .treeItems {
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  }
-}
-
+.treeItemToggler:hover,
+.treeItemToggler:hover + a,
+.treeItemToggler:hover ~ .treeItems,
 .treeItem > a:hover {
-  background-color: rgba(0, 0, 0, 0.15);
   background-color: var(--sidebaritem-bg-color);
   background-clip: padding-box;
   border-radius: 2px;
-  color: rgba(0, 0, 0, 0.9);
   color: var(--treeitem-hover-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItem > a:hover {
-  color: rgba(255, 255, 255, 0.9);
-  color: var(--treeitem-hover-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .treeItem > a:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-  background-color: var(--sidebaritem-bg-color);
-  }
 }
 
 /* TODO: file FF bug to support ::-moz-selection:window-inactive
@@ -3354,31 +2090,13 @@ html[dir="rtl"] .treeItemToggler::before {
 }
 
 #errorWrapper {
-  background: none repeat scroll 0 0 rgba(255, 74, 74, 1);
   background: none repeat scroll 0 0 var(--errorWrapper-bg-color);
-  color: rgba(12, 12, 13, 1);
   color: var(--main-color);
   left: 0;
   position: absolute;
   right: 0;
   z-index: 1000;
   padding: 3px 6px;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #errorWrapper {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #errorWrapper {
-  background: none repeat scroll 0 0 rgba(199, 17, 17, 1);
-  background: none repeat scroll 0 0 var(--errorWrapper-bg-color);
-  }
 }
 
 #errorMessageLeft {
@@ -3390,39 +2108,12 @@ html[dir="rtl"] .treeItemToggler::before {
 }
 
 #errorMoreInfo {
-  background-color: rgba(255, 255, 255, 1);
   background-color: var(--field-bg-color);
-  color: rgba(6, 6, 6, 1);
   color: var(--field-color);
-  border: 1px solid rgba(187, 187, 188, 1);
   border: 1px solid var(--field-border-color);
   padding: 3px;
   margin: 3px;
   width: 98%;
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #errorMoreInfo {
-  border: 1px solid rgba(115, 115, 115, 1);
-  border: 1px solid var(--field-border-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #errorMoreInfo {
-  color: rgba(250, 250, 250, 1);
-  color: var(--field-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #errorMoreInfo {
-  background-color: rgba(64, 64, 68, 1);
-  background-color: var(--field-bg-color);
-  }
 }
 
 .overlayButton {
@@ -3454,31 +2145,13 @@ html[dir="rtl"] .treeItemToggler::before {
   display: inline-block;
   padding: 15px;
   border-spacing: 4px;
-  color: rgba(12, 12, 13, 1);
   color: var(--main-color);
   font-size: 12px;
   line-height: 14px;
-  background-color: rgba(255, 255, 255, 1);
   background-color: var(--doorhanger-bg-color);
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #overlayContainer > .container > .dialog {
-  background-color: rgba(74, 74, 79, 1);
-  background-color: var(--doorhanger-bg-color);
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-
-  #overlayContainer > .container > .dialog {
-  color: rgba(249, 249, 250, 1);
-  color: var(--main-color);
-  }
 }
 
 .dialog > .row {
@@ -3498,16 +2171,7 @@ html[dir="rtl"] .treeItemToggler::before {
   margin: 4px 0;
   height: 1px;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.3);
   background-color: var(--separator-color);
-}
-
-@media (prefers-color-scheme: dark) {
-
-  .dialog .separator {
-  background-color: rgba(0, 0, 0, 0.3);
-  background-color: var(--separator-color);
-  }
 }
 
 .dialog .buttonRow {
@@ -3733,17 +2397,24 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
   }
   /* wrapper around (scaled) print canvas elements */
   #printContainer > div {
-    position: relative;
-    top: 0;
-    left: 0;
-    width: 1px;
-    height: 1px;
-    overflow: visible;
     page-break-after: always;
     page-break-inside: avoid;
+
+    /* The wrapper always cover the whole page. */
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
   #printContainer canvas,
   #printContainer img {
+    /* The intrinsic canvas / image size will make sure that we fit the page. */
+    max-width: 100%;
+    max-height: 100%;
+
     direction: ltr;
     display: block;
   }
@@ -3766,8 +2437,8 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
 }
 
 @media all and (max-width: 840px) {
-  #sidebarContent {
-    background-color: var(--sidebar-bg-color);
+  #sidebarContainer {
+    background-color: var(--sidebar-narrow-bg-color);
   }
 
   html[dir="ltr"] #outerContainer.sidebarOpen #viewerContainer {
