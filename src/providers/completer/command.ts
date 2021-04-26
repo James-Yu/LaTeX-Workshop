@@ -235,11 +235,6 @@ export class Command implements IProvider {
             this.updatePkgWithNodeArray(file, nodes)
         } else if (content !== undefined) {
             const pkgReg = /\\usepackage(?:\[[^[\]{}]*\])?{(.*)}/g
-            const pkgs: string[] = []
-
-            if (this.extension.manager.cachedContent[file].element.package === undefined) {
-                this.extension.manager.cachedContent[file].element.package = []
-            }
 
             while (true) {
                 const result = pkgReg.exec(content)
@@ -248,14 +243,16 @@ export class Command implements IProvider {
                 }
                 result[1].split(',').forEach(pkg => {
                     pkg = pkg.trim()
-                    if (pkgs.includes(pkg)) {
+                    if (pkg === '') {
                         return
                     }
-                    const filePkgs = this.extension.manager.cachedContent[file].element.package
-                    if (filePkgs) {
+                    let filePkgs = this.extension.manager.cachedContent[file].element.package
+                    if (!filePkgs) {
+                        filePkgs = []
+                        this.extension.manager.cachedContent[file].element.package = filePkgs
+                    }
+                    if (!filePkgs.includes(pkg)) {
                         filePkgs.push(pkg)
-                    } else {
-                        this.extension.manager.cachedContent[file].element.package = [pkg]
                     }
                 })
             }
@@ -281,11 +278,13 @@ export class Command implements IProvider {
                             if (node.name === 'documentclass') {
                                 pkg = 'class-' + pkg
                             }
-                            const pkgs = this.extension.manager.cachedContent[file].element.package
-                            if (pkgs) {
+                            let pkgs = this.extension.manager.cachedContent[file].element.package
+                            if (!pkgs) {
+                                pkgs = []
+                                this.extension.manager.cachedContent[file].element.package = pkgs
+                            }
+                            if (!pkgs.includes(pkg)) {
                                 pkgs.push(pkg)
-                            } else {
-                                this.extension.manager.cachedContent[file].element.package = [pkg]
                             }
                         })
                     }
