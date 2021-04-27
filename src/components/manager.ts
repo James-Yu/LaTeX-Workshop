@@ -38,7 +38,7 @@ interface Content {
             environment?: EnvEntry[],
             bibitem?: CiteEntry[],
             command?: CmdEntry[],
-            package?: string[]
+            package?: Set<string>
         },
         /**
          * The sub-files of the LaTeX file. They should be tex or plain files.
