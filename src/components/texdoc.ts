@@ -66,14 +66,14 @@ export class TeXDoc {
     }
 
     texdocUsepackages() {
-        let names: string[] = []
+        const names: Set<string> = new Set()
         for (const tex of this.extension.manager.getIncludedTeX()) {
             const content = this.extension.manager.cachedContent[tex]
             const pkgs = content && content.element.package
             if (!pkgs) {
                 continue
             }
-            names = names.concat(pkgs)
+            pkgs.forEach(pkg => names.add(pkg))
         }
         const packagenames = Array.from(new Set(names))
         const items: vscode.QuickPickItem[] = packagenames.map( name => {
