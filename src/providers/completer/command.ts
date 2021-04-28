@@ -248,12 +248,10 @@ export class Command implements IProvider {
                     }
                     let filePkgs = this.extension.manager.cachedContent[file].element.package
                     if (!filePkgs) {
-                        filePkgs = []
+                        filePkgs = new Set<string>()
                         this.extension.manager.cachedContent[file].element.package = filePkgs
                     }
-                    if (!filePkgs.includes(pkg)) {
-                        filePkgs.push(pkg)
-                    }
+                    filePkgs.add(pkg)
                 })
             }
         }
@@ -280,12 +278,10 @@ export class Command implements IProvider {
                             }
                             let pkgs = this.extension.manager.cachedContent[file].element.package
                             if (!pkgs) {
-                                pkgs = []
+                                pkgs = new Set<string>()
                                 this.extension.manager.cachedContent[file].element.package = pkgs
                             }
-                            if (!pkgs.includes(pkg)) {
-                                pkgs.push(pkg)
-                            }
+                            pkgs.add(pkg)
                         })
                     }
                 })

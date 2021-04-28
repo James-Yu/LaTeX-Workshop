@@ -305,13 +305,13 @@ export function activate(context: vscode.ExtensionContext) {
         completer: {
             command: {
                 usedPackages: () => {
-                    let allPkgs: string[] = []
+                    const allPkgs: Set<string> = new Set()
                     extension.manager.getIncludedTeX().forEach(tex => {
                         const pkgs = extension.manager.cachedContent[tex].element.package
                         if (pkgs === undefined) {
                             return
                         }
-                        allPkgs = allPkgs.concat(pkgs)
+                        pkgs.forEach(pkg => allPkgs.add(pkg))
                     })
                     return allPkgs
                 }
