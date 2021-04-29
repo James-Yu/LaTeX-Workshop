@@ -21,6 +21,7 @@ import {Section} from './components/section'
 import {CompilerLogParser} from './components/parser/compilerlog'
 import {LinterLogParser} from './components/parser/linterlog'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
+import {Configuration} from './components/configuration'
 
 import {Completer} from './providers/completion'
 import {BibtexCompleter} from './providers/bibtexcompletion'
@@ -332,6 +333,7 @@ export class Extension {
     readonly logger: Logger
     readonly buildInfo: BuildInfo
     readonly commander: Commander
+    readonly configuration: Configuration
     readonly manager: Manager
     readonly builder: Builder
     readonly viewer: Viewer
@@ -365,6 +367,7 @@ export class Extension {
         this.logger.addLogMessage(`Extension root: ${this.extensionRoot}`)
         this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
         this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
+        this.configuration = new Configuration(this)
         this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
