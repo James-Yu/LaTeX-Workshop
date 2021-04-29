@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
-import {SyncTexJs} from './synctex'
+import {SyncTexJs} from './locatorlib/synctex'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
 import type {Extension} from '../main'
