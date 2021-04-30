@@ -137,8 +137,4 @@ export class GraphicsPreview {
         return undefined
     }
 
-    getPdfNumPages(pdfPath: string): Promise<number> {
-        return this.pdfRenderer.getNumPages(pdfPath)
-    }
-
 }

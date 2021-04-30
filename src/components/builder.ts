@@ -206,30 +206,6 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
         try {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            if ((configuration.get('progress.location') as string) === 'Status Bar') {
-                this.extension.buildInfo.buildStarted()
-            } else {
-                vscode.window.withProgress({
-                    location: vscode.ProgressLocation.Notification,
-                    title: 'Running build process',
-                    cancellable: true
-                }, (progress, token) => {
-                    token.onCancellationRequested(this.kill.bind(this))
-                    this.extension.buildInfo.buildStarted(progress)
-                    const p = new Promise<void>(resolve => {
-                        this.extension.buildInfo.setResolveToken(resolve)
-                    })
-                    return p
-                })
-            }
-            try {
-                const pdfPath = this.extension.manager.tex2pdf(rootFile, true)
-                const numPage = await this.extension.graphicsPreview.getPdfNumPages(pdfPath)
-                this.extension.buildInfo.setPageTotal(numPage)
-            } catch(e) {
-
-            }
             // Create sub directories of output directory
             // This was supposed to create the outputDir as latexmk does not
             // take care of it (neither does any of latex command). If the
@@ -252,7 +228,6 @@ export class Builder {
         } catch (e) {
             this.extension.logger.addLogMessage('Unexpected Error: please see the console log of the Developer Tools of VS Code.')
             this.extension.logger.displayStatus('x', 'errorForeground')
-            this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
             throw(e)
         }
@@ -313,11 +288,6 @@ export class Builder {
         this.currentProcess.stdout.on('data', (newStdout: Buffer | string) => {
             stdout += newStdout
             this.extension.logger.addCompilerMessage(newStdout.toString())
-            try {
-                this.extension.buildInfo.newStdoutLine(newStdout.toString())
-            } catch(e) {
-
-            }
         })
 
         let stderr = ''
@@ -332,7 +302,6 @@ export class Builder {
             this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`, 'error')
             this.currentProcess = undefined
-            this.extension.buildInfo.buildEnded()
             releaseBuildMutex()
         })
 
@@ -342,7 +311,6 @@ export class Builder {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
                 this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVars['PATH']}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
-                this.extension.buildInfo.buildEnded()
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
@@ -397,7 +365,6 @@ export class Builder {
     }
 
     private buildFinished(rootFile: string) {
-        this.extension.buildInfo.buildEnded()
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         if (this.extension.compilerLogParser.isLaTeXmkSkipped) {
