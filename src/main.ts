@@ -6,7 +6,6 @@ import * as utils from './utils/utils'
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
-import {BuildInfo} from './components/buildinfo'
 import {Manager, BuildEvents} from './components/manager'
 import {Builder} from './components/builder'
 import {Viewer} from './components/viewer'
@@ -123,7 +122,6 @@ function registerLatexWorkshopCommands(extension: Extension) {
     vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote'))
     vscode.commands.registerCommand('latex-workshop.select-section', () => extension.commander.selectSection())
 
-    vscode.commands.registerCommand('latex-workshop.showCompilationPanel', () => extension.buildInfo.showPanel())
     vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
     vscode.commands.registerCommand('latex-workshop.bibsort', () => extension.bibtexFormatter.bibtexFormat(true, false))
@@ -331,7 +329,6 @@ export class Extension {
     packageInfo: { version?: string } = {}
     readonly extensionRoot: string
     readonly logger: Logger
-    readonly buildInfo: BuildInfo
     readonly commander: Commander
     readonly configuration: Configuration
     readonly manager: Manager
@@ -368,7 +365,6 @@ export class Extension {
         this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
         this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
         this.configuration = new Configuration(this)
-        this.buildInfo = new BuildInfo(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
         this.builder = new Builder(this)

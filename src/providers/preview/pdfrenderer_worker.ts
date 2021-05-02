@@ -51,17 +51,11 @@ async function renderToSvg(pdfPath: string, options: { height: number, width: nu
     return svg.toString() as string
 }
 
-async function getNumPages(pdfPath: string): Promise<number> {
-    const doc = await pdfjsLib.getDocument(pdfPath).promise
-    return doc.numPages
-}
-
-const workers = {renderToSvg, getNumPages}
+const workers = {renderToSvg}
 
 // workerpool passes the resolved value of Promise, not Promise.
 export type IPdfRendererWorker = {
-    renderToSvg: (...args: Parameters<typeof renderToSvg>) => string,
-    getNumPages: (...args: Parameters<typeof getNumPages>) => number
+    renderToSvg: (...args: Parameters<typeof renderToSvg>) => string
 }
 
 workerpool.worker(workers)
