@@ -257,6 +257,7 @@ export class Builder {
         this.extension.manager.setEnvVar()
         const envVars: ProcessEnv = {}
         Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
+        const evnVarsPath = envVars['PATH']
         const currentEnv = steps[index].env
         if (currentEnv) {
             Object.keys(currentEnv).forEach(key => envVars[key] = currentEnv[key])
@@ -298,7 +299,7 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
-            this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${envVars['PATH']}`)
+            this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${evnVarsPath}`)
             this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
             this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`, 'error')
             this.currentProcess = undefined
@@ -309,7 +310,7 @@ export class Builder {
             this.extension.compilerLogParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
-                this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVars['PATH']}`)
+                this.extension.logger.addLogMessage(`The environment variable $PATH: ${evnVarsPath}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
