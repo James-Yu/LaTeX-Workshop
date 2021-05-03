@@ -40,7 +40,6 @@ import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetViewProvider} from './providers/snippetview'
 
-import {checkDeprecatedFeatures, obsoleteConfigCheck} from './config'
 
 function conflictExtensionCheck() {
     function check(extensionID: string, name: string, suggestion: string) {
@@ -168,7 +167,6 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
         // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
         if (extension.manager.hasTexId(e.languageId)) {
-            obsoleteConfigCheck(extension)
             await extension.manager.findRoot()
         }
 
@@ -270,9 +268,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-snippet-view', new SnippetViewProvider(extension), {webviewOptions: {retainContextWhenHidden: true}}))
 
     extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
-    obsoleteConfigCheck(extension)
     conflictExtensionCheck()
-    checkDeprecatedFeatures(extension)
 
     // If VS Code started with PDF files, we must explicitly execute `commander.pdf` for the PDF files.
     vscode.window.visibleTextEditors.forEach(editor => {
