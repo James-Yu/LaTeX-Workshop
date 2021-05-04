@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 import * as utils from '../../utils/utils'

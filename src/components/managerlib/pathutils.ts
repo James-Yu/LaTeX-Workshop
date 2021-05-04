@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import * as utils from '../../utils/utils'
 
 import type {Extension} from '../../main'

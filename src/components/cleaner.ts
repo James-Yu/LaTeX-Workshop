@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import glob from 'glob'
 import * as cs from 'cross-spawn'
 
@@ -55,10 +55,10 @@ export class Cleaner {
             .map(file => path.resolve(outdir, file))
         ).then(files => Promise.all(
             // Try to unlink the files, returning a Promise for every file
-            files.map(file => fs.unlink(file).then(() => {
+            files.map(file => fs.promises.unlink(file).then(() => {
                 this.extension.logger.addLogMessage(`File cleaned: ${file}`)
                 // If unlinking fails, replace it with an rmdir Promise
-            }, () => fs.rmdir(file).then(() => {
+            }, () => fs.promises.rmdir(file).then(() => {
                 this.extension.logger.addLogMessage(`Folder removed: ${file}`)
             }, () => {
                 this.extension.logger.addLogMessage(`Error removing file: ${file}`)

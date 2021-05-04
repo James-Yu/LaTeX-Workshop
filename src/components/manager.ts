@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import type {latexParser} from 'latex-utensils'
@@ -800,7 +800,7 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
-        fs.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
+        fs.promises.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
         this.extension.completer.input.getGraphicsPath(file)
     }
 

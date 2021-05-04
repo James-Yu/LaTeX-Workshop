@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import * as path from 'path'
 
 import type {Extension} from './main'
@@ -54,7 +54,7 @@ export class Commander {
         this.extension = extension
         this._texdoc = new TeXDoc(extension)
         let extensionSnippets: string
-        fs.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
+        fs.promises.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
             .then(data => {extensionSnippets = data.toString()})
             .then(() => {
                 const snipObj: { [key: string]: { body: string } } = JSON.parse(extensionSnippets) as SnippetsLatexJsonType

@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
 import type {Extension} from '../../main'
