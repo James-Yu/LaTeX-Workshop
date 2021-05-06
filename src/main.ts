@@ -159,7 +159,7 @@ export function activate(context: vscode.ExtensionContext) {
                     return
                 }
                 extension.logger.addLogMessage(`Auto build started on saving file: ${e.fileName}`)
-                extension.commander.build(true)
+                extension.manager.buildOnSave(e.fileName)
             }
         }
     }))
