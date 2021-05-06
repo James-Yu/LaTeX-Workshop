@@ -80,9 +80,10 @@ export class NewCommandFinder {
         let commands: string[] = []
         try {
             const ast = await this.extension.pegParser.parseLatexPreamble(content)
-            const regex = /((re)?new|provide)command(\\*)?|DeclareMathOperator(\\*)?/
+            const regex = /^(renewcommand|newcommand|providecommand|DeclareMathOperator)(\*)?$/
             for (const node of ast.content) {
                 if (((latexParser.isCommand(node) && node.name.match(regex)) || latexParser.isDefCommand(node)) && node.args.length > 0) {
+                    node.name = node.name.replace(/\*/, '')
                     const s = latexParser.stringify(node)
                     commands.push(s)
                 } else if (latexParser.isCommand(node) && node.name === 'DeclarePairedDelimiter' && node.args.length === 3) {
