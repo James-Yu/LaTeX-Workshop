@@ -72,6 +72,12 @@ export class Manager {
      */
     readonly cachedContent: Content = {}
 
+    private readonly localRootFiles: { [key: string]: string | undefined } = {}
+    private readonly rootFilesLanguageIds: { [key: string]: string | undefined } = {}
+    // Store one root file for each workspace.
+    private readonly rootFiles: { [key: string]: string | undefined } = {}
+    private workspaceRootDirUri: string = ''
+
     private readonly extension: Extension
     private fileWatcher?: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
@@ -136,36 +142,65 @@ export class Manager {
         return this.rootFile ? path.dirname(this.rootFile) : undefined
     }
 
-    // Here we have something complex. We use a private rootFiles to hold the
-    // roots of each workspace, and use rootFile to return the cached content.
-    private rootFiles: { [key: string]: string | undefined } = {}
-
     /**
      * The path of the root LaTeX file of the current workspace.
      * It is `undefined` before `findRoot` called.
      */
-    get rootFile() {
-        return this.rootFiles[this.workspaceRootDir]
+    get rootFile(): string | undefined {
+        return this.rootFiles[this.workspaceRootDirUri]
     }
 
     set rootFile(root: string | undefined) {
-        this.rootFiles[this.workspaceRootDir] = root
+        this.rootFiles[this.workspaceRootDirUri] = root
     }
 
-    private localRootFiles: { [key: string]: string | undefined } = {}
+    get rootFileUri(): vscode.Uri | undefined {
+        const rootFilePath = this.rootFiles[this.workspaceRootDirUri]
+        if (rootFilePath) {
+            return this.convertRootFileToUri(rootFilePath)
+        } else {
+            return
+        }
+    }
+
+    set rootFileUri(root: vscode.Uri | undefined) {
+        let rootFilePath: string | undefined
+        if (root) {
+            if (root.scheme === 'file') {
+                rootFilePath = root.fsPath
+            } else {
+                rootFilePath = root.toString(true)
+            }
+        }
+        this.rootFiles[this.workspaceRootDirUri] = rootFilePath
+    }
+
+    private convertRootFileToUri(rootFilePath: string): vscode.Uri {
+        if (this.isUri(rootFilePath)) {
+            return vscode.Uri.parse(rootFilePath)
+        } else {
+            return vscode.Uri.file(rootFilePath)
+        }
+    }
+
+    private isUri(filePath: string): boolean {
+        return /^([-+.a-zA-Z0-9]+):\/\//.exec(filePath) ? true : false
+    }
+
     get localRootFile() {
-        return this.localRootFiles[this.workspaceRootDir]
-    }
-    set localRootFile(localRoot: string | undefined) {
-        this.localRootFiles[this.workspaceRootDir] = localRoot
+        return this.localRootFiles[this.workspaceRootDirUri]
     }
 
-    private rootFilesLanguageIds: { [key: string]: string | undefined } = {}
-    get rootFileLanguageId() {
-        return this.rootFilesLanguageIds[this.workspaceRootDir]
+    set localRootFile(localRoot: string | undefined) {
+        this.localRootFiles[this.workspaceRootDirUri] = localRoot
     }
+
+    get rootFileLanguageId() {
+        return this.rootFilesLanguageIds[this.workspaceRootDirUri]
+    }
+
     set rootFileLanguageId(id: string | undefined) {
-        this.rootFilesLanguageIds[this.workspaceRootDir] = id
+        this.rootFilesLanguageIds[this.workspaceRootDirUri] = id
     }
 
     private inferLanguageId(filename: string): string | undefined {
@@ -204,33 +239,29 @@ export class Manager {
         return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
 
-    private workspaceRootDir: string = ''
     private findWorkspace() {
         const workspaceFolders = vscode.workspace.workspaceFolders
         const firstDir = workspaceFolders && workspaceFolders[0]
         // If no workspace is opened.
         if (workspaceFolders === undefined || !firstDir) {
-            this.workspaceRootDir = ''
+            this.workspaceRootDirUri = ''
             return
         }
         // If we don't have an active text editor, we can only make a guess.
         // Let's guess the first one.
         if (!vscode.window.activeTextEditor) {
-            this.workspaceRootDir = firstDir.uri.fsPath
+            this.workspaceRootDirUri = firstDir.uri.toString(true)
             return
         }
-        // Guess that the correct workspace folder path should be contained in
-        // the path of active editor. If there are multiple matches, take the
-        // first one.
-        const activeFile = vscode.window.activeTextEditor.document.uri.fsPath
-        for (const workspaceFolder of workspaceFolders) {
-            if (activeFile.includes(workspaceFolder.uri.fsPath)) {
-                this.workspaceRootDir = workspaceFolder.uri.fsPath
-                return
-            }
+        // Get the workspace folder which contains the active document.
+        const activeFileUri = vscode.window.activeTextEditor.document.uri
+        const workspaceFolder = vscode.workspace.getWorkspaceFolder(activeFileUri)
+        if (workspaceFolder) {
+            this.workspaceRootDirUri = workspaceFolder.uri.toString(true)
+            return
         }
         // Guess that the first workspace is the chosen one.
-        this.workspaceRootDir = firstDir.uri.fsPath
+        this.workspaceRootDirUri = firstDir.uri.toString(true)
     }
 
     /**
@@ -241,7 +272,7 @@ export class Manager {
         this.findWorkspace()
         const wsfolders = vscode.workspace.workspaceFolders?.map(e => e.uri.toString(true))
         this.extension.logger.addLogMessage(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
-        this.extension.logger.addLogMessage(`Current workspaceRootDir: ${this.workspaceRootDir}`)
+        this.extension.logger.addLogMessage(`Current workspaceRootDir: ${this.workspaceRootDirUri}`)
         this.localRootFile = undefined
         const findMethods = [
             () => this.finderUtils.findRootFromMagic(),
@@ -277,6 +308,9 @@ export class Manager {
         if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
             return undefined
         }
+        if (!this.extension.lwfs.isLocalUri(vscode.window.activeTextEditor.document.uri)) {
+            return undefined
+        }
         if (this.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
             return this.rootFile
         }
@@ -285,6 +319,9 @@ export class Manager {
 
     private findRootFromActive(): string | undefined {
         if (!vscode.window.activeTextEditor) {
+            return undefined
+        }
+        if (!this.extension.lwfs.isLocalUri(vscode.window.activeTextEditor.document.uri)) {
             return undefined
         }
         const regex = /\\begin{document}/m
@@ -307,7 +344,7 @@ export class Manager {
     private async findRootInWorkspace(): Promise<string | undefined> {
         const regex = /\\begin{document}/m
 
-        if (!this.workspaceRootDir) {
+        if (!this.workspaceRootDirUri) {
             return undefined
         }
 
@@ -320,6 +357,9 @@ export class Manager {
             const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             const candidates: string[] = []
             for (const file of files) {
+                if (!this.extension.lwfs.isLocalUri(file)) {
+                    continue
+                }
                 const flsChildren = this.getTeXChildrenFromFls(file.fsPath)
                 if (vscode.window.activeTextEditor && flsChildren.includes(vscode.window.activeTextEditor.document.fileName)) {
                     this.extension.logger.addLogMessage(`Found root file from '.fls': ${file.fsPath}`)
