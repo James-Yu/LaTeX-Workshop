@@ -781,22 +781,36 @@ export class Manager {
         this.pdfWatcher.watchPdfFile(pdfPath)
     }
 
-    buildOnFileChanged(file: string, bibChanged: boolean = false) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
-            return
-        }
+    private autoBuild(file: string, bibChanged: boolean ) {
         if (this.extension.builder.disableBuildAfterSave) {
             this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
             return
         }
         this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
             this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
         }
     }
+
+    buildOnFileChanged(file: string, bibChanged: boolean = false) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
+            return
+        }
+        this.autoBuild(file, bibChanged)
+    }
+
+    buildOnSave(file: string) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
+            return
+        }
+        this.autoBuild(file, false)
+    }
+
 
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
