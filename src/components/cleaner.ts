@@ -55,14 +55,19 @@ export class Cleaner {
             .map(file => path.resolve(outdir, file))
         ).then(files => Promise.all(
             // Try to unlink the files, returning a Promise for every file
-            files.map(file => fs.promises.unlink(file).then(() => {
-                this.extension.logger.addLogMessage(`File cleaned: ${file}`)
-                // If unlinking fails, replace it with an rmdir Promise
-            }, () => fs.promises.rmdir(file).then(() => {
-                this.extension.logger.addLogMessage(`Folder removed: ${file}`)
-            }, () => {
-                this.extension.logger.addLogMessage(`Error removing file: ${file}`)
-            })))
+            files.map(file => {
+                fs.promises.stat(file).then((stats: fs.Stats) => {
+                    if (stats.isFile()) {
+                        fs.promises.unlink(file).then(() => {
+                            this.extension.logger.addLogMessage(`File cleaned: ${file}`)
+                        }, () => {
+                            this.extension.logger.addLogMessage(`Error removing file: ${file}`)
+                        })
+                    } else {
+                       this.extension.logger.addLogMessage(`Not removing non-file: ${file}`)
+                    }
+                })
+            })
         )).then(
             () => {} // Do not pass results to Promise returned by clean()
         ).catch(err => {
