@@ -163,6 +163,7 @@ export class Manager {
                 if (ret.uri.scheme === 'file') {
                     return ret.uri.fsPath
                 } else {
+                    this.extension.logger.addLogMessage(`The file cannot be used as the root file: ${ret.uri.toString(true)}`)
                     return
                 }
             }
@@ -326,6 +327,7 @@ export class Manager {
             return undefined
         }
         if (!this.extension.lwfs.isLocalUri(vscode.window.activeTextEditor.document.uri)) {
+            this.extension.logger.addLogMessage(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
         if (this.getIncludedTeX().includes(vscode.window.activeTextEditor.document.fileName)) {
@@ -339,6 +341,7 @@ export class Manager {
             return undefined
         }
         if (!this.extension.lwfs.isLocalUri(vscode.window.activeTextEditor.document.uri)) {
+            this.extension.logger.addLogMessage(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
         const regex = /\\begin{document}/m
@@ -375,6 +378,7 @@ export class Manager {
             const candidates: string[] = []
             for (const file of files) {
                 if (!this.extension.lwfs.isLocalUri(file)) {
+                    this.extension.logger.addLogMessage(`Skip the file: ${file.toString(true)}`)
                     continue
                 }
                 const flsChildren = this.getTeXChildrenFromFls(file.fsPath)
