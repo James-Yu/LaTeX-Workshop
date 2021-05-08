@@ -66,6 +66,14 @@ export const enum BuildEvents {
     onFileChange = 'onFileChange'
 }
 
+type RootFileType = {
+    type: 'filePath',
+    filePath: string
+} | {
+    type: 'uri',
+    uri: vscode.Uri
+}
+
 export class Manager {
     /**
      * The content cache for each LaTeX file.
@@ -75,7 +83,7 @@ export class Manager {
     private readonly localRootFiles: { [key: string]: string | undefined } = {}
     private readonly rootFilesLanguageIds: { [key: string]: string | undefined } = {}
     // Store one root file for each workspace.
-    private readonly rootFiles: { [key: string]: string | undefined } = {}
+    private readonly rootFiles: { [key: string]: RootFileType | undefined } = {}
     private workspaceRootDirUri: string = ''
 
     private readonly extension: Extension
@@ -147,44 +155,49 @@ export class Manager {
      * It is `undefined` before `findRoot` called.
      */
     get rootFile(): string | undefined {
-        return this.rootFiles[this.workspaceRootDirUri]
+        const ret = this.rootFiles[this.workspaceRootDirUri]
+        if (ret) {
+            if (ret.type === 'filePath') {
+                return ret.filePath
+            } else {
+                return ret.uri.fsPath
+            }
+        } else {
+            return undefined
+        }
     }
 
     set rootFile(root: string | undefined) {
-        this.rootFiles[this.workspaceRootDirUri] = root
+        if (root) {
+            this.rootFiles[this.workspaceRootDirUri] = { type: 'filePath', filePath: root }
+        } else {
+            this.rootFiles[this.workspaceRootDirUri] = undefined
+        }
     }
 
     get rootFileUri(): vscode.Uri | undefined {
-        const rootFilePath = this.rootFiles[this.workspaceRootDirUri]
-        if (rootFilePath) {
-            return this.convertRootFileToUri(rootFilePath)
+        const root = this.rootFiles[this.workspaceRootDirUri]
+        if (root) {
+            if (root.type === 'filePath') {
+                return vscode.Uri.file(root.filePath)
+            } else {
+                return root.uri
+            }
         } else {
             return
         }
     }
 
     set rootFileUri(root: vscode.Uri | undefined) {
-        let rootFilePath: string | undefined
+        let rootFile: RootFileType | undefined
         if (root) {
             if (root.scheme === 'file') {
-                rootFilePath = root.fsPath
+                rootFile = { type: 'filePath', filePath: root.fsPath }
             } else {
-                rootFilePath = root.toString(true)
+                rootFile = { type: 'uri', uri: root }
             }
         }
-        this.rootFiles[this.workspaceRootDirUri] = rootFilePath
-    }
-
-    private convertRootFileToUri(rootFilePath: string): vscode.Uri {
-        if (this.isUri(rootFilePath)) {
-            return vscode.Uri.parse(rootFilePath)
-        } else {
-            return vscode.Uri.file(rootFilePath)
-        }
-    }
-
-    private isUri(filePath: string): boolean {
-        return /^([-+.a-zA-Z0-9]+):\/\//.exec(filePath) ? true : false
+        this.rootFiles[this.workspaceRootDirUri] = rootFile
     }
 
     get localRootFile() {
