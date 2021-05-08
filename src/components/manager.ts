@@ -160,10 +160,14 @@ export class Manager {
             if (ret.type === 'filePath') {
                 return ret.filePath
             } else {
-                return ret.uri.fsPath
+                if (ret.uri.scheme === 'file') {
+                    return ret.uri.fsPath
+                } else {
+                    return
+                }
             }
         } else {
-            return undefined
+            return
         }
     }
 
