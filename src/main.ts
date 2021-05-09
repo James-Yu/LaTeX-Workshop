@@ -6,6 +6,7 @@ import * as utils from './utils/utils'
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
+import {LwFileSystem} from './components/lwfs'
 import {Manager, BuildEvents} from './components/manager'
 import {Builder} from './components/builder'
 import {Viewer} from './components/viewer'
@@ -329,6 +330,7 @@ export class Extension {
     packageInfo: { version?: string } = {}
     readonly extensionRoot: string
     readonly logger: Logger
+    readonly lwfs: LwFileSystem
     readonly commander: Commander
     readonly configuration: Configuration
     readonly manager: Manager
@@ -365,6 +367,7 @@ export class Extension {
         this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
         this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
         this.configuration = new Configuration(this)
+        this.lwfs = new LwFileSystem(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
         this.builder = new Builder(this)
