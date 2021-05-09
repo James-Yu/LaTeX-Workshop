@@ -31,6 +31,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private readonly webviewLoaded: Promise<void> = new Promise((resolve) => {
         document.addEventListener('webviewerloaded', () => resolve() )
     })
+    private synctexEnabled = true
+    private autoReloadEnabled = true
 
     constructor() {
         this.embedded = window.parent !== window
@@ -69,6 +71,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         this.hidePrintButton()
         this.registerKeybinding()
+        this.registerSynctexCheckBox()
+        this.registerAutoReloadCheckBox()
         this.startConnectionKeeper()
         this.startRebroadcastingKeyboardEvent()
         this.startSendingState()
@@ -148,7 +152,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
             scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
             scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft,
-            trim: (document.getElementById('trimSelect') as HTMLSelectElement).selectedIndex
+            trim: (document.getElementById('trimSelect') as HTMLSelectElement).selectedIndex,
+            synctexEnabled: this.synctexEnabled,
+            autoReloadEnabled: this.autoReloadEnabled
         }
         return pack
     }
@@ -171,6 +177,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
         if (state.scrollLeft !== undefined) {
             (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = state.scrollLeft
+        }
+        if (state.synctexEnabled !== undefined) {
+            this.setSynctex(state.synctexEnabled)
+        }
+        if (state.autoReloadEnabled !== undefined) {
+            this.setAutoReload(state.autoReloadEnabled)
         }
         if (state.trim !== undefined) {
             const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
@@ -212,6 +224,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const data = JSON.parse(event.data) as ServerResponse
             switch (data.type) {
                 case 'synctex': {
+                    if (!this.synctexEnabled) {
+                        break
+                    }
                     // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
                     // https://github.com/James-Yu/LaTeX-Workshop/pull/417
                     const container = document.getElementById('viewerContainer') as HTMLElement
@@ -239,6 +254,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'refresh': {
+                    if (!this.autoReloadEnabled) {
+                        break
+                    }
                     const pack = {
                         scale: PDFViewerApplication.pdfViewer.currentScaleValue,
                         scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
@@ -438,7 +456,65 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    private startConnectionKeeper() {
+    setSynctex(flag: boolean) {
+        const synctexOff = document.getElementById('synctexOff') as HTMLInputElement
+        if (flag) {
+            if (synctexOff.checked) {
+                synctexOff.checked = false
+            }
+            this.synctexEnabled = true
+        } else {
+            if (!synctexOff.checked) {
+                synctexOff.checked = true
+            }
+            this.synctexEnabled = false
+        }
+        this.sendCurrentStateToPanelManager()
+    }
+
+    registerSynctexCheckBox() {
+        const synctexOff = document.getElementById('synctexOff') as HTMLInputElement
+        synctexOff.addEventListener('change', () => {
+            this.setSynctex(!synctexOff.checked)
+            PDFViewerApplication.secondaryToolbar.close()
+        })
+        const synctexOffButton = document.getElementById('synctexOffButton') as HTMLButtonElement
+        synctexOffButton.addEventListener('click', () => {
+            this.setSynctex(!this.synctexEnabled)
+            PDFViewerApplication.secondaryToolbar.close()
+        })
+    }
+
+    setAutoReload(flag: boolean) {
+        const autoReloadOff = document.getElementById('autoReloadOff') as HTMLInputElement
+        if (flag) {
+            if (autoReloadOff.checked) {
+                autoReloadOff.checked = false
+            }
+            this.autoReloadEnabled = true
+        } else {
+            if (!autoReloadOff.checked) {
+                autoReloadOff.checked = true
+            }
+            this.autoReloadEnabled = false
+        }
+        this.sendCurrentStateToPanelManager()
+    }
+
+    registerAutoReloadCheckBox() {
+        const autoReloadOff = document.getElementById('autoReloadOff') as HTMLInputElement
+        autoReloadOff.addEventListener('change', () => {
+            this.setAutoReload(!autoReloadOff.checked)
+            PDFViewerApplication.secondaryToolbar.close()
+        })
+        const autoReloadOffButton = document.getElementById('autoReloadOffButton') as HTMLButtonElement
+        autoReloadOffButton.addEventListener('click', () => {
+            this.setAutoReload(!this.autoReloadEnabled)
+            PDFViewerApplication.secondaryToolbar.close()
+        })
+    }
+
+    startConnectionKeeper() {
         // Send packets every 30 sec to prevent the connection closed by timeout.
         setInterval( () => {
             if (this.socket.readyState === 1) {
@@ -493,8 +569,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             return
         }
         window.addEventListener('scroll', () => {
-            const pack = this.getPdfViewerState()
-            this.sendToPanelManager({type: 'state', state: pack})
+            this.sendCurrentStateToPanelManager()
         }, true)
         const events = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
         for (const ev of events) {
