@@ -531,59 +531,11 @@ export class Manager {
         const content = this.getDirtyContent(file, onChange)
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
-        this.cachedFullContent = undefined
         this.parseInputFiles(content, file, baseFile)
         this.parseBibFiles(content, file)
         // We need to parse the fls to discover file dependencies when defined by TeX macro
         // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
         this.parseFlsFile(file)
-    }
-
-    private cachedFullContent: string | undefined
-    /**
-     * Returns the flattened content from the given `file`,
-     * typically the root file.
-     *
-     * @param file The path of a LaTeX file.
-     */
-    getContent(file?: string, fileTrace: string[] = []): string {
-        // Here we make a copy, so that the tree structure of tex dependency
-        // Can be maintained. For instance, main -> s1 and s2, both of which
-        // has s3 as a subfile. This subtrace will allow s3 to be expanded in
-        // both s1 and s2.
-        if (file === undefined) {
-            file = this.rootFile
-        }
-        if (file === undefined) {
-            return ''
-        }
-        if (this.cachedFullContent && file === this.rootFile) {
-            return this.cachedFullContent
-        }
-        const subFileTrace = Array.from(fileTrace)
-        subFileTrace.push(file)
-        if (this.cachedContent[file].children.length === 0) {
-            if (file === this.rootFile) {
-                this.cachedFullContent = this.cachedContent[file].content
-            }
-            return this.cachedContent[file].content
-        }
-        let content = this.cachedContent[file].content
-        // Do it reverse, so that we can directly insert the new content without
-        // messing up the previous line numbers.
-        for (let index = this.cachedContent[file].children.length - 1; index >=0; index--) {
-            const child = this.cachedContent[file].children[index]
-            if (subFileTrace.includes(child.file)) {
-                continue
-            }
-            // As index can be 1E307 (included by fls file), here we need a min.
-            const pos = Math.min(content.length, child.index)
-            content = [content.slice(0, pos), this.getContent(child.file, subFileTrace), content.slice(pos)].join('')
-        }
-        if (file === this.rootFile) {
-            this.cachedFullContent = content
-        }
-        return content
     }
 
     /**
