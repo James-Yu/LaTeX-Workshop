@@ -133,7 +133,49 @@ function registerLatexWorkshopCommands(extension: Extension) {
 
 }
 
-export function activate(context: vscode.ExtensionContext) {
+function generateLatexWorkshopApi(extension: Extension) {
+    return {
+        getGraphicsPath: () => extension.completer.input.graphicsPath,
+        builder: {
+            isBuildFinished: process.env['LATEXWORKSHOP_CI'] ? ( () => extension.builder.isBuildFinished() ) : undefined
+        },
+        viewer: {
+            clients: extension.viewer.clients,
+            getViewerStatus: process.env['LATEXWORKSHOP_CI'] ? ( (pdfFilePath: string) => extension.viewer.getViewerState(pdfFilePath) ) : undefined,
+            refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
+            openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
+        },
+        manager: {
+            findRoot: () => extension.manager.findRoot(),
+            rootDir: () => extension.manager.rootDir,
+            rootFile: () => extension.manager.rootFile,
+            setEnvVar: () => extension.manager.setEnvVar()
+        },
+        completer: {
+            command: {
+                usedPackages: () => {
+                    const allPkgs: Set<string> = new Set()
+                    extension.manager.getIncludedTeX().forEach(tex => {
+                        const pkgs = extension.manager.cachedContent[tex].element.package
+                        if (pkgs === undefined) {
+                            return
+                        }
+                        pkgs.forEach(pkg => allPkgs.add(pkg))
+                    })
+                    return allPkgs
+                }
+            },
+            provideCompletionItems: process.env['LATEXWORKSHOP_CI'] ? ((
+                document: vscode.TextDocument,
+                position: vscode.Position,
+                token: vscode.CancellationToken,
+                cxt: vscode.CompletionContext
+            ) => extension.completer.provideCompletionItems(document, position, token, cxt)) : undefined
+        }
+    }
+}
+
+export function activate(context: vscode.ExtensionContext): ReturnType<typeof generateLatexWorkshopApi> {
     const extension = new Extension()
     vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
@@ -280,45 +322,7 @@ export function activate(context: vscode.ExtensionContext) {
         }
     })
 
-    return {
-        getGraphicsPath: () => extension.completer.input.graphicsPath,
-        builder: {
-            isBuildFinished: process.env['LATEXWORKSHOP_CI'] ? ( () => extension.builder.isBuildFinished() ) : undefined
-        },
-        viewer: {
-            clients: extension.viewer.clients,
-            getViewerStatus: process.env['LATEXWORKSHOP_CI'] ? ( (pdfFilePath: string) => extension.viewer.getViewerState(pdfFilePath) ) : undefined,
-            refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
-            openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
-        },
-        manager: {
-            findRoot: () => extension.manager.findRoot(),
-            rootDir: () => extension.manager.rootDir,
-            rootFile: () => extension.manager.rootFile,
-            setEnvVar: () => extension.manager.setEnvVar()
-        },
-        completer: {
-            command: {
-                usedPackages: () => {
-                    const allPkgs: Set<string> = new Set()
-                    extension.manager.getIncludedTeX().forEach(tex => {
-                        const pkgs = extension.manager.cachedContent[tex].element.package
-                        if (pkgs === undefined) {
-                            return
-                        }
-                        pkgs.forEach(pkg => allPkgs.add(pkg))
-                    })
-                    return allPkgs
-                }
-            },
-            provideCompletionItems: process.env['LATEXWORKSHOP_CI'] ? ((
-                document: vscode.TextDocument,
-                position: vscode.Position,
-                token: vscode.CancellationToken,
-                cxt: vscode.CompletionContext
-            ) => extension.completer.provideCompletionItems(document, position, token, cxt)) : undefined
-        }
-    }
+    return generateLatexWorkshopApi(extension)
 }
 
 export class Extension {
