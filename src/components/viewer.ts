@@ -451,7 +451,7 @@ export class Viewer {
                 break
             }
             case 'add_log': {
-                this.extension.logger.addLogMessage(data.message)
+                this.extension.logger.addLogMessage(`[PDF Viewer] ${data.message}`)
                 break
             }
             default: {

@@ -229,6 +229,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             switch (data.type) {
                 case 'synctex': {
                     if (!this.synctexEnabled) {
+                        this.addLogMessage('SyncTeX temporarily disabled.')
                         break
                     }
                     // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
@@ -259,6 +260,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 }
                 case 'refresh': {
                     if (!this.autoReloadEnabled) {
+                        this.addLogMessage('Auto reload temporarily disabled.')
                         break
                     }
                     const pack = {
