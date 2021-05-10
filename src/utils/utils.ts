@@ -40,7 +40,10 @@ export function stripComments(text: string): string {
 export function stripCommentsAndVerbatim(text: string): string {
     let content = stripComments(text)
     content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/, '')
-    const verbatimPattern = '\\\\begin{verbatim}.*?\\\\end{verbatim}'
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[]
+    const verbatimAlt = verbatimEnvs.join('|')
+    const verbatimPattern = `\\\\begin{(${verbatimAlt})}.*?\\\\end{\\1}`
     const reg = RegExp(verbatimPattern, 'gms')
     // Remove verbatim envs. It fails with nested verbatim envs.
     content = content.replace(reg, (match, ..._args) => {
@@ -64,7 +67,7 @@ export function getLongestBalancedString(s: string): string {
                 nested++
                 break
             case '}':
-                nested --
+                nested--
                 break
             case '\\':
                 // skip an escaped character
