@@ -88,7 +88,7 @@ export class TeXMathEnvFinder {
     //             startPos1
     findEndPair(document: vscode.TextDocument | TextDocumentLike, endPat: RegExp, startPos1: vscode.Position): vscode.Position | undefined {
         const currentLine = document.lineAt(startPos1).text.substring(startPos1.character)
-        const l = utils.stripComments(currentLine)
+        const l = utils.stripCommentsAndVerbatim(currentLine)
         let m = l.match(endPat)
         if (m && m.index !== undefined) {
             return new vscode.Position(startPos1.line, startPos1.character + m.index + m[0].length)
@@ -96,7 +96,7 @@ export class TeXMathEnvFinder {
 
         let lineNum = startPos1.line + 1
         while (lineNum <= document.lineCount) {
-            m = utils.stripComments(document.lineAt(lineNum).text).match(endPat)
+            m = utils.stripCommentsAndVerbatim(document.lineAt(lineNum).text).match(endPat)
             if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index + m[0].length)
             }
@@ -110,7 +110,7 @@ export class TeXMathEnvFinder {
     //  return pos                 endPos1
     private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit: number): vscode.Position | undefined {
         const currentLine = document.lineAt(endPos1).text.substr(0, endPos1.character)
-        let l = utils.stripComments(currentLine)
+        let l = utils.stripCommentsAndVerbatim(currentLine)
         let m = l.match(beginPat)
         if (m && m.index !== undefined) {
             return new vscode.Position(endPos1.line, m.index)
@@ -119,7 +119,7 @@ export class TeXMathEnvFinder {
         let i = 0
         while (lineNum >= 0 && i < limit) {
             l = document.lineAt(lineNum).text
-            l = utils.stripComments(l)
+            l = utils.stripCommentsAndVerbatim(l)
             m = l.match(beginPat)
             if (m && m.index !== undefined) {
                 return new vscode.Position(lineNum, m.index)

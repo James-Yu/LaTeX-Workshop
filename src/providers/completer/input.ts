@@ -26,7 +26,7 @@ export class Input implements IProvider {
     }
 
     getGraphicsPath(filePath: string) {
-        const content = utils.stripComments(fs.readFileSync(filePath, 'utf-8'))
+        const content = utils.stripCommentsAndVerbatim(fs.readFileSync(filePath, 'utf-8'))
         const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
         let result: string[] | null
         do {

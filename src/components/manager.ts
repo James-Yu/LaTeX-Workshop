@@ -357,7 +357,7 @@ export class Manager {
             return undefined
         }
         const regex = /\\begin{document}/m
-        const content = utils.stripComments(vscode.window.activeTextEditor.document.getText())
+        const content = utils.stripCommentsAndVerbatim(vscode.window.activeTextEditor.document.getText())
         const result = content.match(regex)
         if (result) {
             const rootSubFile = this.finderUtils.findSubFiles(content)
@@ -398,7 +398,7 @@ export class Manager {
                     this.extension.logger.addLogMessage(`Found root file from '.fls': ${file.fsPath}`)
                     return file.fsPath
                 }
-                const content = utils.stripComments(fs.readFileSync(file.fsPath).toString())
+                const content = utils.stripCommentsAndVerbatim(fs.readFileSync(file.fsPath).toString())
                 const result = content.match(regex)
                 if (result) {
                     // Can be a root
@@ -488,7 +488,7 @@ export class Manager {
             }
             return this.cachedContent[cachedFile].content
         }
-        const fileContent = utils.stripComments(fs.readFileSync(file).toString())
+        const fileContent = utils.stripCommentsAndVerbatim(fs.readFileSync(file).toString())
         this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
         return fileContent
     }
@@ -548,7 +548,7 @@ export class Manager {
      */
     private getTeXChildren(file: string, baseFile: string, children: string[], content?: string): string[] {
         if (content === undefined) {
-            content = utils.stripComments(fs.readFileSync(file).toString())
+            content = utils.stripCommentsAndVerbatim(fs.readFileSync(file).toString())
         }
 
         // Update children of current file
@@ -865,7 +865,7 @@ export class Manager {
             this.extension.logger.addLogMessage(`Cannot parse a TeX file: ${file}`)
             this.extension.logger.addLogMessage('Fall back to regex-based completion.')
             // Do the update with old style.
-            const contentNoComment = utils.stripComments(content)
+            const contentNoComment = utils.stripCommentsAndVerbatim(content)
             this.extension.completer.reference.update(file, undefined, undefined, contentNoComment)
             this.extension.completer.glossary.update(file, undefined, contentNoComment)
             this.extension.completer.environment.update(file, undefined, undefined, contentNoComment)
