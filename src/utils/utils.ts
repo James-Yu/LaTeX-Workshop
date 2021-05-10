@@ -39,9 +39,10 @@ export function stripComments(text: string): string {
  */
 export function stripCommentsAndVerbatim(text: string): string {
     let content = stripComments(text)
-    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*\1/, '')
-    const verbatimPattern = '\\\\begin{verbatim}.*\\\\end{verbatim}'
+    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/, '')
+    const verbatimPattern = '\\\\begin{verbatim}.*?\\\\end{verbatim}'
     const reg = RegExp(verbatimPattern, 'gms')
+    // Remove verbatim envs. It fails with nested verbatim envs.
     content = content.replace(reg, (match, ..._args) => {
         const len = Math.max(match.split('\n').length, 1)
         return '\n'.repeat(len - 1)
