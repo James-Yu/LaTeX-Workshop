@@ -62,7 +62,7 @@ export class BibLogParser {
 
     private resolveAuxFile(filename: string, rootFile: string): string {
         filename = filename.replace(/\.aux$/, '.tex')
-        if (!(rootFile in this.extension.manager.cachedContent)) {
+        if (!this.extension.manager.getCachedContent(rootFile)) {
             return filename
         }
         const texFiles = this.extension.manager.getIncludedTeX(rootFile)
@@ -76,7 +76,7 @@ export class BibLogParser {
     }
 
     private resolveBibFile(filename: string, rootFile: string): string {
-        if (!(rootFile in this.extension.manager.cachedContent)) {
+        if (!this.extension.manager.getCachedContent(rootFile)) {
             return filename
         }
         const bibFiles = this.extension.manager.getIncludedBib(rootFile)

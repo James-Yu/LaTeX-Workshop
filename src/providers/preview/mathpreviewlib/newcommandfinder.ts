@@ -70,7 +70,7 @@ export class NewCommandFinder {
                 this.extension.logger.addLogMessage('Timeout error when parsing preambles in findProjectNewCommand.')
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
-            const content = this.extension.manager.cachedContent[tex].content
+            const content = this.extension.manager.getCachedContent(tex).content
             commands = commands.concat(await this.findNewCommand(content))
         }
         return commandsInConfigFile + '\n' + this.postProcessNewCommands(commands.join(''))

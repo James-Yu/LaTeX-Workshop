@@ -260,7 +260,7 @@ export class CommandFinder {
     private whichPackageProvidesCommand(cmdName: string): string {
         if (this.extension.manager.rootFile !== undefined) {
             for (const file of this.extension.manager.getIncludedTeX()) {
-                const cachedPkgs = this.extension.manager.cachedContent[file].element.package
+                const cachedPkgs = this.extension.manager.getCachedContent(file).element.package
                 if (cachedPkgs === undefined) {
                     continue
                 }

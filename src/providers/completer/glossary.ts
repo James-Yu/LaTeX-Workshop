@@ -197,7 +197,7 @@ export class Glossary implements IProvider {
         const glossaryList: string[] = []
 
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedGlossaries = this.extension.manager.cachedContent[cachedFile].element.glossary
+            const cachedGlossaries = this.extension.manager.getCachedContent(cachedFile).element.glossary
             if (cachedGlossaries === undefined) {
                 return
             }
@@ -234,9 +234,9 @@ export class Glossary implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
         if (nodes !== undefined) {
-            this.extension.manager.cachedContent[file].element.glossary = this.getGlossaryFromNodeArray(nodes)
+            this.extension.manager.getCachedContent(file).element.glossary = this.getGlossaryFromNodeArray(nodes)
         } else if (content !== undefined) {
-            this.extension.manager.cachedContent[file].element.glossary = this.getGlossaryFromContent(content)
+            this.extension.manager.getCachedContent(file).element.glossary = this.getGlossaryFromContent(content)
         }
     }
 

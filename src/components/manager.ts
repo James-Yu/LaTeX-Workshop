@@ -78,7 +78,7 @@ export class Manager {
     /**
      * The content cache for each LaTeX file.
      */
-    readonly cachedContent: Content = {}
+    private readonly cachedContent: Content = {}
 
     private readonly localRootFiles: { [key: string]: string | undefined } = {}
     private readonly rootFilesLanguageIds: { [key: string]: string | undefined } = {}
@@ -118,6 +118,18 @@ export class Manager {
         this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
+    }
+
+    getCachedContent(filePath: string) {
+        return this.cachedContent[filePath]
+    }
+
+    private setCachedContent(filePath: string, cacheEntry: Content[string]) {
+        return this.cachedContent[filePath] = cacheEntry
+    }
+
+    get cachedFilePaths() {
+        return Object.keys(this.cachedContent)
     }
 
     /**
@@ -477,7 +489,7 @@ export class Manager {
             return this.cachedContent[cachedFile].content
         }
         const fileContent = utils.stripComments(fs.readFileSync(file).toString())
-        this.cachedContent[file] = {content: fileContent, element: {}, children: [], bibs: []}
+        this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
         return fileContent
     }
 
