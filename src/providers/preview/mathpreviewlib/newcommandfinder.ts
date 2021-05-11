@@ -83,7 +83,7 @@ export class NewCommandFinder {
             const regex = /^(renewcommand|newcommand|providecommand|DeclareMathOperator)(\*)?$/
             for (const node of ast.content) {
                 if (((latexParser.isCommand(node) && node.name.match(regex)) || latexParser.isDefCommand(node)) && node.args.length > 0) {
-                    node.name = node.name.replace(/\*/, '')
+                    node.name = node.name.replace(/\*$/, '')
                     const s = latexParser.stringify(node)
                     commands.push(s)
                 } else if (latexParser.isCommand(node) && node.name === 'DeclarePairedDelimiter' && node.args.length === 3) {
