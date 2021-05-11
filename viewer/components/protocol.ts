@@ -39,9 +39,6 @@ export type ClientRequest = {
     type: 'loaded',
     path: string
 } | {
-    type: 'external_link',
-    url: string
-} | {
     type: 'ping'
 } | {
     type: 'reverse_synctex',

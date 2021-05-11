@@ -442,10 +442,6 @@ export class Viewer {
                 this.extension.locator.locate(data, data.path)
                 break
             }
-            case 'external_link': {
-                vscode.env.openExternal(vscode.Uri.parse(data.url))
-                break
-            }
             case 'ping': {
                 // nothing to do
                 break
