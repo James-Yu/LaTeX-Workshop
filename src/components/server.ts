@@ -1,12 +1,14 @@
 import * as http from 'http'
+import * as net from 'net'
+import type {AddressInfo} from 'net'
 import ws from 'ws'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import type {AddressInfo} from 'net'
 import {decodePathWithPrefix, pdfFilePrefix} from '../utils/utils'
+import {abortHandshake} from './serverlib/aborthandshake'
 
 export class Server {
     private readonly extension: Extension
@@ -34,12 +36,32 @@ export class Server {
         this.httpServer.on('error', (err) => {
             this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
         })
+        this.httpServer.on('upgrade', (req: http.IncomingMessage, socket: net.Socket) => {
+            this.checkWebSocketOrigin(socket, req)
+        })
         this.wsServer = new ws.Server({server: this.httpServer})
         this.wsServer.on('connection', (websocket) => {
             websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
             websocket.on('error', () => this.extension.logger.addLogMessage('Error on WebSocket connection.'))
         })
         this.extension.logger.addLogMessage('Creating LaTeX Workshop http and websocket server.')
+    }
+
+    get validHttpOrigin(): string | undefined {
+        if (this.port) {
+            return `http://127.0.0.1:${this.port}`
+        } else {
+            return
+        }
+    }
+
+    private checkWebSocketOrigin(socket: net.Socket, req: http.IncomingMessage) {
+        const reqOrigin = req.headers['origin']
+        if (!reqOrigin || !this.validHttpOrigin || reqOrigin !== this.validHttpOrigin) {
+            this.extension.logger.addLogMessage(`Origin in request is invalid: ${JSON.stringify(reqOrigin)}`)
+            this.extension.logger.addLogMessage(`Valid origin: ${JSON.stringify(this.validHttpOrigin)}`)
+            abortHandshake(socket, 403)
+        }
     }
 
     private handler(request: http.IncomingMessage, response: http.ServerResponse) {
