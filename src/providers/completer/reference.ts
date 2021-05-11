@@ -84,10 +84,14 @@ export class Reference implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
+        const cache = this.extension.manager.getCachedContent(file)
+        if (!cache) {
+            return
+        }
         if (nodes !== undefined && lines !== undefined) {
-            this.extension.manager.getCachedContent(file).element.reference = this.getRefFromNodeArray(nodes, lines)
+            cache.element.reference = this.getRefFromNodeArray(nodes, lines)
         } else if (content !== undefined) {
-            this.extension.manager.getCachedContent(file).element.reference = this.getRefFromContent(content)
+            cache.element.reference = this.getRefFromContent(content)
         }
     }
 
@@ -110,7 +114,7 @@ export class Reference implements IProvider {
             range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
         }
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.getCachedContent(cachedFile).element.reference
+            const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference
             if (cachedRefs === undefined) {
                 return
             }

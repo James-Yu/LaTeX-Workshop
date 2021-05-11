@@ -157,7 +157,7 @@ function generateLatexWorkshopApi(extension: Extension) {
                 usedPackages: () => {
                     const allPkgs: Set<string> = new Set()
                     extension.manager.getIncludedTeX().forEach(tex => {
-                        const pkgs = extension.manager.getCachedContent(tex).element.package
+                        const pkgs = extension.manager.getCachedContent(tex)?.element.package
                         if (pkgs === undefined) {
                             return
                         }
@@ -232,7 +232,10 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const content = utils.stripCommentsAndVerbatim(e.document.getText())
-        extension.manager.getCachedContent(e.document.fileName).content = content
+        const cache = extension.manager.getCachedContent(e.document.fileName)
+        if (cache) {
+            cache.content = content
+        }
         if (configuration.get('intellisense.update.aggressive.enabled')) {
             if (updateCompleter) {
                 clearTimeout(updateCompleter)

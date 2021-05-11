@@ -120,7 +120,7 @@ export class Manager {
         this.pathUtils = new PathUtils(extension)
     }
 
-    getCachedContent(filePath: string) {
+    getCachedContent(filePath: string): Content[string] | undefined {
         return this.cachedContent[filePath]
     }
 
