@@ -78,14 +78,6 @@ export class Linter {
         }
     }
 
-    lintActiveFileIfEnabled() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if ((configuration.get('chktex.enabled') as boolean) &&
-            (configuration.get('chktex.run') as string) === 'onType') {
-            this.lintActiveFile()
-        }
-    }
-
     lintActiveFileIfEnabledAfterInterval() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if ((configuration.get('chktex.enabled') as boolean) &&
