@@ -191,8 +191,12 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
+            const content = utils.stripCommentsAndVerbatim(e.getText())
+            const cache = extension.manager.getCachedContent(e.fileName)
+            if (cache !== undefined) {
+                cache.content = content
+            }
             extension.linter.lintRootFileIfEnabled()
-
             extension.structureProvider.refresh()
             extension.structureProvider.update()
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -231,16 +235,16 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const content = utils.stripCommentsAndVerbatim(e.document.getText())
-        const cache = extension.manager.getCachedContent(e.document.fileName)
-        if (cache !== undefined) {
-            cache.content = content
-        }
         if (configuration.get('intellisense.update.aggressive.enabled')) {
             if (updateCompleter) {
                 clearTimeout(updateCompleter)
             }
             updateCompleter = setTimeout(() => {
+                const content = utils.stripCommentsAndVerbatim(e.document.getText())
+                const cache = extension.manager.getCachedContent(e.document.fileName)
+                if (cache !== undefined) {
+                    cache.content = content
+                }
                 const file = e.document.uri.fsPath
                 extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
                 extension.manager.updateCompleter(file, content)
