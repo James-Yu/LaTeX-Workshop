@@ -1000,6 +1000,14 @@
           "default": [],
           "markdownDescription": "List of directories where to look for extra input `.tex` files. \nAbsolute paths are required. You may also need to set the environment variable `TEXINPUTS` properly for the LaTeX compiler to find the `.tex` files, see the `env` parameter of [recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)."
         },
+        "latex-workshop.latex.verbatimEnvs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": ["verbatim", "lstlisting", "minted"],
+          "markdownDescription": "List environments with verbatim-like content. These environments are stripped off the `.tex` files before any parsing occurs. Note that this variable has no effect on syntax highlighting."
+        },
         "latex-workshop.kpsewhich.path": {
           "type": "string",
           "default": "kpsewhich",

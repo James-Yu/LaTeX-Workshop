@@ -43,7 +43,7 @@ export class EnvPair {
     }
 
     private tokenizeLine(document: vscode.TextDocument, pos: vscode.Position): MatchEnv | null {
-        const line = utils.stripComments(document.lineAt(pos).text)
+        const line = utils.stripCommentsAndVerbatim(document.lineAt(pos).text)
         const ind = pos.character
         if (ind > line.length) {
             return null
@@ -105,7 +105,7 @@ export class EnvPair {
             return this.delimiters[key].end
         })
         while (true) {
-            line = utils.stripComments(line)
+            line = utils.stripCommentsAndVerbatim(line)
             let allMatches = regexpAllMatches(line, patRegexp)
             if (dir === -1) {
                 allMatches = allMatches.reverse()
