@@ -114,7 +114,7 @@ export class Environment implements IProvider {
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
-                const pkgs = this.extension.manager.getCachedContent(tex).element.package
+                const pkgs = this.extension.manager.getCachedContent(tex)?.element.package
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
                         this.getEnvFromPkg(pkg, snippetType).forEach(env => {
@@ -130,7 +130,7 @@ export class Environment implements IProvider {
 
         // Insert environments defined in tex
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedEnvs = this.extension.manager.getCachedContent(cachedFile).element.environment
+            const cachedEnvs = this.extension.manager.getCachedContent(cachedFile)?.element.environment
             if (cachedEnvs !== undefined) {
                 cachedEnvs.forEach(env => {
                     if (! envList.includes(env.label)) {
@@ -193,10 +193,14 @@ export class Environment implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
+        const cache = this.extension.manager.getCachedContent(file)
+        if (cache === undefined) {
+            return
+        }
         if (nodes !== undefined && lines !== undefined) {
-            this.extension.manager.getCachedContent(file).element.environment = this.getEnvFromNodeArray(nodes, lines)
+            cache.element.environment = this.getEnvFromNodeArray(nodes, lines)
         } else if (content !== undefined) {
-            this.extension.manager.getCachedContent(file).element.environment = this.getEnvFromContent(content)
+            cache.element.environment = this.getEnvFromContent(content)
         }
     }
 

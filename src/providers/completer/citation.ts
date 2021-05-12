@@ -116,9 +116,13 @@ export class Citation implements IProvider {
         if (!this.extension.manager.getCachedContent(file)) {
             return []
         }
-        let bibs = this.extension.manager.getCachedContent(file).bibs
+        const cache = this.extension.manager.getCachedContent(file)
+        if (cache === undefined) {
+            return []
+        }
+        let bibs = cache.bibs
         visitedTeX.push(file)
-        for (const child of this.extension.manager.getCachedContent(file).children) {
+        for (const child of cache.children) {
             if (visitedTeX.includes(child.file)) {
                 // Already included
                 continue
@@ -154,7 +158,7 @@ export class Citation implements IProvider {
         })
         // From caches
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedBibs = this.extension.manager.getCachedContent(cachedFile).element.bibitem
+            const cachedBibs = this.extension.manager.getCachedContent(cachedFile)?.element.bibitem
             if (cachedBibs === undefined) {
                 return
             }
@@ -239,8 +243,10 @@ export class Citation implements IProvider {
      * @param content The content of a LaTeX file.
      */
     update(file: string, content: string) {
-        this.extension.manager.getCachedContent(file).element.bibitem =
-            this.parseContent(file, content)
+        const cache = this.extension.manager.getCachedContent(file)
+        if (cache !== undefined) {
+            cache.element.bibitem = this.parseContent(file, content)
+        }
     }
 
     private parseContent(file: string, content: string): Suggestion[] {
