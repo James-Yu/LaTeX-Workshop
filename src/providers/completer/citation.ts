@@ -244,7 +244,7 @@ export class Citation implements IProvider {
      */
     update(file: string, content: string) {
         const cache = this.extension.manager.getCachedContent(file)
-        if (cache) {
+        if (cache !== undefined) {
             cache.element.bibitem = this.parseContent(file, content)
         }
     }

@@ -233,7 +233,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const content = utils.stripCommentsAndVerbatim(e.document.getText())
         const cache = extension.manager.getCachedContent(e.document.fileName)
-        if (cache) {
+        if (cache !== undefined) {
             cache.content = content
         }
         if (configuration.get('intellisense.update.aggressive.enabled')) {
