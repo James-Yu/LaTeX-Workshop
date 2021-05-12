@@ -1,5 +1,5 @@
 import * as http from 'http'
-import * as net from 'net'
+import type * as net from 'net'
 import type {AddressInfo} from 'net'
 import ws from 'ws'
 import * as fs from 'fs'
@@ -14,7 +14,7 @@ export class Server {
     private readonly extension: Extension
     private readonly httpServer: http.Server
     private readonly wsServer: ws.Server
-    address?: string
+    address?: AddressInfo
     port?: number
 
     constructor(extension: Extension) {
@@ -23,21 +23,20 @@ export class Server {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
         this.httpServer.listen(viewerPort, '127.0.0.1', undefined, () => {
-            const {address, port} = this.httpServer.address() as AddressInfo
-            this.port = port
-            if (address.includes(':')) {
-                // the colon is reserved in URL to separate IPv4 address from port number. IPv6 address needs to be enclosed in square brackets when used in URL
-                this.address = `[${address}]:${port}`
+            const address = this.httpServer.address()
+            if (address && typeof address !== 'string') {
+                this.port = address.port
+                this.address = address
+                this.extension.logger.addLogMessage(`Server successfully started: ${JSON.stringify(address)}`)
             } else {
-                this.address = `${address}:${port}`
+                this.extension.logger.addLogMessage(`Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
             }
-            this.extension.logger.addLogMessage(`Server created on ${this.address}`)
         })
         this.httpServer.on('error', (err) => {
             this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
         })
         this.httpServer.on('upgrade', (req: http.IncomingMessage, socket: net.Socket) => {
-            this.checkWebSocketOrigin(socket, req)
+            this.checkWebSocketUpgradeOrigin(socket, req)
         })
         this.wsServer = new ws.Server({server: this.httpServer})
         this.wsServer.on('connection', (websocket) => {
@@ -47,7 +46,7 @@ export class Server {
         this.extension.logger.addLogMessage('Creating LaTeX Workshop http and websocket server.')
     }
 
-    get validHttpOrigin(): string | undefined {
+    private get validOrigin(): string | undefined {
         if (this.port) {
             return `http://127.0.0.1:${this.port}`
         } else {
@@ -55,12 +54,38 @@ export class Server {
         }
     }
 
-    private checkWebSocketOrigin(socket: net.Socket, req: http.IncomingMessage) {
+    //
+    // Check Origin header during WebSocket handshake.
+    // - https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers#client_handshake_request
+    //
+    private checkWebSocketUpgradeOrigin(socket: net.Socket, req: http.IncomingMessage): boolean {
         const reqOrigin = req.headers['origin']
-        if (!reqOrigin || !this.validHttpOrigin || reqOrigin !== this.validHttpOrigin) {
-            this.extension.logger.addLogMessage(`Origin in request is invalid: ${JSON.stringify(reqOrigin)}`)
-            this.extension.logger.addLogMessage(`Valid origin: ${JSON.stringify(this.validHttpOrigin)}`)
+        if ( this.validOrigin === undefined || reqOrigin === undefined || reqOrigin !== this.validOrigin ) {
+            this.extension.logger.addLogMessage(`[Server] Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
+            this.extension.logger.addLogMessage(`[Server] Valid origin: ${this.validOrigin}`)
             abortHandshake(socket, 403)
+            return false
+        } else {
+            return true
+        }
+    }
+
+    //
+    // We reject cross-origin requests. The specification says "In case a server does not wish to participate in the CORS protocol,
+    // ... The server is encouraged to use the 403 status in such HTTP responses."
+    // - https://fetch.spec.whatwg.org/#http-requests
+    // - https://fetch.spec.whatwg.org/#http-responses
+    //
+    private checkHttpOrigin(req: http.IncomingMessage, response: http.ServerResponse): boolean {
+        const reqOrigin = req.headers['origin']
+        if ( this.validOrigin === undefined || (reqOrigin !== undefined && reqOrigin !== this.validOrigin) ) {
+            this.extension.logger.addLogMessage(`[Server] Origin in http request is invalid: ${JSON.stringify(req.headers)}`)
+            this.extension.logger.addLogMessage(`[Server] Valid origin: ${this.validOrigin}`)
+            response.writeHead(403)
+            response.end()
+            return false
+        } else {
+            return true
         }
     }
 
@@ -68,7 +93,21 @@ export class Server {
         if (!request.url) {
             return
         }
-
+        const isValidOrigin = this.checkHttpOrigin(request, response)
+        if (!isValidOrigin) {
+            return
+        }
+        //
+        // Headers to enable site isolation.
+        // - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
+        // - https://www.w3.org/TR/post-spectre-webdev/#documents-isolated
+        //
+        const sameOriginPolicyHeaders = {
+            'Cross-Origin-Resource-Policy': 'same-origin',
+            'Cross-Origin-Embedder-Policy': 'require-corp',
+            'Cross-Origin-Opener-Policy': 'same-origin',
+            'X-Content-Type-Options': 'nosniff'
+        }
         if (request.url.includes(pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
             const fileName = decodePathWithPrefix(s)
@@ -78,7 +117,11 @@ export class Server {
             }
             try {
                 const pdfSize = fs.statSync(fileName).size
-                response.writeHead(200, {'Content-Type': 'application/pdf', 'Content-Length': pdfSize})
+                response.writeHead(200, {
+                    'Content-Type': 'application/pdf',
+                    'Content-Length': pdfSize,
+                    ...sameOriginPolicyHeaders
+                })
                 fs.createReadStream(fileName).pipe(response)
                 this.extension.logger.addLogMessage(`Preview PDF file: ${fileName}`)
             } catch (e) {
@@ -101,33 +144,54 @@ export class Server {
             } else {
                 root = path.resolve(`${this.extension.extensionRoot}/viewer`)
             }
+            //
+            // Prevent directory traversal attack.
+            // - https://en.wikipedia.org/wiki/Directory_traversal_attack
+            //
             const reqFileName = path.posix.resolve('/', request.url.split('?')[0])
             const fileName = path.resolve(root, '.' + reqFileName)
-            let contentType = 'text/html'
+            let contentType: string
             switch (path.extname(fileName)) {
-                case '.js':
+                case '.html': {
+                    contentType = 'text/html'
+                    break
+                }
+                case '.js': {
                     contentType = 'text/javascript'
                     break
-                case '.css':
+                }
+                case '.css': {
                     contentType = 'text/css'
                     break
-                case '.json':
+                }
+                case '.json': {
                     contentType = 'application/json'
                     break
-                case '.png':
+                }
+                case '.png': {
                     contentType = 'image/png'
                     break
-                case '.jpg':
+                }
+                case '.jpg': {
                     contentType = 'image/jpg'
                     break
-                case '.svg':
+                }
+                case '.gif': {
+                    contentType = 'image/gif'
+                    break
+                }
+                case '.svg': {
                     contentType = 'image/svg+xml'
                     break
-                case '.ico':
+                }
+                case '.ico': {
                     contentType = 'image/x-icon'
                     break
-                default:
+                }
+                default: {
+                    contentType = 'application/octet-stream'
                     break
+                }
             }
             fs.readFile(fileName, (err, content) => {
                 if (err) {
@@ -138,8 +202,11 @@ export class Server {
                     }
                     response.end()
                 } else {
-                    response.writeHead(200, {'Content-Type': contentType})
-                    response.end(content, 'utf-8')
+                    response.writeHead(200, {
+                        'Content-Type': contentType,
+                        ...sameOriginPolicyHeaders
+                    })
+                    response.end(content)
                 }
             })
         }
