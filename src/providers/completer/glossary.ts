@@ -234,7 +234,7 @@ export class Glossary implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], content?: string) {
         const cache = this.extension.manager.getCachedContent(file)
-        if (!cache) {
+        if (cache === undefined) {
             return
         }
         if (nodes !== undefined) {

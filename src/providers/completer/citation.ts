@@ -117,7 +117,7 @@ export class Citation implements IProvider {
             return []
         }
         const cache = this.extension.manager.getCachedContent(file)
-        if (!cache) {
+        if (cache === undefined) {
             return []
         }
         let bibs = cache.bibs

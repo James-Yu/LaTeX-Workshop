@@ -71,7 +71,7 @@ export class NewCommandFinder {
                 throw new Error('Timeout Error in findProjectNewCommand')
             }
             const cache = this.extension.manager.getCachedContent(tex)
-            if (!cache) {
+            if (cache === undefined) {
                 continue
             }
             const content = cache.content

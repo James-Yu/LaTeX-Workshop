@@ -188,7 +188,7 @@ export class Command implements IProvider {
             }
         })
         const cache = this.extension.manager.getCachedContent(file)
-        if (!cache) {
+        if (cache === undefined) {
             return
         }
         if (nodes !== undefined) {
@@ -251,7 +251,7 @@ export class Command implements IProvider {
                         return
                     }
                     const cache = this.extension.manager.getCachedContent(file)
-                    if (!cache) {
+                    if (cache === undefined) {
                         return
                     }
                     let filePkgs = cache.element.package
@@ -285,7 +285,7 @@ export class Command implements IProvider {
                                 pkg = 'class-' + pkg
                             }
                             const cache = this.extension.manager.getCachedContent(file)
-                            if (!cache) {
+                            if (cache === undefined) {
                                 return
                             }
                             let pkgs = cache.element.package

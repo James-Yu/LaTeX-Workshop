@@ -85,7 +85,7 @@ export class Reference implements IProvider {
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
         const cache = this.extension.manager.getCachedContent(file)
-        if (!cache) {
+        if (cache === undefined) {
             return
         }
         if (nodes !== undefined && lines !== undefined) {
