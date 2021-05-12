@@ -1,5 +1,26 @@
 # Change Log
 
+## [8.18.0] - 2021-05-12
+
+### Added
+- (#2628) Support `<<child='...'>>=` for `.rnw` file inclusion.
+- (#2636) Support SyncTeX buttons on PDF viewers.
+
+### Removed
+- (#2653) Remove `BuildInfo`.
+
+### Fixed
+- (#2627) Array syntax highlighting.
+- (#2628) Refactor input path regexps.
+- (#2639) Fix cached packages list update.
+- (#2650) Highlight `\Verb` content as verbatim.
+- (#2658) Improve find new command regex.
+- (#2662) Fix auto build on save with subfiles.
+- (#2666) Fix typo, highlight `\iftrue`, not `\ftrue`.
+- (#2671) Make sure to remove any verbatim parts before scanning the .tex content.
+  - For the moment, it breaks if there are nested verbatim environments.
+- (#2671) Make the list of verbatim-like environments configurable by `latex-workshop.latex.verbatimEnvs`.
+
 ## [8.17.0] - 2021-04-21
 
 ### Added
