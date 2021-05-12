@@ -26,9 +26,10 @@ import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 interface Content {
     [filepath: string]: { // The path of a LaTeX file.
         /**
-         * The dirty (under editing) content of the LaTeX file.
+         * The dirty (under editing) content of the LaTeX file if opened in vscode,
+         * the content on disk otherwise.
          */
-        content: string,
+        content: string | null,
         /**
          * Completion item and other items for the LaTeX file.
          */
@@ -130,6 +131,12 @@ export class Manager {
 
     get cachedFilePaths() {
         return Object.keys(this.cachedContent)
+    }
+
+    private invalidateCachedContent(filePath: string) {
+        if (filePath in this.cachedContent) {
+            this.cachedContent[filePath].content = null
+        }
     }
 
     /**
@@ -478,15 +485,15 @@ export class Manager {
         return includedTeX
     }
 
-    private getDirtyContent(file: string, reload: boolean = false): string {
-        for (const cachedFile of Object.keys(this.cachedContent)) {
-            if (reload) {
-                break
+    /**
+     * Get the buffer content of a file if it is opened in vscode. Otherwise, read the file from disk
+     */
+    getDirtyContent(file: string): string {
+        const cache = this.cachedContent[file]
+        if (cache !== undefined) {
+            if (cache.content) {
+                return cache.content
             }
-            if (path.relative(cachedFile, file) !== '') {
-                continue
-            }
-            return this.cachedContent[cachedFile].content
         }
         const fileContent = utils.stripCommentsAndVerbatim(fs.readFileSync(file).toString())
         this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
@@ -512,9 +519,8 @@ export class Manager {
      *
      * @param file The path of a LaTeX file. It is added to the watcher if not being watched.
      * @param baseFile The file currently considered as the rootFile. If undefined, we use `file`
-     * @param onChange If `true`, the content of `file` is read from the file system. If `false`, the cache of `file` is used.
      */
-    parseFileAndSubs(file: string, baseFile: string | undefined, onChange: boolean = false) {
+    parseFileAndSubs(file: string, baseFile: string | undefined) {
         if (this.isExcluded(file)) {
             this.extension.logger.addLogMessage(`Ignoring: ${file}`)
             return
@@ -528,7 +534,7 @@ export class Manager {
             this.fileWatcher.add(file)
             this.filesWatched.push(file)
         }
-        const content = this.getDirtyContent(file, onChange)
+        const content = this.getDirtyContent(file)
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
         this.parseInputFiles(content, file, baseFile)
@@ -778,7 +784,8 @@ export class Manager {
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            this.parseFileAndSubs(file, this.rootFile, true)
+            this.invalidateCachedContent(file)
+            this.parseFileAndSubs(file, this.rootFile)
             this.updateCompleterOnChange(file)
         }
         this.buildOnFileChanged(file)

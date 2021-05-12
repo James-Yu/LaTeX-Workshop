@@ -231,7 +231,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             return
         }
         extension.linter.lintActiveFileIfEnabledAfterInterval()
-        if (extension.manager.getCachedContent(e.document.fileName) === undefined) {
+        const cache = extension.manager.getCachedContent(e.document.fileName)
+        if (cache === undefined) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -241,10 +242,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             }
             updateCompleter = setTimeout(() => {
                 const content = utils.stripCommentsAndVerbatim(e.document.getText())
-                const cache = extension.manager.getCachedContent(e.document.fileName)
-                if (cache !== undefined) {
-                    cache.content = content
-                }
+                cache.content = content
                 const file = e.document.uri.fsPath
                 extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
                 extension.manager.updateCompleter(file, content)
