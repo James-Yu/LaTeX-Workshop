@@ -846,7 +846,7 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
-        fs.promises.readFile(file).then(buffer => buffer.toString()).then(content => this.updateCompleter(file, content))
+        this.updateCompleter(file, this.getDirtyContent(file))
         this.extension.completer.input.getGraphicsPath(file)
     }
 

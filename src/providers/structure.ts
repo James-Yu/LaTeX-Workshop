@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
@@ -81,7 +80,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return rootStack.length === 0
         }
 
-        let content = fs.readFileSync(filePath, 'utf-8')
+        let content = this.extension.manager.getDirtyContent(filePath)
         content = utils.stripCommentsAndVerbatim(content)
         const endPos = content.search(/\\end{document}/gm)
         if (endPos > -1) {

@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
-import * as utils from '../../utils/utils'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -26,7 +25,7 @@ export class Input implements IProvider {
     }
 
     getGraphicsPath(filePath: string) {
-        const content = utils.stripCommentsAndVerbatim(fs.readFileSync(filePath, 'utf-8'))
+        const content = this.extension.manager.getDirtyContent(filePath)
         const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
         let result: string[] | null
         do {
