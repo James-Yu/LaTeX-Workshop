@@ -495,7 +495,7 @@ export class Manager {
                 return cache.content
             }
         }
-        const fileContent = utils.stripCommentsAndVerbatim(fs.readFileSync(file).toString())
+        const fileContent = fs.readFileSync(file).toString()
         this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
         return fileContent
     }
@@ -534,7 +534,7 @@ export class Manager {
             this.fileWatcher.add(file)
             this.filesWatched.push(file)
         }
-        const content = this.getDirtyContent(file)
+        const content = utils.stripCommentsAndVerbatim(this.getDirtyContent(file))
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
         this.parseInputFiles(content, file, baseFile)
@@ -846,8 +846,9 @@ export class Manager {
 
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
-        this.updateCompleter(file, this.getDirtyContent(file))
-        this.extension.completer.input.getGraphicsPath(file)
+        const content = this.getDirtyContent(file)
+        this.updateCompleter(file, content)
+        this.extension.completer.input.getGraphicsPath(content)
     }
 
     /**

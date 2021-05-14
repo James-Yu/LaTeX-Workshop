@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as process from 'process'
 
-import * as utils from './utils/utils'
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
@@ -191,7 +190,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
-            const content = utils.stripCommentsAndVerbatim(e.getText())
+            const content = e.getText()
             const cache = extension.manager.getCachedContent(e.fileName)
             if (cache !== undefined) {
                 cache.content = content
@@ -241,7 +240,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                 clearTimeout(updateCompleter)
             }
             updateCompleter = setTimeout(() => {
-                const content = utils.stripCommentsAndVerbatim(e.document.getText())
+                const content = e.document.getText()
                 cache.content = content
                 const file = e.document.uri.fsPath
                 extension.manager.parseFileAndSubs(file, extension.manager.rootFile)

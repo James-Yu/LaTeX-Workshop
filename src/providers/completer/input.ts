@@ -5,6 +5,7 @@ import * as micromatch from 'micromatch'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
+import {stripCommentsAndVerbatim} from '../../utils/utils'
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
@@ -24,12 +25,17 @@ export class Input implements IProvider {
         })
     }
 
-    getGraphicsPath(filePath: string) {
-        const content = this.extension.manager.getDirtyContent(filePath)
+    /**
+     * Set the graphics path
+     *
+     * @param content the content to be parsed for graphicspath
+     */
+    getGraphicsPath(content: string) {
         const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
+        const noVerbContent = stripCommentsAndVerbatim(content)
         let result: string[] | null
         do {
-            result = regex.exec(content)
+            result = regex.exec(noVerbContent)
             if (result) {
                 for (const dir of result[1].split(/\{|\}/).filter(s => s.replace(/^\s*$/, ''))) {
                     if (this.graphicsPath.includes(dir)) {
