@@ -27,7 +27,7 @@ https://github.com/websockets/ws/blob/8c914d18b86a7d1408884d18eeadae0fa41b0bb5/l
 */
 
 import { STATUS_CODES } from 'http'
-import * as net from 'net'
+import type * as net from 'net'
 
 export function abortHandshake(socket: net.Socket, code: number, message: string = '', headers: { [key: string]: string | number } = {}) {
     if (socket.writable) {
