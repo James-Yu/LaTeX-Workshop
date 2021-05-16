@@ -52,20 +52,16 @@ export class Server {
             if (address && typeof address !== 'string') {
                 this.port = address.port
                 this.address = address
-                this.extension.logger.addLogMessage(`Server successfully started: ${JSON.stringify(address)}`)
+                this.extension.logger.addLogMessage(`[Server] Server successfully started: ${JSON.stringify(address)}`)
+                this.initializeWsServer()
             } else {
-                this.extension.logger.addLogMessage(`Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
+                this.extension.logger.addLogMessage(`[Server] Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
             }
-            const wsServer = new WsServer(this.httpServer, extension, this.validOrigin)
-            wsServer.on('connection', (websocket) => {
-                websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
-                websocket.on('error', (err) => this.extension.logger.addLogMessage(`Error on WebSocket connection. ${JSON.stringify(err)}`))
-            })
         })
         this.httpServer.on('error', (err) => {
-            this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${JSON.stringify(err)}.`)
+            this.extension.logger.addLogMessage(`[Server] Error creating LaTeX Workshop http server: ${JSON.stringify(err)}.`)
         })
-        this.extension.logger.addLogMessage('Creating LaTeX Workshop http and websocket server.')
+        this.extension.logger.addLogMessage('[Server] Creating LaTeX Workshop http and websocket server.')
     }
 
     private get validOrigin(): string | undefined {
@@ -74,6 +70,14 @@ export class Server {
         } else {
             return
         }
+    }
+
+    private initializeWsServer() {
+        const wsServer = new WsServer(this.httpServer, this.extension, this.validOrigin)
+        wsServer.on('connection', (websocket) => {
+            websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
+            websocket.on('error', (err) => this.extension.logger.addLogMessage(`[Server] Error on WebSocket connection. ${JSON.stringify(err)}`))
+        })
     }
 
     //
