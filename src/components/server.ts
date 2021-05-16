@@ -1,5 +1,4 @@
 import * as http from 'http'
-import type * as net from 'net'
 import type {AddressInfo} from 'net'
 import ws from 'ws'
 import * as fs from 'fs'
@@ -8,12 +7,38 @@ import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
 import {decodePathWithPrefix, pdfFilePrefix} from '../utils/utils'
-import {abortHandshake} from './serverlib/aborthandshake'
+
+class WsServer extends ws.Server {
+    private readonly extension: Extension
+    private readonly validOrigin: string | undefined
+
+    constructor(server: http.Server, extension: Extension, validOrigin: string | undefined) {
+        super({server})
+        this.extension = extension
+        this.validOrigin = validOrigin
+    }
+
+    //
+    // Check Origin header during WebSocket handshake.
+    // - https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers#client_handshake_request
+    // - https://github.com/websockets/ws/blob/master/doc/ws.md#servershouldhandlerequest
+    //
+    shouldHandle(req: http.IncomingMessage): boolean {
+        const reqOrigin = req.headers['origin']
+        if ( this.validOrigin === undefined || (reqOrigin !== undefined && reqOrigin !== this.validOrigin) ) {
+            this.extension.logger.addLogMessage(`[Server] Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
+            this.extension.logger.addLogMessage(`[Server] Valid origin: ${this.validOrigin}`)
+            return false
+        } else {
+            return true
+        }
+    }
+
+}
 
 export class Server {
     private readonly extension: Extension
     private readonly httpServer: http.Server
-    private readonly wsServer: ws.Server
     address?: AddressInfo
     port?: number
 
@@ -31,17 +56,14 @@ export class Server {
             } else {
                 this.extension.logger.addLogMessage(`Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
             }
+            const wsServer = new WsServer(this.httpServer, extension, this.validOrigin)
+            wsServer.on('connection', (websocket) => {
+                websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
+                websocket.on('error', (err) => this.extension.logger.addLogMessage(`Error on WebSocket connection. ${JSON.stringify(err)}`))
+            })
         })
         this.httpServer.on('error', (err) => {
-            this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${err}.`)
-        })
-        this.httpServer.on('upgrade', (req: http.IncomingMessage, socket: net.Socket) => {
-            this.checkWebSocketUpgradeOrigin(socket, req)
-        })
-        this.wsServer = new ws.Server({server: this.httpServer})
-        this.wsServer.on('connection', (websocket) => {
-            websocket.on('message', (msg: string) => this.extension.viewer.handler(websocket, msg))
-            websocket.on('error', () => this.extension.logger.addLogMessage('Error on WebSocket connection.'))
+            this.extension.logger.addLogMessage(`Error creating LaTeX Workshop http server: ${JSON.stringify(err)}.`)
         })
         this.extension.logger.addLogMessage('Creating LaTeX Workshop http and websocket server.')
     }
@@ -51,22 +73,6 @@ export class Server {
             return `http://127.0.0.1:${this.port}`
         } else {
             return
-        }
-    }
-
-    //
-    // Check Origin header during WebSocket handshake.
-    // - https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_servers#client_handshake_request
-    //
-    private checkWebSocketUpgradeOrigin(socket: net.Socket, req: http.IncomingMessage): boolean {
-        const reqOrigin = req.headers['origin']
-        if ( this.validOrigin === undefined || reqOrigin === undefined || reqOrigin !== this.validOrigin ) {
-            this.extension.logger.addLogMessage(`[Server] Origin in WebSocket upgrade request is invalid: ${JSON.stringify(req.headers)}`)
-            this.extension.logger.addLogMessage(`[Server] Valid origin: ${this.validOrigin}`)
-            abortHandshake(socket, 403)
-            return false
-        } else {
-            return true
         }
     }
 
