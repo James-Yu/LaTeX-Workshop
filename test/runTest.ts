@@ -26,6 +26,7 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
     const extensionDevelopmentPath = path.resolve(__dirname, '../../')
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
+    const extTmpdir = tmpFile.dirSync({ unsafeCleanup: true })
     const fixtures = glob.sync(`test/fixtures/${targetName}/*`, { cwd: extensionDevelopmentPath })
 
     let testBuildWorkspaces: string[] = []
@@ -44,12 +45,13 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
     for (const testWorkspace of testBuildWorkspaces) {
         const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
         await runTests({
-            version: '1.53.2',
+            version: '1.56.2',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [
                 testWorkspace,
                 '--user-data-dir=' + tmpdir.name,
+                '--extensions-dir=' + extTmpdir.name,
                 '--disable-extensions',
                 '--disable-gpu'
             ],

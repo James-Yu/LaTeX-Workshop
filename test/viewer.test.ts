@@ -172,6 +172,7 @@ suite('PDF Viewer test suite', () => {
         for (const result of firstResults) {
             assert.ok( Math.abs(result.scrollTop) < 10 )
         }
+        await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup')
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
@@ -202,6 +203,7 @@ suite('PDF Viewer test suite', () => {
         for (const result of firstResults) {
             assert.ok( Math.abs(result.scrollTop) < 10 )
         }
+        await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup')
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
         await vscode.commands.executeCommand('cursorDown')
