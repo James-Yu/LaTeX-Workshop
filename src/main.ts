@@ -190,11 +190,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
-            const content = e.getText()
-            const cache = extension.manager.getCachedContent(e.fileName)
-            if (cache !== undefined) {
-                cache.content = content
-            }
+            extension.manager.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
             extension.structureProvider.refresh()
             extension.structureProvider.update()
@@ -240,8 +236,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                 clearTimeout(updateCompleter)
             }
             updateCompleter = setTimeout(() => {
+                extension.manager.updateCachedContent(e.document)
                 const content = e.document.getText()
-                cache.content = content
                 const file = e.document.uri.fsPath
                 extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
                 extension.manager.updateCompleter(file, content)

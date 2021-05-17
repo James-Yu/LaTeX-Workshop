@@ -139,6 +139,13 @@ export class Manager {
         }
     }
 
+    updateCachedContent(document: vscode.TextDocument) {
+        const cache = this.getCachedContent(document.fileName)
+        if (cache !== undefined) {
+            cache.content = document.getText()
+        }
+    }
+
     /**
      * Returns the output directory developed according to the input tex path
      * and 'latex.outDir' config. If `texPath` is `undefined`, the default root
