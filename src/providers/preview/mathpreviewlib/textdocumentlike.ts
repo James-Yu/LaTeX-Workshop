@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import { isNumber } from 'util'
 
 export class TextDocumentLike {
     private readonly _lines: string[]
@@ -85,7 +84,7 @@ export class TextDocumentLike {
     lineAt(lineNum: number): TextLineLike
     lineAt(position: vscode.Position): TextLineLike
     lineAt(lineNum: number | vscode.Position) {
-        if (isNumber(lineNum)) {
+        if (typeof lineNum === 'number') {
             return new TextLineLike(this._lines[lineNum])
         } else {
             return new TextLineLike(this._lines[lineNum.line])
