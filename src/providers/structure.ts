@@ -81,6 +81,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
 
         let content = this.extension.manager.getDirtyContent(filePath)
+        if (!content) {
+            return children
+        }
         content = utils.stripCommentsAndVerbatim(content)
         const endPos = content.search(/\\end{document}/gm)
         if (endPos > -1) {

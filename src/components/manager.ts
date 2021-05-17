@@ -495,12 +495,16 @@ export class Manager {
     /**
      * Get the buffer content of a file if it is opened in vscode. Otherwise, read the file from disk
      */
-    getDirtyContent(file: string): string {
+    getDirtyContent(file: string): string | undefined {
         const cache = this.cachedContent[file]
         if (cache !== undefined) {
             if (cache.content) {
                 return cache.content
             }
+        }
+        if (!fs.existsSync(file)) {
+            this.extension.logger.addLogMessage(`Cannot read dirty content of unknown ${file}`)
+            return undefined
         }
         const fileContent = fs.readFileSync(file).toString()
         this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
@@ -541,7 +545,11 @@ export class Manager {
             this.fileWatcher.add(file)
             this.filesWatched.push(file)
         }
-        const content = utils.stripCommentsAndVerbatim(this.getDirtyContent(file))
+        let content = this.getDirtyContent(file)
+        if (!content) {
+            return
+        }
+        content = utils.stripCommentsAndVerbatim(content)
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
         this.parseInputFiles(content, file, baseFile)
@@ -854,6 +862,9 @@ export class Manager {
     // This function updates all completers upon tex-file changes.
     private updateCompleterOnChange(file: string) {
         const content = this.getDirtyContent(file)
+        if (!content) {
+            return
+        }
         this.updateCompleter(file, content)
         this.extension.completer.input.getGraphicsPath(content)
     }
