@@ -29,7 +29,7 @@ interface Content {
          * The dirty (under editing) content of the LaTeX file if opened in vscode,
          * the content on disk otherwise.
          */
-        content: string | null,
+        content: string | undefined,
         /**
          * Completion item and other items for the LaTeX file.
          */
@@ -135,7 +135,7 @@ export class Manager {
 
     private invalidateCachedContent(filePath: string) {
         if (filePath in this.cachedContent) {
-            this.cachedContent[filePath].content = null
+            this.cachedContent[filePath].content = undefined
         }
     }
 
