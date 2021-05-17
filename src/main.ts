@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as process from 'process'
 
-import * as utils from './utils/utils'
 import {Commander} from './commander'
 import {LaTeXCommander} from './components/commander'
 import {Logger} from './components/logger'
@@ -191,8 +190,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.manager.hasTexId(e.languageId)) {
+            extension.manager.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
-
             extension.structureProvider.refresh()
             extension.structureProvider.update()
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -227,20 +226,18 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             return
         }
         extension.linter.lintActiveFileIfEnabledAfterInterval()
-        if (extension.manager.getCachedContent(e.document.fileName) === undefined) {
+        const cache = extension.manager.getCachedContent(e.document.fileName)
+        if (cache === undefined) {
             return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const content = utils.stripCommentsAndVerbatim(e.document.getText())
-        const cache = extension.manager.getCachedContent(e.document.fileName)
-        if (cache !== undefined) {
-            cache.content = content
-        }
         if (configuration.get('intellisense.update.aggressive.enabled')) {
             if (updateCompleter) {
                 clearTimeout(updateCompleter)
             }
             updateCompleter = setTimeout(() => {
+                extension.manager.updateCachedContent(e.document)
+                const content = e.document.getText()
                 const file = e.document.uri.fsPath
                 extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
                 extension.manager.updateCompleter(file, content)

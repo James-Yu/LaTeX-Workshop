@@ -121,8 +121,7 @@ export class Section {
      * @param pos the current position in the document
      * @param doc the text document
      */
-    private searchLevelUp(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): MatchSection | undefined{
-
+    private searchLevelUp(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): MatchSection | undefined {
         const range = new vscode.Range(new vscode.Position(0, 0), pos.translate(-1, 0))
         const content = stripCommentsAndVerbatim(doc.getText(range)).split('\n')
         const pattern = '\\\\(' + levels.join('|') + ')\\*?(?:\\[.+?\\])?\\{.*?\\}'
@@ -146,7 +145,6 @@ export class Section {
      * @param doc the text document
      */
     private searchLevelDown(levels: string[], pos: vscode.Position, doc: vscode.TextDocument): vscode.Position {
-
         const range = new vscode.Range(pos, new vscode.Position(doc.lineCount, 0))
         const content = stripCommentsAndVerbatim(doc.getText(range)).split('\n')
         const pattern = '\\\\(?:(' + levels.join('|') + ')\\*?(?:\\[.+?\\])?\\{.*?\\})|appendix|\\\\end{document}'

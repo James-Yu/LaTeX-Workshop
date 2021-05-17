@@ -74,7 +74,10 @@ export class NewCommandFinder {
             if (cache === undefined) {
                 continue
             }
-            const content = cache.content
+            const content = this.extension.manager.getDirtyContent(tex)
+            if (content === undefined) {
+                continue
+            }
             commands = commands.concat(await this.findNewCommand(content))
         }
         return commandsInConfigFile + '\n' + this.postProcessNewCommands(commands.join(''))
