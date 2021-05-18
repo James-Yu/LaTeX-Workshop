@@ -278,7 +278,7 @@ export class Viewer {
         this.extension.logger.addLogMessage(`The internal PDF viewer url: ${iframeSrcUrl}`)
         const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
-            <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:${serverPort} http://127.0.0.1:${serverPort}; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
+            <!DOCTYPE html><html><head><meta http-equiv="Content-Security-Policy" content="default-src http://localhost:${serverPort} http://127.0.0.1:${serverPort}; base-uri 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline';"></head>
             <body><iframe id="preview-panel" class="preview-panel" src="${iframeSrcUrl}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe>
             <script>
