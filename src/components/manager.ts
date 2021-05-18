@@ -335,7 +335,7 @@ export class Manager {
                 this.rootFile = rootFile
                 this.rootFileLanguageId = this.inferLanguageId(rootFile)
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
-                this.initiateFileWatcher()
+                await this.initiateFileWatcher()
                 this.bibWatcher.initiateBibWatcher()
                 this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
@@ -742,13 +742,13 @@ export class Manager {
         }
     }
 
-    private initiateFileWatcher() {
+    private async initiateFileWatcher() {
         if (this.fileWatcher !== undefined &&
             this.rootFile !== undefined &&
             !this.filesWatched.includes(this.rootFile)) {
             // We have an instantiated fileWatcher, but the rootFile is not being watched.
             // => the user has changed the root. Clean up the old watcher so we reform it.
-            this.resetFileWatcher()
+            await this.resetFileWatcher()
             this.createFileWatcher()
         }
 
@@ -775,10 +775,10 @@ export class Manager {
         // this.findAdditionalDependentFilesFromFls(this.rootFile)
     }
 
-    private resetFileWatcher() {
+    private async resetFileWatcher() {
         this.extension.logger.addLogMessage('Root file changed -> cleaning up old file watcher.')
         if (this.fileWatcher) {
-            this.fileWatcher.close()
+            await this.fileWatcher.close()
         }
         this.filesWatched = []
         // We also clean the completions from the old project
