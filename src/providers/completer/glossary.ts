@@ -21,8 +21,8 @@ export interface Suggestion extends vscode.CompletionItem {
 export class Glossary implements IProvider {
     private readonly extension: Extension
     // use object for deduplication
-    private readonly glossaries: {[id: string]: Suggestion} = {}
-    private readonly acronyms: {[id: string]: Suggestion} = {}
+    private readonly glossaries = new Map<string, Suggestion>()
+    private readonly acronyms = new Map<string, Suggestion>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -34,7 +34,7 @@ export class Glossary implements IProvider {
 
     private provide(result: RegExpMatchArray): vscode.CompletionItem[] {
         this.updateAll()
-        let suggestions: {[id: string]: Suggestion}
+        let suggestions: Map<string, Suggestion>
 
         if (result[1] && result[1].match(/^ac/i)) {
             suggestions = this.acronyms
@@ -47,7 +47,7 @@ export class Glossary implements IProvider {
         keys = Array.from(new Set(keys))
         const items: vscode.CompletionItem[] = []
         for (const key of keys) {
-            const gls = suggestions[key]
+            const gls = suggestions.get(key)
             if (gls) {
                 items.push(gls)
             } else {
@@ -203,23 +203,23 @@ export class Glossary implements IProvider {
             }
             cachedGlossaries.forEach(ref => {
                 if (ref.type === GlossaryType.glossary) {
-                    this.glossaries[ref.label] = ref
+                    this.glossaries.set(ref.label, ref)
                 } else {
-                    this.acronyms[ref.label] = ref
+                    this.acronyms.set(ref.label, ref)
                 }
                 glossaryList.push(ref.label)
             })
         })
 
         // Remove references that has been deleted
-        Object.keys(this.glossaries).forEach(key => {
+        this.glossaries.forEach((_, key) => {
             if (!glossaryList.includes(key)) {
-                delete this.glossaries[key]
+                this.glossaries.delete(key)
             }
         })
-        Object.keys(this.acronyms).forEach(key => {
+        this.acronyms.forEach((_, key) => {
             if (!glossaryList.includes(key)) {
-                delete this.acronyms[key]
+                this.acronyms.delete(key)
             }
         })
     }
