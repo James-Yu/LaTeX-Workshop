@@ -160,11 +160,11 @@ export class Environment implements IProvider {
         // Load environments from the package if not already done
         if (!this.packageEnvsAsCommand.has(pkg)) {
             const entry: Suggestion[] = []
-            this.packageEnvsAsCommand.set(pkg, entry)
             const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
             Object.keys(envs).forEach(key => {
                 entry.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
             })
+            this.packageEnvsAsCommand.set(pkg, entry)
         }
 
         // No environment defined in package
@@ -263,11 +263,11 @@ export class Environment implements IProvider {
             return entry
         }
         const newEntry: Suggestion[] = []
-        packageEnvs.set(pkg, newEntry)
         const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
         Object.keys(envs).forEach(key => {
             newEntry.push(this.entryEnvToCompletion(key, envs[key], type))
         })
+        packageEnvs.set(pkg, newEntry)
         return newEntry
     }
 
