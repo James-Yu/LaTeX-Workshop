@@ -46,9 +46,8 @@ export class HoverProvider implements vscode.HoverProvider {
             mdLink.isTrusted = true
             return new vscode.Hover([md, mdLink])
         }
-        const refs = this.extension.completer.reference.getRefDict()
-        if (hovReference && token in refs) {
-            const refData = refs[token]
+        const refData = this.extension.completer.reference.getRef(token)
+        if (hovReference && refData) {
             const hover = await this.extension.mathPreview.provideHoverOnRef(document, position, refData, token, ctoken)
             return hover
         }
