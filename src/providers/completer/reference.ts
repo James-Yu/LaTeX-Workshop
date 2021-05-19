@@ -33,7 +33,7 @@ export type ReferenceDocType = {
 export class Reference implements IProvider {
     private readonly extension: Extension
     // Here we use an object instead of an array for de-duplication
-    private readonly suggestions: {[id: string]: ReferenceEntry} = {}
+    private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj: { [k: string]: {refNumber: string, pageNumber: string} } = {}
 
     constructor(extension: Extension) {
@@ -47,12 +47,12 @@ export class Reference implements IProvider {
     private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion object to array
         this.updateAll(args)
-        let keys = Object.keys(this.suggestions)
+        let keys = Array.from(this.suggestions.keys())
         keys = keys.concat(Object.keys(this.prevIndexObj))
         keys = Array.from(new Set(keys))
         const items: vscode.CompletionItem[] = []
         for (const key of keys) {
-            const sug = this.suggestions[key]
+            const sug = this.suggestions.get(key)
             if (sug) {
                 const data: ReferenceDocType = {
                     documentation: sug.documentation,
@@ -95,11 +95,9 @@ export class Reference implements IProvider {
         }
     }
 
-    getRefDict(): {[key: string]: ReferenceEntry} {
-        if (this.suggestions) {
-            this.updateAll()
-        }
-        return this.suggestions
+    getRef(token: string): ReferenceEntry | undefined {
+        this.updateAll()
+        return this.suggestions.get(token)
     }
 
     private updateAll(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
@@ -122,19 +120,19 @@ export class Reference implements IProvider {
                 if (ref.range === undefined) {
                     return
                 }
-                this.suggestions[ref.label] = {...ref,
+                this.suggestions.set(ref.label, {...ref,
                     file: cachedFile,
                     position: ref.range instanceof vscode.Range ? ref.range.start : ref.range.inserting.start,
                     range,
                     prevIndex: this.prevIndexObj[ref.label]
-                }
+                })
                 refList.push(ref.label)
             })
         })
         // Remove references that have been deleted
-        Object.keys(this.suggestions).forEach(key => {
+        this.suggestions.forEach((_, key) => {
             if (!refList.includes(key)) {
-                delete this.suggestions[key]
+                this.suggestions.delete(key)
             }
         })
     }
@@ -222,8 +220,8 @@ export class Reference implements IProvider {
         const outDir = this.extension.manager.getOutDir(rootFile)
         const rootDir = path.dirname(rootFile)
         const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
-        Object.keys(this.suggestions).forEach(key => {
-            this.suggestions[key].prevIndex = undefined
+        this.suggestions.forEach((entry) => {
+            entry.prevIndex = undefined
         })
         this.prevIndexObj = {}
         if (!fs.existsSync(auxFile)) {
@@ -241,8 +239,9 @@ export class Reference implements IProvider {
                 continue
             }
             this.prevIndexObj[result[1]] = {refNumber: result[2], pageNumber: result[3]}
-            if (result[1] in this.suggestions) {
-                this.suggestions[result[1]].prevIndex = {refNumber: result[2], pageNumber: result[3]}
+            const ent = this.suggestions.get(result[1])
+            if (ent) {
+                ent.prevIndex = {refNumber: result[2], pageNumber: result[3]}
             }
         }
     }
