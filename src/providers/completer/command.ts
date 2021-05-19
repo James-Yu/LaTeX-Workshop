@@ -352,7 +352,6 @@ export class Command implements IProvider {
         if (!this.packageCmds.has(pkg)) {
             const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_cmd.json`, `${this.extension.extensionRoot}/data/packages/`)
             const pkgEntry: Suggestion[] = []
-            this.packageCmds.set(pkg, pkgEntry)
             if (filePath !== undefined) {
                 try {
                     const cmds = JSON.parse(fs.readFileSync(filePath).toString()) as {[key: string]: CmdItemEntry}
@@ -368,6 +367,7 @@ export class Command implements IProvider {
                     this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
                 }
             }
+            this.packageCmds.set(pkg, pkgEntry)
         }
 
         // No package command defined
