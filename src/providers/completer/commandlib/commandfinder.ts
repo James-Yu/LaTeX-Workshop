@@ -36,7 +36,7 @@ export function resolveCmdEnvFile(name: string, dataDir: string): string | undef
 
 export class CommandFinder {
     private readonly extension: Extension
-    definedCmds: {[key: string]: {file: string, location: vscode.Location}} = {}
+    definedCmds = new Map<string, {file: string, location: vscode.Location}>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -108,12 +108,12 @@ export class CommandFinder {
                         cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                     }
                     cmds.push(cmd)
-                    this.definedCmds[label] = {
+                    this.definedCmds.set(label, {
                         file,
                         location: new vscode.Location(
                             vscode.Uri.file(file),
                             new vscode.Position(node.location.start.line - 1, node.location.start.column))
-                    }
+                    })
                     cmdList.push(label)
                 }
             }
@@ -225,12 +225,12 @@ export class CommandFinder {
             cmds.push(cmd)
             cmdList.push(result[1])
 
-            this.definedCmds[result[1]] = {
+            this.definedCmds.set(result[1], {
                 file,
                 location: new vscode.Location(
                     vscode.Uri.file(file),
                     new vscode.Position(content.substr(0, result.index).split('\n').length - 1, 0))
-            }
+            })
         }
 
         return cmds
