@@ -48,7 +48,7 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
 export class Commander {
     private readonly extension: Extension
     private readonly _texdoc: TeXDoc
-    private readonly snippets: {[key: string]: vscode.SnippetString} = {}
+    private readonly snippets = new Map<string, vscode.SnippetString>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -59,7 +59,7 @@ export class Commander {
             .then(() => {
                 const snipObj: { [key: string]: { body: string } } = JSON.parse(extensionSnippets) as SnippetsLatexJsonType
                 Object.keys(snipObj).forEach(key => {
-                    this.snippets[key] = new vscode.SnippetString(snipObj[key]['body'])
+                    this.snippets.set(key, new vscode.SnippetString(snipObj[key]['body']))
                 })
                 this.extension.logger.addLogMessage('Snippet data loaded.')
             })
@@ -404,8 +404,9 @@ export class Commander {
         if (!editor) {
             return
         }
-        if (name in this.snippets) {
-            editor.insertSnippet(this.snippets[name])
+        const entry = this.snippets.get(name)
+        if (entry) {
+            editor.insertSnippet(entry)
         }
     }
 
