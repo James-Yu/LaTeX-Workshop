@@ -234,7 +234,7 @@ export class Reference implements IProvider {
             if (result === null) {
                 break
             }
-            if (result[1].endsWith('@cref') && result[1].replace('@cref', '') in this.prevIndexObj) {
+            if ( result[1].endsWith('@cref') && this.prevIndexObj.has(result[1].replace('@cref', '')) ) {
                 // Drop extra \newlabel entries added by cleveref
                 continue
             }
