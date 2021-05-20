@@ -37,7 +37,7 @@ export class Command implements IProvider {
 
     private readonly defaultCmds: Suggestion[] = []
     private readonly defaultSymbols: Suggestion[] = []
-    private packageCmds: {[pkg: string]: Suggestion[]} = {}
+    private readonly packageCmds = new Map<string, Suggestion[]>()
 
     constructor(extension: Extension, environment: Environment) {
         this.extension = extension
@@ -349,15 +349,15 @@ export class Command implements IProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
-        if (!(pkg in this.packageCmds)) {
+        if (!this.packageCmds.has(pkg)) {
             const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_cmd.json`, `${this.extension.extensionRoot}/data/packages/`)
-            this.packageCmds[pkg] = []
+            const pkgEntry: Suggestion[] = []
             if (filePath !== undefined) {
                 try {
                     const cmds = JSON.parse(fs.readFileSync(filePath).toString()) as {[key: string]: CmdItemEntry}
                     Object.keys(cmds).forEach(key => {
                         if (isCmdItemEntry(cmds[key])) {
-                            this.packageCmds[pkg].push(this.entryCmdToCompletion(key, cmds[key]))
+                            pkgEntry.push(this.entryCmdToCompletion(key, cmds[key]))
                         } else {
                             this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
                             this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}`)
@@ -367,15 +367,17 @@ export class Command implements IProvider {
                     this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
                 }
             }
+            this.packageCmds.set(pkg, pkgEntry)
         }
 
         // No package command defined
-        if (!(pkg in this.packageCmds) || this.packageCmds[pkg].length === 0) {
+        const pkgEntry = this.packageCmds.get(pkg)
+        if (!pkgEntry || pkgEntry.length === 0) {
             return
         }
 
         // Insert commands
-        this.packageCmds[pkg].forEach(cmd => {
+        pkgEntry.forEach(cmd => {
             if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
                 return
             }
