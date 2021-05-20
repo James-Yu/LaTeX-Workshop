@@ -34,7 +34,7 @@ export class Reference implements IProvider {
     private readonly extension: Extension
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
-    private prevIndexObj: { [k: string]: {refNumber: string, pageNumber: string} } = {}
+    private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -124,7 +124,7 @@ export class Reference implements IProvider {
                     file: cachedFile,
                     position: ref.range instanceof vscode.Range ? ref.range.start : ref.range.inserting.start,
                     range,
-                    prevIndex: this.prevIndexObj[ref.label]
+                    prevIndex: this.prevIndexObj.get(ref.label)
                 })
                 refList.push(ref.label)
             })
@@ -223,7 +223,7 @@ export class Reference implements IProvider {
         this.suggestions.forEach((entry) => {
             entry.prevIndex = undefined
         })
-        this.prevIndexObj = {}
+        this.prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
         if (!fs.existsSync(auxFile)) {
             return
         }
@@ -234,11 +234,11 @@ export class Reference implements IProvider {
             if (result === null) {
                 break
             }
-            if (result[1].endsWith('@cref') && result[1].replace('@cref', '') in this.prevIndexObj) {
+            if ( result[1].endsWith('@cref') && this.prevIndexObj.has(result[1].replace('@cref', '')) ) {
                 // Drop extra \newlabel entries added by cleveref
                 continue
             }
-            this.prevIndexObj[result[1]] = {refNumber: result[2], pageNumber: result[3]}
+            this.prevIndexObj.set(result[1], {refNumber: result[2], pageNumber: result[3]})
             const ent = this.suggestions.get(result[1])
             if (ent) {
                 ent.prevIndex = {refNumber: result[2], pageNumber: result[3]}
