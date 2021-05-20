@@ -30,9 +30,9 @@ export class Environment implements IProvider {
     private defaultEnvsAsName: Suggestion[] = []
     private defaultEnvsAsCommand: Suggestion[] = []
     private defaultEnvsForBegin: Suggestion[] = []
-    private readonly packageEnvsAsName: {[pkg: string]: Suggestion[]} = {}
-    private packageEnvsAsCommand: {[pkg: string]: Suggestion[]} = {}
-    private readonly packageEnvsForBegin: {[pkg: string]: Suggestion[]} = {}
+    private readonly packageEnvsAsName = new Map<string, Suggestion[]>()
+    private readonly packageEnvsAsCommand = new Map<string, Suggestion[]>()
+    private readonly packageEnvsForBegin= new Map<string, Suggestion[]>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -65,7 +65,7 @@ export class Environment implements IProvider {
         }
     }
 
-    private getPackageEnvs(type: EnvSnippetType): {[pkg: string]: Suggestion[]} {
+    private getPackageEnvs(type: EnvSnippetType): Map<string, Suggestion[]> {
         switch (type) {
             case EnvSnippetType.AsName:
                 return this.packageEnvsAsName
@@ -77,7 +77,7 @@ export class Environment implements IProvider {
                 return this.packageEnvsForBegin
                 break
             default:
-                return {}
+                return new Map<string, Suggestion[]>()
         }
     }
 
@@ -158,21 +158,23 @@ export class Environment implements IProvider {
         }
 
         // Load environments from the package if not already done
-        if (!(pkg in this.packageEnvsAsCommand)) {
-            this.packageEnvsAsCommand[pkg] = []
+        if (!this.packageEnvsAsCommand.has(pkg)) {
+            const entry: Suggestion[] = []
             const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
             Object.keys(envs).forEach(key => {
-                this.packageEnvsAsCommand[pkg].push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
+                entry.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
             })
+            this.packageEnvsAsCommand.set(pkg, entry)
         }
 
         // No environment defined in package
-        if (!(pkg in this.packageEnvsAsCommand) || this.packageEnvsAsCommand[pkg].length === 0) {
+        const entry = this.packageEnvsAsCommand.get(pkg)
+        if (!entry || entry.length === 0) {
             return
         }
 
         // Insert env snippets
-        this.packageEnvsAsCommand[pkg].forEach(env => {
+        entry.forEach(env => {
             const envName = env.filterText ? env.filterText : env.label
             if (!useOptionalArgsEntries && envName.includes('[')) {
                 return
@@ -255,16 +257,18 @@ export class Environment implements IProvider {
     }
 
     private getEnvFromPkg(pkg: string, type: EnvSnippetType): Suggestion[] {
-        const packageEnvs: {[pkg: string]: Suggestion[]} = this.getPackageEnvs(type)
-        if (pkg in packageEnvs) {
-            return packageEnvs[pkg]
+        const packageEnvs = this.getPackageEnvs(type)
+        const entry = packageEnvs.get(pkg)
+        if (entry !== undefined) {
+            return entry
         }
-        packageEnvs[pkg] = []
+        const newEntry: Suggestion[] = []
         const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
         Object.keys(envs).forEach(key => {
-            packageEnvs[pkg].push(this.entryEnvToCompletion(key, envs[key], type))
+            newEntry.push(this.entryEnvToCompletion(key, envs[key], type))
         })
-        return packageEnvs[pkg]
+        packageEnvs.set(pkg, newEntry)
+        return newEntry
     }
 
     private getEnvFromContent(content: string): Suggestion[] {
