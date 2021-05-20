@@ -5,9 +5,34 @@ import {bibtexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 
+
+class Fields extends Map<string, string> {
+
+    get author() {
+        return this.get('aurthor')
+    }
+
+    get journal() {
+        return this.get('journal')
+    }
+
+    get journaltitle() {
+        return this.get('journaltitle')
+    }
+
+    get title() {
+        return this.get('title')
+    }
+
+    get publisher() {
+        return this.get('publisher')
+    }
+
+}
+
 export interface Suggestion extends vscode.CompletionItem {
     key: string,
-    fields: {[key: string]: string},
+    fields: Fields,
     file: string,
     position: vscode.Position
 }
@@ -17,7 +42,7 @@ export class Citation implements IProvider {
     /**
      * Bib entries in each bib `file`.
      */
-    private readonly bibEntries: {[file: string]: Suggestion[]} = {}
+    private readonly bibEntries = new Map<string, Suggestion[]>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -111,7 +136,7 @@ export class Citation implements IProvider {
     private getIncludedBibs(file?: string, visitedTeX: string[] = []): string[] {
         if (file === undefined) {
             // Only happens when rootFile is undefined
-            return Object.keys(this.bibEntries)
+            return Array.from(this.bibEntries.keys())
         }
         if (!this.extension.manager.getCachedContent(file)) {
             return []
@@ -151,10 +176,13 @@ export class Citation implements IProvider {
         // }
         // From bib files
         if (bibFiles === undefined) {
-            bibFiles = Object.keys(this.bibEntries)
+            bibFiles = Array.from(this.bibEntries.keys())
         }
         bibFiles.forEach(file => {
-            suggestions = suggestions.concat(this.bibEntries[file])
+            const entry = this.bibEntries.get(file)
+            if (entry) {
+                suggestions = suggestions.concat(entry)
+            }
         })
         // From caches
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
@@ -167,7 +195,7 @@ export class Citation implements IProvider {
                     key: bib.label,
                     detail: bib.detail ? bib.detail : '',
                     file: cachedFile,
-                    fields: {}
+                    fields: new Fields()
                 }
             }))
         })
@@ -184,12 +212,10 @@ export class Citation implements IProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (fs.statSync(file).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${file}`)
-            if (file in this.bibEntries) {
-                delete this.bibEntries[file]
-            }
+            this.bibEntries.delete(file)
             return
         }
-        this.bibEntries[file] = []
+        const newEntry: Suggestion[] = []
         const fields: string[] = (configuration.get('intellisense.citation.format') as string[]).map(f => { return f.toLowerCase() })
         const bibtex = fs.readFileSync(file).toString()
         const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
@@ -211,27 +237,28 @@ export class Citation implements IProvider {
                     file,
                     position: new vscode.Position(entry.location.start.line - 1, entry.location.start.column - 1),
                     kind: vscode.CompletionItemKind.Reference,
-                    fields: {}
+                    fields: new Fields()
                 }
                 let doc: string = ''
                 entry.content.forEach(field => {
                     const value = Array.isArray(field.value.content) ?
                         field.value.content.join(' ') : this.deParenthesis(field.value.content)
-                    item.fields[field.name] = value
+                    item.fields.set(field.name, value)
                     if (fields.includes(field.name.toLowerCase())) {
                         doc += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
                     }
                 })
                 // We need two spaces to ensure md newline
                 item.documentation = new vscode.MarkdownString( '\n' + doc.replace(/\n/g, '  \n') + '\n\n' )
-                this.bibEntries[file].push(item)
+                newEntry.push(item)
             })
-        this.extension.logger.addLogMessage(`Parsed ${this.bibEntries[file].length} bib entries from ${file}.`)
+        this.bibEntries.set(file, newEntry)
+        this.extension.logger.addLogMessage(`Parsed ${newEntry.length} bib entries from ${file}.`)
     }
 
     removeEntriesInFile(file: string) {
         this.extension.logger.addLogMessage(`Remove parsed bib entries for ${file}`)
-        delete this.bibEntries[file]
+        this.bibEntries.delete(file)
     }
 
     /**
@@ -266,7 +293,7 @@ export class Citation implements IProvider {
                     file,
                     kind: vscode.CompletionItemKind.Reference,
                     detail: `${postContent}\n...`,
-                    fields: {},
+                    fields: new Fields(),
                     position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
                 })
             }
