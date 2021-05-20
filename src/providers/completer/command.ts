@@ -182,9 +182,9 @@ export class Command implements IProvider {
         // First, we must update the package list
         this.updatePkg(file, nodes, content)
         // Remove newcommand cmds, because they will be re-insert in the next step
-        Object.keys(this.definedCmds).forEach(cmd => {
-            if (this.definedCmds[cmd].file === file) {
-                delete this.definedCmds[cmd]
+        this.definedCmds.forEach((entry,cmd) => {
+            if (entry.file === file) {
+                this.definedCmds.delete(cmd)
             }
         })
         const cache = this.extension.manager.getCachedContent(file)
