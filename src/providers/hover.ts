@@ -51,10 +51,9 @@ export class HoverProvider implements vscode.HoverProvider {
             const hover = await this.extension.mathPreview.provideHoverOnRef(document, position, refData, token, ctoken)
             return hover
         }
-        const cites = this.extension.completer.citation.getEntryDict()
-        if (hovCitation && token in cites) {
+        const cite = this.extension.completer.citation.getEntry(token)
+        if (hovCitation && cite) {
             const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
-            const cite = cites[token]
             if (cite) {
                 const md = cite.documentation || cite.detail
                 if (md) {

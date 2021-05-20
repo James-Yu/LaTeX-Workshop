@@ -90,10 +90,10 @@ export class BibLogParser {
     }
 
     private findKeyLocation(key: string): {file: string, line: number} | undefined {
-        const cites = this.extension.completer.citation.getEntryDict()
-        if (key in cites) {
-            const file = cites[key].file
-            const line = cites[key].position.line + 1
+        const entry = this.extension.completer.citation.getEntry(key)
+        if (entry) {
+            const file = entry.file
+            const line = entry.position.line + 1
             return {file, line}
         } else {
             this.extension.logger.addLogMessage(`Cannot find key when parsing BibTeX log: ${key}`)
