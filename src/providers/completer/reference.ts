@@ -47,8 +47,7 @@ export class Reference implements IProvider {
     private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion object to array
         this.updateAll(args)
-        let keys = Array.from(this.suggestions.keys())
-        keys = keys.concat(Object.keys(this.prevIndexObj))
+        let keys = [...this.suggestions.keys(), ...this.prevIndexObj.keys()]
         keys = Array.from(new Set(keys))
         const items: vscode.CompletionItem[] = []
         for (const key of keys) {
