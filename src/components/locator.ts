@@ -30,7 +30,7 @@ export class Locator {
     }
 
     private parseSyncTeXForward(result: string): SyncTeXRecordForward {
-        const record: { page?: number, x?: number, y?: number } = {}
+        const record = Object.create(null) as { page?: number, x?: number, y?: number }
         let started = false
         for (const line of result.split('\n')) {
             if (line.includes('SyncTeX result begin')) {
@@ -62,7 +62,7 @@ export class Locator {
     }
 
     private parseSyncTeXBackward(result: string): SyncTeXRecordBackward {
-        const record: { input?: string, line?: number, column?: number } = {}
+        const record = Object.create(null) as { input?: string, line?: number, column?: number }
         let started = false
         for (const line of result.split('\n')) {
             if (line.includes('SyncTeX result begin')) {
@@ -372,7 +372,7 @@ export class Locator {
     }
 
     private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
-        let previousColumnMatches: { [k: string]: number } = {}
+        let previousColumnMatches = Object.create(null) as { [k: string]: number }
 
         for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
             const columns: number[] = []
@@ -388,7 +388,7 @@ export class Locator {
             }
 
             // Get number or occurrences for each column
-            const columnMatches: { [k: string]: number } = {}
+            const columnMatches = Object.create(null) as { [k: string]: number }
             columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
             const values = Object.values(columnMatches).sort()
 
