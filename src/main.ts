@@ -327,7 +327,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 }
 
 export class Extension {
-    packageInfo: { version?: string } = {}
     readonly extensionRoot: string
     readonly logger: Logger
     readonly lwfs: LwFileSystem

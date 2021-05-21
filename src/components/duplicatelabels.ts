@@ -64,7 +64,7 @@ export class DuplicateLabels {
         if (duplicates.length === 0) {
             return
         }
-        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
+        const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
 
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference

@@ -10,7 +10,7 @@ type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entr
 export class BibtexCompleter implements vscode.CompletionItemProvider {
     private readonly extension: Extension
     private readonly entryItems: vscode.CompletionItem[] = []
-    private readonly optFieldItems: {[key: string]: vscode.CompletionItem[]} = {}
+    private readonly optFieldItems = Object.create(null) as { [key: string]: vscode.CompletionItem[] }
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -66,7 +66,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
     }
 
     private computeMaxLengths(entries: {[key: string]: string[]}, optFields: {[key: string]: string[]}): {[key: string]: number} {
-        const maxLengths: {[key: string]: number} = {}
+        const maxLengths = Object.create(null) as { [key: string]: number }
         Object.keys(entries).forEach(key => {
             let maxFieldLength = 0
             entries[key].forEach(field => {

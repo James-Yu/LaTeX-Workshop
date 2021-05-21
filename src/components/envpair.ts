@@ -23,7 +23,7 @@ export class EnvPair {
     private readonly extension: Extension
     private readonly beginLength = '\\begin'.length
     private readonly endLength = '\\end'.length
-    private readonly delimiters: {[key: string]: {end: string, splitCharacter: string}} = {}
+    private readonly delimiters = Object.create(null) as { [key: string]: {end: string, splitCharacter: string} }
 
     constructor(extension: Extension) {
         this.extension = extension

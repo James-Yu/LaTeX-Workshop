@@ -10,8 +10,8 @@ interface MatchSection {
 export class Section {
     private readonly extension: Extension
     private readonly levels: string[] = ['part', 'chapter', 'section', 'subsection', 'subsubsection', 'paragraph', 'subparagraph']
-    private readonly upperLevels: {[key: string]: string} = {}
-    private readonly lowerLevels: {[key: string]: string} = {}
+    private readonly upperLevels = Object.create(null) as {[key: string]: string}
+    private readonly lowerLevels = Object.create(null) as {[key: string]: string}
 
     constructor(extension: Extension) {
         this.extension = extension
