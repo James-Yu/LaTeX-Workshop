@@ -43,17 +43,7 @@ export class Glossary implements IProvider {
         }
 
         // Compile the suggestion object to array
-        let keys = Object.keys(suggestions)
-        keys = Array.from(new Set(keys))
-        const items: vscode.CompletionItem[] = []
-        for (const key of keys) {
-            const gls = suggestions.get(key)
-            if (gls) {
-                items.push(gls)
-            } else {
-                items.push({label: key})
-            }
-        }
+        const items = Array.from(suggestions.values())
         return items
     }
 
