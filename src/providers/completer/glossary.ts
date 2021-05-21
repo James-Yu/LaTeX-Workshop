@@ -39,7 +39,7 @@ export class Glossary implements IProvider {
         if (result[1] && result[1].match(/^ac/i)) {
             suggestions = this.acronyms
         } else {
-            suggestions = new Map( [...this.acronyms.entries(), ...this.glossaries.entries()] )
+            suggestions = new Map( [...this.acronyms, ...this.glossaries] )
         }
 
         // Compile the suggestion object to array
