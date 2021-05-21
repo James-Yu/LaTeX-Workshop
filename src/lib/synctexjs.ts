@@ -98,20 +98,20 @@ export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
   let currentPage: Page | undefined
   let currentElement: Block | Page | undefined
 
-  const blockNumberLine: BlockNumberLine  = {}
+  const blockNumberLine: BlockNumberLine  = Object.create(null)
   const hBlocks: Block[] = []
 
-  const files: InputFiles = {}
-  const pages: Pages = {}
+  const files: InputFiles = Object.create(null)
+  const pages: Pages = Object.create(null)
   const pdfsyncObject: PdfSyncObject = {
     offset: {
       x: 0,
       y: 0
     },
     version: '',
-    files: {},
-    pages: {},
-    blockNumberLine: {},
+    files: Object.create(null),
+    pages: Object.create(null),
+    blockNumberLine: Object.create(null),
     hBlocks: [],
     numberPages: 0
   }
@@ -288,10 +288,10 @@ export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
         continue
       }
       if (blockNumberLine[elem.file.path] === undefined) {
-        blockNumberLine[elem.file.path] = {}
+        blockNumberLine[elem.file.path] = Object.create(null)
       }
       if (blockNumberLine[elem.file.path][lineNumber] === undefined) {
-        blockNumberLine[elem.file.path][lineNumber] = {}
+        blockNumberLine[elem.file.path][lineNumber] = Object.create(null)
       }
       if (blockNumberLine[elem.file.path][lineNumber][elem.page] === undefined) {
         blockNumberLine[elem.file.path][lineNumber][elem.page] = []
