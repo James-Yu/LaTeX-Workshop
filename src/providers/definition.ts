@@ -56,9 +56,8 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         if (ref) {
             return new vscode.Location(vscode.Uri.file(ref.file), ref.position)
         }
-        const cites = this.extension.completer.citation.getEntryDict()
-        if (token in cites) {
-            const cite = cites[token]
+        const cite = this.extension.completer.citation.getEntry(token)
+        if (cite) {
             return new vscode.Location( vscode.Uri.file(cite.file), cite.position )
         }
         const command = this.extension.completer.command.definedCmds.get(token)

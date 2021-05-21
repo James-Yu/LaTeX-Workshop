@@ -120,11 +120,10 @@ export class Citation implements IProvider {
         })
     }
 
-    getEntryDict(): {[key: string]: Suggestion} {
+    getEntry(key: string): Suggestion | undefined {
         const suggestions = this.updateAll()
-        const entries: {[key: string]: Suggestion} = {}
-        suggestions.forEach(entry => entries[entry.key] = entry)
-        return entries
+        const entry = suggestions.find((elm) => elm.key === key)
+        return entry
     }
 
     /**
