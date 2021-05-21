@@ -115,7 +115,7 @@ export class LinterLogParser {
     }
 
     private showLinterDiagnostics(linterLog: LinterLogEntry[]) {
-        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
+        const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
         for (const item of linterLog) {
             const range = new vscode.Range(
                 new vscode.Position(item.line - 1, item.column - 1),

@@ -114,7 +114,7 @@ export class CompilerLogParser {
 
     showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
         compilerDiagnostics.clear()
-        const diagsCollection: { [key: string]: vscode.Diagnostic[] } = {}
+        const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
         for (const item of buildLog) {
             const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])

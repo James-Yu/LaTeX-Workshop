@@ -11,7 +11,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     private readonly hierarchy: string[]
-    private readonly sectionDepths: { [key: string]: number } = {}
+    private readonly sectionDepths = Object.create(null) as { [key: string]: number }
     private readonly showLabels: boolean
     private readonly showFloats: boolean
     private readonly showNumbers: boolean

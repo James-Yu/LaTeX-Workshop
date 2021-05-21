@@ -10,7 +10,7 @@ import type {Extension} from '../main'
 export class Linter {
     private readonly extension: Extension
     private linterTimeout?: NodeJS.Timer
-    private readonly currentProcesses: {[linterId: string]: ChildProcessWithoutNullStreams} = {}
+    private readonly currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
 
     constructor(extension: Extension) {
         this.extension = extension
