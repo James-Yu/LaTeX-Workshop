@@ -40,7 +40,11 @@ export class HoverPreviewOnRefProvider {
         }
         const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
         const s = this.mputils.mathjaxify(newTex, tex.envname, {stripLabel: false})
-        const obj = { labels : {}, IDs: {}, startNumber: 0 }
+        const obj = {
+            labels: Object.create(null) as { [k: string]: string },
+            IDs: Object.create(null) as { [k: string]: string },
+            startNumber: 0
+        }
         const typesetArg: TypesetArg = {
             width: 50,
             equationNumbers: 'AMS',
