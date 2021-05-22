@@ -39,21 +39,11 @@ export class Glossary implements IProvider {
         if (result[1] && result[1].match(/^ac/i)) {
             suggestions = this.acronyms
         } else {
-            suggestions = Object.assign({}, this.acronyms, this.glossaries)
+            suggestions = new Map( [...this.acronyms, ...this.glossaries] )
         }
 
         // Compile the suggestion object to array
-        let keys = Object.keys(suggestions)
-        keys = Array.from(new Set(keys))
-        const items: vscode.CompletionItem[] = []
-        for (const key of keys) {
-            const gls = suggestions.get(key)
-            if (gls) {
-                items.push(gls)
-            } else {
-                items.push({label: key})
-            }
-        }
+        const items = Array.from(suggestions.values())
         return items
     }
 
