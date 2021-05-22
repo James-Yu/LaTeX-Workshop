@@ -79,12 +79,12 @@ export class Manager {
     /**
      * The content cache for each LaTeX file.
      */
-    private readonly cachedContent: Content = {}
+    private readonly cachedContent = Object.create(null) as Content
 
-    private readonly localRootFiles: { [key: string]: string | undefined } = {}
-    private readonly rootFilesLanguageIds: { [key: string]: string | undefined } = {}
+    private readonly localRootFiles = Object.create(null) as { [key: string]: string | undefined }
+    private readonly rootFilesLanguageIds = Object.create(null) as { [key: string]: string | undefined }
     // Store one root file for each workspace.
-    private readonly rootFiles: { [key: string]: RootFileType | undefined } = {}
+    private readonly rootFiles = Object.create(null) as { [key: string]: RootFileType | undefined }
     private workspaceRootDirUri: string = ''
 
     private readonly extension: Extension
