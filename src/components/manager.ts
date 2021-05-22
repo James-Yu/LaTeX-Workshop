@@ -902,7 +902,10 @@ export class Manager {
 
     setEnvVar() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        process.env['LATEXWORKSHOP_DOCKER_LATEX'] = configuration.get('docker.image.latex') as string
+        const dockerImageName: string = configuration.get('docker.image.latex', '')
+        if (dockerImageName !== '') {
+            process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
+        }
     }
 
 }
