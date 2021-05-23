@@ -88,7 +88,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 export class Viewer {
     private readonly extension: Extension
     private readonly webviewPanels = new Map<string, Set<PdfViewerPanel>>()
-    readonly clients: {[key: string]: Set<Client>} = {}
+    readonly clients = Object.create(null) as { [key: string]: Set<Client> }
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
 
     constructor(extension: Extension) {
