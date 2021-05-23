@@ -283,19 +283,17 @@ export class Citation implements IProvider {
             if (result === null) {
                 break
             }
-            if (!(result[1] in items)) {
-                const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
-                const positionContent = content.substring(0, result.index).split('\n')
-                items.push({
-                    key: result[1],
-                    label: result[1],
-                    file,
-                    kind: vscode.CompletionItemKind.Reference,
-                    detail: `${postContent}\n...`,
-                    fields: new Fields(),
-                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
-                })
-            }
+            const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
+            const positionContent = content.substring(0, result.index).split('\n')
+            items.push({
+                key: result[1],
+                label: result[1],
+                file,
+                kind: vscode.CompletionItemKind.Reference,
+                detail: `${postContent}\n...`,
+                fields: new Fields(),
+                position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
+            })
         }
         return items
     }
