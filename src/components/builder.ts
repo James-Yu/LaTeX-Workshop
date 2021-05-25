@@ -30,7 +30,7 @@ export class Builder {
         try {
             this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
         } catch (e) {
-            vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
+            void vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
             console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
             throw e
         }
@@ -144,14 +144,14 @@ export class Builder {
             releaseBuildMutex()
         })
 
-        this.currentProcess.on('exit', (exitCode, signal) => {
+        this.currentProcess.on('exit', async (exitCode, signal) => {
             this.extension.compilerLogParser.parse(stdout)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
                 this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error', 'warning')
                 const res = this.extension.logger.showErrorMessage('Build terminated with error.', 'Open compiler log')
                 if (res) {
-                    res.then(option => {
+                    void res.then(option => {
                         switch (option) {
                             case 'Open compiler log':
                                 this.extension.logger.showCompilerLog()
@@ -168,7 +168,7 @@ export class Builder {
                     if (rootFile === undefined) {
                         this.extension.viewer.refreshExistingViewer()
                     } else {
-                        this.buildFinished(rootFile)
+                        await this.buildFinished(rootFile)
                     }
                 } finally {
                     this.currentProcess = undefined
@@ -306,7 +306,7 @@ export class Builder {
             releaseBuildMutex()
         })
 
-        this.currentProcess.on('exit', (exitCode, signal) => {
+        this.currentProcess.on('exit', async (exitCode, signal) => {
             this.extension.compilerLogParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
@@ -320,7 +320,7 @@ export class Builder {
                         this.extension.logger.displayStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
                         this.extension.logger.addLogMessage('Cleaning auxiliary files and retrying build after toolchain error.')
 
-                        this.extension.cleaner.clean(rootFile).then(() => {
+                        void this.extension.cleaner.clean(rootFile).then(() => {
                             this.buildStep(rootFile, steps, 0, recipeName, releaseBuildMutex)
                         })
                     } else {
@@ -331,11 +331,11 @@ export class Builder {
                 } else {
                     this.extension.logger.displayStatus('x', 'errorForeground')
                     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
-                        this.extension.cleaner.clean(rootFile)
+                        await this.extension.cleaner.clean(rootFile)
                     }
                     const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
                     if (res) {
-                        res.then(option => {
+                        void res.then(option => {
                             switch (option) {
                                 case 'Open compiler log':
                                     this.extension.logger.showCompilerLog()
@@ -352,7 +352,7 @@ export class Builder {
                 if (index === steps.length - 1) {
                     this.extension.logger.addLogMessage(`Recipe of length ${steps.length} finished. PID: ${pid}.`)
                     try {
-                        this.buildFinished(rootFile)
+                        await this.buildFinished(rootFile)
                     } finally {
                         this.currentProcess = undefined
                         releaseBuildMutex()
@@ -365,7 +365,7 @@ export class Builder {
         })
     }
 
-    private buildFinished(rootFile: string) {
+    private async buildFinished(rootFile: string) {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
         if (this.extension.compilerLogParser.isLaTeXmkSkipped) {
@@ -382,7 +382,7 @@ export class Builder {
         }
         if (configuration.get('latex.autoClean.run') as string === 'onBuilt') {
             this.extension.logger.addLogMessage('Auto Clean invoked.')
-            this.extension.cleaner.clean(rootFile)
+            await this.extension.cleaner.clean(rootFile)
         }
     }
 
@@ -411,7 +411,7 @@ export class Builder {
             const tools = configuration.get('latex.tools') as StepCommand[]
             if (recipes.length < 1) {
                 this.extension.logger.addLogMessage('No recipes defined.')
-                this.extension.logger.showErrorMessage('No recipes defined.')
+                void this.extension.logger.showErrorMessage('No recipes defined.')
                 return undefined
             }
             let recipe: Recipe | undefined = undefined
@@ -425,7 +425,7 @@ export class Builder {
                 const candidates = recipes.filter(candidate => candidate.name === recipeName)
                 if (candidates.length < 1) {
                     this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)
-                    this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                    void this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
                 }
                 recipe = candidates[0]
             }
@@ -442,7 +442,7 @@ export class Builder {
                    }
                     if (candidates.length < 1) {
                         this.extension.logger.addLogMessage(`Failed to resolve build recipe: ${recipeName}`)
-                        this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
+                        void this.extension.logger.showErrorMessage(`Failed to resolve build recipe: ${recipeName}`)
                     }
                     recipe = candidates[0]
                 }
@@ -457,7 +457,7 @@ export class Builder {
                 if (typeof tool === 'string') {
                     const candidates = tools.filter(candidate => candidate.name === tool)
                     if (candidates.length < 1) {
-                        this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe?.name}."`)
+                        void this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe?.name}."`)
                     } else {
                         steps.push(candidates[0])
                     }

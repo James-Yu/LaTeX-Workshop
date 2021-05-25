@@ -240,7 +240,7 @@ export class EnvPair {
             return // bad match
         }
 
-        vscode.workspace.applyEdit(edit).then(success => {
+        void vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
                 switch (action) {
                     case 'cursor':
@@ -297,7 +297,7 @@ export class EnvPair {
             }
         }
 
-        vscode.workspace.applyEdit(edit).then(success => {
+        void vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
                 const beginEnvPos = beginEnv.pos.translate(0, -1)
                 const endEnvPos = endEnv.pos.translate(0, envNameLength + beginEnv.type.length)

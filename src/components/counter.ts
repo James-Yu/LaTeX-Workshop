@@ -48,13 +48,13 @@ export class Counter {
 
         proc.on('error', err => {
             this.extension.logger.addLogMessage(`Cannot count words: ${err.message}, ${stderr}`)
-            this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
+            void this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
         })
 
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Cannot count words, code: ${exitCode}, ${stderr}`)
-                this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
+                void this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
             } else {
                 const words = /Words in text: ([0-9]*)/g.exec(stdout)
                 const floats = /Number of floats\/tables\/figures: ([0-9]*)/g.exec(stdout)
@@ -63,7 +63,7 @@ export class Counter {
                     if (floats && parseInt(floats[1]) > 0) {
                         floatMsg = `and ${floats[1]} float${parseInt(floats[1]) > 1 ? 's' : ''} (tables, figures, etc.) `
                     }
-                    vscode.window.showInformationMessage(`There are ${words[1]} words ${floatMsg}in the ${merge ? 'LaTeX project' : 'opened LaTeX file'}.`)
+                    void vscode.window.showInformationMessage(`There are ${words[1]} words ${floatMsg}in the ${merge ? 'LaTeX project' : 'opened LaTeX file'}.`)
                 }
                 this.extension.logger.addLogMessage(`TeXCount log:\n${stdout}`)
             }

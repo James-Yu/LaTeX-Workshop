@@ -37,11 +37,11 @@ export class TeXMagician {
 
     addTexRoot() {
         // taken from here: https://github.com/DonJayamanne/listFilesVSCode/blob/master/src/extension.ts (MIT licensed, should be fine)
-        vscode.workspace.findFiles('**/*.{tex}').then(files => {
+        void vscode.workspace.findFiles('**/*.{tex}').then(files => {
             const displayFiles = files.map(file => {
                 return { description: file.fsPath, label: this.getFileName(file.fsPath), filePath: file.fsPath }
             })
-            vscode.window.showQuickPick(displayFiles).then(val => {
+            void vscode.window.showQuickPick(displayFiles).then(val => {
                 const editor = vscode.window.activeTextEditor
                 if (!(val && editor)) {
                     return
@@ -58,7 +58,7 @@ export class TeXMagician {
                 const uri = editor.document.uri
                 const edit = new vscode.WorkspaceEdit()
                 edit.set(uri, edits)
-                vscode.workspace.applyEdit(edit)
+                void vscode.workspace.applyEdit(edit)
             })
         })
     }

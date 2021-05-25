@@ -88,10 +88,10 @@ export class MathPreviewPanel {
     initializePanel(panel: vscode.WebviewPanel) {
         const disposable = vscode.Disposable.from(
             vscode.workspace.onDidChangeTextDocument( (event) => {
-                this.extension.mathPreviewPanel.update({type: 'edit', event})
+                void this.extension.mathPreviewPanel.update({type: 'edit', event})
             }),
             vscode.window.onDidChangeTextEditorSelection( (event) => {
-                this.extension.mathPreviewPanel.update({type: 'selection', event})
+                void this.extension.mathPreviewPanel.update({type: 'selection', event})
             })
         )
         this.panel = panel
@@ -103,12 +103,12 @@ export class MathPreviewPanel {
         })
         panel.onDidChangeViewState((ev) => {
             if (ev.webviewPanel.visible) {
-                this.update()
+                void this.update()
             }
         })
         panel.webview.onDidReceiveMessage(() => {
             this.extension.logger.addLogMessage('Math preview panel: initialized')
-            this.update()
+            void this.update()
         })
     }
 
@@ -123,7 +123,7 @@ export class MathPreviewPanel {
         if (this.panel) {
             this.close()
         } else {
-            this.open()
+            void this.open()
         }
     }
 

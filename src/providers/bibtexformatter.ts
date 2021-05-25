@@ -39,13 +39,13 @@ export class BibtexFormatter {
             edit.replace(doc.uri, e.range, e.newText)
         })
 
-        vscode.workspace.applyEdit(edit).then(success => {
+        void vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
                 this.duplicatesDiagnostics.set(doc.uri, this.diags)
                 const t1 = performance.now()
                 this.extension.logger.addLogMessage(`BibTeX action successful. Took ${t1 - t0} ms.`)
             } else {
-                this.extension.logger.showErrorMessage('Something went wrong while processing the bibliography.')
+                void this.extension.logger.showErrorMessage('Something went wrong while processing the bibliography.')
             }
         })
 
@@ -81,7 +81,7 @@ export class BibtexFormatter {
             if (error instanceof(Error)) {
                 this.extension.logger.addLogMessage('Bibtex parser failed.')
                 this.extension.logger.addLogMessage(error.message)
-                this.extension.logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
+                void this.extension.logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
             }
             return undefined
         })

@@ -107,7 +107,7 @@ export class Section {
             }
         }
 
-        vscode.workspace.applyEdit(edit).then(success => {
+        void vscode.workspace.applyEdit(edit).then(success => {
             if (success) {
                 editor.selections = newSelections
             }

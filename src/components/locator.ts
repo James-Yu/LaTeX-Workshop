@@ -161,7 +161,7 @@ export class Locator {
                 }
             }
         } else {
-            this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
+            void this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
                 if (pdfFile) {
                     this.extension.viewer.syncTeX(pdfFile, record)
                 }
@@ -340,9 +340,9 @@ export class Locator {
             }
             const pos = new vscode.Position(row, col)
 
-            vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
+            vscode.window.showTextDocument(doc, viewColumn).then( async (editor) => {
                 editor.selection = new vscode.Selection(pos, pos)
-                vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
+                await vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
                 this.animateToNotify(editor, pos)
             }, (r) => this.extension.logger.logOnRejected(r))
         }, (r) => this.extension.logger.logOnRejected(r))

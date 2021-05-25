@@ -35,10 +35,10 @@ export class BibWatcher {
         this.bibWatcher.on('unlink', (file: string) => this.onWatchedBibDeleted(file))
     }
 
-    private onWatchedBibChanged(file: string) {
+    private async onWatchedBibChanged(file: string) {
         this.extension.logger.addLogMessage(`Bib file watcher - file changed: ${file}`)
-        this.extension.completer.citation.parseBibFile(file)
-        this.extension.manager.buildOnFileChanged(file, true)
+        await this.extension.completer.citation.parseBibFile(file)
+        await this.extension.manager.buildOnFileChanged(file, true)
     }
 
     private onWatchedBibDeleted(file: string) {
@@ -50,12 +50,12 @@ export class BibWatcher {
         this.extension.completer.citation.removeEntriesInFile(file)
     }
 
-    watchBibFile(bibPath: string) {
+    async watchBibFile(bibPath: string) {
         if (this.bibWatcher && !this.bibsWatched.includes(bibPath)) {
             this.extension.logger.addLogMessage(`Added to bib file watcher: ${bibPath}`)
             this.bibWatcher.add(bibPath)
             this.bibsWatched.push(bibPath)
-            this.extension.completer.citation.parseBibFile(bibPath)
+            await this.extension.completer.citation.parseBibFile(bibPath)
         }
     }
 

@@ -14,7 +14,7 @@ type IMathSymbol = {
 }
 
 let mathJax: typeof import('mathjax-node')
-import('mathjax-node')
+void import('mathjax-node')
     .then(mj => {
         mathJax = mj
         mj.config({

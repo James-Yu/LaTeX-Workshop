@@ -371,7 +371,8 @@ export class StructureTreeView {
         const f = e.textEditor.document.fileName
         const currentNode = this.traverseSectionTree(this._treeDataProvider.ds, f, line)
         if (currentNode) {
-            this._viewer.reveal(currentNode, {select: true})
+            return this._viewer.reveal(currentNode, {select: true})
         }
+        return
     }
 }

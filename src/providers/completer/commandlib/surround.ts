@@ -25,7 +25,7 @@ export class SurroundCommand {
                 })
             }
         })
-        vscode.window.showQuickPick(candidate, {
+        void vscode.window.showQuickPick(candidate, {
             placeHolder: 'Press ENTER to surround previous selection with selected command',
             matchOnDetail: false,
             matchOnDescription: false
@@ -33,7 +33,7 @@ export class SurroundCommand {
             if (selected === undefined) {
                 return
             }
-            editor.edit( editBuilder => {
+            void editor.edit( editBuilder => {
                 for (const selection of editor.selections) {
                     const selectedContent = editor.document.getText(selection)
                     const selectedCommand = '\\' + selected.command

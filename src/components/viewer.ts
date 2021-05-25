@@ -179,7 +179,7 @@ export class Viewer {
      *
      * @param sourceFile The path of a LaTeX file.
      */
-    openBrowser(sourceFile: string) {
+    async openBrowser(sourceFile: string) {
         const url = this.checkViewer(sourceFile, true)
         if (!url) {
             return
@@ -188,10 +188,10 @@ export class Viewer {
         this.createClients(pdfFile)
 
         try {
-            vscode.env.openExternal(vscode.Uri.parse(url))
+            await vscode.env.openExternal(vscode.Uri.parse(url))
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
         } catch (e) {
-            vscode.window.showInputBox({
+            void vscode.window.showInputBox({
                 prompt: 'Unable to open browser. Please copy and visit this link.',
                 value: url
             })
@@ -440,7 +440,7 @@ export class Viewer {
                 break
             }
             case 'reverse_synctex': {
-                this.extension.locator.locate(data, data.path)
+                void this.extension.locator.locate(data, data.path)
                 break
             }
             case 'ping': {
