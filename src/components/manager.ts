@@ -343,9 +343,20 @@ export class Manager {
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)
             }
+            this.logWatchedFiles()
             return rootFile
         }
         return undefined
+    }
+
+    private logWatchedFiles(delay = 2000) {
+        return setTimeout(
+            () => {
+                this.extension.logger.addLogMessage(`Manager.fileWatcher.getWatched: ${JSON.stringify(this.fileWatcher?.getWatched())}`)
+                this.extension.logger.addLogMessage(`Manager.filesWatched: ${JSON.stringify(this.filesWatched)}`)
+            },
+            delay
+        )
     }
 
     private findRootFromCurrentRoot(): string | undefined {

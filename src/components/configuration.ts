@@ -18,7 +18,8 @@ export class Configuration {
 
     private readonly configurationsToLog = [
         'latex-workshop.intellisense.update.aggressive.enabled',
-        'latex-workshop.intellisense.update.delay'
+        'latex-workshop.intellisense.update.delay',
+        'latex-workshop.latex.autoBuild.run'
     ]
 
     private logConfiguration() {
