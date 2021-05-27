@@ -20,6 +20,8 @@ import {PathUtils, PathRegExp} from './managerlib/pathutils'
 import type {MatchPath} from './managerlib/pathutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
+import {Mutex} from '../lib/await-semaphore'
+
 /**
  * The content cache for each LaTeX file `filepath`.
  */
@@ -88,13 +90,14 @@ export class Manager {
     private workspaceRootDirUri: string = ''
 
     private readonly extension: Extension
-    private fileWatcher?: chokidar.FSWatcher
+    private readonly fileWatcher: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
     private readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
-    private filesWatched: string[] = []
+    private readonly filesWatched = new Set<string>()
+    private readonly fileWatcherMutex = new Mutex()
     private readonly watcherOptions: chokidar.WatchOptions
     private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
     private readonly jlweaveExt: string[] = ['.jnw', '.jtexw']
@@ -114,6 +117,7 @@ export class Manager {
             binaryInterval: Math.max(interval, 1000),
             awaitWriteFinish: {stabilityThreshold: delay}
         }
+        this.fileWatcher = this.createFileWatcher()
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
         this.intellisenseWatcher = new IntellisenseWatcher()
@@ -352,8 +356,8 @@ export class Manager {
     private logWatchedFiles(delay = 2000) {
         return setTimeout(
             () => {
-                this.extension.logger.addLogMessage(`Manager.fileWatcher.getWatched: ${JSON.stringify(this.fileWatcher?.getWatched())}`)
-                this.extension.logger.addLogMessage(`Manager.filesWatched: ${JSON.stringify(this.filesWatched)}`)
+                this.extension.logger.addLogMessage(`Manager.fileWatcher.getWatched: ${JSON.stringify(this.fileWatcher.getWatched())}`)
+                this.extension.logger.addLogMessage(`Manager.filesWatched: ${JSON.stringify(Array.from(this.filesWatched))}`)
             },
             delay
         )
@@ -551,10 +555,9 @@ export class Manager {
             baseFile = file
         }
         this.extension.logger.addLogMessage(`Parsing a file and its subfiles: ${file}`)
-        if (this.fileWatcher && !this.filesWatched.includes(file)) {
+        if (!this.filesWatched.has(file)) {
             // The file is first time considered by the extension.
-            this.fileWatcher.add(file)
-            this.filesWatched.push(file)
+            await this.addToFileWatcher(file)
         }
         let content = this.getDirtyContent(file)
         if (!content) {
@@ -649,7 +652,7 @@ export class Manager {
                 file: inputFile
             })
 
-            if (this.filesWatched.includes(inputFile)) {
+            if (this.filesWatched.has(inputFile)) {
                 /* We already watch this file, no need to enforce a new parsing */
                 continue
             }
@@ -714,10 +717,9 @@ export class Manager {
                     file: inputFile
                 })
                 await this.parseFileAndSubs(inputFile, texFile)
-            } else if (this.fileWatcher && !this.filesWatched.includes(inputFile)) {
+            } else if (!this.filesWatched.has(inputFile)) {
                 // Watch non-tex files.
-                this.fileWatcher.add(inputFile)
-                this.filesWatched.push(inputFile)
+                await this.addToFileWatcher(inputFile)
             }
         })
 
@@ -754,44 +756,56 @@ export class Manager {
     }
 
     private async initiateFileWatcher() {
-        if (this.fileWatcher !== undefined &&
-            this.rootFile !== undefined &&
-            !this.filesWatched.includes(this.rootFile)) {
-            // We have an instantiated fileWatcher, but the rootFile is not being watched.
-            // => the user has changed the root. Clean up the old watcher so we reform it.
-            await this.resetFileWatcher()
-            this.createFileWatcher()
+        await this.resetFileWatcher()
+        if (this.rootFile !== undefined) {
+            await this.addToFileWatcher(this.rootFile)
         }
+    }
 
-        if (this.fileWatcher === undefined) {
-            this.createFileWatcher()
+    private async addToFileWatcher(file: string) {
+        const release = await this.fileWatcherMutex.acquire()
+        try {
+            this.fileWatcher.add(file)
+            this.filesWatched.add(file)
+        } finally {
+            release()
+        }
+    }
+
+    private async deleteFromFileWatcher(file: string) {
+        const release = await this.fileWatcherMutex.acquire()
+        try {
+            this.fileWatcher.unwatch(file)
+            this.filesWatched.delete(file)
+        } finally {
+            release()
         }
     }
 
     private createFileWatcher() {
         this.extension.logger.addLogMessage(`Creating a new file watcher for ${this.rootFile}`)
-        if (this.rootFile) {
-            this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.watcherOptions)}`)
-            this.fileWatcher = chokidar.watch(this.rootFile, this.watcherOptions)
-            this.filesWatched.push(this.rootFile)
-        } else {
-            this.extension.logger.addLogMessage('Cannot find rootFile.')
-            this.extension.logger.addLogMessage('Cannot create a new file watcher.')
-        }
-        if (this.fileWatcher) {
-            this.fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
-            this.fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
-            this.fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
-        }
-        // this.findAdditionalDependentFilesFromFls(this.rootFile)
+        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.watcherOptions)}`)
+        const fileWatcher = chokidar.watch([], this.watcherOptions)
+        this.registerListeners(fileWatcher)
+        return fileWatcher
+    }
+
+    private registerListeners(fileWatcher: chokidar.FSWatcher) {
+        fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
+        fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
+        fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
     }
 
     private async resetFileWatcher() {
-        this.extension.logger.addLogMessage('Root file changed -> cleaning up old file watcher.')
-        if (this.fileWatcher) {
+        const release = await this.fileWatcherMutex.acquire()
+        try {
+            this.extension.logger.addLogMessage('Reset file watcher.')
             await this.fileWatcher.close()
+            this.registerListeners(this.fileWatcher)
+            this.filesWatched.clear()
+        } finally {
+            release()
         }
-        this.filesWatched = []
         // We also clean the completions from the old project
         this.extension.completer.input.reset()
         this.extension.duplicateLabels.reset()
@@ -818,12 +832,9 @@ export class Manager {
         await this.buildOnFileChanged(file)
     }
 
-    private onWatchedFileDeleted(file: string) {
+    private async onWatchedFileDeleted(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file deleted: ${file}`)
-        if (this.fileWatcher) {
-            this.fileWatcher.unwatch(file)
-        }
-        this.filesWatched.splice(this.filesWatched.indexOf(file), 1)
+        await this.deleteFromFileWatcher(file)
         delete this.cachedContent[file]
         if (file === this.rootFile) {
             this.extension.logger.addLogMessage(`Root file deleted: ${file}`)
