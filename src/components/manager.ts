@@ -783,7 +783,7 @@ export class Manager {
     }
 
     private createFileWatcher() {
-        this.extension.logger.addLogMessage(`Creating a new file watcher for ${this.rootFile}`)
+        this.extension.logger.addLogMessage('Creating a new file watcher.')
         this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.watcherOptions)}`)
         const fileWatcher = chokidar.watch([], this.watcherOptions)
         this.registerListeners(fileWatcher)
