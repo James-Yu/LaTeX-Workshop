@@ -569,7 +569,7 @@ export class Manager {
         await this.parseBibFiles(content, file)
         // We need to parse the fls to discover file dependencies when defined by TeX macro
         // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
-        this.parseFlsFile(file)
+        await this.parseFlsFile(file)
     }
 
     /**
@@ -688,7 +688,7 @@ export class Manager {
      *
      * @param texFile The path of a LaTeX file.
      */
-    parseFlsFile(texFile: string) {
+    async parseFlsFile(texFile: string) {
         this.extension.logger.addLogMessage('Parse fls file.')
         const flsFile = this.pathUtils.getFlsFilePath(texFile)
         if (flsFile === undefined) {
@@ -698,16 +698,16 @@ export class Manager {
         const outDir = this.getOutDir(texFile)
         const ioFiles = this.pathUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
 
-        ioFiles.input.forEach(async (inputFile: string) => {
+        for (const inputFile of ioFiles.input) {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (ioFiles.output.includes(inputFile) ||
                 this.isExcluded(inputFile) ||
                 !fs.existsSync(inputFile)) {
-                return
+                continue
             }
             // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
             if (texFile === inputFile || inputFile in this.cachedContent) {
-                return
+                continue
             }
             if (path.extname(inputFile) === '.tex') {
                 // Parse tex files as imported subfiles.
@@ -720,15 +720,15 @@ export class Manager {
                 // Watch non-tex files.
                 await this.addToFileWatcher(inputFile)
             }
-        })
+        }
 
-        ioFiles.output.forEach((outputFile: string) => {
+        for (const outputFile of ioFiles.output) {
             if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
                 this.extension.logger.addLogMessage(`Parse aux file: ${outputFile}`)
-                void this.parseAuxFile(fs.readFileSync(outputFile).toString(),
-                                       path.dirname(outputFile).replace(outDir, rootDir))
+                await this.parseAuxFile(fs.readFileSync(outputFile).toString(),
+                                        path.dirname(outputFile).replace(outDir, rootDir))
             }
-        })
+        }
     }
 
     private async parseAuxFile(content: string, srcDir: string) {
