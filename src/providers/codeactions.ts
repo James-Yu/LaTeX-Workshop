@@ -77,22 +77,22 @@ export class CodeActions implements vs.CodeActionProvider {
             case 39:
             case 42:
                 // In all these cases remove all proceeding whitespace.
-                this.replaceWhitespaceOnLineBefore(document, range.end, '')
+                void this.replaceWhitespaceOnLineBefore(document, range.end, '')
                 break
             case 4:
             case 5:
             case 28:
                 // In all these cases just clear what ChkTeX highlighted.
-                this.replaceRangeWithString(document, range, '')
+                void this.replaceRangeWithString(document, range, '')
                 break
             case 1:
-                this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '{}')
+                void this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '{}')
                 break
             case 2:
-                this.replaceWhitespaceOnLineBefore(document, range.end, '~')
+                void this.replaceWhitespaceOnLineBefore(document, range.end, '~')
                 break
             case 6:
-                this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\/')
+                void this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\/')
                 break
             case 11:
                 // add a space after so we don't accidentally join with the following word.
@@ -101,32 +101,32 @@ export class CodeActions implements vs.CodeActionProvider {
                     break
                 }
                 fixString = regexResult[0] + ' '
-                this.replaceRangeWithString(document, range, fixString)
+                void this.replaceRangeWithString(document, range, fixString)
                 break
             case 12:
-                this.replaceRangeWithString(document, range, '\\ ')
+                void this.replaceRangeWithString(document, range, '\\ ')
                 break
             case 13:
-                this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\@')
+                void this.replaceWhitespaceOnLineBefore(document, range.end.translate(0, -1), '\\@')
                 break
             case 18:
                 if (isOpeningQuote(document, range)) {
-                    this.replaceRangeWithRepeatedString(document, range, '``')
+                    void this.replaceRangeWithRepeatedString(document, range, '``')
                 } else {
-                    this.replaceRangeWithRepeatedString(document, range, "''")
+                    void this.replaceRangeWithRepeatedString(document, range, "''")
                 }
                 break
             case 32:
-                this.replaceRangeWithRepeatedString(document, range, '`')
+                void this.replaceRangeWithRepeatedString(document, range, '`')
                 break
             case 33:
-                this.replaceRangeWithRepeatedString(document, range, "'")
+                void this.replaceRangeWithRepeatedString(document, range, "'")
                 break
             case 34:
                 if (isOpeningQuote(document, range)) {
-                    this.replaceRangeWithRepeatedString(document, range, '`')
+                    void this.replaceRangeWithRepeatedString(document, range, '`')
                 } else {
-                    this.replaceRangeWithRepeatedString(document, range, "'")
+                    void this.replaceRangeWithRepeatedString(document, range, "'")
                 }
                 break
             case 35:
@@ -135,13 +135,13 @@ export class CodeActions implements vs.CodeActionProvider {
                     break
                 }
                 fixString = regexResult[1]
-                this.replaceRangeWithString(document, range, fixString)
+                void this.replaceRangeWithString(document, range, fixString)
                 break
             case 45:
-                this.replaceMathDelimitersInRange(document, range, '$$', '\\[', '\\]')
+                void this.replaceMathDelimitersInRange(document, range, '$$', '\\[', '\\]')
                 break
             case 46:
-                this.replaceMathDelimitersInRange(document, range, '$', '\\(', '\\)')
+                void this.replaceMathDelimitersInRange(document, range, '$', '\\(', '\\)')
                 break
             default:
                 break

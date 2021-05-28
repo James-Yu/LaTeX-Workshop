@@ -62,7 +62,7 @@ export class LaTexFormatter {
                 if (!latexindentPresent) {
                     this.extension.logger.addLogMessage(`Can not find latexindent in PATH: ${this.formatter}`)
                     this.extension.logger.addLogMessage(`PATH: ${process.env.PATH}`)
-                    this.extension.logger.showErrorMessage('Can not find latexindent in PATH.')
+                    void this.extension.logger.showErrorMessage('Can not find latexindent in PATH.')
                     return []
                 }
             }
@@ -181,14 +181,14 @@ export class LaTexFormatter {
             worker.stdout.on('data', (chunk: Buffer | string) => stdoutBuffer.push(chunk.toString()))
             worker.stderr.on('data', (chunk: Buffer | string) => stderrBuffer.push(chunk.toString()))
             worker.on('error', err => {
-                this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                void this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
                 this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
                 resolve([])
             })
             worker.on('close', code => {
                 if (code !== 0) {
-                    this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                    void this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                     this.extension.logger.addLogMessage(`Formatting failed with exit code ${code}`)
                     this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
                     return resolve([])

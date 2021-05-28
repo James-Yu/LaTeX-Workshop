@@ -65,11 +65,11 @@ export class SnippetPanel {
                 editor.insertSnippet(new vscode.SnippetString(message.snippet.replace(/\\\n/g, '\\n'))).then(
                     () => {},
                     err => {
-                        vscode.window.showWarningMessage(`Unable to insert symbol, ${err}`)
+                        void vscode.window.showWarningMessage(`Unable to insert symbol, ${err}`)
                     }
                 )
             } else {
-                vscode.window.showWarningMessage('Unable get document to insert symbol into')
+                void vscode.window.showWarningMessage('Unable get document to insert symbol into')
             }
         }
     }

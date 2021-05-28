@@ -22,8 +22,9 @@ suite('Build TeX files test suite', () => {
     suiteSetup(() => {
         const config = vscode.workspace.getConfiguration()
         if (process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER']) {
-            config.update('latex-workshop.docker.enabled', true, vscode.ConfigurationTarget.Global)
+            return config.update('latex-workshop.docker.enabled', true, vscode.ConfigurationTarget.Global)
         }
+        return
     })
 
     //
@@ -616,7 +617,7 @@ suite('Build TeX files test suite', () => {
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
             await waitLatexWorkshopActivated()
-            execCommandThenPick(
+            await execCommandThenPick(
                 () => vscode.commands.executeCommand('latex-workshop.build'),
                 () => vscode.commands.executeCommand('workbench.action.acceptSelectedQuickOpenItem')
             )
@@ -633,7 +634,7 @@ suite('Build TeX files test suite', () => {
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             await vscode.window.showTextDocument(doc)
             await waitLatexWorkshopActivated()
-            execCommandThenPick(
+            await execCommandThenPick(
                 () => vscode.commands.executeCommand('latex-workshop.build'),
                 async () => {
                     await vscode.commands.executeCommand('workbench.action.quickOpenSelectNext')

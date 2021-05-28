@@ -125,16 +125,15 @@ export class Commander {
             return
         }
         if (recipe) {
-            this.build(false, undefined, undefined, recipe)
-            return
+            return this.build(false, undefined, undefined, recipe)
         }
-        vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
+        return vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
             placeHolder: 'Please Select a LaTeX Recipe'
         }).then(selected => {
             if (!selected) {
                 return
             }
-            this.build(false, undefined, undefined, selected)
+            return this.build(false, undefined, undefined, selected)
         })
     }
 
@@ -168,34 +167,31 @@ export class Commander {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
         if (mode === 'browser') {
-            this.extension.viewer.openBrowser(pickedRootFile)
-            return
+            return this.extension.viewer.openBrowser(pickedRootFile)
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-            return
+            return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(pickedRootFile)
             return
         } else if (mode === 'set') {
-            this.setViewer()
-            return
+            return this.setViewer()
         }
         const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer(): Promise.resolve()
-        promise.then(() => {
+        void promise.then(() => {
             if (!pickedRootFile) {
                 return
             }
             switch (configuration.get('view.pdf.viewer')) {
-                case 'browser':
-                    this.extension.viewer.openBrowser(pickedRootFile)
-                    break
+                case 'browser': {
+                    return this.extension.viewer.openBrowser(pickedRootFile)
+                }
                 case 'tab':
-                default:
-                    this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-                    break
-                case 'external':
-                    this.extension.viewer.openExternal(pickedRootFile)
-                    break
+                default: {
+                    return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
+                }
+                case 'external': {
+                    return this.extension.viewer.openExternal(pickedRootFile)
+                }
             }
         })
     }
@@ -215,7 +211,7 @@ export class Commander {
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        this.extension.viewer.openTab(uri.fsPath, false, 'current', false)
+        return this.extension.viewer.openTab(uri.fsPath, false, 'current', false)
     }
 
     synctex() {
@@ -286,12 +282,12 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
             this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
             if (this.extension.manager.rootFile) {
-                this.extension.counter.count(this.extension.manager.rootFile)
+                void this.extension.counter.count(this.extension.manager.rootFile)
             } else {
                 this.extension.logger.addLogMessage('WORDCOUNT: No rootFile defined.')
             }
         } else {
-            this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
+            void this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
         }
     }
 
@@ -308,9 +304,9 @@ export class Commander {
         this.extension.logger.addLogMessage(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
         const activeEditor = vscode.window.activeTextEditor
 
-        vscode.workspace.openTextDocument(filePath).then((doc) => {
-            vscode.window.showTextDocument(doc).then(() => {
-                vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
+        void vscode.workspace.openTextDocument(filePath).then((doc) => {
+            void vscode.window.showTextDocument(doc).then(() => {
+                void vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
                 if (activeEditor) {
                     activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
                 }
@@ -325,16 +321,16 @@ export class Commander {
         .then(option => {
             switch (option) {
                 case 'Web browser':
-                    configuration.update('view.pdf.viewer', 'browser', true)
-                    vscode.window.showInformationMessage('By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".')
+                    void configuration.update('view.pdf.viewer', 'browser', true)
+                    void vscode.window.showInformationMessage('By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 case 'VSCode tab':
-                    configuration.update('view.pdf.viewer', 'tab', true)
-                    vscode.window.showInformationMessage('By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".')
+                    void configuration.update('view.pdf.viewer', 'tab', true)
+                    void vscode.window.showInformationMessage('By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 case 'External viewer':
-                    configuration.update('view.pdf.viewer', 'external', true)
-                    vscode.window.showInformationMessage('By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".')
+                    void configuration.update('view.pdf.viewer', 'external', true)
+                    void vscode.window.showInformationMessage('By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 default:
                     break
@@ -387,12 +383,12 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.closeEnv()
+        return this.extension.envPair.closeEnv()
     }
 
     actions() {
         this.extension.logger.addLogMessage('ACTIONS command invoked.')
-        vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+        return vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
     }
 
     /**
@@ -406,8 +402,9 @@ export class Commander {
         }
         const entry = this.snippets.get(name)
         if (entry) {
-            editor.insertSnippet(entry)
+            return editor.insertSnippet(entry)
         }
+        return
     }
 
     /**
@@ -423,9 +420,9 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('bind.enter.key')) {
-            return editor.edit(() => {
+            return editor.edit(() =>
                 vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            })
+            )
         }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
@@ -436,9 +433,9 @@ export class Commander {
 
         // if the cursor is not followed by only spaces/eol, insert a plain newline
         if (line.text.substr(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
-            return editor.edit(() => {
+            return editor.edit(() =>
                 vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            })
+            )
         }
 
         // if the line only consists of \item or \item[], delete its content
@@ -470,9 +467,9 @@ export class Commander {
                          .then(() => { editor.selection = new vscode.Selection(newCursorPos, newCursorPos) })
                          .then(() => { editor.revealRange(editor.selection) })
         }
-        return editor.edit(() => {
+        return editor.edit(() =>
             vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-        })
+        )
     }
 
     /**
@@ -606,7 +603,7 @@ export class Commander {
             return
         }
         const ast = await this.extension.pegParser.parseLatex(vscode.window.activeTextEditor.document.getText())
-        vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
+        return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
     async devParseBib() {
@@ -614,7 +611,7 @@ export class Commander {
             return
         }
         const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
-        vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
+        return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
     texdoc(pkg?: string) {
@@ -635,7 +632,7 @@ export class Commander {
     }
 
     openMathPreviewPanel() {
-        this.extension.mathPreviewPanel.open()
+        return this.extension.mathPreviewPanel.open()
     }
 
     closeMathPreviewPanel() {

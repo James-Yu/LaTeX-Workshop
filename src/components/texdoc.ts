@@ -31,18 +31,18 @@ export class TeXDoc {
 
         proc.on('error', err => {
             this.extension.logger.addLogMessage(`Cannot run texdoc: ${err.message}, ${stderr}`)
-            this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+            void this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
         })
 
         proc.on('exit', exitCode => {
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
-                this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
+                void this.extension.logger.showErrorMessage('Texdoc failed. Please refer to LaTeX Workshop Output for details.')
             } else {
                 const regex = new RegExp(`(no documentation found)|(Documentation for ${pkg} could not be found)`)
                 if (stdout.match(regex) || stderr.match(regex)) {
                     this.extension.logger.addLogMessage(`Cannot find documentation for ${pkg}.`)
-                    this.extension.logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
+                    void this.extension.logger.showErrorMessage(`Cannot find documentation for ${pkg}.`)
                 } else {
                     this.extension.logger.addLogMessage(`Opening documentation for ${pkg}.`)
                 }
@@ -57,7 +57,7 @@ export class TeXDoc {
             this.runTexdoc(pkg)
             return
         }
-        vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
+        void vscode.window.showInputBox({value: '', prompt: 'Package name'}).then(selectedPkg => {
             if (!selectedPkg) {
                 return
             }
@@ -79,7 +79,7 @@ export class TeXDoc {
         const items: vscode.QuickPickItem[] = packagenames.map( name => {
             return { label: name }
         })
-        vscode.window.showQuickPick(items).then(selectedPkg => {
+        void vscode.window.showQuickPick(items).then(selectedPkg => {
             if (!selectedPkg) {
                 return
             }

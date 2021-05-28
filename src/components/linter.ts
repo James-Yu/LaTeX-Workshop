@@ -74,7 +74,7 @@ export class Linter {
     lintRootFileIfEnabled() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('chktex.enabled') as boolean) {
-            this.lintRootFile()
+            void this.lintRootFile()
         }
     }
 
@@ -86,7 +86,7 @@ export class Linter {
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
             }
-            this.linterTimeout = setTimeout(() => { this.lintActiveFile() }, interval)
+            this.linterTimeout = setTimeout(() => this.lintActiveFile(), interval)
         }
     }
 

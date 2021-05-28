@@ -44,7 +44,7 @@ import {SnippetViewProvider} from './providers/snippetview'
 function conflictExtensionCheck() {
     function check(extensionID: string, name: string, suggestion: string) {
         if (vscode.extensions.getExtension(extensionID) !== undefined) {
-            vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with extension "${name}". ${suggestion}`)
+            void vscode.window.showWarningMessage(`LaTeX Workshop is incompatible with extension "${name}". ${suggestion}`)
         }
     }
     check('tomoki1207.pdf', 'vscode-pdf', 'Please consider disabling either extension.')
@@ -177,7 +177,7 @@ function generateLatexWorkshopApi(extension: Extension) {
 
 export function activate(context: vscode.ExtensionContext): ReturnType<typeof generateLatexWorkshopApi> {
     const extension = new Extension()
-    vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
+    void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
     // let configuration = vscode.workspace.getConfiguration('latex-workshop')
     // if (configuration.get('bind.altKeymap.enabled')) {
@@ -202,7 +202,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                     return
                 }
                 extension.logger.addLogMessage(`Auto build started on saving file: ${e.fileName}`)
-                extension.manager.buildOnSave(e.fileName)
+                void extension.manager.buildOnSave(e.fileName)
             }
         }
     }))
@@ -215,8 +215,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
         if (e.languageId === 'pdf') {
             extension.manager.watchPdfFile(e.uri.fsPath)
-            vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
-                extension.commander.pdf(e.uri)
+            void vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
+                return extension.commander.pdf(e.uri)
             })
         }
     }))
@@ -236,12 +236,12 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             if (updateCompleter) {
                 clearTimeout(updateCompleter)
             }
-            updateCompleter = setTimeout(() => {
+            updateCompleter = setTimeout(async () => {
                 extension.manager.updateCachedContent(e.document)
                 const content = e.document.getText()
                 const file = e.document.uri.fsPath
-                extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
-                extension.manager.updateCompleter(file, content)
+                await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
+                await extension.manager.updateCompleter(file, content)
             }, configuration.get('intellisense.update.delay', 1000))
         }
     }))
@@ -251,15 +251,15 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
-            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
+            void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
                 if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
-                    vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+                    void vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
                 }
                 isLaTeXActive = true
             })
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
-            vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
+            void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
@@ -285,7 +285,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
             return
         }
-        extension.structureViewer.showCursorIteme(e)
+        return extension.structureViewer.showCursorIteme(e)
     }))
 
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer))
@@ -311,15 +311,15 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-snippet-view', new SnippetViewProvider(extension), {webviewOptions: {retainContextWhenHidden: true}}))
 
-    extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
+    void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
     conflictExtensionCheck()
 
     // If VS Code started with PDF files, we must explicitly execute `commander.pdf` for the PDF files.
     vscode.window.visibleTextEditors.forEach(editor => {
         const e = editor.document
         if (e.languageId === 'pdf') {
-            vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
-                extension.commander.pdf(e.uri)
+            void vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
+                return extension.commander.pdf(e.uri)
             })
         }
     })

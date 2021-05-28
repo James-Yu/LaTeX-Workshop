@@ -90,7 +90,7 @@ export class Citation implements IProvider {
     }
 
     browser(_args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
+        void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             return {
                 label: item.fields.title ? item.fields.title : '',
                 description: `${item.key}`,
@@ -114,8 +114,8 @@ export class Citation implements IProvider {
                     const commaStart = content.lastIndexOf(',') + 1
                     start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
                 }
-                editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''))
-                      .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
+                void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''))
+                           .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
             }
         })
     }

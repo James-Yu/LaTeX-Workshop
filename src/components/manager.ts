@@ -337,7 +337,7 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 await this.initiateFileWatcher()
                 this.bibWatcher.initiateBibWatcher()
-                this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
+                await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
@@ -542,7 +542,7 @@ export class Manager {
      * @param file The path of a LaTeX file. It is added to the watcher if not being watched.
      * @param baseFile The file currently considered as the rootFile. If undefined, we use `file`
      */
-    parseFileAndSubs(file: string, baseFile: string | undefined) {
+    async parseFileAndSubs(file: string, baseFile: string | undefined) {
         if (this.isExcluded(file)) {
             this.extension.logger.addLogMessage(`Ignoring: ${file}`)
             return
@@ -563,8 +563,8 @@ export class Manager {
         content = utils.stripCommentsAndVerbatim(content)
         this.cachedContent[file].children = []
         this.cachedContent[file].bibs = []
-        this.parseInputFiles(content, file, baseFile)
-        this.parseBibFiles(content, file)
+        await this.parseInputFiles(content, file, baseFile)
+        await this.parseBibFiles(content, file)
         // We need to parse the fls to discover file dependencies when defined by TeX macro
         // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
         this.parseFlsFile(file)
@@ -629,7 +629,7 @@ export class Manager {
         return ioFiles.input
     }
 
-    private parseInputFiles(content: string, currentFile: string, baseFile: string) {
+    private async parseInputFiles(content: string, currentFile: string, baseFile: string) {
         const pathRegexp = new PathRegExp()
         while (true) {
             const result: MatchPath | undefined = pathRegexp.exec(content)
@@ -653,11 +653,11 @@ export class Manager {
                 /* We already watch this file, no need to enforce a new parsing */
                 continue
             }
-            this.parseFileAndSubs(inputFile, baseFile)
+            await this.parseFileAndSubs(inputFile, baseFile)
         }
     }
 
-    private parseBibFiles(content: string, baseFile: string) {
+    private async parseBibFiles(content: string, baseFile: string) {
         const bibReg = /(?:\\(?:bibliography|addbibresource)(?:\[[^[\]{}]*\])?){(.+?)}|(?:\\putbib)\[(.+?)\]/g
         while (true) {
             const result = bibReg.exec(content)
@@ -673,7 +673,7 @@ export class Manager {
                     continue
                 }
                 this.cachedContent[baseFile].bibs.push(bibPath)
-                this.bibWatcher.watchBibFile(bibPath)
+                await this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }
@@ -696,7 +696,7 @@ export class Manager {
         const outDir = this.getOutDir(texFile)
         const ioFiles = this.pathUtils.parseFlsContent(fs.readFileSync(flsFile).toString(), rootDir)
 
-        ioFiles.input.forEach((inputFile: string) => {
+        ioFiles.input.forEach(async (inputFile: string) => {
             // Drop files that are also listed as OUTPUT or should be ignored
             if (ioFiles.output.includes(inputFile) ||
                 this.isExcluded(inputFile) ||
@@ -713,7 +713,7 @@ export class Manager {
                     index: Number.MAX_VALUE,
                     file: inputFile
                 })
-                this.parseFileAndSubs(inputFile, texFile)
+                await this.parseFileAndSubs(inputFile, texFile)
             } else if (this.fileWatcher && !this.filesWatched.includes(inputFile)) {
                 // Watch non-tex files.
                 this.fileWatcher.add(inputFile)
@@ -724,13 +724,13 @@ export class Manager {
         ioFiles.output.forEach((outputFile: string) => {
             if (path.extname(outputFile) === '.aux' && fs.existsSync(outputFile)) {
                 this.extension.logger.addLogMessage(`Parse aux file: ${outputFile}`)
-                this.parseAuxFile(fs.readFileSync(outputFile).toString(),
-                                  path.dirname(outputFile).replace(outDir, rootDir))
+                void this.parseAuxFile(fs.readFileSync(outputFile).toString(),
+                                       path.dirname(outputFile).replace(outDir, rootDir))
             }
         })
     }
 
-    private parseAuxFile(content: string, srcDir: string) {
+    private async parseAuxFile(content: string, srcDir: string) {
         const regex = /^\\bibdata{(.*)}$/gm
         while (true) {
             const result = regex.exec(content)
@@ -748,7 +748,7 @@ export class Manager {
                 if (this.rootFile && !this.cachedContent[this.rootFile].bibs.includes(bibPath)) {
                     this.cachedContent[this.rootFile].bibs.push(bibPath)
                 }
-                this.bibWatcher.watchBibFile(bibPath)
+                await this.bibWatcher.watchBibFile(bibPath)
             }
         }
     }
@@ -801,20 +801,21 @@ export class Manager {
         this.extension.logger.addLogMessage(`Added to file watcher: ${file}`)
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
-            this.updateCompleterOnChange(file)
+            return this.updateCompleterOnChange(file)
         }
+        return
     }
 
-    private onWatchedFileChanged(file: string) {
+    private async onWatchedFileChanged(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file changed: ${file}`)
         // It is possible for either tex or non-tex files in the watcher.
         if (['.tex', '.bib'].concat(this.weaveExt).includes(path.extname(file)) &&
             !file.includes('expl3-code.tex')) {
             this.invalidateCachedContent(file)
-            this.parseFileAndSubs(file, this.rootFile)
-            this.updateCompleterOnChange(file)
+            await this.parseFileAndSubs(file, this.rootFile)
+            await this.updateCompleterOnChange(file)
         }
-        this.buildOnFileChanged(file)
+        await this.buildOnFileChanged(file)
     }
 
     private onWatchedFileDeleted(file: string) {
@@ -827,7 +828,7 @@ export class Manager {
         if (file === this.rootFile) {
             this.extension.logger.addLogMessage(`Root file deleted: ${file}`)
             this.extension.logger.addLogMessage('Start searching a new root file.')
-            this.findRoot()
+            void this.findRoot()
         }
     }
 
@@ -847,9 +848,9 @@ export class Manager {
         this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
+            return this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
-            this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
+            return this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
         }
     }
 
@@ -858,7 +859,7 @@ export class Manager {
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
             return
         }
-        this.autoBuild(file, bibChanged)
+        return this.autoBuild(file, bibChanged)
     }
 
     buildOnSave(file: string) {
@@ -866,17 +867,17 @@ export class Manager {
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
             return
         }
-        this.autoBuild(file, false)
+        return this.autoBuild(file, false)
     }
 
 
     // This function updates all completers upon tex-file changes.
-    private updateCompleterOnChange(file: string) {
+    private async updateCompleterOnChange(file: string) {
         const content = this.getDirtyContent(file)
         if (!content) {
             return
         }
-        this.updateCompleter(file, content)
+        await this.updateCompleter(file, content)
         this.extension.completer.input.getGraphicsPath(content)
     }
 

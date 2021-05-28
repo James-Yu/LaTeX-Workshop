@@ -63,18 +63,18 @@ export class Logger {
         switch (severity) {
             case 'info':
                 if (configuration.get('message.information.show')) {
-                    vscode.window.showInformationMessage(message)
+                    void vscode.window.showInformationMessage(message)
                 }
                 break
             case 'warning':
                 if (configuration.get('message.warning.show')) {
-                    vscode.window.showWarningMessage(message)
+                    void vscode.window.showWarningMessage(message)
                 }
                 break
             case 'error':
             default:
                 if (configuration.get('message.error.show')) {
-                    vscode.window.showErrorMessage(message)
+                    void vscode.window.showErrorMessage(message)
                 }
                 break
         }

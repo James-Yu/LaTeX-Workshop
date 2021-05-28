@@ -21,8 +21,9 @@ suite('PDF Viewer test suite', () => {
     suiteSetup(() => {
         const config = vscode.workspace.getConfiguration()
         if (process.env['LATEXWORKSHOP_CI_ENABLE_DOCKER']) {
-            config.update('latex-workshop.docker.enabled', true, vscode.ConfigurationTarget.Global)
+            return config.update('latex-workshop.docker.enabled', true, vscode.ConfigurationTarget.Global)
         }
+        return
     })
 
     //

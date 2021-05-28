@@ -76,7 +76,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startConnectionKeeper()
         this.startRebroadcastingKeyboardEvent()
         this.startSendingState()
-        this.startReceivingPanelManagerResponse()
+        void this.startReceivingPanelManagerResponse()
 
         this.pdfFileRendered = new Promise((resolve) => {
             this.onDidRenderPdfFile(() => resolve(), {once: true})
@@ -108,7 +108,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             cb()
             PDFViewerApplication.eventBus.off('documentloaded', cb0)
         }
-        this.getEventBus().then(eventBus => {
+        void this.getEventBus().then(eventBus => {
             eventBus.on('documentloaded', cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off('documentloaded', cb0) }
@@ -121,7 +121,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off('pagesinit', cb0)
             }
         }
-        this.getEventBus().then(eventBus => {
+        void this.getEventBus().then(eventBus => {
             eventBus.on('pagesinit', cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off('pagesinit', cb0) }
@@ -134,7 +134,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 PDFViewerApplication.eventBus.off('pagerendered', cb0)
             }
         }
-        this.getEventBus().then(eventBus => {
+        void this.getEventBus().then(eventBus => {
             eventBus.on('pagerendered', cb0)
         })
         return { dispose: () => PDFViewerApplication.eventBus.off('pagerendered', cb0) }
@@ -194,7 +194,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             // We have to wait for currentScaleValue set above to be effected
             // especially for cases of non-number scales.
             // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
-            this.pdfFileRendered.then(() => {
+            void this.pdfFileRendered.then(() => {
                 if (state.trim === undefined) {
                     return
                 }
@@ -278,7 +278,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
                     PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
 
-                    PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then( () => {
+                    void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then( () => {
                         // reset the document title to the original value to avoid duplication
                         document.title = this.documentTitle
                         // ensure that trimming is invoked if needed.
@@ -305,7 +305,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         PDFViewerApplication.pdfCursorTools.handTool.deactivate()
                     }
                     if (!this.isRestoredWithSerializer) {
-                        this.restorePdfViewerState(data)
+                        void this.restorePdfViewerState(data)
                     }
                     if (data.invertMode.enabled) {
                         const { brightness, grayscale, hueRotate, invert, sepia } = data.invertMode
@@ -569,7 +569,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, true)
         const events = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
         for (const ev of events) {
-            this.getEventBus().then(eventBus => {
+            void this.getEventBus().then(eventBus => {
                 eventBus.on(ev, () => {
                     this.sendCurrentStateToPanelManager()
                 })
@@ -588,7 +588,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             switch (data.type) {
                 case 'restore_state': {
                     this.isRestoredWithSerializer = true
-                    this.restorePdfViewerState(data.state)
+                    void this.restorePdfViewerState(data.state)
                     break
                 }
                 default: {
