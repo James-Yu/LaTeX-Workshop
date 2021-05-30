@@ -373,7 +373,7 @@ export class Builder {
         }
         this.extension.viewer.refreshExistingViewer(rootFile)
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
-        this.extension.manager.parseFlsFile(rootFile)
+        await this.extension.manager.parseFlsFile(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
             const pdfFile = this.extension.manager.tex2pdf(rootFile)
