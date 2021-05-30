@@ -5,35 +5,32 @@ import type {Extension} from '../../main'
 
 export class PdfWatcher {
     private readonly extension: Extension
-    private readonly pdfsWatched: string[] = []
-    private pdfWatcher?: chokidar.FSWatcher
-    private readonly pdfWatcherOptions: chokidar.WatchOptions
+    private readonly pdfsWatched = new Set<string>()
+    private readonly pdfWatcher: chokidar.FSWatcher
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.pdfWatcher = this.initiatePdfWatcher()
+    }
+
+    private initiatePdfWatcher() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const usePolling = configuration.get('latex.watch.usePolling') as boolean
         const interval = configuration.get('latex.watch.interval') as number
         const pdfDelay = configuration.get('latex.watch.pdfDelay') as number
-        this.pdfWatcherOptions = {
+        const pdfWatcherOptions = {
             useFsEvents: false,
             usePolling,
             interval,
             binaryInterval: Math.max(interval, 1000),
             awaitWriteFinish: {stabilityThreshold: pdfDelay}
         }
-        this.initiatePdfWatcher()
-    }
-
-    private initiatePdfWatcher() {
-        if (this.pdfWatcher !== undefined) {
-            return
-        }
         this.extension.logger.addLogMessage('Creating PDF file watcher.')
-        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(this.pdfWatcherOptions)}`)
-        this.pdfWatcher = chokidar.watch([], this.pdfWatcherOptions)
-        this.pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
-        this.pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
+        this.extension.logger.addLogMessage(`watcherOptions: ${JSON.stringify(pdfWatcherOptions)}`)
+        const pdfWatcher = chokidar.watch([], pdfWatcherOptions)
+        pdfWatcher.on('change', (file: string) => this.onWatchedPdfChanged(file))
+        pdfWatcher.on('unlink', (file: string) => this.onWatchedPdfDeleted(file))
+        return pdfWatcher
     }
 
     private onWatchedPdfChanged(file: string) {
@@ -43,17 +40,15 @@ export class PdfWatcher {
 
     private onWatchedPdfDeleted(file: string) {
         this.extension.logger.addLogMessage(`PDF file watcher - file deleted: ${file}`)
-        if (this.pdfWatcher) {
-            this.pdfWatcher.unwatch(file)
-        }
-        this.pdfsWatched.splice(this.pdfsWatched.indexOf(file), 1)
+        this.pdfWatcher.unwatch(file)
+        this.pdfsWatched.delete(file)
     }
 
     watchPdfFile(pdfPath: string) {
-        if (this.pdfWatcher && !this.pdfsWatched.includes(pdfPath)) {
+        if (!this.pdfsWatched.has(pdfPath)) {
             this.extension.logger.addLogMessage(`Added to PDF file watcher: ${pdfPath}`)
             this.pdfWatcher.add(pdfPath)
-            this.pdfsWatched.push(pdfPath)
+            this.pdfsWatched.add(pdfPath)
         }
     }
 
