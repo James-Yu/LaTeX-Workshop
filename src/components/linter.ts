@@ -222,7 +222,13 @@ export class Linter {
 
             proc.on('exit', exitCode => {
                 if (exitCode !== 0) {
-                    this.extension.logger.addLogMessage(`Linter for ${linterId} failed with exit code ${exitCode} and error:\n  ${stderr}`)
+                    let msg: string
+                    if (stderr === '') {
+                        msg = stderr
+                    } else {
+                        msg = '\n' + stderr
+                    }
+                    this.extension.logger.addLogMessage(`Linter for ${linterId} failed with exit code ${exitCode} and error:${msg}`)
                     return reject({ exitCode, stdout, stderr})
                 } else {
                     const [s, ms] = process.hrtime(startTime)
