@@ -19,7 +19,8 @@ export class Configuration {
     private readonly configurationsToLog = [
         'latex-workshop.intellisense.update.aggressive.enabled',
         'latex-workshop.intellisense.update.delay',
-        'latex-workshop.latex.autoBuild.run'
+        'latex-workshop.latex.autoBuild.run',
+        'latex-workshop.latex.outDir'
     ]
 
     private logConfiguration() {
@@ -35,7 +36,7 @@ export class Configuration {
             if (ev.affectsConfiguration(`${config}`)) {
                 const configuration = vscode.workspace.getConfiguration()
                 const value = configuration.get(config)
-                this.extension.logger.addLogMessage(`Configutation changed to: ${config}: ${JSON.stringify(value)}`)
+                this.extension.logger.addLogMessage(`Configutation changed to { ${config}: ${JSON.stringify(value)} }`)
             }
         }
     }

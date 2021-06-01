@@ -215,6 +215,7 @@ export class Builder {
             if (!path.isAbsolute(outDir)) {
                 outDir = path.resolve(rootDir, outDir)
             }
+            this.extension.logger.addLogMessage(`outDir: ${outDir}`)
             this.extension.manager.getIncludedTeX(rootFile).forEach(file => {
                 const relativePath = path.dirname(file.replace(rootDir, '.'))
                 const fullOutDir = path.resolve(outDir, relativePath)
