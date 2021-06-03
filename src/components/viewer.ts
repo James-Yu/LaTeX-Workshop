@@ -282,13 +282,10 @@ export class Viewer {
             <body><iframe id="preview-panel" class="preview-panel" src="${iframeSrcUrl}" style="position:absolute; border: none; left: 0; top: 0; width: 100%; height: 100%;">
             </iframe>
             <script>
-            // when the iframe loads, or when the tab gets focus again later, move the
+            // When the tab gets focus again later, move the
             // the focus to the iframe so that keyboard navigation works in the pdf.
-            //
-            // Note: this works on first load, or when navigating between groups, but not when
-            //       navigating between tabs of the same group for some reason!
             const iframe = document.getElementById('preview-panel');
-            window.onfocus = iframe.onload = function() {
+            window.onfocus = function() {
                 setTimeout(function() { // doesn't work immediately
                     iframe.contentWindow.focus();
                 }, 100);
