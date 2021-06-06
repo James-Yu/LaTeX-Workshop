@@ -51,19 +51,19 @@ export class Cleaner {
             // Resolve the absolute filepath for every file
             .map(file => path.resolve(outdir, file))
         for (const file of files) {
-            const stats: fs.Stats = fs.statSync(file)
-            if (stats.isFile()) {
-                try {
+            try {
+                const stats: fs.Stats = fs.statSync(file)
+                if (stats.isFile()) {
                     await fs.promises.unlink(file)
                     this.extension.logger.addLogMessage(`Cleaning file: ${file}`)
-                } catch (err) {
-                    this.extension.logger.addLogMessage(`Error cleaning file: ${file}`)
-                    if (err instanceof Error) {
-                        this.extension.logger.logError(err)
-                    }
+                } else {
+                    this.extension.logger.addLogMessage(`Not removing non-file: ${file}`)
                 }
-            } else {
-                this.extension.logger.addLogMessage(`Not removing non-file: ${file}`)
+            } catch (err) {
+                this.extension.logger.addLogMessage(`Error cleaning file: ${file}`)
+                if (err instanceof Error) {
+                    this.extension.logger.logError(err)
+                }
             }
         }
     }
