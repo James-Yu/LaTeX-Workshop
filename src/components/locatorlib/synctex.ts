@@ -83,17 +83,17 @@ export class SyncTexJs {
         const synctexFile = path.resolve(dir, filename + '.synctex')
         const synctexFileGz = synctexFile + '.gz'
 
-        if (fs.existsSync(synctexFile)) {
+        try {
             const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
             return parseSyncTex(s)
-        }
+        } catch {}
 
-        if (fs.existsSync(synctexFileGz)) {
+        try {
             const data = fs.readFileSync(synctexFileGz)
             const b = zlib.gunzipSync(data)
             const s = b.toString('binary')
             return parseSyncTex(s)
-        }
+        } catch {}
 
         throw new SyncTexJsError(`Synctex file, .synctex and .synctex.gz, not found in the file system for ${pdfFile}`)
     }
