@@ -25,10 +25,9 @@ export class NewCommandFinder {
         if (newCommandFile === '') {
             return commandsString
         }
+        let newCommandFileAbs: string
         if (path.isAbsolute(newCommandFile)) {
-            if (fs.existsSync(newCommandFile)) {
-                commandsString = fs.readFileSync(newCommandFile, {encoding: 'utf8'})
-            }
+            newCommandFileAbs = newCommandFile
         } else {
             if (this.extension.manager.rootFile === undefined) {
                 await this.extension.manager.findRoot()
@@ -38,13 +37,18 @@ export class NewCommandFinder {
                 this.extension.logger.addLogMessage(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
                 return ''
             }
-            const newCommandFileAbs = path.join(rootDir, newCommandFile)
-            if (fs.existsSync(newCommandFileAbs)) {
-                commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})
+            newCommandFileAbs = path.join(rootDir, newCommandFile)
+        }
+        try {
+            commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})
+            commandsString = commandsString.replace(/^\s*$/gm, '')
+            commandsString = this.postProcessNewCommands(commandsString)
+        } catch(err) {
+            this.extension.logger.addLogMessage(`Cannot read file ${newCommandFileAbs}`)
+            if (err instanceof Error) {
+                this.extension.logger.logError(err)
             }
         }
-        commandsString = commandsString.replace(/^\s*$/gm, '')
-        commandsString = this.postProcessNewCommands(commandsString)
         return commandsString
     }
 

@@ -23,17 +23,21 @@ export class FinderUtils {
         const fileStack: string[] = []
         if (result) {
             let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
-            if (!fs.existsSync(file)) {
+            try {
+                content = fs.readFileSync(file).toString()
+                fileStack.push(file)
+                this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
+            }
+            catch(err) {
                 const msg = `Not found root file specified in the magic comment: ${file}`
                 this.extension.logger.addLogMessage(msg)
+                if (err instanceof Error) {
+                    this.extension.logger.logError(err)
+                }
                 throw new Error(msg)
             }
-            fileStack.push(file)
-            this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
 
-            content = fs.readFileSync(file).toString()
             result = content.match(regex)
-
             while (result) {
                 file = path.resolve(path.dirname(file), result[1])
                 if (fileStack.includes(file)) {
@@ -44,13 +48,18 @@ export class FinderUtils {
                     this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
                 }
 
-                if (!fs.existsSync(file)) {
+                try {
+                    content = fs.readFileSync(file).toString()
+                    result = content.match(regex)
+                }
+                catch(err) {
                     const msg = `Not found root file specified in the magic comment: ${file}`
                     this.extension.logger.addLogMessage(msg)
+                    if (err instanceof Error) {
+                        this.extension.logger.logError(err)
+                    }
                     throw new Error(msg)
                 }
-                content = fs.readFileSync(file).toString()
-                result = content.match(regex)
             }
             return file
         }

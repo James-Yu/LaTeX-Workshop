@@ -516,13 +516,17 @@ export class Manager {
                 return cache.content
             }
         }
-        if (!fs.existsSync(file)) {
+        try {
+            const fileContent = fs.readFileSync(file).toString()
+            this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
+            return fileContent
+        } catch(err) {
             this.extension.logger.addLogMessage(`Cannot read dirty content of unknown ${file}`)
+            if (err instanceof Error) {
+                this.extension.logger.logError(err)
+            }
             return undefined
         }
-        const fileContent = fs.readFileSync(file).toString()
-        this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
-        return fileContent
     }
 
     private isExcluded(file: string): boolean {
