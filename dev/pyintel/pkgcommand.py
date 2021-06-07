@@ -108,10 +108,12 @@ class CwlIntel:
             self.commands = json.load(open(commands_file, encoding='utf8'))
         except:
             print('Cannot read JSON file {}'.format(commands_file))
+            self.commands = []
         try:
             self.envs = json.load(open(envs_file, encoding='utf8'))
         except:
             print('Cannot read JSON file {}'.format(envs_file))
+            self.envs = []
         self.compute_unimathsymbols()
 
 
