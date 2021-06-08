@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import {stripCommentsAndVerbatim} from '../../../utils/utils'
 import * as path from 'path'
@@ -21,7 +20,7 @@ export class NewCommandFinder {
     }
 
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
-        let commandsString = ''
+        let commandsString: string | undefined = ''
         if (newCommandFile === '') {
             return commandsString
         }
@@ -39,16 +38,13 @@ export class NewCommandFinder {
             }
             newCommandFileAbs = path.join(rootDir, newCommandFile)
         }
-        try {
-            commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})
-            commandsString = commandsString.replace(/^\s*$/gm, '')
-            commandsString = this.postProcessNewCommands(commandsString)
-        } catch(err) {
+        commandsString = this.extension.lwfs.readFileSyncGracefully(newCommandFileAbs)
+        if (commandsString === undefined) {
             this.extension.logger.addLogMessage(`Cannot read file ${newCommandFileAbs}`)
-            if (err instanceof Error) {
-                this.extension.logger.logError(err)
-            }
+            return ''
         }
+        commandsString = commandsString.replace(/^\s*$/gm, '')
+        commandsString = this.postProcessNewCommands(commandsString)
         return commandsString
     }
 
