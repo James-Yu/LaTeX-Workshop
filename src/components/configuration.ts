@@ -21,6 +21,8 @@ export class Configuration {
         'latex-workshop.intellisense.update.delay',
         'latex-workshop.latex.autoBuild.run',
         'latex-workshop.latex.outDir',
+        'latex-workshop.latex.recipes',
+        'latex-workshop.latex.tools',
         'latex-workshop.viewer.pdf.internal.keyboardEvent'
     ]
 
@@ -34,7 +36,7 @@ export class Configuration {
 
     private logChangeOnConfiguration(ev: vscode.ConfigurationChangeEvent) {
         for(const config of this.configurationsToLog) {
-            if (ev.affectsConfiguration(`${config}`)) {
+            if (ev.affectsConfiguration(config)) {
                 const configuration = vscode.workspace.getConfiguration()
                 const value = configuration.get(config)
                 this.extension.logger.addLogMessage(`Configutation changed to { ${config}: ${JSON.stringify(value)} }`)
