@@ -516,11 +516,11 @@ export class Manager {
                 return cache.content
             }
         }
-        if (!fs.existsSync(file)) {
+        const fileContent = this.extension.lwfs.readFileSyncGracefully(file)
+        if (fileContent === undefined) {
             this.extension.logger.addLogMessage(`Cannot read dirty content of unknown ${file}`)
             return undefined
         }
-        const fileContent = fs.readFileSync(file).toString()
         this.setCachedContent(file, {content: fileContent, element: {}, children: [], bibs: []})
         return fileContent
     }

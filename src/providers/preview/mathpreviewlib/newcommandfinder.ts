@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import {stripCommentsAndVerbatim} from '../../../utils/utils'
 import * as path from 'path'
@@ -21,14 +20,13 @@ export class NewCommandFinder {
     }
 
     private async loadNewCommandFromConfigFile(newCommandFile: string) {
-        let commandsString = ''
+        let commandsString: string | undefined = ''
         if (newCommandFile === '') {
             return commandsString
         }
+        let newCommandFileAbs: string
         if (path.isAbsolute(newCommandFile)) {
-            if (fs.existsSync(newCommandFile)) {
-                commandsString = fs.readFileSync(newCommandFile, {encoding: 'utf8'})
-            }
+            newCommandFileAbs = newCommandFile
         } else {
             if (this.extension.manager.rootFile === undefined) {
                 await this.extension.manager.findRoot()
@@ -38,10 +36,12 @@ export class NewCommandFinder {
                 this.extension.logger.addLogMessage(`Cannot identify the absolute path of new command file ${newCommandFile} without root file.`)
                 return ''
             }
-            const newCommandFileAbs = path.join(rootDir, newCommandFile)
-            if (fs.existsSync(newCommandFileAbs)) {
-                commandsString = fs.readFileSync(newCommandFileAbs, {encoding: 'utf8'})
-            }
+            newCommandFileAbs = path.join(rootDir, newCommandFile)
+        }
+        commandsString = this.extension.lwfs.readFileSyncGracefully(newCommandFileAbs)
+        if (commandsString === undefined) {
+            this.extension.logger.addLogMessage(`Cannot read file ${newCommandFileAbs}`)
+            return ''
         }
         commandsString = commandsString.replace(/^\s*$/gm, '')
         commandsString = this.postProcessNewCommands(commandsString)

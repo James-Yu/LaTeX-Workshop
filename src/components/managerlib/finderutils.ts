@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import * as fs from 'fs'
 import * as utils from '../../utils/utils'
 
 import type {Extension} from '../../main'
@@ -17,13 +16,14 @@ export class FinderUtils {
             return undefined
         }
         const regex = /^(?:%\s*!\s*T[Ee]X\sroot\s*=\s*(.*\.(?:tex|[jrsRS]nw|[rR]tex|jtexw))$)/m
-        let content = vscode.window.activeTextEditor.document.getText()
+        let content: string | undefined = vscode.window.activeTextEditor.document.getText()
 
         let result = content.match(regex)
         const fileStack: string[] = []
         if (result) {
             let file = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), result[1])
-            if (!fs.existsSync(file)) {
+            content = this.extension.lwfs.readFileSyncGracefully(file)
+            if (content === undefined) {
                 const msg = `Not found root file specified in the magic comment: ${file}`
                 this.extension.logger.addLogMessage(msg)
                 throw new Error(msg)
@@ -31,9 +31,7 @@ export class FinderUtils {
             fileStack.push(file)
             this.extension.logger.addLogMessage(`Found root file by magic comment: ${file}`)
 
-            content = fs.readFileSync(file).toString()
             result = content.match(regex)
-
             while (result) {
                 file = path.resolve(path.dirname(file), result[1])
                 if (fileStack.includes(file)) {
@@ -44,12 +42,13 @@ export class FinderUtils {
                     this.extension.logger.addLogMessage(`Recursively found root file by magic comment: ${file}`)
                 }
 
-                if (!fs.existsSync(file)) {
+                content = this.extension.lwfs.readFileSyncGracefully(file)
+                if (content === undefined) {
                     const msg = `Not found root file specified in the magic comment: ${file}`
                     this.extension.logger.addLogMessage(msg)
                     throw new Error(msg)
+
                 }
-                content = fs.readFileSync(file).toString()
                 result = content.match(regex)
             }
             return file
