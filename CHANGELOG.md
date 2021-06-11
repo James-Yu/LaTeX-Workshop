@@ -1,5 +1,20 @@
 # Change Log
 
+## [8.19.0] - 2021-06-11
+
+### Added
+- New log messages for recipes and undefined tools.
+- (#2682) Adopt a more lazy approach to read tex content.
+- (#2686) Added highlighting support for tabu package envs.
+
+### Changed
+- (#2579) Change the default value of `docker.image.latex` to an empty string.
+
+### Fixed
+- A series of engineering improvements.
+
+### Fixed
+
 ## [8.18.0] - 2021-05-12
 
 ### Added
