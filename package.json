@@ -32,7 +32,6 @@
     "onLanguage:doctex",
     "onLanguage:jlweave",
     "onLanguage:rsweave",
-    "onLanguage:pdf",
     "onLanguage:bibtex",
     "onCommand:latex-workshop.build",
     "onCommand:latex-workshop.recipes",
@@ -48,6 +47,7 @@
     "onCommand:latex-workshop.bibsort",
     "onCommand:latex-workshop.bibalign",
     "onCommand:latex-workshop.bibalignsort",
+    "onCustomEditor:latex-workshop-pdf-hook",
     "onWebviewPanel:latex-workshop-pdf"
   ],
   "main": "./out/src/main.js",
@@ -122,16 +122,6 @@
           "LaTeX-Expl3"
         ],
         "configuration": "./syntax/syntax-expl3.json"
-      },
-      {
-        "id": "pdf",
-        "aliases": [
-          "PDF",
-          "pdf"
-        ],
-        "extensions": [
-          ".pdf"
-        ]
       },
       {
         "id": "jlweave",
@@ -2068,7 +2058,19 @@
           "name": "Snippet View"
         }
       ]
-    }
+    },
+    "customEditors": [
+      {
+        "viewType": "latex-workshop-pdf-hook",
+        "displayName": "LaTeX Workshop Internal PDF Viewer",
+        "selector": [
+          {
+            "filenamePattern": "*.pdf"
+          }
+        ],
+        "priority": "default"
+      }
+    ]
   },
   "scripts": {
     "clean": "rimraf out/ .eslintcache",
