@@ -14,7 +14,6 @@ import {Locator} from './components/locator'
 import {Linter} from './components/linter'
 import {Cleaner} from './components/cleaner'
 import {Counter} from './components/counter'
-import {TeXMagician} from './components/texmagician'
 import {EnvPair} from './components/envpair'
 import {Section} from './components/section'
 import {CompilerLogParser} from './components/parser/compilerlog'
@@ -76,7 +75,6 @@ function registerLatexWorkshopCommands(extension: Extension) {
     vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
     vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
     vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
-    vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot())
     vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount())
     vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
     vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.log('compiler'))
@@ -346,7 +344,6 @@ export class Extension {
     readonly cleaner: Cleaner
     readonly counter: Counter
     readonly codeActions: CodeActions
-    readonly texMagician: TeXMagician
     readonly envPair: EnvPair
     readonly section: Section
     readonly structureProvider: SectionNodeProvider
@@ -382,7 +379,6 @@ export class Extension {
         this.cleaner = new Cleaner(this)
         this.counter = new Counter(this)
         this.codeActions = new CodeActions(this)
-        this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
         this.section = new Section(this)
         this.structureProvider = new SectionNodeProvider(this)
