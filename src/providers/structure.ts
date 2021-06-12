@@ -337,8 +337,8 @@ export class StructureTreeView {
 
     constructor(private readonly extension: Extension) {
         this._treeDataProvider = this.extension.structureProvider
-        this._viewer = vscode.window.createTreeView('latex-structure', { treeDataProvider: this._treeDataProvider })
-        vscode.commands.registerCommand('latex-structure.toggle-follow-cursor', () => {
+        this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider })
+        vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
         })
     }
