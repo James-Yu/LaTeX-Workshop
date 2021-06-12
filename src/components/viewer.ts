@@ -14,6 +14,8 @@ import {openWebviewPanel} from '../utils/webview'
 import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerState} from '../../viewer/components/protocol'
 import {getCurrentThemeLightness} from '../utils/theme'
 
+export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
+
 class Client {
     readonly viewer: 'browser' | 'tab'
     readonly websocket: ws

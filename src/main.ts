@@ -8,7 +8,7 @@ import {Logger} from './components/logger'
 import {LwFileSystem} from './components/lwfs'
 import {Manager, BuildEvents} from './components/manager'
 import {Builder} from './components/builder'
-import {Viewer} from './components/viewer'
+import {Viewer, PdfViewerHookProvider} from './components/viewer'
 import {Server} from './components/server'
 import {Locator} from './components/locator'
 import {Linter} from './components/linter'
@@ -212,13 +212,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         if (extension.manager.hasTexId(e.languageId)) {
             await extension.manager.findRoot()
         }
-
-        if (e.languageId === 'pdf') {
-            extension.manager.watchPdfFile(e.uri.fsPath)
-            void vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
-                return extension.commander.pdf(e.uri)
-            })
-        }
     }))
 
     let updateCompleter: NodeJS.Timeout
@@ -289,6 +282,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     }))
 
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer))
+    context.subscriptions.push(vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(extension), {supportsMultipleEditorsPerDocument: true}))
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', extension.mathPreviewPanel.mathPreviewPanelSerializer))
 
     context.subscriptions.push(vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)))
@@ -313,16 +307,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
     conflictExtensionCheck()
-
-    // If VS Code started with PDF files, we must explicitly execute `commander.pdf` for the PDF files.
-    vscode.window.visibleTextEditors.forEach(editor => {
-        const e = editor.document
-        if (e.languageId === 'pdf') {
-            void vscode.commands.executeCommand('workbench.action.closeActiveEditor').then(() => {
-                return extension.commander.pdf(e.uri)
-            })
-        }
-    })
 
     return generateLatexWorkshopApi(extension)
 }
