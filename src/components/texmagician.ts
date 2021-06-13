@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import { EOL } from 'os'
 import type { Extension } from '../main'
+import * as path from 'path'
 
 export class TeXMagician {
     extension: Extension
@@ -17,24 +18,6 @@ export class TeXMagician {
         return ''
     }
 
-    getRelativePath(file: string, currentFile: string): string {
-        // replace '\' in windows paths with '/'
-        file = file.replace(/\\/g, '/')
-        // get path of current folder, including to the last '/'
-        let currentFolder = currentFile.replace(/\\/g, '/').replace(/[^/]+$/gi, '')
-        // find index up to which paths match
-        let i = 0
-        while (file.charAt(i) === currentFolder.charAt(i)) {
-            i++
-        }
-        // select nonmatching substring
-        file = file.substring(i)
-        currentFolder = currentFolder.substring(i)
-        // replace each '/foldername/' in path with '/../'
-        currentFolder = currentFolder.replace(/[^/]+/g, '..')
-        return ('./' + currentFolder + file).replace(/^\.\/\.\./, '..')
-    }
-
     addTexRoot() {
         // taken from here: https://github.com/DonJayamanne/listFilesVSCode/blob/master/src/extension.ts (MIT licensed, should be fine)
         void vscode.workspace.findFiles('**/*.{tex}').then(files => {
@@ -46,7 +29,7 @@ export class TeXMagician {
                 if (!(val && editor)) {
                     return
                 }
-                const relativePath = this.getRelativePath(val.filePath, editor.document.fileName)
+                const relativePath = path.relative(path.dirname(editor.document.fileName), val.filePath)
                 const magicComment = `% !TeX root = ${relativePath}`
                 const line0 = editor.document.lineAt(0).text
                 const edits = [(line0.match(/^\s*%\s*!TeX root/gmi)) ?
