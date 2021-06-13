@@ -357,6 +357,8 @@ export class Manager {
             () => {
                 this.extension.logger.addLogMessage(`Manager.fileWatcher.getWatched: ${JSON.stringify(this.fileWatcher.getWatched())}`)
                 this.extension.logger.addLogMessage(`Manager.filesWatched: ${JSON.stringify(Array.from(this.filesWatched))}`)
+                this.bibWatcher.logWatchedFiles()
+                this.pdfWatcher.logWatchedFiles()
             },
             delay
         )

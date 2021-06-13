@@ -55,4 +55,9 @@ export class BibWatcher {
         }
     }
 
+    logWatchedFiles() {
+        this.extension.logger.addLogMessage(`BibWatcher.bibWatcher.getWatched: ${JSON.stringify(this.bibWatcher.getWatched())}`)
+        this.extension.logger.addLogMessage(`BibWatcher.bibsWatched: ${JSON.stringify(Array.from(this.bibsWatched))}`)
+    }
+
 }

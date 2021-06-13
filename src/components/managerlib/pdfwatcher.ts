@@ -52,4 +52,9 @@ export class PdfWatcher {
         }
     }
 
+    logWatchedFiles() {
+        this.extension.logger.addLogMessage(`PdfWatcher.pdfWatcher.getWatched: ${JSON.stringify(this.pdfWatcher.getWatched())}`)
+        this.extension.logger.addLogMessage(`PdfWatcher.pdfsWatched: ${JSON.stringify(Array.from(this.pdfsWatched))}`)
+    }
+
 }
