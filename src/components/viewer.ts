@@ -8,7 +8,7 @@ import {escapeHtml} from '../utils/utils'
 
 import type {Extension} from '../main'
 import type {SyncTeXRecordForward} from './locator'
-import {encodePathWithPrefix} from '../utils/utils'
+import {encodePathWithPrefix} from '../utils/encodepath'
 import {openWebviewPanel} from '../utils/webview'
 
 import type {ClientRequest, ServerResponse, PanelRequest, PdfViewerState} from '../../viewer/components/protocol'
