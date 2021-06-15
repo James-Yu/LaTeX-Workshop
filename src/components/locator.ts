@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as cp from 'child_process'
 import {SyncTexJs} from './locatorlib/synctex'
 import {replaceArgumentPlaceholders} from '../utils/utils'
+import {isSameRealPath} from '../utils/pathnormalize'
 
 import type {Extension} from '../main'
 import type {ClientRequest} from '../../viewer/components/protocol'
@@ -308,7 +309,7 @@ export class Locator {
         // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
         for (const ed of this.extension.manager.cachedFilePaths) {
             try {
-                if (fs.realpathSync(record.input) === fs.realpathSync(ed)) {
+                if (isSameRealPath(record.input, ed)) {
                     record.input = ed
                     break
                 }

@@ -5,6 +5,7 @@ import * as zlib from 'zlib'
 import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
 import {iconvLiteSupportedEncodings} from '../../utils/convertfilename'
+import {isSameRealPath} from '../../utils/pathnormalize'
 import type { Extension } from '../../main'
 
 
@@ -101,22 +102,29 @@ export class SyncTexJs {
     private findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
         for (const inputFilePath in pdfSyncObject.blockNumberLine) {
             try {
-                if (fs.realpathSync(path.resolve(inputFilePath)) === fs.realpathSync(filePath)) {
+                if (isSameRealPath(inputFilePath, filePath)) {
                     return inputFilePath
                 }
-            } catch(e) {
-
+            } catch(e: unknown) {
+                this.extension.logger.addLogMessage(`[SyncTexJs] isSameRealPath throws error: ${JSON.stringify({inputFilePath, filePath})}`)
+                if (e instanceof Error) {
+                    this.extension.logger.logError(e)
+                }
             }
         }
         for (const inputFilePath in pdfSyncObject.blockNumberLine) {
             for (const enc of iconvLiteSupportedEncodings) {
+                let convertedInputFilePath = ''
                 try {
-                    const s = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
-                    if (fs.realpathSync(path.resolve(s)) === fs.realpathSync(filePath)) {
+                    convertedInputFilePath = iconv.decode(Buffer.from(inputFilePath, 'binary'), enc)
+                    if (isSameRealPath(convertedInputFilePath, filePath)) {
                         return inputFilePath
                     }
-                } catch (e) {
-
+                } catch (e: unknown) {
+                    this.extension.logger.addLogMessage(`[SyncTexJs] isSameRealPath throws error: ${JSON.stringify({inputFilePath, convertedInputFilePath, filePath})}`)
+                    if (e instanceof Error) {
+                        this.extension.logger.logError(e)
+                    }
                 }
             }
         }
