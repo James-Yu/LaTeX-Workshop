@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 
 import type { Extension } from '../../main'
-import { convertFilenameEncoding } from '../../utils/utils'
+import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { LatexLogParser } from './latexlog'
 import { BibLogParser } from './biblogparser'
 

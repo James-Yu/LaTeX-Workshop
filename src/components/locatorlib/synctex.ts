@@ -4,7 +4,7 @@ import * as path from 'path'
 import * as zlib from 'zlib'
 import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
-import {iconvLiteSupportedEncodings} from '../../utils/utils'
+import {iconvLiteSupportedEncodings} from '../../utils/convertfilename'
 import type { Extension } from '../../main'
 
 

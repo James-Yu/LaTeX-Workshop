@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as tmpFile from 'tmp'
 import type { Extension } from '../../main'
-import * as utils from '../../utils/utils'
+import * as utils from '../../utils/svg'
 import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
 

@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import {decodePathWithPrefix, pdfFilePrefix} from '../utils/utils'
+import {decodePathWithPrefix, pdfFilePrefix} from '../utils/encodepath'
 
 class WsServer extends ws.Server {
     private readonly extension: Extension

@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 import type { Extension } from '../../main'
-import { convertFilenameEncoding } from '../../utils/utils'
+import { convertFilenameEncoding } from '../../utils/convertfilename'
 
 interface LinterLogEntry {
     file: string,
