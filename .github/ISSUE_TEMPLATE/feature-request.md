@@ -84,6 +84,10 @@ Please write exact version numbers. Please don't write `latest` instead of exact
 
 Yes/No
 
+### Are you using the Snap or Flatpack versions of VS Code?
+
+Yes/No
+
 ### Are you using LaTeX Workshop with VS Code Remote?
 
 Yes/No
