@@ -116,6 +116,8 @@ function registerLatexWorkshopCommands(extension: Extension) {
     vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.toggleSelectedKeyword('mathbb'))
     vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal'))
     vscode.commands.registerCommand('latex-workshop.surround', () => extension.completer.command.surround())
+    vscode.commands.registerCommand('latex-workshop.shortcut.frac', () => extension.commander.toggleSelectedKeyword('frac'))
+    vscode.commands.registerCommand('latex-workshop.shortcut.partial', () => extension.commander.toggleSelectedKeyword('partial'))
 
     vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => extension.commander.shiftSectioningLevel('promote'))
     vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote'))
