@@ -173,7 +173,6 @@ export class LaTexFormatter {
             })
 
             this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
-            this.extension.manager.setEnvVar()
             const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
