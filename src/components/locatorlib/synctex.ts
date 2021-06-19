@@ -87,14 +87,24 @@ export class SyncTexJs {
         try {
             const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
             return parseSyncTex(s)
-        } catch {}
+        } catch (e: unknown) {
+            this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFile}`)
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
+        }
 
         try {
             const data = fs.readFileSync(synctexFileGz)
             const b = zlib.gunzipSync(data)
             const s = b.toString('binary')
             return parseSyncTex(s)
-        } catch {}
+        } catch (e: unknown) {
+            this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFileGz}`)
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
+        }
 
         throw new SyncTexJsError(`Synctex file, .synctex and .synctex.gz, not found in the file system for ${pdfFile}`)
     }
@@ -238,9 +248,7 @@ export class SyncTexJs {
                 if (fs.existsSync(s)) {
                     return s
                 }
-            } catch (e) {
-
-            }
+            } catch {}
         }
 
         throw new SyncTexJsError(`Input file to jump to does not exist in the file system: ${inputFilePath}`)
