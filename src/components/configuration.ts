@@ -30,7 +30,7 @@ export class Configuration {
         const configuration = vscode.workspace.getConfiguration()
         for(const config of this.configurationsToLog) {
             const value = configuration.get(config)
-            this.extension.logger.addLogMessage(`${config}: ${JSON.stringify(value)}`)
+            this.extension.logger.addLogMessage(`${config}: ${JSON.stringify(value, null, ' ')}`)
         }
     }
 
