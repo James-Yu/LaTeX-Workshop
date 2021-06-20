@@ -1,6 +1,7 @@
 # Contributing to LaTeX-Workshop
 
-Please notice that we can reject any kinds of pull requests.
+Please notice that we can reject any kinds of pull requests. Especially, we will reject any requests for changes on default values of settings.
+We also reject requests adding additional recipes to default settings.
 
 ## Quickstart
 
