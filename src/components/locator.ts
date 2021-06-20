@@ -152,11 +152,10 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
-                this.extension.logger.addLogMessage('Execute syncTexJsForward for the internal PDF viewer.')
                 const record = this.synctexjs.syncTexJsForward(line, filePath, pdfFile)
                 this.extension.viewer.syncTeX(pdfFile, record)
             } catch (e) {
-                this.extension.logger.addLogMessage('SyncTeX failed.')
+                this.extension.logger.addLogMessage('[SyncTexJs] Forward SyncTeX failed.')
                 if (e instanceof Error) {
                     this.extension.logger.logError(e)
                 }
@@ -291,6 +290,7 @@ export class Locator {
             try {
                 record = this.synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch (e) {
+                this.extension.logger.addLogMessage('[SyncTexJs] Backward SyncTeX failed.')
                 if (e instanceof Error) {
                     this.extension.logger.logError(e)
                 }
@@ -314,7 +314,7 @@ export class Locator {
                     break
                 }
             } catch(e) {
-                this.extension.logger.addLogMessage(`Error while calling fs.realpathSync for ${record.input} and ${ed}`)
+                this.extension.logger.addLogMessage(`[SyncTexJs] isSameRealPath throws error: ${record.input} and ${ed}`)
             }
         }
 

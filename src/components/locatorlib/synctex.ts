@@ -88,9 +88,11 @@ export class SyncTexJs {
             const s = fs.readFileSync(synctexFile, {encoding: 'binary'})
             return parseSyncTex(s)
         } catch (e: unknown) {
-            this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFile}`)
-            if (e instanceof Error) {
-                this.extension.logger.logError(e)
+            if (fs.existsSync(synctexFile)) {
+                this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFile}`)
+                if (e instanceof Error) {
+                    this.extension.logger.logError(e)
+                }
             }
         }
 
@@ -100,13 +102,19 @@ export class SyncTexJs {
             const s = b.toString('binary')
             return parseSyncTex(s)
         } catch (e: unknown) {
-            this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFileGz}`)
-            if (e instanceof Error) {
-                this.extension.logger.logError(e)
+            if (fs.existsSync(synctexFileGz)) {
+                this.extension.logger.addLogMessage(`[SyncTexJs] parseSyncTex failed with: ${synctexFileGz}`)
+                if (e instanceof Error) {
+                    this.extension.logger.logError(e)
+                }
             }
         }
 
-        throw new SyncTexJsError(`Synctex file, .synctex and .synctex.gz, not found in the file system for ${pdfFile}`)
+        if (!fs.existsSync(synctexFile) && !fs.existsSync(synctexFileGz)) {
+            this.extension.logger.addLogMessage(`[SyncTexJs] .synctex and .synctex.gz file not found: ${JSON.stringify({synctexFile, synctexFileGz})}`)
+        }
+
+        throw new SyncTexJsError(`parseSyncTexForPdf failed with: ${pdfFile}`)
     }
 
     private findInputFilePathForward(filePath: string, pdfSyncObject: PdfSyncObject): string | undefined {
@@ -142,12 +150,13 @@ export class SyncTexJs {
     }
 
     syncTexJsForward(line: number, filePath: string, pdfFile: string): SyncTeXRecordForward {
+        this.extension.logger.addLogMessage(`[SyncTexJs] Execute syncTexJsForward: ${JSON.stringify({pdfFile, filePath, line})}`)
         const pdfSyncObject = this.parseSyncTexForPdf(pdfFile)
         const inputFilePath = this.findInputFilePathForward(filePath, pdfSyncObject)
         if (inputFilePath === undefined) {
             const inputFiles = Object.keys(pdfSyncObject.blockNumberLine)
             const inputFilesStr = JSON.stringify(inputFiles, null, ' ')
-            throw new SyncTexJsError(`No relevant entry of the tex file found in the synctex file. File path: ${filePath} Entries: ${inputFilesStr}`)
+            throw new SyncTexJsError(`[SyncTexJs] No relevant entry of the tex file found in the synctex file: ${JSON.stringify({filePath, pdfFile, line, inputFilesStr})}`)
         }
 
         const linePageBlocks = pdfSyncObject.blockNumberLine[inputFilePath]
@@ -185,6 +194,7 @@ export class SyncTexJs {
     }
 
     syncTexJsBackward(page: number, x: number, y: number, pdfPath: string): SyncTeXRecordBackward {
+        this.extension.logger.addLogMessage(`[SyncTexJs] Execute syncTexJsBackward: ${JSON.stringify({pdfPath, page, x, y})}`)
         const pdfSyncObject = this.parseSyncTexForPdf(pdfPath)
         const y0 = y - pdfSyncObject.offset.y
         const x0 = x - pdfSyncObject.offset.x
