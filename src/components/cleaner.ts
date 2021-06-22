@@ -44,7 +44,7 @@ export class Cleaner {
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
             globs = globs.map(globType => './**/' + globType)
         }
-
+        this.extension.logger.addLogMessage(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
         const files = globs.map(g => glob.sync(g, {cwd: outdir}))
             // Reduce the array of arrays to a single array containing all the files that should be deleted
             .reduce((all, curr) => all.concat(curr), [])
@@ -75,7 +75,7 @@ export class Cleaner {
         if (args) {
             args = args.map(arg => arg.replace('%TEX%', rootFile))
         }
-        this.extension.logger.addLogMessage(`Clean temporary files using: ${command}, ${args}`)
+        this.extension.logger.addLogMessage(`Clean temporary files using: ${JSON.stringify({command, args})}`)
         return new Promise((resolve, _reject) => {
             const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
             let stderr = ''
