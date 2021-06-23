@@ -423,6 +423,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private registerKeybinding() {
+        if (this.embedded) {
+            document.addEventListener('click', (e) => {
+                const target = e.target as HTMLAnchorElement
+                if (target.nodeName === 'A' && !target.href.startsWith(window.location.href) && !target.href.startsWith('blob:')) { // is external link
+                    e.preventDefault()
+                }
+            })
+        }
 
         // keyboard bindings
         window.addEventListener('keydown', (evt) => {
