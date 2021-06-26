@@ -363,7 +363,6 @@ export class Viewer {
             args = args.map(arg => arg.replace('%PDF%', pdfFile))
         }
         this.extension.logger.addLogMessage(`Execute the external PDF viewer: command ${command}, args ${args}`)
-        this.extension.manager.setEnvVar()
         cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }

@@ -31,7 +31,6 @@ export class Counter {
                 fs.chmodSync(command, 0o755)
             }
         }
-        this.extension.manager.setEnvVar()
         const proc = cp.spawn(command, args.concat([path.basename(file)]), {cwd: path.dirname(file)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')

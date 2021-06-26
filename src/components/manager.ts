@@ -123,6 +123,7 @@ export class Manager {
         this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
+        this.registerSetEnvVar()
     }
 
     getCachedContent(filePath: string): Content[string] | undefined {
@@ -924,12 +925,21 @@ export class Manager {
         this.extension.manager.intellisenseWatcher.emitUpdate(file)
     }
 
-    setEnvVar() {
+    private registerSetEnvVar() {
+        this.setEnvVar()
+        const configName = 'latex-workshop.docker.image.latex'
+        vscode.workspace.onDidChangeConfiguration((ev) => {
+            if (ev.affectsConfiguration(configName)) {
+                this.setEnvVar()
+            }
+        })
+    }
+
+    private setEnvVar() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const dockerImageName: string = configuration.get('docker.image.latex', '')
-        if (dockerImageName !== '') {
-            process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
-        }
+        this.extension.logger.addLogMessage(`Set $LATEXWORKSHOP_DOCKER_LATEX: ${JSON.stringify(dockerImageName)}`)
+        process.env['LATEXWORKSHOP_DOCKER_LATEX'] = dockerImageName
     }
 
 }

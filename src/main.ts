@@ -149,7 +149,7 @@ function generateLatexWorkshopApi(extension: Extension) {
             findRoot: () => extension.manager.findRoot(),
             rootDir: () => extension.manager.rootDir,
             rootFile: () => extension.manager.rootFile,
-            setEnvVar: () => extension.manager.setEnvVar()
+            setEnvVar: () => {}
         },
         completer: {
             command: {

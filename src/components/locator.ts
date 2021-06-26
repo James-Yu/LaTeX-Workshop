@@ -185,7 +185,6 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        this.extension.manager.setEnvVar()
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
@@ -243,7 +242,6 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        this.extension.manager.setEnvVar()
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
@@ -465,7 +463,6 @@ export class Locator {
             })
         }
         this.extension.logger.addLogMessage(`Execute external SyncTeX command: command ${command}, args ${args}`)
-        this.extension.manager.setEnvVar()
         cp.spawn(command, args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
     }
