@@ -486,6 +486,7 @@ export class Builder {
                         }
                         break
                     default:
+                        this.extension.logger.addLogMessage(`Will not use Docker to invoke the command: ${step.command}`)
                         break
                 }
             }
