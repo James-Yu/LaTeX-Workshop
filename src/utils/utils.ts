@@ -31,26 +31,36 @@ export function stripComments(text: string): string {
 }
 
 /**
+ * Remove some environments
+ * Note the number lines of the output matches the input
+ *
+ * @param text A string representing the content of a TeX file
+ * @param envs An array of environments to be removed
+ *
+ */
+export function stripEnvironments(text: string, envs: string[]): string {
+    const envsAlt = envs.join('|')
+    const pattern = `\\\\begin{(${envsAlt})}.*?\\\\end{\\1}`
+    const reg = RegExp(pattern, 'gms')
+    return text.replace(reg, (match, ..._args) => {
+        const len = Math.max(match.split('\n').length, 1)
+        return '\n'.repeat(len - 1)
+    })
+}
+
+/**
  * Remove comments and verbatim content
+ * Note the number lines of the output matches the input
  *
  * @param text A multiline string to be stripped
  * @return the input text with comments and verbatim content removed.
- * Note the number lines of the output matches the input
  */
 export function stripCommentsAndVerbatim(text: string): string {
     let content = stripComments(text)
     content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/, '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[]
-    const verbatimAlt = verbatimEnvs.join('|')
-    const verbatimPattern = `\\\\begin{(${verbatimAlt})}.*?\\\\end{\\1}`
-    const reg = RegExp(verbatimPattern, 'gms')
-    // Remove verbatim envs. It fails with nested verbatim envs.
-    content = content.replace(reg, (match, ..._args) => {
-        const len = Math.max(match.split('\n').length, 1)
-        return '\n'.repeat(len - 1)
-    })
-    return content
+    return stripEnvironments(content, verbatimEnvs)
 }
 
 /**

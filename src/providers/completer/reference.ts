@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
+import {stripEnvironments} from '../../utils/utils'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -35,6 +36,7 @@ export class Reference implements IProvider {
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
+    private readonly envsToSkip = ['tikzpicture']
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -156,6 +158,9 @@ export class Reference implements IProvider {
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
         const refs: vscode.CompletionItem[] = []
         let label = ''
+        if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
+            return refs
+        }
         if (latexParser.isCommand(node) && node.name === 'label' && node.args.length > 0) {
             // \label{some-text}
             label = (node.args.filter(latexParser.isGroup)[0].content[0] as latexParser.TextString).content
@@ -188,6 +193,7 @@ export class Reference implements IProvider {
         const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
         const refs: vscode.CompletionItem[] = []
         const refList: string[] = []
+        content = stripEnvironments(content, this.envsToSkip)
         const contentNoEmpty = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
             const result = refReg.exec(content)
