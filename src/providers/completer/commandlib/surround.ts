@@ -40,7 +40,6 @@ export class SurroundCommand {
                     editBuilder.replace(new vscode.Range(selection.start, selection.end),
                         selectedCommand.replace(/(.*)(\${\d.*?})/, `$1${selectedContent}`) // Replace text
                                        .replace(/\${\d:?(.*?)}/g, '$1')                    // Remove snippet placeholders
-                                       .replace('\\\\', '\\')                              // Unescape backslashes, e.g., begin{${1:env}}\n\t$2\n\\\\end{${1:env}}
                                        .replace(/\$\d/, ''))                               // Remove $2 etc
                 }
             })
