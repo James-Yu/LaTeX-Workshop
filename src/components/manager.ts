@@ -709,7 +709,7 @@ export class Manager {
                 continue
             }
             // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (texFile === inputFile || inputFile in this.cachedContent) {
+            if (texFile === inputFile || (texFile in this.cachedContent && inputFile in this.getIncludedTeX(texFile))) {
                 continue
             }
             if (path.extname(inputFile) === '.tex') {
