@@ -92,13 +92,9 @@ export class PathRegExp {
 
 export class PathUtils {
     private readonly extension: Extension
-    readonly inputRegex: RegExp
-    readonly childRegex: RegExp
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.inputRegex = /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g
-        this.childRegex = /<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=/g
     }
 
     private get rootDir() {
