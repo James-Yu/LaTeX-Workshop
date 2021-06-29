@@ -194,7 +194,6 @@ export class Reference implements IProvider {
         const refs: vscode.CompletionItem[] = []
         const refList: string[] = []
         content = stripEnvironments(content, this.envsToSkip)
-        const contentNoEmpty = content.split('\n').filter(para => para !== '').join('\n')
         while (true) {
             const result = refReg.exec(content)
             if (result === null) {
@@ -203,15 +202,15 @@ export class Reference implements IProvider {
             if (refList.includes(result[1])) {
                 continue
             }
-            const prevContent = contentNoEmpty.substring(0, contentNoEmpty.substring(0, result.index).lastIndexOf('\n') - 1)
-            const followLength = contentNoEmpty.substring(result.index, contentNoEmpty.length).split('\n', 4).join('\n').length
+            const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
+            const followLength = content.substring(result.index, content.length).split('\n', 4).join('\n').length
             const positionContent = content.substring(0, result.index).split('\n')
 
             refs.push({
                 label: result[1],
                 kind: vscode.CompletionItemKind.Reference,
                 // One row before, four rows after
-                documentation: contentNoEmpty.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
+                documentation: content.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
                 // Here we abuse the definition of range to store the location of the reference definition
                 range: new vscode.Range(positionContent.length - 1, positionContent[positionContent.length - 1].length,
                                         positionContent.length - 1, positionContent[positionContent.length - 1].length)
