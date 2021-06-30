@@ -708,8 +708,8 @@ export class Manager {
                 !fs.existsSync(inputFile)) {
                 continue
             }
-            // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (texFile === inputFile || (texFile in this.cachedContent && inputFile in this.getIncludedTeX(texFile))) {
+            if (inputFile === texFile && this.filesWatched.has(inputFile)) {
+                /* Drop the current rootFile often listed as INPUT and any file that is already watched */
                 continue
             }
             if (path.extname(inputFile) === '.tex') {
