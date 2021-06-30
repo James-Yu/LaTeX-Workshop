@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
+import {stripEnvironments} from '../../utils/utils'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -35,6 +36,7 @@ export class Reference implements IProvider {
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
+    private readonly envsToSkip = ['tikzpicture']
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -156,6 +158,9 @@ export class Reference implements IProvider {
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
         const refs: vscode.CompletionItem[] = []
         let label = ''
+        if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
+            return refs
+        }
         if (latexParser.isCommand(node) && node.name === 'label' && node.args.length > 0) {
             // \label{some-text}
             label = (node.args.filter(latexParser.isGroup)[0].content[0] as latexParser.TextString).content
@@ -188,7 +193,7 @@ export class Reference implements IProvider {
         const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
         const refs: vscode.CompletionItem[] = []
         const refList: string[] = []
-        const contentNoEmpty = content.split('\n').filter(para => para !== '').join('\n')
+        content = stripEnvironments(content, this.envsToSkip)
         while (true) {
             const result = refReg.exec(content)
             if (result === null) {
@@ -197,15 +202,15 @@ export class Reference implements IProvider {
             if (refList.includes(result[1])) {
                 continue
             }
-            const prevContent = contentNoEmpty.substring(0, contentNoEmpty.substring(0, result.index).lastIndexOf('\n') - 1)
-            const followLength = contentNoEmpty.substring(result.index, contentNoEmpty.length).split('\n', 4).join('\n').length
+            const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
+            const followLength = content.substring(result.index, content.length).split('\n', 4).join('\n').length
             const positionContent = content.substring(0, result.index).split('\n')
 
             refs.push({
                 label: result[1],
                 kind: vscode.CompletionItemKind.Reference,
                 // One row before, four rows after
-                documentation: contentNoEmpty.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
+                documentation: content.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
                 // Here we abuse the definition of range to store the location of the reference definition
                 range: new vscode.Range(positionContent.length - 1, positionContent[positionContent.length - 1].length,
                                         positionContent.length - 1, positionContent[positionContent.length - 1].length)
