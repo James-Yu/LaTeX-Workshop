@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
-import {stripCommentsAndVerbatim} from '../../../utils/utils'
+import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils/utils'
 import * as path from 'path'
 
 import type {Extension} from '../../../main'
@@ -87,10 +87,9 @@ export class NewCommandFinder {
         let commands: string[] = []
         try {
             const ast = await this.extension.pegParser.parseLatexPreamble(content)
-            const regex = /^(renewcommand|newcommand|providecommand|DeclareMathOperator)(\*)?$/
             for (const node of ast.content) {
-                if (((latexParser.isCommand(node) && node.name.match(regex)) || latexParser.isDefCommand(node)) && node.args.length > 0) {
-                    node.name = node.name.replace(/\*$/, '')
+                if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
+                    node.name = node.name.replace(/\*$/, '') as NewCommand['name']
                     const s = latexParser.stringify(node)
                     commands.push(s)
                 } else if (latexParser.isCommand(node) && node.name === 'DeclarePairedDelimiter' && node.args.length === 3) {

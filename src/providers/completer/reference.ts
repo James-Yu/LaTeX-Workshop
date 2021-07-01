@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
-import {stripEnvironments} from '../../utils/utils'
+import {stripEnvironments, isNewCommand} from '../../utils/utils'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -37,7 +37,6 @@ export class Reference implements IProvider {
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
     private readonly envsToSkip = ['tikzpicture']
-    private readonly newCommandRegex = /^(renewcommand|newcommand|providecommand|DeclareMathOperator)(\*)?$/
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -159,7 +158,7 @@ export class Reference implements IProvider {
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
         const refs: vscode.CompletionItem[] = []
         let label = ''
-        if ((latexParser.isCommand(node) && node.name.match(this.newCommandRegex)) || latexParser.isDefCommand(node)) {
+        if (isNewCommand(node) || latexParser.isDefCommand(node)) {
             // Do not scan labels inside \newcommand & co
             return refs
         }
