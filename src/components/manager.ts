@@ -342,6 +342,9 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 await this.initiateFileWatcher()
                 await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
+                // We need to parse the fls to discover file dependencies when defined by TeX macro
+                // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
+                await this.parseFlsFile(this.rootFile)
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
@@ -570,9 +573,6 @@ export class Manager {
         this.cachedContent[file].bibs = []
         await this.parseInputFiles(content, file, baseFile)
         await this.parseBibFiles(content, file)
-        // We need to parse the fls to discover file dependencies when defined by TeX macro
-        // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
-        await this.parseFlsFile(file)
     }
 
     /**
@@ -708,7 +708,7 @@ export class Manager {
                 !fs.existsSync(inputFile)) {
                 continue
             }
-            if (inputFile === texFile && this.filesWatched.has(inputFile)) {
+            if (inputFile === texFile || this.filesWatched.has(inputFile)) {
                 /* Drop the current rootFile often listed as INPUT and any file that is already watched */
                 continue
             }
