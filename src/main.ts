@@ -142,7 +142,7 @@ function generateLatexWorkshopApi(extension: Extension) {
         viewer: {
             clients: extension.viewer.clients,
             getViewerStatus: process.env['LATEXWORKSHOP_CI'] ? ( (pdfFilePath: string) => extension.viewer.getViewerState(pdfFilePath) ) : undefined,
-            refreshExistingViewer: (sourceFile?: string, viewer?: string) => extension.viewer.refreshExistingViewer(sourceFile, viewer),
+            refreshExistingViewer: (sourceFile?: string) => extension.viewer.refreshExistingViewer(sourceFile),
             openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
         },
         manager: {
