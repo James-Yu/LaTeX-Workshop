@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
-import {stripEnvironments} from '../../utils/utils'
+import {stripEnvironments, isNewCommand} from '../../utils/utils'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -158,6 +158,10 @@ export class Reference implements IProvider {
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
         const refs: vscode.CompletionItem[] = []
         let label = ''
+        if (isNewCommand(node) || latexParser.isDefCommand(node)) {
+            // Do not scan labels inside \newcommand & co
+            return refs
+        }
         if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
             return refs
         }
@@ -190,7 +194,7 @@ export class Reference implements IProvider {
     }
 
     private getRefFromContent(content: string): vscode.CompletionItem[] {
-        const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
+        const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
         const refs: vscode.CompletionItem[] = []
         const refList: string[] = []
         content = stripEnvironments(content, this.envsToSkip)
