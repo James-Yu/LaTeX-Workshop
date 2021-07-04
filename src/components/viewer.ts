@@ -258,7 +258,7 @@ export class Viewer {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const setting: 'auto' | 'force' | 'never' = configuration.get('viewer.pdf.internal.keyboardEvent', 'auto')
         if (setting === 'auto') {
-            return os.platform() !== 'linux'
+            return os.platform() !== 'linux' || !!vscode.env.remoteName?.match(/^(dev-container|attached-container|wsl|ssh-remote)$/)
         } else if (setting === 'force') {
             return true
         } else {
