@@ -3,7 +3,7 @@
 import * as domstubs from '@tamuratak/domstubs'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as pdfjsLib from 'pdfjs-dist/es5/build/pdf'
+import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf'
 import * as workerpool from 'workerpool'
 
 domstubs.setStubs(global)
