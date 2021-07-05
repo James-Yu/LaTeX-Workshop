@@ -140,7 +140,7 @@ export class MathPreviewPanel {
         return `<!DOCTYPE html>
         <html lang="en">
         <head>
-            <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src ${webview.cspSource}; img-src data:; style-src 'unsafe-inline';">
+            <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; script-src ${webview.cspSource}; img-src data:; style-src 'unsafe-inline';">
             <meta charset="UTF-8">
             <style>
                 body {
