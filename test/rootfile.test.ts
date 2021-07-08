@@ -3,6 +3,7 @@ import * as path from 'path'
 
 import * as process from 'process'
 import * as vscode from 'vscode'
+import {sleep} from '../src/utils/utils'
 
 import {
     getFixtureDir,
@@ -33,6 +34,20 @@ suite('RootFile test suite', () => {
         await waitRootFileFound()
         console.log(`rootFile: ${extension.exports.manager.rootFile()}`)
         assert.ok(extension.exports.manager.rootFile() === path.join(fixtureDir, mainFileName))
+    })
+
+    runTestWithFixture('fixture002', 'circular inclusion', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 'a.tex'
+        const mainFileName = 'main.tex'
+        const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+        const doc = await vscode.workspace.openTextDocument(texFilePath)
+        await vscode.window.showTextDocument(doc)
+        const extension = await waitLatexWorkshopActivated()
+        await waitRootFileFound()
+        console.log(`rootFile: ${extension.exports.manager.rootFile()}`)
+        assert.ok(extension.exports.manager.rootFile() === path.join(fixtureDir, mainFileName))
+        await sleep(5000)
     })
 
 })
