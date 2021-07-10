@@ -19,10 +19,23 @@ export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
 class Client {
     readonly viewer: 'browser' | 'tab'
     readonly websocket: ws
+    private readonly disposables = new Set<vscode.Disposable>()
 
     constructor(viewer: 'browser' | 'tab', websocket: ws) {
         this.viewer = viewer
         this.websocket = websocket
+        this.websocket.on('close', () => {
+            this.disposeDisposables()
+        })
+    }
+
+    private disposeDisposables() {
+        vscode.Disposable.from(...this.disposables).dispose()
+        this.disposables.clear()
+    }
+
+    onDidDispose(cb: () => unknown) {
+        this.disposables.add( { dispose: cb } )
     }
 
     send(message: ServerResponse) {
@@ -89,8 +102,8 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 
 export class Viewer {
     private readonly extension: Extension
-    private readonly webviewPanels = new Map<string, Set<PdfViewerPanel>>()
-    readonly clients = Object.create(null) as { [key: string]: Set<Client> }
+    private readonly webviewPanelMap = new Map<string, Set<PdfViewerPanel>>()
+    private readonly clientMap = new Map<string, Set<Client>>()
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
 
     constructor(extension: Extension) {
@@ -98,12 +111,26 @@ export class Viewer {
         this.pdfViewerPanelSerializer = new PdfViewerPanelSerializer(extension)
     }
 
-    private createClients(pdfFilePath: string) {
+    private createClientSet(pdfFilePath: string) {
         const key = pdfFilePath.toLocaleUpperCase()
-        this.clients[key] = this.clients[key] || new Set()
-        if (!this.webviewPanels.has(key)) {
-            this.webviewPanels.set(key, new Set())
+        if (!this.clientMap.has(key)) {
+            this.clientMap.set(key, new Set())
         }
+        if (!this.webviewPanelMap.has(key)) {
+            this.webviewPanelMap.set(key, new Set())
+        }
+    }
+
+    /**
+     * Only for backward compatibility.
+     * @deprecated
+     */
+    get clients(): { [key: string]: Set<unknown> } {
+        const ret = Object.create(null) as { [key: string]: Set<unknown> }
+        this.clientMap.forEach((clientSet, key) => {
+            ret[key] = new Set(Array.from(clientSet).map(() => Object.create(null) as unknown ))
+        })
+        return ret
     }
 
     /**
@@ -112,51 +139,40 @@ export class Viewer {
      *
      * @param pdfFilePath The path of a PDF file.
      */
-    getClients(pdfFilePath: string): Set<Client> | undefined {
-        return this.clients[pdfFilePath.toLocaleUpperCase()]
+    getClientSet(pdfFilePath: string): Set<Client> | undefined {
+        return this.clientMap.get(pdfFilePath.toLocaleUpperCase())
     }
 
     private getPanelSet(pdfFilePath: string) {
-        return this.webviewPanels.get(pdfFilePath.toLocaleUpperCase())
+        return this.webviewPanelMap.get(pdfFilePath.toLocaleUpperCase())
     }
 
     /**
-     * Refreshes PDF viewers of `sourceFile`. If `sourceFile` is `undefined`,
-     * refreshes all the PDF viewers. If `sourceFile` and `viewer` are not `undefined`,
-     * only the `viewer` is refreshed.
+     * Refreshes PDF viewers of `sourceFile`.
      *
-     * @param sourceFile The path of a LaTeX file.
-     * @param viewer The PDF viewer to be refreshed.
+     * @param sourceFile The path of a LaTeX file. If `sourceFile` is `undefined`,
+     * refreshes all the PDF viewers.
      */
-    refreshExistingViewer(sourceFile?: string, viewer?: string): boolean {
-        if (!sourceFile) {
-            Object.keys(this.clients).forEach(key => {
-                this.clients[key].forEach(client => {
+    refreshExistingViewer(sourceFile?: string) {
+        this.extension.logger.addLogMessage(`Call refreshExistingViewer: ${JSON.stringify({sourceFile})}`)
+        if (sourceFile === undefined) {
+            this.clientMap.forEach(clientSet => {
+                clientSet.forEach(client => {
                     client.send({type: 'refresh'})
                 })
             })
-            return true
+            return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile, true)
-        const clients = this.getClients(pdfFile)
-        if (clients !== undefined) {
-            let refreshed = false
-            // Check all viewer clients with the same path
-            clients.forEach(client => {
-                // Refresh only correct type
-                if (viewer === undefined || client.viewer === viewer) {
-                    this.extension.logger.addLogMessage(`Refresh PDF viewer for ${pdfFile}`)
-                    client.send({type: 'refresh'})
-                    refreshed = true
-                }
-            })
-            // Return if refreshed anyone
-            if (refreshed) {
-                return true
-            }
+        const clientSet = this.getClientSet(pdfFile)
+        if (!clientSet) {
+            this.extension.logger.addLogMessage(`Not found PDF viewers to refresh: ${pdfFile}`)
+            return
         }
-        this.extension.logger.addLogMessage(`No PDF viewer connected for ${pdfFile}`)
-        return false
+        this.extension.logger.addLogMessage(`Refresh PDF viewer: ${pdfFile}`)
+        clientSet.forEach(client => {
+            client.send({type: 'refresh'})
+        })
     }
 
     private checkViewer(sourceFile: string, respectOutDir: boolean = true): string | undefined {
@@ -164,10 +180,6 @@ export class Viewer {
         if (!fs.existsSync(pdfFile)) {
             this.extension.logger.addLogMessage(`Cannot find PDF file ${pdfFile}`)
             this.extension.logger.displayStatus('check', 'statusBar.foreground', `Cannot view file PDF file. File not found: ${pdfFile}`, 'warning')
-            return
-        }
-        if (this.extension.server.address === undefined) {
-            this.extension.logger.addLogMessage('Cannot establish server connection.')
             return
         }
         const url = `http://127.0.0.1:${this.extension.server.port}/viewer.html?file=${encodePathWithPrefix(pdfFile)}`
@@ -187,7 +199,7 @@ export class Viewer {
             return
         }
         const pdfFile = this.extension.manager.tex2pdf(sourceFile)
-        this.createClients(pdfFile)
+        this.createClientSet(pdfFile)
 
         try {
             await vscode.env.openExternal(vscode.Uri.parse(url))
@@ -227,10 +239,6 @@ export class Viewer {
     }
 
     private async createPdfViewerPanel(pdfFilePath: string, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel | undefined> {
-        if (this.extension.server.port === undefined) {
-            this.extension.logger.addLogMessage('Server port is undefined')
-            return
-        }
         const htmlContent = await this.getPDFViewerContent(pdfFilePath)
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFilePath), viewColumn, {
             enableScripts: true,
@@ -243,7 +251,7 @@ export class Viewer {
     }
 
     pushPdfViewerPanel(pdfPanel: PdfViewerPanel) {
-        this.createClients(pdfPanel.pdfFilePath)
+        this.createClientSet(pdfPanel.pdfFilePath)
         const panelSet = this.getPanelSet(pdfPanel.pdfFilePath)
         if (!panelSet) {
             return
@@ -307,7 +315,7 @@ export class Viewer {
                         const state = vsStore.getState();
                         if (state) {
                             state.type = 'restore_state';
-                            iframe.contentWindow.postMessage(state, '*');
+                            iframe.contentWindow.postMessage(state, '${iframeSrcOrigin}');
                         }
                         break;
                     }
@@ -380,23 +388,23 @@ export class Viewer {
         }
         switch (data.type) {
             case 'open': {
-                const clients = this.getClients(data.path)
-                if (clients === undefined) {
+                const clientSet = this.getClientSet(data.path)
+                if (clientSet === undefined) {
                     return
                 }
                 const client = new Client(data.viewer, websocket)
-                clients.add( client )
-                websocket.on('close', () => {
-                    clients.delete(client)
+                clientSet.add(client)
+                client.onDidDispose(() => {
+                    clientSet.delete(client)
                 })
                 break
             }
             case 'request_params': {
-                const clients = this.getClients(data.path)
-                if (!clients) {
+                const clientSet = this.getClientSet(data.path)
+                if (!clientSet) {
                     break
                 }
-                for (const client of clients) {
+                for (const client of clientSet) {
                     if (client.websocket !== websocket) {
                         continue
                     }
@@ -464,13 +472,13 @@ export class Viewer {
      * @param record The position to be revealed.
      */
     syncTeX(pdfFile: string, record: SyncTeXRecordForward) {
-        const clients = this.getClients(pdfFile)
-        if (clients === undefined) {
+        const clientSet = this.getClientSet(pdfFile)
+        if (clientSet === undefined) {
             this.extension.logger.addLogMessage(`PDF is not viewed: ${pdfFile}`)
             return
         }
         const needDelay = this.revealWebviewPanel(pdfFile)
-        for (const client of clients) {
+        for (const client of clientSet) {
             setTimeout(() => {
                 client.send({type: 'synctex', data: record})
             }, needDelay ? 200 : 0)
@@ -490,14 +498,14 @@ export class Viewer {
         if (!panelSet) {
             return
         }
-        for (const panel of panelSet.values()) {
+        for (const panel of panelSet) {
             const isSyntexOn = !panel.state || panel.state.synctexEnabled
             if (panel.webviewPanel.visible && isSyntexOn) {
                 return
             }
         }
         const activeViewColumn = vscode.window.activeTextEditor?.viewColumn
-        for (const panel of panelSet.values()) {
+        for (const panel of panelSet) {
             if (panel.webviewPanel.viewColumn !== activeViewColumn) {
                 const isSyntexOn = !panel.state || panel.state.synctexEnabled
                 if (!panel.webviewPanel.visible && isSyntexOn) {
