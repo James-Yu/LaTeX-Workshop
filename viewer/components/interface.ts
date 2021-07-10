@@ -13,7 +13,6 @@ export interface ILatexWorkshopPdfViewer {
     readonly encodedPdfFilePath: string,
     readonly pageTrimmer: PageTrimmer,
     readonly pdfFilePath: string,
-    readonly server: string,
     readonly synctex: SyncTex,
     readonly viewerHistory: ViewerHistory,
 
