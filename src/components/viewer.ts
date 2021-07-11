@@ -375,6 +375,19 @@ export class Viewer {
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
     }
 
+    private findClient(pdfFilePath: string, websocket: ws): Client | undefined {
+        const clientSet = this.getClientSet(pdfFilePath)
+        if (clientSet === undefined) {
+            return
+        }
+        for (const client of clientSet) {
+            if (client.websocket === websocket) {
+                return client
+            }
+        }
+        return
+    }
+
     /**
      * Handles the request from the internal PDF viewer.
      *
@@ -390,7 +403,7 @@ export class Viewer {
             case 'open': {
                 const clientSet = this.getClientSet(data.path)
                 if (clientSet === undefined) {
-                    return
+                    break
                 }
                 const client = new Client(data.viewer, websocket)
                 clientSet.add(client)
@@ -400,42 +413,37 @@ export class Viewer {
                 break
             }
             case 'request_params': {
-                const clientSet = this.getClientSet(data.path)
-                if (!clientSet) {
+                const client = this.findClient(data.path, websocket)
+                if (client === undefined) {
                     break
                 }
-                for (const client of clientSet) {
-                    if (client.websocket !== websocket) {
-                        continue
+                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                const invertType = configuration.get('view.pdf.invertMode.enabled') as string
+                const invertEnabled = (invertType === 'auto' && (getCurrentThemeLightness() === 'dark')) ||
+                invertType === 'always' ||
+                (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
+                const pack: ServerResponse = {
+                    type: 'params',
+                    scale: configuration.get('view.pdf.zoom') as string,
+                    trim: configuration.get('view.pdf.trim') as number,
+                    scrollMode: configuration.get('view.pdf.scrollMode') as number,
+                    spreadMode: configuration.get('view.pdf.spreadMode') as number,
+                    hand: configuration.get('view.pdf.hand') as boolean,
+                    invertMode: {
+                        enabled: invertEnabled,
+                        brightness: configuration.get('view.pdf.invertMode.brightness') as number,
+                        grayscale: configuration.get('view.pdf.invertMode.grayscale') as number,
+                        hueRotate: configuration.get('view.pdf.invertMode.hueRotate') as number,
+                        invert: configuration.get('view.pdf.invert') as number,
+                        sepia: configuration.get('view.pdf.invertMode.sepia') as number,
+                    },
+                    bgColor: configuration.get('view.pdf.backgroundColor') as string,
+                    keybindings: {
+                        synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
                     }
-                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                    const invertType = configuration.get('view.pdf.invertMode.enabled') as string
-                    const invertEnabled = (invertType === 'auto' && (getCurrentThemeLightness() === 'dark')) ||
-                        invertType === 'always' ||
-                        (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
-                    const pack: ServerResponse = {
-                        type: 'params',
-                        scale: configuration.get('view.pdf.zoom') as string,
-                        trim: configuration.get('view.pdf.trim') as number,
-                        scrollMode: configuration.get('view.pdf.scrollMode') as number,
-                        spreadMode: configuration.get('view.pdf.spreadMode') as number,
-                        hand: configuration.get('view.pdf.hand') as boolean,
-                        invertMode: {
-                            enabled: invertEnabled,
-                            brightness: configuration.get('view.pdf.invertMode.brightness') as number,
-                            grayscale: configuration.get('view.pdf.invertMode.grayscale') as number,
-                            hueRotate: configuration.get('view.pdf.invertMode.hueRotate') as number,
-                            invert: configuration.get('view.pdf.invert') as number,
-                            sepia: configuration.get('view.pdf.invertMode.sepia') as number,
-                        },
-                        bgColor: configuration.get('view.pdf.backgroundColor') as string,
-                        keybindings: {
-                            synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
-                        }
-                    }
-                    this.extension.logger.addLogMessage(`Sending the settings of the PDF viewer for initialization: ${JSON.stringify(pack)}`)
-                    client.send(pack)
                 }
+                this.extension.logger.addLogMessage(`Sending the settings of the PDF viewer for initialization: ${JSON.stringify(pack)}`)
+                client.send(pack)
                 break
             }
             case 'loaded': {
