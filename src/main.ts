@@ -135,6 +135,7 @@ function registerLatexWorkshopCommands(extension: Extension) {
 
 function generateLatexWorkshopApi(extension: Extension) {
     return {
+        realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
         builder: {
             isBuildFinished: process.env['LATEXWORKSHOP_CI'] ? ( () => extension.builder.isBuildFinished() ) : undefined
