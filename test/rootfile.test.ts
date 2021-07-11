@@ -3,7 +3,6 @@ import * as path from 'path'
 
 import * as process from 'process'
 import * as vscode from 'vscode'
-import {sleep} from '../src/utils/utils'
 
 import {
     getFixtureDir,
@@ -39,6 +38,7 @@ suite('RootFile test suite', () => {
     runTestWithFixture('fixture002', 'circular inclusion', async () => {
         const fixtureDir = getFixtureDir()
         const texFileName = 'a.tex'
+        const tex2FileName = 'poo.tex'
         const mainFileName = 'main.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
@@ -47,7 +47,15 @@ suite('RootFile test suite', () => {
         await waitRootFileFound()
         console.log(`rootFile: ${extension.exports.manager.rootFile()}`)
         assert.ok(extension.exports.manager.rootFile() === path.join(fixtureDir, mainFileName))
-        await sleep(5000)
+        if (extension.exports.realExtension) {
+            extension.exports.realExtension.manager.rootFile = undefined
+            await extension.exports.manager.findRoot()
+            const includedTeX = extension.exports.realExtension.manager.getIncludedTeX()
+            console.log(`rootFile: ${extension.exports.manager.rootFile()}`)
+            console.log(JSON.stringify(includedTeX))
+            return assert.ok(includedTeX.includes(path.join(fixtureDir, texFileName)) && includedTeX.includes(path.join(fixtureDir, tex2FileName)) && includedTeX.includes(path.join(fixtureDir, mainFileName)))
+        }
+        assert.fail('Real extension is undefined.')
     })
 
 })
