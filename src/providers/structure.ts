@@ -90,8 +90,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        // The first part of pattern must match this.pathUtils.inputRegex so that
-        // we can use this.pathUtils.parseInputFilePath to analyse the regex match.
         let pattern = '\\\\('
         this.hierarchy.forEach((section, index) => {
             pattern += section

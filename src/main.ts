@@ -135,6 +135,7 @@ function registerLatexWorkshopCommands(extension: Extension) {
 
 function generateLatexWorkshopApi(extension: Extension) {
     return {
+        realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
         builder: {
             isBuildFinished: process.env['LATEXWORKSHOP_CI'] ? ( () => extension.builder.isBuildFinished() ) : undefined
@@ -234,6 +235,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                 const content = e.document.getText()
                 const file = e.document.uri.fsPath
                 await extension.manager.parseFileAndSubs(file, extension.manager.rootFile)
+                await extension.manager.parseFlsFile(extension.manager.rootFile ? extension.manager.rootFile : file)
                 await extension.manager.updateCompleter(file, content)
             }, configuration.get('intellisense.update.delay', 1000))
         }

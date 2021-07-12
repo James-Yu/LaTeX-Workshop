@@ -342,6 +342,9 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 await this.initiateFileWatcher()
                 await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
+                // We need to parse the fls to discover file dependencies when defined by TeX macro
+                // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
+                await this.parseFlsFile(this.rootFile)
                 this.extension.structureProvider.refresh()
                 this.extension.structureProvider.update()
             } else {
@@ -545,6 +548,8 @@ export class Manager {
      *
      * This function is called when the root file is found or a watched file is changed.
      *
+     * !! Be careful not to create an infinite loop with parseInputFiles !!
+     *
      * @param file The path of a LaTeX file. It is added to the watcher if not being watched.
      * @param baseFile The file currently considered as the rootFile. If undefined, we use `file`
      */
@@ -558,7 +563,9 @@ export class Manager {
         }
         this.extension.logger.addLogMessage(`Parsing a file and its subfiles: ${file}`)
         if (!this.filesWatched.has(file)) {
-            // The file is first time considered by the extension.
+            // The file is considered for the first time.
+            // We must add the file to watcher to make sure we avoid infinite loops
+            // in case of circular inclusion
             await this.addToFileWatcher(file)
         }
         let content = this.getDirtyContent(file)
@@ -570,9 +577,6 @@ export class Manager {
         this.cachedContent[file].bibs = []
         await this.parseInputFiles(content, file, baseFile)
         await this.parseBibFiles(content, file)
-        // We need to parse the fls to discover file dependencies when defined by TeX macro
-        // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
-        await this.parseFlsFile(file)
     }
 
     /**
@@ -634,6 +638,16 @@ export class Manager {
         return ioFiles.input
     }
 
+    /**
+     * Parse the content of the currentFile and call parseFileAndSubs for every included file.
+     * This function is called by parseFileAndSubs.
+     *
+     * !! Be careful not to create an infinite loop with parseFileAndSubs !!
+     *
+     * @param content the content of currentFile
+     * @param currentFile the name of the current file
+     * @param baseFile the name of the supposed rootFile
+     */
     private async parseInputFiles(content: string, currentFile: string, baseFile: string) {
         const pathRegexp = new PathRegExp()
         while (true) {
@@ -655,7 +669,9 @@ export class Manager {
             })
 
             if (this.filesWatched.has(inputFile)) {
-                /* We already watch this file, no need to enforce a new parsing */
+                // This file is already watched. Ignore it to avoid infinite loops
+                // in case of circular inclusion.
+                // Note that parseFileAndSubs calls parseInputFiles in return
                 continue
             }
             await this.parseFileAndSubs(inputFile, baseFile)
@@ -689,6 +705,9 @@ export class Manager {
      * and all `OUTPUT` files will be checked if they are `.aux` files.
      * If so, the `.aux` files are parsed for any possible `.bib` files.
      *
+     * This function is called after a successful build, when looking for the root file,
+     * and to compute the cachedContent tree.
+     *
      * @param texFile The path of a LaTeX file.
      */
     async parseFlsFile(texFile: string) {
@@ -708,8 +727,10 @@ export class Manager {
                 !fs.existsSync(inputFile)) {
                 continue
             }
-            // Drop the current rootFile often listed as INPUT and drop any file that is already in the texFileTree
-            if (texFile === inputFile || inputFile in this.cachedContent) {
+            if (inputFile === texFile || this.filesWatched.has(inputFile)) {
+                // Drop the current rootFile often listed as INPUT
+                // Drop any file that is already watched as it is handled by
+                // onWatchedFileChange.
                 continue
             }
             if (path.extname(inputFile) === '.tex') {
