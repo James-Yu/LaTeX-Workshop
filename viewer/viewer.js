@@ -14340,7 +14340,7 @@ document.webL10n = function (window, document, undefined) {
     var data = gL10nData[key];
 
     if (!data) {
-      console.warn('#' + key + ' is undefined.');
+      // console.warn('#' + key + ' is undefined.');
 
       if (!fallback) {
         return null;
@@ -14405,7 +14405,7 @@ document.webL10n = function (window, document, undefined) {
     var data = getL10nData(l10n.id, l10n.args);
 
     if (!data) {
-      console.warn('#' + l10n.id + ' is undefined.');
+      // console.warn('#' + l10n.id + ' is undefined.');
       return;
     }
 
