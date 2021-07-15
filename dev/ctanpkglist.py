@@ -11,9 +11,8 @@ import json
 from pyintel import CtanPkg
 
 CTAN_SOURCE = 'https://ctan.org/json/2.0/packages'
-TEXMF = '/usr/local/texlive/2020/texmf-dist'
 
-ctanPkg = CtanPkg(TEXMF, Path('./extra-packagenames.json').absolute(), CTAN_SOURCE)
+ctanPkg = CtanPkg(Path('./extra-packagenames.json').absolute(), CTAN_SOURCE)
 packages = ctanPkg.get_packages()
 json.dump(packages, open('../data/packagenames.json', 'w+', encoding='utf-8'),
         separators=(',', ': '), sort_keys=True, indent=2, ensure_ascii=False)
