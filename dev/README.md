@@ -2,26 +2,26 @@
 
 We describe the purpose of the scripts found in the current directory.
 
-These scripts are actually only frontend to the `pyintel` package, which implements the core mechanisms.
+These scripts are actually only frontend to the `pyintel` package, which implements the core mechanisms. It fetches the latest list of packages and classes along with their descriptions from CTAN at https://ctan.org/pkg. It uses the TeXLive Package database `texlive.tlpdb` retrieved from https://mirrors.ircam.fr/pub/CTAN/systems/texlive/tlnet/tlpkg/texlive.tlpdb.
 
 ## ctanpkglist.py
 
-It fetches the latest list of packages and classes along with their descriptions from CTAN at https://ctan.org/pkg and save the result as a json file. For every package
+It produces the intellisense data for classes and packages and save the result as json files: `../data/classnames.json` and `../data/packagenames.json`.
 
 ### Classes
 
-The list of classes is computed from the local LaTeX installation by looking for `.cls` files in `ls-R`. The description associated to each class is retrieved from CTAN.
+The list of classes is computed from the TeXLive Package database by looking for all `.cls` files. The description associated to each class is obtained from CTAN.
 
 ### Packages
 
 Getting a proper list of packages is tricky as the package names (as listed by CTAN) do not always match the base names of the `.sty` files to be loaded by `\usepackage`. This is handled in the following way
 
-- We use the local `ls-R` file to
-  - List all the `.sty` files provided by the local LaTeX installation.
-  - For every directory in `texmf`, list the `.sty` files it contains. The last component of a directory name inside `texmf` is typically the package name as defined by CTAN, hence the name to pass to `\usepackage` is the base name of one of the `.sty` files inside it.
+- We use the TeXLive Package database to
+  - List all the `.sty` files provided by TeXLive
+  - For every package, list the `.sty` files it contains. The name to pass to `\usepackage` is the base name of one of the `.sty` files listed there.
 - For every package `pkg` listed by CTAN
-  - If `pkg.sty` exists on the local installation, store `pkg` for package intellisense.
-  - If not, search if a directory `pkg/` exists and look up a file whose lowercase name matches `pkg`. If it is found, then save it for package intellisense.
+  - If `pkg.sty` exists in the TeXLive Package database, store `pkg` for package intellisense.
+  - If not, search if a package `pkg/` exists in the TeXLive Package database and look up a file whose lowercase name matches `pkg`. If it is found, then save it for package intellisense.
 
 As some packages cannot be properly detected using the above mechanism, we maintain a list of extra packages to be added to the list in [extra-packagenames.json](extra-packagenames.json). These packages are automatically added at the end of the [`ctanpkglist.py`](dev/ctanpkglist.py) script.
 
