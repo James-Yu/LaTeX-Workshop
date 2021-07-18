@@ -2,7 +2,7 @@ import type {ClientRequest} from './protocol.js'
 import type {ILatexWorkshopPdfViewer} from './interface.js'
 
 export interface IConnectionPort {
-    send(message: ClientRequest): void,
+    send(message: ClientRequest): void | Promise<void>,
     onDidReceiveMessage(cb: (event: WebSocketEventMap['message']) => void): void,
     onDidClose(cb: () => unknown): void,
     onDidOpen(cb: () => unknown): void
@@ -15,54 +15,48 @@ export function createConnectionPort(lwApp: ILatexWorkshopPdfViewer): IConnectio
 export class WebSocketPort implements IConnectionPort {
     readonly lwApp: ILatexWorkshopPdfViewer
     readonly server: string
-    private readonly socket: WebSocket
+    private readonly socket: Promise<WebSocket>
 
     constructor(lwApp: ILatexWorkshopPdfViewer) {
         this.lwApp = lwApp
         const server = `ws://${window.location.hostname}:${window.location.port}`
         this.server = server
-        this.socket = new WebSocket(server)
+        this.socket = new Promise((resolve, reject) => {
+            const sock = new WebSocket(server)
+            sock.addEventListener('open', () => {
+                resolve(sock)
+            })
+            sock.addEventListener('error', () => reject(new Error(`Failed to connect to ${server}`)) )
+        })
         this.startConnectionKeeper()
     }
 
     private startConnectionKeeper() {
         // Send packets every 30 sec to prevent the connection closed by timeout.
-        setInterval( () => {
-            if (this.socket.readyState === 1) {
-                this.send({type: 'ping'})
-            }
+        setInterval(() => {
+            void this.send({type: 'ping'})
         }, 30000)
     }
 
-    send(message: ClientRequest) {
-        this.sendWithWebSokcet(message, this.socket)
-    }
-
-    private sendWithWebSokcet(message: ClientRequest, ws: WebSocket) {
-        if (ws.readyState === 1) {
-            ws.send(JSON.stringify(message))
-        } else if (ws.readyState === 0) {
-            ws.addEventListener('open', () => {
-                ws.send(JSON.stringify(message))
-            }, {once: true})
+    async send(message: ClientRequest) {
+        const sock = await this.socket
+        if (sock.readyState === 1) {
+            sock.send(JSON.stringify(message))
         }
     }
 
-    onDidReceiveMessage(cb: (event: WebSocketEventMap['message']) => void): void {
-        this.socket.addEventListener('message', cb)
+    async onDidReceiveMessage(cb: (event: WebSocketEventMap['message']) => void) {
+        const sock = await this.socket
+        sock.addEventListener('message', cb)
     }
 
-    onDidClose(cb: () => unknown): void {
-        this.socket.addEventListener('close', () => cb())
+    async onDidClose(cb: () => unknown) {
+        const sock = await this.socket
+        sock.addEventListener('close', () => cb())
     }
 
-    onDidOpen(cb: () => unknown): void {
-        if (this.socket.readyState === 1) {
-            cb()
-        } else if (this.socket.readyState === 0) {
-            this.socket.addEventListener('open', () => {
-                cb()
-            }, {once: true})
-        }
+    async onDidOpen(cb: () => unknown) {
+        await this.socket
+        cb()
     }
 }

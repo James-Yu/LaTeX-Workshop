@@ -53,7 +53,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.synctex = new SyncTex(this)
         this.pageTrimmer = new PageTrimmer(this)
 
-        this.setupWebSocket()
+        this.setupConnectionPort()
 
         this.onDidStartPdfViewer( () => {
             this.send({type:'request_params', path:this.pdfFilePath})
@@ -134,7 +134,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     send(message: ClientRequest) {
-        this.connectionPort.send(message)
+        void this.connectionPort.send(message)
     }
 
     addLogMessage(message: string) {
@@ -208,7 +208,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.sendCurrentStateToPanelManager()
     }
 
-    private setupWebSocket() {
+    private setupConnectionPort() {
         const openPack: ClientRequest = {
             type: 'open',
             path: this.pdfFilePath,
@@ -328,7 +328,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 this.connectionPort = createConnectionPort(this)
                 this.connectionPort.onDidOpen( () => {
                     document.title = this.documentTitle
-                    this.setupWebSocket()
+                    this.setupConnectionPort()
                     console.log('Reconnected: WebScocket to LaTeX Workshop.')
                 })
             }, 3000)
