@@ -1,3 +1,4 @@
+import {IConnectionPort, createConnectionPort} from './components/connection.js'
 import type {IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
@@ -14,13 +15,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly encodedPdfFilePath: string
     readonly pageTrimmer: PageTrimmer
     readonly pdfFilePath: string
-    readonly server: string
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
 
     private hideToolbarInterval: number | undefined
 
-    private socket: WebSocket
+    private connectionPort: IConnectionPort
     private pdfFileRendered: Promise<void>
     private isRestoredWithSerializer: boolean = false
     private readonly pdfViewerStarted: Promise<void>
@@ -49,31 +49,24 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.pdfFilePath = pack.pdfFilePath
 
         this.viewerHistory = new ViewerHistory(this)
-        const server = `ws://${window.location.hostname}:${window.location.port}`
-        this.server = server
-        this.socket = new WebSocket(server)
+        this.connectionPort = createConnectionPort(this)
         this.synctex = new SyncTex(this)
         this.pageTrimmer = new PageTrimmer(this)
 
         this.setupWebSocket()
 
         this.onDidStartPdfViewer( () => {
-            utils.callCbOnDidOpenWebSocket(this.socket, () => {
-                this.send({type:'request_params', path:this.pdfFilePath})
-            })
+            this.send({type:'request_params', path:this.pdfFilePath})
             this.setCssRule()
         })
         this.onDidRenderPdfFile( () => {
-            utils.callCbOnDidOpenWebSocket(this.socket, () => {
-                this.send({type:'loaded', path:this.pdfFilePath})
-            })
+            this.send({type:'loaded', path:this.pdfFilePath})
         }, {once: true})
 
         this.hidePrintButton()
         this.registerKeybinding()
         this.registerSynctexCheckBox()
         this.registerAutoReloadCheckBox()
-        this.startConnectionKeeper()
         this.startRebroadcastingKeyboardEvent()
         this.startSendingState()
         void this.startReceivingPanelManagerResponse()
@@ -141,7 +134,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     send(message: ClientRequest) {
-        this.socket.send(JSON.stringify(message))
+        this.connectionPort.send(message)
     }
 
     addLogMessage(message: string) {
@@ -216,15 +209,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private setupWebSocket() {
-        utils.callCbOnDidOpenWebSocket(this.socket, () => {
-            const pack: ClientRequest = {
-                type: 'open',
-                path: this.pdfFilePath,
-                viewer: (this.embedded ? 'tab' : 'browser')
-            }
-            this.send(pack)
-        })
-        this.socket.addEventListener('message', (event: MessageEvent<string>) => {
+        const openPack: ClientRequest = {
+            type: 'open',
+            path: this.pdfFilePath,
+            viewer: (this.embedded ? 'tab' : 'browser')
+        }
+        this.send(openPack)
+        this.connectionPort.onDidReceiveMessage((event: MessageEvent<string>) => {
             const data = JSON.parse(event.data) as ServerResponse
             switch (data.type) {
                 case 'synctex': {
@@ -326,7 +317,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
         })
 
-        this.socket.onclose = () => {
+        this.connectionPort.onDidClose(() => {
             document.title = `[Disconnected] ${this.documentTitle}`
             console.log('Closed: WebScocket to LaTeX Workshop.')
 
@@ -334,15 +325,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
             setTimeout( () => {
                 console.log('Try to reconnect to LaTeX Workshop.')
-                const sock = new WebSocket(this.server)
-                this.socket = sock
-                utils.callCbOnDidOpenWebSocket(sock, () => {
+                this.connectionPort = createConnectionPort(this)
+                this.connectionPort.onDidOpen( () => {
                     document.title = this.documentTitle
                     this.setupWebSocket()
                     console.log('Reconnected: WebScocket to LaTeX Workshop.')
                 })
             }, 3000)
-        }
+        })
     }
 
     private showToolbar(animate: boolean) {
@@ -516,15 +506,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             this.setAutoReload(!this.autoReloadEnabled)
             PDFViewerApplication.secondaryToolbar.close()
         })
-    }
-
-    startConnectionKeeper() {
-        // Send packets every 30 sec to prevent the connection closed by timeout.
-        setInterval( () => {
-            if (this.socket.readyState === 1) {
-                this.send({type: 'ping'})
-            }
-        }, 30000)
     }
 
     private sendToPanelManager(msg: PanelRequest) {
