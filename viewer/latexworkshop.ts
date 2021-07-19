@@ -512,7 +512,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         if (!this.embedded) {
             return
         }
-        window.parent.postMessage(msg, '*')
+        window.parent?.postMessage(msg, '*')
     }
 
     private sendCurrentStateToPanelManager() {

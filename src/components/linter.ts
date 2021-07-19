@@ -112,7 +112,7 @@ export class Linter {
         let stdout: string
         try {
             stdout = await this.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
-        } catch (err) {
+        } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
             } else {
@@ -147,7 +147,7 @@ export class Linter {
         let stdout: string
         try {
             stdout = await this.processWrapper('root file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(this.extension.manager.rootFile)})
-        } catch (err) {
+        } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
             } else {
