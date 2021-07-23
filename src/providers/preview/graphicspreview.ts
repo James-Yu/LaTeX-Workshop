@@ -52,7 +52,12 @@ export class GraphicsPreview {
         }
         const dataUrl = await this.renderGraphics(filePath, { height: 230, width: 500, pageNumber })
         if (dataUrl !== undefined) {
-            const md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
+            let md: vscode.MarkdownString
+            if (dataUrl.length < 99980) {
+                md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
+            } else {
+                md = new vscode.MarkdownString('The PDF file is too large to render.')
+            }
             return new vscode.Hover(md, range)
         }
         return undefined
