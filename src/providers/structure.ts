@@ -124,8 +124,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
                 const depth = noRoot() ? 0 : currentRoot().depth + 1
-                sectionNumber = this.increment(sectionNumber, depth)
-                const newEnv = new Section(this.formatSectionNumber(sectionNumber) + `${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
+                const newEnv = new Section(`${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
                 if (noRoot()) {
                     children.push(newEnv)
                 } else {
