@@ -1,2 +1,2 @@
 #!/bin/sh
-docker run -i --rm -w "$(pwd)" -v "$(pwd):$(pwd)" $LATEXWORKSHOP_DOCKER_LATEX latexmk "$@"
+docker run -i --rm -w "$(pwd)" -v "$(pwd):$(pwd)" --user "$(id -u):$(id -g)" $LATEXWORKSHOP_DOCKER_LATEX latexmk "$@"
