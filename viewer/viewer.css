@@ -15,6 +15,7 @@
 
 .textLayer {
   position: absolute;
+  text-align: initial;
   left: 0;
   top: 0;
   right: 0;
@@ -34,11 +35,14 @@
 }
 
 .textLayer .highlight {
-  position: relative;
   margin: -1px;
   padding: 1px;
   background-color: rgba(180, 0, 170, 1);
   border-radius: 4px;
+}
+
+.textLayer .highlight.appended {
+  position: initial;
 }
 
 .textLayer .highlight.begin {
@@ -211,7 +215,7 @@
    * area, causing horizontal scrolling. We avoid this by extending the width
    * when the element has focus and revert this when it loses focus.
    */
-  width: 115%;
+  width: 103%;
 }
 
 .annotationLayer .buttonWidgetAnnotation.checkBox input,
@@ -280,12 +284,26 @@
 }
 
 
+.xfaPage {
+  overflow: hidden;
+  position: relative;
+}
+
+.xfaContentarea {
+  position: absolute;
+}
+
+.xfaPrintOnly {
+  display: none;
+}
+
 .xfaLayer {
   position: absolute;
+  text-align: initial;
   top: 0;
   left: 0;
-  z-index: 200;
   transform-origin: 0 0;
+  line-height: 1.2;
 }
 
 .xfaLayer * {
@@ -294,12 +312,26 @@
   font-style: inherit;
   font-weight: inherit;
   font-kerning: inherit;
-  letter-spacing: inherit;
+  letter-spacing: -0.01px;
   text-align: inherit;
   text-decoration: inherit;
-  vertical-align: inherit;
   box-sizing: border-box;
   background: transparent;
+  padding: 0;
+  margin: 0;
+  pointer-events: auto;
+}
+
+.xfaLayer div {
+  pointer-events: none;
+}
+
+.xfaLayer svg {
+  pointer-events: none;
+}
+
+.xfaLayer svg * {
+  pointer-events: none;
 }
 
 .xfaLayer a {
@@ -321,56 +353,52 @@
   vertical-align: 0;
 }
 
-.xfaDraw {
-  z-index: 100;
-}
-
-.xfaExclgroup {
-  z-index: 200;
-}
-
-.xfaField {
-  z-index: 300;
-}
-
-.xfaRich {
-  z-index: 300;
-  line-height: 1.2;
-}
-
-.xfaSubform {
-  z-index: 200;
-}
-
-.xfaLabel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-}
-
 .xfaCaption {
+  overflow: hidden;
+  flex: 0 1 auto;
+}
+
+.xfaCaptionForCheckButton {
+  overflow: hidden;
   flex: 1 1 auto;
 }
 
-.xfaBorderDiv {
+.xfaLabel {
+  height: 100%;
+  width: 100%;
+}
+
+.xfaLeft {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.xfaLeft > .xfaCaption,
+.xfaLeft > .xfaCaptionForCheckButton {
+  max-height: 100%;
+}
+
+.xfaTop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.xfaTop > .xfaCaption,
+.xfaTop > .xfaCaptionForCheckButton {
+  width: 100%;
+}
+
+.xfaBorder {
   background: transparent;
   position: absolute;
   pointer-events: none;
 }
 
-.xfaWrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: auto;
-  height: auto;
-}
-
-.xfaContentArea {
-  overflow: hidden;
+.xfaWrapped {
+  width: 100%;
+  height: 100%;
 }
 
 .xfaTextfield,
@@ -381,47 +409,16 @@
 .xfaTextfield:focus,
 .xfaSelect:focus {
   background-color: transparent;
+  outline: none;
 }
 
 .xfaTextfield,
 .xfaSelect {
   width: 100%;
   height: 100%;
-  flex: 100 1 0;
+  flex: 1 1 0;
   border: none;
   resize: none;
-}
-
-.xfaLabel > input[type="radio"] {
-  /* Use this trick to make the checkbox invisible but
-       but still focusable. */
-  position: absolute;
-  left: -99999px;
-}
-
-.xfaLabel > input[type="radio"]:focus + .xfaCheckboxMark {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
-}
-
-.xfaCheckboxMark {
-  cursor: pointer;
-  flex: 0 0 auto;
-  border-style: solid;
-  border-width: 2px;
-  border-color: #8f8f9d;
-  font-size: 10px;
-  line-height: 10px;
-  width: 10px;
-  height: 10px;
-  text-align: center;
-  vertical-align: middle;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.xfaCheckbox:checked + .xfaCheckboxMark::after {
-  content: attr(mark);
 }
 
 .xfaButton {
@@ -436,22 +433,27 @@
   background: Highlight;
 }
 
-.xfaRich {
-  white-space: pre-wrap;
+.xfaCheckbox,
+.xfaRadio {
+  width: 100%;
+  height: 100%;
+  flex: 0 0 auto;
+  border: none;
 }
 
-.xfaImage {
+.xfaRich {
+  white-space: pre-wrap;
   width: 100%;
   height: 100%;
 }
 
-.xfaRich {
+.xfaImage {
+  -o-object-position: left top;
+     object-position: left top;
+  -o-object-fit: contain;
+     object-fit: contain;
   width: 100%;
-  height: auto;
-}
-
-.xfaPosition {
-  display: block;
+  height: 100%;
 }
 
 .xfaLrTb,
@@ -462,24 +464,20 @@
   align-items: stretch;
 }
 
-.xfaLr,
-.xfaRl,
-.xfaTb > div {
-  flex: 1 1 auto;
+.xfaLr {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.xfaRl {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: stretch;
 }
 
 .xfaTb > div {
   justify-content: left;
-}
-
-.xfaLr > div {
-  display: inline;
-  float: left;
-}
-
-.xfaRl > div {
-  display: inline;
-  float: right;
 }
 
 .xfaPosition {
@@ -495,39 +493,51 @@
   align-items: center;
 }
 
-.xfaLrTb > div {
-  display: inline;
-  float: left;
-}
-
-.xfaRlTb > div {
-  display: inline;
-  float: right;
-}
-
 .xfaTable {
   display: flex;
   flex-direction: column;
+  align-items: stretch;
 }
 
 .xfaTable .xfaRow {
   display: flex;
   flex-direction: row;
-  flex: 1 1 auto;
-}
-
-.xfaTable .xfaRow > div {
-  flex: 1 1 auto;
+  align-items: stretch;
 }
 
 .xfaTable .xfaRlRow {
   display: flex;
   flex-direction: row-reverse;
+  align-items: stretch;
   flex: 1;
 }
 
 .xfaTable .xfaRlRow > div {
   flex: 1;
+}
+
+.xfaNonInteractive input,
+.xfaNonInteractive textarea,
+.xfaDisabled input,
+.xfaDisabled textarea,
+.xfaReadOnly input,
+.xfaReadOnly textarea {
+  background: initial;
+}
+
+@media print {
+  .xfaTextfield,
+  .xfaSelect {
+    background-color: transparent;
+  }
+
+  .xfaSelect {
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    text-indent: 1px;
+    text-overflow: "";
+  }
 }
 
 :root {
@@ -2403,6 +2413,19 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
 #PDFBug table {
   font-size: 10px;
 }
+#PDFBug table.showText {
+  border-collapse: collapse;
+  text-align: center;
+}
+#PDFBug table.showText,
+#PDFBug table.showText tr,
+#PDFBug table.showText td {
+  border: 1px solid black;
+  padding: 1px;
+}
+#PDFBug table.showText td.advance {
+  color: grey;
+}
 
 #viewer.textLayer-visible .textLayer {
   opacity: 1;
@@ -2478,7 +2501,8 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
   .toolbar,
   #loadingBox,
   #errorWrapper,
-  .textLayer {
+  .textLayer,
+  .canvasWrapper {
     display: none;
   }
   #viewerContainer {
@@ -2522,7 +2546,7 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
     height: 100%;
   }
   /* wrapper around (scaled) print canvas elements */
-  #printContainer > div {
+  #printContainer > .printedPage {
     page-break-after: always;
     page-break-inside: avoid;
 
@@ -2535,8 +2559,21 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
     justify-content: center;
     align-items: center;
   }
-  #printContainer canvas,
-  #printContainer img {
+
+  #printContainer > .xfaPrintedPage .xfaPage {
+    position: initial;
+  }
+
+  #printContainer > .xfaPrintedPage {
+    page-break-after: always;
+    page-break-inside: avoid;
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  #printContainer > .printedPage canvas,
+  #printContainer > .printedPage img {
     /* The intrinsic canvas / image size will make sure that we fit the page. */
     max-width: 100%;
     max-height: 100%;
