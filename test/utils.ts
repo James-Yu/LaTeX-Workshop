@@ -119,7 +119,7 @@ export function waitLatexWorkshopActivated() {
 export async function waitBuildFinish() {
     const extension = await waitLatexWorkshopActivated()
     await waitUntil(
-        () => Promise.resolve(extension.exports.builder.isBuildFinished?.())
+        () => Promise.resolve(extension.exports.realExtension?.builder.isBuildFinished?.())
     )
 }
 
@@ -147,7 +147,7 @@ export async function getViewerStatus(pdfFilePath: string) {
     const extension = await waitLatexWorkshopActivated()
     return waitUntil(() => {
         try {
-            const rs = extension.exports.viewer.getViewerStatus?.(pdfFilePath)
+            const rs = extension.exports.realExtension?.viewer.getViewerState(pdfFilePath)
             const ret = rs && rs.find(st => st)
             if (ret && ret.path !== undefined && ret.scrollTop !== undefined) {
                 return [{ path: ret.path, scrollTop: ret.scrollTop }]

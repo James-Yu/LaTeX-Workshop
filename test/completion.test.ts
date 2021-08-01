@@ -32,7 +32,7 @@ suite('Completion test suite', () => {
         const extension = await waitLatexWorkshopActivated()
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
-        const items = await extension.exports.completer.provideCompletionItems?.(doc, pos, token, {triggerKind: vscode.CompletionTriggerKind.Invoke})
+        const items = await extension.exports.realExtension?.completer.provideCompletionItems?.(doc, pos, token, {triggerKind: vscode.CompletionTriggerKind.Invoke})
         assert.ok(items && items.length > 0)
     })
 

@@ -137,12 +137,8 @@ function generateLatexWorkshopApi(extension: Extension) {
     return {
         realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
-        builder: {
-            isBuildFinished: process.env['LATEXWORKSHOP_CI'] ? ( () => extension.builder.isBuildFinished() ) : undefined
-        },
         viewer: {
             clients: extension.viewer.clients,
-            getViewerStatus: process.env['LATEXWORKSHOP_CI'] ? ( (pdfFilePath: string) => extension.viewer.getViewerState(pdfFilePath) ) : undefined,
             refreshExistingViewer: (sourceFile?: string) => extension.viewer.refreshExistingViewer(sourceFile),
             openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
         },
@@ -165,13 +161,7 @@ function generateLatexWorkshopApi(extension: Extension) {
                     })
                     return allPkgs
                 }
-            },
-            provideCompletionItems: process.env['LATEXWORKSHOP_CI'] ? ((
-                document: vscode.TextDocument,
-                position: vscode.Position,
-                token: vscode.CancellationToken,
-                cxt: vscode.CompletionContext
-            ) => extension.completer.provideCompletionItems(document, position, token, cxt)) : undefined
+            }
         }
     }
 }
