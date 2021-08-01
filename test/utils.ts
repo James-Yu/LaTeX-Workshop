@@ -140,7 +140,7 @@ export async function executeVscodeCommandAfterActivation(command: string) {
 export async function viewPdf() {
     await sleep(1000)
     await executeVscodeCommandAfterActivation('latex-workshop.view')
-    await sleep(1000)
+    await sleep(3000)
 }
 
 export async function getViewerStatus(pdfFilePath: string) {

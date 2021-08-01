@@ -53,6 +53,8 @@ export async function openWebviewPanel(
         }
     }
     // Then, we set the focus back to the .tex file
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const delay = configuration.get('view.pdf.tab.openDelay', 1000)
     setTimeout(async () => {
         if (!preserveFocus) {
             return
@@ -61,5 +63,5 @@ export async function openWebviewPanel(
             await vscode.commands.executeCommand(focusAction)
         }
         await vscode.window.showTextDocument(activeDocument, vscode.ViewColumn.Active)
-    }, 500)
+    }, delay)
 }
