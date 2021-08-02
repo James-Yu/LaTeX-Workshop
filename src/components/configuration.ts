@@ -19,6 +19,7 @@ export class Configuration {
     private readonly configurationsToLog = [
         'latex-workshop.docker.enabled',
         'latex-workshop.docker.image.latex',
+        'latex-workshop.intellisense.package.enabled',
         'latex-workshop.intellisense.update.aggressive.enabled',
         'latex-workshop.intellisense.update.delay',
         'latex-workshop.latex.autoBuild.run',
