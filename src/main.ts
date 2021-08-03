@@ -170,13 +170,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     const extension = new Extension()
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    // let configuration = vscode.workspace.getConfiguration('latex-workshop')
-    // if (configuration.get('bind.altKeymap.enabled')) {
-    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', true)
-    // } else {
-    //     vscode.commands.executeCommand('setContext', 'latex-workshop:altkeymap', false)
-    // }
-
     registerLatexWorkshopCommands(extension)
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
@@ -236,15 +229,12 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
-            void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true).then(() => {
-                if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
-                    void vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
-                }
-                isLaTeXActive = true
-            })
+            if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
+                void vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+            }
+            isLaTeXActive = true
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
-            void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
         }
 
         if (e && extension.manager.hasTexId(e.document.languageId)) {
