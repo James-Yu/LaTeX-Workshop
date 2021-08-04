@@ -255,7 +255,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
 
-    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-commands', new LaTeXCommander(extension)))
+    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-workshop-commands', new LaTeXCommander(extension)))
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
         if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
             return
@@ -285,7 +285,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider(extension)))
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider(extension)))
 
-    context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-snippet-view', new SnippetViewProvider(extension), {webviewOptions: {retainContextWhenHidden: true}}))
+    context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-workshop-snippet-view', new SnippetViewProvider(extension), {webviewOptions: {retainContextWhenHidden: true}}))
 
     void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
     conflictExtensionCheck()
