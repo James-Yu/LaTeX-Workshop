@@ -11,7 +11,7 @@ import type {Extension} from '../main'
 import type {Suggestion as CiteEntry} from '../providers/completer/citation'
 import type {Suggestion as CmdEntry} from '../providers/completer/command'
 import type {Suggestion as EnvEntry} from '../providers/completer/environment'
-import type {Suggestion as GlossEntry} from 'src/providers/completer/glossary'
+import type {Suggestion as GlossEntry} from '../providers/completer/glossary'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'

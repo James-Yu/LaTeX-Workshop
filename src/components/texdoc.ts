@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
-import type {Extension} from 'src/main'
+import type {Extension} from '../main'
 
 export class TeXDoc {
     private readonly extension: Extension
