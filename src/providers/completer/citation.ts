@@ -9,7 +9,7 @@ import type {IProvider} from './interface'
 class Fields extends Map<string, string> {
 
     get author() {
-        return this.get('aurthor')
+        return this.get('author')
     }
 
     get journal() {
