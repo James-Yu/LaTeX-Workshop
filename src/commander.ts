@@ -388,7 +388,7 @@ export class Commander {
 
     actions() {
         this.extension.logger.addLogMessage('ACTIONS command invoked.')
-        return vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+        return vscode.commands.executeCommand('workbench.view.extension.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
     }
 
     /**
