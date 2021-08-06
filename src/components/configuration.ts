@@ -17,6 +17,7 @@ export class Configuration {
     }
 
     private readonly configurationsToLog = [
+        'latex-workshop.bind.enter.key',
         'latex-workshop.docker.enabled',
         'latex-workshop.docker.image.latex',
         'latex-workshop.intellisense.package.enabled',
