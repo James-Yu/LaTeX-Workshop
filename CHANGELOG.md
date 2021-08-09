@@ -1,5 +1,24 @@
 # Change Log
 
+## [8.20.0] - 2021-08-09
+
+### Added
+- (#2783) Add support for glossary external file.
+
+### Changed
+- (#2756) Use Custom Editor as a hook to start the internal PDF viewer.
+- (#2759) Drop support for versions prior to VS Code `1.53.2`.
+
+### Fixed
+- A series of engineering improvements.
+- (#2766) Declare `flalign` as a math environment.
+- (#2770) intellisense for `\mathscr`.
+- (#2777) Skip tikpicture content when scanning for labels.
+- (#2782) Stop unescaping in surround function.
+- (#2786) Skip labels in new command definitions.
+- (#2787) Set a scope to `\text` in maths.
+- (#2794) Highlights comments inside `\cite`.
+
 ## [8.19.0] - 2021-06-11
 
 ### Added
