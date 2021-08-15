@@ -1,6 +1,6 @@
 # Change Log
 
-## [8.20.0] - 2021-08-09
+## [8.20.2] - 2021-08-09
 
 ### Added
 - (#2783) Add support for glossary external file.
@@ -18,6 +18,9 @@
 - (#2786) Skip labels in new command definitions.
 - (#2787) Set a scope to `\text` in maths.
 - (#2794) Highlights comments inside `\cite`.
+
+### Others
+ - 8.20.0 and 8.20.1 are skipped. [#2829](https://github.com/James-Yu/LaTeX-Workshop/issues/2829)
 
 ## [8.19.0] - 2021-06-11
 
