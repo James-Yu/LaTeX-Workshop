@@ -90,6 +90,18 @@ export class Completer implements vscode.CompletionItemProvider {
                         setTimeout(() => this.citation.browser({document, position, token, context}), 10)
                         return
                     }
+                } else if(type === 'input'){
+                    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                    const exts = configuration.get('intellisense.file.stripExtension') as Array<string>
+                    if (exts.length > 0) {
+                        // strip file extensions
+                        suggestions.map(item => {
+                            const ext = item.label.split('.').slice(-1)[0]
+                            if (exts.includes(ext)) {
+                                item.insertText = item.label.replace(new RegExp(`\\.${ext}$`), '')
+                            }
+                        })
+                    }
                 }
                 return suggestions
             }
