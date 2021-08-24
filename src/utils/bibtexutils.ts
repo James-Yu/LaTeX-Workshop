@@ -79,13 +79,13 @@ function bibtexSortByField(fieldName: string, a: bibtexParser.Entry, b: bibtexPa
 
     for(let i = 0; i < a.content.length; i++) {
         if (a.content[i].name === fieldName) {
-            fieldA = fieldToString(a.content[i].value, '', '')
+            fieldA = fieldToString(a.content[i].value, '', '', '')
             break
         }
     }
     for(let i = 0; i < b.content.length; i++) {
         if (b.content[i].name === fieldName) {
-            fieldB = fieldToString(b.content[i].value, '', '')
+            fieldB = fieldToString(b.content[i].value, '', '', '')
             break
         }
     }
@@ -138,11 +138,15 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
 
     fields.forEach(field => {
         s += ',\n' + config.tab + (config.case === 'lowercase' ? field.name : field.name.toUpperCase())
+        let indent = config.tab + ' '.repeat(field.name.length)
         if (config.alignOnEqual) {
-            s += ' '.repeat(maxFieldLength - field.name.length)
+            const adjustedLength = ' '.repeat(maxFieldLength - field.name.length)
+            s += adjustedLength
+            indent += adjustedLength
         }
         s += ' = '
-        s += fieldToString(field.value, config.left, config.right)
+        indent += ' '.repeat(' = '.length + config.left.length)
+        s += fieldToString(field.value, config.left, config.right, indent)
     })
 
     if (config.trailingComma) {
@@ -159,16 +163,26 @@ export function bibtexFormat(entry: bibtexParser.Entry, config: BibtexFormatConf
  * @param field the bibtexParser.FieldValue to parse
  * @param left what to put before a text_string (i.e. `{` or `"`)
  * @param right what to put after a text_string (i.e. `}` or `"`)
+ * @param prefix what to add to every but the first line of a multiline field.
  */
-function fieldToString(field: bibtexParser.FieldValue, left: string, right: string): string {
+function fieldToString(field: bibtexParser.FieldValue, left: string, right: string, prefix: string): string {
     switch(field.kind) {
         case 'abbreviation':
         case 'number':
             return field.content
-        case 'text_string':
-            return left + field.content + right
+        case 'text_string': {
+            if (prefix !== '') {
+                const lines = field.content.split(/\r\n|\r|\n/g)
+                for (let i = 1; i < lines.length; i++) {
+                    lines[i] = prefix + lines[i].trimLeft()
+                }
+                return left + lines.join('\n') + right
+            } else {
+                return left + field.content + right
+            }
+        }
         case 'concat':
-            return field.content.map(value => fieldToString(value, left, right)).reduce((acc, cur) => {return acc + ' # ' + cur})
+            return field.content.map(value => fieldToString(value, left, right, prefix)).reduce((acc, cur) => {return acc + ' # ' + cur})
         default:
             return ''
     }
