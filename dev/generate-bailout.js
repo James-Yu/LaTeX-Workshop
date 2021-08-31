@@ -11,7 +11,7 @@ duplicateForEmbedding({
 })
 
 const cppSyntaxUrl = 'https://raw.githubusercontent.com/microsoft/vscode/main/extensions/cpp/language-configuration.json'
-const cppEmbeddedSyntaxFile = '../syntax/syntax-cpp-embedded.json'
+const cppEmbeddedSyntaxFile = '../syntax/latex-cpp-embedded-language-configuration.json'
 const res = request('GET', cppSyntaxUrl)
 if (res.statusCode === 200) {
     fs.writeFileSync(cppEmbeddedSyntaxFile, res.body.toString('utf-8'))
