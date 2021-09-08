@@ -43,7 +43,8 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
             sort: config.get('bibtex-format.sortby') as string[],
             alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean,
             sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
-            fieldsOrder: config.get('bibtex-fields.order') as string[]
+            fieldsOrder: config.get('bibtex-fields.order') as string[],
+            firstEntries: config.get('bibtex-entries.first') as string[]
         }
         this.extension.logger.addLogMessage(`Bibtex format config: ${JSON.stringify(bibtexFormat)}`)
 

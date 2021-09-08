@@ -10,8 +10,11 @@ export interface BibtexFormatConfig {
     sort: string[],
     alignOnEqual: boolean,
     sortFields: boolean,
-    fieldsOrder: string[]
+    fieldsOrder: string[],
+    firstEntries: string[]
 }
+
+export declare type BibtexEntry = bibtexParser.Entry | bibtexParser.StringEntry
 
 /**
  * Read the indentation from vscode configuration
@@ -38,23 +41,25 @@ export function getBibtexFormatTab(config: vscode.WorkspaceConfiguration): strin
  * Sorting function for bibtex entries
  * @param keys Array of sorting keys
  */
-export function bibtexSort(keys: string[], duplicates: Set<bibtexParser.Entry>): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
+export function bibtexSort(configuration: BibtexFormatConfig, duplicates: Set<bibtexParser.Entry>): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
+    const keys = configuration.sort
+    const firstEntries = configuration.firstEntries
     return function (a, b) {
         let r = 0
         for (const key of keys) {
             // Select the appropriate sort function
             switch (key) {
                 case 'key':
-                    r = bibtexSortByKey(a, b)
+                    r = bibtexSortByKey(firstEntries, a, b)
                     break
                 case 'year-desc':
-                    r = -bibtexSortByField('year', a, b)
+                    r = -bibtexSortByField(firstEntries, 'year', a, b)
                     break
                 case 'type':
-                    r = bibtexSortByType(a, b)
+                    r = bibtexSortByType(firstEntries, a, b)
                     break
                 default:
-                    r = bibtexSortByField(key, a, b)
+                    r = bibtexSortByField(firstEntries, key, a, b)
             }
             // Compare until different
             if (r !== 0) {
@@ -70,10 +75,39 @@ export function bibtexSort(keys: string[], duplicates: Set<bibtexParser.Entry>):
 }
 
 /**
+ * If one of the entries `a` or `b` is in `firstEntries` or `stickyEntries`, return an order.
+ * Otherwise, return undefined
+ */
+function bibtexSortFirstEntries(firstEntries: string[], a: bibtexParser.Entry, b: bibtexParser.Entry): number | undefined {
+    const aFirst = firstEntries.includes(a.entryType)
+    const bFirst = firstEntries.includes(b.entryType)
+    if (aFirst && !bFirst) {
+        return -1
+    } else if (!aFirst && bFirst) {
+        return 1
+    } else if (aFirst && bFirst) {
+        const aIndex = firstEntries.indexOf(a.entryType)
+        const bIndex = firstEntries.indexOf(b.entryType)
+        if (aIndex <= bIndex) {
+            return -1
+        } else {
+            return 1
+        }
+    }
+    return undefined
+}
+
+/**
  * Handles all sorting keys that are some bibtex field name
  * @param fieldName which field name to sort by
  */
-function bibtexSortByField(fieldName: string, a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+function bibtexSortByField(firstEntries: string[], fieldName: string, a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+
+    const firstEntriesOrder = bibtexSortFirstEntries(firstEntries, a, b)
+    if (firstEntriesOrder) {
+        return firstEntriesOrder
+    }
+
     let fieldA: string = ''
     let fieldB: string = ''
 
@@ -97,7 +131,11 @@ function bibtexSortByField(fieldName: string, a: bibtexParser.Entry, b: bibtexPa
     return fieldA.localeCompare(fieldB)
 }
 
-function bibtexSortByKey(a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+function bibtexSortByKey(firstEntries: string[], a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+    const firstEntriesOrder = bibtexSortFirstEntries(firstEntries, a, b)
+    if (firstEntriesOrder) {
+        return firstEntriesOrder
+    }
     if (!a.internalKey && !b.internalKey) {
         return 0
     } else if (!a.internalKey) {
@@ -109,7 +147,11 @@ function bibtexSortByKey(a: bibtexParser.Entry, b: bibtexParser.Entry): number {
     }
 }
 
-function bibtexSortByType(a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+function bibtexSortByType(firstEntries: string[], a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+    const firstEntriesOrder = bibtexSortFirstEntries(firstEntries, a, b)
+    if (firstEntriesOrder) {
+        return firstEntriesOrder
+    }
     return a.entryType.localeCompare(b.entryType)
 }
 

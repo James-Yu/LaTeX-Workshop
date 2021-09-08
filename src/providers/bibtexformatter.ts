@@ -71,7 +71,8 @@ export class BibtexFormatter {
             sort: config.get('bibtex-format.sortby') as string[],
             alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean,
             sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
-            fieldsOrder: config.get('bibtex-fields.order') as string[]
+            fieldsOrder: config.get('bibtex-fields.order') as string[],
+            firstEntries: config.get('bibtex-entries.first') as string[]
         }
         this.extension.logger.addLogMessage(`Bibtex format config: ${JSON.stringify(configuration)}`)
         const lineOffset = range ? range.start.line : 0
@@ -107,7 +108,7 @@ export class BibtexFormatter {
         let sortedEntryLocations: vscode.Range[] = []
         const duplicates = new Set<bibtexParser.Entry>()
         if (sort) {
-            entries.sort(bibtexUtils.bibtexSort(configuration.sort, duplicates)).forEach(entry => {
+            entries.sort(bibtexUtils.bibtexSort(configuration, duplicates)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
