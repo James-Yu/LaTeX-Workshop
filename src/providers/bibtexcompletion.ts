@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import * as bibtexUtils from '../utils/bibtexutils'
+import * as bibtexUtils from './bibtexformatterlib/bibtexutils'
 import type {Extension} from '../main'
 
 type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')

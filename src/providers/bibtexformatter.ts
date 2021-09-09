@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
 import {performance} from 'perf_hooks'
 
-import * as bibtexUtils from '../utils/bibtexutils'
+import * as bibtexUtils from './bibtexformatterlib/bibtexutils'
 import type {Extension} from '../main'
 
 export class BibtexFormatter {
