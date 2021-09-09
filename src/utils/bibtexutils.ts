@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type {bibtexParser} from 'latex-utensils'
+import {bibtexParser} from 'latex-utensils'
 
 export interface BibtexFormatConfig {
     tab: string,
@@ -41,7 +41,7 @@ export function getBibtexFormatTab(config: vscode.WorkspaceConfiguration): strin
  * Sorting function for bibtex entries
  * @param keys Array of sorting keys
  */
-export function bibtexSort(configuration: BibtexFormatConfig, duplicates: Set<bibtexParser.Entry>): (a: bibtexParser.Entry, b: bibtexParser.Entry) => number {
+export function bibtexSort(configuration: BibtexFormatConfig, duplicates: Set<bibtexParser.Entry>): (a: BibtexEntry, b: BibtexEntry) => number {
     const keys = configuration.sort
     const firstEntries = configuration.firstEntries
     return function (a, b) {
@@ -66,7 +66,7 @@ export function bibtexSort(configuration: BibtexFormatConfig, duplicates: Set<bi
                 break
             }
         }
-        if (r === 0) {
+        if (r === 0 && bibtexParser.isEntry(a)) {
             // It seems that items earlier in the list appear as the variable b here, rather than a
             duplicates.add(a)
         }
@@ -78,7 +78,7 @@ export function bibtexSort(configuration: BibtexFormatConfig, duplicates: Set<bi
  * If one of the entries `a` or `b` is in `firstEntries` or `stickyEntries`, return an order.
  * Otherwise, return undefined
  */
-function bibtexSortFirstEntries(firstEntries: string[], a: bibtexParser.Entry, b: bibtexParser.Entry): number | undefined {
+function bibtexSortFirstEntries(firstEntries: string[], a: BibtexEntry, b: BibtexEntry): number | undefined {
     const aFirst = firstEntries.includes(a.entryType)
     const bFirst = firstEntries.includes(b.entryType)
     if (aFirst && !bFirst) {
@@ -101,7 +101,7 @@ function bibtexSortFirstEntries(firstEntries: string[], a: bibtexParser.Entry, b
  * Handles all sorting keys that are some bibtex field name
  * @param fieldName which field name to sort by
  */
-function bibtexSortByField(firstEntries: string[], fieldName: string, a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+function bibtexSortByField(firstEntries: string[], fieldName: string, a: BibtexEntry, b: BibtexEntry): number {
 
     const firstEntriesOrder = bibtexSortFirstEntries(firstEntries, a, b)
     if (firstEntriesOrder) {
@@ -111,16 +111,20 @@ function bibtexSortByField(firstEntries: string[], fieldName: string, a: bibtexP
     let fieldA: string = ''
     let fieldB: string = ''
 
-    for(let i = 0; i < a.content.length; i++) {
-        if (a.content[i].name === fieldName) {
-            fieldA = fieldToString(a.content[i].value, '', '', '')
-            break
+    if (bibtexParser.isEntry(a)) {
+        for(let i = 0; i < a.content.length; i++) {
+            if (a.content[i].name === fieldName) {
+                fieldA = fieldToString(a.content[i].value, '', '', '')
+                break
+            }
         }
     }
-    for(let i = 0; i < b.content.length; i++) {
-        if (b.content[i].name === fieldName) {
-            fieldB = fieldToString(b.content[i].value, '', '', '')
-            break
+    if (bibtexParser.isEntry(b)) {
+        for(let i = 0; i < b.content.length; i++) {
+            if (b.content[i].name === fieldName) {
+                fieldB = fieldToString(b.content[i].value, '', '', '')
+                break
+            }
         }
     }
 
@@ -131,23 +135,31 @@ function bibtexSortByField(firstEntries: string[], fieldName: string, a: bibtexP
     return fieldA.localeCompare(fieldB)
 }
 
-function bibtexSortByKey(firstEntries: string[], a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+function bibtexSortByKey(firstEntries: string[], a: BibtexEntry, b: BibtexEntry): number {
     const firstEntriesOrder = bibtexSortFirstEntries(firstEntries, a, b)
+    let aKey: string | undefined = undefined
+    let bKey: string | undefined = undefined
+    if (bibtexParser.isEntry(a)) {
+        aKey = a.internalKey
+    }
+    if (bibtexParser.isEntry(b)) {
+        bKey = b.internalKey
+    }
     if (firstEntriesOrder) {
         return firstEntriesOrder
     }
-    if (!a.internalKey && !b.internalKey) {
+    if (!aKey && !bKey) {
         return 0
-    } else if (!a.internalKey) {
+    } else if (!aKey) {
         return -1 // sort undefined keys first
-    } else if (!b.internalKey) {
+    } else if (!bKey) {
         return 1
     } else {
-        return a.internalKey.localeCompare(b.internalKey)
+        return aKey.localeCompare(bKey)
     }
 }
 
-function bibtexSortByType(firstEntries: string[], a: bibtexParser.Entry, b: bibtexParser.Entry): number {
+function bibtexSortByType(firstEntries: string[], a: BibtexEntry, b: BibtexEntry): number {
     const firstEntriesOrder = bibtexSortFirstEntries(firstEntries, a, b)
     if (firstEntriesOrder) {
         return firstEntriesOrder

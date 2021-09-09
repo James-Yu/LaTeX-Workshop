@@ -90,10 +90,10 @@ export class BibtexFormatter {
             return []
         }
         // Create an array of entries and of their starting locations
-        const entries: bibtexParser.Entry[] = []
+        const entries: bibtexUtils.BibtexEntry[] = []
         const entryLocations: vscode.Range[] = []
         ast.content.forEach(item => {
-            if (bibtexParser.isEntry(item)) {
+            if (bibtexParser.isEntry(item) || bibtexParser.isStringEntry(item)) {
                 entries.push(item)
                 // latex-utilities uses 1-based locations whereas VSCode uses 0-based
                 entryLocations.push(new vscode.Range(
@@ -127,31 +127,35 @@ export class BibtexFormatter {
         let text: string
         let isDuplicate: boolean
         for (let i = 0; i < entries.length; i++) {
-            if (align) {
-                text = bibtexUtils.bibtexFormat(entries[i], configuration)
+            if (align && bibtexParser.isEntry(entries[i])) {
+                const entry: bibtexParser.Entry = entries[i] as bibtexParser.Entry
+                text = bibtexUtils.bibtexFormat(entry, configuration)
             } else {
                 text = document.getText(sortedEntryLocations[i])
             }
 
-            isDuplicate = duplicates.has(entries[i])
-            if (isDuplicate && handleDuplicates !== 'Ignore Duplicates') {
-                if (handleDuplicates === 'Highlight Duplicates') {
-                    const highlightRange: vscode.Range = new vscode.Range(
-                        entryLocations[i].start.line + lineDelta + lineOffset,
-                        entryLocations[i].start.character + columnOffset,
-                        entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) + lineOffset,
-                        entryLocations[i].end.character
-                    )
-                    this.diags.push(new vscode.Diagnostic(
-                        highlightRange,
-                        `Duplicate entry "${entries[i].internalKey}".`,
-                        vscode.DiagnosticSeverity.Warning
-                    ))
-                } else { // 'Comment Duplicates'
-                    // Log duplicate entry since we aren't highlighting it
-                    this.extension.logger.addLogMessage(
-                        `BibTeX-format: Duplicate entry "${entries[i].internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1 + lineOffset}.`)
-                    text = text.replace(/@/,'')
+            if (bibtexParser.isEntry(entries[i])) {
+                const entry = entries[i] as bibtexParser.Entry
+                isDuplicate = duplicates.has(entry)
+                if (isDuplicate && handleDuplicates !== 'Ignore Duplicates') {
+                    if (handleDuplicates === 'Highlight Duplicates') {
+                        const highlightRange: vscode.Range = new vscode.Range(
+                            entryLocations[i].start.line + lineDelta + lineOffset,
+                            entryLocations[i].start.character + columnOffset,
+                            entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) + lineOffset,
+                            entryLocations[i].end.character
+                        )
+                        this.diags.push(new vscode.Diagnostic(
+                            highlightRange,
+                            `Duplicate entry "${entry.internalKey}".`,
+                            vscode.DiagnosticSeverity.Warning
+                        ))
+                    } else { // 'Comment Duplicates'
+                        // Log duplicate entry since we aren't highlighting it
+                        this.extension.logger.addLogMessage(
+                            `BibTeX-format: Duplicate entry "${entry.internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1 + lineOffset}.`)
+                        text = text.replace(/@/,'')
+                    }
                 }
             }
 
