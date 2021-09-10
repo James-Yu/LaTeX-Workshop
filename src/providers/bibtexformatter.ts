@@ -2,17 +2,20 @@ import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
 import {performance} from 'perf_hooks'
 
-import * as bibtexUtils from './bibtexformatterlib/bibtexutils'
+import {BibtexUtils} from './bibtexformatterlib/bibtexutils'
+import type {BibtexEntry} from './bibtexformatterlib/bibtexutils'
 import type {Extension} from '../main'
 
 export class BibtexFormatter {
 
     private readonly extension: Extension
+    private readonly bibtexUtils: BibtexUtils
     readonly duplicatesDiagnostics: vscode.DiagnosticCollection
     diags: vscode.Diagnostic[]
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.bibtexUtils = new BibtexUtils(extension)
         this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
         this.diags = []
     }
@@ -55,26 +58,6 @@ export class BibtexFormatter {
         // Get configuration
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
-        const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
-        let tabs: string | undefined = bibtexUtils.getBibtexFormatTab(config)
-        if (tabs === undefined) {
-            this.extension.logger.addLogMessage(`Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
-            this.extension.logger.addLogMessage('Setting bibtex-format.tab to \'2 spaces\'')
-            tabs = '  '
-        }
-        const configuration: bibtexUtils.BibtexFormatConfig = {
-            tab: tabs,
-            case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
-            left: leftright[0],
-            right: leftright[1],
-            trailingComma: config.get('bibtex-format.trailingComma') as boolean,
-            sort: config.get('bibtex-format.sortby') as string[],
-            alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean,
-            sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
-            fieldsOrder: config.get('bibtex-fields.order') as string[],
-            firstEntries: config.get('bibtex-entries.first') as string[]
-        }
-        this.extension.logger.addLogMessage(`Bibtex format config: ${JSON.stringify(configuration)}`)
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
@@ -90,7 +73,7 @@ export class BibtexFormatter {
             return []
         }
         // Create an array of entries and of their starting locations
-        const entries: bibtexUtils.BibtexEntry[] = []
+        const entries: BibtexEntry[] = []
         const entryLocations: vscode.Range[] = []
         ast.content.forEach(item => {
             if (bibtexParser.isEntry(item) || bibtexParser.isStringEntry(item)) {
@@ -108,7 +91,7 @@ export class BibtexFormatter {
         let sortedEntryLocations: vscode.Range[] = []
         const duplicates = new Set<bibtexParser.Entry>()
         if (sort) {
-            entries.sort(bibtexUtils.bibtexSort(configuration, duplicates)).forEach(entry => {
+            entries.sort(this.bibtexUtils.bibtexSort(duplicates)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
@@ -129,7 +112,7 @@ export class BibtexFormatter {
         for (let i = 0; i < entries.length; i++) {
             if (align && bibtexParser.isEntry(entries[i])) {
                 const entry: bibtexParser.Entry = entries[i] as bibtexParser.Entry
-                text = bibtexUtils.bibtexFormat(entry, configuration)
+                text = this.bibtexUtils.bibtexFormat(entry)
             } else {
                 text = document.getText(sortedEntryLocations[i])
             }
