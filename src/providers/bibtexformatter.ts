@@ -2,17 +2,20 @@ import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
 import {performance} from 'perf_hooks'
 
-import * as bibtexUtils from '../utils/bibtexutils'
+import {BibtexUtils} from './bibtexformatterlib/bibtexutils'
+import type {BibtexEntry} from './bibtexformatterlib/bibtexutils'
 import type {Extension} from '../main'
 
 export class BibtexFormatter {
 
     private readonly extension: Extension
+    private readonly bibtexUtils: BibtexUtils
     readonly duplicatesDiagnostics: vscode.DiagnosticCollection
     diags: vscode.Diagnostic[]
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.bibtexUtils = new BibtexUtils(extension)
         this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
         this.diags = []
     }
@@ -55,25 +58,6 @@ export class BibtexFormatter {
         // Get configuration
         const config = vscode.workspace.getConfiguration('latex-workshop')
         const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
-        const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
-        let tabs: string | undefined = bibtexUtils.getBibtexFormatTab(config)
-        if (tabs === undefined) {
-            this.extension.logger.addLogMessage(`Wrong value for bibtex-format.tab: ${config.get('bibtex-format.tab')}`)
-            this.extension.logger.addLogMessage('Setting bibtex-format.tab to \'2 spaces\'')
-            tabs = '  '
-        }
-        const configuration: bibtexUtils.BibtexFormatConfig = {
-            tab: tabs,
-            case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
-            left: leftright[0],
-            right: leftright[1],
-            trailingComma: config.get('bibtex-format.trailingComma') as boolean,
-            sort: config.get('bibtex-format.sortby') as string[],
-            alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean,
-            sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
-            fieldsOrder: config.get('bibtex-fields.order') as string[]
-        }
-        this.extension.logger.addLogMessage(`Bibtex format config: ${JSON.stringify(configuration)}`)
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
 
@@ -89,10 +73,10 @@ export class BibtexFormatter {
             return []
         }
         // Create an array of entries and of their starting locations
-        const entries: bibtexParser.Entry[] = []
+        const entries: BibtexEntry[] = []
         const entryLocations: vscode.Range[] = []
         ast.content.forEach(item => {
-            if (bibtexParser.isEntry(item)) {
+            if (bibtexParser.isEntry(item) || bibtexParser.isStringEntry(item)) {
                 entries.push(item)
                 // latex-utilities uses 1-based locations whereas VSCode uses 0-based
                 entryLocations.push(new vscode.Range(
@@ -107,7 +91,7 @@ export class BibtexFormatter {
         let sortedEntryLocations: vscode.Range[] = []
         const duplicates = new Set<bibtexParser.Entry>()
         if (sort) {
-            entries.sort(bibtexUtils.bibtexSort(configuration.sort, duplicates)).forEach(entry => {
+            entries.sort(this.bibtexUtils.bibtexSort(duplicates)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
@@ -126,31 +110,35 @@ export class BibtexFormatter {
         let text: string
         let isDuplicate: boolean
         for (let i = 0; i < entries.length; i++) {
-            if (align) {
-                text = bibtexUtils.bibtexFormat(entries[i], configuration)
+            if (align && bibtexParser.isEntry(entries[i])) {
+                const entry: bibtexParser.Entry = entries[i] as bibtexParser.Entry
+                text = this.bibtexUtils.bibtexFormat(entry)
             } else {
                 text = document.getText(sortedEntryLocations[i])
             }
 
-            isDuplicate = duplicates.has(entries[i])
-            if (isDuplicate && handleDuplicates !== 'Ignore Duplicates') {
-                if (handleDuplicates === 'Highlight Duplicates') {
-                    const highlightRange: vscode.Range = new vscode.Range(
-                        entryLocations[i].start.line + lineDelta + lineOffset,
-                        entryLocations[i].start.character + columnOffset,
-                        entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) + lineOffset,
-                        entryLocations[i].end.character
-                    )
-                    this.diags.push(new vscode.Diagnostic(
-                        highlightRange,
-                        `Duplicate entry "${entries[i].internalKey}".`,
-                        vscode.DiagnosticSeverity.Warning
-                    ))
-                } else { // 'Comment Duplicates'
-                    // Log duplicate entry since we aren't highlighting it
-                    this.extension.logger.addLogMessage(
-                        `BibTeX-format: Duplicate entry "${entries[i].internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1 + lineOffset}.`)
-                    text = text.replace(/@/,'')
+            if (bibtexParser.isEntry(entries[i])) {
+                const entry = entries[i] as bibtexParser.Entry
+                isDuplicate = duplicates.has(entry)
+                if (isDuplicate && handleDuplicates !== 'Ignore Duplicates') {
+                    if (handleDuplicates === 'Highlight Duplicates') {
+                        const highlightRange: vscode.Range = new vscode.Range(
+                            entryLocations[i].start.line + lineDelta + lineOffset,
+                            entryLocations[i].start.character + columnOffset,
+                            entryLocations[i].start.line + lineDelta + (sortedEntryLocations[i].end.line - sortedEntryLocations[i].start.line) + lineOffset,
+                            entryLocations[i].end.character
+                        )
+                        this.diags.push(new vscode.Diagnostic(
+                            highlightRange,
+                            `Duplicate entry "${entry.internalKey}".`,
+                            vscode.DiagnosticSeverity.Warning
+                        ))
+                    } else { // 'Comment Duplicates'
+                        // Log duplicate entry since we aren't highlighting it
+                        this.extension.logger.addLogMessage(
+                            `BibTeX-format: Duplicate entry "${entry.internalKey}" at line ${entryLocations[i].start.line + lineDelta + 1 + lineOffset}.`)
+                        text = text.replace(/@/,'')
+                    }
                 }
             }
 
