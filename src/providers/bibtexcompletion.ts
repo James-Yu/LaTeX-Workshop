@@ -21,30 +21,32 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         const citationBackend = configuration.get('intellisense.citation.backend')
         let entriesFile: string = ''
         let optEntriesFile: string = ''
+        let entriesReplacements: {[key: string]: string[]} = {}
         switch (citationBackend) {
             case 'bibtex':
                 entriesFile = `${this.extension.extensionRoot}/data/bibtex-entries.json`
                 optEntriesFile = `${this.extension.extensionRoot}/data/bibtex-optional-entries.json`
+                entriesReplacements = configuration.get('intellisense.bibtexJSON.replace') as {[key: string]: string[]}
                 break
             case 'biblatex':
                 entriesFile = `${this.extension.extensionRoot}/data/biblatex-entries.json`
                 optEntriesFile = `${this.extension.extensionRoot}/data/biblatex-optional-entries.json`
+                entriesReplacements = configuration.get('intellisense.biblatexJSON.replace') as {[key: string]: string[]}
                 break
             default:
                 this.extension.logger.addLogMessage(`Unknown citation backend: ${citationBackend}`)
                 return
         }
         try {
-            this.loadDefaultItems(entriesFile, optEntriesFile)
+            this.loadDefaultItems(entriesFile, optEntriesFile, entriesReplacements)
         } catch (err) {
             this.extension.logger.addLogMessage(`Error reading data: ${err}.`)
         }
     }
 
-    private loadDefaultItems(entriesFile: string, optEntriesFile: string) {
+    private loadDefaultItems(entriesFile: string, optEntriesFile: string, entriesReplacements: {[key: string]: string[]}) {
         const entries: { [key: string]: string[] } = JSON.parse(fs.readFileSync(entriesFile, {encoding: 'utf8'})) as DataBibtexJsonType
         const optFields: { [key: string]: string[] } = JSON.parse(fs.readFileSync(optEntriesFile, {encoding: 'utf8'})) as DataBibtexOptionalJsonType
-        const entriesReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.bibtexJSON.replace') as {[key: string]: string[]}
 
         const maxLengths: {[key: string]: number} = this.computeMaxLengths(entries, optFields)
         const entriesList: string[] = []
