@@ -88,7 +88,7 @@ export class Commander {
             return
         }
         if (rootFile === undefined || languageId === undefined) {
-            this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
+            this.extension.logger.addLogMessage('Cannot find LaTeX root file. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#the-root-file')
             return
         }
         let pickedRootFile: string | undefined = rootFile
