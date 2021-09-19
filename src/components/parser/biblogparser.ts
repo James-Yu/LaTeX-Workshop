@@ -27,37 +27,56 @@ export class BibLogParser {
             return
         }
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        let excludeRegexp: RegExp[]
+        try {
+            excludeRegexp = (configuration.get('message.bibtexlog.exclude') as string[]).map(regexp => RegExp(regexp))
+        } catch (e) {
+            if (e instanceof Error) {
+                this.extension.logger.addLogMessage(`latex-workshop.message.bibtexlog.exclude is invalid: ${e.message}`)
+            }
+            return
+        }
         this.buildLog = []
 
         let result: RegExpExecArray | null
         while ((result = singleLineWarning.exec(log))) {
             const location = this.findKeyLocation(result[2])
             if (location) {
-                this.buildLog.push({ type: 'warning', file: location.file, text: result[1], line: location.line })
+                this.pushLog('warning', location.file, result[1],location.line, excludeRegexp )
             }
         }
         while ((result = multiLineWarning.exec(log))) {
             const filename = this.resolveBibFile(result[3], rootFile)
-            this.buildLog.push({ type: 'warning', file: filename, text: result[1], line: parseInt(result[2], 10) })
+            this.pushLog('warning', filename, result[1], parseInt(result[2], 10), excludeRegexp)
         }
         while ((result = multiLineError.exec(log))) {
             const filename = this.resolveBibFile(result[3], rootFile)
-            this.buildLog.push({ type: 'error', file: filename, text: result[1], line: parseInt(result[2], 10) })
+            this.pushLog('error', filename, result[1], parseInt(result[2], 10), excludeRegexp)
         }
         while ((result = multiLineCommandError.exec(log))) {
             const filename = this.resolveBibFile(result[3], rootFile)
-            this.buildLog.push({ type: 'error', file: filename, text: result[1], line: parseInt(result[2], 10) })
+            this.pushLog('error', filename, result[1], parseInt(result[2], 10), excludeRegexp)
         }
         while ((result = badCrossReference.exec(log))) {
-            this.buildLog.push({ type: 'error', file: rootFile, text: result[1], line: 1 })
+            this.pushLog('error', rootFile, result[1], 1, excludeRegexp)
         }
         while ((result = errorAuxFile.exec(log))) {
             const filename = this.resolveAuxFile(result[2], rootFile)
-            this.buildLog.push({ type: 'error', file: filename, text: result[1], line: 1 })
+            this.pushLog('error', filename, result[1], 1, excludeRegexp)
         }
 
         this.extension.logger.addLogMessage(`BibTeX log parsed with ${this.buildLog.length} messages.`)
         this.extension.compilerLogParser.showCompilerDiagnostics(this.compilerDiagnostics, this.buildLog, 'BibTeX')
+    }
+
+    private pushLog(type: string, file: string, message: string, line: number, excludeRegexp: RegExp[]) {
+        for (const regexp of excludeRegexp) {
+            if (message.match(regexp)) {
+                return
+            }
+        }
+        this.buildLog.push({ type, file, text: message, line})
     }
 
     private resolveAuxFile(filename: string, rootFile: string): string {
