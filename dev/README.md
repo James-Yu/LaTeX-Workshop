@@ -1,18 +1,24 @@
-# Development scripts
+# Development documentation
+
+## The manager logic
+
+The manager is responsible for detecting the correct root file and once detected to parse the whole project. Its logic is explained in `manager-logic.odg`.
+
+## Scripts for Intelisense
 
 We describe the purpose of the scripts found in the current directory.
 
 These scripts are actually only frontend to the `pyintel` package, which implements the core mechanisms. It fetches the latest list of packages and classes along with their descriptions from CTAN at https://ctan.org/pkg. It uses the TeXLive Package database `texlive.tlpdb` retrieved from https://mirrors.ircam.fr/pub/CTAN/systems/texlive/tlnet/tlpkg/texlive.tlpdb.
 
-## ctanpkglist.py
+### ctanpkglist.py
 
 It produces the intellisense data for classes and packages and save the result as json files: `../data/classnames.json` and `../data/packagenames.json`.
 
-### Classes
+#### Classes
 
 The list of classes is computed from the TeXLive Package database by looking for all `.cls` files. The description associated to each class is obtained from CTAN.
 
-### Packages
+#### Packages
 
 Getting a proper list of packages is tricky as the package names (as listed by CTAN) do not always match the base names of the `.sty` files to be loaded by `\usepackage`. This is handled in the following way
 
@@ -25,11 +31,11 @@ Getting a proper list of packages is tricky as the package names (as listed by C
 
 As some packages cannot be properly detected using the above mechanism, we maintain a list of extra packages to be added to the list in [extra-packagenames.json](extra-packagenames.json). These packages are automatically added at the end of the [`ctanpkglist.py`](dev/ctanpkglist.py) script.
 
-## unimathsymbols.py
+### unimathsymbols.py
 
 It parses uni-math symbols from http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt and save the result as a json file. The result is used to generate command intellisense.
 
-## pkgcommand.py
+### pkgcommand.py
 
 ```
 usage: pkgcommand.py [-h] [-o OUTDIR] [-i INFILE [INFILE ...]]
@@ -88,6 +94,12 @@ For every package or class, two files are generated:
 
 Completion files for classes are all prefixed by `class-`.
 
-## func3.py
+### func3.py
 
 This script generates intellisense data for LaTeX stored in [`../data/expl3_cmd.json`](../data/expl3_cmd.json).
+
+## Grammar files
+
+### generate-bailout.js
+
+The script `generate-bailout.js` is responsible for generating a modified C/C++ grammar file based on https://github.com/jeff-hykin/better-cpp-syntax. The new grammar file is `syntax/cpp-grammar-bailout.tmLanguage.json` makes sure that the end of the LaTeX environment is properly detected.
