@@ -44,7 +44,6 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
     return pickedRootFile
 }
 
-
 export class Commander {
     private readonly extension: Extension
     private readonly _texdoc: TeXDoc
@@ -473,6 +472,16 @@ export class Commander {
         )
     }
 
+    private endPosition(startPos: vscode.Position, s: string): vscode.Position {
+        const splitLines = s.split('\n')
+        const endLine = startPos.line + splitLines.length - 1
+        let endCol = splitLines[splitLines.length - 1].length
+        if (splitLines.length === 1) {
+            endCol += startPos.character
+        }
+        return new vscode.Position(endLine, endCol)
+    }
+
     /**
     * Toggle a keyword, if the cursor is inside a keyword,
     * the keyword will be removed, otherwise a snippet will be added.
@@ -480,35 +489,19 @@ export class Commander {
     * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
     */
     async toggleSelectedKeyword(keyword: string, outerBraces?: boolean) {
-        function updateOffset(newContent: string, replacedRange: vscode.Range) {
-            const splitLines = newContent.split('\n')
-            offset.lineOffset += splitLines.length - (replacedRange.end.line - replacedRange.start.line + 1)
-            offset.columnOffset +=
-                splitLines[splitLines.length - 1].length -
-                (replacedRange.isSingleLine
-                    ? replacedRange.end.character - replacedRange.start.character
-                    : replacedRange.start.character)
-        }
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
             return
         }
 
         const document = editor.document
+        // Sort the selections in decreasing order to avoid handling offsets created by the earlier selections
         const selections = editor.selections.sort((a, b) => {
             let diff = a.start.line - b.start.line
             diff = diff !== 0 ? diff : a.start.character - b.start.character
-            return diff
+            return -diff
         })
         const selectionsText = selections.map(selection => document.getText(selection))
-
-        const offset: {
-            currentLine: number,
-            lineOffset: number,
-            columnOffset: number
-        } = {
-            currentLine: 0, lineOffset: 0, columnOffset: 0
-        }
 
         const actions: ('added' | 'removed')[] = []
 
@@ -516,15 +509,6 @@ export class Commander {
             const selection = selections[i]
             const selectionText = selectionsText[i]
             const line = document.lineAt(selection.anchor)
-
-            if (offset.currentLine !== selection.start.line) {
-                offset.currentLine = selection.start.line
-                offset.columnOffset = 0
-            }
-            const translatedSelection = new vscode.Range(
-                selection.start.translate(offset.lineOffset, offset.columnOffset),
-                selection.end.translate(offset.lineOffset, offset.columnOffset),
-            )
 
             const pattern = new RegExp(`\\\\${keyword}{`, 'g')
             let match = pattern.exec(line.text)
@@ -536,12 +520,11 @@ export class Commander {
                 const insideText = getLongestBalancedString(searchString)
                 const matchRange = new vscode.Range(matchStart,matchEnd.translate(0, insideText.length + 1))
 
-                if (matchRange.contains(translatedSelection)) {
+                if (matchRange.contains(selection)) {
                     // Remove keyword
                     await editor.edit(((editBuilder) => {
                         editBuilder.replace(matchRange, insideText)
                     }))
-                    updateOffset(insideText, matchRange)
                     actions.push('removed')
                     keywordRemoved = true
                     break
@@ -561,18 +544,11 @@ export class Commander {
                     } else {
                         replacementText= `\\${keyword}{${selectionText}}`
                     }
-                    editBuilder.replace(translatedSelection, replacementText)
-                    updateOffset(replacementText, selection)
+                    editBuilder.replace(selection, replacementText)
                 }))
             } else {
-                let snippet: vscode.SnippetString
-                if (outerBraces === true) {
-                    snippet = new vscode.SnippetString(`{\\${keyword} $1}`)
-                } else {
-                    snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
-                }
-                await editor.insertSnippet(snippet, selection.start.translate(offset.lineOffset, offset.columnOffset))
-                updateOffset(snippet.value.replace(/\$\d/g, ''), new vscode.Range(selection.start, selection.start))
+                const snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
+                await editor.insertSnippet(snippet, selection.start)
             }
             actions.push('added')
         }
