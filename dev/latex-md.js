@@ -41,6 +41,6 @@ function insertLaTeXGrammar(url, latexScope, newScopeName, newGrammarFile) {
 
 insertLaTeXGrammar('https://raw.githubusercontent.com/microsoft/vscode/main/extensions/markdown-basics/syntaxes/markdown.tmLanguage.json',
     'text.tex.latex',
-    'text.tex.markdown_latex',
-    '../syntax/markdown-latex.tmLanguage.json'
+    'text.tex.markdown_latex_combined',
+    '../syntax/markdown-latex-combined.tmLanguage.json'
 )
