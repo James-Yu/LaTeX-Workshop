@@ -4,9 +4,7 @@
 
 The manager is responsible for detecting the correct root file and once detected to parse the whole project. Its logic is explained in `manager-logic.odg`.
 
-## Scripts for Intelisense
-
-We describe the purpose of the scripts found in the current directory.
+## Scripts for Intellisense
 
 These scripts are actually only frontend to the `pyintel` package, which implements the core mechanisms. It fetches the latest list of packages and classes along with their descriptions from CTAN at https://ctan.org/pkg. It uses the TeXLive Package database `texlive.tlpdb` retrieved from https://mirrors.ircam.fr/pub/CTAN/systems/texlive/tlnet/tlpkg/texlive.tlpdb.
 
