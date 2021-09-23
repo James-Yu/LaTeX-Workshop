@@ -531,6 +531,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const obj = {
                 altKey: e.altKey,
                 code: e.code,
+                keyCode: e.keyCode,
                 ctrlKey: e.ctrlKey,
                 isComposing: e.isComposing,
                 key: e.key,
