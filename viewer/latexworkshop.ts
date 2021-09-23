@@ -300,9 +300,15 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     }
                     if (data.invertMode.enabled) {
                         const { brightness, grayscale, hueRotate, invert, sepia } = data.invertMode
-                        const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`;
-                        (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
-                        (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
+                        const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
+                        const isPrefersColorSchemeDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+                        if (isPrefersColorSchemeDark) {
+                            (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter;
+                            (document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter
+                        } else {
+                            (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
+                            (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
+                        }
                     }
                     (document.querySelector('#viewerContainer') as HTMLElement).style.background = data.bgColor
                     if (data.keybindings) {
