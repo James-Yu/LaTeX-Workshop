@@ -304,7 +304,8 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                         const isPrefersColorSchemeDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
                         if (isPrefersColorSchemeDark) {
                             (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter;
-                            (document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter
+                            (document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter;
+                            (document.querySelector('#sidebarContent') as HTMLHtmlElement).style.background = 'var(--body-bg-color)'
                         } else {
                             (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
                             (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
