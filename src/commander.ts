@@ -483,12 +483,11 @@ export class Commander {
     }
 
     /**
-    * Toggle a keyword, if the cursor is inside a keyword,
+    * Toggle a keyword. If the cursor is inside a keyword argument,
     * the keyword will be removed, otherwise a snippet will be added.
     * @param keyword the keyword to toggle without backslash eg. textbf or underline
-    * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
     */
-    async toggleSelectedKeyword(keyword: string, outerBraces?: boolean) {
+    async toggleSelectedKeyword(keyword: string) {
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
             return
@@ -538,12 +537,7 @@ export class Commander {
             // Add keyword
             if (selectionText.length > 0) {
                 await editor.edit(((editBuilder) => {
-                    let replacementText: string
-                    if (outerBraces === true) {
-                        replacementText= `{\\${keyword} ${selectionText}}`
-                    } else {
-                        replacementText= `\\${keyword}{${selectionText}}`
-                    }
+                    const replacementText= `\\${keyword}{${selectionText}}`
                     editBuilder.replace(selection, replacementText)
                 }))
             } else {
