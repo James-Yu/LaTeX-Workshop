@@ -483,9 +483,15 @@ export class Commander {
     }
 
     /**
-    * Toggle a keyword. If the cursor is inside a keyword argument,
+    * Toggle a keyword. This function works with multi-cursors or multi-selections
+    *
+    * If the cursor is inside a keyword argument (the selection is empty),
     * the keyword will be removed, otherwise a snippet will be added.
-    * @param keyword the keyword to toggle without backslash eg. textbf or underline
+    *
+    * If the selection is not empty and contains `\keyword{...}`, this part is replaced by
+    * the argument of `keyword`. If the selection does not contain `\keyword`, it is surrounded by `\keyword{...}`.
+    *
+    *  @param keyword the keyword to toggle without backslash eg. textbf or underline
     */
     async toggleSelectedKeyword(keyword: string) {
         const editor = vscode.window.activeTextEditor
@@ -505,9 +511,14 @@ export class Commander {
         const actions: ('added' | 'removed')[] = []
 
         for (let i = 0; i < selections.length; i++) {
+            // If the selection is empty, we check if the current cursor is inside `keyword{....}`.
+            // If so, we remove the surrounding `keyword{...}`.
+            // When the selection is non empty, the pattern `keyword{...}` must entirely be contained in the selection.
             const selection = selections[i]
             const selectionText = selectionsText[i]
             const line = document.lineAt(selection.anchor)
+            const lastLine = document.lineAt(selection.end)
+            const searchStringEndPos: vscode.Position = selection.isEmpty ? lastLine.range.end : selection.end
 
             const pattern = new RegExp(`\\\\${keyword}{`, 'g')
             let match = pattern.exec(line.text)
@@ -515,11 +526,12 @@ export class Commander {
             while (match !== null) {
                 const matchStart = line.range.start.translate(0, match.index)
                 const matchEnd = matchStart.translate(0, match[0].length)
-                const searchString = document.getText(new vscode.Range(matchEnd, line.range.end))
+                const searchString = document.getText(new vscode.Range(matchEnd, searchStringEndPos))
                 const insideText = getLongestBalancedString(searchString)
-                const matchRange = new vscode.Range(matchStart,matchEnd.translate(0, insideText.length + 1))
+                const insideTextEndPos = this.endPosition(matchEnd, insideText)
+                const matchRange = new vscode.Range(matchStart, insideTextEndPos.translate(0, 1))
 
-                if (matchRange.contains(selection)) {
+                if (!selection.isEmpty || matchRange.contains(selection)) {
                     // Remove keyword
                     await editor.edit(((editBuilder) => {
                         editBuilder.replace(matchRange, insideText)
