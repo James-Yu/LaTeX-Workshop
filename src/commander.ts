@@ -472,14 +472,22 @@ export class Commander {
         )
     }
 
-    private endPosition(startPos: vscode.Position, s: string): vscode.Position {
+    /**
+     * Return the position of the end of `s}` starting from `startPos`.
+     * Note that the inclusion of the closing`}`
+     *
+     * @param startPos starting position
+     * @param s the string to add to `startPos`
+     */
+    private computeEndMatchPosition(startPos: vscode.Position, s: string): vscode.Position {
         const splitLines = s.split('\n')
         const endLine = startPos.line + splitLines.length - 1
         let endCol = splitLines[splitLines.length - 1].length
         if (splitLines.length === 1) {
             endCol += startPos.character
         }
-        return new vscode.Position(endLine, endCol)
+        // Include the closing '}' in the range
+        return new vscode.Position(endLine, endCol + 1)
     }
 
     /**
@@ -500,7 +508,8 @@ export class Commander {
         }
 
         const document = editor.document
-        // Sort the selections in decreasing order to avoid handling offsets created by the earlier selections
+        const pattern = new RegExp(`\\\\${keyword}{`, 'g')
+        // Sort the selections in decreasing order to avoid offset issues
         const selections = editor.selections.sort((a, b) => {
             let diff = a.start.line - b.start.line
             diff = diff !== 0 ? diff : a.start.character - b.start.character
@@ -508,14 +517,10 @@ export class Commander {
         })
 
         for (const selection of selections) {
-            // If the selection is empty, we check if the current cursor is inside `keyword{....}`.
-            // If so, we remove the surrounding `keyword{...}`.
-            // When the selection is non empty, the pattern `keyword{...}` must entirely be contained in the selection.
             const line = document.lineAt(selection.anchor)
             const lastLine = document.lineAt(selection.end)
             const searchStringEndPos: vscode.Position = selection.isEmpty ? lastLine.range.end : selection.end
 
-            const pattern = new RegExp(`\\\\${keyword}{`, 'g')
             let match = pattern.exec(line.text)
             let keywordRemoved = false
             while (match !== null) {
@@ -523,12 +528,13 @@ export class Commander {
                 const keywordEnd = keywordStart.translate(0, match[0].length)
                 const searchString = document.getText(new vscode.Range(keywordEnd, searchStringEndPos))
                 const insideText = getLongestBalancedString(searchString)
-                const insideTextEndPos = this.endPosition(keywordEnd, insideText)
-                // Include the closing '}' in the range
-                const matchRange = new vscode.Range(keywordStart, insideTextEndPos.translate(0, 1))
+                const endMatchPos = this.computeEndMatchPosition(keywordEnd, insideText)
+                const matchRange = new vscode.Range(keywordStart, endMatchPos)
 
                 if (!selection.isEmpty || matchRange.contains(selection)) {
-                    // Remove keyword
+                    // If the selection is empty, we check if the current cursor is inside `keyword{....}`.
+                    // If so, we remove the surrounding `keyword{...}`.
+                    // When the selection is non empty, the pattern `keyword{...}` must entirely be contained in the selection.
                     await editor.edit(((editBuilder) => {
                         editBuilder.replace(matchRange, insideText)
                     }))
