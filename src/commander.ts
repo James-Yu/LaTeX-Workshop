@@ -507,8 +507,6 @@ export class Commander {
             return -diff
         })
 
-        const actions: ('added' | 'removed')[] = []
-
         for (const selection of selections) {
             // If the selection is empty, we check if the current cursor is inside `keyword{....}`.
             // If so, we remove the surrounding `keyword{...}`.
@@ -534,7 +532,6 @@ export class Commander {
                     await editor.edit(((editBuilder) => {
                         editBuilder.replace(matchRange, insideText)
                     }))
-                    actions.push('removed')
                     keywordRemoved = true
                     break
                 }
@@ -555,10 +552,7 @@ export class Commander {
                 const snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
                 await editor.insertSnippet(snippet, selection.start)
             }
-            actions.push('added')
         }
-
-        return actions
     }
 
     /**
