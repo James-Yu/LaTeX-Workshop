@@ -506,16 +506,13 @@ export class Commander {
             diff = diff !== 0 ? diff : a.start.character - b.start.character
             return -diff
         })
-        const selectionsText = selections.map(selection => document.getText(selection))
 
         const actions: ('added' | 'removed')[] = []
 
-        for (let i = 0; i < selections.length; i++) {
+        for (const selection of selections) {
             // If the selection is empty, we check if the current cursor is inside `keyword{....}`.
             // If so, we remove the surrounding `keyword{...}`.
             // When the selection is non empty, the pattern `keyword{...}` must entirely be contained in the selection.
-            const selection = selections[i]
-            const selectionText = selectionsText[i]
             const line = document.lineAt(selection.anchor)
             const lastLine = document.lineAt(selection.end)
             const searchStringEndPos: vscode.Position = selection.isEmpty ? lastLine.range.end : selection.end
@@ -524,12 +521,13 @@ export class Commander {
             let match = pattern.exec(line.text)
             let keywordRemoved = false
             while (match !== null) {
-                const matchStart = line.range.start.translate(0, match.index)
-                const matchEnd = matchStart.translate(0, match[0].length)
-                const searchString = document.getText(new vscode.Range(matchEnd, searchStringEndPos))
+                const keywordStart = line.range.start.translate(0, match.index)
+                const keywordEnd = keywordStart.translate(0, match[0].length)
+                const searchString = document.getText(new vscode.Range(keywordEnd, searchStringEndPos))
                 const insideText = getLongestBalancedString(searchString)
-                const insideTextEndPos = this.endPosition(matchEnd, insideText)
-                const matchRange = new vscode.Range(matchStart, insideTextEndPos.translate(0, 1))
+                const insideTextEndPos = this.endPosition(keywordEnd, insideText)
+                // Include the closing '}' in the range
+                const matchRange = new vscode.Range(keywordStart, insideTextEndPos.translate(0, 1))
 
                 if (!selection.isEmpty || matchRange.contains(selection)) {
                     // Remove keyword
@@ -547,8 +545,9 @@ export class Commander {
             }
 
             // Add keyword
-            if (selectionText.length > 0) {
+            if (!selection.isEmpty) {
                 await editor.edit(((editBuilder) => {
+                    const selectionText = document.getText(selection)
                     const replacementText= `\\${keyword}{${selectionText}}`
                     editBuilder.replace(selection, replacementText)
                 }))
