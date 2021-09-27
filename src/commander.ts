@@ -508,7 +508,6 @@ export class Commander {
         }
 
         const document = editor.document
-        const pattern = new RegExp(`\\\\${keyword}{`, 'g')
         // Sort the selections in decreasing order to avoid offset issues
         const selections = editor.selections.sort((a, b) => {
             let diff = a.start.line - b.start.line
@@ -517,10 +516,11 @@ export class Commander {
         })
 
         for (const selection of selections) {
-            const line = document.lineAt(selection.anchor)
+            const line = document.lineAt(selection.start)
             const lastLine = document.lineAt(selection.end)
             const searchStringEndPos: vscode.Position = selection.isEmpty ? lastLine.range.end : selection.end
 
+            const pattern = new RegExp(`\\\\${keyword}{`, 'g')
             let match = pattern.exec(line.text)
             let keywordRemoved = false
             while (match !== null) {
