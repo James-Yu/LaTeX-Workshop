@@ -6,101 +6,128 @@ labels:
 ---
 
 
-## Preliminary questions [Required]
+### Preliminary question
 
-### Disable all the other extensions except for LaTeX Workshop, restart VS Code, and check that you still see this issue. [Required]
+<!-- These questions are mandatory. [Required]
+Please toggle the statements that are correct by removing the space inside the square brackets and inserting an `x` instead.
+A comment before eachs statement explains what you have to do to check the statement. Please read those carefully.
+-->
 
-You still see this issue?: Yes/No
+<!--
+Disable all the other extensions except for LaTeX Workshop, restart VS Code, and check that you still see this issue. 
+-->
 
-### Make sure to visit the [wiki FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) before filling an issue.
+- [ ] I see this issue when only this extension is running.
 
-You visited the wiki?: Yes/No
+<!-- 
+Visit the [wiki FAQ](https://github.com/James-Yu/LaTeX-Workshop/wiki/FAQ) and check whether your issue is already referenced there before filling an issue.
+-->
 
-### If your issue is with compiling a document (not having to do with finding the root file of a project), check first that you can compile manually.
+- [ ] I visited the wiki/FAQ.
 
-You can compile a TeX document manually?: Yes/No
+<!--
+If your issue is with compiling a document (for example into a pdf file - not having to do with finding the root file of a project), 
+check first that you can compile manually. This can be done by entering the compile/build command into a terminal.
+-->
+
+- [ ] I can compile the TeX document manually without the issue.
 
 
 
 
-## Describe the bug [Required]
 
-A clear and concise description of what the bug is.
+### Describe the bug
 
-### To Reproduce
+<!-- This is mandatory. [Required]
+Give a clear and concise description of what the bug is and name the minimal steps to reproduce it.
+-->
 
 Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
 3. See error
 
-### Expected behavior
+#### Expected behavior
 
-A clear and concise description of what you expected to happen.
+<!-- This is mandatory. [Required]
+Give a clear and concise description of what you expected to happen.
+-->
 
 
 
+### Logs 
 
-## Logs [Required]
+<details>
+ <summary> 
+  Latex Workshop extension Logs/Output
+ </summary>
+ 
+<!-- This is mandatory. [Required]
+Please paste the whole log messages inside the triple grave accents (`). Do not paste only parts of the log messages. 
+The log should start with `Initializing LaTeX Workshop`. This is very important to identify problems.
 
-Please paste the whole log messages here, not parts of ones. The log should start with `Initializing LaTeX Workshop`. It is very important to identify problems.
-
-### LaTeX Workshop Output [Required]
+To access the log, click the 'TeX' icon on the Activity Bar on the left side,
+select 'View Log Messages', then select 'View LaTeX Workshop extension log'.
+-->
+ 
+```
 
 ```
-To access the log, click the 'TeX' icon on the Activity Bar on the left side, select 'View Log Messages', then select 'View LaTeX Workshop extension log'.
+  
+</details>
 
-[Paste the log here]
-```
+<details>
+ <summary> 
+  Developer Tools Console
+ </summary>
+ 
+<!-- This is mandatory. [Required]
+Please paste the whole log messages inside the triple grave accents (`). Do not paste only parts of the log messages. 
 
-### Developer Tools Console [Required]
-
-```
 To access the log, click 'help' -> 'Toggle Developer Tools' -> 'Console'. Paste anything suspicious.
+-->
 
-[Paste the log here]
 ```
 
+```
+
+</details>
 
 
-## Screenshots
+### Screenshots
 
-If applicable, add screenshots to help explain your problem.
+<!-- 
+If applicable, paste screenshots here that could help identifying the problem.
+Please add a short explanitory note before each of them.
+-->
 
 
 
+### Versions
 
-## Desktop [Required]
-
+<!-- This is mandatory. [Required]
 Please write exact version numbers. Please don't write `latest` instead of exact numbers.
+-->
 
- - OS: [e.g. Windows 10]
- - VS Code version: [e.g. 1.41.0]
- - Extension version: [e.g. 8.5.0]
- - TeX distribution version: [e.g. TeX Live 2019/MiKTeX 2.9.7250]
+ - OS: <!-- e.g. Windows 10 -->
+ - VS Code version: <!-- e.g. 1.41.0 -->
+ - Extension version: <!-- e.g. 8.5.0 -->
+ - TeX distribution version: <!-- e.g. TeX Live 2019/MiKTeX 2.9.7250 -->
 
 
+### Additional questions
 
+<!--
+Please check the correct statements by removing the space inside the square brackets and inserting an `x` instead.
+-->
 
-## Additional questions
-
-### Are you using VSCodium?
-
-Yes/No
-
-### Are you using the Snap or Flatpack versions of VS Code?
-
-Yes/No
-
-### Are you using LaTeX Workshop with VS Code Remote?
-
-Yes/No
-
-If the answer is Yes, please write which one you are using. Write the versions of the remote extension.
-
-- Remote Containers/Remote SSH/Remote WSL
-- Remote Extension Version: [e.g. 0.48.0]
+- [ ] I use VSCodium.
+- [ ] I use the *Snap* version of VS Code.
+- [ ] I use the *Flatpack* version of VS Code.
+- [ ] I use VS Code Remote with the Latex Workshop extension. <br>
+      **Remote Extension name:**
+      **Remote Extension Version:**
 
 ### Additional context
 
-Add any other context about the problem here.
+<!-- Add any other context about the problem here. -->
