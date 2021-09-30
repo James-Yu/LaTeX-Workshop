@@ -208,6 +208,45 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.sendCurrentStateToPanelManager()
     }
 
+    private forwardSynctex(position: { page: number, x: number, y: number }) {
+        if (!this.synctexEnabled) {
+            this.addLogMessage('SyncTeX temporarily disabled.')
+            return
+        }
+        // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
+        // https://github.com/James-Yu/LaTeX-Workshop/pull/417
+        const container = document.getElementById('viewerContainer') as HTMLElement
+        const pos = PDFViewerApplication.pdfViewer._pages[position.page - 1].viewport.convertToViewportPoint(position.x, position.y)
+        const page = document.getElementsByClassName('page')[position.page - 1] as HTMLElement
+        const maxScrollX = window.innerWidth * 0.9
+        const minScrollX = window.innerWidth * 0.1
+        let scrollX = page.offsetLeft + pos[0]
+        scrollX = Math.min(scrollX, maxScrollX)
+        scrollX = Math.max(scrollX, minScrollX)
+        const scrollY = page.offsetTop + page.offsetHeight - pos[1]
+
+        // set positions before and after SyncTeX to viewerHistory
+        this.viewerHistory.set(container.scrollTop)
+        if (PDFViewerApplication.pdfViewer.scrollMode === 1) {
+            // horizontal scrolling
+            container.scrollLeft = page.offsetLeft
+        } else {
+            // vertical scrolling
+            container.scrollTop = scrollY - document.body.offsetHeight * 0.4
+        }
+        this.viewerHistory.set(container.scrollTop)
+
+        const indicator = document.getElementById('synctex-indicator') as HTMLElement
+        indicator.className = 'show'
+        indicator.style.left = `${scrollX}px`
+        indicator.style.top = `${scrollY}px`
+        setTimeout(() => indicator.className = 'hide', 10)
+        setTimeout(() => {
+            indicator.style.left = ''
+            indicator.style.top = ''
+        }, 1000)
+    }
+
     private setupConnectionPort() {
         const openPack: ClientRequest = {
             type: 'open',
@@ -219,34 +258,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const data = JSON.parse(event.data) as ServerResponse
             switch (data.type) {
                 case 'synctex': {
-                    if (!this.synctexEnabled) {
-                        this.addLogMessage('SyncTeX temporarily disabled.')
-                        break
-                    }
-                    // use the offsetTop of the actual page, much more accurate than multiplying the offsetHeight of the first page
-                    // https://github.com/James-Yu/LaTeX-Workshop/pull/417
-                    const container = document.getElementById('viewerContainer') as HTMLElement
-                    const pos = PDFViewerApplication.pdfViewer._pages[data.data.page - 1].viewport.convertToViewportPoint(data.data.x, data.data.y)
-                    const page = document.getElementsByClassName('page')[data.data.page - 1] as HTMLElement
-                    const scrollX = page.offsetLeft + pos[0]
-                    const scrollY = page.offsetTop + page.offsetHeight - pos[1]
-
-                    // set positions before and after SyncTeX to viewerHistory
-                    this.viewerHistory.set(container.scrollTop)
-                    if (PDFViewerApplication.pdfViewer.scrollMode === 1) {
-                        // horizontal scrolling
-                        container.scrollLeft = page.offsetLeft
-                    } else {
-                        // vertical scrolling
-                        container.scrollTop = scrollY - document.body.offsetHeight * 0.4
-                    }
-                    this.viewerHistory.set(container.scrollTop)
-
-                    const indicator = document.getElementById('synctex-indicator') as HTMLElement
-                    indicator.className = 'show'
-                    indicator.style.left = `${scrollX}px`
-                    indicator.style.top = `${scrollY}px`
-                    setTimeout(() => indicator.className = 'hide', 10)
+                    this.forwardSynctex(data.data)
                     break
                 }
                 case 'refresh': {
