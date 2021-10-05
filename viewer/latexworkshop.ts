@@ -394,13 +394,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         const smallViewMaxWidth = 580 + numPagesWidth + scaleWidth + printerButtonWidth
         const smallViewRule = `@media all and (max-width: ${smallViewMaxWidth}px) { .hiddenSmallView, .hiddenSmallView * { display: none; } }`
         styleSheet.insertRule(smallViewRule)
-        const buttonSpacerMaxWidth = 520 + numPagesWidth + scaleWidth + printerButtonWidth
+        const buttonSpacerMaxWidth = 540 + numPagesWidth + scaleWidth + printerButtonWidth
         const buttonSpacerRule = `@media all and (max-width: ${buttonSpacerMaxWidth}px) { .toolbarButtonSpacer { width: 0; } }`
         styleSheet.insertRule(buttonSpacerRule)
-        const scaleMaxWidth = 480 + numPagesWidth + scaleWidth + printerButtonWidth
+        const scaleMaxWidth = 500 + numPagesWidth + scaleWidth + printerButtonWidth
         const scaleRule = `@media all and (max-width: ${scaleMaxWidth}px) { #scaleSelectContainer { display: none; } }`
         styleSheet.insertRule(scaleRule)
-        const trimMaxWidth = 480 + numPagesWidth + printerButtonWidth
+        const trimMaxWidth = 500 + numPagesWidth + printerButtonWidth
         const trimRule = `@media all and (max-width: ${trimMaxWidth}px) { #trimSelectContainer { display: none; } }`
         styleSheet.insertRule(trimRule)
     }
