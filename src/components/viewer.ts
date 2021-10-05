@@ -1,6 +1,5 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import * as os from 'os'
 import type ws from 'ws'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
@@ -266,7 +265,7 @@ export class Viewer {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const setting: 'auto' | 'force' | 'never' = configuration.get('viewer.pdf.internal.keyboardEvent', 'auto')
         if (setting === 'auto') {
-            return os.platform() !== 'linux' || !!vscode.env.remoteName?.match(/^(dev-container|attached-container|wsl|ssh-remote)$/)
+            return true
         } else if (setting === 'force') {
             return true
         } else {
