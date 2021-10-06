@@ -242,6 +242,46 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, 1000)
     }
 
+    private refreshPDFViewer() {
+        if (!this.autoReloadEnabled) {
+            this.addLogMessage('Auto reload temporarily disabled.')
+            return
+        }
+        const pack = {
+            scale: PDFViewerApplication.pdfViewer.currentScaleValue,
+            scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
+            spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
+            scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
+            scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft
+        }
+
+        // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
+        // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
+        PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
+        // Override the spread mode specified in PDF documents with the current one.
+        // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
+        PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
+
+        void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then( () => {
+            // reset the document title to the original value to avoid duplication
+            document.title = this.documentTitle
+            // ensure that trimming is invoked if needed.
+            setTimeout(() => {
+                window.dispatchEvent( new Event('pagerendered') )
+            }, 2000)
+        })
+        this.onDidLoadPdfFile( () => {
+            PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
+            PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
+            PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode;
+            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
+            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
+        }, {once: true})
+        this.onDidRenderPdfFile( () => {
+            this.send({type:'loaded', path:this.pdfFilePath})
+        }, {once: true})
+    }
+
     private setupConnectionPort() {
         const openPack: ClientRequest = {
             type: 'open',
@@ -257,43 +297,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'refresh': {
-                    if (!this.autoReloadEnabled) {
-                        this.addLogMessage('Auto reload temporarily disabled.')
-                        break
-                    }
-                    const pack = {
-                        scale: PDFViewerApplication.pdfViewer.currentScaleValue,
-                        scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
-                        spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
-                        scrollTop: (document.getElementById('viewerContainer') as HTMLElement).scrollTop,
-                        scrollLeft: (document.getElementById('viewerContainer') as HTMLElement).scrollLeft
-                    }
-
-                    // Note: without showPreviousViewOnLoad = false restoring the position after the refresh will fail if
-                    // the user has clicked on any link in the past (pdf.js will automatically navigate to that link).
-                    PDFViewerApplicationOptions.set('showPreviousViewOnLoad', false)
-                    // Override the spread mode specified in PDF documents with the current one.
-                    // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
-                    PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
-
-                    void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then( () => {
-                        // reset the document title to the original value to avoid duplication
-                        document.title = this.documentTitle
-                        // ensure that trimming is invoked if needed.
-                        setTimeout(() => {
-                            window.dispatchEvent( new Event('pagerendered') )
-                        }, 2000)
-                    })
-                    this.onDidLoadPdfFile( () => {
-                        PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
-                        PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
-                        PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode;
-                        (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
-                        (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
-                    }, {once: true})
-                    this.onDidRenderPdfFile( () => {
-                        this.send({type:'loaded', path:this.pdfFilePath})
-                    }, {once: true})
+                    this.refreshPDFViewer()
                     break
                 }
                 case 'params': {
