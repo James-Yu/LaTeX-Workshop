@@ -6,6 +6,8 @@ import { convertFilenameEncoding } from '../../utils/convertfilename'
 import { LatexLogParser } from './latexlog'
 import { BibLogParser } from './biblogparser'
 
+// Notice that 'Output written on filename.pdf' isn't output in draft mode.
+// https://github.com/James-Yu/LaTeX-Workshop/issues/2893#issuecomment-936312853
 const latexPattern = /^Output\swritten\son\s(.*)\s\(.*\)\.$/gm
 const latexFatalPattern = /Fatal error occurred, no output PDF file produced!/gm
 
