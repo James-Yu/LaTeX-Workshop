@@ -375,6 +375,7 @@ export class Builder {
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
         await this.extension.manager.parseFlsFile(rootFile)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
             const pdfFile = this.extension.manager.tex2pdf(rootFile)
             this.extension.logger.addLogMessage('SyncTex after build invoked.')
