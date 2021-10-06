@@ -17,12 +17,6 @@ export interface ILatexWorkshopPdfViewer {
     readonly viewerHistory: ViewerHistory,
 
     /**
-     * `cb` is called immediately before the viewer will starts.
-     * Can be used to override the settings of PDFViewerApplication.
-     */
-    onWillStartPdfViewer(cb: () => unknown): IDisposable,
-
-    /**
      * `cb` is called after the viewer started.
      */
     onDidStartPdfViewer(cb: () => unknown): IDisposable,

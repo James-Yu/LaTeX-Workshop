@@ -91,11 +91,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return PDFViewerApplication.eventBus
     }
 
-    onWillStartPdfViewer(cb: (e: Event) => unknown): IDisposable {
-        document.addEventListener('webviewerloaded', cb, {once: true})
-        return { dispose: () => document.removeEventListener('webviewerloaded', cb) }
-    }
-
     onDidStartPdfViewer(cb: () => unknown): IDisposable {
         const cb0 = () => {
             cb()
