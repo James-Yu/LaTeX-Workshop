@@ -52,6 +52,8 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Magic comments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#magic-comments)
   - [Catching errors and warnings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#catching-errors-and-warnings)
 - [Linting](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters)
+  - [Duplicate labels](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters#duplicate-labels)
+  - [Chktex](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters#chktex)
 - [Viewing & SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View)
   - [Internal PDF viewer](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#internal-pdf-viewer)
     - [Invert mode](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#invert-mode)
