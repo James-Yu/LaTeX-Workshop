@@ -89,6 +89,24 @@ export class Logger {
         }
     }
 
+    showErrorMessageWithCompilerLogButton(message: string) {
+        const res = this.showErrorMessage(message, 'Open compiler log')
+        if (res) {
+            return res.then(option => {
+                switch (option) {
+                    case 'Open compiler log': {
+                        this.showCompilerLog()
+                        break
+                    }
+                    default: {
+                        break
+                    }
+                }
+            })
+        }
+        return
+    }
+
     showLog() {
         this.logPanel.show()
     }

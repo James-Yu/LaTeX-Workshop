@@ -149,18 +149,7 @@ export class Builder {
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
                 this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error', 'warning')
-                const res = this.extension.logger.showErrorMessage('Build terminated with error.', 'Open compiler log')
-                if (res) {
-                    void res.then(option => {
-                        switch (option) {
-                            case 'Open compiler log':
-                                this.extension.logger.showCompilerLog()
-                                break
-                            default:
-                                break
-                        }
-                    })
-                }
+                void this.extension.logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
                 this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
@@ -333,18 +322,7 @@ export class Builder {
                     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
                         await this.extension.cleaner.clean(rootFile)
                     }
-                    const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
-                    if (res) {
-                        void res.then(option => {
-                            switch (option) {
-                                case 'Open compiler log':
-                                    this.extension.logger.showCompilerLog()
-                                    break
-                                default:
-                                    break
-                            }
-                        })
-                    }
+                    void this.extension.logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
                     this.currentProcess = undefined
                     releaseBuildMutex()
                 }
