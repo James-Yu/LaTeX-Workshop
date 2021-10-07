@@ -50,14 +50,8 @@ export class GraphicsPreview {
                 pageNumber = Number(m[1])
             }
         }
-        const dataUrl = await this.renderGraphics(filePath, { height: 230, width: 500, pageNumber })
-        if (dataUrl !== undefined) {
-            let md: vscode.MarkdownString
-            if (dataUrl.length < 99980) {
-                md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
-            } else {
-                md = new vscode.MarkdownString('The PDF file is too large to render.')
-            }
+        const md = await this.renderGraphicsAsMarkdownString(filePath, { height: 230, width: 500, pageNumber })
+        if (md !== undefined) {
             return new vscode.Hover(md, range)
         }
         return undefined
@@ -69,7 +63,21 @@ export class GraphicsPreview {
         return name
     }
 
-    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
+    async renderGraphicsAsMarkdownString(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
+        const dataUrl = await this.renderGraphicsAsDataUrl(filePath, opts)
+        if (dataUrl !== undefined) {
+            let md: vscode.MarkdownString
+            if (dataUrl.length < 99980) {
+                md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
+            } else {
+                md = new vscode.MarkdownString('The file is too large to render.')
+            }
+            return md
+        }
+        return undefined
+    }
+
+    private async renderGraphicsAsDataUrl(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
         const pageNumber = opts.pageNumber || 1
         if (!fs.existsSync(filePath)) {
             return undefined

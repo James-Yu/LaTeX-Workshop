@@ -130,11 +130,10 @@ export class Completer implements vscode.CompletionItemProvider {
             if (typeof filePath !== 'string') {
                 return item
             }
-            const rsc = await this.extension.graphicsPreview.renderGraphics(filePath, { height: 190, width: 300 })
-            if (rsc === undefined) {
+            const md = await this.extension.graphicsPreview.renderGraphicsAsMarkdownString(filePath, { height: 190, width: 300 })
+            if (md === undefined) {
                 return item
             }
-            const md = new vscode.MarkdownString(`![graphics](${rsc})`)
             const ret = new vscode.CompletionItem(item.label, vscode.CompletionItemKind.File)
             ret.documentation = md
             return ret
