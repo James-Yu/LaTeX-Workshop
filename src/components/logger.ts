@@ -107,6 +107,24 @@ export class Logger {
         return
     }
 
+    showErrorMessageWithExtensionLogButton(message: string) {
+        const res = this.showErrorMessage(message, 'Open LaTeX Workshop log')
+        if (res) {
+            return res.then(option => {
+                switch (option) {
+                    case 'Open LaTeX Workshop log': {
+                        this.showLog()
+                        break
+                    }
+                    default: {
+                        break
+                    }
+                }
+            })
+        }
+        return
+    }
+
     showLog() {
         this.logPanel.show()
     }

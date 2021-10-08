@@ -139,7 +139,8 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`Build fatal error: ${err.message}, ${stderr}. PID: ${pid}. Does the executable exist?`)
-            this.extension.logger.displayStatus('x', 'errorForeground', `Build terminated with fatal error: ${err.message}.`, 'error')
+            this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'error')
+            void this.extension.logger.showErrorMessageWithExtensionLogButton(`Build terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
             releaseBuildMutex()
         })
@@ -290,7 +291,8 @@ export class Builder {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
             this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${evnVarsPath}`)
             this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
-            this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`, 'error')
+            this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'error')
+            void this.extension.logger.showErrorMessageWithExtensionLogButton(`Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
             releaseBuildMutex()
         })
