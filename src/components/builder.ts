@@ -149,7 +149,7 @@ export class Builder {
             this.extension.compilerLogParser.parse(stdout)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
-                this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error', 'warning')
+                this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'warning')
                 void this.extension.logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
