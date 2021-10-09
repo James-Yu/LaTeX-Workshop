@@ -1,14 +1,11 @@
-import type {Extension} from 'src/main'
 import * as vscode from 'vscode'
 
 export class Logger {
-    private readonly extension: Extension
     private readonly logPanel: vscode.OutputChannel
     private readonly compilerLogPanel: vscode.OutputChannel
     readonly status: vscode.StatusBarItem
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
         this.compilerLogPanel = vscode.window.createOutputChannel('LaTeX Compiler')
         this.compilerLogPanel.append('Ready')
@@ -103,7 +100,6 @@ export class Logger {
                 switch (option) {
                     case 'Open compiler log': {
                         this.showCompilerLog()
-                        void this.extension.latexCommandTreeView.revealCompilerLog()
                         break
                     }
                     default: {
