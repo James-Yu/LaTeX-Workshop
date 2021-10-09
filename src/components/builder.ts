@@ -247,11 +247,13 @@ export class Builder {
         this.extension.logger.addLogMessage(`Recipe step env: ${JSON.stringify(steps[index].env)}`)
         const envVars = Object.create(null) as ProcessEnv
         Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
-        const evnVarsPath = envVars['PATH']
         const currentEnv = steps[index].env
         if (currentEnv) {
             Object.keys(currentEnv).forEach(key => envVars[key] = currentEnv[key])
         }
+        // We log $Path too since `Object.keys(process.env)` includes Path, not PATH on Windows.
+        const envVarsPATH = envVars['PATH']
+        const envVarsPath = envVars['Path']
         envVars['max_print_line'] = maxPrintLine
         if (steps[index].name === texMagicProgramName || steps[index].name === bibMagicProgramName) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
@@ -289,7 +291,8 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
-            this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${evnVarsPath}`)
+            this.extension.logger.addLogMessage(`Does the executable exist? $PATH: ${envVarsPATH}`)
+            this.extension.logger.addLogMessage(`Does the executable exist? $Path: ${envVarsPath}`)
             this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
             this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'error')
             void this.extension.logger.showErrorMessageWithExtensionLogButton(`Recipe terminated with fatal error: ${err.message}.`)
@@ -301,7 +304,8 @@ export class Builder {
             this.extension.compilerLogParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
-                this.extension.logger.addLogMessage(`The environment variable $PATH: ${evnVarsPath}`)
+                this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVarsPATH}`)
+                this.extension.logger.addLogMessage(`The environment variable $Path: ${envVarsPath}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
