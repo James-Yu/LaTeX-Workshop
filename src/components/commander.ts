@@ -1,14 +1,33 @@
 import * as vscode from 'vscode'
 
-import type { Extension } from '../main'
+
+export class LaTeXCommandTreeView {
+    private readonly latexCommander: LaTeXCommander
+    private readonly treeView: vscode.TreeView<LaTeXCommand>
+
+    constructor() {
+        this.latexCommander = new LaTeXCommander()
+        this.treeView = vscode.window.createTreeView(
+            'latex-workshop-commands',
+            {
+              treeDataProvider: this.latexCommander
+            })
+    }
+
+    revealCompilerLog() {
+        if (this.latexCommander.compilerLog) {
+            return this.treeView.reveal(this.latexCommander.compilerLog)
+        }
+        return
+    }
+}
 
 export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
-    extension: Extension
     private readonly commands: LaTeXCommand[] = []
+    compilerLog: LaTeXCommand | undefined
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.buildCommander()
     }
 
@@ -38,7 +57,9 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         const logCommand = new LaTeXCommand('View Log messages', Collapsed, {command: 'latex-workshop.log', title: ''}, 'output')
         this.commands.push(logCommand)
         logCommand.children.push(new LaTeXCommand('View LaTeX Workshop extension log', None, {command: 'latex-workshop.log', title: ''}, 'output'))
-        logCommand.children.push(new LaTeXCommand('View LaTeX compiler log', None, {command: 'latex-workshop.compilerlog', title: ''}, 'output'))
+        const compilerLog = new LaTeXCommand('View LaTeX compiler log', None, {command: 'latex-workshop.compilerlog', title: ''}, 'output', logCommand)
+        logCommand.children.push(compilerLog)
+        this.compilerLog = compilerLog
 
         const navCommand = new LaTeXCommand('Navigate, select, and edit', Collapsed, undefined, 'edit')
         this.commands.push(navCommand)
@@ -80,6 +101,10 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
         return element.children
     }
+
+    getParent(element: LaTeXCommand) {
+        return element.parent
+    }
 }
 
 export class LaTeXCommand {
@@ -90,7 +115,8 @@ export class LaTeXCommand {
         public readonly label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly command?: vscode.Command,
-        public readonly codicon?: string
+        public readonly codicon?: string,
+        public readonly parent?: LaTeXCommand
     ) {
 
     }
