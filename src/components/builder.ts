@@ -139,7 +139,8 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`Build fatal error: ${err.message}, ${stderr}. PID: ${pid}. Does the executable exist?`)
-            this.extension.logger.displayStatus('x', 'errorForeground', `Build terminated with fatal error: ${err.message}.`, 'error')
+            this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'error')
+            void this.extension.logger.showErrorMessageWithExtensionLogButton(`Build terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
             releaseBuildMutex()
         })
@@ -148,19 +149,8 @@ export class Builder {
             this.extension.compilerLogParser.parse(stdout)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Build returns with error: ${exitCode}/${signal}. PID: ${pid}.`)
-                this.extension.logger.displayStatus('x', 'errorForeground', 'Build terminated with error', 'warning')
-                const res = this.extension.logger.showErrorMessage('Build terminated with error.', 'Open compiler log')
-                if (res) {
-                    void res.then(option => {
-                        switch (option) {
-                            case 'Open compiler log':
-                                this.extension.logger.showCompilerLog()
-                                break
-                            default:
-                                break
-                        }
-                    })
-                }
+                this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'warning')
+                void this.extension.logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
             } else {
                 this.extension.logger.addLogMessage(`Successfully built. PID: ${pid}`)
                 this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
@@ -301,7 +291,8 @@ export class Builder {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
             this.extension.logger.addLogMessage(`Does the executable exist? PATH: ${evnVarsPath}`)
             this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
-            this.extension.logger.displayStatus('x', 'errorForeground', `Recipe terminated with fatal error: ${err.message}.`, 'error')
+            this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'error')
+            void this.extension.logger.showErrorMessageWithExtensionLogButton(`Recipe terminated with fatal error: ${err.message}.`)
             this.currentProcess = undefined
             releaseBuildMutex()
         })
@@ -333,18 +324,7 @@ export class Builder {
                     if (['onFailed', 'onBuilt'].includes(configuration.get('latex.autoClean.run') as string)) {
                         await this.extension.cleaner.clean(rootFile)
                     }
-                    const res = this.extension.logger.showErrorMessage('Recipe terminated with error.', 'Open compiler log')
-                    if (res) {
-                        void res.then(option => {
-                            switch (option) {
-                                case 'Open compiler log':
-                                    this.extension.logger.showCompilerLog()
-                                    break
-                                default:
-                                    break
-                            }
-                        })
-                    }
+                    void this.extension.logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
                     this.currentProcess = undefined
                     releaseBuildMutex()
                 }
