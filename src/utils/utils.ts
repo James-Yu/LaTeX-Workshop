@@ -66,6 +66,17 @@ export function stripCommentsAndVerbatim(text: string): string {
 }
 
 /**
+ * Trim leading and ending spaces on every line
+ * See https://blog.stevenlevithan.com/archives/faster-trim-javascript for
+ * possible ways of implementing trimming
+ *
+ * @param text a multiline string
+ */
+export function trimMultiLineString(text: string): string {
+    return text.replace(/^\s\s*/gm, '').replace(/\s\s*$/gm, '')
+}
+
+/**
  * Find the longest substring containing balanced curly braces {...}
  *
  * @param s A string to be searched.
