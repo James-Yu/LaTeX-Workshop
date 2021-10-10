@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
+import {trimMultiLineString} from '../../utils/utils'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -92,9 +93,9 @@ export class Citation implements IProvider {
     browser(_args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             return {
-                label: item.fields.title ? item.fields.title : '',
+                label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
                 description: `${item.key}`,
-                detail: `Authors: ${item.fields.author ? item.fields.author : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
+                detail: `Authors: ${item.fields.author ? trimMultiLineString(item.fields.author) : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
             }
         }), {
             placeHolder: 'Press ENTER to insert citation key at cursor',
