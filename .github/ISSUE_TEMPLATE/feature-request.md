@@ -21,7 +21,7 @@ You can compile a TeX document manually?: Yes/No
 
 
 
-## Is your requested feature  related to a problem? Please describe. [Required]
+## Is your requested feature related to a problem? Please describe. [Required]
 
 A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
