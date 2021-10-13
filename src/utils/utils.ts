@@ -144,6 +144,7 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
 
+        const workspaceDir = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath.split(path.sep).join('/') : ''
         const rootFileParsed = path.parse(rootFile)
         const docfile = rootFileParsed.name
         const docfileExt = rootFileParsed.base
@@ -164,12 +165,14 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
                     .replace(/%DIR%/g, docker ? './' : dir)
                     .replace(/%DIR_W32%/g, docker ? './' : dirW32)
                     .replace(/%TMPDIR%/g, tmpDir)
+                    .replace(/%WORKSPACE_FOLDER%/g, docker ? './' : workspaceDir)
+                    .replace(/%RELATIVE_DIR%/, docker ? './' : path.relative(workspaceDir, dir))
+                    .replace(/%RELATIVE_DOC%/, docker ? docfile : path.relative(workspaceDir, doc))
 
         }
         const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
         const outDir = outDirW32.split(path.sep).join('/')
         return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
-
     }
 }
 
