@@ -3,7 +3,16 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="default-src %VSCODE_CSP%; base-uri 'none'; script-src %VSCODE_CSP% 'unsafe-inline'; style-src %VSCODE_CSP% 'unsafe-inline';">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'none'; base-uri 'none'; connect-src %VSCODE_CSP%; script-src %VSCODE_CSP% 'unsafe-inline' blob:; style-src %VSCODE_CSP% 'unsafe-inline';">
+        <script>
+            var mathSymbolsJsonUrl = '%VSCODE_RES%/snippetpanel/snippetpanel.json';
+        </script>
+        <script src="%VSCODE_RES%/snippetview/snippetview.js" defer></script>
+        <script>
+            var pdfjsDistUri = '%VSCODE_PDFJS_DIST%';
+        </script>
+        <script src="%VSCODE_PDFJS_DIST%/build/pdf.js" defer></script>
+        <script src="%VSCODE_RES%/snippetview/pdfrenderer.js" defer></script>
         <link rel="stylesheet" href="%VSCODE_RES%/snippetview/snippetview.css">
     </head>
     <body>
@@ -423,8 +432,5 @@
                 </div>
             </div>
         </div>
-
-        <script> var mathSymbolsJsonUrl = '%VSCODE_RES%/snippetpanel/snippetpanel.json'; </script>
-        <script src="%VSCODE_RES%/snippetview/snippetview.js"></script>
     </body>
 </html>

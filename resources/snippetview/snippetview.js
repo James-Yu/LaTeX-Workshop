@@ -1,10 +1,10 @@
-var mathSymbols = [];
-var mathSymbolCategories = ['All'];
+const mathSymbols = [];
+const mathSymbolCategories = ['All'];
 const grid = document.querySelector('#Symbols .grid');
-var vscode;
+var vscodeApi;
 
 (function() {
-    vscode = acquireVsCodeApi();
+    vscodeApi = acquireVsCodeApi();
     tikzInitialise();
 })();
 
@@ -37,7 +37,7 @@ function processMathSymbol(mathSymbol) {
     symbolDiv.setAttribute('data-snippet', mathSymbol.snippet);
     symbolDiv.innerHTML = mathSymbol.svg;
     symbolDiv.addEventListener('click', _evt => {
-        vscode.postMessage({
+        vscodeApi.postMessage({
             type: 'insertSnippet',
             snippet: symbolDiv.getAttribute('data-snippet') + ' '
         });
@@ -87,7 +87,7 @@ function getSearchText(symbol) {
 function tikzInitialise() {
     document.querySelectorAll('#TikZ a.cmd').forEach(elem => {
         elem.addEventListener('click', _evt => {
-            vscode.postMessage({
+            vscodeApi.postMessage({
                 type: 'insertSnippet',
                 snippet: elem.getAttribute('data-snippet').replace(/\\n/g, '\n')
             });

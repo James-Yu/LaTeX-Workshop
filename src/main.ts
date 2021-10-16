@@ -38,7 +38,7 @@ import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
-import {SnippetViewProvider} from './providers/snippetview'
+import {SnippetView} from './components/snippetview'
 
 
 function conflictExtensionCheck() {
@@ -285,7 +285,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider(extension)))
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider(extension)))
 
-    context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-workshop-snippet-view', new SnippetViewProvider(extension), {webviewOptions: {retainContextWhenHidden: true}}))
+    context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-workshop-snippet-view', extension.snippetView.snippetViewProvider, {webviewOptions: {retainContextWhenHidden: true}}))
 
     void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
     conflictExtensionCheck()
@@ -318,6 +318,7 @@ export class Extension {
     readonly structureProvider: SectionNodeProvider
     readonly structureViewer: StructureTreeView
     readonly snippetPanel: SnippetPanel
+    readonly snippetView: SnippetView
     readonly graphicsPreview: GraphicsPreview
     readonly mathPreview: MathPreview
     readonly bibtexFormatter: BibtexFormatter
@@ -357,6 +358,7 @@ export class Extension {
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetPanel = new SnippetPanel(this)
+        this.snippetView = new SnippetView(this)
         this.pegParser = new PEGParser()
         this.graphicsPreview = new GraphicsPreview(this)
         this.mathPreview = new MathPreview(this)
