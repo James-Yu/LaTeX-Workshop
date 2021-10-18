@@ -162,7 +162,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // is it a section, a subsection, etc?
                 const heading = result[1]
                 const depth = this.sectionDepths[heading]
-                const title = utils.getLongestBalancedString(result[3])
+                const title = this.getSectionTitle(result[3])
                 let sectionNumberStr: string = ''
                 if (result[2] === undefined) {
                     sectionNumber = this.increment(sectionNumber, depth)
@@ -272,6 +272,33 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return undefined
         }
         return element.parent
+    }
+
+    /**
+     * Return the title of a command while only keeping the second argument of \texorpdfstring
+     * @param text a section command
+     */
+    getSectionTitle(text: string): string {
+        let title = utils.getLongestBalancedString(text)
+        let pdfTitle: string = ''
+        const regex = /\\texorpdfstring/
+        let res: RegExpExecArray | null
+        while(true) {
+            res = regex.exec(title)
+            if (!res) {
+                break
+            }
+            pdfTitle += title.slice(0, res.index)
+            title = title.slice(res.index)
+            const arg = utils.getNthArgument(title, 2)
+            if (!arg) {
+                break
+            }
+            pdfTitle += arg.arg
+            // Continue with the remaining text after the second arg
+            title = title.slice(arg.index + arg.arg.length + 2) // 2 counts '{' and '}' around arg
+        }
+        return pdfTitle + title
     }
 
     getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {

@@ -78,11 +78,12 @@ export function trimMultiLineString(text: string): string {
 
 /**
  * Find the longest substring containing balanced curly braces {...}
+ * The string `s` can either start on the opening `{` or at the next character
  *
  * @param s A string to be searched.
  */
 export function getLongestBalancedString(s: string): string {
-    let nested = 1
+    let nested = s[0] === '{' ? 0 : 1
     let i = 0
     for (i = 0; i < s.length; i++) {
         switch (s[i]) {
@@ -102,7 +103,35 @@ export function getLongestBalancedString(s: string): string {
             break
         }
     }
-    return s.substring(0, i)
+    return s.substring(s[0] === '{' ? 1 : 0, i)
+}
+
+export type CommandArgument = {
+    arg: string, // The argument we are looking for
+    index: number // the starting position of the argument
+}
+
+/**
+ * @param text a string starting with a command call
+ * @param nth the index of the argument to return
+ */
+export function getNthArgument(text: string, nth: number): CommandArgument | undefined {
+    let arg: string = ''
+    let index: number = 0 // start of the nth argument
+    let offset: number = 0 // current offset of the new text to consider
+    for (let i=0; i<nth; i++) {
+        text = text.slice(offset)
+        index += offset
+        const start = text.indexOf('{')
+        if (start === -1) {
+            return undefined
+        }
+        text = text.slice(start)
+        index += start
+        arg = getLongestBalancedString(text)
+        offset = arg.length + 2 // 2 counts '{' and '}'
+    }
+    return {arg, index}
 }
 
 /**
