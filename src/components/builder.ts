@@ -3,6 +3,7 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
+import * as os from 'os'
 import * as tmp from 'tmp'
 import {Mutex} from '../lib/await-semaphore'
 import {replaceArgumentPlaceholders} from '../utils/utils'
@@ -32,6 +33,12 @@ export class Builder {
         } catch (e) {
             void vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
             console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
+            // https://github.com/James-Yu/LaTeX-Workshop/issues/2911#issuecomment-944318278
+            if (/['"]/.exec(os.tmpdir())) {
+                const msg = `The path of tmpdir cannot include single quotes and double quotes: ${os.tmpdir()}`
+                void vscode.window.showErrorMessage(msg)
+                console.log(msg)
+            }
             throw e
         }
         this.buildMutex = new Mutex()
