@@ -1,5 +1,24 @@
 # Change Log
 
+## [8.21.0]
+
+### Added
+- (#2841) Add `BibLaTeX` backend for intellisense.
+- (#2852) Hightlight the content of the `markdown` environment as `md`.
+- (#2870) Add a new configuration variable `latex-workshop.message.bibtexlog.exclude`.
+- (#2900) Add three new placeholders.
+  - `WORKSPACE_FOLDER`: current workspace path.
+  - `RELATIVE_DIR`: file directory relative to the workspace folder.
+  - `RELATIVE_DOC`: file path relative to the workspace folder.
+
+### Fixed
+- (#2838) Format multiline bibtex fields.
+- (#2851) Highlight `tblr` envs as tabular.
+- (#2855) Accept dash in cite keys.
+- (#2897) Show `Open LaTeX Workshop log` button for some cases.
+- (#2908) Highlight `alignedat`.
+- (#2909) Replace `\texorpdfstring` by its second arg in outline.
+
 ## [8.20.2] - 2021-08-09
 
 ### Added
