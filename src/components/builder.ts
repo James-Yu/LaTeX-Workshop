@@ -490,7 +490,13 @@ export class Builder {
                 if (!step.args) {
                     step.args = []
                 }
-                if (this.isMiktex && ((step.command === 'latexmk' && !step.args.includes('-lualatex') && !step.args.includes('-pdflua')) || step.command === 'pdflatex')) {
+                const isLuaLatex = step.args.includes('-lualatex') ||
+                                   step.args.includes('-pdflua') ||
+                                   step.args.includes('-pdflualatex') ||
+                                   step.args.includes('--lualatex') ||
+                                   step.args.includes('--pdflua') ||
+                                   step.args.includes('--pdflualatex')
+                if (this.isMiktex && ((step.command === 'latexmk' && !isLuaLatex) || step.command === 'pdflatex')) {
                     step.args.unshift('--max-print-line=' + maxPrintLine)
                 }
             }
