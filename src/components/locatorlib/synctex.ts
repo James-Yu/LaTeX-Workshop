@@ -123,12 +123,7 @@ export class SyncTexJs {
                 if (isSameRealPath(inputFilePath, filePath)) {
                     return inputFilePath
                 }
-            } catch(e: unknown) {
-                this.extension.logger.addLogMessage(`[SyncTexJs] isSameRealPath throws error: ${JSON.stringify({inputFilePath, filePath})}`)
-                if (e instanceof Error) {
-                    this.extension.logger.logError(e)
-                }
-            }
+            } catch { }
         }
         for (const inputFilePath in pdfSyncObject.blockNumberLine) {
             for (const enc of iconvLiteSupportedEncodings) {
@@ -138,12 +133,7 @@ export class SyncTexJs {
                     if (isSameRealPath(convertedInputFilePath, filePath)) {
                         return inputFilePath
                     }
-                } catch (e: unknown) {
-                    this.extension.logger.addLogMessage(`[SyncTexJs] isSameRealPath throws error: ${JSON.stringify({inputFilePath, convertedInputFilePath, filePath})}`)
-                    if (e instanceof Error) {
-                        this.extension.logger.logError(e)
-                    }
-                }
+                } catch { }
             }
         }
         return undefined
