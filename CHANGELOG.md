@@ -1,6 +1,13 @@
 # Change Log
 
-## [8.21.0]
+## [8.21.1] - 2021-10-22
+
+### Fixed
+- (#2917) Treat `latexmk --luatex` properly.
+- (#2922,#2926,#2927) The previous package has some mysterious bugs preventing the extension from working properly.
+- (#2923) Synctex in file with `\include`d files is not searching for the correct directory.
+
+## [8.21.0] - 2021-10-19
 
 ### Added
 - (#2841) Add `BibLaTeX` backend for intellisense.
