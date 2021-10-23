@@ -48,6 +48,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Auto build LaTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#auto-build-latex)
   - [Cleaning generated files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files)
   - [LaTeX recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)
+    - [Placeholders](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders)
   - [External build command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#external-build-command)
   - [Magic comments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#magic-comments)
   - [Catching errors and warnings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#catching-errors-and-warnings)
