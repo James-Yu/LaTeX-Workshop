@@ -3,7 +3,6 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import type {Extension} from './main'
-import {getLongestBalancedString} from './utils/utils'
 import {TeXDoc} from './components/texdoc'
 type SnippetsLatexJsonType = typeof import('../snippets/latex.json')
 
@@ -472,32 +471,14 @@ export class Commander {
         )
     }
 
-    /**
-     * Return the position of the end of `s}` starting from `startPos`.
-     * Note that the inclusion of the closing`}`
-     *
-     * @param startPos starting position
-     * @param s the string to add to `startPos`
-     */
-    private computeEndMatchPosition(startPos: vscode.Position, s: string): vscode.Position {
-        const splitLines = s.split('\n')
-        const endLine = startPos.line + splitLines.length - 1
-        let endCol = splitLines[splitLines.length - 1].length
-        if (splitLines.length === 1) {
-            endCol += startPos.character
-        }
-        // Include the closing '}' in the range
-        return new vscode.Position(endLine, endCol + 1)
-    }
 
     /**
     * Toggle a keyword. This function works with multi-cursors or multi-selections
     *
-    * If the cursor is inside a keyword argument (the selection is empty),
-    * the keyword will be removed, otherwise a snippet will be added.
+    * If the selection is empty, a snippet is added.
     *
-    * If the selection is not empty and contains `\keyword{...}`, this part is replaced by
-    * the argument of `keyword`. If the selection does not contain `\keyword`, it is surrounded by `\keyword{...}`.
+    * If the selection is not empty and matches `\keyword{...}`, it is replaced by
+    * the argument of `keyword`. If the selection does not start with `\keyword`, it is surrounded by `\keyword{...}`.
     *
     *  @param keyword the keyword to toggle without backslash eg. textbf or underline
     */
@@ -507,57 +488,31 @@ export class Commander {
             return
         }
 
-        const document = editor.document
-        // Sort the selections in decreasing order to avoid offset issues
-        const selections = editor.selections.sort((a, b) => {
-            let diff = a.start.line - b.start.line
-            diff = diff !== 0 ? diff : a.start.character - b.start.character
-            return -diff
-        })
+        const editActions: {range: vscode.Range, text: string}[] = []
+        const snippetsSelections: vscode.Position[] = []
 
-        for (const selection of selections) {
-            const line = document.lineAt(selection.start)
-            const lastLine = document.lineAt(selection.end)
-            const searchStringEndPos: vscode.Position = selection.isEmpty ? lastLine.range.end : selection.end
-
-            const pattern = new RegExp(`\\\\${keyword}{`, 'g')
-            let match = pattern.exec(line.text)
-            let keywordRemoved = false
-            while (match !== null) {
-                const keywordStart = line.range.start.translate(0, match.index)
-                const keywordEnd = keywordStart.translate(0, match[0].length)
-                const searchString = document.getText(new vscode.Range(keywordEnd, searchStringEndPos))
-                const insideText = getLongestBalancedString(searchString)
-                const endMatchPos = this.computeEndMatchPosition(keywordEnd, insideText)
-                const matchRange = new vscode.Range(keywordStart, endMatchPos)
-
-                if (!selection.isEmpty || matchRange.contains(selection)) {
-                    // If the selection is empty, we check if the current cursor is inside `keyword{....}`.
-                    // If so, we remove the surrounding `keyword{...}`.
-                    // When the selection is non empty, the pattern `keyword{...}` must entirely be contained in the selection.
-                    await editor.edit(((editBuilder) => {
-                        editBuilder.replace(matchRange, insideText)
-                    }))
-                    keywordRemoved = true
-                    break
-                }
-                match = pattern.exec(line.text)
-            }
-            if (keywordRemoved) {
+        for (const selection of editor.selections) {
+            if (selection.isEmpty) {
+                snippetsSelections.push(selection.anchor)
                 continue
             }
-
-            // Add keyword
-            if (!selection.isEmpty) {
-                await editor.edit(((editBuilder) => {
-                    const selectionText = document.getText(selection)
-                    const replacementText= `\\${keyword}{${selectionText}}`
-                    editBuilder.replace(selection, replacementText)
-                }))
+            const text = editor.document.getText(selection)
+            if (text.startsWith(`\\${keyword}{`)) {
+                const keywordLength = `\\${keyword}{`.length
+                const insideText = text.slice(keywordLength).slice(0, -1)
+                editActions.push({range: selection, text: insideText})
             } else {
-                const snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
-                await editor.insertSnippet(snippet, selection.start)
+                editActions.push({range: selection, text: `\\${keyword}{${text}}`})
             }
+        }
+        await editor.edit((editBuilder) => {
+            editActions.forEach(a => {
+                editBuilder.replace(a.range, a.text)
+            })
+        })
+        if (snippetsSelections.length > 0) {
+            const snippet = new vscode.SnippetString(`\\\\${keyword}{$1}`)
+            await editor.insertSnippet(snippet, snippetsSelections)
         }
     }
 
