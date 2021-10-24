@@ -488,18 +488,23 @@ export class Commander {
             return
         }
 
-        const editActions: {range: vscode.Range, text: string}[] = []
+        // Positions where to remove keyword or surround with keywords
+        const editActions: {range: vscode.Selection, text: string}[] = []
+        // Positions where to insert a snippet
         const snippetsSelections: vscode.Position[] = []
 
         for (const selection of editor.selections) {
+            // If the selection is empty, a snippet is always inserted
             if (selection.isEmpty) {
                 snippetsSelections.push(selection.anchor)
                 continue
             }
+
+            // When the selection is not empty, decide if \keyword must be added or removed
             const text = editor.document.getText(selection)
-            if (text.startsWith(`\\${keyword}{`)) {
-                const keywordLength = `\\${keyword}{`.length
-                const insideText = text.slice(keywordLength).slice(0, -1)
+            if (text.startsWith(`\\${keyword}{`) || text.startsWith(`${keyword}{`)) {
+                const start = text.indexOf('{') + 1
+                const insideText = text.slice(start).slice(0, -1)
                 editActions.push({range: selection, text: insideText})
             } else {
                 editActions.push({range: selection, text: `\\${keyword}{${text}}`})
@@ -510,6 +515,7 @@ export class Commander {
                 editBuilder.replace(a.range, a.text)
             })
         })
+        // If the second argument of insertSnippet is empty, the action is performed at every cursor
         if (snippetsSelections.length > 0) {
             const snippet = new vscode.SnippetString(`\\\\${keyword}{$1}`)
             await editor.insertSnippet(snippet, snippetsSelections)
