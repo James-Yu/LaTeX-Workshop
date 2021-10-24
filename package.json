@@ -443,8 +443,15 @@
       },
       {
         "command": "latex-workshop.structure-toggle-follow-cursor",
-        "title": "Toggle follow cursor",
-        "category": "LaTeX Workshop"
+        "title": "Toggle follow cursor: On",
+        "category": "LaTeX Workshop",
+        "enablement": "latex-workshop.structure-toggle-follow-cursor:enabled"
+      },
+      {
+        "command": "latex-workshop.structure-toggle-follow-cursor-alias",
+        "title": "Toggle follow cursor: Off",
+        "category": "LaTeX Workshop",
+        "enablement": "!latex-workshop.structure-toggle-follow-cursor:enabled"
       },
       {
         "command": "latex-workshop.showSnippetPanel",
@@ -2083,8 +2090,11 @@
       ],
       "view/title": [
         {
-          "when": "view == latex-workshop-structure",
+          "when": "view == latex-workshop-structure && latex-workshop.structure-toggle-follow-cursor:enabled",
           "command": "latex-workshop.structure-toggle-follow-cursor"
+        },{
+          "when": "view == latex-workshop-structure && !latex-workshop.structure-toggle-follow-cursor:enabled",
+          "command": "latex-workshop.structure-toggle-follow-cursor-alias"
         }
       ]
     },

@@ -362,8 +362,14 @@ export class StructureTreeView {
     constructor(private readonly extension: Extension) {
         this._treeDataProvider = this.extension.structureProvider
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
+        void vscode.commands.executeCommand('setContext', 'latex-workshop.structure-toggle-follow-cursor:enabled', this._followCursor)
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
-           this._followCursor = ! this._followCursor
+            this._followCursor = ! this._followCursor
+            void vscode.commands.executeCommand('setContext', 'latex-workshop.structure-toggle-follow-cursor:enabled', this._followCursor)
+        })
+        vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor-alias', () => {
+            this._followCursor = ! this._followCursor
+            void vscode.commands.executeCommand('setContext', 'latex-workshop.structure-toggle-follow-cursor:enabled', this._followCursor)
         })
     }
 
