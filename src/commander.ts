@@ -490,13 +490,11 @@ export class Commander {
 
         // Positions where to remove keyword or surround with keywords
         const editActions: {range: vscode.Selection, text: string}[] = []
-        // Positions where to insert a snippet
-        const snippetsSelections: vscode.Position[] = []
 
+        // First, deal with non empty selections
         for (const selection of editor.selections) {
             // If the selection is empty, a snippet is always inserted
             if (selection.isEmpty) {
-                snippetsSelections.push(selection.anchor)
                 continue
             }
 
@@ -515,10 +513,16 @@ export class Commander {
                 editBuilder.replace(a.range, a.text)
             })
         })
-        // If the second argument of insertSnippet is empty, the action is performed at every cursor
-        if (snippetsSelections.length > 0) {
+        // Second, deal with empty selections
+        const snippetActions: vscode.Position[] = []
+        for (const selection of editor.selections) {
+            if (selection.isEmpty) {
+                snippetActions.push(selection.anchor)
+            }
+        }
+        if (snippetActions.length > 0) {
             const snippet = new vscode.SnippetString(`\\\\${keyword}{$1}`)
-            await editor.insertSnippet(snippet, snippetsSelections)
+            await editor.insertSnippet(snippet, snippetActions)
         }
     }
 
