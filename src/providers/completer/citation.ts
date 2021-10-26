@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 import {trimMultiLineString} from '../../utils/utils'
+import type {ILwCompletionItem} from './interface'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
@@ -31,7 +32,7 @@ class Fields extends Map<string, string> {
 
 }
 
-export interface Suggestion extends vscode.CompletionItem {
+export interface Suggestion extends ILwCompletionItem {
     key: string,
     fields: Fields,
     file: string,
@@ -53,7 +54,7 @@ export class Citation implements IProvider {
         return this.provide(args)
     }
 
-    private provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    private provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ILwCompletionItem[] {
         // Compile the suggestion array to vscode completion array
         const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
         let range: vscode.Range | undefined = undefined

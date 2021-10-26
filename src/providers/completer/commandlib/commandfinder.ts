@@ -4,6 +4,7 @@ import {latexParser} from 'latex-utensils'
 
 import type {Suggestion} from '../command'
 import type {Extension} from '../../../main'
+import type {ILwCompletionItem} from '../interface'
 
 
 export function isTriggerSuggestNeeded(name: string): boolean {
@@ -265,7 +266,7 @@ export class CommandFinder {
                     continue
                 }
                 for (const pkg of cachedPkgs) {
-                    const commands: vscode.CompletionItem[] = []
+                    const commands: ILwCompletionItem[] = []
                     this.extension.completer.command.provideCmdInPkg(pkg, commands, [])
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)

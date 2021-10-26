@@ -4,7 +4,7 @@ import {latexParser} from 'latex-utensils'
 
 import type {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
-import type {IProvider} from './interface'
+import type {IProvider, ILwCompletionItem} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 
@@ -24,7 +24,7 @@ function isCmdItemEntry(obj: any): obj is CmdItemEntry {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }
 
-export interface Suggestion extends vscode.CompletionItem {
+export interface Suggestion extends ILwCompletionItem {
     package: string
 }
 
@@ -83,7 +83,7 @@ export class Command implements IProvider {
         return suggestions
     }
 
-    private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): vscode.CompletionItem[] {
+    private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): ILwCompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         let range: vscode.Range | undefined = undefined
