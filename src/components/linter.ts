@@ -30,9 +30,9 @@ export class Linter {
         }
 
         // 1. project root folder
-        const ws = vscode.workspace.workspaceFolders
-        if (ws && ws.length > 0) {
-            rcPath = path.resolve(ws[0].uri.fsPath, './.chktexrc')
+        const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
+        if (workspaceFolder) {
+            rcPath = path.resolve(workspaceFolder.uri.fsPath, './.chktexrc')
         }
         if (fs.existsSync(rcPath)) {
             return rcPath

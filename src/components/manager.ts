@@ -289,10 +289,9 @@ export class Manager {
     }
 
     private findWorkspace() {
-        const workspaceFolders = vscode.workspace.workspaceFolders
-        const firstDir = workspaceFolders && workspaceFolders[0]
+        const firstDir = vscode.workspace.workspaceFolders?.[0]
         // If no workspace is opened.
-        if (workspaceFolders === undefined || !firstDir) {
+        if (!firstDir) {
             this.workspaceRootDirUri = ''
             return
         }
