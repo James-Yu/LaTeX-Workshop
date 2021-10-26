@@ -106,8 +106,8 @@ export class Commander {
     async revealOutputDir() {
         let outDir = this.extension.manager.getOutDir()
         if (!path.isAbsolute(outDir)) {
-            const workspaceFolders = vscode.workspace.workspaceFolders
-            const rootDir = this.extension.manager.rootDir || (workspaceFolders && workspaceFolders[0] && workspaceFolders[0].uri.fsPath)
+            const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
+            const rootDir = this.extension.manager.rootDir || workspaceFolder?.uri.fsPath
             if (rootDir === undefined) {
                 this.extension.logger.addLogMessage(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
                 return
