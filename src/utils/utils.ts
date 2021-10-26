@@ -173,7 +173,8 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
 
-        const workspaceDir = vscode.workspace.workspaceFolders ? vscode.workspace.workspaceFolders[0].uri.fsPath.split(path.sep).join('/') : ''
+        const workspaceFolders = vscode.workspace.workspaceFolders
+        const workspaceDir = (workspaceFolders && workspaceFolders[0]) ? workspaceFolders[0].uri.fsPath.split(path.sep).join('/') : ''
         const rootFileParsed = path.parse(rootFile)
         const docfile = rootFileParsed.name
         const docfileExt = rootFileParsed.base
