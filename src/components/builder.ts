@@ -117,11 +117,8 @@ export class Builder {
         }
         const releaseBuildMutex = await this.preprocess()
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground')
-        let wd = pwd
-        const ws = vscode.workspace.workspaceFolders
-        if (ws && ws.length > 0) {
-            wd = ws[0].uri.fsPath
-        }
+        const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
+        const wd = workspaceFolder?.uri.fsPath || pwd
 
         if (rootFile !== undefined) {
             args = args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
