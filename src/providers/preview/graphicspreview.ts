@@ -1,29 +1,17 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as tmpFile from 'tmp'
 import type { Extension } from '../../main'
-import * as utils from '../../utils/svg'
-import { PDFRenderer } from './pdfrenderer'
 import { GraphicsScaler } from './graphicsscaler'
 
 
 export class GraphicsPreview {
-    private readonly cacheDir: string
-    private readonly pdfFileCacheMap: Map<string, {cacheFileName: string, inode: number}>
-    private curCacheName = 0
-
     private readonly extension: Extension
-    private readonly pdfRenderer: PDFRenderer
     private readonly graphicsScaler: GraphicsScaler
 
     constructor(e: Extension) {
         this.extension = e
-        this.pdfRenderer = new PDFRenderer()
         this.graphicsScaler = new GraphicsScaler()
-        const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
-        this.cacheDir = tmpdir.name
-        this.pdfFileCacheMap = new Map<string, {cacheFileName: string, inode: number}>()
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
@@ -57,12 +45,6 @@ export class GraphicsPreview {
         return undefined
     }
 
-    private newSvgCacheName(): string {
-        const name = this.curCacheName.toString() + '.svg'
-        this.curCacheName += 1
-        return name
-    }
-
     async renderGraphicsAsMarkdownString(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
         const dataUrl = await this.renderGraphicsAsDataUrl(filePath, opts)
         if (dataUrl !== undefined) {
@@ -73,8 +55,18 @@ export class GraphicsPreview {
                 md = new vscode.MarkdownString('The file is too large to render.')
             }
             return md
+        } else {
+            if (/\.pdf$/i.exec(filePath)) {
+                let msg = 'Failed to render.'
+                if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
+                    msg = 'Cannot render a PDF file not in workspaces.'
+                } else if (!this.extension.snippetView.snippetViewProvider.webviewView) {
+                    msg = 'Please activate Snippet View to render the thumbnail of a PDF file.'
+                }
+                return new vscode.MarkdownString(msg)
+            }
+            return undefined
         }
-        return undefined
     }
 
     private async renderGraphicsAsDataUrl(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
@@ -83,38 +75,22 @@ export class GraphicsPreview {
             return undefined
         }
         if (/\.pdf$/i.exec(filePath)) {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
-            const preview = configuration.get('intellisense.includegraphics.preview.pdf.enabled') as boolean
-            if (!preview) {
-                return undefined
+            const dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(filePath), pageNumber)
+            if (!dataUrl) {
+                this.extension.logger.addLogMessage(`Failed to render: ${filePath}`)
+                return
             }
-            const cacheKey = JSON.stringify([filePath, pageNumber])
-            const cache = this.pdfFileCacheMap.get(cacheKey)
-            const cacheFileName = cache?.cacheFileName ?? this.newSvgCacheName()
-            const svgPath = path.join(this.cacheDir, cacheFileName)
-            const curStat = fs.statSync(filePath)
-            if( cache && fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && cache.inode === curStat.ino ) {
-                const xml = (await fs.promises.readFile(svgPath)).toString()
-                return utils.svgToDataUrl(xml)
+            const scaledDataUrl = await this.graphicsScaler.scaleDataUrl(dataUrl, opts)
+            if (!scaledDataUrl) {
+                this.extension.logger.addLogMessage(`Failed to resize: ${filePath}`)
             }
-            this.pdfFileCacheMap.set(cacheKey, {cacheFileName, inode: curStat.ino})
-            const svg0 = await this.pdfRenderer.renderToSVG(
-                filePath,
-                { height: opts.height, width: opts.width, pageNumber }
-            )
-            const svg = this.setBackgroundColor(svg0)
-            fs.writeFileSync(svgPath, svg)
-            return utils.svgToDataUrl(svg)
+            return scaledDataUrl
         }
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
             const dataUrl = await this.graphicsScaler.scale(filePath, opts)
             return dataUrl
         }
         return undefined
-    }
-
-    private setBackgroundColor(svg: string): string {
-        return svg.replace(/(<\/svg:style>)/, 'svg { background-color: white };$1')
     }
 
     private findFilePath(relPath: string, document: vscode.TextDocument): string | undefined {

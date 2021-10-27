@@ -1,13 +1,15 @@
 import * as vscode from 'vscode'
-import * as path from 'path'
 import type {Extension} from '../main'
 
 
 export function replaceWebviewPlaceholders(content: string, extension: Extension, webview: vscode.Webview): string {
-    const resourcesFolder = path.join(extension.extensionRoot, 'resources')
-    const filePath = vscode.Uri.file(resourcesFolder)
-    const link = webview.asWebviewUri(filePath).toString()
-    return content.replace(/%VSCODE_RES%/g, link)
+    const extensionRootUri = vscode.Uri.file(extension.extensionRoot)
+    const resourcesFolderUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionRootUri, 'resources'))
+    const resourcesFolderLink = resourcesFolderUri.toString()
+    const pdfjsDistUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionRootUri, 'node_modules', 'pdfjs-dist'))
+    const pdfjsDistLink = pdfjsDistUri.toString()
+    return content.replace(/%VSCODE_RES%/g, resourcesFolderLink)
+                  .replace(/%VSCODE_PDFJS_DIST%/g, pdfjsDistLink)
                   .replace(/%VSCODE_CSP%/g, webview.cspSource)
 }
 

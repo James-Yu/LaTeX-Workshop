@@ -16,6 +16,10 @@ export class GraphicsScaler {
     }
 
     async scale(filePath: string, options: { height: number, width: number }): Promise<string> {
-        return (await this.proxy).scale(filePath, options).timeout(3000)
+        return (await this.proxy).scale(filePath, options).timeout(6000)
+    }
+
+    async scaleDataUrl(srcDataUrl: string, options: { height: number, width: number }): Promise<string | undefined> {
+        return (await this.proxy).scaleDataUrl(srcDataUrl, options).timeout(6000)
     }
 }
