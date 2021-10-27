@@ -5,9 +5,9 @@ import {latexParser} from 'latex-utensils'
 import {stripEnvironments, isNewCommand} from '../../utils/utils'
 
 import type {Extension} from '../../main'
-import type {IProvider} from './interface'
+import type {IProvider, ILwCompletionItem} from './interface'
 
-export interface ReferenceEntry extends vscode.CompletionItem {
+export interface ReferenceEntry extends ILwCompletionItem {
     /**
      *  The file that defines the ref.
      */
@@ -139,8 +139,8 @@ export class Reference implements IProvider {
     }
 
     // This function will return all references in a node array, including sub-nodes
-    private getRefFromNodeArray(nodes: latexParser.Node[], lines: string[]): vscode.CompletionItem[] {
-        let refs: vscode.CompletionItem[] = []
+    private getRefFromNodeArray(nodes: latexParser.Node[], lines: string[]): ILwCompletionItem[] {
+        let refs: ILwCompletionItem[] = []
         for (let index = 0; index < nodes.length; ++index) {
             if (index < nodes.length - 1) {
                 // Also pass the next node to handle cases like `label={some-text}`
@@ -153,10 +153,10 @@ export class Reference implements IProvider {
     }
 
     // This function will return the reference defined by the node, or all references in `content`
-    private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): vscode.CompletionItem[] {
+    private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): ILwCompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
-        const refs: vscode.CompletionItem[] = []
+        const refs: ILwCompletionItem[] = []
         let label = ''
         if (isNewCommand(node) || latexParser.isDefCommand(node)) {
             // Do not scan labels inside \newcommand & co
@@ -193,9 +193,9 @@ export class Reference implements IProvider {
         return refs
     }
 
-    private getRefFromContent(content: string): vscode.CompletionItem[] {
+    private getRefFromContent(content: string): ILwCompletionItem[] {
         const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
-        const refs: vscode.CompletionItem[] = []
+        const refs: ILwCompletionItem[] = []
         const refList: string[] = []
         content = stripEnvironments(content, this.envsToSkip)
         while (true) {

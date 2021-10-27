@@ -12,6 +12,7 @@ import type {Suggestion as CiteEntry} from '../providers/completer/citation'
 import type {Suggestion as CmdEntry} from '../providers/completer/command'
 import type {Suggestion as EnvEntry} from '../providers/completer/environment'
 import type {Suggestion as GlossEntry} from '../providers/completer/glossary'
+import type {ILwCompletionItem} from '../providers/completer/interface'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
@@ -36,7 +37,7 @@ interface Content {
          * Completion item and other items for the LaTeX file.
          */
         element: {
-            reference?: vscode.CompletionItem[],
+            reference?: ILwCompletionItem[],
             glossary?: GlossEntry[],
             environment?: EnvEntry[],
             bibitem?: CiteEntry[],

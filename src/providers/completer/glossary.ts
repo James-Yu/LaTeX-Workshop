@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
 
 import type {Extension} from '../../main'
-import type {IProvider} from './interface'
+import type {IProvider, ILwCompletionItem} from './interface'
 
 enum GlossaryType {
     glossary,
@@ -14,7 +14,7 @@ interface GlossaryEntry {
     description: string | undefined
 }
 
-export interface Suggestion extends vscode.CompletionItem {
+export interface Suggestion extends ILwCompletionItem {
     type: GlossaryType
 }
 

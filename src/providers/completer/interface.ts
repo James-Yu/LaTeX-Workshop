@@ -11,3 +11,7 @@ export interface IProvider {
         args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}
     ): vscode.CompletionItem[]
 }
+
+export interface ILwCompletionItem extends vscode.CompletionItem {
+    label: string
+}

@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
 import type {Extension} from '../../main'
-import type {IProvider} from './interface'
+import type {IProvider, ILwCompletionItem} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
@@ -21,7 +21,7 @@ function isEnvItemEntry(obj: any): obj is EnvItemEntry {
 
 export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
 
-export interface Suggestion extends vscode.CompletionItem {
+export interface Suggestion extends ILwCompletionItem {
     package: string
 }
 
@@ -81,7 +81,11 @@ export class Environment implements IProvider {
         }
     }
 
-    provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    provideFrom(
+        _type: string,
+        _result: RegExpMatchArray,
+        args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}
+    ) {
         const payload = {document: args.document, position: args.position}
         return this.provide(payload)
     }
