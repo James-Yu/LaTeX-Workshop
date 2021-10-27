@@ -48,7 +48,7 @@ export class NewCommandFinder {
         return commandsString
     }
 
-    async findProjectNewCommand(ctoken: vscode.CancellationToken): Promise<string> {
+    async findProjectNewCommand(ctoken?: vscode.CancellationToken): Promise<string> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const newCommandFile = configuration.get('hover.preview.newcommand.newcommandFile') as string
         let commandsInConfigFile = ''
@@ -63,7 +63,7 @@ export class NewCommandFinder {
         let exceeded = false
         setTimeout( () => { exceeded = true }, 5000)
         for (const tex of this.extension.manager.getIncludedTeX()) {
-            if (ctoken.isCancellationRequested) {
+            if (ctoken?.isCancellationRequested) {
                 return ''
             }
             if (exceeded) {

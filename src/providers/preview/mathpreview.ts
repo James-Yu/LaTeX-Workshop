@@ -101,8 +101,8 @@ export class MathPreview {
         return undefined
     }
 
-    async generateSVG(document: vscode.TextDocument, tex: TexMathEnv, newCommands0?: string) {
-        const newCommands: string = newCommands0 ?? (await this.newCommandFinder.findNewCommand(document.getText())).join('')
+    async generateSVG(tex: TexMathEnv, newCommandsArg?: string) {
+        const newCommands: string = newCommandsArg ?? await this.newCommandFinder.findProjectNewCommand()
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
         const s = this.mputils.mathjaxify(tex.texString, tex.envname)

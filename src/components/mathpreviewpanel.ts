@@ -191,7 +191,7 @@ export class MathPreviewPanel {
         if ( position.line === this.prevCursorPosition?.line && documentUri === this.prevDocumentUri ) {
             cachedCommands = this.prevNewCommands
         }
-        const result = await this.mathPreview.generateSVG(document, texMath, cachedCommands).catch(() => undefined)
+        const result = await this.mathPreview.generateSVG(texMath, cachedCommands).catch(() => undefined)
         if (!result) {
             return
         }
