@@ -106,6 +106,37 @@ export function getLongestBalancedString(s: string): string {
     return s.substring(s[0] === '{' ? 1 : 0, i)
 }
 
+/**
+ * If the current position is inside command{...}, return the range of command{...} and its argument. Otherwise return undefined
+ *
+ * @param command the command name, with or without the leading '\\'
+ * @param position the current position in the document
+ * @param document a TextDocument
+ */
+export function getSurroundingCommandRange(command: string, position: vscode.Position, document: vscode.TextDocument): {range: vscode.Range, arg: string} | undefined {
+    if (!command.startsWith('\\')) {
+        command = '\\' + command
+    }
+    const line = document.lineAt(position.line).text
+    const regex = new RegExp('\\' + command + '{', 'g')
+    while (true) {
+        const match = regex.exec(line)
+        if (!match) {
+            break
+        }
+        const matchPos = match.index
+        const openingBracePos = matchPos + command.length + 1
+        const arg = getLongestBalancedString(line.slice(openingBracePos))
+        if (position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
+            const start = new vscode.Position(position.line, matchPos)
+            const end = new vscode.Position(position.line, openingBracePos + arg.length + 1)
+            return {range: new vscode.Range(start, end), arg}
+        }
+    }
+    return undefined
+}
+
+
 export type CommandArgument = {
     arg: string, // The argument we are looking for
     index: number // the starting position of the argument

@@ -4,6 +4,7 @@ import * as path from 'path'
 
 import type {Extension} from './main'
 import {TeXDoc} from './components/texdoc'
+import {getSurroundingCommandRange} from './utils/utils'
 type SnippetsLatexJsonType = typeof import('../snippets/latex.json')
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
@@ -471,7 +472,6 @@ export class Commander {
         )
     }
 
-
     /**
     * Toggle a keyword. This function works with multi-cursors or multi-selections
     *
@@ -488,17 +488,22 @@ export class Commander {
             return
         }
 
-        // Positions where to remove keyword or surround with keywords
-        const editActions: {range: vscode.Selection, text: string}[] = []
+        const editActions: {range: vscode.Range, text: string}[] = []
+        const snippetActions: vscode.Position[] = []
 
-        // First, deal with non empty selections
         for (const selection of editor.selections) {
-            // If the selection is empty, a snippet is always inserted
+            // If the selection is empty, determine if a snippet should be inserted or the cursor is inside \keyword{...}
             if (selection.isEmpty) {
+                const surroundingCommandRange = getSurroundingCommandRange(keyword, selection.anchor, editor.document)
+                if (surroundingCommandRange) {
+                    editActions.push({range: surroundingCommandRange.range, text: surroundingCommandRange.arg})
+                } else {
+                    snippetActions.push(selection.anchor)
+                }
                 continue
             }
 
-            // When the selection is not empty, decide if \keyword must be added or removed
+            // When the selection is not empty, decide if \keyword must be inserted or removed
             const text = editor.document.getText(selection)
             if (text.startsWith(`\\${keyword}{`) || text.startsWith(`${keyword}{`)) {
                 const start = text.indexOf('{') + 1
@@ -508,21 +513,18 @@ export class Commander {
                 editActions.push({range: selection, text: `\\${keyword}{${text}}`})
             }
         }
-        await editor.edit((editBuilder) => {
-            editActions.forEach(a => {
-                editBuilder.replace(a.range, a.text)
-            })
-        })
-        // Second, deal with empty selections
-        const snippetActions: vscode.Position[] = []
-        for (const selection of editor.selections) {
-            if (selection.isEmpty) {
-                snippetActions.push(selection.anchor)
-            }
-        }
-        if (snippetActions.length > 0) {
+
+        if (editActions.length === 0 && snippetActions.length > 0) {
             const snippet = new vscode.SnippetString(`\\\\${keyword}{$1}`)
             await editor.insertSnippet(snippet, snippetActions)
+        } else if (editActions.length > 0 && snippetActions.length === 0) {
+            await editor.edit((editBuilder) => {
+                editActions.forEach(action => {
+                    editBuilder.replace(action.range, action.text)
+                })
+            })
+        } else {
+            this.extension.logger.addLogMessage('toggleSelectedKeyword: cannot handle mixed edit and snippet actions')
         }
     }
 
