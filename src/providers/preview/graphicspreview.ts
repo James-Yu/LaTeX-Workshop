@@ -52,18 +52,18 @@ export class GraphicsPreview {
             if (dataUrl.length < 99980) {
                 md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
             } else {
-                md = new vscode.MarkdownString('The file is too large to render.')
+                md = new vscode.MarkdownString('$(error) The file is too large to render.', true)
             }
             return md
         } else {
             if (/\.pdf$/i.exec(filePath)) {
-                let msg = 'Failed to render.'
+                let msg = '$(error) Failed to render.'
                 if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
-                    msg = 'Cannot render a PDF file not in workspaces.'
+                    msg = '$(warning) Cannot render a PDF file not in workspaces.'
                 } else if (!this.extension.snippetView.snippetViewProvider.webviewView) {
-                    msg = 'Please activate Snippet View to render the thumbnail of a PDF file.'
+                    msg = '$(info) Please activate Snippet View to render the thumbnail of a PDF file.'
                 }
-                return new vscode.MarkdownString(msg)
+                return new vscode.MarkdownString(msg, true)
             }
             return undefined
         }
