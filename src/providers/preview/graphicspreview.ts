@@ -74,23 +74,31 @@ export class GraphicsPreview {
         if (!fs.existsSync(filePath)) {
             return undefined
         }
-        if (/\.pdf$/i.exec(filePath)) {
-            const dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(filePath), pageNumber)
-            if (!dataUrl) {
-                this.extension.logger.addLogMessage(`Failed to render: ${filePath}`)
-                return
+        try {
+            if (/\.pdf$/i.exec(filePath)) {
+                const dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(filePath), pageNumber)
+                if (!dataUrl) {
+                    this.extension.logger.addLogMessage(`Failed to render: ${filePath}`)
+                    return
+                }
+                const scaledDataUrl = await this.graphicsScaler.scaleDataUrl(dataUrl, opts)
+                if (!scaledDataUrl) {
+                    this.extension.logger.addLogMessage(`Failed to resize: ${filePath}`)
+                }
+                return scaledDataUrl
             }
-            const scaledDataUrl = await this.graphicsScaler.scaleDataUrl(dataUrl, opts)
-            if (!scaledDataUrl) {
-                this.extension.logger.addLogMessage(`Failed to resize: ${filePath}`)
+            if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
+                const dataUrl = await this.graphicsScaler.scale(filePath, opts)
+                return dataUrl
             }
-            return scaledDataUrl
+            return undefined
+        } catch (e: unknown) {
+            this.extension.logger.addLogMessage(`Failed to renderGraphicsAsDataUrl: ${filePath}`)
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
+            return undefined
         }
-        if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
-            const dataUrl = await this.graphicsScaler.scale(filePath, opts)
-            return dataUrl
-        }
-        return undefined
     }
 
     private findFilePath(relPath: string, document: vscode.TextDocument): string | undefined {
