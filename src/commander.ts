@@ -3,8 +3,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 
 import type {Extension} from './main'
-import {getLongestBalancedString} from './utils/utils'
 import {TeXDoc} from './components/texdoc'
+import {getSurroundingCommandRange} from './utils/utils'
 type SnippetsLatexJsonType = typeof import('../snippets/latex.json')
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
@@ -43,7 +43,6 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
     })
     return pickedRootFile
 }
-
 
 export class Commander {
     private readonly extension: Extension
@@ -474,110 +473,59 @@ export class Commander {
     }
 
     /**
-    * Toggle a keyword, if the cursor is inside a keyword,
-    * the keyword will be removed, otherwise a snippet will be added.
-    * @param keyword the keyword to toggle without backslash eg. textbf or underline
-    * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
+    * Toggle a keyword. This function works with multi-cursors or multi-selections
+    *
+    * If the selection is empty, a snippet is added.
+    *
+    * If the selection is not empty and matches `\keyword{...}`, it is replaced by
+    * the argument of `keyword`. If the selection does not start with `\keyword`, it is surrounded by `\keyword{...}`.
+    *
+    *  @param keyword the keyword to toggle without backslash eg. textbf or underline
     */
-    async toggleSelectedKeyword(keyword: string, outerBraces?: boolean) {
-        function updateOffset(newContent: string, replacedRange: vscode.Range) {
-            const splitLines = newContent.split('\n')
-            offset.lineOffset += splitLines.length - (replacedRange.end.line - replacedRange.start.line + 1)
-            offset.columnOffset +=
-                splitLines[splitLines.length - 1].length -
-                (replacedRange.isSingleLine
-                    ? replacedRange.end.character - replacedRange.start.character
-                    : replacedRange.start.character)
-        }
+    async toggleSelectedKeyword(keyword: string) {
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
             return
         }
 
-        const document = editor.document
-        const selections = editor.selections.sort((a, b) => {
-            let diff = a.start.line - b.start.line
-            diff = diff !== 0 ? diff : a.start.character - b.start.character
-            return diff
-        })
-        const selectionsText = selections.map(selection => document.getText(selection))
+        const editActions: {range: vscode.Range, text: string}[] = []
+        const snippetActions: vscode.Position[] = []
 
-        const offset: {
-            currentLine: number,
-            lineOffset: number,
-            columnOffset: number
-        } = {
-            currentLine: 0, lineOffset: 0, columnOffset: 0
-        }
-
-        const actions: ('added' | 'removed')[] = []
-
-        for (let i = 0; i < selections.length; i++) {
-            const selection = selections[i]
-            const selectionText = selectionsText[i]
-            const line = document.lineAt(selection.anchor)
-
-            if (offset.currentLine !== selection.start.line) {
-                offset.currentLine = selection.start.line
-                offset.columnOffset = 0
-            }
-            const translatedSelection = new vscode.Range(
-                selection.start.translate(offset.lineOffset, offset.columnOffset),
-                selection.end.translate(offset.lineOffset, offset.columnOffset),
-            )
-
-            const pattern = new RegExp(`\\\\${keyword}{`, 'g')
-            let match = pattern.exec(line.text)
-            let keywordRemoved = false
-            while (match !== null) {
-                const matchStart = line.range.start.translate(0, match.index)
-                const matchEnd = matchStart.translate(0, match[0].length)
-                const searchString = document.getText(new vscode.Range(matchEnd, line.range.end))
-                const insideText = getLongestBalancedString(searchString)
-                const matchRange = new vscode.Range(matchStart,matchEnd.translate(0, insideText.length + 1))
-
-                if (matchRange.contains(translatedSelection)) {
-                    // Remove keyword
-                    await editor.edit(((editBuilder) => {
-                        editBuilder.replace(matchRange, insideText)
-                    }))
-                    updateOffset(insideText, matchRange)
-                    actions.push('removed')
-                    keywordRemoved = true
-                    break
+        for (const selection of editor.selections) {
+            // If the selection is empty, determine if a snippet should be inserted or the cursor is inside \keyword{...}
+            if (selection.isEmpty) {
+                const surroundingCommandRange = getSurroundingCommandRange(keyword, selection.anchor, editor.document)
+                if (surroundingCommandRange) {
+                    editActions.push({range: surroundingCommandRange.range, text: surroundingCommandRange.arg})
+                } else {
+                    snippetActions.push(selection.anchor)
                 }
-                match = pattern.exec(line.text)
-            }
-            if (keywordRemoved) {
                 continue
             }
 
-            // Add keyword
-            if (selectionText.length > 0) {
-                await editor.edit(((editBuilder) => {
-                    let replacementText: string
-                    if (outerBraces === true) {
-                        replacementText= `{\\${keyword} ${selectionText}}`
-                    } else {
-                        replacementText= `\\${keyword}{${selectionText}}`
-                    }
-                    editBuilder.replace(translatedSelection, replacementText)
-                    updateOffset(replacementText, selection)
-                }))
+            // When the selection is not empty, decide if \keyword must be inserted or removed
+            const text = editor.document.getText(selection)
+            if (text.startsWith(`\\${keyword}{`) || text.startsWith(`${keyword}{`)) {
+                const start = text.indexOf('{') + 1
+                const insideText = text.slice(start).slice(0, -1)
+                editActions.push({range: selection, text: insideText})
             } else {
-                let snippet: vscode.SnippetString
-                if (outerBraces === true) {
-                    snippet = new vscode.SnippetString(`{\\${keyword} $1}`)
-                } else {
-                    snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
-                }
-                await editor.insertSnippet(snippet, selection.start.translate(offset.lineOffset, offset.columnOffset))
-                updateOffset(snippet.value.replace(/\$\d/g, ''), new vscode.Range(selection.start, selection.start))
+                editActions.push({range: selection, text: `\\${keyword}{${text}}`})
             }
-            actions.push('added')
         }
 
-        return actions
+        if (editActions.length === 0 && snippetActions.length > 0) {
+            const snippet = new vscode.SnippetString(`\\\\${keyword}{$1}`)
+            await editor.insertSnippet(snippet, snippetActions)
+        } else if (editActions.length > 0 && snippetActions.length === 0) {
+            await editor.edit((editBuilder) => {
+                editActions.forEach(action => {
+                    editBuilder.replace(action.range, action.text)
+                })
+            })
+        } else {
+            this.extension.logger.addLogMessage('toggleSelectedKeyword: cannot handle mixed edit and snippet actions')
+        }
     }
 
     /**
