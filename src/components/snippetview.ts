@@ -26,7 +26,7 @@ export class SnippetView {
         this.snippetViewProvider = new SnippetViewProvider(extension)
     }
 
-    async renderPdf(pdfFileUri: vscode.Uri, pageNumber: number = 1) {
+    async renderPdf(pdfFileUri: vscode.Uri, opts: { height: number, width: number, pageNumber: number }): Promise<string | undefined> {
         const webview = this.snippetViewProvider.webviewView?.webview
         if (!webview) {
             return
@@ -49,7 +49,7 @@ export class SnippetView {
             void webview.postMessage({
                 type: 'pdf',
                 uri,
-                pageNumber
+                opts
             })
         })
         try {

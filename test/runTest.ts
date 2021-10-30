@@ -45,7 +45,7 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
     for (const testWorkspace of testBuildWorkspaces) {
         const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
         await runTests({
-            version: '1.61.2',
+            version: '1.62.0',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [

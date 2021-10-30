@@ -4,7 +4,7 @@ window.addEventListener('message', async (event) => {
         return
     }
     try {
-        const canvas = await renderPdfFile(message.uri, message.pageNumber);
+        const canvas = await renderPdfFile(message.uri, message.opts);
         vscodeApi.postMessage({
             type: 'png',
             uri: message.uri,
@@ -20,6 +20,7 @@ window.addEventListener('message', async (event) => {
     }
 })
 
+// https://github.com/microsoft/vscode/issues/87282#issuecomment-919464403
 async function createPdfWorker() {
     const result = await fetch(pdfjsDistUri + '/build/pdf.worker.js');
     const blob = await result.blob();
@@ -27,34 +28,35 @@ async function createPdfWorker() {
     pdfjsLib.GlobalWorkerOptions.workerPort = new Worker(blobUrl);
 }
 
-async function renderPdfFile(url, pageNumber) {
+async function renderPdfFile(url, opts) {
     const loadingTask = pdfjsLib.getDocument({
         url,
         cMapUrl: pdfjsDistUri + '/cmaps/',
         cMapPacked: true
     });
     const pdf = await loadingTask.promise;
-    const page = await pdf.getPage(pageNumber);
-    const scale = 1.5;
-    const viewport = page.getViewport({ scale: scale, });
-    // Support HiDPI-screens.
-    const outputScale = window.devicePixelRatio || 1;
+    const page = await pdf.getPage(opts.pageNumber);
+    let scale = 1;
+    let viewport = page.getViewport({ scale });
+
+    const height = Math.floor(viewport.height);
+    const width = Math.floor(viewport.width);
+    scale = Math.min(opts.height/height, opts.width/width);
+    viewport = page.getViewport({ scale });
 
     //
     // Prepare canvas using PDF page dimensions
     //
     const canvas = document.createElement('canvas');
     const context = canvas.getContext('2d');
-    canvas.width = Math.floor(viewport.width * outputScale);
-    canvas.height = Math.floor(viewport.height * outputScale);
+    canvas.width = Math.floor(viewport.width);
+    canvas.height = Math.floor(viewport.height);
 
-    const transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
     //
     // Render PDF page into canvas context
     //
     const renderContext = {
         canvasContext: context,
-        transform: transform,
         viewport: viewport,
         intent: 'print'
     };
