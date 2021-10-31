@@ -9,6 +9,7 @@ import {Command} from './completer/command'
 import type {CmdItemEntry} from './completer/command'
 import {Environment} from './completer/environment'
 import type {EnvItemEntry} from './completer/environment'
+import {Snippet} from './completer/snippet'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input, Import, SubImport} from './completer/input'
@@ -23,6 +24,7 @@ export class Completer implements vscode.CompletionItemProvider {
     private readonly extension: Extension
     readonly citation: Citation
     readonly command: Command
+    readonly snippet: Snippet
     readonly documentClass: DocumentClass
     readonly environment: Environment
     readonly reference: Reference
@@ -37,6 +39,7 @@ export class Completer implements vscode.CompletionItemProvider {
         this.citation = new Citation(extension)
         this.environment = new Environment(extension) // Must be created before command
         this.command = new Command(extension, this.environment)
+        this.snippet = new Snippet(extension)
         this.documentClass = new DocumentClass(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
@@ -85,7 +88,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const line = document.lineAt(position.line).text.substr(0, position.character)
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
-        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'command']) {
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'command', 'snippet']) {
             const suggestions = this.completion(type, line, {document, position, token, context})
             if (suggestions.length > 0) {
                 if (type === 'citation') {
@@ -193,6 +196,10 @@ export class Completer implements vscode.CompletionItemProvider {
             case 'glossary':
                 reg = /\\(gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
                 provider = this.glossary
+                break
+            case 'snippet':
+                reg = /@[^@\s]*$/
+                provider = this.snippet
                 break
             default:
                 // This shouldn't be possible, so mark as error case in log.

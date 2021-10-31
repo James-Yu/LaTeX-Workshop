@@ -274,7 +274,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const userTriggersLatex = configuration.get('intellisense.triggers.latex') as string[]
-    const latexTriggers = ['\\', ','].concat(userTriggersLatex)
+    const latexTriggers = ['\\', '@'].concat(userTriggersLatex)
     extension.logger.addLogMessage(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
 
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'))

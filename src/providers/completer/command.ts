@@ -199,7 +199,7 @@ export class Command implements IProvider {
     }
 
     /**
-     * Returns the name of `item`. The backward slahsh, `\`, is removed.
+     * Returns the name of `item`. The backward slash, `\`, is removed.
      *
      * @param item A completion item.
      * @param removeArgs If `true`, returns a name without arguments.
