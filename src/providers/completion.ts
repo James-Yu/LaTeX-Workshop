@@ -15,6 +15,7 @@ import {Package} from './completer/package'
 import {Input, Import, SubImport} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
+import {escapeRegExp} from '../utils/utils'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
 type DataCmdsJsonType = typeof import('../../data/commands.json')
@@ -210,10 +211,12 @@ export class Completer implements vscode.CompletionItemProvider {
 }
 
 export class SnippetCompleter implements vscode.CompletionItemProvider {
-    readonly snippet: Snippet
+    private readonly snippet: Snippet
+    private readonly triggerCharacter: string
 
-    constructor(extension: Extension) {
-        this.snippet = new Snippet(extension)
+    constructor(extension: Extension, triggerCharacter: string) {
+        this.snippet = new Snippet(extension, triggerCharacter)
+        this.triggerCharacter = triggerCharacter
     }
 
     provideCompletionItems(
@@ -227,7 +230,8 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
     }
 
     private completion(line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        const reg = /@[^@\s]*$/
+        const triggerCharacterEscaped = escapeRegExp(this.triggerCharacter)
+        const reg = new RegExp(triggerCharacterEscaped + '[^\\\\s]*$')
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {

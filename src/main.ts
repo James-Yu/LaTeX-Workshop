@@ -279,7 +279,10 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, ...latexTriggers))
-    context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, new SnippetCompleter(extension), '@'))
+    const snippetLatexTrigger = configuration.get('intellisense.snippets.trigger.latex') as string
+    if (snippetLatexTrigger !== '') {
+        context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, new SnippetCompleter(extension, snippetLatexTrigger), snippetLatexTrigger))
+    }
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@'))
 
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions))

@@ -14,10 +14,12 @@ type DataSnippetsJsonType = typeof import('../../../data/snippets-as-commands.js
 
 export class Snippet implements IProvider {
     private readonly extension: Extension
+    private readonly triggerCharacter: string
     private readonly suggestions: vscode.CompletionItem[] = []
 
-    constructor(extension: Extension) {
+    constructor(extension: Extension, triggerCharacter: string) {
         this.extension = extension
+        this.triggerCharacter = triggerCharacter
         const allSnippets: {[key: string]: SnippetItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/snippets-as-commands.json`).toString()) as DataSnippetsJsonType
         this.initialize(allSnippets)
     }
@@ -25,10 +27,9 @@ export class Snippet implements IProvider {
     initialize(snippets: {[key: string]: SnippetItemEntry}) {
         Object.keys(snippets).forEach(key => {
             const item = snippets[key]
-            const completionItem = new vscode.CompletionItem(item.prefix, vscode.CompletionItemKind.Function)
+            const completionItem = new vscode.CompletionItem(item.prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
             completionItem.insertText = new vscode.SnippetString(item.body)
             completionItem.documentation = new vscode.MarkdownString(item.description)
-            completionItem.filterText = item.prefix
             this.suggestions.push(completionItem)
         })
     }
@@ -41,7 +42,7 @@ export class Snippet implements IProvider {
     private provide(document?: vscode.TextDocument, position?: vscode.Position): vscode.CompletionItem[] {
         let range: vscode.Range | undefined = undefined
         if (document && position) {
-            const startPos = document.lineAt(position).text.lastIndexOf('@', position.character - 1)
+            const startPos = document.lineAt(position).text.lastIndexOf(this.triggerCharacter, position.character - 1)
             if (startPos >= 0) {
                 range = new vscode.Range(position.line, startPos, position.line, position.character)
             }
