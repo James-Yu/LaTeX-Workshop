@@ -76,10 +76,8 @@ abstract class InputAbstract implements IProvider {
      * Provide file name intellisense
      *
      * @param payload an array of string
-     *      payload[0]: the input command type  (input, import, subimport, includeonly)
-     *      payload[1]: the current file name
-     *      payload[2]: When defined, the path from which completion is triggered
-     *      payload[3]: The already typed path
+     *      payload[0]: The already typed path
+     *      payload[1]: The path from which completion is triggered, may be empty
      */
     private provide(document: vscode.TextDocument, position: vscode.Position, command: string, payload: string[]): vscode.CompletionItem[] {
         const currentFile = document.fileName
