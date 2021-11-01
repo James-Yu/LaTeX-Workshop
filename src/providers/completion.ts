@@ -24,7 +24,6 @@ export class Completer implements vscode.CompletionItemProvider {
     private readonly extension: Extension
     readonly citation: Citation
     readonly command: Command
-    readonly snippet: Snippet
     readonly documentClass: DocumentClass
     readonly environment: Environment
     readonly reference: Reference
@@ -39,7 +38,6 @@ export class Completer implements vscode.CompletionItemProvider {
         this.citation = new Citation(extension)
         this.environment = new Environment(extension) // Must be created before command
         this.command = new Command(extension, this.environment)
-        this.snippet = new Snippet(extension)
         this.documentClass = new DocumentClass(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
@@ -224,10 +222,6 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
         token: vscode.CancellationToken,
         context: vscode.CompletionContext
     ): vscode.CompletionItem[] | undefined {
-        const currentLine = document.lineAt(position.line).text
-        if (position.character > 1 && currentLine[position.character - 1] === '@' && currentLine[position.character - 2] === '@') {
-            return
-        }
         const line = document.lineAt(position.line).text.substr(0, position.character)
         return this.completion(line, {document, position, token, context})
     }
