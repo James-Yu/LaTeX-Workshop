@@ -17,6 +17,23 @@ abstract class InputAbstract implements IProvider {
         this.extension = extension
     }
 
+    /**
+     * Compute the base directory for file completion
+     *
+     * @param currentFile current file path
+     * @param importFromDir `From` argument of the import command
+     * @param command The command which triggered the completion
+     */
+    abstract getBaseDir(currentFile: string, importFromDir: string, command: string): string[]
+
+    /**
+     * Do we only list directories?
+     *
+     * @param importFromDir `From` argument of the import command
+     */
+    abstract provideDirOnly(importFromDir: string): boolean
+
+
     private filterIgnoredFiles(files: string[], baseDir: string): string[] {
         const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         return files.filter(file => {
@@ -56,22 +73,6 @@ abstract class InputAbstract implements IProvider {
         const payload = [...result.slice(2).reverse()]
         return this.provide(args.document, args.position, command, payload)
     }
-
-    /**
-     * Compute the base directory for file completion
-     *
-     * @param currentFile current file path
-     * @param importFromDir `From` argument of the import command
-     * @param command The command which triggered the completion
-     */
-    abstract getBaseDir(currentFile: string, importFromDir: string, command: string): string[]
-
-    /**
-     * Do we only list directories?
-     *
-     * @param importFromDir `From` argument of the import command
-     */
-    abstract provideDirOnly(importFromDir: string): boolean
 
     /**
      * Provide file name intellisense
