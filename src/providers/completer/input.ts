@@ -30,7 +30,7 @@ abstract class InputAbstract implements IProvider {
      *
      * @param content the content to be parsed for graphicspath
      */
-    getGraphicsPath(content: string) {
+    setGraphicsPath(content: string) {
         const regex = /\\graphicspath{[\s\n]*((?:{[^{}]*}[\s\n]*)*)}/g
         const noVerbContent = stripCommentsAndVerbatim(content)
         let result: string[] | null
@@ -59,6 +59,7 @@ abstract class InputAbstract implements IProvider {
 
     /**
      * Compute the base directory for file completion
+     *
      * @param currentFile current file path
      * @param importFromDir `From` argument of the import command
      * @param command The command which triggered the completion
