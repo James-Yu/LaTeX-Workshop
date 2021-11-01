@@ -88,7 +88,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const line = document.lineAt(position.line).text.substr(0, position.character)
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
-        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'command', 'snippet']) {
+        for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'command']) {
             const suggestions = this.completion(type, line, {document, position, token, context})
             if (suggestions.length > 0) {
                 if (type === 'citation') {
@@ -197,10 +197,6 @@ export class Completer implements vscode.CompletionItemProvider {
                 reg = /\\(gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
                 provider = this.glossary
                 break
-            case 'snippet':
-                reg = /@[^@\s]*$/
-                provider = this.snippet
-                break
             default:
                 // This shouldn't be possible, so mark as error case in log.
                 this.extension.logger.addLogMessage(`Error - trying to complete unknown type ${type}`)
@@ -210,6 +206,38 @@ export class Completer implements vscode.CompletionItemProvider {
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
             suggestions = provider.provideFrom(result, args)
+        }
+        return suggestions
+    }
+}
+
+export class SnippetCompleter implements vscode.CompletionItemProvider {
+    readonly snippet: Snippet
+
+    constructor(extension: Extension) {
+        this.snippet = new Snippet(extension)
+    }
+
+    provideCompletionItems(
+        document: vscode.TextDocument,
+        position: vscode.Position,
+        token: vscode.CancellationToken,
+        context: vscode.CompletionContext
+    ): vscode.CompletionItem[] | undefined {
+        const currentLine = document.lineAt(position.line).text
+        if (position.character > 1 && currentLine[position.character - 1] === '@' && currentLine[position.character - 2] === '@') {
+            return
+        }
+        const line = document.lineAt(position.line).text.substr(0, position.character)
+        return this.completion(line, {document, position, token, context})
+    }
+
+    private completion(line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+        const reg = /@[^@\s]*$/
+        const result = line.match(reg)
+        let suggestions: vscode.CompletionItem[] = []
+        if (result) {
+            suggestions = this.snippet.provideFrom('snippet', result, args)
         }
         return suggestions
     }
