@@ -230,8 +230,8 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
     }
 
     private completion(line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
-        const triggerCharacterEscaped = escapeRegExp(this.triggerCharacter)
-        const reg = new RegExp(triggerCharacterEscaped + '[^\\\\s]*$')
+        const escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
+        const reg = new RegExp(escapedTriggerCharacter + '[^\\\\s]*$')
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {

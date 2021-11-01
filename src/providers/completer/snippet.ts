@@ -3,6 +3,7 @@ import * as fs from 'fs'
 
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
+import {escapeRegExp} from '../../utils/utils'
 
 export interface SnippetItemEntry {
     prefix: string,
@@ -15,11 +16,14 @@ type DataSnippetsJsonType = typeof import('../../../data/snippets-as-commands.js
 export class Snippet implements IProvider {
     private readonly extension: Extension
     private readonly triggerCharacter: string
+    private readonly escapedTriggerCharacter: string
     private readonly suggestions: vscode.CompletionItem[] = []
 
     constructor(extension: Extension, triggerCharacter: string) {
         this.extension = extension
         this.triggerCharacter = triggerCharacter
+        this.escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
+
         const allSnippets: {[key: string]: SnippetItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/snippets-as-commands.json`).toString()) as DataSnippetsJsonType
         this.initialize(allSnippets)
     }
@@ -34,8 +38,19 @@ export class Snippet implements IProvider {
         })
     }
 
-    provideFrom(_type: string, _result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    provideFrom(_type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         const suggestions = this.provide(args.document, args.position)
+        // Manually filter suggestions when there are several consecutive trigger characters
+        const reg = new RegExp(this.escapedTriggerCharacter + '{2,}$')
+        if (result[0].match(reg)) {
+            const filteredSuggestions = suggestions.filter(item => item.label === result[0])
+            if (filteredSuggestions.length > 0) {
+                return filteredSuggestions.map(item => {
+                    item.range = new vscode.Range(args.position.translate(undefined, -item.label.toString().length), args.position)
+                    return item
+                })
+            }
+        }
         return suggestions
     }
 
