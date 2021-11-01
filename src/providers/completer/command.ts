@@ -71,7 +71,7 @@ export class Command implements IProvider {
         return this.commandFinder.definedCmds
     }
 
-    provideFrom(_type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         const suggestions = this.provide(args.document.languageId, args.document, args.position)
         // Commands ending with (, { or [ are not filtered properly by vscode intellisense. So we do it by hand.
         if (result[0].match(/[({[]$/)) {

@@ -11,7 +11,7 @@ import {Environment} from './completer/environment'
 import type {EnvItemEntry} from './completer/environment'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
-import {Input} from './completer/input'
+import {Input, Import, SubImport} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 
@@ -28,6 +28,8 @@ export class Completer implements vscode.CompletionItemProvider {
     readonly reference: Reference
     readonly package: Package
     readonly input: Input
+    readonly import: Import
+    readonly subImport: SubImport
     readonly glossary: Glossary
 
     constructor(extension: Extension) {
@@ -39,6 +41,8 @@ export class Completer implements vscode.CompletionItemProvider {
         this.reference = new Reference(extension)
         this.package = new Package(extension)
         this.input = new Input(extension)
+        this.import = new Import(extension)
+        this.subImport = new SubImport(extension)
         this.glossary = new Glossary(extension)
         try {
             this.loadDefaultItems()
@@ -180,11 +184,11 @@ export class Completer implements vscode.CompletionItemProvider {
                 break
             case 'import':
                 reg = /\\(import|includefrom|inputfrom)\*?(?:{([^}]*)})?{([^}]*)$/
-                provider = this.input
+                provider = this.import
                 break
             case 'subimport':
                 reg = /\\(sub(?:import|includefrom|inputfrom))\*?(?:{([^}]*)})?{([^}]*)$/
-                provider = this.input
+                provider = this.subImport
                 break
             case 'glossary':
                 reg = /\\(gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
@@ -198,7 +202,7 @@ export class Completer implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = provider.provideFrom(type, result, args)
+            suggestions = provider.provideFrom(result, args)
         }
         return suggestions
     }
