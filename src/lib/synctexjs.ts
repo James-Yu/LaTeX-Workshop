@@ -131,7 +131,7 @@ export function parseSyncTex(pdfsyncBody: string) : PdfSyncObject {
   const closeverticalBlockPattern = /\]$/
   const horizontalBlockPattern = /\(([0-9]+),([0-9]+):(-?[0-9]+),(-?[0-9]+):(-?[0-9]+),(-?[0-9]+),(-?[0-9]+)/
   const closehorizontalBlockPattern = /\)$/
-  const elementBlockPattern = /(.)([0-9]+),([0-9]+):-?([0-9]+),-?([0-9]+)(:?-?([0-9]+))?/
+  const elementBlockPattern = /(.)([0-9]+),([0-9]+):(-?[0-9]+),(-?[0-9]+)(:?(-?[0-9]+))?/
 
   for (let i = 1; i < lineArray.length; i++) {
     const line = lineArray[i]
