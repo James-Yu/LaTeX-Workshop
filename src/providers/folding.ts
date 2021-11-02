@@ -27,6 +27,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
 
         const sections: {level: number, from: number, to: number}[] = []
         let index = -1
+        let lastNonemptyLineIndex = -1
         for (const line of lines) {
             index++
             for (const regex of this.sectionRegex) {
@@ -45,7 +46,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                     sections.push({
                         level: i,
                         from: startingIndices[i],
-                        to: index - 1
+                        to: lastNonemptyLineIndex
                     })
                     startingIndices[i] = regIndex === i ? index : -1
                     ++i
@@ -58,7 +59,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                 sections.push({
                     level: 0,
                     from: documentClassLine,
-                    to: index - 1
+                    to: lastNonemptyLineIndex
                 })
             }
             if (/\\end{document}/.exec(line) || index === lines.length - 1) {
@@ -69,9 +70,12 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                     sections.push({
                         level: i,
                         from: startingIndices[i],
-                        to: index - 1
+                        to: lastNonemptyLineIndex
                     })
                 }
+            }
+            if (! line.match(/^\s*$/)) {
+                lastNonemptyLineIndex = index
             }
         }
 
