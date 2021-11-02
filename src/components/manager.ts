@@ -912,7 +912,7 @@ export class Manager {
             return
         }
         await this.updateCompleter(file, content)
-        this.extension.completer.input.getGraphicsPath(content)
+        this.extension.completer.input.setGraphicsPath(content)
     }
 
     /**

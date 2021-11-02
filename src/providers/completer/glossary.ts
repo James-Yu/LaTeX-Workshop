@@ -28,7 +28,7 @@ export class Glossary implements IProvider {
         this.extension = extension
     }
 
-    provideFrom(_type: string, result: RegExpMatchArray) {
+    provideFrom(result: RegExpMatchArray) {
         return this.provide(result)
     }
 

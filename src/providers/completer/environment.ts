@@ -82,7 +82,6 @@ export class Environment implements IProvider {
     }
 
     provideFrom(
-        _type: string,
         _result: RegExpMatchArray,
         args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}
     ) {
