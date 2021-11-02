@@ -38,7 +38,7 @@ export class Snippet implements IProvider {
         })
     }
 
-    provideFrom(_type: string, result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+    provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         const suggestions = this.provide(args.document, args.position)
         // Manually filter suggestions when there are several consecutive trigger characters
         const reg = new RegExp(this.escapedTriggerCharacter + '{2,}$')

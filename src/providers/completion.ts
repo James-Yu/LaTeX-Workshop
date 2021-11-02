@@ -235,7 +235,7 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = this.snippet.provideFrom('snippet', result, args)
+            suggestions = this.snippet.provideFrom(result, args)
         }
         return suggestions
     }
