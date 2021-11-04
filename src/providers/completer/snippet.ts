@@ -54,13 +54,11 @@ export class Snippet implements IProvider {
         return suggestions
     }
 
-    private provide(document?: vscode.TextDocument, position?: vscode.Position): vscode.CompletionItem[] {
+    private provide(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] {
         let range: vscode.Range | undefined = undefined
-        if (document && position) {
-            const startPos = document.lineAt(position).text.lastIndexOf(this.triggerCharacter, position.character - 1)
-            if (startPos >= 0) {
-                range = new vscode.Range(position.line, startPos, position.line, position.character)
-            }
+        const startPos = document.lineAt(position).text.lastIndexOf(this.triggerCharacter, position.character - 1)
+        if (startPos >= 0) {
+            range = new vscode.Range(position.line, startPos, position.line, position.character)
         }
         this.suggestions.forEach(snippet => {snippet.range = range})
         return this.suggestions
