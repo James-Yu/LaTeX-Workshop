@@ -9,11 +9,13 @@ import {Command} from './completer/command'
 import type {CmdItemEntry} from './completer/command'
 import {Environment} from './completer/environment'
 import type {EnvItemEntry} from './completer/environment'
+import {Snippet} from './completer/snippet'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input, Import, SubImport} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
+import {escapeRegExp} from '../utils/utils'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
 type DataCmdsJsonType = typeof import('../../data/commands.json')
@@ -203,6 +205,37 @@ export class Completer implements vscode.CompletionItemProvider {
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
             suggestions = provider.provideFrom(result, args)
+        }
+        return suggestions
+    }
+}
+
+export class SnippetCompleter implements vscode.CompletionItemProvider {
+    private readonly snippet: Snippet
+    private readonly triggerCharacter: string
+
+    constructor(extension: Extension, triggerCharacter: string) {
+        this.snippet = new Snippet(extension, triggerCharacter)
+        this.triggerCharacter = triggerCharacter
+    }
+
+    provideCompletionItems(
+        document: vscode.TextDocument,
+        position: vscode.Position,
+        token: vscode.CancellationToken,
+        context: vscode.CompletionContext
+    ): vscode.CompletionItem[] | undefined {
+        const line = document.lineAt(position.line).text.substr(0, position.character)
+        return this.completion(line, {document, position, token, context})
+    }
+
+    private completion(line: string, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+        const escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
+        const reg = new RegExp(escapedTriggerCharacter + '[^\\\\s]*$')
+        const result = line.match(reg)
+        let suggestions: vscode.CompletionItem[] = []
+        if (result) {
+            suggestions = this.snippet.provideFrom(result, args)
         }
         return suggestions
     }

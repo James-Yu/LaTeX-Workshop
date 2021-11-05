@@ -22,7 +22,7 @@ import {LinterLogParser} from './components/parser/linterlog'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Configuration} from './components/configuration'
 
-import {Completer} from './providers/completion'
+import {Completer, SnippetCompleter} from './providers/completion'
 import {BibtexCompleter} from './providers/bibtexcompletion'
 import {CodeActions} from './providers/codeactions'
 import {DuplicateLabels} from './components/duplicatelabels'
@@ -279,6 +279,10 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'tex'}, extension.completer, '\\', '{'))
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.completer, ...latexTriggers))
+    const snippetLatexTrigger = configuration.get('intellisense.snippets.trigger.latex') as string
+    if (snippetLatexTrigger !== '') {
+        context.subscriptions.push(vscode.languages.registerCompletionItemProvider(latexDoctexSelector, new SnippetCompleter(extension, snippetLatexTrigger), snippetLatexTrigger))
+    }
     context.subscriptions.push(vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@'))
 
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions))
