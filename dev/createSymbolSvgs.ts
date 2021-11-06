@@ -13,30 +13,39 @@ type IMathSymbol = {
     shrink?: boolean
 }
 
-let mathJax: typeof import('mathjax-node')
-void import('mathjax-node')
-    .then(mj => {
-        mathJax = mj
-        mj.config({
-            MathJax: {
-                jax: ['input/TeX', 'output/SVG'],
-                extensions: ['tex2jax.js', 'MathZoom.js'],
-                showMathMenu: false,
-                showProcessingMessages: false,
-                messageStyle: 'none',
-                SVG: {
-                    useGlobalCache: false
-                },
-                TeX: {
-                    extensions: ['AMSmath.js', 'AMSsymbols.js', 'autoload-all.js', 'color.js', 'noUndefined.js']
-                }
-            }
-        })
-        mj.start()
-    })
-    .then(() => {
-        loadSnippets()
-    })
+import type {ConvertOption, SupportedExtension, SvgOption, TexOption} from 'mathjax-full'
+import { mathjax } from 'mathjax-full/js/mathjax.js'
+import { TeX } from 'mathjax-full/js/input/tex.js'
+import { SVG } from 'mathjax-full/js/output/svg.js'
+import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
+import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
+import type { LiteElement } from 'mathjax-full/js/adaptors/lite/Element.js'
+import type { MathDocument } from 'mathjax-full/js/core/MathDocument.js'
+import type { LiteDocument } from 'mathjax-full/js/adaptors/lite/Document.js'
+import type { LiteText } from 'mathjax-full/js/adaptors/lite/Text.js'
+import 'mathjax-full/js/input/tex/AllPackages.js'
+
+
+const adaptor = liteAdaptor()
+RegisterHTMLHandler(adaptor)
+
+const baseExtensions: SupportedExtension[] = ['ams', 'base', 'color', 'newcommand', 'noerrors', 'noundefined']
+
+const baseTexOption: TexOption = {
+    packages: baseExtensions,
+    formatError: (_jax, error) => { throw new Error(error.message) }
+}
+const texInput = new TeX<LiteElement, LiteText, LiteDocument>(baseTexOption)
+const svgOption: SvgOption = {fontCache: 'local'}
+const svgOutput = new SVG<LiteElement, LiteText, LiteDocument>(svgOption)
+const html = mathjax.document('', {InputJax: texInput, OutputJax: svgOutput}) as MathDocument<LiteElement, LiteText, LiteDocument>
+
+const convertOption: ConvertOption = {
+    display: true,
+    em: 16,
+    ex: 8,
+    containerWidth: 80*16
+}
 
 function loadSnippets() {
     const snipetsFile = path.resolve('.', 'resources', 'snippetview', 'snippetpanel.json')
@@ -46,45 +55,27 @@ function loadSnippets() {
         }
     } = JSON.parse(readFileSync(snipetsFile, { encoding: 'utf8' })) as SnippetPanelJsonType
 
-    const mathSymbolPromises: Promise<void>[] = []
-    for (const category in snippets.mathSymbols) {
-        for (let i = 0; i < snippets.mathSymbols[category].length; i++) {
-            const symbol = snippets.mathSymbols[category][i]
-            if (symbol.svg === undefined) {
-                mathSymbolPromises.push(
-                    new Promise((resolve, reject) => {
-                        mathJax
-                            .typeset({
-                                math: symbol.source,
-                                format: 'TeX',
-                                svgNode: true
-                            })
-                            .then(
-                                (data) => {
-                                    let svg = data.svgNode.outerHTML
-                                    svg = svg.replace(
-                                        /<title([^>]*)>(.*)<\/title>/,
-                                        `<title$1>${symbol.name.toLocaleUpperCase()}.${
-                                            symbol.keywords ? ' Keywords: ' + symbol.keywords : ''
-                                        }</title>`
-                                    )
-                                    if (symbol.shrink) {
-                                        svg = svg.replace(/^<svg/, '<svg class="shrink"')
-                                    }
-                                    symbol.svg = svg
-                                    resolve()
-                                }
-                            )
-                            .catch(reject)
-                    })
-                )
+    Object.values(snippets.mathSymbols).forEach((symbolArray) => {
+        symbolArray.forEach((symbol) => {
+            if (symbol.svg) {
+                return
             }
-        }
-    }
-    Promise.all(mathSymbolPromises).finally(() => {
-        if (mathSymbolPromises.length > 0) {
-            writeFileSync(snipetsFile, JSON.stringify(snippets, undefined, 4))
-            console.log(`LaTeX-Workshop: ${mathSymbolPromises.length} symbols rendered and cached`)
-        }
+            const node = html.convert(symbol.source, convertOption) as LiteElement
+            let svg = adaptor.innerHTML(node)
+            svg = svg.replace(
+                /<defs>/,
+                `<title>${symbol.name.toLocaleUpperCase()}.${
+                    symbol.keywords ? ' Keywords: ' + symbol.keywords : ''
+                }</title><defs>`
+            )
+            if (symbol.shrink) {
+                svg = svg.replace(/^<svg/, '<svg class="shrink"')
+            }
+            symbol.svg = svg
+        })
     })
+    writeFileSync(snipetsFile, JSON.stringify(snippets, undefined, 4))
+    console.log('LaTeX-Workshop: Symbols rendered and cached')
 }
+
+loadSnippets()

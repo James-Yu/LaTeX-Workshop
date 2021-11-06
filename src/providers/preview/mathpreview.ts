@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import type {TypesetArg} from 'mathjax-node'
 
 import {MathJaxPool} from './mathjaxpool'
 import * as utils from '../../utils/svg'
@@ -47,11 +46,7 @@ export class MathPreview {
         const scale = configuration.get('hover.preview.scale') as number
         let s = this.cursorRenderer.renderCursor(document, tex.range, this.color)
         s = this.mputils.mathjaxify(s, tex.envname)
-        const typesetArg: TypesetArg = {
-            math: newCommand + this.mputils.stripTeX(s),
-            format: 'TeX',
-            svgNode: true,
-        }
+        const typesetArg = newCommand + this.mputils.stripTeX(s)
         const typesetOpts = { scale, color: this.color }
         try {
             const xml = await this.mj.typeset(typesetArg, typesetOpts)
@@ -59,7 +54,7 @@ export class MathPreview {
             return new vscode.Hover(new vscode.MarkdownString(this.mputils.addDummyCodeBlock(`![equation](${md})`)), tex.range )
         } catch(e) {
             this.extension.logger.logOnRejected(e)
-            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg.math}`)
+            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg}`)
             throw e
         }
     }
@@ -106,11 +101,7 @@ export class MathPreview {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
         const s = this.mputils.mathjaxify(tex.texString, tex.envname)
-        const xml = await this.mj.typeset({
-            math: newCommands + this.mputils.stripTeX(s),
-            format: 'TeX',
-            svgNode: true,
-        }, {scale, color: this.color})
+        const xml = await this.mj.typeset(newCommands + this.mputils.stripTeX(s), {scale, color: this.color})
         return {svgDataUrl: utils.svgToDataUrl(xml), newCommands}
     }
 

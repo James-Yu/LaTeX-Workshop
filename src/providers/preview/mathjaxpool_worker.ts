@@ -1,52 +1,60 @@
 import * as workerpool from 'workerpool'
-import * as mj from 'mathjax-node'
+import type {ConvertOption, SupportedExtension, SvgOption, TexOption} from 'mathjax-full'
+import { mathjax } from 'mathjax-full/js/mathjax.js'
+import { TeX } from 'mathjax-full/js/input/tex.js'
+import { SVG } from 'mathjax-full/js/output/svg.js'
+import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
+import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
+import type { LiteElement } from 'mathjax-full/js/adaptors/lite/Element.js'
+import type { MathDocument } from 'mathjax-full/js/core/MathDocument.js'
+import type { LiteDocument } from 'mathjax-full/js/adaptors/lite/Document.js'
+import type { LiteText } from 'mathjax-full/js/adaptors/lite/Text.js'
+import 'mathjax-full/js/input/tex/AllPackages.js'
 
-mj.config({
-    MathJax: {
-        jax: ['input/TeX', 'output/SVG'],
-        extensions: ['tex2jax.js', 'MathZoom.js'],
-        showMathMenu: false,
-        showProcessingMessages: false,
-        messageStyle: 'none',
-        SVG: {
-            useGlobalCache: false
-        },
-        TeX: {
-            extensions: ['AMSmath.js', 'AMSsymbols.js', 'autoload-all.js', 'color.js', 'noUndefined.js']
-        }
+
+const adaptor = liteAdaptor()
+RegisterHTMLHandler(adaptor)
+
+const baseExtensions: SupportedExtension[] = ['ams', 'base', 'color', 'newcommand', 'noerrors', 'noundefined']
+
+function createHtmlConverter(extensions: SupportedExtension[]) {
+    const baseTexOption: TexOption = {
+        packages: extensions,
+        formatError: (_jax, error) => { throw new Error(error.message) }
     }
-})
-mj.start()
+    const texInput = new TeX<LiteElement, LiteText, LiteDocument>(baseTexOption)
+    const svgOption: SvgOption = {fontCache: 'local'}
+    const svgOutput = new SVG<LiteElement, LiteText, LiteDocument>(svgOption)
+    return mathjax.document('', {InputJax: texInput, OutputJax: svgOutput}) as MathDocument<LiteElement, LiteText, LiteDocument>
+}
 
-function scaleSVG(data: mj.TypesetReturnType, scale: number) {
-    const svgelm = data.svgNode
-    // w0[2] and h0[2] are units, i.e., pt, ex, em, ...
-    const w0 = svgelm.getAttribute('width').match(/([.\d]+)(\w*)/)
-    const h0 = svgelm.getAttribute('height').match(/([.\d]+)(\w*)/)
-    if (w0 && h0) {
-        const w = scale * Number(w0[1])
-        const h = scale * Number(h0[1])
-        svgelm.setAttribute('width', w + w0[2])
-        svgelm.setAttribute('height', h + h0[2])
+let html = createHtmlConverter(baseExtensions)
+
+export function loadExtensions(extensions: SupportedExtension[]) {
+    const extensionsToLoad = baseExtensions.concat(extensions)
+    html = createHtmlConverter(extensionsToLoad)
+}
+
+export function typeset(arg: string, opts: { scale: number, color: string }): string {
+    const convertOption: ConvertOption = {
+        display: true,
+        em: 18,
+        ex: 9,
+        containerWidth: 80*18
     }
+    const node = html.convert(arg, convertOption) as LiteElement
+
+    const css = `svg {font-size: ${100 * opts.scale}%;} * { color: ${opts.color} }`
+    let svgHtml = adaptor.innerHTML(node)
+    svgHtml = svgHtml.replace(/<defs>/, `<defs><style>${css}</style>`)
+    return svgHtml
 }
 
-function colorSVG(svg: string, color: string): string {
-    const ret = svg.replace('</title>', `</title><style> * { color: ${color} }</style>`)
-    return ret
-}
-
-export async function typeset(arg: mj.TypesetArg, opts: { scale: number, color: string }): Promise<string> {
-    const data = await mj.typeset(arg)
-    scaleSVG(data, opts.scale)
-    const xml = colorSVG(data.svgNode.outerHTML, opts.color)
-    return xml
-}
-
-const workers = {typeset}
+const workers = {loadExtensions, typeset}
 
 // workerpool passes the resolved value of Promise, not Promise.
 export type IMathJaxWorker = {
+    loadExtensions: (...args: Parameters<typeof loadExtensions>) => void,
     typeset: (...args: Parameters<typeof typeset>) => string
 }
 
