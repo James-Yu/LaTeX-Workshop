@@ -44,6 +44,11 @@ export class GraphicsPreview {
 
     async renderGraphicsAsMarkdownString(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
         if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
+            // Workaround for https://github.com/microsoft/vscode/issues/136027
+            if (vscode.env.remoteName) {
+                const md = new vscode.MarkdownString(`![img](${vscode.Uri.file(filePath).toString()})`)
+                return md
+            }
             const md = new vscode.MarkdownString(`<img src="${filePath}" height="${opts.height}">`)
             md.supportHtml = true
             return md
