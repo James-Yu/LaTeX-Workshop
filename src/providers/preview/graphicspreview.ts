@@ -2,16 +2,13 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import type { Extension } from '../../main'
-import { GraphicsScaler } from './graphicsscaler'
 
 
 export class GraphicsPreview {
     private readonly extension: Extension
-    private readonly graphicsScaler: GraphicsScaler
 
-    constructor(e: Extension) {
-        this.extension = e
-        this.graphicsScaler = new GraphicsScaler()
+    constructor(extension: Extension) {
+        this.extension = extension
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
@@ -46,17 +43,24 @@ export class GraphicsPreview {
     }
 
     async renderGraphicsAsMarkdownString(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
-        const dataUrl = await this.renderGraphicsAsDataUrl(filePath, opts)
-        if (dataUrl !== undefined) {
-            let md: vscode.MarkdownString
-            if (dataUrl.length < 99980) {
-                md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
-            } else {
-                md = new vscode.MarkdownString('$(error) The file is too large to render.', true)
+        if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
+            // Workaround for https://github.com/microsoft/vscode/issues/136027
+            if (vscode.env.remoteName) {
+                const md = new vscode.MarkdownString(`![img](${vscode.Uri.file(filePath).toString()})`)
+                return md
             }
+            const md = new vscode.MarkdownString(`<img src="${filePath}" height="${opts.height}">`)
+            md.supportHtml = true
             return md
-        } else {
-            if (/\.pdf$/i.exec(filePath)) {
+        }
+        if (/\.pdf$/i.exec(filePath)) {
+            const pdfOpts = { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
+            const dataUrl = await this.renderPdfFileAsDataUrl(filePath, pdfOpts)
+            if (dataUrl !== undefined) {
+                const md = new vscode.MarkdownString(`<img src="${dataUrl}" height="${opts.height}">`)
+                md.supportHtml = true
+                return md
+            } else {
                 let msg = '$(error) Failed to render.'
                 if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
                     msg = '$(warning) Cannot render a PDF file not in workspaces.'
@@ -65,35 +69,35 @@ export class GraphicsPreview {
                 }
                 return new vscode.MarkdownString(msg, true)
             }
-            return undefined
         }
+        return
     }
 
-    private async renderGraphicsAsDataUrl(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | undefined> {
-        const pageNumber = opts.pageNumber || 1
-        if (!fs.existsSync(filePath)) {
-            return undefined
-        }
+    private async renderPdfFileAsDataUrl(pdfFilePath: string, opts: { height: number, width: number, pageNumber: number }): Promise<string | undefined> {
         try {
-            if (/\.pdf$/i.exec(filePath)) {
-                const dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(filePath), pageNumber)
-                if (!dataUrl) {
-                    this.extension.logger.addLogMessage(`Failed to render: ${filePath}`)
-                    return
-                }
-                const scaledDataUrl = await this.graphicsScaler.scaleDataUrl(dataUrl, opts)
-                if (!scaledDataUrl) {
-                    this.extension.logger.addLogMessage(`Failed to resize: ${filePath}`)
-                }
-                return scaledDataUrl
-            }
-            if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
-                const dataUrl = await this.graphicsScaler.scale(filePath, opts)
+            const maxDataUrlLength = 99980
+            let scale = 1.5
+            let newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
+            let dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            if (!dataUrl || dataUrl.length < maxDataUrlLength) {
                 return dataUrl
             }
-            return undefined
+            scale = 1
+            newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
+            dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            if (!dataUrl || dataUrl.length < maxDataUrlLength) {
+                return dataUrl
+            }
+            scale = Math.sqrt(maxDataUrlLength/dataUrl.length) / 1.2
+            newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
+            dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            if (dataUrl && dataUrl.length >= maxDataUrlLength) {
+                this.extension.logger.addLogMessage(`Data URL still too large: ${pdfFilePath}`)
+                return undefined
+            }
+            return dataUrl
         } catch (e: unknown) {
-            this.extension.logger.addLogMessage(`Failed to renderGraphicsAsDataUrl: ${filePath}`)
+            this.extension.logger.addLogMessage(`Failed to renderGraphicsAsDataUrl: ${pdfFilePath}`)
             if (e instanceof Error) {
                 this.extension.logger.logError(e)
             }
