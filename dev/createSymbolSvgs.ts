@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs'
 import * as path from 'path'
 
-type SnippetPanelJsonType = typeof import('../resources/snippetpanel/snippetpanel.json')
+type SnippetPanelJsonType = typeof import('../resources/snippetview/snippetpanel.json')
 
 type IMathSymbol = {
     name: string,
@@ -39,7 +39,7 @@ void import('mathjax-node')
     })
 
 function loadSnippets() {
-    const snipetsFile = path.resolve('.', 'resources', 'snippetpanel', 'snippetpanel.json')
+    const snipetsFile = path.resolve('.', 'resources', 'snippetview', 'snippetpanel.json')
     const snippets: {
         mathSymbols: {
             [category: string]: IMathSymbol[]

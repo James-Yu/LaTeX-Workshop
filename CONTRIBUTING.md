@@ -66,6 +66,6 @@ You can refer to:
 - https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/README.md
 - https://github.com/James-Yu/LaTeX-Workshop/blob/master/viewer/README.md
 - https://github.com/James-Yu/LaTeX-Workshop/blob/master/data/README.md
-- https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/snippetpanel/README.md
+- https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/snippetview/README.md
 - https://github.com/James-Yu/LaTeX-Workshop/blob/master/test/README.md
 - https://github.com/James-Yu/LaTeX-Workshop/blob/master/.github/workflows/README.md

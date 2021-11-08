@@ -36,7 +36,6 @@ import {SectionNodeProvider, StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
-import { SnippetPanel } from './components/snippetpanel'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
 
@@ -120,8 +119,6 @@ function registerLatexWorkshopCommands(extension: Extension) {
     vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => extension.commander.shiftSectioningLevel('promote'))
     vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote'))
     vscode.commands.registerCommand('latex-workshop.select-section', () => extension.commander.selectSection())
-
-    vscode.commands.registerCommand('latex-workshop.showSnippetPanel', () => extension.snippetPanel.showPanel())
 
     vscode.commands.registerCommand('latex-workshop.bibsort', () => extension.bibtexFormatter.bibtexFormat(true, false))
     vscode.commands.registerCommand('latex-workshop.bibalign', () => extension.bibtexFormatter.bibtexFormat(false, true))
@@ -321,7 +318,6 @@ export class Extension {
     readonly section: Section
     readonly structureProvider: SectionNodeProvider
     readonly structureViewer: StructureTreeView
-    readonly snippetPanel: SnippetPanel
     readonly snippetView: SnippetView
     readonly graphicsPreview: GraphicsPreview
     readonly mathPreview: MathPreview
@@ -361,7 +357,6 @@ export class Extension {
         this.section = new Section(this)
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
-        this.snippetPanel = new SnippetPanel(this)
         this.snippetView = new SnippetView(this)
         this.pegParser = new PEGParser()
         this.graphicsPreview = new GraphicsPreview(this)
