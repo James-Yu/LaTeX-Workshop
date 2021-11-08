@@ -56,9 +56,6 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         miscCommand.children.push(new LaTeXCommand('Count words in LaTeX project', None, {command: 'latex-workshop.wordcount', title: ''}))
         miscCommand.children.push(new LaTeXCommand('Reveal output folder in OS', None, {command: 'latex-workshop.revealOutputDir', title: ''}, 'folder-opened'))
 
-        const snippetPanelCommand = new LaTeXCommand('Snippet Panel', None, {command: 'latex-workshop.showSnippetPanel', title: ''}, 'symbol-operator')
-        this.commands.push(snippetPanelCommand)
-
         const bibtexCommand = new LaTeXCommand('BibTeX actions', Collapsed, undefined, 'references')
         bibtexCommand.children.push(new LaTeXCommand('Align bibliography', None, {command: 'latex-workshop.bibalign', title: ''}))
         bibtexCommand.children.push(new LaTeXCommand('Sort bibliography', None, {command: 'latex-workshop.bibsort', title: ''}, 'sort-precedence'))
