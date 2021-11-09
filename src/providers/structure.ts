@@ -124,7 +124,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     continue
                 }
                 const depth = noRoot() ? 0 : currentRoot().depth + 1
-                const newEnv = new Section(`${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
+                const newEnv = new Section(SectionKind.Env, `${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
                 if (noRoot()) {
                     children.push(newEnv)
                 } else {
@@ -168,7 +168,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     sectionNumber = this.increment(sectionNumber, depth)
                     sectionNumberStr = this.formatSectionNumber(sectionNumber)
                 }
-                const newSection = new Section(sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
+                const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
                 if (prevSection) {
                     prevSection.toLine = lineNumber - 1
                 }
@@ -199,7 +199,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 result = labelReg.exec(line)
                 if (result) {
                     const depth = noRoot() ? 0 : currentRoot().depth + 1
-                    const newLabel = new Section(`#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
+                    const newLabel = new Section(SectionKind.Label, `#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
                     if (noRoot()) {
                         children.push(newLabel)
                     } else {
@@ -334,6 +334,12 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 }
 
+export enum SectionKind {
+    Env = 0,
+    Label = 1,
+    Section = 2
+}
+
 export class Section extends vscode.TreeItem {
 
     public children: Section[] = []
@@ -341,6 +347,7 @@ export class Section extends vscode.TreeItem {
     public subfiles: string[] = []
 
     constructor(
+        public readonly kind: SectionKind,
         public readonly label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly depth: number,
