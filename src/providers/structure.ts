@@ -169,9 +169,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     sectionNumberStr = this.formatSectionNumber(sectionNumber)
                 }
                 const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
-                if (prevSection) {
-                    prevSection.toLine = lineNumber - 1
-                }
                 prevSection = newSection
 
                 if (noRoot()) {
@@ -208,14 +205,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
             }
         }
-        this.fixToLines(children, lines.length - 1)
+        this.fixToLines(children)
         return children
     }
 
     /**
      * Compute the exact ranges of every Section entry
      */
-    private fixToLines(sections: Section[], lastLineFile: number) {
+    private fixToLines(sections: Section[]) {
         sections.forEach((entry: Section, index: number) => {
             if (entry.kind !== SectionKind.Section) {
                 return
@@ -226,7 +223,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     return
                 }
             }
-            entry.toLine = lastLineFile
         })
     }
 
