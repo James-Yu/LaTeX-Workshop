@@ -208,7 +208,26 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
             }
         }
+        this.fixToLines(children, lines.length - 1)
         return children
+    }
+
+    /**
+     * Compute the exact ranges of every Section entry
+     */
+    private fixToLines(sections: Section[], lastLineFile: number) {
+        sections.forEach((entry: Section, index: number) => {
+            if (entry.kind !== SectionKind.Section) {
+                return
+            }
+            for (let i = index + 1; i < sections.length; i++) {
+                if (sections[i].kind === SectionKind.Section && sections[i].depth <= entry.depth) {
+                    entry.toLine = sections[i].lineNumber - 1
+                    return
+                }
+            }
+            entry.toLine = lastLineFile
+        })
     }
 
     private increment(sectionNumber: number[], depth: number): number[] {
