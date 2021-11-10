@@ -409,7 +409,7 @@ export class StructureTreeView {
 
     }
 
-    showCursorIteme(e: vscode.TextEditorSelectionChangeEvent) {
+    showCursorItem(e: vscode.TextEditorSelectionChangeEvent) {
         if (!this._followCursor || !this._viewer.visible) {
             return
         }

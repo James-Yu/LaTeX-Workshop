@@ -257,7 +257,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
             return
         }
-        return extension.structureViewer.showCursorIteme(e)
+        return extension.structureViewer.showCursorItem(e)
     }))
 
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer))
