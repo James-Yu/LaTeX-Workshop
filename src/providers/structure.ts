@@ -390,22 +390,19 @@ export class StructureTreeView {
     }
 
     private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {
+        let match: Section | undefined = undefined
         for (const node of sections) {
-            if (node.fileName !== fileName) {
-                continue
-            }
-            if (node.lineNumber <= lineNumber && node.toLine >= lineNumber) {
-                return node
-            }
-            if (node.subfiles.length > 0 && node.subfiles.includes(fileName)) {
-                return node
-            }
-            const res = this.traverseSectionTree(node.children, fileName, lineNumber)
-            if (res) {
-                return res
+            if ((node.fileName === fileName && node.lineNumber <= lineNumber && node.toLine >= lineNumber)
+                || (node.fileName !== fileName && node.subfiles.includes(fileName))) {
+                match = node
+                // Look for a more precise surrounding section
+                const res = this.traverseSectionTree(node.children, fileName, lineNumber)
+                if (res) {
+                    match = res
+                }
             }
         }
-        return undefined
+        return match
 
     }
 
