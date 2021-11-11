@@ -11,6 +11,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
     private readonly hierarchy: string[]
+    private readonly headerPattern: string
     private readonly sectionDepths = Object.create(null) as { [key: string]: number }
     private readonly showLabels: boolean
     private readonly showFloats: boolean
@@ -29,6 +30,16 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 this.sectionDepths[sec] = index
             })
         })
+        let pattern = '\\\\('
+        this.hierarchy.forEach((section, index) => {
+            pattern += section
+            if (index < this.hierarchy.length - 1) {
+                pattern += '|'
+            }
+        })
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
+        this.headerPattern = pattern
+
         this.showLabels = configuration.get('view.outline.labels.enabled') as boolean
         this.showFloats = configuration.get('view.outline.floats.enabled') as boolean
         this.showNumbers = configuration.get('view.outline.numbers.enabled') as boolean
@@ -90,17 +101,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        let pattern = '\\\\('
-        this.hierarchy.forEach((section, index) => {
-            pattern += section
-            if (index < this.hierarchy.length - 1) {
-                pattern += '|'
-            }
-        })
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
-
         const pathRegexp = new PathRegExp()
-        const headingReg = RegExp(pattern, 'm')
+        const headerReg = RegExp(this.headerPattern, 'm')
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
         const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
         const labelReg = /\\label{([^}]*)}/m
@@ -138,7 +140,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 const matchPath: MatchPath | undefined = pathRegexp.exec(line)
                 if (matchPath) {
                     // zoom into this file
-                    // resolve the path
                     const inputFilePath: string | undefined = pathRegexp.parseInputFilePath(matchPath, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
                     if (!inputFilePath) {
                         this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
@@ -157,7 +158,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
 
             // Headings part
-            result = headingReg.exec(line)
+            result = headerReg.exec(line)
             if (result) {
                 // is it a section, a subsection, etc?
                 const heading = result[1]
