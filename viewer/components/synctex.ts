@@ -37,7 +37,7 @@ export class SyncTex {
             left += offsetLeft
         }
         const pos = PDFViewerApplication.pdfViewer._pages[page-1].getPagePoint(left, canvasDom.offsetHeight - top)
-        this.lwApp.send({type: 'reverse_synctex', path:this.lwApp.pdfFilePath, pos, page, textBeforeSelection, textAfterSelection})
+        this.lwApp.send({type: 'reverse_synctex', pdfFileUri: this.lwApp.pdfFileUri, pos, page, textBeforeSelection, textAfterSelection})
     }
 
     registerListenerOnEachPage() {

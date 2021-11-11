@@ -10,7 +10,7 @@ export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvide
     }
 
     openCustomDocument(uri: vscode.Uri) {
-        this.extension.manager.watchPdfFile(uri.fsPath)
+        this.extension.manager.watchPdfFile(uri)
         return {
             uri,
             dispose: () => {}

@@ -870,8 +870,8 @@ export class Manager {
         return this.intellisenseWatcher.onDidUpdateIntellisense(cb)
     }
 
-    watchPdfFile(pdfPath: string) {
-        this.pdfWatcher.watchPdfFile(pdfPath)
+    watchPdfFile(pdfFileUri: vscode.Uri) {
+        this.pdfWatcher.watchPdfFile(pdfFileUri)
     }
 
     private autoBuild(file: string, bibChanged: boolean ) {

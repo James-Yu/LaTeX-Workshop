@@ -211,7 +211,7 @@ export class Commander {
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        return this.extension.viewer.openTab(uri.fsPath, false, 'current', false)
+        return this.extension.viewer.openPdfInTab(uri, 'current', false)
     }
 
     synctex() {

@@ -30,19 +30,19 @@ export type ServerResponse = {
 
 export type ClientRequest = {
     type: 'open',
-    path: string,
+    pdfFileUri: string,
     viewer: 'browser' | 'tab'
 } | {
     type: 'request_params',
-    path: string
+    pdfFileUri: string
 } | {
     type: 'loaded',
-    path: string
+    pdfFileUri: string
 } | {
     type: 'ping'
 } | {
     type: 'reverse_synctex',
-    path: string,
+    pdfFileUri: string,
     pos: [number, number],
     page: number,
     textBeforeSelection: string,
@@ -69,6 +69,7 @@ export type PanelRequest = {
 
 export type PdfViewerState = {
     path?: string,
+    pdfFileUri?: string,
     scale?: string,
     scrollTop?: number,
     scrollLeft?: number,

@@ -17,6 +17,28 @@ export class LwFileSystem {
         return !this.isLocalUri(uri)
     }
 
+    async exists(uri: vscode.Uri): Promise<boolean> {
+        try {
+            if (this.isLocalUri(uri)) {
+                return fs.existsSync(uri.fsPath)
+            } else {
+                await vscode.workspace.fs.stat(uri)
+                return true
+            }
+        } catch {
+            return false
+        }
+    }
+
+    async readFile(fileUri: vscode.Uri) {
+        if (this.isLocalUri(fileUri)) {
+            return fs.promises.readFile(fileUri.fsPath)
+        } else {
+            const resultUint8 = await vscode.workspace.fs.readFile(fileUri)
+            return Buffer.from(resultUint8)
+        }
+    }
+
     readFileSyncGracefully(filepath: string) {
         try {
             const ret = fs.readFileSync(filepath).toString()
@@ -26,6 +48,14 @@ export class LwFileSystem {
                 this.extension.logger.logError(err)
             }
             return undefined
+        }
+    }
+
+    async stat(fileUri: vscode.Uri) {
+        if (this.isLocalUri(fileUri)) {
+            return fs.statSync(fileUri.fsPath)
+        } else {
+            return vscode.workspace.fs.stat(fileUri)
         }
     }
 

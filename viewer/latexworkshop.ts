@@ -14,7 +14,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly embedded: boolean
     readonly encodedPdfFilePath: string
     readonly pageTrimmer: PageTrimmer
-    readonly pdfFilePath: string
+    readonly pdfFileUri: string
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
 
@@ -46,7 +46,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.encodedPdfFilePath = pack.encodedPdfFilePath
         this.documentTitle = pack.documentTitle || ''
         document.title = this.documentTitle
-        this.pdfFilePath = pack.pdfFilePath
+        this.pdfFileUri = pack.pdfFileUri
 
         this.viewerHistory = new ViewerHistory(this)
         this.connectionPort = createConnectionPort(this)
@@ -55,12 +55,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         this.setupConnectionPort()
 
-        this.onDidStartPdfViewer(() => {
-            this.send({type:'request_params', path:this.pdfFilePath})
+        this.onDidStartPdfViewer( () => {
+            this.send({type:'request_params', pdfFileUri: this.pdfFileUri})
             this.setCssRule()
         })
-        this.onPagesLoaded(() => {
-            this.send({type:'loaded', path:this.pdfFilePath})
+        this.onPagesLoaded( () => {
+            this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
         }, {once: true})
 
         this.hidePrintButton()
@@ -139,7 +139,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private getPdfViewerState(): PdfViewerState {
         const pack = {
-            path: this.pdfFilePath,
+            pdfFileUri: this.pdfFileUri,
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
             scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
@@ -281,14 +281,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
         }, {once: true})
         this.onPagesLoaded(() => {
-            this.send({type:'loaded', path:this.pdfFilePath})
+            this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
         }, {once: true})
     }
 
     private setupConnectionPort() {
         const openPack: ClientRequest = {
             type: 'open',
-            path: this.pdfFilePath,
+            pdfFileUri: this.pdfFileUri,
             viewer: (this.embedded ? 'tab' : 'browser')
         }
         this.send(openPack)
@@ -411,9 +411,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const param = parts[i].split('=')
             if (param[0].toLowerCase() === 'file') {
                 const encodedPdfFilePath = param[1].replace(utils.pdfFilePrefix, '')
-                const pdfFilePath = utils.decodePath(encodedPdfFilePath)
-                const documentTitle = pdfFilePath.split(/[\\/]/).pop()
-                return {encodedPdfFilePath, pdfFilePath, documentTitle}
+                const pdfFileUri = utils.decodePath(encodedPdfFilePath)
+                const documentTitle = pdfFileUri.split(/[\\/]/).pop()
+                return {encodedPdfFilePath, pdfFileUri, documentTitle}
             }
         }
         throw new Error('file not given in the query.')
