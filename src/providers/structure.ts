@@ -10,9 +10,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
-    private readonly hierarchy: string[]
-    private readonly headerPattern: string
-    private readonly sectionDepths = Object.create(null) as { [key: string]: number }
     private readonly showLabels: boolean
     private readonly showFloats: boolean
     private readonly showNumbers: boolean
@@ -24,21 +21,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     constructor(private readonly extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.hierarchy = configuration.get('view.outline.sections') as string[]
-        this.hierarchy.forEach((section, index) => {
-            section.split('|').forEach(sec => {
-                this.sectionDepths[sec] = index
-            })
-        })
-        let pattern = '\\\\('
-        this.hierarchy.forEach((section, index) => {
-            pattern += section
-            if (index < this.hierarchy.length - 1) {
-                pattern += '|'
-            }
-        })
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
-        this.headerPattern = pattern
 
         this.showLabels = configuration.get('view.outline.labels.enabled') as boolean
         this.showFloats = configuration.get('view.outline.floats.enabled') as boolean
@@ -76,21 +58,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         newFileStack.push(filePath)
 
-        if (! sectionNumber) {
-            sectionNumber = Array(this.hierarchy.length).fill(0)
-        }
-
-        let prevSection: Section | undefined = undefined
-
-        const envStack: {name: string, start: number, end: number}[] = []
-
-        const currentRoot = () => {
-            return rootStack[rootStack.length - 1]
-        }
-        const noRoot = () => {
-            return rootStack.length === 0
-        }
-
         let content = this.extension.manager.getDirtyContent(filePath)
         if (!content) {
             return children
@@ -101,109 +68,31 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             content = content.substr(0, endPos)
         }
 
-        const pathRegexp = new PathRegExp()
-        const headerReg = RegExp(this.headerPattern, 'm')
+        const structureModel = new StructureModel(this.extension, filePath, rootStack, children, newFileStack, sectionNumber)
+
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
-        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
-        const labelReg = /\\label{([^}]*)}/m
 
         const lines = content.split('\n')
         for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
             const line = lines[lineNumber]
-            pathRegexp.resetLastIndex()
-            let result = envReg.exec(line)
-            if (result && result[1] === 'begin') {
-                envStack.push({name: result[2], start: lineNumber, end: lineNumber})
-                continue
-            } else if (result && result[2] === envStack[envStack.length - 1].name) {
-                const env = envStack.pop()
-                if (!env) {
-                    continue
-                }
-                env.end = lineNumber
-                const caption = this.getCaptionOrTitle(lines, env)
-                if (!caption) {
-                    continue
-                }
-                const depth = noRoot() ? 0 : currentRoot().depth + 1
-                const newEnv = new Section(SectionKind.Env, `${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, filePath)
-                if (noRoot()) {
-                    children.push(newEnv)
-                } else {
-                    currentRoot().children.push(newEnv)
-                }
-                continue
-            }
+            // Environment part
+            structureModel.buildEnvModel(envNames, lines, lineNumber)
 
-            // inputs part
+            // Inputs part
             if (imports) {
-                const matchPath: MatchPath | undefined = pathRegexp.exec(line)
-                if (matchPath) {
-                    // zoom into this file
-                    const inputFilePath: string | undefined = pathRegexp.parseInputFilePath(matchPath, filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : filePath)
-                    if (!inputFilePath) {
-                        this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                        continue
-                    }
-                    // Avoid circular inclusion
-                    if (inputFilePath === filePath || newFileStack.includes(inputFilePath)) {
-                        continue
-                    }
-                    if (prevSection) {
-                        prevSection.subfiles.push(inputFilePath)
-                    }
+               const inputFilePath = structureModel.buildImportModel(line)
+               if (inputFilePath) {
                     this.buildModel(inputFilePath, newFileStack, rootStack, children, sectionNumber)
-                    continue
                 }
             }
 
             // Headings part
-            result = headerReg.exec(line)
-            if (result) {
-                // is it a section, a subsection, etc?
-                const heading = result[1]
-                const depth = this.sectionDepths[heading]
-                const title = this.getSectionTitle(result[3])
-                let sectionNumberStr: string = ''
-                if (result[2] === undefined) {
-                    sectionNumber = this.increment(sectionNumber, depth)
-                    sectionNumberStr = this.formatSectionNumber(sectionNumber)
-                }
-                const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, filePath)
-                prevSection = newSection
+            structureModel.buildHeadingModel(lines, lineNumber, this.showNumbers)
 
-                if (noRoot()) {
-                    children.push(newSection)
-                    rootStack.push(newSection)
-                    continue
-                }
-
-                // Find the proper root section
-                while (!noRoot() && currentRoot().depth >= depth) {
-                    rootStack.pop()
-                }
-                if (noRoot()) {
-                    newSection.parent = undefined
-                    children.push(newSection)
-                } else {
-                    newSection.parent = currentRoot()
-                    currentRoot().children.push(newSection)
-                }
-                rootStack.push(newSection)
-            }
 
             // Labels part
             if (this.showLabels) {
-                result = labelReg.exec(line)
-                if (result) {
-                    const depth = noRoot() ? 0 : currentRoot().depth + 1
-                    const newLabel = new Section(SectionKind.Label, `#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
-                    if (noRoot()) {
-                        children.push(newLabel)
-                    } else {
-                        currentRoot().children.push(newLabel)
-                    }
-                }
+                structureModel.buildLabelModel(line, lineNumber, filePath)
             }
         }
         this.fixToLines(children)
@@ -225,33 +114,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
             }
         })
-    }
-
-    private increment(sectionNumber: number[], depth: number): number[] {
-        sectionNumber[depth] += 1
-        sectionNumber.forEach((_, index) => {
-            if (index > depth) {
-                sectionNumber[index] = 0
-            }
-        })
-        return sectionNumber
-    }
-
-    private formatSectionNumber(sectionNumber: number[]) {
-        if (! this.showNumbers) {
-            return ''
-        }
-        let str: string = ''
-        sectionNumber.forEach((value) => {
-            if (str === '' && value === 0) {
-                return
-            }
-            if (str !== '') {
-                str += '.'
-            }
-            str += value.toString()
-        })
-        return str.replace(/(\.0)*$/, '') + ' '
     }
 
     getTreeItem(element: Section): vscode.TreeItem {
@@ -289,32 +151,180 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         return element.parent
     }
+}
 
-    /**
-     * Return the title of a command while only keeping the second argument of \texorpdfstring
-     * @param text a section command
-     */
-    getSectionTitle(text: string): string {
-        let title = utils.getLongestBalancedString(text)
-        let pdfTitle: string = ''
-        const regex = /\\texorpdfstring/
-        let res: RegExpExecArray | null
-        while(true) {
-            res = regex.exec(title)
-            if (!res) {
-                break
+export enum SectionKind {
+    Env = 0,
+    Label = 1,
+    Section = 2
+}
+
+export class Section extends vscode.TreeItem {
+
+    public children: Section[] = []
+    public parent: Section | undefined = undefined // The parent of a top level section must be undefined
+    public subfiles: string[] = []
+
+    constructor(
+        public readonly kind: SectionKind,
+        public readonly label: string,
+        public readonly collapsibleState: vscode.TreeItemCollapsibleState,
+        public readonly depth: number,
+        public readonly lineNumber: number,
+        public toLine: number,
+        public readonly fileName: string,
+        public readonly command?: vscode.Command
+    ) {
+        super(label, collapsibleState)
+    }
+}
+
+class StructureModel {
+    envStack: {name: string, start: number, end: number}[] = []
+    private readonly hierarchy: string[]
+    private readonly headerPattern: string
+    private readonly sectionDepths = Object.create(null) as { [key: string]: number }
+    private sectionNumber: number[]
+    private prevSection: Section | undefined = undefined
+
+    constructor(
+        private readonly extension: Extension,
+        public filePath: string,
+        public rootStack: Section[],
+        public children: Section[],
+        public fileStack: string[],
+        sectionNumber: number[] | undefined
+    ) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.hierarchy = configuration.get('view.outline.sections') as string[]
+        this.hierarchy.forEach((section, index) => {
+            section.split('|').forEach(sec => {
+                this.sectionDepths[sec] = index
+            })
+        })
+        let pattern = '\\\\('
+        this.hierarchy.forEach((section, index) => {
+            pattern += section
+            if (index < this.hierarchy.length - 1) {
+                pattern += '|'
             }
-            pdfTitle += title.slice(0, res.index)
-            title = title.slice(res.index)
-            const arg = utils.getNthArgument(title, 2)
-            if (!arg) {
-                break
-            }
-            pdfTitle += arg.arg
-            // Continue with the remaining text after the second arg
-            title = title.slice(arg.index + arg.arg.length + 2) // 2 counts '{' and '}' around arg
+        })
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
+        this.headerPattern = pattern
+        if (sectionNumber) {
+            this.sectionNumber = sectionNumber
+        } else {
+            this.sectionNumber = Array<number>(this.hierarchy.length).fill(0)
         }
-        return pdfTitle + title
+    }
+
+    currentRoot(): Section {
+        return this.rootStack[this.rootStack.length - 1]
+    }
+
+    noRoot(): boolean {
+        return this.rootStack.length === 0
+    }
+
+    buildEnvModel(envNames: string[], lines: string[], lineNumber: number) {
+        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
+        const line = lines[lineNumber]
+        const result = envReg.exec(line)
+        if (result && result[1] === 'begin') {
+            this.envStack.push({name: result[2], start: lineNumber, end: lineNumber})
+        } else if (result && result[2] === this.envStack[this.envStack.length - 1].name) {
+            const env = this.envStack.pop()
+            if (!env) {
+                return
+            }
+            env.end = lineNumber
+            const caption = this.getCaptionOrTitle(lines, env)
+            if (!caption) {
+                return
+            }
+            const depth = this.noRoot() ? 0 : this.currentRoot().depth + 1
+            const newEnv = new Section(SectionKind.Env, `${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, this.filePath)
+            if (this.noRoot()) {
+                this.children.push(newEnv)
+            } else {
+                this.currentRoot().children.push(newEnv)
+            }
+        }
+    }
+
+    buildImportModel(line: string): string | undefined {
+        const pathRegexp = new PathRegExp()
+        const matchPath: MatchPath | undefined = pathRegexp.exec(line)
+        if (matchPath) {
+            // zoom into this file
+            const inputFilePath: string | undefined = pathRegexp.parseInputFilePath(matchPath, this.filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : this.filePath)
+            if (!inputFilePath) {
+                this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
+                return undefined
+            }
+            // Avoid circular inclusion
+            if (inputFilePath === this.filePath || this.fileStack.includes(inputFilePath)) {
+                return undefined
+            }
+            if (this.prevSection) {
+                this.prevSection.subfiles.push(inputFilePath)
+            }
+            return inputFilePath
+        }
+        return undefined
+    }
+
+    buildLabelModel(line: string, lineNumber: number, filePath: string) {
+        const labelReg = /\\label{([^}]*)}/m
+        const result = labelReg.exec(line)
+        if (result) {
+            const depth = this.noRoot() ? 0 : this.currentRoot().depth + 1
+            const newLabel = new Section(SectionKind.Label, `#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
+            if (this.noRoot()) {
+                this.children.push(newLabel)
+            } else {
+                this.currentRoot().children.push(newLabel)
+            }
+        }
+    }
+
+    buildHeadingModel(lines: string[], lineNumber: number, showNumbers: boolean) {
+        const line = lines[lineNumber]
+        const headerReg = RegExp(this.headerPattern, 'm')
+        const result = headerReg.exec(line)
+        if (result) {
+            // is it a section, a subsection, etc?
+            const heading = result[1]
+            const depth = this.sectionDepths[heading]
+            const title = this.getSectionTitle(result[3])
+            let sectionNumberStr: string = ''
+            if (result[2] === undefined) {
+                this.sectionNumber = this.increment(this.sectionNumber, depth)
+                sectionNumberStr = this.formatSectionNumber(this.sectionNumber, showNumbers)
+            }
+            const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, this.filePath)
+            this.prevSection = newSection
+
+            if (this.noRoot()) {
+                this.children.push(newSection)
+                this.rootStack.push(newSection)
+                return
+            }
+
+            // Find the proper root section
+            while (!this.noRoot() && this.currentRoot().depth >= depth) {
+                this.rootStack.pop()
+            }
+            if (this.noRoot()) {
+                newSection.parent = undefined
+                this.children.push(newSection)
+            } else {
+                newSection.parent = this.currentRoot()
+                this.currentRoot().children.push(newSection)
+            }
+            this.rootStack.push(newSection)
+        }
+
     }
 
     getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {
@@ -348,31 +358,59 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         return undefined
     }
-}
 
-export enum SectionKind {
-    Env = 0,
-    Label = 1,
-    Section = 2
-}
+    /**
+     * Return the title of a command while only keeping the second argument of \texorpdfstring
+     * @param text a section command
+     */
+    getSectionTitle(text: string): string {
+        let title = utils.getLongestBalancedString(text)
+        let pdfTitle: string = ''
+        const regex = /\\texorpdfstring/
+        let res: RegExpExecArray | null
+        while(true) {
+            res = regex.exec(title)
+            if (!res) {
+                break
+            }
+            pdfTitle += title.slice(0, res.index)
+            title = title.slice(res.index)
+            const arg = utils.getNthArgument(title, 2)
+            if (!arg) {
+                break
+            }
+            pdfTitle += arg.arg
+            // Continue with the remaining text after the second arg
+            title = title.slice(arg.index + arg.arg.length + 2) // 2 counts '{' and '}' around arg
+        }
+        return pdfTitle + title
+    }
 
-export class Section extends vscode.TreeItem {
+    private increment(sectionNumber: number[], depth: number): number[] {
+        sectionNumber[depth] += 1
+        sectionNumber.forEach((_, index) => {
+            if (index > depth) {
+                sectionNumber[index] = 0
+            }
+        })
+        return sectionNumber
+    }
 
-    public children: Section[] = []
-    public parent: Section | undefined = undefined // The parent of a top level section must be undefined
-    public subfiles: string[] = []
-
-    constructor(
-        public readonly kind: SectionKind,
-        public readonly label: string,
-        public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-        public readonly depth: number,
-        public readonly lineNumber: number,
-        public toLine: number,
-        public readonly fileName: string,
-        public readonly command?: vscode.Command
-    ) {
-        super(label, collapsibleState)
+    private formatSectionNumber(sectionNumber: number[], showNumbers: boolean) {
+        if (! showNumbers) {
+            return ''
+        }
+        let str: string = ''
+        sectionNumber.forEach((value) => {
+            if (str === '' && value === 0) {
+                return
+            }
+            if (str !== '') {
+                str += '.'
+            }
+            str += value.toString()
+        })
+        return str.replace(/(\.0)*$/, '') + ' '
     }
 }
 
