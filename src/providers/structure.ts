@@ -255,36 +255,37 @@ class StructureModel {
     buildImportModel(line: string): string | undefined {
         const pathRegexp = new PathRegExp()
         const matchPath: MatchPath | undefined = pathRegexp.exec(line)
-        if (matchPath) {
-            // zoom into this file
-            const inputFilePath: string | undefined = pathRegexp.parseInputFilePath(matchPath, this.filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : this.filePath)
-            if (!inputFilePath) {
-                this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-                return undefined
-            }
-            // Avoid circular inclusion
-            if (inputFilePath === this.filePath || this.fileStack.includes(inputFilePath)) {
-                return undefined
-            }
-            if (this.prevSection) {
-                this.prevSection.subfiles.push(inputFilePath)
-            }
-            return inputFilePath
+        if (!matchPath) {
+            return undefined
         }
-        return undefined
+        // zoom into this file
+        const inputFilePath: string | undefined = pathRegexp.parseInputFilePath(matchPath, this.filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : this.filePath)
+        if (!inputFilePath) {
+            this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
+            return undefined
+        }
+        // Avoid circular inclusion
+        if (inputFilePath === this.filePath || this.fileStack.includes(inputFilePath)) {
+            return undefined
+        }
+        if (this.prevSection) {
+            this.prevSection.subfiles.push(inputFilePath)
+        }
+        return inputFilePath
     }
 
     buildLabelModel(line: string, lineNumber: number, filePath: string) {
         const labelReg = /\\label{([^}]*)}/m
         const result = labelReg.exec(line)
-        if (result) {
-            const depth = this.noRoot() ? 0 : this.currentRoot().depth + 1
-            const newLabel = new Section(SectionKind.Label, `#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
-            if (this.noRoot()) {
-                this.children.push(newLabel)
-            } else {
-                this.currentRoot().children.push(newLabel)
-            }
+        if (!result) {
+            return
+        }
+        const depth = this.noRoot() ? 0 : this.currentRoot().depth + 1
+        const newLabel = new Section(SectionKind.Label, `#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
+        if (this.noRoot()) {
+            this.children.push(newLabel)
+        } else {
+            this.currentRoot().children.push(newLabel)
         }
     }
 
@@ -292,39 +293,39 @@ class StructureModel {
         const line = lines[lineNumber]
         const headerReg = RegExp(this.headerPattern, 'm')
         const result = headerReg.exec(line)
-        if (result) {
-            // is it a section, a subsection, etc?
-            const heading = result[1]
-            const depth = this.sectionDepths[heading]
-            const title = this.getSectionTitle(result[3])
-            let sectionNumberStr: string = ''
-            if (result[2] === undefined) {
-                this.sectionNumber = this.increment(this.sectionNumber, depth)
-                sectionNumberStr = this.formatSectionNumber(this.sectionNumber, showNumbers)
-            }
-            const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, this.filePath)
-            this.prevSection = newSection
+        if (!result) {
+            return
+        }
+        // is it a section, a subsection, etc?
+        const heading = result[1]
+        const depth = this.sectionDepths[heading]
+        const title = this.getSectionTitle(result[3])
+        let sectionNumberStr: string = ''
+        if (result[2] === undefined) {
+            this.sectionNumber = this.increment(this.sectionNumber, depth)
+            sectionNumberStr = this.formatSectionNumber(this.sectionNumber, showNumbers)
+        }
+        const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, this.filePath)
+        this.prevSection = newSection
 
-            if (this.noRoot()) {
-                this.children.push(newSection)
-                this.rootStack.push(newSection)
-                return
-            }
-
-            // Find the proper root section
-            while (!this.noRoot() && this.currentRoot().depth >= depth) {
-                this.rootStack.pop()
-            }
-            if (this.noRoot()) {
-                newSection.parent = undefined
-                this.children.push(newSection)
-            } else {
-                newSection.parent = this.currentRoot()
-                this.currentRoot().children.push(newSection)
-            }
+        if (this.noRoot()) {
+            this.children.push(newSection)
             this.rootStack.push(newSection)
+            return
         }
 
+        // Find the proper root section
+        while (!this.noRoot() && this.currentRoot().depth >= depth) {
+            this.rootStack.pop()
+        }
+        if (this.noRoot()) {
+            newSection.parent = undefined
+            this.children.push(newSection)
+        } else {
+            newSection.parent = this.currentRoot()
+            this.currentRoot().children.push(newSection)
+        }
+        this.rootStack.push(newSection)
     }
 
     getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {
@@ -368,7 +369,7 @@ class StructureModel {
         let pdfTitle: string = ''
         const regex = /\\texorpdfstring/
         let res: RegExpExecArray | null
-        while(true) {
+        while (true) {
             res = regex.exec(title)
             if (!res) {
                 break
