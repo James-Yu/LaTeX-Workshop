@@ -108,16 +108,26 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     /**
      * Compute the exact ranges of every Section entry
      */
-    private fixToLines(sections: Section[]) {
+    private fixToLines(sections: Section[], parentSection?: Section) {
         sections.forEach((entry: Section, index: number) => {
             if (entry.kind !== SectionKind.Section) {
                 return
             }
+            // Look for the next section with a smaller or equal depth
+            let toLineSet: boolean = false
             for (let i = index + 1; i < sections.length; i++) {
-                if (sections[i].kind === SectionKind.Section && sections[i].depth <= entry.depth) {
+                if (entry.fileName === sections[i].fileName && sections[i].kind === SectionKind.Section && sections[i].depth <= entry.depth) {
                     entry.toLine = sections[i].lineNumber - 1
-                    return
+                    toLineSet = true
+                    break
                 }
+            }
+            // If no closing section was found, use the parent section if any
+            if (parentSection && !toLineSet && parentSection.fileName === entry.fileName) {
+                entry.toLine = parentSection.toLine
+            }
+            if (entry.children.length > 0) {
+                this.fixToLines(entry.children, entry)
             }
         })
     }
