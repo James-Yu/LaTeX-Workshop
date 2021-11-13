@@ -198,7 +198,7 @@ class StructureModel {
         private readonly rootStack: Section[],
         private readonly children: Section[],
         private readonly fileStack: string[],
-        private sectionNumber: number[]
+        private readonly sectionNumber: number[]
     ) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.hierarchy = configuration.get('view.outline.sections') as string[]
@@ -302,8 +302,8 @@ class StructureModel {
         const title = this.getSectionTitle(result[3])
         let sectionNumberStr: string = ''
         if (result[2] === undefined) {
-            this.sectionNumber = this.increment(this.sectionNumber, depth)
-            sectionNumberStr = this.formatSectionNumber(this.sectionNumber, showNumbers)
+            this.incrementSectionNumber(depth)
+            sectionNumberStr = this.formatSectionNumber(showNumbers)
         }
         const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, this.filePath)
         this.prevSection = newSection
@@ -387,22 +387,21 @@ class StructureModel {
         return pdfTitle + title
     }
 
-    private increment(sectionNumber: number[], depth: number): number[] {
-        sectionNumber[depth] += 1
-        sectionNumber.forEach((_, index) => {
+    private incrementSectionNumber(depth: number) {
+        this.sectionNumber[depth] += 1
+        this.sectionNumber.forEach((_, index) => {
             if (index > depth) {
-                sectionNumber[index] = 0
+                this.sectionNumber[index] = 0
             }
         })
-        return sectionNumber
     }
 
-    private formatSectionNumber(sectionNumber: number[], showNumbers: boolean) {
+    private formatSectionNumber(showNumbers: boolean) {
         if (! showNumbers) {
             return ''
         }
         let str: string = ''
-        sectionNumber.forEach((value) => {
+        this.sectionNumber.forEach((value) => {
             if (str === '' && value === 0) {
                 return
             }
