@@ -10,6 +10,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
+    private readonly hierarchy: string[]
     private readonly showLabels: boolean
     private readonly showFloats: boolean
     private readonly showNumbers: boolean
@@ -22,6 +23,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
+        this.hierarchy = configuration.get('view.outline.sections') as string[]
         this.showLabels = configuration.get('view.outline.labels.enabled') as boolean
         this.showFloats = configuration.get('view.outline.floats.enabled') as boolean
         this.showNumbers = configuration.get('view.outline.numbers.enabled') as boolean
@@ -57,6 +59,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             newFileStack = fileStack
         }
         newFileStack.push(filePath)
+
+        if (!sectionNumber) {
+            sectionNumber = Array<number>(this.hierarchy.length).fill(0)
+        }
 
         let content = this.extension.manager.getDirtyContent(filePath)
         if (!content) {
@@ -184,16 +190,15 @@ class StructureModel {
     private readonly hierarchy: string[]
     private readonly headerPattern: string
     private readonly sectionDepths = Object.create(null) as { [key: string]: number }
-    private sectionNumber: number[]
     private prevSection: Section | undefined = undefined
 
     constructor(
         private readonly extension: Extension,
-        public filePath: string,
-        public rootStack: Section[],
-        public children: Section[],
-        public fileStack: string[],
-        sectionNumber: number[] | undefined
+        private readonly filePath: string,
+        private readonly rootStack: Section[],
+        private readonly children: Section[],
+        private readonly fileStack: string[],
+        private sectionNumber: number[]
     ) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         this.hierarchy = configuration.get('view.outline.sections') as string[]
@@ -211,11 +216,6 @@ class StructureModel {
         })
         pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
         this.headerPattern = pattern
-        if (sectionNumber) {
-            this.sectionNumber = sectionNumber
-        } else {
-            this.sectionNumber = Array<number>(this.hierarchy.length).fill(0)
-        }
     }
 
     currentRoot(): Section {
