@@ -31,7 +31,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     refresh(): Section[] {
         if (this.extension.manager.rootFile) {
-            this.ds = this.buildModel(this.extension.manager.rootFile)
+            this.ds = this.buildModel(new Set<string>(), this.extension.manager.rootFile)
             return this.ds
         } else {
             return []
@@ -42,7 +42,22 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire(undefined)
     }
 
-    buildModel(filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[], imports: boolean = true): Section[] {
+    /**
+     * Compute the TOC of a LaTeX project. To only consider the current file, use `imports=false`
+     * @param visitedFiles Set of files already visited. To avoid infinite loops
+     * @param filePath The path of the file being parsed
+     * @param fileStack The list of files inclusion leading to the current file
+     * @param parentStack The list of parent sections
+     * @param parentChildren The list of children of the parent Section
+     * @param sectionNumber The number of the current section stored in an array with the same length this.hierarchy
+     * @param imports Do we parse included files
+     */
+    buildModel(visitedFiles: Set<string>, filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[], imports: boolean = true): Section[] {
+        if (visitedFiles.has(filePath)) {
+            return []
+        } else {
+            visitedFiles.add(filePath)
+        }
 
         let rootStack: Section[] = []
         if (parentStack) {
@@ -88,7 +103,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             if (imports) {
                const inputFilePath = structureModel.buildImportModel(line)
                if (inputFilePath) {
-                    this.buildModel(inputFilePath, newFileStack, rootStack, children, sectionNumber)
+                    this.buildModel(visitedFiles, inputFilePath, newFileStack, rootStack, children, sectionNumber)
                 }
             }
 
