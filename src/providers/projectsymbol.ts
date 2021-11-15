@@ -15,7 +15,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (this.extension.manager.rootFile === undefined) {
             return symbols
         }
-        this.sectionToSymbols(symbols, this.extension.structureProvider.buildModel(this.extension.manager.rootFile))
+        this.sectionToSymbols(symbols, this.extension.structureProvider.buildModel(new Set<string>(), this.extension.manager.rootFile))
         return symbols
     }
 
