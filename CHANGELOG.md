@@ -1,5 +1,20 @@
 # Change Log
 
+## [8.22.0] - 2021-11-15
+
+### Changed
+- (#2881) Refactor `toggleSelectedKeyword`.
+- (#2937) Drop the support for VS Code prior to v1.61.2.
+- (#2951) Refactor the Input completer.
+- (#2959) Remove Snippet Panel.
+
+### Fixed
+- (#2929) Highlight `(long|tall)tblr`.
+- (#2935) `workspaceFolders` may have length 0.
+- (#2950) Provide `@snippets` as completion items using a separate `CompletionItemProvider`.
+- (#2952) Do not gobble trailing empty lines when folding.
+- (#2967) Fix ranges for `(sub)*section` entries in the structure provider.
+
 ## [8.21.1] - 2021-10-22
 
 ### Fixed
