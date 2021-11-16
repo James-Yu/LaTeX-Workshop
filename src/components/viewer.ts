@@ -90,7 +90,7 @@ class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
         }
         if (! await this.extension.lwfs.exists(pdfFileUri)) {
             const s = escapeHtml(pdfFileUri.toString())
-            this.extension.logger.addLogMessage(`Error of restoring PDF viewer: file not found ${pdfFileUri.toString()}.`)
+            this.extension.logger.addLogMessage(`Error of restoring PDF viewer: file not found ${pdfFileUri.toString(true)}.`)
             panel.webview.html = `<!DOCTYPE html> <html lang="en"><meta charset="utf-8"/><br>File not found: ${s}</html>`
             return
         }
@@ -207,18 +207,21 @@ export class Viewer {
         if (!url) {
             return
         }
-        const pdfFile = this.tex2pdf(sourceFile)
-        this.createClientSet(pdfFile)
-
+        const pdfFileUri = this.tex2pdf(sourceFile)
+        this.createClientSet(pdfFileUri)
+        this.extension.manager.watchPdfFile(pdfFileUri)
         try {
             await vscode.env.openExternal(vscode.Uri.parse(url, true))
-            this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFile}`)
-        } catch (e) {
+            this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFileUri.toString(true)}`)
+        } catch (e: unknown) {
             void vscode.window.showInputBox({
                 prompt: 'Unable to open browser. Please copy and visit this link.',
                 value: url
             })
-            this.extension.logger.addLogMessage(`Something bad happened when opening PDF viewer for ${pdfFile}: ${e}`)
+            this.extension.logger.addLogMessage(`Something bad happened when opening PDF viewer for ${pdfFileUri.toString(true)}`)
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
         }
     }
 
@@ -244,16 +247,16 @@ export class Viewer {
         return this.openPdfInTab(pdfFile, tabEditorGroup, preserveFocus)
     }
 
-    async openPdfInTab(pdfFile: vscode.Uri, tabEditorGroup: string, preserveFocus = true) {
+    async openPdfInTab(pdfFileUri: vscode.Uri, tabEditorGroup: string, preserveFocus = true) {
         const activeDocument = vscode.window.activeTextEditor?.document
-        const panel = await this.createPdfViewerPanel(pdfFile, vscode.ViewColumn.Active)
+        const panel = await this.createPdfViewerPanel(pdfFileUri, vscode.ViewColumn.Active)
         if (!panel) {
             return
         }
         if (activeDocument) {
             await openWebviewPanel(panel.webviewPanel, tabEditorGroup, activeDocument, preserveFocus)
         }
-        this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFile}`)
+        this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFileUri.toString(true)}`)
     }
 
     private async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel | undefined> {
@@ -267,6 +270,7 @@ export class Viewer {
     }
 
     initiatePdfViewerPanel(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
+        this.extension.manager.watchPdfFile(pdfFileUri)
         const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
         this.createClientSet(pdfPanel.pdfFileUri)
         const panelSet = this.getPanelSet(pdfPanel.pdfFileUri)

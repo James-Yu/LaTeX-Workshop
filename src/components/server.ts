@@ -127,7 +127,7 @@ export class Server {
             const s = request.url.replace('/', '')
             const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
             if (this.extension.viewer.getClientSet(fileUri) === undefined) {
-                this.extension.logger.addLogMessage(`Invalid PDF request: ${fileUri.toString()}`)
+                this.extension.logger.addLogMessage(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
             try {
@@ -138,11 +138,11 @@ export class Server {
                     'Content-Length': pdfSize,
                     ...sameOriginPolicyHeaders
                 })
-                void this.extension.lwfs.readFile(fileUri).then(buf => response.end(buf, 'binary'))
+                void this.extension.lwfs.readFileAsBuffer(fileUri).then(buf => response.end(buf, 'binary'))
                 // fs.createReadStream(fileName).pipe(response)
-                this.extension.logger.addLogMessage(`Preview PDF file: ${fileUri.toString()}`)
+                this.extension.logger.addLogMessage(`Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
-                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileUri.toString()}`)
+                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileUri.toString(true)}`)
                 if (e instanceof Error) {
                     this.extension.logger.logError(e)
                 }

@@ -280,6 +280,12 @@ export class Manager {
         return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
+    ignorePdfFile(rootFile: string) {
+        const pdfFilePath = this.tex2pdf(rootFile)
+        const pdfFileUri = vscode.Uri.file(pdfFilePath)
+        this.pdfWatcher.ignorePdfFile(pdfFileUri)
+    }
+
     /**
      * Returns `true` if the language of `id` is one of supported languages.
      *
