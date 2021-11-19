@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import type {TypesetArg} from 'mathjax-node'
 import * as utils from '../../../utils/svg'
 import type {MathJaxPool} from '../mathjaxpool'
 import type {ReferenceEntry} from '../../completer/reference'
@@ -40,19 +39,7 @@ export class HoverPreviewOnRefProvider {
         }
         const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
         const s = this.mputils.mathjaxify(newTex, tex.envname, {stripLabel: false})
-        const obj = {
-            labels: Object.create(null) as { [k: string]: string },
-            IDs: Object.create(null) as { [k: string]: string },
-            startNumber: 0
-        }
-        const typesetArg: TypesetArg = {
-            width: 50,
-            equationNumbers: 'AMS',
-            math: newCommand + this.mputils.stripTeX(s),
-            format: 'TeX',
-            svgNode: true,
-            state: {AMS: obj}
-        }
+        const typesetArg = newCommand + this.mputils.stripTeX(s)
         const typesetOpts = { scale, color }
         try {
             const xml = await this.mj.typeset(typesetArg, typesetOpts)
@@ -60,7 +47,7 @@ export class HoverPreviewOnRefProvider {
             return svg
         } catch(e) {
             this.extension.logger.logOnRejected(e)
-            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg.math}`)
+            this.extension.logger.addLogMessage(`Error when MathJax is rendering ${typesetArg}`)
             throw e
         }
     }
