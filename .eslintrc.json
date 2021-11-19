@@ -93,19 +93,13 @@
     "overrides": [
       {
         "files": ["viewer/**/*.ts"],
-        "extends": [
-          "plugin:import/errors",
-          "plugin:import/warnings"
-        ],
         "parserOptions": {
           "ecmaVersion": 2018,
           "project": "./tsconfig.eslint.viewer.json"
         },
         "rules": {
           "@typescript-eslint/naming-convention": ["error", { "selector": "interface", "prefix": ["I"], "format": ["PascalCase"] }],
-          "@typescript-eslint/no-unnecessary-type-assertion": "off",
-          "import/no-unresolved": "off",
-          "import/extensions": ["error", "always"]
+          "@typescript-eslint/no-unnecessary-type-assertion": "off"
         }
       }
     ]
