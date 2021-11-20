@@ -43,7 +43,7 @@ export class LwFileSystem {
             return Buffer.from(resultUint8)
         }
     }
-    readFileSyncGracefully(filepath: string) {
+    readFileSyncGracefully(filepath: string): string | undefined {
         try {
             const ret = fs.readFileSync(filepath).toString()
             return ret
@@ -55,7 +55,7 @@ export class LwFileSystem {
         }
     }
 
-    async stat(fileUri: vscode.Uri) {
+    async stat(fileUri: vscode.Uri): Promise<fs.Stats | vscode.FileStat> {
         if (this.isLocalUri(fileUri)) {
             return fs.statSync(fileUri.fsPath)
         } else {

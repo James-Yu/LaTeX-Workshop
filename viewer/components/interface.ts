@@ -34,17 +34,18 @@ export interface ILatexWorkshopPdfViewer {
     send(message: ClientRequest): void
 }
 
-export type PdfjsEventName = 'documentloaded'
-                    | 'pagesinit'
-                    | 'pagesloaded'
-                    | 'scroll'
-                    | 'scalechanged'
-                    | 'zoomin'
-                    | 'zoomout'
-                    | 'zoomreset'
-                    | 'scrollmodechanged'
-                    | 'spreadmodechanged'
-                    | 'pagenumberchanged'
+export type PdfjsEventName
+    = 'documentloaded'
+    | 'pagesinit'
+    | 'pagesloaded'
+    | 'scroll'
+    | 'scalechanged'
+    | 'zoomin'
+    | 'zoomout'
+    | 'zoomreset'
+    | 'scrollmodechanged'
+    | 'spreadmodechanged'
+    | 'pagenumberchanged'
 
 export interface IPDFViewerApplication {
     eventBus: {

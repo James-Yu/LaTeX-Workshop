@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import type ws from 'ws'
 
 import type {ServerResponse} from '../../../viewer/components/protocol'
-export {PdfViewerHookProvider} from './pdfviewerhook'
+
 
 export class Client {
     readonly viewer: 'browser' | 'tab'
