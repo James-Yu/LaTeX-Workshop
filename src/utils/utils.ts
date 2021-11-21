@@ -59,7 +59,7 @@ export function stripEnvironments(text: string, envs: string[]): string {
  */
 export function stripCommentsAndVerbatim(text: string): string {
     let content = stripComments(text)
-    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/, '')
+    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/g, '')
     const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[]
     return stripEnvironments(content, verbatimEnvs)
