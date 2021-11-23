@@ -318,18 +318,21 @@
         "command": "latex-workshop.build",
         "title": "Build LaTeX project",
         "category": "LaTeX Workshop",
-        "icon": "$(debug-start)"
+        "icon": "$(debug-start)",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.recipes",
         "title": "Build with recipe",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.view",
         "title": "View LaTeX PDF file",
         "category": "LaTeX Workshop",
-        "icon": "$(open-preview)"
+        "icon": "$(open-preview)",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.tab",
@@ -339,12 +342,14 @@
       {
         "command": "latex-workshop.viewInBrowser",
         "title": "View LaTeX PDF file in web browser",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.viewExternal",
         "title": "View LaTeX PDF file in external viewer",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.setViewer",
@@ -359,22 +364,26 @@
       {
         "command": "latex-workshop.kill",
         "title": "Kill LaTeX compiler process",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.synctex",
         "title": "SyncTeX from cursor",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.clean",
         "title": "Clean up auxiliary files",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.citation",
         "title": "Open citation browser",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.addtexroot",
@@ -389,7 +398,8 @@
       {
         "command": "latex-workshop.compilerlog",
         "title": "View LaTeX compiler logs",
-        "category": "LaTeX Workshop"
+        "category": "LaTeX Workshop",
+        "enablement": "!virtualWorkspace"
       },
       {
         "command": "latex-workshop.log",
@@ -488,25 +498,25 @@
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+l alt+c",
         "mac": "cmd+l alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+l alt+v",
         "mac": "cmd+l alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+l alt+j",
         "mac": "cmd+l alt+j",
         "command": "latex-workshop.synctex",
-        "when": "editorTextFocus && editorLangId == 'latex' && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorTextFocus && editorLangId == 'latex' && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+l alt+x",
@@ -524,25 +534,25 @@
         "key": "ctrl+alt+b",
         "mac": "cmd+alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+alt+v",
         "mac": "cmd+alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /latex|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+alt+j",
         "mac": "cmd+alt+j",
         "command": "latex-workshop.synctex",
-        "when": "editorTextFocus && editorLangId == 'latex' && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorTextFocus && editorLangId == 'latex' && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+alt+x",
@@ -2087,24 +2097,24 @@
     "menus": {
       "editor/context": [
         {
-          "when": "config.latex-workshop.showContextMenu && editorLangId == latex",
+          "when": "config.latex-workshop.showContextMenu && editorLangId == latex && !virtualWorkspace",
           "command": "latex-workshop.build",
           "group": "navigation@100"
         },
         {
-          "when": "config.latex-workshop.showContextMenu && editorLangId == latex",
+          "when": "config.latex-workshop.showContextMenu && editorLangId == latex && !virtualWorkspace",
           "command": "latex-workshop.synctex",
           "group": "navigation@101"
         }
       ],
       "editor/title": [
         {
-          "when": "editorLangId == latex",
+          "when": "editorLangId == latex && !virtualWorkspace",
           "command": "latex-workshop.view",
           "group": "navigation@2"
         },
         {
-          "when": "editorLangId == latex",
+          "when": "editorLangId == latex && !virtualWorkspace",
           "command": "latex-workshop.build",
           "group": "navigation@1"
         }
