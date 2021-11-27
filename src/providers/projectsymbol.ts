@@ -15,6 +15,10 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (this.extension.manager.rootFile === undefined) {
             return symbols
         }
+        const rootFileUri = this.extension.manager.rootFileUri
+        if (rootFileUri && !this.extension.lwfs.isLocalUri(rootFileUri)) {
+            return symbols
+        }
         this.sectionToSymbols(symbols, this.extension.structureProvider.buildModel(new Set<string>(), this.extension.manager.rootFile))
         return symbols
     }
