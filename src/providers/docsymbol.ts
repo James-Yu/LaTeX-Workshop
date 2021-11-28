@@ -17,6 +17,9 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
     }
 
     provideDocumentSymbols(document: vscode.TextDocument): vscode.DocumentSymbol[] {
+        if (!this.extension.lwfs.isLocalUri(document.uri)) {
+            return []
+        }
         return this.sectionToSymbols(this.extension.structureProvider.buildModel(new Set<string>(), document.fileName, undefined, undefined, undefined, undefined, false))
     }
 
