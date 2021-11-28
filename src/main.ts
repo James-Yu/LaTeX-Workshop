@@ -170,7 +170,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     registerLatexWorkshopCommands(extension)
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-        if (!extension.lwfs.isLocalUri(e.uri)){
+        if (extension.lwfs.isVirtualUri(e.uri)){
             return
         }
         if (extension.manager.hasTexId(e.languageId)) {
@@ -192,7 +192,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     }))
 
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
-        if (!extension.lwfs.isLocalUri(e.uri)){
+        if (extension.lwfs.isVirtualUri(e.uri)){
             return
         }
         // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
@@ -203,7 +203,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     let updateCompleter: NodeJS.Timeout
     context.subscriptions.push(vscode.workspace.onDidChangeTextDocument((e: vscode.TextDocumentChangeEvent) => {
-        if (!extension.lwfs.isLocalUri(e.document.uri)){
+        if (extension.lwfs.isVirtualUri(e.document.uri)){
             return
         }
         if (!extension.manager.hasTexId(e.document.languageId)) {
@@ -242,7 +242,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         } else if (vscode.window.activeTextEditor && vscode.window.activeTextEditor.document.languageId.toLowerCase() === 'log') {
             extension.logger.status.show()
         }
-        if (e && !extension.lwfs.isLocalUri(e.document.uri)){
+        if (e && extension.lwfs.isVirtualUri(e.document.uri)){
             return
         }
         if (e && extension.manager.hasTexId(e.document.languageId)) {

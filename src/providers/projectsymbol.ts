@@ -16,7 +16,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
             return symbols
         }
         const rootFileUri = this.extension.manager.rootFileUri
-        if (rootFileUri && !this.extension.lwfs.isLocalUri(rootFileUri)) {
+        if (rootFileUri && this.extension.lwfs.isVirtualUri(rootFileUri)) {
             return symbols
         }
         this.sectionToSymbols(symbols, this.extension.structureProvider.buildModel(new Set<string>(), this.extension.manager.rootFile))
