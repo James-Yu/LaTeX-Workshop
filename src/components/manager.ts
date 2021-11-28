@@ -372,7 +372,7 @@ export class Manager {
         if (!vscode.window.activeTextEditor || this.rootFile === undefined) {
             return undefined
         }
-        if (!this.extension.lwfs.isLocalUri(vscode.window.activeTextEditor.document.uri)) {
+        if (this.extension.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             this.extension.logger.addLogMessage(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
@@ -386,7 +386,7 @@ export class Manager {
         if (!vscode.window.activeTextEditor) {
             return undefined
         }
-        if (!this.extension.lwfs.isLocalUri(vscode.window.activeTextEditor.document.uri)) {
+        if (this.extension.lwfs.isVirtualUri(vscode.window.activeTextEditor.document.uri)) {
             this.extension.logger.addLogMessage(`The active document cannot be used as the root file: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
             return undefined
         }
@@ -423,7 +423,7 @@ export class Manager {
             const files = await vscode.workspace.findFiles(rootFilesIncludeGlob, rootFilesExcludeGlob)
             const candidates: string[] = []
             for (const file of files) {
-                if (!this.extension.lwfs.isLocalUri(file)) {
+                if (this.extension.lwfs.isVirtualUri(file)) {
                     this.extension.logger.addLogMessage(`Skip the file: ${file.toString(true)}`)
                     continue
                 }

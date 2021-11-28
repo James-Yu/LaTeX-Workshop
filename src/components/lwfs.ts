@@ -13,6 +13,10 @@ export class LwFileSystem {
         return uri.scheme === 'file'
     }
 
+    isVirtualUri(uri: vscode.Uri): boolean {
+        return !this.isLocalUri(uri)
+    }
+
     readFileSyncGracefully(filepath: string) {
         try {
             const ret = fs.readFileSync(filepath).toString()
