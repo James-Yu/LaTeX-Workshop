@@ -24,12 +24,12 @@ export interface ILatexWorkshopPdfViewer {
     /**
      * `cb` is called after a PDF document is loaded and reloaded.
      */
-    onDidLoadPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable,
+    onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable,
 
     /**
      * `cb` is called after the a PDF document is rendered.
      */
-    onDidRenderPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable,
+    onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable,
 
     send(message: ClientRequest): void
 }

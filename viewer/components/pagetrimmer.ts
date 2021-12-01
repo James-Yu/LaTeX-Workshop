@@ -153,14 +153,14 @@ export class PageTrimmer {
     constructor(lwApp: ILatexWorkshopPdfViewer) {
         this.lwApp = lwApp
         // Set observers after a pdf file is loaded in the first time.
-        this.lwApp.onDidRenderPdfFile(setObserverToTrim, {once: true})
+        this.lwApp.onPagesLoaded(setObserverToTrim, {once: true})
         // Skip the first loading
-        this.lwApp.onDidLoadPdfFile( () => {
+        this.lwApp.onPagesInit(() => {
             // Set observers each time a pdf file is refresed.
-            this.lwApp.onDidLoadPdfFile(setObserverToTrim)
+            this.lwApp.onPagesInit(setObserverToTrim)
         }, {once: true})
 
-        this.lwApp.onDidRenderPdfFile( () => {
+        this.lwApp.onPagesLoaded(() => {
             const container = document.getElementById('trimSelectContainer') as HTMLElement
             const select = document.getElementById('trimSelect') as HTMLSelectElement
 
