@@ -34,10 +34,22 @@ export interface ILatexWorkshopPdfViewer {
     send(message: ClientRequest): void
 }
 
+export type PdfjsEventName = 'documentloaded'
+                    | 'pagesinit'
+                    | 'pagesloaded'
+                    | 'scroll'
+                    | 'scalechanged'
+                    | 'zoomin'
+                    | 'zoomout'
+                    | 'zoomreset'
+                    | 'scrollmodechanged'
+                    | 'spreadmodechanged'
+                    | 'pagenumberchanged'
+
 export interface IPDFViewerApplication {
     eventBus: {
-        on: (eventName: string, listener: () => void) => void,
-        off: (eventName: string, listener: () => void) => void,
+        on: (eventName: PdfjsEventName, listener: () => void) => void,
+        off: (eventName: PdfjsEventName, listener: () => void) => void,
         dispatch: (eventName: string) => void
     },
     findBar: {
