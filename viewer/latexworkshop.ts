@@ -21,7 +21,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private hideToolbarInterval: number | undefined
 
     private connectionPort: IConnectionPort
-    private pdfFileRendered: Promise<void>
+    private pdfPagesLoaded: Promise<void>
     private isRestoredWithSerializer: boolean = false
     private readonly pdfViewerStarted: Promise<void>
     // The 'webviewerloaded' event is fired just before the initialization of PDF.js.
@@ -55,11 +55,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
         this.setupConnectionPort()
 
-        this.onDidStartPdfViewer( () => {
+        this.onDidStartPdfViewer(() => {
             this.send({type:'request_params', path:this.pdfFilePath})
             this.setCssRule()
         })
-        this.onDidRenderPdfFile( () => {
+        this.onPagesLoaded(() => {
             this.send({type:'loaded', path:this.pdfFilePath})
         }, {once: true})
 
@@ -71,12 +71,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.startSendingState()
         void this.startReceivingPanelManagerResponse()
 
-        this.pdfFileRendered = new Promise((resolve) => {
-            this.onDidRenderPdfFile(() => resolve(), {once: true})
+        this.pdfPagesLoaded = new Promise((resolve) => {
+            this.onPagesLoaded(() => resolve(), {once: true})
         })
-        this.onDidLoadPdfFile(() => {
-            this.pdfFileRendered = new Promise((resolve) => {
-                this.onDidRenderPdfFile(() => resolve(), {once: true})
+        this.onPagesInit(() => {
+            this.pdfPagesLoaded = new Promise((resolve) => {
+                this.onPagesLoaded(() => resolve(), {once: true})
             })
         })
     }
@@ -102,7 +102,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return { dispose: () => PDFViewerApplication.eventBus.off('documentloaded', cb0) }
     }
 
-    onDidLoadPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable {
+    onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable {
         const cb0 = () => {
             cb()
             if (option?.once) {
@@ -115,17 +115,18 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return { dispose: () => PDFViewerApplication.eventBus.off('pagesinit', cb0) }
     }
 
-    onDidRenderPdfFile(cb: () => unknown, option?: {once: boolean}): IDisposable {
+    onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable {
+        const pagesLoadedEvent = 'pagesloaded'
         const cb0 = () => {
             cb()
             if (option?.once) {
-                PDFViewerApplication.eventBus.off('pagerendered', cb0)
+                PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0)
             }
         }
         void this.getEventBus().then(eventBus => {
-            eventBus.on('pagerendered', cb0)
+            eventBus.on(pagesLoadedEvent, cb0)
         })
-        return { dispose: () => PDFViewerApplication.eventBus.off('pagerendered', cb0) }
+        return { dispose: () => PDFViewerApplication.eventBus.off(pagesLoadedEvent, cb0) }
     }
 
     send(message: ClientRequest) {
@@ -182,7 +183,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             // We have to wait for currentScaleValue set above to be effected
             // especially for cases of non-number scales.
             // https://github.com/James-Yu/LaTeX-Workshop/issues/1870
-            void this.pdfFileRendered.then(() => {
+            void this.pdfPagesLoaded.then(() => {
                 if (state.trim === undefined) {
                     return
                 }
@@ -265,19 +266,21 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then( () => {
             // reset the document title to the original value to avoid duplication
             document.title = this.documentTitle
-            // ensure that trimming is invoked if needed.
-            setTimeout(() => {
-                window.dispatchEvent( new Event('pagerendered') )
-            }, 2000)
         })
-        this.onDidLoadPdfFile( () => {
+        this.onPagesInit(() => {
             PDFViewerApplication.pdfViewer.currentScaleValue = pack.scale
             PDFViewerApplication.pdfViewer.scrollMode = pack.scrollMode
             PDFViewerApplication.pdfViewer.spreadMode = pack.spreadMode;
             (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
             (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
         }, {once: true})
-        this.onDidRenderPdfFile( () => {
+        // The height of each page can change after a `pagesinit` event.
+        // We have to set scrollTop on a `pagesloaded` event for that case.
+        this.onPagesLoaded(() => {
+            (document.getElementById('viewerContainer') as HTMLElement).scrollTop = pack.scrollTop;
+            (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
+        }, {once: true})
+        this.onPagesLoaded(() => {
             this.send({type:'loaded', path:this.pdfFilePath})
         }, {once: true})
     }

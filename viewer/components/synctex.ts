@@ -10,7 +10,7 @@ export class SyncTex {
         this.lwApp = lwApp
         // Since DOM of each page is recreated when a PDF document is reloaded,
         // we must register listeners every time.
-        this.lwApp.onDidLoadPdfFile(() => {
+        this.lwApp.onPagesInit(() => {
             this.registerListenerOnEachPage()
         })
     }
