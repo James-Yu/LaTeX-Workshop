@@ -17,6 +17,7 @@ export class Configuration {
     }
 
     private readonly configurationsToLog = [
+        'editor.acceptSuggestionOnEnter',
         'latex-workshop.bind.enter.key',
         'latex-workshop.docker.enabled',
         'latex-workshop.docker.image.latex',
