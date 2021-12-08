@@ -1679,19 +1679,46 @@
       ]
     },
     {
-      "begin": "(\\$\\$|\\$)",
+      "begin": "\\$\\$",
       "beginCaptures": {
         "0": {
           "name": "punctuation.definition.string.begin.latex"
         }
       },
-      "end": "(\\1)",
+      "end": "\\$\\$",
       "endCaptures": {
         "0": {
           "name": "punctuation.definition.string.end.latex"
         }
       },
       "name": "meta.math.block.latex support.class.math.block.environment.latex",
+      "patterns": [
+        {
+          "match": "\\\\\\$",
+          "name": "constant.character.escape.latex"
+        },
+        {
+          "include": "text.tex#math"
+        },
+        {
+          "include": "$base"
+        }
+      ]
+    },
+    {
+      "begin": "\\$",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.begin.tex"
+        }
+      },
+      "end": "\\$",
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.string.end.tex"
+        }
+      },
+      "name": "meta.math.block.tex support.class.math.block.tex",
       "patterns": [
         {
           "match": "\\\\\\$",
