@@ -7,7 +7,8 @@ async function getRequest(url, options) {
         const response = await got(url, options)
         return response.body
     } catch (e) {
-        console.log('error:', e.response.body);
+        console.log('Error code:', e.response.statusCode)
+        console.log('Error message:', e.response.statusMessage);
     }
     return undefined
 }
