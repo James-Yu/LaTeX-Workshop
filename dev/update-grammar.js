@@ -45,11 +45,8 @@ async function getCommitSha(repo, version='main') {
 async function main() {
     const latexBasicsRepo = 'jlelong/vscode-latex-basics'
     const grammarFiles = [
-        'BibTeX-style.tmLanguage.json',
         'Bibtex.tmLanguage.json',
-        'DocTeX.tmLanguage.json',
         'JLweave.tmLanguage.json',
-        'LaTeX-Expl3.tmLanguage.json',
         'LaTeX.tmLanguage.json',
         'RSweave.tmLanguage.json',
         'TeX.tmLanguage.json',
