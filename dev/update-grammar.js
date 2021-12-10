@@ -46,9 +46,7 @@ async function main() {
     const latexBasicsRepo = 'jlelong/vscode-latex-basics'
     const grammarFiles = [
         'Bibtex.tmLanguage.json',
-        'JLweave.tmLanguage.json',
         'LaTeX.tmLanguage.json',
-        'RSweave.tmLanguage.json',
         'TeX.tmLanguage.json',
         'cpp-grammar-bailout.tmLanguage.json',
         'markdown-latex-combined.tmLanguage.json'
