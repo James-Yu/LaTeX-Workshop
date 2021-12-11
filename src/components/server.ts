@@ -131,15 +131,13 @@ export class Server {
                 return
             }
             try {
-                const stat = await this.extension.lwfs.stat(fileUri)
-                const pdfSize = stat.size
+                const buf: Buffer = await this.extension.lwfs.readFileAsBuffer(fileUri)
                 response.writeHead(200, {
                     'Content-Type': 'application/pdf',
-                    'Content-Length': pdfSize,
+                    'Content-Length': buf.length,
                     ...sameOriginPolicyHeaders
                 })
-                void this.extension.lwfs.readFileAsBuffer(fileUri).then(buf => response.end(buf, 'binary'))
-                // fs.createReadStream(fileName).pipe(response)
+                response.end(buf, 'binary')
                 this.extension.logger.addLogMessage(`Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
                 this.extension.logger.addLogMessage(`Error reading PDF file: ${fileUri.toString(true)}`)
