@@ -14,7 +14,7 @@
           "name": "punctuation.definition.keyword.tex"
         }
       },
-      "match": "(\\\\)(backmatter|else|fi|frontmatter|ftrue|mainmatter|if(case|cat|dim|eof|false|hbox|hmode|inner|mmode|num|odd|undefined|vbox|vmode|void|x)?)\\b",
+      "match": "(\\\\)(backmatter|else|fi|frontmatter|mainmatter|if(case|cat|dim|eof|false|hbox|hmode|inner|mmode|num|odd|true|undefined|vbox|vmode|void|x)?)(?![a-zA-Z@])",
       "name": "keyword.control.tex"
     },
     {
@@ -52,7 +52,7 @@
             }
           },
           "end": "$\\n?",
-          "name": "comment.line.percentage.semicolon.texshop.tex"
+          "name": "comment.line.percentage.tex"
         },
         {
           "begin": "^(%!TEX) (\\S*) =",
@@ -62,7 +62,7 @@
             }
           },
           "end": "$\\n?",
-          "name": "comment.line.percentage.directive.texshop.tex"
+          "name": "comment.line.percentage.directive.tex"
         },
         {
           "begin": "%",
@@ -93,7 +93,7 @@
           "name": "punctuation.definition.string.end.tex"
         }
       },
-      "name": "support.class.math.block.tex",
+      "name": "meta.math.block.tex support.class.math.block.tex",
       "patterns": [
         {
           "match": "\\\\\\$",
@@ -117,7 +117,7 @@
           "name": "punctuation.definition.function.tex"
         }
       },
-      "match": "(\\\\)[A-Za-z@]+",
+      "match": "(\\\\)(?:[A-Za-z@]+|[,;])",
       "name": "support.function.general.tex"
     },
     {
@@ -128,15 +128,40 @@
       },
       "match": "(\\\\)[^a-zA-Z@]",
       "name": "constant.character.escape.tex"
-    },
-    {
-      "match": "«press a-z and space for greek letter»[a-zA-Z]*",
-      "name": "meta.placeholder.greek.tex"
     }
   ],
   "repository": {
     "math": {
       "patterns": [
+        {
+          "begin": "((\\\\)(?:text|mbox))(\\{)",
+          "beginCaptures": {
+            "1": {
+              "name": "constant.other.math.tex"
+            },
+            "2": {
+              "name": "punctuation.definition.function.tex"
+            },
+            "3": {
+              "name": "punctuation.definition.arguments.begin.tex meta.text.normal.tex"
+            }
+          },
+          "contentName": "meta.text.normal.tex",
+          "end": "\\}",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.arguments.end.tex meta.text.normal.tex"
+            }
+          },
+          "patterns": [
+            {
+              "include": "#math"
+            },
+            {
+              "include": "$base"
+            }
+          ]
+        },
         {
           "captures": {
             "1": {
@@ -215,27 +240,27 @@
         },
         {
           "match": "(?<!\\\\)\\{",
-          "name": "punctuation.math.begin.bracket.curly"
+          "name": "punctuation.math.begin.bracket.curly.tex"
         },
         {
           "match": "(?<!\\\\)\\}",
-          "name": "punctuation.math.end.bracket.curly"
+          "name": "punctuation.math.end.bracket.curly.tex"
         },
         {
           "match": "\\(",
-          "name": "punctuation.math.begin.bracket.round"
+          "name": "punctuation.math.begin.bracket.round.tex"
         },
         {
           "match": "\\)",
-          "name": "punctuation.math.end.bracket.round"
+          "name": "punctuation.math.end.bracket.round.tex"
         },
         {
           "match": "(([0-9]*[\\.][0-9]+)|[0-9]+)",
           "name": "constant.numeric.math.tex"
         },
         {
-          "match": "«press a-z and space for greek letter»[a-zA-Z]*",
-          "name": "meta.placeholder.greek.math.tex"
+          "match": "[\\+\\*/_\\^-]",
+          "name": "punctuation.math.operator.tex"
         }
       ]
     },

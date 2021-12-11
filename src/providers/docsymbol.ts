@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
-import {Section} from './structure'
+import type {Extension} from '../main'
+import type {Section} from './structure'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
-    extension: Extension
+    private readonly extension: Extension
 
     private sections: string[] = []
 
@@ -16,18 +16,19 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         })
     }
 
-    public provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
-        return new Promise((resolve, _reject) => {
-            resolve(this.sectionToSymbols(this.extension.structureProvider.buildModel(document.fileName, undefined, undefined, undefined, false)))
-        })
+    provideDocumentSymbols(document: vscode.TextDocument): vscode.DocumentSymbol[] {
+        if (this.extension.lwfs.isVirtualUri(document.uri)) {
+            return []
+        }
+        return this.sectionToSymbols(this.extension.structureProvider.buildModel(new Set<string>(), document.fileName, undefined, undefined, undefined, undefined, false))
     }
 
-    sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
+    private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
         const symbols: vscode.DocumentSymbol[] = []
 
         sections.forEach(section => {
             const range = new vscode.Range(section.lineNumber, 0, section.toLine, 65535)
-            const symbol = new vscode.DocumentSymbol(section.label, '', vscode.SymbolKind.String, range, range)
+            const symbol = new vscode.DocumentSymbol(section.label ? section.label : 'empty', '', vscode.SymbolKind.String, range, range)
             symbols.push(symbol)
             if (section.children.length > 0) {
                 symbol.children = this.sectionToSymbols(section.children)

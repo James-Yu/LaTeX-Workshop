@@ -1,17 +1,14 @@
-import {latexParser, bibtexParser} from 'latex-utensils'
+import type {latexParser, bibtexParser} from 'latex-utensils'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
-import {Proxy} from 'workerpool'
-import {Extension} from '../../main'
-import {ISyntaxWorker} from './syntax_worker'
+import type {Proxy} from 'workerpool'
+import type {ISyntaxWorker} from './syntax_worker'
 
 export class UtensilsParser {
-    extension: Extension
-    pool: workerpool.WorkerPool
-    proxy: workerpool.Promise<Proxy<ISyntaxWorker>>
+    private readonly pool: workerpool.WorkerPool
+    private readonly proxy: workerpool.Promise<Proxy<ISyntaxWorker>>
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor() {
         this.pool = workerpool.pool(
             path.join(__dirname, 'syntax_worker.js'),
             { minWorkers: 1, maxWorkers: 1, workerType: 'process' }
@@ -19,12 +16,15 @@ export class UtensilsParser {
         this.proxy = this.pool.proxy<ISyntaxWorker>()
     }
 
+    /**
+     * Parse a LaTeX file.
+     *
+     * @param s The content of a LaTeX file to be parsed.
+     * @param options
+     * @return undefined if parsing fails
+     */
     async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-        try {
-            return (await this.proxy).parseLatex(s, options).timeout(3000)
-        } catch(e) {
-            return undefined
-        }
+        return (await this.proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
     }
 
     async parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {

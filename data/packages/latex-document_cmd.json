@@ -4,11 +4,6 @@
     "package": "latex-document",
     "snippet": "abstractname{${1:name}}"
   },
-  "addcontentsline{}{}{}": {
-    "command": "addcontentsline{file}{secunit}{entry}",
-    "package": "latex-document",
-    "snippet": "addcontentsline{${1:file}}{${2:secunit}}{${3:entry}}"
-  },
   "Alph{}": {
     "command": "Alph{counter}",
     "package": "latex-document",
@@ -39,10 +34,10 @@
     "package": "latex-document",
     "snippet": "ensuremath{${1:text}}"
   },
-  "bezier{}(x1,y1)(x2,y2)(x3,y3)": {
+  "bezier{}()()()": {
     "command": "bezier{n}(x1,y1)(x2,y2)(x3,y3)",
     "package": "latex-document",
-    "snippet": "bezier{${1:n}}(x1,y1)(x2,y2)(x3,y3)"
+    "snippet": "bezier{${1:n}}(${2:x1,y1})(${3:x2,y2})(${4:x3,y3})"
   },
   "bfseries": {
     "command": "bfseries",
@@ -123,11 +118,6 @@
     "command": "cline{i-j}",
     "package": "latex-document",
     "snippet": "cline{${1:i-j}}"
-  },
-  "contentsline{}{}{}": {
-    "command": "contentsline{type}{text}{page}",
-    "package": "latex-document",
-    "snippet": "contentsline{${1:type}}{${2:text}}{${3:page}}"
   },
   "contentsname{}": {
     "command": "contentsname{name}",
@@ -249,25 +239,15 @@
     "package": "latex-document",
     "snippet": "frac{${1:num}}{${2:den}}"
   },
-  "framebox(xdimen,ydimen)[]{}": {
+  "framebox()[]{}": {
     "command": "framebox(xdimen,ydimen)[position]{text}",
     "package": "latex-document",
-    "snippet": "framebox(xdimen,ydimen)[${2:position}]{${1:text}}"
+    "snippet": "framebox(${3:xdimen,ydimen})[${2:position}]{${1:text}}"
   },
-  "framebox(xdimen,ydimen){}": {
+  "framebox(){}": {
     "command": "framebox(xdimen,ydimen){text}",
     "package": "latex-document",
-    "snippet": "framebox(xdimen,ydimen){${1:text}}"
-  },
-  "framebox[][]{}": {
-    "command": "framebox[width][position]{text}",
-    "package": "latex-document",
-    "snippet": "framebox[${2:width}][${3:position}]{${1:text}}"
-  },
-  "framebox[]{}": {
-    "command": "framebox[width]{text}",
-    "package": "latex-document",
-    "snippet": "framebox[${2:width}]{${1:text}}"
+    "snippet": "framebox(${2:xdimen,ydimen}){${1:text}}"
   },
   "frame{}": {
     "command": "frame{text}",
@@ -283,11 +263,6 @@
     "command": "frqq",
     "package": "latex-document",
     "snippet": "frqq"
-  },
-  "glossaryentry{}{}": {
-    "command": "glossaryentry{text}{pagenum}",
-    "package": "latex-document",
-    "snippet": "glossaryentry{${1:text}}{${2:pagenum}}"
   },
   "glossary{}": {
     "command": "glossary{text}",
@@ -374,11 +349,6 @@
     "package": "latex-document",
     "snippet": "iterate"
   },
-  "label{}": {
-    "command": "label{key}",
-    "package": "latex-document",
-    "snippet": "label{${1:key}}"
-  },
   "language": {
     "command": "language",
     "package": "latex-document",
@@ -399,10 +369,10 @@
     "package": "latex-document",
     "snippet": "lefthyphenmin"
   },
-  "line(xslope,yslope){}": {
+  "line(){}": {
     "command": "line(xslope,yslope){length}",
     "package": "latex-document",
-    "snippet": "line(xslope,yslope){${1:length}}"
+    "snippet": "line(${2:xslope,yslope}){${1:length}}"
   },
   "linethickness{}": {
     "command": "linethickness{dimension}",
@@ -424,16 +394,6 @@
     "package": "latex-document",
     "snippet": "listfiles"
   },
-  "listoffigures": {
-    "command": "listoffigures",
-    "package": "latex-document",
-    "snippet": "listoffigures"
-  },
-  "listoftables": {
-    "command": "listoftables",
-    "package": "latex-document",
-    "snippet": "listoftables"
-  },
   "listparindent": {
     "command": "listparindent",
     "package": "latex-document",
@@ -443,16 +403,6 @@
     "command": "listtablename{name}",
     "package": "latex-document",
     "snippet": "listtablename{${1:name}}"
-  },
-  "makeglossary": {
-    "command": "makeglossary",
-    "package": "latex-document",
-    "snippet": "makeglossary"
-  },
-  "makeindex": {
-    "command": "makeindex",
-    "package": "latex-document",
-    "snippet": "makeindex"
   },
   "makelabel": {
     "command": "makelabel",
@@ -474,41 +424,6 @@
     "package": "latex-document",
     "snippet": "MakeUppercase{${1:text}}"
   },
-  "marginpar{}": {
-    "command": "marginpar{right}",
-    "package": "latex-document",
-    "snippet": "marginpar{${1:right}}"
-  },
-  "markboth{}{}": {
-    "command": "markboth{lefthead}{righthead}",
-    "package": "latex-document",
-    "snippet": "markboth{${1:lefthead}}{${2:righthead}}"
-  },
-  "markright{}": {
-    "command": "markright{righthead}",
-    "package": "latex-document",
-    "snippet": "markright{${1:righthead}}"
-  },
-  "mathbb{}": {
-    "command": "mathbb{text}",
-    "package": "latex-document",
-    "snippet": "mathbb{${1:text}}"
-  },
-  "mathbf{}": {
-    "command": "mathbf{text}",
-    "package": "latex-document",
-    "snippet": "mathbf{${1:text}}"
-  },
-  "mathcal{}": {
-    "command": "mathcal{text}",
-    "package": "latex-document",
-    "snippet": "mathcal{${1:text}}"
-  },
-  "mathds{}": {
-    "command": "mathds{text}",
-    "package": "latex-document",
-    "snippet": "mathds{${1:text}}"
-  },
   "mathellipsis": {
     "command": "mathellipsis",
     "package": "latex-document",
@@ -524,42 +439,12 @@
     "package": "latex-document",
     "snippet": "mathgroup"
   },
-  "mathit{}": {
-    "command": "mathit{text}",
-    "package": "latex-document",
-    "snippet": "mathit{${1:text}}"
-  },
-  "mathnormal{}": {
-    "command": "mathnormal{text}",
-    "package": "latex-document",
-    "snippet": "mathnormal{${1:text}}"
-  },
-  "mathrm{}": {
-    "command": "mathrm{text}",
-    "package": "latex-document",
-    "snippet": "mathrm{${1:text}}"
-  },
-  "mathscr": {
-    "command": "mathscr",
-    "package": "latex-document",
-    "snippet": "mathscr"
-  },
-  "mathsf{}": {
-    "command": "mathsf{text}",
-    "package": "latex-document",
-    "snippet": "mathsf{${1:text}}"
-  },
   "mathsterling": {
     "command": "mathsterling",
     "package": "latex-document",
     "snippet": "mathsterling",
     "detail": "£",
     "documentation": "POUND SIGN, fourier prints a dollar sign"
-  },
-  "mathtt{}": {
-    "command": "mathtt{text}",
-    "package": "latex-document",
-    "snippet": "mathtt{${1:text}}"
   },
   "mathunderscore": {
     "command": "mathunderscore",
@@ -581,15 +466,10 @@
     "package": "latex-document",
     "snippet": "mdseries"
   },
-  "multicolumn{}{}{}": {
-    "command": "multicolumn{cols}{pos}{text}",
-    "package": "latex-document",
-    "snippet": "multicolumn{${1:cols}}{${2:pos}}{${3:text}}"
-  },
-  "multiput(xcoord,ycoord)(xdelta,ydelta){}{}": {
+  "multiput()(){}{}": {
     "command": "multiput(xcoord,ycoord)(xdelta,ydelta){copies}{object}",
     "package": "latex-document",
-    "snippet": "multiput(xcoord,ycoord)(xdelta,ydelta){${1:copies}}{${2:object}}"
+    "snippet": "multiput(${3:xcoord,ycoord})(${4:xdelta,ydelta}){${1:copies}}{${2:object}}"
   },
   "newlabel": {
     "command": "newlabel",
@@ -600,11 +480,6 @@
     "command": "newlength{\\length}",
     "package": "latex-document",
     "snippet": "newlength{${1:\\length}}"
-  },
-  "newtheorem{}{}": {
-    "command": "newtheorem{envname}{caption}",
-    "package": "latex-document",
-    "snippet": "newtheorem{${1:envname}}{${2:caption}}"
   },
   "nocite{}": {
     "command": "nocite{keylist}",
@@ -671,15 +546,15 @@
     "package": "latex-document",
     "snippet": "onecolumn"
   },
-  "oval(width,height)": {
+  "oval()": {
     "command": "oval(width,height)",
     "package": "latex-document",
-    "snippet": "oval(width,height)"
+    "snippet": "oval(${1:width,height})"
   },
-  "oval(width,height)[]": {
+  "oval()[]": {
     "command": "oval(width,height)[portion]",
     "package": "latex-document",
-    "snippet": "oval(width,height)[${1:portion}]"
+    "snippet": "oval(${2:width,height})[${1:portion}]"
   },
   "overbrace{}": {
     "command": "overbrace{text}",
@@ -726,11 +601,6 @@
     "package": "latex-document",
     "snippet": "paragraph{${1:title}}"
   },
-  "parbox{}{}": {
-    "command": "parbox{width}{text}",
-    "package": "latex-document",
-    "snippet": "parbox{${1:width}}{${2:text}}"
-  },
   "part*{}": {
     "command": "part*{title}",
     "package": "latex-document",
@@ -765,10 +635,10 @@
     "detail": "£",
     "documentation": "POUND SIGN, fourier prints a dollar sign"
   },
-  "put(xcoord,ycoord){}": {
+  "put(){}": {
     "command": "put(xcoord,ycoord){text}",
     "package": "latex-document",
-    "snippet": "put(xcoord,ycoord){${1:text}}"
+    "snippet": "put(${2:xcoord,ycoord}){${1:text}}"
   },
   "ref{}": {
     "command": "ref{key}",
@@ -799,21 +669,6 @@
     "command": "rmfamily",
     "package": "latex-document",
     "snippet": "rmfamily"
-  },
-  "Roman{}": {
-    "command": "Roman{counter}",
-    "package": "latex-document",
-    "snippet": "Roman{${1:counter}}"
-  },
-  "roman{}": {
-    "command": "roman{counter}",
-    "package": "latex-document",
-    "snippet": "roman{${1:counter}}"
-  },
-  "rule{}{}": {
-    "command": "rule{width}{thickness}",
-    "package": "latex-document",
-    "snippet": "rule{${1:width}}{${2:thickness}}"
   },
   "samepage": {
     "command": "samepage",
@@ -889,11 +744,6 @@
     "command": "sqrt{arg}",
     "package": "latex-document",
     "snippet": "sqrt{${1:arg}}"
-  },
-  "stackrel{}{}": {
-    "command": "stackrel{above}{under}",
-    "package": "latex-document",
-    "snippet": "stackrel{${1:above}}{${2:under}}"
   },
   "stop": {
     "command": "stop",
@@ -1190,11 +1040,6 @@
     "package": "latex-document",
     "snippet": "textvisiblespace"
   },
-  "textwidth": {
-    "command": "textwidth",
-    "package": "latex-document",
-    "snippet": "textwidth"
-  },
   "thanks{}": {
     "command": "thanks{text}",
     "package": "latex-document",
@@ -1225,11 +1070,6 @@
     "package": "latex-document",
     "snippet": "title{${1:text}}"
   },
-  "ttfamily": {
-    "command": "ttfamily",
-    "package": "latex-document",
-    "snippet": "ttfamily"
-  },
   "twocolumn[]": {
     "command": "twocolumn[text]",
     "package": "latex-document",
@@ -1255,11 +1095,6 @@
     "package": "latex-document",
     "snippet": "unboldmath"
   },
-  "underbrace{}": {
-    "command": "underbrace{text}",
-    "package": "latex-document",
-    "snippet": "underbrace{${1:text}}"
-  },
   "underline{}": {
     "command": "underline{text}",
     "package": "latex-document",
@@ -1282,10 +1117,10 @@
     "detail": "⋮",
     "documentation": "VERTICAL ELLIPSIS"
   },
-  "vector(xslope,yslope){}": {
+  "vector(){}": {
     "command": "vector(xslope,yslope){length}",
     "package": "latex-document",
-    "snippet": "vector(xslope,yslope){${1:length}}"
+    "snippet": "vector(${2:xslope,yslope}){${1:length}}"
   },
   "verb": {
     "command": "verb",
@@ -1312,45 +1147,15 @@
     "package": "latex-document",
     "snippet": "width"
   },
-  "newcommand{}{}": {
-    "command": "newcommand{cmd}{def}",
-    "package": "latex-document",
-    "snippet": "newcommand{${1:cmd}}{${2:def}}"
-  },
   "providecommand{}{}": {
     "command": "providecommand{cmd}{def}",
     "package": "latex-document",
     "snippet": "providecommand{${1:cmd}}{${2:def}}"
   },
-  "newenvironment{}{}{}": {
-    "command": "newenvironment{nam}{begdef}{enddef}",
-    "package": "latex-document",
-    "snippet": "newenvironment{${1:nam}}{${2:begdef}}{${3:enddef}}"
-  },
-  "renewcommand{}{}": {
-    "command": "renewcommand{cmd}{def}",
-    "package": "latex-document",
-    "snippet": "renewcommand{${1:cmd}}{${2:def}}"
-  },
-  "renewenvironment{}{}{}": {
-    "command": "renewenvironment{nam}{begdef}{enddef}",
-    "package": "latex-document",
-    "snippet": "renewenvironment{${1:nam}}{${2:begdef}}{${3:enddef}}"
-  },
   "left": {
     "command": "left",
     "package": "latex-document",
     "snippet": "left"
-  },
-  "left(": {
-    "command": "left(",
-    "package": "latex-document",
-    "snippet": "left("
-  },
-  "left[": {
-    "command": "left[",
-    "package": "latex-document",
-    "snippet": "left["
   },
   "left\\lbrace": {
     "command": "left\\lbrace",

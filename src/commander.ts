@@ -1,15 +1,22 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs-extra'
+import * as fs from 'fs'
 import * as path from 'path'
-import {bibtexParser} from 'latex-utensils'
 
-import {Extension} from './main'
-import {getLongestBalancedString} from './utils/utils'
-import * as bibtexUtils from './utils/bibtexutils'
+import type {Extension} from './main'
 import {TeXDoc} from './components/texdoc'
-import {performance} from 'perf_hooks'
+import {getSurroundingCommandRange} from './utils/utils'
+type SnippetsLatexJsonType = typeof import('../snippets/latex.json')
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
+    if (doNotPrompt) {
+        if (configuration.get('latex.rootFile.useSubFile')) {
+            return localRootFile
+        } else {
+            return rootFile
+        }
+    }
     const pickedRootFile = await vscode.window.showQuickPick([{
         label: 'Default root file',
         description: `Path: ${rootFile}`
@@ -37,47 +44,50 @@ async function quickPickRootFile(rootFile: string, localRootFile: string): Promi
     return pickedRootFile
 }
 
-
 export class Commander {
-    extension: Extension
-    private _texdoc: TeXDoc
-    snippets: {[key: string]: vscode.SnippetString} = {}
+    private readonly extension: Extension
+    private readonly _texdoc: TeXDoc
+    private readonly snippets = new Map<string, vscode.SnippetString>()
 
     constructor(extension: Extension) {
         this.extension = extension
         this._texdoc = new TeXDoc(extension)
         let extensionSnippets: string
-        fs.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
+        fs.promises.readFile(`${this.extension.extensionRoot}/snippets/latex.json`)
             .then(data => {extensionSnippets = data.toString()})
             .then(() => {
-                const snipObj = JSON.parse(extensionSnippets)
+                const snipObj: { [key: string]: { body: string } } = JSON.parse(extensionSnippets) as SnippetsLatexJsonType
                 Object.keys(snipObj).forEach(key => {
-                    this.snippets[key] = new vscode.SnippetString(snipObj[key]['body'])
+                    this.snippets.set(key, new vscode.SnippetString(snipObj[key]['body']))
                 })
                 this.extension.logger.addLogMessage('Snippet data loaded.')
             })
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
-    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, recipe: string | undefined = undefined) {
+    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage('BUILD command invoked.')
         if (!vscode.window.activeTextEditor) {
+            this.extension.logger.addLogMessage('Cannot start to build because the active editor is undefined.')
             return
         }
+        this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString()}`)
+        this.extension.logger.addLogMessage(`The languageId of the document: ${vscode.window.activeTextEditor.document.languageId}`)
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const externalBuildCommand = configuration.get('latex.external.build.command') as string
         const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
         if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             rootFile = await this.extension.manager.findRoot()
+            languageId = this.extension.manager.rootFileLanguageId
         }
         if (externalBuildCommand) {
             const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
             await this.extension.builder.buildWithExternalCommand(externalBuildCommand, externalBuildArgs, pwd, rootFile)
             return
         }
-        if (rootFile === undefined) {
-            this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
+        if (rootFile === undefined || languageId === undefined) {
+            this.extension.logger.addLogMessage('Cannot find LaTeX root file. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#the-root-file')
             return
         }
         let pickedRootFile: string | undefined = rootFile
@@ -89,13 +99,14 @@ export class Commander {
             }
         }
         this.extension.logger.addLogMessage(`Building root file: ${pickedRootFile}`)
-        await this.extension.builder.build(pickedRootFile, recipe)
+        await this.extension.builder.build(pickedRootFile, languageId, recipe)
     }
 
     async revealOutputDir() {
         let outDir = this.extension.manager.getOutDir()
         if (!path.isAbsolute(outDir)) {
-            const rootDir = this.extension.manager.rootDir || (vscode.workspace.workspaceFolders && vscode.workspace.workspaceFolders[0].uri.fsPath)
+            const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
+            const rootDir = this.extension.manager.rootDir || workspaceFolder?.uri.fsPath
             if (rootDir === undefined) {
                 this.extension.logger.addLogMessage(`Cannot reveal ${vscode.Uri.file(outDir)}: no root dir can be identified.`)
                 return
@@ -114,16 +125,15 @@ export class Commander {
             return
         }
         if (recipe) {
-            this.build(false, undefined, recipe)
-            return
+            return this.build(false, undefined, undefined, recipe)
         }
-        vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
+        return vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
             placeHolder: 'Please Select a LaTeX Recipe'
         }).then(selected => {
             if (!selected) {
                 return
             }
-            this.build(false, undefined, selected)
+            return this.build(false, undefined, undefined, selected)
         })
     }
 
@@ -157,34 +167,31 @@ export class Commander {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
         if (mode === 'browser') {
-            this.extension.viewer.openBrowser(pickedRootFile)
-            return
+            return this.extension.viewer.openBrowser(pickedRootFile)
         } else if (mode === 'tab') {
-            this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-            return
+            return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
         } else if (mode === 'external') {
             this.extension.viewer.openExternal(pickedRootFile)
             return
         } else if (mode === 'set') {
-            this.setViewer()
-            return
+            return this.setViewer()
         }
         const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer(): Promise.resolve()
-        promise.then(() => {
+        void promise.then(() => {
             if (!pickedRootFile) {
                 return
             }
             switch (configuration.get('view.pdf.viewer')) {
-                case 'browser':
-                    this.extension.viewer.openBrowser(pickedRootFile)
-                    break
+                case 'browser': {
+                    return this.extension.viewer.openBrowser(pickedRootFile)
+                }
                 case 'tab':
-                default:
-                    this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-                    break
-                case 'external':
-                    this.extension.viewer.openExternal(pickedRootFile)
-                    break
+                default: {
+                    return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
+                }
+                case 'external': {
+                    return this.extension.viewer.openExternal(pickedRootFile)
+                }
             }
         })
     }
@@ -204,27 +211,36 @@ export class Commander {
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        this.extension.viewer.openTab(uri.fsPath, false, 'current')
+        return this.extension.viewer.openTab(uri.fsPath, false, 'current', false)
     }
 
     synctex() {
-        this.extension.logger.addLogMessage('SYNCTEX command invoked.')
-        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
-            return
+        try {
+            this.extension.logger.addLogMessage('SYNCTEX command invoked.')
+            if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+                this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
+                return
+            }
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            let pdfFile: string | undefined = undefined
+            if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
+                pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
+            } else if (this.extension.manager.rootFile !== undefined) {
+                pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
+            }
+            this.extension.locator.syncTeX(undefined, undefined, pdfFile)
+        } catch(e) {
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
+            throw e
         }
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        let pdfFile: string | undefined = undefined
-        if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
-        } else if (this.extension.manager.rootFile !== undefined) {
-            pdfFile = this.extension.manager.tex2pdf(this.extension.manager.rootFile)
-        }
-        this.extension.locator.syncTeX(undefined, undefined, pdfFile)
     }
 
     synctexonref(line: number, filePath: string) {
-        this.extension.logger.addLogMessage('SYNCTEX command invoked.')
+        this.extension.logger.addLogMessage('SYNCTEX command invoked on a reference.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
             return
         }
         this.extension.locator.syncTeXOnRef({line, filePath})
@@ -261,8 +277,22 @@ export class Commander {
         this.extension.completer.citation.browser()
     }
 
+    wordcount() {
+        this.extension.logger.addLogMessage('WORDCOUNT command invoked.')
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
+            this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
+            if (this.extension.manager.rootFile) {
+                void this.extension.counter.count(this.extension.manager.rootFile)
+            } else {
+                this.extension.logger.addLogMessage('WORDCOUNT: No rootFile defined.')
+            }
+        } else {
+            void this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
+        }
+    }
+
     log(compiler?: string) {
-        this.extension.logger.addLogMessage('LOG command invoked.')
+        this.extension.logger.addLogMessage(`LOG command invoked: ${compiler || 'default'}`)
         if (compiler) {
             this.extension.logger.showCompilerLog()
             return
@@ -274,9 +304,9 @@ export class Commander {
         this.extension.logger.addLogMessage(`GOTOSECTION command invoked. Target ${filePath}, line ${lineNumber}`)
         const activeEditor = vscode.window.activeTextEditor
 
-        vscode.workspace.openTextDocument(filePath).then((doc) => {
-            vscode.window.showTextDocument(doc).then(() => {
-                vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
+        void vscode.workspace.openTextDocument(filePath).then((doc) => {
+            void vscode.window.showTextDocument(doc).then(() => {
+                void vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
                 if (activeEditor) {
                     activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
                 }
@@ -291,16 +321,16 @@ export class Commander {
         .then(option => {
             switch (option) {
                 case 'Web browser':
-                    configuration.update('view.pdf.viewer', 'browser', true)
-                    vscode.window.showInformationMessage('By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".')
+                    void configuration.update('view.pdf.viewer', 'browser', true)
+                    void vscode.window.showInformationMessage('By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 case 'VSCode tab':
-                    configuration.update('view.pdf.viewer', 'tab', true)
-                    vscode.window.showInformationMessage('By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".')
+                    void configuration.update('view.pdf.viewer', 'tab', true)
+                    void vscode.window.showInformationMessage('By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 case 'External viewer':
-                    configuration.update('view.pdf.viewer', 'external', true)
-                    vscode.window.showInformationMessage('By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".')
+                    void configuration.update('view.pdf.viewer', 'external', true)
+                    void vscode.window.showInformationMessage('By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".')
                     break
                 default:
                     break
@@ -316,12 +346,20 @@ export class Commander {
         this.extension.envPair.gotoPair()
     }
 
+    selectEnvContent() {
+        this.extension.logger.addLogMessage('SelectEnv command invoked.')
+        if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
+            return
+        }
+        this.extension.envPair.selectEnv()
+    }
+
     selectEnvName() {
         this.extension.logger.addLogMessage('SelectEnvName command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.envAction('selection')
+        this.extension.envPair.envNameAction('selection')
     }
 
     multiCursorEnvName() {
@@ -329,7 +367,7 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.envAction('cursor')
+        this.extension.envPair.envNameAction('cursor')
     }
 
     toggleEquationEnv() {
@@ -337,7 +375,7 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.envAction('equationToggle')
+        this.extension.envPair.envNameAction('equationToggle')
     }
 
     closeEnv() {
@@ -345,12 +383,12 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
             return
         }
-        this.extension.envPair.closeEnv()
+        return this.extension.envPair.closeEnv()
     }
 
     actions() {
         this.extension.logger.addLogMessage('ACTIONS command invoked.')
-        vscode.commands.executeCommand('workbench.view.extension.latex').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
+        return vscode.commands.executeCommand('workbench.view.extension.latex-workshop-activitybar').then(() => vscode.commands.executeCommand('workbench.action.focusActiveEditorGroup'))
     }
 
     /**
@@ -362,9 +400,11 @@ export class Commander {
         if (!editor) {
             return
         }
-        if (name in this.snippets) {
-            editor.insertSnippet(this.snippets[name])
+        const entry = this.snippets.get(name)
+        if (entry) {
+            return editor.insertSnippet(entry)
         }
+        return
     }
 
     /**
@@ -380,9 +420,9 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('bind.enter.key')) {
-            return editor.edit(() => {
+            return editor.edit(() =>
                 vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            })
+            )
         }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
@@ -393,12 +433,12 @@ export class Commander {
 
         // if the cursor is not followed by only spaces/eol, insert a plain newline
         if (line.text.substr(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
-            return editor.edit(() => {
+            return editor.edit(() =>
                 vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            })
+            )
         }
 
-        // if the line only constists of \item or \item[], delete its content
+        // if the line only consists of \item or \item[], delete its content
         if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
             const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
 
@@ -423,123 +463,69 @@ export class Commander {
                 itemString += '\\item '
                 newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length)
             }
-            return editor.edit(editBuilder => {
-                editBuilder.insert(cursorPos, '\n' + itemString)
-                }).then(() => {
-                    editor.selection = new vscode.Selection(newCursorPos, newCursorPos)
-                }
-            ).then(() => { editor.revealRange(editor.selection) })
+            return editor.edit(editBuilder => { editBuilder.insert(cursorPos, '\n' + itemString) })
+                         .then(() => { editor.selection = new vscode.Selection(newCursorPos, newCursorPos) })
+                         .then(() => { editor.revealRange(editor.selection) })
         }
-        return editor.edit(() => {
+        return editor.edit(() =>
             vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-        })
+        )
     }
 
     /**
-    * Toggle a keyword, if the cursor is inside a keyword,
-    * the keyword will be removed, otherwise a snippet will be added.
-    * @param keyword the keyword to toggle without backslash eg. textbf or underline
-    * @param outerBraces whether or not the tag should be wrapped with outer braces eg. {\color ...} or \textbf{...}
+    * Toggle a keyword. This function works with multi-cursors or multi-selections
+    *
+    * If the selection is empty, a snippet is added.
+    *
+    * If the selection is not empty and matches `\keyword{...}`, it is replaced by
+    * the argument of `keyword`. If the selection does not start with `\keyword`, it is surrounded by `\keyword{...}`.
+    *
+    *  @param keyword the keyword to toggle without backslash eg. textbf or underline
     */
-    async toggleSelectedKeyword(keyword: string, outerBraces?: boolean) {
-        function updateOffset(newContent: string, replacedRange: vscode.Range) {
-            const splitLines = newContent.split('\n')
-            offset.lineOffset += splitLines.length - (replacedRange.end.line - replacedRange.start.line + 1)
-            offset.columnOffset +=
-                splitLines[splitLines.length - 1].length -
-                (replacedRange.isSingleLine
-                    ? replacedRange.end.character - replacedRange.start.character
-                    : replacedRange.start.character)
-        }
+    async toggleSelectedKeyword(keyword: string) {
         const editor = vscode.window.activeTextEditor
         if (editor === undefined) {
             return
         }
 
-        const document = editor.document
-        const selections = editor.selections.sort((a, b) => {
-            let diff = a.start.line - b.start.line
-            diff = diff !== 0 ? diff : a.start.character - b.start.character
-            return diff
-        })
-        const selectionsText = selections.map(selection => document.getText(selection))
+        const editActions: {range: vscode.Range, text: string}[] = []
+        const snippetActions: vscode.Position[] = []
 
-        const offset: {
-            currentLine: number,
-            lineOffset: number,
-            columnOffset: number
-        } = {
-            currentLine: 0, lineOffset: 0, columnOffset: 0
-        }
-
-        const actions: ('added' | 'removed')[] = []
-
-        for (let i = 0; i < selections.length; i++) {
-            const selection = selections[i]
-            const selectionText = selectionsText[i]
-            const line = document.lineAt(selection.anchor)
-
-            if (offset.currentLine !== selection.start.line) {
-                offset.currentLine = selection.start.line
-                offset.columnOffset = 0
-            }
-            const translatedSelection = new vscode.Range(
-                selection.start.translate(offset.lineOffset, offset.columnOffset),
-                selection.end.translate(offset.lineOffset, offset.columnOffset),
-            )
-
-            const pattern = new RegExp(`\\\\${keyword}{`, 'g')
-            let match = pattern.exec(line.text)
-            let keywordRemoved = false
-            while (match !== null) {
-                const matchStart = line.range.start.translate(0, match.index)
-                const matchEnd = matchStart.translate(0, match[0].length)
-                const searchString = document.getText(new vscode.Range(matchEnd, line.range.end))
-                const insideText = getLongestBalancedString(searchString)
-                const matchRange = new vscode.Range(matchStart,matchEnd.translate(0, insideText.length + 1))
-
-                if (matchRange.contains(translatedSelection)) {
-                    // Remove keyword
-                    await editor.edit(((editBuilder) => {
-                        editBuilder.replace(matchRange, insideText)
-                    }))
-                    updateOffset(insideText, matchRange)
-                    actions.push('removed')
-                    keywordRemoved = true
-                    break
+        for (const selection of editor.selections) {
+            // If the selection is empty, determine if a snippet should be inserted or the cursor is inside \keyword{...}
+            if (selection.isEmpty) {
+                const surroundingCommandRange = getSurroundingCommandRange(keyword, selection.anchor, editor.document)
+                if (surroundingCommandRange) {
+                    editActions.push({range: surroundingCommandRange.range, text: surroundingCommandRange.arg})
+                } else {
+                    snippetActions.push(selection.anchor)
                 }
-                match = pattern.exec(line.text)
-            }
-            if (keywordRemoved) {
                 continue
             }
 
-            // Add keyword
-            if (selectionText.length > 0) {
-                await editor.edit(((editBuilder) => {
-                    let replacementText: string
-                    if (outerBraces === true) {
-                        replacementText= `{\\${keyword} ${selectionText}}`
-                    } else {
-                        replacementText= `\\${keyword}{${selectionText}}`
-                    }
-                    editBuilder.replace(translatedSelection, replacementText)
-                    updateOffset(replacementText, selection)
-                }))
+            // When the selection is not empty, decide if \keyword must be inserted or removed
+            const text = editor.document.getText(selection)
+            if (text.startsWith(`\\${keyword}{`) || text.startsWith(`${keyword}{`)) {
+                const start = text.indexOf('{') + 1
+                const insideText = text.slice(start).slice(0, -1)
+                editActions.push({range: selection, text: insideText})
             } else {
-                let snippet: vscode.SnippetString
-                if (outerBraces === true) {
-                    snippet = new vscode.SnippetString(`{\\${keyword} $1}`)
-                } else {
-                    snippet = new vscode.SnippetString(`\\${keyword}{$1}`)
-                }
-                await editor.insertSnippet(snippet, selection.start.translate(offset.lineOffset, offset.columnOffset))
-                updateOffset(snippet.value.replace(/\$\d/g, ''), new vscode.Range(selection.start, selection.start))
+                editActions.push({range: selection, text: `\\${keyword}{${text}}`})
             }
-            actions.push('added')
         }
 
-        return actions
+        if (editActions.length === 0 && snippetActions.length > 0) {
+            const snippet = new vscode.SnippetString(`\\\\${keyword}{$1}`)
+            await editor.insertSnippet(snippet, snippetActions)
+        } else if (editActions.length > 0 && snippetActions.length === 0) {
+            await editor.edit((editBuilder) => {
+                editActions.forEach(action => {
+                    editBuilder.replace(action.range, action.text)
+                })
+            })
+        } else {
+            this.extension.logger.addLogMessage('toggleSelectedKeyword: cannot handle mixed edit and snippet actions')
+        }
     }
 
     /**
@@ -547,112 +533,18 @@ export class Commander {
      * @param change
      */
     shiftSectioningLevel(change: 'promote' | 'demote') {
-        if (change !== 'promote' && change !== 'demote') {
-            throw TypeError(
-            `Invalid value of function parameter 'change' (=${change})`
-            )
-        }
+       this.extension.section.shiftSectioningLevel(change)
+    }
 
-        const editor = vscode.window.activeTextEditor
-        if (editor === undefined) {
-            return
-        }
-
-        const promotes = {
-            part: 'part',
-            chapter: 'part',
-            section: 'chapter',
-            subsection: 'section',
-            subsubsection: 'subsection',
-            paragraph: 'subsubsection',
-            subparagraph: 'paragraph'
-        }
-        const demotes = {
-            part: 'chapter',
-            chapter: 'section',
-            section: 'subsection',
-            subsection: 'subsubsection',
-            subsubsection: 'paragraph',
-            paragraph: 'subparagraph',
-            subparagraph: 'subparagraph'
-        }
-
-        function replacer(
-            _match: string,
-            sectionName: keyof typeof promotes,
-            asterisk: string | undefined,
-            options: string | undefined,
-            contents: string
-        ) {
-            if (change === 'promote') {
-                return '\\' + promotes[sectionName] + (asterisk ?? '') + (options ?? '') + contents
-            } else {
-                // if (change === 'demote')
-                return '\\' + demotes[sectionName] + (asterisk ?? '') + (options ?? '') + contents
-            }
-        }
-
-        // when supported, negative lookbehind at start would be nice --- (?<!\\)
-        const pattern = /\\(part|chapter|section|subsection|subsection|subsubsection|paragraph|subparagraph)(\*)?(\[.+?\])?(\{.*?\})/g
-
-        function getLastLineLength(someText: string) {
-            const lines = someText.split(/\n/)
-            return lines.slice(lines.length - 1, lines.length)[0].length
-        }
-
-        const document = editor.document
-        const selections = editor.selections
-        const newSelections: vscode.Selection[] = []
-
-        const edit = new vscode.WorkspaceEdit()
-
-        for (let selection of selections) {
-            let mode: 'selection' | 'cursor' = 'selection'
-            let oldSelection: any = null
-            if (selection.isEmpty) {
-                mode = 'cursor'
-                oldSelection = selection
-                const line = document.lineAt(selection.anchor)
-                selection = new vscode.Selection(line.range.start, line.range.end)
-            }
-
-            const selectionText = document.getText(selection)
-            const newText = selectionText.replace(pattern, replacer)
-            edit.replace(document.uri, selection, newText)
-
-            const changeInEndCharacterPosition = getLastLineLength(newText) - getLastLineLength(selectionText)
-            if (mode === 'selection') {
-                newSelections.push(
-                    new vscode.Selection(selection.start,
-                        new vscode.Position(selection.end.line,
-                            selection.end.character + changeInEndCharacterPosition
-                        )
-                    )
-                )
-            } else { // mode === 'cursor'
-                const anchorPosition = oldSelection.anchor.character + changeInEndCharacterPosition
-                const activePosition = oldSelection.active.character + changeInEndCharacterPosition
-                newSelections.push(
-                    new vscode.Selection(
-                        new vscode.Position(oldSelection.anchor.line, anchorPosition < 0 ? 0 : anchorPosition),
-                        new vscode.Position(oldSelection.active.line, activePosition < 0 ? 0 : activePosition)
-                    )
-                )
-            }
-        }
-
-        vscode.workspace.applyEdit(edit).then(success => {
-            if (success) {
-                editor.selections = newSelections
-            }
-        })
+    selectSection() {
+        this.extension.section.selectSection()
     }
 
     devParseLog() {
         if (vscode.window.activeTextEditor === undefined) {
             return
         }
-        this.extension.logParser.parse(vscode.window.activeTextEditor.document.getText())
+        this.extension.compilerLogParser.parse(vscode.window.activeTextEditor.document.getText())
     }
 
     async devParseTeX() {
@@ -660,7 +552,7 @@ export class Commander {
             return
         }
         const ast = await this.extension.pegParser.parseLatex(vscode.window.activeTextEditor.document.getText())
-        vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
+        return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
     async devParseBib() {
@@ -668,75 +560,7 @@ export class Commander {
             return
         }
         const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
-        vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
-    }
-
-    async bibtexFormat(sort: boolean, align: boolean) {
-        if (vscode.window.activeTextEditor === undefined || vscode.window.activeTextEditor.document.languageId !== 'bibtex') {
-            return
-        }
-        const t0 = performance.now() // Measure performance
-        const ast = await this.extension.pegParser.parseBibtex(vscode.window.activeTextEditor.document.getText())
-
-        const config = vscode.workspace.getConfiguration('latex-workshop')
-        const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
-        const tabs = { '2 spaces': '  ', '4 spaces': '    ', 'tab': '\t' }
-        const configuration: bibtexUtils.BibtexFormatConfig = {
-            tab: tabs[config.get('bibtex-format.tab') as ('2 spaces' | '4 spaces' | 'tab')],
-            case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
-            left: leftright[0],
-            right: leftright[1],
-            sort: config.get('bibtex-format.sortby') as string[]
-        }
-
-        const entries: bibtexParser.Entry[] = []
-        const entryLocations: vscode.Range[] = []
-        ast.content.forEach(item => {
-            if (bibtexParser.isEntry(item)) {
-                entries.push(item)
-                // latex-utilities uses 1-based locations whereas VSCode uses 0-based
-                entryLocations.push(new vscode.Range(
-                    item.location.start.line - 1,
-                    item.location.start.column - 1,
-                    item.location.end.line - 1,
-                    item.location.end.column - 1))
-            }
-        })
-
-        let sortedEntryLocations: vscode.Range[] = []
-        if (sort) {
-            entries.sort(bibtexUtils.bibtexSort(configuration.sort)).forEach(entry => {
-                sortedEntryLocations.push((new vscode.Range(
-                    entry.location.start.line - 1,
-                    entry.location.start.column - 1,
-                    entry.location.end.line - 1,
-                    entry.location.end.column - 1)))
-            })
-        } else {
-            sortedEntryLocations = entryLocations
-        }
-
-        // Successively replace the text in the current location from the sorted location
-        const edit = new vscode.WorkspaceEdit()
-        const uri = vscode.window.activeTextEditor.document.uri
-        let text: string
-        for (let i = 0; i < entries.length; i++) {
-            if (align) {
-                text = bibtexUtils.bibtexFormat(entries[i], configuration)
-            } else {
-                text = vscode.window.activeTextEditor.document.getText(sortedEntryLocations[i])
-            }
-            edit.replace(uri, entryLocations[i], text)
-        }
-
-        vscode.workspace.applyEdit(edit).then(success => {
-            if (success) {
-                const t1 = performance.now()
-                this.extension.logger.addLogMessage(`BibTeX action successful. Took ${t1 - t0} ms.`)
-            } else {
-                this.extension.logger.showErrorMessage('Something went wrong while processing the bibliography.')
-            }
-        })
+        return vscode.workspace.openTextDocument({content: JSON.stringify(ast, null, 2), language: 'json'}).then(doc => vscode.window.showTextDocument(doc))
     }
 
     texdoc(pkg?: string) {
@@ -755,4 +579,17 @@ export class Commander {
         await vscode.window.activeTextEditor.document.save()
         setTimeout(() => this.extension.builder.disableBuildAfterSave = false, 1000)
     }
+
+    openMathPreviewPanel() {
+        return this.extension.mathPreviewPanel.open()
+    }
+
+    closeMathPreviewPanel() {
+        this.extension.mathPreviewPanel.close()
+    }
+
+    toggleMathPreviewPanel() {
+        this.extension.mathPreviewPanel.toggle()
+    }
+
 }

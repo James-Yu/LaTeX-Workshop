@@ -1,5 +1,418 @@
 # Change Log
 
+## [8.22.0] - 2021-11-15
+
+### Changed
+- (#2881) Refactor `toggleSelectedKeyword`.
+- (#2937) Drop the support for VS Code prior to v1.61.2.
+- (#2951) Refactor the Input completer.
+- (#2959) Remove Snippet Panel.
+
+### Fixed
+- (#2929) Highlight `(long|tall)tblr`.
+- (#2935) `workspaceFolders` may have length 0.
+- (#2950) Provide `@snippets` as completion items using a separate `CompletionItemProvider`.
+- (#2952) Do not gobble trailing empty lines when folding.
+- (#2967) Fix ranges for `(sub)*section` entries in the structure provider.
+
+## [8.21.1] - 2021-10-22
+
+### Fixed
+- (#2917) Treat `latexmk --luatex` properly.
+- (#2922,#2926,#2927) The previous package has some mysterious bugs preventing the extension from working properly.
+- (#2923) Synctex in file with `\include`d files is not searching for the correct directory.
+
+## [8.21.0] - 2021-10-19
+
+### Added
+- (#2841) Add `BibLaTeX` backend for intellisense.
+- (#2852) Hightlight the content of the `markdown` environment as `md`.
+- (#2870) Add a new configuration variable `latex-workshop.message.bibtexlog.exclude`.
+- (#2900) Add three new placeholders.
+  - `WORKSPACE_FOLDER`: current workspace path.
+  - `RELATIVE_DIR`: file directory relative to the workspace folder.
+  - `RELATIVE_DOC`: file path relative to the workspace folder.
+
+### Fixed
+- (#2838) Format multiline bibtex fields.
+- (#2851) Highlight `tblr` envs as tabular.
+- (#2855) Accept dash in cite keys.
+- (#2897) Show `Open LaTeX Workshop log` button for some cases.
+- (#2908) Highlight `alignedat`.
+- (#2909) Replace `\texorpdfstring` by its second arg in outline.
+
+## [8.20.2] - 2021-08-09
+
+### Added
+- (#2783) Add support for glossary external file.
+
+### Changed
+- (#2756) Use Custom Editor as a hook to start the internal PDF viewer.
+- (#2759) Drop support for versions prior to VS Code `1.53.2`.
+
+### Fixed
+- A series of engineering improvements.
+- (#2766) Declare `flalign` as a math environment.
+- (#2770) intellisense for `\mathscr`.
+- (#2777) Skip tikpicture content when scanning for labels.
+- (#2782) Stop unescaping in surround function.
+- (#2786) Skip labels in new command definitions.
+- (#2787) Set a scope to `\text` in maths.
+- (#2794) Highlights comments inside `\cite`.
+
+### Others
+ - 8.20.0 and 8.20.1 are skipped. [#2829](https://github.com/James-Yu/LaTeX-Workshop/issues/2829)
+
+## [8.19.0] - 2021-06-11
+
+### Added
+- New log messages for recipes and undefined tools.
+- (#2682) Adopt a more lazy approach to read tex content.
+- (#2686) Added highlighting support for tabu package envs.
+
+### Changed
+- (#2579) Change the default value of `docker.image.latex` to an empty string.
+
+### Fixed
+- A series of engineering improvements.
+
+### Fixed
+
+## [8.18.0] - 2021-05-12
+
+### Added
+- (#2628) Support `<<child='...'>>=` for `.rnw` file inclusion.
+- (#2636) Support SyncTeX buttons on PDF viewers.
+
+### Removed
+- (#2653) Remove `BuildInfo`.
+
+### Fixed
+- (#2627) Array syntax highlighting.
+- (#2628) Refactor input path regexps.
+- (#2639) Fix cached packages list update.
+- (#2650) Highlight `\Verb` content as verbatim.
+- (#2658) Improve find new command regex.
+- (#2662) Fix auto build on save with subfiles.
+- (#2666) Fix typo, highlight `\iftrue`, not `\ftrue`.
+- (#2671) Make sure to remove any verbatim parts before scanning the .tex content.
+  - For the moment, it breaks if there are nested verbatim environments.
+- (#2671) Make the list of verbatim-like environments configurable by `latex-workshop.latex.verbatimEnvs`.
+
+## [8.17.0] - 2021-04-21
+
+### Added
+- (#2566) Add IntelliSense for `\DeclareMathOperator` and any `\newcommand*` & co declarations.
+- (#2584) Generate a `cpp` embedded language configuration.
+
+### Fixed
+- (#2542) Python code highlighting for all environments of the package `pythontex`.
+- (#2561) Fix a regexp which might causes ReDoS.
+- (#2562) Fix potential exponential backtracking when removing comments.
+- (#2565) Use `spawn` instead of `exec` when looking for `latexindent`.
+- (#2575) Make sure to wait for `findRoot` to return before proceeding.
+- (#2600) Duplicate labels in the same file not spotted.
+- (#2601) Do not filter files using `git`.
+- (#2624) The outline view in the sidebar of the internal pdf viewer is too dark to see the content.
+- (#2626) Set correct package field in cached element.command.
+
+## [8.16.1] - 2021-03-03
+
+### Fixed
+- (#2536) Check for duplicate labels.
+- (#2542) Highlight `pythontex` environments.
+- (#2543) Make `import` accept a relative path starting from the `rootDir`.
+- (#2547) Use `spawnSync` to prevent code injection.
+- (#2549) `LintRoot` should lint the whole LaTeX project.
+- (#2550) Raise a warning message when viewer cannot find PDF file.
+
+## [8.16.0] - 2021-02-19
+
+### Added
+- (#2427) Add a config to show floats or not in outline `view.outline.floats.enabled`.
+- (#2432) Make trigger characters for intellisense of LaTeX documents configurable.
+- (#2461) Implement a `BibTeX` log parser.
+- (#2471) Add a configurable clean command.
+  - A fully configurable `clean` command and add three new configuration variables.
+  - `latex.clean.method` can be `glob` (default) or `cleanCommand`.
+- (#2476) Enable converting ChkTeX outputs' column numbers.
+- (#2485) Configure align on equal signs for bibtex formatter `bibtex-format.align-equal.enabled`.
+- (#2488) Accept any number of spaces for bibtex indentation given as a string in `bibtex-format.tab`.
+- (#2508) Sorting fields can be enabled by `bibtex-fields.sort.enabled`.
+- (#2512) Enable autofix on multiline maths.
+- (#2529) Users can provide package intellisense data from `intellisense.package.dirs`. 
+
+### Changed
+- Use `.fls` file when finding the root file.
+- (#2439) Use `vscode.env.asExternalUri` for the internal PDF viewer.
+
+### Fixed
+- (#2429) Fix quote escaping for `bst` language.
+- (#2430) Stop opening scm view when focusing `tex` file in `diff` mode.
+- (#2457) Check if git is available on OSX to prevent dev tools pop up.
+- (#2458,#2503) Treat `\left.` `\right)]}` and `\left([{` `\right.` as bracket pairs.
+- (#2484) Killing the build process makes vscode crash when `pkill` is provided by `proctools`.
+- (#2504) Fix SyncTeX on horizonal scrolling.
+
+## [8.15.0] - 2020-12-06
+
+### Added
+- Add Snippet View.
+- Add `hover.preview.maxLines` to limit how much we go upward to find the beginning of the math environment.
+- (#2380) Add toggle math preview.
+- (#2384) Enable math preview on suggest detail widgets for references.
+- (#2388) Add `bibtex` support for `markdown`.
+
+### Changed
+- Update syntax files for weave, dtx, LaTeX3.
+- (#2392) Keep selected text in autocompletion/snippets.
+- (#2408) Remove `subfileincludegraphics` in `data/commands.json`.
+
+### Fixed
+- Escape `}` properly in the snippet panel.
+- (#2394) Refactor fix for double `}}` in completion.
+- (#2395) Update `cpp` grammar with bailout.
+- (#2397) Autocomplete big parenthesis commands: `left(` -> `\left( ... \right)`.
+- (#2415) Add `triggerSuggest` to user-defined commands when needed.
+- (#2421) Fix a focus issue when opening PDF files through the explorer.
+
+## [8.14.0] - 2020-11-11
+
+### Added
+- (#516,#2298) Glossary completion.
+- (#2276) Add tool and recipe definitions for `Tectonic`.
+- (#2294) Support real-time math preview panel.
+- (#2322) Add option to sort `bib` files by entry type.
+
+### Changed
+- (#2279) Update to `PDF.js 2.5.207`.
+- (#2291) Tweak the transition of the toolbar of the PDF viewer.
+
+### Fixed
+- (#2277) Label completion broken when labels contain spaces.
+- (#2290) Extra closing brace when inserting `split` environment.
+- (#2292) Fix `\textins` command completion.
+- (#2325) Keep trailing comma in last `bibtex` field.
+- (#2327) Highlight `&` in `longtable`.
+- (#2328) Invoke `toLocaleLowerCase` for the suffix of filenames.
+- (#2344) Allow multiple `args` completion with `\cite`.
+- (#2339,#2342) Parts of `Compiler Log` are not parsed.
+- (#2347) Highlight `optidef` envs.
+- (#2356) No leading space allowed before `#begin{document}` when using `subfiles`.
+- (#1423,#1820,#2368) Deactivate auto-closing for snippet prefixes.
+
+
+## [8.13.2] - 2020-09-12
+
+### Fixed
+- Extension within WSL uses the wrong un-polyfilled `pdf.js`.
+
+## [8.13.1] - 2020-09-12
+
+### Fixed
+- (#2274) Fix spelling error `formater` -> `formatter`.
+
+## [8.13.0] - 2020-09-11
+
+### Added
+- (#2261) Declare a formatter provider for `bibtex`.
+
+### Fixed
+- (#2270) Extension work again with Remote Development extension.
+
+## [8.12.0] - 2020-09-11
+
+### Added
+- (#2198) Add a command to select the full content of the current environment.
+- (#2225) Enable `latex-workshop.surround` on the Command Palette.
+- (#2249) Improve support for LaTeX fenced code block in Markdown.
+
+### Changed
+- Update PDF.js to v2.4.456.
+- Drop support for vscode < 1.42.
+- (#2158) Add invert PDF in dark mode only.
+  - Made invertMode configuration more intuitive.
+  - Set default for invertMode.enabled.
+
+### Fixed
+- (#2117) Add a build icon.
+- (#2126) Improve scope names.
+- (#2169) Fix the trim mode of the PDF viewer.
+- (#2189) Duplicate cite entries.
+- (#2203) Refactor and add above/below to `view.pdf.tab.editorGroup`.
+- (#2207) Ignore verbatim content when computing structure.
+- (#2211) Add `onSave` option to `latex.autoBuild.run`
+  - Reverts `4d3ea8b`
+- (#2223) Remove `press a-z and space for greek letter`.
+- (#2229) Add TBA snippet for table.
+- (#2232) Fix XML & HTML scopes.
+- (#2245) Should not treat blob URLs, `blob:...`, as external links.
+- (#2265) Use `px` instead of `rem` for padding of SVG images on the snippet panel.
+
+## [8.11.1] - 2020-07-01
+
+### Fixed
+- Restoring PDF viewers does not work well with VS Code 1.47.
+- (#2172) `"latex.recipe.default": "lastUsed"` doesn't work.
+- (#2176) No need to put the closing `}` on its own line in `.bib`.
+- (#2177) Use `kpsewhich` to resolve bibliography files.
+- (#2182) Also search for `.bib` files in `rootDir`.
+
+## [8.11.0] - 2020-06-24
+
+### Added
+- (#2149) Add support for `weave.jl`.
+- (#2154) Add section numbers in outline.
+  - This feature can be deactivated by setting `view.outline.numbers.enabled: false`.
+
+### Improved
+- (#2109) Improve PDF viewer refresh speed.
+- (#2157) Improve the invert mode of the PDF viewer with additional filters.
+
+### Fixed
+- Activate `onEnterKey` even when suggestion is visible.
+  - Always activate `onEnterKey` when `acceptSuggestionOnEnter`.
+  - (#2167) Do not activate `onEnterKey` when `suggestWidgetVisible`.
+- (#2107) Use `fs.realpathSync` to compare file paths for SyncTeX.
+- (#2146) Use `rootFile` to expand placeholders when formatting.
+
+## [8.10.0] - 2020-06-06
+
+### Added
+- Enhance LaTeX3 support.
+- Activate extension for `latex-expl3` language id.
+- (#2018) Support restoring PDF viewers.
+- (#2088) Add completion support for `includeonly`/`excludeonly`.
+- (#2099) Set default recipe by name.
+- (#2115) Add intellisense for optional `bibtex` fields.
+- (#2118) Texcount comes back.
+- (#2136) Filename completion with already typed path.
+
+### Fixed
+- Fix double `}}` in env completion.
+- (#1523) Match `\autocite`s syntax highlight.
+- (#2049) Add `luahbtex` rule for build info.
+- (#2052) Add standard math envs to the default list.
+- (#2052) Set `intellisense.package.enabled` to true to populate intellisense based on the used packages.
+- (#2054) Declare more cite commands for syntax highlighting.
+- (#2055) Stop rebroadcasting keyboard events on Linux.
+- (#2056) Remove duplicate `\env` commands.
+- (#2120) Show labels in structure/outline.
+- (#2131) Fix spaces in suggestions.
+
+## [8.9.0] - 2020-04-24
+
+### Added
+- Update `PDF.js` to `v2.3.200`.
+- Enhanced `rnw `support.
+- Turn `..` into tabstops in snippets.
+- The new placeholders `%DOC_W32%`, `%DOC_EXT_W32%`, `%DIR_W32%`, `%OUTDIR_W32%` are normalized so that they use `\\` as the path separator on Windows.
+  - Placeholders without the `_W32` suffix always use `/` as the path separator. On Unix platforms, placeholders with and without the `_W32` suffix have the same value.
+- (#1534,#2020) Match `\left`...`\right` brackets.
+- (#1951) Load `data/packages/class-*.json` files to provide completion items specific to `documentclass`es.
+- (#1989) Add syntax highlighting for TypeScript in `minted`.
+- (#2029) Refactor environments snippets.
+- (#2033) Add a completion provider for `bibtex` files.
+- (#2047) Add more default commands in intellisense.
+
+### Changed
+- In `%DOC%` and `%DOCFILE%`, we now remove any extension, not only `.tex`.
+  - Two new placeholders `%DOC_EXT%` and `%DOCFILE_EXT%` are respectively the root file full path and the root file name with the extension kept.
+- Use `cross-spawn` to build and view.
+
+### Fixed
+- Fix `updatePkg` when `latexParser` fails.
+- (#2002) Make sure to kill all child processes.
+- (#2003) Reveal a `WebviewPanel` when executing SyncTeX.
+- (#2010) Force `/` in `%OUTDIR%` even on Windows.
+- (#2011) Check the length of the args of `\label` command.
+- (#2012) Remove `cleveref` intellisense entries.
+- (#2016) Disable Ctrl+P Shortcut in `pdf.js` viewer.
+- (#2017) Use a dedicated option for pdf watch delay.
+- (#2025) Render citation completion and preview as markdown.
+- (#2030) Order latexmk rules numerically in compilation live info.
+
+## [8.8.0] - 2020-03-22
+
+### Added
+- (#1949) Make the PDF watcher delay configurable via `latex.watch.delay`.
+- (#1950) Enable keyboard shortcuts of VS Code on the PDF viewer.
+- (#1955) Add embedded language support for minted ruby.
+- (#1963) Add `\addplot` grammar support.
+- (#1985) Improved intellisense for reference via `intellisense.citation.format`.
+
+### Removed
+- (#1986) Remove `formatOnSave:false` in latex configuration.
+
+### Fixed
+- (#1947) Normalize `outdir` path.
+- (#1953) Fix clean command with relative `outDir`.
+- (#1962) Use page numbers to cache SVG files.
+- (#1965) Ctrl click to open `documentclass` file.
+- (#1972) Use `rootDir` as PWD when parsing `.fls` file.
+
+## [8.7.2] - 2020-02-12
+
+### Fixed
+- Fix popup severity.
+- (#1811) Wait for write to finish before firing a change event.
+- (#1907) Scan `\DeclarePairedDelimiter` for preview.
+- (#1925) Add setting for prompting user or not with subfile.
+  - The new setting is `latex.rootFile.doNotPrompt`. When set to yes, the file used is decided according to `latex.rootFile.useSubFile`.
+- (#1926) Fix `parseLatex`, which should return `undefined` when parsing fails.
+- (#1927) Scan for already used environments for intellisense.
+- (#1928) Watch external pdf for automatic reload.
+- (#1932) Remove the `-cd` option of `latexmk`.
+- (#1933) Add an option to disable the progress bar of the compilation of LaTeX `progress.enabled`.
+- (#1943) Do not call `document.save()` in formatter.
+
+## [8.7.1] - 2020-01-31
+
+### Fixed
+- (#1924) Try magic and active document before current root.
+
+## [8.7.0] - 2020-01-30
+
+### Added
+- (#1913) Add recipe for rwn files.
+- (#1914) Add option to highlight or comment out duplicate entries in BibTeX.
+- (#1918) Declare `\Sexpr` syntax
+
+### Fixed
+- Fix scanning of \def for autocompletion.
+- (#1876) First try current rootFile on editor change.
+- (#1895) Fix subfiles building with `latexmk`.
+- (#1895) Accept roofile without extension in subfiles.
+- (#1902) Do not change the left panel on active editor change when `view.autoFocus.enabled` is set to `false`.
+- (#1904) Always use '/' as path separator.
+- (#1905) Fix keybinding regression for `ctrl+alt+[` and `+]`.
+- (#1911) `vscode.DocumentSymbol` expects non-empty label.
+- (#1915) Accept `@` in command names for intellisense.
+- (#1921) Trim current token for hover.
+
+## [8.6.0] - 2020-01-13
+
+### Added
+- (#1862) Syntax highlight for BibTeX style language (`.bst`).
+- (#1878) Add config to scan `label={...}`.
+- (#1891) Support asterisked sections in `shiftSectionLevel`.
+- (#1894) Declare `\bibentry` as a citation command.
+
+### Changed
+- (#1872) Refactoring communications between the WebSocket server and PDF viewers.
+- (#1874) Use typed proxies of workerpool.
+
+### Fixed
+- Fix double `/` in `latexindent -c` when using docker.
+- (#1871) Override the spread mode specified in PDF documents with the current.
+- (#1873) Do not use PWD entry as the cwd for fls files.
+- (#1873) Use `cross-spawn` to run `latexindent`.
+- (#1877) `\def` commands not passed to mathjax for preview.
+- (#1886) Send `type: 'loaded'` to the extension host when PDF files loaded.
+- (#1889) Fix outDir when containing `../`.
+- (#1890) `latex.watch.files.ignore` not fully honored.
+- (#1899) Activate all keybindings for `rsweave` id.
+
 ## [8.5.0] - 2019-12-17
 
 ### Added
@@ -8,7 +421,7 @@
 - (#1846) Add regex for `biber` to live compilation info.
 
 ### Changed
-- (#1842) Rename `intellisense.preview.enabled` to `latex-workshop.intellisense.includegraphics.preview.enabled`.
+- (#1842) Rename `intellisense.preview.enabled` to `intellisense.includegraphics.preview.enabled`.
 - (#1856) Add `*.syntex(busy)` and `*.synctex.gz(busy)` to files to clean.
 
 ### Fixed
@@ -110,7 +523,7 @@
 ## [8.1.0] - 2019-08-29
 
 ### Added
-- Add a config `latex-workshop.intellisense.update.aggressive.enabled` to disable parsing on text change.
+- Add a config `intellisense.update.aggressive.enabled` to disable parsing on text change.
 - (#1504) Add a latexmk(rc) recipe.
 
 ### Changed
@@ -122,7 +535,7 @@
 ## [8.0.7] - 2019-08-26
 
 ### Changed
-- (#1635) Add `.nav` and `.snm` to `latex-workshop.latex.clean.fileTypes`.
+- (#1635) Add `.nav` and `.snm` to `latex.clean.fileTypes`.
 
 ### Fixed
 - (#1637) Find root only when active editor is tex-like.
@@ -301,7 +714,7 @@
 - (#1263) Add accent commands.
 - (#1265) Make port of viewer configurable.
 - (#1267) Add label field to `AutocompleteEntry`.
-- (#1273) Configure the editor group for the tab viewer with `latex-workshop.view.pdf.tab.useNewGroup`.
+- (#1273) Configure the editor group for the tab viewer with `view.pdf.tab.useNewGroup`.
 
 ### Changed
 - Deprecate the old action dropdown, replace with side view.
@@ -312,7 +725,7 @@
 - Skip postprocessing (e.g., refresh viewer) if latexmk is skipped, i.e., no change.
 - (#1272) Root file detection with auto build and `subfiles` package.
 - (#1278) Support preview for `$$...$$`.
-- (#1281) Allow using previous recipe by default, configurable at `latex-workshop.latex.recipe.default`.
+- (#1281) Allow using previous recipe by default, configurable at `latex.recipe.default`.
 - (#1288) Use file pooling for `chokidar` watch.
 - (#1290) Expand all placeholders.
 
@@ -365,8 +778,8 @@
 ### Added
 - Support `\def` in addition to `\newcommand` in mathjax preview.
 - (#731) Narrow search of root file with two new settings to include or exclude files from the root file search mechanism
-  - `latex-workshop.latex.search.rootFiles.include`
-  - `latex-workshop.latex.search.rootFiles.exclude`
+  - `latex.search.rootFiles.include`
+  - `latex.search.rootFiles.exclude`
 - (#1188) Add support for sage environments.
 - (#1191) QoL changes to make log messages better.
 - (#1192) Literate haskell.
@@ -418,7 +831,7 @@
 - (#1127) Not throw when a parse error occurs in `synctexjs`.
 - (#1132) Do not provide 'Definition' for graphics files.
 - (#1134) Use `path.resolve` to replace `path.join` when applicable.
-- (#1137) Use `%DIR%` as the default value for `latex-workshop.latex.outDir`.
+- (#1137) Use `%DIR%` as the default value for `latex.outDir`.
 
 ## [5.20.2] - 2019-01-20
 
@@ -479,7 +892,7 @@
 
 ### Added
 - Comprehensive `cite` and `ref` intellisense improvements.
-- (#1018) Add placeholder `%TMPDIR%` to `latex-workshop.latex.outputDir`.
+- (#1018) Add placeholder `%TMPDIR%` to `latex.outputDir`.
 - (#1022) Add documentation for `pdf.js` shortcuts.
 - (#1024) Add support for `pyglist` env (`verbments` package).
 - (#1028) Add command `view in external viewer` to menu.
@@ -560,7 +973,7 @@
 
 ### Fixed
 - Unified PDF viewer dropdown menu style.
-- (#957) Allow `latex-workshop.latex.outputDir` to be an absolute path.
+- (#957) Allow `latex.outputDir` to be an absolute path.
 - (#972) Add space after `\item` in snippets.
 
 ## [5.15.1] - 2018-11-07
@@ -1028,7 +1441,7 @@
 - (#343) Move mouse on viewer to show toolbar, revert viewer style.
 
 ### Fixed
-- (#341) Clarify `latex-workshop.latex.outputDir` usage.
+- (#341) Clarify `latex.outputDir` usage.
 
 ## [3.8.0] - 2017-12-01
 ### Added
@@ -1063,7 +1476,7 @@
 
 ## [3.6.0] - 2017-11-01
 ### Added
-- (#288) New `latex-workshop.intellisense.surroundCommand.enabled` config to control command surrounding feature.
+- (#288) New `intellisense.surroundCommand.enabled` config to control command surrounding feature.
 
 ## [3.5.5] - 2017-10-03
 ### Fixed
@@ -1203,7 +1616,7 @@
 
 ## [2.10.0] - 2017-07-06
 ### Added
-- (#182) Use `|` as delimiters for outline section tags (`latex-workshop.view.outline.sections`) in the same level.
+- (#182) Use `|` as delimiters for outline section tags (`view.outline.sections`) in the same level.
 - Supporting entries in the dropdown quick menu.
 - Version update notice with small candies.
 
@@ -1238,7 +1651,7 @@
 
 ## [2.7.0] - 2017-06-26
 ### Added
-- (#169) Add new configuration entry `latex-workshop.latex.additionalBib` to auto-complete globally included `.bib` files.
+- (#169) Add new configuration entry `latex.additionalBib` to auto-complete globally included `.bib` files.
 
 ### Fixed
 - Chokidar watches the same file multiple times if multi-included.

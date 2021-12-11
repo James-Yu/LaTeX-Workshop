@@ -8,7 +8,7 @@ labels:
 
 ## Preliminary questions [Required]
 
-### Disable all the other extensions except for LaTeX Workshop, and check that you still see this issue. [Required]
+### Disable all the other extensions except for LaTeX Workshop, restart VS Code, and check that you still see this issue. [Required]
 
 You still see this issue?: Yes/No
 
@@ -43,7 +43,7 @@ A clear and concise description of what you expected to happen.
 
 ## Logs [Required]
 
-Please paste the whole log messages here, not parts of ones. It is very important to identify problems.
+Please paste the whole log messages here, not parts of ones. The log should start with `Initializing LaTeX Workshop`. It is very important to identify problems.
 
 ### LaTeX Workshop Output [Required]
 
@@ -56,7 +56,7 @@ To access the log, click the 'TeX' icon on the Activity Bar on the left side, se
 ### Developer Tools Console [Required]
 
 ```
-To access the log, click 'help' -> 'Toggle Developer Tools. Paste anything suspicious.
+To access the log, click 'help' -> 'Toggle Developer Tools' -> 'Console'. Paste anything suspicious.
 
 [Paste the log here]
 ```
@@ -71,6 +71,9 @@ If applicable, add screenshots to help explain your problem.
 
 
 ## Desktop [Required]
+
+Please write exact version numbers. Please don't write `latest` instead of exact numbers.
+
  - OS: [e.g. Windows 10]
  - VS Code version: [e.g. 1.41.0]
  - Extension version: [e.g. 8.5.0]
@@ -80,6 +83,14 @@ If applicable, add screenshots to help explain your problem.
 
 
 ## Additional questions
+
+### Are you using VSCodium?
+
+Yes/No
+
+### Are you using the Snap or Flatpack versions of VS Code?
+
+Yes/No
 
 ### Are you using LaTeX Workshop with VS Code Remote?
 

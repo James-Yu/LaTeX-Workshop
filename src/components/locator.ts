@@ -2,10 +2,12 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cp from 'child_process'
-import * as synctexjs from './synctex'
+import {SyncTexJs} from './locatorlib/synctex'
+import {replaceArgumentPlaceholders} from '../utils/utils'
+import {isSameRealPath} from '../utils/pathnormalize'
 
-import {Extension} from '../main'
-import {ClientRequest} from '../../viewer/components/protocol'
+import type {Extension} from '../main'
+import type {ClientRequest} from '../../viewer/components/protocol'
 
 export type SyncTeXRecordForward = {
     page: number,
@@ -20,14 +22,16 @@ export type SyncTeXRecordBackward = {
 }
 
 export class Locator {
-    extension: Extension
+    private readonly extension: Extension
+    private readonly synctexjs: SyncTexJs
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.synctexjs = new SyncTexJs(extension)
     }
 
-    parseSyncTeXForward(result: string): SyncTeXRecordForward {
-        const record: { page?: number, x?: number, y?: number } = {}
+    private parseSyncTeXForward(result: string): SyncTeXRecordForward {
+        const record = Object.create(null) as { page?: number, x?: number, y?: number }
         let started = false
         for (const line of result.split('\n')) {
             if (line.includes('SyncTeX result begin')) {
@@ -58,8 +62,8 @@ export class Locator {
         }
     }
 
-    parseSyncTeXBackward(result: string): SyncTeXRecordBackward {
-        const record: { input?: string, line?: number, column?: number } = {}
+    private parseSyncTeXBackward(result: string): SyncTeXRecordBackward {
+        const record = Object.create(null) as { input?: string, line?: number, column?: number }
         let started = false
         for (const line of result.split('\n')) {
             if (line.includes('SyncTeX result begin')) {
@@ -94,7 +98,14 @@ export class Locator {
         }
     }
 
-    syncTeX(args?: {line: number, filePath: string}, forcedViewer: string = 'auto', pdfFile?: string) {
+    /**
+     * Execute forward SyncTeX with respect to `args`.
+     *
+     * @param args The arguments of forward SyncTeX. If `undefined`, the document and the cursor position of `activeTextEditor` are used.
+     * @param forcedViewer Indicates a PDF viewer with which SyncTeX is executed.
+     * @param pdfFile The path of a PDF File compiled from the `filePath` of `args`. If `undefined`, it is automatically detected.
+     */
+    syncTeX(args?: {line: number, filePath: string}, forcedViewer: 'auto' | 'tabOrBrowser' | 'external' = 'auto', pdfFile?: string) {
         let line: number
         let filePath: string
         let character = 0
@@ -126,7 +137,6 @@ export class Locator {
             return
         }
         if (!pdfFile) {
-            this.extension.manager.findRoot()
             pdfFile = this.extension.manager.tex2pdf(rootFile)
         }
         if (vscode.window.activeTextEditor.document.lineCount === line &&
@@ -142,16 +152,16 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
-                const record = synctexjs.syncTexJsForward(line, filePath, pdfFile)
+                const record = this.synctexjs.syncTexJsForward(line, filePath, pdfFile)
                 this.extension.viewer.syncTeX(pdfFile, record)
             } catch (e) {
-                this.extension.logger.addLogMessage('SyncTeX failed.')
+                this.extension.logger.addLogMessage('[SyncTexJs] Forward SyncTeX failed.')
                 if (e instanceof Error) {
                     this.extension.logger.logError(e)
                 }
             }
         } else {
-            this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
+            void this.invokeSyncTeXCommandForward(line, character, filePath, pdfFile).then( (record) => {
                 if (pdfFile) {
                     this.extension.viewer.syncTeX(pdfFile, record)
                 }
@@ -159,7 +169,7 @@ export class Locator {
         }
     }
 
-    invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordForward> {
+    private invokeSyncTeXCommandForward(line: number, col: number, filePath: string, pdfFile: string): Thenable<SyncTeXRecordForward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
@@ -167,6 +177,7 @@ export class Locator {
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
+            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
@@ -174,7 +185,6 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        this.extension.manager.setEnvVar()
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
@@ -206,7 +216,7 @@ export class Locator {
 
     syncTeXOnRef(args: {line: number, filePath: string}) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const viewer = configuration.get('view.pdf.ref.viewer') as string
+        const viewer = configuration.get('view.pdf.ref.viewer') as 'auto' | 'tabOrBrowser' | 'external'
         args.line += 1
         if (viewer) {
             this.syncTeX(args, viewer)
@@ -215,7 +225,7 @@ export class Locator {
         }
     }
 
-    invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string): Thenable<SyncTeXRecordBackward> {
+    private invokeSyncTeXCommandBackward(page: number, x: number, y: number, pdfPath: string): Thenable<SyncTeXRecordBackward> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
         const docker = configuration.get('docker.enabled')
@@ -224,6 +234,7 @@ export class Locator {
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
+            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/synctex.bat')
             } else {
@@ -231,7 +242,6 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        this.extension.manager.setEnvVar()
         const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
@@ -262,6 +272,12 @@ export class Locator {
         })
     }
 
+    /**
+     * Execute backward SyncTeX.
+     *
+     * @param data The page number and the position on the page of a PDF file.
+     * @param pdfPath The path of a PDF file as the input of backward SyncTeX.
+     */
     async locate(data: Extract<ClientRequest, {type: 'reverse_synctex'}>, pdfPath: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
@@ -270,8 +286,9 @@ export class Locator {
 
         if (useSyncTexJs) {
             try {
-                record = synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
+                record = this.synctexjs.syncTexJsBackward(Number(data.page), data.pos[0], data.pos[1], pdfPath)
             } catch (e) {
+                this.extension.logger.addLogMessage('[SyncTexJs] Backward SyncTeX failed.')
                 if (e instanceof Error) {
                     this.extension.logger.logError(e)
                 }
@@ -288,15 +305,23 @@ export class Locator {
         // kpathsea/SyncTeX follow symlinks.
         // see http://tex.stackexchange.com/questions/25578/why-is-synctex-in-tl-2011-so-fussy-about-filenames.
         // We compare the return of symlink with the files list in the texFileTree and try to pickup the correct one.
-        for (const ed in this.extension.manager.cachedContent) {
-            if (fs.realpathSync(record.input) === fs.realpathSync(ed)) {
-                record.input = ed
-                break
+        for (const ed of this.extension.manager.cachedFilePaths) {
+            try {
+                if (isSameRealPath(record.input, ed)) {
+                    record.input = ed
+                    break
+                }
+            } catch(e) {
+                this.extension.logger.addLogMessage(`[SyncTexJs] isSameRealPath throws error: ${record.input} and ${ed}`)
             }
         }
 
         const filePath = path.resolve(record.input)
         this.extension.logger.addLogMessage(`SyncTeX to file ${filePath}`)
+        if (!fs.existsSync(filePath)) {
+            this.extension.logger.addLogMessage(`Not found: ${filePath}`)
+            return
+        }
         vscode.workspace.openTextDocument(filePath).then((doc) => {
             let viewColumn: vscode.ViewColumn | undefined = undefined
             for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
@@ -314,12 +339,12 @@ export class Locator {
             }
             const pos = new vscode.Position(row, col)
 
-            vscode.window.showTextDocument(doc, viewColumn).then((editor) => {
+            vscode.window.showTextDocument(doc, viewColumn).then( async (editor) => {
                 editor.selection = new vscode.Selection(pos, pos)
-                vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
+                await vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
                 this.animateToNotify(editor, pos)
-            })
-        })
+            }, (r) => this.extension.logger.logOnRejected(r))
+        }, (r) => this.extension.logger.logOnRejected(r))
     }
 
     private getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
@@ -346,7 +371,7 @@ export class Locator {
     }
 
     private getColumnBySurroundingText(line: string, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
-        let previousColumnMatches: { [k: string]: number } = {}
+        let previousColumnMatches = Object.create(null) as { [k: string]: number }
 
         for (let length = 5; length <= Math.max(textBeforeSelectionFull.length, textAfterSelectionFull.length); length++) {
             const columns: number[] = []
@@ -362,7 +387,7 @@ export class Locator {
             }
 
             // Get number or occurrences for each column
-            const columnMatches: { [k: string]: number } = {}
+            const columnMatches = Object.create(null) as { [k: string]: number }
             columns.forEach(column => columnMatches[column] = (columnMatches[column] || 0) + 1)
             const values = Object.values(columnMatches).sort()
 
@@ -417,7 +442,7 @@ export class Locator {
         setTimeout(() => { deco.dispose() }, 500)
     }
 
-    syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
+    private syncTeXExternal(line: number, pdfFile: string, rootFile: string) {
         if (!vscode.window.activeTextEditor) {
             return
         }
@@ -425,14 +450,19 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const command = configuration.get('view.pdf.external.synctex.command') as string
         let args = configuration.get('view.pdf.external.synctex.args') as string[]
-        if (args) {
-            args = args.map(arg => arg.replace(/%DOC%/g, rootFile.replace(/\.tex$/, '').split(path.sep).join('/'))
-                                      .replace(/%DOCFILE%/g, path.basename(rootFile, '.tex').split(path.sep).join('/'))
-                                      .replace(/%PDF%/g, pdfFile)
-                                      .replace(/%LINE%/g, line.toString())
-                                      .replace(/%TEX%/g, texFile))
+        if (command === '') {
+            this.extension.logger.addLogMessage('Error: the external SyncTeX command is an empty string. Set view.pdf.external.synctex.command')
+            return
         }
-        this.extension.manager.setEnvVar()
+        if (args) {
+            args = args.map(arg => {
+                return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
+                        .replace(/%PDF%/g, pdfFile)
+                        .replace(/%LINE%/g, line.toString())
+                        .replace(/%TEX%/g, texFile)
+            })
+        }
+        this.extension.logger.addLogMessage(`Execute external SyncTeX command: command ${command}, args ${args}`)
         cp.spawn(command, args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
     }

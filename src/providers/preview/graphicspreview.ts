@@ -1,28 +1,14 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as tmpFile from 'tmp'
-import { Extension } from '../../main'
-import { PDFRenderer } from './pdfrenderer'
-import { GraphicsScaler } from './graphicsscaler'
+import type { Extension } from '../../main'
 
 
 export class GraphicsPreview {
-    private cacheDir: string
-    private pdfFileCacheMap: Map<string, {cacheFileName: string, inode: number}>
-    private curCacheName = 0
+    private readonly extension: Extension
 
-    extension: Extension
-    pdfRenderer: PDFRenderer
-    graphicsScaler: GraphicsScaler
-
-    constructor(e: Extension) {
-        this.extension = e
-        this.pdfRenderer = new PDFRenderer(e)
-        this.graphicsScaler = new GraphicsScaler(e)
-        const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
-        this.cacheDir = tmpdir.name
-        this.pdfFileCacheMap = new Map<string, {cacheFileName: string, inode: number}>()
+    constructor(extension: Extension) {
+        this.extension = extension
     }
 
     async provideHover(document: vscode.TextDocument, position: vscode.Position): Promise<vscode.Hover | undefined> {
@@ -38,7 +24,7 @@ export class GraphicsPreview {
         if (!execArray || !relPath) {
             return undefined
         }
-        const filePath = this.findFilePath(relPath)
+        const filePath = this.findFilePath(relPath, document)
         if (filePath === undefined) {
             return undefined
         }
@@ -49,53 +35,77 @@ export class GraphicsPreview {
                 pageNumber = Number(m[1])
             }
         }
-        const dataUrl = await this.renderGraphics(filePath, { height: 230, width: 500, pageNumber })
-        if (dataUrl !== undefined) {
-            const md = new vscode.MarkdownString(`![graphics](${dataUrl})`)
+        const md = await this.renderGraphicsAsMarkdownString(filePath, { height: 230, width: 500, pageNumber })
+        if (md !== undefined) {
             return new vscode.Hover(md, range)
         }
         return undefined
     }
 
-    private newSvgCacheName(): string {
-        const name = this.curCacheName.toString() + '.svg'
-        this.curCacheName += 1
-        return name
-    }
-
-    async renderGraphics(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<string | vscode.Uri | undefined> {
-        if (!fs.existsSync(filePath)) {
-            return undefined
+    async renderGraphicsAsMarkdownString(filePath: string, opts: { height: number, width: number, pageNumber?: number }): Promise<vscode.MarkdownString | undefined> {
+        if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
+            // Workaround for https://github.com/microsoft/vscode/issues/136027
+            if (vscode.env.remoteName) {
+                const md = new vscode.MarkdownString(`![img](${vscode.Uri.file(filePath).toString()})`)
+                return md
+            }
+            const md = new vscode.MarkdownString(`<img src="${filePath}" height="${opts.height}">`)
+            md.supportHtml = true
+            return md
         }
         if (/\.pdf$/i.exec(filePath)) {
-            const cache = this.pdfFileCacheMap.get(filePath)
-            const cacheFileName = cache?.cacheFileName ?? this.newSvgCacheName()
-            const svgPath = path.join(this.cacheDir, cacheFileName)
-            const curStat = fs.statSync(filePath)
-            if( cache && fs.existsSync(svgPath) && fs.statSync(svgPath).mtimeMs >= curStat.mtimeMs && cache.inode === curStat.ino ) {
-                return vscode.Uri.file(svgPath)
+            const pdfOpts = { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
+            const dataUrl = await this.renderPdfFileAsDataUrl(filePath, pdfOpts)
+            if (dataUrl !== undefined) {
+                const md = new vscode.MarkdownString(`<img src="${dataUrl}" height="${opts.height}">`)
+                md.supportHtml = true
+                return md
+            } else {
+                let msg = '$(error) Failed to render.'
+                if (!vscode.workspace.getWorkspaceFolder(vscode.Uri.file(filePath))) {
+                    msg = '$(warning) Cannot render a PDF file not in workspaces.'
+                } else if (!this.extension.snippetView.snippetViewProvider.webviewView) {
+                    msg = '$(info) Please activate Snippet View to render the thumbnail of a PDF file.'
+                }
+                return new vscode.MarkdownString(msg, true)
             }
-            this.pdfFileCacheMap.set(filePath, {cacheFileName, inode: curStat.ino})
-            const svg0 = await this.pdfRenderer.renderToSVG(
-                filePath,
-                { height: opts.height, width: opts.width, pageNumber: opts.pageNumber || 1 }
-            )
-            const svg = this.setBackgroundColor(svg0)
-            fs.writeFileSync(svgPath, svg)
-            return vscode.Uri.file(svgPath)
         }
-        if (/\.(bmp|jpg|jpeg|gif|png)$/i.exec(filePath)) {
-            const dataUrl = await this.graphicsScaler.scale(filePath, opts)
+        return
+    }
+
+    private async renderPdfFileAsDataUrl(pdfFilePath: string, opts: { height: number, width: number, pageNumber: number }): Promise<string | undefined> {
+        try {
+            const maxDataUrlLength = 99980
+            let scale = 1.5
+            let newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
+            let dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            if (!dataUrl || dataUrl.length < maxDataUrlLength) {
+                return dataUrl
+            }
+            scale = 1
+            newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
+            dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            if (!dataUrl || dataUrl.length < maxDataUrlLength) {
+                return dataUrl
+            }
+            scale = Math.sqrt(maxDataUrlLength/dataUrl.length) / 1.2
+            newOpts = { height: opts.height * scale , width: opts.width * scale, pageNumber: opts.pageNumber }
+            dataUrl = await this.extension.snippetView.renderPdf(vscode.Uri.file(pdfFilePath), newOpts)
+            if (dataUrl && dataUrl.length >= maxDataUrlLength) {
+                this.extension.logger.addLogMessage(`Data URL still too large: ${pdfFilePath}`)
+                return undefined
+            }
             return dataUrl
+        } catch (e: unknown) {
+            this.extension.logger.addLogMessage(`Failed to renderGraphicsAsDataUrl: ${pdfFilePath}`)
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
+            return undefined
         }
-        return undefined
     }
 
-    setBackgroundColor(svg: string): string {
-        return svg.replace(/(<\/svg:style>)/, 'svg { background-color: white };$1')
-    }
-
-    findFilePath(relPath: string): string | undefined {
+    private findFilePath(relPath: string, document: vscode.TextDocument): string | undefined {
         if (path.isAbsolute(relPath)) {
             if (fs.existsSync(relPath)) {
                 return relPath
@@ -103,20 +113,29 @@ export class GraphicsPreview {
                 return undefined
             }
         }
-        const rootDir = this.extension.manager.rootDir
-        if (rootDir === undefined) {
-            return undefined
-        }
-        const fPath = path.resolve(rootDir, relPath)
-        if (fs.existsSync(fPath)) {
-            return fPath
-        }
+
+        const activeDir = path.dirname(document.uri.fsPath)
         for (const dirPath of this.extension.completer.input.graphicsPath) {
-            const filePath = path.resolve(rootDir, dirPath, relPath)
+            const filePath = path.resolve(activeDir, dirPath, relPath)
             if (fs.existsSync(filePath)) {
                 return filePath
             }
         }
+
+        const fPath = path.resolve(activeDir, relPath)
+        if (fs.existsSync(fPath)) {
+            return fPath
+        }
+
+        const rootDir = this.extension.manager.rootDir
+        if (rootDir === undefined) {
+            return undefined
+        }
+        const frPath = path.resolve(rootDir, relPath)
+        if (fs.existsSync(frPath)) {
+            return frPath
+        }
         return undefined
     }
+
 }

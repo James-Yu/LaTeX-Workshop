@@ -2,35 +2,71 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
+import {stripEnvironments, isNewCommand} from '../../utils/utils'
 
-import {Extension} from '../../main'
+import type {Extension} from '../../main'
+import type {IProvider, ILwCompletionItem} from './interface'
 
-export interface Suggestion extends vscode.CompletionItem {
-    file: string, // The file that defines the ref
-    position: vscode.Position, // The position that defines the ref
-    prevIndex?: {refNumber: string, pageNumber: string} // Stores the ref number
+export interface ReferenceEntry extends ILwCompletionItem {
+    /**
+     *  The file that defines the ref.
+     */
+    file: string,
+    /**
+     * The position that defines the ref.
+     */
+    position: vscode.Position,
+    /**
+     *  Stores the ref number.
+     */
+    prevIndex?: {refNumber: string, pageNumber: string}
 }
 
-export class Reference {
-    extension: Extension
+export type ReferenceDocType = {
+    documentation: ReferenceEntry['documentation'],
+    file: ReferenceEntry['file'],
+    position: {line: number, character: number},
+    key: string,
+    label: ReferenceEntry['label'],
+    prevIndex: ReferenceEntry['prevIndex']
+}
+
+export class Reference implements IProvider {
+    private readonly extension: Extension
     // Here we use an object instead of an array for de-duplication
-    private suggestions: {[id: string]: Suggestion} = {}
-    private prevIndexObj: { [k: string]: {refNumber: string, pageNumber: string} } = {}
+    private readonly suggestions = new Map<string, ReferenceEntry>()
+    private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
+    private readonly envsToSkip = ['tikzpicture']
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        return this.provide(args)
+    }
+
+    private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
         // Compile the suggestion object to array
         this.updateAll(args)
-        let keys = Object.keys(this.suggestions)
-        keys = keys.concat(Object.keys(this.prevIndexObj))
+        let keys = [...this.suggestions.keys(), ...this.prevIndexObj.keys()]
         keys = Array.from(new Set(keys))
         const items: vscode.CompletionItem[] = []
         for (const key of keys) {
-            const sug = this.suggestions[key]
+            const sug = this.suggestions.get(key)
             if (sug) {
+                const data: ReferenceDocType = {
+                    documentation: sug.documentation,
+                    file: sug.file,
+                    position: {
+                        line: sug.position.line,
+                        character: sug.position.character
+                    },
+                    key,
+                    label: sug.label,
+                    prevIndex: sug.prevIndex
+                }
+                sug.documentation = JSON.stringify(data)
                 items.push(sug)
             } else {
                 items.push({label: key})
@@ -39,26 +75,45 @@ export class Reference {
         return items
     }
 
+    /**
+     * Updates the Manager cache for references defined in `file` with `nodes`.
+     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     * @param file The path of a LaTeX file.
+     * @param nodes AST of a LaTeX file.
+     * @param lines The lines of the content. They are used to generate the documentation of completion items.
+     * @param content The content of a LaTeX file.
+     */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
+        const cache = this.extension.manager.getCachedContent(file)
+        if (cache === undefined) {
+            return
+        }
         if (nodes !== undefined && lines !== undefined) {
-            this.extension.manager.cachedContent[file].element.reference = this.getRefFromNodeArray(nodes, lines)
+            cache.element.reference = this.getRefFromNodeArray(nodes, lines)
         } else if (content !== undefined) {
-            this.extension.manager.cachedContent[file].element.reference = this.getRefFromContent(content)
+            cache.element.reference = this.getRefFromContent(content)
         }
     }
 
-    getRefDict(): {[key: string]: Suggestion} {
-        if (this.suggestions) {
-            this.updateAll()
-        }
-        return this.suggestions
+    getRef(token: string): ReferenceEntry | undefined {
+        this.updateAll()
+        return this.suggestions.get(token)
     }
 
     private updateAll(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
         // Extract cached references
         const refList: string[] = []
+        let range: vscode.Range | undefined = undefined
+        if (args) {
+            const startPos = args.document.lineAt(args.position).text.lastIndexOf('{', args.position.character)
+            if (startPos < 0) {
+                return
+            }
+            range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
+        }
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedRefs = this.extension.manager.cachedContent[cachedFile].element.reference
+            const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference
             if (cachedRefs === undefined) {
                 return
             }
@@ -66,26 +121,26 @@ export class Reference {
                 if (ref.range === undefined) {
                     return
                 }
-                this.suggestions[ref.label] = {...ref,
+                this.suggestions.set(ref.label, {...ref,
                     file: cachedFile,
-                    position: ref.range.start,
-                    range: args ? args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/) : undefined,
-                    prevIndex: this.prevIndexObj[ref.label]
-                }
+                    position: ref.range instanceof vscode.Range ? ref.range.start : ref.range.inserting.start,
+                    range,
+                    prevIndex: this.prevIndexObj.get(ref.label)
+                })
                 refList.push(ref.label)
             })
         })
-        // Remove references that has been deleted
-        Object.keys(this.suggestions).forEach(key => {
+        // Remove references that have been deleted
+        this.suggestions.forEach((_, key) => {
             if (!refList.includes(key)) {
-                delete this.suggestions[key]
+                this.suggestions.delete(key)
             }
         })
     }
 
     // This function will return all references in a node array, including sub-nodes
-    private getRefFromNodeArray(nodes: latexParser.Node[], lines: string[]): vscode.CompletionItem[] {
-        let refs: vscode.CompletionItem[] = []
+    private getRefFromNodeArray(nodes: latexParser.Node[], lines: string[]): ILwCompletionItem[] {
+        let refs: ILwCompletionItem[] = []
         for (let index = 0; index < nodes.length; ++index) {
             if (index < nodes.length - 1) {
                 // Also pass the next node to handle cases like `label={some-text}`
@@ -98,19 +153,26 @@ export class Reference {
     }
 
     // This function will return the reference defined by the node, or all references in `content`
-    private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): vscode.CompletionItem[] {
+    private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): ILwCompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
-        const refs: vscode.CompletionItem[] = []
+        const refs: ILwCompletionItem[] = []
         let label = ''
-        if (latexParser.isCommand(node) && node.name === 'label') {
+        if (isNewCommand(node) || latexParser.isDefCommand(node)) {
+            // Do not scan labels inside \newcommand & co
+            return refs
+        }
+        if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
+            return refs
+        }
+        if (latexParser.isLabelCommand(node) && node.name === 'label') {
             // \label{some-text}
-            label = (node.args.filter(latexParser.isGroup)[0].content[0] as latexParser.TextString).content
+            label = node.label
         } else if (latexParser.isTextString(node) && node.content === 'label=' && useLabelKeyVal && nextNode !== undefined) {
             // label={some=text}
             label = ((nextNode as latexParser.Group).content[0] as latexParser.TextString).content
         }
-        if (label !== '' && (latexParser.isCommand(node) || latexParser.isTextString(node))) {
+        if (label !== '' && (latexParser.isLabelCommand(node) || latexParser.isTextString(node))) {
             refs.push({
                 label,
                 kind: vscode.CompletionItemKind.Reference,
@@ -131,11 +193,11 @@ export class Reference {
         return refs
     }
 
-    private getRefFromContent(content: string) {
-        const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^}]*)}/gm
-        const refs: vscode.CompletionItem[] = []
+    private getRefFromContent(content: string): ILwCompletionItem[] {
+        const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
+        const refs: ILwCompletionItem[] = []
         const refList: string[] = []
-        const contentNoEmpty = content.split('\n').filter(para => para !== '').join('\n')
+        content = stripEnvironments(content, this.envsToSkip)
         while (true) {
             const result = refReg.exec(content)
             if (result === null) {
@@ -144,15 +206,15 @@ export class Reference {
             if (refList.includes(result[1])) {
                 continue
             }
-            const prevContent = contentNoEmpty.substring(0, contentNoEmpty.substring(0, result.index).lastIndexOf('\n') - 1)
-            const followLength = contentNoEmpty.substring(result.index, contentNoEmpty.length).split('\n', 4).join('\n').length
+            const prevContent = content.substring(0, content.substring(0, result.index).lastIndexOf('\n') - 1)
+            const followLength = content.substring(result.index, content.length).split('\n', 4).join('\n').length
             const positionContent = content.substring(0, result.index).split('\n')
 
             refs.push({
                 label: result[1],
                 kind: vscode.CompletionItemKind.Reference,
                 // One row before, four rows after
-                documentation: contentNoEmpty.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
+                documentation: content.substring(prevContent.lastIndexOf('\n') + 1, result.index + followLength),
                 // Here we abuse the definition of range to store the location of the reference definition
                 range: new vscode.Range(positionContent.length - 1, positionContent[positionContent.length - 1].length,
                                         positionContent.length - 1, positionContent[positionContent.length - 1].length)
@@ -166,10 +228,10 @@ export class Reference {
         const outDir = this.extension.manager.getOutDir(rootFile)
         const rootDir = path.dirname(rootFile)
         const auxFile = path.resolve(rootDir, path.join(outDir, path.basename(rootFile, '.tex') + '.aux'))
-        Object.keys(this.suggestions).forEach(key => {
-            this.suggestions[key].prevIndex = undefined
+        this.suggestions.forEach((entry) => {
+            entry.prevIndex = undefined
         })
-        this.prevIndexObj = {}
+        this.prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
         if (!fs.existsSync(auxFile)) {
             return
         }
@@ -180,9 +242,14 @@ export class Reference {
             if (result === null) {
                 break
             }
-            this.prevIndexObj[result[1]] = {refNumber: result[2], pageNumber: result[3]}
-            if (result[1] in this.suggestions) {
-                this.suggestions[result[1]].prevIndex = {refNumber: result[2], pageNumber: result[3]}
+            if ( result[1].endsWith('@cref') && this.prevIndexObj.has(result[1].replace('@cref', '')) ) {
+                // Drop extra \newlabel entries added by cleveref
+                continue
+            }
+            this.prevIndexObj.set(result[1], {refNumber: result[2], pageNumber: result[3]})
+            const ent = this.suggestions.get(result[1])
+            if (ent) {
+                ent.prevIndex = {refNumber: result[2], pageNumber: result[3]}
             }
         }
     }

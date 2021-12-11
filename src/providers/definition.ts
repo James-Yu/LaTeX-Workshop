@@ -2,25 +2,30 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 
-import {Extension} from '../main'
+import type {Extension} from '../main'
 import {tokenizer} from './tokenizer'
 import * as utils from '../utils/utils'
 
 export class DefinitionProvider implements vscode.DefinitionProvider {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    private onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): string|null {
+    private onAFilename(document: vscode.TextDocument, position: vscode.Position, token: string): string|undefined {
         const line = document.lineAt(position.line).text
         const escapedToken = utils.escapeRegExp(token)
         const regexInput = new RegExp(`\\\\(?:include|input|subfile)\\{${escapedToken}\\}`)
         const regexImport = new RegExp(`\\\\(?:sub)?(?:import|includefrom|inputfrom)\\*?\\{([^\\}]*)\\}\\{${escapedToken}\\}`)
+        const regexDocumentclass = new RegExp(`\\\\(?:documentclass)(?:\\[[^[]]*\\])?\\{${escapedToken}\\}`)
 
         if (! vscode.window.activeTextEditor) {
-            return null
+            return undefined
+        }
+
+        if (line.match(regexDocumentclass)) {
+            return utils.resolveFile([path.dirname(vscode.window.activeTextEditor.document.fileName)], token, '.cls')
         }
 
         let dirs: string[] = []
@@ -39,60 +44,47 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         if (dirs.length > 0) {
             return utils.resolveFile(dirs, token, '.tex')
         }
-        return null
+        return undefined
     }
 
+    provideDefinition(document: vscode.TextDocument, position: vscode.Position): vscode.Location | undefined {
+        if (this.extension.lwfs.isVirtualUri(document.uri)) {
+            return
+        }
+        const token = tokenizer(document, position)
+        if (token === undefined) {
+            return
+        }
+        const ref = this.extension.completer.reference.getRef(token)
+        if (ref) {
+            return new vscode.Location(vscode.Uri.file(ref.file), ref.position)
+        }
+        const cite = this.extension.completer.citation.getEntry(token)
+        if (cite) {
+            return new vscode.Location( vscode.Uri.file(cite.file), cite.position )
+        }
+        const command = this.extension.completer.command.definedCmds.get(token)
+        if (command) {
+            return command.location
+        }
+        if (vscode.window.activeTextEditor && token.includes('.')) {
+            // We skip graphics files
+            const graphicsExtensions = ['.pdf', '.eps', '.jpg', '.jpeg', '.JPG', '.JPEG', '.gif', '.png']
+            const ext = path.extname(token)
+            if (graphicsExtensions.includes(ext)) {
+                return
+            }
+            const absolutePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), token)
+            if (fs.existsSync(absolutePath)) {
+                return new vscode.Location( vscode.Uri.file(absolutePath), new vscode.Position(0, 0) )
+            }
+        }
 
-    public provideDefinition(document: vscode.TextDocument, position: vscode.Position, _token: vscode.CancellationToken):
-        Thenable<vscode.Location> {
-        return new Promise((resolve, _reject) => {
-            const token = tokenizer(document, position)
-            if (token === undefined) {
-                resolve()
-                return
-            }
-            const refs = this.extension.completer.reference.getRefDict()
-            if (token in refs) {
-                const ref = refs[token]
-                resolve(new vscode.Location(vscode.Uri.file(ref.file), ref.position))
-                return
-            }
-            const cites = this.extension.completer.citation.getEntryDict()
-            if (token in cites) {
-                const cite = cites[token]
-                resolve(new vscode.Location(
-                    vscode.Uri.file(cite.file), cite.position
-                ))
-                return
-            }
-            if (token in this.extension.completer.command.definedCmds) {
-                const command = this.extension.completer.command.definedCmds[token]
-                resolve(command.location)
-                return
-            }
-            if (vscode.window.activeTextEditor && token.includes('.')) {
-                // We skip graphics files
-                const graphicsExtensions = ['.pdf', '.eps', '.jpg', '.jpeg', '.JPG', '.JPEG', '.gif', '.png']
-                const ext = path.extname(token)
-                if (graphicsExtensions.includes(ext)) {
-                    resolve()
-                }
-                const absolutePath = path.resolve(path.dirname(vscode.window.activeTextEditor.document.fileName), token)
-                if (fs.existsSync(absolutePath)) {
-                    resolve(new vscode.Location(
-                        vscode.Uri.file(absolutePath), new vscode.Position(0, 0)
-                    ))
-                    return
-                }
-            }
-
-            const filename = this.onAFilename(document, position, token)
-            if (filename) {
-                resolve(new vscode.Location(
-                        vscode.Uri.file(filename), new vscode.Position(0, 0)
-                    ))
-            }
-            resolve()
-        })
+        const filename = this.onAFilename(document, position, token)
+        if (filename) {
+            return new vscode.Location( vscode.Uri.file(filename), new vscode.Position(0, 0) )
+        }
+        return
     }
+
 }

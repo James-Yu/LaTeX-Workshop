@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
-import {Extension} from '../main'
+import type {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
 
 export class HoverProvider implements vscode.HoverProvider {
-    extension: Extension
+    private readonly extension: Extension
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -46,16 +46,18 @@ export class HoverProvider implements vscode.HoverProvider {
             mdLink.isTrusted = true
             return new vscode.Hover([md, mdLink])
         }
-        const refs = this.extension.completer.reference.getRefDict()
-        if (hovReference && token in refs) {
-            const refData = refs[token]
+        const refData = this.extension.completer.reference.getRef(token)
+        if (hovReference && refData) {
             const hover = await this.extension.mathPreview.provideHoverOnRef(document, position, refData, token, ctoken)
             return hover
         }
-        const cites = this.extension.completer.citation.getEntryDict()
-        if (hovCitation && token in cites) {
+        const cite = this.extension.completer.citation.getEntry(token)
+        if (hovCitation && cite) {
             const range = document.getWordRangeAtPosition(position, /\{.*?\}/)
-            return new vscode.Hover('```\n' + cites[token].detail + '\n```\n', range)
+            const md = cite.documentation || cite.detail
+            if (md) {
+                return new vscode.Hover(md, range)
+            }
         }
         return undefined
     }
@@ -66,7 +68,7 @@ export class HoverProvider implements vscode.HoverProvider {
         const tokenWithoutSlash = token.substring(1)
 
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedCmds = this.extension.manager.cachedContent[cachedFile].element.command
+            const cachedCmds = this.extension.manager.getCachedContent(cachedFile)?.element.command
             if (cachedCmds === undefined) {
                 return
             }

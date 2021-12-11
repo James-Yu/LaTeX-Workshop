@@ -1,30 +1,12 @@
-'''
-This script parses uni-math symbols from
-http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt
-and save the result as a json file.
-The result is used to generate command intellisense for LaTeX Workshop.
-'''
+import requests
+from pyintel import generate_unimathsymbols_intel
 
-import json
 
-data = {}
-
-with open('unimathsymbols.txt', encoding='utf-8') as f:
-    for line in f:
-        if line[0] is '#':
-            continue
-        segments = line.split('^')
-        if segments[3] is '':
-            continue
-        if segments[3][0] is '\\':
-            segments[3] = segments[3][1:]
-        data[segments[3]] = {
-            'command': segments[3],
-            'detail': segments[1],
-            'documentation': segments[7].strip().capitalize()
-        }
-        if segments[6] is not '' and segments[6][0] is not '-':
-            data[segments[3]]['detail'] += ' ("{}" command)'.format(segments[6])
-
-json.dump(data, open('../data/unimathsymbols.json', 'w', encoding='utf-8'),
-          indent=2, separators=(',', ': '), sort_keys=True, ensure_ascii=False)
+SYMBOLS_URL = 'http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt'
+try:
+    r = requests.get(SYMBOLS_URL)
+    with open('unimathsymbols.txt', 'wb') as f:
+        f.write(r.content)
+    generate_unimathsymbols_intel('unimathsymbols.txt', '../data/unimathsymbols.json')
+except Exception:
+    print('Cannot retrieve unimathsymbols.txt')

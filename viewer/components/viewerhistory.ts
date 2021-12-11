@@ -1,4 +1,4 @@
-import {ILatexWorkshopPdfViewer} from './interface.js'
+import type {ILatexWorkshopPdfViewer} from './interface.js'
 
 export class ViewerHistory {
     private history: { scroll: number, temporary: boolean}[]
@@ -12,32 +12,32 @@ export class ViewerHistory {
         this.registerKeybinding()
     }
 
-    registerKeybinding() {
+    private registerKeybinding() {
         const setHistory = () => {
-            const container = document.getElementById('viewerContainer')
+            const container = document.getElementById('viewerContainer') as HTMLElement
             // set positions before and after clicking to viewerHistory
             this.lwApp.viewerHistory.set(container.scrollTop)
             setTimeout(() => {this.lwApp.viewerHistory.set(container.scrollTop)}, 500)
-        }
+        };
 
-        document.getElementById('viewerContainer').addEventListener('click', setHistory)
-        document.getElementById('sidebarContainer').addEventListener('click', setHistory)
+        (document.getElementById('viewerContainer') as HTMLElement).addEventListener('click', setHistory);
+        (document.getElementById('sidebarContainer') as HTMLElement).addEventListener('click', setHistory);
 
         // back button (mostly useful for the embedded viewer)
-        document.getElementById('historyBack').addEventListener('click', () => {
+        (document.getElementById('historyBack') as HTMLElement).addEventListener('click', () => {
             this.lwApp.viewerHistory.back()
-        })
+        });
 
-        document.getElementById('historyForward').addEventListener('click', () => {
+        (document.getElementById('historyForward') as HTMLElement).addEventListener('click', () => {
             this.lwApp.viewerHistory.forward()
         })
     }
 
-    last() {
+    private last() {
         return this.history[this.history.length-1]
     }
 
-    lastIndex() {
+    private lastIndex() {
         if (this.history.length === 0) {
             return undefined
         } else {
@@ -45,7 +45,7 @@ export class ViewerHistory {
         }
     }
 
-    length() {
+    private length() {
         return this.history.length
     }
 
@@ -79,8 +79,11 @@ export class ViewerHistory {
         if (this.length() === 0) {
             return
         }
-        const container = document.getElementById('viewerContainer')
+        const container = document.getElementById('viewerContainer') as HTMLElement
         let cur = this.currentIndex
+        if (cur === undefined) {
+            return
+        }
         let prevScroll = this.history[cur].scroll
         if (this.length() > 0 && prevScroll !== container.scrollTop) {
             if (this.currentIndex === this.lastIndex() && this.last()) {
@@ -111,8 +114,11 @@ export class ViewerHistory {
         if (this.currentIndex === this.lastIndex()) {
             return
         }
-        const container = document.getElementById('viewerContainer')
+        const container = document.getElementById('viewerContainer') as HTMLElement
         const cur = this.currentIndex
+        if (cur === undefined) {
+            return
+        }
         const nextScroll = this.history[cur+1].scroll
         if (nextScroll !== container.scrollTop) {
             this.currentIndex = cur + 1

@@ -1,26 +1,89 @@
+import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
-import * as iconv from 'iconv-lite'
+
+import type {latexParser} from 'latex-utensils'
+
+
+export function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+export function escapeHtml(s: string): string {
+    return s.replace(/&/g, '&amp;')
+            .replace(/"/g, '&quot;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+}
 
 export function escapeRegExp(str: string) {
     return str.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
 }
 
 /**
- * Remove the comments if any
+ * Remove comments
+ *
+ * @param text A string in which comments get removed.
+ * @return the input text with comments removed.
+ * Note the number lines of the output matches the input
  */
-export function stripComments(text: string, commentSign: string): string {
-    const pattern = '([^\\\\]|^)' + commentSign + '.*$'
-    const reg = RegExp(pattern, 'gm')
+export function stripComments(text: string): string {
+    const reg = /(^|[^\\]|(?:(?<!\\)(?:\\\\)+))%.*$/gm
     return text.replace(reg, '$1')
 }
 
 /**
- * Finding the longest substring containing balanced {...}
- * @param s a string
+ * Remove some environments
+ * Note the number lines of the output matches the input
+ *
+ * @param text A string representing the content of a TeX file
+ * @param envs An array of environments to be removed
+ *
+ */
+export function stripEnvironments(text: string, envs: string[]): string {
+    const envsAlt = envs.join('|')
+    const pattern = `\\\\begin{(${envsAlt})}.*?\\\\end{\\1}`
+    const reg = RegExp(pattern, 'gms')
+    return text.replace(reg, (match, ..._args) => {
+        const len = Math.max(match.split('\n').length, 1)
+        return '\n'.repeat(len - 1)
+    })
+}
+
+/**
+ * Remove comments and verbatim content
+ * Note the number lines of the output matches the input
+ *
+ * @param text A multiline string to be stripped
+ * @return the input text with comments and verbatim content removed.
+ */
+export function stripCommentsAndVerbatim(text: string): string {
+    let content = stripComments(text)
+    content = content.replace(/\\verb\*?([^a-zA-Z0-9]).*?\1/g, '')
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const verbatimEnvs = configuration.get('latex.verbatimEnvs') as string[]
+    return stripEnvironments(content, verbatimEnvs)
+}
+
+/**
+ * Trim leading and ending spaces on every line
+ * See https://blog.stevenlevithan.com/archives/faster-trim-javascript for
+ * possible ways of implementing trimming
+ *
+ * @param text a multiline string
+ */
+export function trimMultiLineString(text: string): string {
+    return text.replace(/^\s\s*/gm, '').replace(/\s\s*$/gm, '')
+}
+
+/**
+ * Find the longest substring containing balanced curly braces {...}
+ * The string `s` can either start on the opening `{` or at the next character
+ *
+ * @param s A string to be searched.
  */
 export function getLongestBalancedString(s: string): string {
-    let nested = 1
+    let nested = s[0] === '{' ? 0 : 1
     let i = 0
     for (i = 0; i < s.length; i++) {
         switch (s[i]) {
@@ -28,7 +91,7 @@ export function getLongestBalancedString(s: string): string {
                 nested++
                 break
             case '}':
-                nested --
+                nested--
                 break
             case '\\':
                 // skip an escaped character
@@ -40,11 +103,77 @@ export function getLongestBalancedString(s: string): string {
             break
         }
     }
-    return s.substring(0, i)
+    return s.substring(s[0] === '{' ? 1 : 0, i)
 }
 
-// Given an input file determine its full path using the prefixes dirs
-export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | null {
+/**
+ * If the current position is inside command{...}, return the range of command{...} and its argument. Otherwise return undefined
+ *
+ * @param command the command name, with or without the leading '\\'
+ * @param position the current position in the document
+ * @param document a TextDocument
+ */
+export function getSurroundingCommandRange(command: string, position: vscode.Position, document: vscode.TextDocument): {range: vscode.Range, arg: string} | undefined {
+    if (!command.startsWith('\\')) {
+        command = '\\' + command
+    }
+    const line = document.lineAt(position.line).text
+    const regex = new RegExp('\\' + command + '{', 'g')
+    while (true) {
+        const match = regex.exec(line)
+        if (!match) {
+            break
+        }
+        const matchPos = match.index
+        const openingBracePos = matchPos + command.length + 1
+        const arg = getLongestBalancedString(line.slice(openingBracePos))
+        if (position.character >= openingBracePos && position.character <= openingBracePos + arg.length + 1) {
+            const start = new vscode.Position(position.line, matchPos)
+            const end = new vscode.Position(position.line, openingBracePos + arg.length + 1)
+            return {range: new vscode.Range(start, end), arg}
+        }
+    }
+    return undefined
+}
+
+
+export type CommandArgument = {
+    arg: string, // The argument we are looking for
+    index: number // the starting position of the argument
+}
+
+/**
+ * @param text a string starting with a command call
+ * @param nth the index of the argument to return
+ */
+export function getNthArgument(text: string, nth: number): CommandArgument | undefined {
+    let arg: string = ''
+    let index: number = 0 // start of the nth argument
+    let offset: number = 0 // current offset of the new text to consider
+    for (let i=0; i<nth; i++) {
+        text = text.slice(offset)
+        index += offset
+        const start = text.indexOf('{')
+        if (start === -1) {
+            return undefined
+        }
+        text = text.slice(start)
+        index += start
+        arg = getLongestBalancedString(text)
+        offset = arg.length + 2 // 2 counts '{' and '}'
+    }
+    return {arg, index}
+}
+
+/**
+ * Resolve a relative file path to an absolute path using the prefixes `dirs`.
+ *
+ * @param dirs An array of the paths of directories. They are used as prefixes for `inputFile`.
+ * @param inputFile The path of a input file to be resolved.
+ * @param suffix The suffix of the input file
+ * @return an absolute path or undefined if the file does not exist
+ */
+export function resolveFile(dirs: string[], inputFile: string, suffix: string = '.tex'): string | undefined {
     if (inputFile.startsWith('/')) {
         dirs.unshift('')
     }
@@ -60,62 +189,65 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
             return inputFilePath
         }
     }
-    return null
-}
-
-export const iconvLiteSupportedEncodings = ['utf8', 'utf16le', 'UTF-16BE', 'UTF-16', 'Shift_JIS', 'Windows-31j', 'Windows932', 'EUC-JP', 'GB2312', 'GBK', 'GB18030', 'Windows936', 'EUC-CN', 'KS_C_5601', 'Windows949', 'EUC-KR', 'Big5', 'Big5-HKSCS', 'Windows950', 'ISO-8859-1', 'ISO-8859-1', 'ISO-8859-2', 'ISO-8859-3', 'ISO-8859-4', 'ISO-8859-5', 'ISO-8859-6', 'ISO-8859-7', 'ISO-8859-8', 'ISO-8859-9', 'ISO-8859-10', 'ISO-8859-11', 'ISO-8859-12', 'ISO-8859-13', 'ISO-8859-14', 'ISO-8859-15', 'ISO-8859-16', 'windows-874', 'windows-1250', 'windows-1251', 'windows-1252', 'windows-1253', 'windows-1254', 'windows-1255', 'windows-1256', 'windows-1257', 'windows-1258', 'koi8-r', 'koi8-u', 'koi8-ru', 'koi8-t']
-
-export function convertFilenameEncoding(filePath: string): string | undefined {
-    for (const enc of iconvLiteSupportedEncodings) {
-        try {
-            const fpath = iconv.decode(Buffer.from(filePath, 'binary'), enc)
-            if (fs.existsSync(fpath)) {
-                return fpath
-            }
-        } catch (e) {
-
-        }
-    }
     return undefined
 }
 
-// prefix that server.ts uses to distiguish requests on pdf files from others.
-// We use '.' because it is not converted by encodeURIComponent and other functions.
-// See https://stackoverflow.com/questions/695438/safe-characters-for-friendly-url
-// See https://tools.ietf.org/html/rfc3986#section-2.3
+/**
+ * Return a function replacing placeholders of LaTeX recipes.
+ *
+ * @param rootFile The path of the root file.
+ * @param tmpDir The path of a temporary directory.
+ * @returns A function replacing placeholders.
+ */
+export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
+    return (arg: string) => {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const docker = configuration.get('docker.enabled')
 
-export const pdfFilePrefix = 'pdf..'
+        const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
+        const workspaceDir = workspaceFolder?.uri.fsPath.split(path.sep).join('/') || ''
+        const rootFileParsed = path.parse(rootFile)
+        const docfile = rootFileParsed.name
+        const docfileExt = rootFileParsed.base
+        const dirW32 = path.normalize(rootFileParsed.dir)
+        const dir = dirW32.split(path.sep).join('/')
+        const docW32 = path.join(dirW32, docfile)
+        const doc = docW32.split(path.sep).join('/')
+        const docExtW32 = path.join(dirW32, docfileExt)
+        const docExt = docExtW32.split(path.sep).join('/')
 
-// We encode the path with base64url after calling encodeURIComponent.
-// The reason not using base64url directly is that we are not sure that
-// encodeURIComponent, unescape, and btoa trick is valid on node.js.
-// See https://en.wikipedia.org/wiki/Base64#URL_applications
-// See https://developer.mozilla.org/en-US/docs/Web/API/WindowOrWorkerGlobalScope/btoa#Unicode_strings
-export function encodePath(url: string) {
-    const s = encodeURIComponent(url)
-    const b64 = Buffer.from(s).toString('base64')
-    const b64url = b64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '')
-    return b64url
+        const expandPlaceHolders = (a: string): string => {
+            return a.replace(/%DOC%/g, docker ? docfile : doc)
+                    .replace(/%DOC_W32%/g, docker ? docfile : docW32)
+                    .replace(/%DOC_EXT%/g, docker ? docfileExt : docExt)
+                    .replace(/%DOC_EXT_W32%/g, docker ? docfileExt : docExtW32)
+                    .replace(/%DOCFILE_EXT%/g, docfileExt)
+                    .replace(/%DOCFILE%/g, docfile)
+                    .replace(/%DIR%/g, docker ? './' : dir)
+                    .replace(/%DIR_W32%/g, docker ? './' : dirW32)
+                    .replace(/%TMPDIR%/g, tmpDir)
+                    .replace(/%WORKSPACE_FOLDER%/g, docker ? './' : workspaceDir)
+                    .replace(/%RELATIVE_DIR%/, docker ? './' : path.relative(workspaceDir, dir))
+                    .replace(/%RELATIVE_DOC%/, docker ? docfile : path.relative(workspaceDir, doc))
+
+        }
+        const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
+        const outDir = outDirW32.split(path.sep).join('/')
+        return expandPlaceHolders(arg).replace(/%OUTDIR%/g, outDir).replace(/%OUTDIR_W32%/g, outDirW32)
+    }
 }
 
-export function decodePath(b64url: string) {
-    const tmp = b64url + '='.repeat((4 - b64url.length % 4) % 4)
-    const b64 = tmp.replace(/-/g, '+').replace(/_/g, '/')
-    const s = Buffer.from(b64, 'base64').toString()
-    return decodeURIComponent(s)
+export type NewCommand = {
+    kind: 'command',
+    name: 'renewcommand|newcommand|providecommand|DeclareMathOperator|renewcommand*|newcommand*|providecommand*|DeclareMathOperator*',
+    args: (latexParser.OptionalArg | latexParser.Group)[],
+    location: latexParser.Location
 }
 
-export function encodePathWithPrefix(pdfFilePath: string) {
-    return pdfFilePrefix + encodePath(pdfFilePath)
-}
-
-export function decodePathWithPrefix(b64urlWithPrefix: string) {
-    const s = b64urlWithPrefix.replace(pdfFilePrefix, '')
-    return decodePath(s)
-}
-
-export function svgToDataUrl(xml: string): string {
-    const svg64 = Buffer.from(unescape(encodeURIComponent(xml)), 'binary').toString('base64')
-    const b64Start = 'data:image/svg+xml;base64,'
-    return b64Start + svg64
+export function isNewCommand(node: latexParser.Node | undefined): node is NewCommand {
+    const regex = /^(renewcommand|newcommand|providecommand|DeclareMathOperator)(\*)?$/
+    if (!!node && node.kind === 'command' && node.name.match(regex)) {
+        return true
+    }
+    return false
 }

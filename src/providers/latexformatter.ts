@@ -5,8 +5,9 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 
-import { Extension } from '../main'
+import type { Extension } from '../main'
 import {Mutex} from '../lib/await-semaphore'
+import {replaceArgumentPlaceholders} from '../utils/utils'
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -27,12 +28,12 @@ const linux: OperatingSystem = new OperatingSystem('linux', '.pl', 'which')
 const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 
 export class LaTexFormatter {
-    private extension: Extension
-    private machineOs: string
-    private currentOs?: OperatingSystem
+    private readonly extension: Extension
+    private readonly machineOs: string
+    private readonly currentOs?: OperatingSystem
+    private readonly formatMutex: Mutex = new Mutex()
     private formatter: string = ''
     private formatterArgs: string[] = []
-    private formatMutex: Mutex = new Mutex()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -50,20 +51,18 @@ export class LaTexFormatter {
 
     public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useDocker = configuration.get('docker.enabled') as boolean
         const pathMeta = configuration.get('latexindent.path') as string
         this.formatterArgs = configuration.get('latexindent.args') as string[]
+        this.extension.logger.addLogMessage('Start formatting with latexindent.')
         const releaseMutex = await this.formatMutex.acquire()
         try {
-            if (!this.currentOs) {
-                return []
-            }
             if (pathMeta !== this.formatter) {
                 this.formatter = pathMeta
-                const latexindentPresent = await this.checkPath(this.currentOs.checker, useDocker)
+                const latexindentPresent = await this.checkPath()
                 if (!latexindentPresent) {
-                    this.extension.logger.addLogMessage('Can not find latexindent in PATH!')
-                    this.extension.logger.showErrorMessage('Can not find latexindent in PATH!')
+                    this.extension.logger.addLogMessage(`Can not find latexindent in PATH: ${this.formatter}`)
+                    this.extension.logger.addLogMessage(`PATH: ${process.env.PATH}`)
+                    void this.extension.logger.showErrorMessage('Can not find latexindent in PATH.')
                     return []
                 }
             }
@@ -74,8 +73,11 @@ export class LaTexFormatter {
         }
     }
 
-    private checkPath(checker: string, useDocker: boolean): Thenable<boolean> {
+    private checkPath(): Thenable<boolean> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const useDocker = configuration.get('docker.enabled') as boolean
         if (useDocker) {
+            this.extension.logger.addLogMessage('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 this.formatter = path.resolve(this.extension.extensionRoot, './scripts/latexindent.bat')
             } else {
@@ -85,26 +87,58 @@ export class LaTexFormatter {
             return Promise.resolve(true)
         }
 
+        if (path.isAbsolute(this.formatter)) {
+            if (fs.existsSync(this.formatter)) {
+                return Promise.resolve(true)
+            } else {
+                this.extension.logger.addLogMessage(`The path of latexindent is absolute and not found: ${this.formatter}`)
+                return Promise.resolve(false)
+            }
+        }
+
+        if (!this.currentOs) {
+            this.extension.logger.addLogMessage('The current platform is undefined.')
+            return Promise.resolve(false)
+        }
+        const checker = this.currentOs.checker
+        const fileExt = this.currentOs.fileExt
+
         return new Promise((resolve, _reject) => {
-            cp.exec(checker + ' ' + this.formatter, (err, _stdout, _stderr) => {
-                if (err) {
-                    if (!this.currentOs) {
-                        return
-                    }
-                    this.formatter += this.currentOs.fileExt
-                    cp.exec(checker + ' ' + this.formatter, (err1, _stdout1, _stderr1) => {
-                        if (err1) {
+            this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
+            const check1 = cp.spawn(checker, [this.formatter])
+            let stdout1: string = ''
+            let stderr1: string = ''
+            check1.stdout.setEncoding('utf8')
+            check1.stderr.setEncoding('utf8')
+            check1.stdout.on('data', d => { stdout1 += d})
+            check1.stderr.on('data', d => { stderr1 += d})
+            check1.on('close', code1 => {
+                if (code1) {
+                    this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr1}`)
+                    this.formatter += fileExt
+                    this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
+                    const check2 = cp.spawn(checker, [this.formatter])
+                    let stdout2: string = ''
+                    let stderr2: string = ''
+                    check2.stdout.setEncoding('utf8')
+                    check2.stderr.setEncoding('utf8')
+                    check2.stdout.on('data', d => { stdout2 += d})
+                    check2.stderr.on('data', d => { stderr2 += d})
+                    check2.on('close', code2 => {
+                        if (code2) {
                             resolve(false)
+                            this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr2}`)
                         } else {
+                            this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout2}`)
                             resolve(true)
                         }
                     })
                 } else {
+                    this.extension.logger.addLogMessage(`Checking latexindent is ok: ${stdout1}`)
                     resolve(true)
                 }
             })
         })
-
     }
 
     private format(document: vscode.TextDocument, range?: vscode.Range): Thenable<vscode.TextEdit[]> {
@@ -113,6 +147,7 @@ export class LaTexFormatter {
             const useDocker = configuration.get('docker.enabled') as boolean
 
             if (!vscode.window.activeTextEditor) {
+                this.extension.logger.addLogMessage('Exit formatting. The active textEditor is undefined.')
                 return
             }
             const options = vscode.window.activeTextEditor.options
@@ -129,38 +164,33 @@ export class LaTexFormatter {
             const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
             fs.writeFileSync(temporaryFile, textToFormat)
 
-            const doc = document.fileName.replace(/\.tex$/, '').split(path.sep).join('/')
-            const docfile = path.basename(document.fileName, '.tex').split(path.sep).join('/')
             // generate command line arguments
-            const args = this.formatterArgs.map(arg => arg
-                // taken from ../components/builder.ts
-                .replace(/%DOC%/g, useDocker ? docfile : doc)
-                .replace(/%DOCFILE%/g, docfile)
-                .replace(/%DIR%/g, useDocker ? '.' : path.dirname(document.fileName).split(path.sep).join('/'))
+            const rootFile = this.extension.manager.rootFile ? this.extension.manager.rootFile : document.fileName
+            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
-                .replace(/%INDENT%/g, indent))
+                .replace(/%INDENT%/g, indent)
+            })
 
             this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
-            this.extension.manager.setEnvVar()
-            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: path.dirname(document.fileName) })
+            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
             const stderrBuffer: string[] = []
-            worker.stdout.on('data', chunk => stdoutBuffer.push(chunk.toString()))
-            worker.stderr.on('data', chunk => stderrBuffer.push(chunk.toString()))
+            worker.stdout.on('data', (chunk: Buffer | string) => stdoutBuffer.push(chunk.toString()))
+            worker.stderr.on('data', (chunk: Buffer | string) => stderrBuffer.push(chunk.toString()))
             worker.on('error', err => {
-                this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                void this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
                 this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
-                resolve()
+                resolve([])
             })
             worker.on('close', code => {
                 if (code !== 0) {
-                    this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
+                    void this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                     this.extension.logger.addLogMessage(`Formatting failed with exit code ${code}`)
                     this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
-                    return resolve()
+                    return resolve([])
                 }
                 const stdout = stdoutBuffer.join('')
                 if (stdout !== '') {
@@ -175,7 +205,7 @@ export class LaTexFormatter {
                     return resolve(edit)
                 }
 
-                return resolve()
+                return resolve([])
             })
         })
 
@@ -183,23 +213,18 @@ export class LaTexFormatter {
 }
 
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
-    private formatter: LaTexFormatter
+    private readonly formatter: LaTexFormatter
 
     constructor(extension: Extension) {
         this.formatter = new LaTexFormatter(extension)
     }
 
-    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken):
-        vscode.ProviderResult<vscode.TextEdit[]> {
-        return document.save().then(() => {
-            return this.formatter.formatDocument(document)
-        })
+    public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
+        return this.formatter.formatDocument(document)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        return document.save().then(() => {
-            return this.formatter.formatDocument(document, range)
-        })
+        return this.formatter.formatDocument(document, range)
     }
 
 }

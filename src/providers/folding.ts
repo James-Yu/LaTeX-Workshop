@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 
-import {Extension} from '../main'
+import type {Extension} from '../main'
 
 export class FoldingProvider implements vscode.FoldingRangeProvider {
     extension: Extension
-    sectionRegex: RegExp[] = []
+    private readonly sectionRegex: RegExp[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -27,6 +27,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
 
         const sections: {level: number, from: number, to: number}[] = []
         let index = -1
+        let lastNonemptyLineIndex = -1
         for (const line of lines) {
             index++
             for (const regex of this.sectionRegex) {
@@ -45,7 +46,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                     sections.push({
                         level: i,
                         from: startingIndices[i],
-                        to: index - 1
+                        to: lastNonemptyLineIndex
                     })
                     startingIndices[i] = regIndex === i ? index : -1
                     ++i
@@ -58,7 +59,7 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                 sections.push({
                     level: 0,
                     from: documentClassLine,
-                    to: index - 1
+                    to: lastNonemptyLineIndex
                 })
             }
             if (/\\end{document}/.exec(line) || index === lines.length - 1) {
@@ -69,9 +70,12 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
                     sections.push({
                         level: i,
                         from: startingIndices[i],
-                        to: index - 1
+                        to: lastNonemptyLineIndex
                     })
                 }
+            }
+            if (! line.match(/^\s*$/)) {
+                lastNonemptyLineIndex = index
             }
         }
 
@@ -82,21 +86,38 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
         const ranges: vscode.FoldingRange[] = []
         const opStack: { keyword: string, index: number }[] = []
         const text: string = document.getText()
-        const envRegex = /(?:\\(begin){(.*?)})|(?:\\(begingroup)(?=$|%|\s|\\))|(?:\\(end){(.*?)})|(?:\\(endgroup)(?=$|%|\s|\\))/g //to match one 'begin' OR 'end'
+        const envRegex = /\\(begin){(.*?)}|\\(begingroup)[%\s\\]|\\(end){(.*?)}|\\(endgroup)[%\s\\]|^%\s*#?([rR]egion)|^%\s*#?([eE]ndregion)/gm //to match one 'begin' OR 'end'
 
-        let match = envRegex.exec(text) // init regex search
-        while (match) {
+        while (true) {
+            const match = envRegex.exec(text)
+            if (match === null) {
+                //TODO: if opStack still not empty
+                return ranges
+            }
             //for 'begin': match[1] contains 'begin', match[2] contains keyword
             //for 'end':   match[4] contains 'end',   match[5] contains keyword
             //for 'begingroup': match[3] contains 'begingroup', keyword is 'group'
-            //for 'endgroup': match[6] contains 'begingroup', keyword is 'group'
+            //for 'endgroup': match[6] contains 'endgroup', keyword is 'group'
+            //for '% region': match[7] contains 'region', keyword is 'region'
+            //for '% endregion': match[8] contains 'endregion', keyword is 'region'
+            let keyword: string = ''
+            if (match[1]) {
+                keyword = match[2]
+            } else if (match[4]) {
+                keyword = match[5]
+            } else if (match[3] || match[6]) {
+                keyword = 'group'
+            } else if (match[7] || match[8]) {
+                keyword = 'region'
+            }
+
             const item = {
-                keyword: match[1] ? match[2] : (match[3] ? 'group' : (match[4] ? match[5] : 'group')),
+                keyword,
                 index: match.index
             }
             const lastItem = opStack[opStack.length - 1]
 
-            if ((match[4] || match[6]) && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
+            if ((match[4] || match[6] || match[8]) && lastItem && lastItem.keyword === item.keyword) { // match 'end' with its 'begin'
                 opStack.pop()
                 ranges.push(new vscode.FoldingRange(
                     document.positionAt(lastItem.index).line,
@@ -105,10 +126,52 @@ export class FoldingProvider implements vscode.FoldingRangeProvider {
             } else {
                 opStack.push(item)
             }
-
-            match = envRegex.exec(text) //iterate regex search
         }
-        //TODO: if opStack still not empty
-        return ranges
     }
+}
+
+export class WeaveFoldingProvider implements vscode.FoldingRangeProvider {
+    extension: Extension
+
+    constructor(extension: Extension) {
+        this.extension = extension
+    }
+
+    public provideFoldingRanges(
+        document: vscode.TextDocument,
+        _context: vscode.FoldingContext,
+        _token: vscode.CancellationToken
+    ): vscode.ProviderResult<vscode.FoldingRange[]> {
+        const ranges: vscode.FoldingRange[] = []
+        const opStack: { keyword: string, index: number }[] = []
+        const text: string = document.getText()
+        const envRegex = /^([\t ]*<<.*>>=)\s*$|[\t ]*(@)\s*$/gm
+        while (true) {
+            const match = envRegex.exec(text)
+            if (match === null) {
+                return ranges
+            }
+            let keyword: string = ''
+            if (match[1]) {
+                keyword = 'begin'
+            } else if (match[2]) {
+                keyword = 'end'
+            }
+            const item = {
+                keyword,
+                index: match.index
+            }
+            const lastItem = opStack[opStack.length - 1]
+
+            if (keyword === 'end' && lastItem && lastItem.keyword === 'begin') { // match 'end' with its 'begin'
+                opStack.pop()
+                ranges.push(new vscode.FoldingRange(
+                    document.positionAt(lastItem.index).line,
+                    document.positionAt(item.index).line - 1
+                ))
+            } else {
+                opStack.push(item)
+            }
+        }
+     }
 }

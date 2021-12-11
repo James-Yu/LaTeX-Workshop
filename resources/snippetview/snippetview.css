@@ -1,0 +1,257 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: sans-serif;
+    color: var(--vscode-editor-foreground);
+    padding: 0;
+    font-size: 11px;
+}
+
+/* Style the tab */
+.tab {
+    margin: 0;
+    margin-bottom: 0.5rem;
+    padding: 0;
+    border: 0;
+    color: var(--vscode-list-inactiveSelectionBackground);
+    width: 100%;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    display: inline-block;
+    background-color: inherit;
+    color: var(--vscode-panelTitle-inactiveForeground);
+    padding: 0.2em 1em;
+    border: none;
+    border-bottom: var(--vscode-editor-background) 1px solid;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 1rem;
+    position: relative;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    color: var(--vscode-panelTitle-activeForeground);
+}
+
+/* Create an active/current "tab button" class */
+.tab button.active {
+    color: var(--vscode-panelTitle-activeForeground);
+    border-bottom: var(--vscode-panelTitle-activeBorder) 1px solid;
+}
+
+/* Style the tab content */
+.tabcontent {
+    float: left;
+    padding: 0px 12px;
+    border: 0;
+    width: 100%;
+
+
+    border-left: none;
+}
+
+.tex,
+.latex {
+    line-height: 1;
+    margin-left: 0.02em;
+}
+.tex sub,
+.latex sub,
+.latex sup {
+    text-transform: uppercase;
+}
+.tex sub,
+.latex sub {
+    vertical-align: -0.28ex;
+    margin-left: -0.1667em;
+    margin-right: -0.1em;
+}
+.tex,
+.latex,
+.tex sub,
+.latex sub {
+    font-size: 1em;
+}
+.latex sup {
+    font-size: 0.85em;
+    vertical-align: 0.2em;
+    margin-left: -0.32em;
+    margin-right: -0.15em;
+}
+
+span.tt {
+    font-family: monospace;
+}
+span.rm {
+    font-family: serif;
+}
+span.sf {
+    font-family: sans-serif;
+}
+
+small {
+    font-weight: 700;
+    opacity: 0.4;
+    line-height: 1.5;
+}
+
+select {
+    height: 1.5rem;
+    padding: 0rem 0.4rem;
+    margin: 0.3rem 0.5rem 0.3rem 0.1rem;
+    font-size: 13px;
+    border: none;
+    background-color: var(--vscode-dropdown-background);
+    color: var(--vscode-dropdown-foreground);
+    outline: 1px solid var(--vscode-dropdown-border);
+}
+
+input[type='text'] {
+    background-color: var(--vscode-input-background);
+    color: var(--vscode-input-foreground);
+    outline: 1px solid var(--vscode-input-border);
+    border: none;
+    height: 1.5rem;
+    padding: 0.2rem 0.4rem;
+    margin: 0.3rem 0.5rem 0.3rem 0.1rem;
+    font-size: 0.9rem;
+    line-height: 1rem;
+}
+input[type='text']::placeholder {
+    color: var(--vscode-input-placeholderForeground);
+}
+input[type='text']:active,
+input[type='text']:hover,
+input[type='text']:focus {
+    outline: 1px solid var(--vscode-inputOption-activeBorder);
+}
+
+#Symbols {
+    max-width: max(70%, 800px);
+}
+
+#Symbols .header {
+    display: block;
+}
+
+#Symbols .header input[type='text'] {
+    display: inline-block;
+}
+#Symbols .header select {
+    display: inline-block;
+}
+
+#Symbols .grid {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#Symbols .grid div {
+    display: inline-block;
+    position: relative;
+    min-width: 2ex;
+    cursor: pointer;
+}
+
+#Symbols .grid div:last-child {
+    margin-right: auto;
+}
+
+#Symbols .grid div svg {
+    padding: 0.8px;
+    zoom: 2.3;
+    transition-property: transform color;
+    transition-duration: 0.2s;
+}
+
+#Symbols .grid div svg.shrink {
+    zoom: 1.6;
+}
+
+#Symbols .grid div:hover {
+    color: var(--vscode-list-warningForeground);
+    background-color: var(--vscode-list-hoverBackground);
+    transform: scale(1.15);
+}
+
+#Symbols .grid div:active {
+    transform: scale(1.05);
+}
+
+#TikZ {
+    max-width: max(70%, 800px);
+}
+
+#TikZ h3 {
+    line-height: 2;
+    margin: 0;
+    padding: 0;
+}
+#TikZ a.cmd {
+    display: block;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    margin-left: 0.3em;
+    font-stretch: 200%;
+    letter-spacing: 0.05em;
+    opacity: 0.8;
+}
+#TikZ a.cmd::after {
+    content: attr(data-description);
+    margin-left: 1em;
+    float: right;
+    color: var(--vscode-editor-foreground);
+    opacity: 0.7;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    font-weight: 400;
+    letter-spacing: 0em;
+}
+#TikZ svg {
+    height: 0.9em;
+    width: 0.9em;
+    display: inline-block;
+    opacity: 0.7;
+    margin-left: -1.1em;
+    margin-right: -0.1em;
+    stroke: var(--vscode-textLink-foreground);
+    color: var(--vscode-textLink-foreground);
+}
+#TikZ .widesvg svg {
+    height: 0.9em;
+    width: 1.8em;
+}
+
+#TikZ svg + a {
+    display: inline-block !important;
+    width: calc(100% - 0.3em);
+}
+#TikZ .widesvg svg + a {
+    width: calc(100% - 1.2em);
+}
+#TikZ .col2 {
+    width: 45%;
+    min-width: 15em;
+    display: inline-block;
+    vertical-align: top;
+}
+#TikZ .col3 {
+    width: 30%;
+    min-width: 10em;
+    display: inline-block;
+    vertical-align: top;
+}
+#TikZ .col4 {
+    width: 24%;
+    min-width: 7em;
+    display: inline-block;
+    vertical-align: top;
+}

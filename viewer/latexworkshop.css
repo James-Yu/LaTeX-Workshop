@@ -10,14 +10,8 @@
 }
 
 @media all and (max-width: 660px) {
-    .hiddenSmallView, .hiddenSmallView * {
-      display: none;
-    }
     .visibleSmallView {
       display: inherit;
-    }
-    .toolbarButtonSpacer {
-      width: 0;
     }
     html[dir='ltr'] .findbar {
       left: 38px;
@@ -25,7 +19,15 @@
     html[dir='rtl'] .findbar {
       right: 38px;
     }
-  }
+}
+
+.findbar.wrapContainers > div {
+    clear: inherit;
+}
+
+#errorWrapper {
+    z-index: 100000;
+}
 
 #synctex-indicator {
     position: absolute;
@@ -51,19 +53,17 @@
     width: 128px;
 }
 
+#historyBack {
+    transform: rotate(-90deg);
+}
+
+#historyForward {
+    transform: rotate(-90deg);
+}
+
 .pdfViewer.removePageBorders .page {
     border: none;
     box-shadow: 0px 0px 0px 1px lightgrey;
-}
-
-body {
-   background-image: none;
-   background-color: white;
-}
-
-html #outerContainer.sidebarOpen > #sidebarContainer {
-    background-color: #404040;
-    background-image: url(images/texture.png);
 }
 
 .notransition {
@@ -73,11 +73,12 @@ html #outerContainer.sidebarOpen > #sidebarContainer {
 .toolbar {
     position: absolute;
     top: 0;
-    transition: all 0.4s;
+    transition: all 0.2s cubic-bezier(.23,.96,.57,.99);
 }
 
 .toolbar.hide {
     top: -32px;
+    transition-duration: 0.4s;
 }
 
 .toolbar.hide:hover {
@@ -120,24 +121,6 @@ html #outerContainer.sidebarOpen > #sidebarContainer {
     display: none  !important;
 }
 
-@media all and (max-width: 750px) {
-    .hiddenSmallView, .hiddenSmallView * {
-        display: none;
-    }
-}
-
-@media all and (max-width: 700px) {
-    #scaleSelectContainer {
-      display: none;
-    }
-}
-
-@media all and (max-width: 500px) {
-    #trimSelectContainer {
-        display: none;
-    }
-}
-
 #trimSelectContainer {
     max-width: 138px;
     min-width: 138px;
@@ -148,5 +131,13 @@ html #outerContainer.sidebarOpen > #sidebarContainer {
 }
 
 #sidebarToggle::after {
+    display: none;
+}
+
+#synctexOffButton::before {
+    display: none;
+}
+
+#autoReloadOffButton::before {
     display: none;
 }

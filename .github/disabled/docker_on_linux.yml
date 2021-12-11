@@ -1,0 +1,20 @@
+name: Docker on Linux
+on: [push]
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: |
+        npm ci
+        npm run compile
+        docker pull tianon/latex@sha256:d9d5378ae77df3352aba36f9672a4c2d5c82861475508a1fae46b40369ed6ac9
+    - name: Run tests
+      uses: GabrielBB/xvfb-action@v1.0
+      with:
+        run: npm run test -- --enable-docker

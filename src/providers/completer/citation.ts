@@ -1,28 +1,72 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
+import {trimMultiLineString} from '../../utils/utils'
+import type {ILwCompletionItem} from './interface'
 
-import {Extension} from '../../main'
+import type {Extension} from '../../main'
+import type {IProvider} from './interface'
 
-export interface Suggestion extends vscode.CompletionItem {
+
+class Fields extends Map<string, string> {
+
+    get author() {
+        return this.get('author')
+    }
+
+    get journal() {
+        return this.get('journal')
+    }
+
+    get journaltitle() {
+        return this.get('journaltitle')
+    }
+
+    get title() {
+        return this.get('title')
+    }
+
+    get publisher() {
+        return this.get('publisher')
+    }
+
+}
+
+export interface Suggestion extends ILwCompletionItem {
     key: string,
-    detail: string,
-    fields: {[key: string]: string},
+    fields: Fields,
     file: string,
     position: vscode.Position
 }
 
-export class Citation {
-    extension: Extension
-    private bibEntries: {[file: string]: Suggestion[]} = {}
+export class Citation implements IProvider {
+    private readonly extension: Extension
+    /**
+     * Bib entries in each bib `file`.
+     */
+    private readonly bibEntries = new Map<string, Suggestion[]>()
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): vscode.CompletionItem[] {
+    provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        return this.provide(args)
+    }
+
+    private provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ILwCompletionItem[] {
         // Compile the suggestion array to vscode completion array
         const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
+        let range: vscode.Range | undefined = undefined
+        if (args) {
+            const line = args.document.lineAt(args.position).text
+            const curlyStart = line.lastIndexOf('{', args.position.character)
+            const commaStart = line.lastIndexOf(',', args.position.character)
+            const startPos = Math.max(curlyStart, commaStart)
+            if (startPos >= 0) {
+                range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
+            }
+        }
         return this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             // Compile the completion item label
             switch(label) {
@@ -42,20 +86,17 @@ export class Citation {
             }
             item.filterText = `${item.key} ${item.fields.author} ${item.fields.title} ${item.fields.journal}`
             item.insertText = item.key
-            item.documentation = item.detail
-            if (args) {
-                item.range = args.document.getWordRangeAtPosition(args.position, /[-a-zA-Z0-9_:.]+/)
-            }
+            item.range = range
             return item
         })
     }
 
     browser(_args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
+        void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             return {
-                label: item.fields.title ? item.fields.title : '',
+                label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
                 description: `${item.key}`,
-                detail: `Authors: ${item.fields.author ? item.fields.author : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
+                detail: `Authors: ${item.fields.author ? trimMultiLineString(item.fields.author) : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
             }
         }), {
             placeHolder: 'Press ENTER to insert citation key at cursor',
@@ -75,39 +116,53 @@ export class Citation {
                     const commaStart = content.lastIndexOf(',') + 1
                     start = editor.document.positionAt(curlyStart > commaStart ? curlyStart : commaStart)
                 }
-                editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''))
-                    .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
+                void editor.edit(edit => edit.replace(new vscode.Range(start, editor.selection.start), selected.description || ''))
+                           .then(() => editor.selection = new vscode.Selection(editor.selection.end, editor.selection.end))
             }
         })
     }
 
-    getEntryDict(): {[key: string]: Suggestion} {
+    getEntry(key: string): Suggestion | undefined {
         const suggestions = this.updateAll()
-        const entries: {[key: string]: Suggestion} = {}
-        suggestions.forEach(entry => entries[entry.key] = entry)
-        return entries
+        const entry = suggestions.find((elm) => elm.key === key)
+        return entry
     }
 
-    private getIncludedBibs(file?: string, visitedTeX: string[] = []) {
+    /**
+     * Returns the array of the paths of `.bib` files referenced from `file`.
+     *
+     * @param file The path of a LaTeX file. If `undefined`, the keys of `bibEntries` are used.
+     * @param visitedTeX Internal use only.
+     */
+    private getIncludedBibs(file?: string, visitedTeX: string[] = []): string[] {
         if (file === undefined) {
             // Only happens when rootFile is undefined
-            return Object.keys(this.bibEntries)
+            return Array.from(this.bibEntries.keys())
         }
-        if (!(file in this.extension.manager.cachedContent)) {
+        if (!this.extension.manager.getCachedContent(file)) {
             return []
         }
-        let bibs = this.extension.manager.cachedContent[file].bibs
+        const cache = this.extension.manager.getCachedContent(file)
+        if (cache === undefined) {
+            return []
+        }
+        let bibs = cache.bibs
         visitedTeX.push(file)
-        for (const child of this.extension.manager.cachedContent[file].children) {
+        for (const child of cache.children) {
             if (visitedTeX.includes(child.file)) {
                 // Already included
                 continue
             }
-            bibs = bibs.concat(this.getIncludedBibs(child.file, visitedTeX))
+            bibs = Array.from(new Set(bibs.concat(this.getIncludedBibs(child.file, visitedTeX))))
         }
         return bibs
     }
 
+    /**
+     * Returns aggregated bib entries from `.bib` files and bibitems defined on LaTeX files included in the root file.
+     *
+     * @param bibFiles The array of the paths of `.bib` files. If `undefined`, the keys of `bibEntries` are used.
+     */
     private updateAll(bibFiles?: string[]): Suggestion[] {
         let suggestions: Suggestion[] = []
         // Update the dirty content in active text editor, get bibitems
@@ -122,14 +177,17 @@ export class Citation {
         // }
         // From bib files
         if (bibFiles === undefined) {
-            bibFiles = Object.keys(this.bibEntries)
+            bibFiles = Array.from(this.bibEntries.keys())
         }
         bibFiles.forEach(file => {
-            suggestions = suggestions.concat(this.bibEntries[file])
+            const entry = this.bibEntries.get(file)
+            if (entry) {
+                suggestions = suggestions.concat(entry)
+            }
         })
         // From caches
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
-            const cachedBibs = this.extension.manager.cachedContent[cachedFile].element.bibitem
+            const cachedBibs = this.extension.manager.getCachedContent(cachedFile)?.element.bibitem
             if (cachedBibs === undefined) {
                 return
             }
@@ -138,24 +196,28 @@ export class Citation {
                     key: bib.label,
                     detail: bib.detail ? bib.detail : '',
                     file: cachedFile,
-                    fields: {}
+                    fields: new Fields()
                 }
             }))
         })
         return suggestions
     }
 
+    /**
+     * Parses `.bib` file. The results are stored in this instance.
+     *
+     * @param file The path of `.bib` file.
+     */
     async parseBibFile(file: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (fs.statSync(file).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
-            this.extension.logger.addLogMessage(`${file} is too large, ignoring it.`)
-            if (file in this.bibEntries) {
-                delete this.bibEntries[file]
-            }
+            this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${file}`)
+            this.bibEntries.delete(file)
             return
         }
-        this.bibEntries[file] = []
+        const newEntry: Suggestion[] = []
+        const fields: string[] = (configuration.get('intellisense.citation.format') as string[]).map(f => { return f.toLowerCase() })
         const bibtex = fs.readFileSync(file).toString()
         const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
@@ -176,29 +238,43 @@ export class Citation {
                     file,
                     position: new vscode.Position(entry.location.start.line - 1, entry.location.start.column - 1),
                     kind: vscode.CompletionItemKind.Reference,
-                    detail: '',
-                    fields: {}
+                    fields: new Fields()
                 }
+                let doc: string = ''
                 entry.content.forEach(field => {
                     const value = Array.isArray(field.value.content) ?
                         field.value.content.join(' ') : this.deParenthesis(field.value.content)
-                    item.fields[field.name] = value
-                    item.detail += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
+                    item.fields.set(field.name, value)
+                    if (fields.includes(field.name.toLowerCase())) {
+                        doc += `${field.name.charAt(0).toUpperCase() + field.name.slice(1)}: ${value}\n`
+                    }
                 })
-                this.bibEntries[file].push(item)
+                // We need two spaces to ensure md newline
+                item.documentation = new vscode.MarkdownString( '\n' + doc.replace(/\n/g, '  \n') + '\n\n' )
+                newEntry.push(item)
             })
-        this.extension.logger.addLogMessage(`Parsed ${this.bibEntries[file].length} bib entries from ${file}.`)
+        this.bibEntries.set(file, newEntry)
+        this.extension.logger.addLogMessage(`Parsed ${newEntry.length} bib entries from ${file}.`)
     }
 
     removeEntriesInFile(file: string) {
         this.extension.logger.addLogMessage(`Remove parsed bib entries for ${file}`)
-        delete this.bibEntries[file]
+        this.bibEntries.delete(file)
     }
 
-    /* This function parses the bibitem entries defined in tex files */
+    /**
+     * Updates the Manager cache for bibitems defined in `file`.
+     * `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     *
+     * @param file The path of a LaTeX file.
+     * @param content The content of a LaTeX file.
+     */
     update(file: string, content: string) {
-        this.extension.manager.cachedContent[file].element.bibitem =
-            this.parseContent(file, content)
+        const cache = this.extension.manager.getCachedContent(file)
+        if (cache !== undefined) {
+            cache.element.bibitem = this.parseContent(file, content)
+        }
     }
 
     private parseContent(file: string, content: string): Suggestion[] {
@@ -209,24 +285,24 @@ export class Citation {
             if (result === null) {
                 break
             }
-            if (!(result[1] in items)) {
-                const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
-                const positionContent = content.substring(0, result.index).split('\n')
-                items.push({
-                    key: result[1],
-                    label: result[1],
-                    file,
-                    kind: vscode.CompletionItemKind.Reference,
-                    detail: `${postContent}\n...`,
-                    fields: {},
-                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
-                })
-            }
+            const postContent = content.substring(result.index + result[0].length, content.indexOf('\n', result.index)).trim()
+            const positionContent = content.substring(0, result.index).split('\n')
+            items.push({
+                key: result[1],
+                label: result[1],
+                file,
+                kind: vscode.CompletionItemKind.Reference,
+                detail: `${postContent}\n...`,
+                fields: new Fields(),
+                position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length)
+            })
         }
         return items
     }
 
-    private deParenthesis(str: string) {
-        return str.replace(/{+([^\\{}]+)}+/g, '$1')
+    private deParenthesis(str: string): string {
+        // Remove wrapping { }
+        // Extract the content of \url{}
+        return str.replace(/\\url{([^\\{}]+)}/g, '$1').replace(/{+([^\\{}]+)}+/g, '$1')
     }
 }

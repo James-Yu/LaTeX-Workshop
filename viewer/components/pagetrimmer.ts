@@ -1,4 +1,4 @@
-import {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
+import type {ILatexWorkshopPdfViewer, IPDFViewerApplication} from './interface.js'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 
@@ -15,25 +15,33 @@ function getTrimScale() {
 }
 
 
-document.getElementById('trimSelect').addEventListener('change', () => {
+(document.getElementById('trimSelect') as HTMLElement).addEventListener('change', () => {
     const trimScale = getTrimScale()
     const trimSelect = document.getElementById('trimSelect') as HTMLSelectElement
     const scaleSelect = document.getElementById('scaleSelect') as HTMLSelectElement
-    const e = new Event('change')
-    let o
+    const ev = new Event('change')
     if (trimSelect.selectedIndex <= 0) {
-        for ( o of scaleSelect.options ) {
-            o.disabled = false
+        for ( const opt of scaleSelect.options ) {
+            opt.disabled = false
         }
-        (document.getElementById('trimOption') as HTMLOptionElement).disabled = true
-        document.getElementById('trimOption').hidden = true
+        (document.getElementById('trimOption') as HTMLOptionElement).disabled = true;
+        (document.getElementById('trimOption') as HTMLOptionElement).hidden = true
         if (originalUserSelectIndex !== undefined) {
-            scaleSelect.selectedIndex = originalUserSelectIndex
+            /**
+             * If the original scale is custom, selectedIndex === 4,
+             * we use page-width, selectedIndex === 3.
+             * There is no way to set the custom scale.
+             */
+            if (originalUserSelectIndex === 4) {
+                scaleSelect.selectedIndex = 3
+            } else {
+                scaleSelect.selectedIndex = originalUserSelectIndex
+            }
         }
-        scaleSelect.dispatchEvent(e)
+        scaleSelect.dispatchEvent(ev)
         currentUserSelectScale = undefined
         originalUserSelectIndex = undefined
-        const viewer = document.getElementById('viewer')
+        const viewer = document.getElementById('viewer') as HTMLElement
         for ( const page of viewer.getElementsByClassName('page') ) {
             for ( const layer of page.getElementsByClassName('annotationLayer') ) {
                 for ( const secionOfAnnotation of layer.getElementsByTagName('section') ) {
@@ -45,8 +53,8 @@ document.getElementById('trimSelect').addEventListener('change', () => {
         }
         return
     }
-    for ( o of scaleSelect.options ) {
-        o.disabled = true
+    for ( const opt of scaleSelect.options ) {
+        opt.disabled = true
     }
     if (currentUserSelectScale === undefined) {
         currentUserSelectScale = PDFViewerApplication.pdfViewer._currentScale
@@ -54,10 +62,10 @@ document.getElementById('trimSelect').addEventListener('change', () => {
     if (originalUserSelectIndex === undefined) {
         originalUserSelectIndex = scaleSelect.selectedIndex
     }
-    o = document.getElementById('trimOption') as HTMLOptionElement
-    o.value = (currentUserSelectScale * trimScale).toString()
-    o.selected = true
-    scaleSelect.dispatchEvent(e)
+    const opt = document.getElementById('trimOption') as HTMLOptionElement
+    opt.value = (currentUserSelectScale * trimScale).toString()
+    opt.selected = true
+    scaleSelect.dispatchEvent(ev)
 })
 
 
@@ -116,7 +124,7 @@ function setObserverToTrim() {
             trimPage(page)
         })
     })
-    const viewer = document.getElementById('viewer')
+    const viewer = document.getElementById('viewer') as HTMLElement
     for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
         if (page.dataset.isObserved !== 'observed') {
             observer.observe(page, {attributes: true, childList: true, attributeFilter: ['style']})
@@ -145,15 +153,15 @@ export class PageTrimmer {
     constructor(lwApp: ILatexWorkshopPdfViewer) {
         this.lwApp = lwApp
         // Set observers after a pdf file is loaded in the first time.
-        this.lwApp.onDidRenderPdfFile(setObserverToTrim, {once: true})
+        this.lwApp.onPagesLoaded(setObserverToTrim, {once: true})
         // Skip the first loading
-        this.lwApp.onDidLoadPdfFile( () => {
+        this.lwApp.onPagesInit(() => {
             // Set observers each time a pdf file is refresed.
-            this.lwApp.onDidLoadPdfFile(setObserverToTrim)
+            this.lwApp.onPagesInit(setObserverToTrim)
         }, {once: true})
 
-        this.lwApp.onDidRenderPdfFile( () => {
-            const container = document.getElementById('trimSelectContainer')
+        this.lwApp.onPagesLoaded(() => {
+            const container = document.getElementById('trimSelectContainer') as HTMLElement
             const select = document.getElementById('trimSelect') as HTMLSelectElement
 
             // tweak UI https://github.com/James-Yu/LaTeX-Workshop/pull/979
@@ -168,7 +176,7 @@ export class PageTrimmer {
             if (select.selectedIndex <= 0) {
                 return
             }
-            const viewer = document.getElementById('viewer')
+            const viewer = document.getElementById('viewer') as HTMLElement
             for( const page of viewer.getElementsByClassName('page') as HTMLCollectionOf<HTMLElement> ){
                 trimPage(page)
             }

@@ -1,0 +1,54 @@
+name: TeX Live on Linux
+env:
+  cache-version: v6
+on: [push]
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up PATH
+      run: |
+        echo "/tmp/texlive/bin/x86_64-linux" >> $GITHUB_PATH
+    - name: Cache TeX Live
+      id: cache-texlive
+      uses: actions/cache@v1
+      with:
+        path: /tmp/texlive
+        key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
+        restore-keys: |
+          ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
+    - name: Download install-tl.zip
+      run: |
+        curl -s -O -L http://mirror.ctan.org/systems/texlive/tlnet/install-tl.zip
+        unzip -q install-tl.zip
+        mv install-tl-2* install-tl-dir
+      if: steps.cache-texlive.outputs.cache-hit != 'true'
+    - name: Run install-tl
+      run: |
+        install-tl-dir/install-tl --profile test/texlive_linux.profile
+      if: steps.cache-texlive.outputs.cache-hit != 'true'
+    - name: Run tlmgr install
+      run: |
+        tlmgr update --self
+        tlmgr install latex-bin platex uplatex tex xetex
+        tlmgr install amsmath graphics tools import subfiles latexmk makeindex
+      if: steps.cache-texlive.outputs.cache-hit != 'true'
+    - uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - run: latex -v
+    - run: |
+        which perl
+        perl -v
+    - run: perl -MCwd -e 'print $Cwd::VERSION."\n";'
+    - run: latexmk -v
+    - run: |
+        npm ci
+        npm run compile
+    - name: Run tests
+      uses: GabrielBB/xvfb-action@v1.0
+      with:
+        run: npm run test
