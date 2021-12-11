@@ -131,7 +131,7 @@ export class CompilerLogParser {
                             pos += item.errorPosText.length
                             // find the length of the last word in the error
                             // This is the length of the error-range
-                            const len = item.errorPosText.replace(/^.* (.*)/, '$1').length
+                            const len = item.errorPosText.length - item.errorPosText.lastIndexOf(' ') - 1
                             if (len > 0) {
                                 startChar = pos - len
                                 endChar = pos
