@@ -127,7 +127,7 @@ export function waitRootFileFound() {
     return waitUntil(
         async () => {
             const extension = await waitLatexWorkshopActivated()
-            return extension.exports.manager.rootFile()
+            return extension.exports.realExtension?.manager.rootFile
         }
     )
 }
