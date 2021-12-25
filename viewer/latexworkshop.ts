@@ -1,5 +1,5 @@
 import {IConnectionPort, createConnectionPort} from './components/connection.js'
-import type {IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
+import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
 import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from './components/protocol.js'
@@ -14,7 +14,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly embedded: boolean
     readonly encodedPdfFilePath: string
     readonly pageTrimmer: PageTrimmer
-    readonly pdfFilePath: string
+    readonly pdfFileUri: string
     readonly synctex: SyncTex
     readonly viewerHistory: ViewerHistory
 
@@ -46,7 +46,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.encodedPdfFilePath = pack.encodedPdfFilePath
         this.documentTitle = pack.documentTitle || ''
         document.title = this.documentTitle
-        this.pdfFilePath = pack.pdfFilePath
+        this.pdfFileUri = pack.pdfFileUri
 
         this.viewerHistory = new ViewerHistory(this)
         this.connectionPort = createConnectionPort(this)
@@ -56,11 +56,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.setupConnectionPort()
 
         this.onDidStartPdfViewer(() => {
-            this.send({type:'request_params', path:this.pdfFilePath})
+            this.send({type:'request_params', pdfFileUri: this.pdfFileUri})
             this.setCssRule()
         })
         this.onPagesLoaded(() => {
-            this.send({type:'loaded', path:this.pdfFilePath})
+            this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
         }, {once: true})
 
         this.hidePrintButton()
@@ -92,27 +92,29 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     onDidStartPdfViewer(cb: () => unknown): IDisposable {
+        const documentLoadedEvent = 'documentloaded'
         const cb0 = () => {
             cb()
-            PDFViewerApplication.eventBus.off('documentloaded', cb0)
+            PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0)
         }
         void this.getEventBus().then(eventBus => {
-            eventBus.on('documentloaded', cb0)
+            eventBus.on(documentLoadedEvent, cb0)
         })
-        return { dispose: () => PDFViewerApplication.eventBus.off('documentloaded', cb0) }
+        return { dispose: () => PDFViewerApplication.eventBus.off(documentLoadedEvent, cb0) }
     }
 
     onPagesInit(cb: () => unknown, option?: {once: boolean}): IDisposable {
+        const pagesInitEvent = 'pagesinit'
         const cb0 = () => {
             cb()
             if (option?.once) {
-                PDFViewerApplication.eventBus.off('pagesinit', cb0)
+                PDFViewerApplication.eventBus.off(pagesInitEvent, cb0)
             }
         }
         void this.getEventBus().then(eventBus => {
-            eventBus.on('pagesinit', cb0)
+            eventBus.on(pagesInitEvent, cb0)
         })
-        return { dispose: () => PDFViewerApplication.eventBus.off('pagesinit', cb0) }
+        return { dispose: () => PDFViewerApplication.eventBus.off(pagesInitEvent, cb0) }
     }
 
     onPagesLoaded(cb: () => unknown, option?: {once: boolean}): IDisposable {
@@ -139,7 +141,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private getPdfViewerState(): PdfViewerState {
         const pack = {
-            path: this.pdfFilePath,
+            pdfFileUri: this.pdfFileUri,
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
             scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
             spreadMode: PDFViewerApplication.pdfViewer.spreadMode,
@@ -263,7 +265,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         // https://github.com/James-Yu/LaTeX-Workshop/issues/1871
         PDFViewerApplicationOptions.set('spreadModeOnLoad', pack.spreadMode)
 
-        void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then( () => {
+        void PDFViewerApplication.open(`${utils.pdfFilePrefix}${this.encodedPdfFilePath}`).then(() => {
             // reset the document title to the original value to avoid duplication
             document.title = this.documentTitle
         })
@@ -281,14 +283,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             (document.getElementById('viewerContainer') as HTMLElement).scrollLeft = pack.scrollLeft
         }, {once: true})
         this.onPagesLoaded(() => {
-            this.send({type:'loaded', path:this.pdfFilePath})
+            this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
         }, {once: true})
     }
 
     private setupConnectionPort() {
         const openPack: ClientRequest = {
             type: 'open',
-            path: this.pdfFilePath,
+            pdfFileUri: this.pdfFileUri,
             viewer: (this.embedded ? 'tab' : 'browser')
         }
         this.send(openPack)
@@ -344,10 +346,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
             // Since WebSockets are disconnected when PC resumes from sleep,
             // we have to reconnect. https://github.com/James-Yu/LaTeX-Workshop/pull/1812
-            setTimeout( () => {
+            setTimeout(() => {
                 console.log('Try to reconnect to LaTeX Workshop.')
                 this.connectionPort = createConnectionPort(this)
-                this.connectionPort.onDidOpen( () => {
+                this.connectionPort.onDidOpen(() => {
                     document.title = this.documentTitle
                     this.setupConnectionPort()
                     console.log('Reconnected: WebScocket to LaTeX Workshop.')
@@ -411,9 +413,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             const param = parts[i].split('=')
             if (param[0].toLowerCase() === 'file') {
                 const encodedPdfFilePath = param[1].replace(utils.pdfFilePrefix, '')
-                const pdfFilePath = utils.decodePath(encodedPdfFilePath)
-                const documentTitle = pdfFilePath.split(/[\\/]/).pop()
-                return {encodedPdfFilePath, pdfFilePath, documentTitle}
+                const pdfFileUri = utils.decodePath(encodedPdfFilePath)
+                const documentTitle = pdfFileUri.split(/[\\/]/).pop()
+                return {encodedPdfFilePath, pdfFileUri, documentTitle}
             }
         }
         throw new Error('file not given in the query.')
@@ -578,7 +580,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         window.addEventListener('scroll', () => {
             this.sendCurrentStateToPanelManager()
         }, true)
-        const events = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
+        const events: PdfjsEventName[] = ['scroll', 'scalechanged', 'zoomin', 'zoomout', 'zoomreset', 'scrollmodechanged', 'spreadmodechanged', 'pagenumberchanged']
         for (const ev of events) {
             void this.getEventBus().then(eventBus => {
                 eventBus.on(ev, () => {

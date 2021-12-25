@@ -71,7 +71,7 @@ export class Commander {
             this.extension.logger.addLogMessage('Cannot start to build because the active editor is undefined.')
             return
         }
-        this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString()}`)
+        this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         this.extension.logger.addLogMessage(`The languageId of the document: ${vscode.window.activeTextEditor.document.languageId}`)
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -211,7 +211,7 @@ export class Commander {
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        return this.extension.viewer.openTab(uri.fsPath, false, 'current', false)
+        return this.extension.viewer.openPdfInTab(uri, 'current', false)
     }
 
     synctex() {

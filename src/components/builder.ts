@@ -112,6 +112,9 @@ export class Builder {
      * @param rootFile The root file to be compiled.
      */
     async buildWithExternalCommand(command: string, args: string[], pwd: string, rootFile: string | undefined = undefined) {
+        if (rootFile) {
+            this.extension.manager.ignorePdfFile(rootFile)
+        }
         if (this.isWaitingForBuildToFinish()) {
             return
         }
@@ -191,6 +194,7 @@ export class Builder {
      * @param recipeName The name of a recipe to be used.
      */
     async build(rootFile: string, languageId: string, recipeName: string | undefined = undefined) {
+        this.extension.manager.ignorePdfFile(rootFile)
         if (this.isWaitingForBuildToFinish()) {
             this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
             return
