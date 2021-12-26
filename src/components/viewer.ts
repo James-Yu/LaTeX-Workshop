@@ -392,9 +392,24 @@ export class Viewer {
         if (args) {
             args = args.map(arg => arg.replace('%PDF%', pdfFile))
         }
-        this.extension.logger.addLogMessage(`Execute the external PDF viewer: ${command}, ${args}`)
-        cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
+        this.extension.logger.addLogMessage(`Execute the external PDF viewer command: ${command}`)
+        this.extension.logger.addLogMessage(`Execute the external PDF viewer args: ${JSON.stringify(args)}`)
+        const proc = cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
+        let stdout = ''
+        proc.stdout.on('data', newStdout => {
+            stdout += newStdout
+        })
+        let stderr = ''
+        proc.stderr.on('data', newStderr => {
+            stderr += newStderr
+        })
+        const cb = () => {
+            void this.extension.logger.addLogMessage(`The external PDF viewer stdout: ${stdout}`)
+            void this.extension.logger.addLogMessage(`The external PDF viewer stderr: ${stderr}`)
+        }
+        proc.on('error', cb)
+        proc.on('exit', cb)
     }
 
     private findClient(pdfFileUri: vscode.Uri, websocket: ws): Client | undefined {
