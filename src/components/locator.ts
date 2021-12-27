@@ -462,8 +462,23 @@ export class Locator {
                         .replace(/%TEX%/g, texFile)
             })
         }
-        this.extension.logger.addLogMessage(`Execute external SyncTeX command: command ${command}, args ${args}`)
-        cp.spawn(command, args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
+        this.extension.logger.addLogMessage(`Execute external SyncTeX command: ${command}`)
+        this.extension.logger.addLogMessage(`Execute external SyncTeX args: ${JSON.stringify(args)}`)
+        const proc = cp.spawn(command, args)
+        let stdout = ''
+        proc.stdout.on('data', newStdout => {
+            stdout += newStdout
+        })
+        let stderr = ''
+        proc.stderr.on('data', newStderr => {
+            stderr += newStderr
+        })
+        const cb = () => {
+            void this.extension.logger.addLogMessage(`The external SyncTeX command stdout: ${stdout}`)
+            void this.extension.logger.addLogMessage(`The external SyncTeX command stderr: ${stderr}`)
+        }
+        proc.on('error', cb)
+        proc.on('exit', cb)
     }
 }
