@@ -1,5 +1,22 @@
 # Change Log
 
+## [8.23.0] - 2021-12-28
+
+### Added
+- (#3004) Add language configuration for BibTeX style.
+- (#3022) Show commands in outline/structure views.
+  - We introduce the new setting `latex-workshop.view.outline.commands` with default value ['label']. It replaces `latex-workshop.view.outline.labels.enabled`, which was specific for labels.
+
+### Changed
+- (#2963) Migrate to MathJax v3.2.
+- (#3014) Remove `item` snippet.
+
+### Fixed
+- (#2979) Incorrect structure when using `\verb|\section{...}|`.
+- (#2985) Declare `[...)` and `(...]` as bracket pairs.
+- (#2986) Disable commands and features on virtual workspaces.
+- (#2996) Focus jump in viewer when using landscape pages.
+
 ## [8.22.0] - 2021-11-15
 
 ### Changed
