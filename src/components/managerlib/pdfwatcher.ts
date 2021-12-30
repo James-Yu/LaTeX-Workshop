@@ -59,6 +59,8 @@ export class PdfWatcher {
                 this.extension.viewer.refreshExistingViewer()
             }
         }
+        // It is recommended to react to both change and create events.
+        // See https://github.com/microsoft/vscode/issues/136460#issuecomment-982605100
         virtualUriWatcher.onDidChange(cb)
         virtualUriWatcher.onDidCreate(cb)
         return virtualUriWatcher
