@@ -131,18 +131,6 @@ export class Viewer {
     }
 
     /**
-     * Only for backward compatibility.
-     * @deprecated
-     */
-    get clients(): { [key: string]: Set<unknown> } {
-        const ret = Object.create(null) as { [key: string]: Set<unknown> }
-        this.clientMap.forEach((clientSet, key) => {
-            ret[key] = new Set(Array.from(clientSet).map(() => Object.create(null) as unknown ))
-        })
-        return ret
-    }
-
-    /**
      * Returns the set of client instances of a PDF file.
      * Returns `undefined` if the viewer have not recieved any request for the PDF file.
      *
