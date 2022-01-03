@@ -35,8 +35,8 @@ if args.infile:
 def get_cwl_files() -> List[Path]:
     """ Get the list of cwl files from github if not already available on disk."""
     cwl_zip = CWD.joinpath('cwl.zip')
-    if not cwl_zip.exists:
-        urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', cwl_zip)
+    if not cwl_zip.exists():
+        urllib.request.urlretrieve('https://github.com/jlelong/LaTeX-cwl/archive/refs/heads/master.zip', cwl_zip)
     zip_ref = zipfile.ZipFile(cwl_zip, 'r')
     zip_ref.extractall(CWD.joinpath('cwl/'))
     zip_ref.close()
