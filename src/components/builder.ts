@@ -126,7 +126,7 @@ export class Builder {
         if (rootFile !== undefined) {
             args = args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
         }
-        this.extension.logger.addLogMessage(`Build using the external command: ${command} ${args.length > 0 ? args.join(' '): ''}`)
+        this.extension.logger.logCommand('Build using external command', command, args)
         this.extension.logger.addLogMessage(`cwd: ${wd}`)
         this.currentProcess = cs.spawn(command, args, {cwd: wd})
         const pid = this.currentProcess.pid
@@ -251,7 +251,7 @@ export class Builder {
             }
         }
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
-        this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
+        this.extension.logger.logCommand(`Recipe step ${index + 1}`, steps[index].command, steps[index].args)
         this.extension.logger.addLogMessage(`Recipe step env: ${JSON.stringify(steps[index].env)}`)
         const envVars = Object.create(null) as ProcessEnv
         Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
