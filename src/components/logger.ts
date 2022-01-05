@@ -23,11 +23,9 @@ export class Logger {
         }
     }
 
-    logCommand(message: string, command: string, args: string[] | undefined) {
+    logCommand(message: string, command: string, args: string[] = []) {
         this.addLogMessage(message + ': ' + command)
-        if (args) {
-            this.addLogMessage(message + ' args: ' + JSON.stringify(args))
-        }
+        this.addLogMessage(message + ' args: ' + JSON.stringify(args))
     }
 
     addCompilerMessage(message: string) {
