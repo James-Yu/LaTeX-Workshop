@@ -253,15 +253,12 @@ export class Builder {
         this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
         this.extension.logger.addLogMessage(`Recipe step ${index + 1}: ${steps[index].command}, ${steps[index].args}`)
         this.extension.logger.addLogMessage(`Recipe step env: ${JSON.stringify(steps[index].env)}`)
-        const envVars = Object.create(null) as ProcessEnv
-        Object.keys(process.env).forEach(key => envVars[key] = process.env[key])
-        const currentEnv = steps[index].env
-        if (currentEnv) {
-            Object.keys(currentEnv).forEach(key => envVars[key] = currentEnv[key])
+        let envVars = { ...process.env, ...steps[index].env }
+        if (process.platform === 'win32') {
+            let envWin32 = {} as ProcessEnv
+            Object.entries(envVars).forEach(([key, value]) => envWin32[key.toUpperCase()] = value)
+            envVars = envWin32
         }
-        // We log $Path too since `Object.keys(process.env)` includes Path, not PATH on Windows.
-        const envVarsPATH = envVars['PATH']
-        const envVarsPath = envVars['Path']
         envVars['max_print_line'] = maxPrintLine
         if (steps[index].name === texMagicProgramName || steps[index].name === bibMagicProgramName) {
             // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
@@ -299,8 +296,8 @@ export class Builder {
 
         this.currentProcess.on('error', err => {
             this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${pid}.`)
-            this.extension.logger.addLogMessage(`Does the executable exist? $PATH: ${envVarsPATH}`)
-            this.extension.logger.addLogMessage(`Does the executable exist? $Path: ${envVarsPath}`)
+            this.extension.logger.addLogMessage(`Does the executable exist? $PATH: ${envVars.PATH}`)
+            // this.extension.logger.addLogMessage(`Does the executable exist? $Path: ${envVars.Path}`)
             this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
             this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'error')
             void this.extension.logger.showErrorMessageWithExtensionLogButton(`Recipe terminated with fatal error: ${err.message}.`)
@@ -312,8 +309,8 @@ export class Builder {
             this.extension.compilerLogParser.parse(stdout, rootFile)
             if (exitCode !== 0) {
                 this.extension.logger.addLogMessage(`Recipe returns with error: ${exitCode}/${signal}. PID: ${pid}. message: ${stderr}.`)
-                this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVarsPATH}`)
-                this.extension.logger.addLogMessage(`The environment variable $Path: ${envVarsPath}`)
+                this.extension.logger.addLogMessage(`The environment variable $PATH: ${envVars.PATH}`)
+                // this.extension.logger.addLogMessage(`The environment variable $Path: ${envVars.Path}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
 
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -465,6 +462,17 @@ export class Builder {
          */
         steps = JSON.parse(JSON.stringify(steps)) as StepCommand[]
 
+        function substituteEnvVars(str: string): string {
+            return str.replace(/(?<=(?<!\\)(?:\\\\)*)\$\{env:([A-Za-z_][A-Za-z0-9_]*)\}/g, (match, envVar) => process.env[envVar] ?? match)
+                // .replace(/\\\$/g, '$') // These would be breaking changes.
+                // .replace(/\\\\/g, '\\')
+        }
+        const defaultEnv = { ...configuration.get<ProcessEnv>('latex.toolsEnv') }
+        Object.entries(defaultEnv).forEach(([v, e]) => {
+            if (e) {
+                defaultEnv[v] = replaceArgumentPlaceholders(rootFile, this.tmpDir)(substituteEnvVars(e))
+            }
+        })
         const docker = configuration.get('docker.enabled')
         steps.forEach(step => {
             if (docker) {
@@ -487,13 +495,13 @@ export class Builder {
                 step.args = step.args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
             }
             if (step.env) {
-                Object.keys(step.env).forEach( v => {
-                    const e = step.env && step.env[v]
-                    if (step.env && e) {
-                        step.env[v] = replaceArgumentPlaceholders(rootFile, this.tmpDir)(e)
+                Object.entries(step.env).forEach(([v, e]) => {
+                    if (e) {
+                        step.env![v] = replaceArgumentPlaceholders(rootFile, this.tmpDir)(substituteEnvVars(e))
                     }
                 })
             }
+            step.env = { ...defaultEnv, ...step.env }
             if (configuration.get('latex.option.maxPrintLine.enabled')) {
                 if (!step.args) {
                     step.args = []
