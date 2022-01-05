@@ -14,9 +14,7 @@ export class TeXDoc {
         const texdocPath = configuration.get('texdoc.path') as string
         const texdocArgs = Array.from(configuration.get('texdoc.args') as string[])
         texdocArgs.push(pkg)
-        this.extension.logger.addLogMessage('Run texdoc.')
-        this.extension.logger.addLogMessage(`texdoc path: ${texdocPath}`)
-        this.extension.logger.addLogMessage(`texdoc args: ${texdocArgs}`)
+        this.extension.logger.logCommand('Run texdoc command', texdocPath, texdocArgs)
         const proc = cs.spawn(texdocPath, texdocArgs)
 
         let stdout = ''

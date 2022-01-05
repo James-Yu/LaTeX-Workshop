@@ -75,7 +75,7 @@ export class Cleaner {
         if (args) {
             args = args.map(arg => arg.replace('%TEX%', rootFile))
         }
-        this.extension.logger.addLogMessage(`Clean temporary files using: ${JSON.stringify({command, args})}`)
+        this.extension.logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
             const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
             let stderr = ''

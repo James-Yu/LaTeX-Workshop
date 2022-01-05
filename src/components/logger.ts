@@ -23,6 +23,11 @@ export class Logger {
         }
     }
 
+    logCommand(message: string, command: string, args: string[] = []) {
+        this.addLogMessage(message + ': ' + command)
+        this.addLogMessage(message + ' args: ' + JSON.stringify(args))
+    }
+
     addCompilerMessage(message: string) {
         this.compilerLogPanel.append(message)
     }

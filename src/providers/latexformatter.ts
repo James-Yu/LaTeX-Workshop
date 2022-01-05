@@ -172,7 +172,7 @@ export class LaTexFormatter {
                 .replace(/%INDENT%/g, indent)
             })
 
-            this.extension.logger.addLogMessage(`Formatting with command ${this.formatter} ${args}`)
+            this.extension.logger.logCommand('Format with command', this.formatter, this.formatterArgs)
             const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
