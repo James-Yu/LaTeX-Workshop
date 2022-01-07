@@ -238,7 +238,7 @@ class StructureModel {
                 pattern += '|'
             }
         })
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)$'
         this.headerPattern = pattern
     }
 
@@ -326,7 +326,7 @@ class StructureModel {
         // is it a section, a subsection, etc?
         const heading = result[1]
         const depth = this.sectionDepths[heading]
-        const title = this.getSectionTitle(result[3])
+        const title = this.getSectionTitle(result[3] + lines.slice(lineNumber + 1).join('\n'))
         let sectionNumberStr: string = ''
         if (result[2] === undefined) {
             this.incrementSectionNumber(depth)
