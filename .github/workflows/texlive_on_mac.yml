@@ -15,7 +15,7 @@ jobs:
         echo "/tmp/texlive/bin/universal-darwin" >> $GITHUB_PATH
     - name: Cache TeX Live
       id: cache-texlive
-      uses: actions/cache@v1
+      uses: actions/cache@v2
       with:
         path: /tmp/texlive
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
