@@ -7,15 +7,28 @@ import type {Extension} from '../main'
 
 export class Counter {
     private readonly extension: Extension
+    disableCountAfterSave: boolean = false
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    async count(file: string, merge: boolean = true) {
-        if (this.extension.manager.rootFile !== undefined) {
+    async countOnSave() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.disableCountAfterSave = true
+        await vscode.workspace.saveAll()
+        setTimeout(() => this.disableCountAfterSave = false, configuration.get('texcount.autorun.interval', 1000) as number)
+        if (this.extension.manager.rootFile === undefined) {
             await this.extension.manager.findRoot()
         }
+        if (this.extension.manager.rootFile === undefined) {
+            this.extension.logger.addLogMessage('Cannot find LaTeX root file.')
+        } else {
+            this.count(this.extension.manager.rootFile)
+        }
+    }
+
+    count(file: string, merge: boolean = true) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const args = configuration.get('texcount.args') as string[]
         if (merge) {

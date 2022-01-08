@@ -156,10 +156,19 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             if (configuration.get('latex.autoBuild.run') as string === BuildEvents.onSave) {
                 if (extension.builder.disableBuildAfterSave) {
                     extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-                    return
+                } else {
+                    extension.logger.addLogMessage(`Auto build started on saving file: ${e.fileName}`)
+                    void extension.manager.buildOnSave(e.fileName)
                 }
-                extension.logger.addLogMessage(`Auto build started on saving file: ${e.fileName}`)
-                void extension.manager.buildOnSave(e.fileName)
+            }
+            if (configuration.get('texcount.run') as string === 'onSave') {
+                if (extension.counter.disableCountAfterSave) {
+                    extension.logger.addLogMessage('Auto texcount is temporarily disabled during a second.')
+                } else {
+                    extension.logger.addLogMessage(`Auto texcount started on saving file: ${e.fileName}`)
+                    void extension.counter.countOnSave()
+                }
+
             }
         }
     }))
