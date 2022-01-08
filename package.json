@@ -1572,20 +1572,20 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
+          "markdownDescription": "TeXCount arguments to count words in the LaTeX documents of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
         },
-        "latex-workshop.texcount.run": {
+        "latex-workshop.texcount.autorun": {
           "type": "string",
           "enum": [
             "onSave",
-            "manually"
+            "never"
           ],
           "enumDescriptions": [
-           "Count words in the current document",
-           "Only call texcount from the TeX badge"
+           "Count words in the LaTeX documents of the entire project from the root file",
+           "Never automatically call texcount"
           ],
-          "default": "manually",
-          "markdownDescription": "When to call `texcount`. Default is manually."
+          "default": "never",
+          "markdownDescription": "When to call `texcount`. Default is never."
         },
         "latex-workshop.texcount.autorun.interval": {
           "type": "number",

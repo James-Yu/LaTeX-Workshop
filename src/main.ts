@@ -161,7 +161,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                     void extension.manager.buildOnSave(e.fileName)
                 }
             }
-            if (configuration.get('texcount.run') as string === 'onSave') {
+            if (configuration.get('texcount.autorun') as string === 'onSave') {
                 if (extension.counter.disableCountAfterSave) {
                     extension.logger.addLogMessage('Auto texcount is temporarily disabled during a second.')
                 } else {
