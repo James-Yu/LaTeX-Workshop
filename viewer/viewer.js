@@ -96,7 +96,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   enableScripting: {
-    value: true,
+    value: false,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   externalLinkRel: {
@@ -169,7 +169,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: "../web/cmaps/",
+    value: "/cmaps/",
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -213,7 +213,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   standardFontDataUrl: {
-    value: "../web/standard_fonts/",
+    value: "/standard_fonts/",
     kind: OptionKind.API
   },
   verbosity: {
@@ -221,11 +221,11 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   workerPort: {
-    value: null,
+    value: new Worker('/build/pdf.worker.js'),
     kind: OptionKind.WORKER
   },
   workerSrc: {
-    value: "../build/pdf.worker.js",
+    value: "/build/pdf.worker.js",
     kind: OptionKind.WORKER
   }
 };
@@ -890,7 +890,7 @@ const PDFViewerApplication = {
       }
     }
 
-    this.setTitle(title);
+    // this.setTitle(title);
   },
 
   setTitle(title) {
@@ -5101,7 +5101,7 @@ const FindState = {
 };
 exports.FindState = FindState;
 const FIND_TIMEOUT = 250;
-const MATCH_SCROLL_OFFSET_TOP = -50;
+const MATCH_SCROLL_OFFSET_TOP = -100;
 const MATCH_SCROLL_OFFSET_LEFT = -400;
 const CHARACTERS_TO_NORMALIZE = {
   "\u2010": "-",
@@ -8636,7 +8636,7 @@ class PDFSidebar {
       return;
     }
 
-    if (!this._switchView(view, true)) {
+    if (!this._switchView(view, false)) {
       this._dispatchEvent();
     }
   }
@@ -9893,7 +9893,7 @@ class BaseViewer {
     this.downloadManager = options.downloadManager || null;
     this.findController = options.findController || null;
     this._scriptingManager = options.scriptingManager || null;
-    this.removePageBorders = options.removePageBorders || false;
+    this.removePageBorders = options.removePageBorders || true;
     this.textLayerMode = options.textLayerMode ?? _ui_utils.TextLayerMode.ENABLE;
     this.#annotationMode = options.annotationMode ?? _pdfjsLib.AnnotationMode.ENABLE_FORMS;
     this.imageResourcesPath = options.imageResourcesPath || "";
@@ -13819,11 +13819,11 @@ class ViewHistory {
 
   async _writeToStorage() {
     const databaseStr = JSON.stringify(this.database);
-    localStorage.setItem("pdfjs.history", databaseStr);
+    // localStorage.setItem("pdfjs.history", databaseStr);
   }
 
   async _readFromStorage() {
-    return localStorage.getItem("pdfjs.history");
+    return // localStorage.getItem("pdfjs.history");
   }
 
   async set(name, val) {
@@ -13891,11 +13891,11 @@ exports.GenericCom = GenericCom;
 
 class GenericPreferences extends _preferences.BasePreferences {
   async _writeToStorage(prefObj) {
-    localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
+    // localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
   }
 
   async _readFromStorage(prefObj) {
-    return JSON.parse(localStorage.getItem("pdfjs.preferences"));
+    return // JSON.parse(localStorage.getItem("pdfjs.preferences"));
   }
 
 }
@@ -14837,7 +14837,7 @@ document.webL10n = function (window, document, undefined) {
     var data = gL10nData[key];
 
     if (!data) {
-      console.warn('#' + key + ' is undefined.');
+      // console.warn('#' + key + ' is undefined.');
 
       if (!fallback) {
         return null;
@@ -14902,7 +14902,7 @@ document.webL10n = function (window, document, undefined) {
     var data = getL10nData(l10n.id, l10n.args);
 
     if (!data) {
-      console.warn('#' + l10n.id + ' is undefined.');
+      // console.warn('#' + l10n.id + ' is undefined.');
       return;
     }
 
@@ -15347,6 +15347,9 @@ function renderProgress(index, total, l10n) {
 
 window.addEventListener("keydown", function (event) {
   if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
+    if (window.parent !== window) {
+      return;
+    }
     window.print();
     event.preventDefault();
 
@@ -15641,7 +15644,7 @@ function webViewerLoad() {
   try {
     parent.document.dispatchEvent(event);
   } catch (ex) {
-    console.error(`webviewerloaded: ${ex}`);
+    // console.error(`webviewerloaded: ${ex}`);
     document.dispatchEvent(event);
   }
 
