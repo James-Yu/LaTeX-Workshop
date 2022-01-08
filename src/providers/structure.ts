@@ -251,7 +251,7 @@ class StructureModel {
     }
 
     buildEnvModel(envNames: string[], lines: string[], lineNumber: number) {
-        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
+        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`)
         const line = lines[lineNumber]
         const result = envReg.exec(line)
         if (result && result[1] === 'begin') {
@@ -302,7 +302,7 @@ class StructureModel {
         if (commandNames.length === 0) {
             return
         }
-        const commandReg = new RegExp('\\\\(' + commandNames.join('|') + '){([^}]*)}', 'm' )
+        const commandReg = new RegExp('\\\\(' + commandNames.join('|') + '){([^}]*)}')
         const result = commandReg.exec(line)
         if (!result) {
             return
@@ -318,7 +318,7 @@ class StructureModel {
 
     buildHeadingModel(lines: string[], lineNumber: number, showNumbers: boolean) {
         const line = lines[lineNumber]
-        const headerReg = RegExp(this.headerPattern, 'm')
+        const headerReg = RegExp(this.headerPattern)
         const result = headerReg.exec(line)
         if (!result) {
             return
