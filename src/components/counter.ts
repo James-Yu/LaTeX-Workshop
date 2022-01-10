@@ -70,6 +70,7 @@ export class Counter {
             args.push('-merge')
         }
         args.push(path.basename(file))
+        this.extension.logger.logCommand('Count words using command', command, args)
         const proc = cp.spawn(command, args, {cwd: path.dirname(file)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
