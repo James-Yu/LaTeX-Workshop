@@ -7,15 +7,34 @@ import type {Extension} from '../main'
 
 export class Counter {
     private readonly extension: Extension
+    private useDocker: boolean = false
     private disableCountAfterSave: boolean = false
+    private autoRunEnabled: boolean = false
+    private autoRunInterval: number = 0
+    private commandArgs: string[] = []
+    private commandPath: string = ''
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.loadConfiguration()
+        vscode.workspace.onDidChangeConfiguration(e => {
+            if (e.affectsConfiguration('latex-workshop.texcount') || e.affectsConfiguration('latex-workshop.docker.enabled')) {
+                this.loadConfiguration()
+            }
+        })
+    }
+
+    private loadConfiguration() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.autoRunEnabled = (configuration.get('texcount.autorun') as string === 'onSave')
+        this.autoRunInterval = configuration.get('texcount.interval') as number
+        this.commandArgs = configuration.get('texcount.args') as string[]
+        this.commandPath = configuration.get('texcount.path') as string
+        this.useDocker = configuration.get('docker.enabled') as boolean
     }
 
     async countOnSaveIfEnabled(file: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        if (configuration.get('texcount.autorun') as string !== 'onSave') {
+        if (!this.autoRunEnabled) {
             return
         }
         if (this.disableCountAfterSave) {
@@ -24,7 +43,7 @@ export class Counter {
         }
         this.extension.logger.addLogMessage(`Auto texcount started on saving file: ${file}`)
         this.disableCountAfterSave = true
-        setTimeout(() => this.disableCountAfterSave = false, configuration.get('texcount.autorun.interval', 1000) as number)
+        setTimeout(() => this.disableCountAfterSave = false, this.autoRunInterval)
         if (this.extension.manager.rootFile === undefined) {
             await this.extension.manager.findRoot()
         }
@@ -36,13 +55,8 @@ export class Counter {
     }
 
     count(file: string, merge: boolean = true) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const args = configuration.get('texcount.args') as string[]
-        if (merge) {
-            args.push('-merge')
-        }
-        let command = configuration.get('texcount.path') as string
-        if (configuration.get('docker.enabled')) {
+        let command = this.commandPath
+        if (this.useDocker) {
             this.extension.logger.addLogMessage('Use Docker to invoke the command.')
             if (process.platform === 'win32') {
                 command = path.resolve(this.extension.extensionRoot, './scripts/texcount.bat')
@@ -51,7 +65,12 @@ export class Counter {
                 fs.chmodSync(command, 0o755)
             }
         }
-        const proc = cp.spawn(command, args.concat([path.basename(file)]), {cwd: path.dirname(file)})
+        const args = Array.from(this.commandArgs)
+        if (merge && !args.includes('-merge')) {
+            args.push('-merge')
+        }
+        args.push(path.basename(file))
+        const proc = cp.spawn(command, args, {cwd: path.dirname(file)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
