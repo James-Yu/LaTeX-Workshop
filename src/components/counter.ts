@@ -104,13 +104,6 @@ export class Counter {
                     }
                     void vscode.window.showInformationMessage(`There are ${words[1]} words ${floatMsg}in the ${merge ? 'LaTeX project' : 'opened LaTeX file'}.`)
                 }
-                let msg: string
-                if (stdout === '') {
-                    msg = ''
-                } else {
-                    msg = '\n' + stdout
-                }
-                this.extension.logger.addLogMessage(`TeXCount log:${msg}`)
             }
         })
     }
