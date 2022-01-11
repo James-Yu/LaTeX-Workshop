@@ -238,6 +238,8 @@ class StructureModel {
                 pattern += '|'
             }
         })
+        // To deal with multiline header, capture the whole line starting from the opening '{'
+        // The actual title will be determined later using getLongestBalancedString
         pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)$'
         this.headerPattern = pattern
     }
