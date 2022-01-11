@@ -13,15 +13,31 @@ export class Counter {
     private autoRunInterval: number = 0
     private commandArgs: string[] = []
     private commandPath: string = ''
+    private texCountMessage: string = ''
+    private wordCount: string = ''
+    private status: vscode.StatusBarItem
 
     constructor(extension: Extension) {
         this.extension = extension
+        // gotoLine status item has priority 100.5
+        this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100.6)
         this.loadConfiguration()
         vscode.workspace.onDidChangeConfiguration(e => {
             if (e.affectsConfiguration('latex-workshop.texcount') || e.affectsConfiguration('latex-workshop.docker.enabled')) {
                 this.loadConfiguration()
+                this.updateStatusVisibility()
+
             }
         })
+        this.updateStatusVisibility()
+        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+            if (e && extension.manager.hasTexId(e.document.languageId)) {
+                this.updateStatusVisibility()
+            } else {
+                this.status.hide()
+            }
+        })
+
     }
 
     private loadConfiguration() {
@@ -31,6 +47,25 @@ export class Counter {
         this.commandArgs = configuration.get('texcount.args') as string[]
         this.commandPath = configuration.get('texcount.path') as string
         this.useDocker = configuration.get('docker.enabled') as boolean
+    }
+
+    private updateStatusVisibility() {
+        if (this.autoRunEnabled) {
+            this.updateWordCount()
+            this.status.show()
+        } else {
+            this.status.hide()
+        }
+    }
+
+    private updateWordCount() {
+        if (this.wordCount === '') {
+            this.status.text = ''
+            this.status.tooltip = ''
+        } else {
+            this.status.text = this.wordCount + ' words'
+            this.status.tooltip = this.texCountMessage
+        }
     }
 
     async countOnSaveIfEnabled(file: string) {
@@ -51,10 +86,19 @@ export class Counter {
             this.extension.logger.addLogMessage('Cannot find root file')
             return
         }
-        this.count(this.extension.manager.rootFile)
+        void this.runTeXCount(this.extension.manager.rootFile).then(() => {
+            this.updateWordCount()
+        })
     }
 
+
     count(file: string, merge: boolean = true) {
+        void this.runTeXCount(file, merge).then( () => {
+            void vscode.window.showInformationMessage(this.texCountMessage)
+        })
+    }
+
+    runTeXCount(file: string, merge: boolean = true): Promise<boolean> {
         let command = this.commandPath
         if (this.useDocker) {
             this.extension.logger.addLogMessage('Use Docker to invoke the command.')
@@ -90,21 +134,25 @@ export class Counter {
             void this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
         })
 
-        proc.on('exit', exitCode => {
-            if (exitCode !== 0) {
-                this.extension.logger.addLogMessage(`Cannot count words, code: ${exitCode}, ${stderr}`)
-                void this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
-            } else {
-                const words = /Words in text: ([0-9]*)/g.exec(stdout)
-                const floats = /Number of floats\/tables\/figures: ([0-9]*)/g.exec(stdout)
-                if (words) {
-                    let floatMsg = ''
-                    if (floats && parseInt(floats[1]) > 0) {
-                        floatMsg = `and ${floats[1]} float${parseInt(floats[1]) > 1 ? 's' : ''} (tables, figures, etc.) `
+        return new Promise( resolve => {
+            proc.on('exit', exitCode => {
+                if (exitCode !== 0) {
+                    this.extension.logger.addLogMessage(`Cannot count words, code: ${exitCode}, ${stderr}`)
+                    void this.extension.logger.showErrorMessage('TeXCount failed. Please refer to LaTeX Workshop Output for details.')
+                } else {
+                    const words = /Words in text: ([0-9]*)/g.exec(stdout)
+                    const floats = /Number of floats\/tables\/figures: ([0-9]*)/g.exec(stdout)
+                    if (words) {
+                        let floatMsg = ''
+                        if (floats && parseInt(floats[1]) > 0) {
+                            floatMsg = `and ${floats[1]} float${parseInt(floats[1]) > 1 ? 's' : ''} (tables, figures, etc.) `
+                        }
+                        this.wordCount = words[1]
+                        this.texCountMessage = `There are ${words[1]} words ${floatMsg}in the ${merge ? 'LaTeX project' : 'opened LaTeX file'}.`
+                        resolve(true)
                     }
-                    void vscode.window.showInformationMessage(`There are ${words[1]} words ${floatMsg}in the ${merge ? 'LaTeX project' : 'opened LaTeX file'}.`)
                 }
-            }
+            })
         })
     }
 }
