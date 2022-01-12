@@ -19,8 +19,8 @@ export class Counter {
 
     constructor(extension: Extension) {
         this.extension = extension
-        // gotoLine status item has priority 100.5
-        this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100.6)
+        // gotoLine status item has priority 100.5 and selectIndentation item has priority 100.4
+        this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100.45)
         this.loadConfiguration()
         vscode.workspace.onDidChangeConfiguration(e => {
             if (e.affectsConfiguration('latex-workshop.texcount') || e.affectsConfiguration('latex-workshop.docker.enabled')) {
