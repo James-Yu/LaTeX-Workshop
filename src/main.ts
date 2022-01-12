@@ -161,7 +161,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
                     void extension.manager.buildOnSave(e.fileName)
                 }
             }
-            void extension.counter.countOnSaveIfEnabled(e.fileName)
+            extension.counter.countOnSaveIfEnabled(e.fileName)
         }
     }))
 

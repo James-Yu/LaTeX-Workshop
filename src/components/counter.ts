@@ -68,7 +68,7 @@ export class Counter {
         }
     }
 
-    async countOnSaveIfEnabled(file: string) {
+    countOnSaveIfEnabled(file: string) {
         if (!this.autoRunEnabled) {
             return
         }
@@ -79,14 +79,7 @@ export class Counter {
         this.extension.logger.addLogMessage(`Auto texcount started on saving file: ${file}`)
         this.disableCountAfterSave = true
         setTimeout(() => this.disableCountAfterSave = false, this.autoRunInterval)
-        if (this.extension.manager.rootFile === undefined) {
-            await this.extension.manager.findRoot()
-        }
-        if (this.extension.manager.rootFile === undefined) {
-            this.extension.logger.addLogMessage('Cannot find root file')
-            return
-        }
-        void this.runTeXCount(this.extension.manager.rootFile).then(() => {
+        void this.runTeXCount(file).then(() => {
             this.updateWordCount()
         })
     }
