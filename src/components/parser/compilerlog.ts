@@ -33,11 +33,13 @@ export interface LogEntry { type: string, file: string, text: string, line: numb
 export class CompilerLogParser {
     private readonly latexLogParser: LatexLogParser
     private readonly bibLogParser: BibLogParser
+    private readonly extension: Extension
     isLaTeXmkSkipped: boolean = false
 
     constructor(extension: Extension) {
         this.latexLogParser = new LatexLogParser(extension)
         this.bibLogParser = new BibLogParser(extension)
+        this.extension = extension;
     }
 
     parse(log: string, rootFile?: string) {
@@ -123,10 +125,11 @@ export class CompilerLogParser {
             if (item.errorPosText) {
                 // try to find the errorPosText in the respective line of the document
                 try {
-                    const document = await vscode.workspace.openTextDocument(item.file)
-                    const line = document.lineAt(item.line - 1)
-                    if (line) {
-                        let pos = line.text.indexOf(item.errorPosText)
+                    const document = this.extension.manager.getDirtyContent(item.file) || ""
+                    const lines = document.split('\n')
+                    if (lines.length >= item.line) {
+                        const line = lines[item.line-1]
+                        let pos = line.indexOf(item.errorPosText)
                         if (pos >= 0) {
                             pos += item.errorPosText.length
                             // find the length of the last word in the error
