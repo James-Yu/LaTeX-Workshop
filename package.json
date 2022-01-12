@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "8.22.0",
+  "version": "8.23.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -53,7 +53,10 @@
   ],
   "main": "./out/src/main.js",
   "capabilities": {
-    "virtualWorkspaces": false,
+    "virtualWorkspaces": {
+      "supported": "limited",
+      "description": "Only a few features are supported."
+    },
     "untrustedWorkspaces": {
       "supported": false
     }
@@ -1144,7 +1147,7 @@
         "latex-workshop.latex.autoBuild.interval": {
           "type": "integer",
           "default": 1000,
-          "markdownDescription": "The minimal time interval between two consecutive auto builds in millisecond."
+          "markdownDescription": "The minimal time interval between two consecutive auto builds in milliseconds."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",
@@ -1256,10 +1259,15 @@
           ],
           "markdownDescription": "The section names of LaTeX outline hierarchy. It is also used by the folding mechanism.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`. Reload VSCode after changing the value."
         },
-        "latex-workshop.view.outline.labels.enabled": {
-          "type": "boolean",
-          "default": true,
-          "markdownDescription": "Show the labels in the outline/structure views. Reload VSCode after changing the value."
+        "latex-workshop.view.outline.commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "label"
+          ],
+          "markdownDescription": "The names of the commands to be shown in the outline/structure views. The commands must be called in the form `\\commandname{arg}`. Reload VSCode after changing the value."
         },
         "latex-workshop.view.outline.floats.enabled": {
           "type": "boolean",
@@ -1493,6 +1501,10 @@
             "onSave",
             "onType"
           ],
+          "enumDescriptions": [
+            "Lint the whole LaTeX project upon saving",
+            "Lint the active document when input is stopped"
+          ],
           "default": "onSave",
           "markdownDescription": "When LaTeX should be linted by ChkTeX.\nIf set to `onSave`, the whole LaTeX project will be linted upon saving.\nIf set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
         },
@@ -1560,7 +1572,25 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
+          "markdownDescription": "TeXCount arguments to count words in the LaTeX documents of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
+        },
+        "latex-workshop.texcount.autorun": {
+          "type": "string",
+          "enum": [
+            "onSave",
+            "never"
+          ],
+          "enumDescriptions": [
+           "Count words in the current document",
+           "Never automatically call texcount"
+          ],
+          "default": "never",
+          "markdownDescription": "When to call `texcount`. Default is never."
+        },
+        "latex-workshop.texcount.interval": {
+          "type": "number",
+          "default": 1000,
+          "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `latex-workshop.texcount.run` is set to `onSave`."
         },
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "type": "boolean",
@@ -2110,12 +2140,12 @@
       ],
       "editor/title": [
         {
-          "when": "editorLangId == latex && !virtualWorkspace",
+          "when": "editorLangId =~ /latex|rsweave|jlweave/ && !virtualWorkspace",
           "command": "latex-workshop.view",
           "group": "navigation@2"
         },
         {
-          "when": "editorLangId == latex && !virtualWorkspace",
+          "when": "editorLangId =~ /latex|rsweave|jlweave/ && !virtualWorkspace",
           "command": "latex-workshop.build",
           "group": "navigation@1"
         }
@@ -2192,7 +2222,7 @@
     "latex-utensils": "4.1.0",
     "mathjax-full": "3.2.0",
     "micromatch": "4.0.4",
-    "pdfjs-dist": "2.10.377",
+    "pdfjs-dist": "2.11.338",
     "tmp": "0.2.1",
     "workerpool": "6.1.5",
     "ws": "8.2.3"
@@ -2203,20 +2233,20 @@
     "@types/micromatch": "4.0.2",
     "@types/mocha": "9.0.0",
     "@types/node": "14.14.45",
-    "@types/tmp": "0.2.1",
+    "@types/tmp": "0.2.3",
     "@types/vscode": "1.62.0",
     "@types/workerpool": "6.1.0",
-    "@types/ws": "8.2.0",
-    "@typescript-eslint/eslint-plugin": "5.4.0",
-    "@typescript-eslint/parser": "5.4.0",
-    "eslint": "8.3.0",
-    "got": "11.8.3",
+    "@types/ws": "8.2.2",
+    "@typescript-eslint/eslint-plugin": "5.9.0",
+    "@typescript-eslint/parser": "5.9.0",
+    "eslint": "8.6.0",
     "mocha": "9.1.3",
     "npm-run-all": "4.1.5",
     "rimraf": "3.0.2",
     "textmate-bailout": "1.1.0",
-    "typescript": "4.5.2",
-    "vsce": "2.5.0",
+    "typescript": "4.5.4",
+    "vsce": "2.6.3",
+    "vscode-extend-language": "^0.1.0",
     "vscode-test": "1.6.1"
   }
 }

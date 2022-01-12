@@ -127,7 +127,7 @@ export function waitRootFileFound() {
     return waitUntil(
         async () => {
             const extension = await waitLatexWorkshopActivated()
-            return extension.exports.manager.rootFile()
+            return extension.exports.realExtension?.manager.rootFile
         }
     )
 }
@@ -145,12 +145,13 @@ export async function viewPdf() {
 
 export async function getViewerStatus(pdfFilePath: string) {
     const extension = await waitLatexWorkshopActivated()
+    const pdfFileUri = vscode.Uri.file(pdfFilePath)
     return waitUntil(() => {
         try {
-            const rs = extension.exports.realExtension?.viewer.getViewerState(pdfFilePath)
+            const rs = extension.exports.realExtension?.viewer.getViewerState(pdfFileUri)
             const ret = rs && rs.find(st => st)
-            if (ret && ret.path !== undefined && ret.scrollTop !== undefined) {
-                return [{ path: ret.path, scrollTop: ret.scrollTop }]
+            if (ret && ret.pdfFileUri !== undefined && ret.scrollTop !== undefined) {
+                return [{ pdfFileUri: ret.pdfFileUri, scrollTop: ret.scrollTop }]
             } else {
                 return undefined
             }

@@ -10,8 +10,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
+    private readonly commandNames: string[]
     private readonly hierarchy: string[]
-    private readonly showLabels: boolean
     private readonly showFloats: boolean
     private readonly showNumbers: boolean
     public root: string = ''
@@ -23,10 +23,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
+        this.commandNames = configuration.get('view.outline.commands') as string[]
         this.hierarchy = configuration.get('view.outline.sections') as string[]
-        this.showLabels = configuration.get('view.outline.labels.enabled') as boolean
         this.showFloats = configuration.get('view.outline.floats.enabled') as boolean
         this.showNumbers = configuration.get('view.outline.numbers.enabled') as boolean
+
     }
 
     refresh(): Section[] {
@@ -111,10 +112,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             structureModel.buildHeadingModel(lines, lineNumber, this.showNumbers)
 
 
-            // Labels part
-            if (this.showLabels) {
-                structureModel.buildLabelModel(line, lineNumber, filePath)
-            }
+            // Commands part
+            structureModel.buildCommandModel(this.commandNames, line, lineNumber, filePath)
         }
         this.fixToLines(children)
         return children
@@ -239,7 +238,9 @@ class StructureModel {
                 pattern += '|'
             }
         })
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)}'
+        // To deal with multiline header, capture the whole line starting from the opening '{'
+        // The actual title will be determined later using getLongestBalancedString
+        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)$'
         this.headerPattern = pattern
     }
 
@@ -252,7 +253,7 @@ class StructureModel {
     }
 
     buildEnvModel(envNames: string[], lines: string[], lineNumber: number) {
-        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`, 'm')
+        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`)
         const line = lines[lineNumber]
         const result = envReg.exec(line)
         if (result && result[1] === 'begin') {
@@ -299,24 +300,27 @@ class StructureModel {
         return inputFilePath
     }
 
-    buildLabelModel(line: string, lineNumber: number, filePath: string) {
-        const labelReg = /\\label{([^}]*)}/m
-        const result = labelReg.exec(line)
+    buildCommandModel(commandNames: string[], line: string, lineNumber: number, filePath: string) {
+        if (commandNames.length === 0) {
+            return
+        }
+        const commandReg = new RegExp('\\\\(' + commandNames.join('|') + '){([^}]*)}')
+        const result = commandReg.exec(line)
         if (!result) {
             return
         }
         const depth = this.noRoot() ? 0 : this.currentRoot().depth + 1
-        const newLabel = new Section(SectionKind.Label, `#Label: ${result[1]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
+        const newCommand = new Section(SectionKind.Label, `#${result[1]}: ${result[2]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
         if (this.noRoot()) {
-            this.children.push(newLabel)
+            this.children.push(newCommand)
         } else {
-            this.currentRoot().children.push(newLabel)
+            this.currentRoot().children.push(newCommand)
         }
     }
 
     buildHeadingModel(lines: string[], lineNumber: number, showNumbers: boolean) {
         const line = lines[lineNumber]
-        const headerReg = RegExp(this.headerPattern, 'm')
+        const headerReg = RegExp(this.headerPattern)
         const result = headerReg.exec(line)
         if (!result) {
             return
@@ -324,7 +328,7 @@ class StructureModel {
         // is it a section, a subsection, etc?
         const heading = result[1]
         const depth = this.sectionDepths[heading]
-        const title = this.getSectionTitle(result[3])
+        const title = this.getSectionTitle(result[3] + lines.slice(lineNumber + 1).join('\n'))
         let sectionNumberStr: string = ''
         if (result[2] === undefined) {
             this.incrementSectionNumber(depth)

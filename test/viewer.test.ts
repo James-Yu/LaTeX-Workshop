@@ -59,7 +59,7 @@ suite('PDF Viewer test suite', () => {
         await viewPdf()
         const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
-            assert.strictEqual(result.path, pdfFilePath)
+            assert.strictEqual(result.pdfFileUri, vscode.Uri.file(pdfFilePath).toString(true))
         }
     }, () => isDockerEnabled())
 
@@ -77,7 +77,7 @@ suite('PDF Viewer test suite', () => {
         await viewPdf()
         const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
-            assert.strictEqual(result.path, pdfFilePath)
+            assert.strictEqual(result.pdfFileUri, vscode.Uri.file(pdfFilePath).toString(true))
         }
     })
 
@@ -103,7 +103,7 @@ suite('PDF Viewer test suite', () => {
         )
         const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
-            assert.strictEqual(result.path, pdfFilePath)
+            assert.strictEqual(result.pdfFileUri, vscode.Uri.file(pdfFilePath).toString(true))
         }
     })
 
@@ -137,7 +137,7 @@ suite('PDF Viewer test suite', () => {
         )
         const results = await getViewerStatus(pdfFilePath)
         for (const result of results) {
-            assert.strictEqual(result.path, pdfFilePath)
+            assert.strictEqual(result.pdfFileUri, vscode.Uri.file(pdfFilePath).toString(true))
         }
     }, () => isDockerEnabled())
 

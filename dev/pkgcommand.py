@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import List
 from pyintel import CwlIntel
 
-FILES_TO_IGNORE = ['diagxy.cwl']
+FILES_TO_IGNORE = ['diagxy.cwl', 'calculator.cwl', 'calculus.cwl', 'physics.cwl']
 FILES_TO_REMOVE_SPACES_IN = ['chemformula.cwl', 'context-document.cwl', 'class-beamer.cwl', 'csquotes.cwl', 'datatool.cwl', 'newclude.cwl', 'pgfplots.cwl', 'tabu.cwl', 'tikz.cwl']
 
 CWD = Path(__file__).expanduser().resolve().parent
@@ -35,8 +35,8 @@ if args.infile:
 def get_cwl_files() -> List[Path]:
     """ Get the list of cwl files from github if not already available on disk."""
     cwl_zip = CWD.joinpath('cwl.zip')
-    if not cwl_zip.exists:
-        urllib.request.urlretrieve('https://github.com/LaTeXing/LaTeX-cwl/archive/master.zip', cwl_zip)
+    if not cwl_zip.exists():
+        urllib.request.urlretrieve('https://github.com/jlelong/LaTeX-cwl/archive/refs/heads/master.zip', cwl_zip)
     zip_ref = zipfile.ZipFile(cwl_zip, 'r')
     zip_ref.extractall(CWD.joinpath('cwl/'))
     zip_ref.close()

@@ -6,7 +6,7 @@ import * as path from 'path'
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import {decodePathWithPrefix, pdfFilePrefix} from '../utils/encodepath'
+import {PdfFilePathEncoder} from './serverlib/encodepath'
 
 class WsServer extends ws.Server {
     private readonly extension: Extension
@@ -40,9 +40,11 @@ export class Server {
     private readonly extension: Extension
     private readonly httpServer: http.Server
     private address?: AddressInfo
+    readonly pdfFilePathEncoder: PdfFilePathEncoder
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.pdfFilePathEncoder = new PdfFilePathEncoder(extension)
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const viewerPort = configuration.get('viewer.pdf.internal.port') as number
@@ -102,7 +104,7 @@ export class Server {
         }
     }
 
-    private handler(request: http.IncomingMessage, response: http.ServerResponse) {
+    private async handler(request: http.IncomingMessage, response: http.ServerResponse) {
         if (!request.url) {
             return
         }
@@ -121,24 +123,24 @@ export class Server {
             'Cross-Origin-Opener-Policy': 'same-origin',
             'X-Content-Type-Options': 'nosniff'
         }
-        if (request.url.includes(pdfFilePrefix) && !request.url.includes('viewer.html')) {
+        if (request.url.includes(this.pdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
-            const fileName = decodePathWithPrefix(s)
-            if (this.extension.viewer.getClientSet(fileName) === undefined) {
-                this.extension.logger.addLogMessage(`Invalid PDF request: ${fileName}`)
+            const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
+            if (this.extension.viewer.getClientSet(fileUri) === undefined) {
+                this.extension.logger.addLogMessage(`Invalid PDF request: ${fileUri.toString(true)}`)
                 return
             }
             try {
-                const pdfSize = fs.statSync(fileName).size
+                const buf: Buffer = await this.extension.lwfs.readFileAsBuffer(fileUri)
                 response.writeHead(200, {
                     'Content-Type': 'application/pdf',
-                    'Content-Length': pdfSize,
+                    'Content-Length': buf.length,
                     ...sameOriginPolicyHeaders
                 })
-                fs.createReadStream(fileName).pipe(response)
-                this.extension.logger.addLogMessage(`Preview PDF file: ${fileName}`)
+                response.end(buf, 'binary')
+                this.extension.logger.addLogMessage(`Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
-                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileName}`)
+                this.extension.logger.addLogMessage(`Error reading PDF file: ${fileUri.toString(true)}`)
                 if (e instanceof Error) {
                     this.extension.logger.logError(e)
                 }

@@ -132,34 +132,7 @@ function registerLatexWorkshopCommands(extension: Extension) {
 
 function generateLatexWorkshopApi(extension: Extension) {
     return {
-        realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined,
-        getGraphicsPath: () => extension.completer.input.graphicsPath,
-        viewer: {
-            clients: extension.viewer.clients,
-            refreshExistingViewer: (sourceFile?: string) => extension.viewer.refreshExistingViewer(sourceFile),
-            openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
-        },
-        manager: {
-            findRoot: () => extension.manager.findRoot(),
-            rootDir: () => extension.manager.rootDir,
-            rootFile: () => extension.manager.rootFile,
-            setEnvVar: () => {}
-        },
-        completer: {
-            command: {
-                usedPackages: () => {
-                    const allPkgs: Set<string> = new Set()
-                    extension.manager.getIncludedTeX().forEach(tex => {
-                        const pkgs = extension.manager.getCachedContent(tex)?.element.package
-                        if (pkgs === undefined) {
-                            return
-                        }
-                        pkgs.forEach(pkg => allPkgs.add(pkg))
-                    })
-                    return allPkgs
-                }
-            }
-        }
+        realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined
     }
 }
 
@@ -183,11 +156,12 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             if (configuration.get('latex.autoBuild.run') as string === BuildEvents.onSave) {
                 if (extension.builder.disableBuildAfterSave) {
                     extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
-                    return
+                } else {
+                    extension.logger.addLogMessage(`Auto build started on saving file: ${e.fileName}`)
+                    void extension.manager.buildOnSave(e.fileName)
                 }
-                extension.logger.addLogMessage(`Auto build started on saving file: ${e.fileName}`)
-                void extension.manager.buildOnSave(e.fileName)
             }
+            extension.counter.countOnSaveIfEnabled(e.fileName)
         }
     }))
 

@@ -173,7 +173,7 @@ export class Locator {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const docker = configuration.get('docker.enabled')
         const args = ['view', '-i', `${line}:${col + 1}:${docker ? path.basename(filePath): filePath}`, '-o', docker ? path.basename(pdfFile): pdfFile]
-        this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
+        this.extension.logger.addLogMessage(`Execute synctex with args ${JSON.stringify(args)}`)
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
@@ -230,7 +230,7 @@ export class Locator {
 
         const docker = configuration.get('docker.enabled')
         const args = ['edit', '-o', `${page}:${x}:${y}:${docker ? path.basename(pdfPath): pdfPath}`]
-        this.extension.logger.addLogMessage(`Executing synctex with args ${args}`)
+        this.extension.logger.addLogMessage(`Executing synctex with args ${JSON.stringify(args)}`)
 
         let command = configuration.get('synctex.path') as string
         if (docker) {
@@ -462,8 +462,22 @@ export class Locator {
                         .replace(/%TEX%/g, texFile)
             })
         }
-        this.extension.logger.addLogMessage(`Execute external SyncTeX command: command ${command}, args ${args}`)
-        cp.spawn(command, args)
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
+        this.extension.logger.logCommand('Execute external SyncTeX command', command, args)
+        const proc = cp.spawn(command, args)
+        let stdout = ''
+        proc.stdout.on('data', newStdout => {
+            stdout += newStdout
+        })
+        let stderr = ''
+        proc.stderr.on('data', newStderr => {
+            stderr += newStderr
+        })
+        const cb = () => {
+            void this.extension.logger.addLogMessage(`The external SyncTeX command stdout: ${stdout}`)
+            void this.extension.logger.addLogMessage(`The external SyncTeX command stderr: ${stderr}`)
+        }
+        proc.on('error', cb)
+        proc.on('exit', cb)
     }
 }

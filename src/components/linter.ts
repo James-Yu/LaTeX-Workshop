@@ -194,7 +194,7 @@ export class Linter {
     }
 
     private processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {
-        this.extension.logger.addLogMessage(`Linter for ${linterId} running command ${command} with arguments ${JSON.stringify(args)}`)
+        this.extension.logger.logCommand(`Linter for ${linterId} command`, command, args)
         return new Promise((resolve, reject) => {
             if (this.currentProcesses[linterId]) {
                 this.currentProcesses[linterId].kill()

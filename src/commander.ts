@@ -71,7 +71,7 @@ export class Commander {
             this.extension.logger.addLogMessage('Cannot start to build because the active editor is undefined.')
             return
         }
-        this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString()}`)
+        this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         this.extension.logger.addLogMessage(`The languageId of the document: ${vscode.window.activeTextEditor.document.languageId}`)
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -211,7 +211,7 @@ export class Commander {
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        return this.extension.viewer.openTab(uri.fsPath, false, 'current', false)
+        return this.extension.viewer.openPdfInTab(uri, 'current', false)
     }
 
     synctex() {
@@ -282,12 +282,12 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
             this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
             if (this.extension.manager.rootFile) {
-                void this.extension.counter.count(this.extension.manager.rootFile)
+                this.extension.counter.count(this.extension.manager.rootFile)
             } else {
                 this.extension.logger.addLogMessage('WORDCOUNT: No rootFile defined.')
             }
         } else {
-            void this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
+            this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
         }
     }
 
