@@ -282,12 +282,12 @@ export class Commander {
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId) ||
             this.extension.manager.rootFile === vscode.window.activeTextEditor.document.fileName) {
             if (this.extension.manager.rootFile) {
-                void this.extension.counter.count(this.extension.manager.rootFile)
+                this.extension.counter.count(this.extension.manager.rootFile)
             } else {
                 this.extension.logger.addLogMessage('WORDCOUNT: No rootFile defined.')
             }
         } else {
-            void this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
+            this.extension.counter.count(vscode.window.activeTextEditor.document.fileName, false)
         }
     }
 

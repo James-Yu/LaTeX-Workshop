@@ -1147,7 +1147,7 @@
         "latex-workshop.latex.autoBuild.interval": {
           "type": "integer",
           "default": 1000,
-          "markdownDescription": "The minimal time interval between two consecutive auto builds in millisecond."
+          "markdownDescription": "The minimal time interval between two consecutive auto builds in milliseconds."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",
@@ -1572,7 +1572,25 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "TeXCount arguments to count words in LaTeX document of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
+          "markdownDescription": "TeXCount arguments to count words in the LaTeX documents of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
+        },
+        "latex-workshop.texcount.autorun": {
+          "type": "string",
+          "enum": [
+            "onSave",
+            "never"
+          ],
+          "enumDescriptions": [
+           "Count words in the current document",
+           "Never automatically call texcount"
+          ],
+          "default": "never",
+          "markdownDescription": "When to call `texcount`. Default is never."
+        },
+        "latex-workshop.texcount.interval": {
+          "type": "number",
+          "default": 1000,
+          "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `latex-workshop.texcount.run` is set to `onSave`."
         },
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "type": "boolean",
