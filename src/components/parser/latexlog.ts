@@ -211,7 +211,7 @@ export class LatexLogParser {
     private parseLaTeXFileStack(line: string, fileStack: string[], nested: number): number {
         const result = line.match(/(\(|\))/)
         if (result && result.index !== undefined && result.index > -1) {
-            line = line.substr(result.index + 1)
+            line = line.substring(result.index + 1)
             if (result[1] === '(') {
                 const pathResult = line.match(/^"?((?:(?:[a-zA-Z]:|\.|\/)?(?:\/|\\\\?))[^"()[\]]*)/)
                 const mikTeXPathResult = line.match(/^"?([^"()[\]]*\.[a-z]{3,})/)

@@ -48,11 +48,11 @@ export class Locator {
             if (pos < 0) {
                 continue
             }
-            const key = line.substr(0, pos).toLowerCase()
+            const key = line.substring(0, pos).toLowerCase()
             if (key !== 'page' && key !== 'x' && key !== 'y' ) {
                 continue
             }
-            const value = line.substr(pos + 1)
+            const value = line.substring(pos + 1)
             record[key] = Number(value)
         }
         if (record.page !== undefined && record.x !== undefined && record.y !== undefined) {
@@ -80,11 +80,11 @@ export class Locator {
             if (pos < 0) {
                 continue
             }
-            const key = line.substr(0, pos).toLowerCase()
+            const key = line.substring(0, pos).toLowerCase()
             if (key !== 'input' && key !== 'line' && key !== 'column' ) {
                 continue
             }
-            const value = line.substr(pos + 1)
+            const value = line.substring(pos + 1)
             if (key === 'line' || key === 'column') {
                 record[key] = Number(value)
                 continue

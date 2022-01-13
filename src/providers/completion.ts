@@ -84,7 +84,7 @@ export class Completer implements vscode.CompletionItemProvider {
         if (position.character > 1 && currentLine[position.character - 1] === '\\' && currentLine[position.character - 2] === '\\') {
             return
         }
-        const line = document.lineAt(position.line).text.substr(0, position.character)
+        const line = document.lineAt(position.line).text.substring(0, position.character)
         // Note that the order of the following array affects the result.
         // 'command' must be at the last because it matches any commands.
         for (const type of ['citation', 'reference', 'environment', 'package', 'documentclass', 'input', 'subimport', 'import', 'includeonly', 'glossary', 'command']) {
@@ -225,7 +225,7 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
         token: vscode.CancellationToken,
         context: vscode.CompletionContext
     ): vscode.CompletionItem[] | undefined {
-        const line = document.lineAt(position.line).text.substr(0, position.character)
+        const line = document.lineAt(position.line).text.substring(0, position.character)
         return this.completion(line, {document, position, token, context})
     }
 
