@@ -28,16 +28,18 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'error': vscode.DiagnosticSeverity.Error,
 }
 
-export interface LogEntry { type: string, file: string, text: string, line: number }
+export interface LogEntry { type: string, file: string, text: string, line: number, errorPosText?: string }
 
 export class CompilerLogParser {
     private readonly latexLogParser: LatexLogParser
     private readonly bibLogParser: BibLogParser
+    private readonly extension: Extension
     isLaTeXmkSkipped: boolean = false
 
     constructor(extension: Extension) {
         this.latexLogParser = new LatexLogParser(extension)
         this.bibLogParser = new BibLogParser(extension)
+        this.extension = extension
     }
 
     parse(log: string, rootFile?: string) {
@@ -114,11 +116,46 @@ export class CompilerLogParser {
         return false
     }
 
+    private getErrorPosition(item: LogEntry): {start: number, end: number} | undefined {
+        if (!item.errorPosText) {
+            return undefined
+        }
+        const content = this.extension.manager.getDirtyContent(item.file)
+        if (!content) {
+            return undefined
+        }
+        // Try to find the errorPosText in the respective line of the document
+        const lines = content.split('\n')
+        if (lines.length >= item.line) {
+            const line = lines[item.line-1]
+            let pos = line.indexOf(item.errorPosText)
+            if (pos >= 0) {
+                pos += item.errorPosText.length
+                // Find the length of the last word in the error.
+                // This is the length of the error-range
+                const len = item.errorPosText.length - item.errorPosText.lastIndexOf(' ') - 1
+                if (len > 0) {
+                    return {start: pos - len, end: pos}
+                }
+            }
+        }
+       return undefined
+    }
+
     showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
         compilerDiagnostics.clear()
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
         for (const item of buildLog) {
-            const range = new vscode.Range(new vscode.Position(item.line - 1, 0), new vscode.Position(item.line - 1, 65535))
+            let startChar = 0
+            let endChar = 65535
+            // Try to compute a more precise position
+            const preciseErrorPos = this.getErrorPosition(item)
+            if (preciseErrorPos) {
+                startChar = preciseErrorPos.start
+                endChar = preciseErrorPos.end
+            }
+
+            const range = new vscode.Range(new vscode.Position(item.line - 1, startChar), new vscode.Position(item.line - 1, endChar))
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.source = source
             if (diagsCollection[item.file] === undefined) {

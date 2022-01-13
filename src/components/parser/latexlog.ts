@@ -14,7 +14,12 @@ const bibEmpty = /^Empty `thebibliography' environment/
 const biberWarn = /^Biber warning:.*WARN - I didn't find a database entry for '([^']+)'/
 
 // const truncatedLine = /(.{77}[^\.](\w|\s|-|\\|\/))(\r\n|\n)/g
-const messageLine = /^l\.\d+\s(.*)$/
+// A line with an error message will start with an 'l' character followed by a line number and then a space.
+// After that it shows the line with the error but only up to the position of the error.
+// If the error comes very late in the line, the error output will start with 3 dots.
+// The regular expression is set up to include the 3 dots as an optional element, such that the capture group $2
+// always contains actual text that appears in the line.
+const messageLine = /^l\.\d+\s(\.\.\.)?(.*)$/
 
 class ParserState {
     searchEmptyLine = false
@@ -96,8 +101,17 @@ export class LatexLogParser {
                     state.currentResult.text += '\n(' + packageExtraLineResult[1] + ')\t' + packageExtraLineResult[2] + (packageExtraLineResult[4] ? '.' : '')
                     state.currentResult.line = parseInt(packageExtraLineResult[3], 10)
                 } else if (state.insideError) {
-                    const subLine = line.replace(messageLine, '$1')
-                    state.currentResult.text = state.currentResult.text + '\n' + subLine
+                    const match = messageLine.exec(line)
+                    if (match && match.length >= 2) {
+                        const subLine = match[2]
+                        // remember the text where the error message occurred:
+                        state.currentResult.errorPosText = subLine
+                        // skip rest of error message (usually not useful)
+                        state.searchEmptyLine = false
+                        state.insideError = false
+                    } else {
+                        state.currentResult.text = state.currentResult.text + '\n' + line
+                    }
                 } else {
                     state.currentResult.text = state.currentResult.text + '\n' + line
                 }
