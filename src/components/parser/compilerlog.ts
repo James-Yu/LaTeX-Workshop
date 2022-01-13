@@ -39,7 +39,7 @@ export class CompilerLogParser {
     constructor(extension: Extension) {
         this.latexLogParser = new LatexLogParser(extension)
         this.bibLogParser = new BibLogParser(extension)
-        this.extension = extension;
+        this.extension = extension
     }
 
     parse(log: string, rootFile?: string) {
@@ -116,7 +116,7 @@ export class CompilerLogParser {
         return false
     }
 
-    async showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
+    showCompilerDiagnostics(compilerDiagnostics: vscode.DiagnosticCollection, buildLog: LogEntry[], source: string) {
         compilerDiagnostics.clear()
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
         for (const item of buildLog) {
