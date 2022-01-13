@@ -902,11 +902,16 @@ export class Manager {
         return this.autoBuild(file, bibChanged)
     }
 
-    buildOnSave(file: string) {
+    buildOnSaveIfEnabled(file: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
             return
         }
+        if (this.extension.builder.disableBuildAfterSave) {
+            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled during a second.')
+            return
+        }
+        this.extension.logger.addLogMessage(`Auto build started on saving file: ${file}`)
         return this.autoBuild(file, false)
     }
 
