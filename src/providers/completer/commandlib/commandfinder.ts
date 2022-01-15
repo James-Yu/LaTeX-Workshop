@@ -230,7 +230,7 @@ export class CommandFinder {
                 file,
                 location: new vscode.Location(
                     vscode.Uri.file(file),
-                    new vscode.Position(content.substr(0, result.index).split('\n').length - 1, 0))
+                    new vscode.Position(content.substring(0, result.index).split('\n').length - 1, 0))
             })
         }
 

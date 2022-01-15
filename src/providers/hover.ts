@@ -98,7 +98,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 const pkg = encodeURIComponent(JSON.stringify(p))
                 pkgLink += `[${p}](command:latex-workshop.texdoc?${pkg}),`
             })
-            pkgLink = pkgLink.substr(0, pkgLink.lastIndexOf(',')) + '.'
+            pkgLink = pkgLink.substring(0, pkgLink.lastIndexOf(',')) + '.'
         }
         if (signatures.length > 0) {
             const mdLink = new vscode.MarkdownString(signatures.join('  \n')) // We need two spaces to ensure md newline

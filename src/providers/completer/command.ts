@@ -209,7 +209,7 @@ export class Command implements IProvider {
         const name = item.filterText ? item.filterText : label
         if (removeArgs) {
             const i = name.search(/[[{]/)
-            return i > -1 ? name.substr(0, i): name
+            return i > -1 ? name.substring(0, i): name
         }
         return name
     }

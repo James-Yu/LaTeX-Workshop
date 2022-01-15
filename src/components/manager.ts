@@ -277,7 +277,7 @@ export class Manager {
         if (respectOutDir) {
             outDir = this.getOutDir(texPath)
         }
-        return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substr(0, texPath.lastIndexOf('.'))}.pdf`))
+        return path.resolve(path.dirname(texPath), outDir, path.basename(`${texPath.substring(0, texPath.lastIndexOf('.'))}.pdf`))
     }
 
     ignorePdfFile(rootFile: string) {

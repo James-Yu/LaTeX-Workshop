@@ -109,7 +109,7 @@ export class TeXMathEnvFinder {
     //  ^                          ^
     //  return pos                 endPos1
     private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit: number): vscode.Position | undefined {
-        const currentLine = document.lineAt(endPos1).text.substr(0, endPos1.character)
+        const currentLine = document.lineAt(endPos1).text.substring(0, endPos1.character)
         let l = utils.stripCommentsAndVerbatim(currentLine)
         let m = l.match(beginPat)
         if (m && m.index !== undefined) {
