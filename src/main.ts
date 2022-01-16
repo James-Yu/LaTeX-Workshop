@@ -132,7 +132,34 @@ function registerLatexWorkshopCommands(extension: Extension) {
 
 function generateLatexWorkshopApi(extension: Extension) {
     return {
-        realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined
+        realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined,
+        getGraphicsPath: () => extension.completer.input.graphicsPath,
+        viewer: {
+            clients: extension.viewer.clients,
+            refreshExistingViewer: (sourceFile?: string) => extension.viewer.refreshExistingViewer(sourceFile),
+            openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
+        },
+        manager: {
+            findRoot: () => extension.manager.findRoot(),
+            rootDir: () => extension.manager.rootDir,
+            rootFile: () => extension.manager.rootFile,
+            setEnvVar: () => {}
+        },
+        completer: {
+            command: {
+                usedPackages: () => {
+                    const allPkgs: Set<string> = new Set()
+                    extension.manager.getIncludedTeX().forEach(tex => {
+                        const pkgs = extension.manager.getCachedContent(tex)?.element.package
+                        if (pkgs === undefined) {
+                            return
+                        }
+                        pkgs.forEach(pkg => allPkgs.add(pkg))
+                    })
+                    return allPkgs
+                }
+            }
+        }
     }
 }
 
