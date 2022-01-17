@@ -135,7 +135,7 @@ function generateLatexWorkshopApi(extension: Extension) {
         realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined,
         getGraphicsPath: () => extension.completer.input.graphicsPath,
         viewer: {
-            clients: extension.viewer.clients,
+            getClientSet: (uri: vscode.Uri) => extension.viewer.getClientSet(uri),
             refreshExistingViewer: (sourceFile?: string) => extension.viewer.refreshExistingViewer(sourceFile),
             openTab: (sourceFile: string, respectOutDir: boolean = true, column: string = 'right') => extension.viewer.openTab(sourceFile, respectOutDir, column)
         },
