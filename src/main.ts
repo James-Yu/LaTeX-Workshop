@@ -157,11 +157,11 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         }
     }))
 
+    // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
     context.subscriptions.push(vscode.workspace.onDidOpenTextDocument(async (e: vscode.TextDocument) => {
         if (extension.lwfs.isVirtualUri(e.uri)){
             return
         }
-        // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
         if (extension.manager.hasTexId(e.languageId)) {
             await extension.manager.findRoot()
         }
