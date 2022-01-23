@@ -34,6 +34,7 @@ export class Snippet implements IProvider {
             const completionItem = new vscode.CompletionItem(item.prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
             completionItem.insertText = new vscode.SnippetString(item.body)
             completionItem.documentation = new vscode.MarkdownString(item.description)
+            completionItem.detail = item.description
             this.suggestions.push(completionItem)
         })
     }
