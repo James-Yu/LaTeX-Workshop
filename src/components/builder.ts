@@ -113,6 +113,8 @@ export class Builder {
      */
     async buildWithExternalCommand(command: string, args: string[], pwd: string, rootFile: string | undefined = undefined) {
         if (rootFile) {
+            // Stop watching the PDF file to avoid reloading the PDF viewer twice.
+            // The builder will be responsible for refreshing the viewer.
             this.extension.manager.ignorePdfFile(rootFile)
         }
         if (this.isWaitingForBuildToFinish()) {
@@ -194,6 +196,8 @@ export class Builder {
      * @param recipeName The name of a recipe to be used.
      */
     async build(rootFile: string, languageId: string, recipeName: string | undefined = undefined) {
+        // Stop watching the PDF file to avoid reloading the PDF viewer twice.
+        // The builder will be responsible for refreshing the viewer.
         this.extension.manager.ignorePdfFile(rootFile)
         if (this.isWaitingForBuildToFinish()) {
             this.extension.logger.addLogMessage('Another LaTeX build processing is already waiting for the current LaTeX build to finish. Exit.')
