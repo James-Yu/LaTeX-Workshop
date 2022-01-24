@@ -11,7 +11,7 @@
 - (#2963) Migrate to MathJax v3.2.
 - (#3009) Drop support for LaTeX Utilities.
 - (#3014) Remove `item` snippet.
-- (8999d54) Disable magic comments by default.
+- (#3027) Disable magic comments by default.
 
 ### Fixed
 - (#2979) Incorrect structure when using `\verb|\section{...}|`.
