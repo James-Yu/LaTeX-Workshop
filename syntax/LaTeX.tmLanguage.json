@@ -343,6 +343,25 @@
 					"end": "(\\\\end\\{minted\\})"
 				},
 				{
+					"begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{(vhdl)\\})",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#env-mandatory-arg"
+								}
+							]
+						}
+					},
+					"contentName": "source.vhdl",
+					"patterns": [
+						{
+							"include": "source.vhdl"
+						}
+					],
+					"end": "(\\\\end\\{minted\\})"
+				},
+				{
 					"begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{xml\\})",
 					"captures": {
 						"1": {
