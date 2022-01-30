@@ -206,12 +206,12 @@ export class Commander {
         this.extension.builder.kill()
     }
 
-    pdf(uri: vscode.Uri | undefined) {
+    pdf(uri: vscode.Uri | undefined, panelIn?: vscode.WebviewPanel) {
         this.extension.logger.addLogMessage('PDF command invoked.')
         if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
             return
         }
-        return this.extension.viewer.openPdfInTab(uri, 'current', false)
+        return this.extension.viewer.openPdfInTab(uri, panelIn)
     }
 
     synctex() {

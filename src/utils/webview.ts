@@ -54,16 +54,18 @@ export async function openWebviewPanel(
             break
         }
     }
-    // Then, we set the focus back to the .tex file
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
-    const delay = configuration.get('view.pdf.tab.openDelay', 1000)
-    setTimeout(async () => {
-        if (!preserveFocus) {
-            return
-        }
-        if (focusAction) {
-            await vscode.commands.executeCommand(focusAction)
-        }
-        await vscode.window.showTextDocument(activeDocument, vscode.ViewColumn.Active)
-    }, delay)
+    if(activeDocument){
+        // Then, we set the focus back to the .tex file
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const delay = configuration.get('view.pdf.tab.openDelay', 1000)
+        setTimeout(async () => {
+            if (!preserveFocus) {
+                return
+            }
+            if (focusAction) {
+                await vscode.commands.executeCommand(focusAction)
+            }
+            await vscode.window.showTextDocument(activeDocument, vscode.ViewColumn.Active)
+        }, delay)
+    }
 }
