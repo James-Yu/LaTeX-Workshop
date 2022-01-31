@@ -49,3 +49,27 @@ See [dev/README.md](../dev/README.md#ctanpkglist.py) for the description of how 
 ## Misc
 
 We have to use four backslashes `\\\\` in some snippet definitions. See  the [official document](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_grammar), [microsoft/vscode/issues/32020](https://github.com/microsoft/vscode/issues/32020), and [microsoft/vscode/issues/33933](https://github.com/microsoft/vscode/issues/33933) for the details.
+
+## Third-Party License Notices
+
+### unimathsymbols.txt
+
+- http://milde.users.sourceforge.net/LUCR/Math/
+- http://milde.users.sourceforge.net/LUCR/Math/data/unimathsymbols.txt
+
+Unicode symbols and corresponding LaTeX math mode commands
+
+```
+Date
+    Last revised 2011-04-04
+Copyright
+    © 2011 Günter Milde <milde@users.sf.net>
+Licence
+
+    This work may be distributed and/or modified under the conditions of
+    the LaTeX Project Public License, either version 1.3 of this license
+    or (at your option) any later version.
+
+    The latest version of this license is in
+    http://www.latex-project.org/lppl.txt
+```
