@@ -17,11 +17,11 @@ export class PdfViewerHookProvider implements vscode.CustomReadonlyEditorProvide
     }
 
     resolveCustomEditor(document: vscode.CustomDocument, webviewPanel: vscode.WebviewPanel) {
-        webviewPanel.webview.html = 'LaTeX Workshop PDF Viewer is opening a PDF file...'
-        setTimeout(() => {
-            webviewPanel.dispose()
-            void this.extension.commander.pdf(document.uri)
-        }, 1000)
+        webviewPanel.webview.options = {
+            ...webviewPanel.webview.options,
+            enableScripts: true
+        }
+        void this.extension.commander.pdf(document.uri, webviewPanel)
     }
 
 }

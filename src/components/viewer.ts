@@ -5,7 +5,6 @@ import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
 import type {SyncTeXRecordForward} from './locator'
-import {openWebviewPanel} from '../utils/webview'
 import {getCurrentThemeLightness} from '../utils/theme'
 
 import type {ClientRequest, ServerResponse, PdfViewerState} from '../../viewer/components/protocol'
@@ -145,32 +144,26 @@ export class Viewer {
      * @param tabEditorGroup
      * @param preserveFocus
      */
-    async openTab(sourceFile: string, respectOutDir: boolean, tabEditorGroup: string, preserveFocus = true): Promise<void> {
+    async openTab(sourceFile: string, respectOutDir: boolean, tabEditorGroup: string): Promise<void> {
         const url = await this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
             return
         }
         const pdfFile = this.tex2pdf(sourceFile, respectOutDir)
-        return this.openPdfInTab(pdfFile, tabEditorGroup, preserveFocus)
+        const viewColumn: vscode.ViewColumn = (
+            tabEditorGroup === 'right' ?
+            vscode.ViewColumn.Beside :
+            vscode.ViewColumn.Active
+        )
+        await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', viewColumn)
     }
 
-    async openPdfInTab(pdfFileUri: vscode.Uri, tabEditorGroup: string, preserveFocus = true): Promise<void> {
-        const activeDocument = vscode.window.activeTextEditor?.document
-        const panel = await this.createPdfViewerPanel(pdfFileUri, vscode.ViewColumn.Active)
-        if (!panel) {
-            return
-        }
-        if (activeDocument) {
-            await openWebviewPanel(panel.webviewPanel, tabEditorGroup, activeDocument, preserveFocus)
-        }
+    async openPdfInTab(pdfFileUri: vscode.Uri, panelIn?: vscode.WebviewPanel): Promise<void> {
+        const panel = await this.panelService.createPdfViewerPanel(pdfFileUri, panelIn)
+        this.initiatePdfViewerPanel(panel)
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFileUri.toString(true)}`)
     }
 
-    private async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
-        const panel = await this.panelService.createPdfViewerPanel(pdfFileUri, viewColumn)
-        this.initiatePdfViewerPanel(panel)
-        return panel
-    }
 
     /**
      * Opens the PDF file of `sourceFile` in the external PDF viewer.

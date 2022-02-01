@@ -238,7 +238,16 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     }))
 
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer))
-    context.subscriptions.push(vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(extension), {supportsMultipleEditorsPerDocument: true}))
+    context.subscriptions.push(vscode.window.registerCustomEditorProvider(
+        'latex-workshop-pdf-hook',
+        new PdfViewerHookProvider(extension),
+        {
+            supportsMultipleEditorsPerDocument: true,
+            webviewOptions: {
+                retainContextWhenHidden: true
+            }
+        }
+    ))
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-mathpreview', extension.mathPreviewPanel.mathPreviewPanelSerializer))
 
     context.subscriptions.push(vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)))

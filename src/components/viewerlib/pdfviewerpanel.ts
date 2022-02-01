@@ -83,9 +83,9 @@ export class PdfViewerPanelService {
         return this.extension.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
     }
 
-    async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
+    async createPdfViewerPanel(pdfFileUri: vscode.Uri, panel?: vscode.WebviewPanel): Promise<PdfViewerPanel> {
         const htmlContent = await this.getPDFViewerContent(pdfFileUri)
-        const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFileUri.path), viewColumn, {
+        panel ||= vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFileUri.path), vscode.ViewColumn.Active, {
             enableScripts: true,
             retainContextWhenHidden: true
         })
