@@ -8,7 +8,7 @@ We control the PDF viewers on both the tab and the browser through WebSockets in
 
 We provide additional features by setting up new event listeners in `latexworkshop.ts` for DOM objects in `viewer.html`. We do not and should not override functions defined by PDF.js.
 
-We can see all the changes, [diff](https://github.com/James-Yu/LaTeX-Workshop/commit/50139907e4b1cc944399537e65b0c179ccd06849), we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
+We can see all the changes, [diff](https://github.com/James-Yu/LaTeX-Workshop/pull/3044/commits/6c14c887487c79bc0bf299f4f898dd60959e54ec), we have made to `viewer.js`. We had better find a way to achieve this without modifying `viewer.js`.
 
 #### Restoring the PDF viewer
 
