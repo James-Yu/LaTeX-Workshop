@@ -3,7 +3,7 @@
 # Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
 #-------------------------------------------------------------------------------------------------------------
 
-FROM node:16
+FROM node:16-bullseye-slim
 
 # Configure apt
 ENV DEBIAN_FRONTEND=noninteractive
@@ -16,9 +16,10 @@ RUN apt-get install -y git procps
 # Install Tex Live
 RUN apt-get update && apt-get -y upgrade \
     && apt-get -y install --no-install-recommends texlive-base texlive-latex-base \
-    && apt-get -y install --no-install-recommends biber latexmk make \
-    && apt-get -y install --no-install-recommends texlive-lang-chinese \
-    && apt-get -y install --no-install-recommends texlive-lang-japanese
+    texlive-extra-utils \
+    biber chktex latexmk make \
+    texlive-lang-chinese \
+    texlive-lang-japanese
 
 # Clean up
 RUN apt-get autoremove -y \
