@@ -7,6 +7,6 @@ With [VS Code Remote Development](https://marketplace.visualstudio.com/items?ite
 
 ## Docker images
 
-`node/Dockerfile`: Docker image to develop the extension with the stable version of TeX Live.
+`stable/Dockerfile`: Docker image to develop the extension with the stable version of TeX Live. Based on one of [the official node images](https://hub.docker.com/_/node).
 
-`texlive/Dockerfile`: Docker image to develop the extension with the develop version of TeX Live.
+`develop/Dockerfile`: Docker image to develop the extension with the develop version of TeX Live. Based on [the official texlive image](https://hub.docker.com/r/texlive/texlive).
