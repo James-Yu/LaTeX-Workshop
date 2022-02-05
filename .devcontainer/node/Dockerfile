@@ -15,7 +15,9 @@ RUN apt-get install -y git procps
 
 # Install Tex Live
 RUN apt-get update && apt-get -y upgrade \
-    && apt-get -y install --no-install-recommends texlive-base texlive-latex-base \
+    && apt-get -y install --no-install-recommends \
+    texlive-base \
+    texlive-latex-base \
     texlive-extra-utils \
     biber chktex latexmk make \
     texlive-lang-chinese \
