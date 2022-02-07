@@ -1,9 +1,4 @@
-#-------------------------------------------------------------------------------------------------------------
-# Copyright (c) Microsoft Corporation. All rights reserved.
-# Licensed under the MIT License. See https://go.microsoft.com/fwlink/?linkid=2090316 for license information.
-#-------------------------------------------------------------------------------------------------------------
-
-FROM debian:bullseye-slim
+FROM debian:sid-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
@@ -21,7 +16,6 @@ RUN apt-get install --no-install-recommends -y git procps
 # Install Tex Live
 RUN apt-get update && apt-get -y upgrade \
     && apt-get -y install --no-install-recommends \
-    texlive-base \
     texlive-latex-base \
     texlive-extra-utils \
     biber chktex latexmk make \
