@@ -7,8 +7,8 @@ With [VS Code Remote Development](https://marketplace.visualstudio.com/items?ite
 
 ## Docker images
 
-`stable/Dockerfile`: Docker image to develop the extension with the stable version of TeX Live. Based on the `bullseye` image on [the official Debian](https://hub.docker.com/_/debian).
+`stable/`: Docker image to develop the extension with the stable version of TeX Live. Based on the `bullseye` image on [the official Debian](https://hub.docker.com/_/debian).
 
-`sid/Dockerfile`: Docker image to develop the extension with the testing version of TeX Live. Based on the `sid` image on [the official Debian](https://hub.docker.com/_/debian). See also https://www.debian.org/releases/index.en.html.
+`sid/`: Docker image to develop the extension with the testing version of TeX Live. Based on the `sid` image on [the official Debian](https://hub.docker.com/_/debian). See also https://www.debian.org/releases/index.en.html.
 
-`texlive/Dockerfile`: Docker image to develop the extension with the testing version of TeX Live. Based on [the official texlive image](https://hub.docker.com/r/texlive/texlive).
+`texlive/`: Docker image to develop the extension with the testing version of TeX Live. Based on [the official texlive image](https://hub.docker.com/r/texlive/texlive).
