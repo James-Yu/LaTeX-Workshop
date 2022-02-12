@@ -323,15 +323,8 @@ export class Locator {
             this.extension.logger.addLogMessage(`Not found: ${filePath}`)
             return
         }
-        vscode.workspace.openTextDocument(filePath).then((doc) => {
-            let viewColumn: vscode.ViewColumn | undefined = undefined
-            for (let index = 0; index < vscode.window.visibleTextEditors.length; index++) {
-                viewColumn = vscode.window.visibleTextEditors[index].viewColumn
-                if (viewColumn !== undefined) {
-                    break
-                }
-            }
-
+        try {
+            const doc = await vscode.workspace.openTextDocument(filePath)
             let row = record.line - 1
             let col = record.column < 0 ? 0 : record.column
             // columns are typically not supplied by SyncTex, this could change in the future for some engines though
@@ -340,12 +333,46 @@ export class Locator {
             }
             const pos = new vscode.Position(row, col)
 
-            vscode.window.showTextDocument(doc, viewColumn).then( async (editor) => {
-                editor.selection = new vscode.Selection(pos, pos)
-                await vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
-                this.animateToNotify(editor, pos)
-            }, (r) => this.extension.logger.logOnRejected(r))
-        }, (r) => this.extension.logger.logOnRejected(r))
+            const tab = this.findTab(doc)
+            const viewColumn = tab?.group.viewColumn ?? this.getViewColumnOfVisibleTextEditor() ?? vscode.ViewColumn.Beside
+            const editor = await vscode.window.showTextDocument(doc, viewColumn)
+            editor.selection = new vscode.Selection(pos, pos)
+            await vscode.commands.executeCommand('revealLine', {lineNumber: row, at: 'center'})
+            this.animateToNotify(editor, pos)
+        } catch(e: unknown) {
+            if (e instanceof Error) {
+                this.extension.logger.logError(e)
+            }
+        }
+    }
+
+    private findTab(doc: vscode.TextDocument): vscode.Tab | undefined {
+        let notActive: vscode.Tab[] = []
+        const docUriString = doc.uri.toString()
+        for (const tabGroup of vscode.window.tabGroups.all) {
+            for (const tab of tabGroup.tabs) {
+                const tabInput = tab.input
+                if (tabInput instanceof vscode.TabInputText) {
+                    if (docUriString === tabInput.uri.toString()) {
+                        if (tab.isActive) {
+                            return tab
+                        } else {
+                            notActive.push(tab)
+                        }
+                    }
+                }
+            }
+        }
+        notActive = notActive.sort((a, b) => Math.max(a.group.viewColumn, 0) - Math.max(b.group.viewColumn, 0) )
+        return notActive[0] || undefined
+    }
+
+    private getViewColumnOfVisibleTextEditor(): vscode.ViewColumn | undefined {
+        const viewColumnArray = vscode.window.visibleTextEditors
+                                .map((editor) => editor.viewColumn)
+                                .filter((column): column is vscode.ViewColumn => column !== undefined)
+                                .sort()
+        return viewColumnArray[0]
     }
 
     private getRowAndColumn(doc: vscode.TextDocument, row: number, textBeforeSelectionFull: string, textAfterSelectionFull: string) {
