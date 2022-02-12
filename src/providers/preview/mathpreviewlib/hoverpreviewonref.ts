@@ -31,15 +31,15 @@ export class HoverPreviewOnRefProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const scale = configuration.get('hover.preview.scale') as number
 
-        let tag: string
+        let newTeXString: string
         if (refData.prevIndex !== undefined && configuration.get('hover.ref.number.enabled') as boolean) {
-            tag = refData.prevIndex.refNumber
+            const tag = refData.prevIndex.refNumber
+            const texString = this.replaceLabelWithTag(tex.texString, refData.label, tag)
+            newTeXString = this.mputils.mathjaxify(texString, tex.envname, {stripLabel: false})
         } else {
-            tag = refData.label
+            newTeXString = this.mputils.mathjaxify(tex.texString, tex.envname)
         }
-        const newTex = this.replaceLabelWithTag(tex.texString, refData.label, tag)
-        const s = this.mputils.mathjaxify(newTex, tex.envname, {stripLabel: false})
-        const typesetArg = newCommand + this.mputils.stripTeX(s)
+        const typesetArg = newCommand + this.mputils.stripTeX(newTeXString)
         const typesetOpts = { scale, color }
         try {
             const xml = await this.mj.typeset(typesetArg, typesetOpts)
