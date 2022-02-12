@@ -310,6 +310,8 @@ export class Extension {
         this.logger.addLogMessage(`Extension root: ${this.extensionRoot}`)
         this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
         this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
+        this.logger.addLogMessage(`$LANG: ${process.env.LANG}`)
+        this.logger.addLogMessage(`$LC_ALL: ${process.env.LC_ALL}`)
         this.logger.addLogMessage(`vscode.env.appName: ${vscode.env.appName}`)
         this.logger.addLogMessage(`vscode.env.remoteName: ${vscode.env.remoteName}`)
         this.logger.addLogMessage(`vscode.env.uiKind: ${vscode.env.uiKind}`)
