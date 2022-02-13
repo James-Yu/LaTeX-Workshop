@@ -307,14 +307,7 @@ export class Extension {
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
         this.logger = new Logger()
-        this.logger.addLogMessage(`Extension root: ${this.extensionRoot}`)
-        this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
-        this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
-        this.logger.addLogMessage(`$LANG: ${process.env.LANG}`)
-        this.logger.addLogMessage(`$LC_ALL: ${process.env.LC_ALL}`)
-        this.logger.addLogMessage(`vscode.env.appName: ${vscode.env.appName}`)
-        this.logger.addLogMessage(`vscode.env.remoteName: ${vscode.env.remoteName}`)
-        this.logger.addLogMessage(`vscode.env.uiKind: ${vscode.env.uiKind}`)
+        this.addLogFundamentals()
         this.configuration = new Configuration(this)
         this.lwfs = new LwFileSystem(this)
         this.commander = new Commander(this)
@@ -344,4 +337,19 @@ export class Extension {
         this.mathPreviewPanel = new MathPreviewPanel(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
+
+    private addLogFundamentals() {
+        this.logger.addLogMessage('Initializing LaTeX Workshop.')
+        this.logger.addLogMessage(`Extension root: ${this.extensionRoot}`)
+        this.logger.addLogMessage(`$PATH: ${process.env.PATH}`)
+        this.logger.addLogMessage(`$SHELL: ${process.env.SHELL}`)
+        this.logger.addLogMessage(`$LANG: ${process.env.LANG}`)
+        this.logger.addLogMessage(`$LC_ALL: ${process.env.LC_ALL}`)
+        this.logger.addLogMessage(`process.platform: ${process.platform}`)
+        this.logger.addLogMessage(`process.arch: ${process.arch}`)
+        this.logger.addLogMessage(`vscode.env.appName: ${vscode.env.appName}`)
+        this.logger.addLogMessage(`vscode.env.remoteName: ${vscode.env.remoteName}`)
+        this.logger.addLogMessage(`vscode.env.uiKind: ${vscode.env.uiKind}`)
+    }
+
 }

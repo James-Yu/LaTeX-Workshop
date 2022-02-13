@@ -9,7 +9,6 @@ export class Logger {
         this.logPanel = vscode.window.createOutputChannel('LaTeX Workshop')
         this.compilerLogPanel = vscode.window.createOutputChannel('LaTeX Compiler')
         this.compilerLogPanel.append('Ready')
-        this.addLogMessage('Initializing LaTeX Workshop.')
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Left, -10000)
         this.status.command = 'latex-workshop.actions'
         this.status.show()
