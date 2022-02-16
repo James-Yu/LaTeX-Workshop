@@ -23,7 +23,8 @@ RUN apt-get update && apt-get -y upgrade \
     && apt-get -y install --no-install-recommends \
     texlive-latex-base \
     texlive-extra-utils \
-    biber chktex latexmk make \
+    texlive-latex-extra \
+    biber chktex latexmk make python3-pygments \
     texlive-lang-chinese \
     texlive-lang-japanese
 
