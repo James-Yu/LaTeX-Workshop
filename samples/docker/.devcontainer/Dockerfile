@@ -15,8 +15,11 @@ RUN apt-get install --no-install-recommends -y git procps
 # Install Tex Live
 RUN apt-get update && apt-get -y upgrade \
     && apt-get -y install --no-install-recommends \
-    texlive-full \
-    biber chktex latexmk make
+    texlive-latex-base \
+    texlive-extra-utils \
+    biber chktex latexmk make \
+    texlive-lang-chinese \
+    texlive-lang-japanese
 
 # latexindent modules
 RUN apt-get install --no-install-recommends -y curl
