@@ -22,6 +22,12 @@ RUN apt-get update && apt-get -y upgrade \
     texlive-lang-chinese \
     texlive-lang-japanese
 
+# latexindent modules
+RUN curl -L http://cpanmin.us | perl - App::cpanminus \
+    && cpanm YAML::Tiny \
+    && cpanm File::HomeDir \
+    && cpanm Unicode::GCString
+
 # Clean up
 RUN apt-get autoremove -y \
     && apt-get clean -y \
