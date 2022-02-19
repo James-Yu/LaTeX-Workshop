@@ -3,39 +3,21 @@ import * as vscode from 'vscode'
 
 export class LaTeXCommandTreeView {
     private readonly latexCommander: LaTeXCommander
-    private readonly treeView: vscode.TreeView<LaTeXCommand>
 
     constructor() {
         this.latexCommander = new LaTeXCommander()
-        this.treeView = vscode.window.createTreeView(
+        vscode.window.createTreeView(
             'latex-workshop-commands',
             {
               treeDataProvider: this.latexCommander,
               showCollapseAll: true
             })
     }
-
-    revealCompilerLog() {
-        if (this.latexCommander.compilerLog) {
-            return this.treeView.reveal(this.latexCommander.compilerLog)
-        }
-        return
-    }
-
-    revealLatexWorkshopLog() {
-        if (this.latexCommander.latexWorkshopLog) {
-            return this.treeView.reveal(this.latexCommander.latexWorkshopLog)
-        }
-        return
-    }
-
 }
 
 class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
     private readonly commands: LaTeXCommand[] = []
-    compilerLog: LaTeXCommand | undefined
-    latexWorkshopLog: LaTeXCommand | undefined
 
     constructor() {
         this.buildCommanderTree()
@@ -73,11 +55,11 @@ class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         ])
 
         const logCommand = new LaTeXCommand('View Log messages', {command: 'latex-workshop.log'}, 'output')
-        this.compilerLog = new LaTeXCommand('View LaTeX compiler log', {command: 'latex-workshop.compilerlog'}, 'output')
-        this.latexWorkshopLog = new LaTeXCommand('View LaTeX Workshop extension log', {command: 'latex-workshop.log'}, 'output')
+        const compilerLog = new LaTeXCommand('View LaTeX compiler log', {command: 'latex-workshop.compilerlog'}, 'output')
+        const latexWorkshopLog = new LaTeXCommand('View LaTeX Workshop extension log', {command: 'latex-workshop.log'}, 'output')
         this.buildNode(logCommand, [
-            this.latexWorkshopLog,
-            this.compilerLog
+            latexWorkshopLog,
+            compilerLog
         ])
 
         const navCommand = new LaTeXCommand('Navigate, select, and edit', undefined, 'edit')
