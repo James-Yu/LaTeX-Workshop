@@ -1,66 +1,110 @@
 import * as vscode from 'vscode'
 
-import type { Extension } from '../main'
 
-export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
+export class LaTeXCommandTreeView {
+    private readonly latexCommander: LaTeXCommander
+    private readonly treeView: vscode.TreeView<LaTeXCommand>
 
-    extension: Extension
-    private readonly commands: LaTeXCommand[] = []
-
-    constructor(extension: Extension) {
-        this.extension = extension
-        this.buildCommander()
+    constructor() {
+        this.latexCommander = new LaTeXCommander()
+        this.treeView = vscode.window.createTreeView(
+            'latex-workshop-commands',
+            {
+              treeDataProvider: this.latexCommander,
+              showCollapseAll: true
+            })
     }
 
-    private buildCommander() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const None = vscode.TreeItemCollapsibleState.None
-        const Collapsed = vscode.TreeItemCollapsibleState.Collapsed
-        const buildCommand = new LaTeXCommand('Build LaTeX project', Collapsed, {command: 'latex-workshop.build', title: ''}, 'debug-start')
-        this.commands.push(buildCommand)
-        const recipes = configuration.get('latex.recipes') as {name: string}[]
-        buildCommand.children.push(new LaTeXCommand('Clean up auxiliary files', None, {command: 'latex-workshop.clean', title: ''}, 'clear-all'))
-        buildCommand.children.push(new LaTeXCommand('Terminate current compilation', None, {command: 'latex-workshop.kill', title: ''}, 'debug-stop'))
-        if (recipes) {
-            recipes.forEach(recipe => {
-                buildCommand.children.push(new LaTeXCommand(`Recipe: ${recipe.name}`, None, {command: 'latex-workshop.recipes', title: '', arguments: [recipe.name]}, 'debug-start'))
-            })
+    revealCompilerLog() {
+        if (this.latexCommander.compilerLog) {
+            return this.treeView.reveal(this.latexCommander.compilerLog)
         }
+        return
+    }
 
-        const viewCommand = new LaTeXCommand('View LaTeX PDF', Collapsed, {command: 'latex-workshop.view', title: ''}, 'open-preview')
-        this.commands.push(viewCommand)
-        viewCommand.children.push(new LaTeXCommand('View in VSCode tab', None, {command: 'latex-workshop.view', title: '', arguments: ['tab']}, 'open-preview'))
-        viewCommand.children.push(new LaTeXCommand('View in web browser', None, {command: 'latex-workshop.view', title: '', arguments: ['browser']}, 'browser'))
-        viewCommand.children.push(new LaTeXCommand('View in external viewer', None, {command: 'latex-workshop.view', title: '', arguments: ['external']}, 'preview'))
-        viewCommand.children.push(new LaTeXCommand('Set default viewer', None, {command: 'latex-workshop.view', title: '', arguments: ['set']}, 'settings-gear'))
-        viewCommand.children.push(new LaTeXCommand('Refresh all viewers', None, {command: 'latex-workshop.refresh-viewer', title: ''}, 'refresh'))
+    revealLatexWorkshopLog() {
+        if (this.latexCommander.latexWorkshopLog) {
+            return this.treeView.reveal(this.latexCommander.latexWorkshopLog)
+        }
+        return
+    }
 
-        const logCommand = new LaTeXCommand('View Log messages', Collapsed, {command: 'latex-workshop.log', title: ''}, 'output')
-        this.commands.push(logCommand)
-        logCommand.children.push(new LaTeXCommand('View LaTeX Workshop extension log', None, {command: 'latex-workshop.log', title: ''}, 'output'))
-        logCommand.children.push(new LaTeXCommand('View LaTeX compiler log', None, {command: 'latex-workshop.compilerlog', title: ''}, 'output'))
+}
 
-        const navCommand = new LaTeXCommand('Navigate, select, and edit', Collapsed, undefined, 'edit')
-        this.commands.push(navCommand)
-        navCommand.children.push(new LaTeXCommand('SyncTeX from cursor', None, {command: 'latex-workshop.synctex', title: ''}, 'go-to-file'))
-        navCommand.children.push(new LaTeXCommand('Navigate to matching begin/end', None, {command: 'latex-workshop.navigate-envpair', title: ''}))
-        navCommand.children.push(new LaTeXCommand('Select current environment content', None, {command: 'latex-workshop.select-envcontent', title: ''}))
-        navCommand.children.push(new LaTeXCommand('Select current environment name', None, {command: 'latex-workshop.select-envname', title: ''}))
-        navCommand.children.push(new LaTeXCommand('Close current environment', None, {command: 'latex-workshop.close-env', title: ''}))
-        navCommand.children.push(new LaTeXCommand('Surround with begin{}...\\end{}', None, {command: 'latex-workshop.wrap-env', title: ''}))
-        navCommand.children.push(new LaTeXCommand('Insert %!TeX root magic comment', None, {command: 'latex-workshop.addtexroot', title: ''}))
+class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
-        const miscCommand = new LaTeXCommand('Miscellaneous', Collapsed, undefined, 'menu')
-        this.commands.push(miscCommand)
-        miscCommand.children.push(new LaTeXCommand('Open citation browser', None, {command: 'latex-workshop.citation', title: ''}))
-        miscCommand.children.push(new LaTeXCommand('Count words in LaTeX project', None, {command: 'latex-workshop.wordcount', title: ''}))
-        miscCommand.children.push(new LaTeXCommand('Reveal output folder in OS', None, {command: 'latex-workshop.revealOutputDir', title: ''}, 'folder-opened'))
+    private readonly commands: LaTeXCommand[] = []
+    compilerLog: LaTeXCommand | undefined
+    latexWorkshopLog: LaTeXCommand | undefined
 
-        const bibtexCommand = new LaTeXCommand('BibTeX actions', Collapsed, undefined, 'references')
-        bibtexCommand.children.push(new LaTeXCommand('Align bibliography', None, {command: 'latex-workshop.bibalign', title: ''}))
-        bibtexCommand.children.push(new LaTeXCommand('Sort bibliography', None, {command: 'latex-workshop.bibsort', title: ''}, 'sort-precedence'))
-        bibtexCommand.children.push(new LaTeXCommand('Align and sort bibliography', None, {command: 'latex-workshop.bibalignsort', title: ''}))
-        this.commands.push(bibtexCommand)
+    constructor() {
+        this.buildCommanderTree()
+    }
+
+    private buildNode(parent: LaTeXCommand, children: LaTeXCommand[]) {
+        this.commands.push(parent)
+        if (children.length > 0) {
+            parent.collapsibleState = vscode.TreeItemCollapsibleState.Collapsed
+            parent.children = children
+            children.forEach((c) => c.parent = parent)
+        }
+        return parent
+    }
+
+    private buildCommanderTree() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+
+        const buildCommand = new LaTeXCommand('Build LaTeX project', {command: 'latex-workshop.build'}, 'debug-start')
+        const recipes = configuration.get('latex.recipes', []) as {name: string}[]
+        const recipeCommands = recipes.map(recipe => new LaTeXCommand(`Recipe: ${recipe.name}`, {command: 'latex-workshop.recipes', arguments: [recipe.name]}, 'debug-start'))
+        this.buildNode(buildCommand, [
+            new LaTeXCommand('Clean up auxiliary files', {command: 'latex-workshop.clean'}, 'clear-all'),
+            new LaTeXCommand('Terminate current compilation', {command: 'latex-workshop.kill'}, 'debug-stop'),
+            ...recipeCommands
+        ])
+
+        const viewCommand = new LaTeXCommand('View LaTeX PDF', {command: 'latex-workshop.view'}, 'open-preview')
+        this.buildNode(viewCommand, [
+            new LaTeXCommand('View in VSCode tab', {command: 'latex-workshop.view', arguments: ['tab']}, 'open-preview'),
+            new LaTeXCommand('View in web browser', {command: 'latex-workshop.view', arguments: ['browser']}, 'browser'),
+            new LaTeXCommand('View in external viewer', {command: 'latex-workshop.view', arguments: ['external']}, 'preview'),
+            new LaTeXCommand('Set default viewer', {command: 'latex-workshop.view', arguments: ['set']}, 'settings-gear'),
+            new LaTeXCommand('Refresh all viewers', {command: 'latex-workshop.refresh-viewer'}, 'refresh')
+        ])
+
+        const logCommand = new LaTeXCommand('View Log messages', {command: 'latex-workshop.log'}, 'output')
+        this.compilerLog = new LaTeXCommand('View LaTeX compiler log', {command: 'latex-workshop.compilerlog'}, 'output')
+        this.latexWorkshopLog = new LaTeXCommand('View LaTeX Workshop extension log', {command: 'latex-workshop.log'}, 'output')
+        this.buildNode(logCommand, [
+            this.latexWorkshopLog,
+            this.compilerLog
+        ])
+
+        const navCommand = new LaTeXCommand('Navigate, select, and edit', undefined, 'edit')
+        this.buildNode(navCommand, [
+            new LaTeXCommand('SyncTeX from cursor', {command: 'latex-workshop.synctex'}, 'go-to-file'),
+            new LaTeXCommand('Navigate to matching begin/end', {command: 'latex-workshop.navigate-envpair'}),
+            new LaTeXCommand('Select current environment content', {command: 'latex-workshop.select-envcontent'}),
+            new LaTeXCommand('Select current environment name', {command: 'latex-workshop.select-envname'}),
+            new LaTeXCommand('Close current environment', {command: 'latex-workshop.close-env'}),
+            new LaTeXCommand('Surround with begin{}...\\end{}', {command: 'latex-workshop.wrap-env'}),
+            new LaTeXCommand('Insert %!TeX root magic comment', {command: 'latex-workshop.addtexroot'})
+        ])
+
+        const miscCommand = new LaTeXCommand('Miscellaneous', undefined, 'menu')
+        this.buildNode(miscCommand, [
+            new LaTeXCommand('Open citation browser', {command: 'latex-workshop.citation'}),
+            new LaTeXCommand('Count words in LaTeX project', {command: 'latex-workshop.wordcount'}),
+            new LaTeXCommand('Reveal output folder in OS', {command: 'latex-workshop.revealOutputDir'}, 'folder-opened')
+        ])
+
+        const bibtexCommand = new LaTeXCommand('BibTeX actions', undefined, 'references')
+        this.buildNode(bibtexCommand, [
+            new LaTeXCommand('Align bibliography', {command: 'latex-workshop.bibalign'}),
+            new LaTeXCommand('Sort bibliography', {command: 'latex-workshop.bibsort'}, 'sort-precedence'),
+            new LaTeXCommand('Align and sort bibliography', {command: 'latex-workshop.bibalignsort'})
+        ])
+
     }
 
     getTreeItem(element: LaTeXCommand): vscode.TreeItem {
@@ -68,8 +112,6 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
         const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, element.collapsibleState)
         treeItem.command = element.command
         treeItem.iconPath = element.codicon && new vscode.ThemeIcon(element.codicon)
-        // treeItem.tooltip = `Line ${element.lineNumber + 1} at ${element.fileName}`
-
         return treeItem
     }
 
@@ -80,18 +122,26 @@ export class LaTeXCommander implements vscode.TreeDataProvider<LaTeXCommand> {
 
         return element.children
     }
+
+    getParent(element: LaTeXCommand) {
+        return element.parent
+    }
 }
 
-export class LaTeXCommand {
+class LaTeXCommand {
 
     public children: LaTeXCommand[] = []
+    public readonly command: vscode.Command | undefined
+    public collapsibleState = vscode.TreeItemCollapsibleState.None
+    public parent: LaTeXCommand | undefined
 
     constructor(
         public readonly label: string,
-        public readonly collapsibleState: vscode.TreeItemCollapsibleState,
-        public readonly command?: vscode.Command,
+        command?: {command: string, arguments?: string[]},
         public readonly codicon?: string
     ) {
-
+        if (command) {
+            this.command = {...command, title: ''}
+        }
     }
 }

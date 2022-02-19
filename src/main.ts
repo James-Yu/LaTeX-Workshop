@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as process from 'process'
 
 import {Commander} from './commander'
-import {LaTeXCommander} from './components/commander'
+import {LaTeXCommandTreeView} from './components/commander'
 import {Logger} from './components/logger'
 import {LwFileSystem} from './components/lwfs'
 import {Manager} from './components/manager'
@@ -229,7 +229,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
 
-    context.subscriptions.push(vscode.window.registerTreeDataProvider('latex-workshop-commands', new LaTeXCommander(extension)))
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
         if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
             return
@@ -293,6 +292,7 @@ export class Extension {
     readonly texMagician: TeXMagician
     readonly envPair: EnvPair
     readonly section: Section
+    readonly latexCommandTreeView: LaTeXCommandTreeView
     readonly structureProvider: SectionNodeProvider
     readonly structureViewer: StructureTreeView
     readonly snippetView: SnippetView
@@ -327,6 +327,7 @@ export class Extension {
         this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
         this.section = new Section(this)
+        this.latexCommandTreeView = new LaTeXCommandTreeView()
         this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetView = new SnippetView(this)
