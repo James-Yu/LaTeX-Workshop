@@ -34,19 +34,26 @@ export class Configuration {
     ]
 
     private logConfiguration() {
-        const configuration = vscode.workspace.getConfiguration()
-        for(const config of this.configurationsToLog) {
-            const value = configuration.get(config)
-            this.extension.logger.addLogMessage(`${config}: ${JSON.stringify(value, null, ' ')}`)
+        const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
+        for (const workspace of workspaceFolders) {
+            this.extension.logger.addLogMessage(`Workspace for configuration: ${workspace?.uri.toString(true)}`)
+            const configuration = vscode.workspace.getConfiguration(undefined, workspace)
+            for(const config of this.configurationsToLog) {
+                const value = configuration.get(config)
+                this.extension.logger.addLogMessage(`${config}: ${JSON.stringify(value, null, ' ')}`)
+            }
         }
     }
 
     private logChangeOnConfiguration(ev: vscode.ConfigurationChangeEvent) {
+        const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
         for(const config of this.configurationsToLog) {
-            if (ev.affectsConfiguration(config)) {
-                const configuration = vscode.workspace.getConfiguration()
-                const value = configuration.get(config)
-                this.extension.logger.addLogMessage(`Configutation changed to { ${config}: ${JSON.stringify(value)} }`)
+            for (const workspace of workspaceFolders) {
+                if (ev.affectsConfiguration(config, workspace)) {
+                    const configuration = vscode.workspace.getConfiguration()
+                    const value = configuration.get(config)
+                    this.extension.logger.addLogMessage(`Configutation changed to { ${config}: ${JSON.stringify(value)} } at ${workspace?.uri.toString(true)}`)
+                }
             }
         }
     }
