@@ -50,7 +50,7 @@ export class Configuration {
         for(const config of this.configurationsToLog) {
             for (const workspace of workspaceFolders) {
                 if (ev.affectsConfiguration(config, workspace)) {
-                    const configuration = vscode.workspace.getConfiguration()
+                    const configuration = vscode.workspace.getConfiguration(undefined, workspace)
                     const value = configuration.get(config)
                     this.extension.logger.addLogMessage(`Configutation changed to { ${config}: ${JSON.stringify(value)} } at ${workspace?.uri.toString(true)}`)
                 }
