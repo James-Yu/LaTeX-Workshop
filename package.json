@@ -836,7 +836,7 @@
         "latex-workshop.latex.recipe.default": {
           "type": "string",
           "default": "first",
-          "markdownDescription": "Define which recipe is used by `latex-workshop.build`. It also applies to auto build. Recipes are refered to by their names as defined in `latex-workshop.latex.recipes`. Note there are two particular values: \n- `first` means to use the first recipe in `latex-workshop.latex.recipes`;\n- `lastUsed` means to use the last run recipe."
+          "markdownDescription": "Define which recipe is used by `latex-workshop.build`. It also applies to auto build. Recipes are referred to by their names as defined in `latex-workshop.latex.recipes`. Note there are two particular values: \n- `first` means to use the first recipe in `latex-workshop.latex.recipes`;\n- `lastUsed` means to use the last run recipe."
         },
         "latex-workshop.latex.tools": {
           "type": "array",
@@ -957,7 +957,7 @@
               "env": {}
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. Placeholders `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%` are available. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
+          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
         "latex-workshop.latex.magic.args": {
           "type": "array",
@@ -1066,12 +1066,12 @@
         "latex-workshop.latex.rootFile.useSubFile": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When set to `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands."
+          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands."
         },
         "latex-workshop.latex.rootFile.doNotPrompt": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When set to `false`, the `build` and `view` commands  ask the user's choice first. When set to `true`, the subfile is used when `latex-workshop.latex.rootFile.useSubFile` is also `true`, otherwise the rootFile is used."
+          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `latex-workshop.latex.rootFile.useSubFile` is also `true`, otherwise the rootFile is used."
         },
         "latex-workshop.latex.watch.usePolling": {
           "type": "boolean",
@@ -1144,7 +1144,7 @@
             "Auto build whenever a dependency file changes on disk"
           ],
           "default": "onFileChange",
-          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe. `onSave` builds the project upon saving a `tex` file in vscode. `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications. Note `onSave` is more restrictive than `onFileChange` "
+          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe. \n- `onSave` builds the project upon saving a `tex` file in vscode.\n- `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications.\n\n Note that `onSave` is more restrictive than `onFileChange` "
         },
         "latex-workshop.latex.autoBuild.interval": {
           "type": "integer",
@@ -1174,7 +1174,7 @@
             "Clean after build, be it successful or not"
           ],
           "default": "never",
-          "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `latex-workshop.latex.outDir`. `onFailed` cleans the project when compilation fails. `onBuilt` cleans the project when compilation is terminated, whether successful or failed."
+          "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n- `onFailed` cleans the project when compilation fails.\n- `onBuilt` cleans the project when compilation is done, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "type": "boolean",
@@ -1508,7 +1508,7 @@
             "Lint the active document when input is stopped"
           ],
           "default": "onSave",
-          "markdownDescription": "When LaTeX should be linted by ChkTeX. If set to `onSave`, the whole LaTeX project will be linted upon saving. If set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
+          "markdownDescription": "When LaTeX should be linted by ChkTeX.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`. It also implies `onSave`."
         },
         "latex-workshop.chktex.path": {
           "type": "string",
@@ -1602,7 +1602,7 @@
         "latex-workshop.intellisense.update.delay": {
           "type": "number",
           "default": 1000,
-          "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing. This config works only when `intellisense.update.aggressive.enabled` is enabled. Lower this value will let the extension to know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computation burden."
+          "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing. This config works only when `intellisense.update.aggressive.enabled` is enabled. Lower this value to let the extension know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computational burden."
         },
         "latex-workshop.intellisense.citation.type": {
           "type": "string",
@@ -1818,7 +1818,7 @@
             "%TMPFILE%",
             "-y=defaultIndent: '%INDENT%'"
           ],
-          "markdownDescription": "Define the command line arguments for latexindent. In the addition to the placeholders defined at https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders, the following placeholders are accepted\n- %TMPFILE%: The full path of the raw TeX file to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: The indent character of the file, typically `\t`, `' '`, `' '`.\n\nNote: At this moment -c option requires trailing slash."
+          "markdownDescription": "Define the command line arguments for latexindent. In the addition to the placeholders defined at https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders, the following placeholders are accepted\n- %TMPFILE%: The full path of the raw TeX file to be formatted. At this moment you need to use it as an input file of `latexindent`.\n- %INDENT%: The indent character of the file, typically `\t`, `' '`, `' '`.\n\nNote that the option `-c` requires a trailing slash."
         },
         "latex-workshop.docker.enabled": {
           "type": "boolean",
@@ -1843,7 +1843,7 @@
         "latex-workshop.bind.altKeymap.enabled": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Use alternative keymap combo, i.e., `ctrl`+`l` `alt`+key, to replace the default `ctrl`/`cmd`+`alt` shortcuts."
+          "markdownDescription": "Use alternative keymap combo, i.e., `ctrl`+`l` `alt`+`key`, to replace the default `ctrl`/`cmd`+`alt` shortcuts."
         },
         "latex-workshop.hover.ref.enabled": {
           "type": "boolean",
@@ -1930,7 +1930,7 @@
         "latex-workshop.hover.preview.mathjax.extensions": {
           "type": "array",
           "default": [],
-          "markdownDescription": "MathJax extensions to load for Hover Preview. See [the list](https://docs.mathjax.org/en/latest/input/tex/extensions/index.html). Notice that extensions, `ams`, `color`, `newcommand`, `noerrors`, and `noundefined` are loaded by default. They cannot be disabled.",
+          "markdownDescription": "MathJax extensions to load for Hover Preview. See [the list](https://docs.mathjax.org/en/latest/input/tex/extensions/index.html). Note that the following extensions are loaded by default: `ams`, `color`, `newcommand`, `noerrors`, and `noundefined`. They cannot be disabled.",
           "items": {
             "type": "string",
             "enum": [
@@ -1968,7 +1968,7 @@
         "latex-workshop.intellisense.useTabStops.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Many snippets use PlaceHolders of the form ${\\d:some_text} for their argument. You may prefer to use TabStops ${\\d} instead, which allows for direct call to intellisense again. Default is true. Reload vscode to make this configuration effective."
+          "markdownDescription": "Many snippets use PlaceHolders of the form `${\\d:some_tex`}` for their argument. You may prefer to use TabStops `${\\d}` instead, which allows for direct call to intellisense again. Default is true. Reload vscode to make this configuration effective."
         },
         "latex-workshop.intellisense.citation.backend": {
           "type": "string",
@@ -2007,12 +2007,12 @@
             "type": "string"
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Snippet actions should not begin with a `\\`. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Remove the leading `\\` of the command name. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.texdoc.path": {
           "type": "string",
           "default": "texdoc",
-          "markdownDescription": "Define the location of texdoc executable. This command is used to show a package documentation."
+          "markdownDescription": "Define the location of the `texdoc` executable. This command is used to show a package documentation."
         },
         "latex-workshop.texdoc.args": {
           "type": "array",
@@ -2027,7 +2027,7 @@
         "latex-workshop.bibtex-format.tab": {
           "type": "string",
           "default": "2 spaces",
-          "markdownDescription": "Indentation for each field. The string can `\"tab\"` or of the form `\"X spaces\"` or simply `\"X\"` where `X` is a number"
+          "markdownDescription": "Indentation for each field. The string can be `\"tab\"` or of the form `\"X spaces\"` or simply `\"X\"` where `X` is a number"
         },
         "latex-workshop.bibtex-format.surround": {
           "type": "string",
