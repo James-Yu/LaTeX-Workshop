@@ -836,11 +836,13 @@
           "markdownDescription": "Define LaTeX compiling recipes. Each recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`. By default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
         },
         "latex-workshop.latex.recipe.default": {
+          "scope": "resource",
           "type": "string",
           "default": "first",
           "markdownDescription": "Define which recipe is used by `latex-workshop.build`. It also applies to auto build. Recipes are referred to by their names as defined in `latex-workshop.latex.recipes`. Note there are two particular values: \n- `first` means to use the first recipe in `latex-workshop.latex.recipes`;\n- `lastUsed` means to use the last run recipe."
         },
         "latex-workshop.latex.tools": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "object",
@@ -962,6 +964,7 @@
           "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
         "latex-workshop.latex.magic.args": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -975,6 +978,7 @@
           "markdownDescription": "Define the arguments to be input to magic command executable. This can be overridden by using \"% !TeX options\"."
         },
         "latex-workshop.latex.magic.bib.args": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -985,11 +989,13 @@
           "markdownDescription": "Define the arguments to be input to BIB magic command executable. This can be overridden by using \"% !BIB options\"."
         },
         "latex-workshop.latex.external.build.command": {
+          "scope": "resource",
           "type": "string",
           "default": "",
           "markdownDescription": "The external command to execute when calling latex-workshop.build. This is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism."
         },
         "latex-workshop.latex.external.build.args": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -998,11 +1004,13 @@
           "markdownDescription": "The arguments of `latex-workshop.latex.external.build.command` when calling latex-workshop.build."
         },
         "latex-workshop.latex.build.forceRecipeUsage": {
+          "scope": "resource",
           "type": "boolean",
           "default": true,
           "markdownDescription": "Force the use the recipe mechanism even if some magic comments are present."
         },
         "latex-workshop.latex.outDir": {
+          "scope": "resource",
           "type": "string",
           "default": "%DIR%",
           "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located. Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
@@ -1046,6 +1054,7 @@
           "markdownDescription": "List of directories where to look for `.bib` files. Absolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
         "latex-workshop.latex.search.rootFiles.include": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -1058,6 +1067,7 @@
           "markdownDescription": "Patterns of files to consider for the root detection mechanism. Relative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here. If you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -1066,11 +1076,13 @@
           "markdownDescription": "Patterns of files to exclude from the root detection mechanism. See also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
         "latex-workshop.latex.rootFile.useSubFile": {
+          "scope": "resource",
           "type": "boolean",
           "default": true,
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `true`, the extension uses the subfile as the rootFile for the `autobuild`, `clean` and `synctex` commands."
         },
         "latex-workshop.latex.rootFile.doNotPrompt": {
+          "scope": "resource",
           "type": "boolean",
           "default": false,
           "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `latex-workshop.latex.rootFile.useSubFile` is also `true`, otherwise the rootFile is used."
@@ -1134,6 +1146,7 @@
           "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild. This property must be an array of glob patterns. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
         },
         "latex-workshop.latex.autoBuild.run": {
+          "scope": "resource",
           "type": "string",
           "enum": [
             "never",
@@ -1149,21 +1162,25 @@
           "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe. \n- `onSave` builds the project upon saving a `tex` file in vscode.\n- `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications.\n\n Note that `onSave` is more restrictive than `onFileChange` "
         },
         "latex-workshop.latex.autoBuild.interval": {
+          "scope": "resource",
           "type": "integer",
           "default": 1000,
           "markdownDescription": "The minimal time interval between two consecutive auto builds in milliseconds."
         },
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
+          "scope": "resource",
           "type": "boolean",
           "default": true,
           "markdownDescription": "Delete LaTeX auxiliary files when errors occur during build and retry. This property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
         },
         "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": {
+          "scope": "resource",
           "type": "boolean",
           "default": true,
           "markdownDescription": "Clear the LaTeX Compiler logs before every step of a recipe. Set this property to false to keep the logs of all tools in a recipe."
         },
         "latex-workshop.latex.autoClean.run": {
+          "scope": "resource",
           "type": "string",
           "enum": [
             "never",
@@ -1179,11 +1196,13 @@
           "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n- `onFailed` cleans the project when compilation fails.\n- `onBuilt` cleans the project when compilation is done, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
+          "scope": "resource",
           "type": "boolean",
           "default": false,
           "markdownDescription": "Delete LaTeX auxiliary files recursively in sub-folders of `latex-workshop.latex.outDir`. Note that sub-folders are not removed."
         },
         "latex-workshop.latex.clean.fileTypes": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -1216,11 +1235,13 @@
           "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
         },
         "latex-workshop.latex.clean.command": {
+          "scope": "resource",
           "type": "string",
           "default": "latexmk",
           "markdownDescription": "The command to be used to remove temporary files when `latex-workshop.latex.clean.method` is set to `cleanMethod`."
         },
         "latex-workshop.latex.clean.args": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -1232,6 +1253,7 @@
           "markdownDescription": "The arguments of `latex-workshop.latex.clean.command`. The `%TEX%` placeholder is the full path of the tex file from which the clean command is called."
         },
         "latex-workshop.latex.clean.method": {
+          "scope": "resource",
           "type": "string",
           "default": "glob",
           "enum": [
@@ -1245,6 +1267,7 @@
           "markdownDescription": "Define the method used by the `clean` command to remove temporary files."
         },
         "latex-workshop.latex.option.maxPrintLine.enabled": {
+          "scope": "resource",
           "type": "boolean",
           "default": true,
           "markdownDescription": "Add `--max-print-line` option to LaTeX build commands. This flag tells some MikTeX compilers to produce non hard wrapped log messages. Non hard wrapped log messages are required for the _Problem_ Pane to properly display messages."
@@ -1495,11 +1518,13 @@
           "markdownDescription": "Enable using a builtin synctex function. The command set in latex-workshop.synctex.path will not be used."
         },
         "latex-workshop.chktex.enabled": {
+          "scope": "resource",
           "type": "boolean",
           "default": false,
           "markdownDescription": "Enable linting LaTeX with ChkTeX. Check `latex-workshop.chktex.run` to control when the linting is executed if this config is set to `true`."
         },
         "latex-workshop.chktex.run": {
+          "scope": "resource",
           "type": "string",
           "enum": [
             "onSave",
@@ -1513,11 +1538,13 @@
           "markdownDescription": "When LaTeX should be linted by ChkTeX.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`. It also implies `onSave`."
         },
         "latex-workshop.chktex.path": {
+          "scope": "resource",
           "type": "string",
           "default": "chktex",
           "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `latex-workshop.chktex.args.*` and required arguments to form a complete command of ChkTeX."
         },
         "latex-workshop.chktex.args.active": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -1546,16 +1573,19 @@
           "markdownDescription": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX. Arguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
         "latex-workshop.chktex.delay": {
+          "scope": "resource",
           "type": "number",
           "default": 500,
           "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing. This config only matters when `latex-workshop.chktex.run` is set to `onType`."
         },
         "latex-workshop.chktex.convertOutput.column.enabled": {
+          "scope": "resource",
           "type": "boolean",
           "default": true,
           "markdownDescription": "Enable converting ChkTeX outputs' column numbers for non-ASCII characters."
         },
         "latex-workshop.chktex.convertOutput.column.chktexrcTabSize": {
+          "scope": "resource",
           "type": "number",
           "default": -1,
           "markdownDescription": "Write the `TabSize` number from `.chktexrc`. The default value \"-1\" means that LaTeX Workshop will try to find `.chktexrc` and to read the value from it."
@@ -1670,6 +1700,7 @@
           "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets."
         },
         "latex-workshop.intellisense.file.exclude": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -1703,6 +1734,7 @@
           "markdownDescription": "Patterns to ignore in file completion"
         },
         "latex-workshop.intellisense.file.base": {
+          "scope": "resource",
           "type": "string",
           "enum": [
             "root relative",
@@ -1810,6 +1842,7 @@
           "markdownDescription": "Define the location of the latexindent executable file."
         },
         "latex-workshop.latexindent.args": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"

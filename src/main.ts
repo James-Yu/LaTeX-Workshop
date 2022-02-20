@@ -175,7 +175,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         if (!extension.manager.hasTexId(e.document.languageId)) {
             return
         }
-        extension.linter.lintActiveFileIfEnabledAfterInterval()
+        extension.linter.lintActiveFileIfEnabledAfterInterval(e.document)
         const cache = extension.manager.getCachedContent(e.document.fileName)
         if (cache === undefined) {
             return

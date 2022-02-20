@@ -34,8 +34,15 @@ abstract class InputAbstract implements IProvider {
     abstract provideDirOnly(importFromDir: string): boolean
 
 
-    private filterIgnoredFiles(files: string[], baseDir: string): string[] {
-        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
+    /**
+     * Filter a list of completion paths
+     *
+     * @param document The textDocumt from which the filtering was launch
+     * @param files The list of files to filter
+     * @param baseDir The base directory to resolve paths from
+     */
+    private filterIgnoredFiles(document: vscode.TextDocument, files: string[], baseDir: string): string[] {
+        const excludeGlob = (Object.keys(vscode.workspace.getConfiguration('files', null).get('exclude') || {})).concat(vscode.workspace.getConfiguration('latex-workshop', document.uri).get('intellisense.file.exclude') || [] ).concat(ignoreFiles)
         return files.filter(file => {
             const filePath = path.resolve(baseDir, file)
             return !micromatch.isMatch(filePath, excludeGlob, {basename: true})
@@ -101,7 +108,7 @@ abstract class InputAbstract implements IProvider {
             }
             try {
                 let files = fs.readdirSync(dir)
-                files = this.filterIgnoredFiles(files, dir)
+                files = this.filterIgnoredFiles(document, files, dir)
 
                 files.forEach(file => {
                     const filePath = path.resolve(dir, file)
@@ -154,7 +161,7 @@ export class Input extends InputAbstract {
         if (command === 'includegraphics' && this.graphicsPath.length > 0) {
             baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
         } else {
-            const baseConfig = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.file.base')
+            const baseConfig = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(currentFile)).get('intellisense.file.base')
             const baseDirCurrentFile = path.dirname(currentFile)
             switch (baseConfig) {
                 case 'root relative':

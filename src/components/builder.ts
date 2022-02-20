@@ -93,7 +93,7 @@ export class Builder {
     }
 
     private async preprocess(): Promise<() => void> {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceRootDirUri())
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
         setTimeout(() => this.disableBuildAfterSave = false, configuration.get('latex.autoBuild.interval', 1000) as number)
@@ -249,7 +249,7 @@ export class Builder {
             this.extension.logger.clearCompilerMessage()
         }
         if (index > 0) {
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
             if (configuration.get('latex.build.clearLog.everyRecipeStep.enabled')) {
                 this.extension.logger.clearCompilerMessage()
             }
@@ -320,7 +320,7 @@ export class Builder {
                 this.extension.logger.addLogMessage(`The environment variable $Path: ${envVarsPath}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
 
-                const configuration = vscode.workspace.getConfiguration('latex-workshop')
+                const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
                 if (!this.disableCleanAndRetry && configuration.get('latex.autoBuild.cleanAndRetry.enabled')) {
                     this.disableCleanAndRetry = true
                     if (signal !== 'SIGTERM') {
@@ -370,7 +370,7 @@ export class Builder {
         this.extension.viewer.refreshExistingViewer(rootFile)
         this.extension.completer.reference.setNumbersFromAuxFile(rootFile)
         await this.extension.manager.parseFlsFile(rootFile)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         // If the PDF viewer is internal, we call SyncTeX in src/components/viewer.ts.
         if (configuration.get('view.pdf.viewer') === 'external' && configuration.get('synctex.afterBuild.enabled')) {
             const pdfFile = this.extension.manager.tex2pdf(rootFile)
@@ -385,7 +385,7 @@ export class Builder {
 
     private createSteps(rootFile: string, languageId: string, recipeName: string | undefined): StepCommand[] | undefined {
         let steps: StepCommand[] = []
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
 
         const [magicTex, magicBib] = this.findProgramMagic(rootFile)
         if (recipeName === undefined && magicTex && !configuration.get('latex.build.forceRecipeUsage')) {

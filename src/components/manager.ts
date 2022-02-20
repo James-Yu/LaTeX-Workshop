@@ -169,7 +169,7 @@ export class Manager {
             return './'
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
         const outDir = configuration.get('latex.outDir') as string
         const out = utils.replaceArgumentPlaceholders(texPath, this.extension.builder.tmpDir)(outDir)
         return path.normalize(out).split(path.sep).join('/')
@@ -251,6 +251,15 @@ export class Manager {
 
     set rootFileLanguageId(id: string | undefined) {
         this.rootFilesLanguageIds[this.workspaceRootDirUri] = id
+    }
+
+    getWorkspaceRootDirUri(): vscode.Uri | undefined {
+        try {
+            const uri = vscode.Uri.parse(this.workspaceRootDirUri, true)
+            return uri
+        } catch (_) {
+           return undefined
+        }
     }
 
     private inferLanguageId(filename: string): string | undefined {
@@ -420,7 +429,7 @@ export class Manager {
             return undefined
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.getWorkspaceRootDirUri())
         const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
         const rootFilesIncludeGlob = '{' + rootFilesIncludePatterns.join(',') + '}'
         const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
@@ -886,7 +895,7 @@ export class Manager {
             return
         }
         this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             return this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
@@ -895,7 +904,7 @@ export class Manager {
     }
 
     buildOnFileChanged(file: string, bibChanged: boolean = false) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
             return
         }
@@ -903,7 +912,7 @@ export class Manager {
     }
 
     buildOnSaveIfEnabled(file: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
             return
         }
