@@ -831,7 +831,7 @@
               ]
             }
           ],
-          "markdownDescription": "Define LaTeX compiling recipes.\nEach recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`.\nBy default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
+          "markdownDescription": "Define LaTeX compiling recipes. Each recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`. By default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
         },
         "latex-workshop.latex.recipe.default": {
           "type": "string",
@@ -957,7 +957,7 @@
               "env": {}
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes.\nEach tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths.\nPlaceholders `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%` are available. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
+          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. Placeholders `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%` are available. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
         "latex-workshop.latex.magic.args": {
           "type": "array",
@@ -985,7 +985,7 @@
         "latex-workshop.latex.external.build.command": {
           "type": "string",
           "default": "",
-          "markdownDescription": "The external command to execute when calling latex-workshop.build.\nThis is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism."
+          "markdownDescription": "The external command to execute when calling latex-workshop.build. This is useful when compiling relies on a Makefile or a bespoke script. When defined, it completely bypasses the recipes and root file detection mechanism."
         },
         "latex-workshop.latex.external.build.args": {
           "type": "array",
@@ -1003,7 +1003,7 @@
         "latex-workshop.latex.outDir": {
           "type": "string",
           "default": "%DIR%",
-          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located.\nBoth relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash.\nThe LaTeX toolchain should output files to this path.\nFor a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
+          "markdownDescription": "The directory where the extension tries to find project files (e.g., PDF and SyncTeX files) are located. Both relative and absolute paths are supported. Relative path start from the root file location, so beware if it is located in sub-directory. The path must not contain a trailing slash. The LaTeX toolchain should output files to this path. For a list of supported placeholders, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
         },
         "latex-workshop.latex.texDirs": {
           "type": "array",
@@ -1041,7 +1041,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "List of directories where to look for `.bib` files.\nAbsolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
+          "markdownDescription": "List of directories where to look for `.bib` files. Absolute paths are required. This setting is only used by the intellisense feature, you may also need to set the environment variable `BIBINPUTS` properly for the LaTeX compiler to find the `.bib` files."
         },
         "latex-workshop.latex.search.rootFiles.include": {
           "type": "array",
@@ -1053,7 +1053,7 @@
             "**/*.rnw",
             "**/*.Rnw"
           ],
-          "markdownDescription": "Patterns of files to consider for the root detection mechanism.\nRelative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here.\nIf you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
+          "markdownDescription": "Patterns of files to consider for the root detection mechanism. Relative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here. If you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
           "type": "array",
@@ -1061,7 +1061,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "Patterns of files to exclude from the root detection mechanism.\nSee also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
+          "markdownDescription": "Patterns of files to exclude from the root detection mechanism. See also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
         },
         "latex-workshop.latex.rootFile.useSubFile": {
           "type": "boolean",
@@ -1129,7 +1129,7 @@
             "**/Library/Application Support/MiKTeX/texmfs/**",
             "/dev/null"
           ],
-          "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild.\nThis property must be an array of glob patterns. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
+          "markdownDescription": "Files to ignore from the watching mechanism used for triggering autobuild. This property must be an array of glob patterns. The patterns are matched against the absolute file path. To ignore everything inside the `texmf` tree, `**/texmf/**` can be used."
         },
         "latex-workshop.latex.autoBuild.run": {
           "type": "string",
@@ -1144,7 +1144,7 @@
             "Auto build whenever a dependency file changes on disk"
           ],
           "default": "onFileChange",
-          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe.\n`onSave` builds the project upon saving a `tex` file in vscode.\n`onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications.\nNote `onSave` is more restrictive than `onFileChange` "
+          "markdownDescription": "When the extension shall auto build LaTeX project using the default (first) recipe. `onSave` builds the project upon saving a `tex` file in vscode. `onFileChange` builds the project upon detecting a file change in any of the dependencies, even modified by other applications. Note `onSave` is more restrictive than `onFileChange` "
         },
         "latex-workshop.latex.autoBuild.interval": {
           "type": "integer",
@@ -1154,12 +1154,12 @@
         "latex-workshop.latex.autoBuild.cleanAndRetry.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Delete LaTeX auxiliary files when errors occur during build and retry.\nThis property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
+          "markdownDescription": "Delete LaTeX auxiliary files when errors occur during build and retry. This property defines whether LaTeX Workshop will try to clean and build the project once again after errors happen in the build toolchain."
         },
         "latex-workshop.latex.build.clearLog.everyRecipeStep.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Clear the LaTeX Compiler logs before every step of a recipe.\nSet this property to false to keep the logs of all tools in a recipe."
+          "markdownDescription": "Clear the LaTeX Compiler logs before every step of a recipe. Set this property to false to keep the logs of all tools in a recipe."
         },
         "latex-workshop.latex.autoClean.run": {
           "type": "string",
@@ -1174,7 +1174,7 @@
             "Clean after build, be it successful or not"
           ],
           "default": "never",
-          "markdownDescription": "When LaTeX auxiliary files should be deleted.\nThe folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n`onFailed` cleans the project when compilation fails. `onBuilt` cleans the project when compilation is terminated, whether successful or failed."
+          "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `latex-workshop.latex.outDir`. `onFailed` cleans the project when compilation fails. `onBuilt` cleans the project when compilation is terminated, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "type": "boolean",
@@ -1211,7 +1211,7 @@
             "*.nav",
             "*.vrb"
           ],
-          "markdownDescription": "Files to clean.\nThis property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
+          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
         },
         "latex-workshop.latex.clean.command": {
           "type": "string",
@@ -1259,7 +1259,7 @@
             "subsection",
             "subsubsection"
           ],
-          "markdownDescription": "The section names of LaTeX outline hierarchy. It is also used by the folding mechanism.\nThis property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`. Reload VSCode after changing the value."
+          "markdownDescription": "The section names of LaTeX outline hierarchy. It is also used by the folding mechanism. This property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`. Reload VSCode after changing the value."
         },
         "latex-workshop.view.outline.commands": {
           "type": "array",
@@ -1284,7 +1284,7 @@
         "latex-workshop.view.autoFocus.enabled": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Auto focus the LaTeX view when switching from non-tex to tex files.\nThis will cause the view to appear consistently upon activating the extension."
+          "markdownDescription": "Auto focus the LaTeX view when switching from non-tex to tex files. This will cause the view to appear consistently upon activating the extension."
         },
         "latex-workshop.view.pdf.viewer": {
           "type": "string",
@@ -1364,7 +1364,7 @@
         "latex-workshop.view.pdf.external.viewer.command": {
           "type": "string",
           "default": "",
-          "markdownDescription": "The command to execute when using external viewer.\nThis function is not officially supported."
+          "markdownDescription": "The command to execute when using external viewer. This function is not officially supported."
         },
         "latex-workshop.view.pdf.external.viewer.args": {
           "type": "array",
@@ -1374,12 +1374,12 @@
           "default": [
             "%PDF%"
           ],
-          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.viewer.command` when using external viewer.\nThis function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.viewer.command` when using external viewer. This function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
         },
         "latex-workshop.view.pdf.external.synctex.command": {
           "type": "string",
           "default": "",
-          "markdownDescription": "The command to execute when forward synctex to external viewer.\nThis function is not officially supported."
+          "markdownDescription": "The command to execute when forward synctex to external viewer. This function is not officially supported."
         },
         "latex-workshop.view.pdf.external.synctex.args": {
           "type": "array",
@@ -1391,12 +1391,12 @@
             "%PDF%",
             "%TEX%"
           ],
-          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.synctex.args` when forward synctex to external viewer.\n%LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
+          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.synctex.args` when forward synctex to external viewer. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
         },
         "latex-workshop.view.pdf.zoom": {
           "type": "string",
           "default": "auto",
-          "markdownDescription": "The default zoom level of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `auto`, `page-actual`, `page-fit`, `page-width`, and one-based scale values (e.g., 0.5 for 50%, 2.0 for 200%)."
+          "markdownDescription": "The default zoom level of the PDF viewer. This default value will be passed to the viewer upon opening. Possible values are `auto`, `page-actual`, `page-fit`, `page-width`, and one-based scale values (e.g., 0.5 for 50%, 2.0 for 200%)."
         },
         "latex-workshop.view.pdf.trim": {
           "type": "number",
@@ -1418,12 +1418,12 @@
         "latex-workshop.view.pdf.scrollMode": {
           "type": "number",
           "default": 0,
-          "markdownDescription": "The default scroll mode of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `0` (vertical), `1`(horizontal) and `2` (wrapped)."
+          "markdownDescription": "The default scroll mode of the PDF viewer. This default value will be passed to the viewer upon opening. Possible values are `0` (vertical), `1`(horizontal) and `2` (wrapped)."
         },
         "latex-workshop.view.pdf.spreadMode": {
           "type": "number",
           "default": 0,
-          "markdownDescription": "The default spread mode of the PDF viewer.\nThis default value will be passed to the viewer upon opening. Possible values are `0` (none), `1` (odd) and `2` (even)."
+          "markdownDescription": "The default spread mode of the PDF viewer. This default value will be passed to the viewer upon opening. Possible values are `0` (none), `1` (odd) and `2` (even)."
         },
         "latex-workshop.view.pdf.hand": {
           "type": "boolean",
@@ -1450,7 +1450,7 @@
         "latex-workshop.view.pdf.invert": {
           "type": "number",
           "default": 0,
-          "markdownDescription": "Define the CSS invert filter level of the PDF viewer.\nThis config can invert the color of PDF. Possible values are from 0 to 1."
+          "markdownDescription": "Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1."
         },
         "latex-workshop.view.pdf.invertMode.brightness": {
           "type": "number",
@@ -1480,7 +1480,7 @@
         "latex-workshop.synctex.path": {
           "type": "string",
           "default": "synctex",
-          "markdownDescription": "Define the location of SyncTeX executive file.\nAdditional arguments, e.g., synctex modes and position of click, will be appended to this command."
+          "markdownDescription": "Define the location of SyncTeX executive file. Additional arguments, e.g., synctex modes and position of click, will be appended to this command."
         },
         "latex-workshop.synctex.afterBuild.enabled": {
           "type": "boolean",
@@ -1495,7 +1495,7 @@
         "latex-workshop.chktex.enabled": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable linting LaTeX with ChkTeX.\nCheck `latex-workshop.chktex.run` to control when the linting is executed if this config is set to `true`."
+          "markdownDescription": "Enable linting LaTeX with ChkTeX. Check `latex-workshop.chktex.run` to control when the linting is executed if this config is set to `true`."
         },
         "latex-workshop.chktex.run": {
           "type": "string",
@@ -1508,12 +1508,12 @@
             "Lint the active document when input is stopped"
           ],
           "default": "onSave",
-          "markdownDescription": "When LaTeX should be linted by ChkTeX.\nIf set to `onSave`, the whole LaTeX project will be linted upon saving.\nIf set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
+          "markdownDescription": "When LaTeX should be linted by ChkTeX. If set to `onSave`, the whole LaTeX project will be linted upon saving. If set to `onType`, the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`, besides the behavior of `onSave`."
         },
         "latex-workshop.chktex.path": {
           "type": "string",
           "default": "chktex",
-          "markdownDescription": "Define the location of ChkTeX executive file.\nThis command will be joint with `latex-workshop.chktex.args.*` and required arguments to form a complete command of ChkTeX."
+          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `latex-workshop.chktex.args.*` and required arguments to form a complete command of ChkTeX."
         },
         "latex-workshop.chktex.args.active": {
           "type": "array",
@@ -1527,7 +1527,7 @@
             "-e16",
             "-q"
           ],
-          "markdownDescription": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
+          "markdownDescription": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX. Arguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
         "latex-workshop.chktex.args.root": {
           "type": "array",
@@ -1541,12 +1541,12 @@
             "-e16",
             "-q"
           ],
-          "markdownDescription": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
+          "markdownDescription": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX. Arguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
         },
         "latex-workshop.chktex.delay": {
           "type": "number",
           "default": 500,
-          "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing.\nThis config only matters when `latex-workshop.chktex.run` is set to `onType`."
+          "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing. This config only matters when `latex-workshop.chktex.run` is set to `onType`."
         },
         "latex-workshop.chktex.convertOutput.column.enabled": {
           "type": "boolean",
@@ -1561,12 +1561,12 @@
         "latex-workshop.check.duplicatedLabels.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable checking for duplicated labels.\nA new check is triggered every time the intellisense data is updated, see `latex-workshop.intellisense.update.aggressive.enabled`."
+          "markdownDescription": "Enable checking for duplicated labels. A new check is triggered every time the intellisense data is updated, see `latex-workshop.intellisense.update.aggressive.enabled`."
         },
         "latex-workshop.texcount.path": {
           "type": "string",
           "default": "texcount",
-          "markdownDescription": "Define the location of TeXCount executive file/script.\nThis command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
+          "markdownDescription": "Define the location of TeXCount executive file/script. This command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
         },
         "latex-workshop.texcount.args": {
           "type": "array",
@@ -1574,7 +1574,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "TeXCount arguments to count words in the LaTeX documents of the entire project from the root file, or the current document.\nArguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
+          "markdownDescription": "TeXCount arguments to count words in the LaTeX documents of the entire project from the root file, or the current document. Arguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
         },
         "latex-workshop.texcount.autorun": {
           "type": "string",
@@ -1597,12 +1597,12 @@
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Defines whether the extension aggressively parses the changed content after stopped typing.\nDisable this config will let the extension only update intellisense after saving changed files."
+          "markdownDescription": "Defines whether the extension aggressively parses the changed content after stopped typing. Disable this config will let the extension only update intellisense after saving changed files."
         },
         "latex-workshop.intellisense.update.delay": {
           "type": "number",
           "default": 1000,
-          "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing.\nThis config works only when `intellisense.update.aggressive.enabled` is enabled. Lower this value will let the extension to know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computation burden."
+          "markdownDescription": "Defines the delay in milliseconds for the extension to update current active file content for intellisense after stopped typing. This config works only when `intellisense.update.aggressive.enabled` is enabled. Lower this value will let the extension to know newly defined commands/references/environments more quickly, at the cost of more frequent content parsing: more computation burden."
         },
         "latex-workshop.intellisense.citation.type": {
           "type": "string",
@@ -1736,7 +1736,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "List of extra packages to always add to the auto-completion mechanism.\nWhen `latex-workshop.intellisense.package.enabled` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
+          "markdownDescription": "List of extra packages to always add to the auto-completion mechanism. When `latex-workshop.intellisense.package.enabled` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
         },
         "latex-workshop.intellisense.package.env.enabled": {
           "type": "boolean",
@@ -1795,7 +1795,7 @@
         "latex-workshop.message.log.show": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Display LaTeX Workshop debug log in output panel.\nThis property defines whether LaTeX Workshop will output its debug log to the log panel."
+          "markdownDescription": "Display LaTeX Workshop debug log in output panel. This property defines whether LaTeX Workshop will output its debug log to the log panel."
         },
         "latex-workshop.message.convertFilenameEncoding": {
           "type": "boolean",
@@ -1823,7 +1823,7 @@
         "latex-workshop.docker.enabled": {
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable docker-based LaTeX distribution support.\nDo not set this item to `true` unless you are aware of what it means.\nThis extension will use the images defined in `latex-workshop.docker.image.latex` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
+          "markdownDescription": "Enable docker-based LaTeX distribution support. Do not set this item to `true` unless you are aware of what it means. This extension will use the images defined in `latex-workshop.docker.image.latex` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
         },
         "latex-workshop.docker.image.latex": {
           "type": "string",
@@ -1968,7 +1968,7 @@
         "latex-workshop.intellisense.useTabStops.enabled": {
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Many snippets use PlaceHolders of the form ${\\d:some_text} for their argument. You may prefer to use TabStops ${\\d} instead, which allows for direct call to intellisense again. Default is true.\nReload vscode to make this configuration effective."
+          "markdownDescription": "Many snippets use PlaceHolders of the form ${\\d:some_text} for their argument. You may prefer to use TabStops ${\\d} instead, which allows for direct call to intellisense again. Default is true. Reload vscode to make this configuration effective."
         },
         "latex-workshop.intellisense.citation.backend": {
           "type": "string",
@@ -2012,7 +2012,7 @@
         "latex-workshop.texdoc.path": {
           "type": "string",
           "default": "texdoc",
-          "markdownDescription": "Define the location of texdoc executable.\nThis command is used to show a package documentation."
+          "markdownDescription": "Define the location of texdoc executable. This command is used to show a package documentation."
         },
         "latex-workshop.texdoc.args": {
           "type": "array",
@@ -2022,7 +2022,7 @@
           "default": [
             "--view"
           ],
-          "markdownDescription": "Texdoc arguments to see a package documentation.\nArguments must be in separate strings in the array. The package name is automatically appended to the arguments."
+          "markdownDescription": "Texdoc arguments to see a package documentation. Arguments must be in separate strings in the array. The package name is automatically appended to the arguments."
         },
         "latex-workshop.bibtex-format.tab": {
           "type": "string",
