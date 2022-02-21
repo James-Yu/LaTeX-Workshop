@@ -7,6 +7,7 @@ import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
 import {PdfFilePathEncoder} from './serverlib/encodepath'
+import { EventEmitter } from 'stream'
 
 class WsServer extends ws.Server {
     private readonly extension: Extension
@@ -36,15 +37,22 @@ class WsServer extends ws.Server {
 
 }
 
+const ServerStartedEvent = 'serverstarted'
+
 export class Server {
     private readonly extension: Extension
     private readonly httpServer: http.Server
     private address?: AddressInfo
     readonly pdfFilePathEncoder: PdfFilePathEncoder
     private validOriginUri: vscode.Uri | undefined
+    readonly serverStarted: Promise<void>
+    private readonly eventEmitter = new EventEmitter()
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.serverStarted = new Promise((resolve) => {
+            this.eventEmitter.on(ServerStartedEvent, () => resolve() )
+        })
         this.pdfFilePathEncoder = new PdfFilePathEncoder(extension)
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
         this.initializeHttpServer()
@@ -79,6 +87,7 @@ export class Server {
                 this.validOriginUri = await this.obtainValidOrigin(address.port)
                 this.extension.logger.addLogMessage(`[Server] valdOrigin is ${this.validOrigin}`)
                 this.initializeWsServer()
+                this.eventEmitter.emit(ServerStartedEvent)
             } else {
                 this.extension.logger.addLogMessage(`[Server] Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
             }

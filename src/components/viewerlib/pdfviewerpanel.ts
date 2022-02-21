@@ -46,6 +46,7 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     }
 
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
+        await this.extension.server.serverStarted
         this.extension.logger.addLogMessage(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(argState)}`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined
@@ -84,6 +85,7 @@ export class PdfViewerPanelService {
     }
 
     async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
+        await this.extension.server.serverStarted
         const htmlContent = await this.getPDFViewerContent(pdfFileUri)
         const panel = vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFileUri.path), viewColumn, {
             enableScripts: true,
