@@ -175,7 +175,7 @@ The code for this extension is available on github at: https://github.com/James-
 
 - :smile: Star this project on GitHub and Visual Studio Marketplace
 - :blush: Leave a comment
-- :relaxed: [Spare me some coffee via Paypal](https://www.paypal.me/JamesJQYu)
+- :relaxed: Thank the develops and community for their effort.
 
 ## License
 
