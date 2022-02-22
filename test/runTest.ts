@@ -3,7 +3,7 @@ import * as process from 'process'
 import * as fs from 'fs'
 import * as glob from 'glob'
 import * as tmpFile from 'tmp'
-import { runTests } from 'vscode-test'
+import { runTests } from '@vscode/test-electron'
 
 function writeSettingsJson(userDataDir: string) {
     const configDir = path.join(userDataDir, 'User')
