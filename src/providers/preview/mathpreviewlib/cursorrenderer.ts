@@ -6,8 +6,8 @@ import {TexMathEnv} from './texmathenvfinder'
 
 export class CursorRenderer {
     private readonly extension: Extension
-    prevTeXString?: string
-    prevAst?: latexParser.LatexAst
+    private currentTeXString: string | undefined
+    private currentAst: latexParser.LatexAst | undefined
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -61,10 +61,25 @@ export class CursorRenderer {
         return {line, character}
     }
 
+    isInText(findResult: latexParser.FindResult<latexParser.Node, latexParser.Node> | undefined): boolean {
+        let parent = findResult?.parent
+        while (parent) {
+            if (latexParser.isAmsMathTextCommand(parent.node)) {
+                return true
+            }
+            parent = parent.parent
+        }
+        return false
+    }
+
     async insertCursor(texMath: TexMathEnv, cursorPos: vscode.Position, cursor: string) {
         const cursorPosInSnippet = this.cursorPosInSnippet(texMath, cursorPos)
         const arry = texMath.texString.split('\n')
-        const cursorNode = await this.nodeAt(texMath, cursorPos)
+        const findResult = await this.nodeAt(texMath, cursorPos)
+        const cursorNode = findResult?.node
+        if (this.isInText(findResult)){
+            return texMath.texString
+        }
         if (!cursorNode || !cursorNode.location) {
             const {line, character} = this.cursorPosInSnippet(texMath, cursorPos)
             const curLine = arry[line]
@@ -105,12 +120,12 @@ export class CursorRenderer {
 
     async nodeAt(texMath: TexMathEnv, cursorPos: vscode.Position) {
         let ast: latexParser.LatexAst | undefined
-        if (texMath.texString === this.prevTeXString && this.prevAst) {
-            ast = this.prevAst
+        if (texMath.texString === this.currentTeXString && this.currentAst) {
+            ast = this.currentAst
         } else {
             ast = await this.extension.pegParser.parseLatex(texMath.texString, {enableMathCharacterLocation: true})
-            this.prevAst = ast
-            this.prevTeXString = texMath.texString
+            this.currentAst = ast
+            this.currentTeXString = texMath.texString
         }
         if (!ast) {
             return
@@ -121,7 +136,7 @@ export class CursorRenderer {
         if (!result) {
             return
         }
-        return result.node
+        return result
     }
 
     async renderCursor(document: vscode.TextDocument, texMath: TexMathEnv, thisColor: string): Promise<string> {
