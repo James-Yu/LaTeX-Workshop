@@ -133,9 +133,6 @@ export class CursorRenderer {
         const cursorPosInSnippet = this.cursorPosInSnippet(texMath, cursorPos)
         const cursorLocInSnippet = {line: cursorPosInSnippet.line + 1, column: cursorPosInSnippet.character + 1}
         const result = latexParser.findNodeAt(ast.content, cursorLocInSnippet)
-        if (!result) {
-            return
-        }
         return result
     }
 
