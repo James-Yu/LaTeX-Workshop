@@ -50,4 +50,20 @@ suite('Multi-root workspace test suite', () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
+
+    runTestWithFixture('fixture003', 'basic build with forceRecipeUsage: true', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 'A.tex'
+        const pdfFileName = 'A.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
+
+
 })
