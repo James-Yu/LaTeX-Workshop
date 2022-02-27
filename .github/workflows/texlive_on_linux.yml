@@ -48,7 +48,4 @@ jobs:
     - run: |
         npm ci
         npm run compile
-    - name: Run tests
-      uses: GabrielBB/xvfb-action@v1.0
-      with:
-        run: npm run test
+    - run: xvfb-run -a npm run test
