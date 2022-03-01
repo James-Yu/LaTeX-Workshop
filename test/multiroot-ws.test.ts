@@ -6,6 +6,9 @@ import {
     executeVscodeCommandAfterActivation,
     getFixtureDir,
     runTestWithFixture,
+    waitLatexWorkshopActivated,
+    waitRootFileFound,
+    isDockerEnabled
 } from './utils'
 
 
@@ -65,5 +68,59 @@ suite('Multi-root workspace test suite', () => {
         })
     })
 
+    //
+    // Auto build tests
+    //
+    runTestWithFixture('fixture010', 'auto build with subfiles and onSave', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 's.tex'
+        const pdfFileName = 's.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, 'sub', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            const editor = await vscode.window.showTextDocument(doc)
+            await waitLatexWorkshopActivated()
+            await waitRootFileFound()
+            await editor.edit((builder) => {
+                builder.insert(new vscode.Position(2, 0), ' ')
+            })
+            await doc.save()
+        })
+    }, () => isDockerEnabled())
+
+    runTestWithFixture('fixture011', 'auto build main.tex when editing s.tex with onSave', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 's.tex'
+        const pdfFileName = 'A.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            const editor = await vscode.window.showTextDocument(doc)
+            await waitLatexWorkshopActivated()
+            await waitRootFileFound()
+            await editor.edit((builder) => {
+                builder.insert(new vscode.Position(2, 0), ' ')
+            })
+            await doc.save()
+        })
+    })
+
+    runTestWithFixture('fixture012', 'automatically detect root', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 's.tex'
+        const pdfFileName = 'A.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
 
 })
