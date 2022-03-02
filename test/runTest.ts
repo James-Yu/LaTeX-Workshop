@@ -22,7 +22,7 @@ function writeSettingsJson(userDataDir: string) {
     fs.writeFileSync(settingFilePath, settingsJson)
 }
 
-async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion') {
+async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws') {
     const extensionDevelopmentPath = path.resolve(__dirname, '../../')
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
@@ -42,8 +42,11 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
     writeSettingsJson(tmpdir.name)
 
     let firstTime = true
-    for (const testWorkspace of testBuildWorkspaces) {
+    for (let testWorkspace of testBuildWorkspaces) {
         const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
+        if (testWorkspace.indexOf('multiroot-ws') >= 0) {
+            testWorkspace += '/resource.code-workspace'
+        }
         await runTests({
             version: '1.64.2',
             extensionDevelopmentPath,
@@ -71,6 +74,7 @@ async function main() {
         await runTestsOnEachFixture('build')
         await runTestsOnEachFixture('viewer')
         await runTestsOnEachFixture('completion')
+        await runTestsOnEachFixture('multiroot-ws')
     } catch (err) {
         console.error('Failed to run tests')
         process.exit(1)

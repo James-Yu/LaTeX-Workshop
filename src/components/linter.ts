@@ -72,33 +72,30 @@ export class Linter {
     }
 
     lintRootFileIfEnabled() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceRootDirUri())
         if (configuration.get('chktex.enabled') as boolean) {
             void this.lintRootFile()
         }
     }
 
-    lintActiveFileIfEnabledAfterInterval() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    lintActiveFileIfEnabledAfterInterval(document: vscode.TextDocument) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
         if ((configuration.get('chktex.enabled') as boolean) &&
             (configuration.get('chktex.run') as string) === 'onType') {
             const interval = configuration.get('chktex.delay') as number
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
             }
-            this.linterTimeout = setTimeout(() => this.lintActiveFile(), interval)
+            this.linterTimeout = setTimeout(() => this.lintActiveFile(document), interval)
         }
     }
 
-    private async lintActiveFile() {
-        if (!vscode.window.activeTextEditor || !vscode.window.activeTextEditor.document.getText()) {
-            return
-        }
+    private async lintActiveFile(document: vscode.TextDocument) {
         this.extension.logger.addLogMessage('Linter for active file started.')
-        const filePath = vscode.window.activeTextEditor.document.fileName
-        const content = vscode.window.activeTextEditor.document.getText()
+        const filePath = document.fileName
+        const content = document.getText()
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', document)
         const command = configuration.get('chktex.path') as string
         const args = [...(configuration.get('chktex.args.active') as string[])]
         if (!args.includes('-l')) {
@@ -121,7 +118,7 @@ export class Linter {
         }
         // provide the original path to the active file as the second argument, so
         // we report this second path in the diagnostics instead of the temporary one.
-        const tabSize = this.getChktexrcTabSize()
+        const tabSize = this.getChktexrcTabSize(document.fileName)
         this.extension.linterLogParser.parse(stdout, filePath, tabSize)
     }
 
@@ -133,7 +130,7 @@ export class Linter {
         }
 
         const filePath = this.extension.manager.rootFile
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(filePath))
         const command = configuration.get('chktex.path') as string
         const args = [...(configuration.get('chktex.args.active') as string[])]
         if (!args.includes('-l')) {
@@ -154,12 +151,12 @@ export class Linter {
                 return
             }
         }
-        const tabSize = this.getChktexrcTabSize()
+        const tabSize = this.getChktexrcTabSize(filePath)
         this.extension.linterLogParser.parse(stdout, undefined, tabSize)
     }
 
-    private getChktexrcTabSize(): number | undefined {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    private getChktexrcTabSize(file: string): number | undefined {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         const args = configuration.get('chktex.args.active') as string[]
         let filePath: string | undefined
         if (args.includes('-l')) {

@@ -8,7 +8,7 @@ import {getSurroundingCommandRange} from './utils/utils'
 type SnippetsLatexJsonType = typeof import('../snippets/latex.json')
 
 async function quickPickRootFile(rootFile: string, localRootFile: string): Promise<string | undefined> {
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
     const doNotPrompt = configuration.get('latex.rootFile.doNotPrompt') as boolean
     if (doNotPrompt) {
         if (configuration.get('latex.rootFile.useSubFile')) {
@@ -73,8 +73,8 @@ export class Commander {
         }
         this.extension.logger.addLogMessage(`The document of the active editor: ${vscode.window.activeTextEditor.document.uri.toString(true)}`)
         this.extension.logger.addLogMessage(`The languageId of the document: ${vscode.window.activeTextEditor.document.languageId}`)
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const workspace = rootFile ? vscode.Uri.file(rootFile) : vscode.window.activeTextEditor.document.uri
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)
         const externalBuildCommand = configuration.get('latex.external.build.command') as string
         const externalBuildArgs = configuration.get('latex.external.build.args') as string[]
         if (rootFile === undefined && this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
@@ -221,7 +221,7 @@ export class Commander {
                 this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
                 return
             }
-            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceRootDirUri())
             let pdfFile: string | undefined = undefined
             if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
                 pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
