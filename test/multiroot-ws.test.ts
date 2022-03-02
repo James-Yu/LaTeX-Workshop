@@ -68,6 +68,34 @@ suite('Multi-root workspace test suite', () => {
         })
     })
 
+    runTestWithFixture('fixture004', 'detect root with search.rootFiles.include', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, 'main', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    }, () => isDockerEnabled())
+
+    runTestWithFixture('fixture005', 'detect root with search.rootFiles.exclude', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 's.tex'
+        const pdfFileName = 'main.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, 'main', pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, 'sub', texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    }, () => isDockerEnabled())
+
     //
     // Auto build tests
     //
