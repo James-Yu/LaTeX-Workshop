@@ -156,7 +156,7 @@ suite('Multi-root workspace test suite', () => {
     // Test structure and file watcher
     //
 
-    runTestWithFixture('fixture020', 'structure', async () => {
+    runTestWithFixture('fixture020', 'structure and file watcher', async () => {
         const fixtureDir = getFixtureDir()
         const texFileNameA = 'A.tex'
         const texFileNameB = 'B.tex'
@@ -184,7 +184,11 @@ suite('Multi-root workspace test suite', () => {
         })
         await sleep(1000)
         const structure = extension.exports.realExtension?.structureProvider.ds
-        assert.ok(structure && structure[0].fileName === docA.fileName)
+        const filesWatched = extension.exports.realExtension?.manager.getFilesWatched()
+        const isStructureOK = structure && structure.length > 0 && structure[0].fileName === docA.fileName
+        const isWatcherOK = filesWatched && filesWatched.length === 1 && filesWatched[0] === docA.fileName
+        assert.ok(isStructureOK)
+        assert.ok(isWatcherOK)
     })
 
 })

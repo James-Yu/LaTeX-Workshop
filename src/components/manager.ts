@@ -151,6 +151,10 @@ export class Manager {
         }
     }
 
+    getFilesWatched() {
+        return Array.from(this.filesWatched)
+    }
+
     /**
      * Returns the output directory developed according to the input tex path
      * and 'latex.outDir' config. If `texPath` is `undefined`, the default root
