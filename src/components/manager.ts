@@ -84,10 +84,9 @@ export class Manager {
      */
     private readonly cachedContent = Object.create(null) as Content
 
-    private readonly localRootFiles = Object.create(null) as { [key: string]: string | undefined }
-    private readonly rootFilesLanguageIds = Object.create(null) as { [key: string]: string | undefined }
-    // Store one root file for each workspace.
-    private readonly rootFiles = Object.create(null) as { [key: string]: RootFileType | undefined }
+    private _localRootFile: string | undefined
+    private _rootFilesLanguageId: string | undefined
+    private _rootFile: RootFileType | undefined
     private workspaceRootDirUri: string = ''
 
     private readonly extension: Extension
@@ -187,7 +186,7 @@ export class Manager {
      * It is `undefined` before `findRoot` called.
      */
     get rootFile(): string | undefined {
-        const ret = this.rootFiles[this.workspaceRootDirUri]
+        const ret = this._rootFile
         if (ret) {
             if (ret.type === 'filePath') {
                 return ret.filePath
@@ -206,14 +205,14 @@ export class Manager {
 
     set rootFile(root: string | undefined) {
         if (root) {
-            this.rootFiles[this.workspaceRootDirUri] = { type: 'filePath', filePath: root }
+            this._rootFile = { type: 'filePath', filePath: root }
         } else {
-            this.rootFiles[this.workspaceRootDirUri] = undefined
+            this._rootFile = undefined
         }
     }
 
     get rootFileUri(): vscode.Uri | undefined {
-        const root = this.rootFiles[this.workspaceRootDirUri]
+        const root = this._rootFile
         if (root) {
             if (root.type === 'filePath') {
                 return vscode.Uri.file(root.filePath)
@@ -234,23 +233,23 @@ export class Manager {
                 rootFile = { type: 'uri', uri: root }
             }
         }
-        this.rootFiles[this.workspaceRootDirUri] = rootFile
+        this._rootFile = rootFile
     }
 
     get localRootFile() {
-        return this.localRootFiles[this.workspaceRootDirUri]
+        return this._localRootFile
     }
 
     set localRootFile(localRoot: string | undefined) {
-        this.localRootFiles[this.workspaceRootDirUri] = localRoot
+        this._localRootFile = localRoot
     }
 
     get rootFileLanguageId() {
-        return this.rootFilesLanguageIds[this.workspaceRootDirUri]
+        return this._rootFilesLanguageId
     }
 
     set rootFileLanguageId(id: string | undefined) {
-        this.rootFilesLanguageIds[this.workspaceRootDirUri] = id
+        this._rootFilesLanguageId = id
     }
 
     getWorkspaceRootDirUri(): vscode.Uri | undefined {
