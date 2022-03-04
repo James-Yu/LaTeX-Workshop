@@ -1,14 +1,15 @@
+import * as assert from 'assert'
 import * as path from 'path'
 import * as process from 'process'
+import {sleep} from '../src/utils/utils'
 import * as vscode from 'vscode'
 import {
     assertPdfIsGenerated,
     executeVscodeCommandAfterActivation,
-    getFixtureDir,
-    runTestWithFixture,
+    getFixtureDir, isDockerEnabled, runTestWithFixture,
     waitLatexWorkshopActivated,
     waitRootFileFound,
-    isDockerEnabled
+    waitUntil
 } from './utils'
 
 
@@ -149,6 +150,41 @@ suite('Multi-root workspace test suite', () => {
             await vscode.window.showTextDocument(doc)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
+    })
+
+    //
+    // Test structure and file watcher
+    //
+
+    runTestWithFixture('fixture020', 'structure', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileNameA = 'A.tex'
+        const texFileNameB = 'B.tex'
+        const texFilePathA = vscode.Uri.file(path.join(fixtureDir, 'A', texFileNameA))
+        const texFilePathB = vscode.Uri.file(path.join(fixtureDir, 'B', texFileNameB))
+        const docA = await vscode.workspace.openTextDocument(texFilePathA)
+        await vscode.window.showTextDocument(docA)
+        const extension = await waitLatexWorkshopActivated()
+        await waitUntil(() => {
+            const rootFile = extension.exports.realExtension?.manager.rootFile
+            return rootFile === docA.fileName
+        })
+        await sleep(1000)
+        const docB = await vscode.workspace.openTextDocument(texFilePathB)
+        await vscode.window.showTextDocument(docB)
+        await waitUntil(() => {
+            const rootFile = extension.exports.realExtension?.manager.rootFile
+            return rootFile === docB.fileName
+        })
+        await sleep(1000)
+        await vscode.window.showTextDocument(docA)
+        await waitUntil(() => {
+            const rootFile = extension.exports.realExtension?.manager.rootFile
+            return rootFile === docA.fileName
+        })
+        await sleep(1000)
+        const structure = extension.exports.realExtension?.structureProvider.ds
+        assert.ok(structure && structure[0].fileName === docA.fileName)
     })
 
 })
