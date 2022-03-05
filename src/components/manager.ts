@@ -85,7 +85,7 @@ export class Manager {
     private readonly cachedContent = Object.create(null) as Content
 
     private _localRootFile: string | undefined
-    private _rootFilesLanguageId: string | undefined
+    private _rootFileLanguageId: string | undefined
     private _rootFile: RootFileType | undefined
     private workspaceRootDirUri: string = ''
 
@@ -249,11 +249,11 @@ export class Manager {
     }
 
     get rootFileLanguageId() {
-        return this._rootFilesLanguageId
+        return this._rootFileLanguageId
     }
 
     set rootFileLanguageId(id: string | undefined) {
-        this._rootFilesLanguageId = id
+        this._rootFileLanguageId = id
     }
 
     getWorkspaceRootDirUri(): vscode.Uri | undefined {
