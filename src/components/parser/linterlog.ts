@@ -66,7 +66,7 @@ export class LinterLogParser {
     }
 
     private callConvertColumn(column: number, filePathArg: string, line: number, tabSizeArg?: number): number {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceRootDirUri())
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
         if (!configuration.get('chktex.convertOutput.column.enabled', true)) {
             return column
         }

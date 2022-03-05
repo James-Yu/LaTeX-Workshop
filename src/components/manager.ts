@@ -87,7 +87,6 @@ export class Manager {
     private _localRootFile: string | undefined
     private _rootFileLanguageId: string | undefined
     private _rootFile: RootFileType | undefined
-    private workspaceRootDirUri: string = ''
 
     private readonly extension: Extension
     private readonly fileWatcher: chokidar.FSWatcher
@@ -256,13 +255,12 @@ export class Manager {
         this._rootFileLanguageId = id
     }
 
-    getWorkspaceRootDirUri(): vscode.Uri | undefined {
-        try {
-            const uri = vscode.Uri.parse(this.workspaceRootDirUri, true)
-            return uri
-        } catch (_) {
-           return undefined
+    getWorkspaceFolderRootDir(): vscode.WorkspaceFolder | undefined {
+        const rootFileUri = this.rootFileUri
+        if (rootFileUri) {
+            return vscode.workspace.getWorkspaceFolder(rootFileUri)
         }
+        return undefined
     }
 
     private inferLanguageId(filename: string): string | undefined {
@@ -307,28 +305,25 @@ export class Manager {
         return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
 
-    private findWorkspace() {
+    private findWorkspace(): vscode.Uri | undefined {
         const firstDir = vscode.workspace.workspaceFolders?.[0]
         // If no workspace is opened.
         if (!firstDir) {
-            this.workspaceRootDirUri = ''
-            return
+            return undefined
         }
         // If we don't have an active text editor, we can only make a guess.
         // Let's guess the first one.
         if (!vscode.window.activeTextEditor) {
-            this.workspaceRootDirUri = firstDir.uri.toString(true)
-            return
+            return firstDir.uri
         }
         // Get the workspace folder which contains the active document.
         const activeFileUri = vscode.window.activeTextEditor.document.uri
         const workspaceFolder = vscode.workspace.getWorkspaceFolder(activeFileUri)
         if (workspaceFolder) {
-            this.workspaceRootDirUri = workspaceFolder.uri.toString(true)
-            return
+            return workspaceFolder.uri
         }
         // Guess that the first workspace is the chosen one.
-        this.workspaceRootDirUri = firstDir.uri.toString(true)
+        return firstDir.uri
     }
 
     /**
@@ -336,10 +331,8 @@ export class Manager {
      * The found root is also set to `rootFile`.
      */
     async findRoot(): Promise<string | undefined> {
-        this.findWorkspace()
         const wsfolders = vscode.workspace.workspaceFolders?.map(e => e.uri.toString(true))
         this.extension.logger.addLogMessage(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
-        this.extension.logger.addLogMessage(`Current workspaceRootDir: ${this.workspaceRootDirUri}`)
         this.localRootFile = undefined
         const findMethods = [
             () => this.finderUtils.findRootFromMagic(),
@@ -427,12 +420,14 @@ export class Manager {
 
     private async findRootInWorkspace(): Promise<string | undefined> {
         const regex = /\\begin{document}/m
+        const currentWorkspaceDirUri = this.findWorkspace()
+        this.extension.logger.addLogMessage(`Current workspaceRootDir: ${currentWorkspaceDirUri ? currentWorkspaceDirUri.toString(true) : ''}`)
 
-        if (!this.workspaceRootDirUri) {
+        if (!currentWorkspaceDirUri) {
             return undefined
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.getWorkspaceRootDirUri())
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', currentWorkspaceDirUri)
         const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
         const rootFilesIncludeGlob = '{' + rootFilesIncludePatterns.join(',') + '}'
         const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]

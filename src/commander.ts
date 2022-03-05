@@ -221,7 +221,7 @@ export class Commander {
                 this.extension.logger.addLogMessage('Cannot start SyncTeX. The active editor is undefined, or the document is not a TeX document.')
                 return
             }
-            const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceRootDirUri())
+            const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
             let pdfFile: string | undefined = undefined
             if (this.extension.manager.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
                 pdfFile = this.extension.manager.tex2pdf(this.extension.manager.localRootFile)
