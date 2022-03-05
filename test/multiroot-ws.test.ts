@@ -1,6 +1,7 @@
 import * as assert from 'assert'
 import * as path from 'path'
 import * as process from 'process'
+import * as os from 'os'
 import {sleep} from '../src/utils/utils'
 import * as vscode from 'vscode'
 import {
@@ -181,6 +182,6 @@ suite('Multi-root workspace test suite', () => {
         const isWatcherOK = filesWatched && filesWatched.length === 1 && filesWatched[0] === docA.fileName
         assert.ok(isStructureOK, JSON.stringify(structure))
         assert.ok(isWatcherOK, JSON.stringify(filesWatched))
-    })
+    }, () => os.platform() === 'win32')
 
 })
