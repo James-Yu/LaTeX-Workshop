@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as process from 'process'
 
 import {Commander} from './commander'
-import {LaTeXCommandTreeView} from './components/commander'
+import {LaTeXCommandTreeView, LaTeXCommanderProvider} from './components/commander'
 import {Logger} from './components/logger'
 import {LwFileSystem} from './components/lwfs'
 import {Manager} from './components/manager'
@@ -297,6 +297,7 @@ export class Extension {
     readonly texMagician: TeXMagician
     readonly envPair: EnvPair
     readonly section: Section
+    readonly latexCommanderProvider: LaTeXCommanderProvider
     readonly latexCommandTreeView: LaTeXCommandTreeView
     readonly structureViewer: StructureTreeView
     readonly snippetView: SnippetView
@@ -331,7 +332,8 @@ export class Extension {
         this.texMagician = new TeXMagician(this)
         this.envPair = new EnvPair(this)
         this.section = new Section(this)
-        this.latexCommandTreeView = new LaTeXCommandTreeView()
+        this.latexCommanderProvider = new LaTeXCommanderProvider(this)
+        this.latexCommandTreeView = new LaTeXCommandTreeView(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetView = new SnippetView(this)
         this.pegParser = new PEGParser()

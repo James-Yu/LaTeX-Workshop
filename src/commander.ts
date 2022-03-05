@@ -119,7 +119,7 @@ export class Commander {
 
     recipes(recipe?: string) {
         this.extension.logger.addLogMessage('RECIPES command invoked.')
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
         const recipes = configuration.get('latex.recipes') as {name: string}[]
         if (!recipes) {
             return
