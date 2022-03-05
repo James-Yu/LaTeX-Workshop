@@ -142,6 +142,14 @@ export function waitRootFileFound() {
     )
 }
 
+export function waitGivenRootFile(file: string) {
+    return waitUntil( async () => {
+        const extension = await waitLatexWorkshopActivated()
+        const rootFile = extension.exports.realExtension?.manager.rootFile
+        return rootFile === file
+    })
+}
+
 export async function executeVscodeCommandAfterActivation(command: string) {
     await waitLatexWorkshopActivated()
     return vscode.commands.executeCommand(command)

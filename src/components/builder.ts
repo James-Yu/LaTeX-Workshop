@@ -93,7 +93,7 @@ export class Builder {
     }
 
     private async preprocess(): Promise<() => void> {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceRootDirUri())
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
         setTimeout(() => this.disableBuildAfterSave = false, configuration.get('latex.autoBuild.interval', 1000) as number)

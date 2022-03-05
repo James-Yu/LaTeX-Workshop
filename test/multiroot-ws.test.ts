@@ -1,14 +1,16 @@
+import * as assert from 'assert'
 import * as path from 'path'
 import * as process from 'process'
+import * as os from 'os'
+import {sleep} from '../src/utils/utils'
 import * as vscode from 'vscode'
 import {
     assertPdfIsGenerated,
     executeVscodeCommandAfterActivation,
-    getFixtureDir,
-    runTestWithFixture,
+    getFixtureDir, isDockerEnabled, runTestWithFixture,
+    waitGivenRootFile,
     waitLatexWorkshopActivated,
-    waitRootFileFound,
-    isDockerEnabled
+    waitRootFileFound
 } from './utils'
 
 
@@ -150,5 +152,36 @@ suite('Multi-root workspace test suite', () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
     })
+
+    //
+    // Test structure and file watcher
+    //
+
+    runTestWithFixture('fixture020', 'structure and file watcher', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileNameA = 'A.tex'
+        const texFileNameB = 'B.tex'
+        const texFilePathA = vscode.Uri.file(path.join(fixtureDir, 'A', texFileNameA))
+        const texFilePathB = vscode.Uri.file(path.join(fixtureDir, 'B', texFileNameB))
+        const docA = await vscode.workspace.openTextDocument(texFilePathA)
+        await vscode.window.showTextDocument(docA)
+        const extension = await waitLatexWorkshopActivated()
+        await waitGivenRootFile(docA.fileName)
+        await sleep(1000)
+        const docB = await vscode.workspace.openTextDocument(texFilePathB)
+        await vscode.window.showTextDocument(docB)
+        await waitGivenRootFile(docB.fileName)
+        await sleep(1000)
+        await vscode.window.showTextDocument(docA)
+        await waitGivenRootFile(docA.fileName)
+        await sleep(1000)
+
+        const structure = extension.exports.realExtension?.structureProvider.ds
+        const filesWatched = extension.exports.realExtension?.manager.getFilesWatched()
+        const isStructureOK = structure && structure.length > 0 && structure[0].fileName === docA.fileName
+        const isWatcherOK = filesWatched && filesWatched.length === 1 && filesWatched[0] === docA.fileName
+        assert.ok(isStructureOK, JSON.stringify(structure))
+        assert.ok(isWatcherOK, JSON.stringify(filesWatched))
+    }, () => os.platform() === 'win32')
 
 })

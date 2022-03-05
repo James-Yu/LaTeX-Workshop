@@ -72,7 +72,7 @@ export class Linter {
     }
 
     lintRootFileIfEnabled() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceRootDirUri())
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
         if (configuration.get('chktex.enabled') as boolean) {
             void this.lintRootFile()
         }
