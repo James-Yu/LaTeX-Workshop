@@ -133,6 +133,17 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
                     column: node.location.end.column - '}'.length
                 })
             }
+        } else if (latexParser.isMathDelimiters(node)) {
+            return {
+                start: LuPos.from({
+                    line: node.location.start.line,
+                    column: node.location.start.column + node.left.length + node.lcommand.length
+                }),
+                end: LuPos.from({
+                    line: node.location.end.line,
+                    column: node.location.end.column - node.right.length - node.rcommand.length
+                })
+            }
         }
         return
     }
