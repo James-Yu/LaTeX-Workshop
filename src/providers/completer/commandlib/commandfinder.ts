@@ -60,8 +60,8 @@ export class CommandFinder {
                     label: `\\${name}`,
                     kind: vscode.CompletionItemKind.Function,
                     documentation: '`' + name + '`',
-                    insertText: new vscode.SnippetString(name + this.getArgsFromNode(node)),
-                    filterText: name,
+                    insertText: new vscode.SnippetString(name + this.getArgsFromNode(node, true)),
+                    filterText: name + this.getArgsFromNode(node, false),
                     package: ''
                 }
                 if (isTriggerSuggestNeeded(name)) {
@@ -76,8 +76,8 @@ export class CommandFinder {
                     label: `\\${node.name}`,
                     kind: vscode.CompletionItemKind.Function,
                     documentation: '`' + node.name + '`',
-                    insertText: new vscode.SnippetString(node.name + this.getArgsFromNode(node)),
-                    filterText: node.name,
+                    insertText: new vscode.SnippetString(node.name + this.getArgsFromNode(node, true)),
+                    filterText: node.name + this.getArgsFromNode(node, false),
                     package: this.whichPackageProvidesCommand(node.name)
                 }
                 if (isTriggerSuggestNeeded(node.name)) {
@@ -89,20 +89,22 @@ export class CommandFinder {
             if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
                 Array.isArray(node.args) && node.args.length > 0) {
                 const label = (node.args[0].content[0] as latexParser.Command).name
+                let argsTabStop = ''
                 let args = ''
                 if (latexParser.isOptionalArg(node.args[1])) {
                     const numArgs = parseInt((node.args[1].content[0] as latexParser.TextString).content)
                     for (let i = 1; i <= numArgs; ++i) {
-                        args += '{${' + i + '}}'
+                        argsTabStop += '{${' + i + '}}'
                     }
+                    args = '{}'.repeat(numArgs)
                 }
                 if (!cmdList.includes(label)) {
                     const cmd: Suggestion = {
                         label: `\\${label}`,
                         kind: vscode.CompletionItemKind.Function,
                         documentation: '`' + label + '`',
-                        insertText: new vscode.SnippetString(label + args),
-                        filterText: label,
+                        insertText: new vscode.SnippetString(label + argsTabStop),
+                        filterText: label + args,
                         package: 'user-defined'
                     }
                     if (isTriggerSuggestNeeded(label)) {
@@ -125,7 +127,13 @@ export class CommandFinder {
         return cmds
     }
 
-    private getArgsFromNode(node: latexParser.Node): string {
+    private getArgsFromNode(node: latexParser.Node, useTabStops: boolean): string {
+        let tabStop: (n: number) => string
+        if (useTabStops) {
+            tabStop = (i: number) => { return '${' + i + '}' }
+        } else {
+            tabStop = (_: number) => { return '' }
+        }
         let args = ''
         if (!('args' in node)) {
             return args
@@ -135,9 +143,9 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isOptionalArg(arg)) {
-                    args += '[${' + index + '}]'
+                    args += '[' + tabStop(index) + ']'
                 } else {
-                    args += '{${' + index + '}}'
+                    args += '{' + tabStop(index) + '}'
                 }
             })
             return args
@@ -146,7 +154,7 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isCommandParameter(arg)) {
-                    args += '{${' + index + '}}'
+                    args += '{' + tabStop(index) + '}'
                 }
             })
             return args
@@ -187,7 +195,7 @@ export class CommandFinder {
                 kind: vscode.CompletionItemKind.Function,
                 documentation: '`' + result[1] + '`',
                 insertText: new vscode.SnippetString(this.getArgsFromRegResult(result)),
-                filterText: result[1],
+                filterText: result[1] + '{}'.repeat(result.length - 2), // result.length - 2 is the number of arguments
                 package: this.whichPackageProvidesCommand(result[1])
             }
             if (isTriggerSuggestNeeded(result[1])) {
@@ -207,20 +215,22 @@ export class CommandFinder {
                 continue
             }
 
+            let argsTabStop = ''
             let args = ''
             if (result[2]) {
                 const numArgs = parseInt(result[2])
                 for (let i = 1; i <= numArgs; ++i) {
-                    args += '{${' + i + '}}'
+                    argsTabStop += '{${' + i + '}}'
                 }
+                args = '{}'.repeat(numArgs)
             }
 
             const cmd: Suggestion = {
                 label: `\\${result[1]}`,
                 kind: vscode.CompletionItemKind.Function,
                 documentation: '`' + result[1] + '`',
-                insertText: new vscode.SnippetString(result[1] + args),
-                filterText: result[1],
+                insertText: new vscode.SnippetString(result[1] + argsTabStop),
+                filterText: result[1] + args,
                 package: 'user-defined'
             }
             cmds.push(cmd)

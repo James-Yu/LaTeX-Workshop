@@ -102,7 +102,7 @@ export class Command implements IProvider {
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdList.push(this.getCmdName(cmd, true))
+            cmdList.push(this.getCmdName(cmd))
         })
 
         // Insert unimathsymbols
@@ -115,7 +115,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdList.push(this.getCmdName(symbol, true))
+                cmdList.push(this.getCmdName(symbol))
             })
         }
 
@@ -144,10 +144,10 @@ export class Command implements IProvider {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdList.includes(this.getCmdName(cmd, true))) {
+                    if (!cmdList.includes(this.getCmdName(cmd))) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdList.push(this.getCmdName(cmd, true))
+                        cmdList.push(this.getCmdName(cmd))
                     }
                 })
             }
