@@ -28,6 +28,11 @@ export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXComm
     constructor(extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
         this.extension = extension
+        vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
+            if (ev.affectsConfiguration('latex-workshop.latex.recipes', this.extension.manager.getWorkspaceFolderRootDir())) {
+                this.update()
+            }
+        })
         this.buildCommanderTree()
     }
 
