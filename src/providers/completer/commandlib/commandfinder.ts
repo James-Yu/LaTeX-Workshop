@@ -43,7 +43,7 @@ export class CommandFinder {
         this.extension = extension
     }
 
-    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdList: string[] = []): Suggestion[] {
+    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdList: Set<string> = new Set<string>()): Suggestion[] {
         let cmds: Suggestion[] = []
         nodes.forEach(node => {
             cmds = cmds.concat(this.getCmdFromNode(file, node, cmdList))
@@ -51,11 +51,11 @@ export class CommandFinder {
         return cmds
     }
 
-    private getCmdFromNode(file: string, node: latexParser.Node, cmdList: string[] = []): Suggestion[] {
+    private getCmdFromNode(file: string, node: latexParser.Node, cmdList: Set<string> = new Set<string>()): Suggestion[] {
         const cmds: Suggestion[] = []
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
-            if (!cmdList.includes(name)) {
+            if (!cmdList.has(name)) {
                 const cmd: Suggestion = {
                     label: `\\${name}`,
                     kind: vscode.CompletionItemKind.Function,
@@ -68,10 +68,10 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdList.push(name)
+                cmdList.add(name)
             }
         } else if (latexParser.isCommand(node)) {
-            if (!cmdList.includes(node.name)) {
+            if (!cmdList.has(node.name)) {
                 const cmd: Suggestion = {
                     label: `\\${node.name}`,
                     kind: vscode.CompletionItemKind.Function,
@@ -84,7 +84,7 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdList.push(node.name)
+                cmdList.add(node.name)
             }
             if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
                 Array.isArray(node.args) && node.args.length > 0) {
@@ -96,7 +96,7 @@ export class CommandFinder {
                         args += '{${' + i + '}}'
                     }
                 }
-                if (!cmdList.includes(label)) {
+                if (!cmdList.has(label)) {
                     const cmd: Suggestion = {
                         label: `\\${label}`,
                         kind: vscode.CompletionItemKind.Function,
@@ -115,7 +115,7 @@ export class CommandFinder {
                             vscode.Uri.file(file),
                             new vscode.Position(node.location.start.line - 1, node.location.start.column))
                     })
-                    cmdList.push(label)
+                    cmdList.add(label)
                 }
             }
         }
@@ -125,7 +125,13 @@ export class CommandFinder {
         return cmds
     }
 
-    private getArgsFromNode(node: latexParser.Node): string {
+    private getArgsFromNode(node: latexParser.Node, useTabStops: boolean = true): string {
+        let tabStop: (n: number) => string
+        if (useTabStops) {
+            tabStop = (i: number) => { return '${' + i + '}' }
+        } else {
+            tabStop = (_: number) => { return '' }
+        }
         let args = ''
         if (!('args' in node)) {
             return args
@@ -135,9 +141,9 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isOptionalArg(arg)) {
-                    args += '[${' + index + '}]'
+                    args += '[' + tabStop(index) + ']'
                 } else {
-                    args += '{${' + index + '}}'
+                    args += '{' + tabStop(index) + '}'
                 }
             })
             return args
@@ -146,7 +152,7 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isCommandParameter(arg)) {
-                    args += '{${' + index + '}}'
+                    args += '{' + tabStop(index) + '}'
                 }
             })
             return args
@@ -267,7 +273,7 @@ export class CommandFinder {
                 }
                 for (const pkg of cachedPkgs) {
                     const commands: ILwCompletionItem[] = []
-                    this.extension.completer.command.provideCmdInPkg(pkg, commands, [])
+                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new Set<string>())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)
                         if (label.startsWith(cmdName) &&

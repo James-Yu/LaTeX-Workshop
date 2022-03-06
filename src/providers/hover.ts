@@ -73,7 +73,7 @@ export class HoverProvider implements vscode.HoverProvider {
                 return
             }
             cachedCmds.forEach(cmd => {
-                const key = this.extension.completer.command.getCmdName(cmd)
+                const key = this.extension.completer.command.getCmdSignature(cmd)
                 if (key.startsWith(tokenWithoutSlash) &&
                     ((key.length === tokenWithoutSlash.length) ||
                      (key.charAt(tokenWithoutSlash.length) === '[') ||

@@ -94,15 +94,15 @@ export class Command implements IProvider {
             }
         }
         const suggestions: Suggestion[] = []
-        const cmdList: string[] = [] // This holds defined commands without the backslash
+        const cmdList: Set<string> = new Set<string>() // This holds defined commands without the backslash
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
+            if (!useOptionalArgsEntries && this.getCmdSignature(cmd).includes('[')) {
                 return
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdList.push(this.getCmdName(cmd, true))
+            cmdList.add(this.getCmdName(cmd))
         })
 
         // Insert unimathsymbols
@@ -115,7 +115,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdList.push(this.getCmdName(symbol, true))
+                cmdList.add(this.getCmdName(symbol))
             })
         }
 
@@ -144,10 +144,10 @@ export class Command implements IProvider {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdList.includes(this.getCmdName(cmd, true))) {
+                    if (!cmdList.has(this.getCmdName(cmd))) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdList.push(this.getCmdName(cmd, true))
+                        cmdList.add(this.getCmdName(cmd))
                     }
                 })
             }
@@ -199,19 +199,27 @@ export class Command implements IProvider {
     }
 
     /**
-     * Returns the name of `item`. The backward slash, `\`, is removed.
+     * Returns the signature of `item`, ie the name + {} for mandatory arguments + [] for optional arguments.
+     * The backward slash, `\`, is removed.
      *
      * @param item A completion item.
-     * @param removeArgs If `true`, returns a name without arguments.
      */
-    getCmdName(item: Suggestion, removeArgs = false): string {
+    getCmdSignature(item: Suggestion): string {
         const label = item.label.startsWith('\\') ? item.label.slice(1) : item.label
-        const name = item.filterText ? item.filterText : label
-        if (removeArgs) {
-            const i = name.search(/[[{]/)
-            return i > -1 ? name.substring(0, i): name
-        }
-        return name
+        return item.filterText ? item.filterText : label
+    }
+
+    /**
+     * Returns the name of `item` without the arguments
+     * The backward slash, `\`, is removed.
+     *
+     * @param item A completion item.
+     */
+    getCmdName(item: Suggestion): string {
+        const signature = this.getCmdSignature(item)
+        const i = signature.search(/[[{]/)
+        return i > -1 ? signature.substring(0, i): signature
+
     }
 
     getExtraPkgs(languageId: string): string[] {
@@ -346,7 +354,7 @@ export class Command implements IProvider {
         return suggestion
     }
 
-    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
+    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: Set<string>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
@@ -379,12 +387,12 @@ export class Command implements IProvider {
 
         // Insert commands
         pkgEntry.forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
+            if (!useOptionalArgsEntries && this.getCmdSignature(cmd).includes('[')) {
                 return
             }
-            if (!cmdList.includes(this.getCmdName(cmd))) {
+            if (!cmdList.has(this.getCmdSignature(cmd))) {
                 suggestions.push(cmd)
-                cmdList.push(this.getCmdName(cmd))
+                cmdList.add(this.getCmdSignature(cmd))
             }
         })
     }

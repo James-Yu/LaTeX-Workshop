@@ -152,7 +152,7 @@ export class Environment implements IProvider {
         return suggestions
     }
 
-    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
+    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: Set<string>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -182,9 +182,9 @@ export class Environment implements IProvider {
             if (!useOptionalArgsEntries && envName.includes('[')) {
                 return
             }
-            if (!cmdList.includes(envName)) {
+            if (!cmdList.has(envName)) {
                 suggestions.push(env)
-                cmdList.push(envName)
+                cmdList.add(envName)
             }
         })
     }
