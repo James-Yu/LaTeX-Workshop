@@ -3,8 +3,8 @@ import * as vscode from 'vscode'
 
 
 export class LaTeXCommandTreeView {
-    private readonly latexCommander: LaTeXCommanderProvider
     private readonly extension: Extension
+    private readonly latexCommander: LaTeXCommanderProvider
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -19,15 +19,14 @@ export class LaTeXCommandTreeView {
 }
 
 export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXCommand> {
-
+    private readonly extension: Extension
     private readonly _onDidChangeTreeData: vscode.EventEmitter<LaTeXCommand | undefined> = new vscode.EventEmitter<LaTeXCommand | undefined>()
     readonly onDidChangeTreeData: vscode.Event<LaTeXCommand | undefined>
     private commands: LaTeXCommand[] = []
-    private readonly extension: Extension
 
     constructor(extension: Extension) {
-        this.onDidChangeTreeData = this._onDidChangeTreeData.event
         this.extension = extension
+        this.onDidChangeTreeData = this._onDidChangeTreeData.event
         vscode.workspace.onDidChangeConfiguration((ev: vscode.ConfigurationChangeEvent) => {
             if (ev.affectsConfiguration('latex-workshop.latex.recipes', this.extension.manager.getWorkspaceFolderRootDir())) {
                 this.update()
@@ -115,7 +114,6 @@ export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXComm
     }
 
     getTreeItem(element: LaTeXCommand): vscode.TreeItem {
-
         const treeItem: vscode.TreeItem = new vscode.TreeItem(element.label, element.collapsibleState)
         treeItem.command = element.command
         treeItem.iconPath = element.codicon && new vscode.ThemeIcon(element.codicon)
@@ -136,7 +134,6 @@ export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXComm
 }
 
 class LaTeXCommand {
-
     public children: LaTeXCommand[] = []
     public readonly command: vscode.Command | undefined
     public collapsibleState = vscode.TreeItemCollapsibleState.None
