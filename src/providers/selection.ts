@@ -177,13 +177,13 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
 
     private resultToSelectionRange(
         lupos: LuPos,
-        result: ReturnType<typeof latexParser.findNodeAt>
+        findNodeAtResult: ReturnType<typeof latexParser.findNodeAt>
     ): vscode.SelectionRange | undefined {
-        if (!result) {
+        if (!findNodeAtResult) {
             return
         }
-        const curNode = result.node
-        const parentNode = result.parent
+        const curNode = findNodeAtResult.node
+        const parentNode = findNodeAtResult.parent
         const parentSelectionRange = parentNode ? this.resultToSelectionRange(lupos, parentNode) : undefined
         if (!curNode.location) {
             return parentSelectionRange
