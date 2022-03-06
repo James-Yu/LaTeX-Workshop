@@ -8,19 +8,22 @@ interface INode {
 }
 
 interface ILuRange {
-    start: {
-        line: number,
-        column: number
-    },
-    end: {
-        line: number,
-        column: number
-    }
+    start: ILuPos,
+    end: ILuPos
 }
 
-interface ILuRange2 {
-    start: LuPos,
-    end: LuPos
+class LuRange implements ILuRange {
+    readonly start: LuPos
+    readonly end: LuPos
+
+    constructor(arg: {start: ILuPos, end: ILuPos}) {
+        this.start = LuPos.from(arg.start)
+        this.end = LuPos.from(arg.end)
+    }
+
+    contains(pos: ILuPos): boolean {
+        return this.start.isBeforeOrEqual(pos) && this.end.isAfterOrEqual(pos)
+    }
 }
 
 interface ILuPos {
@@ -30,7 +33,7 @@ interface ILuPos {
 
 interface IContent {
     content: latexParser.Node[],
-    contentLuRange: ILuRange2
+    contentLuRange: LuRange
 }
 
 class LuPos implements ILuPos {
@@ -99,51 +102,51 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
         return ret
     }
 
-    private getInnerContentLuRange(node: latexParser.Node): ILuRange2 | undefined {
+    private getInnerContentLuRange(node: latexParser.Node): LuRange | undefined {
         if (latexParser.isEnvironment(node) || latexParser.isMathEnv(node) || latexParser.isMathEnvAligned(node)) {
-            return {
-                start: LuPos.from({
+            return new LuRange({
+                start: {
                     line: node.location.start.line,
                     column: node.location.start.column + '\\begin{}'.length + node.name.length
-                }),
-                end: LuPos.from({
+                },
+                end: {
                     line: node.location.end.line,
                     column: node.location.end.column - '\\end{}'.length - node.name.length
-                })
-            }
+                }
+            })
         } else if (latexParser.isGroup(node) || latexParser.isInlienMath(node)) {
-            return {
-                start: LuPos.from({
+            return new LuRange({
+                start: {
                     line: node.location.start.line,
                     column: node.location.start.column + 1
-                }),
-                end: LuPos.from({
+                },
+                end: {
                     line: node.location.end.line,
                     column: node.location.end.column - 1
-                })
-            }
+                }
+            })
         } else if (latexParser.isLabelCommand(node)) {
-            return {
-                start: LuPos.from({
+            return new LuRange({
+                start: {
                     line: node.location.start.line,
                     column: node.location.start.column + '\\{'.length + node.name.length
-                }),
-                end: LuPos.from({
+                },
+                end: {
                     line: node.location.end.line,
                     column: node.location.end.column - '}'.length
-                })
-            }
+                }
+            })
         } else if (latexParser.isMathDelimiters(node)) {
-            return {
-                start: LuPos.from({
+            return new LuRange({
+                start: {
                     line: node.location.start.line,
                     column: node.location.start.column + node.left.length + node.lcommand.length
-                }),
-                end: LuPos.from({
+                },
+                end: {
                     line: node.location.end.line,
                     column: node.location.end.column - node.right.length - node.rcommand.length
-                })
-            }
+                }
+            })
         }
         return
     }
@@ -152,7 +155,7 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
         lupos: LuPos,
         content: latexParser.Node[],
         sepNodes: latexParser.Node[],
-        innerContentRange: ILuRange2 | undefined
+        innerContentRange: LuRange | undefined
     ): IContent | undefined {
         const startSep = Array.from(sepNodes).reverse().find((node) => node.location && lupos.isAfterOrEqual(node.location.end)) as INode | undefined
         const endSep = sepNodes.find((node) => node.location && lupos.isBeforeOrEqual(node.location.start)) as INode | undefined
@@ -161,14 +164,14 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
         if (!startSepPos || !endSepPos) {
             return
         }
-        let tmpContent = content.filter((node) => node.location && startSepPos.isBeforeOrEqual(node.location.start))
-        tmpContent = tmpContent.filter((node) => node.location && endSepPos.isAfterOrEqual(node.location.end))
+        let innerContent = content.filter((node) => node.location && startSepPos.isBeforeOrEqual(node.location.start))
+        innerContent = innerContent.filter((node) => node.location && endSepPos.isAfterOrEqual(node.location.end))
         return {
-            content: tmpContent,
-            contentLuRange: {
+            content: innerContent,
+            contentLuRange: new LuRange({
                 start: startSepPos,
                 end: endSepPos
-            }
+            })
         }
     }
 
@@ -189,7 +192,7 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
         let curSelectionRange = new vscode.SelectionRange(curRange, parentSelectionRange)
         let innerContentLuRange = this.getInnerContentLuRange(curNode)
         if (innerContentLuRange) {
-            if (innerContentLuRange.start.isAfter(lupos) || innerContentLuRange.end.isBefore(lupos)) {
+            if (!innerContentLuRange.contains(lupos)) {
                 return curSelectionRange
             }
             const newCurRange = toVscodeRange(innerContentLuRange)
