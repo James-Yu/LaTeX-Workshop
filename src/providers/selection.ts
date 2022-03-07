@@ -160,8 +160,9 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
         if (!startSepPos || !endSepPos) {
             return
         }
-        let innerContent = content.filter((node) => node.location && startSepPos.isBeforeOrEqual(node.location.start))
-        innerContent = innerContent.filter((node) => node.location && endSepPos.isAfterOrEqual(node.location.end))
+        const innerContent = content.filter((node) => {
+            return node.location && startSepPos.isBeforeOrEqual(node.location.start) && endSepPos.isAfterOrEqual(node.location.end)
+        })
         return {
             content: innerContent,
             contentLuRange: new LuRange({
