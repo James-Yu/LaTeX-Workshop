@@ -29,7 +29,9 @@ interface ILuPos {
 
 interface IContent {
     content: latexParser.Node[],
-    contentLuRange: LuRange
+    contentLuRange: LuRange,
+    startSep: latexParser.Node | undefined,
+    endSep: latexParser.Node | undefined
 }
 
 class LuPos implements ILuPos {
@@ -168,7 +170,9 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
             contentLuRange: new LuRange({
                 start: startSepPos,
                 end: endSepPos
-            })
+            }),
+            startSep,
+            endSep
         }
     }
 
@@ -203,6 +207,13 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
                 itemNodes = itemNodes.filter((node) => node.name === 'item')
                 newInnerContent = this.findInnerContentIncludingPos(lupos, innerContent, itemNodes, innerContentLuRange)
                 if (newInnerContent) {
+                    if (newInnerContent.startSep?.location) {
+                        const start = LuPos.from(newInnerContent.startSep.location.start)
+                        innerContent = newInnerContent.content
+                        innerContentLuRange = newInnerContent.contentLuRange
+                        const newContentRange = toVscodeRange({start, end:innerContentLuRange.end})
+                        curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
+                    }
                     innerContent = newInnerContent.content
                     innerContentLuRange = newInnerContent.contentLuRange
                     const newContentRange = toVscodeRange(innerContentLuRange)
@@ -212,6 +223,13 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
             const linebreaksNodes = innerContent.filter(latexParser.isLinebreak)
             newInnerContent = this.findInnerContentIncludingPos(lupos, innerContent, linebreaksNodes, innerContentLuRange)
             if (newInnerContent) {
+                if (newInnerContent.endSep?.location) {
+                    const end = LuPos.from(newInnerContent.endSep.location.end)
+                    innerContent = newInnerContent.content
+                    innerContentLuRange = newInnerContent.contentLuRange
+                    const newContentRange = toVscodeRange({start: innerContentLuRange.start, end})
+                    curSelectionRange = new vscode.SelectionRange(newContentRange, curSelectionRange)
+                }
                 innerContent = newInnerContent.content
                 innerContentLuRange = newInnerContent.contentLuRange
                 const newContentRange = toVscodeRange(innerContentLuRange)
