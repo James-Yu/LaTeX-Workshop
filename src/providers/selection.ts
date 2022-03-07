@@ -3,10 +3,6 @@ import * as vscode from 'vscode'
 
 import {Extension} from '../main'
 
-interface INode {
-    location: ILuRange
-}
-
 interface ILuRange {
     start: ILuPos,
     end: ILuPos
@@ -157,10 +153,10 @@ export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
         sepNodes: latexParser.Node[],
         innerContentRange: LuRange | undefined
     ): IContent | undefined {
-        const startSep = Array.from(sepNodes).reverse().find((node) => node.location && lupos.isAfterOrEqual(node.location.end)) as INode | undefined
-        const endSep = sepNodes.find((node) => node.location && lupos.isBeforeOrEqual(node.location.start)) as INode | undefined
-        const startSepPos =startSep ? LuPos.from(startSep.location.end) : innerContentRange?.start
-        const endSepPos = endSep ? LuPos.from(endSep.location.start) : innerContentRange?.end
+        const startSep = Array.from(sepNodes).reverse().find((node) => node.location && lupos.isAfterOrEqual(node.location.end))
+        const endSep = sepNodes.find((node) => node.location && lupos.isBeforeOrEqual(node.location.start))
+        const startSepPos = startSep?.location ? LuPos.from(startSep.location.end) : innerContentRange?.start
+        const endSepPos = endSep?.location ? LuPos.from(endSep.location.start) : innerContentRange?.end
         if (!startSepPos || !endSepPos) {
             return
         }
