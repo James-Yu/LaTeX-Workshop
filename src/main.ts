@@ -262,7 +262,11 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     context.subscriptions.push(vscode.languages.registerCodeActionsProvider(latexSelector, extension.codeActions))
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(latexSelector, new FoldingProvider(extension)))
     context.subscriptions.push(vscode.languages.registerFoldingRangeProvider(weaveSelector, new WeaveFoldingProvider(extension)))
-    context.subscriptions.push(vscode.languages.registerSelectionRangeProvider({ scheme: 'file', language: 'latex'}, new SelectionRangeProvider(extension)))
+
+    const selectionLatex = configuration.get('selection.smart.latex.enabled', true)
+    if (selectionLatex) {
+        context.subscriptions.push(vscode.languages.registerSelectionRangeProvider({language: 'latex'}, new SelectionRangeProvider(extension)))
+    }
 
     context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-workshop-snippet-view', extension.snippetView.snippetViewProvider, {webviewOptions: {retainContextWhenHidden: true}}))
 
