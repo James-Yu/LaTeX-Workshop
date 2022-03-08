@@ -32,7 +32,7 @@ import {MathPreview} from './providers/preview/mathpreview'
 import {MathPreviewPanel} from './components/mathpreviewpanel'
 import {DocSymbolProvider} from './providers/docsymbol'
 import {ProjectSymbolProvider} from './providers/projectsymbol'
-import {SectionNodeProvider, StructureTreeView} from './providers/structure'
+import {StructureTreeView} from './providers/structure'
 import {DefinitionProvider} from './providers/definition'
 import {LatexFormatterProvider} from './providers/latexformatter'
 import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
@@ -150,8 +150,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             extension.manager.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
-            extension.structureProvider.refresh()
-            extension.structureProvider.update()
+            extension.structureViewer.update()
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
         }
@@ -293,7 +292,6 @@ export class Extension {
     readonly envPair: EnvPair
     readonly section: Section
     readonly latexCommandTreeView: LaTeXCommandTreeView
-    readonly structureProvider: SectionNodeProvider
     readonly structureViewer: StructureTreeView
     readonly snippetView: SnippetView
     readonly graphicsPreview: GraphicsPreview
@@ -328,7 +326,6 @@ export class Extension {
         this.envPair = new EnvPair(this)
         this.section = new Section(this)
         this.latexCommandTreeView = new LaTeXCommandTreeView()
-        this.structureProvider = new SectionNodeProvider(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetView = new SnippetView(this)
         this.pegParser = new PEGParser()

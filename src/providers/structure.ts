@@ -30,7 +30,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     }
 
-    refresh(): Section[] {
+    private refresh(): Section[] {
         if (this.extension.manager.rootFile) {
             this.ds = this.buildModel(new Set<string>(), this.extension.manager.rootFile)
             return this.ds
@@ -40,6 +40,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     update() {
+        this.refresh()
         this._onDidChangeTreeData.fire(undefined)
     }
 
@@ -449,12 +450,20 @@ export class StructureTreeView {
     private _followCursor: boolean = true
 
 
-    constructor(private readonly extension: Extension) {
-        this._treeDataProvider = this.extension.structureProvider
+    constructor(extension: Extension) {
+        this._treeDataProvider = new SectionNodeProvider(extension)
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
         })
+    }
+
+    update() {
+        this._treeDataProvider.update()
+    }
+
+    getTreeData(): Section[] {
+        return this._treeDataProvider.ds
     }
 
     private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {

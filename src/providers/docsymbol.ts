@@ -1,15 +1,18 @@
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import type {Section} from './structure'
+import {Section, SectionNodeProvider} from './structure'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
     private readonly extension: Extension
+    private readonly sectionNodeProvider: SectionNodeProvider
 
     private sections: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.sectionNodeProvider = new SectionNodeProvider(extension)
+
         const rawSections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
         rawSections.forEach(section => {
             this.sections = this.sections.concat(section.split('|'))
@@ -20,7 +23,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         if (this.extension.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionToSymbols(this.extension.structureProvider.buildModel(new Set<string>(), document.fileName, undefined, undefined, undefined, undefined, false))
+        return this.sectionToSymbols(this.sectionNodeProvider.buildModel(new Set<string>(), document.fileName, undefined, undefined, undefined, undefined, false))
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
