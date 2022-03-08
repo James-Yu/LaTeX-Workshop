@@ -2,19 +2,21 @@ import {Extension} from 'src/main'
 import * as vscode from 'vscode'
 
 
-export class LaTeXCommandTreeView {
-    private readonly extension: Extension
-    private readonly latexCommander: LaTeXCommanderProvider
+export class LaTeXCommanderTreeView {
+    private readonly latexCommanderProvider: LaTeXCommanderProvider
 
     constructor(extension: Extension) {
-        this.extension = extension
-        this.latexCommander = this.extension.latexCommanderProvider
+        this.latexCommanderProvider = new LaTeXCommanderProvider(extension)
         vscode.window.createTreeView(
             'latex-workshop-commands',
             {
-              treeDataProvider: this.latexCommander,
+              treeDataProvider: this.latexCommanderProvider,
               showCollapseAll: true
             })
+    }
+
+    update() {
+        this.latexCommanderProvider.update()
     }
 }
 
@@ -32,11 +34,11 @@ export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXComm
                 this.update()
             }
         })
-        this.commands = this.buildCommanderTree()
+        this.commands = this.buildCommandTree()
     }
 
     update() {
-        this.commands = this.buildCommanderTree()
+        this.commands = this.buildCommandTree()
         this._onDidChangeTreeData.fire(undefined)
     }
 
@@ -49,7 +51,7 @@ export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXComm
         return parent
     }
 
-    private buildCommanderTree(): LaTeXCommand[] {
+    private buildCommandTree(): LaTeXCommand[] {
         const commands: LaTeXCommand[] = []
         const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
 

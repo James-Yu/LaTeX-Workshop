@@ -357,7 +357,7 @@ export class Manager {
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await this.parseFlsFile(this.rootFile)
                 this.extension.structureViewer.update()
-                this.extension.latexCommanderProvider.update()
+                this.extension.latexCommanderTreeView.update()
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)
             }
