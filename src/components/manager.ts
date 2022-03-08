@@ -356,8 +356,7 @@ export class Manager {
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await this.parseFlsFile(this.rootFile)
-                this.extension.structureProvider.refresh()
-                this.extension.structureProvider.update()
+                this.extension.structureViewer.update()
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)
             }
