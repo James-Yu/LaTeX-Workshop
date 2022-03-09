@@ -8,6 +8,7 @@ import type {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
 
 import type {Extension} from '../main'
+import * as eventbus from './eventbus'
 import type {Suggestion as CiteEntry} from '../providers/completer/citation'
 import type {Suggestion as CmdEntry} from '../providers/completer/command'
 import type {Suggestion as EnvEntry} from '../providers/completer/environment'
@@ -123,6 +124,7 @@ export class Manager {
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
         this.registerSetEnvVar()
+        this.extension.eventBus.onDidChangeRootFile(() => this.logWatchedFiles())
     }
 
     getCachedContent(filePath: string): Content[string] | undefined {
@@ -358,12 +360,14 @@ export class Manager {
                 await this.parseFlsFile(this.rootFile)
                 this.extension.structureViewer.update()
                 this.extension.latexCommanderTreeView.update()
+                this.extension.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)
             }
-            this.logWatchedFiles()
+            this.extension.eventBus.fire(eventbus.FindRootFileEnd)
             return rootFile
         }
+        this.extension.eventBus.fire(eventbus.FindRootFileEnd)
         return undefined
     }
 
