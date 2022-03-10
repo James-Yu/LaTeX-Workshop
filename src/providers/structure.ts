@@ -86,10 +86,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return children
         }
         content = utils.stripCommentsAndVerbatim(content)
+        const startPos = content.search(/\\begin{document}/gm)
         const endPos = content.search(/\\end{document}/gm)
-        if (endPos > -1) {
-            content = content.substring(0, endPos)
-        }
+        const offset = '\\begin{document}'.length
+        content = content.substring(startPos > -1 ? startPos + offset : 0, endPos > -1 ? endPos : undefined)
 
         const structureModel = new StructureModel(this.extension, filePath, rootStack, children, newFileStack, sectionNumber)
 
