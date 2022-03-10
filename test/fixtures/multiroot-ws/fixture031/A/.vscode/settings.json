@@ -1,0 +1,40 @@
+{
+	"latex-workshop.latex.recipe.default": "lastUsed",
+	"latex-workshop.latex.recipes": [
+		{
+			"name": "fake",
+			"tools": [
+				"fake"
+			]
+		},
+		{
+			"name": "latexmk A",
+			"tools": [
+				"latexmk"
+			]
+		}
+		],
+	"latex-workshop.latex.tools": [
+		{
+			"name": "latexmk",
+			"command": "latexmk",
+			"args": [
+				"-synctex=1",
+				"-interaction=nonstopmode",
+				"-file-line-error",
+				"-pdf",
+				"-outdir=%OUTDIR%",
+				"-jobname=wsA",
+				"%DOC%"
+			],
+			"env": {}
+		},
+		{
+			"name": "fake",
+			"command": "touch",
+			"args": [
+				"%DIR%/fake.pdf"
+			]
+		}
+	]
+}

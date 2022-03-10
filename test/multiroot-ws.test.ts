@@ -1,6 +1,7 @@
 import * as assert from 'assert'
 import * as path from 'path'
 import * as process from 'process'
+import * as fs from 'fs'
 import * as os from 'os'
 import {sleep} from '../src/utils/utils'
 import * as vscode from 'vscode'
@@ -183,5 +184,77 @@ suite('Multi-root workspace test suite', () => {
         assert.ok(isStructureOK, JSON.stringify(structure))
         assert.ok(isWatcherOK, JSON.stringify(filesWatched))
     }, () => os.platform() === 'win32')
+
+    //
+    // Recipe name
+    //
+    runTestWithFixture('fixture030', 'basic build with recipes and default recipe name defined in subdir', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 'A.tex'
+        const pdfFileName = 'wsA.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, pdfFileName)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, texFileName))
+            const doc = await vscode.workspace.openTextDocument(texFilePath)
+            await vscode.window.showTextDocument(doc)
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
+
+    runTestWithFixture('fixture031', 'basic build with recipes defined in subdir and lastUsed', async () => {
+        const fixtureDir = getFixtureDir()
+        const wsSubDir = 'A'
+        const texFileName = 'A.tex'
+        const pdfFileName = 'wsA.pdf'
+        const pdfFilePath = path.join(fixtureDir, wsSubDir, pdfFileName)
+        const texFilePath = vscode.Uri.file(path.join(fixtureDir, wsSubDir, texFileName))
+        const doc = await vscode.workspace.openTextDocument(texFilePath)
+        await vscode.window.showTextDocument(doc)
+        await waitLatexWorkshopActivated()
+        await sleep(1000)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await vscode.commands.executeCommand('latex-workshop.recipes', 'latexmk A')
+        })
+        fs.unlinkSync(pdfFilePath)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
+
+    runTestWithFixture('fixture032', 'basic build with lastUsed and switching rootFile', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileNameA = 'A.tex'
+        const texFileNameB = 'B.tex'
+        const texFilePathA = vscode.Uri.file(path.join(fixtureDir, 'A', texFileNameA))
+        const texFilePathB = vscode.Uri.file(path.join(fixtureDir, 'B', texFileNameB))
+        const pdfFileName = 'wsA.pdf'
+        const pdfFilePath = path.join(fixtureDir, 'A', pdfFileName)
+        const docA = await vscode.workspace.openTextDocument(texFilePathA)
+
+        // Open A.tex and build
+        await vscode.window.showTextDocument(docA)
+        await waitLatexWorkshopActivated()
+        await waitGivenRootFile(docA.fileName)
+        await sleep(1000)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await vscode.commands.executeCommand('latex-workshop.recipes', 'latexmk A')
+        })
+        fs.unlinkSync(pdfFilePath)
+
+        // Switch to B.tex
+        const docB = await vscode.workspace.openTextDocument(texFilePathB)
+        await vscode.window.showTextDocument(docB)
+        await waitGivenRootFile(docB.fileName)
+        await sleep(1000)
+
+        // Switch back to A.tex and build
+        await vscode.window.showTextDocument(docA)
+        await waitGivenRootFile(docA.fileName)
+        await sleep(1000)
+        await assertPdfIsGenerated(pdfFilePath, async () => {
+            await executeVscodeCommandAfterActivation('latex-workshop.build')
+        })
+    })
 
 })
