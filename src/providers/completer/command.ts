@@ -102,7 +102,7 @@ export class Command implements IProvider {
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdList.add(this.getCmdName(cmd))
+            cmdList.add(this.getCmdSignature(cmd))
         })
 
         // Insert unimathsymbols
