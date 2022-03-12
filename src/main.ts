@@ -220,6 +220,13 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         }
     }))
 
+    context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
+        if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
+            return
+        }
+        return extension.structureViewer.showCursorItem(e)
+    }))
+
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
     const weaveSelector = selectDocumentsWithId(['jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
@@ -229,13 +236,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
-
-    context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
-            return
-        }
-        return extension.structureViewer.showCursorItem(e)
-    }))
 
     context.subscriptions.push(vscode.window.registerWebviewPanelSerializer('latex-workshop-pdf', extension.viewer.pdfViewerPanelSerializer))
     context.subscriptions.push(vscode.window.registerCustomEditorProvider('latex-workshop-pdf-hook', new PdfViewerHookProvider(extension), {supportsMultipleEditorsPerDocument: true}))
