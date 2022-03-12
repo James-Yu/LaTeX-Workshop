@@ -16,6 +16,10 @@ export class PdfWatcher {
         this.initiateVirtualUriWatcher()
     }
 
+    async dispose() {
+        await this.pdfWatcher.close()
+    }
+
     private toKey(pdfFileUri: vscode.Uri) {
         return pdfFileUri.toString(true)
     }

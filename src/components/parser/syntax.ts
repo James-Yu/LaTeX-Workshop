@@ -16,6 +16,10 @@ export class UtensilsParser {
         this.proxy = this.pool.proxy<ISyntaxWorker>()
     }
 
+    async dispose() {
+        await this.pool.terminate()
+    }
+
     /**
      * Parse a LaTeX file.
      *
