@@ -37,6 +37,10 @@ export class MathPreview {
         this.hoverPreviewOnRefProvider = new HoverPreviewOnRefProvider(extension, this.mj, this.mputils)
     }
 
+    dispose() {
+        return this.mj.dispose()
+    }
+
     findProjectNewCommand(ctoken: vscode.CancellationToken): Promise<string> {
         return this.newCommandFinder.findProjectNewCommand(ctoken)
     }

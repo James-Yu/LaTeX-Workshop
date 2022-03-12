@@ -127,6 +127,12 @@ export class Manager {
         this.extension.eventBus.onDidChangeRootFile(() => this.logWatchedFiles())
     }
 
+    async dispose() {
+        await this.fileWatcher.close()
+        await this.pdfWatcher.dispose()
+        await this.bibWatcher.dispose()
+    }
+
     getCachedContent(filePath: string): Content[string] | undefined {
         return this.cachedContent[filePath]
     }

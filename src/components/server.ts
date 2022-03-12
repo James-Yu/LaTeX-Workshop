@@ -59,6 +59,10 @@ export class Server {
         this.extension.logger.addLogMessage('[Server] Creating LaTeX Workshop http and websocket server.')
     }
 
+    dispose() {
+        this.httpServer.close()
+    }
+
     get port(): number {
         const portNum = this.address?.port
         if (portNum === undefined) {

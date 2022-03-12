@@ -43,6 +43,10 @@ export class MathJaxPool {
         void this.initializeExtensions()
     }
 
+    async dispose() {
+        await this.pool.terminate()
+    }
+
     private initializeExtensions() {
         void this.loadExtensions()
         vscode.workspace.onDidChangeConfiguration(async (ev) => {

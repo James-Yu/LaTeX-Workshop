@@ -140,8 +140,17 @@ function generateLatexWorkshopApi(extension: Extension) {
     }
 }
 
+let extensionToDispose: Extension | undefined
+
+// We should clean up file watchers and wokerpool pools.
+// - https://github.com/microsoft/vscode/issues/114688#issuecomment-768253918
+export function deactivate() {
+    return extensionToDispose?.dispose()
+}
+
 export function activate(context: vscode.ExtensionContext): ReturnType<typeof generateLatexWorkshopApi> {
     const extension = new Extension()
+    extensionToDispose = extension
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
     registerLatexWorkshopCommands(extension, context)
@@ -369,6 +378,13 @@ export class Extension {
         this.bibtexFormatter = new BibtexFormatter(this)
         this.mathPreviewPanel = new MathPreviewPanel(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
+    }
+
+    async dispose() {
+        await this.manager.dispose()
+        this.server.dispose()
+        await this.pegParser.dispose()
+        await this.mathPreview.dispose()
     }
 
     private addLogFundamentals() {
