@@ -141,13 +141,7 @@ export class CommandFinder {
         return cmds
     }
 
-    private getTabStopsFromNode(node: latexParser.Node, useTabStops: boolean = true): string {
-        let tabStop: (n: number) => string
-        if (useTabStops) {
-            tabStop = (i: number) => { return '${' + i + '}' }
-        } else {
-            tabStop = (_: number) => { return '' }
-        }
+    private getArgsHelperFromNode(node: latexParser.Node, helper: (i: number) => string): string {
         let args = ''
         if (!('args' in node)) {
             return args
@@ -157,9 +151,9 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isOptionalArg(arg)) {
-                    args += '[' + tabStop(index) + ']'
+                    args += '[' + helper(index) + ']'
                 } else {
-                    args += '{' + tabStop(index) + '}'
+                    args += '{' + helper(index) + '}'
                 }
             })
             return args
@@ -168,7 +162,7 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isCommandParameter(arg)) {
-                    args += '{' + tabStop(index) + '}'
+                    args += '{' + helper(index) + '}'
                 }
             })
             return args
@@ -176,8 +170,12 @@ export class CommandFinder {
         return args
     }
 
+    private getTabStopsFromNode(node: latexParser.Node): string {
+        return this.getArgsHelperFromNode(node, (i: number) => { return '${' + i + '}' })
+    }
+
     private getArgsFromNode(node: latexParser.Node): string {
-        return this.getTabStopsFromNode(node, false)
+        return this.getArgsHelperFromNode(node, (_: number) => { return '' })
     }
 
 

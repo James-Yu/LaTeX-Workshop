@@ -29,6 +29,48 @@ function isCmdItemEntry(obj: any): obj is CmdItemEntry {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }
 
+/**
+ * Returns the signature of `item`, ie the name + {} for mandatory arguments + [] for optional arguments.
+ * The backward slash, `\`, is removed.
+ *
+ * @param item A completion item.
+ */
+export function getCmdSignature(item: Suggestion): string {
+    return item.signature.name + item.signature.args
+}
+
+/**
+ * Returns the name of `item` without the arguments
+ * The backward slash, `\`, is removed.
+ *
+ * @param item A completion item.
+ */
+export function getCmdName(item: Suggestion): string {
+    return item.signature.name
+}
+
+export function cmdHasOptionalArgs(cmd: Suggestion): boolean {
+    return cmd.signature.args.includes('[')
+}
+
+/**
+ * Return {name, args} from a signature string `name` + `args`
+ */
+export function splitSignatureString(signature: string): CmdSignature {
+    const i = signature.search(/[[{]/)
+    if (i > -1) {
+        return {
+            name: signature.substring(0, i),
+            args: signature.substring(i, undefined)
+        }
+    } else {
+        return {
+            name: signature,
+            args: ''
+        }
+    }
+}
+
 export interface Suggestion extends ILwCompletionItem {
     package: string,
     signature: CmdSignature
@@ -103,12 +145,12 @@ export class Command implements IProvider {
         const cmdList: Set<string> = new Set<string>() // This holds defined commands without the backslash
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdSignature(cmd).includes('[')) {
+            if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
                 return
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdList.add(this.getCmdSignature(cmd))
+            cmdList.add(getCmdSignature(cmd))
         })
 
         // Insert unimathsymbols
@@ -121,7 +163,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdList.add(this.getCmdName(symbol))
+                cmdList.add(getCmdName(symbol))
             })
         }
 
@@ -150,10 +192,10 @@ export class Command implements IProvider {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdList.has(this.getCmdName(cmd))) {
+                    if (!cmdList.has(getCmdName(cmd))) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdList.add(this.getCmdName(cmd))
+                        cmdList.add(getCmdName(cmd))
                     }
                 })
             }
@@ -201,44 +243,6 @@ export class Command implements IProvider {
             cache.element.command = this.commandFinder.getCmdFromNodeArray(file, nodes)
         } else if (content !== undefined) {
             cache.element.command = this.commandFinder.getCmdFromContent(file, content)
-        }
-    }
-
-    /**
-     * Returns the signature of `item`, ie the name + {} for mandatory arguments + [] for optional arguments.
-     * The backward slash, `\`, is removed.
-     *
-     * @param item A completion item.
-     */
-    getCmdSignature(item: Suggestion): string {
-        const label = item.label.startsWith('\\') ? item.label.slice(1) : item.label
-        return item.filterText ? item.filterText : label
-    }
-
-    /**
-     * Returns the name of `item` without the arguments
-     * The backward slash, `\`, is removed.
-     *
-     * @param item A completion item.
-     */
-    getCmdName(item: Suggestion): string {
-        const signature = this.getCmdSignature(item)
-        const i = signature.search(/[[{]/)
-        return i > -1 ? signature.substring(0, i): signature
-    }
-
-    splitSignatureString(signature: string): CmdSignature {
-        const i = signature.search(/[[{]/)
-        if (i > -1) {
-            return {
-                name: signature.substring(0, i),
-                args: signature.substring(i, undefined)
-            }
-        } else {
-           return {
-               name: signature,
-               args: ''
-           }
         }
     }
 
@@ -344,7 +348,7 @@ export class Command implements IProvider {
             label,
             kind: vscode.CompletionItemKind.Function,
             package: 'latex',
-            signature: this.splitSignatureString(itemKey)
+            signature: splitSignatureString(itemKey)
         }
 
         if (item.snippet) {
@@ -408,12 +412,12 @@ export class Command implements IProvider {
 
         // Insert commands
         pkgEntry.forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdSignature(cmd).includes('[')) {
+            if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
                 return
             }
-            if (!cmdList.has(this.getCmdSignature(cmd))) {
+            if (!cmdList.has(getCmdSignature(cmd))) {
                 suggestions.push(cmd)
-                cmdList.add(this.getCmdSignature(cmd))
+                cmdList.add(getCmdSignature(cmd))
             }
         })
     }

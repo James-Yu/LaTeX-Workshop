@@ -5,7 +5,8 @@ import {latexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 import type {IProvider, ILwCompletionItem} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
-import type {CmdSignature} from './command'
+import {cmdHasOptionalArgs, CmdSignature, getCmdSignature} from './command'
+import {splitSignatureString} from './command'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
@@ -180,13 +181,12 @@ export class Environment implements IProvider {
 
         // Insert env snippets
         entry.forEach(env => {
-            const envName = env.filterText ? env.filterText : env.label
-            if (!useOptionalArgsEntries && envName.includes('[')) {
+            if (!useOptionalArgsEntries && cmdHasOptionalArgs(env)) {
                 return
             }
-            if (!cmdList.has(envName)) {
+            if (!cmdList.has(getCmdSignature(env))) {
                 suggestions.push(env)
-                cmdList.add(envName)
+                cmdList.add(getCmdSignature(env))
             }
         })
     }
@@ -318,7 +318,7 @@ export class Environment implements IProvider {
             package: 'latex',
             detail: `Insert environment ${item.name}.`,
             documentation: item.name,
-            signature: this.extension.completer.command.splitSignatureString(itemKey)
+            signature: splitSignatureString(itemKey)
         }
         if (item.package) {
             suggestion.documentation += '\n' + `Package: ${item.package}`
