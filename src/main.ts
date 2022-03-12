@@ -21,6 +21,7 @@ import {CompilerLogParser} from './components/parser/compilerlog'
 import {LinterLogParser} from './components/parser/linterlog'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Configuration} from './components/configuration'
+import {EventBus} from './components/eventbus'
 
 import {Completer, SnippetCompleter} from './providers/completion'
 import {BibtexCompleter} from './providers/bibtexcompletion'
@@ -278,6 +279,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 export class Extension {
     readonly extensionRoot: string
     readonly logger: Logger
+    readonly eventBus = new EventBus()
     readonly lwfs: LwFileSystem
     readonly commander: Commander
     readonly configuration: Configuration
