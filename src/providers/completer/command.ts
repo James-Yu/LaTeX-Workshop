@@ -20,12 +20,18 @@ export interface CmdItemEntry {
     postAction?: string
 }
 
+export interface CmdSignature {
+    name: string,
+    args: string
+}
+
 function isCmdItemEntry(obj: any): obj is CmdItemEntry {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }
 
 export interface Suggestion extends ILwCompletionItem {
-    package: string
+    package: string,
+    signature: CmdSignature
 }
 
 
@@ -219,7 +225,21 @@ export class Command implements IProvider {
         const signature = this.getCmdSignature(item)
         const i = signature.search(/[[{]/)
         return i > -1 ? signature.substring(0, i): signature
+    }
 
+    splitSignatureString(signature: string): CmdSignature {
+        const i = signature.search(/[[{]/)
+        if (i > -1) {
+            return {
+                name: signature.substring(0, i),
+                args: signature.substring(i, undefined)
+            }
+        } else {
+           return {
+               name: signature,
+               args: ''
+           }
+        }
     }
 
     getExtraPkgs(languageId: string): string[] {
@@ -323,7 +343,8 @@ export class Command implements IProvider {
         const suggestion: Suggestion = {
             label,
             kind: vscode.CompletionItemKind.Function,
-            package: 'latex'
+            package: 'latex',
+            signature: this.splitSignatureString(itemKey)
         }
 
         if (item.snippet) {
