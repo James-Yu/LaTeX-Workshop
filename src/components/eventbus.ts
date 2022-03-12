@@ -1,4 +1,4 @@
-import {EventEmitter} from 'stream'
+import {EventEmitter} from 'events'
 import type {PdfViewerState} from 'viewer/components/protocol'
 import type {Disposable} from 'vscode'
 
@@ -35,26 +35,26 @@ export class EventBus {
     }
 
     onDidChangeRootFile(cb: (rootFile: EventArgTypeMap['rootfilechanged']) => void): Disposable {
-        return this.registerLisneter('rootfilechanged', cb)
+        return this.registerListener('rootfilechanged', cb)
     }
 
     onDidEndFindRootFile(cb: () => void): Disposable {
-        return this.registerLisneter('findrootfileend', cb)
+        return this.registerListener('findrootfileend', cb)
     }
 
     onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap['pdfviewerstatuschanged']) => void): Disposable {
-        return this.registerLisneter('pdfviewerstatuschanged', cb)
+        return this.registerListener('pdfviewerstatuschanged', cb)
     }
 
-    private registerLisneter<T extends keyof EventArgTypeMap>(
+    private registerListener<T extends keyof EventArgTypeMap>(
         eventName: T,
         cb: (arg: EventArgTypeMap[T]) => void
     ): Disposable
-    private registerLisneter<T extends EventName>(
+    private registerListener<T extends EventName>(
         eventName: T,
         cb: () => void
     ): Disposable
-    private registerLisneter<T extends EventName>(
+    private registerListener<T extends EventName>(
         eventName: T,
         cb: (arg?: any) => void
     ): Disposable
