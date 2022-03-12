@@ -58,77 +58,79 @@ function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
    return selector
 }
 
-function registerLatexWorkshopCommands(extension: Extension) {
+function registerLatexWorkshopCommands(extension: Extension, context: vscode.ExtensionContext) {
 
-    vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveWithoutBuilding())
-    vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build())
-    vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => extension.commander.recipes(recipe))
-    vscode.commands.registerCommand('latex-workshop.view', (mode: string | undefined) => extension.commander.view(mode))
-    vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh())
-    vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.view('tab'))
-    vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => extension.commander.view('browser'))
-    vscode.commands.registerCommand('latex-workshop.viewExternal', () => extension.commander.view('external'))
-    vscode.commands.registerCommand('latex-workshop.setViewer', () => extension.commander.view('set'))
-    vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill())
-    vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex())
-    vscode.commands.registerCommand('latex-workshop.texdoc', (pkg: string | undefined) => extension.commander.texdoc(pkg))
-    vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => extension.commander.texdocUsepackages())
-    vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => extension.commander.synctexonref(line, filePath))
-    vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean())
-    vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions())
-    vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation())
-    vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot())
-    vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount())
-    vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log())
-    vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.log('compiler'))
-    vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => extension.codeActions.runCodeAction(d, r, c, m))
-    vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => extension.commander.gotoSection(filePath, lineNumber))
-    vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair())
-    vscode.commands.registerCommand('latex-workshop.select-envcontent', () => extension.commander.selectEnvContent())
-    vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName())
-    vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => extension.commander.multiCursorEnvName())
-    vscode.commands.registerCommand('latex-workshop.toggle-equation-envname', () => extension.commander.toggleEquationEnv())
-    vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv())
-    vscode.commands.registerCommand('latex-workshop.wrap-env', () => extension.commander.insertSnippet('wrapEnv'))
-    vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey())
-    vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt'))
-    vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => extension.commander.revealOutputDir())
-    vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog())
-    vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => extension.commander.devParseTeX())
-    vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => extension.commander.devParseBib())
+    context.subscriptions.push(
+        vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveWithoutBuilding()),
+        vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build()),
+        vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => extension.commander.recipes(recipe)),
+        vscode.commands.registerCommand('latex-workshop.view', (mode: string | undefined) => extension.commander.view(mode)),
+        vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh()),
+        vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.view('tab')),
+        vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => extension.commander.view('browser')),
+        vscode.commands.registerCommand('latex-workshop.viewExternal', () => extension.commander.view('external')),
+        vscode.commands.registerCommand('latex-workshop.setViewer', () => extension.commander.view('set')),
+        vscode.commands.registerCommand('latex-workshop.kill', () => extension.commander.kill()),
+        vscode.commands.registerCommand('latex-workshop.synctex', () => extension.commander.synctex()),
+        vscode.commands.registerCommand('latex-workshop.texdoc', (pkg: string | undefined) => extension.commander.texdoc(pkg)),
+        vscode.commands.registerCommand('latex-workshop.texdocUsepackages', () => extension.commander.texdocUsepackages()),
+        vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => extension.commander.synctexonref(line, filePath)),
+        vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean()),
+        vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions()),
+        vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation()),
+        vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot()),
+        vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount()),
+        vscode.commands.registerCommand('latex-workshop.log', () => extension.commander.log()),
+        vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.log('compiler')),
+        vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => extension.codeActions.runCodeAction(d, r, c, m)),
+        vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => extension.commander.gotoSection(filePath, lineNumber)),
+        vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair()),
+        vscode.commands.registerCommand('latex-workshop.select-envcontent', () => extension.commander.selectEnvContent()),
+        vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName()),
+        vscode.commands.registerCommand('latex-workshop.multicursor-envname', () => extension.commander.multiCursorEnvName()),
+        vscode.commands.registerCommand('latex-workshop.toggle-equation-envname', () => extension.commander.toggleEquationEnv()),
+        vscode.commands.registerCommand('latex-workshop.close-env', () => extension.commander.closeEnv()),
+        vscode.commands.registerCommand('latex-workshop.wrap-env', () => extension.commander.insertSnippet('wrapEnv')),
+        vscode.commands.registerCommand('latex-workshop.onEnterKey', () => extension.commander.onEnterKey()),
+        vscode.commands.registerCommand('latex-workshop.onAltEnterKey', () => extension.commander.onEnterKey('alt')),
+        vscode.commands.registerCommand('latex-workshop.revealOutputDir', () => extension.commander.revealOutputDir()),
+        vscode.commands.registerCommand('latex-workshop-dev.parselog', () => extension.commander.devParseLog()),
+        vscode.commands.registerCommand('latex-workshop-dev.parsetex', () => extension.commander.devParseTeX()),
+        vscode.commands.registerCommand('latex-workshop-dev.parsebib', () => extension.commander.devParseBib()),
 
-    vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => extension.commander.toggleSelectedKeyword('emph'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => extension.commander.toggleSelectedKeyword('textbf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => extension.commander.toggleSelectedKeyword('textit'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => extension.commander.toggleSelectedKeyword('underline'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => extension.commander.toggleSelectedKeyword('textrm'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => extension.commander.toggleSelectedKeyword('texttt'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => extension.commander.toggleSelectedKeyword('textsl'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => extension.commander.toggleSelectedKeyword('textsc'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => extension.commander.toggleSelectedKeyword('textnormal'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => extension.commander.toggleSelectedKeyword('textsuperscript'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => extension.commander.toggleSelectedKeyword('textsubscript'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => extension.commander.toggleSelectedKeyword('mathbf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => extension.commander.toggleSelectedKeyword('mathit'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => extension.commander.toggleSelectedKeyword('mathrm'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => extension.commander.toggleSelectedKeyword('mathtt'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => extension.commander.toggleSelectedKeyword('mathsf'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.toggleSelectedKeyword('mathbb'))
-    vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal'))
-    vscode.commands.registerCommand('latex-workshop.surround', () => extension.completer.command.surround())
+        vscode.commands.registerCommand('latex-workshop.shortcut.item', () => extension.commander.insertSnippet('item')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.emph', () => extension.commander.toggleSelectedKeyword('emph')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textbf', () => extension.commander.toggleSelectedKeyword('textbf')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textit', () => extension.commander.toggleSelectedKeyword('textit')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.underline', () => extension.commander.toggleSelectedKeyword('underline')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textrm', () => extension.commander.toggleSelectedKeyword('textrm')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.texttt', () => extension.commander.toggleSelectedKeyword('texttt')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsl', () => extension.commander.toggleSelectedKeyword('textsl')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsc', () => extension.commander.toggleSelectedKeyword('textsc')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textnormal', () => extension.commander.toggleSelectedKeyword('textnormal')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsuperscript', () => extension.commander.toggleSelectedKeyword('textsuperscript')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.textsubscript', () => extension.commander.toggleSelectedKeyword('textsubscript')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathbf', () => extension.commander.toggleSelectedKeyword('mathbf')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathit', () => extension.commander.toggleSelectedKeyword('mathit')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathrm', () => extension.commander.toggleSelectedKeyword('mathrm')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathtt', () => extension.commander.toggleSelectedKeyword('mathtt')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathsf', () => extension.commander.toggleSelectedKeyword('mathsf')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathbb', () => extension.commander.toggleSelectedKeyword('mathbb')),
+        vscode.commands.registerCommand('latex-workshop.shortcut.mathcal', () => extension.commander.toggleSelectedKeyword('mathcal')),
+        vscode.commands.registerCommand('latex-workshop.surround', () => extension.completer.command.surround()),
 
-    vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => extension.commander.shiftSectioningLevel('promote'))
-    vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote'))
-    vscode.commands.registerCommand('latex-workshop.select-section', () => extension.commander.selectSection())
+        vscode.commands.registerCommand('latex-workshop.promote-sectioning', () => extension.commander.shiftSectioningLevel('promote')),
+        vscode.commands.registerCommand('latex-workshop.demote-sectioning', () => extension.commander.shiftSectioningLevel('demote')),
+        vscode.commands.registerCommand('latex-workshop.select-section', () => extension.commander.selectSection()),
 
-    vscode.commands.registerCommand('latex-workshop.bibsort', () => extension.bibtexFormatter.bibtexFormat(true, false))
-    vscode.commands.registerCommand('latex-workshop.bibalign', () => extension.bibtexFormatter.bibtexFormat(false, true))
-    vscode.commands.registerCommand('latex-workshop.bibalignsort', () => extension.bibtexFormatter.bibtexFormat(true, true))
+        vscode.commands.registerCommand('latex-workshop.bibsort', () => extension.bibtexFormatter.bibtexFormat(true, false)),
+        vscode.commands.registerCommand('latex-workshop.bibalign', () => extension.bibtexFormatter.bibtexFormat(false, true)),
+        vscode.commands.registerCommand('latex-workshop.bibalignsort', () => extension.bibtexFormatter.bibtexFormat(true, true)),
 
-    vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => extension.commander.openMathPreviewPanel())
-    vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => extension.commander.closeMathPreviewPanel())
-    vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => extension.commander.toggleMathPreviewPanel())
+        vscode.commands.registerCommand('latex-workshop.openMathPreviewPanel', () => extension.commander.openMathPreviewPanel()),
+        vscode.commands.registerCommand('latex-workshop.closeMathPreviewPanel', () => extension.commander.closeMathPreviewPanel()),
+        vscode.commands.registerCommand('latex-workshop.toggleMathPreviewPanel', () => extension.commander.toggleMathPreviewPanel())
+    )
 
 }
 
@@ -142,7 +144,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     const extension = new Extension()
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
-    registerLatexWorkshopCommands(extension)
+    registerLatexWorkshopCommands(extension, context)
 
     context.subscriptions.push(vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
         if (extension.lwfs.isVirtualUri(e.uri)){
