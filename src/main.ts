@@ -227,11 +227,22 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         return extension.structureViewer.showCursorItem(e)
     }))
 
+    registerProviders(extension, context)
+
+    void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
+    conflictExtensionCheck()
+
+    return generateLatexWorkshopApi(extension)
+}
+
+function registerProviders(extension: Extension, context: vscode.ExtensionContext) {
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
     const weaveSelector = selectDocumentsWithId(['jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
     const latexFormatter = new LatexFormatterProvider(extension)
     const bibtexFormatter = new BibtexFormatterProvider(extension)
+
     vscode.languages.registerDocumentFormattingEditProvider(latexSelector, latexFormatter)
     vscode.languages.registerDocumentFormattingEditProvider({ scheme: 'file', language: 'bibtex'}, bibtexFormatter)
     vscode.languages.registerDocumentRangeFormattingEditProvider(latexSelector, latexFormatter)
@@ -246,7 +257,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider(extension)))
     context.subscriptions.push(vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension)))
 
-    const configuration = vscode.workspace.getConfiguration('latex-workshop')
     const userTriggersLatex = configuration.get('intellisense.triggers.latex') as string[]
     const latexTriggers = ['\\', ','].concat(userTriggersLatex)
     extension.logger.addLogMessage(`Trigger characters for intellisense of LaTeX documents: ${JSON.stringify(latexTriggers)}`)
@@ -269,11 +279,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     }
 
     context.subscriptions.push(vscode.window.registerWebviewViewProvider('latex-workshop-snippet-view', extension.snippetView.snippetViewProvider, {webviewOptions: {retainContextWhenHidden: true}}))
-
-    void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
-    conflictExtensionCheck()
-
-    return generateLatexWorkshopApi(extension)
 }
 
 export class Extension {
