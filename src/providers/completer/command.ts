@@ -187,15 +187,17 @@ export class Command implements IProvider {
             })
         }
 
-        // Start working on commands in tex
+        // Start working on commands in tex. To avoid over populating suggestions, we do not include
+        // user defined commands, whose name matches a default command or one provided by a package
+        const cmdNameList = new Set<string>(suggestions.map(e => e.signature.name))
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdSignatureList.has(getCmdName(cmd))) {
+                    if (!cmdNameList.has(getCmdName(cmd))) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdSignatureList.add(getCmdName(cmd))
+                        cmdNameList.add(getCmdName(cmd))
                     }
                 })
             }
