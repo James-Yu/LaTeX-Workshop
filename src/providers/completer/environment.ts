@@ -155,7 +155,7 @@ export class Environment implements IProvider {
         return suggestions
     }
 
-    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: Set<string>) {
+    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdSignatureList: Set<string>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -184,9 +184,9 @@ export class Environment implements IProvider {
             if (!useOptionalArgsEntries && cmdHasOptionalArgs(env)) {
                 return
             }
-            if (!cmdList.has(getCmdSignature(env))) {
+            if (!cmdSignatureList.has(getCmdSignature(env))) {
                 suggestions.push(env)
-                cmdList.add(getCmdSignature(env))
+                cmdSignatureList.add(getCmdSignature(env))
             }
         })
     }

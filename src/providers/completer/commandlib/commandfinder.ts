@@ -43,19 +43,19 @@ export class CommandFinder {
         this.extension = extension
     }
 
-    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdList: Set<string> = new Set<string>()): Suggestion[] {
+    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
         let cmds: Suggestion[] = []
         nodes.forEach(node => {
-            cmds = cmds.concat(this.getCmdFromNode(file, node, cmdList))
+            cmds = cmds.concat(this.getCmdFromNode(file, node, cmdNameList))
         })
         return cmds
     }
 
-    private getCmdFromNode(file: string, node: latexParser.Node, cmdList: Set<string> = new Set<string>()): Suggestion[] {
+    private getCmdFromNode(file: string, node: latexParser.Node, cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
         const cmds: Suggestion[] = []
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
-            if (!cmdList.has(name)) {
+            if (!cmdNameList.has(name)) {
                 const cmd: Suggestion = {
                     label: `\\${name}`,
                     kind: vscode.CompletionItemKind.Function,
@@ -72,10 +72,10 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdList.add(name)
+                cmdNameList.add(name)
             }
         } else if (latexParser.isCommand(node)) {
-            if (!cmdList.has(node.name)) {
+            if (!cmdNameList.has(node.name)) {
                 const cmd: Suggestion = {
                     label: `\\${node.name}`,
                     kind: vscode.CompletionItemKind.Function,
@@ -93,7 +93,7 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdList.add(node.name)
+                cmdNameList.add(node.name)
             }
             if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
                 Array.isArray(node.args) && node.args.length > 0) {
@@ -107,7 +107,7 @@ export class CommandFinder {
                         args += '{}'
                     }
                 }
-                if (!cmdList.has(label)) {
+                if (!cmdNameList.has(label)) {
                     const cmd: Suggestion = {
                         label: `\\${label}`,
                         kind: vscode.CompletionItemKind.Function,
@@ -131,12 +131,12 @@ export class CommandFinder {
                             vscode.Uri.file(file),
                             new vscode.Position(node.location.start.line - 1, node.location.start.column))
                     })
-                    cmdList.add(label)
+                    cmdNameList.add(label)
                 }
             }
         }
         if (latexParser.hasContentArray(node)) {
-            return cmds.concat(this.getCmdFromNodeArray(file, node.content, cmdList))
+            return cmds.concat(this.getCmdFromNodeArray(file, node.content, cmdNameList))
         }
         return cmds
     }
@@ -182,7 +182,7 @@ export class CommandFinder {
     getCmdFromContent(file: string, content: string): Suggestion[] {
         const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: Suggestion[] = []
-        const cmdList: string[] = []
+        const cmdNameList: Set<string> = new Set<string>()
         let explSyntaxOn: boolean = false
         while (true) {
             const result = cmdReg.exec(content)
@@ -204,7 +204,7 @@ export class CommandFinder {
                     result[1] = result[1].slice(0, len)
                 }
             }
-            if (cmdList.includes(result[1])) {
+            if (cmdNameList.has(result[1])) {
                 continue
             }
             const cmd: Suggestion = {
@@ -223,7 +223,7 @@ export class CommandFinder {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
             cmds.push(cmd)
-            cmdList.push(result[1])
+            cmdNameList.add(result[1])
         }
 
         const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?{?\\(\w+)}?(?:\[([1-9])\])?/g
@@ -232,7 +232,7 @@ export class CommandFinder {
             if (result === null) {
                 break
             }
-            if (cmdList.includes(result[1])) {
+            if (cmdNameList.has(result[1])) {
                 continue
             }
 
@@ -259,7 +259,7 @@ export class CommandFinder {
                 }
             }
             cmds.push(cmd)
-            cmdList.push(result[1])
+            cmdNameList.add(result[1])
 
             this.definedCmds.set(result[1], {
                 file,

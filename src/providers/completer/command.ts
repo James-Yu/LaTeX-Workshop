@@ -142,7 +142,7 @@ export class Command implements IProvider {
             }
         }
         const suggestions: Suggestion[] = []
-        const cmdList: Set<string> = new Set<string>() // This holds defined commands without the backslash
+        const cmdSignatureList: Set<string> = new Set<string>() // This holds defined commands signatures
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
             if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
@@ -150,7 +150,7 @@ export class Command implements IProvider {
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdList.add(getCmdSignature(cmd))
+            cmdSignatureList.add(getCmdSignature(cmd))
         })
 
         // Insert unimathsymbols
@@ -163,7 +163,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdList.add(getCmdName(symbol))
+                cmdSignatureList.add(getCmdName(symbol))
             })
         }
 
@@ -172,16 +172,16 @@ export class Command implements IProvider {
             const extraPackages = this.extension.completer.command.getExtraPkgs(languageId)
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
-                    this.provideCmdInPkg(pkg, suggestions, cmdList)
-                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdList)
+                    this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
+                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
                 const pkgs = this.extension.manager.getCachedContent(tex)?.element.package
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
-                        this.provideCmdInPkg(pkg, suggestions, cmdList)
-                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdList)
+                        this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
+                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
                     })
                 }
             })
@@ -192,10 +192,10 @@ export class Command implements IProvider {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdList.has(getCmdName(cmd))) {
+                    if (!cmdSignatureList.has(getCmdName(cmd))) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdList.add(getCmdName(cmd))
+                        cmdSignatureList.add(getCmdName(cmd))
                     }
                 })
             }
@@ -379,7 +379,7 @@ export class Command implements IProvider {
         return suggestion
     }
 
-    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: Set<string>) {
+    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdSignatureList: Set<string>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
@@ -415,9 +415,9 @@ export class Command implements IProvider {
             if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
                 return
             }
-            if (!cmdList.has(getCmdSignature(cmd))) {
+            if (!cmdSignatureList.has(getCmdSignature(cmd))) {
                 suggestions.push(cmd)
-                cmdList.add(getCmdSignature(cmd))
+                cmdSignatureList.add(getCmdSignature(cmd))
             }
         })
     }
