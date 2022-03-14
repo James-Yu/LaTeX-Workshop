@@ -874,7 +874,7 @@ const PDFViewerApplication = {
       }
     }
 
-    this.setTitle(title);
+    // this.setTitle(title);
   },
 
   setTitle(title) {
