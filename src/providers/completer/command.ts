@@ -20,12 +20,60 @@ export interface CmdItemEntry {
     postAction?: string
 }
 
+export interface CmdSignature {
+    name: string,
+    args: string
+}
+
 function isCmdItemEntry(obj: any): obj is CmdItemEntry {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }
 
+/**
+ * Returns the signature of `item`, ie the name + {} for mandatory arguments + [] for optional arguments.
+ * The backward slash, `\`, is removed.
+ *
+ * @param item A completion item.
+ */
+export function getCmdSignature(item: Suggestion): string {
+    return item.signature.name + item.signature.args
+}
+
+/**
+ * Returns the name of `item` without the arguments
+ * The backward slash, `\`, is removed.
+ *
+ * @param item A completion item.
+ */
+export function getCmdName(item: Suggestion): string {
+    return item.signature.name
+}
+
+export function cmdHasOptionalArgs(cmd: Suggestion): boolean {
+    return cmd.signature.args.includes('[')
+}
+
+/**
+ * Return {name, args} from a signature string `name` + `args`
+ */
+export function splitSignatureString(signature: string): CmdSignature {
+    const i = signature.search(/[[{]/)
+    if (i > -1) {
+        return {
+            name: signature.substring(0, i),
+            args: signature.substring(i, undefined)
+        }
+    } else {
+        return {
+            name: signature,
+            args: ''
+        }
+    }
+}
+
 export interface Suggestion extends ILwCompletionItem {
-    package: string
+    package: string,
+    signature: CmdSignature
 }
 
 
@@ -94,15 +142,15 @@ export class Command implements IProvider {
             }
         }
         const suggestions: Suggestion[] = []
-        const cmdList: string[] = [] // This holds defined commands without the backslash
+        const cmdSignatureList: Set<string> = new Set<string>() // This holds defined commands signatures
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
+            if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
                 return
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdList.push(this.getCmdName(cmd, true))
+            cmdSignatureList.add(getCmdSignature(cmd))
         })
 
         // Insert unimathsymbols
@@ -115,7 +163,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdList.push(this.getCmdName(symbol, true))
+                cmdSignatureList.add(getCmdName(symbol))
             })
         }
 
@@ -124,30 +172,32 @@ export class Command implements IProvider {
             const extraPackages = this.extension.completer.command.getExtraPkgs(languageId)
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
-                    this.provideCmdInPkg(pkg, suggestions, cmdList)
-                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdList)
+                    this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
+                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
                 const pkgs = this.extension.manager.getCachedContent(tex)?.element.package
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
-                        this.provideCmdInPkg(pkg, suggestions, cmdList)
-                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdList)
+                        this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
+                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
                     })
                 }
             })
         }
 
-        // Start working on commands in tex
+        // Start working on commands in tex. To avoid over populating suggestions, we do not include
+        // user defined commands, whose name matches a default command or one provided by a package
+        const cmdNameList = new Set<string>(suggestions.map(e => e.signature.name))
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdList.includes(this.getCmdName(cmd, true))) {
+                    if (!cmdNameList.has(getCmdName(cmd))) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdList.push(this.getCmdName(cmd, true))
+                        cmdNameList.add(getCmdName(cmd))
                     }
                 })
             }
@@ -196,22 +246,6 @@ export class Command implements IProvider {
         } else if (content !== undefined) {
             cache.element.command = this.commandFinder.getCmdFromContent(file, content)
         }
-    }
-
-    /**
-     * Returns the name of `item`. The backward slash, `\`, is removed.
-     *
-     * @param item A completion item.
-     * @param removeArgs If `true`, returns a name without arguments.
-     */
-    getCmdName(item: Suggestion, removeArgs = false): string {
-        const label = item.label.startsWith('\\') ? item.label.slice(1) : item.label
-        const name = item.filterText ? item.filterText : label
-        if (removeArgs) {
-            const i = name.search(/[[{]/)
-            return i > -1 ? name.substring(0, i): name
-        }
-        return name
     }
 
     getExtraPkgs(languageId: string): string[] {
@@ -315,7 +349,8 @@ export class Command implements IProvider {
         const suggestion: Suggestion = {
             label,
             kind: vscode.CompletionItemKind.Function,
-            package: 'latex'
+            package: 'latex',
+            signature: splitSignatureString(itemKey)
         }
 
         if (item.snippet) {
@@ -346,7 +381,7 @@ export class Command implements IProvider {
         return suggestion
     }
 
-    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
+    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdSignatureList: Set<string>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
@@ -379,12 +414,12 @@ export class Command implements IProvider {
 
         // Insert commands
         pkgEntry.forEach(cmd => {
-            if (!useOptionalArgsEntries && this.getCmdName(cmd).includes('[')) {
+            if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
                 return
             }
-            if (!cmdList.includes(this.getCmdName(cmd))) {
+            if (!cmdSignatureList.has(getCmdSignature(cmd))) {
                 suggestions.push(cmd)
-                cmdList.push(this.getCmdName(cmd))
+                cmdSignatureList.add(getCmdSignature(cmd))
             }
         })
     }

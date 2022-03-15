@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import type {Extension} from '../main'
 import {tokenizer, onAPackage} from './tokenizer'
+import {getCmdName} from '../providers/completer/command'
 
 export class HoverProvider implements vscode.HoverProvider {
     private readonly extension: Extension
@@ -73,11 +74,8 @@ export class HoverProvider implements vscode.HoverProvider {
                 return
             }
             cachedCmds.forEach(cmd => {
-                const key = this.extension.completer.command.getCmdName(cmd)
-                if (key.startsWith(tokenWithoutSlash) &&
-                    ((key.length === tokenWithoutSlash.length) ||
-                     (key.charAt(tokenWithoutSlash.length) === '[') ||
-                     (key.charAt(tokenWithoutSlash.length) === '{'))) {
+                const cmdName = getCmdName(cmd)
+                if (cmdName.startsWith(tokenWithoutSlash) && (cmdName.length === tokenWithoutSlash.length)) {
                     if (typeof cmd.documentation !== 'string') {
                         return
                     }
