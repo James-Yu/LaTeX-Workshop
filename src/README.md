@@ -10,6 +10,14 @@ Where LaTeX Workshop differs from other extensions of VS Code is in treating the
 
 When something goes wrong, we always add to log messages what went wrong with `Extension.logger.addLogMessage()`. It is much beneficial for debugging.
 
+## VS Code filesystem and virtual workspaces
+
+See [#2669](https://github.com/James-Yu/LaTeX-Workshop/pull/2669).
+
+## EventBus
+
+See [#3193](https://github.com/James-Yu/LaTeX-Workshop/pull/3193).
+
 ## workerpool
 
 To avoid blocking the main loop of the extension host process, we execute some heavy tasks in child processes with [workerpool](https://github.com/josdejong/workerpool).
