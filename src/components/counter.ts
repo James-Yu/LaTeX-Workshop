@@ -21,10 +21,10 @@ export class Counter {
         this.extension = extension
         // gotoLine status item has priority 100.5 and selectIndentation item has priority 100.4
         this.status = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100.45)
-        this.loadConfiguration(vscode.window.activeTextEditor?.document.uri)
+        this.loadConfiguration(this.getWorkspace())
         vscode.workspace.onDidChangeConfiguration(e => {
-            if (e.affectsConfiguration('latex-workshop.texcount', this.extension.manager.rootFileUri) || e.affectsConfiguration('latex-workshop.docker.enabled')) {
-                this.loadConfiguration(this.extension.manager.rootFileUri)
+            if (e.affectsConfiguration('latex-workshop.texcount', this.getWorkspace()) || e.affectsConfiguration('latex-workshop.docker.enabled')) {
+                this.loadConfiguration(this.getWorkspace())
                 this.updateStatusVisibility()
 
             }
@@ -38,11 +38,17 @@ export class Counter {
                 this.status.hide()
             }
         })
-
     }
 
-    private loadConfiguration(documentUri: vscode.Uri | undefined) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', documentUri)
+    private getWorkspace(): vscode.ConfigurationScope | undefined {
+        if (vscode.window.activeTextEditor) {
+            return vscode.window.activeTextEditor.document.uri
+        }
+        return this.extension.manager.getWorkspaceFolderRootDir()
+    }
+
+    private loadConfiguration(scope: vscode.ConfigurationScope | undefined) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
         this.autoRunEnabled = (configuration.get('texcount.autorun') as string === 'onSave')
         this.autoRunInterval = configuration.get('texcount.interval') as number
         this.commandArgs = configuration.get('texcount.args') as string[]
