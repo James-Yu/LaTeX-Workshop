@@ -1645,7 +1645,7 @@
           "markdownDescription": "Define the location of TeXCount executive file/script. This command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
         },
         "latex-workshop.texcount.args": {
-          "scope": "window",
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -1654,7 +1654,7 @@
           "markdownDescription": "TeXCount arguments to count words in the LaTeX documents of the entire project from the root file, or the current document. Arguments must be in separate strings in the array. Additional arguments, i.e., `-merge %DOC%` for the project and the current document path for counting current file will be appended when constructing the command."
         },
         "latex-workshop.texcount.autorun": {
-          "scope": "window",
+          "scope": "resource",
           "type": "string",
           "enum": [
             "onSave",
@@ -1668,7 +1668,7 @@
           "markdownDescription": "When to call `texcount`. Default is never."
         },
         "latex-workshop.texcount.interval": {
-          "scope": "window",
+          "scope": "resource",
           "type": "number",
           "default": 1000,
           "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `latex-workshop.texcount.run` is set to `onSave`."
