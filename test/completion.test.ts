@@ -87,4 +87,27 @@ suite('Completion test suite', () => {
         assertCompletionItemDoesNotContain(items, '@8')
     })
 
+    runTestWithFixture('fixture003', '@-snippet completion with trigger #', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+        const doc = await vscode.workspace.openTextDocument(texFilePath)
+        await vscode.window.showTextDocument(doc)
+        const extension = await waitLatexWorkshopActivated()
+        const pos = new vscode.Position(3,1)
+        const token = new vscode.CancellationTokenSource().token
+        const items = await extension.exports.realExtension?.snippetCompleter.provideCompletionItems(
+            doc, pos, token,
+            {
+                triggerKind: vscode.CompletionTriggerKind.Invoke,
+                triggerCharacter: undefined
+            }
+        )
+        assert.ok(items && items.length > 0)
+        assertCompletionItemContains(items, '#+', '\\sum')
+        assertCompletionItemContains(items, '#ve', '\\varepsilon')
+        assertCompletionItemDoesNotContain(items, '@+', '\\bigcup')
+        assertCompletionItemDoesNotContain(items, '#+', '\\bigcup')
+        assertCompletionItemDoesNotContain(items, '#8')
+    })
 })
