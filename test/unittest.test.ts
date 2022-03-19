@@ -8,7 +8,6 @@ import * as glob from 'glob'
 
 import {
     runTestWithFixture,
-    checkDictkeys as checkDictKeys
 } from './utils'
 
 type EnvType = {
@@ -28,6 +27,10 @@ type CmdType = {
     label?: string
 }
 
+function checkDictKeys(keys: string[], expectedKeys: string[], optKeys: string[] = []): boolean {
+    return keys.every(k => expectedKeys.includes(k) || optKeys.includes(k)) && expectedKeys.every(k => keys.includes(k))
+}
+
 suite('unit test suite', () => {
 
     suiteSetup(() => {
@@ -44,7 +47,14 @@ suite('unit test suite', () => {
         const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvType}
         assert.ok(Object.keys(envs).length > 0)
         Object.keys(envs).forEach(name => {
-            assert.ok(checkDictKeys(Object.keys(envs[name]), ['name'] , ['snippet', 'detail']), file + ': ' + JSON.stringify(envs[name]))
+            assert.ok(
+                checkDictKeys(
+                    Object.keys(envs[name]),
+                    ['name'],
+                    ['snippet', 'detail']
+                ),
+                file + ': ' + JSON.stringify(envs[name])
+            )
         })
         return Promise.resolve()
     })
@@ -56,7 +66,13 @@ suite('unit test suite', () => {
             const envs = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {[key: string]: EnvType}
             assert.ok(Object.keys(envs).length > 0)
             Object.keys(envs).forEach(name => {
-                assert.ok(checkDictKeys(Object.keys(envs[name]), ['name', 'snippet', 'detail', 'package']), file + ': ' + JSON.stringify(envs[name]))
+                assert.ok(
+                    checkDictKeys(
+                        Object.keys(envs[name]),
+                        ['name', 'snippet', 'detail', 'package']
+                    ),
+                    file + ': ' + JSON.stringify(envs[name])
+                )
             })
         })
         return Promise.resolve()
@@ -68,7 +84,14 @@ suite('unit test suite', () => {
         const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: CmdType}
         assert.ok(Object.keys(cmds).length > 0)
         Object.keys(cmds).forEach(name => {
-            assert.ok(checkDictKeys(Object.keys(cmds[name]), ['command'] , ['snippet', 'documentation', 'detail', 'postAction', 'label']), file + ': ' + JSON.stringify(cmds[name]))
+            assert.ok(
+                checkDictKeys(
+                    Object.keys(cmds[name]),
+                    ['command'],
+                    ['snippet', 'documentation', 'detail', 'postAction', 'label']
+                ),
+                file + ': ' + JSON.stringify(cmds[name])
+            )
         })
         return Promise.resolve()
     })
@@ -80,7 +103,14 @@ suite('unit test suite', () => {
             const cmds = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {[key: string]: CmdType}
             assert.ok(Object.keys(cmds).length > 0)
             Object.keys(cmds).forEach(name => {
-                assert.ok(checkDictKeys(Object.keys(cmds[name]), ['command', 'snippet'] , ['documentation', 'detail', 'postAction', 'package', 'label']), file + ': ' + JSON.stringify(cmds[name]))
+                assert.ok(
+                    checkDictKeys(
+                        Object.keys(cmds[name]),
+                        ['command', 'snippet'],
+                        ['documentation', 'detail', 'postAction', 'package', 'label']
+                    ),
+                    file + ': ' + JSON.stringify(cmds[name])
+                )
             })
         })
         return Promise.resolve()

@@ -178,7 +178,3 @@ export async function getViewerStatus(pdfFilePath: string) {
         }
     }, process.platform === 'win32' ? 600 : undefined)
 }
-
-export function checkDictkeys(keys: string[], expectedKeys: string[], optKeys: string[] = []): boolean {
-    return keys.every(k => expectedKeys.includes(k) || optKeys.includes(k)) && expectedKeys.every(k => keys.includes(k))
-}
