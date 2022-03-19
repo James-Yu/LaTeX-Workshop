@@ -214,7 +214,9 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
     private readonly snippet: Snippet
     private readonly triggerCharacter: string
 
-    constructor(extension: Extension, triggerCharacter: string) {
+    constructor(extension: Extension) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const triggerCharacter = configuration.get('intellisense.snippets.trigger.latex') as string
         this.snippet = new Snippet(extension, triggerCharacter)
         this.triggerCharacter = triggerCharacter
     }

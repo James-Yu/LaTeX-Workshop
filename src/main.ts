@@ -288,7 +288,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     const snippetLatexTrigger = configuration.get('intellisense.snippets.trigger.latex') as string
     if (snippetLatexTrigger !== '') {
         context.subscriptions.push(
-            vscode.languages.registerCompletionItemProvider(latexDoctexSelector, new SnippetCompleter(extension, snippetLatexTrigger), snippetLatexTrigger)
+            vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.snippetCompleter, snippetLatexTrigger)
         )
     }
 
@@ -328,6 +328,7 @@ export class Extension {
     readonly linterLogParser: LinterLogParser
     readonly pegParser: PEGParser
     readonly completer: Completer
+    readonly snippetCompleter: SnippetCompleter
     readonly linter: Linter
     readonly cleaner: Cleaner
     readonly counter: Counter
@@ -361,6 +362,7 @@ export class Extension {
         this.compilerLogParser = new CompilerLogParser(this)
         this.linterLogParser = new LinterLogParser(this)
         this.completer = new Completer(this)
+        this.snippetCompleter = new SnippetCompleter(this)
         this.duplicateLabels = new DuplicateLabels(this)
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)
