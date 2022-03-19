@@ -22,7 +22,7 @@ function writeSettingsJson(userDataDir: string) {
     fs.writeFileSync(settingFilePath, settingsJson)
 }
 
-async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws') {
+async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws' | 'unittest') {
     const extensionDevelopmentPath = path.resolve(__dirname, '../../')
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
@@ -75,6 +75,7 @@ async function main() {
         await runTestsOnEachFixture('viewer')
         await runTestsOnEachFixture('completion')
         await runTestsOnEachFixture('multiroot-ws')
+        await runTestsOnEachFixture('unittest')
     } catch (err) {
         console.error('Failed to run tests')
         process.exit(1)
