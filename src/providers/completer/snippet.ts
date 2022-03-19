@@ -26,11 +26,33 @@ export class Snippet implements IProvider {
 
         const allSnippets: {[key: string]: SnippetItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/snippets-as-commands.json`).toString()) as DataSnippetsJsonType
         this.initialize(allSnippets)
+        vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.intellisense.snippetsJSON.replace')) {
+                this.initialize(allSnippets)
+            }
+        })
     }
 
-    initialize(snippets: {[key: string]: SnippetItemEntry}) {
+    private initialize(snippets: {[key: string]: SnippetItemEntry}) {
+        const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.snippetsJSON.replace') as {[key: string]: string}
+        this.suggestions.length = 0
+        Object.keys(snippetReplacements).forEach(prefix => {
+            const body = snippetReplacements[prefix]
+            if (body === '') {
+                return
+            }
+            const completionItem = new vscode.CompletionItem(prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
+            completionItem.insertText = new vscode.SnippetString(body)
+            completionItem.documentation = new vscode.MarkdownString('User defined snippet')
+            completionItem.detail = 'User defined snippet'
+            this.suggestions.push(completionItem)
+        })
+
         Object.keys(snippets).forEach(key => {
             const item = snippets[key]
+            if (item.prefix in snippetReplacements) {
+                return
+            }
             const completionItem = new vscode.CompletionItem(item.prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
             completionItem.insertText = new vscode.SnippetString(item.body)
             completionItem.documentation = new vscode.MarkdownString(item.description)

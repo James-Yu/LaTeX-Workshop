@@ -1752,7 +1752,16 @@
           "scope": "window",
           "type": "string",
           "default": "@",
-          "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets."
+          "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets. Reload vscode to make any change in this configuration effective."
+        },
+        "latex-workshop.intellisense.snippetsJSON.replace": {
+          "scope": "window",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "markdownDescription": "Dictionary of `\"snippet prefix\": \"snippet action\"` to replace the default snippets in `data/snippets-as-commands.json` or to define a new snippet. An empty action removes the snippet from the default. E.g. `{ \"@.\": \"\\cdot\", \"@6\": \"\" }`. Note that `@` must be used as the trigger character in this setting, no matter what the true trigger character defined by `latex-workshop.intellisense.snippets.trigger.latex` is."
         },
         "latex-workshop.intellisense.file.exclude": {
           "scope": "resource",
@@ -2137,7 +2146,7 @@
             "type": "string"
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Remove the leading `\\` of the command name. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "Dictionary of `\"command name\": \"command action\"` to replace the default snippets in `data/commands.json`. Remove the leading `\\` of the command name. See `data/commands.json` for the list of command names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.texdoc.path": {
           "scope": "window",

@@ -288,7 +288,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     const snippetLatexTrigger = configuration.get('intellisense.snippets.trigger.latex') as string
     if (snippetLatexTrigger !== '') {
         context.subscriptions.push(
-            vscode.languages.registerCompletionItemProvider( latexDoctexSelector, new SnippetCompleter(extension, snippetLatexTrigger), snippetLatexTrigger)
+            vscode.languages.registerCompletionItemProvider(latexDoctexSelector, new SnippetCompleter(extension, snippetLatexTrigger), snippetLatexTrigger)
         )
     }
 
