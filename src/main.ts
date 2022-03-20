@@ -23,7 +23,7 @@ import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Configuration} from './components/configuration'
 import {EventBus} from './components/eventbus'
 
-import {Completer, SnippetCompleter as AtSuggestionCompleter} from './providers/completion'
+import {Completer, AtSuggestionCompleter} from './providers/completion'
 import {BibtexCompleter} from './providers/bibtexcompletion'
 import {CodeActions} from './providers/codeactions'
 import {DuplicateLabels} from './components/duplicatelabels'

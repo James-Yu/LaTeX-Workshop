@@ -9,7 +9,7 @@ import {Command} from './completer/command'
 import type {CmdItemEntry} from './completer/command'
 import {Environment} from './completer/environment'
 import type {EnvItemEntry} from './completer/environment'
-import {Snippet} from './completer/atsuggestion'
+import {AtSuggestion} from './completer/atsuggestion'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input, Import, SubImport} from './completer/input'
@@ -210,14 +210,14 @@ export class Completer implements vscode.CompletionItemProvider {
     }
 }
 
-export class SnippetCompleter implements vscode.CompletionItemProvider {
-    private readonly snippet: Snippet
+export class AtSuggestionCompleter implements vscode.CompletionItemProvider {
+    private readonly atSuggestion: AtSuggestion
     private readonly triggerCharacter: string
 
     constructor(extension: Extension) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
-        this.snippet = new Snippet(extension, triggerCharacter)
+        this.atSuggestion = new AtSuggestion(extension, triggerCharacter)
         this.triggerCharacter = triggerCharacter
     }
 
@@ -237,7 +237,7 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
         const result = line.match(reg)
         let suggestions: vscode.CompletionItem[] = []
         if (result) {
-            suggestions = this.snippet.provideFrom(result, args)
+            suggestions = this.atSuggestion.provideFrom(result, args)
         }
         return suggestions
     }
