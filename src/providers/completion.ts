@@ -9,7 +9,7 @@ import {Command} from './completer/command'
 import type {CmdItemEntry} from './completer/command'
 import {Environment} from './completer/environment'
 import type {EnvItemEntry} from './completer/environment'
-import {Snippet} from './completer/snippet'
+import {Snippet} from './completer/atsuggestion'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
 import {Input, Import, SubImport} from './completer/input'
@@ -216,7 +216,7 @@ export class SnippetCompleter implements vscode.CompletionItemProvider {
 
     constructor(extension: Extension) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const triggerCharacter = configuration.get('intellisense.snippets.trigger.latex') as string
+        const triggerCharacter = configuration.get('intellisense.atSuggestion.trigger.latex') as string
         this.snippet = new Snippet(extension, triggerCharacter)
         this.triggerCharacter = triggerCharacter
     }

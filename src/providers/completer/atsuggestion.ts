@@ -11,7 +11,7 @@ export interface SnippetItemEntry {
     description: string
 }
 
-type DataSnippetsJsonType = typeof import('../../../data/snippets-as-commands.json')
+type DataSnippetsJsonType = typeof import('../../../data/at-suggestions.json')
 
 export class Snippet implements IProvider {
     private readonly extension: Extension
@@ -24,17 +24,17 @@ export class Snippet implements IProvider {
         this.triggerCharacter = triggerCharacter
         this.escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
 
-        const allSnippets: {[key: string]: SnippetItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/snippets-as-commands.json`).toString()) as DataSnippetsJsonType
+        const allSnippets: {[key: string]: SnippetItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/at-suggestions.json`).toString()) as DataSnippetsJsonType
         this.initialize(allSnippets)
         vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
-            if (e.affectsConfiguration('latex-workshop.intellisense.snippetsJSON.replace')) {
+            if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestionJSON.replace')) {
                 this.initialize(allSnippets)
             }
         })
     }
 
     private initialize(snippets: {[key: string]: SnippetItemEntry}) {
-        const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.snippetsJSON.replace') as {[key: string]: string}
+        const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestionJSON.replace') as {[key: string]: string}
         this.suggestions.length = 0
         Object.keys(snippetReplacements).forEach(prefix => {
             const body = snippetReplacements[prefix]
@@ -43,8 +43,8 @@ export class Snippet implements IProvider {
             }
             const completionItem = new vscode.CompletionItem(prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
             completionItem.insertText = new vscode.SnippetString(body)
-            completionItem.documentation = new vscode.MarkdownString('User defined snippet')
-            completionItem.detail = 'User defined snippet'
+            completionItem.documentation = 'User defined @suggestion'
+            completionItem.detail = 'User defined @suggestion'
             this.suggestions.push(completionItem)
         })
 
