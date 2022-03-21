@@ -805,6 +805,12 @@
               ]
             },
             {
+              "name": "latexmk (xelatex)",
+              "tools": [
+                "xelatexmk"
+              ]
+            },
+            {
               "name": "pdflatex ➞ bibtex ➞ pdflatex × 2",
               "tools": [
                 "pdflatex",
@@ -892,6 +898,19 @@
                 "-interaction=nonstopmode",
                 "-file-line-error",
                 "-lualatex",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+              ],
+              "env": {}
+            },
+            {
+              "name": "xelatexmk",
+              "command": "latexmk",
+              "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-xelatex",
                 "-outdir=%OUTDIR%",
                 "%DOC%"
               ],
