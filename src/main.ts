@@ -23,7 +23,7 @@ import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Configuration} from './components/configuration'
 import {EventBus} from './components/eventbus'
 
-import {Completer, SnippetCompleter} from './providers/completion'
+import {Completer, AtSuggestionCompleter} from './providers/completion'
 import {BibtexCompleter} from './providers/bibtexcompletion'
 import {CodeActions} from './providers/codeactions'
 import {DuplicateLabels} from './components/duplicatelabels'
@@ -285,10 +285,10 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
         vscode.languages.registerCompletionItemProvider({ scheme: 'file', language: 'bibtex'}, new BibtexCompleter(extension), '@')
     )
 
-    const snippetLatexTrigger = configuration.get('intellisense.snippets.trigger.latex') as string
-    if (snippetLatexTrigger !== '') {
+    const atSuggestionLatexTrigger = configuration.get('intellisense.atSuggestion.trigger.latex') as string
+    if (atSuggestionLatexTrigger !== '') {
         context.subscriptions.push(
-            vscode.languages.registerCompletionItemProvider( latexDoctexSelector, new SnippetCompleter(extension, snippetLatexTrigger), snippetLatexTrigger)
+            vscode.languages.registerCompletionItemProvider(latexDoctexSelector, extension.atSuggestionCompleter, atSuggestionLatexTrigger)
         )
     }
 
@@ -328,6 +328,7 @@ export class Extension {
     readonly linterLogParser: LinterLogParser
     readonly pegParser: PEGParser
     readonly completer: Completer
+    readonly atSuggestionCompleter: AtSuggestionCompleter
     readonly linter: Linter
     readonly cleaner: Cleaner
     readonly counter: Counter
@@ -361,6 +362,7 @@ export class Extension {
         this.compilerLogParser = new CompilerLogParser(this)
         this.linterLogParser = new LinterLogParser(this)
         this.completer = new Completer(this)
+        this.atSuggestionCompleter = new AtSuggestionCompleter(this)
         this.duplicateLabels = new DuplicateLabels(this)
         this.linter = new Linter(this)
         this.cleaner = new Cleaner(this)

@@ -1752,7 +1752,24 @@
           "scope": "window",
           "type": "string",
           "default": "@",
-          "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets."
+          "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets. Reload vscode to make any change in this configuration effective.",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead.",
+          "deprecationMessage": "Deprecated: Please use `latex-workshop.intellisense.atSuggestion.trigger.latex` instead."
+        },
+        "latex-workshop.intellisense.atSuggestion.trigger.latex": {
+          "scope": "window",
+          "type": "string",
+          "default": "@",
+          "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets. Reload vscode to make any change in this configuration effective."
+        },
+        "latex-workshop.intellisense.atSuggestionJSON.replace": {
+          "scope": "window",
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
+          },
+          "default": {},
+          "markdownDescription": "Dictionary of `\"prefix\": \"snippet command\"` to replace the default suggestions in `data/at-suggestions.json` or to define a new suggestion. An empty action removes the snippet from the default. E.g. `{ \"@.\": \"\\cdot\", \"@6\": \"\" }`. Note that in this setting, the prefix must start with `@`, no matter what the true trigger character defined by `latex-workshop.intellisense.atSuggestion.trigger.latex` is."
         },
         "latex-workshop.intellisense.file.exclude": {
           "scope": "resource",
@@ -2137,7 +2154,7 @@
             "type": "string"
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"snippet name\": \"snippet action\"` to replace the default snippets in `data/commands.json`. Remove the leading `\\` of the command name. See `data/commands.json` for the list of snippet names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "Dictionary of `\"command name\": \"command action\"` to replace the default snippets in `data/commands.json`. Remove the leading `\\` of the command name. See `data/commands.json` for the list of command names. An empty action removes the snippet. E.g. `{ \"[\": \"[ ${1} \\\\]\", \"figure\": \"\" }`. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.texdoc.path": {
           "scope": "window",

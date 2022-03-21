@@ -5,15 +5,15 @@ import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {escapeRegExp} from '../../utils/utils'
 
-export interface SnippetItemEntry {
+export interface AtSuggestionItemEntry {
     prefix: string,
     body: string,
     description: string
 }
 
-type DataSnippetsJsonType = typeof import('../../../data/snippets-as-commands.json')
+type DataAtSuggestionJsonType = typeof import('../../../data/at-suggestions.json')
 
-export class Snippet implements IProvider {
+export class AtSuggestion implements IProvider {
     private readonly extension: Extension
     private readonly triggerCharacter: string
     private readonly escapedTriggerCharacter: string
@@ -24,13 +24,35 @@ export class Snippet implements IProvider {
         this.triggerCharacter = triggerCharacter
         this.escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)
 
-        const allSnippets: {[key: string]: SnippetItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/snippets-as-commands.json`).toString()) as DataSnippetsJsonType
-        this.initialize(allSnippets)
+        const allSuggestions: {[key: string]: AtSuggestionItemEntry} = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/at-suggestions.json`).toString()) as DataAtSuggestionJsonType
+        this.initialize(allSuggestions)
+        vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.intellisense.atSuggestionJSON.replace')) {
+                this.initialize(allSuggestions)
+            }
+        })
     }
 
-    initialize(snippets: {[key: string]: SnippetItemEntry}) {
-        Object.keys(snippets).forEach(key => {
-            const item = snippets[key]
+    private initialize(suggestions: {[key: string]: AtSuggestionItemEntry}) {
+        const suggestionReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.atSuggestionJSON.replace') as {[key: string]: string}
+        this.suggestions.length = 0
+        Object.keys(suggestionReplacements).forEach(prefix => {
+            const body = suggestionReplacements[prefix]
+            if (body === '') {
+                return
+            }
+            const completionItem = new vscode.CompletionItem(prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
+            completionItem.insertText = new vscode.SnippetString(body)
+            completionItem.documentation = 'User defined @suggestion'
+            completionItem.detail = 'User defined @suggestion'
+            this.suggestions.push(completionItem)
+        })
+
+        Object.keys(suggestions).forEach(key => {
+            const item = suggestions[key]
+            if (item.prefix in suggestionReplacements) {
+                return
+            }
             const completionItem = new vscode.CompletionItem(item.prefix.replace('@', this.triggerCharacter), vscode.CompletionItemKind.Function)
             completionItem.insertText = new vscode.SnippetString(item.body)
             completionItem.documentation = new vscode.MarkdownString(item.description)
@@ -61,7 +83,7 @@ export class Snippet implements IProvider {
         if (startPos >= 0) {
             range = new vscode.Range(position.line, startPos, position.line, position.character)
         }
-        this.suggestions.forEach(snippet => {snippet.range = range})
+        this.suggestions.forEach(suggestion => {suggestion.range = range})
         return this.suggestions
     }
 }
