@@ -1,5 +1,11 @@
 # Change Log
 
+## []
+
+### Added
+
+- (#3179) `editor.action.smartSelect.expand` is supported. The configuration is `latex-workshop.selection.smart.latex.enabled`.
+
 ## [8.23.0] - 2021-12-28
 
 ### Added
