@@ -1,10 +1,8 @@
 import * as vscode from 'vscode'
-import {DeprecatedConfiguration} from './configurationlib/deprecated'
 import type {Extension} from '../main'
 
 export class Configuration {
     private readonly extension: Extension
-    private readonly deprecatedConfiguration: DeprecatedConfiguration
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -12,8 +10,6 @@ export class Configuration {
         vscode.workspace.onDidChangeConfiguration((ev) => {
             this.logChangeOnConfiguration(ev)
         })
-        this.deprecatedConfiguration = new DeprecatedConfiguration(extension)
-        this.deprecatedConfiguration.check()
     }
 
     private readonly configurationsToLog = [
