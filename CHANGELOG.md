@@ -5,6 +5,11 @@
 ### Added
 
 - (#3179) Support `editor.action.smartSelect.expand` and `editor.action.smartSelect.shrink`. The configuration is `latex-workshop.selection.smart.latex.enabled`.
+- (#3207) Use `latex-workshop.intellisense.atSuggestionJSON.replace` to replace a default `@`-suggestion or define a new one. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#-suggestions
+
+### Changed
+
+- (#3207) The setting `latex-workshop.intellisense.snippets.trigger.latex` is deprecated in favour of `latex-workshop.intellisense.atSuggestion.trigger.latex`.
 
 ## [8.23.0] - 2021-12-28
 
