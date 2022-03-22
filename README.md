@@ -46,7 +46,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [LaTeX recipes](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes)
     - [LaTeX tools](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-tools)
     - [Placeholders](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders)
-  - [Multi file projects](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#Multi-File-Projects)
+  - [Multi file projects](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects)
   - [Cleaning generated files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#cleaning-generated-files)
   - [Catching errors and warnings](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#catching-errors-and-warnings)
   - [External build command](https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#external-build-command)
@@ -72,12 +72,13 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Environments)
   - [Files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#files)
   - [Bibtex Files](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#bibtex-files)
+  - [`@` suggestions](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#-suggestions)
+    - [Inserting Greek letters](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#inserting-greek-letters)
+    - [Handy mathematical helpers](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Handy-mathematical-helpers)
 - [Snippets and shortcuts](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets)
   - [Environments](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Environments)
   - [Sectioning](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Sectioning)
-  - [Inserting Greek letters](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Inserting-Greek-letters)
-  - [Handy mathematical snippets](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Handy-mathematical-snippets)
-  - [Font commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Font-commands)
+  - [Font commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#font-commands-and-snippets)
   - [Mathematical font commands](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Mathematical-font-commands)
   - [Surrounding text](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#surrounding-text)
   - [Miscellaneous actions](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Miscellaneous-Actions)
@@ -140,22 +141,22 @@ This is not a complete list but rather a preview of some of the coolest features
 
     <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/wrap.gif" alt="wrap demo" height="140px">
 
-  - We also provide a few other snippets mechanisms
-    - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Inserting-Greek-letters).
+  - We also provide a few other suggestion mechanisms
+    - Greek letters are obtained as `@` + `letter`. Some letters have variants, which are available as `@v` + `letter`. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#inserting-greek-letters).
 
         <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/greek letter.gif" alt="greek letters demo" height="20px">
 
-    - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Environments).
+    - Common environments can be obtained by `BXY` where `XY` are the first two letters of the environment name, eg. `BEQ` gives the `equation` environment. If you want the star version of the environment, use `BSXX`, eg. `BSEQ` gives the `equation*` environment. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#Handy-mathematical-helpers).
 
         <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/BSAL snippet.gif" alt="BSAL demo" height="55px">
-    - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Mathematical-font-commands).
+    - Common font commands can be obtained by `FXY` where `XY` are the last two letters of the font command name, eg. `FIT` gives `\textit{}`. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#font-commands-and-snippets).
 
         <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/FBF snippet.gif" alt="FBF demo" height="20px">
-    - Many other maths symbols can be obtained with the `@` prefix. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Handy-mathematical-snippets).
+    - Many other maths symbols can be obtained with the `@` prefix. See [here](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Handy-mathematical-helpers).
 
       <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/frac.gif" alt="\frac shortcut demo" height="20px">
       <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/int.gif" alt="\int shortcut demo" height="20px">
-- [Shortcuts](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#Font-commands)
+- [Shortcuts](https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets#font-commands-and-snippets)
   - In addition to snippets, there are shortcuts provided by the extension that allow you to easily format text (and one or two other things).
 
     <img src="https://github.com/James-Yu/LaTeX-Workshop/raw/master/demo_media/emph.gif" alt="\emph{} demo" height="20px">
