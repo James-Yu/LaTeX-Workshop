@@ -30,6 +30,25 @@ class Fields extends Map<string, string> {
         return this.get('publisher')
     }
 
+    /**
+     * Concatenate the values of the fields listed in `selectedFields`
+     * @param selectedFields an array of field names
+     * @returns a string
+     */
+    join(selectedFields: string[], prefixWithKeys: boolean, joinString: string = ' '): string {
+        const s: string[] = []
+        for (const key of this.keys()) {
+            if (selectedFields.includes(key)) {
+                const value = this.get(key) as string
+                if (prefixWithKeys) {
+                    s.push(key + ': ')
+                }
+                s.push(value)
+            }
+        }
+        return s.join(joinString)
+    }
+
 }
 
 export interface Suggestion extends ILwCompletionItem {
@@ -45,9 +64,12 @@ export class Citation implements IProvider {
      * Bib entries in each bib `file`.
      */
     private readonly bibEntries = new Map<string, Suggestion[]>()
+    private readonly fields: string []
 
     constructor(extension: Extension) {
         this.extension = extension
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        this.fields = (configuration.get('intellisense.citation.format') as string[]).map(f => { return f.toLowerCase() })
     }
 
     provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
@@ -56,7 +78,8 @@ export class Citation implements IProvider {
 
     private provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ILwCompletionItem[] {
         // Compile the suggestion array to vscode completion array
-        const label = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.citation.label') as string
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const label = configuration.get('intellisense.citation.label') as string
         let range: vscode.Range | undefined = undefined
         if (args) {
             const line = args.document.lineAt(args.position).text
@@ -84,7 +107,7 @@ export class Citation implements IProvider {
                     }
                     break
             }
-            item.filterText = `${item.key} ${item.fields.author} ${item.fields.title} ${item.fields.journal}`
+            item.filterText = item.key + ' ' + item.fields.join(this.fields, false)
             item.insertText = item.key
             item.range = range
             return item
@@ -96,7 +119,8 @@ export class Citation implements IProvider {
             return {
                 label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
                 description: `${item.key}`,
-                detail: `Authors: ${item.fields.author ? trimMultiLineString(item.fields.author) : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
+                detail: item.fields.join(this.fields, true, ', ')
+                // detail: `Authors: ${item.fields.author ? trimMultiLineString(item.fields.author) : 'Unknown'}, publication: ${item.fields.journal ? item.fields.journal : (item.fields.journaltitle ? item.fields.journaltitle : (item.fields.publisher ? item.fields.publisher : 'Unknown'))}`
             }
         }), {
             placeHolder: 'Press ENTER to insert citation key at cursor',
@@ -210,7 +234,7 @@ export class Citation implements IProvider {
      */
     async parseBibFile(file: string) {
         this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (fs.statSync(file).size >= (configuration.get('intellisense.citation.maxfilesizeMB') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${file}`)
             this.bibEntries.delete(file)
