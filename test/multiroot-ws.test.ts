@@ -29,7 +29,7 @@ function getCompletionItems(extension: vscode.Extension<ReturnType<typeof activa
 function assertCompletionLabelsEqual(items: vscode.CompletionItem[] | undefined, labels: string[]) {
     assert.ok(items !== undefined, 'Undefined completionItems')
     assert.strictEqual(items.length, labels.length, 'Completion array has wrong length')
-    for(const i in items) {
+    for(let i = 0; i<items.length; i++) {
         assert.strictEqual(items[i].label, labels[i], 'Wrong label')
     }
 }
@@ -37,7 +37,7 @@ function assertCompletionLabelsEqual(items: vscode.CompletionItem[] | undefined,
 function assertCompletionFilterTextContains(items: vscode.CompletionItem[] | undefined, filterTexts: string[]) {
     assert.ok(items !== undefined, 'Undefined completionItems')
     assert.strictEqual(items.length, filterTexts.length, 'Completion array has wrong length')
-    for(const i in items) {
+    for(let i = 0; i<items.length; i++) {
         assert.ok(items[i].filterText && items[i].filterText?.includes(filterTexts[i]), `Wrong filterText: \n${items[i].filterText}\n${filterTexts[i]}`)
     }
 }
