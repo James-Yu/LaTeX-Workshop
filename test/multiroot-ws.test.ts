@@ -4,6 +4,7 @@ import * as process from 'process'
 import * as fs from 'fs'
 import * as os from 'os'
 import {sleep} from '../src/utils/utils'
+import {activate} from '../src/main'
 import * as vscode from 'vscode'
 import {
     assertPdfIsGenerated,
@@ -13,6 +14,33 @@ import {
     waitLatexWorkshopActivated,
     waitRootFileFound
 } from './utils'
+
+function getCompletionItems(extension: vscode.Extension<ReturnType<typeof activate>>, doc: vscode.TextDocument, pos: vscode.Position): vscode.CompletionItem[] | undefined {
+    const token = new vscode.CancellationTokenSource().token
+    return extension.exports.realExtension?.completer.provideCompletionItems?.(
+        doc, pos, token,
+        {
+            triggerKind: vscode.CompletionTriggerKind.Invoke,
+            triggerCharacter: undefined
+        }
+    )
+}
+
+function assertCompletionLabelsEqual(items: vscode.CompletionItem[] | undefined, labels: string[]) {
+    assert.ok(items !== undefined, 'Undefined completionItems')
+    assert.strictEqual(items.length, labels.length, 'Completion array has wrong length')
+    for(const i in items) {
+        assert.strictEqual(items[i].label, labels[i], 'Wrong label')
+    }
+}
+
+function assertCompletionFilterTextContains(items: vscode.CompletionItem[] | undefined, filterTexts: string[]) {
+    assert.ok(items !== undefined, 'Undefined completionItems')
+    assert.strictEqual(items.length, filterTexts.length, 'Completion array has wrong length')
+    for(const i in items) {
+        assert.ok(items[i].filterText && items[i].filterText?.includes(filterTexts[i]), `Wrong filterText: \n${items[i].filterText}\n${filterTexts[i]}`)
+    }
+}
 
 
 suite('Multi-root workspace test suite', () => {
@@ -255,6 +283,49 @@ suite('Multi-root workspace test suite', () => {
         await assertPdfIsGenerated(pdfFilePath, async () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
+    })
+
+    runTestWithFixture('fixture040', 'citation intellisense', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileNameA = 'A.tex'
+        const texFileNameB = 'B.tex'
+        const texFilePathA = vscode.Uri.file(path.join(fixtureDir, 'A', texFileNameA))
+        const texFilePathB = vscode.Uri.file(path.join(fixtureDir, 'B', texFileNameB))
+        const docA = await vscode.workspace.openTextDocument(texFilePathA)
+        const pos = new vscode.Position(3,10)
+        const descriptions = [
+            'hintFake',
+            'hintLaTex',
+            'hintRubi'
+        ]
+
+        // Open A.tex and trigger citation completion
+        await vscode.window.showTextDocument(docA)
+        const extension = await waitLatexWorkshopActivated()
+        await waitGivenRootFile(docA.fileName)
+        await sleep(1000)
+        const itemsA = await getCompletionItems(extension, docA, pos)
+        const expectedLabelsA = [
+            'A fake article',
+            'LATEX: A Document Preparation System : User\'s Guide and Reference Manual',
+            'Discrete event systems'
+        ]
+        assertCompletionLabelsEqual(itemsA, expectedLabelsA)
+        assertCompletionFilterTextContains(itemsA, descriptions)
+
+        // Switch to B.tex and trigger citation completion
+        const docB = await vscode.workspace.openTextDocument(texFilePathB)
+        await vscode.window.showTextDocument(docB)
+        await waitGivenRootFile(docB.fileName)
+        await sleep(1000)
+        const itemsB = await getCompletionItems(extension, docB, pos)
+        const expectedLabelsB = [
+            'art1',
+            'lamport1994latex',
+            'MR1241645'
+        ]
+        assertCompletionLabelsEqual(itemsB, expectedLabelsB)
+        assertCompletionFilterTextContains(itemsB, descriptions)
     })
 
 })
