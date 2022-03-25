@@ -304,7 +304,7 @@ suite('Multi-root workspace test suite', () => {
         const extension = await waitLatexWorkshopActivated()
         await waitGivenRootFile(docA.fileName)
         await sleep(1000)
-        const itemsA = await getCompletionItems(extension, docA, pos)
+        const itemsA = getCompletionItems(extension, docA, pos)
         const expectedLabelsA = [
             'A fake article',
             'LATEX: A Document Preparation System : User\'s Guide and Reference Manual',
@@ -318,7 +318,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.window.showTextDocument(docB)
         await waitGivenRootFile(docB.fileName)
         await sleep(1000)
-        const itemsB = await getCompletionItems(extension, docB, pos)
+        const itemsB = getCompletionItems(extension, docB, pos)
         const expectedLabelsB = [
             'art1',
             'lamport1994latex',
