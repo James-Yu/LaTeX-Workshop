@@ -82,20 +82,18 @@ export class Citation implements IProvider {
         return this.provide(args)
     }
 
-    private provide(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ILwCompletionItem[] {
+    private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ILwCompletionItem[] {
         // Compile the suggestion array to vscode completion array
         const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.document.uri)
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readFields(configuration)
         let range: vscode.Range | undefined = undefined
-        if (args) {
-            const line = args.document.lineAt(args.position).text
-            const curlyStart = line.lastIndexOf('{', args.position.character)
-            const commaStart = line.lastIndexOf(',', args.position.character)
-            const startPos = Math.max(curlyStart, commaStart)
-            if (startPos >= 0) {
-                range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
-            }
+        const line = args.document.lineAt(args.position).text
+        const curlyStart = line.lastIndexOf('{', args.position.character)
+        const commaStart = line.lastIndexOf(',', args.position.character)
+        const startPos = Math.max(curlyStart, commaStart)
+        if (startPos >= 0) {
+            range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
         }
         return this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             // Compile the completion item label
