@@ -91,7 +91,7 @@ export class Citation implements IProvider {
 
     private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ILwCompletionItem[] {
         // Compile the suggestion array to vscode completion array
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.document.uri)
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', args.document.uri)
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration)
         let range: vscode.Range | undefined = undefined
