@@ -33,6 +33,8 @@ class Fields extends Map<string, string> {
     /**
      * Concatenate the values of the fields listed in `selectedFields`
      * @param selectedFields an array of field names
+     * @param prefixWithKeys if true, every field is prefixed by 'Fieldname: '
+     * @param joinString the string to use for joining the fields
      * @returns a string
      */
     join(selectedFields: string[], prefixWithKeys: boolean, joinString: string = ' '): string {
@@ -59,7 +61,12 @@ export interface Suggestion extends ILwCompletionItem {
     position: vscode.Position
 }
 
-function readFields(configuration: vscode.WorkspaceConfiguration, excludedField?: string): string[] {
+/**
+ * Read the value `intellisense.citation.format`
+ * @param configuration workspace configuration
+ * @param excludedField A field to exclude from the list of citation fields. Primary usage is to not include `citation.label` twice.
+ */
+function readCitationFormat(configuration: vscode.WorkspaceConfiguration, excludedField?: string): string[] {
     const fields = (configuration.get('intellisense.citation.format') as string[]).map(f => { return f.toLowerCase() })
     if (excludedField) {
         return fields.filter(f => f !== excludedField.toLowerCase())
@@ -86,7 +93,7 @@ export class Citation implements IProvider {
         // Compile the suggestion array to vscode completion array
         const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.document.uri)
         const label = configuration.get('intellisense.citation.label') as string
-        const fields = readFields(configuration)
+        const fields = readCitationFormat(configuration)
         let range: vscode.Range | undefined = undefined
         const line = args.document.lineAt(args.position).text
         const curlyStart = line.lastIndexOf('{', args.position.character)
@@ -121,14 +128,14 @@ export class Citation implements IProvider {
         })
     }
 
-    browser(_args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', _args?.document.uri)
+    browser(args?: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', args?.document.uri)
         const label = configuration.get('intellisense.citation.label') as string
-        const fields = readFields(configuration, label)
+        const fields = readCitationFormat(configuration, label)
         void vscode.window.showQuickPick(this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             return {
                 label: item.fields.title ? trimMultiLineString(item.fields.title) : '',
-                description: `${item.key}`,
+                description: item.key,
                 detail: item.fields.join(fields, true, ', ')
             }
         }), {
@@ -198,16 +205,6 @@ export class Citation implements IProvider {
      */
     private updateAll(bibFiles?: string[]): Suggestion[] {
         let suggestions: Suggestion[] = []
-        // Update the dirty content in active text editor, get bibitems
-        // *** This is done after stop typing for 5 seconds. Defined in `onDidChangeTextDocument` ***
-        // if (vscode.window.activeTextEditor) {
-        //     const file = vscode.window.activeTextEditor.document.uri.fsPath
-        //     const cache = this.extension.manager.cachedContent[file]
-        //     if (cache !== undefined) {
-        //         const bibitems = this.parseContent(vscode.window.activeTextEditor.document.getText(), file)
-        //         cache.element.bibitem = bibitems
-        //     }
-        // }
         // From bib files
         if (bibFiles === undefined) {
             bibFiles = Array.from(this.bibEntries.keys())
