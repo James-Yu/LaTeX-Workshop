@@ -2127,7 +2127,7 @@
           "markdownDescription": "Many snippets use PlaceHolders of the form `${\\d:some_tex`}` for their argument. You may prefer to use TabStops `${\\d}` instead, which allows for direct call to intellisense again. Default is true. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.intellisense.citation.backend": {
-          "scope": "window",
+          "scope": "resource",
           "type": "string",
           "enum": [
             "bibtex",
@@ -2137,7 +2137,7 @@
           "markdownDescription": "Backend to use for citation intellisense."
         },
         "latex-workshop.intellisense.bibtexJSON.replace": {
-          "scope": "window",
+          "scope": "resource",
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -2149,7 +2149,7 @@
           "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/bibtex-entries.json`. See `data/bibtex-entries.json` for the list of fields for each entry. This variable is used when `latex-workshop.intellisense.citation.backend` is set to `biblatex`. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.intellisense.biblatexJSON.replace": {
-          "scope": "window",
+          "scope": "resource",
           "type": "object",
           "additionalProperties": {
             "type": "array",
@@ -2193,13 +2193,13 @@
           "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB."
         },
         "latex-workshop.bibtex-format.tab": {
-          "scope": "window",
+          "scope": "resource",
           "type": "string",
           "default": "2 spaces",
           "markdownDescription": "Indentation for each field. The string can be `\"tab\"` or of the form `\"X spaces\"` or simply `\"X\"` where `X` is a number. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-format.surround": {
-          "scope": "window",
+          "scope": "resource",
           "type": "string",
           "enum": [
             "Curly braces",
@@ -2209,7 +2209,7 @@
           "description": "Surround each field value with either {Curly braces} or \"Quotation marks\". Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-format.case": {
-          "scope": "window",
+          "scope": "resource",
           "type": "string",
           "enum": [
             "UPPERCASE",
@@ -2219,13 +2219,13 @@
           "description": "Determines if field names should be formatted like 'AUTHOR' or 'author'. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-format.trailingComma": {
-          "scope": "window",
+          "scope": "resource",
           "type": "boolean",
           "default": false,
           "description": "Keep the trailing comma of the last field item. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-format.sortby": {
-          "scope": "window",
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -2236,7 +2236,7 @@
           ]
         },
         "latex-workshop.bibtex-format.handleDuplicates": {
-          "scope": "window",
+          "scope": "resource",
           "type": "string",
           "enum": [
             "Ignore Duplicates",
@@ -2247,7 +2247,7 @@
           "markdownDescription": "How to handle duplicates found by the bibtex sorting functions. Duplicates are decided according to the `bibtex-format.sortby` config. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-format.sort.enabled": {
-          "scope": "window",
+          "scope": "resource",
           "type": "boolean",
           "default": false,
           "markdownDescription": "Sort content when calling VSCode format on a .bib file. Reload vscode to make any change in this configuration effective."
@@ -2258,7 +2258,7 @@
           "markdownDescription": "Align equal signs when calling VSCode format on a .bib file. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-entries.first": {
-          "scope": "window",
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
@@ -2270,13 +2270,13 @@
           "markdownDescription": "When `latex-workshop.bibtex-fields.sort.enabled` is true, these fields are put at the top, in the order defined by the array. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-fields.sort.enabled": {
-          "scope": "window",
+          "scope": "resource",
           "type": "boolean",
           "default": false,
           "markdownDescription": "Sort fields inside every entry. The sorting order is defined by `latex-workshop.bibtex-fields.order`. This variable only has effect when formatting bibtex aligns fields. It is not possible to sort entries without aligning them. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.bibtex-fields.order": {
-          "scope": "window",
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
