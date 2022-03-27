@@ -54,7 +54,7 @@ suite('Completion test suite', () => {
         const extension = await waitLatexWorkshopActivated()
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
-        const items = await extension.exports.realExtension?.completer.provideCompletionItems?.(
+        const items = extension.exports.realExtension?.completer.provideCompletionItems?.(
             doc, pos, token,
             {
                 triggerKind: vscode.CompletionTriggerKind.Invoke,
@@ -73,7 +73,7 @@ suite('Completion test suite', () => {
         const extension = await waitLatexWorkshopActivated()
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
-        const items = await extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
+        const items = extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
             doc, pos, token,
             {
                 triggerKind: vscode.CompletionTriggerKind.Invoke,
@@ -96,7 +96,7 @@ suite('Completion test suite', () => {
         const extension = await waitLatexWorkshopActivated()
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
-        const items = await extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
+        const items = extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
             doc, pos, token,
             {
                 triggerKind: vscode.CompletionTriggerKind.Invoke,
