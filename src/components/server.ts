@@ -7,7 +7,7 @@ import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
 import {PdfFilePathEncoder} from './serverlib/encodepath'
-import { EventEmitter } from 'stream'
+import {EventEmitter} from 'events'
 
 class WsServer extends ws.Server {
     private readonly extension: Extension
