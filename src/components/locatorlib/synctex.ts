@@ -71,14 +71,18 @@ class Rectangle {
     }
 }
 
-export class SyncTexJs {
-    readonly extension: Extension
+type IExtension = {
+    logger: Extension['logger']
+}
 
-    constructor(extension: Extension) {
+export class SyncTexJs {
+    private readonly extension: IExtension
+
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
-    private parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
+    parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
         const filename = path.basename(pdfFile, path.extname(pdfFile))
         const dir = path.dirname(pdfFile)
         const synctexFile = path.resolve(dir, filename + '.synctex')
