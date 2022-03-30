@@ -315,6 +315,18 @@ export class Commander {
 
     }
 
+    gotoBibTeX(lineNumber: number) {
+        this.extension.logger.addLogMessage(`GOTOBIBTEX command invoked. Target line ${lineNumber}`)
+        const activeEditor = vscode.window.activeTextEditor
+
+        // input lineNumber is one-based, while editor position is zero-based.
+        void vscode.commands.executeCommand('revealLine', {lineNumber: lineNumber-1, at: 'center'})
+        if (activeEditor) {
+            activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber-1, 0), new vscode.Position(lineNumber-1, 0))
+        }
+
+    }
+
     setViewer() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         return vscode.window.showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], {placeHolder: 'View PDF with'})
