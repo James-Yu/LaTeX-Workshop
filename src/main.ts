@@ -264,6 +264,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
     const weaveSelector = selectDocumentsWithId(['jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
+    const bibtexSelector = selectDocumentsWithId(['bibtex'])
     const latexFormatter = new LatexFormatterProvider(extension)
     const bibtexFormatter = new BibtexFormatterProvider(extension)
 
@@ -284,6 +285,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
         vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)),
         vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider(extension)),
         vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider(extension)),
+        vscode.languages.registerDocumentSymbolProvider(bibtexSelector, new DocSymbolProvider(extension)),
         vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension))
     )
 

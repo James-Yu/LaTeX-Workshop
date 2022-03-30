@@ -49,7 +49,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.refresh().finally(() => {this._onDidChangeTreeData.fire(undefined)})
     }
 
-    private async parseBibTeX() {
+    async parseBibTeX() {
         const document = vscode.window.activeTextEditor?.document
         if (!document) {
             return
