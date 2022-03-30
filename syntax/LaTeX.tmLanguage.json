@@ -1901,7 +1901,7 @@
 			"match": "(?:\\s*)((\\\\)(?:begin|end))(\\{)([a-z]+(?:\\*)?)(\\})(?:(\\[).*(\\]))?"
 		},
 		"definition-label": {
-			"begin": "((\\\\)label)(\\{)",
+			"begin": "((\\\\)label)((?:\\[[^\\[]*?\\])*)(\\{)",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.label.latex"
@@ -1910,6 +1910,13 @@
 					"name": "punctuation.definition.keyword.latex"
 				},
 				"3": {
+					"patterns": [
+						{
+							"include": "#optional-arg"
+						}
+					]
+				},
+				"4": {
 					"name": "punctuation.definition.arguments.begin.latex"
 				}
 			},
