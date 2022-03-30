@@ -40,7 +40,6 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
-import {BibTeXStructureTreeView} from './providers/bibtexstructure'
 
 
 function conflictExtensionCheck() {
@@ -85,7 +84,6 @@ function registerLatexWorkshopCommands(extension: Extension, context: vscode.Ext
         vscode.commands.registerCommand('latex-workshop.compilerlog', () => extension.commander.log('compiler')),
         vscode.commands.registerCommand('latex-workshop.code-action', (d: vscode.TextDocument, r: vscode.Range, c: number, m: string) => extension.codeActions.runCodeAction(d, r, c, m)),
         vscode.commands.registerCommand('latex-workshop.goto-section', (filePath: string, lineNumber: number) => extension.commander.gotoSection(filePath, lineNumber)),
-        vscode.commands.registerCommand('latex-workshop.goto-bibtex', (lineNumber: number) => extension.commander.gotoBibTeX(lineNumber)),
         vscode.commands.registerCommand('latex-workshop.navigate-envpair', () => extension.commander.navigateToEnvPair()),
         vscode.commands.registerCommand('latex-workshop.select-envcontent', () => extension.commander.selectEnvContent()),
         vscode.commands.registerCommand('latex-workshop.select-envname', () => extension.commander.selectEnvName()),
@@ -169,8 +167,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
         }
-        if (e.languageId == 'bibtex') {
-            extension.bibtexStructureViewer.update()
+        if (e.languageId === 'bibtex') {
+            extension.structureViewer.update()
         }
     }))
 
@@ -220,7 +218,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         // We do not check langid of editor because the bibtex structure should
         // reveal only when active editor is bibtex. This is done in the update
         // function
-        extension.bibtexStructureViewer.update()
+        // TODO: lazy loading for LaTeX structure?
+        extension.structureViewer.update()
 
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
@@ -244,11 +243,9 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     }))
 
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        if (extension.manager.hasTexId(e.textEditor.document.languageId)) {
+        if (extension.manager.hasTexId(e.textEditor.document.languageId) ||
+            e.textEditor.document.languageId === 'bibtex') {
             return extension.structureViewer.showCursorItem(e)
-        }
-        if (e.textEditor.document.languageId == 'bibtex') {
-            return extension.bibtexStructureViewer.showCursorItem(e)
         }
         return
     }))
@@ -359,7 +356,6 @@ export class Extension {
     readonly bibtexFormatter: BibtexFormatter
     readonly mathPreviewPanel: MathPreviewPanel
     readonly duplicateLabels: DuplicateLabels
-    readonly bibtexStructureViewer: BibTeXStructureTreeView
 
     constructor() {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
@@ -395,7 +391,6 @@ export class Extension {
         this.mathPreview = new MathPreview(this)
         this.bibtexFormatter = new BibtexFormatter(this)
         this.mathPreviewPanel = new MathPreviewPanel(this)
-        this.bibtexStructureViewer = new BibTeXStructureTreeView(this)
         this.logger.addLogMessage('LaTeX Workshop initialized.')
     }
 

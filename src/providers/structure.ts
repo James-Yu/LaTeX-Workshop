@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import {bibtexParser} from 'latex-utensils'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
@@ -30,8 +31,13 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     }
 
-    private refresh(): Section[] {
-        if (this.extension.manager.rootFile) {
+    private async refresh(): Promise<Section[]> {
+        const document = vscode.window.activeTextEditor?.document
+        if (document?.languageId === 'bibtex') {
+            await this.parseBibTeX()
+            return this.ds
+        }
+        else if (this.extension.manager.rootFile) {
             this.ds = this.buildModel(new Set<string>(), this.extension.manager.rootFile)
             return this.ds
         } else {
@@ -40,8 +46,50 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     update() {
-        this.refresh()
-        this._onDidChangeTreeData.fire(undefined)
+        this.refresh().finally(() => {this._onDidChangeTreeData.fire(undefined)})
+    }
+
+    private async parseBibTeX() {
+        const document = vscode.window.activeTextEditor?.document
+        if (!document) {
+            return
+        }
+        const ast = await this.extension.pegParser.parseBibtex(document?.getText() || '').catch((error) => {
+            if (error instanceof(Error)) {
+                this.extension.logger.addLogMessage('Bibtex parser failed.')
+                this.extension.logger.addLogMessage(error.message)
+                void this.extension.logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
+            }
+            return undefined
+        })
+
+        this.ds = []
+        ast?.content.forEach(entry => {
+            if (!bibtexParser.isEntry(entry)){
+                return
+            }
+            const bibitem = new Section(
+                SectionKind.BibItem,
+                `${entry.entryType}: ${entry.internalKey}`,
+                vscode.TreeItemCollapsibleState.Collapsed,
+                0,
+                entry.location.start.line,
+                entry.location.end.line,
+                document.fileName)
+            entry.content.forEach(field => {
+                const fielditem = new Section(
+                    SectionKind.BibField,
+                    `${field.name}: ${field.value.content}`,
+                    vscode.TreeItemCollapsibleState.None,
+                    1,
+                    field.location.start.line,
+                    field.location.end.line,
+                    document.fileName)
+                fielditem.parent = bibitem
+                bibitem.children.push(fielditem)
+            })
+            this.ds.push(bibitem)
+        })
     }
 
     /**
@@ -163,7 +211,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return treeItem
     }
 
-    getChildren(element?: Section): Section[] {
+    getChildren(element?: Section): vscode.ProviderResult<Section[]> {
         if (this.extension.manager.rootFile === undefined) {
             return []
         }
@@ -187,7 +235,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 export enum SectionKind {
     Env = 0,
     Label = 1,
-    Section = 2
+    Section = 2,
+    BibItem = 3,
+    BibField = 4
 }
 
 export class Section extends vscode.TreeItem {
@@ -469,8 +519,10 @@ export class StructureTreeView {
     private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {
         let match: Section | undefined = undefined
         for (const node of sections) {
-            if ((node.fileName === fileName && node.lineNumber <= lineNumber && node.toLine >= lineNumber)
-                || (node.fileName !== fileName && node.subfiles.includes(fileName))) {
+            // lineNumber is zero-based but node line numbers are one-based.
+            if ((node.fileName === fileName &&
+                 node.lineNumber-1 <= lineNumber && node.toLine-1 >= lineNumber) ||
+                (node.fileName !== fileName && node.subfiles.includes(fileName))) {
                 match = node
                 // Look for a more precise surrounding section
                 const res = this.traverseSectionTree(node.children, fileName, lineNumber)
