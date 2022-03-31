@@ -34,11 +34,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private async refresh(): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'bibtex') {
-            await this.parseBibTeX()
+            await this.buildBibTeXModel()
             return this.ds
         }
         else if (this.extension.manager.rootFile) {
-            this.ds = this.buildModel(new Set<string>(), this.extension.manager.rootFile)
+            this.ds = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
             return this.ds
         } else {
             return []
@@ -49,22 +49,15 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.refresh().finally(() => {this._onDidChangeTreeData.fire(undefined)})
     }
 
-    async parseBibTeX() {
+    async buildBibTeXModel() {
         const document = vscode.window.activeTextEditor?.document
         if (!document) {
             return
         }
-        const ast = await this.extension.pegParser.parseBibtex(document?.getText() || '').catch((error) => {
-            if (error instanceof(Error)) {
-                this.extension.logger.addLogMessage('Bibtex parser failed.')
-                this.extension.logger.addLogMessage(error.message)
-                void this.extension.logger.showErrorMessage('Bibtex parser failed with error: ' + error.message)
-            }
-            return undefined
-        })
+        const ast = await this.extension.pegParser.parseBibtex(document.getText())
 
         this.ds = []
-        ast?.content.forEach(entry => {
+        ast.content.forEach(entry => {
             if (!bibtexParser.isEntry(entry)){
                 return
             }
@@ -102,7 +95,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @param sectionNumber The number of the current section stored in an array with the same length this.hierarchy
      * @param imports Do we parse included files
      */
-    buildModel(visitedFiles: Set<string>, filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[], imports: boolean = true): Section[] {
+    buildLaTeXModel(visitedFiles: Set<string>, filePath: string, imports: boolean = true, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[]): Section[] {
         if (visitedFiles.has(filePath)) {
             return []
         } else {
@@ -153,7 +146,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             if (imports) {
                const inputFilePath = structureModel.buildImportModel(line)
                if (inputFilePath) {
-                    this.buildModel(visitedFiles, inputFilePath, newFileStack, rootStack, children, sectionNumber)
+                    this.buildLaTeXModel(visitedFiles, inputFilePath, true, newFileStack, rootStack, children, sectionNumber)
                 }
             }
 
