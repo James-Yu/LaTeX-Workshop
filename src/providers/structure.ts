@@ -54,9 +54,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (!document) {
             return
         }
-        const ast = await this.extension.pegParser.parseBibtex(document.getText())
 
         this.ds = []
+        const ast = await this.extension.pegParser.parseBibtex(document.getText())
+        if (!ast) {
+            this.extension.logger.addLogMessage(`Cannot parse BibTeX file: ${document.fileName}`)
+            return
+        }
+
         ast.content.forEach(entry => {
             if (!bibtexParser.isEntry(entry)){
                 return
