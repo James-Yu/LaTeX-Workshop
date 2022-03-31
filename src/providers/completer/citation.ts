@@ -255,7 +255,7 @@ export class Citation implements IProvider {
             }
             throw e
         })
-        ast.content
+        ast?.content
             .filter(bibtexParser.isEntry)
             .forEach((entry: bibtexParser.Entry) => {
                 if (entry.internalKey === undefined) {

@@ -87,7 +87,7 @@ export class NewCommandFinder {
         let commands: string[] = []
         try {
             const ast = await this.extension.pegParser.parseLatexPreamble(content)
-            for (const node of ast.content) {
+            for (const node of ast?.content || []) {
                 if ((isNewCommand(node) || latexParser.isDefCommand(node)) && node.args.length > 0) {
                     node.name = node.name.replace(/\*$/, '') as NewCommand['name']
                     const s = latexParser.stringify(node)
