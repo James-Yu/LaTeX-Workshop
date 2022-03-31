@@ -62,37 +62,32 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return
         }
         const ast = await this.extension.pegParser.parseBibtex(document.getText())
-        if (!ast) {
-            this.extension.logger.addLogMessage(`Cannot parse BibTeX file: ${document.fileName}`)
-            return
-        }
+        this.extension.logger.addLogMessage(`Cannot parse BibTeX file: ${document.fileName}`)
 
-        ast.content.forEach(entry => {
-            if (!bibtexParser.isEntry(entry)){
-                return
-            }
-            const bibitem = new Section(
-                SectionKind.BibItem,
-                `${entry.entryType}: ${entry.internalKey}`,
-                vscode.TreeItemCollapsibleState.Collapsed,
-                0,
-                entry.location.start.line,
-                entry.location.end.line,
-                document.fileName)
-            entry.content.forEach(field => {
-                const fielditem = new Section(
-                    SectionKind.BibField,
-                    `${field.name}: ${field.value.content}`,
-                    vscode.TreeItemCollapsibleState.None,
-                    1,
-                    field.location.start.line,
-                    field.location.end.line,
+        ast.content.filter(bibtexParser.isEntry)
+            .forEach(entry => {
+                const bibitem = new Section(
+                    SectionKind.BibItem,
+                    `${entry.entryType}: ${entry.internalKey}`,
+                    vscode.TreeItemCollapsibleState.Collapsed,
+                    0,
+                    entry.location.start.line,
+                    entry.location.end.line,
                     document.fileName)
-                fielditem.parent = bibitem
-                bibitem.children.push(fielditem)
+                entry.content.forEach(field => {
+                    const fielditem = new Section(
+                        SectionKind.BibField,
+                        `${field.name}: ${field.value.content}`,
+                        vscode.TreeItemCollapsibleState.None,
+                        1,
+                        field.location.start.line,
+                        field.location.end.line,
+                        document.fileName)
+                    fielditem.parent = bibitem
+                    bibitem.children.push(fielditem)
+                })
+                this.ds.push(bibitem)
             })
-            this.ds.push(bibitem)
-        })
     }
 
     /**

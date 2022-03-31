@@ -27,16 +27,16 @@ export class UtensilsParser {
      * @param options
      * @return undefined if parsing fails
      */
-    async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-        return (await this.proxy).parseLatex(s, options).timeout(3000).catch(() => undefined)
+    async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst> {
+        return (await this.proxy).parseLatex(s, options).timeout(3000)
     }
 
-    async parseLatexPreamble(s: string): Promise<latexParser.AstPreamble | undefined> {
-        return (await this.proxy).parseLatexPreamble(s).timeout(500).catch(() => undefined)
+    async parseLatexPreamble(s: string): Promise<latexParser.AstPreamble> {
+        return (await this.proxy).parseLatexPreamble(s).timeout(500)
     }
 
-    async parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst | undefined> {
-        return (await this.proxy).parseBibtex(s, options).timeout(30000).catch(() => undefined)
+    async parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
+        return (await this.proxy).parseBibtex(s, options).timeout(30000)
     }
 
 }
