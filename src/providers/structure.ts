@@ -89,11 +89,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * Compute the TOC of a LaTeX project. To only consider the current file, use `imports=false`
      * @param visitedFiles Set of files already visited. To avoid infinite loops
      * @param filePath The path of the file being parsed
+     * @param imports Do we parse included files
      * @param fileStack The list of files inclusion leading to the current file
      * @param parentStack The list of parent sections
      * @param parentChildren The list of children of the parent Section
      * @param sectionNumber The number of the current section stored in an array with the same length this.hierarchy
-     * @param imports Do we parse included files
      */
     buildLaTeXModel(visitedFiles: Set<string>, filePath: string, imports: boolean = true, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[]): Section[] {
         if (visitedFiles.has(filePath)) {
