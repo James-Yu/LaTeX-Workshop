@@ -11,7 +11,7 @@ import type {Extension} from '../main'
  * opened.
  */
 export class Cacher {
-    private readonly bib: BibCacher
+    readonly bib: BibCacher
 
     constructor(extension: Extension) {
         this.bib = new BibCacher(extension)
@@ -21,7 +21,6 @@ export class Cacher {
 class BibCacher {
     private readonly extension: Extension
     private readonly bibWatcher: chokidar.FSWatcher
-    private readonly bibWatched = new Set<string>()
     private readonly cache = Object.create(null) as {[filepath: string]: BibCache}
     private readonly onAddedCallbacks = new Set<(file: string) => void>()
 
@@ -51,28 +50,41 @@ class BibCacher {
     /**
      * Add a new bibtex file to the watcher, and parse the content.
      * @param file The full path to the bib file.
-     * @returns `true` if the file is added and watched, `false` if it already
+     * @returns `BibCache` if the file is added and watched, `undefined` if it
      * exists.
      */
-    add(file: string): boolean {
-        if (this.bibWatched.has(file)) {
-            return false
+    async add(file: string): Promise<BibCache | undefined> {
+        if (this.isCached(file)) {
+            return undefined
         }
         this.extension.logger.addLogMessage(`Bib watcher file ADDED: ${file}`)
         this.bibWatcher.add(file)
-        this.bibWatched.add(file)
-        this.parseBib(file)
+        this.cache[file] = await this.parseBib(file)
         this.onAddedCallbacks.forEach(cb => cb(file))
-        return true
+        return this.cache[file]
     }
 
     /**
      * Get the cached content of a bibtex file given its path.
      * @param file The path of bibtex file to retrieve.
-     * @returns BibCache if the file has been cached, otherwise `undefined`.
+     * @param add Whether add the file if it has NOT been cached. Default is
+     * `false`.
+     * @returns `BibCache` if the file has been cached or added with `add` set
+     * to `true`, otherwise `undefined`.
      */
-    get(file: string): BibCache | undefined {
+    async get(file: string, add: boolean = false): Promise<BibCache | undefined> {
+        if (add && !this.isCached(file)) {
+            await this.add(file)
+        }
         return this.cache[file]
+    }
+
+    private isCached(file: string): boolean {
+        return this.getCached().includes(file)
+    }
+
+    private getCached(): string[] {
+        return Object.keys(this.cache)
     }
 
     /**
@@ -82,12 +94,11 @@ class BibCacher {
      * `undefined`.
      */
     remove(file: string): BibCache | undefined {
-        if (!this.bibWatched.has(file)) {
+        if (!this.isCached(file)) {
             return undefined
         }
         this.onBibDeleted(file)
         const cachedContent = this.cache[file]
-        delete this.cache[file]
         return cachedContent
     }
 
@@ -114,49 +125,50 @@ class BibCacher {
         this.extension.logger.addLogMessage(
             `BiBTeX Watcher: ${JSON.stringify(this.bibWatcher.getWatched())}`)
         this.extension.logger.addLogMessage(
-            `BiBTeX Cacher: ${JSON.stringify(Array.from(this.bibWatched))}`)
+            `BiBTeX Cacher: ${JSON.stringify(this.getCached())}`)
     }
 
     private onBibDeleted(file: string) {
         this.extension.logger.addLogMessage(`Bib watcher file DELETED: ${file}`)
         this.bibWatcher.unwatch(file)
-        this.bibWatched.delete(file)
-        // TODO: Remove respective bib entries from intellisense.
-        // this.extension.completer.citation.removeEntriesInFile(file)
+        delete this.cache[file]
     }
 
-    private onBibChanged(file: string) {
+    private async onBibChanged(file: string) {
         this.extension.logger.addLogMessage(`Bib watcher file CHANGED: ${file}`)
-        this.parseBib(file)
+        this.cache[file] = await this.parseBib(file)
     }
 
-    private parseBib(file: string) {
+    private async parseBib(file: string): Promise<BibCache> {
+        const cache = Object.create(null) as BibCache
         // 1. Update cached content
         const content = fs.readFileSync(file).toString()
-        this.cache[file].contentSaved = content
-        this.cache[file].linesSaved = content.split('\n')
+        cache.contentSaved = content
+        cache.linesSaved = content.split('\n')
 
         // 2. Check the file size to avoid long parsing time, then update ast
-        this.cache[file].astSaved = undefined
+        cache.astSaved = undefined
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         const maxFileSize = configuration.get('bibtex.maxFileSize') as number
         const fileSize = fs.statSync(file).size / 1024 / 1024
         if (fileSize > maxFileSize) {
             this.extension.logger.addLogMessage(`Bib file size ${fileSize.toFixed(2)}MB > ${maxFileSize}MB: ${file}`)
         } else {
-            this.extension.pegParser.parseBibtex(content)
-            .then(ast => this.cache[file].astSaved = ast)
+            cache.astSaved = await this.extension.pegParser.parseBibtex(content)
             .catch((e) => {
                 if (bibtexParser.isSyntaxError(e)) {
                     const line = e.location.start.line
                     this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${file}.`)
                     this.extension.logger.addLogMessage(`Error: ${JSON.stringify(e)}`)
                 }
+                return undefined
             })
         }
 
-        // 3. Call auto-build on file change
-        this.extension.manager.buildOnFileChanged(file, true)
+        // TODO: Call auto-build on file change
+        // this.extension.manager.buildOnFileChanged(file, true)
+
+        return cache
     }
 }
 

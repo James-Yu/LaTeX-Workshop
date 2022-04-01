@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 import {trimMultiLineString} from '../../utils/utils'
 import type {ILwCompletionItem} from './interface'
@@ -83,6 +82,7 @@ export class Citation implements IProvider {
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.extension.cacher.bib.registerOnDeleted((file) => this.removeEntriesInFile(file))
     }
 
     provideFrom(_result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
@@ -179,9 +179,6 @@ export class Citation implements IProvider {
             // Only happens when rootFile is undefined
             return Array.from(this.bibEntries.keys())
         }
-        if (!this.extension.manager.getCachedContent(file)) {
-            return []
-        }
         const cache = this.extension.manager.getCachedContent(file)
         if (cache === undefined) {
             return []
@@ -239,24 +236,12 @@ export class Citation implements IProvider {
      * @param file The path of `.bib` file.
      */
     async parseBibFile(file: string) {
-        this.extension.logger.addLogMessage(`Parsing .bib entries from ${file}`)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        if (fs.statSync(file).size >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
-            this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${file}`)
-            this.bibEntries.delete(file)
+        const entries: Suggestion[] = []
+        const cache = await this.extension.cacher.bib.get(file, true)
+        if (!cache?.astSaved) {
             return
         }
-        const newEntry: Suggestion[] = []
-        const bibtex = fs.readFileSync(file).toString()
-        const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
-            if (bibtexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${file}.`)
-            }
-            throw e
-        })
-        ast.content
-            .filter(bibtexParser.isEntry)
+        cache.astSaved.content.filter(bibtexParser.isEntry)
             .forEach((entry: bibtexParser.Entry) => {
                 if (entry.internalKey === undefined) {
                     return
@@ -274,10 +259,10 @@ export class Citation implements IProvider {
                         field.value.content.join(' ') : this.deParenthesis(field.value.content)
                     item.fields.set(field.name, value)
                 })
-                newEntry.push(item)
+                entries.push(item)
             })
-        this.bibEntries.set(file, newEntry)
-        this.extension.logger.addLogMessage(`Parsed ${newEntry.length} bib entries from ${file}.`)
+        this.bibEntries.set(file, entries)
+        this.extension.logger.addLogMessage(`Parsed ${entries.length} bib entries from ${file}.`)
     }
 
     removeEntriesInFile(file: string) {

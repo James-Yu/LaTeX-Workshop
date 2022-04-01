@@ -40,6 +40,7 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
+import { Cacher } from './components/cacher'
 
 
 function conflictExtensionCheck() {
@@ -334,6 +335,7 @@ export class Extension {
     readonly commander: Commander
     readonly configuration: Configuration
     readonly manager: Manager
+    readonly cacher: Cacher
     readonly builder: Builder
     readonly viewer: Viewer
     readonly server: Server
@@ -369,6 +371,7 @@ export class Extension {
         this.lwfs = new LwFileSystem(this)
         this.commander = new Commander(this)
         this.manager = new Manager(this)
+        this.cacher = new Cacher(this)
         this.builder = new Builder(this)
         this.viewer = new Viewer(this)
         this.server = new Server(this)
