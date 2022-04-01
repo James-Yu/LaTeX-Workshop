@@ -1,26 +1,9 @@
 import * as path from 'path'
 import * as process from 'process'
-import * as fs from 'fs'
 import * as glob from 'glob'
 import * as tmpFile from 'tmp'
 import { runTests } from '@vscode/test-electron'
 
-function writeSettingsJson(userDataDir: string) {
-    const configDir = path.join(userDataDir, 'User')
-    if (!fs.existsSync(configDir)) {
-        fs.mkdirSync(configDir)
-    }
-    const settingFilePath = path.join(configDir, 'settings.json')
-    const settingsJson =
-`
-{
-    "extensions.autoUpdate": false,
-    "extensions.autoCheckUpdates": false,
-    "update.mode": "none"
-}
-`
-    fs.writeFileSync(settingFilePath, settingsJson)
-}
 
 async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws' | 'unittest') {
     const extensionDevelopmentPath = path.resolve(__dirname, '../../')
@@ -39,8 +22,6 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
         })
     }
 
-    writeSettingsJson(tmpdir.name)
-
     let firstTime = true
     for (let testWorkspace of testBuildWorkspaces) {
         const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
@@ -55,7 +36,9 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
                 testWorkspace,
                 '--user-data-dir=' + tmpdir.name,
                 '--extensions-dir=' + extTmpdir.name,
-                '--disable-extensions',
+                '--lang=C',
+                '--disable-keytar',
+                '--disable-telemetry',
                 '--disable-gpu'
             ],
             extensionTestsEnv: {
