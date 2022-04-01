@@ -43,7 +43,7 @@ class BibCacher {
             binaryInterval: Math.max(interval, 1000),
             awaitWriteFinish: {stabilityThreshold: delay}
         }
-        this.extension.logger.addLogMessage(`Creating bib watcher, options: ${JSON.stringify(watcherOptions)}`)
+        this.extension.logger.addLogMessage(`Creating Bib cacher, options: ${JSON.stringify(watcherOptions)}`)
         return chokidar.watch([], watcherOptions)
     }
 
@@ -57,7 +57,7 @@ class BibCacher {
         if (this.isCached(file)) {
             return undefined
         }
-        this.extension.logger.addLogMessage(`Bib watcher file ADDED: ${file}`)
+        this.extension.logger.addLogMessage(`Bib cacher file ADDED: ${file}`)
         this.bibWatcher.add(file)
         this.cache[file] = await this.parseBib(file)
         this.onAddedCallbacks.forEach(cb => cb(file))
@@ -129,13 +129,13 @@ class BibCacher {
     }
 
     private onBibDeleted(file: string) {
-        this.extension.logger.addLogMessage(`Bib watcher file DELETED: ${file}`)
+        this.extension.logger.addLogMessage(`Bib cacher file DELETED: ${file}`)
         this.bibWatcher.unwatch(file)
         delete this.cache[file]
     }
 
     private async onBibChanged(file: string) {
-        this.extension.logger.addLogMessage(`Bib watcher file CHANGED: ${file}`)
+        this.extension.logger.addLogMessage(`Bib cacher file CHANGED: ${file}`)
         this.cache[file] = await this.parseBib(file)
     }
 

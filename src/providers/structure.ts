@@ -56,20 +56,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         this.ds = []
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
-        if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
-            this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
+        const cache = await this.extension.cacher.bib.get(document.fileName, true)
+        if (!cache?.astSaved) {
             return
         }
-        const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
-            if (bibtexParser.isSyntaxError(e)) {
-                const line = e.location.start.line
-                this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${document.fileName}.`)
-            }
-            return
-        })
-
-        ast?.content.filter(bibtexParser.isEntry)
+        cache.astSaved.content.filter(bibtexParser.isEntry)
             .forEach(entry => {
                 const bibitem = new Section(
                     SectionKind.BibItem,
