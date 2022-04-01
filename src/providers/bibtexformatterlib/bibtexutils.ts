@@ -2,18 +2,6 @@ import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 
-export interface BibtexFormatConfig {
-    tab: string,
-    left: string,
-    right: string,
-    case: 'UPPERCASE' | 'lowercase',
-    trailingComma: boolean,
-    sort: string[],
-    alignOnEqual: boolean,
-    sortFields: boolean,
-    fieldsOrder: string[],
-    firstEntries: string[]
-}
 
 export declare type BibtexEntry = bibtexParser.Entry | bibtexParser.StringEntry
 
@@ -37,15 +25,27 @@ function getBibtexFormatTab(tab: string): string | undefined {
     }
 }
 
-export class BibtexUtils {
-
+export class BibtexFormatConfig {
     private readonly extension: Extension
-    readonly bibtexFormatConfig: BibtexFormatConfig
+    // private scope: vscode.WorkspaceFolder | undefined
+    tab !: string
+    left !: string
+    right !: string
+    case !: 'UPPERCASE' | 'lowercase'
+    trailingComma !: boolean
+    sort !: string[]
+    alignOnEqual !: boolean
+    sortFields !: boolean
+    fieldsOrder !: string[]
+    firstEntries !: string[]
 
-    constructor(extension: Extension) {
+    constructor(extension: Extension, scope: vscode.ConfigurationScope | undefined) {
         this.extension = extension
+        this.loadConfiguration(scope)
+    }
 
-        const config = vscode.workspace.getConfiguration('latex-workshop')
+    loadConfiguration(scope: vscode.ConfigurationScope | undefined) {
+        const config = vscode.workspace.getConfiguration('latex-workshop', scope)
         const leftright = config.get('bibtex-format.surround') === 'Curly braces' ? [ '{', '}' ] : [ '"', '"']
         let tabs: string | undefined = getBibtexFormatTab(config.get('bibtex-format.tab') as string)
         if (tabs === undefined) {
@@ -53,19 +53,42 @@ export class BibtexUtils {
             this.extension.logger.addLogMessage('Setting bibtex-format.tab to \'2 spaces\'')
             tabs = '  '
         }
-        this.bibtexFormatConfig = {
-            tab: tabs,
-            case: config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase'),
-            left: leftright[0],
-            right: leftright[1],
-            trailingComma: config.get('bibtex-format.trailingComma') as boolean,
-            sort: config.get('bibtex-format.sortby') as string[],
-            alignOnEqual: config.get('bibtex-format.align-equal.enabled') as boolean,
-            sortFields: config.get('bibtex-fields.sort.enabled') as boolean,
-            fieldsOrder: config.get('bibtex-fields.order') as string[],
-            firstEntries: config.get('bibtex-entries.first') as string[]
-        }
-        this.extension.logger.addLogMessage(`Bibtex format config: ${JSON.stringify(this.bibtexFormatConfig)}`)
+        this.tab = tabs
+        this.case = config.get('bibtex-format.case') as ('UPPERCASE' | 'lowercase')
+        this.left = leftright[0]
+        this.right = leftright[1]
+        this.trailingComma = config.get('bibtex-format.trailingComma') as boolean
+        this.sort = config.get('bibtex-format.sortby') as string[]
+        this.alignOnEqual = config.get('bibtex-format.align-equal.enabled') as boolean
+        this.sortFields = config.get('bibtex-fields.sort.enabled') as boolean
+        this.fieldsOrder = config.get('bibtex-fields.order') as string[]
+        this.firstEntries = config.get('bibtex-entries.first') as string[]
+        this.extension.logger.addLogMessage(`Bibtex format config: ${this.stringify()}`)
+    }
+
+    stringify(): string {
+        return JSON.stringify(
+            {
+                tab: this.tab,
+                case: this.case,
+                left: this.left,
+                right: this.right,
+                trailingComma: this.trailingComma,
+                sort: this.sort,
+                alignOnEqual: this.alignOnEqual,
+                sortFields : this.sortFields,
+                fieldsOrder: this.fieldsOrder,
+                firstEntries: this.firstEntries,
+            }
+        )
+    }
+}
+
+export class BibtexUtils {
+    readonly bibtexFormatConfig: BibtexFormatConfig
+
+    constructor(extension: Extension, scope: vscode.ConfigurationScope | undefined) {
+        this.bibtexFormatConfig = new BibtexFormatConfig(extension, scope)
     }
 
     /**

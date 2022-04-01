@@ -313,6 +313,16 @@ export class Manager {
         return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
 
+    /**
+     * Returns `true` if the language of `id` is bibtex
+     *
+     * @param id The identifier of language.
+     */
+    hasBibtexId(id: string) {
+        return id === 'bibtex'
+    }
+
+
     private findWorkspace(): vscode.Uri | undefined {
         const firstDir = vscode.workspace.workspaceFolders?.[0]
         // If no workspace is opened.
