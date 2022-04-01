@@ -905,9 +905,11 @@ export class Manager {
         this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            return this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
+            this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
+            .catch((e) => this.extension.logger.addLogMessage(`Error during auto build: ${JSON.stringify(e)}`))
         } else {
-            return this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
+            this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
+            .catch((e) => this.extension.logger.addLogMessage(`Error during auto build: ${JSON.stringify(e)}`))
         }
     }
 

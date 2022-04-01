@@ -100,6 +100,7 @@ export class Commander {
         }
         this.extension.logger.addLogMessage(`Building root file: ${pickedRootFile}`)
         await this.extension.builder.build(pickedRootFile, languageId, recipe)
+        return
     }
 
     async revealOutputDir() {
