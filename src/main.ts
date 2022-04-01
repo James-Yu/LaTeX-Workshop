@@ -167,6 +167,9 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
         }
+        if (e.languageId === 'bibtex') {
+            extension.structureViewer.update()
+        }
     }))
 
     // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
@@ -211,6 +214,13 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     let isLaTeXActive = false
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
+
+        // We do not check langid of editor because the bibtex structure should
+        // reveal only when active editor is bibtex. This is done in the update
+        // function
+        // TODO: lazy loading for LaTeX structure?
+        extension.structureViewer.update()
+
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
             if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
@@ -229,13 +239,15 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         } else {
             isLaTeXActive = false
         }
+
     }))
 
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {
-        if (! extension.manager.hasTexId(e.textEditor.document.languageId)) {
-            return
+        if (extension.manager.hasTexId(e.textEditor.document.languageId) ||
+            e.textEditor.document.languageId === 'bibtex') {
+            return extension.structureViewer.showCursorItem(e)
         }
-        return extension.structureViewer.showCursorItem(e)
+        return
     }))
 
     registerProviders(extension, context)
@@ -252,6 +264,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     const latexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave'])
     const weaveSelector = selectDocumentsWithId(['jlweave', 'rsweave'])
     const latexDoctexSelector = selectDocumentsWithId(['latex', 'latex-expl3', 'jlweave', 'rsweave', 'doctex'])
+    const bibtexSelector = selectDocumentsWithId(['bibtex'])
     const latexFormatter = new LatexFormatterProvider(extension)
     const bibtexFormatter = new BibtexFormatterProvider(extension)
 
@@ -272,6 +285,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
         vscode.languages.registerHoverProvider(latexSelector, new HoverProvider(extension)),
         vscode.languages.registerDefinitionProvider(latexSelector, new DefinitionProvider(extension)),
         vscode.languages.registerDocumentSymbolProvider(latexSelector, new DocSymbolProvider(extension)),
+        vscode.languages.registerDocumentSymbolProvider(bibtexSelector, new DocSymbolProvider(extension)),
         vscode.languages.registerWorkspaceSymbolProvider(new ProjectSymbolProvider(extension))
     )
 

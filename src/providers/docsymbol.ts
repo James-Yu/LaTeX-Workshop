@@ -19,11 +19,14 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         })
     }
 
-    provideDocumentSymbols(document: vscode.TextDocument): vscode.DocumentSymbol[] {
+    provideDocumentSymbols(document: vscode.TextDocument): vscode.ProviderResult<vscode.DocumentSymbol[]> {
+        if (document.languageId === 'bibtex') {
+            return this.sectionNodeProvider.buildBibTeXModel().then(() => this.sectionToSymbols(this.sectionNodeProvider.ds))
+        }
         if (this.extension.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionToSymbols(this.sectionNodeProvider.buildModel(new Set<string>(), document.fileName, undefined, undefined, undefined, undefined, false))
+        return this.sectionToSymbols(this.sectionNodeProvider.buildLaTeXModel(new Set<string>(), document.fileName, false))
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
