@@ -137,17 +137,19 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return children
         }
         content = utils.stripCommentsAndVerbatim(content)
-        const startPos = content.search(/\\begin{document}/gm)
         const endPos = content.search(/\\end{document}/gm)
-        const offset = '\\begin{document}'.length
-        content = content.substring(startPos > -1 ? startPos + offset : 0, endPos > -1 ? endPos : undefined)
+        content = content.substring(0, endPos > -1 ? endPos : undefined)
+        const startPos = content.search(/\\begin{document}/gm)
+        let startLineNumber = 0
+        if (startPos > -1) {
+            startLineNumber = content.substring(0, startPos).split('\n').length
+        }
 
         const structureModel = new StructureModel(this.extension, filePath, rootStack, children, newFileStack, sectionNumber)
-
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
 
         const lines = content.split('\n')
-        for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+        for (let lineNumber = startLineNumber; lineNumber < lines.length; lineNumber++) {
             const line = lines[lineNumber]
             // Environment part
             structureModel.buildEnvModel(envNames, lines, lineNumber)
