@@ -1,5 +1,15 @@
 # Change Log
 
+## [8.24.1] - 2021-04-01
+
+### Changed
+
+- Rename config `intellisense.citation.maxfilesizeMB` to `bibtex.maxFileSize`.
+
+### Fixed
+
+- (#3219) Set `resource` scope to all `bibtex` settings.
+
 ## [8.24.0] - 2021-04-01
 
 ### Added
