@@ -5,8 +5,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as glob from 'glob'
 
-import { runTestWithFixture } from './utils'
-import { getExtensionDevelopmentPath } from './runnerutils'
+import { runTestWithFixture } from '../utils'
+import { getExtensionDevelopmentPath } from '../runnerutils'
 
 type EnvType = {
     name: string,
