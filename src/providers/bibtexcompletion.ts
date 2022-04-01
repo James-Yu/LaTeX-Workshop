@@ -122,7 +122,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         // Find the longest field name in entry
         let s: string = itemName + '{${0:key}'
         itemFields.forEach(field => {
-            s += ',\n' + config.tab + (config.case === 'lowercase' ? field : field.toUpperCase())
+            s += ',\n' + config.tab + (config.case === 'lowercase' ? field.toLowerCase() : field.toUpperCase())
             s += ' '.repeat(maxLengths[itemName] - field.length) + ' = '
             s += config.left + `$${count}` + config.right
             count++
