@@ -61,10 +61,15 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
             return
         }
-        const ast = await this.extension.pegParser.parseBibtex(document.getText())
-        this.extension.logger.addLogMessage(`Cannot parse BibTeX file: ${document.fileName}`)
+        const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
+            if (bibtexParser.isSyntaxError(e)) {
+                const line = e.location.start.line
+                this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${document.fileName}.`)
+            }
+            return
+        })
 
-        ast.content.filter(bibtexParser.isEntry)
+        ast?.content.filter(bibtexParser.isEntry)
             .forEach(entry => {
                 const bibitem = new Section(
                     SectionKind.BibItem,
