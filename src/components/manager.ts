@@ -16,7 +16,6 @@ import type {Suggestion as GlossEntry} from '../providers/completer/glossary'
 import type {ILwCompletionItem} from '../providers/completer/interface'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
-import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
 import {PathUtils, PathRegExp} from './managerlib/pathutils'
 import type {MatchPath} from './managerlib/pathutils'
@@ -92,7 +91,6 @@ export class Manager {
     private readonly extension: Extension
     private readonly fileWatcher: chokidar.FSWatcher
     private readonly pdfWatcher: PdfWatcher
-    private readonly bibWatcher: BibWatcher
     private readonly intellisenseWatcher: IntellisenseWatcher
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
@@ -119,7 +117,6 @@ export class Manager {
         }
         this.fileWatcher = this.createFileWatcher()
         this.pdfWatcher = new PdfWatcher(extension)
-        this.bibWatcher = new BibWatcher(extension)
         this.intellisenseWatcher = new IntellisenseWatcher()
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
@@ -130,7 +127,6 @@ export class Manager {
     async dispose() {
         await this.fileWatcher.close()
         await this.pdfWatcher.dispose()
-        await this.bibWatcher.dispose()
     }
 
     getCachedContent(filePath: string): Content[string] | undefined {
@@ -382,7 +378,7 @@ export class Manager {
             () => {
                 this.extension.logger.addLogMessage(`Manager.fileWatcher.getWatched: ${JSON.stringify(this.fileWatcher.getWatched())}`)
                 this.extension.logger.addLogMessage(`Manager.filesWatched: ${JSON.stringify(Array.from(this.filesWatched))}`)
-                this.bibWatcher.logWatchedFiles()
+                this.extension.cacher.bib.log()
                 this.pdfWatcher.logWatchedFiles()
             },
             delay
@@ -717,7 +713,7 @@ export class Manager {
                     continue
                 }
                 this.cachedContent[baseFile].bibs.push(bibPath)
-                await this.bibWatcher.watchBibFile(bibPath)
+                await this.extension.cacher.bib.add(bibPath)
             }
         }
     }
@@ -796,7 +792,7 @@ export class Manager {
                 if (this.rootFile && !this.cachedContent[this.rootFile].bibs.includes(bibPath)) {
                     this.cachedContent[this.rootFile].bibs.push(bibPath)
                 }
-                await this.bibWatcher.watchBibFile(bibPath)
+                await this.extension.cacher.bib.add(bibPath)
             }
         }
     }

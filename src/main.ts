@@ -402,6 +402,7 @@ export class Extension {
     async dispose() {
         await this.manager.dispose()
         this.server.dispose()
+        this.cacher.bib.dispose()
         await this.pegParser.dispose()
         await this.mathPreview.dispose()
     }

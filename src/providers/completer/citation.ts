@@ -82,6 +82,8 @@ export class Citation implements IProvider {
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.extension.cacher.bib.registerOnAdded((file) => this.parseBibFile(file))
+        this.extension.cacher.bib.registerOnChanged((file) => this.parseBibFile(file))
         this.extension.cacher.bib.registerOnDeleted((file) => this.removeEntriesInFile(file))
     }
 
