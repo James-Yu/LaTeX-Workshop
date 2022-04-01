@@ -840,13 +840,13 @@
               ]
             }
           ],
-          "markdownDescription": "Define LaTeX compiling recipes. Each recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `latex-workshop.latex.tools`. By default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipe."
+          "markdownDescription": "Define LaTeX compiling recipes. Each recipe in the list is an object containing its name and the names of tools to be used sequentially, which are defined in `#latex-workshop.latex.tools#`. By default, the first recipe is used to compile the project. For details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#latex-recipes."
         },
         "latex-workshop.latex.recipe.default": {
           "scope": "resource",
           "type": "string",
           "default": "first",
-          "markdownDescription": "Define which recipe is used by `latex-workshop.build`. It also applies to auto build. Recipes are referred to by their names as defined in `latex-workshop.latex.recipes`. Note there are two particular values: \n- `first` means to use the first recipe in `latex-workshop.latex.recipes`;\n- `lastUsed` means to use the last run recipe."
+          "markdownDescription": "Define which recipe is used by `#latex-workshop.build#`. It also applies to auto build. Recipes are referred to by their names as defined in `#latex-workshop.latex.recipes#`. Note there are two particular values: \n- `first` means to use the first recipe in `#latex-workshop.latex.recipes#`;\n- `lastUsed` means to use the last run recipe."
         },
         "latex-workshop.latex.tools": {
           "scope": "resource",
@@ -1021,7 +1021,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "The arguments of `latex-workshop.latex.external.build.command` when calling latex-workshop.build."
+          "markdownDescription": "The arguments of `#latex-workshop.latex.external.build.command#` when calling latex-workshop.build."
         },
         "latex-workshop.latex.build.forceRecipeUsage": {
           "scope": "resource",
@@ -1067,7 +1067,7 @@
           "scope": "window",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Use kpsewhich as defined by `latex-workshop.kpsewhich.path` to resolve bibliography files in addition to looking into the directories listed in `latex-workshop.latex.bibDirs`."
+          "markdownDescription": "Use kpsewhich as defined by `#latex-workshop.kpsewhich.path#` to resolve bibliography files in addition to looking into the directories listed in `#latex-workshop.latex.bibDirs#`."
         },
         "latex-workshop.latex.bibDirs": {
           "scope": "window",
@@ -1089,7 +1089,7 @@
             "**/*.rnw",
             "**/*.Rnw"
           ],
-          "markdownDescription": "Patterns of files to consider for the root detection mechanism. Relative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here. If you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
+          "markdownDescription": "Patterns of files to consider for the root detection mechanism. Relative paths are computed from the workspace folder. To detect the root file and the tex file tree, we parse all the `.tex` listed here. If you want to specify all `.tex` files inside directory, say `foo`, and all its subdirectories recursively, you need to use `**/foo/**/*.tex`. If you only want to match `.tex` files at the top level of the workspace, use `*.tex`. For more details, see https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects"
         },
         "latex-workshop.latex.search.rootFiles.exclude": {
           "scope": "resource",
@@ -1098,7 +1098,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "Patterns of files to exclude from the root detection mechanism. See also `latex-workshop.latex.search.rootFiles.include`. For more details the [wiki](https://github.com/James-Yu/LaTeX-Workshop/wiki/Multi-File-Projects)."
+          "markdownDescription": "Patterns of files to exclude from the root detection mechanism. See also `#latex-workshop.latex.search.rootFiles.include#`. For more details, see the https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#multi-file-projects."
         },
         "latex-workshop.latex.rootFile.useSubFile": {
           "scope": "resource",
@@ -1110,7 +1110,7 @@
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `latex-workshop.latex.rootFile.useSubFile` is also `true`, otherwise the rootFile is used."
+          "markdownDescription": "When the `subfile` package is used, either the main file or any subfile containing `\\documentclass[main.tex]{subfile}` can be LaTeXing. When `false`, the `build` and `view` commands  ask the user's choice first. When `true`, the subfile is used when `#latex-workshop.latex.rootFile.useSubFile#` is also `true`, otherwise the rootFile is used."
         },
         "latex-workshop.latex.watch.usePolling": {
           "scope": "window",
@@ -1223,13 +1223,13 @@
             "Clean after build, be it successful or not"
           ],
           "default": "never",
-          "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `latex-workshop.latex.outDir`.\n- `onFailed` cleans the project when compilation fails.\n- `onBuilt` cleans the project when compilation is done, whether successful or failed."
+          "markdownDescription": "When LaTeX auxiliary files should be deleted. The folder to be cleaned is defined in `#latex-workshop.latex.outDir#`.\n- `onFailed` cleans the project when compilation fails.\n- `onBuilt` cleans the project when compilation is done, whether successful or failed."
         },
         "latex-workshop.latex.clean.subfolder.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Delete LaTeX auxiliary files recursively in sub-folders of `latex-workshop.latex.outDir`. Note that sub-folders are not removed."
+          "markdownDescription": "Delete LaTeX auxiliary files recursively in sub-folders of `#latex-workshop.latex.outDir#`. Note that sub-folders are not removed."
         },
         "latex-workshop.latex.clean.fileTypes": {
           "scope": "resource",
@@ -1268,7 +1268,7 @@
           "scope": "resource",
           "type": "string",
           "default": "latexmk",
-          "markdownDescription": "The command to be used to remove temporary files when `latex-workshop.latex.clean.method` is set to `cleanMethod`."
+          "markdownDescription": "The command to be used to remove temporary files when `#latex-workshop.latex.clean.method#` is set to `cleanMethod`."
         },
         "latex-workshop.latex.clean.args": {
           "scope": "resource",
@@ -1280,7 +1280,7 @@
             "-c",
             "%TEX%"
           ],
-          "markdownDescription": "The arguments of `latex-workshop.latex.clean.command`. The `%TEX%` placeholder is the full path of the tex file from which the clean command is called."
+          "markdownDescription": "The arguments of `#latex-workshop.latex.clean.command#`. The `%TEX%` placeholder is the full path of the tex file from which the clean command is called."
         },
         "latex-workshop.latex.clean.method": {
           "scope": "resource",
@@ -1291,8 +1291,8 @@
             "cleanCommand"
           ],
           "markdownEnumDescriptions": [
-            "Clean all the files located in `latex-workshop.latex.outDir` and matching the glob patterns listed in `latex-workshop.latex.clean.fileTypes`.",
-            "Run `latex-workshop.latex.clean.command` to clean temporary files."
+            "Clean all the files located in `#latex-workshop.latex.outDir#` and matching the glob patterns listed in `#latex-workshop.latex.clean.fileTypes#`.",
+            "Run `#latex-workshop.latex.clean.command#` to clean temporary files."
           ],
           "markdownDescription": "Define the method used by the `clean` command to remove temporary files."
         },
@@ -1442,7 +1442,7 @@
           "default": [
             "%PDF%"
           ],
-          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.viewer.command` when using external viewer. This function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
+          "markdownDescription": "The arguments for `#latex-workshop.view.pdf.external.viewer.command#` when using external viewer. This function is not officially supported. %PDF% is the placeholder for the absolute path to the generated PDF file."
         },
         "latex-workshop.view.pdf.external.synctex.command": {
           "scope": "window",
@@ -1461,7 +1461,7 @@
             "%PDF%",
             "%TEX%"
           ],
-          "markdownDescription": "The arguments for `latex-workshop.view.pdf.external.synctex.args` when forward synctex to external viewer. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
+          "markdownDescription": "The arguments for `#latex-workshop.view.pdf.external.synctex.args#` when forward synctex to external viewer. %LINE% is the line number, %PDF% is the placeholder for the absolute path to the generated PDF file, and %TEX% is the source LaTeX file path with `.tex` extension from which syncTeX is fired."
         },
         "latex-workshop.view.pdf.zoom": {
           "scope": "window",
@@ -1581,7 +1581,7 @@
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable linting LaTeX with ChkTeX. Check `latex-workshop.chktex.run` to control when the linting is executed if this config is set to `true`."
+          "markdownDescription": "Enable linting LaTeX with ChkTeX. Check `#latex-workshop.chktex.run#` to control when the linting is executed if this config is set to `true`."
         },
         "latex-workshop.chktex.run": {
           "scope": "resource",
@@ -1595,13 +1595,13 @@
             "Lint the active document when input is stopped"
           ],
           "default": "onSave",
-          "markdownDescription": "When LaTeX should be linted by ChkTeX.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `latex-workshop.chktex.delay`. It also implies `onSave`."
+          "markdownDescription": "When LaTeX should be linted by ChkTeX.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `#latex-workshop.chktex.delay#`. It also implies `onSave`."
         },
         "latex-workshop.chktex.path": {
           "scope": "window",
           "type": "string",
           "default": "chktex",
-          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `latex-workshop.chktex.args.*` and required arguments to form a complete command of ChkTeX."
+          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.chktex.args.active#` or `#latex-workshop.chktex.args.root#` and required arguments to form a complete command of ChkTeX."
         },
         "latex-workshop.chktex.args.active": {
           "scope": "resource",
@@ -1637,7 +1637,7 @@
           "scope": "resource",
           "type": "number",
           "default": 500,
-          "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing. This config only matters when `latex-workshop.chktex.run` is set to `onType`."
+          "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing. This config only matters when `#latex-workshop.chktex.run#` is set to `onType`."
         },
         "latex-workshop.chktex.convertOutput.column.enabled": {
           "scope": "resource",
@@ -1655,13 +1655,13 @@
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable checking for duplicated labels. A new check is triggered every time the intellisense data is updated, see `latex-workshop.intellisense.update.aggressive.enabled`."
+          "markdownDescription": "Enable checking for duplicated labels. A new check is triggered every time the intellisense data is updated, see `#latex-workshop.intellisense.update.aggressive.enabled#`."
         },
         "latex-workshop.texcount.path": {
           "scope": "window",
           "type": "string",
           "default": "texcount",
-          "markdownDescription": "Define the location of TeXCount executive file/script. This command will be joint with `latex-workshop.texcount.args` and required arguments to form a complete command of TeXCount."
+          "markdownDescription": "Define the location of TeXCount executive file/script. This command will be joint with `#latex-workshop.texcount.args#` and required arguments to form a complete command of TeXCount."
         },
         "latex-workshop.texcount.args": {
           "scope": "resource",
@@ -1690,7 +1690,7 @@
           "scope": "resource",
           "type": "number",
           "default": 1000,
-          "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `latex-workshop.texcount.run` is set to `onSave`."
+          "markdownDescription": "The minimal time interval between two consecutive runs of `texcount` in milliseconds when `#latex-workshop.texcount.run#` is set to `onSave`."
         },
         "latex-workshop.intellisense.update.aggressive.enabled": {
           "scope": "window",
@@ -1767,7 +1767,7 @@
           "default": "@",
           "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets. Reload vscode to make any change in this configuration effective.",
           "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead.",
-          "deprecationMessage": "Deprecated: Please use `latex-workshop.intellisense.atSuggestion.trigger.latex` instead."
+          "deprecationMessage": "Deprecated: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead."
         },
         "latex-workshop.intellisense.atSuggestion.trigger.latex": {
           "scope": "window",
@@ -1782,7 +1782,7 @@
             "type": "string"
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"prefix\": \"snippet command\"` to replace the default suggestions in `data/at-suggestions.json` or to define a new suggestion. An empty action removes the snippet from the default list. E.g. `{ \"@.\": \"\\cdot\", \"@6\": \"\" }`. Note that in this setting, the prefix must start with `@`, no matter what the true trigger character defined by `latex-workshop.intellisense.atSuggestion.trigger.latex` is."
+          "markdownDescription": "Dictionary of `\"prefix\": \"snippet command\"` to replace the default suggestions in `data/at-suggestions.json` or to define a new suggestion. An empty action removes the snippet from the default list. E.g. `{ \"@.\": \"\\cdot\", \"@6\": \"\" }`. Note that in this setting, the prefix must start with `@`, no matter what the true trigger character defined by `#latex-workshop.intellisense.atSuggestion.trigger.latex#` is."
         },
         "latex-workshop.intellisense.file.exclude": {
           "scope": "resource",
@@ -1859,13 +1859,13 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "List of extra packages to always add to the auto-completion mechanism. When `latex-workshop.intellisense.package.enabled` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
+          "markdownDescription": "List of extra packages to always add to the auto-completion mechanism. When `#latex-workshop.intellisense.package.enabled#` is set to `true`, the commands and environments defined in these extra packages will be added to the intellisense suggestions."
         },
         "latex-workshop.intellisense.package.env.enabled": {
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "If true, every environment provided by an included package is available by a snippet `\\envname`. Only applies when `latex-workshop.intellisense.package.enabled` is true. "
+          "markdownDescription": "If true, every environment provided by an included package is available by a snippet `\\envname`. Only applies when `#latex-workshop.intellisense.package.enabled#` is true. "
         },
         "latex-workshop.intellisense.package.dirs": {
           "scope": "window",
@@ -1874,7 +1874,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "List of extra directories to look for package completion files in addition to those provided by the extension. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#commands to learn how to generate these files. Files found in these directories have a higher priority over the default ones. This setting is only relevant when `latex-workshop.intellisense.package.env.enabled` is true."
+          "markdownDescription": "List of extra directories to look for package completion files in addition to those provided by the extension. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#commands-starting-with- to learn how to generate these files. Files found in these directories have a higher priority over the default ones. This setting is only relevant when `#latex-workshop.intellisense.package.env.enabled#` is true."
         },
         "latex-workshop.intellisense.includegraphics.preview.enabled": {
           "scope": "window",
@@ -1960,7 +1960,7 @@
           "scope": "window",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable docker-based LaTeX distribution support. Do not set this item to `true` unless you are aware of what it means. This extension will use the images defined in `latex-workshop.docker.image.latex` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
+          "markdownDescription": "Enable docker-based LaTeX distribution support. Do not set this item to `true` unless you are aware of what it means. This extension will use the images defined in `#latex-workshop.docker.image.latex#` to execute `latexmk`, `synctex`, `texcount`, and `latexindent`."
         },
         "latex-workshop.docker.image.latex": {
           "scope": "window",
@@ -2146,7 +2146,7 @@
             }
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/bibtex-entries.json`. See `data/bibtex-entries.json` for the list of fields for each entry. This variable is used when `latex-workshop.intellisense.citation.backend` is set to `biblatex`."
+          "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/bibtex-entries.json`. See `data/bibtex-entries.json` for the list of fields for each entry. This variable is used when `#latex-workshop.intellisense.citation.backend#` is set to `biblatex`."
         },
         "latex-workshop.intellisense.biblatexJSON.replace": {
           "scope": "resource",
@@ -2158,7 +2158,7 @@
             }
           },
           "default": {},
-          "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/biblatex-entries.json`. See `data/biblatex-entries.json` for the list of fields for each entry. This variable is used when `latex-workshop.intellisense.citation.backend` is set to `bibtex`."
+          "markdownDescription": "Dictionary of `\"entry name\": [\"array\", \"of\", \"fields\"]` to replace the default fields used in `data/biblatex-entries.json`. See `data/biblatex-entries.json` for the list of fields for each entry. This variable is used when `#latex-workshop.intellisense.citation.backend#` is set to `bibtex`."
         },
         "latex-workshop.intellisense.commandsJSON.replace": {
           "scope": "window",
@@ -2267,13 +2267,13 @@
             "string",
             "xdata"
           ],
-          "markdownDescription": "When `latex-workshop.bibtex-fields.sort.enabled` is true, these fields are put at the top, in the order defined by the array."
+          "markdownDescription": "When `#latex-workshop.bibtex-fields.sort.enabled#` is true, these fields are put at the top, in the order defined by the array."
         },
         "latex-workshop.bibtex-fields.sort.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Sort fields inside every entry. The sorting order is defined by `latex-workshop.bibtex-fields.order`. This variable only has effect when formatting bibtex aligns fields. It is not possible to sort entries without aligning them."
+          "markdownDescription": "Sort fields inside every entry. The sorting order is defined by `#latex-workshop.bibtex-fields.order#`. This variable only has effect when formatting bibtex aligns fields. It is not possible to sort entries without aligning them."
         },
         "latex-workshop.bibtex-fields.order": {
           "scope": "resource",
@@ -2282,7 +2282,7 @@
             "type": "string"
           },
           "default": [],
-          "markdownDescription": "When `latex-workshop.bibtex-fields.sort.enabled` is true, sort fields according the order defined here and then alphabetically for non listed fields."
+          "markdownDescription": "When `#latex-workshop.bibtex-fields.sort.enabled#` is true, sort fields according the order defined here and then alphabetically for non listed fields."
         },
         "latex-workshop.mathpreviewpanel.cursor.enabled": {
           "scope": "window",
