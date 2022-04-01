@@ -5,9 +5,11 @@ import {bibtexParser} from 'latex-utensils'
 
 import type {Extension} from '../main'
 
-// This class provides cached raw and parsed contents of all files related.
-// Including tex and bib files involved in this project, and bib files ever
-// opened.
+/**
+ * This class provides cached raw and parsed contents of all files related.
+ * Including tex and bib files involved in this project, and bib files ever
+ * opened.
+ */
 export class Cacher {
     private readonly bib: BibCacher
 
@@ -106,6 +108,13 @@ class BibCacher {
 
     registerOnChanged(cb: (file: string) => void) {
         this.bibWatcher.on('change', cb)
+    }
+
+    log() {
+        this.extension.logger.addLogMessage(
+            `BiBTeX Watcher: ${JSON.stringify(this.bibWatcher.getWatched())}`)
+        this.extension.logger.addLogMessage(
+            `BiBTeX Cacher: ${JSON.stringify(Array.from(this.bibWatched))}`)
     }
 
     private onBibDeleted(file: string) {
