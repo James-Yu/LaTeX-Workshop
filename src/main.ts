@@ -77,6 +77,7 @@ function registerLatexWorkshopCommands(extension: Extension, context: vscode.Ext
         vscode.commands.registerCommand('latex-workshop.synctexto', (line: number, filePath: string) => extension.commander.synctexonref(line, filePath)),
         vscode.commands.registerCommand('latex-workshop.clean', () => extension.commander.clean()),
         vscode.commands.registerCommand('latex-workshop.actions', () => extension.commander.actions()),
+        vscode.commands.registerCommand('latex-workshop.activate', () => undefined),
         vscode.commands.registerCommand('latex-workshop.citation', () => extension.commander.citation()),
         vscode.commands.registerCommand('latex-workshop.addtexroot', () => extension.commander.addTexRoot()),
         vscode.commands.registerCommand('latex-workshop.wordcount', () => extension.commander.wordcount()),

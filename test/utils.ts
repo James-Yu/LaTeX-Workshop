@@ -119,13 +119,6 @@ export async function waitUntil<T>(
     assert.fail('Timeout Error at waitUntil')
 }
 
-export function waitLatexWorkshopActivated() {
-    return waitUntil( () => {
-        const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')
-        return Promise.resolve(extension?.isActive && extension)
-    })
-}
-
 export async function waitBuildFinish() {
     const extension = await waitLatexWorkshopActivated()
     await waitUntil(
@@ -140,6 +133,20 @@ export function waitRootFileFound() {
             return extension.exports.realExtension?.manager.rootFile
         }
     )
+}
+
+export function obtainLatexWorkshop() {
+    const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')
+    if (extension) {
+        return extension
+    } else {
+        throw new Error('LaTeX Workshop not activated.')
+    }
+}
+
+export async function waitLatexWorkshopActivated() {
+    await vscode.commands.executeCommand('latex-workshop.activate')
+    return obtainLatexWorkshop()
 }
 
 export function waitGivenRootFile(file: string) {
