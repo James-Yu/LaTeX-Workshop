@@ -26,13 +26,13 @@ export class Cacher {
      * watcher watches not only tex-like files, but also bibtex and auxiliary
      * ones.
      */
-    readonly doc: chokidar.FSWatcher
+    // readonly doc: chokidar.FSWatcher
 
     constructor(extension: Extension) {
         this.extension = extension
         this.tex = new TexCacher(extension, this.initWatcher(), 'TEX')
         this.bib = new BibCacher(extension, this.initWatcher(), 'BIB')
-        this.doc = this.initWatcher()
+        // this.doc = this.initWatcher()
     }
 
     private initWatcher() {
@@ -49,6 +49,22 @@ export class Cacher {
         }
         this.extension.logger.addLogMessage(`Creating cacher with options: ${JSON.stringify(watcherOptions)}`)
         return chokidar.watch([], watcherOptions)
+    }
+
+    /**
+     * When root file is changed, the project dependency needs reparse. Just
+     * call this.
+     *
+     * Note that the bib cache is not reset. For distributed bib management,
+     * the cache is lightweight. For centralized bib file, very likely it will
+     * still be used.
+     */
+    reset() {
+        this.tex.dispose()
+        // this.doc.close().catch((e) => {
+        //     this.extension.logger.addLogMessage(
+        //         `Error occurred when disposing project file watcher: ${JSON.stringify(e)}`)
+        // })
     }
 }
 

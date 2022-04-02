@@ -1,4 +1,4 @@
-import type {latexParser, bibtexParser} from 'latex-utensils'
+import {latexParser, bibtexParser} from 'latex-utensils'
 import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type {Proxy} from 'workerpool'
@@ -39,4 +39,26 @@ export class UtensilsParser {
         return (await this.proxy).parseBibtex(s, options).timeout(30000)
     }
 
+    flatten(ast: latexParser.LatexAst) {
+        const content = ast.content
+        ast.content = []
+        let nodeList: latexParser.Node[] = []
+        content.forEach((node) => {
+            nodeList = [...nodeList, ...this.flattenNode(node)]
+        })
+        return nodeList
+    }
+
+    private flattenNode(node: latexParser.Node) {
+        if ((!('content' in node) || typeof node.content === 'string')) {
+            return [node]
+        }
+        const content = node.content
+        node.content = []
+        let nodeList: latexParser.Node[] = []
+        content.forEach((subNode) => {
+            nodeList = [...nodeList, ...this.flattenNode(subNode)]
+        })
+        return nodeList
+    }
 }

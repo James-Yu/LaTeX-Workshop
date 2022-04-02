@@ -1,3 +1,6 @@
+import * as vscode from 'vscode'
+import * as os from 'os'
+import * as micromatch from 'micromatch'
 import * as chokidar from 'chokidar'
 
 import type {Extension} from '../../main'
@@ -27,6 +30,10 @@ export abstract class Cacher<CacheType> {
         if (this.isCached(file)) {
             return undefined
         }
+        if (this.isIgnored(file)) {
+            this.extension.logger.addLogMessage(`${this.tag} cacher file IGNORED: ${file}`)
+            return undefined
+        }
         this.extension.logger.addLogMessage(`${this.tag} cacher file ADDED: ${file}`)
         this.watcher.add(file)
         this.cache[file] = await this.parse(file)
@@ -49,8 +56,19 @@ export abstract class Cacher<CacheType> {
         return this.cache[file]
     }
 
-    private isCached(file: string): boolean {
+    protected isCached(file: string): boolean {
         return this.getCached().includes(file)
+    }
+
+    private isIgnored(file: string): boolean {
+        const globsToIgnore = vscode.workspace.getConfiguration('latex-workshop').get('latex.watch.files.ignore') as string[]
+        const format = (str: string): string => {
+            if (os.platform() === 'win32') {
+                return str.replace(/\\/g, '/')
+            }
+            return str
+        }
+        return micromatch.some(file, globsToIgnore, { format })
     }
 
     private getCached(): string[] {
@@ -75,7 +93,7 @@ export abstract class Cacher<CacheType> {
     dispose() {
         this.watcher.close().catch((e) => {
             this.extension.logger.addLogMessage(
-                `Error occurred when disposing BiBTeX file watcher: ${JSON.stringify(e)}`)
+                `Error occurred when disposing ${this.tag} watcher: ${JSON.stringify(e)}`)
         })
     }
 
@@ -93,9 +111,9 @@ export abstract class Cacher<CacheType> {
 
     log() {
         this.extension.logger.addLogMessage(
-            `BiBTeX Watcher: ${JSON.stringify(this.watcher.getWatched())}`)
+            `${this.tag} Watcher: ${JSON.stringify(this.watcher.getWatched())}`)
         this.extension.logger.addLogMessage(
-            `BiBTeX Cacher: ${JSON.stringify(this.getCached())}`)
+            `${this.tag} Cacher: ${JSON.stringify(this.getCached())}`)
     }
 
     private onDeleted(file: string) {

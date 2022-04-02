@@ -357,6 +357,7 @@ export class Manager {
                 this.extension.logger.addLogMessage(`Root file languageId: ${this.rootFileLanguageId}`)
                 await this.initiateFileWatcher()
                 await this.parseFileAndSubs(this.rootFile, this.rootFile) // Finishing the parsing is required for subsequent refreshes.
+                await this.extension.cacher.tex.parseFrom(this.rootFile)
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await this.parseFlsFile(this.rootFile)

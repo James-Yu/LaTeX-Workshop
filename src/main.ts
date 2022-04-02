@@ -171,6 +171,11 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         if (e.languageId === 'bibtex') {
             extension.structureViewer.update()
         }
+        extension.cacher.tex.get(e.fileName).then(cache => cache?.resetDirty()).catch(() => {})
+    }))
+
+    context.subscriptions.push(vscode.workspace.onDidCloseTextDocument( (e: vscode.TextDocument) => {
+        extension.cacher.tex.get(e.fileName).then(cache => cache?.resetDirty()).catch(() => {})
     }))
 
     // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
