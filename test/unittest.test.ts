@@ -5,10 +5,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as glob from 'glob'
 
-
-import {
-    runTestWithFixture,
-} from './utils'
+import { runTestWithFixture } from './utils'
+import { getExtensionDevelopmentPath } from './runnerutils'
 
 type EnvType = {
     name: string,
@@ -44,8 +42,13 @@ suite('unit test suite', () => {
         return
     })
 
+    runTestWithFixture('fixture001', 'test runnerutils', () => {
+        const extensionRoot = getExtensionDevelopmentPath()
+        assert.ok(fs.existsSync(path.join(extensionRoot, 'package.json')))
+    })
+
     runTestWithFixture('fixture001', 'check default environment .json completion file', () => {
-        const extensionRoot = path.resolve(__dirname, '../../')
+        const extensionRoot = getExtensionDevelopmentPath()
         const file = `${extensionRoot}/data/environments.json`
         const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvType}
         assert.ok(Object.keys(envs).length > 0)
@@ -57,11 +60,10 @@ suite('unit test suite', () => {
                 file + ': ' + JSON.stringify(envs[name])
             )
         })
-        return Promise.resolve()
     })
 
     runTestWithFixture('fixture001', 'check environments from package .json completion files', () => {
-        const extensionRoot = path.resolve(__dirname, '../../')
+        const extensionRoot = getExtensionDevelopmentPath()
         const files = glob.sync('data/packages/*_env.json', {cwd: extensionRoot})
         files.forEach(file => {
             const envs = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {[key: string]: EnvType}
@@ -75,11 +77,10 @@ suite('unit test suite', () => {
                 )
             })
         })
-        return Promise.resolve()
     })
 
     runTestWithFixture('fixture001', 'check default commands .json completion file', () => {
-        const extensionRoot = path.resolve(__dirname, '../../')
+        const extensionRoot = getExtensionDevelopmentPath()
         const file = `${extensionRoot}/data/commands.json`
         const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: CmdType}
         assert.ok(Object.keys(cmds).length > 0)
@@ -91,11 +92,10 @@ suite('unit test suite', () => {
                 file + ': ' + JSON.stringify(cmds[name])
             )
         })
-        return Promise.resolve()
     })
 
     runTestWithFixture('fixture001', 'check commands from package .json completion files', () => {
-        const extensionRoot = path.resolve(__dirname, '../../')
+        const extensionRoot = getExtensionDevelopmentPath()
         const files = glob.sync('data/packages/*_cmd.json', {cwd: extensionRoot})
         files.forEach(file => {
             const cmds = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {[key: string]: CmdType}
@@ -109,7 +109,6 @@ suite('unit test suite', () => {
                 )
             })
         })
-        return Promise.resolve()
     })
 
 

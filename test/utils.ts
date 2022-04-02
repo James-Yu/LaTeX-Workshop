@@ -36,7 +36,7 @@ export function getFixtureDir(): string {
 export function runTestWithFixture(
     fixtureName: string,
     label: string,
-    cb: () => Promise<void>,
+    cb: () => unknown,
     skip?: () => boolean
 ) {
     const rootPath = getWorkspaceRootDir()

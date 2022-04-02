@@ -3,10 +3,11 @@ import * as process from 'process'
 import * as glob from 'glob'
 import * as tmpFile from 'tmp'
 import { runTests } from '@vscode/test-electron'
+import { getExtensionDevelopmentPath } from './runnerutils'
 
 
 async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws' | 'unittest') {
-    const extensionDevelopmentPath = path.resolve(__dirname, '../../')
+    const extensionDevelopmentPath = getExtensionDevelopmentPath()
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
     const extTmpdir = tmpFile.dirSync({ unsafeCleanup: true })
