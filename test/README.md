@@ -6,10 +6,14 @@ We start a new VS Code instance each `fixture` directory in `fixtures/build/` an
 
 ## How tests executed
 
-- `runTest.ts` starts a new VS Code instance each `fixture` directory and executes `*.index.ts`.
+- `runTest.ts` starts a new VS Code instance for each `fixture` directory and executes `*.index.ts`.
 - `*.index.ts` runs all the tests defined in `*.test.ts`.
 - Tests in `*.test.ts` are executed through `runTestWithFixture`.
 - `runTestWithFixture` skip tests in `*.test.ts` if they are not related to the current `fixture` directory.
+
+### Unit tests
+
+Unit tests are under the `unittests` directory.
 
 ## Executing Tests on GitHub Actions
 
