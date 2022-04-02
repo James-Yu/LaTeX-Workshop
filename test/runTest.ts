@@ -30,7 +30,7 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
             testWorkspace += '/resource.code-workspace'
         }
         await runTests({
-            version: '1.64.2',
+            version: '1.66.0',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [
