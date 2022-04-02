@@ -1,117 +1,18 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import * as chokidar from 'chokidar'
 import {bibtexParser} from 'latex-utensils'
 
-import type {Extension} from '../../main'
+import {Cacher} from './cache'
 
-export class BibCacher {
-    private readonly extension: Extension
-    private readonly bibWatcher: chokidar.FSWatcher
-    private readonly cache = Object.create(null) as {[filepath: string]: BibCache}
-    private readonly onAddedCallbacks = new Set<(file: string) => void>()
-
-    constructor(extension: Extension, watcher: chokidar.FSWatcher) {
-        this.extension = extension
-        this.bibWatcher = watcher
-        this.registerOnDeleted((file: string) => this.onBibDeleted(file))
-        this.registerOnChanged((file: string) => this.onBibChanged(file))
-    }
+export class BibCacher extends Cacher<BibCache> {
 
     /**
-     * Add a new bibtex file to the watcher, and parse the content.
-     * @param file The full path to the bib file.
-     * @returns `BibCache` if the file is added and watched, `undefined` if it
-     * exists.
+     * Parse the AST and cache a bib file from disk content.
+     * @param file Path to the bib file to be parsed
+     * @returns parsed `BibCache`
      */
-    async add(file: string): Promise<BibCache | undefined> {
-        if (this.isCached(file)) {
-            return undefined
-        }
-        this.extension.logger.addLogMessage(`Bib cacher file ADDED: ${file}`)
-        this.bibWatcher.add(file)
-        this.cache[file] = await this.parseBib(file)
-        this.onAddedCallbacks.forEach(cb => cb(file))
-        return this.cache[file]
-    }
-
-    /**
-     * Get the cached content of a bibtex file given its path.
-     * @param file The path of bibtex file to retrieve.
-     * @param add Whether add the file if it has NOT been cached. Default is
-     * `false`.
-     * @returns `BibCache` if the file has been cached or added with `add` set
-     * to `true`, otherwise `undefined`.
-     */
-    async get(file: string, add: boolean = false): Promise<BibCache | undefined> {
-        if (add && !this.isCached(file)) {
-            await this.add(file)
-        }
-        return this.cache[file]
-    }
-
-    private isCached(file: string): boolean {
-        return this.getCached().includes(file)
-    }
-
-    private getCached(): string[] {
-        return Object.keys(this.cache)
-    }
-
-    /**
-     * Remove the cached content of a bibtex file given its path.
-     * @param file The path of bibtex file to remove from the cache.
-     * @returns The removed cache if the file has been cached, otherwise
-     * `undefined`.
-     */
-    remove(file: string): BibCache | undefined {
-        if (!this.isCached(file)) {
-            return undefined
-        }
-        this.onBibDeleted(file)
-        const cachedContent = this.cache[file]
-        return cachedContent
-    }
-
-    dispose() {
-        this.bibWatcher.close().catch((e) => {
-            this.extension.logger.addLogMessage(
-                `Error occurred when disposing BiBTeX file watcher: ${JSON.stringify(e)}`)
-        })
-    }
-
-    registerOnAdded(cb: (file: string) => void) {
-        this.onAddedCallbacks.add(cb)
-    }
-
-    registerOnDeleted(cb: (file: string) => void) {
-        this.bibWatcher.on('unlink', cb)
-    }
-
-    registerOnChanged(cb: (file: string) => void) {
-        this.bibWatcher.on('change', cb)
-    }
-
-    log() {
-        this.extension.logger.addLogMessage(
-            `BiBTeX Watcher: ${JSON.stringify(this.bibWatcher.getWatched())}`)
-        this.extension.logger.addLogMessage(
-            `BiBTeX Cacher: ${JSON.stringify(this.getCached())}`)
-    }
-
-    private onBibDeleted(file: string) {
-        this.extension.logger.addLogMessage(`Bib cacher file DELETED: ${file}`)
-        this.bibWatcher.unwatch(file)
-        delete this.cache[file]
-    }
-
-    private async onBibChanged(file: string) {
-        this.extension.logger.addLogMessage(`Bib cacher file CHANGED: ${file}`)
-        this.cache[file] = await this.parseBib(file)
-    }
-
-    private async parseBib(file: string): Promise<BibCache> {
-        const cache = Object.create(null) as BibCache
+    async parse(file: string): Promise<BibCache> {
+        const cache = this.cache[file] || Object.create(null) as BibCache
         // 1. Update cached content
         const content = fs.readFileSync(file).toString()
         cache.contentSaved = content
