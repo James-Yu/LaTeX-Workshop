@@ -19,14 +19,14 @@ OUT_DIR = CWD.joinpath('../data/packages').resolve()
 INFILES = None
 
 parser = argparse.ArgumentParser()
-parser.add_argument('-o', '--outdir', help='Directory where to write the JSON files. Default is {}'.format(OUT_DIR), type=str)
+parser.add_argument('-o', '--outdir', help=f'Directory where to write the JSON files. Default is {OUT_DIR}', type=str)
 parser.add_argument('-i', '--infile', help='Files to process. Default is the content of https://github.com/LaTeXing/LaTeX-cwl/', type=str, nargs='+')
 args = parser.parse_args()
 
 if args.outdir:
     OUT_DIR = Path(args.outdir).expanduser().resolve()
     if not OUT_DIR.is_dir():
-        print('The path passed to --outdir is not a directory: {}'.format(args.outdir))
+        print(f'The path passed to --outdir is not a directory: {args.outdir}')
         sys.exit(0)
 if args.infile:
     INFILES = args.infile
