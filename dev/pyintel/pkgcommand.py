@@ -50,7 +50,7 @@ class PlaceHolder:
 
     :count: The number of tabstops that have already been replaced.
     :usePlaceHolders: When True, keep the placeholder name in the snippet
-    :keepDelimiters: When True, keep the delimiters (usually {} or []) surrounding every placelholder
+    :keepDelimiters: When True, keep the delimiters (usually {} or []) surrounding every placeholder
     """
 
     def __init__(self):
@@ -106,13 +106,13 @@ class CwlIntel:
         self.unimathsymbols = Path(unimathsymbols)
         try:
             self.commands = json.load(open(commands_file, encoding='utf8'))
-        except:
-            print('Cannot read JSON file {}'.format(commands_file))
+        except (OSError, json.JSONDecodeError):
+            print(f'Cannot read JSON file {commands_file}')
             self.commands = []
         try:
             self.envs = json.load(open(envs_file, encoding='utf8'))
-        except:
-            print('Cannot read JSON file {}'.format(envs_file))
+        except (OSError, json.JSONDecodeError):
+            print(f'Cannot read JSON file {envs_file}')
             self.envs = []
         self.compute_unimathsymbols()
 
@@ -152,10 +152,10 @@ class CwlIntel:
         :param file_path: Path to the .cwl file to parse
         :param remove_spaces: If true, spaces are removed to compute the name of the snippet
         """
-        if type(file_path) == str:
+        if isinstance(file_path, str):
             file_path = Path(file_path)
         if not file_path.exists():
-            print('File {} does not exist'.format(file_path.as_posix))
+            print(f'File {file_path.as_posix} does not exist')
             return ({}, {})
         package = file_path.stem
         with file_path.open(encoding='utf8') as f:
