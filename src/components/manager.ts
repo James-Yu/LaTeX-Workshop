@@ -753,6 +753,14 @@ export class Manager {
                 // onWatchedFileChange.
                 continue
             }
+            if (inputFile === this.rootFile ||
+                this.extension.cacher.tex.isCached(inputFile) ||
+                this.extension.cacher.bib.isCached(inputFile) ||
+                this.extension.cacher.aux.isCached(inputFile)) {
+                // Drop the current rootFile often listed as INPUT
+                // Drop any file that is already cached.
+                continue
+            }
             if (path.extname(inputFile) === '.tex') {
                 // Parse tex files as imported subfiles.
                 this.cachedContent[texFile].children.push({
@@ -760,9 +768,14 @@ export class Manager {
                     file: inputFile
                 })
                 await this.parseFileAndSubs(inputFile, texFile)
-            } else if (!this.filesWatched.has(inputFile)) {
-                // Watch non-tex files.
-                await this.addToFileWatcher(inputFile)
+                await this.extension.cacher.tex.add(inputFile)
+                await this.extension.cacher.tex.parseFrom(inputFile)
+            } else {
+                if (!this.filesWatched.has(inputFile)) {
+                    // Watch non-tex files.
+                    await this.addToFileWatcher(inputFile)
+                }
+                await this.extension.cacher.aux.add(inputFile)
             }
         }
 

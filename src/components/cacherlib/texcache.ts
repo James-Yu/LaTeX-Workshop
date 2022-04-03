@@ -89,7 +89,7 @@ export class TexCacher extends Cacher<TexCache> {
      * This function parses a (sub-)doc tree from a given file. It can be the
      * root file or any tex-like file in the doc tree. This is done by
      * recursively calling `parseSubs` function, and orphaned tex-like files
-     * are removed from cacher.
+     * are removed from cacher. This function relies on a proper root file.
      * @param file The tex-like file to start parsing.
      */
     async parseFrom(file: string) {
@@ -133,6 +133,11 @@ export class TexCacher extends Cacher<TexCache> {
                     hasFileRemoved = true
                 }
             })
+        }
+
+        // Also parse the fls and aux files to determine project dependencies.
+        if (file === this.extension.manager.rootFile) {
+            await this.extension.manager.parseFlsFile(file)
         }
     }
 

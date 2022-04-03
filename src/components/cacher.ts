@@ -5,6 +5,7 @@ import {TexCacher} from './cacherlib/texcache'
 import {BibCacher} from './cacherlib/bibcache'
 import type {Extension} from '../main'
 import type {BibCache} from './cacherlib/bibcache'
+import { AuxCacher } from './cacherlib/auxcache'
 
 /**
  * This class provides cached raw and parsed contents of all files related.
@@ -32,14 +33,14 @@ export class Cacher {
      * watcher does not include tex-like files, just only bibtex and auxiliary
      * ones (aux, fls, pdf, png, etc.).
      */
-    readonly doc: chokidar.FSWatcher
+    readonly aux: AuxCacher
 
     constructor(extension: Extension) {
         this.extension = extension
         this.tex = new TexCacher(extension, this.initWatcher(), 'TEX')
         this.bib = new BibCacher(extension, this.initWatcher(), 'BIB')
         this.bibOtherOpened = new BibCacher(extension, this.initWatcher(), 'OTHERBIB')
-        this.doc = this.initWatcher()
+        this.aux = new AuxCacher(extension, this.initWatcher(), 'AUX')
     }
 
     initWatcher() {
@@ -65,10 +66,7 @@ export class Cacher {
     reset() {
         this.tex.dispose()
         this.bib.dispose()
-        this.doc.close().catch((e) => {
-            this.extension.logger.addLogMessage(
-                `Error occurred when disposing project file watcher: ${JSON.stringify(e)}`)
-        })
+        this.aux.dispose()
     }
 
     /**
