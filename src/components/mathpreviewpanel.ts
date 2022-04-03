@@ -176,7 +176,6 @@ export class MathPreviewPanel {
         if (!this.needCursor) {
             if (ev?.type === 'edit') {
                 this.prevEditTime = Date.now()
-                return
             } else if (ev?.type === 'selection') {
                 if (Date.now() - this.prevEditTime < 100) {
                     return
