@@ -118,7 +118,7 @@ export class TexCacher extends Cacher<TexCache> {
                 if (candidate === file) {
                     return
                 }
-                if (this.cache[candidate].fromFiles.entries.length === 0) {
+                if (this.cache[candidate].fromFiles.size === 0) {
                     // First remove the corresponding fromFile in sub-files
                     this.cache[candidate].subFiles.forEach((sub) => {
                         this.cache[sub].fromFiles.delete(candidate)
@@ -129,7 +129,6 @@ export class TexCacher extends Cacher<TexCache> {
                 }
             })
         }
-        console.log(this.cache)
     }
 
     /**
@@ -171,14 +170,13 @@ export class TexCacher extends Cacher<TexCache> {
 
         // Add this file to the fromFile set of all sub-files. Here, those sub-
         // files that have not been cached will be cached.
-        newSubFiles.forEach((sub) => {
-            this.extension.cacher.tex.get(sub, true).then(cache => {
-                if (!cache) {
-                    return
-                }
-                cache.fromFiles.add(file)
-            }).catch(() => {})
-        })
+        for (const sub of newSubFiles) {
+            const cache = await this.get(sub, true)
+            if (!cache) {
+                return
+            }
+            cache.fromFiles.add(file)
+        }
 
         // Compare new sub files and remove parents of whom misses
         for (const prevSubFile of this.cache[file].subFiles) {
@@ -242,7 +240,7 @@ export class TexCacher extends Cacher<TexCache> {
             candidate = utils.resolveFile(
                 [cmdArgs[0],
                  path.join(
-                    path.dirname(path.dirname(this.extension.manager.rootFile || '')),
+                    path.dirname(this.extension.manager.rootFile || ''),
                     cmdArgs[0])],
                 cmdArgs[1])
         }
