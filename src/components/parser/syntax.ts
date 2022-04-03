@@ -41,7 +41,6 @@ export class UtensilsParser {
 
     flatten(ast: latexParser.LatexAst) {
         const content = ast.content
-        ast.content = []
         let nodeList: latexParser.Node[] = []
         content.forEach((node) => {
             nodeList = [...nodeList, ...this.flattenNode(node)]

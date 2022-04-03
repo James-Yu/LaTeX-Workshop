@@ -18,6 +18,11 @@ export class TexCacher extends Cacher<TexCache> {
         this.pathUtils = new PathUtils(extension)
     }
 
+    protected async onChanged(file: string): Promise<void> {
+        await super.onChanged(file)
+        await this.parseFrom(file)
+    }
+
     /**
      * Parse the AST and cache a tex-like file from disk content.
      * @param file Path to the tex-like file to be parsed

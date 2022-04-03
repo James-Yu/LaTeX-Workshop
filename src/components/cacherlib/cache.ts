@@ -116,13 +116,13 @@ export abstract class Cacher<CacheType> {
             `${this.tag} Cacher: ${JSON.stringify(this.getCached())}`)
     }
 
-    private onDeleted(file: string) {
+    protected onDeleted(file: string) {
         this.extension.logger.addLogMessage(`${this.tag} cacher file DELETED: ${file}`)
         this.watcher.unwatch(file)
         delete this.cache[file]
     }
 
-    private async onChanged(file: string) {
+    protected async onChanged(file: string) {
         this.extension.logger.addLogMessage(`${this.tag} cacher file CHANGED: ${file}`)
         this.cache[file] = await this.parse(file)
     }
