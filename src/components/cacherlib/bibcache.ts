@@ -44,7 +44,7 @@ export class BibCacher extends Cacher<BibCache> {
     }
 }
 
-type BibCache = {
+export type BibCache = {
     // The dirty content in vscode
     // contentDirty: string,
 

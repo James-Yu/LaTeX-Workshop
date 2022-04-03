@@ -56,7 +56,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         this.ds = []
 
-        const cache = await this.extension.cacher.bib.get(document.fileName, true)
+        const cache = await this.extension.cacher.getBibCache(document.fileName)
         if (!cache?.astSaved) {
             return
         }

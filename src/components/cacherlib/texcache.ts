@@ -198,7 +198,7 @@ export class TexCacher extends Cacher<TexCache> {
         // Compare new bib files and unwatch orphans
         for (const prevBibFile of this.cache[file].bibFiles) {
             if (!newBibFiles.has(prevBibFile) && this.cache[prevBibFile]) {
-                this.extension.cacher.doc.unwatch(prevBibFile)
+                this.extension.cacher.bib.remove(prevBibFile)
             }
         }
     }

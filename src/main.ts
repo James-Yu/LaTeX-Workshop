@@ -167,15 +167,20 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             extension.structureViewer.update()
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
+            extension.cacher.tex.get(e.fileName).then(cache => cache?.resetDirty()).catch(() => {})
         }
         if (e.languageId === 'bibtex') {
             extension.structureViewer.update()
         }
-        extension.cacher.tex.get(e.fileName).then(cache => cache?.resetDirty()).catch(() => {})
     }))
 
     context.subscriptions.push(vscode.workspace.onDidCloseTextDocument( (e: vscode.TextDocument) => {
-        extension.cacher.tex.get(e.fileName).then(cache => cache?.resetDirty()).catch(() => {})
+        if (extension.manager.hasTexId(e.languageId)) {
+            extension.cacher.tex.get(e.fileName).then(cache => cache?.resetDirty()).catch(() => {})
+        }
+        if (e.languageId === 'bibtex') {
+            extension.cacher.closedBibFile(e.fileName)
+        }
     }))
 
     // This function will be called when a new text is opened, or an inactive editor is reactivated after vscode reload
@@ -186,6 +191,11 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         if (extension.manager.hasTexId(e.languageId)) {
             await extension.manager.findRoot()
         }
+        // In fact we don't need the following, as structure view will auto
+        // add the file to cache.
+        // if (e.languageId === 'bibtex') {
+        //     await extension.cacher.openedBibFile(e.fileName)
+        // }
     }))
 
     let updateCompleter: NodeJS.Timeout

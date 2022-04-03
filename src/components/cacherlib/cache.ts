@@ -56,7 +56,7 @@ export abstract class Cacher<CacheType> {
         return this.cache[file]
     }
 
-    protected isCached(file: string): boolean {
+    isCached(file: string): boolean {
         return this.getCached().includes(file)
     }
 
