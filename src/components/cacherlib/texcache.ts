@@ -162,17 +162,6 @@ export class TexCacher extends Cacher<TexCache> {
                 newSubFiles.add(candidate)
             }})
 
-        // Populate the bib-file list
-        this.cache[file].bibFiles.clear()
-        flatAst.map((node) => this.parseBibsFromNode(file, node))
-        .forEach((candidates) => {
-            candidates?.forEach((candidate) => {
-                if (candidate) {
-                    this.cache[file].bibFiles.add(candidate)
-                    this.extension.cacher.bib.add(candidate).catch(() => {})
-                }})
-        })
-
         // Add this file to the fromFile set of all sub-files. Here, those sub-
         // files that have not been cached will be cached.
         for (const sub of newSubFiles) {
@@ -194,6 +183,24 @@ export class TexCacher extends Cacher<TexCache> {
         // We don't uncache tex-like files with an empty parent list here. This
         // is because of the possibility that the list will be later populated
         // by other files.
+
+        // Populate the bib-file list
+        const newBibFiles = new Set<string>()
+        flatAst.map((node) => this.parseBibsFromNode(file, node))
+        .forEach((candidates) => {
+            candidates?.forEach((candidate) => {
+                if (candidate) {
+                    newBibFiles.add(candidate)
+                    this.extension.cacher.bib.add(candidate).catch(() => {})
+                }})
+        })
+
+        // Compare new bib files and unwatch orphans
+        for (const prevBibFile of this.cache[file].bibFiles) {
+            if (!newBibFiles.has(prevBibFile) && this.cache[prevBibFile]) {
+                this.extension.cacher.doc.unwatch(prevBibFile)
+            }
+        }
     }
 
     private commandToArgs(node: latexParser.Command): string[] {

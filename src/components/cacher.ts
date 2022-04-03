@@ -23,16 +23,16 @@ export class Cacher {
     /**
      * A file watcher that watches all files the current project relies on,
      * i.e., change or delete of which should trigger an auto-build. This
-     * watcher watches not only tex-like files, but also bibtex and auxiliary
-     * ones.
+     * watcher does not include tex-like files, just only bibtex and auxiliary
+     * ones (aux, fls, pdf, png, etc.).
      */
-    // readonly doc: chokidar.FSWatcher
+    readonly doc: chokidar.FSWatcher
 
     constructor(extension: Extension) {
         this.extension = extension
         this.tex = new TexCacher(extension, this.initWatcher(), 'TEX')
         this.bib = new BibCacher(extension, this.initWatcher(), 'BIB')
-        // this.doc = this.initWatcher()
+        this.doc = this.initWatcher()
     }
 
     private initWatcher() {
@@ -61,10 +61,10 @@ export class Cacher {
      */
     reset() {
         this.tex.dispose()
-        // this.doc.close().catch((e) => {
-        //     this.extension.logger.addLogMessage(
-        //         `Error occurred when disposing project file watcher: ${JSON.stringify(e)}`)
-        // })
+        this.doc.close().catch((e) => {
+            this.extension.logger.addLogMessage(
+                `Error occurred when disposing project file watcher: ${JSON.stringify(e)}`)
+        })
     }
 }
 
