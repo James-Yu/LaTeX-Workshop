@@ -26,7 +26,7 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
     let firstTime = true
     for (let testWorkspace of testBuildWorkspaces) {
         const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
-        if (testWorkspace.indexOf('multiroot-ws') >= 0) {
+        if (testWorkspace.includes('multiroot-ws')) {
             testWorkspace += '/resource.code-workspace'
         }
         await runTests({
