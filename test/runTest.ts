@@ -3,7 +3,7 @@ import * as process from 'process'
 import * as glob from 'glob'
 import * as tmpFile from 'tmp'
 import { runTests } from '@vscode/test-electron'
-import { getExtensionDevelopmentPath } from './runnerutils'
+import { getExtensionDevelopmentPath } from './utils/runnerutils'
 
 
 async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws' | 'unittest') {

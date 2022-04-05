@@ -13,7 +13,7 @@ import {
     runTestWithFixture,
     viewPdf,
     waitLatexWorkshopActivated
-} from './utils'
+} from './utils/utils'
 import { sleep } from '../src/utils/utils'
 
 suite('PDF Viewer test suite', () => {

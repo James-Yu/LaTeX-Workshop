@@ -10,7 +10,7 @@ import {
 //    isDockerEnabled,
     runTestWithFixture,
     waitLatexWorkshopActivated
-} from './utils'
+} from './utils/utils'
 
 
 function assertCompletionItemContains(items: vscode.CompletionItem[], prefix: string, snippet: string): void {

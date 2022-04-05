@@ -3,8 +3,8 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
-import {sleep} from '../src/utils/utils'
-import {activate} from '../src/main'
+import {sleep} from '../../src/utils/utils'
+import {activate} from '../../src/main'
 
 function getWorkspaceRootDir(): string | undefined {
     let rootDir: string | undefined

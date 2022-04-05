@@ -9,7 +9,7 @@ import {
     runTestWithFixture,
     waitLatexWorkshopActivated,
     waitRootFileFound
-} from './utils'
+} from './utils/utils'
 
 
 suite('RootFile test suite', () => {

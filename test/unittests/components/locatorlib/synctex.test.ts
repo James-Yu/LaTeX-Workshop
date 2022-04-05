@@ -1,10 +1,10 @@
 import * as assert from 'assert'
 import * as path from 'path'
 
-import { getFixtureDir, runTestWithFixture, waitLatexWorkshopActivated } from '../../../utils'
+import { getFixtureDir, runTestWithFixture, waitLatexWorkshopActivated } from '../../../utils/utils'
 
 import {SyncTexJs} from '../../../../src/components/locatorlib/synctex'
-import { decycle } from '../../../runnerutils'
+import { decycle } from '../../../utils/runnerutils'
 
 
 suite('unit test suite', () => {

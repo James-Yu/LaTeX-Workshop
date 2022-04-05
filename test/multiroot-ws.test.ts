@@ -13,7 +13,7 @@ import {
     waitGivenRootFile,
     waitLatexWorkshopActivated,
     waitRootFileFound
-} from './utils'
+} from './utils/utils'
 
 function getCompletionItems(extension: vscode.Extension<ReturnType<typeof activate>>, doc: vscode.TextDocument, pos: vscode.Position): vscode.CompletionItem[] | undefined {
     const token = new vscode.CancellationTokenSource().token
