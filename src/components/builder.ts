@@ -482,6 +482,33 @@ export class Builder {
                             fs.chmodSync(step.command, 0o755)
                         }
                         break
+                    case 'xelatex':
+                        this.extension.logger.addLogMessage('Use Docker to invoke the command.')
+                        if (process.platform === 'win32') {
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/xelatex.bat')
+                        } else {
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/xelatex')
+                            fs.chmodSync(step.command, 0o755)
+                        }
+                        break
+                    case 'pdflatex':
+                        this.extension.logger.addLogMessage('Use Docker to invoke the command.')
+                        if (process.platform === 'win32') {
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/pdflatex.bat')
+                        } else {
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/pdflatex')
+                            fs.chmodSync(step.command, 0o755)
+                        }
+                        break
+                    case 'bibtex':
+                        this.extension.logger.addLogMessage('Use Docker to invoke the command.')
+                        if (process.platform === 'win32') {
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/bibtex.bat')
+                        } else {
+                            step.command = path.resolve(this.extension.extensionRoot, './scripts/bibtex')
+                            fs.chmodSync(step.command, 0o755)
+                        }
+                        break
                     default:
                         this.extension.logger.addLogMessage(`Will not use Docker to invoke the command: ${step.command}`)
                         break
