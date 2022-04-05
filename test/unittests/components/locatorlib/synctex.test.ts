@@ -4,7 +4,7 @@ import * as path from 'path'
 import { getFixtureDir, runTestWithFixture, waitLatexWorkshopActivated } from '../../../utils/ciutils'
 
 import {SyncTexJs} from '../../../../src/components/locatorlib/synctex'
-import { decycle } from '../../../utils/runnerutils'
+import {decycle} from '../../../utils/decycle'
 
 
 suite('unit test suite', () => {
