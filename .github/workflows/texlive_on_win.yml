@@ -30,7 +30,7 @@ jobs:
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - name: Run install-tl-windows.bat
       run: |
-        install-tl-dir\install-tl-windows.bat --profile test\texlive_windows.profile
+        install-tl-dir\install-tl-windows.bat --profile test\config\texlive_windows.profile
       if: steps.cache-texlive.outputs.cache-hit != 'true'
       shell: cmd
     - name: Run tlmgr install

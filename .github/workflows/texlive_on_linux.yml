@@ -28,7 +28,7 @@ jobs:
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - name: Run install-tl
       run: |
-        install-tl-dir/install-tl --profile test/texlive_linux.profile
+        install-tl-dir/install-tl --profile test/config/texlive_linux.profile
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - name: Run tlmgr install
       run: |
