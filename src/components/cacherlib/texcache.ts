@@ -88,8 +88,8 @@ export class TexCacher extends Cacher<TexCache> {
     /**
      * This function parses a (sub-)doc tree from a given file. It can be the
      * root file or any tex-like file in the doc tree. This is done by
-     * recursively calling `parseSubs` function, and orphaned tex-like files
-     * are removed from cacher. This function relies on a proper root file.
+     * recursively calling `parseSubs` function, and orphaned tex-like files are
+     * removed from cacher. This function relies on a proper root file.
      * @param file The tex-like file to start parsing.
      */
     async parseFrom(file: string) {
@@ -109,7 +109,7 @@ export class TexCacher extends Cacher<TexCache> {
             }
             await this.parseSubs(fileToParse)
             filesParsed.add(fileToParse)
-            this.cache[fileToParse].subFiles.forEach((sub) => filesToParse.push(sub))
+            this.cache[fileToParse].subFiles.forEach(sub => filesToParse.push(sub.file))
         }
 
         // Recursively remove orphaned files. This is to handle cases with
@@ -125,8 +125,8 @@ export class TexCacher extends Cacher<TexCache> {
                 }
                 if (this.cache[candidate].fromFiles.size === 0) {
                     // First remove the corresponding fromFile in sub-files
-                    this.cache[candidate].subFiles.forEach((sub) => {
-                        this.cache[sub].fromFiles.delete(candidate)
+                    this.cache[candidate].subFiles.forEach(sub => {
+                        this.cache[sub.file].fromFiles.delete(candidate)
                     })
                     // Then remove the file from cache (and therefore watcher)
                     this.remove(candidate)
@@ -160,17 +160,17 @@ export class TexCacher extends Cacher<TexCache> {
         const flatAst = this.extension.pegParser.flatten(ast)
 
         // Populate the sub-file list
-        const newSubFiles = new Set<string>()
+        const newSubFiles: SubFile[] = []
         flatAst.map((node) => this.parseSubsFromNode(file, node))
         .forEach((candidate) => {
             if (candidate) {
-                newSubFiles.add(candidate)
+                newSubFiles.push(candidate)
             }})
 
-        // Add this file to the fromFile set of all sub-files. Here, those sub-
-        // files that have not been cached will be cached.
+        // Add this file to the fromFile set of all sub-files. Here, those
+        // sub-files that have not been cached will be cached.
         for (const sub of newSubFiles) {
-            const cache = await this.get(sub, true)
+            const cache = await this.get(sub.file, true)
             if (!cache) {
                 return
             }
@@ -178,8 +178,8 @@ export class TexCacher extends Cacher<TexCache> {
         }
 
         // Compare new sub files and remove parents of whom misses
-        for (const prevSubFile of this.cache[file].subFiles) {
-            if (!newSubFiles.has(prevSubFile) && this.cache[prevSubFile]) {
+        for (const prevSubFile of Object.keys(this.cache[file].subFiles)) {
+            if (!newSubFiles.map(sub => sub.file).includes(prevSubFile) && this.cache[prevSubFile]) {
                 this.cache[prevSubFile].fromFiles.delete(file)
             }
         }
@@ -236,7 +236,7 @@ export class TexCacher extends Cacher<TexCache> {
         return args
     }
 
-    private parseSubsFromNode(file: string, node: latexParser.Node) {
+    private parseSubsFromNode(file: string, node: latexParser.Node): SubFile | undefined {
         if (!latexParser.isCommand(node)) {
             return
         }
@@ -268,7 +268,10 @@ export class TexCacher extends Cacher<TexCache> {
                 path.join(cmdArgs[0], cmdArgs[1]))
         }
 
-        return candidate
+        if (candidate) {
+            return {line: node.location.start.line, file: candidate}
+        }
+        return
     }
 
     private parseBibsFromNode(file: string, node: latexParser.Node) {
@@ -327,11 +330,16 @@ class TexCache {
     // The other tex-likes that includes this tex-like.
     readonly fromFiles = new Set<string>()
 
-    // The other tex-likes that this file includes.
-    subFiles = new Set<string>()
+    // The other tex-likes that this file includes. The key is file name, the
+    // value is its line number
+    subFiles: SubFile[]
 
     // The other bib files that this file includes.
     readonly bibFiles = new Set<string>()
+
+    constructor() {
+        this.subFiles = []
+    }
 
     /**
      * @param content The content to be cached
@@ -378,4 +386,9 @@ class TexCache {
         this.linesDirty = undefined
         this.astDirty = undefined
     }
+}
+
+type SubFile = {
+    line: number,
+    file: string
 }
