@@ -1,7 +1,7 @@
 import * as assert from 'assert'
 import * as path from 'path'
 
-import { getFixtureDir, runTestWithFixture, waitLatexWorkshopActivated } from '../../../utils/utils'
+import { getFixtureDir, runTestWithFixture, waitLatexWorkshopActivated } from '../../../utils/ciutils'
 
 import {SyncTexJs} from '../../../../src/components/locatorlib/synctex'
 import { decycle } from '../../../utils/runnerutils'

@@ -5,7 +5,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as glob from 'glob'
 
-import { runTestWithFixture } from '../utils/utils'
+import { runTestWithFixture } from '../utils/ciutils'
 import { getExtensionDevelopmentPath } from '../utils/runnerutils'
 
 type EnvType = {
