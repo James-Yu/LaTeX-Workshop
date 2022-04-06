@@ -2,7 +2,7 @@
 
 ## Executing tests
 
-We start a new VS Code instance for each `fixture` directory in `fixtures/*/` and others, which includes a TeX file for tests, and execute an appropriate test defined in `*.test.ts` while skipping other tests not related to the directory. For tests of building a LaTeX file, we try to build a LaTeX file in the directory. If a PDF file is not generated, the test fails. With this approach, we can debug the extension by opening a TeX file in the `fixture` directory if the test fails.
+We start a new VS Code instance for each `fixture` directory in `fixtures/*/`, which includes a TeX file for tests, and execute an appropriate test defined in `*.test.ts` while skipping other tests not related to the directory. For tests of building a LaTeX file, we try to build a LaTeX file in the directory. If a PDF file is not generated, the test fails. With this approach, we can debug the extension by opening a TeX file in the `fixture` directory if the test fails.
 
 ## How tests executed
 
