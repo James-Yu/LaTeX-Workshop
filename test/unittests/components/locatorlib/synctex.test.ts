@@ -12,7 +12,7 @@ suite('unit test suite', () => {
     suiteSetup(() => {
     })
 
-    runTestWithFixture('fixture010', 'test synctex', async () => {
+    runTestWithFixture('fixture010_synctex', 'test synctex', async () => {
         const fixtureDir = getFixtureDir()
         const pdfFilePath = path.join(fixtureDir, 't.pdf')
         const extension = (await waitLatexWorkshopActivated()).exports.realExtension
