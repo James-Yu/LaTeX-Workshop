@@ -406,7 +406,7 @@ export class Extension {
         this.latexCommanderTreeView = new LaTeXCommanderTreeView(this)
         this.structureViewer = new StructureTreeView(this)
         this.snippetView = new SnippetView(this)
-        this.pegParser = new PEGParser()
+        this.pegParser = new PEGParser(this)
         this.graphicsPreview = new GraphicsPreview(this)
         this.mathPreview = new MathPreview(this)
         this.bibtexFormatter = new BibtexFormatter(this)

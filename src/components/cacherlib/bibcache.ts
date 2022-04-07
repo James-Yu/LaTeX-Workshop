@@ -3,6 +3,7 @@ import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 
 import {Cacher} from './cache'
+import { Section } from 'src/providers/structure'
 
 export class BibCacher extends Cacher<BibCache> {
 
@@ -58,5 +59,10 @@ export type BibCache = {
     linesSaved: string[],
 
     // AST parsed from saved content. Undefined means over-sized bib file
-    astSaved: bibtexParser.BibtexAst | undefined
+    astSaved: bibtexParser.BibtexAst | undefined,
+    /**
+     * An array of sections describing the structure of this file, not including
+     * its sub-files.
+     */
+    sections: Section[]
 }

@@ -207,7 +207,7 @@ suite('Multi-root workspace test suite', () => {
 
         const structure = extension.exports.realExtension?.structureViewer.getTreeData()
         const filesWatched = extension.exports.realExtension?.manager.getFilesWatched()
-        const isStructureOK = structure && structure.length > 0 && structure[0].fileName === docA.fileName
+        const isStructureOK = structure && (await structure).length > 0 && (await structure)[0].fileName === docA.fileName
         const isWatcherOK = filesWatched && filesWatched.length === 1 && filesWatched[0] === docA.fileName
         assert.ok(isStructureOK, JSON.stringify(structure))
         assert.ok(isWatcherOK, JSON.stringify(filesWatched))

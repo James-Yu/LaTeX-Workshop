@@ -8,6 +8,7 @@ import type {Extension} from '../../main'
 import {Cacher} from './cache'
 import * as utils from '../../utils/utils'
 import {PathUtils} from '../managerlib/pathutils'
+import { Section } from 'src/providers/structure'
 
 export class TexCacher extends Cacher<TexCache> {
 
@@ -245,7 +246,7 @@ export class TexCacher extends Cacher<TexCache> {
         let candidate: string | undefined
         // \input{sub.tex}
         if (['input', 'InputIfFileExists', 'include', 'SweaveInput',
-             'subfile', 'loadglsentries'].includes(node.name)) {
+             'subfile', 'loadglsentries'].includes(node.name.replace('*', ''))) {
             candidate = utils.resolveFile(
                 [path.dirname(file),
                  path.dirname(this.extension.manager.rootFile || ''),
@@ -253,7 +254,7 @@ export class TexCacher extends Cacher<TexCache> {
                 cmdArgs[0])
         }
         // \import{sections/}{section1.tex}
-        if (['import', 'inputfrom', 'includefrom'].includes(node.name)) {
+        if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace('*', ''))) {
             candidate = utils.resolveFile(
                 [cmdArgs[0],
                  path.join(
@@ -262,7 +263,7 @@ export class TexCacher extends Cacher<TexCache> {
                 cmdArgs[1])
         }
         // \subimport{01-IntroDir/}{01-Intro.tex}
-        if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name)) {
+        if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace('*', ''))) {
             candidate = utils.resolveFile(
                 [path.dirname(file)],
                 path.join(cmdArgs[0], cmdArgs[1]))
@@ -332,14 +333,16 @@ class TexCache {
 
     // The other tex-likes that this file includes. The key is file name, the
     // value is its line number
-    subFiles: SubFile[]
+    subFiles: SubFile[] = []
 
     // The other bib files that this file includes.
     readonly bibFiles = new Set<string>()
 
-    constructor() {
-        this.subFiles = []
-    }
+    /**
+     * An array of sections describing the structure of this file, not including
+     * its sub-files.
+     */
+    sections: Section[] = []
 
     /**
      * @param content The content to be cached

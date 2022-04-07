@@ -21,12 +21,12 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
     provideDocumentSymbols(document: vscode.TextDocument): vscode.ProviderResult<vscode.DocumentSymbol[]> {
         if (document.languageId === 'bibtex') {
-            return this.sectionNodeProvider.buildBibTeXModel().then(() => this.sectionToSymbols(this.sectionNodeProvider.ds))
+            return this.sectionNodeProvider.buildBibTeXModel().then(structure => this.sectionToSymbols(structure || []))
         }
         if (this.extension.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionToSymbols(this.sectionNodeProvider.buildLaTeXModelObsolete(new Set<string>(), document.fileName, false))
+        return this.sectionNodeProvider.buildLaTeXModel(false).then(structure => this.sectionToSymbols(structure || []))
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
