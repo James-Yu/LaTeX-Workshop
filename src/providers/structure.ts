@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import {bibtexParser} from 'latex-utensils'
+import {bibtexParser, latexParser} from 'latex-utensils'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
@@ -38,7 +38,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return this.ds
         }
         else if (this.extension.manager.rootFile) {
-            this.ds = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
+            await this.buildLaTeXModel()
             return this.ds
         } else {
             return []
@@ -86,6 +86,250 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             })
     }
 
+    async buildLaTeXModel(buildSubFile: boolean = true) {
+        const document = vscode.window.activeTextEditor?.document
+        let file: string | undefined
+        if (!buildSubFile) {
+            file = document?.fileName
+        } else {
+            file = this.extension.manager.rootFile
+        }
+        if (!file) {
+            return
+        }
+        this.ds = []
+        const cache = await this.extension.cacher.tex.get(file, true)
+        const ast = cache?.getAST()
+        if (!ast) {
+            return
+        }
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const cmds = [...configuration.get('view.outline.commands') as string[], 'frametitle']
+        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'frame', 'table'] : ['frame']
+        const hierarchy = (configuration.get('view.outline.sections') as string[]).map(level => {return {level}})
+        const showHierarchyNumber = configuration.get('view.outline.numbers.enabled') as boolean
+        const astFiltered = this.extension.pegParser.filter(ast, envs, [...cmds, ...hierarchy.map(sec => sec.level.split('|')).flat()])
+        this.ds = await this.nodeContentsToSections(file, astFiltered, hierarchy, envs, cmds, showHierarchyNumber, true)
+    }
+
+    /**
+     *
+     * @param file The file this node physically belongs to
+     * @param content The content array this node possesses
+     * @param hierarchy The current document hierarchy. This is a critical
+     * parameter to maintain the numbering of sections. It is used as follows:
+     * For each level in the hierarchy, one and only one current section is
+     * maintained, so that all other node contents will be added to
+     * corresponding highest-level (subsubsection etc.) section. When a new
+     * subsubsection is encountered, the new one replaces the old one and record
+     * the new tag in the `tag` field. When a new lower-level subsection
+     * appears, it replaces the previous subsection, and clears the
+     * subsubsection, making it `undefined`. When adding non-section contents,
+     * we just need to find the highest non-undefined section, add to its
+     * children.
+     * @param includeSubs Whether subfile contents should be parsed.
+     * @param envs Environments to be parsed.
+     * @param cmds Commands to be parsed, including sections and custom
+     * commands.
+     * @returns The section tree from input content.
+     */
+    private async nodeContentsToSections(file: string,
+            contents: latexParser.Node[],
+            hierarchy: {level: string, section?: Section, tag?: string}[],
+            envs: string[],
+            cmds: string[],
+            showHierarchyNumber: boolean,
+            includeSubs = true) {
+        let sections: Section[] = []
+        const headings = hierarchy.map(sec => sec.level.split('|')).flat()
+        const subFiles: string[] = []
+        for (const node of contents) {
+            let section: Section | undefined
+            let added = false
+            // frame, figure, table
+            if (latexParser.isEnvironment(node)) {
+                section = this.envToSection(file, node)
+                added = this.addToHierarchy(section, hierarchy, hierarchy.length - 1)
+                const subSections = await this.nodeContentsToSections(file, node.content, hierarchy, envs, cmds, showHierarchyNumber)
+                section.children = subSections
+            }
+            // custom commands
+            if (latexParser.isCommand(node) && !headings.includes(node.name)) {
+                section = this.cmdToSection(file, node)
+                added = this.addToHierarchy(section, hierarchy, hierarchy.length - 1)
+            }
+            // section, subsection, part, chapter as defined in 'view.outline.sections'
+            if (latexParser.isCommand(node) && headings.includes(node.name)) {
+                section = this.secToSection(file, node)
+                added = this.secToHierarchy(section, node.name, hierarchy, showHierarchyNumber)
+            }
+            // Should be root section of this node
+            if (section && !added) {
+                sections.push(section)
+            }
+            // imports
+            const cache = await this.extension.cacher.tex.get(file, true)
+            const location = node.location
+            if (includeSubs && location && cache) {
+                const subs = cache.subFiles.filter(sub => !subFiles.includes(sub.file)).filter(sub => sub.line > location.start.line)
+                for (const sub of subs) {
+                    const subAst = (await this.extension.cacher.tex.get(sub.file, true))?.getAST()
+                    if (!subAst) {
+                        continue
+                    }
+                    const subSections = await this.nodeContentsToSections(sub.file, subAst.content, hierarchy, envs, cmds, showHierarchyNumber)
+                    sections = [...sections, ...subSections]
+                }
+            }
+        }
+        return sections
+    }
+
+    private envToSection(file: string, node: latexParser.Environment) {
+        return new Section(
+            SectionKind.Env,
+            `${node.name.charAt(0).toUpperCase() + node.name.slice(1)}: ${this.findEnvCaption(node)}`,
+            vscode.TreeItemCollapsibleState.Expanded,
+            0, // TODO
+            node.location.start.line,
+            node.location.end.line,
+            file)
+    }
+
+    private cmdToSection(file: string, node: latexParser.Command) {
+        const argString = node.args.map(arg => latexParser.isTextString(arg.content[0]) ? arg.content[0].content : '').join()
+        return new Section(
+            SectionKind.Label,
+            argString === '' ? node.name : `${node.name}: ${argString}`,
+            vscode.TreeItemCollapsibleState.Expanded,
+            0, // TODO
+            node.location.start.line,
+            node.location.end.line,
+            file)
+    }
+
+    private secToSection(file: string, node: latexParser.Command) {
+        const heading = (node.args.length > 0 && latexParser.isTextString(node.args[0].content[0])) ? node.args[0].content[0].content : 'Untitled'
+        return new Section(
+            SectionKind.Section,
+            heading,
+            vscode.TreeItemCollapsibleState.Expanded,
+            0, // TODO
+            node.location.start.line,
+            node.location.end.line,
+            file)
+    }
+
+    private secToHierarchy(section: Section, level: string, hierarchy: {level: string, section?: Section, tag?: string}[], showHierarchyNumber: boolean) {
+        // change the current hierarchy tree
+        let newSectionFound = false
+        let added = false
+        hierarchy.forEach(sec => {
+            if (!sec.level.includes(level)) {// TODO: section* with a star. All commands
+                return
+            }
+            if (newSectionFound) { // A new lower-level section is found. This higher level one shall be reset
+                sec.section = undefined
+                sec.tag = undefined
+                return
+            }
+            if (!section) {
+                return
+            }
+            const depth = hierarchy.indexOf(sec)
+            sec.section = section
+            if (showHierarchyNumber) {
+                sec.tag = this.getHierarchyNumber(hierarchy, depth)
+                section.label = `${sec.tag} ${section.label}`
+            } else {
+                sec.tag = ''
+            }
+            added = this.addToHierarchy(section, hierarchy, depth - 1)
+            newSectionFound = true
+        })
+        return added
+    }
+
+    private addToHierarchy(section: Section | undefined, hierarchy: {level: string, section?: Section, tag?: string}[], startIndex: number) {
+        if (!section) {
+            return false
+        }
+        for (let i = startIndex; i >= 0; --i) {
+            const headingSection = hierarchy[i].section
+            if (!headingSection) {
+                continue
+            }
+            headingSection.children.push(section)
+            return true
+        }
+        return false
+    }
+
+    private getHierarchyNumber(hierarchy: {level: string, section?: Section, tag?: string}[], index: number) {
+        // Exist a same level section. Increment by one.
+        if (hierarchy[index].section) {
+            const tagList = hierarchy[index].tag?.split('.') || ['0']
+            tagList[tagList.length - 1] = (parseInt(tagList[tagList.length - 1]) + 1).toString()
+            return tagList.join('.')
+        }
+        let tag = ''
+        for (let i = 0; i < index; ++i) {
+            // Not top-level section needs dots to seperate
+            if (i > 0) {
+                tag += '.'
+            }
+            if (hierarchy[i].section) {
+                // Already exists a higher-level section, just use the index
+                tag += hierarchy[i].tag
+            } else {
+                // Does not exist, use 0. Why not 1? For example: section >
+                // subsubsection > subsection renders 1, 1.0.1, 1.1.
+                tag += '0'
+            }
+        }
+        // The first top-level section
+        if (tag === '') {
+            tag = '1'
+        }
+        return tag
+    }
+
+    private findEnvCaption(node: latexParser.Environment) {
+        let candidate: latexParser.Node | undefined
+        if (node.name === 'frame') {
+            // Frame titles can be specified as either \begin{frame}{Frame Title}
+            // or \begin{frame} \frametitle{Frame Title}
+            // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
+            // \frametitle can override title set in \begin{frame}{<title>} so we check that first
+
+            // \begin{frame} \frametitle{Frame Title}
+            const caption = this.extension.pegParser.filter(node, [], ['frametitle'], false)
+            if (caption.length > 0 && latexParser.isCommand(caption[0]) && caption[0].args.length > 0) {
+                candidate = caption[0].args[0].content[0]
+            }
+            // \begin{frame}(whitespace){Title}
+            if (node.args.length > 0) {
+                candidate = node.args[0].content[0]
+            }
+            if (latexParser.isTextString(candidate)) {
+                return candidate.content
+            }
+            return 'Untitled Frame'
+        }
+        if (node.name === 'figure' || node.name === 'title') {
+            // \begin{figure} \caption{Figure Title}
+            const caption = this.extension.pegParser.filter(node, [], ['caption'], false)
+            if (caption.length > 0 && latexParser.isCommand(caption[0]) && caption[0].args.length > 0) {
+                candidate = caption[0].args[0].content[0]
+            }
+            if (latexParser.isTextString(candidate)) {
+                return candidate.content
+            }
+            return 'Untitled Environment'
+        }
+        return 'Untitled Environment'
+    }
+
     /**
      * Compute the TOC of a LaTeX project. To only consider the current file, use `imports=false`
      * @param visitedFiles Set of files already visited. To avoid infinite loops
@@ -96,7 +340,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @param parentChildren The list of children of the parent Section
      * @param sectionNumber The number of the current section stored in an array with the same length this.hierarchy
      */
-    buildLaTeXModel(visitedFiles: Set<string>, filePath: string, imports: boolean = true, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[]): Section[] {
+    buildLaTeXModelObsolete(visitedFiles: Set<string>, filePath: string, imports: boolean = true, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[]): Section[] {
         if (visitedFiles.has(filePath)) {
             return []
         } else {
@@ -147,7 +391,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             if (imports) {
                const inputFilePath = structureModel.buildImportModel(line)
                if (inputFilePath) {
-                    this.buildLaTeXModel(visitedFiles, inputFilePath, true, newFileStack, rootStack, children, sectionNumber)
+                    this.buildLaTeXModelObsolete(visitedFiles, inputFilePath, true, newFileStack, rootStack, children, sectionNumber)
                 }
             }
 
@@ -242,7 +486,7 @@ export class Section extends vscode.TreeItem {
 
     constructor(
         public readonly kind: SectionKind,
-        public readonly label: string,
+        public label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly depth: number,
         public readonly lineNumber: number,

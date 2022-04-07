@@ -40,12 +40,31 @@ export class UtensilsParser {
     }
 
     flatten(ast: latexParser.LatexAst) {
-        const content = ast.content
-        let nodeList: latexParser.Node[] = []
-        content.forEach((node) => {
-            nodeList = [...nodeList, ...this.flattenNode(node)]
+        let nodes: latexParser.Node[] = []
+        ast.content.forEach((node) => {
+            nodes = [...nodes, ...this.flattenNode(node)]
         })
-        return nodeList
+        return nodes
+    }
+
+    filter(ast: latexParser.LatexAst | Extract<latexParser.Node, {content: latexParser.Node[]}>, envs: string[], cmds: string[], subContents = true) {
+        const content: latexParser.Node[] = []
+        ast.content.forEach(node => {
+            if (latexParser.isCommand(node) && cmds.includes(node.name)) {
+                content.push(node)
+            }
+            if (latexParser.isEnvironment(node) && envs.includes(node.name)) {
+                content.push(node)
+            }
+            if (subContents && latexParser.hasContentArray(node)) {
+                const subContent = this.filter(node, envs, cmds)
+                node.content = subContent
+                if (subContent.length > 0 ) {
+                    content.push(node)
+                }
+            }
+        })
+        return content
     }
 
     private flattenNode(node: latexParser.Node) {

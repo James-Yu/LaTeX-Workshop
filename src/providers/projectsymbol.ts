@@ -21,7 +21,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (rootFileUri && this.extension.lwfs.isVirtualUri(rootFileUri)) {
             return symbols
         }
-        this.sectionToSymbols(symbols, this.sectionNodeProvider.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile))
+        this.sectionToSymbols(symbols, this.sectionNodeProvider.buildLaTeXModelObsolete(new Set<string>(), this.extension.manager.rootFile))
         return symbols
     }
 

@@ -26,7 +26,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         if (this.extension.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionToSymbols(this.sectionNodeProvider.buildLaTeXModel(new Set<string>(), document.fileName, false))
+        return this.sectionToSymbols(this.sectionNodeProvider.buildLaTeXModelObsolete(new Set<string>(), document.fileName, false))
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {

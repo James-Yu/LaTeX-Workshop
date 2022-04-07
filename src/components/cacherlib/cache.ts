@@ -44,8 +44,8 @@ export abstract class Cacher<CacheType> {
     /**
      * Get the cached content of a file given its path.
      * @param file The path of the file to retrieve.
-     * @param add Whether add the file if it has NOT been cached. Default is
-     * `false`.
+     * @param add Whether cache and parse the file if it has NOT been cached.
+     * Default is `false`.
      * @returns `CacheType` if the file has been cached or added with `add` set
      * to `true`, otherwise `undefined`.
      */
