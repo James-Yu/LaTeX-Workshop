@@ -136,10 +136,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (!content) {
             return children
         }
-        content = utils.stripCommentsAndVerbatim(content)
-        const endPos = content.search(/\\end{document}/gm)
+        content = utils.stripCommentsAndVerbatim(content.replace(/\r\n|\r/g, '\n'))
+        const endPos = content.search(/\\end{document}/)
         content = content.substring(0, endPos > -1 ? endPos : undefined)
-        const startPos = content.search(/\\begin{document}/gm)
+        const startPos = content.search(/\\begin{document}/)
         let startLineNumber = 0
         if (startPos > -1) {
             startLineNumber = content.substring(0, startPos).split('\n').length
