@@ -1,11 +1,21 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
+import * as chokidar from 'chokidar'
 
+import type {Extension} from '../../main'
 import {Cacher} from './cache'
-import { Section } from 'src/providers/structure'
+import { Section } from '../../providers/structure'
+import { SectionNodeProvider } from '../../providers/structure'
 
 export class BibCacher extends Cacher<BibCache> {
+
+    private readonly sectionNodeProvider: SectionNodeProvider
+
+    constructor(extension: Extension, watcher: chokidar.FSWatcher, tag: string) {
+        super(extension, watcher, tag)
+        this.sectionNodeProvider = new SectionNodeProvider(extension)
+    }
 
     /**
      * Parse the AST and cache a bib file from disk content.
@@ -43,26 +53,27 @@ export class BibCacher extends Cacher<BibCache> {
 
         return cache
     }
+
+    protected async toSections(file: string): Promise<Section[] | undefined> {
+        const cache = this.cache[file]
+        if (cache && cache.astSaved) {
+            cache.secSaved = await this.sectionNodeProvider.buildBibTeXModel(file)
+            return cache.secSaved
+        }
+        return undefined
+    }
 }
 
 export type BibCache = {
-    // The dirty content in vscode
-    // contentDirty: string,
-
     // The saved content on disk
     contentSaved: string,
-
-    // Dirty content split into lines
-    // linesDirty: string[],
 
     // Saved content split into lines
     linesSaved: string[],
 
     // AST parsed from saved content. Undefined means over-sized bib file
     astSaved: bibtexParser.BibtexAst | undefined,
-    /**
-     * An array of sections describing the structure of this file, not including
-     * its sub-files.
-     */
-    sections: Section[]
+
+    // Outline sections parsed from saved content.
+    secSaved: Section[] | undefined
 }

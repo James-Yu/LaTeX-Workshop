@@ -4,6 +4,7 @@ import * as micromatch from 'micromatch'
 import * as chokidar from 'chokidar'
 
 import type {Extension} from '../../main'
+import type { Section } from '../../providers/structure'
 
 export abstract class Cacher<CacheType> {
     protected readonly extension: Extension
@@ -37,6 +38,7 @@ export abstract class Cacher<CacheType> {
         this.extension.logger.addLogMessage(`${this.tag} cacher file ADDED: ${file}`)
         this.watcher.add(file)
         this.cache[file] = await this.parse(file)
+        await this.toSections(file)
         this.onAddedCallbacks.forEach(cb => cb(file))
         return this.cache[file]
     }
@@ -125,7 +127,10 @@ export abstract class Cacher<CacheType> {
     protected async onChanged(file: string) {
         this.extension.logger.addLogMessage(`${this.tag} cacher file CHANGED: ${file}`)
         this.cache[file] = await this.parse(file)
+        await this.toSections(file)
     }
 
     protected abstract parse(file: string): Promise<CacheType>
+
+    protected abstract toSections(file: string): Promise<Section[] | undefined>
 }

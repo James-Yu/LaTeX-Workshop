@@ -8,15 +8,18 @@ import type {Extension} from '../../main'
 import {Cacher} from './cache'
 import * as utils from '../../utils/utils'
 import {PathUtils} from '../managerlib/pathutils'
-import { Section } from 'src/providers/structure'
+import { Section } from '../../providers/structure'
+import { SectionNodeProvider } from '../../providers/structure'
 
 export class TexCacher extends Cacher<TexCache> {
 
     private readonly pathUtils: PathUtils
+    private readonly sectionNodeProvider: SectionNodeProvider
 
     constructor(extension: Extension, watcher: chokidar.FSWatcher, tag: string) {
         super(extension, watcher, tag)
         this.pathUtils = new PathUtils(extension)
+        this.sectionNodeProvider = new SectionNodeProvider(extension)
     }
 
     protected async onChanged(file: string): Promise<void> {
@@ -51,6 +54,15 @@ export class TexCacher extends Cacher<TexCache> {
         // this.extension.manager.buildOnFileChanged(file, true)
 
         return cache
+    }
+
+    protected async toSections(file: string): Promise<Section[] | undefined> {
+        const cache = this.cache[file]
+        if (cache && cache.getAST()) {
+            cache.secSaved = await this.sectionNodeProvider.buildLaTeXModel(file, false)
+            return cache.secSaved
+        }
+        return undefined
     }
 
     /**
@@ -338,11 +350,8 @@ class TexCache {
     // The other bib files that this file includes.
     readonly bibFiles = new Set<string>()
 
-    /**
-     * An array of sections describing the structure of this file, not including
-     * its sub-files.
-     */
-    sections: Section[] = []
+    // Outline sections parsed from saved content.
+    secSaved: Section[] | undefined
 
     /**
      * @param content The content to be cached

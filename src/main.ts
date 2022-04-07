@@ -164,13 +164,13 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             extension.manager.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
-            extension.structureViewer.update()
+            // extension.structureViewer.refresh()
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
             extension.cacher.tex.get(e.fileName).then(cache => cache?.resetDirty()).catch(() => {})
         }
         if (e.languageId === 'bibtex') {
-            extension.structureViewer.update()
+            // extension.structureViewer.update()
         }
     }))
 
@@ -235,7 +235,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         // reveal only when active editor is bibtex. This is done in the update
         // function
         // TODO: lazy loading for LaTeX structure?
-        extension.structureViewer.update()
+        // extension.structureViewer.update()
 
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()

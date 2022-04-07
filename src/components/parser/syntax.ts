@@ -29,7 +29,7 @@ export class UtensilsParser {
      * @return undefined if parsing fails
      */
     async parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined> {
-        return (await this.proxy).parseLatex(s, options).timeout(3000).catch((e: Error) => {
+        return (await this.proxy).parseLatex(s, options).timeout(30000).catch((e: Error) => {
             this.extension.logger.addLogMessage(`Error: ${JSON.stringify(e)}`)
             return undefined
         })
@@ -60,9 +60,13 @@ export class UtensilsParser {
                 content.push(node)
             } else if (subContents && latexParser.hasContentArray(node)) {
                 const subContent = this.filter(node, envs, cmds)
-                node.content = subContent
                 if (subContent.length > 0 ) {
-                    content.push(node)
+                    const newNode: latexParser.Group = {
+                        kind: 'arg.group',
+                        content: subContent,
+                        location: node.location
+                    }
+                    content.push(newNode)
                 }
             }
         })

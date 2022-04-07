@@ -1,17 +1,15 @@
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import {Section, SectionNodeProvider} from './structure'
+import {Section} from './structure'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
     private readonly extension: Extension
-    private readonly sectionNodeProvider: SectionNodeProvider
 
     private sections: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.sectionNodeProvider = new SectionNodeProvider(extension)
 
         const rawSections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
         rawSections.forEach(section => {
@@ -19,14 +17,15 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
         })
     }
 
-    provideDocumentSymbols(document: vscode.TextDocument): vscode.ProviderResult<vscode.DocumentSymbol[]> {
+    async provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
         if (document.languageId === 'bibtex') {
-            return this.sectionNodeProvider.buildBibTeXModel().then(structure => this.sectionToSymbols(structure || []))
+            return this.sectionToSymbols((await this.extension.cacher.getBibCache(document.fileName))?.secSaved || [])
         }
         if (this.extension.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionNodeProvider.buildLaTeXModel(false).then(structure => this.sectionToSymbols(structure || []))
+        const cache = await this.extension.cacher.tex.get(document.fileName, true)
+        return this.sectionToSymbols(cache?.secSaved || [])
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {
