@@ -1,26 +1,32 @@
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import type {Section} from './structure'
+import {Section, SectionNodeProvider} from './structure'
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
     private readonly extension: Extension
+    private readonly sectionNodeProvider: SectionNodeProvider
 
     private sections: string[] = []
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.sectionNodeProvider = new SectionNodeProvider(extension)
+
         const rawSections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
         rawSections.forEach(section => {
             this.sections = this.sections.concat(section.split('|'))
         })
     }
 
-    provideDocumentSymbols(document: vscode.TextDocument): vscode.DocumentSymbol[] {
+    provideDocumentSymbols(document: vscode.TextDocument): vscode.ProviderResult<vscode.DocumentSymbol[]> {
+        if (document.languageId === 'bibtex') {
+            return this.sectionNodeProvider.buildBibTeXModel().then(() => this.sectionToSymbols(this.sectionNodeProvider.ds))
+        }
         if (this.extension.lwfs.isVirtualUri(document.uri)) {
             return []
         }
-        return this.sectionToSymbols(this.extension.structureProvider.buildModel(new Set<string>(), document.fileName, undefined, undefined, undefined, undefined, false))
+        return this.sectionToSymbols(this.sectionNodeProvider.buildLaTeXModel(new Set<string>(), document.fileName, false))
     }
 
     private sectionToSymbols(sections: Section[]): vscode.DocumentSymbol[] {

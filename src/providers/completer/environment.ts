@@ -5,6 +5,8 @@ import {latexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 import type {IProvider, ILwCompletionItem} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
+import {cmdHasOptionalArgs, CmdSignature, getCmdSignature} from './command'
+import {splitSignatureString} from './command'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
@@ -22,7 +24,8 @@ function isEnvItemEntry(obj: any): obj is EnvItemEntry {
 export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
 
 export interface Suggestion extends ILwCompletionItem {
-    package: string
+    package: string,
+    signature: CmdSignature
 }
 
 export class Environment implements IProvider {
@@ -152,7 +155,7 @@ export class Environment implements IProvider {
         return suggestions
     }
 
-    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdList: string[]) {
+    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdSignatureList: Set<string>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 
@@ -178,13 +181,12 @@ export class Environment implements IProvider {
 
         // Insert env snippets
         entry.forEach(env => {
-            const envName = env.filterText ? env.filterText : env.label
-            if (!useOptionalArgsEntries && envName.includes('[')) {
+            if (!useOptionalArgsEntries && cmdHasOptionalArgs(env)) {
                 return
             }
-            if (!cmdList.includes(envName)) {
+            if (!cmdSignatureList.has(getCmdSignature(env))) {
                 suggestions.push(env)
-                cmdList.push(envName)
+                cmdSignatureList.add(getCmdSignature(env))
             }
         })
     }
@@ -220,7 +222,7 @@ export class Environment implements IProvider {
 
     private getEnvFromNode(node: latexParser.Node, lines: string[]): Suggestion[] {
         let envs: Suggestion[] = []
-        // Here we only check `isEnvironment`which excludes `align*` and `verbatim`.
+        // Here we only check `isEnvironment` which excludes `align*` and `verbatim`.
         // Nonetheless, they have already been included in `defaultEnvs`.
         if (latexParser.isEnvironment(node)) {
             const env: Suggestion = {
@@ -228,7 +230,11 @@ export class Environment implements IProvider {
                 kind: vscode.CompletionItemKind.Module,
                 documentation: '`' + node.name + '`',
                 filterText: node.name,
-                package: ''
+                package: '',
+                signature: {
+                    name: node.name,
+                    args: ''
+                }
             }
             envs.push(env)
         }
@@ -291,7 +297,11 @@ export class Environment implements IProvider {
                 kind: vscode.CompletionItemKind.Module,
                 documentation: '`' + result[1] + '`',
                 filterText: result[1],
-                package: ''
+                package: '',
+                signature: {
+                    name: result[1],
+                    args: ''
+                }
             }
 
             envs.push(env)
@@ -307,7 +317,8 @@ export class Environment implements IProvider {
             kind: vscode.CompletionItemKind.Module,
             package: 'latex',
             detail: `Insert environment ${item.name}.`,
-            documentation: item.name
+            documentation: item.name,
+            signature: splitSignatureString(itemKey)
         }
         if (item.package) {
             suggestion.documentation += '\n' + `Package: ${item.package}`

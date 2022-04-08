@@ -8,6 +8,7 @@ We also reject requests adding additional recipes to default settings.
 ```bash
 git clone https://github.com/James-Yu/LaTeX-Workshop.git
 cd ./LaTeX-Workshop
+cp ./dev/githooks/pre-commit .git/hooks/
 npm ci
 code -n .
 ```

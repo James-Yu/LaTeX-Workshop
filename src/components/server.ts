@@ -7,6 +7,7 @@ import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
 import {PdfFilePathEncoder} from './serverlib/encodepath'
+import {EventEmitter} from 'events'
 
 class WsServer extends ws.Server {
     private readonly extension: Extension
@@ -36,32 +37,30 @@ class WsServer extends ws.Server {
 
 }
 
+const ServerStartedEvent = 'serverstarted'
+
 export class Server {
     private readonly extension: Extension
     private readonly httpServer: http.Server
     private address?: AddressInfo
     readonly pdfFilePathEncoder: PdfFilePathEncoder
+    private validOriginUri: vscode.Uri | undefined
+    readonly serverStarted: Promise<void>
+    private readonly eventEmitter = new EventEmitter()
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.serverStarted = new Promise((resolve) => {
+            this.eventEmitter.on(ServerStartedEvent, () => resolve() )
+        })
         this.pdfFilePathEncoder = new PdfFilePathEncoder(extension)
         this.httpServer = http.createServer((request, response) => this.handler(request, response))
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const viewerPort = configuration.get('viewer.pdf.internal.port') as number
-        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, () => {
-            const address = this.httpServer.address()
-            if (address && typeof address !== 'string') {
-                this.address = address
-                this.extension.logger.addLogMessage(`[Server] Server successfully started: ${JSON.stringify(address)}`)
-                this.initializeWsServer()
-            } else {
-                this.extension.logger.addLogMessage(`[Server] Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
-            }
-        })
-        this.httpServer.on('error', (err) => {
-            this.extension.logger.addLogMessage(`[Server] Error creating LaTeX Workshop http server: ${JSON.stringify(err)}.`)
-        })
+        this.initializeHttpServer()
         this.extension.logger.addLogMessage('[Server] Creating LaTeX Workshop http and websocket server.')
+    }
+
+    dispose() {
+        this.httpServer.close()
     }
 
     get port(): number {
@@ -74,7 +73,38 @@ export class Server {
     }
 
     private get validOrigin(): string {
-        return `http://127.0.0.1:${this.port}`
+        if (this.validOriginUri) {
+            return `http://${this.validOriginUri.authority}`
+        } else {
+            throw new Error('[Server] validOrigin is undefined')
+        }
+    }
+
+    private initializeHttpServer() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const viewerPort = configuration.get('viewer.pdf.internal.port') as number
+        this.httpServer.listen(viewerPort, '127.0.0.1', undefined, async () => {
+            const address = this.httpServer.address()
+            if (address && typeof address !== 'string') {
+                this.address = address
+                this.extension.logger.addLogMessage(`[Server] Server successfully started: ${JSON.stringify(address)}`)
+                this.validOriginUri = await this.obtainValidOrigin(address.port)
+                this.extension.logger.addLogMessage(`[Server] valdOrigin is ${this.validOrigin}`)
+                this.initializeWsServer()
+                this.eventEmitter.emit(ServerStartedEvent)
+            } else {
+                this.extension.logger.addLogMessage(`[Server] Server failed to start. Address is invalid: ${JSON.stringify(address)}`)
+            }
+        })
+        this.httpServer.on('error', (err) => {
+            this.extension.logger.addLogMessage(`[Server] Error creating LaTeX Workshop http server: ${JSON.stringify(err)}.`)
+        })
+    }
+
+    private async obtainValidOrigin(serverPort: number): Promise<vscode.Uri> {
+        const origUrl = `http://127.0.0.1:${serverPort}/`
+        const uri = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
+        return uri
     }
 
     private initializeWsServer() {

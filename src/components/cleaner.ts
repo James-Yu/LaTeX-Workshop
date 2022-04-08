@@ -38,7 +38,7 @@ export class Cleaner {
     }
 
     private async cleanGlob(rootFile: string): Promise<void> {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         let globs = configuration.get('latex.clean.fileTypes') as string[]
         const outdir = path.resolve(path.dirname(rootFile), this.extension.manager.getOutDir(rootFile))
         if (configuration.get('latex.clean.subfolder.enabled') as boolean) {
@@ -69,7 +69,7 @@ export class Cleaner {
     }
 
     private cleanCommand(rootFile: string): Promise<void> {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const command = configuration.get('latex.clean.command') as string
         let args = configuration.get('latex.clean.args') as string[]
         if (args) {

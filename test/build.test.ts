@@ -13,7 +13,7 @@ import {
     runTestWithFixture,
     waitLatexWorkshopActivated,
     waitRootFileFound
-} from './utils'
+} from './utils/ciutils'
 import {sleep} from '../src/utils/utils'
 
 

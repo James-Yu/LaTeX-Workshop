@@ -8,6 +8,7 @@ import type {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
 
 import type {Extension} from '../main'
+import * as eventbus from './eventbus'
 import type {Suggestion as CiteEntry} from '../providers/completer/citation'
 import type {Suggestion as CmdEntry} from '../providers/completer/command'
 import type {Suggestion as EnvEntry} from '../providers/completer/environment'
@@ -84,11 +85,9 @@ export class Manager {
      */
     private readonly cachedContent = Object.create(null) as Content
 
-    private readonly localRootFiles = Object.create(null) as { [key: string]: string | undefined }
-    private readonly rootFilesLanguageIds = Object.create(null) as { [key: string]: string | undefined }
-    // Store one root file for each workspace.
-    private readonly rootFiles = Object.create(null) as { [key: string]: RootFileType | undefined }
-    private workspaceRootDirUri: string = ''
+    private _localRootFile: string | undefined
+    private _rootFileLanguageId: string | undefined
+    private _rootFile: RootFileType | undefined
 
     private readonly extension: Extension
     private readonly fileWatcher: chokidar.FSWatcher
@@ -125,6 +124,13 @@ export class Manager {
         this.finderUtils = new FinderUtils(extension)
         this.pathUtils = new PathUtils(extension)
         this.registerSetEnvVar()
+        this.extension.eventBus.onDidChangeRootFile(() => this.logWatchedFiles())
+    }
+
+    async dispose() {
+        await this.fileWatcher.close()
+        await this.pdfWatcher.dispose()
+        await this.bibWatcher.dispose()
     }
 
     getCachedContent(filePath: string): Content[string] | undefined {
@@ -152,6 +158,10 @@ export class Manager {
         }
     }
 
+    getFilesWatched() {
+        return Array.from(this.filesWatched)
+    }
+
     /**
      * Returns the output directory developed according to the input tex path
      * and 'latex.outDir' config. If `texPath` is `undefined`, the default root
@@ -169,7 +179,7 @@ export class Manager {
             return './'
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
         const outDir = configuration.get('latex.outDir') as string
         const out = utils.replaceArgumentPlaceholders(texPath, this.extension.builder.tmpDir)(outDir)
         return path.normalize(out).split(path.sep).join('/')
@@ -187,7 +197,7 @@ export class Manager {
      * It is `undefined` before `findRoot` called.
      */
     get rootFile(): string | undefined {
-        const ret = this.rootFiles[this.workspaceRootDirUri]
+        const ret = this._rootFile
         if (ret) {
             if (ret.type === 'filePath') {
                 return ret.filePath
@@ -206,14 +216,14 @@ export class Manager {
 
     set rootFile(root: string | undefined) {
         if (root) {
-            this.rootFiles[this.workspaceRootDirUri] = { type: 'filePath', filePath: root }
+            this._rootFile = { type: 'filePath', filePath: root }
         } else {
-            this.rootFiles[this.workspaceRootDirUri] = undefined
+            this._rootFile = undefined
         }
     }
 
     get rootFileUri(): vscode.Uri | undefined {
-        const root = this.rootFiles[this.workspaceRootDirUri]
+        const root = this._rootFile
         if (root) {
             if (root.type === 'filePath') {
                 return vscode.Uri.file(root.filePath)
@@ -234,23 +244,31 @@ export class Manager {
                 rootFile = { type: 'uri', uri: root }
             }
         }
-        this.rootFiles[this.workspaceRootDirUri] = rootFile
+        this._rootFile = rootFile
     }
 
     get localRootFile() {
-        return this.localRootFiles[this.workspaceRootDirUri]
+        return this._localRootFile
     }
 
     set localRootFile(localRoot: string | undefined) {
-        this.localRootFiles[this.workspaceRootDirUri] = localRoot
+        this._localRootFile = localRoot
     }
 
     get rootFileLanguageId() {
-        return this.rootFilesLanguageIds[this.workspaceRootDirUri]
+        return this._rootFileLanguageId
     }
 
     set rootFileLanguageId(id: string | undefined) {
-        this.rootFilesLanguageIds[this.workspaceRootDirUri] = id
+        this._rootFileLanguageId = id
+    }
+
+    getWorkspaceFolderRootDir(): vscode.WorkspaceFolder | undefined {
+        const rootFileUri = this.rootFileUri
+        if (rootFileUri) {
+            return vscode.workspace.getWorkspaceFolder(rootFileUri)
+        }
+        return undefined
     }
 
     private inferLanguageId(filename: string): string | undefined {
@@ -295,28 +313,35 @@ export class Manager {
         return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
     }
 
-    private findWorkspace() {
+    /**
+     * Returns `true` if the language of `id` is bibtex
+     *
+     * @param id The identifier of language.
+     */
+    hasBibtexId(id: string) {
+        return id === 'bibtex'
+    }
+
+
+    private findWorkspace(): vscode.Uri | undefined {
         const firstDir = vscode.workspace.workspaceFolders?.[0]
         // If no workspace is opened.
         if (!firstDir) {
-            this.workspaceRootDirUri = ''
-            return
+            return undefined
         }
         // If we don't have an active text editor, we can only make a guess.
         // Let's guess the first one.
         if (!vscode.window.activeTextEditor) {
-            this.workspaceRootDirUri = firstDir.uri.toString(true)
-            return
+            return firstDir.uri
         }
         // Get the workspace folder which contains the active document.
         const activeFileUri = vscode.window.activeTextEditor.document.uri
         const workspaceFolder = vscode.workspace.getWorkspaceFolder(activeFileUri)
         if (workspaceFolder) {
-            this.workspaceRootDirUri = workspaceFolder.uri.toString(true)
-            return
+            return workspaceFolder.uri
         }
         // Guess that the first workspace is the chosen one.
-        this.workspaceRootDirUri = firstDir.uri.toString(true)
+        return firstDir.uri
     }
 
     /**
@@ -324,10 +349,8 @@ export class Manager {
      * The found root is also set to `rootFile`.
      */
     async findRoot(): Promise<string | undefined> {
-        this.findWorkspace()
         const wsfolders = vscode.workspace.workspaceFolders?.map(e => e.uri.toString(true))
         this.extension.logger.addLogMessage(`Current workspace folders: ${JSON.stringify(wsfolders)}`)
-        this.extension.logger.addLogMessage(`Current workspaceRootDir: ${this.workspaceRootDirUri}`)
         this.localRootFile = undefined
         const findMethods = [
             () => this.finderUtils.findRootFromMagic(),
@@ -351,14 +374,16 @@ export class Manager {
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await this.parseFlsFile(this.rootFile)
-                this.extension.structureProvider.refresh()
-                this.extension.structureProvider.update()
+                this.extension.structureViewer.update()
+                this.extension.latexCommanderTreeView.update()
+                this.extension.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)
             }
-            this.logWatchedFiles()
+            this.extension.eventBus.fire(eventbus.FindRootFileEnd)
             return rootFile
         }
+        this.extension.eventBus.fire(eventbus.FindRootFileEnd)
         return undefined
     }
 
@@ -415,12 +440,14 @@ export class Manager {
 
     private async findRootInWorkspace(): Promise<string | undefined> {
         const regex = /\\begin{document}/m
+        const currentWorkspaceDirUri = this.findWorkspace()
+        this.extension.logger.addLogMessage(`Current workspaceRootDir: ${currentWorkspaceDirUri ? currentWorkspaceDirUri.toString(true) : ''}`)
 
-        if (!this.workspaceRootDirUri) {
+        if (!currentWorkspaceDirUri) {
             return undefined
         }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', currentWorkspaceDirUri)
         const rootFilesIncludePatterns = configuration.get('latex.search.rootFiles.include') as string[]
         const rootFilesIncludeGlob = '{' + rootFilesIncludePatterns.join(',') + '}'
         const rootFilesExcludePatterns = configuration.get('latex.search.rootFiles.exclude') as string[]
@@ -886,7 +913,7 @@ export class Manager {
             return
         }
         this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             return this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
@@ -895,7 +922,7 @@ export class Manager {
     }
 
     buildOnFileChanged(file: string, bibChanged: boolean = false) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
             return
         }
@@ -903,7 +930,7 @@ export class Manager {
     }
 
     buildOnSaveIfEnabled(file: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
             return
         }

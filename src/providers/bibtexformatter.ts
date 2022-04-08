@@ -9,13 +9,11 @@ import type {Extension} from '../main'
 export class BibtexFormatter {
 
     private readonly extension: Extension
-    private readonly bibtexUtils: BibtexUtils
     readonly duplicatesDiagnostics: vscode.DiagnosticCollection
     diags: vscode.Diagnostic[]
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.bibtexUtils = new BibtexUtils(extension)
         this.duplicatesDiagnostics = vscode.languages.createDiagnosticCollection('BibTeX')
         this.diags = []
     }
@@ -56,7 +54,8 @@ export class BibtexFormatter {
 
     public async formatDocument(document: vscode.TextDocument, sort: boolean, align: boolean, range?: vscode.Range): Promise<vscode.TextEdit[]> {
         // Get configuration
-        const config = vscode.workspace.getConfiguration('latex-workshop')
+        const bibtexUtils = new BibtexUtils(this.extension, document.uri)
+        const config = vscode.workspace.getConfiguration('latex-workshop', document)
         const handleDuplicates = config.get('bibtex-format.handleDuplicates') as 'Ignore Duplicates' | 'Highlight Duplicates' | 'Comment Duplicates'
         const lineOffset = range ? range.start.line : 0
         const columnOffset = range ? range.start.character : 0
@@ -91,7 +90,7 @@ export class BibtexFormatter {
         let sortedEntryLocations: vscode.Range[] = []
         const duplicates = new Set<bibtexParser.Entry>()
         if (sort) {
-            entries.sort(this.bibtexUtils.bibtexSort(duplicates)).forEach(entry => {
+            entries.sort(bibtexUtils.bibtexSort(duplicates)).forEach(entry => {
                 sortedEntryLocations.push((new vscode.Range(
                     entry.location.start.line - 1,
                     entry.location.start.column - 1,
@@ -112,7 +111,7 @@ export class BibtexFormatter {
         for (let i = 0; i < entries.length; i++) {
             if (align && bibtexParser.isEntry(entries[i])) {
                 const entry: bibtexParser.Entry = entries[i] as bibtexParser.Entry
-                text = this.bibtexUtils.bibtexFormat(entry)
+                text = bibtexUtils.bibtexFormat(entry)
             } else {
                 text = document.getText(sortedEntryLocations[i])
             }
@@ -163,13 +162,13 @@ export class BibtexFormatterProvider implements vscode.DocumentFormattingEditPro
     }
 
     public provideDocumentFormattingEdits(document: vscode.TextDocument, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        const sort = vscode.workspace.getConfiguration('latex-workshop').get('bibtex-format.sort.enabled') as boolean
+        const sort = vscode.workspace.getConfiguration('latex-workshop', document).get('bibtex-format.sort.enabled') as boolean
         this.extension.logger.addLogMessage('Start bibtex formatting on behalf of VSCode\'s formatter.')
         return this.formatter.formatDocument(document, sort, true)
     }
 
     public provideDocumentRangeFormattingEdits(document: vscode.TextDocument, range: vscode.Range, _options: vscode.FormattingOptions, _token: vscode.CancellationToken): vscode.ProviderResult<vscode.TextEdit[]> {
-        const sort = vscode.workspace.getConfiguration('latex-workshop').get('bibtex-format.sort.enabled') as boolean
+        const sort = vscode.workspace.getConfiguration('latex-workshop', document).get('bibtex-format.sort.enabled') as boolean
         this.extension.logger.addLogMessage('Start bibtex selection formatting on behalf of VSCode\'s formatter.')
         return this.formatter.formatDocument(document, sort, true, range)
     }

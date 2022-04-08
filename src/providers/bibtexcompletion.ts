@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import {BibtexUtils} from './bibtexformatterlib/bibtexutils'
-import type {BibtexFormatConfig} from './bibtexformatterlib/bibtexutils'
+import {BibtexFormatConfig} from './bibtexformatterlib/bibtexutils'
 import type {Extension} from '../main'
 
 type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
@@ -10,14 +9,43 @@ type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entr
 
 export class BibtexCompleter implements vscode.CompletionItemProvider {
     private readonly extension: Extension
+    private scope: vscode.ConfigurationScope | undefined = undefined
     private readonly entryItems: vscode.CompletionItem[] = []
     private readonly optFieldItems = Object.create(null) as { [key: string]: vscode.CompletionItem[] }
-    private readonly bibtexUtils: BibtexUtils
+    private readonly bibtexFormatConfig: BibtexFormatConfig
 
     constructor(extension: Extension) {
         this.extension = extension
-        this.bibtexUtils = new BibtexUtils(extension)
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        if (vscode.window.activeTextEditor) {
+            this.scope = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri)
+        } else {
+            this.scope = vscode.workspace.workspaceFolders?.[0]
+        }
+        this.bibtexFormatConfig = new BibtexFormatConfig(extension, this.scope)
+        this.initialize()
+        vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('latex-workshop.bibtex-format', this.scope) ||
+                e.affectsConfiguration('latex-workshop.bibtex-entries', this.scope) ||
+                e.affectsConfiguration('latex-workshop.bibtex-fields', this.scope) ||
+                e.affectsConfiguration('latex-workshop.intellisense', this.scope)) {
+                    this.bibtexFormatConfig.loadConfiguration(this.scope)
+                    this.initialize()
+                }
+        })
+        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+            if (e && this.extension.manager.hasBibtexId(e.document.languageId)) {
+                const wsFolder = vscode.workspace.getWorkspaceFolder(e.document.uri)
+                if (wsFolder !== this.scope) {
+                    this.scope = wsFolder
+                    this.bibtexFormatConfig.loadConfiguration(this.scope)
+                    this.initialize()
+                }
+            }
+        })
+    }
+
+    private initialize() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.scope)
         const citationBackend = configuration.get('intellisense.citation.backend')
         let entriesFile: string = ''
         let optEntriesFile: string = ''
@@ -50,19 +78,20 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
 
         const maxLengths: {[key: string]: number} = this.computeMaxLengths(entries, optFields)
         const entriesList: string[] = []
+        this.entryItems.length = 0
         Object.keys(entries).forEach(entry => {
             if (entry in entriesList) {
                 return
             }
             if (entry in entriesReplacements) {
-                this.entryItems.push(this.entryToCompletion(entry, entriesReplacements[entry], this.bibtexUtils.bibtexFormatConfig, maxLengths))
+                this.entryItems.push(this.entryToCompletion(entry, entriesReplacements[entry], this.bibtexFormatConfig, maxLengths))
             } else {
-                this.entryItems.push(this.entryToCompletion(entry, entries[entry], this.bibtexUtils.bibtexFormatConfig, maxLengths))
+                this.entryItems.push(this.entryToCompletion(entry, entries[entry], this.bibtexFormatConfig, maxLengths))
             }
             entriesList.push(entry)
         })
         Object.keys(optFields).forEach(entry => {
-            this.optFieldItems[entry] = this.fieldsToCompletion(entry, optFields[entry], this.bibtexUtils.bibtexFormatConfig, maxLengths)
+            this.optFieldItems[entry] = this.fieldsToCompletion(entry, optFields[entry], this.bibtexFormatConfig, maxLengths)
         })
     }
 
@@ -93,7 +122,7 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
         // Find the longest field name in entry
         let s: string = itemName + '{${0:key}'
         itemFields.forEach(field => {
-            s += ',\n' + config.tab + (config.case === 'lowercase' ? field : field.toUpperCase())
+            s += ',\n' + config.tab + (config.case === 'lowercase' ? field.toLowerCase() : field.toUpperCase())
             s += ' '.repeat(maxLengths[itemName] - field.length) + ' = '
             s += config.left + `$${count}` + config.right
             count++

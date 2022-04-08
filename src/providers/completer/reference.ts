@@ -169,8 +169,8 @@ export class Reference implements IProvider {
             // \label{some-text}
             label = node.label
         } else if (latexParser.isTextString(node) && node.content === 'label=' && useLabelKeyVal && nextNode !== undefined) {
-            // label={some=text}
-            label = ((nextNode as latexParser.Group).content[0] as latexParser.TextString).content
+            // label={some-text}
+            label = latexParser.stringify(nextNode).slice(1, -1)
         }
         if (label !== '' && (latexParser.isLabelCommand(node) || latexParser.isTextString(node))) {
             refs.push({
@@ -189,6 +189,12 @@ export class Reference implements IProvider {
         }
         if (latexParser.hasArgsArray(node)) {
             return this.getRefFromNodeArray(node.args, lines)
+        }
+        if (latexParser.isLstlisting(node)) {
+            const arg = (node as latexParser.Lstlisting).arg
+            if (arg) {
+                return this.getRefFromNode(arg, lines)
+            }
         }
         return refs
     }

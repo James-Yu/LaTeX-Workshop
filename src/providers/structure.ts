@@ -1,4 +1,5 @@
 import * as vscode from 'vscode'
+import {bibtexParser} from 'latex-utensils'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
@@ -30,9 +31,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     }
 
-    refresh(): Section[] {
-        if (this.extension.manager.rootFile) {
-            this.ds = this.buildModel(new Set<string>(), this.extension.manager.rootFile)
+    private async refresh(): Promise<Section[]> {
+        const document = vscode.window.activeTextEditor?.document
+        if (document?.languageId === 'bibtex') {
+            await this.buildBibTeXModel()
+            return this.ds
+        }
+        else if (this.extension.manager.rootFile) {
+            this.ds = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
             return this.ds
         } else {
             return []
@@ -40,20 +46,66 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     update() {
-        this._onDidChangeTreeData.fire(undefined)
+        this.refresh().finally(() => {this._onDidChangeTreeData.fire(undefined)})
+    }
+
+    async buildBibTeXModel() {
+        const document = vscode.window.activeTextEditor?.document
+        if (!document) {
+            return
+        }
+        this.ds = []
+
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
+        if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
+            this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
+            return
+        }
+        const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
+            if (bibtexParser.isSyntaxError(e)) {
+                const line = e.location.start.line
+                this.extension.logger.addLogMessage(`Error parsing BibTeX: line ${line} in ${document.fileName}.`)
+            }
+            return
+        })
+
+        ast?.content.filter(bibtexParser.isEntry)
+            .forEach(entry => {
+                const bibitem = new Section(
+                    SectionKind.BibItem,
+                    `${entry.entryType}: ${entry.internalKey}`,
+                    vscode.TreeItemCollapsibleState.Collapsed,
+                    0,
+                    entry.location.start.line,
+                    entry.location.end.line,
+                    document.fileName)
+                entry.content.forEach(field => {
+                    const fielditem = new Section(
+                        SectionKind.BibField,
+                        `${field.name}: ${field.value.content}`,
+                        vscode.TreeItemCollapsibleState.None,
+                        1,
+                        field.location.start.line,
+                        field.location.end.line,
+                        document.fileName)
+                    fielditem.parent = bibitem
+                    bibitem.children.push(fielditem)
+                })
+                this.ds.push(bibitem)
+            })
     }
 
     /**
      * Compute the TOC of a LaTeX project. To only consider the current file, use `imports=false`
      * @param visitedFiles Set of files already visited. To avoid infinite loops
      * @param filePath The path of the file being parsed
+     * @param imports Do we parse included files
      * @param fileStack The list of files inclusion leading to the current file
      * @param parentStack The list of parent sections
      * @param parentChildren The list of children of the parent Section
      * @param sectionNumber The number of the current section stored in an array with the same length this.hierarchy
-     * @param imports Do we parse included files
      */
-    buildModel(visitedFiles: Set<string>, filePath: string, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[], imports: boolean = true): Section[] {
+    buildLaTeXModel(visitedFiles: Set<string>, filePath: string, imports: boolean = true, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[]): Section[] {
         if (visitedFiles.has(filePath)) {
             return []
         } else {
@@ -84,18 +136,20 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (!content) {
             return children
         }
-        content = utils.stripCommentsAndVerbatim(content)
-        const endPos = content.search(/\\end{document}/gm)
-        if (endPos > -1) {
-            content = content.substring(0, endPos)
+        content = utils.stripCommentsAndVerbatim(content.replace(/\r\n|\r/g, '\n'))
+        const endPos = content.search(/\\end{document}/)
+        content = content.substring(0, endPos > -1 ? endPos : undefined)
+        const startPos = content.search(/\\begin{document}/)
+        let startLineNumber = 0
+        if (startPos > -1) {
+            startLineNumber = content.substring(0, startPos).split('\n').length
         }
 
         const structureModel = new StructureModel(this.extension, filePath, rootStack, children, newFileStack, sectionNumber)
-
         const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
 
         const lines = content.split('\n')
-        for (let lineNumber = 0; lineNumber < lines.length; lineNumber++) {
+        for (let lineNumber = startLineNumber; lineNumber < lines.length; lineNumber++) {
             const line = lines[lineNumber]
             // Environment part
             structureModel.buildEnvModel(envNames, lines, lineNumber)
@@ -104,7 +158,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             if (imports) {
                const inputFilePath = structureModel.buildImportModel(line)
                if (inputFilePath) {
-                    this.buildModel(visitedFiles, inputFilePath, newFileStack, rootStack, children, sectionNumber)
+                    this.buildLaTeXModel(visitedFiles, inputFilePath, true, newFileStack, rootStack, children, sectionNumber)
                 }
             }
 
@@ -162,7 +216,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return treeItem
     }
 
-    getChildren(element?: Section): Section[] {
+    getChildren(element?: Section): vscode.ProviderResult<Section[]> {
         if (this.extension.manager.rootFile === undefined) {
             return []
         }
@@ -186,7 +240,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 export enum SectionKind {
     Env = 0,
     Label = 1,
-    Section = 2
+    Section = 2,
+    BibItem = 3,
+    BibField = 4
 }
 
 export class Section extends vscode.TreeItem {
@@ -449,19 +505,29 @@ export class StructureTreeView {
     private _followCursor: boolean = true
 
 
-    constructor(private readonly extension: Extension) {
-        this._treeDataProvider = this.extension.structureProvider
+    constructor(extension: Extension) {
+        this._treeDataProvider = new SectionNodeProvider(extension)
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
         })
     }
 
+    update() {
+        this._treeDataProvider.update()
+    }
+
+    getTreeData(): Section[] {
+        return this._treeDataProvider.ds
+    }
+
     private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {
         let match: Section | undefined = undefined
         for (const node of sections) {
-            if ((node.fileName === fileName && node.lineNumber <= lineNumber && node.toLine >= lineNumber)
-                || (node.fileName !== fileName && node.subfiles.includes(fileName))) {
+            // lineNumber is zero-based but node line numbers are one-based.
+            if ((node.fileName === fileName &&
+                 node.lineNumber-1 <= lineNumber && node.toLine-1 >= lineNumber) ||
+                (node.fileName !== fileName && node.subfiles.includes(fileName))) {
                 match = node
                 // Look for a more precise surrounding section
                 const res = this.traverseSectionTree(node.children, fileName, lineNumber)

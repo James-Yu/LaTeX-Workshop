@@ -43,6 +43,7 @@ export class LwFileSystem {
             return Buffer.from(resultUint8)
         }
     }
+
     readFileSyncGracefully(filepath: string): string | undefined {
         try {
             const ret = fs.readFileSync(filepath).toString()

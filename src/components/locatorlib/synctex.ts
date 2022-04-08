@@ -71,14 +71,18 @@ class Rectangle {
     }
 }
 
-export class SyncTexJs {
-    readonly extension: Extension
+type IExtension = {
+    logger: Extension['logger']
+}
 
-    constructor(extension: Extension) {
+export class SyncTexJs {
+    private readonly extension: IExtension
+
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
-    private parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
+    parseSyncTexForPdf(pdfFile: string): PdfSyncObject {
         const filename = path.basename(pdfFile, path.extname(pdfFile))
         const dir = path.dirname(pdfFile)
         const synctexFile = path.resolve(dir, filename + '.synctex')
@@ -214,7 +218,7 @@ export class SyncTexJs {
                     const blocks = pageBlocks[Number(pageNum)]
                     for (const block of blocks) {
                         // Skip a block if they have boxes inside, or their type is kern or rule.
-                        // See also https://github.com/jlaurens/synctex/blob/2017/synctex_parser.c#L4655 for types.
+                        // See also https://github.com/jlaurens/synctex/blob/c11fe00dbdc6423a0e54d4e531563be645f78679/synctex_parser.c#L4706-L4727 for types.
                         if (block.elements !== undefined || block.type === 'k' || block.type === 'r') {
                             continue
                         }

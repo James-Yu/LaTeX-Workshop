@@ -50,7 +50,7 @@ export class LaTexFormatter {
     }
 
     public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
         const pathMeta = configuration.get('latexindent.path') as string
         this.formatterArgs = configuration.get('latexindent.args') as string[]
         this.extension.logger.addLogMessage('Start formatting with latexindent.')
@@ -164,6 +164,14 @@ export class LaTexFormatter {
             const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
             fs.writeFileSync(temporaryFile, textToFormat)
 
+            const removeTemporaryFiles = () => {
+                try {
+                    fs.unlinkSync(temporaryFile)
+                    fs.unlinkSync(documentDirectory + path.sep + 'indent.log')
+                } catch (ignored) {
+                }
+            }
+
             // generate command line arguments
             const rootFile = this.extension.manager.rootFile ? this.extension.manager.rootFile : document.fileName
             const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
@@ -180,12 +188,14 @@ export class LaTexFormatter {
             worker.stdout.on('data', (chunk: Buffer | string) => stdoutBuffer.push(chunk.toString()))
             worker.stderr.on('data', (chunk: Buffer | string) => stderrBuffer.push(chunk.toString()))
             worker.on('error', err => {
+                removeTemporaryFiles()
                 void this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                 this.extension.logger.addLogMessage(`Formatting failed: ${err.message}`)
                 this.extension.logger.addLogMessage(`stderr: ${stderrBuffer.join('')}`)
                 resolve([])
             })
             worker.on('close', code => {
+                removeTemporaryFiles()
                 if (code !== 0) {
                     void this.extension.logger.showErrorMessage('Formatting failed. Please refer to LaTeX Workshop Output for details.')
                     this.extension.logger.addLogMessage(`Formatting failed with exit code ${code}`)
@@ -195,12 +205,6 @@ export class LaTexFormatter {
                 const stdout = stdoutBuffer.join('')
                 if (stdout !== '') {
                     const edit = [vscode.TextEdit.replace(range ? range : fullRange(document), stdout)]
-                    try {
-                        fs.unlinkSync(temporaryFile)
-                        fs.unlinkSync(documentDirectory + path.sep + 'indent.log')
-                    } catch (ignored) {
-                    }
-
                     this.extension.logger.addLogMessage('Formatted ' + document.fileName)
                     return resolve(edit)
                 }

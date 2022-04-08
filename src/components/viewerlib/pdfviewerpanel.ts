@@ -46,6 +46,7 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
     }
 
     async deserializeWebviewPanel(panel: vscode.WebviewPanel, argState: {state: PdfViewerState}): Promise<void> {
+        await this.extension.server.serverStarted
         this.extension.logger.addLogMessage(`Restoring the PDF viewer at the column ${panel.viewColumn} from the state: ${JSON.stringify(argState)}`)
         const state = argState.state
         let pdfFileUri: vscode.Uri | undefined

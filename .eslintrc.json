@@ -45,6 +45,10 @@
           {
             "selector": "typeLike",
             "format": ["PascalCase"]
+          },
+          {
+            "selector": "objectLiteralProperty",
+            "format": null
           }
         ],
         "@typescript-eslint/semi": ["error", "never", { "beforeStatementContinuationChars": "always" }],
@@ -52,7 +56,7 @@
         "@typescript-eslint/consistent-type-assertions": ["error", { "assertionStyle": "as", "objectLiteralTypeAssertions": "never" }],
         "@typescript-eslint/no-floating-promises": "error",
         "@typescript-eslint/no-invalid-void-type": "error",
-        "@typescript-eslint/no-misused-promises": [ "error", { "checksVoidReturn": false } ],
+        "@typescript-eslint/no-misused-promises": [ "error", { "checksVoidReturn": { "arguments": false } } ],
         "no-shadow": "off",
         "@typescript-eslint/no-shadow": "error",
         "@typescript-eslint/no-unsafe-argument": "error",
@@ -64,6 +68,7 @@
         "no-unused-vars": "off",
         "@typescript-eslint/no-unused-vars": ["error", { "args": "none" }],
         "@typescript-eslint/no-require-imports": "error",
+        "@typescript-eslint/prefer-includes": "error",
         "@typescript-eslint/prefer-readonly": "error",
         "no-return-await": "off",
         "@typescript-eslint/return-await": "error",

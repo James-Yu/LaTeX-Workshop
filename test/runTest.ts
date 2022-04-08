@@ -1,29 +1,13 @@
 import * as path from 'path'
 import * as process from 'process'
-import * as fs from 'fs'
 import * as glob from 'glob'
 import * as tmpFile from 'tmp'
-import { runTests } from 'vscode-test'
+import { runTests } from '@vscode/test-electron'
+import { getExtensionDevelopmentPath } from './utils/runnerutils'
 
-function writeSettingsJson(userDataDir: string) {
-    const configDir = path.join(userDataDir, 'User')
-    if (!fs.existsSync(configDir)) {
-        fs.mkdirSync(configDir)
-    }
-    const settingFilePath = path.join(configDir, 'settings.json')
-    const settingsJson =
-`
-{
-    "extensions.autoUpdate": false,
-    "extensions.autoCheckUpdates": false,
-    "update.mode": "none"
-}
-`
-    fs.writeFileSync(settingFilePath, settingsJson)
-}
 
-async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion') {
-    const extensionDevelopmentPath = path.resolve(__dirname, '../../')
+async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer' | 'completion' | 'multiroot-ws' | 'unittest') {
+    const extensionDevelopmentPath = getExtensionDevelopmentPath()
     const extensionTestsPath = path.resolve(__dirname, `./${targetName}.index`)
     const tmpdir = tmpFile.dirSync({ unsafeCleanup: true })
     const extTmpdir = tmpFile.dirSync({ unsafeCleanup: true })
@@ -39,20 +23,23 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
         })
     }
 
-    writeSettingsJson(tmpdir.name)
-
     let firstTime = true
-    for (const testWorkspace of testBuildWorkspaces) {
+    for (let testWorkspace of testBuildWorkspaces) {
         const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
+        if (testWorkspace.includes('multiroot-ws')) {
+            testWorkspace += '/resource.code-workspace'
+        }
         await runTests({
-            version: '1.62.0',
+            version: '1.66.0',
             extensionDevelopmentPath,
             extensionTestsPath,
             launchArgs: [
                 testWorkspace,
                 '--user-data-dir=' + tmpdir.name,
                 '--extensions-dir=' + extTmpdir.name,
-                '--disable-extensions',
+                '--lang=C',
+                '--disable-keytar',
+                '--disable-telemetry',
                 '--disable-gpu'
             ],
             extensionTestsEnv: {
@@ -71,6 +58,8 @@ async function main() {
         await runTestsOnEachFixture('build')
         await runTestsOnEachFixture('viewer')
         await runTestsOnEachFixture('completion')
+        await runTestsOnEachFixture('multiroot-ws')
+        await runTestsOnEachFixture('unittest')
     } catch (err) {
         console.error('Failed to run tests')
         process.exit(1)

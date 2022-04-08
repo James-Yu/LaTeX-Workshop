@@ -61,7 +61,7 @@ def generate_unimathsymbols_intel(infile, json_out):
                 'documentation': remove_relation_character(segments[7]).capitalize()
             }
             if segments[6] != '' and segments[6][0] != '-':
-                data[segments[3]]['detail'] += ' ("{}" command)'.format(segments[6])
+                data[segments[3]]['detail'] += f' ("{segments[6]}" command)'
 
     json.dump(data, open(json_out, 'w', encoding='utf-8'),
             indent=2, separators=(',', ': '), sort_keys=True, ensure_ascii=False)

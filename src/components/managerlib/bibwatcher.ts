@@ -13,6 +13,10 @@ export class BibWatcher {
         this.bibWatcher = this.initiateBibwatcher()
     }
 
+    async dispose() {
+        await this.bibWatcher.close()
+    }
+
     initiateBibwatcher() {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const usePolling = configuration.get('latex.watch.usePolling') as boolean

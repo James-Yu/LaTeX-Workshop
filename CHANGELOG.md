@@ -1,5 +1,39 @@
 # Change Log
 
+## [8.24.1] - 2021-04-01
+
+### Changed
+
+- Rename config `intellisense.citation.maxfilesizeMB` to `bibtex.maxFileSize`.
+
+### Fixed
+
+- (#3219) Set `resource` scope to all `bibtex` settings.
+
+## [8.24.0] - 2021-04-01
+
+### Added
+
+- (#1898) More precise error highlighting.
+- (#3043) Handle multi-line `section` command in outline.
+- (#3046) Add a configuration variable `texcount.autorun` to enable `texcount` to be automatically called.
+- (#3055) Parse and show LaTeX3 warnings.
+- (#3065) Add completion detail for snippets.
+- (#3122) Use `resource`-scoped properties.
+- (#3179) Support `editor.action.smartSelect.expand` and `editor.action.smartSelect.shrink`. The configuration is `latex-workshop.selection.smart.latex.enabled`.
+- (#3207) Use `latex-workshop.intellisense.atSuggestionJSON.replace` to replace a default `@`-suggestion or define a new one. See https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense#-suggestions
+- (#3220) Add Structure view for `BibTeX`.
+
+### Changed
+
+- (#3207) The setting `latex-workshop.intellisense.snippets.trigger.latex` is deprecated in favour of `latex-workshop.intellisense.atSuggestion.trigger.latex`.
+
+### Fixed
+
+- (#2821) Properly remove temporary files from `latexindent`.
+- (#3189) Ignore anything before `begin document` in structure.
+- (#3192) Refactor completion to better handle duplicates.
+
 ## [8.23.0] - 2021-12-28
 
 ### Added

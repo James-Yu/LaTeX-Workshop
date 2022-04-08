@@ -201,7 +201,7 @@ export function resolveFile(dirs: string[], inputFile: string, suffix: string = 
  */
 export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (arg: string) => string {
     return (arg: string) => {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const docker = configuration.get('docker.enabled')
 
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]

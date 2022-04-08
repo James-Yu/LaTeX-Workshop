@@ -43,67 +43,83 @@ export class CommandFinder {
         this.extension = extension
     }
 
-    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdList: string[] = []): Suggestion[] {
+    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
         let cmds: Suggestion[] = []
         nodes.forEach(node => {
-            cmds = cmds.concat(this.getCmdFromNode(file, node, cmdList))
+            cmds = cmds.concat(this.getCmdFromNode(file, node, cmdNameList))
         })
         return cmds
     }
 
-    private getCmdFromNode(file: string, node: latexParser.Node, cmdList: string[] = []): Suggestion[] {
+    private getCmdFromNode(file: string, node: latexParser.Node, cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
         const cmds: Suggestion[] = []
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
-            if (!cmdList.includes(name)) {
+            if (!cmdNameList.has(name)) {
                 const cmd: Suggestion = {
                     label: `\\${name}`,
                     kind: vscode.CompletionItemKind.Function,
                     documentation: '`' + name + '`',
-                    insertText: new vscode.SnippetString(name + this.getArgsFromNode(node)),
+                    insertText: new vscode.SnippetString(name + this.getTabStopsFromNode(node)),
                     filterText: name,
-                    package: ''
+                    package: '',
+                    signature: {
+                        name,
+                        args: this.getArgsFromNode(node)
+                    }
                 }
                 if (isTriggerSuggestNeeded(name)) {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdList.push(name)
+                cmdNameList.add(name)
             }
         } else if (latexParser.isCommand(node)) {
-            if (!cmdList.includes(node.name)) {
+            if (!cmdNameList.has(node.name)) {
                 const cmd: Suggestion = {
                     label: `\\${node.name}`,
                     kind: vscode.CompletionItemKind.Function,
                     documentation: '`' + node.name + '`',
-                    insertText: new vscode.SnippetString(node.name + this.getArgsFromNode(node)),
+                    insertText: new vscode.SnippetString(node.name + this.getTabStopsFromNode(node)),
                     filterText: node.name,
-                    package: this.whichPackageProvidesCommand(node.name)
+                    package: this.whichPackageProvidesCommand(node.name),
+                    signature: {
+                        name: node.name,
+                        args: this.getArgsFromNode(node)
+                    }
+
                 }
                 if (isTriggerSuggestNeeded(node.name)) {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdList.push(node.name)
+                cmdNameList.add(node.name)
             }
             if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
                 Array.isArray(node.args) && node.args.length > 0) {
                 const label = (node.args[0].content[0] as latexParser.Command).name
+                let tabStops = ''
                 let args = ''
                 if (latexParser.isOptionalArg(node.args[1])) {
                     const numArgs = parseInt((node.args[1].content[0] as latexParser.TextString).content)
                     for (let i = 1; i <= numArgs; ++i) {
-                        args += '{${' + i + '}}'
+                        tabStops += '{${' + i + '}}'
+                        args += '{}'
                     }
                 }
-                if (!cmdList.includes(label)) {
+                if (!cmdNameList.has(label)) {
                     const cmd: Suggestion = {
                         label: `\\${label}`,
                         kind: vscode.CompletionItemKind.Function,
                         documentation: '`' + label + '`',
-                        insertText: new vscode.SnippetString(label + args),
+                        insertText: new vscode.SnippetString(label + tabStops),
                         filterText: label,
-                        package: 'user-defined'
+                        package: 'user-defined',
+                        signature: {
+                            name: label,
+                            args
+                        }
+
                     }
                     if (isTriggerSuggestNeeded(label)) {
                         cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
@@ -115,17 +131,17 @@ export class CommandFinder {
                             vscode.Uri.file(file),
                             new vscode.Position(node.location.start.line - 1, node.location.start.column))
                     })
-                    cmdList.push(label)
+                    cmdNameList.add(label)
                 }
             }
         }
         if (latexParser.hasContentArray(node)) {
-            return cmds.concat(this.getCmdFromNodeArray(file, node.content, cmdList))
+            return cmds.concat(this.getCmdFromNodeArray(file, node.content, cmdNameList))
         }
         return cmds
     }
 
-    private getArgsFromNode(node: latexParser.Node): string {
+    private getArgsHelperFromNode(node: latexParser.Node, helper: (i: number) => string): string {
         let args = ''
         if (!('args' in node)) {
             return args
@@ -135,9 +151,9 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isOptionalArg(arg)) {
-                    args += '[${' + index + '}]'
+                    args += '[' + helper(index) + ']'
                 } else {
-                    args += '{${' + index + '}}'
+                    args += '{' + helper(index) + '}'
                 }
             })
             return args
@@ -146,7 +162,7 @@ export class CommandFinder {
             node.args.forEach(arg => {
                 ++index
                 if (latexParser.isCommandParameter(arg)) {
-                    args += '{${' + index + '}}'
+                    args += '{' + helper(index) + '}'
                 }
             })
             return args
@@ -154,10 +170,19 @@ export class CommandFinder {
         return args
     }
 
+    private getTabStopsFromNode(node: latexParser.Node): string {
+        return this.getArgsHelperFromNode(node, (i: number) => { return '${' + i + '}' })
+    }
+
+    private getArgsFromNode(node: latexParser.Node): string {
+        return this.getArgsHelperFromNode(node, (_: number) => { return '' })
+    }
+
+
     getCmdFromContent(file: string, content: string): Suggestion[] {
         const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: Suggestion[] = []
-        const cmdList: string[] = []
+        const cmdNameList: Set<string> = new Set<string>()
         let explSyntaxOn: boolean = false
         while (true) {
             const result = cmdReg.exec(content)
@@ -179,22 +204,26 @@ export class CommandFinder {
                     result[1] = result[1].slice(0, len)
                 }
             }
-            if (cmdList.includes(result[1])) {
+            if (cmdNameList.has(result[1])) {
                 continue
             }
             const cmd: Suggestion = {
                 label: `\\${result[1]}`,
                 kind: vscode.CompletionItemKind.Function,
                 documentation: '`' + result[1] + '`',
-                insertText: new vscode.SnippetString(this.getArgsFromRegResult(result)),
+                insertText: new vscode.SnippetString(result[1] + this.getTabStopsFromRegResult(result)),
                 filterText: result[1],
-                package: this.whichPackageProvidesCommand(result[1])
+                package: this.whichPackageProvidesCommand(result[1]),
+                signature: {
+                    name: result[1],
+                    args: this.getArgsFromRegResult(result)
+                }
             }
             if (isTriggerSuggestNeeded(result[1])) {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
             cmds.push(cmd)
-            cmdList.push(result[1])
+            cmdNameList.add(result[1])
         }
 
         const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?{?\\(\w+)}?(?:\[([1-9])\])?/g
@@ -203,15 +232,17 @@ export class CommandFinder {
             if (result === null) {
                 break
             }
-            if (cmdList.includes(result[1])) {
+            if (cmdNameList.has(result[1])) {
                 continue
             }
 
+            let tabStops = ''
             let args = ''
             if (result[2]) {
                 const numArgs = parseInt(result[2])
                 for (let i = 1; i <= numArgs; ++i) {
-                    args += '{${' + i + '}}'
+                    tabStops += '{${' + i + '}}'
+                    args += '{}'
                 }
             }
 
@@ -219,12 +250,16 @@ export class CommandFinder {
                 label: `\\${result[1]}`,
                 kind: vscode.CompletionItemKind.Function,
                 documentation: '`' + result[1] + '`',
-                insertText: new vscode.SnippetString(result[1] + args),
+                insertText: new vscode.SnippetString(result[1] + tabStops),
                 filterText: result[1],
-                package: 'user-defined'
+                package: 'user-defined',
+                signature: {
+                    name: result[1],
+                    args
+                }
             }
             cmds.push(cmd)
-            cmdList.push(result[1])
+            cmdNameList.add(result[1])
 
             this.definedCmds.set(result[1], {
                 file,
@@ -237,8 +272,8 @@ export class CommandFinder {
         return cmds
     }
 
-    private getArgsFromRegResult(result: RegExpExecArray): string {
-        let text = result[1]
+    private getTabStopsFromRegResult(result: RegExpExecArray): string {
+        let text = ''
 
         if (result[2]) {
             text += '{${1}}'
@@ -250,6 +285,10 @@ export class CommandFinder {
             text += '{${3}}'
         }
         return text
+    }
+
+    private getArgsFromRegResult(result: RegExpExecArray): string {
+        return '{}'.repeat(result.length - 1)
     }
 
     /**
@@ -267,7 +306,7 @@ export class CommandFinder {
                 }
                 for (const pkg of cachedPkgs) {
                     const commands: ILwCompletionItem[] = []
-                    this.extension.completer.command.provideCmdInPkg(pkg, commands, [])
+                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new Set<string>())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)
                         if (label.startsWith(cmdName) &&

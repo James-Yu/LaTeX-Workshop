@@ -23,6 +23,9 @@
   overflow: hidden;
   opacity: 0.2;
   line-height: 1;
+  -webkit-text-size-adjust: none;
+     -moz-text-size-adjust: none;
+          text-size-adjust: none;
 }
 
 .textLayer span,
@@ -32,6 +35,13 @@
   white-space: pre;
   cursor: text;
   transform-origin: 0% 0%;
+}
+
+/* Only necessary in Google Chrome, see issue 14205, and most unfortunately
+ * the problem doesn't show up in "text" reference tests. */
+.textLayer span.markedContent {
+  top: 0;
+  height: 0;
 }
 
 .textLayer .highlight {
@@ -113,6 +123,13 @@
   left: 0;
   width: 100%;
   height: 100%;
+}
+
+.annotationLayer .buttonWidgetAnnotation.pushButton > canvas {
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 
 .annotationLayer .linkAnnotation > a:hover,
@@ -230,6 +247,16 @@
   padding-right: 0;
 }
 
+.annotationLayer .textWidgetAnnotation input.comb:focus {
+  /*
+   * Letter spacing is placed on the right side of each character. Hence, the
+   * letter spacing of the last character may be placed outside the visible
+   * area, causing horizontal scrolling. We avoid this by extending the width
+   * when the element has focus and revert this when it loses focus.
+   */
+  width: 103%;
+}
+
 .annotationLayer .buttonWidgetAnnotation.checkBox input,
 .annotationLayer .buttonWidgetAnnotation.radioButton input {
   -webkit-appearance: none;
@@ -267,15 +294,19 @@
   display: inline-block;
 }
 
-.annotationLayer .popup span {
+.annotationLayer .popupDate {
   display: inline-block;
   margin-left: 5px;
 }
 
-.annotationLayer .popup p {
+.annotationLayer .popupContent {
   border-top: 1px solid rgba(51, 51, 51, 1);
   margin-top: 2px;
   padding-top: 2px;
+}
+
+.annotationLayer .richText > * {
+  white-space: pre-wrap;
 }
 
 .annotationLayer .highlightAnnotation,
@@ -510,6 +541,9 @@
 .xfaLink {
   width: 100%;
   height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .xfaCheckbox,
@@ -620,11 +654,12 @@
 }
 
 :root {
-  --pdfViewer-padding-bottom: none;
+  --pdfViewer-padding-bottom: 0;
   --page-margin: 1px auto -8px;
   --page-border: 9px solid transparent;
   --spreadHorizontalWrapped-margin-LR: -3.5px;
   --zoom-factor: 1;
+  --viewport-scale-factor: 1;
 }
 
 @media screen and (forced-colors: active) {
@@ -656,6 +691,12 @@
   -o-border-image: url(images/shadow.png) 9 9 repeat;
      border-image: url(images/shadow.png) 9 9 repeat;
   background-color: rgba(255, 255, 255, 1);
+}
+
+.pdfViewer .dummyPage {
+  position: relative;
+  width: 0;
+  /* The height is set via JS, see `BaseViewer.#ensurePageViewVisible`. */
 }
 
 .pdfViewer.removePageBorders .page {
@@ -693,6 +734,7 @@
 }
 
 .spread .page,
+.spread .dummyPage,
 .pdfViewer.scrollHorizontal .page,
 .pdfViewer.scrollWrapped .page,
 .pdfViewer.scrollHorizontal .spread,
@@ -733,31 +775,28 @@
   bottom: 0;
   background: url("images/loading-icon.gif") center no-repeat;
 }
+.pdfViewer .page .loadingIcon.notVisible {
+  background: none;
+}
+
+.pdfViewer.enablePermissions .textLayer span {
+  -webkit-user-select: none !important;
+     -moz-user-select: none !important;
+          user-select: none !important;
+  cursor: not-allowed;
+}
 
 .pdfPresentationMode .pdfViewer {
-  margin-left: 0;
-  margin-right: 0;
+  padding-bottom: 0;
 }
 
-.pdfPresentationMode .pdfViewer .page,
-.pdfPresentationMode .pdfViewer .spread {
-  display: block;
+.pdfPresentationMode .spread {
+  margin: 0;
 }
 
-.pdfPresentationMode .pdfViewer .page,
-.pdfPresentationMode .pdfViewer.removePageBorders .page {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.pdfPresentationMode:-webkit-full-screen .pdfViewer .page {
-  margin-bottom: 100%;
-  border: 0;
-}
-
-.pdfPresentationMode:fullscreen .pdfViewer .page {
-  margin-bottom: 100%;
-  border: 0;
+.pdfPresentationMode .pdfViewer .page {
+  margin: 0 auto;
+  border: 2px solid transparent;
 }
 
 :root {
@@ -839,6 +878,7 @@
   --secondaryToolbarButton-rotateCw-icon: url(images/secondaryToolbarButton-rotateCw.svg);
   --secondaryToolbarButton-selectTool-icon: url(images/secondaryToolbarButton-selectTool.svg);
   --secondaryToolbarButton-handTool-icon: url(images/secondaryToolbarButton-handTool.svg);
+  --secondaryToolbarButton-scrollPage-icon: url(images/secondaryToolbarButton-scrollPage.svg);
   --secondaryToolbarButton-scrollVertical-icon: url(images/secondaryToolbarButton-scrollVertical.svg);
   --secondaryToolbarButton-scrollHorizontal-icon: url(images/secondaryToolbarButton-scrollHorizontal.svg);
   --secondaryToolbarButton-scrollWrapped-icon: url(images/secondaryToolbarButton-scrollWrapped.svg);
@@ -922,8 +962,6 @@
 html {
   height: 100%;
   width: 100%;
-  /* Font size is needed to make the activity bar the correct size. */
-  font-size: 10px;
 }
 
 body {
@@ -948,16 +986,8 @@ select {
   display: none !important;
 }
 
-.pdfViewer.enablePermissions .textLayer span {
-  -webkit-user-select: none !important;
-     -moz-user-select: none !important;
-          user-select: none !important;
-  cursor: not-allowed;
-}
-
 #viewerContainer.pdfPresentationMode:-webkit-full-screen {
   top: 0;
-  border-top: 2px solid rgba(0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 1);
   width: 100%;
   height: 100%;
@@ -969,7 +999,6 @@ select {
 
 #viewerContainer.pdfPresentationMode:fullscreen {
   top: 0;
-  border-top: 2px solid rgba(0, 0, 0, 0);
   background-color: rgba(0, 0, 0, 1);
   width: 100%;
   height: 100%;
@@ -1288,7 +1317,7 @@ html[dir="rtl"] #outerContainer.sidebarOpen #loadingBar {
 .findbar.wrapContainers > div {
   clear: both;
 }
-.findbar.wrapContainers > div#findbarMessageContainer {
+.findbar.wrapContainers > div.findbarMessageContainer {
   height: auto;
 }
 html[dir="ltr"] .findbar {
@@ -1347,7 +1376,7 @@ html[dir="rtl"] .findbar .splitToolbarButton > .findNext {
 }
 
 .findbar label:hover,
-.findbar input:focus + label {
+.findbar input:focus-visible + label {
   color: var(--toggled-btn-color);
   background-color: var(--button-hover-color);
 }
@@ -1406,11 +1435,6 @@ html[dir="rtl"] .secondaryToolbar {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   margin-bottom: -4px;
-}
-
-#secondaryToolbarButtonContainer.hiddenScrollModeButtons > .scrollModeButtons,
-#secondaryToolbarButtonContainer.hiddenSpreadModeButtons > .spreadModeButtons {
-  display: none !important;
 }
 
 .doorHanger,
@@ -1484,6 +1508,8 @@ html[dir="ltr"] .doorHangerRight:before {
 #findMsg {
   color: rgba(251, 0, 0, 1);
 }
+
+#findResultsCount:empty,
 #findMsg:empty {
   display: none;
 }
@@ -1546,12 +1572,12 @@ html[dir="rtl"] .splitToolbarButton > .toolbarButton {
 }
 
 .overlayButton:hover,
-.overlayButton:focus {
+.overlayButton:focus-visible {
   background-color: var(--overlay-button-hover-bg-color);
 }
 
 .overlayButton:hover > span,
-.overlayButton:focus > span {
+.overlayButton:focus-visible > span {
   color: var(--overlay-button-hover-color);
 }
 
@@ -1573,10 +1599,10 @@ html[dir="rtl"] .splitToolbarButton > .toolbarButton {
 }
 
 .splitToolbarButton > .toolbarButton:hover,
-.splitToolbarButton > .toolbarButton:focus,
+.splitToolbarButton > .toolbarButton:focus-visible,
 .dropdownToolbarButton:hover,
 .toolbarButton.textButton:hover,
-.toolbarButton.textButton:focus {
+.toolbarButton.textButton:focus-visible {
   background-color: var(--button-hover-color);
   z-index: 199;
 }
@@ -1642,11 +1668,11 @@ html[dir="rtl"] #toolbarViewerLeft > .toolbarButton:first-child {
   margin-right: 2px;
 }
 .toolbarButton:hover,
-.toolbarButton:focus {
+.toolbarButton:focus-visible {
   background-color: var(--button-hover-color);
 }
 .secondaryToolbarButton:hover,
-.secondaryToolbarButton:focus {
+.secondaryToolbarButton:focus-visible {
   background-color: var(--doorhanger-hover-bg-color);
   color: var(--doorhanger-hover-color);
 }
@@ -1710,7 +1736,7 @@ html[dir="rtl"] .dropdownToolbarButton > select {
   padding-right: 4px;
 }
 .dropdownToolbarButton > select:hover,
-.dropdownToolbarButton > select:focus {
+.dropdownToolbarButton > select:focus-visible {
   background-color: var(--button-hover-color);
   color: var(--toggled-btn-color);
 }
@@ -1752,7 +1778,7 @@ html[dir="rtl"] .dropdownToolbarButton > select {
 }
 
 .dropdownToolbarButton:hover::after,
-.dropdownToolbarButton:focus::after,
+.dropdownToolbarButton:focus-visible::after,
 .dropdownToolbarButton:active::after {
   background-color: var(--toolbar-icon-hover-bg-color);
 }
@@ -1764,9 +1790,9 @@ html[dir="rtl"] .dropdownToolbarButton > select {
 }
 
 .toolbarButton:hover::before,
-.toolbarButton:focus::before,
+.toolbarButton:focus-visible::before,
 .secondaryToolbarButton:hover::before,
-.secondaryToolbarButton:focus::before {
+.secondaryToolbarButton:focus-visible::before {
   background-color: var(--toolbar-icon-hover-bg-color);
 }
 
@@ -1977,6 +2003,11 @@ html[dir="rtl"] .secondaryToolbarButton > span {
 .secondaryToolbarButton.handTool::before {
   -webkit-mask-image: var(--secondaryToolbarButton-handTool-icon);
   mask-image: var(--secondaryToolbarButton-handTool-icon);
+}
+
+.secondaryToolbarButton.scrollPage::before {
+  -webkit-mask-image: var(--secondaryToolbarButton-scrollPage-icon);
+  mask-image: var(--secondaryToolbarButton-scrollPage-icon);
 }
 
 .secondaryToolbarButton.scrollVertical::before {
@@ -2493,6 +2524,7 @@ html[dir="rtl"] #documentPropertiesOverlay .row > * {
 }
 #PDFBug table {
   font-size: 10px;
+  white-space: pre;
 }
 #PDFBug table.showText {
   border-collapse: collapse;

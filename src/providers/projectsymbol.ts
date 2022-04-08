@@ -1,13 +1,15 @@
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import type {Section} from './structure'
+import {Section, SectionNodeProvider} from './structure'
 
 export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
     private readonly extension: Extension
+    private readonly sectionNodeProvider: SectionNodeProvider
 
     constructor(extension: Extension) {
         this.extension = extension
+        this.sectionNodeProvider = new SectionNodeProvider(extension)
     }
 
     provideWorkspaceSymbols(): vscode.SymbolInformation[] {
@@ -19,7 +21,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (rootFileUri && this.extension.lwfs.isVirtualUri(rootFileUri)) {
             return symbols
         }
-        this.sectionToSymbols(symbols, this.extension.structureProvider.buildModel(new Set<string>(), this.extension.manager.rootFile))
+        this.sectionToSymbols(symbols, this.sectionNodeProvider.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile))
         return symbols
     }
 

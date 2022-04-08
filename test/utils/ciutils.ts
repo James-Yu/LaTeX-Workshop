@@ -3,11 +3,21 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as process from 'process'
 import * as vscode from 'vscode'
-import {sleep} from '../src/utils/utils'
-import {activate} from '../src/main'
+import {sleep} from '../../src/utils/utils'
+import {activate} from '../../src/main'
 
-export function getFixtureDir() {
-    const fixtureDir = vscode.workspace.workspaceFolders?.[0].uri.fsPath
+function getWorkspaceRootDir(): string | undefined {
+    let rootDir: string | undefined
+    if (vscode.workspace.workspaceFile) {
+        rootDir = path.dirname(vscode.workspace.workspaceFile.fsPath)
+    } else {
+        rootDir = vscode.workspace.workspaceFolders?.[0].uri.fsPath
+    }
+    return rootDir
+}
+
+export function getFixtureDir(): string {
+    const fixtureDir = getWorkspaceRootDir()
     if (fixtureDir) {
         return fixtureDir
     } else {
@@ -16,7 +26,7 @@ export function getFixtureDir() {
 }
 
 /**
- * Runs `cb` as a test if the basename of the working directory is euqual to `fixtureName`.
+ * Runs `cb` as a test if the basename of the working directory is equal to `fixtureName`.
  *
  * @param fixtureName The name of a fixture directory of the current test.
  * @param label Used as the title of test.
@@ -26,12 +36,12 @@ export function getFixtureDir() {
 export function runTestWithFixture(
     fixtureName: string,
     label: string,
-    cb: () => Promise<void>,
+    cb: () => unknown,
     skip?: () => boolean
 ) {
-    const rootPath = vscode.workspace.workspaceFolders?.[0]
+    const rootPath = getWorkspaceRootDir()
     const shouldSkip = skip && skip()
-    if (rootPath && path.basename(rootPath.uri.fsPath) === fixtureName && !shouldSkip) {
+    if (rootPath && path.basename(rootPath) === fixtureName && !shouldSkip) {
         test( fixtureName + ': ' + label, cb )
     }
 }
@@ -109,13 +119,6 @@ export async function waitUntil<T>(
     assert.fail('Timeout Error at waitUntil')
 }
 
-export function waitLatexWorkshopActivated() {
-    return waitUntil( () => {
-        const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')
-        return Promise.resolve(extension?.isActive && extension)
-    })
-}
-
 export async function waitBuildFinish() {
     const extension = await waitLatexWorkshopActivated()
     await waitUntil(
@@ -130,6 +133,28 @@ export function waitRootFileFound() {
             return extension.exports.realExtension?.manager.rootFile
         }
     )
+}
+
+export function obtainLatexWorkshop() {
+    const extension = vscode.extensions.getExtension<ReturnType<typeof activate>>('James-Yu.latex-workshop')
+    if (extension) {
+        return extension
+    } else {
+        throw new Error('LaTeX Workshop not activated.')
+    }
+}
+
+export async function waitLatexWorkshopActivated() {
+    await vscode.commands.executeCommand('latex-workshop.activate')
+    return obtainLatexWorkshop()
+}
+
+export function waitGivenRootFile(file: string) {
+    return waitUntil( async () => {
+        const extension = await waitLatexWorkshopActivated()
+        const rootFile = extension.exports.realExtension?.manager.rootFile
+        return rootFile === file
+    })
 }
 
 export async function executeVscodeCommandAfterActivation(command: string) {
