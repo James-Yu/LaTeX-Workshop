@@ -110,6 +110,7 @@ export class Locator {
         let filePath: string
         let character = 0
         if (!vscode.window.activeTextEditor) {
+            this.extension.logger.addLogMessage('[Synctexjs] active editor not found')
             return
         }
 

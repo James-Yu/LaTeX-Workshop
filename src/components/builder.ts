@@ -9,6 +9,7 @@ import {Mutex} from '../lib/await-semaphore'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 
 import type {Extension} from '../main'
+import {BuildFinished} from './eventbus'
 
 const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'
@@ -79,13 +80,6 @@ export class Builder {
         } else {
             this.extension.logger.addLogMessage('LaTeX build process to kill is not found.')
         }
-    }
-
-    /**
-     * Should not use. Only for integration tests.
-     */
-    isBuildFinished(): boolean {
-        return this.buildMutex.count === 1
     }
 
     private isWaitingForBuildToFinish(): boolean {
@@ -364,6 +358,7 @@ export class Builder {
     private async buildFinished(rootFile: string) {
         this.extension.logger.addLogMessage(`Successfully built ${rootFile}.`)
         this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Recipe succeeded.')
+        this.extension.eventBus.fire(BuildFinished)
         if (this.extension.compilerLogParser.isLaTeXmkSkipped) {
             return
         }
