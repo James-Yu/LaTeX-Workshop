@@ -76,8 +76,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     `${entry.entryType}: ${entry.internalKey}`,
                     vscode.TreeItemCollapsibleState.Collapsed,
                     0,
-                    entry.location.start.line,
-                    entry.location.end.line,
+                    entry.location.start.line - 1, // ast line numbers start at 1
+                    entry.location.end.line - 1,
                     document.fileName)
                 entry.content.forEach(field => {
                     const fielditem = new Section(
@@ -85,8 +85,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                         `${field.name}: ${field.value.content}`,
                         vscode.TreeItemCollapsibleState.None,
                         1,
-                        field.location.start.line,
-                        field.location.end.line,
+                        field.location.start.line -1,
+                        field.location.end.line- 1,
                         document.fileName)
                     fielditem.parent = bibitem
                     bibitem.children.push(fielditem)
@@ -524,9 +524,8 @@ export class StructureTreeView {
     private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {
         let match: Section | undefined = undefined
         for (const node of sections) {
-            // lineNumber is zero-based but node line numbers are one-based.
             if ((node.fileName === fileName &&
-                 node.lineNumber-1 <= lineNumber && node.toLine-1 >= lineNumber) ||
+                 node.lineNumber <= lineNumber && node.toLine >= lineNumber) ||
                 (node.fileName !== fileName && node.subfiles.includes(fileName))) {
                 match = node
                 // Look for a more precise surrounding section

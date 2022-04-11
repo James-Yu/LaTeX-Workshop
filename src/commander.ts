@@ -307,9 +307,9 @@ export class Commander {
         void vscode.workspace.openTextDocument(filePath).then((doc) => {
             void vscode.window.showTextDocument(doc).then(() => {
                 // input lineNumber is one-based, while editor position is zero-based.
-                void vscode.commands.executeCommand('revealLine', {lineNumber: lineNumber-1, at: 'center'})
+                void vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
                 if (activeEditor) {
-                    activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber-1, 0), new vscode.Position(lineNumber-1, 0))
+                    activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
                 }
             })
         })
