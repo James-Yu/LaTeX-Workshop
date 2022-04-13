@@ -1,5 +1,18 @@
 # Change Log
 
+## [8.25.0] - 2022-04-13
+
+### Added
+- (#3226) Support `\cite<text>{keylist}` commands from `apacite`.
+
+### Fixed
+- (#3221) Go to symbol leads to the wrong line.
+- (#3227) `cleveref`'s commands loaded by `\usepackage` are not displayed in some cases.
+- (#3231) The real time math preview does not work.
+- (#3236) Can't display the outline of the paper in the `structure` column, but only the label.
+- (#3239) `bibtex-format.sort.enabled` not effective in `settings.json` in multi-root workspace.
+
+
 ## [8.24.1] - 2022-04-01
 
 ### Changed
