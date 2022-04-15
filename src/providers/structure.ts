@@ -34,7 +34,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private async refresh(): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'bibtex') {
-            await this.buildBibTeXModel()
+            this.ds = await this.buildBibTeXModel()
             return this.ds
         }
         else if (this.extension.manager.rootFile) {
@@ -49,17 +49,16 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this.refresh().finally(() => {this._onDidChangeTreeData.fire(undefined)})
     }
 
-    async buildBibTeXModel() {
+    async buildBibTeXModel(): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
         if (!document) {
-            return
+            return []
         }
-        this.ds = []
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
         if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
-            return
+            return []
         }
         const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
@@ -69,6 +68,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return
         })
 
+        const ds: Section[] = []
         ast?.content.filter(bibtexParser.isEntry)
             .forEach(entry => {
                 const bibitem = new Section(
@@ -91,8 +91,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     fielditem.parent = bibitem
                     bibitem.children.push(fielditem)
                 })
-                this.ds.push(bibitem)
+                ds.push(bibitem)
             })
+        return ds
     }
 
     /**
