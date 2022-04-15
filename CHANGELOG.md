@@ -17,7 +17,7 @@
 
 ### Changed
 
-- Rename config `intellisense.citation.maxfilesizeMB` to `bibtex.maxFileSize`.
+- The setting `latex-workshop.intellisense.citation.maxfilesizeMB` is deprecated in favour of `latex-workshop.bibtex.maxFileSize`.
 
 ### Fixed
 
