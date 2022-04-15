@@ -1,6 +1,6 @@
 name: TeX Live on Windows
 env:
-  cache-version: v8
+  cache-version: v10
 on: [push]
 
 jobs:
@@ -8,7 +8,7 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 40
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up PATH
       run: |
         echo "C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin" >> $GITHUB_PATH
@@ -16,7 +16,7 @@ jobs:
       shell: bash
     - name: Cache TeX Live
       id: cache-texlive
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: D:\texlive
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
@@ -38,7 +38,7 @@ jobs:
         tlmgr install collection-latex
         tlmgr install import subfiles latexmk makeindex
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '14'
     - run: latex -v

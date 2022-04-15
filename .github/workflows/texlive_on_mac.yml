@@ -1,6 +1,6 @@
 name: TeX Live on macOS
 env:
-  cache-version: v8
+  cache-version: v10
 on: [push]
 
 jobs:
@@ -8,14 +8,14 @@ jobs:
     runs-on: macos-latest
     timeout-minutes: 30
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
     - name: Set up PATH
       run: |
         echo "/tmp/texlive/bin/x86_64-darwin" >> $GITHUB_PATH
         echo "/tmp/texlive/bin/universal-darwin" >> $GITHUB_PATH
     - name: Cache TeX Live
       id: cache-texlive
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: /tmp/texlive
         key: ${{ env.cache-version }}-${{ runner.os }}-texlive-essential
@@ -36,7 +36,7 @@ jobs:
         tlmgr install collection-latex
         tlmgr install import subfiles latexmk makeindex
       if: steps.cache-texlive.outputs.cache-hit != 'true'
-    - uses: actions/setup-node@v2
+    - uses: actions/setup-node@v3
       with:
         node-version: '14'
     - run: latex -v
