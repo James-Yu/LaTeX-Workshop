@@ -19,6 +19,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     // our data source is a set multi-rooted set of trees
     public ds: Section[] = []
+    private CachedLaTeXData: Section[] = []
+    private CachedBibTeXData: Section[] = []
 
     constructor(private readonly extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
@@ -31,35 +33,52 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     }
 
-    private async refresh(): Promise<Section[]> {
+    private getCachedDataRootFileName(sections: Section[]): string | undefined {
+        if (sections.length >0) {
+            return sections[0].fileName
+        }
+        return undefined
+    }
+
+    /**
+     * Return the latex or bibtex structure
+     *
+     * @param force If `false` and some cached data exists for the corresponding file, use it. If `true`, always recompute the structure from disk
+     */
+    async build(force: boolean): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'bibtex') {
-            await this.buildBibTeXModel()
-            return this.ds
+            if (force || this.getCachedDataRootFileName(this.CachedBibTeXData) !== document.fileName) {
+                this.CachedBibTeXData = await this.buildBibTeXModel()
+            }
+            this.ds = this.CachedBibTeXData
         }
         else if (this.extension.manager.rootFile) {
-            this.ds = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
-            return this.ds
+            if (force) {
+                this.CachedLaTeXData = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
+            }
+            this.ds = this.CachedLaTeXData
         } else {
-            return []
+            this.ds = []
         }
+        return this.ds
     }
 
-    update() {
-        this.refresh().finally(() => {this._onDidChangeTreeData.fire(undefined)})
+    async update(force: boolean) {
+        this.ds = await this.build(force)
+        this._onDidChangeTreeData.fire(undefined)
     }
 
-    async buildBibTeXModel() {
+    async buildBibTeXModel(): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
         if (!document) {
-            return
+            return []
         }
-        this.ds = []
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
         if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
-            return
+            return []
         }
         const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
@@ -69,6 +88,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return
         })
 
+        const ds: Section[] = []
         ast?.content.filter(bibtexParser.isEntry)
             .forEach(entry => {
                 const bibitem = new Section(
@@ -91,8 +111,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     fielditem.parent = bibitem
                     bibitem.children.push(fielditem)
                 })
-                this.ds.push(bibitem)
+                ds.push(bibitem)
             })
+        return ds
     }
 
     /**
@@ -223,7 +244,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // if the root doesn't exist, we need
         // to explicitly build the model from disk
         if (!element) {
-            return this.refresh()
+            return this.build(false)
         }
 
         return element.children
@@ -513,8 +534,18 @@ export class StructureTreeView {
         })
     }
 
-    update() {
-        this._treeDataProvider.update()
+    /**
+     * Recompute the whole structure from file and update the view
+     */
+    async computeTreeStructure() {
+        await this._treeDataProvider.update(true)
+    }
+
+    /**
+     * Refresh the view using cache
+     */
+    async refreshView() {
+        await this._treeDataProvider.update(false)
     }
 
     getTreeData(): Section[] {
