@@ -8,6 +8,8 @@ jobs:
     runs-on: windows-latest
     timeout-minutes: 40
     steps:
+    - name: Prepare git
+      run: git config --global core.autocrlf false
     - uses: actions/checkout@v3
     - name: Set up PATH
       run: |
