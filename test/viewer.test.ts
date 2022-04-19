@@ -175,15 +175,11 @@ suite('PDF Viewer test suite', () => {
             assert.ok( Math.abs(result.scrollTop) < 10 )
         }
         await vscode.window.showTextDocument(doc)
-        await sleep(3000)
-        await vscode.commands.executeCommand('cursorDown')
-        await vscode.commands.executeCommand('cursorDown')
-        await vscode.commands.executeCommand('cursorDown')
-        await vscode.commands.executeCommand('cursorDown')
-        await vscode.commands.executeCommand('cursorDown')
-        await sleep(3000)
+        const editor = await vscode.window.showTextDocument(doc, vscode.ViewColumn.One)
+        await editor.insertSnippet(new vscode.SnippetString(' $0'), new vscode.Position(5, 0))
+        const promise = promisify('pdfviewerstatuschanged')
         await vscode.commands.executeCommand('latex-workshop.synctex')
-        await sleep(6000)
+        await promise
         const secondResults = await getViewerStatus(pdfFilePath)
         for (const result of secondResults) {
             assert.ok( Math.abs(result.scrollTop) > 10 )
@@ -216,11 +212,12 @@ suite('PDF Viewer test suite', () => {
 
         })
         await promise
+        await sleep(3000)
         const secondResults = await getViewerStatus(pdfFilePath)
         console.log(JSON.stringify(secondResults))
         for (const result of secondResults) {
             assert.ok( Math.abs(result.scrollTop) > 10 )
         }
-    }, () => os.platform() !== 'win32')
+    }, () => os.platform() === 'linux')
 
 })

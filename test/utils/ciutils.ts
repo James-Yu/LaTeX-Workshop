@@ -227,6 +227,7 @@ export async function viewPdf() {
     const promise = Promise.all([promisify('pdfviewerpagesloaded'), promisify('pdfviewerstatuschanged')])
     await executeVscodeCommandAfterActivation('latex-workshop.view')
     await promise
+    await sleep(3000)
 }
 
 export async function getViewerStatus(pdfFilePath: string) {
