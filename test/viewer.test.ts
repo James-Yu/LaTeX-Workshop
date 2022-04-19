@@ -12,7 +12,8 @@ import {
     getViewerStatus,
     runTestWithFixture,
     viewPdf,
-    waitLatexWorkshopActivated
+    waitLatexWorkshopActivated,
+    promisify
 } from './utils/ciutils'
 import { sleep } from '../src/utils/utils'
 
@@ -201,7 +202,6 @@ suite('PDF Viewer test suite', () => {
             await executeVscodeCommandAfterActivation('latex-workshop.build')
         })
         await viewPdf()
-        await sleep(3000)
         const firstResults = await getViewerStatus(pdfFilePath)
         for (const result of firstResults) {
             assert.ok( Math.abs(result.scrollTop) < 10 )
@@ -209,18 +209,18 @@ suite('PDF Viewer test suite', () => {
         await vscode.commands.executeCommand('workbench.action.focusFirstEditorGroup')
         const editor = await vscode.window.showTextDocument(doc, vscode.ViewColumn.One)
         await editor.insertSnippet(new vscode.SnippetString(' $0'), new vscode.Position(5, 0))
-        await sleep(3000)
+        const promise = promisify('pdfviewerstatuschanged')
         await assertPdfIsGenerated(pdfFilePath, async () => {
             await vscode.window.showTextDocument(doc, vscode.ViewColumn.One)
             await executeVscodeCommandAfterActivation('latex-workshop.build')
 
         })
-        await sleep(5000)
+        await promise
         const secondResults = await getViewerStatus(pdfFilePath)
         console.log(JSON.stringify(secondResults))
         for (const result of secondResults) {
             assert.ok( Math.abs(result.scrollTop) > 10 )
         }
-    }, () => os.platform() === 'linux')
+    }, () => os.platform() !== 'win32')
 
 })
