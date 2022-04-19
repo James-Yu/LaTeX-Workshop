@@ -224,7 +224,7 @@ export async function executeVscodeCommandAfterActivation(command: string) {
 }
 
 export async function viewPdf() {
-    const promise = promisify('pdfviewerpagesloaded')
+    const promise = Promise.all([promisify('pdfviewerpagesloaded'), promisify('pdfviewerstatuschanged')])
     await executeVscodeCommandAfterActivation('latex-workshop.view')
     await promise
 }
