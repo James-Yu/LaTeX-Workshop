@@ -303,7 +303,7 @@ suite('Multi-root workspace test suite', () => {
         await vscode.window.showTextDocument(docA)
         const extension = await waitLatexWorkshopActivated()
         await waitGivenRootFile(docA.fileName)
-        await sleep(3000)
+        await sleep(1000)
         const itemsA = getCompletionItems(extension, docA, pos)
         const expectedLabelsA = [
             'A fake article',
@@ -317,7 +317,7 @@ suite('Multi-root workspace test suite', () => {
         const docB = await vscode.workspace.openTextDocument(texFilePathB)
         await vscode.window.showTextDocument(docB)
         await waitGivenRootFile(docB.fileName)
-        await sleep(3000)
+        await sleep(10000)
         const itemsB = getCompletionItems(extension, docB, pos)
         const expectedLabelsB = [
             'art1',
