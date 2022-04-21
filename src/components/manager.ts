@@ -156,6 +156,7 @@ export class Manager {
         if (cache !== undefined) {
             cache.content = document.getText()
         }
+        this.extension.eventBus.fire(eventbus.CachedContentUpdated)
     }
 
     getFilesWatched() {
@@ -374,8 +375,6 @@ export class Manager {
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await this.parseFlsFile(this.rootFile)
-                await this.extension.structureViewer.computeTreeStructure()
-                this.extension.latexCommanderTreeView.update()
                 this.extension.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)

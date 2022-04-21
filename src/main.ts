@@ -164,13 +164,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             extension.manager.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
-            // Make sure to update cacheContent before calling structureViewer.computeTreeStructure
-            void extension.structureViewer.computeTreeStructure()
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
-        }
-        if (e.languageId === 'bibtex') {
-            void extension.structureViewer.computeTreeStructure()
         }
     }))
 
@@ -231,12 +226,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         }
         if (e && extension.manager.hasTexId(e.document.languageId)) {
             await extension.manager.findRoot()
-            // Make sure to wait for findRoot to finish before calling refreshView
-            await extension.structureViewer.refreshView()
             extension.linter.lintRootFileIfEnabled()
-        } else if (e && extension.manager.hasBibtexId(e.document.languageId)) {
-            await extension.structureViewer.refreshView()
-        } else {
+        } else if (!e || !extension.manager.hasBibtexId(e.document.languageId)) {
             isLaTeXActive = false
         }
     }))

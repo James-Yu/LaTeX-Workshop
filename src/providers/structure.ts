@@ -6,7 +6,6 @@ import * as utils from '../utils/utils'
 import {PathRegExp} from '../components/managerlib/pathutils'
 import type {MatchPath} from '../components/managerlib/pathutils'
 
-
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
@@ -521,16 +520,48 @@ class StructureModel {
 }
 
 export class StructureTreeView {
+    private readonly extension: Extension
     private readonly _viewer: vscode.TreeView<Section | undefined>
     private readonly _treeDataProvider: SectionNodeProvider
     private _followCursor: boolean = true
 
 
     constructor(extension: Extension) {
+        this.extension = extension
         this._treeDataProvider = new SectionNodeProvider(extension)
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
+        })
+
+        vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
+            if (extension.lwfs.isVirtualUri(e.uri)){
+                return
+            }
+            if (extension.manager.hasBibtexId(e.languageId)) {
+                void extension.structureViewer.computeTreeStructure()
+            }
+        })
+
+        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+            if (e && extension.lwfs.isVirtualUri(e.document.uri)){
+                return
+            }
+            if (e && extension.manager.hasBibtexId(e.document.languageId)) {
+                void extension.structureViewer.refreshView()
+            }
+        })
+
+        this.extension.eventBus.onDidUpdateCachedContent(() => {
+            void this.computeTreeStructure()
+        })
+
+        this.extension.eventBus.onDidChangeRootFile((_rootFile: string) => {
+            void this.computeTreeStructure()
+        })
+
+        this.extension.eventBus.onDidEndFindRootFile(() => {
+            void this.refreshView()
         })
     }
 
