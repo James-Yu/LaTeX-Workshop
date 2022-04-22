@@ -6,7 +6,6 @@ import * as utils from '../utils/utils'
 import {PathRegExp} from '../components/managerlib/pathutils'
 import type {MatchPath} from '../components/managerlib/pathutils'
 
-
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
@@ -49,7 +48,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'bibtex') {
             if (force || this.getCachedDataRootFileName(this.CachedBibTeXData) !== document.fileName) {
-                this.CachedBibTeXData = await this.buildBibTeXModel()
+                this.CachedBibTeXData = await this.buildBibTeXModel(document)
             }
             this.ds = this.CachedBibTeXData
         }
@@ -69,12 +68,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire(undefined)
     }
 
-    async buildBibTeXModel(): Promise<Section[]> {
-        const document = vscode.window.activeTextEditor?.document
-        if (!document) {
-            return []
-        }
-
+    async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
         if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
@@ -521,16 +515,42 @@ class StructureModel {
 }
 
 export class StructureTreeView {
+    private readonly extension: Extension
     private readonly _viewer: vscode.TreeView<Section | undefined>
     private readonly _treeDataProvider: SectionNodeProvider
     private _followCursor: boolean = true
 
 
     constructor(extension: Extension) {
+        this.extension = extension
         this._treeDataProvider = new SectionNodeProvider(extension)
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
+        })
+
+        vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
+            if (extension.manager.hasBibtexId(e.languageId)) {
+                void extension.structureViewer.computeTreeStructure()
+            }
+        })
+
+        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+            if (e && extension.manager.hasBibtexId(e.document.languageId)) {
+                void extension.structureViewer.refreshView()
+            }
+        })
+
+        this.extension.eventBus.onDidUpdateCachedContent(() => {
+            void this.computeTreeStructure()
+        })
+
+        this.extension.eventBus.onDidChangeRootFile(() => {
+            void this.computeTreeStructure()
+        })
+
+        this.extension.eventBus.onDidEndFindRootFile(() => {
+            void this.refreshView()
         })
     }
 
