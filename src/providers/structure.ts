@@ -535,18 +535,12 @@ export class StructureTreeView {
         })
 
         vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
-            if (extension.lwfs.isVirtualUri(e.uri)){
-                return
-            }
             if (extension.manager.hasBibtexId(e.languageId)) {
                 void extension.structureViewer.computeTreeStructure()
             }
         })
 
         vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
-            if (e && extension.lwfs.isVirtualUri(e.document.uri)){
-                return
-            }
             if (e && extension.manager.hasBibtexId(e.document.languageId)) {
                 void extension.structureViewer.refreshView()
             }
