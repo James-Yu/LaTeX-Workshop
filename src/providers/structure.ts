@@ -48,7 +48,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'bibtex') {
             if (force || this.getCachedDataRootFileName(this.CachedBibTeXData) !== document.fileName) {
-                this.CachedBibTeXData = await this.buildBibTeXModel()
+                this.CachedBibTeXData = await this.buildBibTeXModel(document)
             }
             this.ds = this.CachedBibTeXData
         }
@@ -68,12 +68,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire(undefined)
     }
 
-    async buildBibTeXModel(): Promise<Section[]> {
-        const document = vscode.window.activeTextEditor?.document
-        if (!document) {
-            return []
-        }
-
+    async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
         if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
