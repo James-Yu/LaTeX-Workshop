@@ -550,7 +550,7 @@ export class StructureTreeView {
             void this.computeTreeStructure()
         })
 
-        this.extension.eventBus.onDidChangeRootFile((_rootFile: string) => {
+        this.extension.eventBus.onDidChangeRootFile(() => {
             void this.computeTreeStructure()
         })
 
