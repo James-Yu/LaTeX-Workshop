@@ -1,35 +1,46 @@
 // See https://go.microsoft.com/fwlink/?LinkId=733558
 // for the documentation about the tasks.json format
 {
-    "version":"2.0.0",
-    "tasks":[
+    "version": "2.0.0",
+    "tasks": [
         {
-            "type":"npm",
-            "script":"watch",
-            "problemMatcher":"$tsc-watch",
-            "isBackground":true,
-            "presentation":{
-                "reveal":"silent"
+            "label": "task-watch-src",
+            "type": "npm",
+            "script": "watch-src",
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never"
             },
-            "group":{
-                "kind":"build",
-                "isDefault":true
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
-            "detail": "Reveal the terminal on errors."
+            "detail": "Watch ./src"
         },
         {
-            "type":"npm",
-            "script":"watch-alias",
-            "problemMatcher":"$tsc-watch",
-            "isBackground":true,
-            "presentation":{
-                "reveal":"never"
+            "label": "task-watch-viewer",
+            "type": "npm",
+            "script": "watch-viewer",
+            "problemMatcher": "$tsc-watch",
+            "isBackground": true,
+            "presentation": {
+                "reveal": "never"
             },
-            "group":{
-                "kind":"build",
-                "isDefault":true
+            "group": {
+                "kind": "build",
+                "isDefault": true
             },
-            "detail": "Never reveal the terminal on errors."
+            "detail": "Watch ./viewer"
+        },
+        {
+            "label": "task-watch-all",
+            "dependsOn": [
+                "task-watch-src",
+                "task-watch-viewer"
+            ],
+            "detail": "Watch ./src and ./viewer",
+            "problemMatcher": []
         }
     ]
 }

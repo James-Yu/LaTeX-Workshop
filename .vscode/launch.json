@@ -12,7 +12,6 @@
             ],
             "type": "pwa-node"
         },
-
         {
             "name": "Python: Current File",
             "type": "python",
@@ -32,21 +31,7 @@
                 "${workspaceFolder}/out/src/**/*.js"
             ],
             "debugWebviews": true,
-            "preLaunchTask": "npm: watch"
-        },
-        {
-            "name": "Run Extension Alias",
-            "type": "extensionHost",
-            "request": "launch",
-            "runtimeExecutable": "${execPath}",
-            "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/out/src/**/*.js"
-            ],
-            "debugWebviews": true,
-            "preLaunchTask": "npm: watch-alias"
+            "preLaunchTask": "task-watch-all"
         },
         {
             "name": "Run Extension With Sample",
@@ -60,7 +45,7 @@
             "outFiles": [
                 "${workspaceFolder}/out/src/**/*.js"
             ],
-            "preLaunchTask": "npm: watch"
+            "preLaunchTask": "task-watch-all"
         },
         {
             "name": "Run Extension Tests",
@@ -74,7 +59,7 @@
             "outFiles": [
                 "${workspaceFolder}/out/test/**/*.js"
             ],
-            "preLaunchTask": "npm: watch"
+            "preLaunchTask": "task-watch-all"
         }
     ]
 }
