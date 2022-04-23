@@ -22,7 +22,7 @@ export interface CmdItemEntry {
 
 export interface CmdSignature {
     name: string, // name without leading `\`
-    args: string // ({}*[]*)*
+    args: string // {} for mandatory args and [] for optional args
 }
 
 function isCmdItemEntry(obj: any): obj is CmdItemEntry {
@@ -61,15 +61,15 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
 
     /**
      * Return the signature, ie the name + {} for mandatory arguments + [] for optional arguments.
-     * The leading backward slash is not part of the signature;
+     * The leading backward slash is not part of the signature
      */
-    cmdSignature(): string {
+    cmdSignatureAsString(): string {
         return this.signature.name + this.signature.args
     }
 
     /**
      * Return the name without the arguments
-     * The leading backward slash is not part of the signature;
+     * The leading backward slash is not part of the signature
      */
     cmdName(): string {
         return this.signature.name
@@ -154,7 +154,7 @@ export class Command implements IProvider {
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdSignatureList.add(cmd.cmdSignature())
+            cmdSignatureList.add(cmd.cmdSignatureAsString())
         })
 
         // Insert unimathsymbols
@@ -416,9 +416,9 @@ export class Command implements IProvider {
             if (!useOptionalArgsEntries && cmd.cmdHasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(cmd.cmdSignature())) {
+            if (!cmdSignatureList.has(cmd.cmdSignatureAsString())) {
                 suggestions.push(cmd)
-                cmdSignatureList.add(cmd.cmdSignature())
+                cmdSignatureList.add(cmd.cmdSignatureAsString())
             }
         })
     }

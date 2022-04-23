@@ -179,9 +179,9 @@ export class Environment implements IProvider {
             if (!useOptionalArgsEntries && env.cmdHasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(env.cmdSignature())) {
+            if (!cmdSignatureList.has(env.cmdSignatureAsString())) {
                 suggestions.push(env)
-                cmdSignatureList.add(env.cmdSignature())
+                cmdSignatureList.add(env.cmdSignatureAsString())
             }
         })
     }
