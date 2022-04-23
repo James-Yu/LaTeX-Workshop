@@ -3,9 +3,10 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
 import type {Extension} from '../../main'
-import type {IProvider, ILwCompletionItem} from './interface'
+import type {IProvider} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
-import {cmdHasOptionalArgs, CmdSignature, getCmdSignature} from './command'
+import {Suggestion} from './command'
+export {Suggestion} from './command'
 import {splitSignatureString} from './command'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
@@ -22,11 +23,6 @@ function isEnvItemEntry(obj: any): obj is EnvItemEntry {
 }
 
 export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
-
-export interface Suggestion extends ILwCompletionItem {
-    package: string,
-    signature: CmdSignature
-}
 
 export class Environment implements IProvider {
     private readonly extension: Extension
@@ -181,12 +177,12 @@ export class Environment implements IProvider {
 
         // Insert env snippets
         entry.forEach(env => {
-            if (!useOptionalArgsEntries && cmdHasOptionalArgs(env)) {
+            if (!useOptionalArgsEntries && env.cmdHasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(getCmdSignature(env))) {
+            if (!cmdSignatureList.has(env.cmdSignature())) {
                 suggestions.push(env)
-                cmdSignatureList.add(getCmdSignature(env))
+                cmdSignatureList.add(env.cmdSignature())
             }
         })
     }
@@ -225,17 +221,9 @@ export class Environment implements IProvider {
         // Here we only check `isEnvironment` which excludes `align*` and `verbatim`.
         // Nonetheless, they have already been included in `defaultEnvs`.
         if (latexParser.isEnvironment(node)) {
-            const env: Suggestion = {
-                label: `${node.name}`,
-                kind: vscode.CompletionItemKind.Module,
-                documentation: '`' + node.name + '`',
-                filterText: node.name,
-                package: '',
-                signature: {
-                    name: node.name,
-                    args: ''
-                }
-            }
+            const env = new Suggestion(`${node.name}`, '', { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
+            env.documentation = '`' + node.name + '`'
+            env.filterText = node.name
             envs.push(env)
         }
         if (latexParser.hasContentArray(node)) {
@@ -292,17 +280,9 @@ export class Environment implements IProvider {
             if (envList.includes(result[1])) {
                 continue
             }
-            const env: Suggestion = {
-                label: `${result[1]}`,
-                kind: vscode.CompletionItemKind.Module,
-                documentation: '`' + result[1] + '`',
-                filterText: result[1],
-                package: '',
-                signature: {
-                    name: result[1],
-                    args: ''
-                }
-            }
+            const env = new Suggestion(`${result[1]}`, '', { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
+            env.documentation = '`' + result[1] + '`'
+            env.filterText = result[1]
 
             envs.push(env)
             envList.push(result[1])
@@ -312,14 +292,9 @@ export class Environment implements IProvider {
 
     private entryEnvToCompletion(itemKey: string, item: EnvItemEntry, type: EnvSnippetType): Suggestion {
         const label = item.detail ? item.detail : item.name
-        const suggestion: Suggestion = {
-            label: item.name,
-            kind: vscode.CompletionItemKind.Module,
-            package: 'latex',
-            detail: `Insert environment ${item.name}.`,
-            documentation: item.name,
-            signature: splitSignatureString(itemKey)
-        }
+        const suggestion = new Suggestion(item.name, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Module)
+        suggestion.detail = `Insert environment ${item.name}.`
+        suggestion.documentation = item.name
         if (item.package) {
             suggestion.documentation += '\n' + `Package: ${item.package}`
         }
