@@ -6,7 +6,6 @@ import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
 import {Suggestion} from './command'
-export {Suggestion} from './command'
 import {splitSignatureString} from './command'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')

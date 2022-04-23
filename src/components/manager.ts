@@ -10,8 +10,7 @@ import * as utils from '../utils/utils'
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
 import type {Suggestion as CiteEntry} from '../providers/completer/citation'
-import type {Suggestion as CmdEntry} from '../providers/completer/command'
-import type {Suggestion as EnvEntry} from '../providers/completer/environment'
+import type {Suggestion as CmdEnvEntry} from '../providers/completer/command'
 import type {Suggestion as GlossEntry} from '../providers/completer/glossary'
 import type {ILwCompletionItem} from '../providers/completer/interface'
 
@@ -40,9 +39,9 @@ interface Content {
         element: {
             reference?: ILwCompletionItem[],
             glossary?: GlossEntry[],
-            environment?: EnvEntry[],
+            environment?: CmdEnvEntry[],
             bibitem?: CiteEntry[],
-            command?: CmdEntry[],
+            command?: CmdEnvEntry[],
             package?: Set<string>
         },
         /**
