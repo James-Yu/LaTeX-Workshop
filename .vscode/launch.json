@@ -48,15 +48,17 @@
             "preLaunchTask": "task-watch-all"
         },
         {
-            "name": "Run Extension Tests",
+            "name": "Run Unit Tests with unittest/fixture001",
             "type": "extensionHost",
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": [
+                "${workspaceFolder}/test/fixtures/unittest/fixture001",
                 "--extensionDevelopmentPath=${workspaceFolder}",
-                "--extensionTestsPath=${workspaceFolder}/out/test/index"
+                "--extensionTestsPath=${workspaceFolder}/out/test/unittest.index"
             ],
             "outFiles": [
+                "${workspaceFolder}/out/src/**/*.js",
                 "${workspaceFolder}/out/test/**/*.js"
             ],
             "preLaunchTask": "task-watch-all"
