@@ -62,6 +62,25 @@
                 "${workspaceFolder}/out/test/**/*.js"
             ],
             "preLaunchTask": "task-watch-all"
+        },
+        {
+            "name": "Run Unit Tests with unittest/fixture010",
+            "type": "extensionHost",
+            "request": "launch",
+            "runtimeExecutable": "${execPath}",
+            "args": [
+                "${workspaceFolder}/test/fixtures/unittest/fixture010_synctex/",
+                "--extensionDevelopmentPath=${workspaceFolder}",
+                "--extensionTestsPath=${workspaceFolder}/out/test/unittest.index"
+            ],
+            "outFiles": [
+                "${workspaceFolder}/out/src/**/*.js",
+                "${workspaceFolder}/out/test/**/*.js"
+            ],
+            "preLaunchTask": "task-watch-all",
+            "env": {
+                "LATEXWORKSHOP_CI": "1"
+            }
         }
     ]
 }
