@@ -53,7 +53,7 @@ To run a specific test, run
 
 ## Testing and debugging the extension
 
-In VS Code, simply press <kbd>F5</kbd> (or run `Debug: Start Debugging` from the command palette) and a new window will pop up where you can test the extension.
+In VS Code, run `Debug: Select and Start Debugging` from the Command Palette, and select `Run Extension`. A new window will pop up where you can test the extension.
 
 ## Documents
 
