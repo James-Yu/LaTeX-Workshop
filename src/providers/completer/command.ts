@@ -52,7 +52,7 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
     package: string
     signature: CmdSignature
 
-    constructor(label: string, pkg: string, signature: CmdSignature, kind?: vscode.CompletionItemKind) {
+    constructor(label: string, pkg: string, signature: CmdSignature, kind: vscode.CompletionItemKind) {
         super(label, kind)
         this.label = label
         this.package = pkg
