@@ -21,7 +21,7 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
     provideDocumentSymbols(document: vscode.TextDocument): vscode.ProviderResult<vscode.DocumentSymbol[]> {
         if (document.languageId === 'bibtex') {
-            return this.sectionNodeProvider.buildBibTeXModel().then(() => this.sectionToSymbols(this.sectionNodeProvider.ds))
+            return this.sectionNodeProvider.buildBibTeXModel(document).then((sections: Section[]) => this.sectionToSymbols(sections))
         }
         if (this.extension.lwfs.isVirtualUri(document.uri)) {
             return []

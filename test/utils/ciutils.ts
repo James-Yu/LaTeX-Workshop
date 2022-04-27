@@ -5,6 +5,8 @@ import * as process from 'process'
 import * as vscode from 'vscode'
 import {sleep} from '../../src/utils/utils'
 import {activate} from '../../src/main'
+import type {EventName} from '../../src/components/eventbus'
+import type {PdfViewerState} from '../../viewer/components/protocol'
 
 function getWorkspaceRootDir(): string | undefined {
     let rootDir: string | undefined
@@ -42,7 +44,44 @@ export function runTestWithFixture(
     const rootPath = getWorkspaceRootDir()
     const shouldSkip = skip && skip()
     if (rootPath && path.basename(rootPath) === fixtureName && !shouldSkip) {
-        test( fixtureName + ': ' + label, cb )
+        test( fixtureName + ': ' + label, async () => {
+            try {
+                const findRootFileEnd = promisify('findrootfileend')
+                await findRootFileEnd
+                await cb()
+            } catch (e) {
+                await printLogMessages()
+                throw e
+            }
+        })
+    }
+}
+
+/**
+ * Runs `cb` as a test if the basename of the working directory is equal to `fixtureName`.
+ *
+ * @param fixtureName The name of a fixture directory of the current test.
+ * @param label Used as the title of test.
+ * @param cb Callback executing tests.
+ * @param skip `cb` is skipped if `true` returned.
+ */
+ export function runUnitTestWithFixture(
+    fixtureName: string,
+    label: string,
+    cb: () => unknown,
+    skip?: () => boolean
+) {
+    const rootPath = getWorkspaceRootDir()
+    const shouldSkip = skip && skip()
+    if (rootPath && path.basename(rootPath) === fixtureName && !shouldSkip) {
+        test( fixtureName + ': ' + label, async () => {
+            try {
+                await cb()
+            } catch (e) {
+                await printLogMessages()
+                throw e
+            }
+        })
     }
 }
 
@@ -78,17 +117,14 @@ export async function assertPdfIsGenerated(pdfFilePath: string, cb: () => Promis
     if (fs.existsSync(pdfFilePath)) {
         fs.unlinkSync(pdfFilePath)
     }
+    const buildFinished = promisify('buildfinished')
     await cb()
-    for (let i = 0; i < 150; i++) {
-        if (fs.existsSync(pdfFilePath)) {
-            assert.ok(true, 'PDF file generated.')
-            await waitBuildFinish()
-            return
-        }
-        await sleep(100)
+    await buildFinished
+    if (fs.existsSync(pdfFilePath)) {
+        return
+    } else {
+        assert.fail('Timeout Error: PDF file not generated.')
     }
-    await printLogMessages()
-    assert.fail('Timeout Error: PDF file not generated.')
 }
 
 export function isDockerEnabled() {
@@ -119,20 +155,45 @@ export async function waitUntil<T>(
     assert.fail('Timeout Error at waitUntil')
 }
 
-export async function waitBuildFinish() {
-    const extension = await waitLatexWorkshopActivated()
-    await waitUntil(
-        () => Promise.resolve(extension.exports.realExtension?.builder.isBuildFinished?.())
-    )
+export function promisifySeq(...eventArray: EventName[]): Promise<void> {
+    const extension = obtainLatexWorkshop()
+    let index = 0
+    const promise = new Promise<void>((resolve, reject) => {
+        setTimeout(
+            () => reject(new Error(`Time out Error: ${JSON.stringify(eventArray)}`)),
+            process.env.CI ? 30000 : 10000
+        )
+        for (const event of eventArray) {
+            const disposable = extension.exports.realExtension?.eventBus.on(event, () => {
+                if (eventArray[index] === event) {
+                    index += 1
+                    if (index === eventArray.length) {
+                        resolve()
+                    }
+                    disposable?.dispose()
+                }
+            })
+        }
+    })
+    return promise
 }
 
-export function waitRootFileFound() {
-    return waitUntil(
-        async () => {
-            const extension = await waitLatexWorkshopActivated()
-            return extension.exports.realExtension?.manager.rootFile
-        }
-    )
+export async function promisify(event: EventName, count = 1): Promise<void> {
+    const extension = await waitLatexWorkshopActivated()
+    const promise = new Promise<void>((resolve, reject) => {
+        const disposable = extension.exports.realExtension?.eventBus.on(event, () => {
+            count -= 1
+            if (count === 0) {
+                resolve()
+                disposable?.dispose()
+            }
+        })
+        setTimeout(
+            () => reject(new Error(`promisify (${event}): Timeout error`)),
+            process.env.CI ? 30000 : 10000
+        )
+    })
+    return promise
 }
 
 export function obtainLatexWorkshop() {
@@ -163,25 +224,23 @@ export async function executeVscodeCommandAfterActivation(command: string) {
 }
 
 export async function viewPdf() {
-    await sleep(1000)
+    const promise = Promise.all([promisify('pdfviewerpagesloaded'), promisify('pdfviewerstatuschanged')])
     await executeVscodeCommandAfterActivation('latex-workshop.view')
+    await promise
     await sleep(3000)
 }
 
 export async function getViewerStatus(pdfFilePath: string) {
     const extension = await waitLatexWorkshopActivated()
     const pdfFileUri = vscode.Uri.file(pdfFilePath)
-    return waitUntil(() => {
-        try {
-            const rs = extension.exports.realExtension?.viewer.getViewerState(pdfFileUri)
-            const ret = rs && rs.find(st => st)
-            if (ret && ret.pdfFileUri !== undefined && ret.scrollTop !== undefined) {
-                return [{ pdfFileUri: ret.pdfFileUri, scrollTop: ret.scrollTop }]
-            } else {
-                return undefined
-            }
-        } catch (e) {
-            return
-        }
-    }, process.platform === 'win32' ? 600 : undefined)
+    const rs = extension.exports.realExtension?.viewer.getViewerState(pdfFileUri)
+    let ret: PdfViewerState | undefined
+    if (rs && rs.length > 0 && rs[0]) {
+        ret = rs[0]
+    }
+    if (ret && ret.pdfFileUri !== undefined && ret.scrollTop !== undefined) {
+        return [{ pdfFileUri: ret.pdfFileUri, scrollTop: ret.scrollTop }]
+    } else {
+        assert.fail('PDF Viewer not loaded.')
+    }
 }

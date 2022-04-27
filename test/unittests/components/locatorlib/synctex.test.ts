@@ -1,7 +1,7 @@
 import * as assert from 'assert'
 import * as path from 'path'
 
-import { getFixtureDir, runTestWithFixture, waitLatexWorkshopActivated } from '../../../utils/ciutils'
+import { getFixtureDir, runUnitTestWithFixture, waitLatexWorkshopActivated } from '../../../utils/ciutils'
 
 import {SyncTexJs} from '../../../../src/components/locatorlib/synctex'
 import {decycle} from '../../../utils/decycle'
@@ -12,7 +12,7 @@ suite('unit test suite', () => {
     suiteSetup(() => {
     })
 
-    runTestWithFixture('fixture010_synctex', 'test synctex', async () => {
+    runUnitTestWithFixture('fixture010_synctex', 'test synctex', async () => {
         const fixtureDir = getFixtureDir()
         const pdfFilePath = path.join(fixtureDir, 't.pdf')
         const extension = (await waitLatexWorkshopActivated()).exports.realExtension

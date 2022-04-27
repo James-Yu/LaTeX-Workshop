@@ -17,7 +17,7 @@ export class UtensilsParser {
     }
 
     async dispose() {
-        await this.pool.terminate()
+        await this.pool.terminate(true)
     }
 
     /**

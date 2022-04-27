@@ -6,7 +6,6 @@ import * as utils from '../utils/utils'
 import {PathRegExp} from '../components/managerlib/pathutils'
 import type {MatchPath} from '../components/managerlib/pathutils'
 
-
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
@@ -19,6 +18,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     // our data source is a set multi-rooted set of trees
     public ds: Section[] = []
+    private CachedLaTeXData: Section[] = []
+    private CachedBibTeXData: Section[] = []
 
     constructor(private readonly extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
@@ -31,35 +32,47 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     }
 
-    private async refresh(): Promise<Section[]> {
+    private getCachedDataRootFileName(sections: Section[]): string | undefined {
+        if (sections.length >0) {
+            return sections[0].fileName
+        }
+        return undefined
+    }
+
+    /**
+     * Return the latex or bibtex structure
+     *
+     * @param force If `false` and some cached data exists for the corresponding file, use it. If `true`, always recompute the structure from disk
+     */
+    async build(force: boolean): Promise<Section[]> {
         const document = vscode.window.activeTextEditor?.document
         if (document?.languageId === 'bibtex') {
-            await this.buildBibTeXModel()
-            return this.ds
+            if (force || this.getCachedDataRootFileName(this.CachedBibTeXData) !== document.fileName) {
+                this.CachedBibTeXData = await this.buildBibTeXModel(document)
+            }
+            this.ds = this.CachedBibTeXData
         }
         else if (this.extension.manager.rootFile) {
-            this.ds = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
-            return this.ds
+            if (force) {
+                this.CachedLaTeXData = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
+            }
+            this.ds = this.CachedLaTeXData
         } else {
-            return []
+            this.ds = []
         }
+        return this.ds
     }
 
-    update() {
-        this.refresh().finally(() => {this._onDidChangeTreeData.fire(undefined)})
+    async update(force: boolean) {
+        this.ds = await this.build(force)
+        this._onDidChangeTreeData.fire(undefined)
     }
 
-    async buildBibTeXModel() {
-        const document = vscode.window.activeTextEditor?.document
-        if (!document) {
-            return
-        }
-        this.ds = []
-
+    async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
         if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
             this.extension.logger.addLogMessage(`Bib file is too large, ignoring it: ${document.fileName}`)
-            return
+            return []
         }
         const ast = await this.extension.pegParser.parseBibtex(document.getText()).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
@@ -69,6 +82,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return
         })
 
+        const ds: Section[] = []
         ast?.content.filter(bibtexParser.isEntry)
             .forEach(entry => {
                 const bibitem = new Section(
@@ -76,8 +90,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     `${entry.entryType}: ${entry.internalKey}`,
                     vscode.TreeItemCollapsibleState.Collapsed,
                     0,
-                    entry.location.start.line,
-                    entry.location.end.line,
+                    entry.location.start.line - 1, // ast line numbers start at 1
+                    entry.location.end.line - 1,
                     document.fileName)
                 entry.content.forEach(field => {
                     const fielditem = new Section(
@@ -85,14 +99,15 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                         `${field.name}: ${field.value.content}`,
                         vscode.TreeItemCollapsibleState.None,
                         1,
-                        field.location.start.line,
-                        field.location.end.line,
+                        field.location.start.line -1,
+                        field.location.end.line- 1,
                         document.fileName)
                     fielditem.parent = bibitem
                     bibitem.children.push(fielditem)
                 })
-                this.ds.push(bibitem)
+                ds.push(bibitem)
             })
+        return ds
     }
 
     /**
@@ -223,7 +238,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // if the root doesn't exist, we need
         // to explicitly build the model from disk
         if (!element) {
-            return this.refresh()
+            return this.build(false)
         }
 
         return element.children
@@ -500,21 +515,57 @@ class StructureModel {
 }
 
 export class StructureTreeView {
+    private readonly extension: Extension
     private readonly _viewer: vscode.TreeView<Section | undefined>
     private readonly _treeDataProvider: SectionNodeProvider
     private _followCursor: boolean = true
 
 
     constructor(extension: Extension) {
+        this.extension = extension
         this._treeDataProvider = new SectionNodeProvider(extension)
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
         })
+
+        vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
+            if (extension.manager.hasBibtexId(e.languageId)) {
+                void extension.structureViewer.computeTreeStructure()
+            }
+        })
+
+        vscode.window.onDidChangeActiveTextEditor((e: vscode.TextEditor | undefined) => {
+            if (e && extension.manager.hasBibtexId(e.document.languageId)) {
+                void extension.structureViewer.refreshView()
+            }
+        })
+
+        this.extension.eventBus.onDidUpdateCachedContent(() => {
+            void this.computeTreeStructure()
+        })
+
+        this.extension.eventBus.onDidChangeRootFile(() => {
+            void this.computeTreeStructure()
+        })
+
+        this.extension.eventBus.onDidEndFindRootFile(() => {
+            void this.refreshView()
+        })
     }
 
-    update() {
-        this._treeDataProvider.update()
+    /**
+     * Recompute the whole structure from file and update the view
+     */
+    async computeTreeStructure() {
+        await this._treeDataProvider.update(true)
+    }
+
+    /**
+     * Refresh the view using cache
+     */
+    async refreshView() {
+        await this._treeDataProvider.update(false)
     }
 
     getTreeData(): Section[] {
@@ -524,9 +575,8 @@ export class StructureTreeView {
     private traverseSectionTree(sections: Section[], fileName: string, lineNumber: number): Section | undefined {
         let match: Section | undefined = undefined
         for (const node of sections) {
-            // lineNumber is zero-based but node line numbers are one-based.
             if ((node.fileName === fileName &&
-                 node.lineNumber-1 <= lineNumber && node.toLine-1 >= lineNumber) ||
+                 node.lineNumber <= lineNumber && node.toLine >= lineNumber) ||
                 (node.fileName !== fileName && node.subfiles.includes(fileName))) {
                 match = node
                 // Look for a more precise surrounding section

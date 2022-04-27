@@ -44,7 +44,7 @@ export class MathJaxPool {
     }
 
     async dispose() {
-        await this.pool.terminate()
+        await this.pool.terminate(true)
     }
 
     private initializeExtensions() {

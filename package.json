@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "8.24.1",
+  "version": "8.25.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -12,7 +12,7 @@
     "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
   },
   "engines": {
-    "vscode": "^1.62.0"
+    "vscode": "^1.64.0"
   },
   "categories": [
     "Programming Languages",
@@ -215,17 +215,6 @@
         "language": "latex-expl3",
         "scopeName": "text.tex.latex.expl3",
         "path": "./syntax/LaTeX-Expl3.tmLanguage.json"
-      },
-      {
-        "scopeName": "markdown.latex.codeblock",
-        "path": "./syntax/latexblock.tmLanguage.json",
-        "injectTo": [
-          "text.html.markdown"
-        ],
-        "embeddedLanguages": {
-          "meta.embedded.block.latex": "latex",
-          "meta.embedded.block.bibtex": "bibtex"
-        }
       },
       {
         "language": "markdown_latex_combined",
@@ -499,25 +488,25 @@
         "key": "ctrl+l alt+m",
         "mac": "cmd+l alt+m",
         "command": "latex-workshop.toggleMathPreviewPanel",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+l alt+b",
         "mac": "cmd+l alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+l alt+c",
         "mac": "cmd+l alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+l alt+v",
         "mac": "cmd+l alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+l alt+j",
@@ -535,25 +524,25 @@
         "key": "ctrl+alt+m",
         "mac": "cmd+alt+m",
         "command": "latex-workshop.toggleMathPreviewPanel",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !config.latex-workshop.bind.altKeymap.enabled"
       },
       {
         "key": "ctrl+alt+b",
         "mac": "cmd+alt+b",
         "command": "latex-workshop.build",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+alt+c",
         "mac": "cmd+alt+c",
         "command": "latex-workshop.clean",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+alt+v",
         "mac": "cmd+alt+v",
         "command": "latex-workshop.view",
-        "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
+        "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace"
       },
       {
         "key": "ctrl+alt+j",
@@ -570,188 +559,188 @@
       {
         "key": "ctrl+l [",
         "mac": "cmd+l [",
-        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.promote-sectioning"
       },
       {
         "key": "ctrl+l ]",
         "mac": "cmd+l ]",
-        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.demote-sectioning"
       },
       {
         "key": "ctrl+alt+[",
         "mac": "cmd+alt+[",
-        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.promote-sectioning"
       },
       {
         "key": "ctrl+alt+]",
         "mac": "cmd+alt+]",
-        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "!config.latex-workshop.bind.altKeymap.enabled && editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.demote-sectioning"
       },
       {
         "key": "ctrl+l ctrl+enter",
         "mac": "cmd+l cmd+enter",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.item"
       },
       {
         "key": "ctrl+l ctrl+b",
         "mac": "cmd+l cmd+b",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textbf"
       },
       {
         "key": "ctrl+l ctrl+i",
         "mac": "cmd+l cmd+i",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textit"
       },
       {
         "key": "ctrl+l ctrl+u",
         "mac": "cmd+l cmd+u",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.underline"
       },
       {
         "key": "ctrl+l ctrl+e",
         "mac": "cmd+l cmd+e",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.emph"
       },
       {
         "key": "ctrl+l ctrl+r",
         "mac": "cmd+l cmd+r",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textrm"
       },
       {
         "key": "ctrl+l ctrl+t",
         "mac": "cmd+l cmd+t",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.texttt"
       },
       {
         "key": "ctrl+l ctrl+s",
         "mac": "cmd+l cmd+s",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textsl"
       },
       {
         "key": "ctrl+l ctrl+c",
         "mac": "cmd+l cmd+c",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textsc"
       },
       {
         "key": "ctrl+l ctrl+n",
         "mac": "cmd+l cmd+n",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textnormal"
       },
       {
         "key": "ctrl+l ctrl+6",
         "mac": "cmd+l cmd+6",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textsuperscript"
       },
       {
         "key": "ctrl+l ctrl+oem_minus",
         "mac": "cmd+l cmd+oem_minus",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.textsubscript"
       },
       {
         "key": "ctrl+m ctrl+b",
         "mac": "cmd+m cmd+b",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.mathbf"
       },
       {
         "key": "ctrl+m ctrl+i",
         "mac": "cmd+m cmd+i",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.mathit"
       },
       {
         "key": "ctrl+m ctrl+r",
         "mac": "cmd+m cmd+r",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.mathrm"
       },
       {
         "key": "ctrl+m ctrl+t",
         "mac": "cmd+m cmd+t",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.mathtt"
       },
       {
         "key": "ctrl+m ctrl+s",
         "mac": "cmd+m cmd+s",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.mathsf"
       },
       {
         "key": "ctrl+m ctrl+shift+b",
         "mac": "cmd+m cmd+shift+b",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.mathbb"
       },
       {
         "key": "ctrl+m ctrl+c",
         "mac": "cmd+m cmd+c",
-        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.shortcut.mathcal"
       },
       {
         "command": "expandLineSelection",
         "key": "ctrl+l ctrl+l",
         "mac": "cmd+l cmd+l",
-        "when": "textInputFocus && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/"
+        "when": "textInputFocus && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/"
       },
       {
         "command": "editor.action.toggleTabFocusMode",
         "key": "ctrl+l ctrl+m",
         "mac": "cmd+l cmd+m",
-        "when": "textInputFocus && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/"
+        "when": "textInputFocus && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/"
       },
       {
         "key": "ctrl+l ctrl+w",
         "mac": "cmd+l cmd+w",
-        "when": "editorTextFocus && !editorReadonly && editorHasSelection && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/",
+        "when": "editorTextFocus && !editorReadonly && editorHasSelection && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/",
         "command": "latex-workshop.surround"
       },
       {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && vim.active && vim.mode == 'Insert'"
+        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && vim.active && vim.mode == 'Insert'"
       },
       {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && vim.active && vim.mode == 'Insert'"
+        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && vim.active && vim.mode == 'Insert'"
       },
       {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !vim.active"
+        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !vim.active"
       },
       {
         "command": "latex-workshop.onEnterKey",
         "key": "enter",
-        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !vim.active"
+        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !vim.active"
       },
       {
         "command": "latex-workshop.onAltEnterKey",
         "key": "alt+enter",
-        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/"
+        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && acceptSuggestionOnEnter && !suggestWidgetVisible && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/"
       },
       {
         "command": "latex-workshop.onAltEnterKey",
         "key": "alt+enter",
-        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/"
+        "when": "config.latex-workshop.bind.enter.key && editorTextFocus && !acceptSuggestionOnEnter && !editorReadonly && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/"
       }
     ],
     "configurationDefaults": {
@@ -1751,6 +1740,14 @@
           ],
           "markdownDescription": "List of fields to display for citation preview and intellisense. This list is also used as the filter text to narrow down the intellisense suggestions."
         },
+        "latex-workshop.intellisense.citation.maxfilesizeMB": {
+          "scope": "window",
+          "type": "number",
+          "default": 5,
+          "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB.",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.bibtex.maxFileSize#` instead.",
+          "deprecationMessage": "Deprecated: Please use `#latex-workshop.bibtex.maxFileSize#` instead."
+        },
         "latex-workshop.intellisense.triggers.latex": {
           "scope": "window",
           "type": "array",
@@ -2322,24 +2319,24 @@
     "menus": {
       "editor/context": [
         {
-          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !virtualWorkspace",
+          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !virtualWorkspace",
           "command": "latex-workshop.build",
           "group": "navigation@100"
         },
         {
-          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !virtualWorkspace",
+          "when": "config.latex-workshop.showContextMenu && editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !virtualWorkspace",
           "command": "latex-workshop.synctex",
           "group": "navigation@101"
         }
       ],
       "editor/title": [
         {
-          "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !virtualWorkspace",
+          "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !virtualWorkspace",
           "command": "latex-workshop.view",
           "group": "navigation@2"
         },
         {
-          "when": "editorLangId =~ /latex|latex-expl3|rsweave|jlweave/ && !virtualWorkspace",
+          "when": "editorLangId =~ /^latex$|^latex-expl3$|^rsweave$|^jlweave$/ && !virtualWorkspace",
           "command": "latex-workshop.build",
           "group": "navigation@1"
         }
@@ -2403,8 +2400,6 @@
     "lint:fix": "eslint --fix --cache --ext .ts,.js .",
     "release": "npm run clean && npm run lint && npm run compile && vsce package",
     "test": "node ./out/test/runTest.js",
-    "watch": "run-p watch-src watch-viewer",
-    "watch-alias": "npm run watch",
     "watch-src": "tsc -watch -p tsconfig.json",
     "watch-viewer": "tsc -watch -p viewer/tsconfig.json"
   },
@@ -2426,17 +2421,16 @@
     "@types/glob": "7.2.0",
     "@types/micromatch": "4.0.2",
     "@types/mocha": "9.1.0",
-    "@types/node": "14.14.45",
+    "@types/node": "16.11.27",
     "@types/tmp": "0.2.3",
-    "@types/vscode": "1.62.0",
+    "@types/vscode": "1.64.0",
     "@types/workerpool": "6.1.0",
     "@types/ws": "8.5.3",
-    "@typescript-eslint/eslint-plugin": "5.17.0",
-    "@typescript-eslint/parser": "5.17.0",
+    "@typescript-eslint/eslint-plugin": "5.19.0",
+    "@typescript-eslint/parser": "5.19.0",
     "@vscode/test-electron": "2.1.3",
-    "eslint": "8.12.0",
+    "eslint": "8.13.0",
     "mocha": "9.2.2",
-    "npm-run-all": "4.1.5",
     "rimraf": "3.0.2",
     "textmate-bailout": "1.1.0",
     "typescript": "4.6.3",

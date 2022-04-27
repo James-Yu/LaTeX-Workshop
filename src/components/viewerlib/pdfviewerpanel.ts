@@ -5,20 +5,24 @@ import type {Extension} from '../../main'
 import type {PanelRequest, PdfViewerState} from '../../../viewer/components/protocol'
 import {escapeHtml} from '../../utils/utils'
 import type {PdfViewerManagerService} from './pdfviewermanager'
+import {PdfViewerStatusChanged} from '../eventbus'
 
 
 export class PdfViewerPanel {
+    private readonly extension: Extension
     readonly webviewPanel: vscode.WebviewPanel
     readonly pdfFileUri: vscode.Uri
     private _state?: PdfViewerState
 
-    constructor(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
+    constructor(extension: Extension, pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
+        this.extension = extension
         this.pdfFileUri = pdfFileUri
         this.webviewPanel = panel
         panel.webview.onDidReceiveMessage((msg: PanelRequest) => {
             switch(msg.type) {
                 case 'state': {
                     this._state = msg.state
+                    this.extension.eventBus.fire(PdfViewerStatusChanged, msg.state)
                     break
                 }
                 default: {
@@ -67,7 +71,7 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
             return
         }
         panel.webview.html = await this.panelService.getPDFViewerContent(pdfFileUri)
-        const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
+        const pdfPanel = new PdfViewerPanel(this.extension, pdfFileUri, panel)
         this.managerService.initiatePdfViewerPanel(pdfPanel)
         return
     }
@@ -91,7 +95,7 @@ export class PdfViewerPanelService {
             retainContextWhenHidden: true
         })
         panel.webview.html = htmlContent
-        const pdfPanel = new PdfViewerPanel(pdfFileUri, panel)
+        const pdfPanel = new PdfViewerPanel(this.extension, pdfFileUri, panel)
         return pdfPanel
     }
 

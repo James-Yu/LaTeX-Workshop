@@ -23,12 +23,14 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
         })
     }
 
-    let firstTime = true
     for (let testWorkspace of testBuildWorkspaces) {
-        const nodejsTimeout = setTimeout(() => process.exit(1), firstTime ? 3*60000 : 60000)
         if (testWorkspace.includes('multiroot-ws')) {
             testWorkspace += '/resource.code-workspace'
         }
+        const nodejsTimeout = setTimeout(() => {
+            console.log('runTestsOnEachFixture: Time out')
+            process.exit(1)
+        }, process.env.CI ? 600000 : 60000)
         await runTests({
             version: '1.66.0',
             extensionDevelopmentPath,
@@ -48,7 +50,6 @@ async function runTestsOnEachFixture(targetName: 'build' | 'rootfile' | 'viewer'
             }
         })
         clearTimeout(nodejsTimeout)
-        firstTime = false
     }
 }
 

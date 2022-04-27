@@ -164,12 +164,8 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             extension.manager.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
-            extension.structureViewer.update()
             void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
-        }
-        if (e.languageId === 'bibtex') {
-            extension.structureViewer.update()
         }
     }))
 
@@ -216,12 +212,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
     context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(async (e: vscode.TextEditor | undefined) => {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        // We do not check langid of editor because the bibtex structure should
-        // reveal only when active editor is bibtex. This is done in the update
-        // function
-        // TODO: lazy loading for LaTeX structure?
-        extension.structureViewer.update()
-
         if (vscode.window.visibleTextEditors.filter(editor => extension.manager.hasTexId(editor.document.languageId)).length > 0) {
             extension.logger.status.show()
             if (configuration.get('view.autoFocus.enabled') && !isLaTeXActive) {
@@ -237,10 +227,9 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
         if (e && extension.manager.hasTexId(e.document.languageId)) {
             await extension.manager.findRoot()
             extension.linter.lintRootFileIfEnabled()
-        } else {
+        } else if (!e || !extension.manager.hasBibtexId(e.document.languageId)) {
             isLaTeXActive = false
         }
-
     }))
 
     context.subscriptions.push(vscode.window.onDidChangeTextEditorSelection((e: vscode.TextEditorSelectionChangeEvent) => {

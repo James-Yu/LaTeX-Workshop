@@ -156,6 +156,7 @@ export class Manager {
         if (cache !== undefined) {
             cache.content = document.getText()
         }
+        this.extension.eventBus.fire(eventbus.CachedContentUpdated)
     }
 
     getFilesWatched() {
@@ -307,7 +308,7 @@ export class Manager {
     /**
      * Returns `true` if the language of `id` is one of supported languages.
      *
-     * @param id The identifier of language.
+     * @param id The language identifier
      */
     hasTexId(id: string) {
         return ['tex', 'latex', 'latex-expl3', 'doctex', 'jlweave', 'rsweave'].includes(id)
@@ -316,7 +317,7 @@ export class Manager {
     /**
      * Returns `true` if the language of `id` is bibtex
      *
-     * @param id The identifier of language.
+     * @param id The language identifier
      */
     hasBibtexId(id: string) {
         return id === 'bibtex'
@@ -374,8 +375,6 @@ export class Manager {
                 // We need to parse the fls to discover file dependencies when defined by TeX macro
                 // It happens a lot with subfiles, https://tex.stackexchange.com/questions/289450/path-of-figures-in-different-directories-with-subfile-latex
                 await this.parseFlsFile(this.rootFile)
-                this.extension.structureViewer.update()
-                this.extension.latexCommanderTreeView.update()
                 this.extension.eventBus.fire(eventbus.RootFileChanged, rootFile)
             } else {
                 this.extension.logger.addLogMessage(`Keep using the same root file: ${this.rootFile}`)

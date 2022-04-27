@@ -12,7 +12,7 @@ import {
     getFixtureDir, isDockerEnabled, runTestWithFixture,
     waitGivenRootFile,
     waitLatexWorkshopActivated,
-    waitRootFileFound
+    promisify
 } from './utils/ciutils'
 
 function getCompletionItems(extension: vscode.Extension<ReturnType<typeof activate>>, doc: vscode.TextDocument, pos: vscode.Position): vscode.CompletionItem[] | undefined {
@@ -141,7 +141,7 @@ suite('Multi-root workspace test suite', () => {
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
             await waitLatexWorkshopActivated()
-            await waitRootFileFound()
+            await promisify('findrootfileend')
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })
@@ -160,7 +160,7 @@ suite('Multi-root workspace test suite', () => {
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
             await waitLatexWorkshopActivated()
-            await waitRootFileFound()
+            await promisify('findrootfileend')
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })
@@ -317,7 +317,7 @@ suite('Multi-root workspace test suite', () => {
         const docB = await vscode.workspace.openTextDocument(texFilePathB)
         await vscode.window.showTextDocument(docB)
         await waitGivenRootFile(docB.fileName)
-        await sleep(1000)
+        await sleep(10000)
         const itemsB = getCompletionItems(extension, docB, pos)
         const expectedLabelsB = [
             'art1',

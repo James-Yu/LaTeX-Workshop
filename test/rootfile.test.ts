@@ -8,7 +8,7 @@ import {
     getFixtureDir,
     runTestWithFixture,
     waitLatexWorkshopActivated,
-    waitRootFileFound
+    promisify
 } from './utils/ciutils'
 
 
@@ -27,10 +27,11 @@ suite('RootFile test suite', () => {
         const texFileName = 'abc/lmn/uvw/two.tex'
         const mainFileName = 'main.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+        const rootFileFound = promisify('findrootfileend')
         const doc = await vscode.workspace.openTextDocument(texFilePath)
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
-        await waitRootFileFound()
+        await rootFileFound
         console.log(`rootFile: ${extension.exports.realExtension?.manager.rootFile}`)
         assert.strictEqual(extension.exports.realExtension?.manager.rootFile, path.join(fixtureDir, mainFileName))
     })
@@ -41,10 +42,11 @@ suite('RootFile test suite', () => {
         const tex2FileName = 'poo.tex'
         const mainFileName = 'main.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+        const rootFileFound = promisify('findrootfileend')
         const doc = await vscode.workspace.openTextDocument(texFilePath)
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
-        await waitRootFileFound()
+        await rootFileFound
         console.log(`rootFile: ${extension.exports.realExtension?.manager.rootFile}`)
         assert.strictEqual(extension.exports.realExtension?.manager.rootFile, path.join(fixtureDir, mainFileName))
         if (extension.exports.realExtension) {

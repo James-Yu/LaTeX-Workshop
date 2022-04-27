@@ -307,9 +307,9 @@ export class Commander {
         void vscode.workspace.openTextDocument(filePath).then((doc) => {
             void vscode.window.showTextDocument(doc).then(() => {
                 // input lineNumber is one-based, while editor position is zero-based.
-                void vscode.commands.executeCommand('revealLine', {lineNumber: lineNumber-1, at: 'center'})
+                void vscode.commands.executeCommand('revealLine', {lineNumber, at: 'center'})
                 if (activeEditor) {
-                    activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber-1, 0), new vscode.Position(lineNumber-1, 0))
+                    activeEditor.selection = new vscode.Selection(new vscode.Position(lineNumber, 0), new vscode.Position(lineNumber, 0))
                 }
             })
         })
@@ -429,48 +429,45 @@ export class Commander {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
         }
 
-        const cursorPos = editor.selection.active
-        const line = editor.document.lineAt(cursorPos.line)
 
-        // if the cursor is not followed by only spaces/eol, insert a plain newline
-        if (line.text.substring(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
-            return editor.edit(() =>
-                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            )
-        }
+        void editor.edit(editBuilder => {
+            for (const selection of editor.selections) {
+                const cursorPos = selection.active
+                const line = editor.document.lineAt(cursorPos.line)
 
-        // if the line only consists of \item or \item[], delete its content
-        if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
-            const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
+                // if the cursor is not followed by only spaces/eol, insert a plain newline
+                if (line.text.substring(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
+                    editBuilder.insert(cursorPos, '\n')
+                    continue
+                }
 
-            return editor.edit(editBuilder => {
-                editBuilder.delete(rangeToDelete)
-            })
-        }
+                // if the line only consists of \item or \item[], delete its content
+                if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
+                    const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
+                    editBuilder.delete(rangeToDelete)
+                    continue
+                }
 
-        const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
-        if (matches) {
-            let itemString = ''
-            let newCursorPos: vscode.Position
-            // leading indent
-            if (matches[1]) {
-                itemString += matches[1]
+                const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
+                if (matches) {
+                    let itemString = ''
+                    // leading indent
+                    if (matches[1]) {
+                        itemString += matches[1]
+                    }
+                    // is there an optional parameter to \item
+                    if (matches[2]) {
+                        itemString += '\\item[] '
+                    } else {
+                        itemString += '\\item '
+                    }
+                    editBuilder.insert(cursorPos, '\n' + itemString)
+                    continue
+                }
+                editBuilder.insert(cursorPos, '\n')
             }
-            // is there an optional paramter to \item
-            if (matches[2]) {
-                itemString += '\\item[] '
-                newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length - 2)
-            } else {
-                itemString += '\\item '
-                newCursorPos = cursorPos.with(line.lineNumber + 1, itemString.length)
-            }
-            return editor.edit(editBuilder => { editBuilder.insert(cursorPos, '\n' + itemString) })
-                         .then(() => { editor.selection = new vscode.Selection(newCursorPos, newCursorPos) })
-                         .then(() => { editor.revealRange(editor.selection) })
-        }
-        return editor.edit(() =>
-            vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-        )
+        })
+        return
     }
 
     /**

@@ -12,10 +12,9 @@ import {
     isDockerEnabled,
     runTestWithFixture,
     waitLatexWorkshopActivated,
-    waitRootFileFound
+    promisify
 } from './utils/ciutils'
 import {sleep} from '../src/utils/utils'
-
 
 suite('Build TeX files test suite', () => {
 
@@ -268,11 +267,11 @@ suite('Build TeX files test suite', () => {
         const pdfFileName = 's.pdf'
         const pdfFilePath = path.join(fixtureDir, 'sub', pdfFileName)
         await assertPdfIsGenerated(pdfFilePath, async () => {
+            const rootFileFound = promisify('findrootfileend')
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await waitLatexWorkshopActivated()
-            await waitRootFileFound()
+            await rootFileFound
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })
@@ -286,10 +285,11 @@ suite('Build TeX files test suite', () => {
         const pdfFileName = 'main.pdf'
         const pdfFilePath = path.join(fixtureDir, pdfFileName)
         await assertPdfIsGenerated(pdfFilePath, async () => {
+            const rootFileFound = promisify('findrootfileend')
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await waitRootFileFound()
+            await rootFileFound
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(1, 0), ' ')
             })
@@ -303,11 +303,11 @@ suite('Build TeX files test suite', () => {
         const pdfFileName = 'main.pdf'
         const pdfFilePath = path.join(fixtureDir, pdfFileName)
         await assertPdfIsGenerated(pdfFilePath, async () => {
+            const rootFileFound = promisify('findrootfileend')
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await waitLatexWorkshopActivated()
-            await waitRootFileFound()
+            await rootFileFound
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })
@@ -437,11 +437,11 @@ suite('Build TeX files test suite', () => {
         const pdfFileName = 's.pdf'
         const pdfFilePath = path.join(fixtureDir, 'sub', pdfFileName)
         await assertPdfIsGenerated(pdfFilePath, async () => {
+            const rootFileFound = promisify('findrootfileend')
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await waitLatexWorkshopActivated()
-            await waitRootFileFound()
+            await rootFileFound
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })
@@ -455,11 +455,11 @@ suite('Build TeX files test suite', () => {
         const pdfFileName = 'main.pdf'
         const pdfFilePath = path.join(fixtureDir, pdfFileName)
         await assertPdfIsGenerated(pdfFilePath, async () => {
+            const rootFileFound = promisify('findrootfileend')
             const texFilePath = vscode.Uri.file(path.join(fixtureDir, 'sub', texFileName))
             const doc = await vscode.workspace.openTextDocument(texFilePath)
             const editor = await vscode.window.showTextDocument(doc)
-            await waitLatexWorkshopActivated()
-            await waitRootFileFound()
+            await rootFileFound
             await editor.edit((builder) => {
                 builder.insert(new vscode.Position(2, 0), ' ')
             })

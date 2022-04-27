@@ -5,7 +5,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as glob from 'glob'
 
-import { runTestWithFixture } from '../utils/ciutils'
+import { runUnitTestWithFixture } from '../utils/ciutils'
 import { getExtensionDevelopmentPath } from '../utils/runnerutils'
 
 type EnvType = {
@@ -42,12 +42,12 @@ suite('unit test suite', () => {
         return
     })
 
-    runTestWithFixture('fixture001', 'test runnerutils', () => {
+    runUnitTestWithFixture('fixture001', 'test runnerutils', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         assert.ok(fs.existsSync(path.join(extensionRoot, 'package.json')))
     })
 
-    runTestWithFixture('fixture001', 'check default environment .json completion file', () => {
+    runUnitTestWithFixture('fixture001', 'check default environment .json completion file', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         const file = `${extensionRoot}/data/environments.json`
         const envs = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: EnvType}
@@ -62,7 +62,7 @@ suite('unit test suite', () => {
         })
     })
 
-    runTestWithFixture('fixture001', 'check environments from package .json completion files', () => {
+    runUnitTestWithFixture('fixture001', 'check environments from package .json completion files', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         const files = glob.sync('data/packages/*_env.json', {cwd: extensionRoot})
         files.forEach(file => {
@@ -79,7 +79,7 @@ suite('unit test suite', () => {
         })
     })
 
-    runTestWithFixture('fixture001', 'check default commands .json completion file', () => {
+    runUnitTestWithFixture('fixture001', 'check default commands .json completion file', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         const file = `${extensionRoot}/data/commands.json`
         const cmds = JSON.parse(fs.readFileSync(file, {encoding: 'utf8'})) as {[key: string]: CmdType}
@@ -94,7 +94,7 @@ suite('unit test suite', () => {
         })
     })
 
-    runTestWithFixture('fixture001', 'check commands from package .json completion files', () => {
+    runUnitTestWithFixture('fixture001', 'check commands from package .json completion files', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         const files = glob.sync('data/packages/*_cmd.json', {cwd: extensionRoot})
         files.forEach(file => {

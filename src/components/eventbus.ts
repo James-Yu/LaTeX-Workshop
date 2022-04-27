@@ -7,7 +7,7 @@ export const PdfViewerPagesLoaded = 'pdfviewerpagesloaded'
 export const PdfViewerStatusChanged = 'pdfviewerstatuschanged'
 export const RootFileChanged = 'rootfilechanged'
 export const FindRootFileEnd = 'findrootfileend'
-export const SyncTexForwardEnd = 'synctexforwardend'
+export const CachedContentUpdated = 'cachedcontentupdated'
 
 type EventArgTypeMap = {
     [PdfViewerStatusChanged]: PdfViewerState,
@@ -19,7 +19,7 @@ export type EventName = typeof BuildFinished
                     | typeof PdfViewerStatusChanged
                     | typeof RootFileChanged
                     | typeof FindRootFileEnd
-                    | typeof SyncTexForwardEnd
+                    | typeof CachedContentUpdated
 
 export class EventBus {
     private readonly eventEmitter = new EventEmitter()
@@ -42,6 +42,10 @@ export class EventBus {
         return this.registerListener('findrootfileend', cb)
     }
 
+    onDidUpdateCachedContent(cb: () => void): Disposable {
+        return this.registerListener('cachedcontentupdated', cb)
+    }
+
     onDidChangePdfViewerStatus(cb: (status: EventArgTypeMap['pdfviewerstatuschanged']) => void): Disposable {
         return this.registerListener('pdfviewerstatuschanged', cb)
     }
@@ -59,6 +63,15 @@ export class EventBus {
         cb: (arg?: any) => void
     ): Disposable
      {
+        this.eventEmitter.on(eventName, cb)
+        const disposable = {
+            dispose: () => { this.eventEmitter.removeListener(eventName, cb) }
+        }
+        return disposable
+    }
+
+    on(eventName: EventName, argCb: () => void) {
+        const cb = () => argCb()
         this.eventEmitter.on(eventName, cb)
         const disposable = {
             dispose: () => { this.eventEmitter.removeListener(eventName, cb) }
