@@ -11,18 +11,18 @@ import {SurroundCommand} from './commandlib/surround'
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
 export interface CmdItemEntry {
-    command: string, // frame
+    readonly command: string, // frame
     snippet?: string,
-    package?: string,
-    label?: string, // \\begin{frame} ... \\end{frame}
-    detail?: string,
-    documentation?: string,
-    postAction?: string
+    readonly package?: string,
+    readonly label?: string, // \\begin{frame} ... \\end{frame}
+    readonly detail?: string,
+    readonly documentation?: string,
+    readonly postAction?: string
 }
 
 export interface CmdSignature {
-    name: string, // name without leading `\`
-    args: string // {} for mandatory args and [] for optional args
+    readonly name: string, // name without leading `\`
+    readonly args: string // {} for mandatory args and [] for optional args
 }
 
 function isCmdItemEntry(obj: any): obj is CmdItemEntry {
