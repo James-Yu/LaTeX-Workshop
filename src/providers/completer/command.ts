@@ -63,7 +63,7 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
      * Return the signature, ie the name + {} for mandatory arguments + [] for optional arguments.
      * The leading backward slash is not part of the signature
      */
-    cmdSignatureAsString(): string {
+    signatureAsString(): string {
         return this.signature.name + this.signature.args
     }
 
@@ -71,11 +71,11 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
      * Return the name without the arguments
      * The leading backward slash is not part of the signature
      */
-    cmdName(): string {
+    name(): string {
         return this.signature.name
     }
 
-    cmdHasOptionalArgs(): boolean {
+    hasOptionalArgs(): boolean {
         return this.signature.args.includes('[')
     }
 }
@@ -149,12 +149,12 @@ export class Command implements IProvider {
         const cmdSignatureList: Set<string> = new Set<string>() // This holds defined commands signatures
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
-            if (!useOptionalArgsEntries && cmd.cmdHasOptionalArgs()) {
+            if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdSignatureList.add(cmd.cmdSignatureAsString())
+            cmdSignatureList.add(cmd.signatureAsString())
         })
 
         // Insert unimathsymbols
@@ -167,7 +167,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdSignatureList.add(symbol.cmdName())
+                cmdSignatureList.add(symbol.name())
             })
         }
 
@@ -198,10 +198,10 @@ export class Command implements IProvider {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdNameList.has(cmd.cmdName())) {
+                    if (!cmdNameList.has(cmd.name())) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdNameList.add(cmd.cmdName())
+                        cmdNameList.add(cmd.name())
                     }
                 })
             }
@@ -413,12 +413,12 @@ export class Command implements IProvider {
 
         // Insert commands
         pkgEntry.forEach(cmd => {
-            if (!useOptionalArgsEntries && cmd.cmdHasOptionalArgs()) {
+            if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(cmd.cmdSignatureAsString())) {
+            if (!cmdSignatureList.has(cmd.signatureAsString())) {
                 suggestions.push(cmd)
-                cmdSignatureList.add(cmd.cmdSignatureAsString())
+                cmdSignatureList.add(cmd.signatureAsString())
             }
         })
     }

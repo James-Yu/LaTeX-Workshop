@@ -5,8 +5,7 @@ import {latexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
-import {Suggestion} from './command'
-import {splitSignatureString} from './command'
+import {Suggestion, splitSignatureString} from './command'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
@@ -176,12 +175,12 @@ export class Environment implements IProvider {
 
         // Insert env snippets
         entry.forEach(env => {
-            if (!useOptionalArgsEntries && env.cmdHasOptionalArgs()) {
+            if (!useOptionalArgsEntries && env.hasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(env.cmdSignatureAsString())) {
+            if (!cmdSignatureList.has(env.signatureAsString())) {
                 suggestions.push(env)
-                cmdSignatureList.add(env.cmdSignatureAsString())
+                cmdSignatureList.add(env.signatureAsString())
             }
         })
     }
