@@ -46,6 +46,10 @@ export class Environment implements IProvider {
         })
     }
 
+    /**
+     * This function is called by Command.initialize with type=EnvSnippetType.AsCommand
+     * to build a `\envname` command for every default environment.
+     */
     getDefaultEnvs(type: EnvSnippetType): Suggestion[] {
         switch (type) {
             case EnvSnippetType.AsName:
@@ -149,6 +153,10 @@ export class Environment implements IProvider {
         return suggestions
     }
 
+    /**
+     * Environments can be inserted using `\envname`.
+     * This function is called by Command.provide to compute these commands for every package in use.
+     */
     provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdSignatureList: Set<string>) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
