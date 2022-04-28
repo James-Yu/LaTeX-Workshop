@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import type {Suggestion} from '../command'
+import {Suggestion} from '../command'
 import type {Extension} from '../../../main'
 import type {ILwCompletionItem} from '../interface'
 
@@ -56,18 +56,10 @@ export class CommandFinder {
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
             if (!cmdNameList.has(name)) {
-                const cmd: Suggestion = {
-                    label: `\\${name}`,
-                    kind: vscode.CompletionItemKind.Function,
-                    documentation: '`' + name + '`',
-                    insertText: new vscode.SnippetString(name + this.getTabStopsFromNode(node)),
-                    filterText: name,
-                    package: '',
-                    signature: {
-                        name,
-                        args: this.getArgsFromNode(node)
-                    }
-                }
+                const cmd = new Suggestion(`\\${name}`, '', {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
+                cmd.documentation = '`' + name + '`'
+                cmd.insertText = new vscode.SnippetString(name + this.getTabStopsFromNode(node))
+                cmd.filterText = name
                 if (isTriggerSuggestNeeded(name)) {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
@@ -76,19 +68,14 @@ export class CommandFinder {
             }
         } else if (latexParser.isCommand(node)) {
             if (!cmdNameList.has(node.name)) {
-                const cmd: Suggestion = {
-                    label: `\\${node.name}`,
-                    kind: vscode.CompletionItemKind.Function,
-                    documentation: '`' + node.name + '`',
-                    insertText: new vscode.SnippetString(node.name + this.getTabStopsFromNode(node)),
-                    filterText: node.name,
-                    package: this.whichPackageProvidesCommand(node.name),
-                    signature: {
-                        name: node.name,
-                        args: this.getArgsFromNode(node)
-                    }
+                const cmd = new Suggestion(`\\${node.name}`,
+                    this.whichPackageProvidesCommand(node.name),
+                    { name: node.name, args: this.getArgsFromNode(node) },
+                    vscode.CompletionItemKind.Function
+                )
 
-                }
+                cmd.documentation = '`' + node.name + '`'
+                cmd.insertText = new vscode.SnippetString(node.name + this.getTabStopsFromNode(node))
                 if (isTriggerSuggestNeeded(node.name)) {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
@@ -108,19 +95,10 @@ export class CommandFinder {
                     }
                 }
                 if (!cmdNameList.has(label)) {
-                    const cmd: Suggestion = {
-                        label: `\\${label}`,
-                        kind: vscode.CompletionItemKind.Function,
-                        documentation: '`' + label + '`',
-                        insertText: new vscode.SnippetString(label + tabStops),
-                        filterText: label,
-                        package: 'user-defined',
-                        signature: {
-                            name: label,
-                            args
-                        }
-
-                    }
+                    const cmd = new Suggestion(`\\${label}`, 'user-defined', {name: label, args}, vscode.CompletionItemKind.Function)
+                    cmd.documentation = '`' + label + '`'
+                    cmd.insertText = new vscode.SnippetString(label + tabStops)
+                    cmd.filterText = label
                     if (isTriggerSuggestNeeded(label)) {
                         cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                     }
@@ -207,18 +185,15 @@ export class CommandFinder {
             if (cmdNameList.has(result[1])) {
                 continue
             }
-            const cmd: Suggestion = {
-                label: `\\${result[1]}`,
-                kind: vscode.CompletionItemKind.Function,
-                documentation: '`' + result[1] + '`',
-                insertText: new vscode.SnippetString(result[1] + this.getTabStopsFromRegResult(result)),
-                filterText: result[1],
-                package: this.whichPackageProvidesCommand(result[1]),
-                signature: {
-                    name: result[1],
-                    args: this.getArgsFromRegResult(result)
-                }
-            }
+            const cmd = new Suggestion(
+                `\\${result[1]}`,
+                this.whichPackageProvidesCommand(result[1]),
+                { name: result[1], args: this.getArgsFromRegResult(result) },
+                vscode.CompletionItemKind.Function
+            )
+            cmd.documentation = '`' + result[1] + '`'
+            cmd.insertText = new vscode.SnippetString(result[1] + this.getTabStopsFromRegResult(result))
+            cmd.filterText = result[1]
             if (isTriggerSuggestNeeded(result[1])) {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
@@ -246,18 +221,10 @@ export class CommandFinder {
                 }
             }
 
-            const cmd: Suggestion = {
-                label: `\\${result[1]}`,
-                kind: vscode.CompletionItemKind.Function,
-                documentation: '`' + result[1] + '`',
-                insertText: new vscode.SnippetString(result[1] + tabStops),
-                filterText: result[1],
-                package: 'user-defined',
-                signature: {
-                    name: result[1],
-                    args
-                }
-            }
+            const cmd = new Suggestion(`\\${result[1]}`, 'user-defined', {name: result[1], args}, vscode.CompletionItemKind.Function)
+            cmd.documentation = '`' + result[1] + '`'
+            cmd.insertText = new vscode.SnippetString(result[1] + tabStops)
+            cmd.filterText = result[1]
             cmds.push(cmd)
             cmdNameList.add(result[1])
 
