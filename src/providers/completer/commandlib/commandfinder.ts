@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import {Suggestion} from '../command'
+import {Suggestion, CommandDuplicationDetector} from '../command'
 import type {Extension} from '../../../main'
 import type {ILwCompletionItem} from '../interface'
 
@@ -273,7 +273,7 @@ export class CommandFinder {
                 }
                 for (const pkg of cachedPkgs) {
                     const commands: ILwCompletionItem[] = []
-                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new Set<string>())
+                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new CommandDuplicationDetector())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)
                         if (label.startsWith(cmdName) &&

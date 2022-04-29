@@ -80,6 +80,17 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
     }
 }
 
+export class CommandDuplicationDetector {
+    private readonly cmdSignatureList: Set<string> = new Set<string>()
+
+    add(cmd: Suggestion) {
+        this.cmdSignatureList.add(cmd.signatureAsString())
+    }
+
+    has(cmd: Suggestion) {
+        return this.cmdSignatureList.has(cmd.signatureAsString())
+    }
+ }
 
 export class Command implements IProvider {
     private readonly extension: Extension
@@ -146,7 +157,7 @@ export class Command implements IProvider {
             }
         }
         const suggestions: Suggestion[] = []
-        const cmdSignatureList: Set<string> = new Set<string>() // This holds defined commands signatures
+        const cmdDuplicationDetector = new CommandDuplicationDetector()
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
@@ -154,7 +165,7 @@ export class Command implements IProvider {
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdSignatureList.add(cmd.signatureAsString())
+            cmdDuplicationDetector.add(cmd)
         })
 
         // Insert unimathsymbols
@@ -167,7 +178,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdSignatureList.add(symbol.name())
+                cmdDuplicationDetector.add(symbol)
             })
         }
 
@@ -176,16 +187,16 @@ export class Command implements IProvider {
             const extraPackages = this.extension.completer.command.getExtraPkgs(languageId)
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
-                    this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
-                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
+                    this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
+                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
                 const pkgs = this.extension.manager.getCachedContent(tex)?.element.package
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
-                        this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
-                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
+                        this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
+                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
                     })
                 }
             })
@@ -193,7 +204,7 @@ export class Command implements IProvider {
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
-        const cmdNameList = new Set<string>(suggestions.map(e => e.signature.name))
+        const cmdNameList = new Set<string>(suggestions.map(e => e.name()))
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
@@ -380,7 +391,7 @@ export class Command implements IProvider {
         return suggestion
     }
 
-    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdSignatureList: Set<string>) {
+    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
@@ -416,9 +427,9 @@ export class Command implements IProvider {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(cmd.signatureAsString())) {
+            if (!cmdDuplicationDetector.has(cmd)) {
                 suggestions.push(cmd)
-                cmdSignatureList.add(cmd.signatureAsString())
+                cmdDuplicationDetector.add(cmd)
             }
         })
     }
