@@ -248,7 +248,7 @@ export class Builder {
                 this.extension.logger.clearCompilerMessage()
             }
         }
-        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}`)
+        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ` ${this.progressString(recipeName, steps, index)}: ${path.basename(rootFile)}`)
         this.extension.logger.logCommand(`Recipe step ${index + 1}`, steps[index].command, steps[index].args)
         this.extension.logger.addLogMessage(`Recipe step env: ${JSON.stringify(steps[index].env)}`)
         const envVars = Object.create(null) as ProcessEnv
