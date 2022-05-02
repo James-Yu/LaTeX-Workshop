@@ -11,46 +11,22 @@ import {SurroundCommand} from './commandlib/surround'
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
 export interface CmdItemEntry {
-    command: string, // frame
+    readonly command: string, // frame
     snippet?: string,
-    package?: string,
-    label?: string, // \\begin{frame} ... \\end{frame}
-    detail?: string,
-    documentation?: string,
-    postAction?: string
+    readonly package?: string,
+    readonly label?: string, // \\begin{frame} ... \\end{frame}
+    readonly detail?: string,
+    readonly documentation?: string,
+    readonly postAction?: string
 }
 
 export interface CmdSignature {
-    name: string,
-    args: string
+    readonly name: string, // name without leading `\`
+    readonly args: string // {} for mandatory args and [] for optional args
 }
 
 function isCmdItemEntry(obj: any): obj is CmdItemEntry {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
-}
-
-/**
- * Returns the signature of `item`, ie the name + {} for mandatory arguments + [] for optional arguments.
- * The backward slash, `\`, is removed.
- *
- * @param item A completion item.
- */
-export function getCmdSignature(item: Suggestion): string {
-    return item.signature.name + item.signature.args
-}
-
-/**
- * Returns the name of `item` without the arguments
- * The backward slash, `\`, is removed.
- *
- * @param item A completion item.
- */
-export function getCmdName(item: Suggestion): string {
-    return item.signature.name
-}
-
-export function cmdHasOptionalArgs(cmd: Suggestion): boolean {
-    return cmd.signature.args.includes('[')
 }
 
 /**
@@ -71,9 +47,37 @@ export function splitSignatureString(signature: string): CmdSignature {
     }
 }
 
-export interface Suggestion extends ILwCompletionItem {
-    package: string,
+export class Suggestion extends vscode.CompletionItem implements ILwCompletionItem {
+    label: string
+    package: string
     signature: CmdSignature
+
+    constructor(label: string, pkg: string, signature: CmdSignature, kind: vscode.CompletionItemKind) {
+        super(label, kind)
+        this.label = label
+        this.package = pkg
+        this.signature = signature
+    }
+
+    /**
+     * Return the signature, ie the name + {} for mandatory arguments + [] for optional arguments.
+     * The leading backward slash is not part of the signature
+     */
+    signatureAsString(): string {
+        return this.signature.name + this.signature.args
+    }
+
+    /**
+     * Return the name without the arguments
+     * The leading backward slash is not part of the signature
+     */
+    name(): string {
+        return this.signature.name
+    }
+
+    hasOptionalArgs(): boolean {
+        return this.signature.args.includes('[')
+    }
 }
 
 
@@ -145,12 +149,12 @@ export class Command implements IProvider {
         const cmdSignatureList: Set<string> = new Set<string>() // This holds defined commands signatures
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
-            if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
+            if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdSignatureList.add(getCmdSignature(cmd))
+            cmdSignatureList.add(cmd.signatureAsString())
         })
 
         // Insert unimathsymbols
@@ -163,7 +167,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdSignatureList.add(getCmdName(symbol))
+                cmdSignatureList.add(symbol.name())
             })
         }
 
@@ -194,10 +198,10 @@ export class Command implements IProvider {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdNameList.has(getCmdName(cmd))) {
+                    if (!cmdNameList.has(cmd.name())) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdNameList.add(getCmdName(cmd))
+                        cmdNameList.add(cmd.name())
                     }
                 })
             }
@@ -346,12 +350,7 @@ export class Command implements IProvider {
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
         const label = item.label ? `${item.label}` : `${backslash}${item.command}`
-        const suggestion: Suggestion = {
-            label,
-            kind: vscode.CompletionItemKind.Function,
-            package: 'latex',
-            signature: splitSignatureString(itemKey)
-        }
+        const suggestion = new Suggestion(label, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
 
         if (item.snippet) {
             if (useTabStops) {
@@ -414,12 +413,12 @@ export class Command implements IProvider {
 
         // Insert commands
         pkgEntry.forEach(cmd => {
-            if (!useOptionalArgsEntries && cmdHasOptionalArgs(cmd)) {
+            if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(getCmdSignature(cmd))) {
+            if (!cmdSignatureList.has(cmd.signatureAsString())) {
                 suggestions.push(cmd)
-                cmdSignatureList.add(getCmdSignature(cmd))
+                cmdSignatureList.add(cmd.signatureAsString())
             }
         })
     }
