@@ -421,33 +421,35 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('bind.enter.key')) {
-            return editor.edit(() =>
-                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            )
+            return vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
         }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
         }
 
+        // Test if every cursor is at the end of a line starting with \item
+        const allCursorsOnItem = editor.selections.every((selection: vscode.Selection) => {
+                const cursorPos = selection.active
+                const line = editor.document.lineAt(cursorPos.line)
+                return /^\s*\\item/.test(line.text) && (line.text.substring(cursorPos.character).trim().length === 0)
+        })
+        if (!allCursorsOnItem) {
+            return vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+        }
 
         void editor.edit(editBuilder => {
             for (const selection of editor.selections) {
                 const cursorPos = selection.active
                 const line = editor.document.lineAt(cursorPos.line)
 
-                // if the cursor is not followed by only spaces/eol, insert a plain newline
-                if (line.text.substring(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
-                    editBuilder.insert(cursorPos, '\n')
-                    continue
-                }
-
-                // if the line only consists of \item or \item[], delete its content
+                // The line only consists of \item or \item[], delete its content
                 if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
                     const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
                     editBuilder.delete(rangeToDelete)
                     continue
                 }
 
+                // The line starts with \item and has more text
                 const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
                 if (matches) {
                     let itemString = ''
@@ -464,7 +466,6 @@ export class Commander {
                     editBuilder.insert(cursorPos, '\n' + itemString)
                     continue
                 }
-                editBuilder.insert(cursorPos, '\n')
             }
         })
         return
