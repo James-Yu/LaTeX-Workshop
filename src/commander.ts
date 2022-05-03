@@ -438,33 +438,27 @@ export class Commander {
         }
 
         void editor.edit(editBuilder => {
+            // If we arrive here, all the cursors are at the end of a line starting with `\s*\\item`.
+            // Yet, we keep the conditions for the sake of maintenance.
             for (const selection of editor.selections) {
                 const cursorPos = selection.active
                 const line = editor.document.lineAt(cursorPos.line)
+                let matches: RegExpExecArray | null
 
-                // The line only consists of \item or \item[], delete its content
                 if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
+                    // The line is an empty \item or \item[]
                     const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
                     editBuilder.delete(rangeToDelete)
-                    continue
-                }
-
-                // The line starts with \item and has more text
-                const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
-                if (matches) {
-                    let itemString = ''
-                    // leading indent
-                    if (matches[1]) {
-                        itemString += matches[1]
-                    }
+                } else if((matches = /^\s*\\item(\[[^[\]]*\])?\s*[^\s]+$/.exec(line.text)) !== null) {
+                    // The line starts with \item and has more text
+                    let itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex)
                     // is there an optional parameter to \item
-                    if (matches[2]) {
+                    if (matches[1]) {
                         itemString += '\\item[] '
                     } else {
                         itemString += '\\item '
                     }
                     editBuilder.insert(cursorPos, '\n' + itemString)
-                    continue
                 }
             }
         })
