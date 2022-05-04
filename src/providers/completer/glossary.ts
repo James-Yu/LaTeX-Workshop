@@ -123,8 +123,8 @@ export class Glossary implements IProvider {
             description = arr.join(' ')
         }
 
-        if (latexParser.isGroup(labelNode) && latexParser.isTextString(labelNode.content[0])) {
-            label = latexParser.stringify(labelNode.content[0])
+        if (latexParser.isGroup(labelNode)) {
+            label = latexParser.stringify(labelNode).slice(1, -1)
         }
 
         return {label, description}
