@@ -443,22 +443,22 @@ export class Commander {
             for (const selection of editor.selections) {
                 const cursorPos = selection.active
                 const line = editor.document.lineAt(cursorPos.line)
-                let matches: RegExpExecArray | null
 
-                if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
+                if (/^\s*\\item(\[\s*\])?\s*$/.test(line.text)) {
                     // The line is an empty \item or \item[]
                     const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
                     editBuilder.delete(rangeToDelete)
-                } else if((matches = /^\s*\\item(\[[^[\]]*\])?\s*[^\s]+$/.exec(line.text)) !== null) {
-                    // The line starts with \item and has more text
-                    let itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex)
-                    // is there an optional parameter to \item
-                    if (matches[1]) {
-                        itemString += '\\item[] '
-                    } else {
-                        itemString += '\\item '
-                    }
+                } else if(/^\s*\\item\[[^[\]]*\]/.test(line.text)) {
+                    // The line starts with \item[blabla] or \item[] blabla
+                    const itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex) + '\\item[] '
                     editBuilder.insert(cursorPos, '\n' + itemString)
+                } else if(/^\s*\\item\s*[^\s]+.*$/.test(line.text)) {
+                    // The line starts with \item blabla
+                    const itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex) + '\\item '
+                    editBuilder.insert(cursorPos, '\n' + itemString)
+                } else {
+                    // If we do not know what to do, insert a newline and indent using the current indentation
+                    editBuilder.insert(cursorPos, '\n' + ' '.repeat(line.firstNonWhitespaceCharacterIndex))
                 }
             }
         })
