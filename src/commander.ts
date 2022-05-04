@@ -437,7 +437,7 @@ export class Commander {
             return vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
         }
 
-        void editor.edit(editBuilder => {
+        return editor.edit(editBuilder => {
             // If we arrive here, all the cursors are at the end of a line starting with `\s*\\item`.
             // Yet, we keep the conditions for the sake of maintenance.
             for (const selection of editor.selections) {
@@ -462,7 +462,6 @@ export class Commander {
                 }
             }
         })
-        return
     }
 
     /**
