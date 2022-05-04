@@ -145,38 +145,34 @@ export class Glossary implements IProvider {
      * @returns the value of the description field
      */
     private getShortNodeDescription(node: latexParser.Command): GlossaryEntry {
-        const arr: string[] = []
         let result: RegExpExecArray | null
         let description: string | undefined = undefined
         let label: string | undefined = undefined
         let lastNodeWasDescription = false
 
+        // Get label
+        if (latexParser.isGroup(node.args[0])) {
+            label = latexParser.stringify(node.args[0]).slice(1, -1)
+        }
+
+        // Get description
         if (latexParser.isGroup(node.args[1])) {
-            node.args[1].content.forEach(subNode => {
+            for (const subNode of node.args[1].content) {
                 if (latexParser.isTextString(subNode)) {
-                    // check if we have a description of the form description=single_word
+                    // Description is of the form description=single_word
                     if ((result = /description=(.*)/.exec(subNode.content)) !== null) {
-                        arr.push(result[1]) // possibly undefined
+                        if (result[1] !== '') {
+                            description = result[1]
+                            break
+                        }
                         lastNodeWasDescription = true
                     }
-                    // otherwise we might have description={group of words}
                 } else if (lastNodeWasDescription && latexParser.isGroup(subNode)) {
-                    subNode.content.forEach(subSubNode => {
-                        if (latexParser.isTextString(subSubNode)) {
-                            arr.push(latexParser.stringify(subSubNode))
-                        }
-                    })
-                    lastNodeWasDescription = false
+                    // otherwise we have description={group of words}
+                    description = latexParser.stringify(subNode).slice(1, -1)
+                    break
                 }
-            })
-        }
-
-        if (arr.length > 0) {
-            description = arr.join(' ')
-        }
-
-        if (latexParser.isGroup(node.args[0]) && latexParser.isTextString(node.args[0].content[0])) {
-            label = latexParser.stringify(node.args[0].content[0])
+            }
         }
 
         return {label, description}
