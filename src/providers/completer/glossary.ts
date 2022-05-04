@@ -104,7 +104,6 @@ export class Glossary implements IProvider {
      * @return the pair (label, description)
      */
     private getLongNodeLabelDescription(node: latexParser.Command): GlossaryEntry {
-        const arr: string[] = []
         let description: string | undefined = undefined
         let label: string | undefined = undefined
 
@@ -112,15 +111,7 @@ export class Glossary implements IProvider {
         const labelNode = hasOptionalArg ? node.args[1] : node.args[0]
         const descriptionNode = hasOptionalArg ? node.args[3] : node.args[2]
         if (latexParser.isGroup(descriptionNode)) {
-            descriptionNode.content.forEach(subNode => {
-                if (latexParser.isTextString(subNode)) {
-                    arr.push(latexParser.stringify(subNode))
-                }
-            })
-        }
-
-        if (arr.length > 0) {
-            description = arr.join(' ')
+            description = latexParser.stringify(descriptionNode).slice(1, -1)
         }
 
         if (latexParser.isGroup(labelNode)) {
