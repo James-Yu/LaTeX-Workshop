@@ -108,13 +108,13 @@ export class Glossary implements IProvider {
         let description: string | undefined = undefined
         let label: string | undefined = undefined
 
-        const hasOptionalArg: boolean = node.args[0].kind === 'arg.optional'
+        const hasOptionalArg: boolean = latexParser.isOptionalArg(node.args[0])
         const labelNode = hasOptionalArg ? node.args[1] : node.args[0]
         const descriptionNode = hasOptionalArg ? node.args[3] : node.args[2]
-        if (descriptionNode?.kind === 'arg.group') {
+        if (latexParser.isGroup(descriptionNode)) {
             descriptionNode.content.forEach(subNode => {
-                if (subNode.kind === 'text.string') {
-                    arr.push(subNode.content)
+                if (latexParser.isTextString(subNode)) {
+                    arr.push(latexParser.stringify(subNode))
                 }
             })
         }
@@ -123,8 +123,8 @@ export class Glossary implements IProvider {
             description = arr.join(' ')
         }
 
-        if (labelNode.kind === 'arg.group' && labelNode.content[0].kind === 'text.string') {
-            label = labelNode.content[0].content
+        if (latexParser.isGroup(labelNode) && latexParser.isTextString(labelNode.content[0])) {
+            label = latexParser.stringify(labelNode.content[0])
         }
 
         return {label, description}
@@ -151,19 +151,19 @@ export class Glossary implements IProvider {
         let label: string | undefined = undefined
         let lastNodeWasDescription = false
 
-        if (node.args[1]?.kind === 'arg.group') {
+        if (latexParser.isGroup(node.args[1])) {
             node.args[1].content.forEach(subNode => {
-                if (subNode.kind === 'text.string') {
+                if (latexParser.isTextString(subNode)) {
                     // check if we have a description of the form description=single_word
                     if ((result = /description=(.*)/.exec(subNode.content)) !== null) {
                         arr.push(result[1]) // possibly undefined
                         lastNodeWasDescription = true
                     }
                     // otherwise we might have description={group of words}
-                } else if (lastNodeWasDescription && subNode.kind === 'arg.group') {
+                } else if (lastNodeWasDescription && latexParser.isGroup(subNode)) {
                     subNode.content.forEach(subSubNode => {
-                        if (subSubNode.kind === 'text.string') {
-                            arr.push(subSubNode.content)
+                        if (latexParser.isTextString(subSubNode)) {
+                            arr.push(latexParser.stringify(subSubNode))
                         }
                     })
                     lastNodeWasDescription = false
@@ -175,8 +175,8 @@ export class Glossary implements IProvider {
             description = arr.join(' ')
         }
 
-        if (node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-            label = node.args[0].content[0].content
+        if (latexParser.isGroup(node.args[0]) && latexParser.isTextString(node.args[0].content[0])) {
+            label = latexParser.stringify(node.args[0].content[0])
         }
 
         return {label, description}

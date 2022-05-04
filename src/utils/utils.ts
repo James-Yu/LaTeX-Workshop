@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 
-import type {latexParser} from 'latex-utensils'
+import {latexParser} from 'latex-utensils'
 
 
 export function sleep(ms: number) {
@@ -246,7 +246,7 @@ export type NewCommand = {
 
 export function isNewCommand(node: latexParser.Node | undefined): node is NewCommand {
     const regex = /^(renewcommand|newcommand|providecommand|DeclareMathOperator)(\*)?$/
-    if (!!node && node.kind === 'command' && node.name.match(regex)) {
+    if (latexParser.isCommand(node) && node.name.match(regex)) {
         return true
     }
     return false
