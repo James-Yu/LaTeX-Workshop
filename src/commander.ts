@@ -421,53 +421,47 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('bind.enter.key')) {
-            return editor.edit(() =>
-                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            )
+            return vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
         }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
         }
 
+        // Test if every cursor is at the end of a line starting with \item
+        const allCursorsOnItem = editor.selections.every((selection: vscode.Selection) => {
+                const cursorPos = selection.active
+                const line = editor.document.lineAt(cursorPos.line)
+                return /^\s*\\item/.test(line.text) && (line.text.substring(cursorPos.character).trim().length === 0)
+        })
+        if (!allCursorsOnItem) {
+            return vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+        }
 
-        void editor.edit(editBuilder => {
+        return editor.edit(editBuilder => {
+            // If we arrive here, all the cursors are at the end of a line starting with `\s*\\item`.
+            // Yet, we keep the conditions for the sake of maintenance.
             for (const selection of editor.selections) {
                 const cursorPos = selection.active
                 const line = editor.document.lineAt(cursorPos.line)
 
-                // if the cursor is not followed by only spaces/eol, insert a plain newline
-                if (line.text.substring(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
-                    editBuilder.insert(cursorPos, '\n')
-                    continue
-                }
-
-                // if the line only consists of \item or \item[], delete its content
-                if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
+                if (/^\s*\\item(\[\s*\])?\s*$/.test(line.text)) {
+                    // The line is an empty \item or \item[]
                     const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
                     editBuilder.delete(rangeToDelete)
-                    continue
-                }
-
-                const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
-                if (matches) {
-                    let itemString = ''
-                    // leading indent
-                    if (matches[1]) {
-                        itemString += matches[1]
-                    }
-                    // is there an optional parameter to \item
-                    if (matches[2]) {
-                        itemString += '\\item[] '
-                    } else {
-                        itemString += '\\item '
-                    }
+                } else if(/^\s*\\item\[[^[\]]*\]/.test(line.text)) {
+                    // The line starts with \item[blabla] or \item[] blabla
+                    const itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex) + '\\item[] '
                     editBuilder.insert(cursorPos, '\n' + itemString)
-                    continue
+                } else if(/^\s*\\item\s*[^\s]+.*$/.test(line.text)) {
+                    // The line starts with \item blabla
+                    const itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex) + '\\item '
+                    editBuilder.insert(cursorPos, '\n' + itemString)
+                } else {
+                    // If we do not know what to do, insert a newline and indent using the current indentation
+                    editBuilder.insert(cursorPos, '\n' + ' '.repeat(line.firstNonWhitespaceCharacterIndex))
                 }
-                editBuilder.insert(cursorPos, '\n')
             }
         })
-        return
     }
 
     /**
