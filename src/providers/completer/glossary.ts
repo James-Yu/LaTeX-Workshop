@@ -107,7 +107,17 @@ export class Glossary implements IProvider {
         let description: string | undefined = undefined
         let label: string | undefined = undefined
 
+        // We expect 3 arguments + 1 optional argument
+        if (node.args.length < 3 || node.args.length > 4) {
+            return {label: undefined, description: undefined}
+        }
         const hasOptionalArg: boolean = latexParser.isOptionalArg(node.args[0])
+
+        // First arg is optional, we must have 4 arguments
+        if (hasOptionalArg && node.args.length !== 4) {
+            return {label: undefined, description: undefined}
+        }
+
         const labelNode = hasOptionalArg ? node.args[1] : node.args[0]
         const descriptionNode = hasOptionalArg ? node.args[3] : node.args[2]
         if (latexParser.isGroup(descriptionNode)) {
@@ -140,6 +150,11 @@ export class Glossary implements IProvider {
         let description: string | undefined = undefined
         let label: string | undefined = undefined
         let lastNodeWasDescription = false
+
+        // We expect 2 arguments
+        if (node.args.length !== 2) {
+            return {label: undefined, description: undefined}
+        }
 
         // Get label
         if (latexParser.isGroup(node.args[0])) {
