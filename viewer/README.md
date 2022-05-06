@@ -68,3 +68,55 @@ When reloading a PDF file. In order.
 1. textlayerrendered
 1. pagerendered
 1. textlayerrendered
+
+## Sequence diagrams
+
+### Opening a PDF file
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as Server
+  Note over Viewer: load viewer.html
+  Note over Viewer: load latexworkshop.js
+  Viewer->>Server: open
+  Note over Viewer: load viewer.js
+  Note over Viewer: webviewerloaded
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Viewer->>Server: request_params
+  Server->>Viewer: params
+  Note over Viewer: pagesloaded
+  Viewer->>Server: loaded
+```
+
+### Reloading a PDF file
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as Server
+  Server->>Viewer: refresh
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Note over Viewer: pagesloaded
+  Viewer->>Server: loaded
+```
+
+### Forward SyncTeX
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as Server
+  Server->>Viewer: synctex
+```
+
+### Backward SyncTeX
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as Server
+  Viewer->>Server: reverse_synctex
+```

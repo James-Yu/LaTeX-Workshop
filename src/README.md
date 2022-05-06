@@ -28,3 +28,31 @@ See:
 - https://github.com/James-Yu/LaTeX-Workshop/tree/master/src/providers/preview
 
 
+## Architecture
+
+```mermaid
+flowchart TB;
+  subgraph VSCode["VS Code"]
+    PDFViewer["PDF viewer\n viewer/latexworkshop.ts"]
+    SnippetView["Snippet View\n snippetview.js"] --- PDFRenderer["PDF thumbnail renderer\n pdfrenderer.js"]
+    MathPreview["Math Preview Panel\n mathpreview.js"]
+  end
+  subgraph ExtensionHost["VS Code Extension Host"]
+    LW["LaTeX Workshop\n main.ts"] --- Server["Server for PDF viewer \n(Files and WebSocket)\n server.ts "];
+    PDFViewer <--> Server
+    LW --- ParserPool["Parser pool\n syntax.ts"]
+    LW --- MathJaxPool["MathJax pool\n mathjaxpool.ts"]
+  end
+  ParserPool --> ParserWorkers["parser workers\n syntax_worker.ts"]
+  MathJaxPool --> MathJaxWorkers["MathJax workers\n mathjaxpool_worker.ts "]
+  click PDFViewer "https://github.com/James-Yu/LaTeX-Workshop/blob/master/viewer/latexworkshop.ts"
+  click SnippetView "https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/snippetview/snippetview.js"
+  click PDFRenderer "https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/snippetview/pdfrenderer.js"
+  click MathPreview "https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/mathpreviewpanel/mathpreview.js"
+  click LW "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/main.ts"
+  click Server "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/components/server.ts"
+  click ParserPool "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/components/parser/syntax.ts"
+  click MathJaxPool "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/providers/preview/mathjaxpool.ts"
+  click ParserWorkers "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/components/parser/syntax_worker.ts"
+  click MathJaxWorkers "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/providers/preview/mathjaxpool_worker.ts"
+```
