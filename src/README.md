@@ -31,21 +31,27 @@ See:
 ## Architecture
 
 ```mermaid
-flowchart TB;
+flowchart LR
   subgraph VSCode["VS Code"]
     PDFViewer["PDF viewer\n viewer/latexworkshop.ts"]
     SnippetView["Snippet View\n snippetview.js"] --- PDFRenderer["PDF thumbnail renderer\n pdfrenderer.js"]
     MathPreview["Math Preview Panel\n mathpreview.js"]
   end
   subgraph ExtensionHost["VS Code Extension Host"]
-    LW["LaTeX Workshop\n main.ts"] --- Server["Server for PDF viewer \n(Files and WebSocket)\n server.ts "];
-    PDFViewer <--> Server
+    LW["LaTeX Workshop\n main.ts"]
+    LW --- Server["Server for PDF viewer \n(Files and WebSocket)\n server.ts "];
     LW --- ParserPool["Parser pool\n syntax.ts"]
     LW --- MathJaxPool["MathJax pool\n mathjaxpool.ts"]
+  end
+  PDFViewer <--> Server
+  Server <--> Browser
+  subgraph Browser
+    PDFViewerB["PDF viewer\n viewer/latexworkshop.ts"]
   end
   ParserPool --> ParserWorkers["parser workers\n syntax_worker.ts"]
   MathJaxPool --> MathJaxWorkers["MathJax workers\n mathjaxpool_worker.ts "]
   click PDFViewer "https://github.com/James-Yu/LaTeX-Workshop/blob/master/viewer/latexworkshop.ts"
+  click PDFViewerB "https://github.com/James-Yu/LaTeX-Workshop/blob/master/viewer/latexworkshop.ts"
   click SnippetView "https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/snippetview/snippetview.js"
   click PDFRenderer "https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/snippetview/pdfrenderer.js"
   click MathPreview "https://github.com/James-Yu/LaTeX-Workshop/blob/master/resources/mathpreviewpanel/mathpreview.js"

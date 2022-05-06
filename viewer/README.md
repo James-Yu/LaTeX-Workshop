@@ -18,7 +18,7 @@ Since it is difficult to map WebSockets to tabs of VS Code, we do not use WebSoc
 
 ## Building
 
-JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files.
+JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files for ES2015 modules.
 
 ## Limitation
 
