@@ -76,7 +76,7 @@ When reloading a PDF file. In order.
 ```mermaid
 sequenceDiagram
   participant Viewer as PDF Viewer
-  participant Server as Server
+  participant Server as WebSocket Server
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer->>Server: open
@@ -95,7 +95,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   participant Viewer as PDF Viewer
-  participant Server as Server
+  participant Server as WebSocket Server
   Server->>Viewer: refresh
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
@@ -108,7 +108,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   participant Viewer as PDF Viewer
-  participant Server as Server
+  participant Server as WebSocket Server
   Server->>Viewer: synctex
 ```
 
@@ -117,6 +117,6 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   participant Viewer as PDF Viewer
-  participant Server as Server
+  participant Server as WebSocket Server
   Viewer->>Server: reverse_synctex
 ```
