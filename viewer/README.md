@@ -109,7 +109,7 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
-  participant Iframe as Parent iframe
+  participant Iframe as Parent iframe (VS Code WebView)
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer->>Server: open
@@ -148,9 +148,10 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   participant Viewer as PDF Viewer
-  participant Iframe as Parent iframe
+  participant Iframe as Parent iframe (VS Code WebView)
   participant ExtensionHost as Extension Host
   Viewer->>Iframe: state
+  Note over Iframe: Store the state
   Iframe->>ExtensionHost: state
 ```
 
@@ -159,8 +160,7 @@ sequenceDiagram
 ```mermaid
 sequenceDiagram
   participant Viewer as PDF Viewer
-  participant Iframe as Parent iframe
-  participant WebView as VS Code WebView
+  participant Iframe as Parent iframe (VS Code WebView)
   Viewer->>Iframe: KeyboardEvent
-  Iframe->>WebView: KeyboardEvent
+  Note over Iframe: Dispatch KeyboardEvent
 ```
