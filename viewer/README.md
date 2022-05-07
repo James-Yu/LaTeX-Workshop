@@ -149,5 +149,18 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Iframe as Parent iframe
+  participant ExtensionHost as Extension Host
   Viewer->>Iframe: state
+  Iframe->>ExtensionHost: state
+```
+
+### KeyboardEvent
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Iframe as Parent iframe
+  participant WebView as VS Code WebView
+  Viewer->>Iframe: KeyboardEvent
+  Iframe->>WebView: KeyboardEvent
 ```
