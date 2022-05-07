@@ -85,7 +85,7 @@ sequenceDiagram
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
   Viewer-)+Server: request_params
-  Server-)-Viewer: params
+  Server--)-Viewer: params
   Note over Viewer: pagesloaded
   Viewer-)Server: loaded
 ```
@@ -118,9 +118,9 @@ sequenceDiagram
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
   Viewer-)+Iframe: initialized
-  Iframe-)-Viewer: restore_state
+  Iframe--)-Viewer: restore_state
   Viewer-)+Server: request_params
-  Server-)-Viewer: params
+  Server--)-Viewer: params
   Note over Viewer: pagesloaded
   Viewer-)Server: loaded
 ```
