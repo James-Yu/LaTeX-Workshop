@@ -46,8 +46,7 @@ export function runTestWithFixture(
     if (rootPath && path.basename(rootPath) === fixtureName && !shouldSkip) {
         test( fixtureName + ': ' + label, async () => {
             try {
-                const findRootFileEnd = promisify('findrootfileend')
-                await findRootFileEnd
+                await waitRootFileFound()
                 await cb()
             } catch (e) {
                 await printLogMessages()
@@ -208,6 +207,18 @@ export function obtainLatexWorkshop() {
 export async function waitLatexWorkshopActivated() {
     await vscode.commands.executeCommand('latex-workshop.activate')
     return obtainLatexWorkshop()
+}
+
+export async function waitRootFileFound(): Promise<void> {
+    const extension = await waitLatexWorkshopActivated()
+    const rootFile = extension.exports.realExtension?.manager.rootFile
+    if (rootFile) {
+        return
+    } else {
+        const findRootFileEnd = promisify('findrootfileend')
+        await findRootFileEnd
+        return
+    }
 }
 
 export function waitGivenRootFile(file: string) {
