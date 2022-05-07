@@ -84,8 +84,8 @@ sequenceDiagram
   Note over Viewer: webviewerloaded
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
-  Viewer->>Server: request_params
-  Server->>Viewer: params
+  Viewer->>+Server: request_params
+  Server->>-Viewer: params
   Note over Viewer: pagesloaded
   Viewer->>Server: loaded
 ```
@@ -99,6 +99,26 @@ sequenceDiagram
   Server->>Viewer: refresh
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
+  Note over Viewer: pagesloaded
+  Viewer->>Server: loaded
+```
+
+### Restoring the internal PDF viewer
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as WebSocket Server
+  participant Iframe as Parent iframe
+  Note over Viewer: load viewer.html
+  Note over Viewer: load latexworkshop.js
+  Viewer->>Server: open
+  Note over Viewer: load viewer.js
+  Note over Viewer: webviewerloaded
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Viewer->>+Iframe: initialized
+  Iframe->>-Viewer: restore_state
   Note over Viewer: pagesloaded
   Viewer->>Server: loaded
 ```
@@ -119,4 +139,13 @@ sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
   Viewer->>Server: reverse_synctex
+```
+
+### When the internal PDF viewer status changed
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Iframe as Parent iframe
+  Viewer->>Iframe: state
 ```
