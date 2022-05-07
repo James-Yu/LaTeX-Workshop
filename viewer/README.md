@@ -79,15 +79,15 @@ sequenceDiagram
   participant Server as WebSocket Server
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
-  Viewer->>Server: open
+  Viewer-)Server: open
   Note over Viewer: load viewer.js
   Note over Viewer: webviewerloaded
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
-  Viewer->>+Server: request_params
-  Server->>-Viewer: params
+  Viewer-)+Server: request_params
+  Server-)-Viewer: params
   Note over Viewer: pagesloaded
-  Viewer->>Server: loaded
+  Viewer-)Server: loaded
 ```
 
 ### Reloading a PDF file
@@ -96,11 +96,11 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
-  Server->>Viewer: refresh
+  Server-)Viewer: refresh
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
   Note over Viewer: pagesloaded
-  Viewer->>Server: loaded
+  Viewer-)Server: loaded
 ```
 
 ### Restoring the internal PDF viewer
@@ -112,17 +112,17 @@ sequenceDiagram
   participant Iframe as Parent iframe (VS Code WebView)
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
-  Viewer->>Server: open
+  Viewer-)Server: open
   Note over Viewer: load viewer.js
   Note over Viewer: webviewerloaded
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
-  Viewer->>+Iframe: initialized
-  Iframe->>-Viewer: restore_state
-  Viewer->>+Server: request_params
-  Server->>-Viewer: params
+  Viewer-)+Iframe: initialized
+  Iframe-)-Viewer: restore_state
+  Viewer-)+Server: request_params
+  Server-)-Viewer: params
   Note over Viewer: pagesloaded
-  Viewer->>Server: loaded
+  Viewer-)Server: loaded
 ```
 
 ### Forward SyncTeX
@@ -131,7 +131,7 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
-  Server->>Viewer: synctex
+  Server-)Viewer: synctex
 ```
 
 ### Backward SyncTeX
@@ -140,7 +140,7 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
-  Viewer->>Server: reverse_synctex
+  Viewer-)Server: reverse_synctex
 ```
 
 ### When the internal PDF viewer status changed
@@ -150,9 +150,9 @@ sequenceDiagram
   participant Viewer as PDF Viewer
   participant Iframe as Parent iframe (VS Code WebView)
   participant ExtensionHost as Extension Host
-  Viewer->>Iframe: state
+  Viewer-)Iframe: state
   Note over Iframe: Store the state
-  Iframe->>ExtensionHost: state
+  Iframe-)ExtensionHost: state
 ```
 
 ### KeyboardEvent
@@ -161,6 +161,6 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Iframe as Parent iframe (VS Code WebView)
-  Viewer->>Iframe: KeyboardEvent
+  Viewer-)Iframe: KeyboardEvent
   Note over Iframe: Dispatch KeyboardEvent
 ```
