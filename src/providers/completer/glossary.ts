@@ -104,27 +104,28 @@ export class Glossary implements IProvider {
      * @return the pair (label, description)
      */
     private getLongNodeLabelDescription(node: latexParser.Command): GlossaryEntry {
-        const arr: string[] = []
         let description: string | undefined = undefined
         let label: string | undefined = undefined
 
-        const hasOptionalArg: boolean = node.args[0].kind === 'arg.optional'
+        // We expect 3 arguments + 1 optional argument
+        if (node.args.length < 3 || node.args.length > 4) {
+            return {label: undefined, description: undefined}
+        }
+        const hasOptionalArg: boolean = latexParser.isOptionalArg(node.args[0])
+
+        // First arg is optional, we must have 4 arguments
+        if (hasOptionalArg && node.args.length !== 4) {
+            return {label: undefined, description: undefined}
+        }
+
         const labelNode = hasOptionalArg ? node.args[1] : node.args[0]
         const descriptionNode = hasOptionalArg ? node.args[3] : node.args[2]
-        if (descriptionNode?.kind === 'arg.group') {
-            descriptionNode.content.forEach(subNode => {
-                if (subNode.kind === 'text.string') {
-                    arr.push(subNode.content)
-                }
-            })
+        if (latexParser.isGroup(descriptionNode)) {
+            description = latexParser.stringify(descriptionNode).slice(1, -1)
         }
 
-        if (arr.length > 0) {
-            description = arr.join(' ')
-        }
-
-        if (labelNode.kind === 'arg.group' && labelNode.content[0].kind === 'text.string') {
-            label = labelNode.content[0].content
+        if (latexParser.isGroup(labelNode)) {
+            label = latexParser.stringify(labelNode).slice(1, -1)
         }
 
         return {label, description}
@@ -145,38 +146,39 @@ export class Glossary implements IProvider {
      * @returns the value of the description field
      */
     private getShortNodeDescription(node: latexParser.Command): GlossaryEntry {
-        const arr: string[] = []
         let result: RegExpExecArray | null
         let description: string | undefined = undefined
         let label: string | undefined = undefined
         let lastNodeWasDescription = false
 
-        if (node.args[1]?.kind === 'arg.group') {
-            node.args[1].content.forEach(subNode => {
-                if (subNode.kind === 'text.string') {
-                    // check if we have a description of the form description=single_word
+        // We expect 2 arguments
+        if (node.args.length !== 2) {
+            return {label: undefined, description: undefined}
+        }
+
+        // Get label
+        if (latexParser.isGroup(node.args[0])) {
+            label = latexParser.stringify(node.args[0]).slice(1, -1)
+        }
+
+        // Get description
+        if (latexParser.isGroup(node.args[1])) {
+            for (const subNode of node.args[1].content) {
+                if (latexParser.isTextString(subNode)) {
+                    // Description is of the form description=single_word
                     if ((result = /description=(.*)/.exec(subNode.content)) !== null) {
-                        arr.push(result[1]) // possibly undefined
+                        if (result[1] !== '') {
+                            description = result[1]
+                            break
+                        }
                         lastNodeWasDescription = true
                     }
-                    // otherwise we might have description={group of words}
-                } else if (lastNodeWasDescription && subNode.kind === 'arg.group') {
-                    subNode.content.forEach(subSubNode => {
-                        if (subSubNode.kind === 'text.string') {
-                            arr.push(subSubNode.content)
-                        }
-                    })
-                    lastNodeWasDescription = false
+                } else if (lastNodeWasDescription && latexParser.isGroup(subNode)) {
+                    // otherwise we have description={group of words}
+                    description = latexParser.stringify(subNode).slice(1, -1)
+                    break
                 }
-            })
-        }
-
-        if (arr.length > 0) {
-            description = arr.join(' ')
-        }
-
-        if (node.args[0].kind === 'arg.group' && node.args[0].content[0].kind === 'text.string') {
-            label = node.args[0].content[0].content
+            }
         }
 
         return {label, description}
