@@ -119,6 +119,8 @@ sequenceDiagram
   Note over Viewer: documentloaded
   Viewer->>+Iframe: initialized
   Iframe->>-Viewer: restore_state
+  Viewer->>+Server: request_params
+  Server->>-Viewer: params
   Note over Viewer: pagesloaded
   Viewer->>Server: loaded
 ```
