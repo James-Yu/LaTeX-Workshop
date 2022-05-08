@@ -62,3 +62,31 @@ flowchart LR
   click ParserWorkers "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/components/parser/syntax_worker.ts"
   click MathJaxWorkers "https://github.com/James-Yu/LaTeX-Workshop/blob/master/src/providers/preview/mathjaxpool_worker.ts"
 ```
+
+## flowchart
+
+```mermaid
+flowchart LR
+  ActivationEvents{{Activation Events}}
+  Activate["activate"]
+  Ready((Ready))
+  FindRootFile["Find root file"]
+  ActivationEvents --> Activate --> FindRootFile
+  ActiveDocumentOpened{{New document opened}}
+  Ready --> ActiveDocumentOpened
+  ActiveDocumentOpened --> FindRootFile
+  ActiveDocumentChanged{{The active tab changed}}
+  Ready --> ActiveDocumentChanged
+  ActiveDocumentChanged --> FindRootFile
+  FindRootFile --> Parse --> Ready
+  ActiveDocumentSaved{{The activate document saved}}
+  Ready --> ActiveDocumentSaved
+  ActiveDocumentSaved --> Build
+  Build["Build the root file"]
+  Parse["Parse files"]
+  Ready -- build command --> Build
+  Build --> Parse
+  ActiveTextChanged{{The active document edited}}
+  Ready --> ActiveTextChanged
+  ActiveTextChanged --> Parse
+```
