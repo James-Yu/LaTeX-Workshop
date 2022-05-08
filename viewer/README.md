@@ -151,7 +151,7 @@ sequenceDiagram
   participant Iframe as Parent iframe (VS Code WebView)
   participant ExtensionHost as Extension Host
   Viewer-)Iframe: state
-  Note over Iframe: Store the state
+  Iframe->>Iframe: Store the state
   Iframe-)ExtensionHost: state
 ```
 
@@ -162,5 +162,5 @@ sequenceDiagram
   participant Viewer as PDF Viewer
   participant Iframe as Parent iframe (VS Code WebView)
   Viewer-)Iframe: KeyboardEvent
-  Note over Iframe: Dispatch KeyboardEvent
+  Iframe-)Iframe: Dispatch KeyboardEvent
 ```
