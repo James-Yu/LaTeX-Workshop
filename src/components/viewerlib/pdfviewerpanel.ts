@@ -170,6 +170,8 @@ export class PdfViewerPanelService {
                     if (state) {
                         state.type = 'restore_state';
                         iframe.contentWindow.postMessage(state, '${iframeSrcOrigin}');
+                    } else {
+                        iframe.contentWindow.postMessage({type: 'restore_state', state: {kind: 'not_stored'} }, '${iframeSrcOrigin}');
                     }
                     break;
                 }
