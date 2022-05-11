@@ -1,10 +1,11 @@
 import {IConnectionPort, createConnectionPort} from './components/connection.js'
-import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from './components/protocol.js'
 import * as utils from './components/utils.js'
 import {ViewerHistory} from './components/viewerhistory.js'
+
+import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
+import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions

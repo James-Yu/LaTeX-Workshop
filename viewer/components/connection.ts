@@ -1,4 +1,4 @@
-import type {ClientRequest} from './protocol.js'
+import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
 import type {ILatexWorkshopPdfViewer} from './interface.js'
 
 export interface IConnectionPort {

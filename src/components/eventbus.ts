@@ -1,5 +1,5 @@
 import {EventEmitter} from 'events'
-import type {PdfViewerState} from 'viewer/components/protocol'
+import type {PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
 import type {Disposable} from 'vscode'
 
 export const BuildFinished = 'buildfinished'

@@ -7,7 +7,7 @@ import {replaceArgumentPlaceholders} from '../utils/utils'
 import {isSameRealPath} from '../utils/pathnormalize'
 
 import type {Extension} from '../main'
-import type {ClientRequest} from '../../viewer/components/protocol'
+import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
 
 export type SyncTeXRecordForward = {
     page: number,

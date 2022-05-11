@@ -8,7 +8,7 @@ import type {SyncTeXRecordForward} from './locator'
 import {openWebviewPanel} from '../utils/webview'
 import {getCurrentThemeLightness} from '../utils/theme'
 
-import type {ClientRequest, ServerResponse, PdfViewerState} from '../../viewer/components/protocol'
+import type {ClientRequest, ServerResponse, PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
 
 import {Client} from './viewerlib/client'
 import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from './viewerlib/pdfviewerpanel'

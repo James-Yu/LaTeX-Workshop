@@ -6,7 +6,7 @@ import * as vscode from 'vscode'
 import {sleep} from '../../src/utils/utils'
 import {activate} from '../../src/main'
 import type {EventName} from '../../src/components/eventbus'
-import type {PdfViewerState} from '../../viewer/components/protocol'
+import type {PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
 
 export {sleep}
 
