@@ -8,9 +8,9 @@ import {
     getFixtureDir,
     runTestWithFixture,
     waitLatexWorkshopActivated,
-    promisify
+    promisify,
+    sleep
 } from './utils/ciutils'
-import {sleep} from '../src/utils/utils'
 
 suite('RootFile test suite', () => {
 

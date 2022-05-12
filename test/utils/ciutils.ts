@@ -8,6 +8,8 @@ import {activate} from '../../src/main'
 import type {EventName} from '../../src/components/eventbus'
 import type {PdfViewerState} from '../../viewer/components/protocol'
 
+export {sleep}
+
 function getWorkspaceRootDir(): string | undefined {
     let rootDir: string | undefined
     if (vscode.workspace.workspaceFile) {
