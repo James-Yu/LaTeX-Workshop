@@ -10,7 +10,7 @@ import {
     waitLatexWorkshopActivated,
     promisify
 } from './utils/ciutils'
-
+import {sleep} from '../src/utils/utils'
 
 suite('RootFile test suite', () => {
 
@@ -27,8 +27,9 @@ suite('RootFile test suite', () => {
         const texFileName = 'abc/lmn/uvw/two.tex'
         const mainFileName = 'main.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
-        const rootFileFound = promisify('findrootfileend')
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        await sleep(1000)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
         await rootFileFound
