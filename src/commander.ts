@@ -443,6 +443,7 @@ export class Commander {
             for (const selection of editor.selections) {
                 const cursorPos = selection.active
                 const line = editor.document.lineAt(cursorPos.line)
+                const indentation = line.text.substring(0, line.firstNonWhitespaceCharacterIndex)
 
                 if (/^\s*\\item(\[\s*\])?\s*$/.test(line.text)) {
                     // The line is an empty \item or \item[]
@@ -450,15 +451,15 @@ export class Commander {
                     editBuilder.delete(rangeToDelete)
                 } else if(/^\s*\\item\[[^[\]]*\]/.test(line.text)) {
                     // The line starts with \item[blabla] or \item[] blabla
-                    const itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex) + '\\item[] '
-                    editBuilder.insert(cursorPos, '\n' + itemString)
+                    const itemString = `\n${indentation}\\item[] `
+                    editBuilder.insert(cursorPos, itemString)
                 } else if(/^\s*\\item\s*[^\s]+.*$/.test(line.text)) {
                     // The line starts with \item blabla
-                    const itemString = ' '.repeat(line.firstNonWhitespaceCharacterIndex) + '\\item '
-                    editBuilder.insert(cursorPos, '\n' + itemString)
+                    const itemString = `\n${indentation}\\item `
+                    editBuilder.insert(cursorPos, itemString)
                 } else {
                     // If we do not know what to do, insert a newline and indent using the current indentation
-                    editBuilder.insert(cursorPos, '\n' + ' '.repeat(line.firstNonWhitespaceCharacterIndex))
+                    editBuilder.insert(cursorPos, `\n${indentation}`)
                 }
             }
         })
