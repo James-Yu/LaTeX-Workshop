@@ -137,7 +137,7 @@ export class Commander {
         })
     }
 
-    async view(mode?: string) {
+    async view(mode?: 'tab' | 'browser' | 'external') {
         if (mode) {
             this.extension.logger.addLogMessage(`VIEW command invoked with mode: ${mode}.`)
         } else {
@@ -160,40 +160,22 @@ export class Commander {
         if (this.extension.manager.localRootFile) {
             // We are using the subfile package
             pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
-            if (! pickedRootFile) {
-                return
-            }
+        }
+        if (!pickedRootFile) {
+            return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-        if (mode === 'browser') {
+        const viewer = mode ?? configuration.get<'tab' | 'browser' | 'external'>('view.pdf.viewer', 'tab')
+        if (viewer === 'browser') {
             return this.extension.viewer.openBrowser(pickedRootFile)
-        } else if (mode === 'tab') {
+        } else if (viewer === 'tab') {
             return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-        } else if (mode === 'external') {
+        } else if (viewer === 'external') {
             this.extension.viewer.openExternal(pickedRootFile)
             return
-        } else if (mode === 'set') {
-            return this.setViewer()
         }
-        const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer(): Promise.resolve()
-        void promise.then(() => {
-            if (!pickedRootFile) {
-                return
-            }
-            switch (configuration.get('view.pdf.viewer')) {
-                case 'browser': {
-                    return this.extension.viewer.openBrowser(pickedRootFile)
-                }
-                case 'tab':
-                default: {
-                    return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-                }
-                case 'external': {
-                    return this.extension.viewer.openExternal(pickedRootFile)
-                }
-            }
-        })
+        return
     }
 
     refresh() {
@@ -314,29 +296,6 @@ export class Commander {
             })
         })
 
-    }
-
-    setViewer() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        return vscode.window.showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], {placeHolder: 'View PDF with'})
-        .then(option => {
-            switch (option) {
-                case 'Web browser':
-                    void configuration.update('view.pdf.viewer', 'browser', true)
-                    void vscode.window.showInformationMessage('By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".')
-                    break
-                case 'VSCode tab':
-                    void configuration.update('view.pdf.viewer', 'tab', true)
-                    void vscode.window.showInformationMessage('By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".')
-                    break
-                case 'External viewer':
-                    void configuration.update('view.pdf.viewer', 'external', true)
-                    void vscode.window.showInformationMessage('By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".')
-                    break
-                default:
-                    break
-            }
-        })
     }
 
     navigateToEnvPair() {
