@@ -7,6 +7,7 @@ import * as vscode from 'vscode'
 
 import {
     getFixtureDir,
+    promisify,
 //    isDockerEnabled,
     runTestWithFixture,
     waitLatexWorkshopActivated
@@ -56,7 +57,9 @@ suite('Completion test suite', () => {
         const texFileName = 't.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
+        await rootFileFound
         const extension = await waitLatexWorkshopActivated()
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
@@ -75,8 +78,10 @@ suite('Completion test suite', () => {
         const texFileName = 't.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
+        await rootFileFound
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
         const items = extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
@@ -98,8 +103,10 @@ suite('Completion test suite', () => {
         const texFileName = 't.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
+        await rootFileFound
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
         const items = extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
@@ -122,8 +129,10 @@ suite('Completion test suite', () => {
         const texFileName = 't.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
+        await rootFileFound
         const pos = new vscode.Position(6,5)
         const token = new vscode.CancellationTokenSource().token
         const items = extension.exports.realExtension?.completer.provideCompletionItems(
