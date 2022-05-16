@@ -3,7 +3,7 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "8.25.0",
+  "version": "8.26.0",
   "publisher": "James-Yu",
   "license": "MIT",
   "homepage": "https://github.com/James-Yu/LaTeX-Workshop",
@@ -12,7 +12,7 @@
     "url": "https://github.com/James-Yu/LaTeX-Workshop.git"
   },
   "engines": {
-    "vscode": "^1.64.0"
+    "vscode": "^1.67.0"
   },
   "categories": [
     "Programming Languages",
@@ -346,11 +346,6 @@
         "title": "View LaTeX PDF file in external viewer",
         "category": "LaTeX Workshop",
         "enablement": "!virtualWorkspace"
-      },
-      {
-        "command": "latex-workshop.setViewer",
-        "title": "Set default viewer",
-        "category": "LaTeX Workshop"
       },
       {
         "command": "latex-workshop.refresh-viewer",
@@ -1339,16 +1334,14 @@
         "latex-workshop.view.pdf.viewer": {
           "scope": "window",
           "type": "string",
-          "default": "none",
+          "default": "tab",
           "enum": [
-            "none",
             "browser",
             "tab",
             "external"
           ],
           "markdownDescription": "The default PDF viewer.",
           "enumDescriptions": [
-            "Undetermined viewer. A viewer selector will pop up upon viewing PDF.",
             "Open PDF with the default web browser.",
             "Open PDF with the built-in tab viewer.",
             "[Experimental] Open PDF with the external viewer set in \"View > Pdf > External: command\"."
@@ -2420,20 +2413,20 @@
     "@types/cross-spawn": "6.0.2",
     "@types/glob": "7.2.0",
     "@types/micromatch": "4.0.2",
-    "@types/mocha": "9.1.0",
+    "@types/mocha": "9.1.1",
     "@types/node": "16.11.27",
     "@types/tmp": "0.2.3",
-    "@types/vscode": "1.64.0",
+    "@types/vscode": "1.67.0",
     "@types/workerpool": "6.1.0",
     "@types/ws": "8.5.3",
-    "@typescript-eslint/eslint-plugin": "5.19.0",
-    "@typescript-eslint/parser": "5.19.0",
+    "@typescript-eslint/eslint-plugin": "5.22.0",
+    "@typescript-eslint/parser": "5.22.0",
     "@vscode/test-electron": "2.1.3",
-    "eslint": "8.13.0",
+    "eslint": "8.14.0",
     "mocha": "9.2.2",
     "rimraf": "3.0.2",
     "textmate-bailout": "1.1.0",
-    "typescript": "4.6.3",
+    "typescript": "4.6.4",
     "vsce": "2.7.0",
     "vscode-extend-language": "0.1.1"
   }

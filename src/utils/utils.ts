@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as fs from 'fs'
 
-import type {latexParser} from 'latex-utensils'
+import {latexParser} from 'latex-utensils'
 
 
 export function sleep(ms: number) {
@@ -215,6 +215,8 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
         const doc = docW32.split(path.sep).join('/')
         const docExtW32 = path.join(dirW32, docfileExt)
         const docExt = docExtW32.split(path.sep).join('/')
+        const relativeDir = path.relative(workspaceDir, dir).split(path.sep).join('/')
+        const relativeDoc = path.relative(workspaceDir, doc).split(path.sep).join('/')
 
         const expandPlaceHolders = (a: string): string => {
             return a.replace(/%DOC%/g, docker ? docfile : doc)
@@ -227,8 +229,8 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
                     .replace(/%DIR_W32%/g, docker ? './' : dirW32)
                     .replace(/%TMPDIR%/g, tmpDir)
                     .replace(/%WORKSPACE_FOLDER%/g, docker ? './' : workspaceDir)
-                    .replace(/%RELATIVE_DIR%/, docker ? './' : path.relative(workspaceDir, dir))
-                    .replace(/%RELATIVE_DOC%/, docker ? docfile : path.relative(workspaceDir, doc))
+                    .replace(/%RELATIVE_DIR%/, docker ? './' : relativeDir)
+                    .replace(/%RELATIVE_DOC%/, docker ? docfile : relativeDoc)
 
         }
         const outDirW32 = path.normalize(expandPlaceHolders(configuration.get('latex.outDir') as string))
@@ -246,7 +248,7 @@ export type NewCommand = {
 
 export function isNewCommand(node: latexParser.Node | undefined): node is NewCommand {
     const regex = /^(renewcommand|newcommand|providecommand|DeclareMathOperator)(\*)?$/
-    if (!!node && node.kind === 'command' && node.name.match(regex)) {
+    if (latexParser.isCommand(node) && node.name.match(regex)) {
         return true
     }
     return false

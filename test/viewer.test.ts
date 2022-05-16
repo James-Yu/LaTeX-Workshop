@@ -13,9 +13,9 @@ import {
     runTestWithFixture,
     viewPdf,
     waitLatexWorkshopActivated,
-    promisify
+    promisify,
+    sleep
 } from './utils/ciutils'
-import { sleep } from '../src/utils/utils'
 
 suite('PDF Viewer test suite', () => {
 

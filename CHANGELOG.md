@@ -1,5 +1,22 @@
 # Change Log
 
+## [8.26.0] - 2022-05-05
+
+### Added
+- (#3252) Refactor structure to add caching.
+  - (#3260) Use eventbus to manage structure updates.
+- (#3275) Add CTAN link to hover on package.
+- (#3279) `onEnterKey` supports multi-cursors when all selected lines start with `\item`.
+
+### Changed
+- (#3263) Remove a configuration on `markdown.latex.codeblock`.
+
+### Fixed
+- (#3250) Add deprecation message to `intellisense.citation.maxfilesizeMB`.
+- (#3253) When editing a `markdown_latex_combined` document, command `latex-workshop.onEnterKey` was not found.
+- (#3256) Fix typo in `commands.json`.
+- (#3258) `isTriggerSuggestNeeded` must match from the beginning of the command name.
+
 ## [8.25.0] - 2022-04-13
 
 ### Added

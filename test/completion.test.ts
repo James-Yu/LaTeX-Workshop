@@ -7,13 +7,14 @@ import * as vscode from 'vscode'
 
 import {
     getFixtureDir,
+    promisify,
 //    isDockerEnabled,
     runTestWithFixture,
     waitLatexWorkshopActivated
 } from './utils/ciutils'
 
 
-function assertCompletionItemContains(items: vscode.CompletionItem[], prefix: string, snippet: string): void {
+function assertCompletionItemContainsSnippet(items: vscode.CompletionItem[], prefix: string, snippet: string): void {
     const matches = items.find(item =>
         item.label === prefix &&
         item.insertText instanceof vscode.SnippetString &&
@@ -21,7 +22,7 @@ function assertCompletionItemContains(items: vscode.CompletionItem[], prefix: st
     assert.ok(matches !== undefined, `Snippet (${prefix}, ${snippet}) not found`)
 }
 
-function assertCompletionItemDoesNotContain(items: vscode.CompletionItem[], prefix: string, snippet?: string): void {
+function assertCompletionItemDoesNotContainSnippet(items: vscode.CompletionItem[], prefix: string, snippet?: string): void {
     if (snippet) {
         const matches = items.find(item =>
             item.label === prefix &&
@@ -34,6 +35,12 @@ function assertCompletionItemDoesNotContain(items: vscode.CompletionItem[], pref
     }
 }
 
+function assertCompletionItemContains(items: vscode.CompletionItem[], label: string, detail: string): void {
+    const matches = items.find(item =>
+        item.label === label &&
+        item.detail === detail)
+    assert.ok(matches !== undefined, `Snippet (${label}, ${detail}) not found`)
+}
 
 suite('Completion test suite', () => {
 
@@ -50,7 +57,9 @@ suite('Completion test suite', () => {
         const texFileName = 't.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
+        await rootFileFound
         const extension = await waitLatexWorkshopActivated()
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
@@ -69,8 +78,10 @@ suite('Completion test suite', () => {
         const texFileName = 't.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
+        await rootFileFound
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
         const items = extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
@@ -81,10 +92,10 @@ suite('Completion test suite', () => {
             }
         )
         assert.ok(items && items.length > 0)
-        assertCompletionItemContains(items, '@+', '\\sum')
-        assertCompletionItemDoesNotContain(items, '@+', '\\bigcup')
-        assertCompletionItemContains(items, '@M', '\\sum')
-        assertCompletionItemDoesNotContain(items, '@8')
+        assertCompletionItemContainsSnippet(items, '@+', '\\sum')
+        assertCompletionItemDoesNotContainSnippet(items, '@+', '\\bigcup')
+        assertCompletionItemContainsSnippet(items, '@M', '\\sum')
+        assertCompletionItemDoesNotContainSnippet(items, '@8')
     })
 
     runTestWithFixture('fixture003', '@-snippet completion with trigger #', async () => {
@@ -92,8 +103,10 @@ suite('Completion test suite', () => {
         const texFileName = 't.tex'
         const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
         const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
         await vscode.window.showTextDocument(doc)
         const extension = await waitLatexWorkshopActivated()
+        await rootFileFound
         const pos = new vscode.Position(3,1)
         const token = new vscode.CancellationTokenSource().token
         const items = extension.exports.realExtension?.atSuggestionCompleter.provideCompletionItems(
@@ -104,10 +117,36 @@ suite('Completion test suite', () => {
             }
         )
         assert.ok(items && items.length > 0)
-        assertCompletionItemContains(items, '#+', '\\sum')
-        assertCompletionItemContains(items, '#ve', '\\varepsilon')
-        assertCompletionItemDoesNotContain(items, '@+', '\\bigcup')
-        assertCompletionItemDoesNotContain(items, '#+', '\\bigcup')
-        assertCompletionItemDoesNotContain(items, '#8')
+        assertCompletionItemContainsSnippet(items, '#+', '\\sum')
+        assertCompletionItemContainsSnippet(items, '#ve', '\\varepsilon')
+        assertCompletionItemDoesNotContainSnippet(items, '@+', '\\bigcup')
+        assertCompletionItemDoesNotContainSnippet(items, '#+', '\\bigcup')
+        assertCompletionItemDoesNotContainSnippet(items, '#8')
+    })
+
+    runTestWithFixture('fixture004', 'glossary completion', async () => {
+        const fixtureDir = getFixtureDir()
+        const texFileName = 't.tex'
+        const texFilePath = vscode.Uri.file(path.join(fixtureDir, texFileName))
+        const doc = await vscode.workspace.openTextDocument(texFilePath)
+        const rootFileFound = promisify('findrootfileend')
+        await vscode.window.showTextDocument(doc)
+        const extension = await waitLatexWorkshopActivated()
+        await rootFileFound
+        const pos = new vscode.Position(6,5)
+        const token = new vscode.CancellationTokenSource().token
+        const items = extension.exports.realExtension?.completer.provideCompletionItems(
+            doc, pos, token,
+            {
+                triggerKind: vscode.CompletionTriggerKind.Invoke,
+                triggerCharacter: undefined
+            }
+        )
+        assert.ok(items && items.length === 5)
+        assertCompletionItemContains(items, 'rf', 'radio-frequency')
+        assertCompletionItemContains(items, 'te', 'Transverse Magnetic')
+        assertCompletionItemContains(items, 'E_P', 'Elastic $\\varepsilon$ toto')
+        assertCompletionItemContains(items, 'lw', 'What this extension is $\\mathbb{A}$')
+        assertCompletionItemContains(items, 'vs_code', 'Editor')
     })
 })

@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as process from 'process'
 import * as fs from 'fs'
 import * as os from 'os'
-import {sleep} from '../src/utils/utils'
+import {sleep} from './utils/ciutils'
 import {activate} from '../src/main'
 import * as vscode from 'vscode'
 import {

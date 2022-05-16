@@ -14,7 +14,7 @@ import {
     waitLatexWorkshopActivated,
     promisify
 } from './utils/ciutils'
-import {sleep} from '../src/utils/utils'
+import {sleep} from './utils/ciutils'
 
 suite('Build TeX files test suite', () => {
 

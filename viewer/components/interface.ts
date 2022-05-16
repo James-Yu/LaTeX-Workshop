@@ -1,5 +1,5 @@
 import type {PageTrimmer} from './pagetrimmer.js'
-import type {ClientRequest} from './protocol.js'
+import type {ClientRequest} from '../../types/latex-workshop-protocol-types/index'
 import type {SyncTex} from './synctex.js'
 import type {ViewerHistory} from './viewerhistory.js'
 

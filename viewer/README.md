@@ -18,7 +18,7 @@ Since it is difficult to map WebSockets to tabs of VS Code, we do not use WebSoc
 
 ## Building
 
-JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files.
+JavaScript files, `latexworkshop.js`, and others, are generated in `../out/viewer/` from TypeScript files for ES2015 modules.
 
 ## Limitation
 
@@ -68,3 +68,99 @@ When reloading a PDF file. In order.
 1. textlayerrendered
 1. pagerendered
 1. textlayerrendered
+
+## Sequence diagrams
+
+### Opening a PDF file
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as WebSocket Server
+  Note over Viewer: load viewer.html
+  Note over Viewer: load latexworkshop.js
+  Viewer-)Server: open
+  Note over Viewer: load viewer.js
+  Note over Viewer: webviewerloaded
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Viewer-)+Server: request_params
+  Server--)-Viewer: params
+  Note over Viewer: pagesloaded
+  Viewer-)Server: loaded
+```
+
+### Reloading a PDF file
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as WebSocket Server
+  Server-)Viewer: refresh
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Note over Viewer: pagesloaded
+  Viewer-)Server: loaded
+```
+
+### Restoring the internal PDF viewer
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as WebSocket Server
+  participant Iframe as Parent iframe (VS Code WebView)
+  Note over Viewer: load viewer.html
+  Note over Viewer: load latexworkshop.js
+  Viewer-)Server: open
+  Note over Viewer: load viewer.js
+  Note over Viewer: webviewerloaded
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Viewer-)+Iframe: initialized
+  Iframe--)-Viewer: restore_state
+  Viewer-)+Server: request_params
+  Server--)-Viewer: params
+  Note over Viewer: pagesloaded
+  Viewer-)Server: loaded
+```
+
+### Forward SyncTeX
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as WebSocket Server
+  Server-)Viewer: synctex
+```
+
+### Backward SyncTeX
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Server as WebSocket Server
+  Viewer-)Server: reverse_synctex
+```
+
+### When the internal PDF viewer status changed
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Iframe as Parent iframe (VS Code WebView)
+  participant ExtensionHost as Extension Host
+  Viewer-)Iframe: state
+  Iframe->>Iframe: Store the state
+  Iframe-)ExtensionHost: state
+```
+
+### KeyboardEvent
+
+```mermaid
+sequenceDiagram
+  participant Viewer as PDF Viewer
+  participant Iframe as Parent iframe (VS Code WebView)
+  Viewer-)Iframe: KeyboardEvent
+  Iframe-)Iframe: Dispatch KeyboardEvent
+```

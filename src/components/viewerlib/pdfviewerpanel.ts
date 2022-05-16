@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 
 import type {Extension} from '../../main'
-import type {PanelRequest, PdfViewerState} from '../../../viewer/components/protocol'
+import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-protocol-types/index'
 import {escapeHtml} from '../../utils/utils'
 import type {PdfViewerManagerService} from './pdfviewermanager'
 import {PdfViewerStatusChanged} from '../eventbus'

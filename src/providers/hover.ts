@@ -44,7 +44,9 @@ export class HoverProvider implements vscode.HoverProvider {
             const md = `Package **${token}** \n\n`
             const mdLink = new vscode.MarkdownString(`[View documentation](command:latex-workshop.texdoc?${pkg})`)
             mdLink.isTrusted = true
-            return new vscode.Hover([md, mdLink])
+            const ctanUrl = `https://ctan.org/pkg/${token}`
+            const ctanLink = new vscode.MarkdownString(`[${ctanUrl}](${ctanUrl})`)
+            return new vscode.Hover([md, mdLink, ctanLink])
         }
         const refData = this.extension.completer.reference.getRef(token)
         if (hovReference && refData) {

@@ -137,7 +137,7 @@ export class Commander {
         })
     }
 
-    async view(mode?: string) {
+    async view(mode?: 'tab' | 'browser' | 'external') {
         if (mode) {
             this.extension.logger.addLogMessage(`VIEW command invoked with mode: ${mode}.`)
         } else {
@@ -160,40 +160,22 @@ export class Commander {
         if (this.extension.manager.localRootFile) {
             // We are using the subfile package
             pickedRootFile = await quickPickRootFile(rootFile, this.extension.manager.localRootFile)
-            if (! pickedRootFile) {
-                return
-            }
+        }
+        if (!pickedRootFile) {
+            return
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-        if (mode === 'browser') {
+        const viewer = mode ?? configuration.get<'tab' | 'browser' | 'external'>('view.pdf.viewer', 'tab')
+        if (viewer === 'browser') {
             return this.extension.viewer.openBrowser(pickedRootFile)
-        } else if (mode === 'tab') {
+        } else if (viewer === 'tab') {
             return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-        } else if (mode === 'external') {
+        } else if (viewer === 'external') {
             this.extension.viewer.openExternal(pickedRootFile)
             return
-        } else if (mode === 'set') {
-            return this.setViewer()
         }
-        const promise = (configuration.get('view.pdf.viewer') as string === 'none') ? this.setViewer(): Promise.resolve()
-        void promise.then(() => {
-            if (!pickedRootFile) {
-                return
-            }
-            switch (configuration.get('view.pdf.viewer')) {
-                case 'browser': {
-                    return this.extension.viewer.openBrowser(pickedRootFile)
-                }
-                case 'tab':
-                default: {
-                    return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
-                }
-                case 'external': {
-                    return this.extension.viewer.openExternal(pickedRootFile)
-                }
-            }
-        })
+        return
     }
 
     refresh() {
@@ -316,29 +298,6 @@ export class Commander {
 
     }
 
-    setViewer() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        return vscode.window.showQuickPick(['VSCode tab', 'Web browser', 'External viewer'], {placeHolder: 'View PDF with'})
-        .then(option => {
-            switch (option) {
-                case 'Web browser':
-                    void configuration.update('view.pdf.viewer', 'browser', true)
-                    void vscode.window.showInformationMessage('By default, PDF will be viewed with web browser. This setting can be changed at "latex-workshop.view.pdf.viewer".')
-                    break
-                case 'VSCode tab':
-                    void configuration.update('view.pdf.viewer', 'tab', true)
-                    void vscode.window.showInformationMessage('By default, PDF will be viewed with VSCode tab. This setting can be changed at "latex-workshop.view.pdf.viewer".')
-                    break
-                case 'External viewer':
-                    void configuration.update('view.pdf.viewer', 'external', true)
-                    void vscode.window.showInformationMessage('By default, PDF will be viewed with external viewer. This setting can be changed at "latex-workshop.view.pdf.viewer".')
-                    break
-                default:
-                    break
-            }
-        })
-    }
-
     navigateToEnvPair() {
         this.extension.logger.addLogMessage('JumpToEnvPair command invoked.')
         if (!vscode.window.activeTextEditor || !this.extension.manager.hasTexId(vscode.window.activeTextEditor.document.languageId)) {
@@ -421,53 +380,48 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         if (!configuration.get('bind.enter.key')) {
-            return editor.edit(() =>
-                vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
-            )
+            return vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
         }
         if (modifiers === 'alt') {
             return vscode.commands.executeCommand('editor.action.insertLineAfter')
         }
 
+        // Test if every cursor is at the end of a line starting with \item
+        const allCursorsOnItem = editor.selections.every((selection: vscode.Selection) => {
+                const cursorPos = selection.active
+                const line = editor.document.lineAt(cursorPos.line)
+                return /^\s*\\item/.test(line.text) && (line.text.substring(cursorPos.character).trim().length === 0)
+        })
+        if (!allCursorsOnItem) {
+            return vscode.commands.executeCommand('type', { source: 'keyboard', text: '\n' })
+        }
 
-        void editor.edit(editBuilder => {
+        return editor.edit(editBuilder => {
+            // If we arrive here, all the cursors are at the end of a line starting with `\s*\\item`.
+            // Yet, we keep the conditions for the sake of maintenance.
             for (const selection of editor.selections) {
                 const cursorPos = selection.active
                 const line = editor.document.lineAt(cursorPos.line)
+                const indentation = line.text.substring(0, line.firstNonWhitespaceCharacterIndex)
 
-                // if the cursor is not followed by only spaces/eol, insert a plain newline
-                if (line.text.substring(cursorPos.character).split(' ').length - 1 !== line.range.end.character - cursorPos.character) {
-                    editBuilder.insert(cursorPos, '\n')
-                    continue
-                }
-
-                // if the line only consists of \item or \item[], delete its content
-                if (/^\s*\\item(\[\s*\])?\s*$/.exec(line.text)) {
+                if (/^\s*\\item(\[\s*\])?\s*$/.test(line.text)) {
+                    // The line is an empty \item or \item[]
                     const rangeToDelete = line.range.with(cursorPos.with(line.lineNumber, line.firstNonWhitespaceCharacterIndex), line.range.end)
                     editBuilder.delete(rangeToDelete)
-                    continue
+                } else if(/^\s*\\item\[[^[\]]*\]/.test(line.text)) {
+                    // The line starts with \item[blabla] or \item[] blabla
+                    const itemString = `\n${indentation}\\item[] `
+                    editBuilder.insert(cursorPos, itemString)
+                } else if(/^\s*\\item\s*[^\s]+.*$/.test(line.text)) {
+                    // The line starts with \item blabla
+                    const itemString = `\n${indentation}\\item `
+                    editBuilder.insert(cursorPos, itemString)
+                } else {
+                    // If we do not know what to do, insert a newline and indent using the current indentation
+                    editBuilder.insert(cursorPos, `\n${indentation}`)
                 }
-
-                const matches = /^(\s*)\\item(\[[^[\]]*\])?\s*(.*)$/.exec(line.text)
-                if (matches) {
-                    let itemString = ''
-                    // leading indent
-                    if (matches[1]) {
-                        itemString += matches[1]
-                    }
-                    // is there an optional parameter to \item
-                    if (matches[2]) {
-                        itemString += '\\item[] '
-                    } else {
-                        itemString += '\\item '
-                    }
-                    editBuilder.insert(cursorPos, '\n' + itemString)
-                    continue
-                }
-                editBuilder.insert(cursorPos, '\n')
             }
         })
-        return
     }
 
     /**

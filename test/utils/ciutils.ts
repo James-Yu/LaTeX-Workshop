@@ -6,7 +6,9 @@ import * as vscode from 'vscode'
 import {sleep} from '../../src/utils/utils'
 import {activate} from '../../src/main'
 import type {EventName} from '../../src/components/eventbus'
-import type {PdfViewerState} from '../../viewer/components/protocol'
+import type {PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
+
+export {sleep}
 
 function getWorkspaceRootDir(): string | undefined {
     let rootDir: string | undefined
@@ -46,8 +48,7 @@ export function runTestWithFixture(
     if (rootPath && path.basename(rootPath) === fixtureName && !shouldSkip) {
         test( fixtureName + ': ' + label, async () => {
             try {
-                const findRootFileEnd = promisify('findrootfileend')
-                await findRootFileEnd
+                await waitRootFileFound()
                 await cb()
             } catch (e) {
                 await printLogMessages()
@@ -208,6 +209,18 @@ export function obtainLatexWorkshop() {
 export async function waitLatexWorkshopActivated() {
     await vscode.commands.executeCommand('latex-workshop.activate')
     return obtainLatexWorkshop()
+}
+
+export async function waitRootFileFound(): Promise<void> {
+    const extension = await waitLatexWorkshopActivated()
+    const rootFile = extension.exports.realExtension?.manager.rootFile
+    if (rootFile) {
+        return
+    } else {
+        const findRootFileEnd = promisify('findrootfileend')
+        await findRootFileEnd
+        return
+    }
 }
 
 export function waitGivenRootFile(file: string) {
