@@ -1,0 +1,107 @@
+--- ../tmp/pdfjs_2_13/web/viewer.html	2022-02-27 19:04:36.000000000 +0900
++++ viewer/viewer.html	2022-05-13 14:59:32.000000000 +0900
+@@ -25,22 +25,27 @@
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+     <meta name="google" content="notranslate">
++    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self' ws://127.0.0.1:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
+     <title>PDF.js viewer</title>
+ 
+-
++    <!--
++      Because latexworkshop.css is loaded after viewer.css,
++      we can override viewer.css by editing latexworkshop.css.
++      DONT EDIT viewer.css. EDIT latexworkshop.css instead.
++    -->
+     <link rel="stylesheet" href="viewer.css">
+ 
++    <link rel="stylesheet" href="latexworkshop.css">
++
+ 
+ <!-- This snippet is used in production (included from viewer.html) -->
+ <link rel="resource" type="application/l10n" href="locale/locale.properties">
+-<script src="../build/pdf.js"></script>
+-
+-
+-  <script src="viewer.js"></script>
+-
++<script src="/build/pdf.js" defer></script>
++<script src="/out/viewer/latexworkshop.js" type="module"></script>
++<script src="viewer.js" defer></script>
+   </head>
+ 
+-  <body tabindex="1">
++  <body tabindex="1" class="loadingInProgress">
+     <div id="outerContainer">
+ 
+       <div id="sidebarContainer">
+@@ -82,7 +87,7 @@
+           <div id="layersView" class="hidden">
+           </div>
+         </div>
+-        <div id="sidebarResizer"></div>
++        <div id="sidebarResizer" class="hidden"></div>
+       </div>  <!-- sidebarContainer -->
+ 
+       <div id="mainContainer">
+@@ -197,6 +202,14 @@
+               <span data-l10n-id="spread_even_label">Even Spreads</span>
+             </button>
+ 
++            <div class="horizontalToolbarSeparator spreadModeButtons"></div>
++
++            <button id="synctexOffButton" class="secondaryToolbarButton" title="Disable forward SyncTeX" tabindex="70">
++              <input id="synctexOff" type="checkbox"> Stop SyncTeX
++            </button>
++            <button id="autoReloadOffButton" class="secondaryToolbarButton" title="Disable auto reload" tabindex="71">
++               <input id="autoReloadOff" type="checkbox"> Stop Auto Reload
++            </button>
+             <div class="horizontalToolbarSeparator"></div>
+ 
+             <button id="documentProperties" class="secondaryToolbarButton documentProperties" title="Document Properties…" tabindex="69" data-l10n-id="document_properties">
+@@ -205,13 +218,20 @@
+           </div>
+         </div>  <!-- secondaryToolbar -->
+ 
+-        <div class="toolbar">
++        <div class="toolbar hide">
+           <div id="toolbarContainer">
+             <div id="toolbarViewer">
+               <div id="toolbarViewerLeft">
+                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar" aria-expanded="false" aria-controls="sidebarContainer">
+                   <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
+                 </button>
++                <!-- History back button, useful in the embedded viewer -->
++                <button class="toolbarButton findPrevious" title="Back" id="historyBack">
++                  <span>Back</span>
++                </button>
++                <button class="toolbarButton findNext" title="Forward" id="historyForward">
++                  <span>Forward</span>
++                </button>
+                 <div class="toolbarButtonSpacer"></div>
+                 <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar" aria-expanded="false" aria-controls="findbar">
+                   <span data-l10n-id="findbar_label">Find</span>
+@@ -279,6 +299,15 @@
+                     <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
+                     <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
+                     <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
++                    <option id="trimOption" title="" disabled="disabled" hidden="true"> Trimming </option>
++                  </select>
++                </span>
++                <span id="trimSelectContainer" class="dropdownToolbarButton">
++                  <select id="trimSelect" title="Trim" tabindex="23" >
++                    <option title="" value="0.0" selected="selected" >No page trimming</option>
++                    <option title="" value="0.05" >Trim 5% at margin</option>
++                    <option title="" value="0.10" >Trim 10% at margin</option>
++                    <option title="" value="0.15" >Trim 15% at margin</option>
+                   </select>
+                 </span>
+               </div>
+@@ -294,6 +323,7 @@
+ 
+         <div id="viewerContainer" tabindex="0">
+           <div id="viewer" class="pdfViewer"></div>
++          <div id="synctex-indicator"></div>
+         </div>
+ 
+         <div id="errorWrapper" hidden='true'>
