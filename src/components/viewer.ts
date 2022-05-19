@@ -100,8 +100,6 @@ export class Viewer {
             return
         }
         const url = `http://127.0.0.1:${this.extension.server.port}/viewer.html?file=${this.encodePathWithPrefix(pdfFile)}`
-        this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
-        this.extension.logger.addLogMessage(`The encoded path is ${pdfFile}`)
         return url
     }
 
@@ -119,6 +117,7 @@ export class Viewer {
         this.createClientSet(pdfFileUri)
         this.extension.manager.watchPdfFile(pdfFileUri)
         try {
+            this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFileUri.toString(true)}`)
         } catch (e: unknown) {

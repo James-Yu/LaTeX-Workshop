@@ -211,3 +211,28 @@ When reloading a PDF file. In order.
 1. textlayerrendered
 1. pagerendered
 1. textlayerrendered
+
+## GitHub Codespaces
+```mermaid
+flowchart TB
+  subgraph Remote["Remote machine"]
+    subgraph ExtensionHost["VS Code Server (Extension Host)"]
+      LW["LaTeX Workshop"]
+      Server["Server for PDF viewer\n(Files and WebSocket)\n127.0.0.1 at remote"]
+      LW --- Server
+    end
+    PortForwarder
+  end
+  GitHub["github.dev"]
+  GitHubPreview["githubpreview.dev"]
+  subgraph Browser
+    subgraph WebView["parent iframe"]
+      PDFViewer["PDF viewer (viewer.html)"]
+    end
+  end
+  ExtensionHost <--> GitHub
+  Server <--> PortForwarder
+  PortForwarder <--> GitHubPreview
+  GitHub <--> Browser
+  GitHubPreview <--> PDFViewer
+```
