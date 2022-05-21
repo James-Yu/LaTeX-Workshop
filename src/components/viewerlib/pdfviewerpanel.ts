@@ -96,6 +96,7 @@ export class PdfViewerPanelService {
         if (vscode.env.remoteName === 'codespaces' && vscode.env.uiKind === vscode.UIKind.Web) {
             const configuration = vscode.workspace.getConfiguration('latex-workshop')
             const delay = configuration.get('codespaces.portforwarding.openDelay', 20000)
+            // We have to open the url in a browser tab for the authentication of port forwarding through githubpreview.dev.
             await vscode.env.openExternal(url)
             await sleep(delay)
         }
