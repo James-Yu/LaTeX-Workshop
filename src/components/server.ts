@@ -74,7 +74,7 @@ export class Server {
 
     private get validOrigin(): string {
         if (this.validOriginUri) {
-            return `http://${this.validOriginUri.authority}`
+            return `${this.validOriginUri.scheme}://${this.validOriginUri.authority}`
         } else {
             throw new Error('[Server] validOrigin is undefined')
         }

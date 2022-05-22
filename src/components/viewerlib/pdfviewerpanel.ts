@@ -3,7 +3,7 @@ import * as path from 'path'
 
 import type {Extension} from '../../main'
 import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-protocol-types/index'
-import {escapeHtml} from '../../utils/utils'
+import {escapeHtml, sleep} from '../../utils/utils'
 import type {PdfViewerManagerService} from './pdfviewermanager'
 import {PdfViewerStatusChanged} from '../eventbus'
 
@@ -79,6 +79,7 @@ export class PdfViewerPanelSerializer implements vscode.WebviewPanelSerializer {
 
 export class PdfViewerPanelService {
     private readonly extension: Extension
+    private alreadyOpened = false
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -86,6 +87,20 @@ export class PdfViewerPanelService {
 
     private encodePathWithPrefix(pdfFileUri: vscode.Uri): string {
         return this.extension.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
+    }
+
+    private async tweakForCodespaces(url: vscode.Uri) {
+        if (this.alreadyOpened) {
+            return
+        }
+        if (vscode.env.remoteName === 'codespaces' && vscode.env.uiKind === vscode.UIKind.Web) {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop')
+            const delay = configuration.get('codespaces.portforwarding.openDelay', 20000)
+            // We have to open the url in a browser tab for the authentication of port forwarding through githubpreview.dev.
+            await vscode.env.openExternal(url)
+            await sleep(delay)
+        }
+        this.alreadyOpened = true
     }
 
     async createPdfViewerPanel(pdfFileUri: vscode.Uri, viewColumn: vscode.ViewColumn): Promise<PdfViewerPanel> {
@@ -124,6 +139,7 @@ export class PdfViewerPanelService {
         const url = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
         const iframeSrcOrigin = `${url.scheme}://${url.authority}`
         const iframeSrcUrl = url.toString(true)
+        await this.tweakForCodespaces(url)
         this.extension.logger.addLogMessage(`The internal PDF viewer url: ${iframeSrcUrl}`)
         const rebroadcast: boolean = this.getKeyboardEventConfig()
         return `
