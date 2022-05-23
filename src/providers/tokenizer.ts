@@ -9,7 +9,13 @@ import * as utils from '../utils/utils'
  * @param position The position to be scanned at.
  */
 function commandTokenizer(document: vscode.TextDocument, position: vscode.Position): string | undefined {
-    const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(/\\(?=[^\\{},[\]]*$)/)
+    let startRegex: RegExp
+    if (document.languageId === 'latex-expl3') {
+        startRegex = /\\(?=[^\\{},[\]]*$)/
+    } else {
+        startRegex = /\\(?=[a-zA-Z]*$)/
+    }
+    const startResult = document.getText(new vscode.Range(new vscode.Position(position.line, 0), position)).match(startRegex)
     if (startResult === null || startResult.index === undefined || startResult.index < 0) {
         return undefined
     }
