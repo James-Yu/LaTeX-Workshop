@@ -82,7 +82,7 @@ export class HoverProvider implements vscode.HoverProvider {
                     }
                     const doc = cmd.documentation
                     const packageName = cmd.package
-                    if (packageName && (!pkgs.includes(packageName))) {
+                    if (packageName && packageName !== 'user-defined' && (!pkgs.includes(packageName))) {
                         pkgs.push(packageName)
                     }
                     signatures.push(doc)
