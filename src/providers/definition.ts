@@ -55,6 +55,14 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         if (token === undefined) {
             return
         }
+
+        if (token.startsWith('\\')) {
+            const command = this.extension.completer.command.definedCmds.get(token.slice(1))
+            if (command) {
+                return command.location
+            }
+            return undefined
+        }
         const ref = this.extension.completer.reference.getRef(token)
         if (ref) {
             return new vscode.Location(vscode.Uri.file(ref.file), ref.position)
@@ -62,10 +70,6 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         const cite = this.extension.completer.citation.getEntry(token)
         if (cite) {
             return new vscode.Location( vscode.Uri.file(cite.file), cite.position )
-        }
-        const command = this.extension.completer.command.definedCmds.get(token)
-        if (command) {
-            return command.location
         }
         if (vscode.window.activeTextEditor && token.includes('.')) {
             // We skip graphics files
