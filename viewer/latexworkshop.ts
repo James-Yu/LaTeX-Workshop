@@ -12,7 +12,7 @@ declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
 
 class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     readonly documentTitle: string = ''
-    readonly embedded: boolean
+    readonly embedded = window.parent !== window
     readonly encodedPdfFilePath: string
     readonly pageTrimmer: PageTrimmer
     readonly pdfFileUri: string
@@ -36,7 +36,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private autoReloadEnabled = true
 
     constructor() {
-        this.embedded = window.parent !== window
         // When the promise is resolved, the initialization
         // of LateXWorkshopPdfViewer and PDF.js is completed.
         this.pdfViewerStarted = new Promise((resolve) => {
@@ -423,16 +422,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private hidePrintButton() {
-        const query = document.location.search.substring(1)
-        const parts = query.split('&')
-        for (let i = 0, ii = parts.length; i < ii; ++i) {
-            const param = parts[i].split('=')
-            if (param[0].toLowerCase() === 'incode' && param[1] === '1') {
-                const dom = document.getElementsByClassName('print') as HTMLCollectionOf<HTMLElement>
-                for (const item of dom) {
-                    item.style.display='none'
-                }
-            }
+        if (this.embedded) {
+            const dom = document.getElementById('print') as HTMLElement
+            dom.style.display='none'
         }
     }
 

@@ -135,7 +135,7 @@ export class PdfViewerPanelService {
     async getPDFViewerContent(pdfFile: vscode.Uri): Promise<string> {
         const serverPort = this.extension.server.port
         // viewer/viewer.js automatically requests the file to server.ts, and server.ts decodes the encoded path of PDF file.
-        const origUrl = `http://127.0.0.1:${serverPort}/viewer.html?incode=1&file=${this.encodePathWithPrefix(pdfFile)}`
+        const origUrl = `http://127.0.0.1:${serverPort}/viewer.html?file=${this.encodePathWithPrefix(pdfFile)}`
         const url = await vscode.env.asExternalUri(vscode.Uri.parse(origUrl, true))
         const iframeSrcOrigin = `${url.scheme}://${url.authority}`
         const iframeSrcUrl = url.toString(true)
