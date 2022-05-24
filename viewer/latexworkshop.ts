@@ -424,7 +424,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private hidePrintButton() {
         if (this.embedded) {
             const dom = document.getElementById('print') as HTMLElement
-            dom.style.display='none'
+            dom.style.display = 'none'
         }
     }
 
