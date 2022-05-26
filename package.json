@@ -1584,9 +1584,9 @@
           "scope": "window",
           "type": "string",
           "default": "chktex",
-          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.chktex.args.active#` or `#latex-workshop.chktex.args.root#` and required arguments to form a complete command of ChkTeX."
+          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.chktex.args#` and required arguments to form a complete command of ChkTeX."
         },
-        "latex-workshop.chktex.args.active": {
+        "latex-workshop.chktex.args": {
           "scope": "resource",
           "type": "array",
           "items": {
@@ -1601,20 +1601,25 @@
           ],
           "markdownDescription": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX. Arguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
-        "latex-workshop.chktex.args.root": {
-          "scope": "window",
+        "latex-workshop.chktex.args.active": {
+          "scope": "resource",
           "type": "array",
           "items": {
             "type": "string"
           },
-          "default": [
-            "-wall",
-            "-n22",
-            "-n30",
-            "-e16",
-            "-q"
-          ],
-          "markdownDescription": "Linter arguments to check LaTeX syntax of the entire project from the root file with ChkTeX. Arguments must be in separate strings in the array. Additional arguments, i.e., `-f%f:%l:%c:%d:%k:%n:%m\\n %DOC%` will be appended when constructing the command."
+          "default": [],
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.args#` instead.",
+          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.args#` instead."
+        },
+        "latex-workshop.chktex.args.root": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [],
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.args#` instead.",
+          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.args#` instead."
         },
         "latex-workshop.chktex.delay": {
           "scope": "resource",
