@@ -326,6 +326,6 @@ suite('Multi-root workspace test suite', () => {
         ]
         assertCompletionLabelsEqual(itemsB, expectedLabelsB)
         assertCompletionFilterTextContains(itemsB, descriptions)
-    })
+    }, () => os.platform() === 'win32')
 
 })
