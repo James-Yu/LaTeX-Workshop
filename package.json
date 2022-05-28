@@ -1580,13 +1580,20 @@
           "default": "onSave",
           "markdownDescription": "When LaTeX should be linted by ChkTeX.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `#latex-workshop.chktex.delay#`. It also implies `onSave`."
         },
-        "latex-workshop.chktex.path": {
+        "latex-workshop.chktex.exec.path": {
           "scope": "window",
           "type": "string",
           "default": "chktex",
-          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.chktex.args#` and required arguments to form a complete command of ChkTeX."
+          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.chktex.exec.args#` and required arguments to form a complete command of ChkTeX."
         },
-        "latex-workshop.chktex.args": {
+        "latex-workshop.chktex.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.path#` instead.",
+          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.exec.path#` instead."
+        },
+        "latex-workshop.chktex.exec.args": {
           "scope": "resource",
           "type": "array",
           "items": {
@@ -1608,8 +1615,8 @@
             "type": "string"
           },
           "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.args#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.args#` instead."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.args#` instead.",
+          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.exec.args#` instead."
         },
         "latex-workshop.chktex.args.root": {
           "scope": "resource",
@@ -1618,8 +1625,8 @@
             "type": "string"
           },
           "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.args#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.args#` instead."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.args#` instead.",
+          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.exec.args#` instead."
         },
         "latex-workshop.chktex.delay": {
           "scope": "resource",

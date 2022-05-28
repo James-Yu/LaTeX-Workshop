@@ -3,7 +3,8 @@
 ## New release
 
 ### Changed
-- Configurations `chktex.args.active` and `chktex.args.root` are deprecated in favour of `chktex.args`.
+- Configurations `chktex.args.active` and `chktex.args.root` are deprecated in favour of `chktex.exec.args`.
+- Configuration `chktex.args.path` is deprecated in favour of `chktex.exec.path`.
 
 ## [8.26.0] - 2022-05-05
 
