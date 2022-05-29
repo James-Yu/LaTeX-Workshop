@@ -58,6 +58,7 @@ The manual of the extension is maintained as a [wiki](https://github.com/James-Y
   - [Chktex](https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters#chktex)
 - [Viewing & SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View)
   - [Internal PDF viewer](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#internal-pdf-viewer)
+    - [Color](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#color)
     - [Invert mode](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#invert-mode)
   - [SyncTeX](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#synctex)
   - [External PDF viewer](https://github.com/James-Yu/LaTeX-Workshop/wiki/View#external-pdf-viewer)
