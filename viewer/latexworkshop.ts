@@ -35,7 +35,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private synctexEnabled = true
     private autoReloadEnabled = true
     private readonly setupAppOptionsPromise = new ExternalPromise<void>()
-    private readonly initialParamsPromise = new ExternalPromise<Params>()
+    private readonly initialParams = new ExternalPromise<Params>()
     private readonly restoredState = new ExternalPromise<PdfViewerState | undefined>()
 
     constructor() {
@@ -164,7 +164,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private async setupAppOptions() {
-        const params = await this.initialParamsPromise.promise
+        const params = await this.initialParams.promise
         document.addEventListener('webviewerloaded', () => {
             const color = this.isPrefersColorSchemeDark() ? params.color.dark : params.color.light
             const options = {
@@ -182,7 +182,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private async applyParamsOnStart() {
-        const params = await this.initialParamsPromise.promise
+        const params = await this.initialParams.promise
         this.applyNonStatefulParams(params)
         const restoredState = await this.restoredState.promise
         if (restoredState) {
@@ -379,7 +379,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'params': {
-                    this.initialParamsPromise.resolve(data)
+                    this.initialParams.resolve(data)
                     break
                 }
                 default: {

@@ -1,46 +1,5 @@
 --- ../tmp/pdfjs-2.14/web/viewer.js	2022-05-14 14:19:24.000000000 +0900
-+++ viewer/viewer.js	2022-05-25 07:51:05.000000000 +0900
-@@ -89,7 +89,7 @@
-     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
-   },
-   enableScripting: {
--    value: true,
-+    value: false,
-     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
-   },
-   externalLinkRel: {
-@@ -170,7 +170,7 @@
-     kind: OptionKind.API
-   },
-   cMapUrl: {
--    value: "../web/cmaps/",
-+    value: "/cmaps/",
-     kind: OptionKind.API
-   },
-   disableAutoFetch: {
-@@ -214,7 +214,7 @@
-     kind: OptionKind.API
-   },
-   standardFontDataUrl: {
--    value: "../web/standard_fonts/",
-+    value: "/standard_fonts/",
-     kind: OptionKind.API
-   },
-   verbosity: {
-@@ -222,11 +222,11 @@
-     kind: OptionKind.API
-   },
-   workerPort: {
--    value: null,
-+    value: new Worker('/build/pdf.worker.js'),
-     kind: OptionKind.WORKER
-   },
-   workerSrc: {
--    value: "../build/pdf.worker.js",
-+    value: "/build/pdf.worker.js",
-     kind: OptionKind.WORKER
-   }
- };
++++ viewer/viewer.js	2022-05-29 12:30:15.000000000 +0900
 @@ -898,7 +898,7 @@
        }
      }
