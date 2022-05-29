@@ -273,7 +273,18 @@ export class Viewer {
                         invert: configuration.get('view.pdf.invert') as number,
                         sepia: configuration.get('view.pdf.invertMode.sepia') as number,
                     },
-                    bgColor: configuration.get('view.pdf.backgroundColor') as string,
+                    color: {
+                        light: {
+                            pageColorsForeground: configuration.get('view.pdf.color.light.pageColorsForeground') || 'CanvasText',
+                            pageColorsBackground: configuration.get('view.pdf.color.light.pageColorsBackground') || 'Canvas',
+                            backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff')
+                        },
+                        dark: {
+                            pageColorsForeground: configuration.get('view.pdf.color.dark.pageColorsForeground') || 'CanvasText',
+                            pageColorsBackground: configuration.get('view.pdf.color.dark.pageColorsBackground') || 'Canvas',
+                            backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff')
+                        }
+                    },
                     keybindings: {
                         synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
                     }

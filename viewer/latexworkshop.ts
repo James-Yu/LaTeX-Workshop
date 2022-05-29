@@ -2,10 +2,11 @@ import {IConnectionPort, createConnectionPort} from './components/connection.js'
 import {SyncTex} from './components/synctex.js'
 import {PageTrimmer} from './components/pagetrimmer.js'
 import * as utils from './components/utils.js'
+import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
+import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, Params, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -23,17 +24,19 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
     private connectionPort: IConnectionPort
     private pdfPagesLoaded: Promise<void>
-    private isRestoredWithSerializer: boolean = false
     private readonly pdfViewerStarted: Promise<void>
     // The 'webviewerloaded' event is fired just before the initialization of PDF.js.
     // We can set PDFViewerApplicationOptions at the time.
     // - https://github.com/mozilla/pdf.js/wiki/Third-party-viewer-usage#initialization-promise
     // - https://github.com/mozilla/pdf.js/pull/10318
-    private readonly webviewLoaded: Promise<void> = new Promise((resolve) => {
+    private readonly webViewerLoaded: Promise<void> = new Promise((resolve) => {
         document.addEventListener('webviewerloaded', () => resolve() )
     })
     private synctexEnabled = true
     private autoReloadEnabled = true
+    private readonly setupAppOptionsPromise = new ExternalPromise<void>()
+    private readonly initialParamsPromise = new ExternalPromise<Params>()
+    private readonly restoredState = new ExternalPromise<PdfViewerState | undefined>()
 
     constructor() {
         // When the promise is resolved, the initialization
@@ -54,11 +57,12 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.pageTrimmer = new PageTrimmer(this)
 
         this.setupConnectionPort()
+        this.send({type:'request_params', pdfFileUri: this.pdfFileUri})
 
         this.onDidStartPdfViewer(() => {
-            this.send({type:'request_params', pdfFileUri: this.pdfFileUri})
-            this.setCssRule()
+            return this.applyParamsOnStart()
         })
+
         this.onPagesLoaded(() => {
             this.send({type:'loaded', pdfFileUri: this.pdfFileUri})
         }, {once: true})
@@ -79,6 +83,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 this.onPagesLoaded(() => resolve(), {once: true})
             })
         })
+        void this.setupAppOptions()
     }
 
     // For the details of the initialization of PDF.js,
@@ -86,7 +91,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     // We should use only the promises provided by PDF.js here, not the ones defined by us,
     // to avoid deadlock.
     private async getEventBus() {
-        await this.webviewLoaded
+        await this.webViewerLoaded
         await PDFViewerApplication.initializedPromise
         return PDFViewerApplication.eventBus
     }
@@ -140,7 +145,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private getPdfViewerState(): PdfViewerState {
-        const pack = {
+        const pack: PdfViewerState = {
             pdfFileUri: this.pdfFileUri,
             scale: PDFViewerApplication.pdfViewer.currentScaleValue,
             scrollMode: PDFViewerApplication.pdfViewer.scrollMode,
@@ -152,6 +157,40 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             autoReloadEnabled: this.autoReloadEnabled
         }
         return pack
+    }
+
+    async waitSetupAppOptionsFinished() {
+        return this.setupAppOptionsPromise.promise
+    }
+
+    private async setupAppOptions() {
+        const params = await this.initialParamsPromise.promise
+        document.addEventListener('webviewerloaded', () => {
+            const color = this.isPrefersColorSchemeDark() ? params.color.dark : params.color.light
+            const options = {
+                disablePreferences: true,
+                enableScripting: false,
+                cMapUrl: '/cmaps/',
+                standardFontDataUrl: '/standard_fonts/',
+                workerPort: new Worker('/build/pdf.worker.js'),
+                workerSrc: '/build/pdf.worker.js',
+                ...color
+            }
+            PDFViewerApplicationOptions.setAll(options)
+        })
+        this.setupAppOptionsPromise.resolve()
+    }
+
+    private async applyParamsOnStart() {
+        const params = await this.initialParamsPromise.promise
+        this.applyNonStatefulParams(params)
+        const restoredState = await this.restoredState.promise
+        if (restoredState) {
+            await this.restorePdfViewerState(restoredState)
+        } else {
+            await this.restorePdfViewerState(params)
+        }
+        this.setCssRule()
     }
 
     private async restorePdfViewerState(state: PdfViewerState) {
@@ -287,6 +326,40 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }, {once: true})
     }
 
+    isPrefersColorSchemeDark() {
+        return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+    }
+
+    private applyNonStatefulParams(params: Params) {
+        if (params.hand) {
+            PDFViewerApplication.pdfCursorTools.handTool.activate()
+        } else {
+            PDFViewerApplication.pdfCursorTools.handTool.deactivate()
+        }
+        if (params.invertMode.enabled) {
+            const { brightness, grayscale, hueRotate, invert, sepia } = params.invertMode
+            const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
+            if (this.isPrefersColorSchemeDark()) {
+                (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter;
+                (document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter;
+                (document.querySelector('#sidebarContent') as HTMLHtmlElement).style.background = 'var(--body-bg-color)'
+            } else {
+                (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
+                (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
+            }
+        }
+        if (this.isPrefersColorSchemeDark()) {
+            (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.dark.backgroundColor
+        } else {
+            (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.light.backgroundColor
+        }
+
+        if (params.keybindings) {
+            this.synctex.reverseSynctexKeybinding = params.keybindings['synctex']
+            this.synctex.registerListenerOnEachPage()
+        }
+    }
+
     private setupConnectionPort() {
         const openPack: ClientRequest = {
             type: 'open',
@@ -306,32 +379,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                     break
                 }
                 case 'params': {
-                    if (data.hand) {
-                        PDFViewerApplication.pdfCursorTools.handTool.activate()
-                    } else {
-                        PDFViewerApplication.pdfCursorTools.handTool.deactivate()
-                    }
-                    if (!this.isRestoredWithSerializer) {
-                        void this.restorePdfViewerState(data)
-                    }
-                    if (data.invertMode.enabled) {
-                        const { brightness, grayscale, hueRotate, invert, sepia } = data.invertMode
-                        const filter = `invert(${invert * 100}%) hue-rotate(${hueRotate}deg) grayscale(${grayscale}) sepia(${sepia}) brightness(${brightness})`
-                        const isPrefersColorSchemeDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-                        if (isPrefersColorSchemeDark) {
-                            (document.querySelector('#viewerContainer') as HTMLHtmlElement).style.filter = filter;
-                            (document.querySelector('#thumbnailView') as HTMLHtmlElement).style.filter = filter;
-                            (document.querySelector('#sidebarContent') as HTMLHtmlElement).style.background = 'var(--body-bg-color)'
-                        } else {
-                            (document.querySelector('html') as HTMLHtmlElement).style.filter = filter;
-                            (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
-                        }
-                    }
-                    (document.querySelector('#viewerContainer') as HTMLElement).style.background = data.bgColor
-                    if (data.keybindings) {
-                        this.synctex.reverseSynctexKeybinding = data.keybindings['synctex']
-                        this.synctex.registerListenerOnEachPage()
-                    }
+                    this.initialParamsPromise.resolve(data)
                     break
                 }
                 default: {
@@ -593,8 +641,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             }
             switch (data.type) {
                 case 'restore_state': {
-                    this.isRestoredWithSerializer = true
-                    void this.restorePdfViewerState(data.state)
+                    if (data.state.kind !== 'not_stored') {
+                        this.restoredState.resolve(data.state)
+                    } else {
+                        this.restoredState.resolve(undefined)
+                    }
                     break
                 }
                 default: {
@@ -610,4 +661,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
 
 }
 
-new LateXWorkshopPdfViewer()
+const extension = new LateXWorkshopPdfViewer()
+await extension.waitSetupAppOptionsFinished()
+// @ts-expect-error
+await import('/viewer.js')

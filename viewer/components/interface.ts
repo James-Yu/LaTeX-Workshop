@@ -88,5 +88,6 @@ export interface IPDFViewerApplication {
 }
 
 export interface IPDFViewerApplicationOptions {
-    set(name: string, value: unknown): void
+    set(name: string, value: unknown): void,
+    setAll(options: unknown): void
 }

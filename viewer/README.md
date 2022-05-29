@@ -98,12 +98,14 @@ sequenceDiagram
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer-)Server: open
-  Note over Viewer: load viewer.js
-  Note over Viewer: webviewerloaded
-  Note over Viewer: pagesinit
-  Note over Viewer: documentloaded
   Viewer-)+Server: request_params
   Server--)-Viewer: params
+  Note over Viewer: load viewer.js
+  Note over Viewer: webviewerloaded
+  Viewer->>Viewer: Set PDFViewerApplicationOptions
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Viewer->>Viewer: Apply params
   Note over Viewer: pagesloaded
   Viewer-)Server: loaded
 ```
@@ -131,14 +133,17 @@ sequenceDiagram
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer-)Server: open
-  Note over Viewer: load viewer.js
-  Note over Viewer: webviewerloaded
-  Note over Viewer: pagesinit
-  Note over Viewer: documentloaded
-  Viewer-)+Iframe: initialized
-  Iframe--)-Viewer: restore_state
   Viewer-)+Server: request_params
   Server--)-Viewer: params
+  Note over Viewer: load viewer.js
+  Note over Viewer: webviewerloaded
+  Viewer->>Viewer: Set PDFViewerApplicationOptions
+  Note over Viewer: pagesinit
+  Note over Viewer: documentloaded
+  Viewer->>Viewer: Apply params
+  Viewer-)+Iframe: initialized
+  Iframe--)-Viewer: restore_state
+  Viewer->>Viewer: Restore state
   Note over Viewer: pagesloaded
   Viewer-)Server: loaded
 ```
