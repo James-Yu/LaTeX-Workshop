@@ -5,6 +5,7 @@
 ### Changed
 - Configurations `chktex.args.active` and `chktex.args.root` are deprecated in favour of `chktex.exec.args`.
 - Configuration `chktex.args.path` is deprecated in favour of `chktex.exec.path`.
+- Configuration `view.pdf.backgroundColor` is deprecated in favour of `view.pdf.color.light.backgroundColor` and `view.pdf.color.dark.backgroundColor`.
 
 ## [8.26.0] - 2022-05-05
 
