@@ -89,7 +89,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   enableScripting: {
-    value: false,
+    value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   externalLinkRel: {
@@ -170,7 +170,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   cMapUrl: {
-    value: "/cmaps/",
+    value: "../web/cmaps/",
     kind: OptionKind.API
   },
   disableAutoFetch: {
@@ -214,7 +214,7 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   standardFontDataUrl: {
-    value: "/standard_fonts/",
+    value: "../web/standard_fonts/",
     kind: OptionKind.API
   },
   verbosity: {
@@ -222,11 +222,11 @@ const defaultOptions = {
     kind: OptionKind.API
   },
   workerPort: {
-    value: new Worker('/build/pdf.worker.js'),
+    value: null,
     kind: OptionKind.WORKER
   },
   workerSrc: {
-    value: "/build/pdf.worker.js",
+    value: "../build/pdf.worker.js",
     kind: OptionKind.WORKER
   }
 };
