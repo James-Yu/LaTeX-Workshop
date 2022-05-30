@@ -7,10 +7,9 @@ export type ServerResponse = {
         x: number,
         y: number
     }
-} | Params
+}
 
-export type Params = {
-    type: 'params',
+export type PdfViewerParams = {
     scale: string,
     trim: number,
     scrollMode: number,
@@ -45,9 +44,6 @@ export type ClientRequest = {
     type: 'open',
     pdfFileUri: string,
     viewer: 'browser' | 'tab'
-} | {
-    type: 'request_params',
-    pdfFileUri: string
 } | {
     type: 'loaded',
     pdfFileUri: string

@@ -95,11 +95,11 @@ flowchart TB
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
+  participant WebServer as Web Server
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer-)Server: open
-  Viewer-)+Server: request_params
-  Server--)-Viewer: params
+  Viewer->>WebServer: fetch /config.json
   Note over Viewer: load viewer.js
   Note over Viewer: webviewerloaded
   Viewer->>Viewer: Set PDFViewerApplicationOptions
@@ -129,12 +129,12 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
+  participant WebServer as Web Server
   participant Iframe as Parent iframe (VS Code WebView)
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer-)Server: open
-  Viewer-)+Server: request_params
-  Server--)-Viewer: params
+  Viewer->>WebServer: fetch /config.json
   Note over Viewer: load viewer.js
   Note over Viewer: webviewerloaded
   Viewer->>Viewer: Set PDFViewerApplicationOptions

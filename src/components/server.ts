@@ -134,14 +134,7 @@ export class Server {
         }
     }
 
-    private async handler(request: http.IncomingMessage, response: http.ServerResponse) {
-        if (!request.url) {
-            return
-        }
-        const isValidOrigin = this.checkHttpOrigin(request, response)
-        if (!isValidOrigin) {
-            return
-        }
+    private sendOkResponse(response: http.ServerResponse, content: Buffer, contentType: string) {
         //
         // Headers to enable site isolation.
         // - https://fetch.spec.whatwg.org/#cross-origin-resource-policy-header
@@ -153,6 +146,22 @@ export class Server {
             'Cross-Origin-Opener-Policy': 'same-origin',
             'X-Content-Type-Options': 'nosniff'
         }
+        response.writeHead(200, {
+            'Content-Type': contentType,
+            'Content-Length': content.length,
+            ...sameOriginPolicyHeaders
+        })
+        response.end(content)
+    }
+
+    private async handler(request: http.IncomingMessage, response: http.ServerResponse) {
+        if (!request.url) {
+            return
+        }
+        const isValidOrigin = this.checkHttpOrigin(request, response)
+        if (!isValidOrigin) {
+            return
+        }
         if (request.url.includes(this.pdfFilePathEncoder.pdfFilePrefix) && !request.url.includes('viewer.html')) {
             const s = request.url.replace('/', '')
             const fileUri = this.pdfFilePathEncoder.decodePathWithPrefix(s)
@@ -162,12 +171,7 @@ export class Server {
             }
             try {
                 const buf: Buffer = await this.extension.lwfs.readFileAsBuffer(fileUri)
-                response.writeHead(200, {
-                    'Content-Type': 'application/pdf',
-                    'Content-Length': buf.length,
-                    ...sameOriginPolicyHeaders
-                })
-                response.end(buf, 'binary')
+                this.sendOkResponse(response, buf, 'application/pdf')
                 this.extension.logger.addLogMessage(`Preview PDF file: ${fileUri.toString(true)}`)
             } catch (e) {
                 this.extension.logger.addLogMessage(`Error reading PDF file: ${fileUri.toString(true)}`)
@@ -177,6 +181,11 @@ export class Server {
                 response.writeHead(404)
                 response.end()
             }
+            return
+        } else if (request.url === '/config.json') {
+            const params = this.extension.viewer.viewerParams()
+            const content = JSON.stringify(params)
+            this.sendOkResponse(response, Buffer.from(content), 'application/json')
             return
         } else {
             let root: string
@@ -247,11 +256,7 @@ export class Server {
                     }
                     response.end()
                 } else {
-                    response.writeHead(200, {
-                        'Content-Type': contentType,
-                        ...sameOriginPolicyHeaders
-                    })
-                    response.end(content)
+                    this.sendOkResponse(response, content, contentType)
                 }
             })
         }
