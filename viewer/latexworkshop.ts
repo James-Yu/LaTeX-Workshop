@@ -6,7 +6,7 @@ import {ExternalPromise} from './components/externalpromise.js'
 import {ViewerHistory} from './components/viewerhistory.js'
 
 import type {PdfjsEventName, IDisposable, ILatexWorkshopPdfViewer, IPDFViewerApplication, IPDFViewerApplicationOptions} from './components/interface.js'
-import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, Params, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
+import type {ClientRequest, ServerResponse, PanelManagerResponse, PanelRequest, PdfViewerParams, PdfViewerState} from '../types/latex-workshop-protocol-types/index'
 
 declare const PDFViewerApplication: IPDFViewerApplication
 declare const PDFViewerApplicationOptions: IPDFViewerApplicationOptions
@@ -35,7 +35,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private synctexEnabled = true
     private autoReloadEnabled = true
     private readonly setupAppOptionsPromise = new ExternalPromise<void>()
-    private readonly initialParams = new ExternalPromise<Params>()
     private readonly restoredState = new ExternalPromise<PdfViewerState | undefined>()
 
     constructor() {
@@ -57,7 +56,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.pageTrimmer = new PageTrimmer(this)
 
         this.setupConnectionPort()
-        this.send({type:'request_params', pdfFileUri: this.pdfFileUri})
 
         this.onDidStartPdfViewer(() => {
             return this.applyParamsOnStart()
@@ -159,12 +157,19 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return pack
     }
 
+    private async fetchParams(): Promise<PdfViewerParams> {
+        const response = await fetch('/config.json')
+        const params = await response.json() as PdfViewerParams
+        return params
+    }
+
     async waitSetupAppOptionsFinished() {
         return this.setupAppOptionsPromise.promise
     }
 
     private async setupAppOptions() {
-        const params = await this.initialParams.promise
+        const workerPort = new Worker('/build/pdf.worker.js')
+        const params = await this.fetchParams()
         document.addEventListener('webviewerloaded', () => {
             const color = this.isPrefersColorSchemeDark() ? params.color.dark : params.color.light
             const options = {
@@ -172,7 +177,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 enableScripting: false,
                 cMapUrl: '/cmaps/',
                 standardFontDataUrl: '/standard_fonts/',
-                workerPort: new Worker('/build/pdf.worker.js'),
+                workerPort,
                 workerSrc: '/build/pdf.worker.js',
                 ...color
             }
@@ -182,7 +187,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     }
 
     private async applyParamsOnStart() {
-        const params = await this.initialParams.promise
+        const params = await this.fetchParams()
         this.applyNonStatefulParams(params)
         const restoredState = await this.restoredState.promise
         if (restoredState) {
@@ -330,7 +335,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
     }
 
-    private applyNonStatefulParams(params: Params) {
+    private applyNonStatefulParams(params: PdfViewerParams) {
         if (params.hand) {
             PDFViewerApplication.pdfCursorTools.handTool.activate()
         } else {
@@ -376,10 +381,6 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 }
                 case 'refresh': {
                     this.refreshPDFViewer()
-                    break
-                }
-                case 'params': {
-                    this.initialParams.resolve(data)
                     break
                 }
                 default: {
@@ -514,7 +515,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
     }
 
-    setSynctex(flag: boolean) {
+    private setSynctex(flag: boolean) {
         const synctexOff = document.getElementById('synctexOff') as HTMLInputElement
         if (flag) {
             if (synctexOff.checked) {
@@ -530,7 +531,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.sendCurrentStateToPanelManager()
     }
 
-    registerSynctexCheckBox() {
+    private registerSynctexCheckBox() {
         const synctexOff = document.getElementById('synctexOff') as HTMLInputElement
         synctexOff.addEventListener('change', () => {
             this.setSynctex(!synctexOff.checked)
@@ -543,7 +544,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         })
     }
 
-    setAutoReload(flag: boolean) {
+    private setAutoReload(flag: boolean) {
         const autoReloadOff = document.getElementById('autoReloadOff') as HTMLInputElement
         if (flag) {
             if (autoReloadOff.checked) {
@@ -559,7 +560,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         this.sendCurrentStateToPanelManager()
     }
 
-    registerAutoReloadCheckBox() {
+    private registerAutoReloadCheckBox() {
         const autoReloadOff = document.getElementById('autoReloadOff') as HTMLInputElement
         autoReloadOff.addEventListener('change', () => {
             this.setAutoReload(!autoReloadOff.checked)
