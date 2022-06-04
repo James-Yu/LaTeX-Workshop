@@ -12,7 +12,7 @@ export class PdfViewerPanel {
     private readonly extension: Extension
     readonly webviewPanel: vscode.WebviewPanel
     readonly pdfFileUri: vscode.Uri
-    private _state?: PdfViewerState
+    #state: PdfViewerState | undefined
 
     constructor(extension: Extension, pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel) {
         this.extension = extension
@@ -21,7 +21,7 @@ export class PdfViewerPanel {
         panel.webview.onDidReceiveMessage((msg: PanelRequest) => {
             switch(msg.type) {
                 case 'state': {
-                    this._state = msg.state
+                    this.#state = msg.state
                     this.extension.eventBus.fire(PdfViewerStatusChanged, msg.state)
                     break
                 }
@@ -33,7 +33,7 @@ export class PdfViewerPanel {
     }
 
     get state() {
-        return this._state
+        return this.#state
     }
 
 }

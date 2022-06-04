@@ -43,18 +43,6 @@ export class PdfViewerManagerService {
         return this.webviewPanelMap.get(this.toKey(pdfFileUri))
     }
 
-    /**
-     * Only for backward compatibility.
-     * @deprecated
-     */
-    get clients(): { [key: string]: Set<unknown> } {
-        const ret = Object.create(null) as { [key: string]: Set<unknown> }
-        this.clientMap.forEach((clientSet, key) => {
-            ret[key] = new Set(Array.from(clientSet).map(() => Object.create(null) as unknown ))
-        })
-        return ret
-    }
-
     findClient(pdfFileUri: vscode.Uri, websocket: ws): Client | undefined {
         const clientSet = this.getClientSet(pdfFileUri)
         if (clientSet === undefined) {
