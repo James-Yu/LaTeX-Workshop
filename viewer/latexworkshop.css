@@ -63,11 +63,15 @@ html[dir='rtl'] .findbar {
     width: 128px;
 }
 
-#historyBack {
+#historyBack::before {
+    -webkit-mask-image: var(--findbarButton-previous-icon);
+    mask-image: var(--findbarButton-previous-icon);
     transform: rotate(-90deg);
 }
 
-#historyForward {
+#historyForward::before {
+    -webkit-mask-image: var(--findbarButton-next-icon);
+    mask-image: var(--findbarButton-next-icon);
     transform: rotate(-90deg);
 }
 

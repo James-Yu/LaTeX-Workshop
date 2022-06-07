@@ -1,5 +1,27 @@
 # Change Log
 
+## [8.27.0]
+
+### Added
+- (#3316) Support `pageColorsForeground` and `pageColorsBackground` for the internal PDF viewer.
+
+### Changed
+- Configurations `chktex.args.active` and `chktex.args.root` are deprecated in favour of `chktex.exec.args`.
+- Configuration `chktex.args.path` is deprecated in favour of `chktex.exec.path`.
+- Configuration `view.pdf.backgroundColor` is deprecated in favour of `view.pdf.color.light.backgroundColor` and `view.pdf.color.dark.backgroundColor`.
+
+### Fixed
+- (#2537) Reveal `.tex` tab if open when using internal `synctex`.
+- (#3283) Refactor glossary intellisense data scanning.
+  - Stop directly accessing `node.kind`. Instead use the `latexParser.isXXX` methods.
+  - Use `stringify` to recompute labels and descriptions. Solves #3280.
+- (#3289) Wrong indentation of new items in tabs indented `itemize` environment.
+- (#3290) `/` is missing when using `%RELATIVE_DIR%` and `%RELATIVE_DOC%`.
+- (#3296) Fix hover and provide definition for commands.
+  - Refactor the `tokenizer` used to determine the command under cursor, if any. A LaTeX command name can only contain letters.
+  - Fix `provideDefinition` for commands: tokenized commands start with `\`. Solves #3294.
+  - Do not show link or `texdoc` command for 'user-defined' package: this is the package used for commands defined directly in the file.
+
 ## [8.26.0] - 2022-05-05
 
 ### Added

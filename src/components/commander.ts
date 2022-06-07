@@ -71,7 +71,6 @@ export class LaTeXCommanderProvider implements vscode.TreeDataProvider<LaTeXComm
             new LaTeXCommand('View in VSCode tab', {command: 'latex-workshop.view', arguments: ['tab']}, 'open-preview'),
             new LaTeXCommand('View in web browser', {command: 'latex-workshop.view', arguments: ['browser']}, 'browser'),
             new LaTeXCommand('View in external viewer', {command: 'latex-workshop.view', arguments: ['external']}, 'preview'),
-            new LaTeXCommand('Set default viewer', {command: 'latex-workshop.view', arguments: ['set']}, 'settings-gear'),
             new LaTeXCommand('Refresh all viewers', {command: 'latex-workshop.refresh-viewer'}, 'refresh')
         ])
         commands.push(node)

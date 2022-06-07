@@ -1,7 +1,15 @@
 export type ServerResponse = {
     type: 'refresh'
 } | {
-    type: 'params',
+    type: 'synctex',
+    data: {
+        page: number,
+        x: number,
+        y: number
+    }
+}
+
+export type PdfViewerParams = {
     scale: string,
     trim: number,
     scrollMode: number,
@@ -15,16 +23,20 @@ export type ServerResponse = {
         invert: number,
         sepia: number
     },
-    bgColor: string,
+    color: {
+        light: {
+            pageColorsForeground: string,
+            pageColorsBackground: string,
+            backgroundColor: string
+        },
+        dark: {
+            pageColorsForeground: string,
+            pageColorsBackground: string,
+            backgroundColor: string
+        }
+    }
     keybindings: {
         synctex: 'ctrl-click' | 'double-click'
-    }
-} | {
-    type: 'synctex',
-    data: {
-        page: number,
-        x: number,
-        y: number
     }
 }
 
@@ -32,9 +44,6 @@ export type ClientRequest = {
     type: 'open',
     pdfFileUri: string,
     viewer: 'browser' | 'tab'
-} | {
-    type: 'request_params',
-    pdfFileUri: string
 } | {
     type: 'loaded',
     pdfFileUri: string
@@ -68,6 +77,7 @@ export type PanelRequest = {
 }
 
 export type PdfViewerState = {
+    kind?: 'not_stored',
     path?: string,
     pdfFileUri?: string,
     scale?: string,

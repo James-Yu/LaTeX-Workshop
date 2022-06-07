@@ -64,7 +64,7 @@ function registerLatexWorkshopCommands(extension: Extension, context: vscode.Ext
         vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveWithoutBuilding()),
         vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build()),
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => extension.commander.recipes(recipe)),
-        vscode.commands.registerCommand('latex-workshop.view', (mode: 'tab' | 'browser' | 'external' | undefined) => extension.commander.view(mode)),
+        vscode.commands.registerCommand('latex-workshop.view', (mode: 'tab' | 'browser' | 'external' | vscode.Uri | undefined) => extension.commander.view(mode)),
         vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh()),
         vscode.commands.registerCommand('latex-workshop.tab', () => extension.commander.view('tab')),
         vscode.commands.registerCommand('latex-workshop.viewInBrowser', () => extension.commander.view('browser')),

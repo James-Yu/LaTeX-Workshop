@@ -40,34 +40,52 @@ we can reuse the PDFWorker:
 ```
 See [mozilla/pdf.js/pull/8107](https://github.com/mozilla/pdf.js/pull/8107) for the details of the setting.
 
-## Events emitted by `viewer.js`
+## Architecture
 
-When opening a PDF file. In order.
+```mermaid
+flowchart TB
+  subgraph ExtensionHost["VS Code Extension Host"]
+    LW["LaTeX Workshop"]
+    Server["Server for PDF viewer \n(Files and WebSocket)\n127.0.0.1"]
+    LW --- Server
+  end
+  subgraph VSCode["VS Code"]
+    subgraph WebView["WebView (parent iframe)"]
+      PDFViewer["PDF viewer (viewer.html)"]
+    end
+  end
+  Server <--> PDFViewer
+  Server <--> Browser
+  subgraph Browser
+    PDFViewerB["PDF viewer (viewer.html)"]
+  end
+```
 
-1. webviewerloaded
-2. DOMContentLoaded (not by `viewer.js`)
-3. baseviewerinit
-4. pagesinit
-5. documentloaded
-7. documentinit
-8. `PDF da551cb... [...] (PDF.js: 2.2.228)` (a log message is output)
-9. pagerendered
-1. pagesloaded
-1. textlayerrendered
-1. pagerendered
-1. textlayerrendered
-
-When reloading a PDF file. In order.
-
-1. pagesinit
-1. documentloaded
-1. documentinit
-1. `PDF da551cb... [...] (PDF.js: 2.2.228)` (a log message is output)
-1. pagerendered
-1. pagesloaded
-1. textlayerrendered
-1. pagerendered
-1. textlayerrendered
+### VS Code Remote Development
+```mermaid
+flowchart TB
+  subgraph Remote["Remote machine or container"]
+    subgraph ExtensionHost["VS Code Server (Extension Host)"]
+      LW["LaTeX Workshop"]
+      Server["Server for PDF viewer\n(Files and WebSocket)\n127.0.0.1 at remote"]
+      LW --- Server
+    end
+  end
+  subgraph Local["Local machine"]
+    subgraph VSCode["VS Code"]
+      PortForwarder["Port forwarder\n127.0.0.1 at local"]
+      subgraph WebView["WebView (parent iframe)"]
+        PDFViewer["PDF viewer (viewer.html)"]
+      end
+    end
+    subgraph Browser
+      PDFViewerB["PDF viewer (viewer.html)"]
+    end
+  end
+  PortForwarder <--> PDFViewer
+  PortForwarder <--> Browser
+  Server <--> PortForwarder
+```
 
 ## Sequence diagrams
 
@@ -77,15 +95,17 @@ When reloading a PDF file. In order.
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
+  participant WebServer as Web Server
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer-)Server: open
+  Viewer->>WebServer: fetch /config.json
   Note over Viewer: load viewer.js
   Note over Viewer: webviewerloaded
+  Viewer->>Viewer: Set PDFViewerApplicationOptions
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
-  Viewer-)+Server: request_params
-  Server--)-Viewer: params
+  Viewer->>Viewer: Apply params
   Note over Viewer: pagesloaded
   Viewer-)Server: loaded
 ```
@@ -109,18 +129,21 @@ sequenceDiagram
 sequenceDiagram
   participant Viewer as PDF Viewer
   participant Server as WebSocket Server
+  participant WebServer as Web Server
   participant Iframe as Parent iframe (VS Code WebView)
   Note over Viewer: load viewer.html
   Note over Viewer: load latexworkshop.js
   Viewer-)Server: open
+  Viewer->>WebServer: fetch /config.json
   Note over Viewer: load viewer.js
   Note over Viewer: webviewerloaded
+  Viewer->>Viewer: Set PDFViewerApplicationOptions
   Note over Viewer: pagesinit
   Note over Viewer: documentloaded
+  Viewer->>Viewer: Apply params
   Viewer-)+Iframe: initialized
   Iframe--)-Viewer: restore_state
-  Viewer-)+Server: request_params
-  Server--)-Viewer: params
+  Viewer->>Viewer: Restore state
   Note over Viewer: pagesloaded
   Viewer-)Server: loaded
 ```
@@ -163,4 +186,58 @@ sequenceDiagram
   participant Iframe as Parent iframe (VS Code WebView)
   Viewer-)Iframe: KeyboardEvent
   Iframe-)Iframe: Dispatch KeyboardEvent
+```
+
+## Events emitted by `viewer.js`
+
+When opening a PDF file. In order.
+
+1. webviewerloaded
+2. DOMContentLoaded (not by `viewer.js`)
+3. baseviewerinit
+4. pagesinit
+5. documentloaded
+7. documentinit
+8. `PDF da551cb... [...] (PDF.js: 2.2.228)` (a log message is output)
+9. pagerendered
+1. pagesloaded
+1. textlayerrendered
+1. pagerendered
+1. textlayerrendered
+
+When reloading a PDF file. In order.
+
+1. pagesinit
+1. documentloaded
+1. documentinit
+1. `PDF da551cb... [...] (PDF.js: 2.2.228)` (a log message is output)
+1. pagerendered
+1. pagesloaded
+1. textlayerrendered
+1. pagerendered
+1. textlayerrendered
+
+## GitHub Codespaces
+```mermaid
+flowchart TB
+  subgraph Remote["Remote machine"]
+    subgraph ExtensionHost["VS Code Server (Extension Host)"]
+      LW["LaTeX Workshop"]
+      Server["Server for PDF viewer\n(Files and WebSocket)\n127.0.0.1 at remote"]
+      LW --- Server
+    end
+    PortForwarder
+  end
+  GitHub["github.dev"]
+  GitHubPreview["githubpreview.dev"]
+  subgraph Browser
+    subgraph WebView["parent iframe"]
+      PDFViewer["PDF viewer (viewer.html)"]
+    end
+  end
+  ExtensionHost <--> GitHub
+  Server <--> PortForwarder
+  PortForwarder <--> GitHubPreview
+  GitHub <--> Browser
+  GitHubPreview <--> PDFViewer
 ```

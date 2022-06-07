@@ -96,8 +96,8 @@ export class Linter {
         const content = document.getText()
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', document)
-        const command = configuration.get('chktex.path') as string
-        const args = [...(configuration.get('chktex.args.active') as string[])]
+        const command = configuration.get('chktex.exec.path') as string
+        const args = [...(configuration.get('chktex.exec.args') as string[])]
         if (!args.includes('-l')) {
             const rcPath = this.rcPath
             if (rcPath) {
@@ -131,8 +131,8 @@ export class Linter {
 
         const filePath = this.extension.manager.rootFile
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(filePath))
-        const command = configuration.get('chktex.path') as string
-        const args = [...(configuration.get('chktex.args.active') as string[])]
+        const command = configuration.get('chktex.exec.path') as string
+        const args = [...(configuration.get('chktex.exec.args') as string[])]
         if (!args.includes('-l')) {
             const rcPath = this.rcPath
             if (rcPath) {
@@ -157,7 +157,7 @@ export class Linter {
 
     private getChktexrcTabSize(file: string): number | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        const args = configuration.get('chktex.args.active') as string[]
+        const args = configuration.get('chktex.exec.args') as string[]
         let filePath: string | undefined
         if (args.includes('-l')) {
             const idx = args.indexOf('-l')

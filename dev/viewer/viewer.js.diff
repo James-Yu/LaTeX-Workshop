@@ -1,0 +1,103 @@
+--- ../tmp/pdfjs-2.14/web/viewer.js	2022-05-14 14:19:24.000000000 +0900
++++ viewer/viewer.js	2022-05-29 12:30:15.000000000 +0900
+@@ -898,7 +898,7 @@
+       }
+     }
+ 
+-    this.setTitle(title);
++    // this.setTitle(title);
+   },
+ 
+   setTitle(title) {
+@@ -5560,7 +5560,7 @@
+ };
+ exports.FindState = FindState;
+ const FIND_TIMEOUT = 250;
+-const MATCH_SCROLL_OFFSET_TOP = -50;
++const MATCH_SCROLL_OFFSET_TOP = -100;
+ const MATCH_SCROLL_OFFSET_LEFT = -400;
+ const CHARACTERS_TO_NORMALIZE = {
+   "\u2010": "-",
+@@ -8598,7 +8598,7 @@
+       return;
+     }
+ 
+-    if (!this._switchView(view, true)) {
++    if (!this._switchView(view, false)) {
+       this._dispatchEvent();
+     }
+   }
+@@ -9860,7 +9860,7 @@
+     this.downloadManager = options.downloadManager || null;
+     this.findController = options.findController || null;
+     this._scriptingManager = options.scriptingManager || null;
+-    this.removePageBorders = options.removePageBorders || false;
++    this.removePageBorders = options.removePageBorders || true;
+     this.textLayerMode = options.textLayerMode ?? _ui_utils.TextLayerMode.ENABLE;
+     this.#annotationMode = options.annotationMode ?? _pdfjsLib.AnnotationMode.ENABLE_FORMS;
+     this.imageResourcesPath = options.imageResourcesPath || "";
+@@ -13751,11 +13751,11 @@
+ 
+   async _writeToStorage() {
+     const databaseStr = JSON.stringify(this.database);
+-    localStorage.setItem("pdfjs.history", databaseStr);
++    // localStorage.setItem("pdfjs.history", databaseStr);
+   }
+ 
+   async _readFromStorage() {
+-    return localStorage.getItem("pdfjs.history");
++    return // localStorage.getItem("pdfjs.history");
+   }
+ 
+   async set(name, val) {
+@@ -13823,11 +13823,11 @@
+ 
+ class GenericPreferences extends _preferences.BasePreferences {
+   async _writeToStorage(prefObj) {
+-    localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
++    // localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
+   }
+ 
+   async _readFromStorage(prefObj) {
+-    return JSON.parse(localStorage.getItem("pdfjs.preferences"));
++    return // JSON.parse(localStorage.getItem("pdfjs.preferences"));
+   }
+ 
+ }
+@@ -14769,7 +14769,7 @@
+     var data = gL10nData[key];
+ 
+     if (!data) {
+-      console.warn('#' + key + ' is undefined.');
++      // console.warn('#' + key + ' is undefined.');
+ 
+       if (!fallback) {
+         return null;
+@@ -14834,7 +14834,7 @@
+     var data = getL10nData(l10n.id, l10n.args);
+ 
+     if (!data) {
+-      console.warn('#' + l10n.id + ' is undefined.');
++      // console.warn('#' + l10n.id + ' is undefined.');
+       return;
+     }
+ 
+@@ -15276,6 +15276,9 @@
+ 
+ window.addEventListener("keydown", function (event) {
+   if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
++    if (window.parent !== window) {
++      return;
++    }
+     window.print();
+     event.preventDefault();
+ 
+@@ -15569,7 +15572,7 @@
+   try {
+     parent.document.dispatchEvent(event);
+   } catch (ex) {
+-    console.error(`webviewerloaded: ${ex}`);
++    // console.error(`webviewerloaded: ${ex}`);
+     document.dispatchEvent(event);
+   }
+ 

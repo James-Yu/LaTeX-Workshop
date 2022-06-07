@@ -7,7 +7,7 @@ import type {Extension} from '../main'
 import type {SyncTeXRecordForward} from './locator'
 import {getCurrentThemeLightness} from '../utils/theme'
 
-import type {ClientRequest, ServerResponse, PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
+import type {ClientRequest, PdfViewerParams, PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
 
 import {Client} from './viewerlib/client'
 import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from './viewerlib/pdfviewerpanel'
@@ -55,10 +55,6 @@ export class Viewer {
         return this.managerService.initiatePdfViewerPanel(pdfPanel)
     }
 
-    private findClient(pdfFileUri: vscode.Uri, websocket: ws): Client | undefined {
-        return this.managerService.findClient(pdfFileUri, websocket)
-    }
-
     private encodePathWithPrefix(pdfFileUri: vscode.Uri): string {
         return this.extension.server.pdfFilePathEncoder.encodePathWithPrefix(pdfFileUri)
     }
@@ -99,8 +95,6 @@ export class Viewer {
             return
         }
         const url = `http://127.0.0.1:${this.extension.server.port}/viewer.html?file=${this.encodePathWithPrefix(pdfFile)}`
-        this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
-        this.extension.logger.addLogMessage(`The encoded path is ${pdfFile}`)
         return url
     }
 
@@ -118,6 +112,7 @@ export class Viewer {
         this.createClientSet(pdfFileUri)
         this.extension.manager.watchPdfFile(pdfFileUri)
         try {
+            this.extension.logger.addLogMessage(`Serving PDF file at ${url}`)
             await vscode.env.openExternal(vscode.Uri.parse(url, true))
             this.extension.logger.addLogMessage(`Open PDF viewer for ${pdfFileUri.toString(true)}`)
         } catch (e: unknown) {
@@ -241,41 +236,6 @@ export class Viewer {
                 })
                 break
             }
-            case 'request_params': {
-                const pdfFileUri = vscode.Uri.parse(data.pdfFileUri, true)
-                const client = this.findClient(pdfFileUri, websocket)
-                if (client === undefined) {
-                    break
-                }
-                const configuration = vscode.workspace.getConfiguration('latex-workshop')
-                const invertType = configuration.get('view.pdf.invertMode.enabled') as string
-                const invertEnabled = (invertType === 'auto' && (getCurrentThemeLightness() === 'dark')) ||
-                invertType === 'always' ||
-                (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
-                const pack: ServerResponse = {
-                    type: 'params',
-                    scale: configuration.get('view.pdf.zoom') as string,
-                    trim: configuration.get('view.pdf.trim') as number,
-                    scrollMode: configuration.get('view.pdf.scrollMode') as number,
-                    spreadMode: configuration.get('view.pdf.spreadMode') as number,
-                    hand: configuration.get('view.pdf.hand') as boolean,
-                    invertMode: {
-                        enabled: invertEnabled,
-                        brightness: configuration.get('view.pdf.invertMode.brightness') as number,
-                        grayscale: configuration.get('view.pdf.invertMode.grayscale') as number,
-                        hueRotate: configuration.get('view.pdf.invertMode.hueRotate') as number,
-                        invert: configuration.get('view.pdf.invert') as number,
-                        sepia: configuration.get('view.pdf.invertMode.sepia') as number,
-                    },
-                    bgColor: configuration.get('view.pdf.backgroundColor') as string,
-                    keybindings: {
-                        synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
-                    }
-                }
-                this.extension.logger.addLogMessage(`Sending the settings of the PDF viewer for initialization: ${JSON.stringify(pack)}`)
-                client.send(pack)
-                break
-            }
             case 'loaded': {
                 this.extension.eventBus.fire(PdfViewerPagesLoaded)
                 const configuration = vscode.workspace.getConfiguration('latex-workshop')
@@ -304,6 +264,45 @@ export class Viewer {
                 break
             }
         }
+    }
+
+    viewerParams(): PdfViewerParams {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const invertType = configuration.get('view.pdf.invertMode.enabled') as string
+        const invertEnabled = (invertType === 'auto' && (getCurrentThemeLightness() === 'dark')) ||
+        invertType === 'always' ||
+        (invertType === 'compat' && ((configuration.get('view.pdf.invert') as number) > 0))
+        const pack: PdfViewerParams = {
+            scale: configuration.get('view.pdf.zoom') as string,
+            trim: configuration.get('view.pdf.trim') as number,
+            scrollMode: configuration.get('view.pdf.scrollMode') as number,
+            spreadMode: configuration.get('view.pdf.spreadMode') as number,
+            hand: configuration.get('view.pdf.hand') as boolean,
+            invertMode: {
+                enabled: invertEnabled,
+                brightness: configuration.get('view.pdf.invertMode.brightness') as number,
+                grayscale: configuration.get('view.pdf.invertMode.grayscale') as number,
+                hueRotate: configuration.get('view.pdf.invertMode.hueRotate') as number,
+                invert: configuration.get('view.pdf.invert') as number,
+                sepia: configuration.get('view.pdf.invertMode.sepia') as number,
+            },
+            color: {
+                light: {
+                    pageColorsForeground: configuration.get('view.pdf.color.light.pageColorsForeground') || 'CanvasText',
+                    pageColorsBackground: configuration.get('view.pdf.color.light.pageColorsBackground') || 'Canvas',
+                    backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff')
+                },
+                dark: {
+                    pageColorsForeground: configuration.get('view.pdf.color.dark.pageColorsForeground') || 'CanvasText',
+                    pageColorsBackground: configuration.get('view.pdf.color.dark.pageColorsBackground') || 'Canvas',
+                    backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff')
+                }
+            },
+            keybindings: {
+                synctex: configuration.get('view.pdf.internal.synctex.keybinding') as 'ctrl-click' | 'double-click'
+            }
+        }
+        return pack
     }
 
     /**

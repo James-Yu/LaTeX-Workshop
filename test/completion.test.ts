@@ -1,5 +1,5 @@
 import * as assert from 'assert'
-// import * as os from 'os'
+import * as os from 'os'
 import * as path from 'path'
 
 import * as process from 'process'
@@ -148,5 +148,5 @@ suite('Completion test suite', () => {
         assertCompletionItemContains(items, 'E_P', 'Elastic $\\varepsilon$ toto')
         assertCompletionItemContains(items, 'lw', 'What this extension is $\\mathbb{A}$')
         assertCompletionItemContains(items, 'vs_code', 'Editor')
-    })
+    }, () => os.platform() === 'win32')
 })

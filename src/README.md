@@ -79,12 +79,14 @@ flowchart LR
   Ready --> ActiveDocumentChanged
   ActiveDocumentChanged --> FindRootFile
   FindRootFile --> Parse --> Ready
-  ActiveDocumentSaved{{The activate document saved}}
+  ActiveDocumentSaved{{The active document saved}}
   Ready --> ActiveDocumentSaved
   ActiveDocumentSaved --> Build
   Build["Build the root file"]
   Parse["Parse files"]
-  Ready -- build command --> Build
+  BuildCommand{{build command invoked}}
+  Ready --> BuildCommand
+  BuildCommand --> Build
   Build --> Parse
   ActiveTextChanged{{The active document edited}}
   Ready --> ActiveTextChanged
