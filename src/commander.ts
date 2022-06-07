@@ -137,7 +137,7 @@ export class Commander {
         })
     }
 
-    async view(mode?: 'tab' | 'browser' | 'external') {
+    async view(mode?: 'tab' | 'browser' | 'external' | vscode.Uri) {
         if (mode) {
             this.extension.logger.addLogMessage(`VIEW command invoked with mode: ${mode}.`)
         } else {
@@ -166,7 +166,7 @@ export class Commander {
         }
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const tabEditorGroup = configuration.get('view.pdf.tab.editorGroup') as string
-        const viewer = mode ?? configuration.get<'tab' | 'browser' | 'external'>('view.pdf.viewer', 'tab')
+        const viewer = typeof mode === 'string' ? mode : configuration.get<'tab' | 'browser' | 'external'>('view.pdf.viewer', 'tab')
         if (viewer === 'browser') {
             return this.extension.viewer.openBrowser(pickedRootFile)
         } else if (viewer === 'tab') {
