@@ -1,5 +1,10 @@
 # Change Log
 
+## [8.27.2] - 2022-06-08
+
+### Fixed
+- This time should really fix the `view` button issue.
+
 ## [8.27.1] - 2022-06-08
 
 ### Fixed
