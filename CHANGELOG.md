@@ -1,6 +1,11 @@
 # Change Log
 
-## [8.27.0]
+## [8.27.1] - 2022-06-08
+
+### Fixed
+- (#3324) Fix the `view` command.
+
+## [8.27.0] - 2022-06-07
 
 ### Added
 - (#3316) Support `pageColorsForeground` and `pageColorsBackground` for the internal PDF viewer.
