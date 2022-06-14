@@ -121,19 +121,19 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     async parseLaTeXNode(node: latexParser.Node, config: {cmds: string[], envs: string[], secs: string[], depths: {[cmd: string]: number}}, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
         let sections: Section[] = []
         if (latexParser.isCommand(node)) {
-            if (config.secs.includes(node.name.replace('*', ''))) {
+            if (config.secs.includes(node.name.replace(/\*$/, ''))) {
                 // \section{Title}
                 const caption = latexParser.stringify(node.args[node.args.length - 1])
                 sections.push(new Section(
                     SectionKind.Section,
                     caption.slice(1, caption.length - 1), // {Title} -> Title
                     vscode.TreeItemCollapsibleState.Expanded,
-                    config.depths[node.name.replace('*', '')],
+                    config.depths[node.name.replace(/\*$/, '')],
                     node.location.start.line - 1,
                     node.location.end.line - 1,
                     file
                 ))
-            } else if (config.cmds.includes(node.name.replace('*', ''))) {
+            } else if (config.cmds.includes(node.name.replace(/\*$/, ''))) {
                 // \notlabel{Show}{ShowAlso}
                 const caption = node.args.map(arg => {
                     const argContent = latexParser.stringify(arg)
@@ -166,7 +166,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 node.location.end.line - 1,
                 file
             ))
-        } else if (latexParser.isEnvironment(node) && config.envs.includes(node.name.replace('*', ''))) {
+        } else if (latexParser.isEnvironment(node) && config.envs.includes(node.name.replace(/\*$/, ''))) {
             // \begin{figure}...\end{figure}
             sections.push(new Section(
                 SectionKind.Env,
@@ -206,7 +206,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         let candidate: string | undefined
         // \input{sub.tex}
         if (['input', 'InputIfFileExists', 'include', 'SweaveInput',
-             'subfile', 'loadglsentries'].includes(node.name.replace('*', ''))) {
+             'subfile', 'loadglsentries'].includes(node.name.replace(/\*$/, ''))) {
             candidate = utils.resolveFile(
                 [path.dirname(file),
                  path.dirname(this.extension.manager.rootFile || ''),
@@ -214,7 +214,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 cmdArgs[0])
         }
         // \import{sections/}{section1.tex}
-        if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace('*', ''))) {
+        if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace(/\*$/, ''))) {
             candidate = utils.resolveFile(
                 [cmdArgs[0],
                  path.join(
@@ -223,7 +223,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 cmdArgs[1])
         }
         // \subimport{01-IntroDir/}{01-Intro.tex}
-        if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace('*', ''))) {
+        if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace(/\*$/, ''))) {
             candidate = utils.resolveFile(
                 [path.dirname(file)],
                 path.join(cmdArgs[0], cmdArgs[1]))
@@ -233,7 +233,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     }
 
     private findEnvCaption(node: latexParser.Environment): string {
-        if (node.name.replace('*', '') === 'frame') {
+        if (node.name.replace(/\*$/, '') === 'frame') {
             // Frame titles can be specified as either \begin{frame}{Frame Title}
             // or \begin{frame} \frametitle{Frame Title}
             // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
@@ -241,7 +241,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
             // \begin{frame} \frametitle{Frame Title}
             let caption: string = 'Untitled Frame'
-            const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace('*', '') === 'frametitle')
+            const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'frametitle')
             if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0])) {
                 caption = latexParser.stringify(captionNodes[0].args[0])
                 caption = caption.slice(1, caption.length - 1)
@@ -254,10 +254,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
             }
             return caption
-        } else if (node.name.replace('*', '') === 'figure' || node.name.replace('*', '') === 'table') {
+        } else if (node.name.replace(/\*$/, '') === 'figure' || node.name.replace(/\*$/, '') === 'table') {
             // \begin{figure} \caption{Figure Title}
             let caption: string = 'Untitled'
-            const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace('*', '') === 'caption')
+            const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'caption')
             if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0])) {
                 caption = latexParser.stringify(captionNodes[0].args[0])
                 return caption.slice(1, caption.length - 1)
