@@ -12,7 +12,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         this.sectionNodeProvider = new SectionNodeProvider(extension)
     }
 
-    provideWorkspaceSymbols(): vscode.SymbolInformation[] {
+    async provideWorkspaceSymbols(): Promise<vscode.SymbolInformation[]> {
         const symbols: vscode.SymbolInformation[] = []
         if (this.extension.manager.rootFile === undefined) {
             return symbols
@@ -21,7 +21,7 @@ export class ProjectSymbolProvider implements vscode.WorkspaceSymbolProvider {
         if (rootFileUri && this.extension.lwfs.isVirtualUri(rootFileUri)) {
             return symbols
         }
-        this.sectionToSymbols(symbols, this.sectionNodeProvider.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile))
+        this.sectionToSymbols(symbols, await this.sectionNodeProvider.buildLaTeXModel())
         return symbols
     }
 
