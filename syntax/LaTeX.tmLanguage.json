@@ -381,6 +381,25 @@
 					"end": "(\\\\end\\{minted\\})"
 				},
 				{
+					"begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{(haskell|hs)\\})",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#env-mandatory-arg"
+								}
+							]
+						}
+					},
+					"contentName": "source.haskell",
+					"patterns": [
+						{
+							"include": "source.haskell"
+						}
+					],
+					"end": "(\\\\end\\{minted\\})"
+				},
+				{
 					"begin": "(\\\\begin\\{(?:lstlisting|minted|pyglist)\\}(?:\\[.*\\])?)",
 					"captures": {
 						"1": {
