@@ -100,7 +100,12 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }, depths)
 
         // Step 2: Create the hierarchy of these sections.
-        return this.buildLaTeXHierarchy(flatStructure, showHierarchyNumber)
+        const structure = this.buildLaTeXHierarchy(flatStructure, showHierarchyNumber)
+
+        // Step 3: Determine the toLine of all sections.
+        this.buildLaTeXSectionToLine(structure, Number.MAX_SAFE_INTEGER)
+
+        return structure
     }
 
     /**
@@ -427,6 +432,25 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return sections
     }
 
+    private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
+        const sections = structure.filter(section => section.depth >= 0)
+        sections.forEach((section, index) => {
+            if (index === sections.length - 1) {
+                // Last section
+                section.toLine = lastLine
+            } else {
+                if (sections[index + 1].lineNumber === section.lineNumber) {
+                    // On the same line, e.g., \section{one}\section{two}
+                    return
+                }
+                section.toLine = sections[index + 1].lineNumber - 1
+            }
+            if (section.children.length > 0) {
+                this.buildLaTeXSectionToLine(section.children, section.toLine)
+            }
+        })
+    }
+
     async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(document.fileName))
         if (document.getText().length >= (configuration.get('bibtex.maxFileSize') as number) * 1024 * 1024) {
@@ -547,6 +571,7 @@ export class StructureTreeView {
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
+           this.extension.logger.addLogMessage(`Follow cursor is set to ${this._followCursor}.`)
         })
 
         vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
