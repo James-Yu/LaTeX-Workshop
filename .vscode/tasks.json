@@ -38,11 +38,37 @@
                 "task-watch-viewer"
             ],
             "group": {
-                "kind": "build",
-                "isDefault": true
+                "kind": "build"
             },
             "detail": "Watch ./src and ./viewer",
             "problemMatcher": []
-        }
+        },
+    {
+      "label": "Package Extension",
+      "type": "shell",
+      "problemMatcher": [],
+      "command": "vsce",
+      "args": [
+        "package",
+        "-o",
+        "${workspaceFolderBasename}.vsix"
+      ]
+    },
+    {
+      "label": "Install Extension",
+      "type": "shell",
+      "problemMatcher": [],
+      "command": "code",
+      "args": [
+        "--install-extension",
+        "${workspaceFolderBasename}.vsix",
+        "--force"
+      ],
+      "dependsOn": ["Package Extension"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
     ]
 }

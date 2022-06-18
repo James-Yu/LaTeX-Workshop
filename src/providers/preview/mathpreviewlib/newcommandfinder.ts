@@ -80,7 +80,8 @@ export class NewCommandFinder {
             }
             commands = commands.concat(await this.findNewCommand(content))
         }
-        return commandsInConfigFile + '\n' + this.postProcessNewCommands(commands.join(''))
+        // Put `commandsInConfigFile` last to allow overrides of previously defined commands:
+        return this.postProcessNewCommands(commands.join('')) + '\n' + commandsInConfigFile
     }
 
     async findNewCommand(content: string): Promise<string[]> {
