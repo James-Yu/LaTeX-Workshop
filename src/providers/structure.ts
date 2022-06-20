@@ -321,10 +321,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
             // \begin{frame}(whitespace){Title}
             else if (node.args.length > 0) {
-                const captionNode = node.args[0].content[0]
-                if (latexParser.isTextString(captionNode)) {
-                    caption = captionNode.content
-                }
+                caption = this.captionify(node.args[0])
             }
             return caption
         } else if (node.name.replace(/\*$/, '') === 'figure' || node.name.replace(/\*$/, '') === 'table') {
@@ -382,7 +379,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // Calculate the lowest depth. It's possible that there is no `chapter`
         // in a document. In such a case, `section` is the lowest level with a
         // depth 1. However, later logic is 0-based. So.
-        const lowest = flatStructure.filter(node => node.depth > -1).map(section => section.depth).reduce((min, cur) => Math.min(min, cur))
+        let lowest = 65535
+        flatStructure.filter(node => node.depth > -1).forEach(section => {
+            lowest = lowest < section.depth ? lowest : section.depth
+        })
 
         // Step 1: Put all non-sections into their leading section. This is to
         // make the subsequent logic clearer.
