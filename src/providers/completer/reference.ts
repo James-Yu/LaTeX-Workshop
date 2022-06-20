@@ -168,11 +168,21 @@ export class Reference implements IProvider {
         if (latexParser.isLabelCommand(node) && node.name === 'label') {
             // \label{some-text}
             label = node.label
-        } else if (latexParser.isTextString(node) && node.content === 'label=' && useLabelKeyVal && nextNode !== undefined) {
+        } else if (latexParser.isCommand(node) && node.name === 'label'
+                    && node.args.length === 2
+                    && latexParser.isOptionalArg(node.args[0])
+                    && latexParser.isGroup(node.args[1])) {
+            // \label[opt_arg]{actual_label}
+            label = latexParser.stringify(node.args[1]).slice(1, -1)
+        } else if (latexParser.isTextString(node) && node.content === 'label='
+                    && useLabelKeyVal && nextNode !== undefined) {
             // label={some-text}
             label = latexParser.stringify(nextNode).slice(1, -1)
         }
-        if (label !== '' && (latexParser.isLabelCommand(node) || latexParser.isTextString(node))) {
+        if (label !== '' &&
+            (latexParser.isLabelCommand(node)
+             || latexParser.isCommand(node)
+             || latexParser.isTextString(node))) {
             refs.push({
                 label,
                 kind: vscode.CompletionItemKind.Reference,
