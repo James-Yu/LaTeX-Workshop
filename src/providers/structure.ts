@@ -202,7 +202,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     node.location.end.line - 1,
                     file
                 ))
-            } else {
+            } else if (subFile) {
                 // Check if this command is a subfile one
                 sections = [
                     ...sections,
@@ -451,15 +451,17 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
         const sections = structure.filter(section => section.depth >= 0)
         sections.forEach((section, index) => {
-            if (index === sections.length - 1) {
-                // Last section
-                section.toLine = lastLine
+            const sameFileSections = sections.filter(candidate =>
+                (candidate.fileName === section.fileName) &&
+                (candidate.lineNumber >= section.lineNumber) &&
+                (candidate !== section))
+            if (sameFileSections.length > 0 && sameFileSections[0].lineNumber === section.lineNumber) {
+                // On the same line, e.g., \section{one}\section{two}
+                return
+            } else if (sameFileSections.length > 0) {
+                section.toLine = sameFileSections[0].lineNumber - 1
             } else {
-                if (sections[index + 1].lineNumber === section.lineNumber) {
-                    // On the same line, e.g., \section{one}\section{two}
-                    return
-                }
-                section.toLine = sections[index + 1].lineNumber - 1
+                section.toLine = lastLine
             }
             if (section.children.length > 0) {
                 this.buildLaTeXSectionToLine(section.children, section.toLine)
