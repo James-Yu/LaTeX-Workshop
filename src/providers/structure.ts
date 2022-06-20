@@ -180,7 +180,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // \section{Title}
                 const caption = latexParser.stringify(node.args[node.args.length - 1]).replace(/\n/, ' ')
                 sections.push(new Section(
-                    SectionKind.Section,
+                    node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
                     caption.slice(1, caption.length - 1), // {Title} -> Title
                     vscode.TreeItemCollapsibleState.Expanded,
                     depths[node.name.replace(/\*$/, '')],
@@ -387,7 +387,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     flatSections[flatSections.length - 1].children.push(node)
                 }
             } else {
-                if (showHierarchyNumber) {
+                if (showHierarchyNumber && node.kind === SectionKind.Section) {
                     const depth = node.depth - lowest
                     if (depth + 1 > counter.length) {
                         counter = [...counter, ...new Array(depth + 1 - counter.length).fill(0) as number[]]
@@ -396,6 +396,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     }
                     counter[counter.length - 1] += 1
                     node.label = `${counter.join('.')} ${node.label}`
+                } else if (showHierarchyNumber && node.kind === SectionKind.NoNumberSection) {
+                    node.label = `* ${node.label}`
                 }
                 flatSections.push(node)
             }
@@ -534,8 +536,9 @@ export enum SectionKind {
     Env = 0,
     Label = 1,
     Section = 2,
-    BibItem = 3,
-    BibField = 4
+    NoNumberSection = 3,
+    BibItem = 4,
+    BibField = 5
 }
 
 export class Section extends vscode.TreeItem {
