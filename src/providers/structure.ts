@@ -450,7 +450,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
         const sections = structure.filter(section => section.depth >= 0)
-        sections.forEach((section, index) => {
+        sections.forEach(section => {
             const sameFileSections = sections.filter(candidate =>
                 (candidate.fileName === section.fileName) &&
                 (candidate.lineNumber >= section.lineNumber) &&
