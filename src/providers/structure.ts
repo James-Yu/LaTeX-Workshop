@@ -178,10 +178,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (latexParser.isCommand(node)) {
             if (commands.secs.includes(node.name.replace(/\*$/, ''))) {
                 // \section{Title}
-                const caption = latexParser.stringify(node.args[node.args.length - 1]).replace(/\n/, ' ')
                 sections.push(new Section(
                     node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
-                    caption.slice(1, caption.length - 1), // {Title} -> Title
+                    this.captionify(node.args[node.args.length - 1]),
                     vscode.TreeItemCollapsibleState.Expanded,
                     depths[node.name.replace(/\*$/, '')],
                     node.location.start.line - 1,
@@ -317,9 +316,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             // \begin{frame} \frametitle{Frame Title}
             let caption: string = 'Untitled Frame'
             const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'frametitle')
-            if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0])) {
-                caption = latexParser.stringify(captionNodes[0].args[0]).replace(/\n/, ' ')
-                caption = caption.slice(1, caption.length - 1)
+            if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0]) && !latexParser.isCommandParameter(captionNodes[0].args[0])) {
+                caption = this.captionify(captionNodes[0].args[0])
             }
             // \begin{frame}(whitespace){Title}
             else if (node.args.length > 0) {
@@ -333,13 +331,29 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             // \begin{figure} \caption{Figure Title}
             let caption: string = 'Untitled'
             const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'caption')
-            if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0])) {
-                caption = latexParser.stringify(captionNodes[0].args[0]).replace(/\n/, ' ')
-                return caption.slice(1, caption.length - 1)
+            if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0]) && !latexParser.isCommandParameter(captionNodes[0].args[0])) {
+                caption = this.captionify(captionNodes[0].args[0])
+                return caption
             }
             return caption
         }
         return 'Untitled'
+    }
+
+    private captionify(argNode: latexParser.Group | latexParser.OptionalArg): string {
+        for (let index = 0; index < argNode.content.length; ++index){
+            const node = argNode.content[index]
+            if (latexParser.isCommand(node) && node.name === 'texorpdfstring' && node.args.length > 1) {
+                const pdfString = latexParser.stringify(node.args[1])
+                const firstArg = node.args[1].content[0]
+                if (latexParser.isTextString(firstArg)) {
+                    firstArg.content = pdfString.slice(1, pdfString.length - 1)
+                    argNode.content[index] = firstArg
+                }
+            }
+        }
+        const caption = latexParser.stringify(argNode).replace(/\n/g, ' ')
+        return caption.slice(1, caption.length - 1) // {Title} -> Title
     }
 
     /**
