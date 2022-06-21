@@ -178,15 +178,28 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (latexParser.isCommand(node)) {
             if (commands.secs.includes(node.name.replace(/\*$/, ''))) {
                 // \section{Title}
-                sections.push(new Section(
-                    node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
-                    this.captionify(node.args[node.args.length - 1]),
-                    vscode.TreeItemCollapsibleState.Expanded,
-                    depths[node.name.replace(/\*$/, '')],
-                    node.location.start.line - 1,
-                    node.location.end.line - 1,
-                    file
-                ))
+                if (node.args.length > 0) {
+                    // Avoid \section alone
+                    let captionArg: latexParser.Group | undefined
+                    if (node.args.length === 1 && latexParser.isGroup(node.args[0])) {
+                        captionArg = node.args[0]
+                    } else if (node.args.length === 2 && latexParser.isOptionalArg(node.args[0]) && latexParser.isGroup(node.args[1])) {
+                        captionArg = node.args[1]
+                    } else {
+                        captionArg = node.args.find(latexParser.isGroup)
+                    }
+                    if (captionArg) {
+                        sections.push(new Section(
+                            node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
+                            this.captionify(captionArg),
+                            vscode.TreeItemCollapsibleState.Expanded,
+                            depths[node.name.replace(/\*$/, '')],
+                            node.location.start.line - 1,
+                            node.location.end.line - 1,
+                            file
+                        ))
+                    }
+                }
             } else if (commands.cmds.includes(node.name.replace(/\*$/, ''))) {
                 // \notlabel{Show}{ShowAlso}
                 const caption = node.args.map(arg => {
