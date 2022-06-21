@@ -3,6 +3,9 @@
 	"name": "BibTeX",
 	"patterns": [
 		{
+			"include": "#comment"
+		},
+		{
 			"begin": "@Comment",
 			"beginCaptures": {
 				"0": {
@@ -95,6 +98,9 @@
 			"name": "meta.entry.braces.bibtex",
 			"patterns": [
 				{
+					"include": "#comment"
+				},
+				{
 					"begin": "([a-zA-Z0-9\\!\\$\\&\\*\\+\\-\\.\\/\\:\\;\\<\\>\\?\\[\\]\\^\\_\\`\\|]+)\\s*(\\=)",
 					"beginCaptures": {
 						"1": {
@@ -177,6 +183,16 @@
 		}
 	],
 	"repository": {
+		"comment": {
+			"begin": "%",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.bibtex"
+				}
+			},
+			"end": "$\\n?",
+			"name": "comment.line.percentage.bibtex"
+		},
 		"integer": {
 			"match": "\\d+",
 			"name": "constant.numeric.bibtex"
