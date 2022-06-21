@@ -202,10 +202,16 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 }
             } else if (commands.cmds.includes(node.name.replace(/\*$/, ''))) {
                 // \notlabel{Show}{ShowAlso}
-                const caption = node.args.map(arg => {
-                    const argContent = latexParser.stringify(arg)
-                    return argContent.slice(1, argContent.length - 1)
-                }).join(', ') // -> Show, ShowAlso
+                // const caption = node.args.map(arg => {
+                    // const argContent = latexParser.stringify(arg)
+                //     return argContent.slice(1, argContent.length - 1)
+                // }).join(', ') // -> Show, ShowAlso
+                let caption = ''
+                const captionArg = node.args.find(latexParser.isGroup)
+                if (captionArg) {
+                    caption = latexParser.stringify(captionArg)
+                    caption = caption.slice(1, caption.length - 1)
+                }
                 sections.push(new Section(
                     SectionKind.Label,
                     `#${node.name}: ${caption}`,
