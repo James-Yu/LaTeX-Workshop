@@ -228,11 +228,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                     ...await this.parseLaTeXSubFileCommand(node, file, subFile, filesBuilt, commands, depths)
                 ]
             }
-        } else if (latexParser.isLabelCommand(node) && node.name === 'label') {
+        } else if (latexParser.isLabelCommand(node) && commands.cmds.includes(node.name)) {
             // \label{this:is_a-label}
             sections.push(new Section(
                 SectionKind.Label,
-                `#${node.label}`, // -> #this:is_a-label
+                `#${node.name}: ${node.label}`, // -> #this:is_a-label
                 vscode.TreeItemCollapsibleState.Expanded,
                 -1,
                 node.location.start.line - 1,
