@@ -140,7 +140,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
         // Use `latex-utensils` to generate the AST.
         const ast = await this.extension.pegParser.parseLatex(content).catch((e) => {
-            if (bibtexParser.isSyntaxError(e)) {
+            if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 this.extension.logger.addLogMessage(`Error parsing LaTeX during structuring: line ${line} in ${file}.`)
             }
