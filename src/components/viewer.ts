@@ -5,6 +5,7 @@ import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
 import type {SyncTeXRecordForward} from './locator'
+import {moveActiveEditor} from '../utils/webview'
 import {getCurrentThemeLightness} from '../utils/theme'
 
 import type {ClientRequest, PdfViewerParams, PdfViewerState} from '../../types/latex-workshop-protocol-types/index'
@@ -140,26 +141,27 @@ export class Viewer {
      * @param tabEditorGroup
      * @param preserveFocus
      */
-    async openTab(sourceFile: string, respectOutDir: boolean, tabEditorGroup: string): Promise<void> {
+    async openTab(sourceFile: string, respectOutDir: boolean, tabEditorGroup: string, preserveFocus = true): Promise<void> {
         const url = await this.checkViewer(sourceFile, respectOutDir)
         if (!url) {
             return
         }
         const pdfFile = this.tex2pdf(sourceFile, respectOutDir)
-        const viewColumn: vscode.ViewColumn = (
-            tabEditorGroup === 'right' ?
-            vscode.ViewColumn.Beside :
-            vscode.ViewColumn.Active
-        )
-        await vscode.commands.executeCommand('vscode.openWith', pdfFile, 'latex-workshop-pdf-hook', viewColumn)
+        return this.openPdfInTab(pdfFile, tabEditorGroup, preserveFocus)
     }
 
-    async openPdfInTab(pdfFileUri: vscode.Uri, panelIn?: vscode.WebviewPanel): Promise<void> {
-        const panel = await this.panelService.createPdfViewerPanel(pdfFileUri, panelIn)
-        this.initiatePdfViewerPanel(panel)
+    async openPdfInTab(pdfFileUri: vscode.Uri, tabEditorGroup: string, preserveFocus = true): Promise<void> {
+        preserveFocus = preserveFocus && !!vscode.window.activeTextEditor
+        await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Active)
+        await moveActiveEditor(tabEditorGroup, preserveFocus)
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFileUri.toString(true)}`)
     }
 
+    async openPdfInPanel(pdfFileUri: vscode.Uri, panelIn: vscode.WebviewPanel): Promise<void> {
+        const panel = await this.panelService.populatePdfViewerPanel(pdfFileUri, panelIn)
+        this.initiatePdfViewerPanel(panel)
+        this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFileUri.toString(true)}`)
+    }
 
     /**
      * Opens the PDF file of `sourceFile` in the external PDF viewer.

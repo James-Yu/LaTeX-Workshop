@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as path from 'path'
 
 import type {Extension} from '../../main'
 import type {PanelRequest, PdfViewerState} from '../../../types/latex-workshop-protocol-types/index'
@@ -103,13 +102,10 @@ export class PdfViewerPanelService {
         this.alreadyOpened = true
     }
 
-    async createPdfViewerPanel(pdfFileUri: vscode.Uri, panel?: vscode.WebviewPanel): Promise<PdfViewerPanel> {
+
+    async populatePdfViewerPanel(pdfFileUri: vscode.Uri, panel: vscode.WebviewPanel): Promise<PdfViewerPanel> {
         await this.extension.server.serverStarted
         const htmlContent = await this.getPDFViewerContent(pdfFileUri)
-        panel ||= vscode.window.createWebviewPanel('latex-workshop-pdf', path.basename(pdfFileUri.path), vscode.ViewColumn.Active, {
-            enableScripts: true,
-            retainContextWhenHidden: true
-        })
         panel.webview.html = htmlContent
         const pdfPanel = new PdfViewerPanel(this.extension, pdfFileUri, panel)
         return pdfPanel

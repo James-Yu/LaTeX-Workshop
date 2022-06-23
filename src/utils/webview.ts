@@ -54,18 +54,41 @@ export async function openWebviewPanel(
             break
         }
     }
-    if(activeDocument){
-        // Then, we set the focus back to the .tex file
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const delay = configuration.get('view.pdf.tab.openDelay', 1000)
-        setTimeout(async () => {
-            if (!preserveFocus) {
-                return
-            }
-            if (focusAction) {
-                await vscode.commands.executeCommand(focusAction)
-            }
-            await vscode.window.showTextDocument(activeDocument, vscode.ViewColumn.Active)
-        }, delay)
+    // Then, we set the focus back to the .tex file
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    const delay = configuration.get('view.pdf.tab.openDelay', 1000)
+    setTimeout(async () => {
+        if (!preserveFocus) {
+            return
+        }
+        if (focusAction) {
+            await vscode.commands.executeCommand(focusAction)
+        }
+        await vscode.window.showTextDocument(activeDocument, vscode.ViewColumn.Active)
+    }, delay)
+}
+
+export async function moveActiveEditor(direction: string, refocusTab?: boolean){
+    let focusAction: string
+    let backAction: string
+    if(direction === 'left') {
+        focusAction = 'moveEditorToLeftGroup'
+        backAction = 'focusRightGroup'
+    } else if(direction === 'right') {
+        focusAction = 'moveEditorToRightGroup'
+        backAction = 'focusLeftGroup'
+    } else if(direction === 'above') {
+        focusAction = 'moveEditorToAboveGroup'
+        backAction = 'focusBelowGroup'
+    } else if(direction === 'below') {
+        focusAction = 'moveEditorToBelowGroup'
+        backAction = 'focusAboveGroup'
+    } else {
+        // invalid direction:
+        return
+    }
+    await vscode.commands.executeCommand(`workbench.action.${focusAction}`)
+    if(refocusTab){
+        await vscode.commands.executeCommand(`workbench.action.${backAction}`)
     }
 }
