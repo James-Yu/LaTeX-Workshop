@@ -170,7 +170,8 @@ export class Commander {
         if (viewer === 'browser') {
             return this.extension.viewer.openBrowser(pickedRootFile)
         } else if (viewer === 'tab') {
-            return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
+            const focusPdf = configuration.get<boolean>('view.pdf.tab.focusPdf')
+            return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup, !focusPdf)
         } else if (viewer === 'external') {
             this.extension.viewer.openExternal(pickedRootFile)
             return

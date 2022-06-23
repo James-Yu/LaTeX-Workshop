@@ -152,8 +152,16 @@ export class Viewer {
 
     async openPdfInTab(pdfFileUri: vscode.Uri, tabEditorGroup: string, preserveFocus = true): Promise<void> {
         preserveFocus = preserveFocus && !!vscode.window.activeTextEditor
-        await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Active)
-        await moveActiveEditor(tabEditorGroup, preserveFocus)
+        if(tabEditorGroup === 'right') {
+            // Make opening a pdf smoother in cases where the API supports it:
+            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Beside)
+            if(preserveFocus){
+                await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
+            }
+        } else{
+            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Active)
+            await moveActiveEditor(tabEditorGroup, preserveFocus)
+        }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFileUri.toString(true)}`)
     }
 
