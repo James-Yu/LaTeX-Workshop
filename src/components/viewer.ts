@@ -159,7 +159,8 @@ export class Viewer {
                 await vscode.commands.executeCommand('workbench.action.focusLeftGroup')
             }
         } else{
-            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', vscode.ViewColumn.Active)
+            const activeViewColumn = vscode.window.tabGroups.activeTabGroup.viewColumn
+            await vscode.commands.executeCommand('vscode.openWith', pdfFileUri, 'latex-workshop-pdf-hook', activeViewColumn)
             await moveActiveEditor(tabEditorGroup, preserveFocus)
         }
         this.extension.logger.addLogMessage(`Open PDF tab for ${pdfFileUri.toString(true)}`)
