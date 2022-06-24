@@ -35,7 +35,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private synctexEnabled = true
     private autoReloadEnabled = true
     private readonly setupAppOptionsPromise = new ExternalPromise<void>()
-    private readonly restoredState = new ExternalPromise<PdfViewerState | undefined>()
+    readonly #restoredState = new ExternalPromise<PdfViewerState | undefined>()
 
     constructor() {
         // When the promise is resolved, the initialization
@@ -163,6 +163,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return params
     }
 
+    private get restoredState() {
+        if (this.embedded) {
+            return this.#restoredState.promise
+        } else {
+            return undefined
+        }
+    }
+
     async waitSetupAppOptionsFinished() {
         return this.setupAppOptionsPromise.promise
     }
@@ -189,7 +197,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private async applyParamsOnStart() {
         const params = await this.fetchParams()
         this.applyNonStatefulParams(params)
-        const restoredState = await this.restoredState.promise
+        const restoredState = await this.restoredState
         if (restoredState) {
             await this.restorePdfViewerState(restoredState)
         } else {
@@ -643,9 +651,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             switch (data.type) {
                 case 'restore_state': {
                     if (data.state.kind !== 'not_stored') {
-                        this.restoredState.resolve(data.state)
+                        this.#restoredState.resolve(data.state)
                     } else {
-                        this.restoredState.resolve(undefined)
+                        this.#restoredState.resolve(undefined)
                     }
                     break
                 }
