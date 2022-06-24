@@ -170,7 +170,8 @@ export class Commander {
         if (viewer === 'browser') {
             return this.extension.viewer.openBrowser(pickedRootFile)
         } else if (viewer === 'tab') {
-            return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup)
+            const focusPdf = configuration.get<boolean>('view.pdf.tab.focusPdf')
+            return this.extension.viewer.openTab(pickedRootFile, true, tabEditorGroup, !focusPdf)
         } else if (viewer === 'external') {
             this.extension.viewer.openExternal(pickedRootFile)
             return
@@ -188,10 +189,13 @@ export class Commander {
         this.extension.builder.kill()
     }
 
-    pdf(uri: vscode.Uri | undefined) {
+    pdf(uri: vscode.Uri | undefined, panelIn?: vscode.WebviewPanel) {
         this.extension.logger.addLogMessage('PDF command invoked.')
-        if (uri === undefined || !uri.fsPath.endsWith('.pdf')) {
+        if (uri === undefined || !uri.fsPath.toLocaleLowerCase().endsWith('.pdf')) {
             return
+        }
+        if(panelIn){
+            return this.extension.viewer.openPdfInPanel(uri, panelIn)
         }
         return this.extension.viewer.openPdfInTab(uri, 'current', false)
     }
