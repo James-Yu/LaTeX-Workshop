@@ -15,7 +15,9 @@ interface GlossaryEntry {
 }
 
 export interface Suggestion extends ILwCompletionItem {
-    type: GlossaryType
+    type: GlossaryType,
+    file: string,
+    position: vscode.Position
 }
 
 export class Glossary implements IProvider {
@@ -47,7 +49,7 @@ export class Glossary implements IProvider {
         return items
     }
 
-    private getGlossaryFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
+    private getGlossaryFromNodeArray(nodes: latexParser.Node[], file: string): Suggestion[] {
         const glossaries: Suggestion[] = []
         let entry: GlossaryEntry
         let type: GlossaryType | undefined
@@ -81,6 +83,8 @@ export class Glossary implements IProvider {
                 if (type !== undefined && entry.description !== undefined && entry.label !== undefined) {
                     glossaries.push({
                         type,
+                        file,
+                        position: new vscode.Position(node.location.start.line - 1, node.location.start.column - 1),
                         label: entry.label,
                         detail: entry.description,
                         kind: vscode.CompletionItemKind.Reference
@@ -230,13 +234,18 @@ export class Glossary implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.element.glossary = this.getGlossaryFromNodeArray(nodes)
+            cache.element.glossary = this.getGlossaryFromNodeArray(nodes, file)
         } else if (content !== undefined) {
-            cache.element.glossary = this.getGlossaryFromContent(content)
+            cache.element.glossary = this.getGlossaryFromContent(content, file)
         }
     }
 
-    getGlossaryFromContent(content: string): Suggestion[] {
+    getEntry(token: string): Suggestion | undefined {
+        this.updateAll()
+        return this.glossaries.get(token) || this.acronyms.get(token)
+    }
+
+    getGlossaryFromContent(content: string, file: string): Suggestion[] {
         const glossaries: Suggestion[] = []
         const glossaryList: string[] = []
 
@@ -271,11 +280,14 @@ export class Glossary implements IProvider {
                 if (result === null) {
                     break
                 }
+                const positionContent = content.substring(0, result.index).split('\n')
                 if (glossaryList.includes(result[1])) {
                     continue
                 }
                 glossaries.push({
                     type: regexes[key].type,
+                    file,
+                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length),
                     label: result[1],
                     detail: regexes[key].getDescription(result),
                     kind: vscode.CompletionItemKind.Reference

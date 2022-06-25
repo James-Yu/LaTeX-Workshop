@@ -69,7 +69,11 @@ export class DefinitionProvider implements vscode.DefinitionProvider {
         }
         const cite = this.extension.completer.citation.getEntry(token)
         if (cite) {
-            return new vscode.Location( vscode.Uri.file(cite.file), cite.position )
+            return new vscode.Location(vscode.Uri.file(cite.file), cite.position)
+        }
+        const glossary = this.extension.completer.glossary.getEntry(token)
+        if (glossary) {
+            return new vscode.Location(vscode.Uri.file(glossary.file), glossary.position)
         }
         if (vscode.window.activeTextEditor && token.includes('.')) {
             // We skip graphics files
