@@ -168,6 +168,17 @@ export class Citation implements IProvider {
         return entry
     }
 
+    getEntryWithDocumentation(key: string, configurationScope: vscode.ConfigurationScope | undefined): Suggestion | undefined {
+        const entry = this.getEntry(key)
+        if (entry && !(entry.detail || entry.documentation)) {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop', configurationScope)
+            const fields = readCitationFormat(configuration)
+            // We need two spaces to ensure md newline
+            entry.documentation = new vscode.MarkdownString( '\n' + entry.fields.join(fields, true, '  \n') + '\n\n')
+        }
+        return entry
+    }
+
     /**
      * Returns the array of the paths of `.bib` files referenced from `file`.
      *
