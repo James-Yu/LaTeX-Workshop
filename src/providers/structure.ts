@@ -180,14 +180,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // \section{Title}
                 if (node.args.length > 0) {
                     // Avoid \section alone
-                    let captionArg: latexParser.Group | undefined
-                    if (node.args.length === 1 && latexParser.isGroup(node.args[0])) {
-                        captionArg = node.args[0]
-                    } else if (node.args.length === 2 && latexParser.isOptionalArg(node.args[0]) && latexParser.isGroup(node.args[1])) {
-                        captionArg = node.args[1]
-                    } else {
-                        captionArg = node.args.find(latexParser.isGroup)
-                    }
+                    const captionArg = node.args.find(latexParser.isGroup)
                     if (captionArg) {
                         sections.push(new Section(
                             node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
