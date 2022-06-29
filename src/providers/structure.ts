@@ -334,10 +334,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
             caption = 'Untitled Frame'
             captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'frametitle')
+
             // \begin{frame}(whitespace){Title}
-            if (node.args.length > 0) {
-                caption = this.captionify(node.args[0])
-            }
+            const nodeArg = node.args.find(latexParser.isGroup)
+            caption = nodeArg ? this.captionify(nodeArg) : caption
         } else if (node.name.replace(/\*$/, '') === 'figure' || node.name.replace(/\*$/, '') === 'table') {
             // \begin{figure} \caption{Figure Title}
             captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'caption')
