@@ -72,7 +72,8 @@ export class Cleaner {
         // Resolve absolute path before removing anything (for symlinked paths)
         // (globPathResult) => (globPathResult, realPath)
         // Here we re-add a tailing slash if the glob result is a directory (`path.resolve()` removes trailing slashes)
-        const allPathPairs: Array<[string, string]> = Array.from(uniqueGlobedPathResults)
+        // We use the re-added tailing slash to split results into to arrays in below
+        const allPathPairs: [string, string][] = Array.from(uniqueGlobedPathResults)
             .map((globPathResult: string): [string, string] => {
                 const tailing: string = globPathResult.endsWith(path.sep) ? path.sep : ''
                 return [globPathResult, path.resolve(outdir, globPathResult) + tailing]
@@ -82,39 +83,57 @@ export class Cleaner {
         // 'abc' and 'abc/' are different elements here
         const uniqueRealPaths: Set<string> = new Set(allPathPairs.map(([_, realPath]) => realPath))
 
-        // Pairs of (globPathResult, realPath) to remove in the for loop below
-        // The order of the array matters because it's sorted
-        const pathPairsToRemove: Array<[string, string]> = allPathPairs
-            // Pattern  `abc/` matches folder "abc/" while `abc/**` matches the same folder as "abc"
-            // Remove the duplicates and keep the folder paths with tailing slashes
-            .filter(([_, realPath]) => !uniqueRealPaths.has(realPath + path.sep))
-            // Sort by descending dictionary order, make sure the folder is sorted after the files in it
-            // For example: [..., 'out/folder/file.aux', 'out/folder/', ...] ('out/folder/file.aux' > 'out/folder/' in directory order)
-            .sort(([_1, realPath1], [_2, realPath2]) => realPath2.localeCompare(realPath1))
+        // Pattern  `abc/` matches folder "abc/" while `abc/**` matches the same folder as "abc"
+        // Remove the duplicates and keep the folder paths with tailing slashes
+        const pathPairsToRemove: [string, string][] = allPathPairs.filter(
+            ([_, realPath]) => !uniqueRealPaths.has(realPath + path.sep)
+        )
 
-        for (const [globPathResult, realPath] of pathPairsToRemove) {
+        // Partition the result into to arrays by whether the path ends with a slash (`path.sep`)
+        // NOTE: The the array for files below may contain directories because we haven't checked it with `fs.stat` yet
+        //       But it should be fine because we won't remove the directories in the array because it don't end with a slash
+        const filePathsToRemove: string[] = pathPairsToRemove.filter(
+            ([_, realPath]) => !realPath.endsWith(path.sep)  // not using `fs.stat` yet and the element could be a directory
+        ).map(([_, realPath]) => realPath)
+        // Each folder path should match at least one EXPLICIT folder glob pattern
+        // NOTE: All elements in this array is a directory because they are globed by patterns with tailing slashes.
+        const explicitFolderPathsToRemove: string[] = pathPairsToRemove.filter(
+            ([globPathResult, realPath]) => realPath.endsWith(path.sep) && matchExplicitFolderGlobs(globPathResult)
+        ).map(([_, realPath]) => realPath)
+
+        // Remove files
+        for (const realPath of filePathsToRemove) {
             try {
                 const stats: fs.Stats = fs.statSync(realPath)
                 if (stats.isFile()) {
                     await fs.promises.unlink(realPath)
                     this.extension.logger.addLogMessage(`Cleaning file: ${realPath}`)
                 } else if (stats.isDirectory()) {
-                    if (globPathResult.endsWith(path.sep) && matchExplicitFolderGlobs(globPathResult)) {  // pre-check for ending with a slash (to reduce glob matching)
-                        if (fs.readdirSync(realPath).length === 0) {
-                            await fs.promises.rmdir(realPath)
-                            this.extension.logger.addLogMessage(`Removing empty folder: ${realPath}`)
-                        } else {
-                            this.extension.logger.addLogMessage(`Not removing non-empty folder: ${realPath}`)
-                        }
-                    }
-                    else {
-                        this.extension.logger.addLogMessage(`Not removing folder that is not explicitly specified: ${realPath}`)
-                    }
+                    this.extension.logger.addLogMessage(`Not removing folder that is not explicitly specified: ${realPath}`)
                 } else {
                     this.extension.logger.addLogMessage(`Not removing non-file: ${realPath}`)
                 }
             } catch (err) {
                 this.extension.logger.addLogMessage(`Error cleaning path: ${realPath}`)
+                if (err instanceof Error) {
+                    this.extension.logger.logError(err)
+                }
+            }
+        }
+
+        // Remove empty folders EXPLICITLY specified
+        for (const folderRealPath of explicitFolderPathsToRemove) {
+            try {
+                // We are sure that this is a folder because it's globed by pattern with a trailing slash
+                // Only check emptiness
+                if (fs.readdirSync(folderRealPath).length === 0) {
+                    await fs.promises.rmdir(folderRealPath)
+                    this.extension.logger.addLogMessage(`Removing empty folder: ${folderRealPath}`)
+                } else {
+                    this.extension.logger.addLogMessage(`Not removing non-empty folder: ${folderRealPath}`)
+                }
+            } catch (err) {
+                this.extension.logger.addLogMessage(`Error cleaning folder: ${folderRealPath}`)
                 if (err instanceof Error) {
                     this.extension.logger.logError(err)
                 }
