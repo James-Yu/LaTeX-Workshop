@@ -325,34 +325,33 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @returns The caption found, or 'Untitled'.
      */
     private findEnvCaption(node: latexParser.Environment): string {
+        let captionNode: latexParser.Node | undefined
+        let caption: string = 'Untitled'
         if (node.name.replace(/\*$/, '') === 'frame') {
             // Frame titles can be specified as either \begin{frame}{Frame Title}
             // or \begin{frame} \frametitle{Frame Title}
             // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
-            // \frametitle can override title set in \begin{frame}{<title>} so we check that first
 
-            // \begin{frame} \frametitle{Frame Title}
-            let caption: string = 'Untitled Frame'
-            const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'frametitle')
-            if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0]) && !latexParser.isCommandParameter(captionNodes[0].args[0])) {
-                caption = this.captionify(captionNodes[0].args[0])
-            }
+            caption = 'Untitled Frame'
+            // .find(() => true) return the first element if length > 0, otherwise undefined.
+            captionNode = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'frametitle').find(() => true)
             // \begin{frame}(whitespace){Title}
-            else if (node.args.length > 0) {
+            if (node.args.length > 0) {
                 caption = this.captionify(node.args[0])
             }
-            return caption
         } else if (node.name.replace(/\*$/, '') === 'figure' || node.name.replace(/\*$/, '') === 'table') {
             // \begin{figure} \caption{Figure Title}
-            let caption: string = 'Untitled'
-            const captionNodes = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'caption')
-            if (captionNodes.length > 0 && latexParser.hasArgsArray(captionNodes[0]) && !latexParser.isCommandParameter(captionNodes[0].args[0])) {
-                caption = this.captionify(captionNodes[0].args[0])
-                return caption
-            }
-            return caption
+            captionNode = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'caption').find(() => true)
         }
-        return 'Untitled'
+        // \frametitle can override title set in \begin{frame}{<title>}
+        // \frametitle{Frame Title} or \caption{Figure Title}
+        if (captionNode
+            && latexParser.hasArgsArray(captionNode)
+            && captionNode.args.length > 0
+            && !latexParser.isCommandParameter(captionNode.args[0])) {
+            caption = this.captionify(captionNode.args[0])
+        }
+        return caption
     }
 
     private captionify(argNode: latexParser.Group | latexParser.OptionalArg): string {
