@@ -100,6 +100,9 @@ export class Cleaner {
         const explicitFolderPathsToRemove: string[] = pathPairsToRemove.filter(
             ([globPathResult, realPath]) => realPath.endsWith(path.sep) && matchExplicitFolderGlobs(globPathResult)
         ).map(([_, realPath]) => realPath)
+        // Sort by descending dictionary order, make sure the children folders are sorted before the parents
+        // For example: [..., 'out/folder1/folder2/', 'out/folder1/', ...] ('out/folder1/folder2/' > 'out/folder1/' in directory order)
+        .sort((a, b) => b.localeCompare(a))
 
         // Remove files
         for (const realPath of filePathsToRemove) {
