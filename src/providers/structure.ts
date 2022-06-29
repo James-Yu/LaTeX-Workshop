@@ -325,7 +325,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @returns The caption found, or 'Untitled'.
      */
     private findEnvCaption(node: latexParser.Environment): string {
-        let captionNode: latexParser.Node | undefined
+        let captionNode: latexParser.Command | undefined
         let caption: string = 'Untitled'
         if (node.name.replace(/\*$/, '') === 'frame') {
             // Frame titles can be specified as either \begin{frame}{Frame Title}
@@ -333,23 +333,20 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
 
             caption = 'Untitled Frame'
-            // .find(() => true) return the first element if length > 0, otherwise undefined.
-            captionNode = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'frametitle').find(() => true)
+            captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'frametitle')
             // \begin{frame}(whitespace){Title}
             if (node.args.length > 0) {
                 caption = this.captionify(node.args[0])
             }
         } else if (node.name.replace(/\*$/, '') === 'figure' || node.name.replace(/\*$/, '') === 'table') {
             // \begin{figure} \caption{Figure Title}
-            captionNode = node.content.filter(subNode => latexParser.isCommand(subNode) && subNode.name.replace(/\*$/, '') === 'caption').find(() => true)
+            captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'caption')
         }
         // \frametitle can override title set in \begin{frame}{<title>}
         // \frametitle{Frame Title} or \caption{Figure Title}
-        if (captionNode
-            && latexParser.hasArgsArray(captionNode)
-            && captionNode.args.length > 0
-            && !latexParser.isCommandParameter(captionNode.args[0])) {
-            caption = this.captionify(captionNode.args[0])
+        if (captionNode) {
+            const arg = captionNode.args.find(latexParser.isGroup)
+            caption = arg ? this.captionify(arg) : caption
         }
         return caption
     }
