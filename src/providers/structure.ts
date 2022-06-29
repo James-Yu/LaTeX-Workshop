@@ -354,7 +354,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private captionify(argNode: latexParser.Group | latexParser.OptionalArg): string {
         for (let index = 0; index < argNode.content.length; ++index){
             const node = argNode.content[index]
-            if (latexParser.isCommand(node) && node.name === 'texorpdfstring' && node.args.length > 1) {
+            if (latexParser.isCommand(node)
+                && node.name === 'texorpdfstring'
+                && node.args.length === 2) {
                 const pdfString = latexParser.stringify(node.args[1])
                 const firstArg = node.args[1].content[0]
                 if (latexParser.isTextString(firstArg)) {
