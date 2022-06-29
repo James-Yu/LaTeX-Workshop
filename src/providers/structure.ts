@@ -288,7 +288,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         let candidate: string | undefined
         // \input{sub.tex}
         if (['input', 'InputIfFileExists', 'include', 'SweaveInput',
-             'subfile', 'loadglsentries'].includes(node.name.replace(/\*$/, ''))) {
+             'subfile', 'loadglsentries'].includes(node.name.replace(/\*$/, ''))
+            && cmdArgs.length > 0) {
             candidate = utils.resolveFile(
                 [path.dirname(file),
                  path.dirname(this.extension.manager.rootFile || ''),
@@ -296,7 +297,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 cmdArgs[0])
         }
         // \import{sections/}{section1.tex}
-        if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace(/\*$/, ''))) {
+        if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace(/\*$/, ''))
+            && cmdArgs.length > 1) {
             candidate = utils.resolveFile(
                 [cmdArgs[0],
                  path.join(
@@ -305,7 +307,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 cmdArgs[1])
         }
         // \subimport{01-IntroDir/}{01-Intro.tex}
-        if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace(/\*$/, ''))) {
+        if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace(/\*$/, ''))
+            && cmdArgs.length > 1) {
             candidate = utils.resolveFile(
                 [path.dirname(file)],
                 path.join(cmdArgs[0], cmdArgs[1]))
