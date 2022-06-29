@@ -16,8 +16,31 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private CachedLaTeXData: Section[] = []
     private CachedBibTeXData: Section[] = []
 
+    // The LaTeX commands to be extracted.
+    private readonly LaTeXCommands: {cmds: string[], envs: string[], secs: string[]}
+    // The correspondance of section types and depths. Start from zero is
+    // the top-most section (e.g., chapter). -1 is reserved for non-section
+    // commands.
+    private readonly LaTeXSectionDepths: {[cmd: string]: number} = {}
+    private readonly LaTeXSectionNumber: boolean
+
     constructor(private readonly extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
+
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const cmds = configuration.get('view.outline.commands') as string[]
+        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'frame', 'table'] : ['frame']
+
+        const hierarchy = (configuration.get('view.outline.sections') as string[])
+        hierarchy.forEach((sec, index) => {
+            sec.split('|').forEach(cmd => {
+                this.LaTeXSectionDepths[cmd] = index
+            })
+        })
+        this.LaTeXSectionNumber = configuration.get('view.outline.numbers.enabled') as boolean
+
+        this.LaTeXCommands = {cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()}
+
     }
 
     private getCachedDataRootFileName(sections: Section[]): string | undefined {
@@ -76,31 +99,15 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (!file) {
             return []
         }
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const cmds = configuration.get('view.outline.commands') as string[]
-        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'frame', 'table'] : ['frame']
-
-        const hierarchy = (configuration.get('view.outline.sections') as string[])
-        const depths: {[cmd: string]: number} = {}
-        hierarchy.forEach((sec, index) => {
-            sec.split('|').forEach(cmd => {
-                depths[cmd] = index
-            })
-        })
-        const showHierarchyNumber = subFile ? configuration.get('view.outline.numbers.enabled') as boolean : false
-
         // To avoid looping import, this variable is used to store file paths
         // that have been parsed.
         const filesBuilt = new Set<string>()
 
         // Step 1: Create a flat array of sections.
-        const flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt, {
-            cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()
-        }, depths)
+        const flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
 
         // Step 2: Create the hierarchy of these sections.
-        const structure = this.buildLaTeXHierarchy(flatStructure, showHierarchyNumber)
+        const structure = this.buildLaTeXHierarchy(flatStructure, subFile ? this.LaTeXSectionNumber : false)
 
         // Step 3: Determine the toLine of all sections.
         this.buildLaTeXSectionToLine(structure, Number.MAX_SAFE_INTEGER)
@@ -116,13 +123,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @param file The LaTeX file whose AST is to be parsed.
      * @param subFile Whether the subfile-like commands should be considered.
      * @param filesBuilt The files that have already been parsed.
-     * @param commands The LaTeX commands to be extracted.
-     * @param depths The correspondance of section types and depths. Start from
-     * zero is the top-most section (e.g., chapter). -1 is reserved for
-     * non-section commands.
      * @returns A flat array of {@link Section} of this file.
      */
-    private async buildLaTeXSectionFromFile(file: string, subFile: boolean, filesBuilt: Set<string>, commands: {cmds: string[], envs: string[], secs: string[]}, depths: {[cmd: string]: number}): Promise<Section[]> {
+    private async buildLaTeXSectionFromFile(file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
         // Skip if the file has already been parsed. This is to avoid indefinite
         // loop under the case that A imports B and B imports back A.
         if (filesBuilt.has(file)) {
@@ -156,7 +159,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         for (const node of ast.content) {
             sections = [
                 ...sections,
-                ...await this.parseLaTeXNode(node, file, subFile, filesBuilt, commands, depths)
+                ...await this.parseLaTeXNode(node, file, subFile, filesBuilt)
             ]
         }
 
@@ -173,10 +176,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      *
      * @returns A flat array of {@link Section} of this node.
      */
-    private async parseLaTeXNode(node: latexParser.Node, file: string, subFile: boolean, filesBuilt: Set<string>, commands: {cmds: string[], envs: string[], secs: string[]}, depths: {[cmd: string]: number}): Promise<Section[]> {
+    private async parseLaTeXNode(node: latexParser.Node, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
         let sections: Section[] = []
         if (latexParser.isCommand(node)) {
-            if (commands.secs.includes(node.name.replace(/\*$/, ''))) {
+            if (this.LaTeXCommands.secs.includes(node.name.replace(/\*$/, ''))) {
                 // \section{Title}
                 if (node.args.length > 0) {
                     // Avoid \section alone
@@ -186,14 +189,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                             node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
                             this.captionify(captionArg),
                             vscode.TreeItemCollapsibleState.Expanded,
-                            depths[node.name.replace(/\*$/, '')],
+                            this.LaTeXSectionDepths[node.name.replace(/\*$/, '')],
                             node.location.start.line - 1,
                             node.location.end.line - 1,
                             file
                         ))
                     }
                 }
-            } else if (commands.cmds.includes(node.name.replace(/\*$/, ''))) {
+            } else if (this.LaTeXCommands.cmds.includes(node.name.replace(/\*$/, ''))) {
                 // \notlabel{Show}{ShowAlso}
                 // const caption = node.args.map(arg => {
                     // const argContent = latexParser.stringify(arg)
@@ -218,10 +221,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 // Check if this command is a subfile one
                 sections = [
                     ...sections,
-                    ...await this.parseLaTeXSubFileCommand(node, file, subFile, filesBuilt, commands, depths)
+                    ...await this.parseLaTeXSubFileCommand(node, file, subFile, filesBuilt)
                 ]
             }
-        } else if (latexParser.isLabelCommand(node) && commands.cmds.includes(node.name)) {
+        } else if (latexParser.isLabelCommand(node) && this.LaTeXCommands.cmds.includes(node.name)) {
             // \label{this:is_a-label}
             sections.push(new Section(
                 SectionKind.Label,
@@ -232,7 +235,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 node.location.end.line - 1,
                 file
             ))
-        } else if (latexParser.isEnvironment(node) && commands.envs.includes(node.name.replace(/\*$/, ''))) {
+        } else if (latexParser.isEnvironment(node) && this.LaTeXCommands.envs.includes(node.name.replace(/\*$/, ''))) {
             // \begin{figure}...\end{figure}
             sections.push(new Section(
                 SectionKind.Env,
@@ -249,7 +252,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             for (const subNode of node.content) {
                 sections = [
                     ...sections,
-                    ...await this.parseLaTeXNode(subNode, file, subFile, filesBuilt, commands, depths)
+                    ...await this.parseLaTeXNode(subNode, file, subFile, filesBuilt)
                 ]
             }
         }
@@ -268,7 +271,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
      * @returns A flat array of {@link Section} of this sub-file, or an empty
      * array if the command is not a sub-file-like.
      */
-    private async parseLaTeXSubFileCommand(node: latexParser.Command, file: string, subFile: boolean, filesBuilt: Set<string>, commands: {cmds: string[], envs: string[], secs: string[]}, depths: {[cmd: string]: number}): Promise<Section[]> {
+    private async parseLaTeXSubFileCommand(node: latexParser.Command, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
         const cmdArgs: string[] = []
         node.args.forEach((arg) => {
             if (latexParser.isOptionalArg(arg)) {
@@ -308,7 +311,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 path.join(cmdArgs[0], cmdArgs[1]))
         }
 
-        return candidate ? this.buildLaTeXSectionFromFile(candidate, subFile, filesBuilt, commands, depths) : []
+        return candidate ? this.buildLaTeXSectionFromFile(candidate, subFile, filesBuilt) : []
     }
 
     /**
