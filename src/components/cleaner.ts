@@ -17,17 +17,19 @@ function unique(sequence: string[]): string[] {
 /**
  * Globs all given patterns into absolute paths. The result will be sorted in
  * reverse order and all tailing slashes will be stripped.
+ *
+ * The result is sort in descending dictionary order, make sure the children are sorted before the parents.
+ * For example: [..., 'out/folder1/folder2/', 'out/folder1/', ...] ('out/folder1/folder2/' > 'out/folder1/' in directory order)
  */
 function globAll(globs: string[], cwd: string): string[] {
     return unique(
         globs.map(g => glob.sync(g, { cwd }))
-             // Reduce the array of arrays to a single array containing all the elements
-             .reduce((all, curr) => all.concat(curr), [])
-             // Resolve absolute path (tailing slashes will be stripped)
+             // Flatten the array of arrays to a single array containing all the elements
+             .flat()
+             // Resolve absolute paths (tailing slashes will be stripped)
              .map((globedPath: string): string => path.resolve(cwd, globedPath))
     )
-    // Sort in descending dictionary order, make sure the children are sorted before the parents
-    // For example: [..., 'out/folder1/folder2/', 'out/folder1/', ...] ('out/folder1/folder2/' > 'out/folder1/' in directory order)
+    // Sort in descending dictionary order
     .sort((a, b) => b.localeCompare(a))
 }
 
@@ -64,7 +66,7 @@ export class Cleaner {
 
     /**
      * Splits the given glob patterns into three distinct groups (duplicates will be ignored)
-     *   1. file globs (not end with tailing slashes)
+     *   1. file or folder globs (not end with tailing slashes)
      *   2. globs explicitly for folders
      *   3. folder globs with globstar (`**`)
      *
@@ -74,8 +76,8 @@ export class Cleaner {
      * @param globs a list of glob patterns
      * @returns three distinct groups of glob patterns
      */
-    private static splitGlobs(globs: string[]): { fileGlobs: string[], folderGlobsExplicit: string[], folderGlobsWithGlobstar: string[] } {
-        const fileGlobs: string[] = []
+    private static splitGlobs(globs: string[]): { fileOrFolderGlobs: string[], folderGlobsExplicit: string[], folderGlobsWithGlobstar: string[] } {
+        const fileOrFolderGlobs: string[] = []
         const folderGlobsWithGlobstar: string[] = []
         const folderGlobsExplicit: string[] = []
 
@@ -96,12 +98,11 @@ export class Cleaner {
                     folderGlobsExplicit.push(pattern)
                 }
             } else {
-                // The pattern can match both files and folders
-                fileGlobs.push(pattern)
+                fileOrFolderGlobs.push(pattern)
             }
         }
 
-        return { fileGlobs, folderGlobsExplicit, folderGlobsWithGlobstar }
+        return { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar }
     }
 
     /**
@@ -120,20 +121,18 @@ export class Cleaner {
         }
         this.extension.logger.addLogMessage(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
 
-        const { fileGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
+        const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
 
         this.extension.logger.addLogMessage(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar}`)
 
         // All folders explicitly specified by the user, remove them if empty after cleaning files
         const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
 
-        // All files to remove. Note that the file globs can match directories, we will check it with `fs.stat`
-        // Pattern `abc/**` can match folder as "abc", remove duplicates
         const explicitFoldersSet: Set<string> = new Set(explicitFolders)
-        const files: string[] = globAll(fileGlobs, outdir).filter(file => !explicitFoldersSet.has(file))
+        const filesOrFolders: string[] = globAll(fileOrFolderGlobs, outdir).filter(file => !explicitFoldersSet.has(file))
 
         // Remove files first
-        for (const realPath of files) {
+        for (const realPath of filesOrFolders) {
             try {
                 const stats: fs.Stats = fs.statSync(realPath)
                 if (stats.isFile()) {
@@ -152,7 +151,7 @@ export class Cleaner {
             }
         }
 
-        // Then remove empty folders EXPLICITLY specified
+        // Then remove empty folders EXPLICITLY specified by the user
         for (const folderRealPath of explicitFolders) {
             try {
                 // We are sure that this is a folder because it's globed by pattern with a trailing slash
