@@ -82,13 +82,6 @@ export class Cleaner {
                 if (path.basename(pattern).includes('**')) {
                     folderGlobsWithGlobstar.push(pattern)
                 } else {
-                    // All glob patterns EXPLICITLY given for folders, the glob should be end with a slash (`path.sep`)
-                    // and the last component should not contain globstar `**`
-                    //
-                    // Positive examples: ['abc/', 'abc*/', '**/abc*/', 'abc/**/def/', 'abc/**/def*/']
-                    // Negative examples:
-                    //   - not end with a slash: ['abc', 'abc*', 'abc/**/def*']
-                    //   - contain globstar `**` in the last component: ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']
                     folderGlobsExplicit.push(pattern)
                 }
             } else {

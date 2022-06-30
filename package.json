@@ -1248,7 +1248,7 @@
             "*.nav",
             "*.vrb"
           ],
-          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed."
+          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
         },
         "latex-workshop.latex.clean.command": {
           "scope": "resource",
