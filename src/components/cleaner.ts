@@ -63,7 +63,7 @@ export class Cleaner {
     }
 
     /**
-     * Splits the given glob patterns into three groups (duplicates will be ignored)
+     * Splits the given glob patterns into three distinct groups (duplicates will be ignored)
      *   1. file globs (not end with tailing slashes)
      *   2. globs explicitly for folders
      *   3. folder globs with globstar (`**`)
@@ -72,11 +72,11 @@ export class Cleaner {
      * paths if they are empty folders, and ignore the <3.> type paths.
      *
      * @param globs a list of glob patterns
-     * @returns three groups of glob patterns
+     * @returns three distinct groups of glob patterns
      */
-    private static splitGlobs(globs: string[]): [string[], string[], string[]] {
+    private static splitGlobs(globs: string[]): { fileGlobs: string[], folderGlobsExplicit: string[], folderGlobsWithGlobstar: string[] } {
         const fileGlobs: string[] = []
-        const folderGlobsWithGlobStar: string[] = []
+        const folderGlobsWithGlobstar: string[] = []
         const folderGlobsExplicit: string[] = []
 
         for (const pattern of unique(globs)) {
@@ -84,11 +84,10 @@ export class Cleaner {
                 // The pattern ends with a slash only matches folders
                 if (path.basename(pattern).includes('**')) {
                     // Contains globstar `**` in the last component
-                    folderGlobsWithGlobStar.push(pattern)
-                }
-                else {
+                    folderGlobsWithGlobstar.push(pattern)
+                } else {
                     // All glob patterns EXPLICITLY given for folders, the glob should be end with a slash (`path.sep`)
-                    // and the last component should not contain globstar`**`
+                    // and the last component should not contain globstar `**`
                     //
                     // Positive examples: ['abc/', 'abc*/', '**/abc*/', 'abc/**/def/', 'abc/**/def*/']
                     // Negative examples:
@@ -102,7 +101,7 @@ export class Cleaner {
             }
         }
 
-        return [fileGlobs, folderGlobsExplicit, folderGlobsWithGlobStar]
+        return { fileGlobs, folderGlobsExplicit, folderGlobsWithGlobstar }
     }
 
     /**
@@ -121,9 +120,9 @@ export class Cleaner {
         }
         this.extension.logger.addLogMessage(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
 
-        const [fileGlobs, folderGlobsExplicit, folderGlobsWithGlobStar] = Cleaner.splitGlobs(globs)
+        const { fileGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
 
-        this.extension.logger.addLogMessage(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobStar}`)
+        this.extension.logger.addLogMessage(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar}`)
 
         // All folders explicitly specified by the user, remove them if empty after cleaning files
         const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
