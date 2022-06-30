@@ -4,6 +4,7 @@ import {latexParser,bibtexParser} from 'latex-utensils'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
+import { PathRegExp, MatchPath, MatchType } from '../components/managerlib/pathutils'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -153,10 +154,21 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return []
         }
 
+        // Get a list of rnw child chunks
+        const rnwChildren = subFile ? this.parseRnwChildCommand(content, file, this.extension.manager.rootFile || '') : []
+        let rnwChild = rnwChildren.shift()
+
         // Parse each base-level node. If the node has contents, that function
         // will be called recursively.
         let sections: Section[] = []
         for (const node of ast.content) {
+            while (rnwChild && node.location && rnwChild.line <= node.location.start.line) {
+                sections = [
+                    ...sections,
+                    ...await this.buildLaTeXSectionFromFile(rnwChild.subFile, subFile, filesBuilt)
+                ]
+                rnwChild = rnwChildren.shift()
+            }
             sections = [
                 ...sections,
                 ...await this.parseLaTeXNode(node, file, subFile, filesBuilt)
@@ -483,6 +495,27 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 this.buildLaTeXSectionToLine(section.children, section.toLine)
             }
         })
+    }
+
+    private parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, line: number}[] {
+        const children: {subFile: string, line: number}[] = []
+        const pathRegexp = new PathRegExp()
+        while(true) {
+            const result: MatchPath | undefined = pathRegexp.exec(content)
+            if (!result) {
+                break
+            }
+            // We only deal with Rnw child.
+            if (result.type !== MatchType.Child) {
+                continue
+            }
+            const subFile = pathRegexp.parseInputFilePath(result, file, rootFile)
+            if (subFile) {
+                const line = (content.slice(0, result.index).match(/\n/g) || []).length
+                children.push({subFile, line})
+            }
+        }
+        return children
     }
 
     async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
