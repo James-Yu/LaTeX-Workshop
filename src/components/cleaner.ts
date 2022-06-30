@@ -55,14 +55,6 @@ export class Cleaner {
         globs = Array.from(new Set(globs))  // remove duplicate entries
         this.extension.logger.addLogMessage(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
 
-        // All glob patterns EXPLICITLY given for folders, the glob should be end with a slash (`path.sep`) and the last component should not contain globstar `**`
-        // Positive examples: ['abc/', 'abc*/', '**/abc*/', 'abc/**/def/', 'abc/**/def*/']
-        // Negative examples:
-        //   - not end with a slash: ['abc', 'abc*', 'abc/**/def*']
-        //   - contain globstar `**` in the last component: ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']
-        const explicitFolderGlobs: string[] = globs.filter(globType => globType.endsWith(path.sep) && !path.basename(globType).includes('**'))
-        const matchExplicitFolderGlobs = (folder: string): boolean => explicitFolderGlobs.some(globType => minimatch(folder, globType))
-
         // Glob patterns into path results and remove the duplicates
         const uniqueGlobedPathResults: Set<string> = new Set(  // unique paths
             globs.map(g => glob.sync(g, {cwd: outdir}))
@@ -89,20 +81,17 @@ export class Cleaner {
             ([_, realPath]) => !uniqueRealPaths.has(realPath + path.sep)
         )
 
+        await this.cleanGlobFiles(pathPairsToRemove)
+        await this.cleanGlobFolders(globs, pathPairsToRemove)
+    }
+
+    private async cleanGlobFiles(pathPairsToRemove: [string, string][]) {
         // Partition the result into to arrays by whether the path ends with a slash (`path.sep`)
         // NOTE: The the array for files below may contain directories because we haven't checked it with `fs.stat` yet
         //       But it should be fine because we won't remove the directories in the array because it don't end with a slash
         const filePathsToRemove: string[] = pathPairsToRemove.filter(
             ([_, realPath]) => !realPath.endsWith(path.sep)  // not using `fs.stat` yet and the element could be a directory
         ).map(([_, realPath]) => realPath)
-        // Each folder path should match at least one EXPLICIT folder glob pattern
-        // NOTE: All elements in this array is a directory because they are globed by patterns with tailing slashes.
-        const explicitFolderPathsToRemove: string[] = pathPairsToRemove.filter(
-            ([globPathResult, realPath]) => realPath.endsWith(path.sep) && matchExplicitFolderGlobs(globPathResult)
-        ).map(([_, realPath]) => realPath)
-        // Sort by descending dictionary order, make sure the children folders are sorted before the parents
-        // For example: [..., 'out/folder1/folder2/', 'out/folder1/', ...] ('out/folder1/folder2/' > 'out/folder1/' in directory order)
-        .sort((a, b) => b.localeCompare(a))
 
         // Remove files
         for (const realPath of filePathsToRemove) {
@@ -123,6 +112,24 @@ export class Cleaner {
                 }
             }
         }
+    }
+
+    private async cleanGlobFolders(globs: string[], pathPairsToRemove: [string, string][]) {
+        // All glob patterns EXPLICITLY given for folders, the glob should be end with a slash (`path.sep`) and the last component should not contain globstar `**`
+        // Positive examples: ['abc/', 'abc*/', '**/abc*/', 'abc/**/def/', 'abc/**/def*/']
+        // Negative examples:
+        //   - not end with a slash: ['abc', 'abc*', 'abc/**/def*']
+        //   - contain globstar `**` in the last component: ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']
+        const explicitFolderGlobs: string[] = globs.filter(globType => globType.endsWith(path.sep) && !path.basename(globType).includes('**'))
+        const matchExplicitFolderGlobs = (folder: string): boolean => explicitFolderGlobs.some(globType => minimatch(folder, globType))
+        // Each folder path should match at least one EXPLICIT folder glob pattern
+        // NOTE: All elements in this array is a directory because they are globed by patterns with tailing slashes.
+        const explicitFolderPathsToRemove: string[] = pathPairsToRemove.filter(
+            ([globPathResult, realPath]) => realPath.endsWith(path.sep) && matchExplicitFolderGlobs(globPathResult)
+        ).map(([_, realPath]) => realPath)
+        // Sort by descending dictionary order, make sure the children folders are sorted before the parents
+        // For example: [..., 'out/folder1/folder2/', 'out/folder1/', ...] ('out/folder1/folder2/' > 'out/folder1/' in directory order)
+        .sort((a, b) => b.localeCompare(a))
 
         // Remove empty folders EXPLICITLY specified
         for (const folderRealPath of explicitFolderPathsToRemove) {
