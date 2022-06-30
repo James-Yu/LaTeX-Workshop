@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
+import { Linter as AbstractLinter } from './linters/linter'
 import { ChkTeX } from './linters/chktex'
 
 export class Linter {
@@ -13,22 +14,32 @@ export class Linter {
         this.chktex = new ChkTeX(extension)
     }
 
-    lintRootFileIfEnabled() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
-        if (configuration.get('linting.linter') as string !== 'none') {
-            void this.chktex.lintRootFile()
+    private getLinter(scope?: vscode.ConfigurationScope | null): AbstractLinter | undefined {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
+        switch (configuration.get('linting.linter') as string) {
+            case 'none':
+            default:
+                return undefined
+            case 'chktex':
+                return this.chktex
         }
+    }
+
+    lintRootFileIfEnabled() {
+        const linter = this.getLinter(this.extension.manager.getWorkspaceFolderRootDir())
+        void linter?.lintRootFile()
     }
 
     lintActiveFileIfEnabledAfterInterval(document: vscode.TextDocument) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
-        if ((configuration.get('linting.linter') as string !== 'none') &&
-            (configuration.get('linting.run') as string) === 'onType') {
+        const linter = this.getLinter(document.uri)
+        if (linter
+            && (configuration.get('linting.run') as string) === 'onType') {
             const interval = configuration.get('linting.delay') as number
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
             }
-            this.linterTimeout = setTimeout(() => this.chktex.lintFile(document), interval)
+            this.linterTimeout = setTimeout(() => linter.lintFile(document), interval)
         }
     }
 }
