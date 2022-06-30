@@ -7,34 +7,14 @@ import type {Extension} from '../../main'
 export abstract class Linter {
     protected readonly extension: Extension
     private readonly currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
-    private linterTimeout?: NodeJS.Timer
 
     constructor(extension: Extension) {
         this.extension = extension
     }
 
-    protected abstract lintFile(document: vscode.TextDocument): void
+    abstract lintFile(document: vscode.TextDocument): void
 
-    protected abstract lintRootFile(): void
-
-    lint(document: vscode.TextDocument) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
-        if ((configuration.get('chktex.enabled') as boolean) &&
-            (configuration.get('chktex.run') as string) === 'onType') {
-            const interval = configuration.get('chktex.delay') as number
-            if (this.linterTimeout) {
-                clearTimeout(this.linterTimeout)
-            }
-            this.linterTimeout = setTimeout(() => this.lintFile(document), interval)
-        }
-    }
-
-    lintRoot() {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
-        if (configuration.get('chktex.enabled') as boolean) {
-            void this.lintRootFile()
-        }
-    }
+    abstract lintRootFile(): void
 
     protected processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {
         this.extension.logger.logCommand(`Linter for ${linterId} command`, command, args)

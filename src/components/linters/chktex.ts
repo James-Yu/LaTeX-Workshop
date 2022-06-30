@@ -15,7 +15,7 @@ export class ChkTeX extends Linter {
         this.logParser = new LinterLogParser(extension)
     }
 
-    protected async lintRootFile() {
+    async lintRootFile() {
         this.extension.logger.addLogMessage('Linter for root file started.')
         if (this.extension.manager.rootFile === undefined) {
             this.extension.logger.addLogMessage('No root file found for linting.')
@@ -24,8 +24,8 @@ export class ChkTeX extends Linter {
 
         const filePath = this.extension.manager.rootFile
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(filePath))
-        const command = configuration.get('chktex.exec.path') as string
-        const args = [...(configuration.get('chktex.exec.args') as string[])]
+        const command = configuration.get('linting.chktex.exec.path') as string
+        const args = [...(configuration.get('linting.chktex.exec.args') as string[])]
         if (!args.includes('-l')) {
             const rcPath = this.rcPath
             if (rcPath) {
@@ -48,14 +48,14 @@ export class ChkTeX extends Linter {
         this.logParser.parse(stdout, undefined, tabSize)
     }
 
-    protected async lintFile(document: vscode.TextDocument) {
+    async lintFile(document: vscode.TextDocument) {
         this.extension.logger.addLogMessage('Linter for active file started.')
         const filePath = document.fileName
         const content = document.getText()
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', document)
-        const command = configuration.get('chktex.exec.path') as string
-        const args = [...(configuration.get('chktex.exec.args') as string[])]
+        const command = configuration.get('linting.chktex.exec.path') as string
+        const args = [...(configuration.get('linting.chktex.exec.args') as string[])]
         if (!args.includes('-l')) {
             const rcPath = this.rcPath
             if (rcPath) {
@@ -137,7 +137,7 @@ export class ChkTeX extends Linter {
 
     private getChktexrcTabSize(file: string): number | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
-        const args = configuration.get('chktex.exec.args') as string[]
+        const args = configuration.get('linting.chktex.exec.args') as string[]
         let filePath: string | undefined
         if (args.includes('-l')) {
             const idx = args.indexOf('-l')
@@ -233,7 +233,7 @@ class LinterLogParser {
 
     private callConvertColumn(column: number, filePathArg: string, line: number, tabSizeArg?: number): number {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.getWorkspaceFolderRootDir())
-        if (!configuration.get('chktex.convertOutput.column.enabled', true)) {
+        if (!configuration.get('linting.chktex.convertOutput.column.enabled', true)) {
             return column
         }
         const filePath = convertFilenameEncoding(filePathArg)
@@ -243,7 +243,7 @@ class LinterLogParser {
         }
         const lineString = fs.readFileSync(filePath).toString().split('\n')[line-1]
         let tabSize: number | undefined
-        const tabSizeConfig = configuration.get('chktex.convertOutput.column.chktexrcTabSize', -1)
+        const tabSizeConfig = configuration.get('linting.chktex.convertOutput.column.chktexrcTabSize', -1)
         if (tabSizeConfig >= 0) {
             tabSize = tabSizeConfig
         } else {
