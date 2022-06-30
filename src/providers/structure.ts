@@ -1,19 +1,14 @@
 import * as vscode from 'vscode'
-import {bibtexParser} from 'latex-utensils'
+import * as path from 'path'
+import {latexParser,bibtexParser} from 'latex-utensils'
 
 import type { Extension } from '../main'
 import * as utils from '../utils/utils'
-import {PathRegExp} from '../components/managerlib/pathutils'
-import type {MatchPath} from '../components/managerlib/pathutils'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private readonly _onDidChangeTreeData: vscode.EventEmitter<Section | undefined> = new vscode.EventEmitter<Section | undefined>()
     readonly onDidChangeTreeData: vscode.Event<Section | undefined>
-    private readonly commandNames: string[]
-    private readonly hierarchy: string[]
-    private readonly showFloats: boolean
-    private readonly showNumbers: boolean
     public root: string = ''
 
     // our data source is a set multi-rooted set of trees
@@ -21,14 +16,30 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private CachedLaTeXData: Section[] = []
     private CachedBibTeXData: Section[] = []
 
+    // The LaTeX commands to be extracted.
+    private readonly LaTeXCommands: {cmds: string[], envs: string[], secs: string[]}
+    // The correspondance of section types and depths. Start from zero is
+    // the top-most section (e.g., chapter). -1 is reserved for non-section
+    // commands.
+    private readonly LaTeXSectionDepths: {[cmd: string]: number} = {}
+    private readonly LaTeXSectionNumber: boolean
+
     constructor(private readonly extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
 
-        this.commandNames = configuration.get('view.outline.commands') as string[]
-        this.hierarchy = configuration.get('view.outline.sections') as string[]
-        this.showFloats = configuration.get('view.outline.floats.enabled') as boolean
-        this.showNumbers = configuration.get('view.outline.numbers.enabled') as boolean
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const cmds = configuration.get('view.outline.commands') as string[]
+        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'frame', 'table'] : ['frame']
+
+        const hierarchy = (configuration.get('view.outline.sections') as string[])
+        hierarchy.forEach((sec, index) => {
+            sec.split('|').forEach(cmd => {
+                this.LaTeXSectionDepths[cmd] = index
+            })
+        })
+        this.LaTeXSectionNumber = configuration.get('view.outline.numbers.enabled') as boolean
+
+        this.LaTeXCommands = {cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()}
 
     }
 
@@ -54,7 +65,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         }
         else if (this.extension.manager.rootFile) {
             if (force) {
-                this.CachedLaTeXData = this.buildLaTeXModel(new Set<string>(), this.extension.manager.rootFile)
+                this.CachedLaTeXData = await this.buildLaTeXModel()
             }
             this.ds = this.CachedLaTeXData
         } else {
@@ -66,6 +77,412 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     async update(force: boolean) {
         this.ds = await this.build(force)
         this._onDidChangeTreeData.fire(undefined)
+    }
+
+    /**
+     * This function parses the AST tree of a LaTeX document to build its
+     * structure. This is a two-step process. In the first step, all AST nodes
+     * are traversed and filtered to build an array of sections that will appear
+     * in the vscode view, but without any hierarchy. Then in the second step,
+     * the hierarchy is constructed based on the config `view.outline.sections`.
+     *
+     * @param file The base file to start building the structure. If left
+     * `undefined`, the current `rootFile` is used, i.e., build the structure
+     * for the whole document/project.
+     * @param subFile Whether subfiles should be included in the structure.
+     * Default is `true`. If true, all input/subfile/subimport-like commands
+     * will be parsed.
+     * @returns An array of {@link Section} to be shown in vscode view.
+     */
+    async buildLaTeXModel(file?: string, subFile = true): Promise<Section[]> {
+        file = file ? file : this.extension.manager.rootFile
+        if (!file) {
+            return []
+        }
+        // To avoid looping import, this variable is used to store file paths
+        // that have been parsed.
+        const filesBuilt = new Set<string>()
+
+        // Step 1: Create a flat array of sections.
+        const flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
+
+        // Step 2: Create the hierarchy of these sections.
+        const structure = this.buildLaTeXHierarchy(flatStructure, subFile ? this.LaTeXSectionNumber : false)
+
+        // Step 3: Determine the toLine of all sections.
+        this.buildLaTeXSectionToLine(structure, Number.MAX_SAFE_INTEGER)
+
+        return structure
+    }
+
+    /**
+     * This function, different from {@link buildLaTeXModel}, focus on building
+     * the structure of one particular file. Thus, recursive call is made upon
+     * subfiles.
+     *
+     * @param file The LaTeX file whose AST is to be parsed.
+     * @param subFile Whether the subfile-like commands should be considered.
+     * @param filesBuilt The files that have already been parsed.
+     * @returns A flat array of {@link Section} of this file.
+     */
+    private async buildLaTeXSectionFromFile(file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
+        // Skip if the file has already been parsed. This is to avoid indefinite
+        // loop under the case that A imports B and B imports back A.
+        if (filesBuilt.has(file)) {
+            return []
+        }
+        filesBuilt.add(file)
+
+        // `getDirtyContent` is used here. I did not check if this is
+        // appropriate.
+        const content = this.extension.manager.getDirtyContent(file)
+        if (!content) {
+            this.extension.logger.addLogMessage(`Error loading LaTeX during structuring: ${file}.`)
+            return []
+        }
+
+        // Use `latex-utensils` to generate the AST.
+        const ast = await this.extension.pegParser.parseLatex(content).catch((e) => {
+            if (latexParser.isSyntaxError(e)) {
+                const line = e.location.start.line
+                this.extension.logger.addLogMessage(`Error parsing LaTeX during structuring: line ${line} in ${file}.`)
+            }
+            return
+        })
+        if (!ast) {
+            return []
+        }
+
+        // Parse each base-level node. If the node has contents, that function
+        // will be called recursively.
+        let sections: Section[] = []
+        for (const node of ast.content) {
+            sections = [
+                ...sections,
+                ...await this.parseLaTeXNode(node, file, subFile, filesBuilt)
+            ]
+        }
+
+        return sections
+    }
+
+    /**
+     * This function parses a particular LaTeX AST node and its sub-nodes
+     * (contents by `latex-utensils`).
+     *
+     * @param node The AST node to be parsed.
+     *
+     * All other parameters are identical to {@link buildLaTeXSectionFromFile}.
+     *
+     * @returns A flat array of {@link Section} of this node.
+     */
+    private async parseLaTeXNode(node: latexParser.Node, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
+        let sections: Section[] = []
+        if (latexParser.isCommand(node)) {
+            if (this.LaTeXCommands.secs.includes(node.name.replace(/\*$/, ''))) {
+                // \section{Title}
+                if (node.args.length > 0) {
+                    // Avoid \section alone
+                    const captionArg = node.args.find(latexParser.isGroup)
+                    if (captionArg) {
+                        sections.push(new Section(
+                            node.name.endsWith('*') ? SectionKind.NoNumberSection : SectionKind.Section,
+                            this.captionify(captionArg),
+                            vscode.TreeItemCollapsibleState.Expanded,
+                            this.LaTeXSectionDepths[node.name.replace(/\*$/, '')],
+                            node.location.start.line - 1,
+                            node.location.end.line - 1,
+                            file
+                        ))
+                    }
+                }
+            } else if (this.LaTeXCommands.cmds.includes(node.name.replace(/\*$/, ''))) {
+                // \notlabel{Show}{ShowAlso}
+                // const caption = node.args.map(arg => {
+                    // const argContent = latexParser.stringify(arg)
+                //     return argContent.slice(1, argContent.length - 1)
+                // }).join(', ') // -> Show, ShowAlso
+                let caption = ''
+                const captionArg = node.args.find(latexParser.isGroup)
+                if (captionArg) {
+                    caption = latexParser.stringify(captionArg)
+                    caption = caption.slice(1, caption.length - 1)
+                }
+                sections.push(new Section(
+                    SectionKind.Label,
+                    `#${node.name}: ${caption}`,
+                    vscode.TreeItemCollapsibleState.Expanded,
+                    -1,
+                    node.location.start.line - 1,
+                    node.location.end.line - 1,
+                    file
+                ))
+            } else if (subFile) {
+                // Check if this command is a subfile one
+                sections = [
+                    ...sections,
+                    ...await this.parseLaTeXSubFileCommand(node, file, subFile, filesBuilt)
+                ]
+            }
+        } else if (latexParser.isLabelCommand(node) && this.LaTeXCommands.cmds.includes(node.name)) {
+            // \label{this:is_a-label}
+            sections.push(new Section(
+                SectionKind.Label,
+                `#${node.name}: ${node.label}`, // -> #this:is_a-label
+                vscode.TreeItemCollapsibleState.Expanded,
+                -1,
+                node.location.start.line - 1,
+                node.location.end.line - 1,
+                file
+            ))
+        } else if (latexParser.isEnvironment(node) && this.LaTeXCommands.envs.includes(node.name.replace(/\*$/, ''))) {
+            // \begin{figure}...\end{figure}
+            sections.push(new Section(
+                SectionKind.Env,
+                // -> Figure: Caption of figure
+                `${node.name.charAt(0).toUpperCase() + node.name.slice(1)}: ${this.findEnvCaption(node)}`,
+                vscode.TreeItemCollapsibleState.Expanded,
+                -1,
+                node.location.start.line - 1,
+                node.location.end.line - 1,
+                file
+            ))
+        }
+        if (latexParser.hasContentArray(node)) {
+            for (const subNode of node.content) {
+                sections = [
+                    ...sections,
+                    ...await this.parseLaTeXNode(subNode, file, subFile, filesBuilt)
+                ]
+            }
+        }
+        return sections
+    }
+
+    /**
+     * This function parses a particular LaTeX AST command to see if it is a
+     * sub-file-like one. If so, the flat section array of the sub-file is
+     * parsed using {@link buildLaTeXSectionFromFile} and returned.
+     *
+     * @param node The AST command to be parsed.
+     *
+     * All other parameters are identical to {@link buildLaTeXSectionFromFile}.
+     *
+     * @returns A flat array of {@link Section} of this sub-file, or an empty
+     * array if the command is not a sub-file-like.
+     */
+    private async parseLaTeXSubFileCommand(node: latexParser.Command, file: string, subFile: boolean, filesBuilt: Set<string>): Promise<Section[]> {
+        const cmdArgs: string[] = []
+        node.args.forEach((arg) => {
+            if (latexParser.isOptionalArg(arg)) {
+                return
+            }
+            const argContent = arg.content[0]
+            if (latexParser.isTextString(argContent)) {
+                cmdArgs.push(argContent.content)
+            }
+        })
+
+        const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
+
+        let candidate: string | undefined
+        // \input{sub.tex}
+        if (['input', 'InputIfFileExists', 'include', 'SweaveInput',
+             'subfile', 'loadglsentries'].includes(node.name.replace(/\*$/, ''))
+            && cmdArgs.length > 0) {
+            candidate = utils.resolveFile(
+                [path.dirname(file),
+                 path.dirname(this.extension.manager.rootFile || ''),
+                 ...texDirs],
+                cmdArgs[0])
+        }
+        // \import{sections/}{section1.tex}
+        if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace(/\*$/, ''))
+            && cmdArgs.length > 1) {
+            candidate = utils.resolveFile(
+                [cmdArgs[0],
+                 path.join(
+                    path.dirname(this.extension.manager.rootFile || ''),
+                    cmdArgs[0])],
+                cmdArgs[1])
+        }
+        // \subimport{01-IntroDir/}{01-Intro.tex}
+        if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace(/\*$/, ''))
+            && cmdArgs.length > 1) {
+            candidate = utils.resolveFile(
+                [path.dirname(file)],
+                path.join(cmdArgs[0], cmdArgs[1]))
+        }
+
+        return candidate ? this.buildLaTeXSectionFromFile(candidate, subFile, filesBuilt) : []
+    }
+
+    /**
+     * This function tries to figure the caption of a `frame`, `figure`, or
+     * `table` using their respective syntax.
+     *
+     * @param node The environment node to be parsed
+     * @returns The caption found, or 'Untitled'.
+     */
+    private findEnvCaption(node: latexParser.Environment): string {
+        let captionNode: latexParser.Command | undefined
+        let caption: string = 'Untitled'
+        if (node.name.replace(/\*$/, '') === 'frame') {
+            // Frame titles can be specified as either \begin{frame}{Frame Title}
+            // or \begin{frame} \frametitle{Frame Title}
+            // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
+
+            caption = 'Untitled Frame'
+            captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'frametitle')
+
+            // \begin{frame}(whitespace){Title}
+            const nodeArg = node.args.find(latexParser.isGroup)
+            caption = nodeArg ? this.captionify(nodeArg) : caption
+        } else if (node.name.replace(/\*$/, '') === 'figure' || node.name.replace(/\*$/, '') === 'table') {
+            // \begin{figure} \caption{Figure Title}
+            captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'caption')
+        }
+        // \frametitle can override title set in \begin{frame}{<title>}
+        // \frametitle{Frame Title} or \caption{Figure Title}
+        if (captionNode) {
+            const arg = captionNode.args.find(latexParser.isGroup)
+            caption = arg ? this.captionify(arg) : caption
+        }
+        return caption
+    }
+
+    private captionify(argNode: latexParser.Group | latexParser.OptionalArg): string {
+        for (let index = 0; index < argNode.content.length; ++index){
+            const node = argNode.content[index]
+            if (latexParser.isCommand(node)
+                && node.name === 'texorpdfstring'
+                && node.args.length === 2) {
+                const pdfString = latexParser.stringify(node.args[1])
+                const firstArg = node.args[1].content[0]
+                if (latexParser.isTextString(firstArg)) {
+                    firstArg.content = pdfString.slice(1, pdfString.length - 1)
+                    argNode.content[index] = firstArg
+                }
+            }
+        }
+        const caption = latexParser.stringify(argNode).replace(/\n/g, ' ')
+        return caption.slice(1, caption.length - 1) // {Title} -> Title
+    }
+
+    /**
+     * This function builds the hierarchy of a flat {@link Section} array
+     * according to the input hierarchy data. This is a two-step process. The
+     * first step puts all non-section {@link Section}s into their leading
+     * section {@link Section}. The section numbers are also optionally added in
+     * this step. Then in the second step, the section {@link Section}s are
+     * iterated to build the hierarchy.
+     *
+     * @param flatStructure The flat sections whose hierarchy is to be built.
+     * @param showHierarchyNumber Whether the section numbers should be computed
+     * and prepended to section captions.
+     * @returns The final sections to be shown with hierarchy.
+     */
+    private buildLaTeXHierarchy(flatStructure: Section[], showHierarchyNumber: boolean): Section[] {
+        if (flatStructure.length === 0) {
+            return []
+        }
+
+        // All non-section nodes before the first section
+        const preambleNodes: Section[] = []
+        // Only holds section-like Sections
+        const flatSections: Section[] = []
+
+        // Calculate the lowest depth. It's possible that there is no `chapter`
+        // in a document. In such a case, `section` is the lowest level with a
+        // depth 1. However, later logic is 0-based. So.
+        let lowest = 65535
+        flatStructure.filter(node => node.depth > -1).forEach(section => {
+            lowest = lowest < section.depth ? lowest : section.depth
+        })
+
+        // Step 1: Put all non-sections into their leading section. This is to
+        // make the subsequent logic clearer.
+
+        // This counter is used to calculate the section numbers. The array
+        // holds the current numbering. When developing the numbers, just +1 to
+        // the appropriate item and retrieve the sub-array.
+        let counter: number[] = []
+        flatStructure.forEach(node => {
+            if (node.depth === -1) {
+                // non-section node
+                if (flatSections.length === 0) {
+                    // no section appeared yet
+                    preambleNodes.push(node)
+                } else {
+                    flatSections[flatSections.length - 1].children.push(node)
+                }
+            } else {
+                if (showHierarchyNumber && node.kind === SectionKind.Section) {
+                    const depth = node.depth - lowest
+                    if (depth + 1 > counter.length) {
+                        counter = [...counter, ...new Array(depth + 1 - counter.length).fill(0) as number[]]
+                    } else {
+                        counter = counter.slice(0, depth + 1)
+                    }
+                    counter[counter.length - 1] += 1
+                    node.label = `${counter.join('.')} ${node.label}`
+                } else if (showHierarchyNumber && node.kind === SectionKind.NoNumberSection) {
+                    node.label = `* ${node.label}`
+                }
+                flatSections.push(node)
+            }
+        })
+
+        const sections: Section[] = preambleNodes
+
+        flatSections.forEach(section => {
+            if (section.depth - lowest === 0) {
+                // base level section
+                sections.push(section)
+            } else if (sections.length === 0) {
+                // non-base level section, no previous sections available, create one
+                sections.push(section)
+            } else {
+                // Starting from the last base-level section, find out the
+                // proper level.
+                let currentSection = sections[sections.length - 1]
+                while (currentSection.depth < section.depth - 1) {
+                    const children = currentSection.children.filter(candidate => candidate.depth > -1)
+                    if (children.length > 0) {
+                        // If there is a section child
+                        currentSection = children[children.length - 1]
+                    } else {
+                        // If there is a jump e.g., section -> subsubsection,
+                        // give up finding.
+                        break
+                    }
+                }
+                currentSection.children.push(section)
+            }
+        })
+
+        return sections
+    }
+
+    private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
+        const sections = structure.filter(section => section.depth >= 0)
+        sections.forEach(section => {
+            const sameFileSections = sections.filter(candidate =>
+                (candidate.fileName === section.fileName) &&
+                (candidate.lineNumber >= section.lineNumber) &&
+                (candidate !== section))
+            if (sameFileSections.length > 0 && sameFileSections[0].lineNumber === section.lineNumber) {
+                // On the same line, e.g., \section{one}\section{two}
+                return
+            } else if (sameFileSections.length > 0) {
+                section.toLine = sameFileSections[0].lineNumber - 1
+            } else {
+                section.toLine = lastLine
+            }
+            if (section.children.length > 0) {
+                this.buildLaTeXSectionToLine(section.children, section.toLine)
+            }
+        })
     }
 
     async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
@@ -110,111 +527,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         return ds
     }
 
-    /**
-     * Compute the TOC of a LaTeX project. To only consider the current file, use `imports=false`
-     * @param visitedFiles Set of files already visited. To avoid infinite loops
-     * @param filePath The path of the file being parsed
-     * @param imports Do we parse included files
-     * @param fileStack The list of files inclusion leading to the current file
-     * @param parentStack The list of parent sections
-     * @param parentChildren The list of children of the parent Section
-     * @param sectionNumber The number of the current section stored in an array with the same length this.hierarchy
-     */
-    buildLaTeXModel(visitedFiles: Set<string>, filePath: string, imports: boolean = true, fileStack?: string[], parentStack?: Section[], parentChildren?: Section[], sectionNumber?: number[]): Section[] {
-        if (visitedFiles.has(filePath)) {
-            return []
-        } else {
-            visitedFiles.add(filePath)
-        }
-
-        let rootStack: Section[] = []
-        if (parentStack) {
-            rootStack = parentStack
-        }
-
-        let children: Section[] = []
-        if (parentChildren) {
-            children = parentChildren
-        }
-
-        let newFileStack: string[] = []
-        if (fileStack) {
-            newFileStack = fileStack
-        }
-        newFileStack.push(filePath)
-
-        if (!sectionNumber) {
-            sectionNumber = Array<number>(this.hierarchy.length).fill(0)
-        }
-
-        let content = this.extension.manager.getDirtyContent(filePath)
-        if (!content) {
-            return children
-        }
-        content = utils.stripCommentsAndVerbatim(content.replace(/\r\n|\r/g, '\n'))
-        const endPos = content.search(/\\end{document}/)
-        content = content.substring(0, endPos > -1 ? endPos : undefined)
-        const startPos = content.search(/\\begin{document}/)
-        let startLineNumber = 0
-        if (startPos > -1) {
-            startLineNumber = content.substring(0, startPos).split('\n').length
-        }
-
-        const structureModel = new StructureModel(this.extension, filePath, rootStack, children, newFileStack, sectionNumber)
-        const envNames = this.showFloats ? ['figure', 'frame', 'table'] : ['frame']
-
-        const lines = content.split('\n')
-        for (let lineNumber = startLineNumber; lineNumber < lines.length; lineNumber++) {
-            const line = lines[lineNumber]
-            // Environment part
-            structureModel.buildEnvModel(envNames, lines, lineNumber)
-
-            // Inputs part
-            if (imports) {
-               const inputFilePath = structureModel.buildImportModel(line)
-               if (inputFilePath) {
-                    this.buildLaTeXModel(visitedFiles, inputFilePath, true, newFileStack, rootStack, children, sectionNumber)
-                }
-            }
-
-            // Headings part
-            structureModel.buildHeadingModel(lines, lineNumber, this.showNumbers)
-
-
-            // Commands part
-            structureModel.buildCommandModel(this.commandNames, line, lineNumber, filePath)
-        }
-        this.fixToLines(children)
-        return children
-    }
-
-    /**
-     * Compute the exact ranges of every Section entry
-     */
-    private fixToLines(sections: Section[], parentSection?: Section) {
-        sections.forEach((entry: Section, index: number) => {
-            if (entry.kind !== SectionKind.Section) {
-                return
-            }
-            // Look for the next section with a smaller or equal depth
-            let toLineSet: boolean = false
-            for (let i = index + 1; i < sections.length; i++) {
-                if (entry.fileName === sections[i].fileName && sections[i].kind === SectionKind.Section && sections[i].depth <= entry.depth) {
-                    entry.toLine = sections[i].lineNumber - 1
-                    toLineSet = true
-                    break
-                }
-            }
-            // If no closing section was found, use the parent section if any
-            if (parentSection && !toLineSet && parentSection.fileName === entry.fileName) {
-                entry.toLine = parentSection.toLine
-            }
-            if (entry.children.length > 0) {
-                this.fixToLines(entry.children, entry)
-            }
-        })
-    }
-
     getTreeItem(element: Section): vscode.TreeItem {
 
         const hasChildren = element.children.length > 0
@@ -256,8 +568,9 @@ export enum SectionKind {
     Env = 0,
     Label = 1,
     Section = 2,
-    BibItem = 3,
-    BibField = 4
+    NoNumberSection = 3,
+    BibItem = 4,
+    BibField = 5
 }
 
 export class Section extends vscode.TreeItem {
@@ -268,7 +581,7 @@ export class Section extends vscode.TreeItem {
 
     constructor(
         public readonly kind: SectionKind,
-        public readonly label: string,
+        public label: string,
         public readonly collapsibleState: vscode.TreeItemCollapsibleState,
         public readonly depth: number,
         public readonly lineNumber: number,
@@ -277,240 +590,6 @@ export class Section extends vscode.TreeItem {
         public readonly command?: vscode.Command
     ) {
         super(label, collapsibleState)
-    }
-}
-
-class StructureModel {
-    envStack: {name: string, start: number, end: number}[] = []
-    private readonly hierarchy: string[]
-    private readonly headerPattern: string
-    private readonly sectionDepths = Object.create(null) as { [key: string]: number }
-    private prevSection: Section | undefined = undefined
-
-    constructor(
-        private readonly extension: Extension,
-        private readonly filePath: string,
-        private readonly rootStack: Section[],
-        private readonly children: Section[],
-        private readonly fileStack: string[],
-        private readonly sectionNumber: number[]
-    ) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        this.hierarchy = configuration.get('view.outline.sections') as string[]
-        this.hierarchy.forEach((section, index) => {
-            section.split('|').forEach(sec => {
-                this.sectionDepths[sec] = index
-            })
-        })
-        let pattern = '\\\\('
-        this.hierarchy.forEach((section, index) => {
-            pattern += section
-            if (index < this.hierarchy.length - 1) {
-                pattern += '|'
-            }
-        })
-        // To deal with multiline header, capture the whole line starting from the opening '{'
-        // The actual title will be determined later using getLongestBalancedString
-        pattern += ')(\\*)?(?:\\[[^\\[\\]\\{\\}]*\\])?{(.*)$'
-        this.headerPattern = pattern
-    }
-
-    currentRoot(): Section {
-        return this.rootStack[this.rootStack.length - 1]
-    }
-
-    noRoot(): boolean {
-        return this.rootStack.length === 0
-    }
-
-    buildEnvModel(envNames: string[], lines: string[], lineNumber: number) {
-        const envReg = RegExp(`(?:\\\\(begin|end)(?:\\[[^[\\]]*\\])?){(?:(${envNames.join('|')})\\*?)}`)
-        const line = lines[lineNumber]
-        const result = envReg.exec(line)
-        if (result && result[1] === 'begin') {
-            this.envStack.push({name: result[2], start: lineNumber, end: lineNumber})
-        } else if (result && result[2] === this.envStack[this.envStack.length - 1].name) {
-            const env = this.envStack.pop()
-            if (!env) {
-                return
-            }
-            env.end = lineNumber
-            const caption = this.getCaptionOrTitle(lines, env)
-            if (!caption) {
-                return
-            }
-            const depth = this.noRoot() ? 0 : this.currentRoot().depth + 1
-            const newEnv = new Section(SectionKind.Env, `${env.name.charAt(0).toUpperCase() + env.name.slice(1)}: ${caption}`, vscode.TreeItemCollapsibleState.Expanded, depth, env.start, env.end, this.filePath)
-            if (this.noRoot()) {
-                this.children.push(newEnv)
-            } else {
-                this.currentRoot().children.push(newEnv)
-            }
-        }
-    }
-
-    buildImportModel(line: string): string | undefined {
-        const pathRegexp = new PathRegExp()
-        const matchPath: MatchPath | undefined = pathRegexp.exec(line)
-        if (!matchPath) {
-            return undefined
-        }
-        // zoom into this file
-        const inputFilePath: string | undefined = pathRegexp.parseInputFilePath(matchPath, this.filePath, this.extension.manager.rootFile ? this.extension.manager.rootFile : this.filePath)
-        if (!inputFilePath) {
-            this.extension.logger.addLogMessage(`Could not resolve included file ${inputFilePath}`)
-            return undefined
-        }
-        // Avoid circular inclusion
-        if (inputFilePath === this.filePath || this.fileStack.includes(inputFilePath)) {
-            return undefined
-        }
-        if (this.prevSection) {
-            this.prevSection.subfiles.push(inputFilePath)
-        }
-        return inputFilePath
-    }
-
-    buildCommandModel(commandNames: string[], line: string, lineNumber: number, filePath: string) {
-        if (commandNames.length === 0) {
-            return
-        }
-        const commandReg = new RegExp('\\\\(' + commandNames.join('|') + '){([^}]*)}')
-        const result = commandReg.exec(line)
-        if (!result) {
-            return
-        }
-        const depth = this.noRoot() ? 0 : this.currentRoot().depth + 1
-        const newCommand = new Section(SectionKind.Label, `#${result[1]}: ${result[2]}`, vscode.TreeItemCollapsibleState.None, depth, lineNumber, lineNumber, filePath)
-        if (this.noRoot()) {
-            this.children.push(newCommand)
-        } else {
-            this.currentRoot().children.push(newCommand)
-        }
-    }
-
-    buildHeadingModel(lines: string[], lineNumber: number, showNumbers: boolean) {
-        const line = lines[lineNumber]
-        const headerReg = RegExp(this.headerPattern)
-        const result = headerReg.exec(line)
-        if (!result) {
-            return
-        }
-        // is it a section, a subsection, etc?
-        const heading = result[1]
-        const depth = this.sectionDepths[heading]
-        const title = this.getSectionTitle(result[3] + lines.slice(lineNumber + 1).join('\n'))
-        let sectionNumberStr: string = ''
-        if (result[2] === undefined) {
-            this.incrementSectionNumber(depth)
-            sectionNumberStr = this.formatSectionNumber(showNumbers)
-        }
-        const newSection = new Section(SectionKind.Section, sectionNumberStr + title, vscode.TreeItemCollapsibleState.Expanded, depth, lineNumber, lines.length - 1, this.filePath)
-        this.prevSection = newSection
-
-        if (this.noRoot()) {
-            this.children.push(newSection)
-            this.rootStack.push(newSection)
-            return
-        }
-
-        // Find the proper root section
-        while (!this.noRoot() && this.currentRoot().depth >= depth) {
-            this.rootStack.pop()
-        }
-        if (this.noRoot()) {
-            newSection.parent = undefined
-            this.children.push(newSection)
-        } else {
-            newSection.parent = this.currentRoot()
-            this.currentRoot().children.push(newSection)
-        }
-        this.rootStack.push(newSection)
-    }
-
-    getCaptionOrTitle(lines: string[], env: {name: string, start: number, end: number}) {
-        const content = lines.slice(env.start, env.end).join('\n')
-        let result: RegExpExecArray | null = null
-        if (env.name === 'frame') {
-            // Frame titles can be specified as either \begin{frame}{Frame Title}
-            // or \begin{frame} \frametitle{Frame Title}
-            const frametitleRegex = /\\frametitle(?:<[^<>]*>)?(?:\[[^[\]]*\])?{((?:[^{}]|(?:\{[^{}]*\})|\{[^{}]*\{[^{}]*\}[^{}]*\})+)}/gsm
-            // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
-            const beginframeRegex = /\\begin{frame}(?:<[^<>]*>?)?(?:\[[^[\]]*\]){0,2}[\t ]*(?:(?:\r\n|\r|\n)[\t ]*)?{((?:[^{}]|(?:\{[^{}]*\})|\{[^{}]*\{[^{}]*\}[^{}]*\})+)}/gsm
-
-            // \frametitle can override title set in \begin{frame}{<title>} so we check that first
-            result = frametitleRegex.exec(content)
-            if (!result) {
-                result = beginframeRegex.exec(content)
-            }
-        } else {
-            const captionRegex = /(?:\\caption(?:\[[^[\]]*\])?){((?:(?:[^{}])|(?:\{[^{}]*\}))+)}/gsm
-            let captionResult: RegExpExecArray | null
-            // Take the last caption entry to deal with subfigures.
-            // This works most of the time but not always. A definitive solution should use AST
-            while ((captionResult = captionRegex.exec(content))) {
-                result = captionResult
-            }
-        }
-
-        if (result) {
-            // Remove indentation, newlines and the final '.'
-            return result[1].replace(/^ */gm, ' ').replace(/\r|\n/g, '').replace(/\.$/, '')
-        }
-        return undefined
-    }
-
-    /**
-     * Return the title of a command while only keeping the second argument of \texorpdfstring
-     * @param text a section command
-     */
-    getSectionTitle(text: string): string {
-        let title = utils.getLongestBalancedString(text)
-        let pdfTitle: string = ''
-        const regex = /\\texorpdfstring/
-        let res: RegExpExecArray | null
-        while (true) {
-            res = regex.exec(title)
-            if (!res) {
-                break
-            }
-            pdfTitle += title.slice(0, res.index)
-            title = title.slice(res.index)
-            const arg = utils.getNthArgument(title, 2)
-            if (!arg) {
-                break
-            }
-            pdfTitle += arg.arg
-            // Continue with the remaining text after the second arg
-            title = title.slice(arg.index + arg.arg.length + 2) // 2 counts '{' and '}' around arg
-        }
-        return pdfTitle + title
-    }
-
-    private incrementSectionNumber(depth: number) {
-        this.sectionNumber[depth] += 1
-        this.sectionNumber.forEach((_, index) => {
-            if (index > depth) {
-                this.sectionNumber[index] = 0
-            }
-        })
-    }
-
-    private formatSectionNumber(showNumbers: boolean) {
-        if (! showNumbers) {
-            return ''
-        }
-        let str: string = ''
-        this.sectionNumber.forEach((value) => {
-            if (str === '' && value === 0) {
-                return
-            }
-            if (str !== '') {
-                str += '.'
-            }
-            str += value.toString()
-        })
-        return str.replace(/(\.0)*$/, '') + ' '
     }
 }
 
@@ -527,6 +606,7 @@ export class StructureTreeView {
         this._viewer = vscode.window.createTreeView('latex-workshop-structure', { treeDataProvider: this._treeDataProvider, showCollapseAll: true })
         vscode.commands.registerCommand('latex-workshop.structure-toggle-follow-cursor', () => {
            this._followCursor = ! this._followCursor
+           this.extension.logger.addLogMessage(`Follow cursor is set to ${this._followCursor}.`)
         })
 
         vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
