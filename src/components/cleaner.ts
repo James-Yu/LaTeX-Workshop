@@ -18,19 +18,15 @@ function unique(sequence: string[]): string[] {
  * Globs all given patterns into absolute paths. The result will be sorted in
  * reverse order and all tailing slashes will be stripped.
  *
- * The result is sort in descending dictionary order, make sure the children are sorted before the parents.
+ * The result is sorted in descending dictionary order, make sure the children are sorted before the parents.
  * For example: [..., 'out/folder1/folder2/', 'out/folder1/', ...] ('out/folder1/folder2/' > 'out/folder1/' in directory order)
  */
 function globAll(globs: string[], cwd: string): string[] {
     return unique(
         globs.map(g => glob.sync(g, { cwd }))
-             // Flatten the array of arrays to a single array containing all the elements
              .flat()
-             // Resolve absolute paths (tailing slashes will be stripped)
              .map((globedPath: string): string => path.resolve(cwd, globedPath))
-    )
-    // Sort in descending dictionary order
-    .sort((a, b) => b.localeCompare(a))
+    ).sort((a, b) => b.localeCompare(a))
 }
 
 export class Cleaner {
@@ -83,9 +79,7 @@ export class Cleaner {
 
         for (const pattern of unique(globs)) {
             if (pattern.endsWith(path.sep)) {
-                // The pattern ends with a slash only matches folders
                 if (path.basename(pattern).includes('**')) {
-                    // Contains globstar `**` in the last component
                     folderGlobsWithGlobstar.push(pattern)
                 } else {
                     // All glob patterns EXPLICITLY given for folders, the glob should be end with a slash (`path.sep`)
@@ -122,12 +116,9 @@ export class Cleaner {
         this.extension.logger.addLogMessage(`Clean glob matched files: ${JSON.stringify({globs, outdir})}`)
 
         const { fileOrFolderGlobs, folderGlobsExplicit, folderGlobsWithGlobstar } = Cleaner.splitGlobs(globs)
-
         this.extension.logger.addLogMessage(`Ignore folder glob patterns with globstar: ${folderGlobsWithGlobstar}`)
 
-        // All folders explicitly specified by the user, remove them if empty after cleaning files
         const explicitFolders: string[] = globAll(folderGlobsExplicit, outdir)
-
         const explicitFoldersSet: Set<string> = new Set(explicitFolders)
         const filesOrFolders: string[] = globAll(fileOrFolderGlobs, outdir).filter(file => !explicitFoldersSet.has(file))
 
@@ -154,8 +145,6 @@ export class Cleaner {
         // Then remove empty folders EXPLICITLY specified by the user
         for (const folderRealPath of explicitFolders) {
             try {
-                // We are sure that this is a folder because it's globed by pattern with a trailing slash
-                // Only check emptiness
                 if (fs.readdirSync(folderRealPath).length === 0) {
                     await fs.promises.rmdir(folderRealPath)
                     this.extension.logger.addLogMessage(`Removing empty folder: ${folderRealPath}`)
@@ -199,8 +188,6 @@ export class Cleaner {
                 }
                 resolve()
             })
-
         })
-
     }
 }
