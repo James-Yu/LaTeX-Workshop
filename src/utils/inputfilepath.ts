@@ -16,40 +16,32 @@ interface MatchPath {
     index: number
 }
 
-/**
- * Return the input regex. This function creates one regex to be used repeatedly
- * on one document.
- */
-export function createInputRegExp(): RegExp {
-    return /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|loadglsentries|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g
+interface InputFileRegExp {
+    input: RegExp,
+    child: RegExp
 }
 
 /**
- * Return the child regex. This function creates one regex to be used repeatedly
- * on one Rnw document.
+ * Return the input and child regexps. This function creates two regexps to be
+ * used repeatedly on one document.
  */
-export function createChildRegExp(): RegExp {
-    return /<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=/g
-}
-
-/**
- * Return the input and child regexes. This function creates two regexes, each
- * one is to be used repeatedly on one document.
- */
-export function createInputChildRegExps(): {input: RegExp, child: RegExp} {
-    return {input: createInputRegExp(), child: createChildRegExp()}
+export function createInputFileRegExp(): InputFileRegExp {
+    return {
+        input: /\\(?:input|InputIfFileExists|include|SweaveInput|subfile|loadglsentries|(?:(?:sub)?(?:import|inputfrom|includefrom)\*?{([^}]*)}))(?:\[[^[\]{}]*\])?{([^}]*)}/g,
+        child: /<<(?:[^,]*,)*\s*child='([^']*)'\s*(?:,[^,]*)*>>=/g
+    }
 }
 
 /**
  * Return the matched input path. If there is no match, return undefined
  *
  * @param content the string to match the regex on
- * @param regexp the input regex created by {@link createInputRegExp()}
+ * @param regexps the regexps created by {@link createInputFileRegExp()}
  * @param currentFile is the name of file in which the regex is executed
  * @param rootFile
  */
-export function execInputRegExp(content: string, regexp: RegExp, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
-    const result = regexp.exec(content)
+export function execInputRegExp(content: string, regexps: InputFileRegExp, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
+    const result = regexps.input.exec(content)
     if (result) {
         const match = {
             type: MatchType.Input,
@@ -68,12 +60,12 @@ export function execInputRegExp(content: string, regexp: RegExp, currentFile: st
  * Return the matched child path. If there is no match, return undefined
  *
  * @param content the string to match the regex on
- * @param regexp the child regex created by {@link createChildRegExp()}
+ * @param regexps the regexps created by {@link createInputFileRegExp()}
  * @param currentFile is the name of file in which the regex is executed
  * @param rootFile
  */
-export function execChildRegExp(content: string, regexp: RegExp, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
-    const result = regexp.exec(content)
+export function execChildRegExp(content: string, regexps: InputFileRegExp, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
+    const result = regexps.child.exec(content)
     if (result) {
         const match = {
             type: MatchType.Child,
@@ -94,13 +86,13 @@ export function execChildRegExp(content: string, regexp: RegExp, currentFile: st
  *
  * @param content the string to match the regex on
  * @param regexps the input and child regexes created by
- *        {@link createInputRegExp()} and {@link createChildRegExp()}
+ *        {@link createInputFileRegExp()}
  * @param currentFile is the name of file in which the regex is executed
  * @param rootFile
  */
-export function execInputChildRegExps(content: string, regexps: {input: RegExp, child: RegExp}, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
-    return execInputRegExp(content, regexps.input, currentFile, rootFile)
-           || execChildRegExp(content, regexps.child, currentFile, rootFile)
+export function execInputChildRegExps(content: string, regexps: InputFileRegExp, currentFile: string, rootFile: string): {path: string, match: MatchPath} | undefined {
+    return execInputRegExp(content, regexps, currentFile, rootFile)
+           || execChildRegExp(content, regexps, currentFile, rootFile)
 }
 
 /**

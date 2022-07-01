@@ -6,7 +6,7 @@ import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import type {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
-import {createInputChildRegExps, execInputChildRegExps} from '../utils/inputfilepath'
+import {createInputFileRegExp, execInputChildRegExps} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
@@ -626,7 +626,7 @@ export class Manager {
         // Update children of current file
         if (this.cachedContent[file] === undefined) {
             this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
-            const pathRegExps = createInputChildRegExps()
+            const pathRegExps = createInputFileRegExp()
             while (true) {
                 const result = execInputChildRegExps(content, pathRegExps, file, baseFile)
                 if (!result) {
@@ -677,7 +677,7 @@ export class Manager {
      * @param baseFile the name of the supposed rootFile
      */
     private async parseInputFiles(content: string, currentFile: string, baseFile: string) {
-        const pathRegExps = createInputChildRegExps()
+        const pathRegExps = createInputFileRegExp()
         while (true) {
             const result = execInputChildRegExps(content, pathRegExps, currentFile, baseFile)
             if (!result) {
