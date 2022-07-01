@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
+import { readFileSync } from 'fs'
 import * as process from 'process'
 
 import {Commander} from './commander'
@@ -49,6 +50,24 @@ function conflictExtensionCheck() {
         }
     }
     check('tomoki1207.pdf', 'vscode-pdf', 'Please consider disabling either extension.')
+}
+
+function deprecateConfigCheck() {
+    const packageDef = JSON.parse(readFileSync(path.resolve(__dirname, '../../package.json')).toString()) as {contributes: {configuration: {properties: {[config: string]: {default: any, deprecationMessage?: string}}}}}
+    const configs = Object.keys(packageDef.contributes.configuration.properties)
+    const deprecatedConfigs = configs.filter(config => packageDef.contributes.configuration.properties[config].deprecationMessage)
+                                     .map(config => config.split('.').slice(1).join('.'))
+
+    const configuration = vscode.workspace.getConfiguration('latex-workshop')
+    deprecatedConfigs.forEach(config => {
+        const defaultValue = configuration.inspect(config)?.defaultValue
+        const configValue = configuration.get(config)
+        console.log(defaultValue, configValue)
+        if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
+            const fullConfig = `latex-workshop.${config}`
+            void vscode.window.showWarningMessage(`Config "${fullConfig}" is deprecated. ${packageDef.contributes.configuration.properties[fullConfig].deprecationMessage}`)
+        }
+    })
 }
 
 function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
@@ -243,6 +262,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
     conflictExtensionCheck()
+    deprecateConfigCheck()
 
     return generateLatexWorkshopApi(extension)
 }
