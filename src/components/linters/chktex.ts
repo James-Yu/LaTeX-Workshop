@@ -4,15 +4,15 @@ import * as fs from 'fs'
 import * as os from 'os'
 
 import type {Extension} from '../../main'
-import {Linter} from './linter'
+import {Linter, LinterLogParser} from './linter'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 
 export class ChkTeX extends Linter {
-    logParser: LinterLogParser
+    logParser: ChkTeXLogParser
 
     constructor(extension: Extension) {
         super(extension)
-        this.logParser = new LinterLogParser(extension)
+        this.logParser = new ChkTeXLogParser(extension)
     }
 
     async lintRootFile() {
@@ -171,7 +171,7 @@ export class ChkTeX extends Linter {
     }
 }
 
-interface LinterLogEntry {
+interface ChkTeXLogEntry {
     file: string,
     line: number,
     column: number,
@@ -187,17 +187,16 @@ const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
     'error': vscode.DiagnosticSeverity.Error,
 }
 
-class LinterLogParser {
-    private readonly extension: Extension
-    private readonly linterDiagnostics = vscode.languages.createDiagnosticCollection('ChkTeX')
+class ChkTeXLogParser extends LinterLogParser {
+    private readonly linterName = 'ChkTeX'
 
     constructor(extension: Extension) {
-        this.extension = extension
+        super(extension)
     }
 
     parse(log: string, singleFileOriginalPath?: string, tabSizeArg?: number) {
         const re = /^(.*?):(\d+):(\d+):(\d+):(.*?):(\d+):(.*?)$/gm
-        const linterLog: LinterLogEntry[] = []
+        const linterLog: ChkTeXLogEntry[] = []
         let match = re.exec(log)
         while (match) {
             // This log may be for a single file in memory, in which case we override the
@@ -220,13 +219,16 @@ class LinterLogParser {
             match = re.exec(log)
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
-        if (singleFileOriginalPath === undefined) {
+        if (singleFileOriginalPath === undefined
+            || !LinterLogParser.linterDiagnostics
+            || LinterLogParser.linterDiagnostics.name !== this.linterName) {
             // A full lint of the project has taken place - clear all previous results.
-            this.linterDiagnostics.clear()
+            LinterLogParser.linterDiagnostics?.clear()
+            LinterLogParser.linterDiagnostics = vscode.languages.createDiagnosticCollection(this.linterName)
         } else if (linterLog.length === 0) {
             // We are linting a single file and the new log is empty for it -
             // clean existing records.
-            this.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
+            LinterLogParser.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
         }
         this.showLinterDiagnostics(linterLog)
     }
@@ -280,7 +282,7 @@ class LinterLogParser {
         return i + 1
     }
 
-    private showLinterDiagnostics(linterLog: LinterLogEntry[]) {
+    private showLinterDiagnostics(linterLog: ChkTeXLogEntry[]) {
         const diagsCollection = Object.create(null) as { [key: string]: vscode.Diagnostic[] }
         for (const item of linterLog) {
             const range = new vscode.Range(
@@ -289,7 +291,7 @@ class LinterLogParser {
             )
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.code = item.code
-            diag.source = 'ChkTeX'
+            diag.source = this.linterName
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }
@@ -308,7 +310,7 @@ class LinterLogParser {
                         file1 = f
                     }
                 }
-                this.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+                LinterLogParser.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
             }
         }
     }

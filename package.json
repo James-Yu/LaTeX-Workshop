@@ -1604,9 +1604,10 @@
           "default": "none",
           "enum": [
             "none",
-            "chktex"
+            "chktex",
+            "lacheck"
           ],
-          "markdownDescription": "Enable linting LaTeX with `chktex`. Check `#latex-workshop.linting.run#` to control when the linting is executed if this config is set to values other than `none`."
+          "markdownDescription": "Enable linting LaTeX with `chktex` or `lacheck`. Check `#latex-workshop.linting.run#` to control when the linting is executed if this config is set to values other than `none`."
         },
         "latex-workshop.linting.run": {
           "scope": "resource",
@@ -1660,6 +1661,12 @@
           "type": "number",
           "default": 500,
           "markdownDescription": "Defines the delay in milliseconds for linter to wait after stopped typing. This config only matters when `#latex-workshop.linting.run#` is set to `onType`."
+        },
+        "latex-workshop.linting.lacheck.exec.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "lacheck",
+          "markdownDescription": "Define the location of LaCheck executive file."
         },
         "latex-workshop.chktex.enabled": {
           "scope": "resource",

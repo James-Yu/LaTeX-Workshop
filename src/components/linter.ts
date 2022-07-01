@@ -3,15 +3,18 @@ import * as vscode from 'vscode'
 import type {Extension} from '../main'
 import { Linter as AbstractLinter } from './linters/linter'
 import { ChkTeX } from './linters/chktex'
+import { LaCheck } from './linters/lacheck'
 
 export class Linter {
     protected readonly extension: Extension
     private readonly chktex: ChkTeX
+    private readonly lacheck: LaCheck
     private linterTimeout?: NodeJS.Timer
 
     constructor(extension: Extension) {
         this.extension = extension
         this.chktex = new ChkTeX(extension)
+        this.lacheck = new LaCheck(extension)
     }
 
     private getLinter(scope?: vscode.ConfigurationScope | null): AbstractLinter | undefined {
@@ -22,6 +25,8 @@ export class Linter {
                 return undefined
             case 'chktex':
                 return this.chktex
+            case 'lacheck':
+                return this.lacheck
         }
     }
 

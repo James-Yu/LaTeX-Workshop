@@ -71,3 +71,14 @@ export abstract class Linter {
         })
     }
 }
+
+export abstract class LinterLogParser {
+    protected readonly extension: Extension
+    protected static linterDiagnostics: vscode.DiagnosticCollection
+
+    constructor(extension: Extension) {
+        this.extension = extension
+    }
+
+    abstract parse(log: string): void
+}
