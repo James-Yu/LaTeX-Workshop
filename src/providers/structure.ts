@@ -4,8 +4,7 @@ import { latexParser,bibtexParser } from 'latex-utensils'
 
 import type { Extension } from '../main'
 import { resolveFile } from '../utils/utils'
-import { PathRegExp, MatchType } from '../utils/inputfilepath'
-import type { MatchPath } from '../utils/inputfilepath'
+import { createChildRegExp, execChildRegExp } from '../utils/inputfilepath'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -500,21 +499,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, line: number}[] {
         const children: {subFile: string, line: number}[] = []
-        const pathRegexp = new PathRegExp()
+        const childRegExp = createChildRegExp()
         while(true) {
-            const result: MatchPath | undefined = pathRegexp.exec(content)
+            const result = execChildRegExp(content, childRegExp, file, rootFile)
             if (!result) {
                 break
             }
-            // We only deal with Rnw child.
-            if (result.type !== MatchType.Child) {
-                continue
-            }
-            const subFile = pathRegexp.parseInputFilePath(result, file, rootFile)
-            if (subFile) {
-                const line = (content.slice(0, result.index).match(/\n/g) || []).length
-                children.push({subFile, line})
-            }
+            const line = (content.slice(0, result.match.index).match(/\n/g) || []).length
+            children.push({subFile: result.path, line})
         }
         return children
     }
