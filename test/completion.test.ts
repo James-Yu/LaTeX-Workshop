@@ -142,11 +142,13 @@ suite('Completion test suite', () => {
                 triggerCharacter: undefined
             }
         )
-        assert.ok(items && items.length === 5)
+        assert.ok(items && items.length === 7)
         assertCompletionItemContains(items, 'rf', 'radio-frequency')
         assertCompletionItemContains(items, 'te', 'Transverse Magnetic')
         assertCompletionItemContains(items, 'E_P', 'Elastic $\\varepsilon$ toto')
         assertCompletionItemContains(items, 'lw', 'What this extension is $\\mathbb{A}$')
         assertCompletionItemContains(items, 'vs_code', 'Editor')
+        assertCompletionItemContains(items, 'abbr_y', 'A second abbreviation')
+        assertCompletionItemContains(items, 'abbr_x', 'A first abbreviation')
     }, () => os.platform() === 'win32')
 })
