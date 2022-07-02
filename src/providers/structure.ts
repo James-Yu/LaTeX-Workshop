@@ -4,7 +4,7 @@ import { latexParser,bibtexParser } from 'latex-utensils'
 
 import type { Extension } from '../main'
 import { resolveFile } from '../utils/utils'
-import { createInputFileRegExp, execChildRegExp } from '../utils/inputfilepath'
+import { InputFileRegExp } from '../utils/inputfilepath'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -499,9 +499,9 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, line: number}[] {
         const children: {subFile: string, line: number}[] = []
-        const childRegExp = createInputFileRegExp()
+        const childRegExp = new InputFileRegExp()
         while(true) {
-            const result = execChildRegExp(content, childRegExp, file, rootFile)
+            const result = childRegExp.execChild(content, file, rootFile)
             if (!result) {
                 break
             }
