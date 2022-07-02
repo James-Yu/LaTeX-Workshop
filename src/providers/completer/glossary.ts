@@ -56,29 +56,15 @@ export class Glossary implements IProvider {
 
         nodes.forEach(node => {
             if (latexParser.isCommand(node) && node.args.length > 0) {
-                switch (node.name) {
-                    case 'newglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getShortNodeDescription(node)
-                        break
-                    case 'provideglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getShortNodeDescription(node)
-                        break
-                    case 'longnewglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getLongNodeLabelDescription(node)
-                        break
-                    case 'longprovideglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getLongNodeLabelDescription(node)
-                        break
-                    case 'newacronym':
-                        type = GlossaryType.acronym
-                        entry = this.getLongNodeLabelDescription(node)
-                        break
-                    default:
-                        break
+                if (['newglossaryentry', 'provideglossaryentry'].includes(node.name)) {
+                    type = GlossaryType.glossary
+                    entry = this.getShortNodeDescription(node)
+                } else if(['longnewglossaryentry', 'longprovideglossaryentry'].includes(node.name)) {
+                    type = GlossaryType.glossary
+                    entry = this.getLongNodeLabelDescription(node)
+                } else if(['newacronym', 'newabbreviation', 'newabbr'].includes(node.name)) {
+                    type = GlossaryType.acronym
+                    entry = this.getLongNodeLabelDescription(node)
                 }
                 if (type !== undefined && entry.description !== undefined && entry.label !== undefined) {
                     glossaries.push({
