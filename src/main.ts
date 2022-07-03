@@ -62,7 +62,6 @@ function deprecateConfigCheck() {
     deprecatedConfigs.forEach(config => {
         const defaultValue = configuration.inspect(config)?.defaultValue
         const configValue = configuration.get(config)
-        console.log(defaultValue, configValue)
         if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
             const fullConfig = `latex-workshop.${config}`
             void vscode.window.showWarningMessage(`Config "${fullConfig}" is deprecated. ${packageDef.contributes.configuration.properties[fullConfig].deprecationMessage}`)
