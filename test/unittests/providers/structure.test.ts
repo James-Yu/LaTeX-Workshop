@@ -54,7 +54,6 @@ suite('unit test suite', () => {
         extension.manager.rootFile = texFilePath
         const structure = new SectionNodeProvider(extension)
         await structure.update(true)
-        await resetConfig()
         const sections = structure.ds
         assert.ok(sections)
         assert.strictEqual(sections[1].children[0].label, '2.0.1')
@@ -74,7 +73,6 @@ suite('unit test suite', () => {
         extension.manager.rootFile = texFilePath
         const structure = new SectionNodeProvider(extension)
         await structure.update(true)
-        await resetConfig()
         const sections = structure.ds
         assert.ok(sections)
         assert.strictEqual(sections[0].children.length, 2)
@@ -91,7 +89,6 @@ suite('unit test suite', () => {
         extension.manager.rootFile = texFilePath
         const structure = new SectionNodeProvider(extension)
         await structure.update(true)
-        await resetConfig()
         const sections = structure.ds
         assert.ok(sections)
         assert.strictEqual(sections[5].children.length, 3)
@@ -100,6 +97,11 @@ suite('unit test suite', () => {
         assert.strictEqual(sections[5].children[2].label, 'Frame: Untitled')
     })
 
-    suiteTeardown(resetConfig)
-
+    teardown(async () => {
+        await resetConfig()
+        const extension = (await waitLatexWorkshopActivated()).exports.realExtension
+        if (extension) {
+            extension.manager.rootFile = undefined
+        }
+    })
 })
