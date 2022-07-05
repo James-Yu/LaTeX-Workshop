@@ -52,7 +52,7 @@ function conflictExtensionCheck() {
     check('tomoki1207.pdf', 'vscode-pdf', 'Please consider disabling either extension.')
 }
 
-function deprecateConfigCheck() {
+function deprecateConfigCheck(logger: Logger) {
     const packageDef = JSON.parse(readFileSync(path.resolve(__dirname, '../../package.json')).toString()) as {contributes: {configuration: {properties: {[config: string]: {default: any, deprecationMessage?: string}}}}}
     const configs = Object.keys(packageDef.contributes.configuration.properties)
     const deprecatedConfigs = configs.filter(config => packageDef.contributes.configuration.properties[config].deprecationMessage)
@@ -64,6 +64,7 @@ function deprecateConfigCheck() {
         const configValue = configuration.get(config)
         if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
             const fullConfig = `latex-workshop.${config}`
+            logger.addLogMessage(`Deprecated config ${config} is set to ${JSON.stringify(configValue)}, whose default is ${JSON.stringify(defaultValue)}`)
             void vscode.window.showWarningMessage(`Config "${fullConfig}" is deprecated. ${packageDef.contributes.configuration.properties[fullConfig].deprecationMessage}`)
         }
     })
@@ -261,7 +262,7 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
 
     void extension.manager.findRoot().then(() => extension.linter.lintRootFileIfEnabled())
     conflictExtensionCheck()
-    deprecateConfigCheck()
+    deprecateConfigCheck(extension.logger)
 
     return generateLatexWorkshopApi(extension)
 }
