@@ -1,10 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import {latexParser,bibtexParser} from 'latex-utensils'
+import { latexParser,bibtexParser } from 'latex-utensils'
 
 import type { Extension } from '../main'
-import * as utils from '../utils/utils'
-import { PathRegExp, MatchPath, MatchType } from '../components/managerlib/pathutils'
+import { resolveFile } from '../utils/utils'
+import { InputFileRegExp } from '../utils/inputfilepath'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -302,7 +302,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (['input', 'InputIfFileExists', 'include', 'SweaveInput',
              'subfile', 'loadglsentries'].includes(node.name.replace(/\*$/, ''))
             && cmdArgs.length > 0) {
-            candidate = utils.resolveFile(
+            candidate = resolveFile(
                 [path.dirname(file),
                  path.dirname(this.extension.manager.rootFile || ''),
                  ...texDirs],
@@ -311,7 +311,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // \import{sections/}{section1.tex}
         if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace(/\*$/, ''))
             && cmdArgs.length > 1) {
-            candidate = utils.resolveFile(
+            candidate = resolveFile(
                 [cmdArgs[0],
                  path.join(
                     path.dirname(this.extension.manager.rootFile || ''),
@@ -321,7 +321,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // \subimport{01-IntroDir/}{01-Intro.tex}
         if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace(/\*$/, ''))
             && cmdArgs.length > 1) {
-            candidate = utils.resolveFile(
+            candidate = resolveFile(
                 [path.dirname(file)],
                 path.join(cmdArgs[0], cmdArgs[1]))
         }
@@ -498,21 +498,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
     private parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, line: number}[] {
         const children: {subFile: string, line: number}[] = []
-        const pathRegexp = new PathRegExp()
+        const childRegExp = new InputFileRegExp()
         while(true) {
-            const result: MatchPath | undefined = pathRegexp.exec(content)
+            const result = childRegExp.execChild(content, file, rootFile)
             if (!result) {
                 break
             }
-            // We only deal with Rnw child.
-            if (result.type !== MatchType.Child) {
-                continue
-            }
-            const subFile = pathRegexp.parseInputFilePath(result, file, rootFile)
-            if (subFile) {
-                const line = (content.slice(0, result.index).match(/\n/g) || []).length
-                children.push({subFile, line})
-            }
+            const line = (content.slice(0, result.match.index).match(/\n/g) || []).length
+            children.push({subFile: result.path, line})
         }
         return children
     }
