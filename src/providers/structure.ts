@@ -344,7 +344,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             // or \begin{frame} \frametitle{Frame Title}
             // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
 
-            caption = 'Untitled Frame'
             captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'frametitle')
 
             // \begin{frame}(whitespace){Title}
