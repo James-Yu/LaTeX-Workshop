@@ -5,7 +5,7 @@ import {latexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {resolveCmdEnvFile} from './commandlib/commandfinder'
-import {Suggestion, splitSignatureString, CommandDuplicationDetector} from './command'
+import {Suggestion, splitSignatureString, CommandSignatureDuplicationDetector} from './command'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
@@ -157,7 +157,7 @@ export class Environment implements IProvider {
      * Environments can be inserted using `\envname`.
      * This function is called by Command.provide to compute these commands for every package in use.
      */
-    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandDuplicationDetector) {
+    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
 

@@ -80,17 +80,45 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
     }
 }
 
-export class CommandDuplicationDetector {
+export class CommandSignatureDuplicationDetector {
     private readonly cmdSignatureList: Set<string> = new Set<string>()
 
     add(cmd: Suggestion) {
         this.cmdSignatureList.add(cmd.signatureAsString())
     }
 
-    has(cmd: Suggestion) {
+    has(cmd: Suggestion): boolean {
         return this.cmdSignatureList.has(cmd.signatureAsString())
     }
- }
+}
+
+export class CommandNameDuplicationDetector {
+    private readonly cmdSignatureList: Set<string> = new Set<string>()
+
+    add(cmd: Suggestion): void
+    add(cmdName: string): void
+    add(cmd: any): void {
+        if (cmd instanceof Suggestion) {
+            this.cmdSignatureList.add(cmd.name())
+        } else if (typeof(cmd) === 'string') {
+            this.cmdSignatureList.add(cmd)
+        } else {
+            throw new Error('Unaccepted argument type')
+        }
+    }
+
+    has(cmd: Suggestion): boolean
+    has(cmd: string): boolean
+    has(cmd: any): boolean {
+        if (cmd instanceof Suggestion) {
+            return this.cmdSignatureList.has(cmd.name())
+        } else if (typeof(cmd) === 'string') {
+            return this.cmdSignatureList.has(cmd)
+        } else {
+            throw new Error('Unaccepted argument type')
+        }
+    }
+}
 
 export class Command implements IProvider {
     private readonly extension: Extension
@@ -157,7 +185,7 @@ export class Command implements IProvider {
             }
         }
         const suggestions: Suggestion[] = []
-        const cmdDuplicationDetector = new CommandDuplicationDetector()
+        const cmdDuplicationDetector = new CommandSignatureDuplicationDetector()
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
@@ -204,15 +232,16 @@ export class Command implements IProvider {
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
-        const cmdNameList = new Set<string>(suggestions.map(e => e.name()))
+        const commandNameDuplicationDetector = new CommandNameDuplicationDetector()
+        suggestions.forEach(e => commandNameDuplicationDetector.add(e))
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdNameList.has(cmd.name())) {
+                    if (!commandNameDuplicationDetector.has(cmd)) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdNameList.add(cmd.name())
+                        commandNameDuplicationDetector.add(cmd)
                     }
                 })
             }
@@ -257,7 +286,7 @@ export class Command implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.element.command = this.commandFinder.getCmdFromNodeArray(file, nodes)
+            cache.element.command = this.commandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
         } else if (content !== undefined) {
             cache.element.command = this.commandFinder.getCmdFromContent(file, content)
         }
@@ -391,7 +420,7 @@ export class Command implements IProvider {
         return suggestion
     }
 
-    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandDuplicationDetector) {
+    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg

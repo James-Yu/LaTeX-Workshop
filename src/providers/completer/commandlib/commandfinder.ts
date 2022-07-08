@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import {Suggestion, CommandDuplicationDetector} from '../command'
+import {Suggestion, CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from '../command'
 import type {Extension} from '../../../main'
 import type {ILwCompletionItem} from '../interface'
 
@@ -43,19 +43,19 @@ export class CommandFinder {
         this.extension = extension
     }
 
-    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
+    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], commandNameDuplicationDetector: CommandNameDuplicationDetector): Suggestion[] {
         let cmds: Suggestion[] = []
         nodes.forEach(node => {
-            cmds = cmds.concat(this.getCmdFromNode(file, node, cmdNameList))
+            cmds = cmds.concat(this.getCmdFromNode(file, node, commandNameDuplicationDetector))
         })
         return cmds
     }
 
-    private getCmdFromNode(file: string, node: latexParser.Node, cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
+    private getCmdFromNode(file: string, node: latexParser.Node, commandNameDuplicationDetector: CommandNameDuplicationDetector): Suggestion[] {
         const cmds: Suggestion[] = []
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
-            if (!cmdNameList.has(name)) {
+            if (!commandNameDuplicationDetector.has(name)) {
                 const cmd = new Suggestion(`\\${name}`, '', {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
                 cmd.documentation = '`' + name + '`'
                 cmd.insertText = new vscode.SnippetString(name + this.getTabStopsFromNode(node))
@@ -64,10 +64,10 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdNameList.add(name)
+                commandNameDuplicationDetector.add(name)
             }
         } else if (latexParser.isCommand(node)) {
-            if (!cmdNameList.has(node.name)) {
+            if (!commandNameDuplicationDetector.has(node.name)) {
                 const cmd = new Suggestion(`\\${node.name}`,
                     this.whichPackageProvidesCommand(node.name),
                     { name: node.name, args: this.getArgsFromNode(node) },
@@ -80,7 +80,7 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdNameList.add(node.name)
+                commandNameDuplicationDetector.add(node.name)
             }
             if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
                 Array.isArray(node.args) && node.args.length > 0) {
@@ -94,7 +94,7 @@ export class CommandFinder {
                         args += '{}'
                     }
                 }
-                if (!cmdNameList.has(label)) {
+                if (!commandNameDuplicationDetector.has(label)) {
                     const cmd = new Suggestion(`\\${label}`, 'user-defined', {name: label, args}, vscode.CompletionItemKind.Function)
                     cmd.documentation = '`' + label + '`'
                     cmd.insertText = new vscode.SnippetString(label + tabStops)
@@ -109,12 +109,12 @@ export class CommandFinder {
                             vscode.Uri.file(file),
                             new vscode.Position(node.location.start.line - 1, node.location.start.column))
                     })
-                    cmdNameList.add(label)
+                    commandNameDuplicationDetector.add(label)
                 }
             }
         }
         if (latexParser.hasContentArray(node)) {
-            return cmds.concat(this.getCmdFromNodeArray(file, node.content, cmdNameList))
+            return cmds.concat(this.getCmdFromNodeArray(file, node.content, commandNameDuplicationDetector))
         }
         return cmds
     }
@@ -160,7 +160,7 @@ export class CommandFinder {
     getCmdFromContent(file: string, content: string): Suggestion[] {
         const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
         const cmds: Suggestion[] = []
-        const cmdNameList: Set<string> = new Set<string>()
+        const commandNameDuplicationDetector = new CommandNameDuplicationDetector()
         let explSyntaxOn: boolean = false
         while (true) {
             const result = cmdReg.exec(content)
@@ -182,7 +182,7 @@ export class CommandFinder {
                     result[1] = result[1].slice(0, len)
                 }
             }
-            if (cmdNameList.has(result[1])) {
+            if (commandNameDuplicationDetector.has(result[1])) {
                 continue
             }
             const cmd = new Suggestion(
@@ -198,7 +198,7 @@ export class CommandFinder {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
             cmds.push(cmd)
-            cmdNameList.add(result[1])
+            commandNameDuplicationDetector.add(result[1])
         }
 
         const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?{?\\(\w+)}?(?:\[([1-9])\])?/g
@@ -207,7 +207,7 @@ export class CommandFinder {
             if (result === null) {
                 break
             }
-            if (cmdNameList.has(result[1])) {
+            if (commandNameDuplicationDetector.has(result[1])) {
                 continue
             }
 
@@ -226,7 +226,7 @@ export class CommandFinder {
             cmd.insertText = new vscode.SnippetString(result[1] + tabStops)
             cmd.filterText = result[1]
             cmds.push(cmd)
-            cmdNameList.add(result[1])
+            commandNameDuplicationDetector.add(result[1])
 
             this.definedCmds.set(result[1], {
                 file,
@@ -273,7 +273,7 @@ export class CommandFinder {
                 }
                 for (const pkg of cachedPkgs) {
                     const commands: ILwCompletionItem[] = []
-                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new CommandDuplicationDetector())
+                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new CommandSignatureDuplicationDetector())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)
                         if (label.startsWith(cmdName) &&
