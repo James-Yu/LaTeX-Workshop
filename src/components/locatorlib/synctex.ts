@@ -6,7 +6,7 @@ import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
 import {iconvLiteSupportedEncodings} from '../../utils/convertfilename'
 import {isSameRealPath} from '../../utils/pathnormalize'
-import type { Extension } from '../../main'
+import type {ILogger} from '../interfaces'
 
 
 class Rectangle {
@@ -72,7 +72,7 @@ class Rectangle {
 }
 
 type IExtension = {
-    logger: Extension['logger']
+    logger: ILogger
 }
 
 export class SyncTexJs {
