@@ -14,6 +14,7 @@ import type {CmdEnvSuggestion} from '../providers/completer/command'
 import type {CiteSuggestion} from '../providers/completer/citation'
 import type {GlossarySuggestion} from '../providers/completer/glossary'
 import type {ILwCompletionItem} from '../providers/completer/interface'
+import type {IManager} from './interfaces'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
@@ -26,7 +27,7 @@ import {Mutex} from '../lib/await-semaphore'
 /**
  * The content cache for each LaTeX file `filepath`.
  */
-interface Content {
+export interface Content {
     [filepath: string]: { // The path of a LaTeX file.
         /**
          * The dirty (under editing) content of the LaTeX file if opened in vscode,
@@ -78,7 +79,7 @@ type RootFileType = {
     uri: vscode.Uri
 }
 
-export class Manager {
+export class Manager implements IManager {
     /**
      * The content cache for each LaTeX file.
      */

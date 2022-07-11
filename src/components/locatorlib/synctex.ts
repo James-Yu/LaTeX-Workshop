@@ -71,7 +71,7 @@ class Rectangle {
     }
 }
 
-type IExtension = {
+interface IExtension {
     logger: ILogger
 }
 

@@ -3,12 +3,19 @@ import {latexParser} from 'latex-utensils'
 import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils/utils'
 import * as path from 'path'
 
-import type {Extension} from '../../../main'
+import type {ILogger, ILwFileSystem, IManager, IUtensilsParser} from 'src/components/interfaces'
+
+interface IExtension {
+    logger: ILogger,
+    lwfs: ILwFileSystem,
+    manager: IManager,
+    pegParser: IUtensilsParser
+}
 
 export class NewCommandFinder {
-    private readonly extension: Extension
+    private readonly extension: IExtension
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
