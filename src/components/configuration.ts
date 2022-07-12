@@ -62,16 +62,19 @@ export class Configuration {
         const configs = Object.keys(packageDef.contributes.configuration.properties)
         const deprecatedConfigs = configs.filter(config => packageDef.contributes.configuration.properties[config].deprecationMessage)
                                          .map(config => config.split('.').slice(1).join('.'))
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        deprecatedConfigs.forEach(config => {
-            const defaultValue = configuration.inspect(config)?.defaultValue
-            const configValue = configuration.get(config)
-            if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
-                const fullConfig = `latex-workshop.${config}`
-                this.extension.logger.addLogMessage(`Deprecated config ${config} is set to ${JSON.stringify(configValue)}, whose default is ${JSON.stringify(defaultValue)}`)
-                void vscode.window.showWarningMessage(`Config "${fullConfig}" is deprecated. ${packageDef.contributes.configuration.properties[fullConfig].deprecationMessage}`)
-            }
-        })
+        const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
+        for (const workspace of workspaceFolders) {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop', workspace)
+            deprecatedConfigs.forEach(config => {
+                const defaultValue = configuration.inspect(config)?.defaultValue
+                const configValue = configuration.get(config)
+                if (JSON.stringify(defaultValue) !== JSON.stringify(configValue)) {
+                    const fullConfig = `latex-workshop.${config}`
+                    this.extension.logger.addLogMessage(`Deprecated config ${config} with default value ${JSON.stringify(defaultValue)} is set to ${JSON.stringify(configValue)} at ${workspace?.uri.toString(true)}.`)
+                    void vscode.window.showWarningMessage(`Config "${fullConfig}" is deprecated. ${packageDef.contributes.configuration.properties[fullConfig].deprecationMessage}`)
+                }
+            })
+        }
     }
 
 }
