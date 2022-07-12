@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
-
 import {Suggestion, CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from '../command'
 import type {Extension} from '../../../main'
 import type {ILwCompletionItem} from '../interface'
@@ -260,7 +259,7 @@ export class CommandFinder {
 
     /**
      * Return the name of the package providing cmdName among all the packages
-     * including in the rootFile. If no package matches, return ''
+     * included in the rootFile. If no package matches, return ''
      *
      * @param cmdName the name of a command (without the leading '\')
      */

@@ -95,6 +95,10 @@ export class CommandSignatureDuplicationDetector {
 export class CommandNameDuplicationDetector {
     private readonly cmdSignatureList: Set<string> = new Set<string>()
 
+    constructor(suggestions: Suggestion[] = []) {
+        this.cmdSignatureList = new Set<string>(suggestions.map(s => s.name()))
+    }
+
     add(cmd: Suggestion): void
     add(cmdName: string): void
     add(cmd: any): void {
@@ -232,8 +236,7 @@ export class Command implements IProvider {
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
-        const commandNameDuplicationDetector = new CommandNameDuplicationDetector()
-        suggestions.forEach(e => commandNameDuplicationDetector.add(e))
+        const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
