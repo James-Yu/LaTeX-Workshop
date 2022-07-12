@@ -35,7 +35,7 @@ export class Configuration {
     private logConfiguration() {
         const workspaceFolders = vscode.workspace.workspaceFolders || [undefined]
         for (const workspace of workspaceFolders) {
-            this.extension.logger.addLogMessage(`Workspace for configuration: ${workspace?.uri.toString(true)}`)
+            this.extension.logger.addLogMessage(`Configuration for workspace: ${workspace?.uri.toString(true)}`)
             const configuration = vscode.workspace.getConfiguration(undefined, workspace)
             for(const config of this.configurationsToLog) {
                 const value = configuration.get(config)
