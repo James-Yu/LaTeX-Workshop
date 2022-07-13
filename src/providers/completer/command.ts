@@ -6,6 +6,7 @@ import type {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
 import type {IProvider, ILwCompletionItem} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
+import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
@@ -77,50 +78,6 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
 
     hasOptionalArgs(): boolean {
         return this.signature.args.includes('[')
-    }
-}
-
-export class CommandSignatureDuplicationDetector {
-    private readonly cmdSignatureList: Set<string> = new Set<string>()
-
-    add(cmd: Suggestion) {
-        this.cmdSignatureList.add(cmd.signatureAsString())
-    }
-
-    has(cmd: Suggestion): boolean {
-        return this.cmdSignatureList.has(cmd.signatureAsString())
-    }
-}
-
-export class CommandNameDuplicationDetector {
-    private readonly cmdSignatureList: Set<string> = new Set<string>()
-
-    constructor(suggestions: Suggestion[] = []) {
-        this.cmdSignatureList = new Set<string>(suggestions.map(s => s.name()))
-    }
-
-    add(cmd: Suggestion): void
-    add(cmdName: string): void
-    add(cmd: any): void {
-        if (cmd instanceof Suggestion) {
-            this.cmdSignatureList.add(cmd.name())
-        } else if (typeof(cmd) === 'string') {
-            this.cmdSignatureList.add(cmd)
-        } else {
-            throw new Error('Unaccepted argument type')
-        }
-    }
-
-    has(cmd: Suggestion): boolean
-    has(cmd: string): boolean
-    has(cmd: any): boolean {
-        if (cmd instanceof Suggestion) {
-            return this.cmdSignatureList.has(cmd.name())
-        } else if (typeof(cmd) === 'string') {
-            return this.cmdSignatureList.has(cmd)
-        } else {
-            throw new Error('Unaccepted argument type')
-        }
     }
 }
 
