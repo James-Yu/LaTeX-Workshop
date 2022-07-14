@@ -1248,7 +1248,7 @@
             "*.nav",
             "*.vrb"
           ],
-          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed."
+          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
         },
         "latex-workshop.latex.clean.command": {
           "scope": "resource",
@@ -1542,7 +1542,7 @@
           "type": "string",
           "default": "#ffffff",
           "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.view.pdf.color.light.backgroundColor#` and `#latex-workshop.view.pdf.color.dark.backgroundColor#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.view.pdf.color.light.backgroundColor#` and `#latex-workshop.view.pdf.color.dark.backgroundColor#` instead."
+          "deprecationMessage": "Please use \"latex-workshop.view.pdf.color.light.backgroundColor\" and \"latex-workshop.view.pdf.color.dark.backgroundColor\" instead."
         },
         "latex-workshop.view.pdf.color.light.pageColorsForeground": {
           "scope": "window",
@@ -1866,7 +1866,7 @@
           "default": 5,
           "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB.",
           "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.bibtex.maxFileSize#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.bibtex.maxFileSize#` instead."
+          "deprecationMessage": "Please use \"latex-workshop.bibtex.maxFileSize\" instead."
         },
         "latex-workshop.intellisense.triggers.latex": {
           "scope": "window",
@@ -1885,7 +1885,7 @@
           "default": "@",
           "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets. Reload vscode to make any change in this configuration effective.",
           "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead."
+          "deprecationMessage": "Please use \"latex-workshop.intellisense.atSuggestion.trigger.latex\" instead."
         },
         "latex-workshop.intellisense.atSuggestion.trigger.latex": {
           "scope": "window",
@@ -2552,10 +2552,10 @@
     "@types/vscode": "1.67.0",
     "@types/workerpool": "6.1.0",
     "@types/ws": "8.5.3",
-    "@typescript-eslint/eslint-plugin": "5.29.0",
-    "@typescript-eslint/parser": "5.29.0",
-    "@vscode/test-electron": "2.1.3",
-    "eslint": "8.18.0",
+    "@typescript-eslint/eslint-plugin": "5.30.5",
+    "@typescript-eslint/parser": "5.30.5",
+    "@vscode/test-electron": "2.1.5",
+    "eslint": "8.19.0",
     "mocha": "9.2.2",
     "rimraf": "3.0.2",
     "textmate-bailout": "1.1.0",

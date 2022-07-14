@@ -1,9 +1,10 @@
 import * as vscode from 'vscode'
 import * as path from 'path'
-import {latexParser,bibtexParser} from 'latex-utensils'
+import { latexParser,bibtexParser } from 'latex-utensils'
 
 import type { Extension } from '../main'
-import * as utils from '../utils/utils'
+import { resolveFile } from '../utils/utils'
+import { InputFileRegExp } from '../utils/inputfilepath'
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -153,10 +154,21 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return []
         }
 
+        // Get a list of rnw child chunks
+        const rnwChildren = subFile ? this.parseRnwChildCommand(content, file, this.extension.manager.rootFile || '') : []
+        let rnwChild = rnwChildren.shift()
+
         // Parse each base-level node. If the node has contents, that function
         // will be called recursively.
         let sections: Section[] = []
         for (const node of ast.content) {
+            while (rnwChild && node.location && rnwChild.line <= node.location.start.line) {
+                sections = [
+                    ...sections,
+                    ...await this.buildLaTeXSectionFromFile(rnwChild.subFile, subFile, filesBuilt)
+                ]
+                rnwChild = rnwChildren.shift()
+            }
             sections = [
                 ...sections,
                 ...await this.parseLaTeXNode(node, file, subFile, filesBuilt)
@@ -290,7 +302,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (['input', 'InputIfFileExists', 'include', 'SweaveInput',
              'subfile', 'loadglsentries'].includes(node.name.replace(/\*$/, ''))
             && cmdArgs.length > 0) {
-            candidate = utils.resolveFile(
+            candidate = resolveFile(
                 [path.dirname(file),
                  path.dirname(this.extension.manager.rootFile || ''),
                  ...texDirs],
@@ -299,7 +311,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // \import{sections/}{section1.tex}
         if (['import', 'inputfrom', 'includefrom'].includes(node.name.replace(/\*$/, ''))
             && cmdArgs.length > 1) {
-            candidate = utils.resolveFile(
+            candidate = resolveFile(
                 [cmdArgs[0],
                  path.join(
                     path.dirname(this.extension.manager.rootFile || ''),
@@ -309,7 +321,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         // \subimport{01-IntroDir/}{01-Intro.tex}
         if (['subimport', 'subinputfrom', 'subincludefrom'].includes(node.name.replace(/\*$/, ''))
             && cmdArgs.length > 1) {
-            candidate = utils.resolveFile(
+            candidate = resolveFile(
                 [path.dirname(file)],
                 path.join(cmdArgs[0], cmdArgs[1]))
         }
@@ -332,7 +344,6 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             // or \begin{frame} \frametitle{Frame Title}
             // \begin{frame}(whitespace){Title} will set the title as long as the whitespace contains no more than 1 newline
 
-            caption = 'Untitled Frame'
             captionNode = node.content.filter(latexParser.isCommand).find(subNode => subNode.name.replace(/\*$/, '') === 'frametitle')
 
             // \begin{frame}(whitespace){Title}
@@ -483,6 +494,20 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
                 this.buildLaTeXSectionToLine(section.children, section.toLine)
             }
         })
+    }
+
+    private parseRnwChildCommand(content: string, file: string, rootFile: string): {subFile: string, line: number}[] {
+        const children: {subFile: string, line: number}[] = []
+        const childRegExp = new InputFileRegExp()
+        while(true) {
+            const result = childRegExp.execChild(content, file, rootFile)
+            if (!result) {
+                break
+            }
+            const line = (content.slice(0, result.match.index).match(/\n/g) || []).length
+            children.push({subFile: result.path, line})
+        }
+        return children
     }
 
     async buildBibTeXModel(document: vscode.TextDocument): Promise<Section[]> {
