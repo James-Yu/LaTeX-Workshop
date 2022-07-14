@@ -80,5 +80,9 @@ export abstract class LinterLogParser {
         this.extension = extension
     }
 
+    getDisgnostics() {
+        return LinterLogParser.linterDiagnostics
+    }
+
     abstract parse(log: string): void
 }

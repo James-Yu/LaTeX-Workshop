@@ -76,6 +76,7 @@ class LaCheckLogParser extends LinterLogParser {
     parse(log: string) {
         const linterLog: LaCheckLogEntry[] = []
         const lines = log.split('\n')
+        let baseDir: string | undefined
         for (let index = 0; index < lines.length; index++) {
             const logLine = lines[index]
             const re = /"(.*?)",\sline\s(\d+):\s(<-\s)?(.*)/g
@@ -83,26 +84,29 @@ class LaCheckLogParser extends LinterLogParser {
             if (!match) {
                 continue
             }
+            if (!baseDir) {
+                baseDir = path.dirname(match[1])
+            }
             if (match[3] === '<- ') {
                 const nextLineRe = /.*line\s(\d+).*->\s(.*)/g
                 const nextLineMatch = nextLineRe.exec(lines[index+1])
                 if (nextLineMatch) {
                     linterLog.push({
-                        file: match[1],
+                        file: path.resolve(baseDir, match[1]),
                         line: parseInt(match[2]),
                         text: `${match[4]} -> ${nextLineMatch[2]} at Line ${nextLineMatch[1]}`
                     })
                     index++
                 } else {
                     linterLog.push({
-                        file: match[1],
+                        file: path.resolve(baseDir, match[1]),
                         line: parseInt(match[2]),
                         text: match[4]
                     })
                 }
             } else {
                 linterLog.push({
-                    file: match[1],
+                    file: path.resolve(baseDir, match[1]),
                     line: parseInt(match[2]),
                     text: match[4]
                 })

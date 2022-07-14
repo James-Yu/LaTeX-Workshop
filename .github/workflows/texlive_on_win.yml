@@ -1,6 +1,6 @@
 name: TeX Live on Windows
 env:
-  cache-version: v10
+  cache-version: v11
 on: [push]
 
 permissions:
@@ -42,6 +42,7 @@ jobs:
       run: |
         tlmgr install collection-latex
         tlmgr install import subfiles latexmk makeindex
+        tlmgr install chktex lacheck
       if: steps.cache-texlive.outputs.cache-hit != 'true'
     - uses: actions/setup-node@v3
       with:
