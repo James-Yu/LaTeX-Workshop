@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
-import {Suggestion} from '../command'
+import {CmdEnvSuggestion} from '../command'
 import type {Extension} from '../../../main'
 import type {ILwCompletionItem} from '../interface'
 
@@ -42,20 +42,20 @@ export class CommandFinder {
         this.extension = extension
     }
 
-    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], commandNameDuplicationDetector: CommandNameDuplicationDetector): Suggestion[] {
-        let cmds: Suggestion[] = []
+    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], commandNameDuplicationDetector: CommandNameDuplicationDetector): CmdEnvSuggestion[] {
+        let cmds: CmdEnvSuggestion[] = []
         nodes.forEach(node => {
             cmds = cmds.concat(this.getCmdFromNode(file, node, commandNameDuplicationDetector))
         })
         return cmds
     }
 
-    private getCmdFromNode(file: string, node: latexParser.Node, commandNameDuplicationDetector: CommandNameDuplicationDetector): Suggestion[] {
-        const cmds: Suggestion[] = []
+    private getCmdFromNode(file: string, node: latexParser.Node, commandNameDuplicationDetector: CommandNameDuplicationDetector): CmdEnvSuggestion[] {
+        const cmds: CmdEnvSuggestion[] = []
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
             if (!commandNameDuplicationDetector.has(name)) {
-                const cmd = new Suggestion(`\\${name}`, '', {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
+                const cmd = new CmdEnvSuggestion(`\\${name}`, '', {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
                 cmd.documentation = '`' + name + '`'
                 cmd.insertText = new vscode.SnippetString(name + this.getTabStopsFromNode(node))
                 cmd.filterText = name
@@ -67,7 +67,7 @@ export class CommandFinder {
             }
         } else if (latexParser.isCommand(node)) {
             if (!commandNameDuplicationDetector.has(node.name)) {
-                const cmd = new Suggestion(`\\${node.name}`,
+                const cmd = new CmdEnvSuggestion(`\\${node.name}`,
                     this.whichPackageProvidesCommand(node.name),
                     { name: node.name, args: this.getArgsFromNode(node) },
                     vscode.CompletionItemKind.Function
@@ -94,7 +94,7 @@ export class CommandFinder {
                     }
                 }
                 if (!commandNameDuplicationDetector.has(label)) {
-                    const cmd = new Suggestion(`\\${label}`, 'user-defined', {name: label, args}, vscode.CompletionItemKind.Function)
+                    const cmd = new CmdEnvSuggestion(`\\${label}`, 'user-defined', {name: label, args}, vscode.CompletionItemKind.Function)
                     cmd.documentation = '`' + label + '`'
                     cmd.insertText = new vscode.SnippetString(label + tabStops)
                     cmd.filterText = label
@@ -156,9 +156,9 @@ export class CommandFinder {
     }
 
 
-    getCmdFromContent(file: string, content: string): Suggestion[] {
+    getCmdFromContent(file: string, content: string): CmdEnvSuggestion[] {
         const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
-        const cmds: Suggestion[] = []
+        const cmds: CmdEnvSuggestion[] = []
         const commandNameDuplicationDetector = new CommandNameDuplicationDetector()
         let explSyntaxOn: boolean = false
         while (true) {
@@ -184,7 +184,7 @@ export class CommandFinder {
             if (commandNameDuplicationDetector.has(result[1])) {
                 continue
             }
-            const cmd = new Suggestion(
+            const cmd = new CmdEnvSuggestion(
                 `\\${result[1]}`,
                 this.whichPackageProvidesCommand(result[1]),
                 { name: result[1], args: this.getArgsFromRegResult(result) },
@@ -220,7 +220,7 @@ export class CommandFinder {
                 }
             }
 
-            const cmd = new Suggestion(`\\${result[1]}`, 'user-defined', {name: result[1], args}, vscode.CompletionItemKind.Function)
+            const cmd = new CmdEnvSuggestion(`\\${result[1]}`, 'user-defined', {name: result[1], args}, vscode.CompletionItemKind.Function)
             cmd.documentation = '`' + result[1] + '`'
             cmd.insertText = new vscode.SnippetString(result[1] + tabStops)
             cmd.filterText = result[1]
@@ -294,11 +294,11 @@ export class CommandFinder {
 export class CommandSignatureDuplicationDetector {
     private readonly cmdSignatureList: Set<string> = new Set<string>()
 
-    add(cmd: Suggestion) {
+    add(cmd: CmdEnvSuggestion) {
         this.cmdSignatureList.add(cmd.signatureAsString())
     }
 
-    has(cmd: Suggestion): boolean {
+    has(cmd: CmdEnvSuggestion): boolean {
         return this.cmdSignatureList.has(cmd.signatureAsString())
     }
 }
@@ -306,14 +306,14 @@ export class CommandSignatureDuplicationDetector {
 export class CommandNameDuplicationDetector {
     private readonly cmdSignatureList: Set<string> = new Set<string>()
 
-    constructor(suggestions: Suggestion[] = []) {
+    constructor(suggestions: CmdEnvSuggestion[] = []) {
         this.cmdSignatureList = new Set<string>(suggestions.map(s => s.name()))
     }
 
-    add(cmd: Suggestion): void
+    add(cmd: CmdEnvSuggestion): void
     add(cmdName: string): void
     add(cmd: any): void {
-        if (cmd instanceof Suggestion) {
+        if (cmd instanceof CmdEnvSuggestion) {
             this.cmdSignatureList.add(cmd.name())
         } else if (typeof(cmd) === 'string') {
             this.cmdSignatureList.add(cmd)
@@ -322,10 +322,10 @@ export class CommandNameDuplicationDetector {
         }
     }
 
-    has(cmd: Suggestion): boolean
+    has(cmd: CmdEnvSuggestion): boolean
     has(cmd: string): boolean
     has(cmd: any): boolean {
-        if (cmd instanceof Suggestion) {
+        if (cmd instanceof CmdEnvSuggestion) {
             return this.cmdSignatureList.has(cmd.name())
         } else if (typeof(cmd) === 'string') {
             return this.cmdSignatureList.has(cmd)
