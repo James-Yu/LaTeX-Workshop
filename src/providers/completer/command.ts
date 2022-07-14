@@ -48,7 +48,7 @@ export function splitSignatureString(signature: string): CmdSignature {
     }
 }
 
-export class Suggestion extends vscode.CompletionItem implements ILwCompletionItem {
+export class CmdEnvSuggestion extends vscode.CompletionItem implements ILwCompletionItem {
     label: string
     package: string
     signature: CmdSignature
@@ -87,9 +87,9 @@ export class Command implements IProvider {
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
 
-    private readonly defaultCmds: Suggestion[] = []
-    private readonly defaultSymbols: Suggestion[] = []
-    private readonly packageCmds = new Map<string, Suggestion[]>()
+    private readonly defaultCmds: CmdEnvSuggestion[] = []
+    private readonly defaultSymbols: CmdEnvSuggestion[] = []
+    private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
     constructor(extension: Extension, environment: Environment) {
         this.extension = extension
@@ -145,7 +145,7 @@ export class Command implements IProvider {
                 range = new vscode.Range(position.line, startPos + 1, position.line, position.character)
             }
         }
-        const suggestions: Suggestion[] = []
+        const suggestions: CmdEnvSuggestion[] = []
         const cmdDuplicationDetector = new CommandSignatureDuplicationDetector()
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
@@ -345,12 +345,12 @@ export class Command implements IProvider {
     }
 
 
-    private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): Suggestion {
+    private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): CmdEnvSuggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
         const label = item.label ? `${item.label}` : `${backslash}${item.command}`
-        const suggestion = new Suggestion(label, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
+        const suggestion = new CmdEnvSuggestion(label, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
 
         if (item.snippet) {
             if (useTabStops) {
@@ -386,7 +386,7 @@ export class Command implements IProvider {
         // Load command in pkg
         if (!this.packageCmds.has(pkg)) {
             const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_cmd.json`, `${this.extension.extensionRoot}/data/packages/`)
-            const pkgEntry: Suggestion[] = []
+            const pkgEntry: CmdEnvSuggestion[] = []
             if (filePath !== undefined) {
                 try {
                     const cmds = JSON.parse(fs.readFileSync(filePath).toString()) as {[key: string]: CmdItemEntry}

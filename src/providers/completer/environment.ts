@@ -5,7 +5,7 @@ import {latexParser} from 'latex-utensils'
 import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {resolveCmdEnvFile, CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
-import {Suggestion, splitSignatureString} from './command'
+import {CmdEnvSuggestion, splitSignatureString} from './command'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
@@ -24,12 +24,12 @@ export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
 
 export class Environment implements IProvider {
     private readonly extension: Extension
-    private defaultEnvsAsName: Suggestion[] = []
-    private defaultEnvsAsCommand: Suggestion[] = []
-    private defaultEnvsForBegin: Suggestion[] = []
-    private readonly packageEnvsAsName = new Map<string, Suggestion[]>()
-    private readonly packageEnvsAsCommand = new Map<string, Suggestion[]>()
-    private readonly packageEnvsForBegin= new Map<string, Suggestion[]>()
+    private defaultEnvsAsName: CmdEnvSuggestion[] = []
+    private defaultEnvsAsCommand: CmdEnvSuggestion[] = []
+    private defaultEnvsForBegin: CmdEnvSuggestion[] = []
+    private readonly packageEnvsAsName = new Map<string, CmdEnvSuggestion[]>()
+    private readonly packageEnvsAsCommand = new Map<string, CmdEnvSuggestion[]>()
+    private readonly packageEnvsForBegin= new Map<string, CmdEnvSuggestion[]>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -50,7 +50,7 @@ export class Environment implements IProvider {
      * This function is called by Command.initialize with type=EnvSnippetType.AsCommand
      * to build a `\envname` command for every default environment.
      */
-    getDefaultEnvs(type: EnvSnippetType): Suggestion[] {
+    getDefaultEnvs(type: EnvSnippetType): CmdEnvSuggestion[] {
         switch (type) {
             case EnvSnippetType.AsName:
                 return this.defaultEnvsAsName
@@ -66,7 +66,7 @@ export class Environment implements IProvider {
         }
     }
 
-    private getPackageEnvs(type: EnvSnippetType): Map<string, Suggestion[]> {
+    private getPackageEnvs(type: EnvSnippetType): Map<string, CmdEnvSuggestion[]> {
         switch (type) {
             case EnvSnippetType.AsName:
                 return this.packageEnvsAsName
@@ -78,7 +78,7 @@ export class Environment implements IProvider {
                 return this.packageEnvsForBegin
                 break
             default:
-                return new Map<string, Suggestion[]>()
+                return new Map<string, CmdEnvSuggestion[]>()
         }
     }
 
@@ -167,7 +167,7 @@ export class Environment implements IProvider {
 
         // Load environments from the package if not already done
         if (!this.packageEnvsAsCommand.has(pkg)) {
-            const entry: Suggestion[] = []
+            const entry: CmdEnvSuggestion[] = []
             const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
             Object.keys(envs).forEach(key => {
                 entry.push(this.entryEnvToCompletion(key, envs[key], EnvSnippetType.AsCommand))
@@ -214,20 +214,20 @@ export class Environment implements IProvider {
     }
 
     // This function will return all environments in a node array, including sub-nodes
-    private getEnvFromNodeArray(nodes: latexParser.Node[], lines: string[]): Suggestion[] {
-        let envs: Suggestion[] = []
+    private getEnvFromNodeArray(nodes: latexParser.Node[], lines: string[]): CmdEnvSuggestion[] {
+        let envs: CmdEnvSuggestion[] = []
         for (let index = 0; index < nodes.length; ++index) {
             envs = envs.concat(this.getEnvFromNode(nodes[index], lines))
         }
         return envs
     }
 
-    private getEnvFromNode(node: latexParser.Node, lines: string[]): Suggestion[] {
-        let envs: Suggestion[] = []
+    private getEnvFromNode(node: latexParser.Node, lines: string[]): CmdEnvSuggestion[] {
+        let envs: CmdEnvSuggestion[] = []
         // Here we only check `isEnvironment` which excludes `align*` and `verbatim`.
         // Nonetheless, they have already been included in `defaultEnvs`.
         if (latexParser.isEnvironment(node)) {
-            const env = new Suggestion(`${node.name}`, '', { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
+            const env = new CmdEnvSuggestion(`${node.name}`, '', { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
             env.documentation = '`' + node.name + '`'
             env.filterText = node.name
             envs.push(env)
@@ -259,13 +259,13 @@ export class Environment implements IProvider {
         return {}
     }
 
-    private getEnvFromPkg(pkg: string, type: EnvSnippetType): Suggestion[] {
+    private getEnvFromPkg(pkg: string, type: EnvSnippetType): CmdEnvSuggestion[] {
         const packageEnvs = this.getPackageEnvs(type)
         const entry = packageEnvs.get(pkg)
         if (entry !== undefined) {
             return entry
         }
-        const newEntry: Suggestion[] = []
+        const newEntry: CmdEnvSuggestion[] = []
         const envs: {[key: string]: EnvItemEntry} = this.getEnvItemsFromPkg(pkg)
         Object.keys(envs).forEach(key => {
             newEntry.push(this.entryEnvToCompletion(key, envs[key], type))
@@ -274,9 +274,9 @@ export class Environment implements IProvider {
         return newEntry
     }
 
-    private getEnvFromContent(content: string): Suggestion[] {
+    private getEnvFromContent(content: string): CmdEnvSuggestion[] {
         const envReg = /\\begin\s?{([^{}]*)}/g
-        const envs: Suggestion[] = []
+        const envs: CmdEnvSuggestion[] = []
         const envList: string[] = []
         while (true) {
             const result = envReg.exec(content)
@@ -286,7 +286,7 @@ export class Environment implements IProvider {
             if (envList.includes(result[1])) {
                 continue
             }
-            const env = new Suggestion(`${result[1]}`, '', { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
+            const env = new CmdEnvSuggestion(`${result[1]}`, '', { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
             env.documentation = '`' + result[1] + '`'
             env.filterText = result[1]
 
@@ -296,9 +296,9 @@ export class Environment implements IProvider {
         return envs
     }
 
-    private entryEnvToCompletion(itemKey: string, item: EnvItemEntry, type: EnvSnippetType): Suggestion {
+    private entryEnvToCompletion(itemKey: string, item: EnvItemEntry, type: EnvSnippetType): CmdEnvSuggestion {
         const label = item.detail ? item.detail : item.name
-        const suggestion = new Suggestion(item.name, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Module)
+        const suggestion = new CmdEnvSuggestion(item.name, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Module)
         suggestion.detail = `Insert environment ${item.name}.`
         suggestion.documentation = item.name
         if (item.package) {
