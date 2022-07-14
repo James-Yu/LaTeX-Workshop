@@ -14,7 +14,7 @@ interface GlossaryEntry {
     description: string | undefined
 }
 
-export interface Suggestion extends ILwCompletionItem {
+export interface GlossarySuggestion extends ILwCompletionItem {
     type: GlossaryType,
     file: string,
     position: vscode.Position
@@ -23,8 +23,8 @@ export interface Suggestion extends ILwCompletionItem {
 export class Glossary implements IProvider {
     private readonly extension: Extension
     // use object for deduplication
-    private readonly glossaries = new Map<string, Suggestion>()
-    private readonly acronyms = new Map<string, Suggestion>()
+    private readonly glossaries = new Map<string, GlossarySuggestion>()
+    private readonly acronyms = new Map<string, GlossarySuggestion>()
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -36,7 +36,7 @@ export class Glossary implements IProvider {
 
     private provide(result: RegExpMatchArray): vscode.CompletionItem[] {
         this.updateAll()
-        let suggestions: Map<string, Suggestion>
+        let suggestions: Map<string, GlossarySuggestion>
 
         if (result[1] && result[1].match(/^ac/i)) {
             suggestions = this.acronyms
@@ -49,8 +49,8 @@ export class Glossary implements IProvider {
         return items
     }
 
-    private getGlossaryFromNodeArray(nodes: latexParser.Node[], file: string): Suggestion[] {
-        const glossaries: Suggestion[] = []
+    private getGlossaryFromNodeArray(nodes: latexParser.Node[], file: string): GlossarySuggestion[] {
+        const glossaries: GlossarySuggestion[] = []
         let entry: GlossaryEntry
         let type: GlossaryType | undefined
 
@@ -226,13 +226,13 @@ export class Glossary implements IProvider {
         }
     }
 
-    getEntry(token: string): Suggestion | undefined {
+    getEntry(token: string): GlossarySuggestion | undefined {
         this.updateAll()
         return this.glossaries.get(token) || this.acronyms.get(token)
     }
 
-    getGlossaryFromContent(content: string, file: string): Suggestion[] {
-        const glossaries: Suggestion[] = []
+    getGlossaryFromContent(content: string, file: string): GlossarySuggestion[] {
+        const glossaries: GlossarySuggestion[] = []
         const glossaryList: string[] = []
 
         // We assume that the label is always result[1] and use getDescription(result) for the description
