@@ -10,9 +10,9 @@ import {InputFileRegExp} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
-import type {CmdEnvSuggestion as CmdEnvEntry} from '../providers/completer/command'
-import type {CiteSuggestion as CiteEntry} from '../providers/completer/citation'
-import type {GlossarySuggestion as GlossaryEntry} from '../providers/completer/glossary'
+import type {CmdEnvSuggestion} from '../providers/completer/command'
+import type {CiteSuggestion} from '../providers/completer/citation'
+import type {GlossarySuggestion} from '../providers/completer/glossary'
 import type {ILwCompletionItem} from '../providers/completer/interface'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
@@ -38,10 +38,10 @@ interface Content {
          */
         element: {
             reference?: ILwCompletionItem[],
-            glossary?: GlossaryEntry[],
-            environment?: CmdEnvEntry[],
-            bibitem?: CiteEntry[],
-            command?: CmdEnvEntry[],
+            glossary?: GlossarySuggestion[],
+            environment?: CmdEnvSuggestion[],
+            bibitem?: CiteSuggestion[],
+            command?: CmdEnvSuggestion[],
             package?: Set<string>
         },
         /**
