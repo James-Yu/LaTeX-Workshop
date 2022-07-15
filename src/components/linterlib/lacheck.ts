@@ -3,15 +3,15 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 import type { Extension } from '../../main'
-import { Linter, LinterLogParser } from './linter'
+import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 
-export class LaCheck extends Linter {
-    logParser: LaCheckLogParser
+export class LaCheck {
+    readonly #linterName = 'LaCheck'
+    readonly #linterUtil: LinterUtil
 
-    constructor(extension: Extension) {
-        super(extension)
-        this.logParser = new LaCheckLogParser(extension)
+    constructor(private readonly extension: Extension) {
+        this.#linterUtil = new LinterUtil(extension)
     }
 
     async lintRootFile() {
@@ -27,7 +27,7 @@ export class LaCheck extends Linter {
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('root file', command, [filePath], {cwd: path.dirname(this.extension.manager.rootFile)})
+            stdout = await this.#linterUtil.processWrapper('root file', command, [filePath], {cwd: path.dirname(this.extension.manager.rootFile)})
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
@@ -35,7 +35,7 @@ export class LaCheck extends Linter {
                 return
             }
         }
-        this.logParser.parse(stdout)
+        this.parseLog(stdout)
     }
 
     async lintFile(document: vscode.TextDocument) {
@@ -48,7 +48,7 @@ export class LaCheck extends Linter {
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('active file', command, [filePath], {cwd: path.dirname(filePath)}, content)
+            stdout = await this.#linterUtil.processWrapper('active file', command, [filePath], {cwd: path.dirname(filePath)}, content)
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
@@ -56,24 +56,10 @@ export class LaCheck extends Linter {
                 return
             }
         }
-        this.logParser.parse(stdout, document.fileName)
-    }
-}
-
-interface LaCheckLogEntry {
-    file: string,
-    line: number,
-    text: string
-}
-
-class LaCheckLogParser extends LinterLogParser {
-    private readonly linterName = 'LaCheck'
-
-    constructor(extension: Extension) {
-        super(extension)
+        this.parseLog(stdout, document.fileName)
     }
 
-    parse(log: string, filePath?: string) {
+    parseLog(log: string, filePath?: string) {
         const linterLog: LaCheckLogEntry[] = []
         const lines = log.split('\n')
         const baseDir = path.dirname(filePath || this.extension.manager.rootFile || '.')
@@ -110,8 +96,8 @@ class LaCheckLogParser extends LinterLogParser {
             }
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
-        LinterLogParser.linterDiagnostics?.clear()
-        LinterLogParser.linterDiagnostics = vscode.languages.createDiagnosticCollection(this.linterName)
+        LinterUtil.linterDiagnostics?.clear()
+        LinterUtil.linterDiagnostics = vscode.languages.createDiagnosticCollection(this.#linterName)
         this.showLinterDiagnostics(linterLog)
     }
 
@@ -123,7 +109,7 @@ class LaCheckLogParser extends LinterLogParser {
                 new vscode.Position(item.line - 1, 65535)
             )
             const diag = new vscode.Diagnostic(range, item.text, vscode.DiagnosticSeverity.Warning)
-            diag.source = this.linterName
+            diag.source = this.#linterName
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }
@@ -142,8 +128,14 @@ class LaCheckLogParser extends LinterLogParser {
                         file1 = f
                     }
                 }
-                LinterLogParser.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+                LinterUtil.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
             }
         }
     }
+}
+
+interface LaCheckLogEntry {
+    file: string,
+    line: number,
+    text: string
 }

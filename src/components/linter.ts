@@ -1,7 +1,6 @@
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import { Linter as AbstractLinter } from './linterlib/linter'
 import { ChkTeX } from './linterlib/chktex'
 import { LaCheck } from './linterlib/lacheck'
 
@@ -17,7 +16,7 @@ export class Linter {
         this.lacheck = new LaCheck(extension)
     }
 
-    private getLinter(scope?: vscode.ConfigurationScope | null): AbstractLinter | undefined {
+    private getLinter(scope?: vscode.ConfigurationScope | null): ChkTeX | LaCheck | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
         switch (configuration.get('linting.linter') as string) {
             case 'none':

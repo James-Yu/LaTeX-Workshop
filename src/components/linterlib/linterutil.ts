@@ -4,27 +4,22 @@ import {EOL} from 'os'
 
 import type {Extension} from '../../main'
 
-export abstract class Linter {
-    protected readonly extension: Extension
-    private readonly currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
+export class LinterUtil {
+    static linterDiagnostics: vscode.DiagnosticCollection
+    readonly #currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor(private readonly extension: Extension) {
     }
 
-    abstract lintFile(document: vscode.TextDocument): void
-
-    abstract lintRootFile(): void
-
-    protected processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {
+    processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {
         this.extension.logger.logCommand(`Linter for ${linterId} command`, command, args)
         return new Promise((resolve, reject) => {
-            if (this.currentProcesses[linterId]) {
-                this.currentProcesses[linterId].kill()
+            if (this.#currentProcesses[linterId]) {
+                this.#currentProcesses[linterId].kill()
             }
             const startTime = process.hrtime()
-            this.currentProcesses[linterId] = spawn(command, args, options)
-            const proc = this.currentProcesses[linterId]
+            this.#currentProcesses[linterId] = spawn(command, args, options)
+            const proc = this.#currentProcesses[linterId]
             proc.stdout.setEncoding('binary')
             proc.stderr.setEncoding('binary')
 
@@ -70,19 +65,4 @@ export abstract class Linter {
             }
         })
     }
-}
-
-export abstract class LinterLogParser {
-    protected readonly extension: Extension
-    protected static linterDiagnostics: vscode.DiagnosticCollection
-
-    constructor(extension: Extension) {
-        this.extension = extension
-    }
-
-    getDisgnostics() {
-        return LinterLogParser.linterDiagnostics
-    }
-
-    abstract parse(log: string): void
 }

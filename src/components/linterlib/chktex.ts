@@ -4,15 +4,15 @@ import * as fs from 'fs'
 import * as os from 'os'
 
 import type {Extension} from '../../main'
-import {Linter, LinterLogParser} from './linter'
+import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 
-export class ChkTeX extends Linter {
-    logParser: ChkTeXLogParser
+export class ChkTeX {
+    readonly #linterName = 'ChkTeX'
+    readonly #linterUtil: LinterUtil
 
-    constructor(extension: Extension) {
-        super(extension)
-        this.logParser = new ChkTeXLogParser(extension)
+    constructor(private readonly extension: Extension) {
+        this.#linterUtil = new LinterUtil(extension)
     }
 
     async lintRootFile() {
@@ -36,7 +36,7 @@ export class ChkTeX extends Linter {
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('root file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(this.extension.manager.rootFile)})
+            stdout = await this.#linterUtil.processWrapper('root file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(this.extension.manager.rootFile)})
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
@@ -45,7 +45,7 @@ export class ChkTeX extends Linter {
             }
         }
         const tabSize = this.getChktexrcTabSize(filePath)
-        this.logParser.parse(stdout, undefined, tabSize)
+        this.parseLog(stdout, undefined, tabSize)
     }
 
     async lintFile(document: vscode.TextDocument) {
@@ -66,7 +66,7 @@ export class ChkTeX extends Linter {
 
         let stdout: string
         try {
-            stdout = await this.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
+            stdout = await this.#linterUtil.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
@@ -77,7 +77,7 @@ export class ChkTeX extends Linter {
         // provide the original path to the active file as the second argument, so
         // we report this second path in the diagnostics instead of the temporary one.
         const tabSize = this.getChktexrcTabSize(document.fileName)
-        this.logParser.parse(stdout, filePath, tabSize)
+        this.parseLog(stdout, filePath, tabSize)
     }
 
     private get rcPath() {
@@ -169,32 +169,8 @@ export class ChkTeX extends Linter {
         this.extension.logger.addLogMessage(`TabSize not found in the .chktexrc file: ${filePath}`)
         return
     }
-}
 
-interface ChkTeXLogEntry {
-    file: string,
-    line: number,
-    column: number,
-    length: number,
-    type: string,
-    code: number,
-    text: string
-}
-
-const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
-    'typesetting': vscode.DiagnosticSeverity.Information,
-    'warning': vscode.DiagnosticSeverity.Warning,
-    'error': vscode.DiagnosticSeverity.Error,
-}
-
-class ChkTeXLogParser extends LinterLogParser {
-    private readonly linterName = 'ChkTeX'
-
-    constructor(extension: Extension) {
-        super(extension)
-    }
-
-    parse(log: string, singleFileOriginalPath?: string, tabSizeArg?: number) {
+    parseLog(log: string, singleFileOriginalPath?: string, tabSizeArg?: number) {
         const re = /^(.*?):(\d+):(\d+):(\d+):(.*?):(\d+):(.*?)$/gm
         const linterLog: ChkTeXLogEntry[] = []
         let match = re.exec(log)
@@ -220,15 +196,15 @@ class ChkTeXLogParser extends LinterLogParser {
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
         if (singleFileOriginalPath === undefined
-            || !LinterLogParser.linterDiagnostics
-            || LinterLogParser.linterDiagnostics.name !== this.linterName) {
+            || !LinterUtil.linterDiagnostics
+            || LinterUtil.linterDiagnostics.name !== this.#linterName) {
             // A full lint of the project has taken place - clear all previous results.
-            LinterLogParser.linterDiagnostics?.clear()
-            LinterLogParser.linterDiagnostics = vscode.languages.createDiagnosticCollection(this.linterName)
+            LinterUtil.linterDiagnostics?.clear()
+            LinterUtil.linterDiagnostics = vscode.languages.createDiagnosticCollection(this.#linterName)
         } else if (linterLog.length === 0) {
             // We are linting a single file and the new log is empty for it -
             // clean existing records.
-            LinterLogParser.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
+            LinterUtil.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
         }
         this.showLinterDiagnostics(linterLog)
     }
@@ -291,7 +267,7 @@ class ChkTeXLogParser extends LinterLogParser {
             )
             const diag = new vscode.Diagnostic(range, item.text, DIAGNOSTIC_SEVERITY[item.type])
             diag.code = item.code
-            diag.source = this.linterName
+            diag.source = this.#linterName
             if (diagsCollection[item.file] === undefined) {
                 diagsCollection[item.file] = []
             }
@@ -310,8 +286,24 @@ class ChkTeXLogParser extends LinterLogParser {
                         file1 = f
                     }
                 }
-                LinterLogParser.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+                LinterUtil.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
             }
         }
     }
+}
+
+interface ChkTeXLogEntry {
+    file: string,
+    line: number,
+    column: number,
+    length: number,
+    type: string,
+    code: number,
+    text: string
+}
+
+const DIAGNOSTIC_SEVERITY: { [key: string]: vscode.DiagnosticSeverity } = {
+    'typesetting': vscode.DiagnosticSeverity.Information,
+    'warning': vscode.DiagnosticSeverity.Warning,
+    'error': vscode.DiagnosticSeverity.Error,
 }
