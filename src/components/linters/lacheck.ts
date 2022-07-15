@@ -56,7 +56,7 @@ export class LaCheck extends Linter {
                 return
             }
         }
-        this.logParser.parse(stdout)
+        this.logParser.parse(stdout, document.fileName)
     }
 }
 
@@ -73,19 +73,16 @@ class LaCheckLogParser extends LinterLogParser {
         super(extension)
     }
 
-    parse(log: string) {
+    parse(log: string, filePath?: string) {
         const linterLog: LaCheckLogEntry[] = []
         const lines = log.split('\n')
-        let baseDir: string | undefined
+        const baseDir = path.dirname(filePath || this.extension.manager.rootFile || '.')
         for (let index = 0; index < lines.length; index++) {
             const logLine = lines[index]
             const re = /"(.*?)",\sline\s(\d+):\s(<-\s)?(.*)/g
             const match = re.exec(logLine)
             if (!match) {
                 continue
-            }
-            if (!baseDir) {
-                baseDir = path.dirname(match[1])
             }
             if (match[3] === '<- ') {
                 const nextLineRe = /.*line\s(\d+).*->\s(.*)/g
