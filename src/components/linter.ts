@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 
 import type {Extension} from '../main'
-import { Linter as AbstractLinter } from './linters/linter'
-import { ChkTeX } from './linters/chktex'
-import { LaCheck } from './linters/lacheck'
+import { Linter as AbstractLinter } from './linterlib/linter'
+import { ChkTeX } from './linterlib/chktex'
+import { LaCheck } from './linterlib/lacheck'
 
 export class Linter {
     protected readonly extension: Extension

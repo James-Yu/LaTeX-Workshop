@@ -4,8 +4,8 @@ import * as path from 'path'
 import { getFixtureDir, runUnitTestWithFixture, waitLatexWorkshopActivated } from '../../utils/ciutils'
 import assert from 'assert'
 
-import { ChkTeX } from '../../../src/components/linters/chktex'
-import { LaCheck } from '../../../src/components/linters/lacheck'
+import { ChkTeX } from '../../../src/components/linterlib/chktex'
+import { LaCheck } from '../../../src/components/linterlib/lacheck'
 
 suite('linter test suite', () => {
 
