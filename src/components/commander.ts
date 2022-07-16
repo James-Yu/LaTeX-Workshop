@@ -1,4 +1,4 @@
-import {Extension} from 'src/main'
+import type {Extension} from '../main'
 import * as vscode from 'vscode'
 
 

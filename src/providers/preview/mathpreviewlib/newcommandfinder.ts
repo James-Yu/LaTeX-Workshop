@@ -3,7 +3,7 @@ import {latexParser} from 'latex-utensils'
 import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils/utils'
 import * as path from 'path'
 
-import type {ILogger, ILwFileSystem, IManager, IUtensilsParser} from 'src/components/interfaces'
+import type {ILogger, ILwFileSystem, IManager, IUtensilsParser} from '../../../components/interfaces'
 
 interface IExtension {
     logger: ILogger,
