@@ -1,11 +1,9 @@
-import * as vscode from 'vscode'
 import {ChildProcessWithoutNullStreams, spawn} from 'child_process'
 import {EOL} from 'os'
 
 import type {Extension} from '../../main'
 
 export class LinterUtil {
-    static linterDiagnostics: vscode.DiagnosticCollection
     readonly #currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
 
     constructor(private readonly extension: Extension) {

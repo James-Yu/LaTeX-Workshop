@@ -5,45 +5,46 @@ import { ChkTeX } from './linterlib/chktex'
 import { LaCheck } from './linterlib/lacheck'
 
 export class Linter {
-    protected readonly extension: Extension
     private readonly chktex: ChkTeX
     private readonly lacheck: LaCheck
     private linterTimeout?: NodeJS.Timer
 
-    constructor(extension: Extension) {
-        this.extension = extension
+    constructor(private readonly extension: Extension) {
         this.chktex = new ChkTeX(extension)
         this.lacheck = new LaCheck(extension)
     }
 
-    private getLinter(scope?: vscode.ConfigurationScope | null): ChkTeX | LaCheck | undefined {
+    private getLinters(scope?: vscode.ConfigurationScope): (ChkTeX | LaCheck)[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
-        switch (configuration.get('linting.linter') as string) {
-            case 'none':
-            default:
-                return undefined
-            case 'chktex':
-                return this.chktex
-            case 'lacheck':
-                return this.lacheck
+        const linters =[]
+        if (configuration.get('linting.chktex.enabled')) {
+            linters.push(this.chktex)
+        } else {
+            this.chktex.linterDiagnostics.clear()
         }
+        if (configuration.get('linting.lacheck.enabled')) {
+            linters.push(this.lacheck)
+        } else {
+            this.lacheck.linterDiagnostics.clear()
+        }
+        return linters
     }
 
     lintRootFileIfEnabled() {
-        const linter = this.getLinter(this.extension.manager.getWorkspaceFolderRootDir())
-        void linter?.lintRootFile()
+        const linters = this.getLinters(this.extension.manager.getWorkspaceFolderRootDir())
+        linters.forEach(linter => linter.lintRootFile())
     }
 
     lintActiveFileIfEnabledAfterInterval(document: vscode.TextDocument) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
-        const linter = this.getLinter(document.uri)
-        if (linter
+        const linters = this.getLinters(document.uri)
+        if (linters.length > 0
             && (configuration.get('linting.run') as string) === 'onType') {
             const interval = configuration.get('linting.delay') as number
             if (this.linterTimeout) {
                 clearTimeout(this.linterTimeout)
             }
-            this.linterTimeout = setTimeout(() => linter.lintFile(document), interval)
+            this.linterTimeout = setTimeout(() => linters.forEach(linter => linter.lintFile(document)), interval)
         }
     }
 }

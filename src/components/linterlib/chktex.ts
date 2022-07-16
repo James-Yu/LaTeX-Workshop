@@ -9,6 +9,7 @@ import { convertFilenameEncoding } from '../../utils/convertfilename'
 
 export class ChkTeX {
     readonly #linterName = 'ChkTeX'
+    readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.#linterName)
     readonly #linterUtil: LinterUtil
 
     constructor(private readonly extension: Extension) {
@@ -195,16 +196,13 @@ export class ChkTeX {
             match = re.exec(log)
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
-        if (singleFileOriginalPath === undefined
-            || !LinterUtil.linterDiagnostics
-            || LinterUtil.linterDiagnostics.name !== this.#linterName) {
+        if (singleFileOriginalPath === undefined) {
             // A full lint of the project has taken place - clear all previous results.
-            LinterUtil.linterDiagnostics?.clear()
-            LinterUtil.linterDiagnostics = vscode.languages.createDiagnosticCollection(this.#linterName)
+            this.linterDiagnostics.clear()
         } else if (linterLog.length === 0) {
             // We are linting a single file and the new log is empty for it -
             // clean existing records.
-            LinterUtil.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
+            this.linterDiagnostics.set(vscode.Uri.file(singleFileOriginalPath), [])
         }
         this.showLinterDiagnostics(linterLog)
     }
@@ -286,7 +284,7 @@ export class ChkTeX {
                         file1 = f
                     }
                 }
-                LinterUtil.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+                this.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
             }
         }
     }

@@ -8,6 +8,7 @@ import { convertFilenameEncoding } from '../../utils/convertfilename'
 
 export class LaCheck {
     readonly #linterName = 'LaCheck'
+    readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.#linterName)
     readonly #linterUtil: LinterUtil
 
     constructor(private readonly extension: Extension) {
@@ -96,8 +97,7 @@ export class LaCheck {
             }
         }
         this.extension.logger.addLogMessage(`Linter log parsed with ${linterLog.length} messages.`)
-        LinterUtil.linterDiagnostics?.clear()
-        LinterUtil.linterDiagnostics = vscode.languages.createDiagnosticCollection(this.#linterName)
+        this.linterDiagnostics.clear()
         this.showLinterDiagnostics(linterLog)
     }
 
@@ -128,7 +128,7 @@ export class LaCheck {
                         file1 = f
                     }
                 }
-                LinterUtil.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
+                this.linterDiagnostics.set(vscode.Uri.file(file1), diagsCollection[file])
             }
         }
     }

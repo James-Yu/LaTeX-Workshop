@@ -1598,16 +1598,17 @@
           "default": true,
           "markdownDescription": "Enable using a builtin synctex function. The command set in latex-workshop.synctex.path will not be used."
         },
-        "latex-workshop.linting.linter": {
+        "latex-workshop.linting.chktex.enabled": {
           "scope": "resource",
-          "type": "string",
-          "default": "none",
-          "enum": [
-            "none",
-            "chktex",
-            "lacheck"
-          ],
-          "markdownDescription": "Enable linting LaTeX with `chktex` or `lacheck`. Check `#latex-workshop.linting.run#` to control when the linting is executed if this config is set to values other than `none`."
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Enable linting LaTeX with `chktex`. Check `#latex-workshop.linting.run#` to control when `chktex` is executed if this config is set to `true."
+        },
+        "latex-workshop.linting.lacheck.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Enable linting LaTeX with `lacheck`. Check `#latex-workshop.linting.run#` to control when `lacheck` is executed if this config is set to `true."
         },
         "latex-workshop.linting.run": {
           "scope": "resource",
@@ -1672,8 +1673,8 @@
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.linter#` and `#latex-workshop.linting.chktex.exec.path#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.linting.linter\" and \"latex-workshop.linting.chktex.exec.path\" instead."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.enabled#` and `#latex-workshop.linting.chktex.exec.path#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.enabled\" and \"latex-workshop.linting.chktex.exec.path\" instead."
         },
         "latex-workshop.chktex.run": {
           "scope": "resource",
