@@ -16,12 +16,13 @@ import {Input, Import, SubImport} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 import {escapeRegExp} from '../utils/utils'
+import type {CommandLocator} from '../interfaces'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
 type DataCmdsJsonType = typeof import('../../data/commands.json')
 type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols_cmd.json')
 
-export class Completer implements vscode.CompletionItemProvider {
+export class Completer implements vscode.CompletionItemProvider, CommandLocator {
     private readonly extension: Extension
     readonly citation: Citation
     readonly command: Command

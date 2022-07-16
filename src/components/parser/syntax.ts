@@ -3,7 +3,7 @@ import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type {Proxy} from 'workerpool'
 import type {ISyntaxWorker} from './syntax_worker'
-import type {IUtensilsParser} from '../interfaces'
+import type {IUtensilsParser} from '../../interfaces'
 
 export class UtensilsParser implements IUtensilsParser {
     private readonly pool: workerpool.WorkerPool

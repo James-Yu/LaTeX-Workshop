@@ -2,12 +2,12 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import type {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
-import type {IProvider, ILwCompletionItem} from './interface'
+import type {IProvider, ILwCompletionItem, ICommand} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
+import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
@@ -81,8 +81,14 @@ export class CmdEnvSuggestion extends vscode.CompletionItem implements ILwComple
     }
 }
 
-export class Command implements IProvider {
-    private readonly extension: Extension
+interface IExtension extends
+    ExtensionRootLocator,
+    CompleterLocator,
+    LoggerLocator,
+    ManagerLocator { }
+
+export class Command implements IProvider, ICommand {
+    private readonly extension: IExtension
     private readonly environment: Environment
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
@@ -91,7 +97,7 @@ export class Command implements IProvider {
     private readonly defaultSymbols: CmdEnvSuggestion[] = []
     private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: Extension, environment: Environment) {
+    constructor(extension: IExtension, environment: Environment) {
         this.extension = extension
         this.environment = environment
         this.commandFinder = new CommandFinder(extension)

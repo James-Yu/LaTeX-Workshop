@@ -2,13 +2,12 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as utils from '../../utils/utils'
 
-import type {ILogger, ILwFileSystem, IManager} from '../interfaces'
+import type {LoggerLocator, LwfsLocator, ManagerLocator} from '../../interfaces'
 
-interface IExtension {
-    logger: ILogger,
-    lwfs: ILwFileSystem,
-    manager: IManager
-}
+interface IExtension extends
+    LoggerLocator,
+    LwfsLocator,
+    ManagerLocator { }
 
 export class FinderUtils {
     private readonly extension: IExtension

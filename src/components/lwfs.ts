@@ -1,10 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
-import type {ILogger, ILwFileSystem} from './interfaces'
+import type {ILwFileSystem, LoggerLocator} from '../interfaces'
 
-interface IExtension {
-    logger: ILogger
-}
+interface IExtension extends LoggerLocator { }
 
 export class LwFileSystem implements ILwFileSystem {
     private readonly extension: IExtension

@@ -14,7 +14,7 @@ import type {CmdEnvSuggestion} from '../providers/completer/command'
 import type {CiteSuggestion} from '../providers/completer/citation'
 import type {GlossarySuggestion} from '../providers/completer/glossary'
 import type {ILwCompletionItem} from '../providers/completer/interface'
-import type {IManager} from './interfaces'
+import type {IManager} from '../interfaces'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'

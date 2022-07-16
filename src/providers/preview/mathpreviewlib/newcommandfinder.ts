@@ -3,14 +3,13 @@ import {latexParser} from 'latex-utensils'
 import {stripCommentsAndVerbatim, isNewCommand, NewCommand} from '../../../utils/utils'
 import * as path from 'path'
 
-import type {ILogger, ILwFileSystem, IManager, IUtensilsParser} from '../../../components/interfaces'
+import type {LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator} from '../../../interfaces'
 
-interface IExtension {
-    logger: ILogger,
-    lwfs: ILwFileSystem,
-    manager: IManager,
-    pegParser: IUtensilsParser
-}
+interface IExtension extends
+    LoggerLocator,
+    LwfsLocator,
+    ManagerLocator,
+    UtensilsParserLocator { }
 
 export class NewCommandFinder {
     private readonly extension: IExtension

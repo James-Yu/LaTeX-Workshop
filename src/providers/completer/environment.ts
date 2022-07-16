@@ -2,10 +2,10 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {resolveCmdEnvFile, CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString} from './command'
+import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
 
@@ -22,8 +22,14 @@ function isEnvItemEntry(obj: any): obj is EnvItemEntry {
 
 export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
 
+interface IExtension extends
+    ExtensionRootLocator,
+    CompleterLocator,
+    LoggerLocator,
+    ManagerLocator { }
+
 export class Environment implements IProvider {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     private defaultEnvsAsName: CmdEnvSuggestion[] = []
     private defaultEnvsAsCommand: CmdEnvSuggestion[] = []
     private defaultEnvsForBegin: CmdEnvSuggestion[] = []
@@ -31,7 +37,7 @@ export class Environment implements IProvider {
     private readonly packageEnvsAsCommand = new Map<string, CmdEnvSuggestion[]>()
     private readonly packageEnvsForBegin= new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 

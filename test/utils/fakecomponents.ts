@@ -1,4 +1,4 @@
-import type {ILogger} from '../../src/components/interfaces'
+import type {ILogger} from '../../src/interfaces'
 
 export class FakeLogger implements ILogger {
     addLogMessage() {}

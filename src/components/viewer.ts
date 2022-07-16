@@ -14,10 +14,11 @@ import {Client} from './viewerlib/client'
 import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from './viewerlib/pdfviewerpanel'
 import {PdfViewerManagerService} from './viewerlib/pdfviewermanager'
 import {PdfViewerPagesLoaded} from './eventbus'
+import type {IViewer} from '../interfaces'
 export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
 
 
-export class Viewer {
+export class Viewer implements IViewer {
     private readonly extension: Extension
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
     private readonly panelService: PdfViewerPanelService
