@@ -3,11 +3,12 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 
-import type {Extension} from '../../main'
+import type { Extension } from '../../main'
+import type { ILinter } from '../linter'
 import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 
-export class ChkTeX {
+export class ChkTeX implements ILinter {
     readonly #linterName = 'ChkTeX'
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.#linterName)
     readonly #linterUtil: LinterUtil
@@ -22,29 +23,14 @@ export class ChkTeX {
             this.extension.logger.addLogMessage('No root file found for linting.')
             return
         }
-
         const filePath = this.extension.manager.rootFile
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(filePath))
-        const command = configuration.get('linting.chktex.exec.path') as string
-        const args = [...(configuration.get('linting.chktex.exec.args') as string[])]
-        if (!args.includes('-l')) {
-            const rcPath = this.rcPath
-            if (rcPath) {
-                args.push('-l', rcPath)
-            }
-        }
         const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', filePath]
 
-        let stdout: string
-        try {
-            stdout = await this.#linterUtil.processWrapper('root file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(this.extension.manager.rootFile)})
-        } catch (err: any) {
-            if ('stdout' in err) {
-                stdout = err.stdout as string
-            } else {
-                return
-            }
+        const stdout = await this.chktexWrapper('root', vscode.Uri.file(filePath), filePath, requiredArgs, undefined)
+        if (!stdout) {
+            return
         }
+
         const tabSize = this.getChktexrcTabSize(filePath)
         this.parseLog(stdout, undefined, tabSize)
     }
@@ -53,8 +39,19 @@ export class ChkTeX {
         this.extension.logger.addLogMessage('Linter for active file started.')
         const filePath = document.fileName
         const content = document.getText()
+        const requiredArgs = ['-I0', '-f%f:%l:%c:%d:%k:%n:%m\n']
+        const stdout = await this.chktexWrapper('active', document, filePath, requiredArgs, content)
+        if (!stdout) {
+            return
+        }
+        // provide the original path to the active file as the second argument, so
+        // we report this second path in the diagnostics instead of the temporary one.
+        const tabSize = this.getChktexrcTabSize(document.fileName)
+        this.parseLog(stdout, filePath, tabSize)
+    }
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', document)
+    private async chktexWrapper(linterid: string, configScope: vscode.ConfigurationScope, filePath: string, requiredArgs: string[], content?: string): Promise<string | undefined> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', configScope)
         const command = configuration.get('linting.chktex.exec.path') as string
         const args = [...(configuration.get('linting.chktex.exec.args') as string[])]
         if (!args.includes('-l')) {
@@ -63,22 +60,19 @@ export class ChkTeX {
                 args.push('-l', rcPath)
             }
         }
-        const requiredArgs = ['-I0', '-f%f:%l:%c:%d:%k:%n:%m\n']
 
         let stdout: string
         try {
-            stdout = await this.#linterUtil.processWrapper('active file', command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
+            stdout = await this.#linterUtil.processWrapper(linterid, command, args.concat(requiredArgs).filter(arg => arg !== ''), {cwd: path.dirname(filePath)}, content)
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
             } else {
-                return
+                return undefined
             }
         }
-        // provide the original path to the active file as the second argument, so
-        // we report this second path in the diagnostics instead of the temporary one.
-        const tabSize = this.getChktexrcTabSize(document.fileName)
-        this.parseLog(stdout, filePath, tabSize)
+
+        return stdout
     }
 
     private get rcPath() {

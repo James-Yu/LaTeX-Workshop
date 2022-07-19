@@ -3,20 +3,40 @@ import * as vscode from 'vscode'
 import type {Extension} from '../main'
 import { ChkTeX } from './linterlib/chktex'
 import { LaCheck } from './linterlib/lacheck'
+export interface ILinter {
+    readonly linterDiagnostics: vscode.DiagnosticCollection,
+    lintRootFile(): void,
+    lintFile(document: vscode.TextDocument): void,
+    parseLog(log: string, filePath?: string): void
+}
 
 export class Linter {
-    private readonly chktex: ChkTeX
-    private readonly lacheck: LaCheck
+    readonly #linters: Map<string, ILinter> = new Map()
     private linterTimeout?: NodeJS.Timer
 
-    constructor(private readonly extension: Extension) {
-        this.chktex = new ChkTeX(extension)
-        this.lacheck = new LaCheck(extension)
+    constructor(private readonly extension: Extension) {}
+
+    private get chktex(): ILinter {
+        const linterId = 'chktex'
+        const chktex = this.#linters.get(linterId) || new ChkTeX(this.extension)
+        if (!this.#linters.has(linterId)) {
+            this.#linters.set(linterId, chktex)
+        }
+        return chktex
     }
 
-    private getLinters(scope?: vscode.ConfigurationScope): (ChkTeX | LaCheck)[] {
+    private get lacheck(): ILinter {
+        const linterId = 'lacheck'
+        const lacheck = this.#linters.get(linterId) || new LaCheck(this.extension)
+        if (!this.#linters.has(linterId)) {
+            this.#linters.set(linterId, lacheck)
+        }
+        return lacheck
+    }
+
+    private getLinters(scope?: vscode.ConfigurationScope): ILinter[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', scope)
-        const linters =[]
+        const linters: ILinter[] = []
         if (configuration.get('linting.chktex.enabled')) {
             linters.push(this.chktex)
         } else {

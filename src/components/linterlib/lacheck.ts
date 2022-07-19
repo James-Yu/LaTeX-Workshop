@@ -3,10 +3,11 @@ import * as path from 'path'
 import * as fs from 'fs'
 
 import type { Extension } from '../../main'
+import type { ILinter } from '../linter'
 import { LinterUtil } from './linterutil'
 import { convertFilenameEncoding } from '../../utils/convertfilename'
 
-export class LaCheck {
+export class LaCheck implements ILinter {
     readonly #linterName = 'LaCheck'
     readonly linterDiagnostics: vscode.DiagnosticCollection = vscode.languages.createDiagnosticCollection(this.#linterName)
     readonly #linterUtil: LinterUtil
@@ -21,21 +22,13 @@ export class LaCheck {
             this.extension.logger.addLogMessage('No root file found for linting.')
             return
         }
-
         const filePath = this.extension.manager.rootFile
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(filePath))
-        const command = configuration.get('linting.lacheck.exec.path') as string
 
-        let stdout: string
-        try {
-            stdout = await this.#linterUtil.processWrapper('root file', command, [filePath], {cwd: path.dirname(this.extension.manager.rootFile)})
-        } catch (err: any) {
-            if ('stdout' in err) {
-                stdout = err.stdout as string
-            } else {
-                return
-            }
+        const stdout = await this.lacheckWrapper('root', vscode.Uri.file(filePath), filePath, undefined)
+        if (!stdout) {
+            return
         }
+
         this.parseLog(stdout)
     }
 
@@ -44,20 +37,30 @@ export class LaCheck {
         const filePath = document.fileName
         const content = document.getText()
 
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', document)
+        const stdout = await this.lacheckWrapper('active', document, filePath, content)
+        if (!stdout) {
+            return
+        }
+
+        this.parseLog(stdout, document.fileName)
+    }
+
+    private async lacheckWrapper(linterid: string, configScope: vscode.ConfigurationScope, filePath: string, content?: string): Promise<string | undefined> {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', configScope)
         const command = configuration.get('linting.lacheck.exec.path') as string
 
         let stdout: string
         try {
-            stdout = await this.#linterUtil.processWrapper('active file', command, [filePath], {cwd: path.dirname(filePath)}, content)
+            stdout = await this.#linterUtil.processWrapper(linterid, command, [filePath], {cwd: path.dirname(filePath)}, content)
         } catch (err: any) {
             if ('stdout' in err) {
                 stdout = err.stdout as string
             } else {
-                return
+                return undefined
             }
         }
-        this.parseLog(stdout, document.fileName)
+
+        return stdout
     }
 
     parseLog(log: string, filePath?: string) {
