@@ -1598,13 +1598,19 @@
           "default": true,
           "markdownDescription": "Enable using a builtin synctex function. The command set in latex-workshop.synctex.path will not be used."
         },
-        "latex-workshop.chktex.enabled": {
+        "latex-workshop.linting.chktex.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable linting LaTeX with ChkTeX. Check `#latex-workshop.chktex.run#` to control when the linting is executed if this config is set to `true`."
+          "markdownDescription": "Enable linting LaTeX with `chktex`. Check `#latex-workshop.linting.run#` to control when `chktex` is executed if this config is set to `true."
         },
-        "latex-workshop.chktex.run": {
+        "latex-workshop.linting.lacheck.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Enable linting LaTeX with `lacheck`. Check `#latex-workshop.linting.run#` to control when `lacheck` is executed if this config is set to `true."
+        },
+        "latex-workshop.linting.run": {
           "scope": "resource",
           "type": "string",
           "enum": [
@@ -1616,22 +1622,15 @@
             "Lint the active document when input is stopped"
           ],
           "default": "onSave",
-          "markdownDescription": "When LaTeX should be linted by ChkTeX.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `#latex-workshop.chktex.delay#`. It also implies `onSave`."
+          "markdownDescription": "When LaTeX should be linted.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `#latex-workshop.linting.delay#`. It also implies `onSave`."
         },
-        "latex-workshop.chktex.exec.path": {
+        "latex-workshop.linting.chktex.exec.path": {
           "scope": "window",
           "type": "string",
           "default": "chktex",
-          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.chktex.exec.args#` and required arguments to form a complete command of ChkTeX."
+          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.linting.chktex.exec.args#` and required arguments to form a complete command of ChkTeX."
         },
-        "latex-workshop.chktex.path": {
-          "scope": "window",
-          "type": "string",
-          "default": "",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.path#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.chktex.exec.path\" instead."
-        },
-        "latex-workshop.chktex.exec.args": {
+        "latex-workshop.linting.chktex.exec.args": {
           "scope": "resource",
           "type": "array",
           "items": {
@@ -1646,6 +1645,82 @@
           ],
           "markdownDescription": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX. Arguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
+        "latex-workshop.linting.chktex.convertOutput.column.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable converting ChkTeX outputs' column numbers for non-ASCII characters."
+        },
+        "latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize": {
+          "scope": "resource",
+          "type": "number",
+          "default": -1,
+          "markdownDescription": "Write the `TabSize` number from `.chktexrc`. The default value \"-1\" means that LaTeX Workshop will try to find `.chktexrc` and to read the value from it."
+        },
+        "latex-workshop.linting.delay": {
+          "scope": "resource",
+          "type": "number",
+          "default": 500,
+          "markdownDescription": "Defines the delay in milliseconds for linter to wait after stopped typing. This config only matters when `#latex-workshop.linting.run#` is set to `onType`."
+        },
+        "latex-workshop.linting.lacheck.exec.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "lacheck",
+          "markdownDescription": "Define the location of LaCheck executive file."
+        },
+        "latex-workshop.chktex.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.enabled#` and `#latex-workshop.linting.chktex.exec.path#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.enabled\" and \"latex-workshop.linting.chktex.exec.path\" instead."
+        },
+        "latex-workshop.chktex.run": {
+          "scope": "resource",
+          "type": "string",
+          "enum": [
+            "onSave",
+            "onType"
+          ],
+          "enumDescriptions": [
+            "Lint the whole LaTeX project upon saving",
+            "Lint the active document when input is stopped"
+          ],
+          "default": "onSave",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.run#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.run\" instead."
+        },
+        "latex-workshop.chktex.exec.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "chktex",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.path#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.path\" instead."
+        },
+        "latex-workshop.chktex.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.path#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.path\" instead."
+        },
+        "latex-workshop.chktex.exec.args": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q"
+          ],
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
+        },
         "latex-workshop.chktex.args.active": {
           "scope": "resource",
           "type": "array",
@@ -1653,8 +1728,8 @@
             "type": "string"
           },
           "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.args#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.chktex.exec.args\" instead."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
         },
         "latex-workshop.chktex.args.root": {
           "scope": "resource",
@@ -1663,26 +1738,29 @@
             "type": "string"
           },
           "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.args#` instead.",
-          "deprecationMessage": "Please use \"latex-workshop.chktex.exec.args\" instead."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
         },
         "latex-workshop.chktex.delay": {
           "scope": "resource",
           "type": "number",
           "default": 500,
-          "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing. This config only matters when `#latex-workshop.chktex.run#` is set to `onType`."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.delay#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.delay\" instead."
         },
         "latex-workshop.chktex.convertOutput.column.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable converting ChkTeX outputs' column numbers for non-ASCII characters."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.convertOutput.column.enabled#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.convertOutput.column.enabled\" instead."
         },
         "latex-workshop.chktex.convertOutput.column.chktexrcTabSize": {
           "scope": "resource",
           "type": "number",
           "default": -1,
-          "markdownDescription": "Write the `TabSize` number from `.chktexrc`. The default value \"-1\" means that LaTeX Workshop will try to find `.chktexrc` and to read the value from it."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize\" instead."
         },
         "latex-workshop.check.duplicatedLabels.enabled": {
           "scope": "window",

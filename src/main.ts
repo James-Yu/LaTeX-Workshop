@@ -18,7 +18,6 @@ import {TeXMagician} from './components/texmagician'
 import {EnvPair} from './components/envpair'
 import {Section} from './components/section'
 import {CompilerLogParser} from './components/parser/compilerlog'
-import {LinterLogParser} from './components/parser/linterlog'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Configuration} from './components/configuration'
 import {EventBus} from './components/eventbus'
@@ -328,7 +327,6 @@ export class Extension {
     readonly server: Server
     readonly locator: Locator
     readonly compilerLogParser: CompilerLogParser
-    readonly linterLogParser: LinterLogParser
     readonly pegParser: PEGParser
     readonly completer: Completer
     readonly atSuggestionCompleter: AtSuggestionCompleter
@@ -363,7 +361,6 @@ export class Extension {
         this.server = new Server(this)
         this.locator = new Locator(this)
         this.compilerLogParser = new CompilerLogParser(this)
-        this.linterLogParser = new LinterLogParser(this)
         this.completer = new Completer(this)
         this.atSuggestionCompleter = new AtSuggestionCompleter(this)
         this.duplicateLabels = new DuplicateLabels(this)
