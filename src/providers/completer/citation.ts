@@ -4,8 +4,8 @@ import {bibtexParser} from 'latex-utensils'
 import {trimMultiLineString} from '../../utils/utils'
 import type {ILwCompletionItem} from './interface'
 
-import type {Extension} from '../../main'
 import type {IProvider} from './interface'
+import type {LoggerLocator, ManagerLocator, UtensilsParserLocator} from '../../interfaces'
 
 
 class Fields extends Map<string, string> {
@@ -74,14 +74,19 @@ function readCitationFormat(configuration: vscode.WorkspaceConfiguration, exclud
     return fields
 }
 
+interface IExtension extends
+    LoggerLocator,
+    ManagerLocator,
+    UtensilsParserLocator { }
+
 export class Citation implements IProvider {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     /**
      * Bib entries in each bib `file`.
      */
     private readonly bibEntries = new Map<string, CiteSuggestion[]>()
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 

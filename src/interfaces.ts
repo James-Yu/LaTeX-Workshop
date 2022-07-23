@@ -1,7 +1,34 @@
 import type fs from 'fs'
 import type {latexParser, bibtexParser} from 'latex-utensils'
 import type vscode from 'vscode'
-import type {Content} from './manager'
+import type {SyncTeXRecordForward} from './components/locator'
+import type {Content} from './components/manager'
+import type {ICommand} from './providers/completer/interface'
+
+export interface CommandLocator {
+    readonly command: ICommand
+}
+
+export interface CompleterLocator {
+    readonly completer: CommandLocator
+}
+
+export interface ExtensionRootLocator {
+    readonly extensionRoot: string
+}
+
+export interface BuilderLocator {
+    readonly builder: IBuilder
+}
+
+export interface IBuilder {
+    readonly tmpDir: string,
+    readonly disableBuildAfterSave: boolean
+}
+
+export interface LoggerLocator {
+    readonly logger: ILogger
+}
 
 export interface ILogger {
     addLogMessage(message: string): void,
@@ -24,6 +51,10 @@ export interface ILogger {
     showCompilerLog(): void
 }
 
+export interface LwfsLocator {
+    readonly lwfs: ILwFileSystem
+}
+
 export interface ILwFileSystem {
     isLocalUri(uri: vscode.Uri): boolean,
     isVirtualUri(uri: vscode.Uri): boolean,
@@ -34,17 +65,29 @@ export interface ILwFileSystem {
     stat(fileUri: vscode.Uri): Promise<fs.Stats | vscode.FileStat>
 }
 
+export interface ManagerLocator {
+    readonly manager: IManager
+}
+
 export interface IManager {
     readonly rootDir: string | undefined,
     rootFile: string | undefined,
     rootFileUri: vscode.Uri | undefined,
+    readonly cachedFilePaths: string[],
     getOutDir(texPath?: string): string,
     getCachedContent(filePath: string): Content[string] | undefined,
     hasTexId(id: string): boolean,
+    hasBibtexId(id: string): boolean,
     findRoot(): Promise<string | undefined>,
     getIncludedBib(file?: string, includedBib?: string[], children?: string[]): string[],
     getIncludedTeX(file?: string, includedTeX?: string[]): string[],
-    getDirtyContent(file: string): string | undefined
+    getDirtyContent(file: string): string | undefined,
+    getWorkspaceFolderRootDir(): vscode.WorkspaceFolder | undefined,
+    tex2pdf(texPath: string, respectOutDir?: boolean): string
+}
+
+export interface UtensilsParserLocator {
+    readonly pegParser: IUtensilsParser
 }
 
 export interface IUtensilsParser {
@@ -52,4 +95,12 @@ export interface IUtensilsParser {
     parseLatex(s: string, options?: latexParser.ParserOptions): Promise<latexParser.LatexAst | undefined>,
     parseLatexPreamble(s: string): Promise<latexParser.AstPreamble>,
     parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst>
+}
+
+export interface ViewerLocator {
+    readonly viewer: IViewer
+}
+
+export interface IViewer {
+    syncTeX(pdfFile: string, record: SyncTeXRecordForward): void
 }

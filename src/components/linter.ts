@@ -1,6 +1,6 @@
 import * as vscode from 'vscode'
 
-import type {Extension} from '../main'
+import type {ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
 import { ChkTeX } from './linterlib/chktex'
 import { LaCheck } from './linterlib/lacheck'
 export interface ILinter {
@@ -10,11 +10,16 @@ export interface ILinter {
     parseLog(log: string, filePath?: string): void
 }
 
+interface IExtension extends
+    ExtensionRootLocator,
+    LoggerLocator,
+    ManagerLocator { }
+
 export class Linter {
     readonly #linters: Map<string, ILinter> = new Map()
     private linterTimeout?: NodeJS.Timer
 
-    constructor(private readonly extension: Extension) {}
+    constructor(private readonly extension: IExtension) {}
 
     private get chktex(): ILinter {
         const linterId = 'chktex'

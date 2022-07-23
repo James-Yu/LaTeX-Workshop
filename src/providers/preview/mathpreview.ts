@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 
 import {MathJaxPool} from './mathjaxpool'
 import * as utils from '../../utils/svg'
-import type {Extension} from '../../main'
 import type {ReferenceEntry} from '../completer/reference'
 import {getCurrentThemeLightness} from '../../utils/theme'
 
@@ -12,12 +11,19 @@ import {NewCommandFinder} from './mathpreviewlib/newcommandfinder'
 import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
 import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
 import {MathPreviewUtils} from './mathpreviewlib/mathpreviewutils'
+import type {LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator} from '../../interfaces'
 
 export type {TexMathEnv} from './mathpreviewlib/texmathenvfinder'
 
 
+interface IExtension extends
+    LoggerLocator,
+    LwfsLocator,
+    ManagerLocator,
+    UtensilsParserLocator { }
+
 export class MathPreview {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     private color: string = '#000000'
     private readonly mj: MathJaxPool
     private readonly cursorRenderer: CursorRenderer
@@ -26,7 +32,7 @@ export class MathPreview {
     private readonly hoverPreviewOnRefProvider: HoverPreviewOnRefProvider
     private readonly mputils: MathPreviewUtils
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
         this.mj = new MathJaxPool()
         vscode.workspace.onDidChangeConfiguration(() => this.getColor())

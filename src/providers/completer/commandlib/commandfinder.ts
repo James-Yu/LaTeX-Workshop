@@ -2,8 +2,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 import {CmdEnvSuggestion} from '../command'
-import type {Extension} from '../../../main'
 import type {ILwCompletionItem} from '../interface'
+import type {CompleterLocator, ManagerLocator} from '../../../interfaces'
 
 
 export function isTriggerSuggestNeeded(name: string): boolean {
@@ -34,11 +34,15 @@ export function resolveCmdEnvFile(name: string, dataDir: string): string | undef
     return undefined
 }
 
+interface IExtension extends
+    CompleterLocator,
+    ManagerLocator { }
+
 export class CommandFinder {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     definedCmds = new Map<string, {file: string, location: vscode.Location}>()
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 

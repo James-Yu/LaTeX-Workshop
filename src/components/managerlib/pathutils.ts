@@ -4,12 +4,11 @@ import * as cs from 'cross-spawn'
 import * as fs from 'fs'
 import * as utils from '../../utils/utils'
 
-import type {ILogger, IManager} from '../interfaces'
+import type {LoggerLocator, ManagerLocator} from '../../interfaces'
 
-interface IExtension {
-    manager: IManager,
-    logger: ILogger
-}
+interface IExtension extends
+    LoggerLocator,
+    ManagerLocator { }
 
 export class PathUtils {
     private readonly extension: IExtension

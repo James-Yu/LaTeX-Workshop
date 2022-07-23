@@ -39,6 +39,7 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
+import type {ExtensionRootLocator, BuilderLocator, LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator, CompleterLocator, ViewerLocator} from './interfaces'
 
 
 function conflictExtensionCheck() {
@@ -314,7 +315,17 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     )
 }
 
-export class Extension {
+interface IExtension extends
+    ExtensionRootLocator,
+    BuilderLocator,
+    CompleterLocator,
+    LoggerLocator,
+    LwfsLocator,
+    ManagerLocator,
+    UtensilsParserLocator,
+    ViewerLocator { }
+
+export class Extension implements IExtension {
     readonly extensionRoot: string
     readonly logger: Logger
     readonly eventBus = new EventBus()
