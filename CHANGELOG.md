@@ -1,5 +1,22 @@
 # Change Log
 
+## [8.28.0] - 2022-07-25
+
+### Added
+- (#3342) Add `%` comments to bibtex.
+- (#3347) Add "go to definition" support for glossaries and acronyms.
+- (#3353) Clean up demanded empty folders after removing auxiliary files.
+- (#3355) Add deprecated config alert on activating extension.
+- (#3359) Enhance glossary completion.
+- (#3360) Add support to `LaCheck`.
+
+### Fixed
+- (#3330) Pdf Viewer (Browser) does not refresh on Safari.
+- (#3340) Typo in `exam` class intellisense data.
+- (#3341) Add intellisense for labels with one optional arg.
+- (#3344) Default zoom level of PDF viewer not working on `v8.27.0+`.
+- (#3349) Make sure to populate documentation before returning a citation entry.
+
 ## [8.27.2] - 2022-06-08
 
 ### Fixed
