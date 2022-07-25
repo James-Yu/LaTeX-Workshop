@@ -31,6 +31,15 @@ export class ViewerHistory {
         (document.getElementById('historyForward') as HTMLElement).addEventListener('click', () => {
             this.lwApp.viewerHistory.forward()
         })
+
+        document.addEventListener('mousedown', (ev) => {
+            if(ev.button === 3){
+                this.lwApp.viewerHistory.back()
+            }
+            if(ev.button === 4){
+                this.lwApp.viewerHistory.forward()
+            }
+        })
     }
 
     private last() {
