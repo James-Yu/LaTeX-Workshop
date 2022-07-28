@@ -20,26 +20,37 @@ export function escapeRegExp(str: string) {
     return str.replace(/[-[\]/{}()*+?.\\^$|]/g, '\\$&')
 }
 
+/**
+ * Strip text and comments from LaTeX, leaving only commands and environments.
+ *
+ * @param raw The raw LaTeX content as a string
+ * @returns The stripped LaTeX command barebone
+ */
 export function stripText(raw: string): string {
     const text = stripComments(raw)
     const lines = text.split('\n').length
+    // We first create an array of empty strings, each of which corresponds to
+    // one line in the original document.
     const result = Array(lines).fill('')
+    // The folloing regex defines a LaTeX command.
     const cmdReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?)\s*)/gm
     let match
     while ((match = cmdReg.exec(text)) !== null) {
+        // Stores the complete command, including arguments.
         let matchedText = match[0]
-        // Find longestest balanced argument
+        // There is an (optional) argument after the command. They can be many.
         while (text[cmdReg.lastIndex] === '{' || text[cmdReg.lastIndex] === '[') {
             const isCurly = text[cmdReg.lastIndex] === '{'
             const balanceStr = getLongestBalancedString(text.substring(cmdReg.lastIndex), isCurly ? undefined : 'square')
             matchedText += isCurly ? `{${balanceStr}}` : `[${balanceStr}]`
             cmdReg.lastIndex += balanceStr.length + 2
-            // It's possible to have spaces between arguments
+            // It's possible to have spaces between arguments. If so, skip them.
             while (text[cmdReg.lastIndex] === ' ' || text[cmdReg.lastIndex] === '\t') {
                 cmdReg.lastIndex++
             }
         }
         const line = text.substring(0, match.index).split('\n').length - 1
+        // Append each line in the command to the array.
         matchedText.split('\n').forEach((content, index) => result[line+index] += content)
     }
     return result.join('\n')
