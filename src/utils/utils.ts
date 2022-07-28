@@ -21,6 +21,42 @@ export function escapeRegExp(str: string) {
 }
 
 /**
+ * Strip text and comments from LaTeX, leaving only commands and environments.
+ *
+ * @param raw The raw LaTeX content as a string
+ * @returns The stripped LaTeX command barebone
+ */
+export function stripText(raw: string): string {
+    const text = stripComments(raw)
+    const lines = text.split('\n').length
+    // We first create an array of empty strings, each of which corresponds to
+    // one line in the original document.
+    const result = Array(lines).fill('')
+    // The folloing regex defines a LaTeX command.
+    const cmdReg = /(\\(?:[^a-zA-Z@]|[a-zA-Z@]+[*=']?)\s*)/gm
+    let match
+    while ((match = cmdReg.exec(text)) !== null) {
+        // Stores the complete command, including arguments.
+        let matchedText = match[0]
+        // There is an (optional) argument after the command. They can be many.
+        while (text[cmdReg.lastIndex] === '{' || text[cmdReg.lastIndex] === '[') {
+            const isCurly = text[cmdReg.lastIndex] === '{'
+            const balanceStr = getLongestBalancedString(text.substring(cmdReg.lastIndex), isCurly ? undefined : 'square')
+            matchedText += isCurly ? `{${balanceStr}}` : `[${balanceStr}]`
+            cmdReg.lastIndex += balanceStr.length + 2
+            // It's possible to have spaces between arguments. If so, skip them.
+            while (text[cmdReg.lastIndex] === ' ' || text[cmdReg.lastIndex] === '\t') {
+                cmdReg.lastIndex++
+            }
+        }
+        const line = text.substring(0, match.index).split('\n').length - 1
+        // Append each line in the command to the array.
+        matchedText.split('\n').forEach((content, index) => result[line+index] += content)
+    }
+    return result.join('\n')
+}
+
+/**
  * Remove comments
  *
  * @param text A string in which comments get removed.
@@ -82,15 +118,17 @@ export function trimMultiLineString(text: string): string {
  *
  * @param s A string to be searched.
  */
-export function getLongestBalancedString(s: string): string {
-    let nested = s[0] === '{' ? 0 : 1
+export function getLongestBalancedString(s: string, bracket: 'curly' | 'square'='curly'): string {
+    const openner = bracket === 'curly' ? '{' : '['
+    const closer = bracket === 'curly' ? '}' : ']'
+    let nested = s[0] === openner ? 0 : 1
     let i = 0
     for (i = 0; i < s.length; i++) {
         switch (s[i]) {
-            case '{':
+            case openner:
                 nested++
                 break
-            case '}':
+            case closer:
                 nested--
                 break
             case '\\':
@@ -103,7 +141,7 @@ export function getLongestBalancedString(s: string): string {
             break
         }
     }
-    return s.substring(s[0] === '{' ? 1 : 0, i)
+    return s.substring(s[0] === openner ? 1 : 0, i)
 }
 
 /**
