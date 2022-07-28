@@ -3,9 +3,9 @@ import * as path from 'path'
 import { latexParser,bibtexParser } from 'latex-utensils'
 
 import type { Extension } from '../main'
-import { resolveFile } from '../utils/utils'
+import { resolveFile, stripText } from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import type {LoggerLocator, ManagerLocator, UtensilsParserLocator} from '../interfaces'
+import type { LoggerLocator, ManagerLocator, UtensilsParserLocator } from '../interfaces'
 
 interface IExtension extends
     LoggerLocator,
@@ -148,8 +148,11 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             return []
         }
 
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const fastparse = configuration.get('view.outline.fastparse.enabled') as boolean
+
         // Use `latex-utensils` to generate the AST.
-        const ast = await this.extension.pegParser.parseLatex(content).catch((e) => {
+        const ast = await this.extension.pegParser.parseLatex(fastparse ? stripText(content) : content).catch((e) => {
             if (latexParser.isSyntaxError(e)) {
                 const line = e.location.start.line
                 this.extension.logger.addLogMessage(`Error parsing LaTeX during structuring: line ${line} in ${file}.`)
