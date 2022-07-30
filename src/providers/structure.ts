@@ -298,10 +298,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             if (latexParser.isOptionalArg(arg)) {
                 return
             }
-            const argContent = arg.content[0]
-            if (latexParser.isTextString(argContent)) {
-                cmdArgs.push(argContent.content)
-            }
+            const argString = latexParser.stringify(arg)
+            cmdArgs.push(argString.slice(1, argString.length - 1))
         })
 
         const texDirs = vscode.workspace.getConfiguration('latex-workshop').get('latex.texDirs') as string[]
