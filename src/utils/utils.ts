@@ -291,3 +291,18 @@ export function isNewCommand(node: latexParser.Node | undefined): node is NewCom
     }
     return false
 }
+
+export type NewEnvironment = {
+    kind: 'command',
+    name: 'renewenvironment|newenvironment|renewenvironment*|newenvironment*',
+    args: (latexParser.OptionalArg | latexParser.Group)[],
+    location: latexParser.Location
+}
+
+export function isNewEnvironment(node: latexParser.Node | undefined): node is NewEnvironment {
+    const regex = /^(renewenvironment|newenvironment)(\*)?$/
+    if (latexParser.isCommand(node) && node.name.match(regex)) {
+        return true
+    }
+    return false
+}

@@ -2,7 +2,7 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
-import {stripEnvironments, isNewCommand} from '../../utils/utils'
+import {stripEnvironments, isNewCommand, isNewEnvironment} from '../../utils/utils'
 
 import type {IProvider, ILwCompletionItem} from './interface'
 import type {ManagerLocator} from '../../interfaces'
@@ -161,8 +161,8 @@ export class Reference implements IProvider {
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
         const refs: ILwCompletionItem[] = []
         let label = ''
-        if (isNewCommand(node) || latexParser.isDefCommand(node)) {
-            // Do not scan labels inside \newcommand & co
+        if (isNewCommand(node) || isNewEnvironment(node) || latexParser.isDefCommand(node)) {
+            // Do not scan labels inside \newcommand, \newenvironment & co
             return refs
         }
         if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
