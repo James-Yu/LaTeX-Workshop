@@ -29,7 +29,7 @@ export class LaCheck implements ILinter {
         const filePath = this.extension.manager.rootFile
 
         const stdout = await this.lacheckWrapper('root', vscode.Uri.file(filePath), filePath, undefined)
-        if (!stdout) {
+        if (stdout === undefined) { // It's possible to have empty string as output
             return
         }
 
@@ -42,7 +42,7 @@ export class LaCheck implements ILinter {
         const content = document.getText()
 
         const stdout = await this.lacheckWrapper('active', document, filePath, content)
-        if (!stdout) {
+        if (stdout === undefined) { // It's possible to have empty string as output
             return
         }
 

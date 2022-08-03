@@ -31,7 +31,7 @@ export class ChkTeX implements ILinter {
         const requiredArgs = ['-f%f:%l:%c:%d:%k:%n:%m\n', filePath]
 
         const stdout = await this.chktexWrapper('root', vscode.Uri.file(filePath), filePath, requiredArgs, undefined)
-        if (!stdout) {
+        if (stdout === undefined) { // It's possible to have empty string as output
             return
         }
 
@@ -45,7 +45,7 @@ export class ChkTeX implements ILinter {
         const content = document.getText()
         const requiredArgs = ['-I0', '-f%f:%l:%c:%d:%k:%n:%m\n']
         const stdout = await this.chktexWrapper('active', document, filePath, requiredArgs, content)
-        if (!stdout) {
+        if (stdout === undefined) { // It's possible to have empty string as output
             return
         }
         // provide the original path to the active file as the second argument, so
