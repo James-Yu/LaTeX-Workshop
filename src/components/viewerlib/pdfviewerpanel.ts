@@ -155,7 +155,13 @@ export class PdfViewerPanelService {
                 iframe.contentWindow.focus();
             }, 100);
         }
-        
+
+        // Prevent the whole iframe selected.
+        // See https://github.com/James-Yu/LaTeX-Workshop/issues/3408
+        window.addEventListener('selectstart', (e) => {
+            e.preventDefault();
+        });
+
         const vsStore = acquireVsCodeApi();
         // To enable keyboard shortcuts of VS Code when the iframe is focused,
         // we have to dispatch keyboard events in the parent window.
