@@ -130,7 +130,7 @@ abstract class InputAbstract implements IProvider {
                     } else if (! provideDirOnly) {
                         const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
                         const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
-                        if (preview && command === 'includegraphics') {
+                        if (preview && ['includegraphics', 'includesvg'].includes(command)) {
                             item.documentation = filePath
                         }
                         item.range = range
@@ -162,7 +162,7 @@ export class Input extends InputAbstract {
         }
         // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
         const rootDir = this.extension.manager.rootDir
-        if (command === 'includegraphics' && this.graphicsPath.length > 0) {
+        if (['includegraphics', 'includesvg'].includes(command) && this.graphicsPath.length > 0) {
             baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
         } else {
             const baseConfig = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(currentFile)).get('intellisense.file.base')

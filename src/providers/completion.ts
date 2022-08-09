@@ -178,7 +178,7 @@ export class Completer implements vscode.CompletionItemProvider, CommandLocator 
                 provider = this.documentClass
                 break
             case 'input':
-                reg = /\\(input|include|subfile|includegraphics|lstinputlisting|verbatiminput|loadglsentries)\*?(?:\[[^[\]]*\])*{([^}]*)$/
+                reg = /\\(input|include|subfile|includegraphics|includesvg|lstinputlisting|verbatiminput|loadglsentries)\*?(?:\[[^[\]]*\])*{([^}]*)$/
                 provider = this.input
                 break
             case 'includeonly':
