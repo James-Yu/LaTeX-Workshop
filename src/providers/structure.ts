@@ -451,7 +451,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
-        const sections: Section[] = preambleNodes
+        const sections: Section[] = []
 
         flatSections.forEach(section => {
             if (section.depth - lowest === 0) {
@@ -479,7 +479,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
             }
         })
 
-        return sections
+        return [...preambleNodes, ...sections]
     }
 
     private buildLaTeXSectionToLine(structure: Section[], lastLine: number) {
