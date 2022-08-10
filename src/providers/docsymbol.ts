@@ -40,7 +40,10 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
 
         sections.forEach(section => {
             const range = new vscode.Range(section.lineNumber, 0, section.toLine, 65535)
-            const symbol = new vscode.DocumentSymbol(section.label ? section.label : 'empty', '', vscode.SymbolKind.String, range, range)
+            const symbol = new vscode.DocumentSymbol(
+                section.label || 'empty', '',
+                section.depth < 0 ? vscode.SymbolKind.Method : vscode.SymbolKind.Module,
+                range, range)
             symbols.push(symbol)
             if (section.children.length > 0) {
                 symbol.children = this.sectionToSymbols(section.children)
