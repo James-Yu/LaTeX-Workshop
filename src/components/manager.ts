@@ -280,6 +280,8 @@ export class Manager implements IManager {
             return 'jlweave'
         } else if (this.rsweaveExt.includes(ext)) {
             return 'rsweave'
+        } else if (ext === '.dtx') {
+            return 'doctex'
         } else {
             return undefined
         }
