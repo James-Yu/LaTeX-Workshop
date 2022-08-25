@@ -1,5 +1,20 @@
 # Change Log
 
+## [8.29.0] - 2022-08-25
+
+### Added
+- (#3400) Add an experimental faster AST-based structure construction.
+  - Disabled by default. Can be enabled from `view.outline.fastparse.enabled`.
+- (#3421) Provide file completion for `includesvg`.
+- (#3423) Support sticky scrolling.
+
+### Fixed
+- Fix wrong structure: first section is child of preamble labels.
+- (#3404) Fix `\input` arg does not take filenames with underscores.
+- (#3408) Ctrl+A (Select All) grays out PDF preview.
+- (#3411) Fix linter logs won't clear after all warnings fixed.
+- (#3412) Ignore `\newenvironment` content when scanning for duplicate labels.
+
 ## [8.28.0] - 2022-07-25
 
 ### Added
