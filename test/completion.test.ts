@@ -150,5 +150,5 @@ suite('Completion test suite', () => {
         assertCompletionItemContains(items, 'vs_code', 'Editor')
         assertCompletionItemContains(items, 'abbr_y', 'A second abbreviation')
         assertCompletionItemContains(items, 'abbr_x', 'A first abbreviation')
-    }, () => os.platform() === 'win32')
+    }, () => os.platform() === 'win32' || os.platform() === 'darwin')
 })
