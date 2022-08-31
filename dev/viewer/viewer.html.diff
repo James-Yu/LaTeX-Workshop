@@ -1,10 +1,10 @@
---- ../tmp/pdfjs-2.14/web/viewer.html	2022-05-14 14:19:10.000000000 +0900
-+++ viewer/viewer.html	2022-05-25 07:45:08.000000000 +0900
-@@ -25,19 +25,27 @@
+--- ../tmp/pdfjs-2.15/web/viewer.html	2022-07-31 13:43:58.000000000 +0900
++++ viewer/viewer.html	2022-08-27 07:27:33.000000000 +0900
+@@ -25,19 +25,26 @@
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
      <meta name="google" content="notranslate">
-+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
++    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; base-uri 'none'; connect-src 'self' ws://127.0.0.1:*; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:;">
      <title>PDF.js viewer</title>
  
 +    <!--
@@ -25,7 +25,6 @@
 +<link rel="resource" type="application/l10n" href="locale/locale.properties">
 +<script src="/build/pdf.js" defer></script>
 +<script src="/out/viewer/latexworkshop.js" type="module"></script>
-+<script src="viewer.js" defer></script>
    </head>
  
 -  <body tabindex="1">
@@ -33,7 +32,7 @@
      <div id="outerContainer">
  
        <div id="sidebarContainer">
-@@ -79,7 +87,7 @@
+@@ -79,7 +86,7 @@
            <div id="layersView" class="hidden">
            </div>
          </div>
@@ -42,7 +41,7 @@
        </div>  <!-- sidebarContainer -->
  
        <div id="mainContainer">
-@@ -198,6 +206,14 @@
+@@ -228,6 +235,14 @@
                </button>
              </div>
  
@@ -57,7 +56,7 @@
              <div class="horizontalToolbarSeparator"></div>
  
              <button id="documentProperties" class="secondaryToolbarButton" title="Document Properties…" tabindex="69" data-l10n-id="document_properties" aria-controls="documentPropertiesDialog">
-@@ -206,13 +222,20 @@
+@@ -236,13 +251,20 @@
            </div>
          </div>  <!-- secondaryToolbar -->
  
@@ -79,7 +78,7 @@
                  <div class="toolbarButtonSpacer"></div>
                  <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar" aria-expanded="false" aria-controls="findbar">
                    <span data-l10n-id="findbar_label">Find</span>
-@@ -280,6 +303,15 @@
+@@ -325,6 +347,15 @@
                      <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
                      <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
                      <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
@@ -95,7 +94,7 @@
                    </select>
                  </span>
                </div>
-@@ -295,6 +327,7 @@
+@@ -340,6 +371,7 @@
  
          <div id="viewerContainer" tabindex="0">
            <div id="viewer" class="pdfViewer"></div>

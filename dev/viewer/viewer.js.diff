@@ -1,6 +1,6 @@
---- ../tmp/pdfjs-2.14/web/viewer.js	2022-05-14 14:19:24.000000000 +0900
-+++ viewer/viewer.js	2022-05-29 12:30:15.000000000 +0900
-@@ -898,7 +898,7 @@
+--- ../tmp/pdfjs-2.15/web/viewer.js	2022-07-31 13:44:12.000000000 +0900
++++ viewer/viewer.js	2022-08-27 07:47:39.000000000 +0900
+@@ -934,7 +934,7 @@
        }
      }
  
@@ -9,7 +9,7 @@
    },
  
    setTitle(title) {
-@@ -5560,7 +5560,7 @@
+@@ -5673,7 +5673,7 @@
  };
  exports.FindState = FindState;
  const FIND_TIMEOUT = 250;
@@ -18,16 +18,16 @@
  const MATCH_SCROLL_OFFSET_LEFT = -400;
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
-@@ -8598,7 +8598,7 @@
+@@ -8759,7 +8759,7 @@
        return;
      }
  
--    if (!this._switchView(view, true)) {
-+    if (!this._switchView(view, false)) {
-       this._dispatchEvent();
-     }
-   }
-@@ -9860,7 +9860,7 @@
+-    this.switchView(view, true);
++    this.switchView(view, false);
+ 
+     if (!this.isInitialEventDispatched) {
+       this.#dispatchEvent();
+@@ -10022,7 +10022,7 @@
      this.downloadManager = options.downloadManager || null;
      this.findController = options.findController || null;
      this._scriptingManager = options.scriptingManager || null;
@@ -35,8 +35,8 @@
 +    this.removePageBorders = options.removePageBorders || true;
      this.textLayerMode = options.textLayerMode ?? _ui_utils.TextLayerMode.ENABLE;
      this.#annotationMode = options.annotationMode ?? _pdfjsLib.AnnotationMode.ENABLE_FORMS;
-     this.imageResourcesPath = options.imageResourcesPath || "";
-@@ -13751,11 +13751,11 @@
+     this.#annotationEditorMode = options.annotationEditorMode ?? ANNOTATION_EDITOR_MODE;
+@@ -14344,11 +14344,11 @@
  
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
@@ -50,7 +50,7 @@
    }
  
    async set(name, val) {
-@@ -13823,11 +13823,11 @@
+@@ -14416,11 +14416,11 @@
  
  class GenericPreferences extends _preferences.BasePreferences {
    async _writeToStorage(prefObj) {
@@ -64,7 +64,7 @@
    }
  
  }
-@@ -14769,7 +14769,7 @@
+@@ -15364,7 +15364,7 @@
      var data = gL10nData[key];
  
      if (!data) {
@@ -73,7 +73,7 @@
  
        if (!fallback) {
          return null;
-@@ -14834,7 +14834,7 @@
+@@ -15429,7 +15429,7 @@
      var data = getL10nData(l10n.id, l10n.args);
  
      if (!data) {
@@ -82,7 +82,7 @@
        return;
      }
  
-@@ -15276,6 +15276,9 @@
+@@ -15873,6 +15873,9 @@
  
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
@@ -92,7 +92,7 @@
      window.print();
      event.preventDefault();
  
-@@ -15569,7 +15572,7 @@
+@@ -16178,7 +16181,7 @@
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
