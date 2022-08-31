@@ -187,6 +187,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 standardFontDataUrl: '/standard_fonts/',
                 workerPort,
                 workerSrc: '/build/pdf.worker.js',
+                forcePageColors: true,
                 ...color
             }
             PDFViewerApplicationOptions.setAll(options)
