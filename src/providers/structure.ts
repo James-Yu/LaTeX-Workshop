@@ -24,30 +24,14 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     private CachedBibTeXData: Section[] = []
 
     // The LaTeX commands to be extracted.
-    private readonly LaTeXCommands: {cmds: string[], envs: string[], secs: string[]}
+    private LaTeXCommands: {cmds: string[], envs: string[], secs: string[]} = {cmds: [], envs: [], secs: []}
     // The correspondance of section types and depths. Start from zero is
     // the top-most section (e.g., chapter). -1 is reserved for non-section
     // commands.
     private readonly LaTeXSectionDepths: {[cmd: string]: number} = {}
-    private readonly LaTeXSectionNumber: boolean
 
     constructor(private readonly extension: IExtension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
-
-        const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const cmds = configuration.get('view.outline.commands') as string[]
-        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'frame', 'table'] : ['frame']
-
-        const hierarchy = (configuration.get('view.outline.sections') as string[])
-        hierarchy.forEach((sec, index) => {
-            sec.split('|').forEach(cmd => {
-                this.LaTeXSectionDepths[cmd] = index
-            })
-        })
-        this.LaTeXSectionNumber = configuration.get('view.outline.numbers.enabled') as boolean
-
-        this.LaTeXCommands = {cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()}
-
     }
 
     private getCachedDataRootFileName(sections: Section[]): string | undefined {
@@ -86,6 +70,21 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         this._onDidChangeTreeData.fire(undefined)
     }
 
+    private refreshLaTeXModelConfig() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop')
+        const cmds = configuration.get('view.outline.commands') as string[]
+        const envs = configuration.get('view.outline.floats.enabled') as boolean ? ['figure', 'frame', 'table'] : ['frame']
+
+        const hierarchy = (configuration.get('view.outline.sections') as string[])
+        hierarchy.forEach((sec, index) => {
+            sec.split('|').forEach(cmd => {
+                this.LaTeXSectionDepths[cmd] = index
+            })
+        })
+
+        this.LaTeXCommands = {cmds, envs, secs: hierarchy.map(sec => sec.split('|')).flat()}
+    }
+
     /**
      * This function parses the AST tree of a LaTeX document to build its
      * structure. This is a two-step process. In the first step, all AST nodes
@@ -106,6 +105,8 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         if (!file) {
             return []
         }
+
+        this.refreshLaTeXModelConfig()
         // To avoid looping import, this variable is used to store file paths
         // that have been parsed.
         const filesBuilt = new Set<string>()
@@ -114,7 +115,10 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
         const flatStructure = await this.buildLaTeXSectionFromFile(file, subFile, filesBuilt)
 
         // Step 2: Create the hierarchy of these sections.
-        const structure = this.buildLaTeXHierarchy(flatStructure, subFile ? this.LaTeXSectionNumber : false)
+        const structure = this.buildLaTeXHierarchy(
+            flatStructure,
+            subFile && vscode.workspace.getConfiguration('latex-workshop').get('view.outline.numbers.enabled') as boolean
+        )
 
         // Step 3: Determine the toLine of all sections.
         this.buildLaTeXSectionToLine(structure, Number.MAX_SAFE_INTEGER)

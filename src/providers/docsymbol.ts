@@ -13,16 +13,9 @@ export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
     private readonly extension: IExtension
     private readonly sectionNodeProvider: SectionNodeProvider
 
-    private sections: string[] = []
-
     constructor(extension: IExtension) {
         this.extension = extension
         this.sectionNodeProvider = new SectionNodeProvider(extension)
-
-        const rawSections = vscode.workspace.getConfiguration('latex-workshop').get('view.outline.sections') as string[]
-        rawSections.forEach(section => {
-            this.sections = this.sections.concat(section.split('|'))
-        })
     }
 
     async provideDocumentSymbols(document: vscode.TextDocument): Promise<vscode.DocumentSymbol[]> {
