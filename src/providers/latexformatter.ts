@@ -187,6 +187,7 @@ export class LaTexFormatter {
             })
 
             this.extension.logger.logCommand('Format with command', this.formatter, this.formatterArgs)
+            this.extension.logger.addLogMessage(`Format args: ${JSON.stringify(args)}`)
             const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
