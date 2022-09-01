@@ -163,11 +163,12 @@ export class LaTexFormatter {
             const indent = useSpaces ? ' '.repeat(tabSize): '\\t'
 
             const documentDirectory = path.dirname(document.fileName)
+            const documentExtension = path.extname(document.fileName)
 
             // The version of latexindent shipped with current latex distributions doesn't support piping in the data using stdin, support was
             // only added on 2018-01-13 with version 3.4 so we have to create a temporary file
             const textToFormat = document.getText(range)
-            const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
+            const temporaryFile = documentDirectory + path.sep + '__latexindent_temp' + documentExtension
             fs.writeFileSync(temporaryFile, textToFormat)
 
             const removeTemporaryFiles = () => {
