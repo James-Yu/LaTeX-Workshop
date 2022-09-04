@@ -5,6 +5,7 @@ import glob from 'glob'
 import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
+import {replaceArgumentPlaceholders} from '../utils/utils'
 
 
 /**
@@ -158,7 +159,7 @@ export class Cleaner {
         const command = configuration.get('latex.clean.command') as string
         let args = configuration.get('latex.clean.args') as string[]
         if (args) {
-            args = args.map(arg => arg.replace('%TEX%', rootFile))
+            args = args.map(replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir))
         }
         this.extension.logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
