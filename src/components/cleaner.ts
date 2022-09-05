@@ -159,7 +159,10 @@ export class Cleaner {
         const command = configuration.get('latex.clean.command') as string
         let args = configuration.get('latex.clean.args') as string[]
         if (args) {
-            args = args.map(replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir))
+            args = args.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
+                // cleaner.ts specific tokens
+                .replace(/%TEX%/g, rootFile)
+            })
         }
         this.extension.logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
