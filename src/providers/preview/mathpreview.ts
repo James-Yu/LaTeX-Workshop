@@ -6,7 +6,7 @@ import type {ReferenceEntry} from '../completer/reference'
 import {getCurrentThemeLightness} from '../../utils/theme'
 
 import {CursorRenderer} from './mathpreviewlib/cursorrenderer'
-import {TextDocumentLike} from './mathpreviewlib/textdocumentlike'
+import {type ITextDocumentLike, TextDocumentLike} from './mathpreviewlib/textdocumentlike'
 import {NewCommandFinder} from './mathpreviewlib/newcommandfinder'
 import {TexMathEnv, TeXMathEnvFinder} from './mathpreviewlib/texmathenvfinder'
 import {HoverPreviewOnRefProvider} from './mathpreviewlib/hoverpreviewonref'
@@ -128,7 +128,7 @@ export class MathPreview {
         return this.cursorRenderer.renderCursor(document, texMath, this.color)
     }
 
-    findHoverOnTex(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
+    findHoverOnTex(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
         return this.texMathEnvFinder.findHoverOnTex(document, position)
     }
 
@@ -146,7 +146,7 @@ export class MathPreview {
         return this.hoverPreviewOnRefProvider.renderSvgOnRef(tex, newCommand, refData, this.color)
     }
 
-    findMathEnvIncludingPosition(document: vscode.TextDocument, position: vscode.Position): TexMathEnv | undefined {
+    findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
         return this.texMathEnvFinder.findMathEnvIncludingPosition(document, position)
     }
 

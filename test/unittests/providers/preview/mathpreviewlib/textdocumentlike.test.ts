@@ -3,11 +3,11 @@ import * as path from 'path'
 import * as vscode from 'vscode'
 
 import {runUnitTestWithFixture, getFixtureDir} from '../../../../utils/ciutils'
-import {TextDocumentLike} from '../../../../../src/providers/preview/mathpreviewlib/textdocumentlike'
+import {ITextDocumentLike, TextDocumentLike} from '../../../../../src/providers/preview/mathpreviewlib/textdocumentlike'
 
-suite('unit test suite', () => {
+suite('unit test suite: mathpreviewlib/textdocumentlike', () => {
 
-    runUnitTestWithFixture('fixture001', 'test mathpreviewlib/textdocumentlike', () => {
+    runUnitTestWithFixture('fixture001', 'test load and getWordRangeAtPosition', () => {
         const s =
 `abc
 d
@@ -32,6 +32,12 @@ lmn
         assert.strictEqual('d', docLike.getText(range))
         range = docLike.getWordRangeAtPosition(new vscode.Position(2, 0))
         assert.strictEqual(undefined, range)
+    })
+
+    runUnitTestWithFixture('fixture001', 'test TextDocument is assignable to ITextDocumentLike', () => {
+        let doc: vscode.TextDocument | undefined
+        const a: ITextDocumentLike | undefined = doc
+        assert(!a)
     })
 
 })

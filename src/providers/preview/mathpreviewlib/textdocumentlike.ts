@@ -1,11 +1,19 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-export class TextDocumentLike {
+export interface ITextDocumentLike {
+    readonly lineCount: number,
+    getText(range?: vscode.Range): string,
+    getWordRangeAtPosition(position: vscode.Position, regex?: RegExp): vscode.Range | undefined,
+    lineAt(lineNum: number): TextLineLike,
+    lineAt(position: vscode.Position): TextLineLike
+}
+
+export class TextDocumentLike implements ITextDocumentLike {
     readonly #lines: string[]
     readonly #eol: string
 
-    static load(filePath: string): TextDocumentLike | vscode.TextDocument {
+    static load(filePath: string): ITextDocumentLike {
         const uri = vscode.Uri.file(filePath)
         const editor = vscode.window.activeTextEditor
         if (editor !== undefined && editor.document.uri.fsPath === uri.fsPath) {
