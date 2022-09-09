@@ -71,7 +71,7 @@ export class TextDocumentLike implements ITextDocumentLike {
         return ret
     }
 
-    getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!@#%^&*()-=+[{\]}|;:'",.<>/?\s]+)/g): vscode.Range | undefined {
+    getWordRangeAtPosition(position: vscode.Position, regex = /(-?\d.\d\w)|([^`~!@#%^&*()\-=+[{\]}|;:'",.<>/?\s]+)/g): vscode.Range | undefined {
         if (position.line > this.lineCount) {
             return undefined
         }
