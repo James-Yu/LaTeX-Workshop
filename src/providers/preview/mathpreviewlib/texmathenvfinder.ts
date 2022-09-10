@@ -9,7 +9,7 @@ export type TexMathEnv = { texString: string, range: vscode.Range, envname: stri
 export class TeXMathEnvFinder {
 
     findHoverOnTex(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
-        const envBeginPat = /\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/
+        const envBeginPat = /\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/
         let r = document.getWordRangeAtPosition(position, envBeginPat)
         if (r) {
             const envname = this.getFirstRememberedSubstring(document.getText(r), envBeginPat)
@@ -32,7 +32,7 @@ export class TeXMathEnvFinder {
     ): TexMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
         const docOfRef = TextDocumentLike.load(refData.file)
-        const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
+        const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*)\}/
         const l = docOfRef.lineAt(refData.position.line).text
         const pat = new RegExp('\\\\label\\{' + utils.escapeRegExp(token) + '\\}')
         const m = l.match(pat)
@@ -56,8 +56,8 @@ export class TeXMathEnvFinder {
 
     findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
-        const envNamePatMathMode = /(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)/
-        const envBeginPatMathMode = /\\\[|\\\(|\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
+        const envNamePatMathMode = /(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*)/
+        const envBeginPatMathMode = /\\\[|\\\(|\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*)\}/
         let texMath = this.findHoverOnTex(document, position)
         if (texMath && (texMath.envname === '$' || texMath.envname.match(envNamePatMathMode))) {
             return texMath
