@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as cp from 'child_process'
+import * as cs from 'cross-spawn'
 import {SyncTexJs} from './locatorlib/synctex'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 import {isSameRealPath} from '../utils/pathnormalize'
@@ -193,7 +193,7 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfFile)})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -250,7 +250,7 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        const proc = cp.spawn(command, args, {cwd: path.dirname(pdfPath)})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfPath)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -499,7 +499,7 @@ export class Locator {
         }
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
         this.extension.logger.logCommand('Execute external SyncTeX command', command, args)
-        const proc = cp.spawn(command, args)
+        const proc = cs.spawn(command, args)
         let stdout = ''
         proc.stdout.on('data', newStdout => {
             stdout += newStdout

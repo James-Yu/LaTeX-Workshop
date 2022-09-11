@@ -1,5 +1,4 @@
 import * as vscode from 'vscode'
-import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
@@ -111,7 +110,7 @@ export class LaTexFormatter {
 
         return new Promise((resolve, _reject) => {
             this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
-            const check1 = cp.spawn(checker, [this.formatter])
+            const check1 = cs.spawn(checker, [this.formatter])
             let stdout1: string = ''
             let stderr1: string = ''
             check1.stdout.setEncoding('utf8')
@@ -123,7 +122,7 @@ export class LaTexFormatter {
                     this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr1}`)
                     this.formatter += fileExt
                     this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
-                    const check2 = cp.spawn(checker, [this.formatter])
+                    const check2 = cs.spawn(checker, [this.formatter])
                     let stdout2: string = ''
                     let stderr2: string = ''
                     check2.stdout.setEncoding('utf8')
