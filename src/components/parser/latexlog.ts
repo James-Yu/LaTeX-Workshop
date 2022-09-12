@@ -7,7 +7,7 @@ import type { LogEntry } from './compilerlog'
 const latexError = /^(?:(.*):(\d+):|!)(?: (.+) Error:)? (.+?)$/
 const latexBox = /^((?:Over|Under)full \\[vh]box \([^)]*\)) in paragraph at lines (\d+)--(\d+)$/
 const latexBoxAlt = /^((?:Over|Under)full \\[vh]box \([^)]*\)) detected at line (\d+)$/
-const latexBoxOutput = /^((?:Over|Under)full \\[vh]box \([^)]*\)) has occurred while \\output is active/
+const latexBoxOutput = /^((?:Over|Under)full \\[vh]box \([^)]*\)) has occurred while \\output is active(?: \[(\d+)\])?/
 const latexWarn = /^((?:(?:Class|Package) \S*)|LaTeX(?: \S*)?|LaTeX3) (Warning|Info):\s+(.*?)(?: on input line (\d+))?(\.|\?|)$/
 const latexPackageWarningExtraLines = /^\((.*)\)\s+(.*?)(?: +on input line (\d+))?(\.)?$/
 const bibEmpty = /^Empty `thebibliography' environment/
@@ -151,7 +151,7 @@ export class LatexLogParser {
                 type: 'typesetting',
                 file: filename,
                 line: 1,
-                text: result[1]
+                text: result[2] ? `${result[1]} in page ${result[2]}` : result[1]
             }
             state.searchEmptyLine = false
             this.parseLine(line.substring(result[0].length), state, buildLog)
