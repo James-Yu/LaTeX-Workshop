@@ -5,7 +5,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 
 import {Mutex} from '../lib/await-semaphore'
-import {replaceArgumentPlaceholders} from '../utils/utils'
+import {getShell, replaceArgumentPlaceholders} from '../utils/utils'
 import type {BuilderLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
@@ -110,7 +110,7 @@ export class LaTexFormatter {
 
         return new Promise((resolve, _reject) => {
             this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
-            const check1 = cs.spawn(checker, [this.formatter])
+            const check1 = cs.spawn(checker, [this.formatter], {shell: getShell()})
             let stdout1: string = ''
             let stderr1: string = ''
             check1.stdout.setEncoding('utf8')
@@ -122,7 +122,7 @@ export class LaTexFormatter {
                     this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr1}`)
                     this.formatter += fileExt
                     this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
-                    const check2 = cs.spawn(checker, [this.formatter])
+                    const check2 = cs.spawn(checker, [this.formatter], {shell: getShell()})
                     let stdout2: string = ''
                     let stderr2: string = ''
                     check2.stdout.setEncoding('utf8')
@@ -188,7 +188,7 @@ export class LaTexFormatter {
 
             this.extension.logger.logCommand('Format with command', this.formatter, this.formatterArgs)
             this.extension.logger.addLogMessage(`Format args: ${JSON.stringify(args)}`)
-            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
+            const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory, shell: getShell() })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
             const stderrBuffer: string[] = []

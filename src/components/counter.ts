@@ -4,6 +4,7 @@ import * as path from 'path'
 import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
+import { getShell } from '../utils/utils'
 
 export class Counter {
     private readonly extension: Extension
@@ -115,7 +116,7 @@ export class Counter {
         }
         args.push(path.basename(file))
         this.extension.logger.logCommand('Count words using command', command, args)
-        const proc = cs.spawn(command, args, {cwd: path.dirname(file)})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(file), shell: getShell()})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 

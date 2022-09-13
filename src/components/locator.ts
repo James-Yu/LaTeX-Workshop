@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import {SyncTexJs} from './locatorlib/synctex'
-import {replaceArgumentPlaceholders} from '../utils/utils'
+import {getShell, replaceArgumentPlaceholders} from '../utils/utils'
 import {isSameRealPath} from '../utils/pathnormalize'
 
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
@@ -193,7 +193,7 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile)})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfFile), shell: getShell()})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -250,7 +250,7 @@ export class Locator {
                 fs.chmodSync(command, 0o755)
             }
         }
-        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfPath)})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(pdfPath), shell: getShell()})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 
@@ -499,7 +499,7 @@ export class Locator {
         }
         this.extension.logger.addLogMessage(`Open external viewer for syncTeX from ${pdfFile}`)
         this.extension.logger.logCommand('Execute external SyncTeX command', command, args)
-        const proc = cs.spawn(command, args)
+        const proc = cs.spawn(command, args, {shell: getShell()})
         let stdout = ''
         proc.stdout.on('data', newStdout => {
             stdout += newStdout

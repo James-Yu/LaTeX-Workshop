@@ -15,6 +15,7 @@ import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from '.
 import {PdfViewerManagerService} from './viewerlib/pdfviewermanager'
 import {PdfViewerPagesLoaded} from './eventbus'
 import type {IViewer} from '../interfaces'
+import { getShell } from '../utils/utils'
 export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
 
 
@@ -202,7 +203,7 @@ export class Viewer implements IViewer {
         }
         this.extension.logger.addLogMessage(`Open external viewer for ${pdfFile}`)
         this.extension.logger.logCommand('Execute the external PDF viewer command', command, args)
-        const proc = cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(sourceFile), detached: true, shell: getShell()})
         let stdout = ''
         proc.stdout.on('data', newStdout => {
             stdout += newStdout

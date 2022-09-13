@@ -5,7 +5,7 @@ import glob from 'glob'
 import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
-import {replaceArgumentPlaceholders} from '../utils/utils'
+import {getShell, replaceArgumentPlaceholders} from '../utils/utils'
 
 
 /**
@@ -166,7 +166,7 @@ export class Cleaner {
         }
         this.extension.logger.logCommand('Clean temporary files command', command, args)
         return new Promise((resolve, _reject) => {
-            const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true})
+            const proc = cs.spawn(command, args, {cwd: path.dirname(rootFile), detached: true, shell: getShell()})
             let stderr = ''
             proc.stderr.on('data', newStderr => {
                 stderr += newStderr

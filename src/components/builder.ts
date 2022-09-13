@@ -6,7 +6,7 @@ import * as cs from 'cross-spawn'
 import * as os from 'os'
 import * as tmp from 'tmp'
 import {Mutex} from '../lib/await-semaphore'
-import {replaceArgumentPlaceholders} from '../utils/utils'
+import {getShell, replaceArgumentPlaceholders} from '../utils/utils'
 
 import type {Extension} from '../main'
 import {BuildFinished} from './eventbus'
@@ -124,8 +124,8 @@ export class Builder implements IBuilder {
             args = args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
         }
         this.extension.logger.logCommand('Build using external command', command, args)
-        this.extension.logger.addLogMessage(`cwd: ${wd}`)
-        this.currentProcess = cs.spawn(command, args, {cwd: wd})
+        this.extension.logger.addLogMessage(`cwd: ${wd}, shell: ${getShell()}`)
+        this.currentProcess = cs.spawn(command, args, {cwd: wd, shell: getShell()})
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`External build process spawned. PID: ${pid}.`)
 
@@ -270,7 +270,7 @@ export class Builder implements IBuilder {
                 command += ' ' + args[0]
             }
             this.extension.logger.addLogMessage(`cwd: ${path.dirname(rootFile)}`)
-            this.currentProcess = cs.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
+            this.currentProcess = cs.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: getShell()})
         } else {
             let workingDirectory: string
             if (steps[index].command === 'latexmk' && rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
@@ -279,7 +279,7 @@ export class Builder implements IBuilder {
                 workingDirectory = path.dirname(rootFile)
             }
             this.extension.logger.addLogMessage(`cwd: ${workingDirectory}`)
-            this.currentProcess = cs.spawn(steps[index].command, steps[index].args, {cwd: workingDirectory, env: envVars})
+            this.currentProcess = cs.spawn(steps[index].command, steps[index].args, {cwd: workingDirectory, env: envVars, shell: getShell()})
         }
         const pid = this.currentProcess.pid
         this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${pid}.`)

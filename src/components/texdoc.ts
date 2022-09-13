@@ -1,6 +1,7 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
 import type {LoggerLocator, ManagerLocator} from '../interfaces'
+import { getShell } from '../utils/utils'
 
 interface IExtension extends
     LoggerLocator,
@@ -19,7 +20,7 @@ export class TeXDoc {
         const texdocArgs = Array.from(configuration.get('texdoc.args') as string[])
         texdocArgs.push(pkg)
         this.extension.logger.logCommand('Run texdoc command', texdocPath, texdocArgs)
-        const proc = cs.spawn(texdocPath, texdocArgs)
+        const proc = cs.spawn(texdocPath, texdocArgs, {shell: getShell()})
 
         let stdout = ''
         proc.stdout.on('data', newStdout => {
