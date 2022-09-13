@@ -419,6 +419,25 @@
 					"end": "(\\\\end\\{minted\\})"
 				},
 				{
+					"begin": "(\\\\begin\\{minted\\}(?:\\[.*\\])?\\{(?:rust)\\})",
+					"captures": {
+						"1": {
+							"patterns": [
+								{
+									"include": "#begin-env-tokenizer"
+								}
+							]
+						}
+					},
+					"contentName": "source.rust",
+					"patterns": [
+						{
+							"include": "source.rust"
+						}
+					],
+					"end": "(\\\\end\\{minted\\})"
+				},
+				{
 					"begin": "(\\\\begin\\{(?:lstlisting|minted|pyglist)\\}(?:\\[.*\\])?)",
 					"captures": {
 						"1": {
