@@ -277,7 +277,7 @@ export function replaceArgumentPlaceholders(rootFile: string, tmpDir: string): (
     }
 }
 
-export function getShell(): boolean | string {
+export function getShell(): false | string {
     const shellConfig = vscode.workspace.getConfiguration('latex-workshop').get('shell') as string
     return shellConfig || false
 }
