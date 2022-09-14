@@ -270,7 +270,6 @@ export class Builder implements IBuilder {
                 command += ' ' + args[0]
             }
             this.extension.logger.addLogMessage(`cwd: ${path.dirname(rootFile)}`)
-            // The shell option below should be true. Cannot recall why. Need to check. @James @22-Sep-14
             this.currentProcess = cs.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: getShell() || true})
         } else {
             let workingDirectory: string
