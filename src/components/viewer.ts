@@ -298,12 +298,14 @@ export class Viewer implements IViewer {
                 light: {
                     pageColorsForeground: configuration.get('view.pdf.color.light.pageColorsForeground') || 'CanvasText',
                     pageColorsBackground: configuration.get('view.pdf.color.light.pageColorsBackground') || 'Canvas',
-                    backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff')
+                    backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff'),
+                    pageBorderColor: configuration.get('view.pdf.color.light.pageBorderColor', 'lightgrey')
                 },
                 dark: {
                     pageColorsForeground: configuration.get('view.pdf.color.dark.pageColorsForeground') || 'CanvasText',
                     pageColorsBackground: configuration.get('view.pdf.color.dark.pageColorsBackground') || 'Canvas',
-                    backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff')
+                    backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff'),
+                    pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey')
                 }
             },
             keybindings: {
