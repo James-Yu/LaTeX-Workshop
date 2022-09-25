@@ -362,12 +362,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
             }
         }
+        const css = document.styleSheets[document.styleSheets.length - 1]
         if (this.isPrefersColorSchemeDark()) {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.dark.backgroundColor
-            document.styleSheets[0].insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.dark.pageBorderColor} !important}`, 0)
+            css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.dark.pageBorderColor}}`, css.cssRules.length)
         } else {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.light.backgroundColor
-            document.styleSheets[0].insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.light.pageBorderColor} !important}`, 0)
+            css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.light.pageBorderColor}}`, css.cssRules.length)
         }
 
         if (params.keybindings) {
