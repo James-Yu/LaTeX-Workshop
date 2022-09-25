@@ -364,10 +364,10 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         }
         if (this.isPrefersColorSchemeDark()) {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.dark.backgroundColor
-            document.querySelectorAll('.pdfViewer.removePageBorders .page').forEach(elm => (elm as HTMLElement).style.boxShadow = `0px 0px 0px 1px ${params.color.dark.pageBorderColor}`)
+            document.styleSheets[0].insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.dark.pageBorderColor} !important}`, 0)
         } else {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.light.backgroundColor
-            document.querySelectorAll('.pdfViewer.removePageBorders .page').forEach(elm => (elm as HTMLElement).style.boxShadow = `0px 0px 0px 1px ${params.color.light.pageBorderColor}`)
+            document.styleSheets[0].insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.light.pageBorderColor} !important}`, 0)
         }
 
         if (params.keybindings) {
