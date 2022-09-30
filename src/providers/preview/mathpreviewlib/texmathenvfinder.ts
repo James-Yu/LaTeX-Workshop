@@ -1,15 +1,15 @@
 import * as vscode from 'vscode'
 
 import * as utils from '../../../utils/utils'
-import {TextDocumentLike} from './textdocumentlike'
-import type {ReferenceEntry} from '../../completer/reference'
+import { type ITextDocumentLike, TextDocumentLike } from './textdocumentlike'
+import type { ReferenceEntry } from '../../completer/reference'
 
 export type TexMathEnv = { texString: string, range: vscode.Range, envname: string }
 
 export class TeXMathEnvFinder {
 
-    findHoverOnTex(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
-        const envBeginPat = /\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/
+    findHoverOnTex(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
+        const envBeginPat = /\\begin\{(align|align\*|alignat|alignat\*|aligned|alignedat|array|Bmatrix|bmatrix|cases|CD|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*|gathered|matrix|multline|multline\*|pmatrix|smallmatrix|split|subarray|Vmatrix|vmatrix)\}/
         let r = document.getWordRangeAtPosition(position, envBeginPat)
         if (r) {
             const envname = this.getFirstRememberedSubstring(document.getText(r), envBeginPat)
@@ -25,14 +25,14 @@ export class TeXMathEnvFinder {
     }
 
     findHoverOnRef(
-        document: vscode.TextDocument | TextDocumentLike,
+        document: ITextDocumentLike,
         position: vscode.Position,
         refData: Pick<ReferenceEntry, 'file' | 'position'>,
         token: string,
     ): TexMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
         const docOfRef = TextDocumentLike.load(refData.file)
-        const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
+        const envBeginPatMathMode = /\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*)\}/
         const l = docOfRef.lineAt(refData.position.line).text
         const pat = new RegExp('\\\\label\\{' + utils.escapeRegExp(token) + '\\}')
         const m = l.match(pat)
@@ -54,10 +54,10 @@ export class TeXMathEnvFinder {
         return undefined
     }
 
-    findMathEnvIncludingPosition(document: vscode.TextDocument, position: vscode.Position): TexMathEnv | undefined {
+    findMathEnvIncludingPosition(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
         const limit = vscode.workspace.getConfiguration('latex-workshop').get('hover.preview.maxLines') as number
-        const envNamePatMathMode = /(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)/
-        const envBeginPatMathMode = /\\\[|\\\(|\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|gather|gather\*)\}/
+        const envNamePatMathMode = /(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*)/
+        const envBeginPatMathMode = /\\\[|\\\(|\\begin\{(align|align\*|alignat|alignat\*|eqnarray|eqnarray\*|equation|equation\*|flalign|flalign\*|gather|gather\*)\}/
         let texMath = this.findHoverOnTex(document, position)
         if (texMath && (texMath.envname === '$' || texMath.envname.match(envNamePatMathMode))) {
             return texMath
@@ -86,7 +86,7 @@ export class TeXMathEnvFinder {
     //  \begin{...}                \end{...}
     //             ^
     //             startPos1
-    findEndPair(document: vscode.TextDocument | TextDocumentLike, endPat: RegExp, startPos1: vscode.Position): vscode.Position | undefined {
+    findEndPair(document: ITextDocumentLike, endPat: RegExp, startPos1: vscode.Position): vscode.Position | undefined {
         const currentLine = document.lineAt(startPos1).text.substring(startPos1.character)
         const l = utils.stripCommentsAndVerbatim(currentLine)
         let m = l.match(endPat)
@@ -108,7 +108,7 @@ export class TeXMathEnvFinder {
     //  \begin{...}                \end{...}
     //  ^                          ^
     //  return pos                 endPos1
-    private findBeginPair(document: vscode.TextDocument | TextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit: number): vscode.Position | undefined {
+    private findBeginPair(document: ITextDocumentLike, beginPat: RegExp, endPos1: vscode.Position, limit: number): vscode.Position | undefined {
         const currentLine = document.lineAt(endPos1).text.substring(0, endPos1.character)
         let l = utils.stripCommentsAndVerbatim(currentLine)
         let m = l.match(beginPat)
@@ -133,7 +133,7 @@ export class TeXMathEnvFinder {
     //  \begin{...}                \end{...}
     //  ^
     //  startPos
-    private findHoverOnEnv(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
+    private findHoverOnEnv(document: ITextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
         const pattern = new RegExp('\\\\end\\{' + utils.escapeRegExp(envname) + '\\}')
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length + '\\begin{}'.length)
         const endPos = this.findEndPair(document, pattern, startPos1)
@@ -147,7 +147,7 @@ export class TeXMathEnvFinder {
     //  \[                \]
     //  ^
     //  startPos
-    private findHoverOnParen(document: vscode.TextDocument | TextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
+    private findHoverOnParen(document: ITextDocumentLike, envname: string, startPos: vscode.Position): TexMathEnv | undefined {
         const pattern = envname === '\\[' ? /\\\]/ : envname === '\\(' ? /\\\)/ : /\$\$/
         const startPos1 = new vscode.Position(startPos.line, startPos.character + envname.length)
         const endPos = this.findEndPair(document, pattern, startPos1)
@@ -158,7 +158,7 @@ export class TeXMathEnvFinder {
         return undefined
     }
 
-    private findHoverOnInline(document: vscode.TextDocument | TextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
+    private findHoverOnInline(document: ITextDocumentLike, position: vscode.Position): TexMathEnv | undefined {
         const currentLine = document.lineAt(position.line).text
         const regex = /(?<!\$|\\)\$(?!\$)(?:\\.|[^\\])+?\$|\\\(.+?\\\)/
         let s = currentLine

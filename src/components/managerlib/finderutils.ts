@@ -2,12 +2,17 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as utils from '../../utils/utils'
 
-import type {Extension} from '../../main'
+import type {LoggerLocator, LwfsLocator, ManagerLocator} from '../../interfaces'
+
+interface IExtension extends
+    LoggerLocator,
+    LwfsLocator,
+    ManagerLocator { }
 
 export class FinderUtils {
-    private readonly extension: Extension
+    private readonly extension: IExtension
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 

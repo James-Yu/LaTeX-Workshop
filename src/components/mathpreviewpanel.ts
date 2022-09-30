@@ -196,6 +196,7 @@ export class MathPreviewPanel {
         const texMath = this.getTexMath(document, position)
         if (!texMath) {
             this.clearCache()
+            return this.panel.webview.postMessage({type: 'mathImage', src: '' })
             return
         }
         let cachedCommands: string | undefined

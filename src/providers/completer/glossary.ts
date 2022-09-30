@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
 
-import type {Extension} from '../../main'
 import type {IProvider, ILwCompletionItem} from './interface'
+import type {ManagerLocator} from '../../interfaces'
 
 enum GlossaryType {
     glossary,
@@ -14,17 +14,22 @@ interface GlossaryEntry {
     description: string | undefined
 }
 
-export interface Suggestion extends ILwCompletionItem {
-    type: GlossaryType
+export interface GlossarySuggestion extends ILwCompletionItem {
+    type: GlossaryType,
+    file: string,
+    position: vscode.Position
 }
 
-export class Glossary implements IProvider {
-    private readonly extension: Extension
-    // use object for deduplication
-    private readonly glossaries = new Map<string, Suggestion>()
-    private readonly acronyms = new Map<string, Suggestion>()
+interface IExtension extends
+    ManagerLocator { }
 
-    constructor(extension: Extension) {
+export class Glossary implements IProvider {
+    private readonly extension: IExtension
+    // use object for deduplication
+    private readonly glossaries = new Map<string, GlossarySuggestion>()
+    private readonly acronyms = new Map<string, GlossarySuggestion>()
+
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
@@ -34,7 +39,7 @@ export class Glossary implements IProvider {
 
     private provide(result: RegExpMatchArray): vscode.CompletionItem[] {
         this.updateAll()
-        let suggestions: Map<string, Suggestion>
+        let suggestions: Map<string, GlossarySuggestion>
 
         if (result[1] && result[1].match(/^ac/i)) {
             suggestions = this.acronyms
@@ -47,40 +52,28 @@ export class Glossary implements IProvider {
         return items
     }
 
-    private getGlossaryFromNodeArray(nodes: latexParser.Node[]): Suggestion[] {
-        const glossaries: Suggestion[] = []
+    private getGlossaryFromNodeArray(nodes: latexParser.Node[], file: string): GlossarySuggestion[] {
+        const glossaries: GlossarySuggestion[] = []
         let entry: GlossaryEntry
         let type: GlossaryType | undefined
 
         nodes.forEach(node => {
             if (latexParser.isCommand(node) && node.args.length > 0) {
-                switch (node.name) {
-                    case 'newglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getShortNodeDescription(node)
-                        break
-                    case 'provideglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getShortNodeDescription(node)
-                        break
-                    case 'longnewglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getLongNodeLabelDescription(node)
-                        break
-                    case 'longprovideglossaryentry':
-                        type = GlossaryType.glossary
-                        entry = this.getLongNodeLabelDescription(node)
-                        break
-                    case 'newacronym':
-                        type = GlossaryType.acronym
-                        entry = this.getLongNodeLabelDescription(node)
-                        break
-                    default:
-                        break
+                if (['newglossaryentry', 'provideglossaryentry'].includes(node.name)) {
+                    type = GlossaryType.glossary
+                    entry = this.getShortNodeDescription(node)
+                } else if(['longnewglossaryentry', 'longprovideglossaryentry'].includes(node.name)) {
+                    type = GlossaryType.glossary
+                    entry = this.getLongNodeLabelDescription(node)
+                } else if(['newacronym', 'newabbreviation', 'newabbr'].includes(node.name)) {
+                    type = GlossaryType.acronym
+                    entry = this.getLongNodeLabelDescription(node)
                 }
                 if (type !== undefined && entry.description !== undefined && entry.label !== undefined) {
                     glossaries.push({
                         type,
+                        file,
+                        position: new vscode.Position(node.location.start.line - 1, node.location.start.column - 1),
                         label: entry.label,
                         detail: entry.description,
                         kind: vscode.CompletionItemKind.Reference
@@ -230,14 +223,19 @@ export class Glossary implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.element.glossary = this.getGlossaryFromNodeArray(nodes)
+            cache.element.glossary = this.getGlossaryFromNodeArray(nodes, file)
         } else if (content !== undefined) {
-            cache.element.glossary = this.getGlossaryFromContent(content)
+            cache.element.glossary = this.getGlossaryFromContent(content, file)
         }
     }
 
-    getGlossaryFromContent(content: string): Suggestion[] {
-        const glossaries: Suggestion[] = []
+    getEntry(token: string): GlossarySuggestion | undefined {
+        this.updateAll()
+        return this.glossaries.get(token) || this.acronyms.get(token)
+    }
+
+    getGlossaryFromContent(content: string, file: string): GlossarySuggestion[] {
+        const glossaries: GlossarySuggestion[] = []
         const glossaryList: string[] = []
 
         // We assume that the label is always result[1] and use getDescription(result) for the description
@@ -271,11 +269,14 @@ export class Glossary implements IProvider {
                 if (result === null) {
                     break
                 }
+                const positionContent = content.substring(0, result.index).split('\n')
                 if (glossaryList.includes(result[1])) {
                     continue
                 }
                 glossaries.push({
                     type: regexes[key].type,
+                    file,
+                    position: new vscode.Position(positionContent.length - 1, positionContent[positionContent.length - 1].length),
                     label: result[1],
                     detail: regexes[key].getDescription(result),
                     kind: vscode.CompletionItemKind.Reference

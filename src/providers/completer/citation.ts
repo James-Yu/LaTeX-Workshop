@@ -4,8 +4,8 @@ import {bibtexParser} from 'latex-utensils'
 import {trimMultiLineString} from '../../utils/utils'
 import type {ILwCompletionItem} from './interface'
 
-import type {Extension} from '../../main'
 import type {IProvider} from './interface'
+import type {LoggerLocator, ManagerLocator, UtensilsParserLocator} from '../../interfaces'
 
 
 class Fields extends Map<string, string> {
@@ -54,7 +54,7 @@ class Fields extends Map<string, string> {
 
 }
 
-export interface Suggestion extends ILwCompletionItem {
+export interface CiteSuggestion extends ILwCompletionItem {
     key: string,
     fields: Fields,
     file: string,
@@ -74,14 +74,19 @@ function readCitationFormat(configuration: vscode.WorkspaceConfiguration, exclud
     return fields
 }
 
+interface IExtension extends
+    LoggerLocator,
+    ManagerLocator,
+    UtensilsParserLocator { }
+
 export class Citation implements IProvider {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     /**
      * Bib entries in each bib `file`.
      */
-    private readonly bibEntries = new Map<string, Suggestion[]>()
+    private readonly bibEntries = new Map<string, CiteSuggestion[]>()
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
@@ -162,9 +167,20 @@ export class Citation implements IProvider {
         })
     }
 
-    getEntry(key: string): Suggestion | undefined {
+    getEntry(key: string): CiteSuggestion | undefined {
         const suggestions = this.updateAll()
         const entry = suggestions.find((elm) => elm.key === key)
+        return entry
+    }
+
+    getEntryWithDocumentation(key: string, configurationScope: vscode.ConfigurationScope | undefined): CiteSuggestion | undefined {
+        const entry = this.getEntry(key)
+        if (entry && !(entry.detail || entry.documentation)) {
+            const configuration = vscode.workspace.getConfiguration('latex-workshop', configurationScope)
+            const fields = readCitationFormat(configuration)
+            // We need two spaces to ensure md newline
+            entry.documentation = new vscode.MarkdownString( '\n' + entry.fields.join(fields, true, '  \n') + '\n\n')
+        }
         return entry
     }
 
@@ -203,8 +219,8 @@ export class Citation implements IProvider {
      *
      * @param bibFiles The array of the paths of `.bib` files. If `undefined`, the keys of `bibEntries` are used.
      */
-    private updateAll(bibFiles?: string[]): Suggestion[] {
-        let suggestions: Suggestion[] = []
+    private updateAll(bibFiles?: string[]): CiteSuggestion[] {
+        let suggestions: CiteSuggestion[] = []
         // From bib files
         if (bibFiles === undefined) {
             bibFiles = Array.from(this.bibEntries.keys())
@@ -246,7 +262,7 @@ export class Citation implements IProvider {
             this.bibEntries.delete(file)
             return
         }
-        const newEntry: Suggestion[] = []
+        const newEntry: CiteSuggestion[] = []
         const bibtex = fs.readFileSync(file).toString()
         const ast = await this.extension.pegParser.parseBibtex(bibtex).catch((e) => {
             if (bibtexParser.isSyntaxError(e)) {
@@ -261,7 +277,7 @@ export class Citation implements IProvider {
                 if (entry.internalKey === undefined) {
                     return
                 }
-                const item: Suggestion = {
+                const item: CiteSuggestion = {
                     key: entry.internalKey,
                     label: entry.internalKey,
                     file,
@@ -300,9 +316,9 @@ export class Citation implements IProvider {
         }
     }
 
-    private parseContent(file: string, content: string): Suggestion[] {
+    private parseContent(file: string, content: string): CiteSuggestion[] {
         const itemReg = /^(?!%).*\\bibitem(?:\[[^[\]{}]*\])?{([^}]*)}/gm
-        const items: Suggestion[] = []
+        const items: CiteSuggestion[] = []
         while (true) {
             const result = itemReg.exec(content)
             if (result === null) {

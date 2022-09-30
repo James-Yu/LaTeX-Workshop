@@ -2,11 +2,12 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import type {Extension} from '../../main'
 import {Environment, EnvSnippetType} from './environment'
-import type {IProvider, ILwCompletionItem} from './interface'
+import type {IProvider, ILwCompletionItem, ICommand} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
+import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
+import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
@@ -47,7 +48,7 @@ export function splitSignatureString(signature: string): CmdSignature {
     }
 }
 
-export class Suggestion extends vscode.CompletionItem implements ILwCompletionItem {
+export class CmdEnvSuggestion extends vscode.CompletionItem implements ILwCompletionItem {
     label: string
     package: string
     signature: CmdSignature
@@ -80,18 +81,23 @@ export class Suggestion extends vscode.CompletionItem implements ILwCompletionIt
     }
 }
 
+interface IExtension extends
+    ExtensionRootLocator,
+    CompleterLocator,
+    LoggerLocator,
+    ManagerLocator { }
 
-export class Command implements IProvider {
-    private readonly extension: Extension
+export class Command implements IProvider, ICommand {
+    private readonly extension: IExtension
     private readonly environment: Environment
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
 
-    private readonly defaultCmds: Suggestion[] = []
-    private readonly defaultSymbols: Suggestion[] = []
-    private readonly packageCmds = new Map<string, Suggestion[]>()
+    private readonly defaultCmds: CmdEnvSuggestion[] = []
+    private readonly defaultSymbols: CmdEnvSuggestion[] = []
+    private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: Extension, environment: Environment) {
+    constructor(extension: IExtension, environment: Environment) {
         this.extension = extension
         this.environment = environment
         this.commandFinder = new CommandFinder(extension)
@@ -145,8 +151,8 @@ export class Command implements IProvider {
                 range = new vscode.Range(position.line, startPos + 1, position.line, position.character)
             }
         }
-        const suggestions: Suggestion[] = []
-        const cmdSignatureList: Set<string> = new Set<string>() // This holds defined commands signatures
+        const suggestions: CmdEnvSuggestion[] = []
+        const cmdDuplicationDetector = new CommandSignatureDuplicationDetector()
         // Insert default commands
         this.defaultCmds.forEach(cmd => {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
@@ -154,7 +160,7 @@ export class Command implements IProvider {
             }
             cmd.range = range
             suggestions.push(cmd)
-            cmdSignatureList.add(cmd.signatureAsString())
+            cmdDuplicationDetector.add(cmd)
         })
 
         // Insert unimathsymbols
@@ -167,7 +173,7 @@ export class Command implements IProvider {
             }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
-                cmdSignatureList.add(symbol.name())
+                cmdDuplicationDetector.add(symbol)
             })
         }
 
@@ -176,16 +182,16 @@ export class Command implements IProvider {
             const extraPackages = this.extension.completer.command.getExtraPkgs(languageId)
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
-                    this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
-                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
+                    this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
+                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
                 const pkgs = this.extension.manager.getCachedContent(tex)?.element.package
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
-                        this.provideCmdInPkg(pkg, suggestions, cmdSignatureList)
-                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdSignatureList)
+                        this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
+                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
                     })
                 }
             })
@@ -193,15 +199,15 @@ export class Command implements IProvider {
 
         // Start working on commands in tex. To avoid over populating suggestions, we do not include
         // user defined commands, whose name matches a default command or one provided by a package
-        const cmdNameList = new Set<string>(suggestions.map(e => e.signature.name))
+        const commandNameDuplicationDetector = new CommandNameDuplicationDetector(suggestions)
         this.extension.manager.getIncludedTeX().forEach(tex => {
             const cmds = this.extension.manager.getCachedContent(tex)?.element.command
             if (cmds !== undefined) {
                 cmds.forEach(cmd => {
-                    if (!cmdNameList.has(cmd.name())) {
+                    if (!commandNameDuplicationDetector.has(cmd)) {
                         cmd.range = range
                         suggestions.push(cmd)
-                        cmdNameList.add(cmd.name())
+                        commandNameDuplicationDetector.add(cmd)
                     }
                 })
             }
@@ -246,7 +252,7 @@ export class Command implements IProvider {
             return
         }
         if (nodes !== undefined) {
-            cache.element.command = this.commandFinder.getCmdFromNodeArray(file, nodes)
+            cache.element.command = this.commandFinder.getCmdFromNodeArray(file, nodes, new CommandNameDuplicationDetector())
         } else if (content !== undefined) {
             cache.element.command = this.commandFinder.getCmdFromContent(file, content)
         }
@@ -345,12 +351,12 @@ export class Command implements IProvider {
     }
 
 
-    private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): Suggestion {
+    private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): CmdEnvSuggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
         const label = item.label ? `${item.label}` : `${backslash}${item.command}`
-        const suggestion = new Suggestion(label, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
+        const suggestion = new CmdEnvSuggestion(label, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
 
         if (item.snippet) {
             if (useTabStops) {
@@ -380,13 +386,13 @@ export class Command implements IProvider {
         return suggestion
     }
 
-    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdSignatureList: Set<string>) {
+    provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
         if (!this.packageCmds.has(pkg)) {
             const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_cmd.json`, `${this.extension.extensionRoot}/data/packages/`)
-            const pkgEntry: Suggestion[] = []
+            const pkgEntry: CmdEnvSuggestion[] = []
             if (filePath !== undefined) {
                 try {
                     const cmds = JSON.parse(fs.readFileSync(filePath).toString()) as {[key: string]: CmdItemEntry}
@@ -416,9 +422,9 @@ export class Command implements IProvider {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }
-            if (!cmdSignatureList.has(cmd.signatureAsString())) {
+            if (!cmdDuplicationDetector.has(cmd)) {
                 suggestions.push(cmd)
-                cmdSignatureList.add(cmd.signatureAsString())
+                cmdDuplicationDetector.add(cmd)
             }
         })
     }

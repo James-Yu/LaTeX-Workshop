@@ -3,17 +3,21 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 
-import type {Extension} from '../../main'
 import type {IProvider} from './interface'
 import {stripCommentsAndVerbatim} from '../../utils/utils'
+import type {LoggerLocator, ManagerLocator} from '../../interfaces'
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
+interface IExtension extends
+    LoggerLocator,
+    ManagerLocator { }
+
 abstract class InputAbstract implements IProvider {
-    protected readonly extension: Extension
+    protected readonly extension: IExtension
     graphicsPath: string[] = []
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
@@ -126,7 +130,7 @@ abstract class InputAbstract implements IProvider {
                     } else if (! provideDirOnly) {
                         const item = new vscode.CompletionItem(file, vscode.CompletionItemKind.File)
                         const preview = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.includegraphics.preview.enabled') as boolean
-                        if (preview && command === 'includegraphics') {
+                        if (preview && ['includegraphics', 'includesvg'].includes(command)) {
                             item.documentation = filePath
                         }
                         item.range = range
@@ -142,7 +146,7 @@ abstract class InputAbstract implements IProvider {
 
 export class Input extends InputAbstract {
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         super(extension)
     }
 
@@ -158,7 +162,7 @@ export class Input extends InputAbstract {
         }
         // If there is no root, 'root relative' and 'both' should fall back to 'file relative'
         const rootDir = this.extension.manager.rootDir
-        if (command === 'includegraphics' && this.graphicsPath.length > 0) {
+        if (['includegraphics', 'includesvg'].includes(command) && this.graphicsPath.length > 0) {
             baseDir = this.graphicsPath.map(dir => path.join(rootDir, dir))
         } else {
             const baseConfig = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(currentFile)).get('intellisense.file.base')
@@ -186,7 +190,7 @@ export class Input extends InputAbstract {
 
 export class Import extends InputAbstract {
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         super(extension)
     }
 
@@ -206,7 +210,7 @@ export class Import extends InputAbstract {
 
 export class SubImport extends InputAbstract {
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         super(extension)
     }
 

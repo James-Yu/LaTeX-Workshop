@@ -6,19 +6,20 @@ import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import type {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
+import {InputFileRegExp} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
-import type {Suggestion as CiteEntry} from '../providers/completer/citation'
-import type {Suggestion as CmdEnvEntry} from '../providers/completer/command'
-import type {Suggestion as GlossEntry} from '../providers/completer/glossary'
+import type {CmdEnvSuggestion} from '../providers/completer/command'
+import type {CiteSuggestion} from '../providers/completer/citation'
+import type {GlossarySuggestion} from '../providers/completer/glossary'
 import type {ILwCompletionItem} from '../providers/completer/interface'
+import type {IManager} from '../interfaces'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
 import {FinderUtils} from './managerlib/finderutils'
-import {PathUtils, PathRegExp} from './managerlib/pathutils'
-import type {MatchPath} from './managerlib/pathutils'
+import {PathUtils} from './managerlib/pathutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
 import {Mutex} from '../lib/await-semaphore'
@@ -26,7 +27,7 @@ import {Mutex} from '../lib/await-semaphore'
 /**
  * The content cache for each LaTeX file `filepath`.
  */
-interface Content {
+export interface Content {
     [filepath: string]: { // The path of a LaTeX file.
         /**
          * The dirty (under editing) content of the LaTeX file if opened in vscode,
@@ -38,10 +39,10 @@ interface Content {
          */
         element: {
             reference?: ILwCompletionItem[],
-            glossary?: GlossEntry[],
-            environment?: CmdEnvEntry[],
-            bibitem?: CiteEntry[],
-            command?: CmdEnvEntry[],
+            glossary?: GlossarySuggestion[],
+            environment?: CmdEnvSuggestion[],
+            bibitem?: CiteSuggestion[],
+            command?: CmdEnvSuggestion[],
             package?: Set<string>
         },
         /**
@@ -78,7 +79,7 @@ type RootFileType = {
     uri: vscode.Uri
 }
 
-export class Manager {
+export class Manager implements IManager {
     /**
      * The content cache for each LaTeX file.
      */
@@ -279,6 +280,8 @@ export class Manager {
             return 'jlweave'
         } else if (this.rsweaveExt.includes(ext)) {
             return 'rsweave'
+        } else if (ext === '.dtx') {
+            return 'doctex'
         } else {
             return undefined
         }
@@ -626,24 +629,21 @@ export class Manager {
         // Update children of current file
         if (this.cachedContent[file] === undefined) {
             this.cachedContent[file] = {content, element: {}, bibs: [], children: []}
-            const pathRegexp = new PathRegExp()
+            const inputFileRegExp = new InputFileRegExp()
             while (true) {
-                const result: MatchPath | undefined = pathRegexp.exec(content)
+                const result = inputFileRegExp.exec(content, file, baseFile)
                 if (!result) {
                     break
                 }
 
-                const inputFile = pathRegexp.parseInputFilePath(result, file, baseFile)
-
-                if (!inputFile ||
-                    !fs.existsSync(inputFile) ||
-                    path.relative(inputFile, baseFile) === '') {
+                if (!fs.existsSync(result.path) ||
+                    path.relative(result.path, baseFile) === '') {
                     continue
                 }
 
                 this.cachedContent[file].children.push({
-                    index: result.index,
-                    file: inputFile
+                    index: result.match.index,
+                    file: result.path
                 })
             }
         }
@@ -680,32 +680,30 @@ export class Manager {
      * @param baseFile the name of the supposed rootFile
      */
     private async parseInputFiles(content: string, currentFile: string, baseFile: string) {
-        const pathRegexp = new PathRegExp()
+        const inputFileRegExp = new InputFileRegExp()
         while (true) {
-            const result: MatchPath | undefined = pathRegexp.exec(content)
+            const result = inputFileRegExp.exec(content, currentFile, baseFile)
             if (!result) {
                 break
             }
-            const inputFile = pathRegexp.parseInputFilePath(result, currentFile, baseFile)
 
-            if (!inputFile ||
-                !fs.existsSync(inputFile) ||
-                path.relative(inputFile, baseFile) === '') {
+            if (!fs.existsSync(result.path) ||
+                path.relative(result.path, baseFile) === '') {
                 continue
             }
 
             this.cachedContent[baseFile].children.push({
-                index: result.index,
-                file: inputFile
+                index: result.match.index,
+                file: result.path
             })
 
-            if (this.filesWatched.has(inputFile)) {
+            if (this.filesWatched.has(result.path)) {
                 // This file is already watched. Ignore it to avoid infinite loops
                 // in case of circular inclusion.
                 // Note that parseFileAndSubs calls parseInputFiles in return
                 continue
             }
-            await this.parseFileAndSubs(inputFile, baseFile)
+            await this.parseFileAndSubs(result.path, baseFile)
         }
     }
 

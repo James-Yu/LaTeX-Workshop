@@ -1,8 +1,8 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import type {Extension} from '../../main'
 import type {IProvider} from './interface'
+import type {ExtensionRootLocator} from '../../interfaces'
 
 type DataPackagesJsonType = typeof import('../../../data/packagenames.json')
 
@@ -12,11 +12,14 @@ type PackageItemEntry = {
     documentation: string
 }
 
+interface IExtension extends
+    ExtensionRootLocator { }
+
 export class Package implements IProvider {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     private readonly suggestions: vscode.CompletionItem[] = []
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 

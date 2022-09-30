@@ -14,10 +14,11 @@ import {Client} from './viewerlib/client'
 import {PdfViewerPanel, PdfViewerPanelSerializer, PdfViewerPanelService} from './viewerlib/pdfviewerpanel'
 import {PdfViewerManagerService} from './viewerlib/pdfviewermanager'
 import {PdfViewerPagesLoaded} from './eventbus'
+import type {IViewer} from '../interfaces'
 export {PdfViewerHookProvider} from './viewerlib/pdfviewerhook'
 
 
-export class Viewer {
+export class Viewer implements IViewer {
     private readonly extension: Extension
     readonly pdfViewerPanelSerializer: PdfViewerPanelSerializer
     private readonly panelService: PdfViewerPanelService
@@ -301,12 +302,14 @@ export class Viewer {
                 light: {
                     pageColorsForeground: configuration.get('view.pdf.color.light.pageColorsForeground') || 'CanvasText',
                     pageColorsBackground: configuration.get('view.pdf.color.light.pageColorsBackground') || 'Canvas',
-                    backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff')
+                    backgroundColor: configuration.get('view.pdf.color.light.backgroundColor', '#ffffff'),
+                    pageBorderColor: configuration.get('view.pdf.color.light.pageBorderColor', 'lightgrey')
                 },
                 dark: {
                     pageColorsForeground: configuration.get('view.pdf.color.dark.pageColorsForeground') || 'CanvasText',
                     pageColorsBackground: configuration.get('view.pdf.color.dark.pageColorsBackground') || 'Canvas',
-                    backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff')
+                    backgroundColor: configuration.get('view.pdf.color.dark.backgroundColor', '#ffffff'),
+                    pageBorderColor: configuration.get('view.pdf.color.dark.pageBorderColor', 'lightgrey')
                 }
             },
             keybindings: {

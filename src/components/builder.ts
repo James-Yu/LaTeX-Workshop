@@ -10,12 +10,13 @@ import {replaceArgumentPlaceholders} from '../utils/utils'
 
 import type {Extension} from '../main'
 import {BuildFinished} from './eventbus'
+import type {IBuilder} from '../interfaces'
 
 const maxPrintLine = '10000'
 const texMagicProgramName = 'TeXMagicProgram'
 const bibMagicProgramName = 'BibMagicProgram'
 
-export class Builder {
+export class Builder implements IBuilder {
     private readonly extension: Extension
     readonly tmpDir: string
     private currentProcess: cp.ChildProcessWithoutNullStreams | undefined

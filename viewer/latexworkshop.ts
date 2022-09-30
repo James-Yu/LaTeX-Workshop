@@ -35,7 +35,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private synctexEnabled = true
     private autoReloadEnabled = true
     private readonly setupAppOptionsPromise = new ExternalPromise<void>()
-    private readonly restoredState = new ExternalPromise<PdfViewerState | undefined>()
+    readonly #restoredState = new ExternalPromise<PdfViewerState | undefined>()
 
     constructor() {
         // When the promise is resolved, the initialization
@@ -163,6 +163,14 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         return params
     }
 
+    private get restoredState() {
+        if (this.embedded) {
+            return this.#restoredState.promise
+        } else {
+            return undefined
+        }
+    }
+
     async waitSetupAppOptionsFinished() {
         return this.setupAppOptionsPromise.promise
     }
@@ -179,6 +187,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 standardFontDataUrl: '/standard_fonts/',
                 workerPort,
                 workerSrc: '/build/pdf.worker.js',
+                forcePageColors: true,
                 ...color
             }
             PDFViewerApplicationOptions.setAll(options)
@@ -189,7 +198,7 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
     private async applyParamsOnStart() {
         const params = await this.fetchParams()
         this.applyNonStatefulParams(params)
-        const restoredState = await this.restoredState.promise
+        const restoredState = await this.restoredState
         if (restoredState) {
             await this.restorePdfViewerState(restoredState)
         } else {
@@ -353,10 +362,13 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
                 (document.querySelector('html') as HTMLHtmlElement).style.background = 'white'
             }
         }
+        const css = document.styleSheets[document.styleSheets.length - 1]
         if (this.isPrefersColorSchemeDark()) {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.dark.backgroundColor
+            css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.dark.pageBorderColor}}`, css.cssRules.length)
         } else {
             (document.querySelector('#viewerContainer') as HTMLElement).style.background = params.color.light.backgroundColor
+            css.insertRule(`.pdfViewer.removePageBorders .page {box-shadow: 0px 0px 0px 1px ${params.color.light.pageBorderColor}}`, css.cssRules.length)
         }
 
         if (params.keybindings) {
@@ -643,9 +655,9 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
             switch (data.type) {
                 case 'restore_state': {
                     if (data.state.kind !== 'not_stored') {
-                        this.restoredState.resolve(data.state)
+                        this.#restoredState.resolve(data.state)
                     } else {
-                        this.restoredState.resolve(undefined)
+                        this.#restoredState.resolve(undefined)
                     }
                     break
                 }

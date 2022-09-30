@@ -27,12 +27,14 @@ export type PdfViewerParams = {
         light: {
             pageColorsForeground: string,
             pageColorsBackground: string,
-            backgroundColor: string
+            backgroundColor: string,
+            pageBorderColor: string
         },
         dark: {
             pageColorsForeground: string,
             pageColorsBackground: string,
-            backgroundColor: string
+            backgroundColor: string,
+            pageBorderColor: string
         }
     }
     keybindings: {

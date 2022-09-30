@@ -3,12 +3,11 @@
   "displayName": "LaTeX Workshop",
   "description": "Boost LaTeX typesetting efficiency with preview, compile, autocomplete, colorize, and more.",
   "icon": "icons/icon.png",
-  "version": "8.27.2",
+  "version": "8.29.1",
   "publisher": "manhen",
   "license": "MIT",
   "homepage": "https://github.com/ManuelHentschel/LaTeX-Workshop",
   "repository": {
-    "type": "git",
     "url": "https://github.com/ManuelHentschel/LaTeX-Workshop"
   },
   "engines": {
@@ -967,7 +966,7 @@
               "env": {}
             }
           ],
-          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. For more details, please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders."
+          "markdownDescription": "Define LaTeX compiling tools to be used in recipes. Each tool is labeled by its `name`. When invoked, `command` is spawned with arguments defined in `args` and environment variables defined in `env`. Typically no spaces should appear in each argument unless in paths. List of available placeholders: `%DOC%`, `%DOC_W32%, %DOC_EXT%`, `%DOC_EXT_W32%`, `%DOCFILE%`, `%DOCFILE_EXT%`, `%DIR%`, `%DIR_W32%`, `%TMPDIR%` and `%OUTDIR%`, `%OUTDIR_W32%`. Please visit https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders for a complete list of all placeholders."
         },
         "latex-workshop.latex.magic.args": {
           "scope": "resource",
@@ -1248,7 +1247,7 @@
             "*.nav",
             "*.vrb"
           ],
-          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as *.removeme, something?.aux can be used."
+          "markdownDescription": "Files to clean. This property must be an array of strings. File globs such as `*.removeme`, `something?.aux` can be used. Users can also specify glob patterns like `emptyfolder*/` to remove empty folders. Non-empty folders will be ignored. The folder globs must end with a slash and the last path component must not contain the globstar `**`, otherwise the folders will not be removed. The following globs patterns are correct `['abc/', 'abc*/', '**/abc*/', 'abc/**/def/']` but these are not ['**', '**/', 'abc/**', 'abc/**/', 'abc/def**/', 'abc/d**ef/']`."
         },
         "latex-workshop.latex.clean.command": {
           "scope": "resource",
@@ -1266,7 +1265,7 @@
             "-c",
             "%TEX%"
           ],
-          "markdownDescription": "The arguments of `#latex-workshop.latex.clean.command#`. The `%TEX%` placeholder is the full path of the tex file from which the clean command is called."
+          "markdownDescription": "The arguments of `#latex-workshop.latex.clean.command#`. Placeholders listed in https://github.com/James-Yu/LaTeX-Workshop/wiki/Compile#placeholders can be used to populate the argument strings. Besides, an additional `%TEX%` placeholder refers to the full path of the tex file from which the clean command is called."
         },
         "latex-workshop.latex.clean.method": {
           "scope": "resource",
@@ -1301,7 +1300,7 @@
             "subsection",
             "subsubsection"
           ],
-          "markdownDescription": "The section names of LaTeX outline hierarchy. It is also used by the folding mechanism. This property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "The section names of LaTeX outline hierarchy. It is also used by the folding mechanism. This property is an array of case-sensitive strings in the order of document structure hierarchy. For multiple tags in the same level, separate the tags with `|` as delimiters, e.g., `section|alternative`."
         },
         "latex-workshop.view.outline.commands": {
           "scope": "window",
@@ -1312,13 +1311,19 @@
           "default": [
             "label"
           ],
-          "markdownDescription": "The names of the commands to be shown in the outline/structure views. The commands must be called in the form `\\commandname{arg}`. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "The names of the commands to be shown in the outline/structure views. The commands must be called in the form `\\commandname{arg}`."
+        },
+        "latex-workshop.view.outline.fastparse.enabled": {
+          "scope": "window",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "[Experimental] Use fast LaTeX parsing algorithm to build outline/structure. This is done by inheritly removing texts and comments before building AST. Enabling this will not tamper the document, but may result in incomplete outline/structure."
         },
         "latex-workshop.view.outline.floats.enabled": {
           "scope": "window",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Show the floating objects (figures and tables) in the outline/structure views. Reload vscode to make any change in this configuration effective."
+          "markdownDescription": "Show the floating objects (figures and tables) in the outline/structure views."
         },
         "latex-workshop.view.outline.numbers.enabled": {
           "scope": "window",
@@ -1505,7 +1510,7 @@
             "never"
           ],
           "default": "compat",
-          "markdownDescription": "Enable the CSS invert filter.",
+          "markdownDescription": "Enable the CSS invert filter. Reload the viewer to make any change in this configuration effective.",
           "enumDescriptions": [
             "Enable the invert filter when using a dark theme.",
             "Always enable invert filter.",
@@ -1517,38 +1522,38 @@
           "scope": "window",
           "type": "number",
           "default": 0,
-          "markdownDescription": "Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1."
+          "markdownDescription": "Define the CSS invert filter level of the PDF viewer. This config can invert the color of PDF. Possible values are from 0 to 1. Reload the viewer to make any change in this configuration effective."
         },
         "latex-workshop.view.pdf.invertMode.brightness": {
           "scope": "window",
           "type": "number",
           "default": 1,
-          "markdownDescription": "Define the CSS brightness filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 2."
+          "markdownDescription": "Define the CSS brightness filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 2. Reload the viewer to make any change in this configuration effective."
         },
         "latex-workshop.view.pdf.invertMode.grayscale": {
           "scope": "window",
           "type": "number",
           "default": 0.6,
-          "markdownDescription": "Define the CSS grayscale filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
+          "markdownDescription": "Define the CSS grayscale filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1. Reload the viewer to make any change in this configuration effective."
         },
         "latex-workshop.view.pdf.invertMode.hueRotate": {
           "scope": "window",
           "type": "number",
           "default": 180,
-          "markdownDescription": "Define the CSS hue-rotate filter angle of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 360."
+          "markdownDescription": "Define the CSS hue-rotate filter angle of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 360. Reload the viewer to make any change in this configuration effective."
         },
         "latex-workshop.view.pdf.invertMode.sepia": {
           "scope": "window",
           "type": "number",
           "default": 0,
-          "markdownDescription": "Define the CSS sepia filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1."
+          "markdownDescription": "Define the CSS sepia filter level of the PDF viewer when the invert mode is enabled. Possible values are from 0 to 1. Reload the viewer to make any change in this configuration effective."
         },
         "latex-workshop.view.pdf.backgroundColor": {
           "scope": "window",
           "type": "string",
           "default": "#ffffff",
           "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.view.pdf.color.light.backgroundColor#` and `#latex-workshop.view.pdf.color.dark.backgroundColor#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.view.pdf.color.light.backgroundColor#` and `#latex-workshop.view.pdf.color.dark.backgroundColor#` instead."
+          "deprecationMessage": "Please use \"latex-workshop.view.pdf.color.light.backgroundColor\" and \"latex-workshop.view.pdf.color.dark.backgroundColor\" instead."
         },
         "latex-workshop.view.pdf.color.light.pageColorsForeground": {
           "scope": "window",
@@ -1568,6 +1573,12 @@
           "default": "#ffffff",
           "markdownDescription": "The background color of the viewer when the OS appearance is light. The string must represent a color in HTML. Reload vscode to make any change in this configuration effective."
         },
+        "latex-workshop.view.pdf.color.light.pageBorderColor": {
+          "scope": "window",
+          "type": "string",
+          "default": "lightgrey",
+          "markdownDescription": "The border color of pages when the OS appearance is light. The string must represent a color in HTML. Reload vscode to make any change in this configuration effective."
+        },
         "latex-workshop.view.pdf.color.dark.pageColorsForeground": {
           "scope": "window",
           "type": "string",
@@ -1585,6 +1596,12 @@
           "type": "string",
           "default": "#ffffff",
           "markdownDescription": "The background color of the viewer when the OS appearance is dark. The string must represent a color in HTML. Reload vscode to make any change in this configuration effective."
+        },
+        "latex-workshop.view.pdf.color.dark.pageBorderColor": {
+          "scope": "window",
+          "type": "string",
+          "default": "lightgrey",
+          "markdownDescription": "The border color of pages when the OS appearance is dark. The string must represent a color in HTML. Reload vscode to make any change in this configuration effective."
         },
         "latex-workshop.synctex.path": {
           "scope": "window",
@@ -1604,13 +1621,19 @@
           "default": true,
           "markdownDescription": "Enable using a builtin synctex function. The command set in latex-workshop.synctex.path will not be used."
         },
-        "latex-workshop.chktex.enabled": {
+        "latex-workshop.linting.chktex.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
-          "markdownDescription": "Enable linting LaTeX with ChkTeX. Check `#latex-workshop.chktex.run#` to control when the linting is executed if this config is set to `true`."
+          "markdownDescription": "Enable linting LaTeX with `chktex`. Check `#latex-workshop.linting.run#` to control when `chktex` is executed if this config is set to `true."
         },
-        "latex-workshop.chktex.run": {
+        "latex-workshop.linting.lacheck.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "markdownDescription": "Enable linting LaTeX with `lacheck`. Check `#latex-workshop.linting.run#` to control when `lacheck` is executed if this config is set to `true."
+        },
+        "latex-workshop.linting.run": {
           "scope": "resource",
           "type": "string",
           "enum": [
@@ -1622,22 +1645,15 @@
             "Lint the active document when input is stopped"
           ],
           "default": "onSave",
-          "markdownDescription": "When LaTeX should be linted by ChkTeX.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `#latex-workshop.chktex.delay#`. It also implies `onSave`."
+          "markdownDescription": "When LaTeX should be linted.\n- `onSave`: the whole LaTeX project will be linted upon saving.\n- `onType`: the active document will be linted when input is stopped for a period of time defined in `#latex-workshop.linting.delay#`. It also implies `onSave`."
         },
-        "latex-workshop.chktex.exec.path": {
+        "latex-workshop.linting.chktex.exec.path": {
           "scope": "window",
           "type": "string",
           "default": "chktex",
-          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.chktex.exec.args#` and required arguments to form a complete command of ChkTeX."
+          "markdownDescription": "Define the location of ChkTeX executive file. This command will be joint with `#latex-workshop.linting.chktex.exec.args#` and required arguments to form a complete command of ChkTeX."
         },
-        "latex-workshop.chktex.path": {
-          "scope": "window",
-          "type": "string",
-          "default": "",
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.path#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.exec.path#` instead."
-        },
-        "latex-workshop.chktex.exec.args": {
+        "latex-workshop.linting.chktex.exec.args": {
           "scope": "resource",
           "type": "array",
           "items": {
@@ -1652,6 +1668,82 @@
           ],
           "markdownDescription": "Linter arguments to check LaTeX syntax of the current file state in real time with ChkTeX. Arguments must be in separate strings in the array. Additional arguments, i.e., `-I0 -f%f:%l:%c:%d:%k:%n:%m\\n` will be appended when constructing the command. Current file contents will be piped to the command through stdin."
         },
+        "latex-workshop.linting.chktex.convertOutput.column.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "markdownDescription": "Enable converting ChkTeX outputs' column numbers for non-ASCII characters."
+        },
+        "latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize": {
+          "scope": "resource",
+          "type": "number",
+          "default": -1,
+          "markdownDescription": "Write the `TabSize` number from `.chktexrc`. The default value \"-1\" means that LaTeX Workshop will try to find `.chktexrc` and to read the value from it."
+        },
+        "latex-workshop.linting.delay": {
+          "scope": "resource",
+          "type": "number",
+          "default": 500,
+          "markdownDescription": "Defines the delay in milliseconds for linter to wait after stopped typing. This config only matters when `#latex-workshop.linting.run#` is set to `onType`."
+        },
+        "latex-workshop.linting.lacheck.exec.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "lacheck",
+          "markdownDescription": "Define the location of LaCheck executive file."
+        },
+        "latex-workshop.chktex.enabled": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.enabled#` and `#latex-workshop.linting.chktex.exec.path#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.enabled\" and \"latex-workshop.linting.chktex.exec.path\" instead."
+        },
+        "latex-workshop.chktex.run": {
+          "scope": "resource",
+          "type": "string",
+          "enum": [
+            "onSave",
+            "onType"
+          ],
+          "enumDescriptions": [
+            "Lint the whole LaTeX project upon saving",
+            "Lint the active document when input is stopped"
+          ],
+          "default": "onSave",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.run#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.run\" instead."
+        },
+        "latex-workshop.chktex.exec.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "chktex",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.path#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.path\" instead."
+        },
+        "latex-workshop.chktex.path": {
+          "scope": "window",
+          "type": "string",
+          "default": "",
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.path#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.path\" instead."
+        },
+        "latex-workshop.chktex.exec.args": {
+          "scope": "resource",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "-wall",
+            "-n22",
+            "-n30",
+            "-e16",
+            "-q"
+          ],
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
+        },
         "latex-workshop.chktex.args.active": {
           "scope": "resource",
           "type": "array",
@@ -1659,8 +1751,8 @@
             "type": "string"
           },
           "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.args#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.exec.args#` instead."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
         },
         "latex-workshop.chktex.args.root": {
           "scope": "resource",
@@ -1669,26 +1761,29 @@
             "type": "string"
           },
           "default": [],
-          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.chktex.exec.args#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.chktex.exec.args#` instead."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.exec.args#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.exec.args\" instead."
         },
         "latex-workshop.chktex.delay": {
           "scope": "resource",
           "type": "number",
           "default": 500,
-          "markdownDescription": "Defines the delay in milliseconds for chktex to wait after stopped typing. This config only matters when `#latex-workshop.chktex.run#` is set to `onType`."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.delay#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.delay\" instead."
         },
         "latex-workshop.chktex.convertOutput.column.enabled": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
-          "markdownDescription": "Enable converting ChkTeX outputs' column numbers for non-ASCII characters."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.convertOutput.column.enabled#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.convertOutput.column.enabled\" instead."
         },
         "latex-workshop.chktex.convertOutput.column.chktexrcTabSize": {
           "scope": "resource",
           "type": "number",
           "default": -1,
-          "markdownDescription": "Write the `TabSize` number from `.chktexrc`. The default value \"-1\" means that LaTeX Workshop will try to find `.chktexrc` and to read the value from it."
+          "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize#` instead.",
+          "deprecationMessage": "Please use \"latex-workshop.linting.chktex.convertOutput.column.chktexrcTabSize\" instead."
         },
         "latex-workshop.check.duplicatedLabels.enabled": {
           "scope": "window",
@@ -1795,7 +1890,7 @@
           "default": 5,
           "markdownDescription": "Defines the maximum bibtex file size for the extension to parse in MB.",
           "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.bibtex.maxFileSize#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.bibtex.maxFileSize#` instead."
+          "deprecationMessage": "Please use \"latex-workshop.bibtex.maxFileSize\" instead."
         },
         "latex-workshop.intellisense.triggers.latex": {
           "scope": "window",
@@ -1814,7 +1909,7 @@
           "default": "@",
           "markdownDescription": "Character to trigger snippet suggestions as part of intellisense. Set this variable to `''` to deactivate these snippets. Reload vscode to make any change in this configuration effective.",
           "markdownDeprecationMessage": "**Deprecated**: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead.",
-          "deprecationMessage": "Deprecated: Please use `#latex-workshop.intellisense.atSuggestion.trigger.latex#` instead."
+          "deprecationMessage": "Please use \"latex-workshop.intellisense.atSuggestion.trigger.latex\" instead."
         },
         "latex-workshop.intellisense.atSuggestion.trigger.latex": {
           "scope": "window",
@@ -2463,10 +2558,10 @@
     "cross-spawn": "7.0.3",
     "glob": "7.2.0",
     "iconv-lite": "0.6.3",
-    "latex-utensils": "4.2.1",
+    "latex-utensils": "4.5.0",
     "mathjax-full": "3.2.0",
     "micromatch": "4.0.4",
-    "pdfjs-dist": "2.14.305",
+    "pdfjs-dist": "2.15.349",
     "tmp": "0.2.1",
     "workerpool": "6.2.0",
     "ws": "8.5.0"
@@ -2481,15 +2576,15 @@
     "@types/vscode": "1.67.0",
     "@types/workerpool": "6.1.0",
     "@types/ws": "8.5.3",
-    "@typescript-eslint/eslint-plugin": "5.27.1",
-    "@typescript-eslint/parser": "5.27.1",
-    "@vscode/test-electron": "2.1.3",
-    "eslint": "8.17.0",
+    "@typescript-eslint/eslint-plugin": "5.36.1",
+    "@typescript-eslint/parser": "5.36.1",
+    "@vscode/test-electron": "2.1.5",
+    "eslint": "8.23.0",
     "mocha": "9.2.2",
     "rimraf": "3.0.2",
     "textmate-bailout": "1.1.0",
-    "typescript": "4.7.3",
-    "vsce": "2.9.1",
+    "typescript": "4.8.2",
+    "vsce": "2.11.0",
     "vscode-extend-language": "0.1.1"
   }
 }

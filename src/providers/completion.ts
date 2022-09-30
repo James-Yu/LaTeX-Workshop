@@ -16,12 +16,13 @@ import {Input, Import, SubImport} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 import {escapeRegExp} from '../utils/utils'
+import type {CommandLocator} from '../interfaces'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
 type DataCmdsJsonType = typeof import('../../data/commands.json')
 type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols_cmd.json')
 
-export class Completer implements vscode.CompletionItemProvider {
+export class Completer implements vscode.CompletionItemProvider, CommandLocator {
     private readonly extension: Extension
     readonly citation: Citation
     readonly command: Command
@@ -177,7 +178,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.documentClass
                 break
             case 'input':
-                reg = /\\(input|include|subfile|includegraphics|lstinputlisting|verbatiminput|loadglsentries)\*?(?:\[[^[\]]*\])*{([^}]*)$/
+                reg = /\\(input|include|subfile|includegraphics|includesvg|lstinputlisting|verbatiminput|loadglsentries)\*?(?:\[[^[\]]*\])*{([^}]*)$/
                 provider = this.input
                 break
             case 'includeonly':
@@ -193,7 +194,7 @@ export class Completer implements vscode.CompletionItemProvider {
                 provider = this.subImport
                 break
             case 'glossary':
-                reg = /\\(gls(?:pl|text|first|plural|firstplural|name|symbol|desc|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
+                reg = /\\(gls(?:pl|text|first|fmt(?:text|short|long)|plural|firstplural|name|symbol|desc|disp|user(?:i|ii|iii|iv|v|vi))?|Acr(?:long|full|short)?(?:pl)?|ac[slf]?p?)(?:\[[^[\]]*\])?{([^}]*)$/i
                 provider = this.glossary
                 break
             default:

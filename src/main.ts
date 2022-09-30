@@ -18,7 +18,6 @@ import {TeXMagician} from './components/texmagician'
 import {EnvPair} from './components/envpair'
 import {Section} from './components/section'
 import {CompilerLogParser} from './components/parser/compilerlog'
-import {LinterLogParser} from './components/parser/linterlog'
 import {UtensilsParser as PEGParser} from './components/parser/syntax'
 import {Configuration} from './components/configuration'
 import {EventBus} from './components/eventbus'
@@ -40,6 +39,7 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
+import type {ExtensionRootLocator, BuilderLocator, LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator, CompleterLocator, ViewerLocator} from './interfaces'
 
 
 function conflictExtensionCheck() {
@@ -320,7 +320,17 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     )
 }
 
-export class Extension {
+interface IExtension extends
+    ExtensionRootLocator,
+    BuilderLocator,
+    CompleterLocator,
+    LoggerLocator,
+    LwfsLocator,
+    ManagerLocator,
+    UtensilsParserLocator,
+    ViewerLocator { }
+
+export class Extension implements IExtension {
     readonly extensionRoot: string
     readonly logger: Logger
     readonly eventBus = new EventBus()
@@ -333,7 +343,6 @@ export class Extension {
     readonly server: Server
     readonly locator: Locator
     readonly compilerLogParser: CompilerLogParser
-    readonly linterLogParser: LinterLogParser
     readonly pegParser: PEGParser
     readonly completer: Completer
     readonly atSuggestionCompleter: AtSuggestionCompleter
@@ -368,7 +377,6 @@ export class Extension {
         this.server = new Server(this)
         this.locator = new Locator(this)
         this.compilerLogParser = new CompilerLogParser(this)
-        this.linterLogParser = new LinterLogParser(this)
         this.completer = new Completer(this)
         this.atSuggestionCompleter = new AtSuggestionCompleter(this)
         this.duplicateLabels = new DuplicateLabels(this)

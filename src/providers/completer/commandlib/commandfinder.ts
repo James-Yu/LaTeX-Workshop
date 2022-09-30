@@ -1,10 +1,9 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
-
-import {Suggestion} from '../command'
-import type {Extension} from '../../../main'
+import {CmdEnvSuggestion} from '../command'
 import type {ILwCompletionItem} from '../interface'
+import type {CompleterLocator, ManagerLocator} from '../../../interfaces'
 
 
 export function isTriggerSuggestNeeded(name: string): boolean {
@@ -35,28 +34,32 @@ export function resolveCmdEnvFile(name: string, dataDir: string): string | undef
     return undefined
 }
 
+interface IExtension extends
+    CompleterLocator,
+    ManagerLocator { }
+
 export class CommandFinder {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     definedCmds = new Map<string, {file: string, location: vscode.Location}>()
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
-    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
-        let cmds: Suggestion[] = []
+    getCmdFromNodeArray(file: string, nodes: latexParser.Node[], commandNameDuplicationDetector: CommandNameDuplicationDetector): CmdEnvSuggestion[] {
+        let cmds: CmdEnvSuggestion[] = []
         nodes.forEach(node => {
-            cmds = cmds.concat(this.getCmdFromNode(file, node, cmdNameList))
+            cmds = cmds.concat(this.getCmdFromNode(file, node, commandNameDuplicationDetector))
         })
         return cmds
     }
 
-    private getCmdFromNode(file: string, node: latexParser.Node, cmdNameList: Set<string> = new Set<string>()): Suggestion[] {
-        const cmds: Suggestion[] = []
+    private getCmdFromNode(file: string, node: latexParser.Node, commandNameDuplicationDetector: CommandNameDuplicationDetector): CmdEnvSuggestion[] {
+        const cmds: CmdEnvSuggestion[] = []
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
-            if (!cmdNameList.has(name)) {
-                const cmd = new Suggestion(`\\${name}`, '', {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
+            if (!commandNameDuplicationDetector.has(name)) {
+                const cmd = new CmdEnvSuggestion(`\\${name}`, '', {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
                 cmd.documentation = '`' + name + '`'
                 cmd.insertText = new vscode.SnippetString(name + this.getTabStopsFromNode(node))
                 cmd.filterText = name
@@ -64,11 +67,11 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdNameList.add(name)
+                commandNameDuplicationDetector.add(name)
             }
         } else if (latexParser.isCommand(node)) {
-            if (!cmdNameList.has(node.name)) {
-                const cmd = new Suggestion(`\\${node.name}`,
+            if (!commandNameDuplicationDetector.has(node.name)) {
+                const cmd = new CmdEnvSuggestion(`\\${node.name}`,
                     this.whichPackageProvidesCommand(node.name),
                     { name: node.name, args: this.getArgsFromNode(node) },
                     vscode.CompletionItemKind.Function
@@ -80,7 +83,7 @@ export class CommandFinder {
                     cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
                 }
                 cmds.push(cmd)
-                cmdNameList.add(node.name)
+                commandNameDuplicationDetector.add(node.name)
             }
             if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
                 Array.isArray(node.args) && node.args.length > 0) {
@@ -94,8 +97,8 @@ export class CommandFinder {
                         args += '{}'
                     }
                 }
-                if (!cmdNameList.has(label)) {
-                    const cmd = new Suggestion(`\\${label}`, 'user-defined', {name: label, args}, vscode.CompletionItemKind.Function)
+                if (!commandNameDuplicationDetector.has(label)) {
+                    const cmd = new CmdEnvSuggestion(`\\${label}`, 'user-defined', {name: label, args}, vscode.CompletionItemKind.Function)
                     cmd.documentation = '`' + label + '`'
                     cmd.insertText = new vscode.SnippetString(label + tabStops)
                     cmd.filterText = label
@@ -109,12 +112,12 @@ export class CommandFinder {
                             vscode.Uri.file(file),
                             new vscode.Position(node.location.start.line - 1, node.location.start.column))
                     })
-                    cmdNameList.add(label)
+                    commandNameDuplicationDetector.add(label)
                 }
             }
         }
         if (latexParser.hasContentArray(node)) {
-            return cmds.concat(this.getCmdFromNodeArray(file, node.content, cmdNameList))
+            return cmds.concat(this.getCmdFromNodeArray(file, node.content, commandNameDuplicationDetector))
         }
         return cmds
     }
@@ -157,10 +160,10 @@ export class CommandFinder {
     }
 
 
-    getCmdFromContent(file: string, content: string): Suggestion[] {
+    getCmdFromContent(file: string, content: string): CmdEnvSuggestion[] {
         const cmdReg = /\\([a-zA-Z@_]+(?::[a-zA-Z]*)?\*?)({[^{}]*})?({[^{}]*})?({[^{}]*})?/g
-        const cmds: Suggestion[] = []
-        const cmdNameList: Set<string> = new Set<string>()
+        const cmds: CmdEnvSuggestion[] = []
+        const commandNameDuplicationDetector = new CommandNameDuplicationDetector()
         let explSyntaxOn: boolean = false
         while (true) {
             const result = cmdReg.exec(content)
@@ -182,10 +185,10 @@ export class CommandFinder {
                     result[1] = result[1].slice(0, len)
                 }
             }
-            if (cmdNameList.has(result[1])) {
+            if (commandNameDuplicationDetector.has(result[1])) {
                 continue
             }
-            const cmd = new Suggestion(
+            const cmd = new CmdEnvSuggestion(
                 `\\${result[1]}`,
                 this.whichPackageProvidesCommand(result[1]),
                 { name: result[1], args: this.getArgsFromRegResult(result) },
@@ -198,7 +201,7 @@ export class CommandFinder {
                 cmd.command = { title: 'Post-Action', command: 'editor.action.triggerSuggest' }
             }
             cmds.push(cmd)
-            cmdNameList.add(result[1])
+            commandNameDuplicationDetector.add(result[1])
         }
 
         const newCommandReg = /\\(?:(?:(?:re|provide)?(?:new)?command)|(?:DeclarePairedDelimiter(?:X|XPP)?)|DeclareMathOperator)\*?{?\\(\w+)}?(?:\[([1-9])\])?/g
@@ -207,7 +210,7 @@ export class CommandFinder {
             if (result === null) {
                 break
             }
-            if (cmdNameList.has(result[1])) {
+            if (commandNameDuplicationDetector.has(result[1])) {
                 continue
             }
 
@@ -221,12 +224,12 @@ export class CommandFinder {
                 }
             }
 
-            const cmd = new Suggestion(`\\${result[1]}`, 'user-defined', {name: result[1], args}, vscode.CompletionItemKind.Function)
+            const cmd = new CmdEnvSuggestion(`\\${result[1]}`, 'user-defined', {name: result[1], args}, vscode.CompletionItemKind.Function)
             cmd.documentation = '`' + result[1] + '`'
             cmd.insertText = new vscode.SnippetString(result[1] + tabStops)
             cmd.filterText = result[1]
             cmds.push(cmd)
-            cmdNameList.add(result[1])
+            commandNameDuplicationDetector.add(result[1])
 
             this.definedCmds.set(result[1], {
                 file,
@@ -260,7 +263,7 @@ export class CommandFinder {
 
     /**
      * Return the name of the package providing cmdName among all the packages
-     * including in the rootFile. If no package matches, return ''
+     * included in the rootFile. If no package matches, return ''
      *
      * @param cmdName the name of a command (without the leading '\')
      */
@@ -273,7 +276,7 @@ export class CommandFinder {
                 }
                 for (const pkg of cachedPkgs) {
                     const commands: ILwCompletionItem[] = []
-                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new Set<string>())
+                    this.extension.completer.command.provideCmdInPkg(pkg, commands, new CommandSignatureDuplicationDetector())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)
                         if (label.startsWith(cmdName) &&
@@ -290,3 +293,50 @@ export class CommandFinder {
     }
 
 }
+
+
+export class CommandSignatureDuplicationDetector {
+    private readonly cmdSignatureList: Set<string> = new Set<string>()
+
+    add(cmd: CmdEnvSuggestion) {
+        this.cmdSignatureList.add(cmd.signatureAsString())
+    }
+
+    has(cmd: CmdEnvSuggestion): boolean {
+        return this.cmdSignatureList.has(cmd.signatureAsString())
+    }
+}
+
+export class CommandNameDuplicationDetector {
+    private readonly cmdSignatureList: Set<string> = new Set<string>()
+
+    constructor(suggestions: CmdEnvSuggestion[] = []) {
+        this.cmdSignatureList = new Set<string>(suggestions.map(s => s.name()))
+    }
+
+    add(cmd: CmdEnvSuggestion): void
+    add(cmdName: string): void
+    add(cmd: any): void {
+        if (cmd instanceof CmdEnvSuggestion) {
+            this.cmdSignatureList.add(cmd.name())
+        } else if (typeof(cmd) === 'string') {
+            this.cmdSignatureList.add(cmd)
+        } else {
+            throw new Error('Unaccepted argument type')
+        }
+    }
+
+    has(cmd: CmdEnvSuggestion): boolean
+    has(cmd: string): boolean
+    has(cmd: any): boolean {
+        if (cmd instanceof CmdEnvSuggestion) {
+            return this.cmdSignatureList.has(cmd.name())
+        } else if (typeof(cmd) === 'string') {
+            return this.cmdSignatureList.has(cmd)
+        } else {
+            throw new Error('Unaccepted argument type')
+        }
+    }
+}
+
+

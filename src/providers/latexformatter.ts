@@ -1,13 +1,12 @@
 import * as vscode from 'vscode'
-import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
 import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 
-import type { Extension } from '../main'
 import {Mutex} from '../lib/await-semaphore'
 import {replaceArgumentPlaceholders} from '../utils/utils'
+import type {BuilderLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -27,15 +26,21 @@ const windows: OperatingSystem = new OperatingSystem('win32', '.exe', 'where')
 const linux: OperatingSystem = new OperatingSystem('linux', '.pl', 'which')
 const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 
+interface IExtension extends
+    ExtensionRootLocator,
+    BuilderLocator,
+    LoggerLocator,
+    ManagerLocator { }
+
 export class LaTexFormatter {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     private readonly machineOs: string
     private readonly currentOs?: OperatingSystem
     private readonly formatMutex: Mutex = new Mutex()
     private formatter: string = ''
     private formatterArgs: string[] = []
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
         this.machineOs = os.platform()
         if (this.machineOs === windows.name) {
@@ -105,7 +110,7 @@ export class LaTexFormatter {
 
         return new Promise((resolve, _reject) => {
             this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
-            const check1 = cp.spawn(checker, [this.formatter])
+            const check1 = cs.spawn(checker, [this.formatter])
             let stdout1: string = ''
             let stderr1: string = ''
             check1.stdout.setEncoding('utf8')
@@ -117,7 +122,7 @@ export class LaTexFormatter {
                     this.extension.logger.addLogMessage(`Error when checking latexindent: ${stderr1}`)
                     this.formatter += fileExt
                     this.extension.logger.addLogMessage(`Checking latexindent: ${checker} ${this.formatter}`)
-                    const check2 = cp.spawn(checker, [this.formatter])
+                    const check2 = cs.spawn(checker, [this.formatter])
                     let stdout2: string = ''
                     let stderr2: string = ''
                     check2.stdout.setEncoding('utf8')
@@ -157,11 +162,12 @@ export class LaTexFormatter {
             const indent = useSpaces ? ' '.repeat(tabSize): '\\t'
 
             const documentDirectory = path.dirname(document.fileName)
+            const documentExtension = path.extname(document.fileName)
 
             // The version of latexindent shipped with current latex distributions doesn't support piping in the data using stdin, support was
             // only added on 2018-01-13 with version 3.4 so we have to create a temporary file
             const textToFormat = document.getText(range)
-            const temporaryFile = documentDirectory + path.sep + '__latexindent_temp.tex'
+            const temporaryFile = documentDirectory + path.sep + '__latexindent_temp' + documentExtension
             fs.writeFileSync(temporaryFile, textToFormat)
 
             const removeTemporaryFiles = () => {
@@ -181,6 +187,7 @@ export class LaTexFormatter {
             })
 
             this.extension.logger.logCommand('Format with command', this.formatter, this.formatterArgs)
+            this.extension.logger.addLogMessage(`Format args: ${JSON.stringify(args)}`)
             const worker = cs.spawn(this.formatter, args, { stdio: 'pipe', cwd: documentDirectory })
             // handle stdout/stderr
             const stdoutBuffer: string[] = []
@@ -219,7 +226,7 @@ export class LaTexFormatter {
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private readonly formatter: LaTexFormatter
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.formatter = new LaTexFormatter(extension)
     }
 

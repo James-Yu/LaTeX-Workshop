@@ -3,9 +3,9 @@ import {isTriggerSuggestNeeded} from '../../../../../src/providers/completer/com
 import assert from 'assert'
 
 
-suite('unit test suite', () => {
+suite('unit test suite: commandlib/commandfinder', () => {
 
-    runUnitTestWithFixture('fixture001', 'test commandlib/commandfinder', () => {
+    runUnitTestWithFixture('fixture001', 'test isTriggerSuggestNeeded', () => {
         assert.ok(!isTriggerSuggestNeeded('frac'))
     })
 

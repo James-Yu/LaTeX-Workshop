@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
-import * as cp from 'child_process'
+import * as cs from 'cross-spawn'
 
 import type {Extension} from '../main'
 
@@ -115,7 +115,7 @@ export class Counter {
         }
         args.push(path.basename(file))
         this.extension.logger.logCommand('Count words using command', command, args)
-        const proc = cp.spawn(command, args, {cwd: path.dirname(file)})
+        const proc = cs.spawn(command, args, {cwd: path.dirname(file)})
         proc.stdout.setEncoding('utf8')
         proc.stderr.setEncoding('utf8')
 

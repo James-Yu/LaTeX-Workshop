@@ -2,10 +2,10 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
-import {stripEnvironments, isNewCommand} from '../../utils/utils'
+import {stripEnvironments, isNewCommand, isNewEnvironment} from '../../utils/utils'
 
-import type {Extension} from '../../main'
 import type {IProvider, ILwCompletionItem} from './interface'
+import type {ManagerLocator} from '../../interfaces'
 
 export interface ReferenceEntry extends ILwCompletionItem {
     /**
@@ -31,14 +31,17 @@ export type ReferenceDocType = {
     prevIndex: ReferenceEntry['prevIndex']
 }
 
+interface IExtension extends
+    ManagerLocator { }
+
 export class Reference implements IProvider {
-    private readonly extension: Extension
+    private readonly extension: IExtension
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
     private readonly envsToSkip = ['tikzpicture']
 
-    constructor(extension: Extension) {
+    constructor(extension: IExtension) {
         this.extension = extension
     }
 
@@ -158,8 +161,8 @@ export class Reference implements IProvider {
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
         const refs: ILwCompletionItem[] = []
         let label = ''
-        if (isNewCommand(node) || latexParser.isDefCommand(node)) {
-            // Do not scan labels inside \newcommand & co
+        if (isNewCommand(node) || isNewEnvironment(node) || latexParser.isDefCommand(node)) {
+            // Do not scan labels inside \newcommand, \newenvironment & co
             return refs
         }
         if (latexParser.isEnvironment(node) && this.envsToSkip.includes(node.name)) {
