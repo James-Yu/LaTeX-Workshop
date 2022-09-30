@@ -274,7 +274,10 @@ export class Builder implements IBuilder {
             this.currentProcess = cs.spawn(command, [], {cwd: path.dirname(rootFile), env: envVars, shell: true})
         } else {
             let workingDirectory: string
-            if (steps[index].command === 'latexmk' && rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
+            const stepWd = steps[index].wd
+            if (stepWd) {
+                workingDirectory = stepWd
+            }else if (steps[index].command === 'latexmk' && rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
                 workingDirectory = this.extension.manager.rootDir
             } else {
                 workingDirectory = path.dirname(rootFile)
@@ -487,6 +490,9 @@ export class Builder implements IBuilder {
             if (step.args) {
                 step.args = step.args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
             }
+            if (step.wd) {
+                step.wd = replaceArgumentPlaceholders(rootFile, this.tmpDir)(step.wd)
+            }
             if (step.env) {
                 Object.keys(step.env).forEach( v => {
                     const e = step.env && step.env[v]
@@ -563,6 +569,7 @@ interface StepCommand {
     name: string,
     command: string,
     args?: string[],
+    wd?: string,
     env?: ProcessEnv
 }
 
