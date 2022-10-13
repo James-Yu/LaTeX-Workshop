@@ -151,14 +151,16 @@ export class BibtexCompleter implements vscode.CompletionItemProvider {
 
     provideCompletionItems(document: vscode.TextDocument, position: vscode.Position): vscode.CompletionItem[] | undefined {
         const currentLine = document.lineAt(position.line).text
-        const prevLine = document.lineAt(position.line - 1).text
         if (currentLine.match(/@[a-zA-Z]*$/)) {
             // Complete an entry name
             return this.entryItems
-        } else if (currentLine.match(/^\s*[a-zA-Z]*/) && prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
-            // Add optional fields
-            const optFields = this.provideOptFields(document, position)
-            return optFields
+        } else {
+            const prevLine = position.line > 0 ? document.lineAt(position.line - 1).text : ''
+            if (currentLine.match(/^\s*[a-zA-Z]*/) && prevLine.match(/(?:@[a-zA-Z]{)|(?:["}0-9],\s*$)/)) {
+                // Add optional fields
+                const optFields = this.provideOptFields(document, position)
+                return optFields
+            }
         }
         return
     }
