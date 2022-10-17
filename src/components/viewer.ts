@@ -261,7 +261,7 @@ export class Viewer implements IViewer {
             }
             case 'external_link': {
                 void vscode.env.clipboard.writeText(data.url)
-                void vscode.window.showWarningMessage(`The link ${data.url} has been copied to clipboard.`, 'OK')
+                void vscode.window.showInformationMessage(`The link ${data.url} has been copied to clipboard.`, 'OK')
                 break
             }
             case 'ping': {
