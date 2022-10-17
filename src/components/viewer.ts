@@ -259,6 +259,10 @@ export class Viewer implements IViewer {
                 void this.extension.locator.locate(data, uri.fsPath)
                 break
             }
+            case 'external_link': {
+                void vscode.env.openExternal(vscode.Uri.parse(data.url))
+                break
+            }
             case 'ping': {
                 // nothing to do
                 break

@@ -50,6 +50,9 @@ export type ClientRequest = {
     type: 'loaded',
     pdfFileUri: string
 } | {
+    type: 'external_link',
+    url: string
+} | {
     type: 'ping'
 } | {
     type: 'reverse_synctex',
