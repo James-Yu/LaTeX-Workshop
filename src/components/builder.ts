@@ -424,6 +424,9 @@ export class Builder implements IBuilder {
         }
         let recipe: Recipe | undefined
         // Find recipe according to the given name
+        if (recipeName === undefined && !['first', 'lastUsed'].includes(defaultRecipeName)) {
+            recipeName = defaultRecipeName
+        }
         if (recipeName) {
             const candidates = recipes.filter(candidate => candidate.name === recipeName)
             if (candidates.length < 1) {
