@@ -14,18 +14,18 @@ import type { IBuilder } from '../interfaces'
 export class Builder implements IBuilder {
     disableBuildAfterSave: boolean = false
     readonly tmpDir: string
-    readonly #isMiktex: boolean = false
-    readonly #stepQueue: BuildToolQueue = new BuildToolQueue()
 
-    #prevLangId: string | undefined
-    #prevRecipe: Recipe | undefined
-    #building: boolean = false
-    #process: cp.ChildProcessWithoutNullStreams | undefined
+    private prevLangId: string | undefined
+    private prevRecipe: Recipe | undefined
+    private building: boolean = false
+    private process: cp.ChildProcessWithoutNullStreams | undefined
 
-    #TEX_MAGIC_PROGRAM_NAME = 'TEX_MAGIC_PROGRAM_NAME'
-    #BIB_MAGIC_PROGRAM_NAME = 'BIB_MAGIC_PROGRAM_NAME'
-    #MAGIC_PROGRAM_ARGS_SUFFIX = '_WITH_ARGS'
-    #MAX_PRINT_LINE = '10000'
+    private readonly isMiktex: boolean = false
+    private readonly stepQueue: BuildToolQueue = new BuildToolQueue()
+    private readonly TEX_MAGIC_PROGRAM_NAME = 'TEX_MAGIC_PROGRAM_NAME'
+    private readonly BIB_MAGIC_PROGRAM_NAME = 'BIB_MAGIC_PROGRAM_NAME'
+    private readonly MAGIC_PROGRAM_ARGS_SUFFIX = '_WITH_ARGS'
+    private readonly MAX_PRINT_LINE = '10000'
 
     constructor(private readonly extension: Extension) {
         // Create temp folder
@@ -46,7 +46,7 @@ export class Builder implements IBuilder {
         try {
             const pdflatexVersion = cp.execSync('pdflatex --version')
             if (pdflatexVersion.toString().match(/MiKTeX/)) {
-                this.#isMiktex = true
+                this.isMiktex = true
                 this.extension.logger.addLogMessage('pdflatex is provided by MiKTeX')
             }
         } catch (e) {
@@ -55,11 +55,11 @@ export class Builder implements IBuilder {
     }
 
     kill() {
-        if (this.#process === undefined) {
+        if (this.process === undefined) {
             this.extension.logger.addLogMessage('LaTeX build process to kill is not found.')
             return
         }
-        const pid = this.#process.pid
+        const pid = this.process.pid
         try {
             this.extension.logger.addLogMessage(`Kill child processes of the current process. PPID: ${pid}`)
             if (process.platform === 'linux' || process.platform === 'darwin') {
@@ -72,14 +72,14 @@ export class Builder implements IBuilder {
                 this.extension.logger.addLogMessage(`Error when killing child processes of the current process. ${e.message}`)
             }
         } finally {
-            this.#stepQueue.clear()
-            this.#process.kill()
+            this.stepQueue.clear()
+            this.process.kill()
             this.extension.logger.addLogMessage(`Kill the current process. PID: ${pid}`)
         }
     }
 
     async buildExternal(command: string, args: string[], pwd: string, rootFile?: string) {
-        if (this.#building) {
+        if (this.building) {
             void this.extension.logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
             return
         }
@@ -96,7 +96,7 @@ export class Builder implements IBuilder {
         }
         const tool: Tool = { name: command, command, args }
 
-        this.#stepQueue.add(tool, rootFile, 'External', Date.now(), true, cwd)
+        this.stepQueue.add(tool, rootFile, 'External', Date.now(), true, cwd)
 
         await this.#buildLoop()
     }
@@ -119,7 +119,7 @@ export class Builder implements IBuilder {
             return
         }
         const timestamp = Date.now()
-        tools.forEach(tool => this.#stepQueue.add(tool, rootFile, recipeName || 'Build', timestamp))
+        tools.forEach(tool => this.stepQueue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
         await this.#buildLoop()
     }
@@ -132,22 +132,22 @@ export class Builder implements IBuilder {
     }
 
     async #buildLoop() {
-        if (this.#building) {
+        if (this.building) {
             return
         }
-        this.#building = true
+        this.building = true
         while (true) {
-            const step = this.#stepQueue.getStep()
+            const step = this.stepQueue.getStep()
             if (step === undefined) {
                 break
             }
             const env = this.#spawnProcess(step)
             await this.#monitorProcess(step, env)
-            if (this.#stepQueue.isLastStep(step)) {
+            if (this.stepQueue.isLastStep(step)) {
                 await this.#afterBuilt(step)
             }
         }
-        this.#building = false
+        this.building = false
     }
 
     #spawnProcess(step: Step, cwd?: string): ProcessEnv {
@@ -155,7 +155,7 @@ export class Builder implements IBuilder {
         if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
             this.extension.logger.clearCompilerMessage()
         }
-        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ' ' + this.#stepQueue.getStepString(step))
+        this.extension.logger.displayStatus('sync~spin', 'statusBar.foreground', undefined, undefined, ' ' + this.stepQueue.getStepString(step))
         this.extension.logger.logCommand(`Recipe step ${step.index + 1}`, step.command, step.args)
         this.extension.logger.addLogMessage(`Recipe step env: ${JSON.stringify(step.env)}`)
         this.extension.logger.addLogMessage(`Recipe step root file: ${step.rootFile}`)
@@ -166,19 +166,19 @@ export class Builder implements IBuilder {
         if (toolEnv) {
             Object.keys(toolEnv).forEach(key => env[key] = toolEnv[key])
         }
-        env['max_print_line'] = this.#MAX_PRINT_LINE
+        env['max_print_line'] = this.MAX_PRINT_LINE
 
         if (!step.isExternal &&
-            (step.name.startsWith(this.#TEX_MAGIC_PROGRAM_NAME) ||
-             step.name.startsWith(this.#BIB_MAGIC_PROGRAM_NAME))) {
+            (step.name.startsWith(this.TEX_MAGIC_PROGRAM_NAME) ||
+             step.name.startsWith(this.BIB_MAGIC_PROGRAM_NAME))) {
             this.extension.logger.addLogMessage(`cwd: ${path.dirname(step.rootFile)}`)
 
             const args = step.args
-            if (args && !step.name.endsWith(this.#MAGIC_PROGRAM_ARGS_SUFFIX)) {
+            if (args && !step.name.endsWith(this.MAGIC_PROGRAM_ARGS_SUFFIX)) {
                 // All optional arguments are given as a unique string (% !TeX options) if any, so we use {shell: true}
-                this.#process = cs.spawn(`${step.command} ${args[0]}`, [], {cwd: path.dirname(step.rootFile), env, shell: true})
+                this.process = cs.spawn(`${step.command} ${args[0]}`, [], {cwd: path.dirname(step.rootFile), env, shell: true})
             } else {
-                this.#process = cs.spawn(step.command, args, {cwd: path.dirname(step.rootFile), env})
+                this.process = cs.spawn(step.command, args, {cwd: path.dirname(step.rootFile), env})
             }
         } else if (!step.isExternal) {
             if (step.command === 'latexmk' && step.rootFile === this.extension.manager.localRootFile && this.extension.manager.rootDir) {
@@ -187,69 +187,69 @@ export class Builder implements IBuilder {
                 cwd = path.dirname(step.rootFile)
             }
             this.extension.logger.addLogMessage(`cwd: ${cwd}`)
-            this.#process = cs.spawn(step.command, step.args, {cwd, env})
+            this.process = cs.spawn(step.command, step.args, {cwd, env})
         } else {
             this.extension.logger.logCommand('Build using external command', step.command, step.args)
             this.extension.logger.addLogMessage(`cwd: ${step.cwd}`)
-            this.#process = cs.spawn(step.command, step.args, {cwd: step.cwd})
+            this.process = cs.spawn(step.command, step.args, {cwd: step.cwd})
         }
-        this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${this.#process.pid}.`)
+        this.extension.logger.addLogMessage(`LaTeX build process spawned. PID: ${this.process.pid}.`)
         return env
     }
 
     async #monitorProcess(step: Step, env: ProcessEnv) {
-        if (this.#process === undefined) {
+        if (this.process === undefined) {
             return
         }
         let stdout = ''
-        this.#process.stdout.on('data', (msg: Buffer | string) => {
+        this.process.stdout.on('data', (msg: Buffer | string) => {
             stdout += msg
             this.extension.logger.addCompilerMessage(msg.toString())
         })
 
         let stderr = ''
-        this.#process.stderr.on('data', (msg: Buffer | string) => {
+        this.process.stderr.on('data', (msg: Buffer | string) => {
             stderr += msg
             this.extension.logger.addCompilerMessage(msg.toString())
         })
 
         await new Promise(resolve => {
-            if (this.#process === undefined) {
+            if (this.process === undefined) {
                 resolve(0)
                 return
             }
-            this.#process.on('error', err => {
-                this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${this.#process?.pid}.`)
+            this.process.on('error', err => {
+                this.extension.logger.addLogMessage(`LaTeX fatal error: ${err.message}, ${stderr}. PID: ${this.process?.pid}.`)
                 this.extension.logger.addLogMessage(`Does the executable exist? $PATH: ${env['PATH']}`)
                 this.extension.logger.addLogMessage(`Does the executable exist? $Path: ${env['Path']}`)
                 this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
                 this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'error')
                 void this.extension.logger.showErrorMessageWithExtensionLogButton(`Recipe terminated with fatal error: ${err.message}.`)
-                this.#process = undefined
-                this.#stepQueue.clear()
+                this.process = undefined
+                this.stepQueue.clear()
                 resolve(0)
             })
 
-            this.#process.on('exit', async (code, signal) => {
+            this.process.on('exit', async (code, signal) => {
                 this.extension.compilerLogParser.parse(stdout, step.rootFile)
                 if (!step.isExternal && code === 0) {
-                    this.extension.logger.addLogMessage(`A step in recipe finished. PID: ${this.#process?.pid}.`)
-                    this.#process = undefined
+                    this.extension.logger.addLogMessage(`A step in recipe finished. PID: ${this.process?.pid}.`)
+                    this.process = undefined
                     resolve(0)
                     return
                 } else if (code === 0) {
-                    this.extension.logger.addLogMessage(`Successfully built. PID: ${this.#process?.pid}`)
+                    this.extension.logger.addLogMessage(`Successfully built. PID: ${this.process?.pid}`)
                     this.extension.logger.displayStatus('check', 'statusBar.foreground', 'Build succeeded.')
                     if (step.rootFile === undefined) {
                         this.extension.viewer.refreshExistingViewer()
                     }
-                    this.#process = undefined
+                    this.process = undefined
                     resolve(0)
                     return
                 }
 
                 if (!step.isExternal) {
-                    this.extension.logger.addLogMessage(`Recipe returns with error: ${code}/${signal}. PID: ${this.#process?.pid}. message: ${stderr}.`)
+                    this.extension.logger.addLogMessage(`Recipe returns with error: ${code}/${signal}. PID: ${this.process?.pid}. message: ${stderr}.`)
                     this.extension.logger.addLogMessage(`Does the executable exist? $PATH: ${env['PATH']}`)
                     this.extension.logger.addLogMessage(`Does the executable exist? $Path: ${env['Path']}`)
                     this.extension.logger.addLogMessage(`The environment variable $SHELL: ${process.env.SHELL}`)
@@ -262,7 +262,7 @@ export class Builder implements IBuilder {
                     this.extension.logger.displayStatus('x', 'errorForeground', 'Recipe terminated with error. Retry building the project.', 'warning')
                     this.extension.logger.addLogMessage('Cleaning auxiliary files and retrying build after toolchain error.')
 
-                    this.#stepQueue.prepend(step)
+                    this.stepQueue.prepend(step)
                     await this.extension.cleaner.clean(step.rootFile)
                 } else if (!step.isExternal && signal !== 'SIGTERM') {
                     // Recipe, not terminated by user, is retry or should not retry
@@ -271,19 +271,19 @@ export class Builder implements IBuilder {
                         await this.extension.cleaner.clean(step.rootFile)
                     }
                     void this.extension.logger.showErrorMessageWithCompilerLogButton('Recipe terminated with error.')
-                    this.#stepQueue.clear()
+                    this.stepQueue.clear()
                 } else if (step.isExternal) {
                     // External command
-                    this.extension.logger.addLogMessage(`Build returns with error: ${code}/${signal}. PID: ${this.#process?.pid}.`)
+                    this.extension.logger.addLogMessage(`Build returns with error: ${code}/${signal}. PID: ${this.process?.pid}.`)
                     this.extension.logger.displayStatus('x', 'errorForeground', undefined, 'warning')
                     void this.extension.logger.showErrorMessageWithCompilerLogButton('Build terminated with error.')
-                    this.#stepQueue.clear()
+                    this.stepQueue.clear()
                 } else {
                     // Terminated by user
                     this.extension.logger.displayStatus('x', 'errorForeground')
-                    this.#stepQueue.clear()
+                    this.stepQueue.clear()
                 }
-                this.#process = undefined
+                this.process = undefined
                 resolve(0)
             })
         })
@@ -329,8 +329,8 @@ export class Builder implements IBuilder {
             if (recipe === undefined) {
                 return undefined
             }
-            this.#prevRecipe = recipe
-            this.#prevLangId = langId
+            this.prevRecipe = recipe
+            this.prevLangId = langId
             const tools = configuration.get('latex.tools') as Tool[]
             recipe.tools.forEach(tool => {
                 if (typeof tool === 'string') {
@@ -400,8 +400,8 @@ export class Builder implements IBuilder {
                                    tool.args.includes('--lualatex') ||
                                    tool.args.includes('--pdflua') ||
                                    tool.args.includes('--pdflualatex')
-                if (this.#isMiktex && ((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex')) {
-                    tool.args.unshift('--max-print-line=' + this.#MAX_PRINT_LINE)
+                if (this.isMiktex && ((tool.command === 'latexmk' && !isLuaLatex) || tool.command === 'pdflatex')) {
+                    tool.args.unshift('--max-print-line=' + this.MAX_PRINT_LINE)
                 }
             }
         })
@@ -419,8 +419,8 @@ export class Builder implements IBuilder {
             void this.extension.logger.showErrorMessage('No recipes defined.')
             return undefined
         }
-        if (this.#prevLangId !== langId) {
-            this.#prevRecipe = undefined
+        if (this.prevLangId !== langId) {
+            this.prevRecipe = undefined
         }
         let recipe: Recipe | undefined
         // Find recipe according to the given name
@@ -437,7 +437,7 @@ export class Builder implements IBuilder {
         }
         // Find default recipe of last used
         if (recipe === undefined && defaultRecipeName === 'lastUsed') {
-            recipe = this.#prevRecipe
+            recipe = this.prevRecipe
         }
         // If still not found, fallback to 'first'
         if (recipe === undefined) {
@@ -461,12 +461,12 @@ export class Builder implements IBuilder {
 
         if (!magicTex.args) {
             magicTex.args = configuration.get('latex.magic.args') as string[]
-            magicTex.name = this.#TEX_MAGIC_PROGRAM_NAME + this.#MAGIC_PROGRAM_ARGS_SUFFIX
+            magicTex.name = this.TEX_MAGIC_PROGRAM_NAME + this.MAGIC_PROGRAM_ARGS_SUFFIX
         }
         if (magicBib) {
             if (!magicBib.args) {
                 magicBib.args = configuration.get('latex.magic.bib.args') as string[]
-                magicBib.name = this.#BIB_MAGIC_PROGRAM_NAME + this.#MAGIC_PROGRAM_ARGS_SUFFIX
+                magicBib.name = this.BIB_MAGIC_PROGRAM_NAME + this.MAGIC_PROGRAM_ARGS_SUFFIX
             }
             return [magicTex, magicBib, magicTex, magicTex]
         } else {
@@ -488,7 +488,7 @@ export class Builder implements IBuilder {
 
         if (tex) {
             texCommand = {
-                name: this.#TEX_MAGIC_PROGRAM_NAME,
+                name: this.TEX_MAGIC_PROGRAM_NAME,
                 command: tex[1]
             }
             this.extension.logger.addLogMessage(`Found TeX program by magic comment: ${texCommand.command}`)
@@ -501,7 +501,7 @@ export class Builder implements IBuilder {
 
         if (bib) {
             bibCommand = {
-                name: this.#BIB_MAGIC_PROGRAM_NAME,
+                name: this.BIB_MAGIC_PROGRAM_NAME,
                 command: bib[1]
             }
             this.extension.logger.addLogMessage(`Found BIB program by magic comment: ${bibCommand.command}`)
