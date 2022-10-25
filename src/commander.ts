@@ -83,7 +83,7 @@ export class Commander {
         }
         if (externalBuildCommand) {
             const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
-            await this.extension.builder.buildWithExternalCommand(externalBuildCommand, externalBuildArgs, pwd, rootFile)
+            await this.extension.builder.buildExternal(externalBuildCommand, externalBuildArgs, pwd, rootFile)
             return
         }
         if (rootFile === undefined || languageId === undefined) {

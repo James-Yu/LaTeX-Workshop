@@ -22,8 +22,6 @@ import {FinderUtils} from './managerlib/finderutils'
 import {PathUtils} from './managerlib/pathutils'
 import {IntellisenseWatcher} from './managerlib/intellisensewatcher'
 
-import {Mutex} from '../lib/await-semaphore'
-
 /**
  * The content cache for each LaTeX file `filepath`.
  */
@@ -97,7 +95,6 @@ export class Manager implements IManager {
     private readonly finderUtils: FinderUtils
     private readonly pathUtils: PathUtils
     private readonly filesWatched = new Set<string>()
-    private readonly fileWatcherMutex = new Mutex()
     private readonly watcherOptions: chokidar.WatchOptions
     private readonly rsweaveExt: string[] = ['.rnw', '.Rnw', '.rtex', '.Rtex', '.snw', '.Snw']
     private readonly jlweaveExt: string[] = ['.jnw', '.jtexw']
@@ -814,24 +811,20 @@ export class Manager implements IManager {
         }
     }
 
-    private async addToFileWatcher(file: string) {
-        const release = await this.fileWatcherMutex.acquire()
-        try {
-            this.fileWatcher.add(file)
-            this.filesWatched.add(file)
-        } finally {
-            release()
+    private addToFileWatcher(file: string) {
+        if (this.filesWatched.has(file)) {
+            return
         }
+        this.filesWatched.add(file)
+        this.fileWatcher.add(file)
     }
 
-    private async deleteFromFileWatcher(file: string) {
-        const release = await this.fileWatcherMutex.acquire()
-        try {
-            this.fileWatcher.unwatch(file)
-            this.filesWatched.delete(file)
-        } finally {
-            release()
+    private deleteFromFileWatcher(file: string) {
+        if (!this.filesWatched.has(file)) {
+            return
         }
+        this.filesWatched.delete(file)
+        this.fileWatcher.unwatch(file)
     }
 
     private createFileWatcher() {
@@ -849,15 +842,10 @@ export class Manager implements IManager {
     }
 
     private async resetFileWatcher() {
-        const release = await this.fileWatcherMutex.acquire()
-        try {
-            this.extension.logger.addLogMessage('Reset file watcher.')
-            await this.fileWatcher.close()
-            this.registerListeners(this.fileWatcher)
-            this.filesWatched.clear()
-        } finally {
-            release()
-        }
+        this.extension.logger.addLogMessage('Reset file watcher.')
+        await this.fileWatcher.close()
+        this.registerListeners(this.fileWatcher)
+        this.filesWatched.clear()
         // We also clean the completions from the old project
         this.extension.completer.input.reset()
         this.extension.duplicateLabels.reset()
