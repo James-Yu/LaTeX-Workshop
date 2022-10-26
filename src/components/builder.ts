@@ -87,7 +87,7 @@ export class Builder implements IBuilder {
             this.extension.manager.ignorePdfFile(rootFile)
         }
 
-        await this.#saveAll(rootFile)
+        await this.saveAll(rootFile)
 
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const cwd = workspaceFolder?.uri.fsPath || pwd
@@ -98,7 +98,7 @@ export class Builder implements IBuilder {
 
         this.stepQueue.add(tool, rootFile, 'External', Date.now(), true, cwd)
 
-        await this.#buildLoop()
+        await this.buildLoop()
     }
 
     async build(rootFile: string, langId: string, recipeName?: string) {
@@ -108,11 +108,11 @@ export class Builder implements IBuilder {
         // The builder will be responsible for refreshing the viewer.
         this.extension.manager.ignorePdfFile(rootFile)
 
-        await this.#saveAll(rootFile)
+        await this.saveAll(rootFile)
 
-        this.#createOuputSubFolders(rootFile)
+        this.createOuputSubFolders(rootFile)
 
-        const tools = this.#createBuildTools(rootFile, langId, recipeName)
+        const tools = this.createBuildTools(rootFile, langId, recipeName)
 
         if (tools === undefined) {
             this.extension.logger.addLogMessage('Invalid toolchain.')
@@ -121,17 +121,17 @@ export class Builder implements IBuilder {
         const timestamp = Date.now()
         tools.forEach(tool => this.stepQueue.add(tool, rootFile, recipeName || 'Build', timestamp))
 
-        await this.#buildLoop()
+        await this.buildLoop()
     }
 
-    async #saveAll(rootFile?: string) {
+    private async saveAll(rootFile?: string) {
         this.disableBuildAfterSave = true
         await vscode.workspace.saveAll()
         const configuration = vscode.workspace.getConfiguration('latex-workshop', rootFile ? vscode.Uri.file(rootFile) : undefined)
         setTimeout(() => this.disableBuildAfterSave = false, configuration.get('latex.autoBuild.interval', 1000) as number)
     }
 
-    async #buildLoop() {
+    private async buildLoop() {
         if (this.building) {
             return
         }
@@ -141,16 +141,16 @@ export class Builder implements IBuilder {
             if (step === undefined) {
                 break
             }
-            const env = this.#spawnProcess(step)
-            await this.#monitorProcess(step, env)
+            const env = this.spawnProcess(step)
+            await this.monitorProcess(step, env)
             if (this.stepQueue.isLastStep(step)) {
-                await this.#afterBuilt(step)
+                await this.afterBuilt(step)
             }
         }
         this.building = false
     }
 
-    #spawnProcess(step: Step, cwd?: string): ProcessEnv {
+    private spawnProcess(step: Step, cwd?: string): ProcessEnv {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? vscode.Uri.file(step.rootFile) : undefined)
         if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
             this.extension.logger.clearCompilerMessage()
@@ -197,7 +197,7 @@ export class Builder implements IBuilder {
         return env
     }
 
-    async #monitorProcess(step: Step, env: ProcessEnv) {
+    private async monitorProcess(step: Step, env: ProcessEnv) {
         if (this.process === undefined) {
             return
         }
@@ -289,7 +289,7 @@ export class Builder implements IBuilder {
         })
     }
 
-    async #afterBuilt(step: Step) {
+    private async afterBuilt(step: Step) {
         if (step.rootFile === undefined) {
             // This only happens when the step is an external command.
             return
@@ -316,16 +316,16 @@ export class Builder implements IBuilder {
         }
     }
 
-    #createBuildTools(rootFile: string, langId: string, recipeName?: string): Tool[] | undefined {
+    private createBuildTools(rootFile: string, langId: string, recipeName?: string): Tool[] | undefined {
         let buildTools: Tool[] = []
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
-        const [magicTex, magicBib] = this.#findMagicPrograms(rootFile)
+        const [magicTex, magicBib] = this.findMagicPrograms(rootFile)
 
         if (recipeName === undefined && magicTex && !configuration.get('latex.build.forceRecipeUsage')) {
-            buildTools = this.#createBuildMagic(rootFile, magicTex, magicBib)
+            buildTools = this.createBuildMagic(rootFile, magicTex, magicBib)
         } else {
-            const recipe = this.#findRecipe(rootFile, langId, recipeName)
+            const recipe = this.findRecipe(rootFile, langId, recipeName)
             if (recipe === undefined) {
                 return undefined
             }
@@ -353,12 +353,12 @@ export class Builder implements IBuilder {
         // Use JSON.parse and JSON.stringify for a deep copy.
         buildTools = JSON.parse(JSON.stringify(buildTools)) as Tool[]
 
-        this.#populateTools(rootFile, buildTools)
+        this.populateTools(rootFile, buildTools)
 
         return buildTools
     }
 
-    #populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
+    private populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const docker = configuration.get('docker.enabled')
 
@@ -408,7 +408,7 @@ export class Builder implements IBuilder {
         return buildTools
     }
 
-    #findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
+    private findRecipe(rootFile: string, langId: string, recipeName?: string): Recipe | undefined {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
 
         const recipes = configuration.get('latex.recipes') as Recipe[]
@@ -456,7 +456,7 @@ export class Builder implements IBuilder {
         return recipe
     }
 
-    #createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): Tool[] {
+    private createBuildMagic(rootFile: string, magicTex: Tool, magicBib?: Tool): Tool[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
 
         if (!magicTex.args) {
@@ -474,7 +474,7 @@ export class Builder implements IBuilder {
         }
     }
 
-    #findMagicPrograms(rootFile: string): [Tool | undefined, Tool | undefined] {
+    private findMagicPrograms(rootFile: string): [Tool | undefined, Tool | undefined] {
         const regexTex = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexBib = /^(?:%\s*!\s*BIB\s(?:TS-)?program\s*=\s*([^\s]*)$)/m
         const regexTexOptions = /^(?:%\s*!\s*T[Ee]X\s(?:TS-)?options\s*=\s*(.*)$)/m
@@ -521,7 +521,7 @@ export class Builder implements IBuilder {
      * latex command). If the output directory does not exist, the latex
      * commands simply fail.
      */
-    #createOuputSubFolders(rootFile: string) {
+     private createOuputSubFolders(rootFile: string) {
         const rootDir = path.dirname(rootFile)
         let outDir = this.extension.manager.getOutDir(rootFile)
         if (!path.isAbsolute(outDir)) {
@@ -547,8 +547,8 @@ export class Builder implements IBuilder {
 }
 
 class BuildToolQueue {
-    #steps: Step[] = []
-    #nextSteps: Step[] = []
+    private steps: Step[] = []
+    private nextSteps: Step[] = []
 
     constructor() {}
 
@@ -568,36 +568,36 @@ class BuildToolQueue {
             step.isExternal = true
             step.cwd = cwd || ''
         }
-        if (this.#steps.length === 0 || step.timestamp === this.#steps[0].timestamp) {
-            step.index = (this.#steps[0]?.timestamp || -1) + 1
-            this.#steps.push(step)
-        } else if (this.#nextSteps.length === 0 || step.timestamp === this.#nextSteps[0].timestamp){
-            step.index = (this.#nextSteps[0]?.timestamp || -1) + 1
-            this.#nextSteps.push(step)
+        if (this.steps.length === 0 || step.timestamp === this.steps[0].timestamp) {
+            step.index = (this.steps[0]?.timestamp || -1) + 1
+            this.steps.push(step)
+        } else if (this.nextSteps.length === 0 || step.timestamp === this.nextSteps[0].timestamp){
+            step.index = (this.nextSteps[0]?.timestamp || -1) + 1
+            this.nextSteps.push(step)
         } else {
             step.index = 0
-            this.#nextSteps = [ step ]
+            this.nextSteps = [ step ]
         }
     }
 
     prepend(step: Step) {
-        this.#steps.unshift(step)
+        this.steps.unshift(step)
     }
 
     clear() {
-        this.#nextSteps = []
-        this.#steps = []
+        this.nextSteps = []
+        this.steps = []
     }
 
     isLastStep(step: Step) {
-        return this.#steps.length === 0 || this.#steps[0].timestamp !== step.timestamp
+        return this.steps.length === 0 || this.steps[0].timestamp !== step.timestamp
     }
 
     getStepString(step: Step): string {
-        if (step.timestamp !== this.#steps[0]?.timestamp && step.index === 0) {
+        if (step.timestamp !== this.steps[0]?.timestamp && step.index === 0) {
             return step.recipeName
-        } else if (step.timestamp === this.#steps[0]?.timestamp) {
-            return `${step.recipeName}: ${step.index + 1}/${this.#steps[this.#steps.length - 1].index + 1} (${step.name})`
+        } else if (step.timestamp === this.steps[0]?.timestamp) {
+            return `${step.recipeName}: ${step.index + 1}/${this.steps[this.steps.length - 1].index + 1} (${step.name})`
         } else {
             return `${step.recipeName}: ${step.index + 1}/${step.index + 1} (${step.name})`
         }
@@ -605,12 +605,12 @@ class BuildToolQueue {
 
     getStep(): Step | undefined {
         let step: Step | undefined
-        if (this.#steps.length > 0) {
-            step = this.#steps.shift()
-        } else if (this.#nextSteps.length > 0) {
-            this.#steps = this.#nextSteps
-            this.#nextSteps = []
-            step = this.#steps.shift()
+        if (this.steps.length > 0) {
+            step = this.steps.shift()
+        } else if (this.nextSteps.length > 0) {
+            this.steps = this.nextSteps
+            this.nextSteps = []
+            step = this.steps.shift()
         }
         return step
     }
