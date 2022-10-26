@@ -597,7 +597,7 @@ export class Manager implements IManager {
             // The file is considered for the first time.
             // We must add the file to watcher to make sure we avoid infinite loops
             // in case of circular inclusion
-            await this.addToFileWatcher(file)
+            this.addToFileWatcher(file)
         }
         let content = this.getDirtyContent(file)
         if (!content) {
@@ -768,7 +768,7 @@ export class Manager implements IManager {
                 await this.parseFileAndSubs(inputFile, texFile)
             } else if (!this.filesWatched.has(inputFile)) {
                 // Watch non-tex files.
-                await this.addToFileWatcher(inputFile)
+                this.addToFileWatcher(inputFile)
             }
         }
 
@@ -807,7 +807,7 @@ export class Manager implements IManager {
     private async initiateFileWatcher() {
         await this.resetFileWatcher()
         if (this.rootFile !== undefined) {
-            await this.addToFileWatcher(this.rootFile)
+            this.addToFileWatcher(this.rootFile)
         }
     }
 
