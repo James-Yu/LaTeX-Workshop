@@ -54,6 +54,14 @@ export class Builder implements IBuilder {
         }
     }
 
+    /**
+     * Terminate current process of LaTeX building. OS-specific (pkill for linux
+     * and macos, taskkill for win) kill command is first called with process
+     * pid. No matter whether it succeeded, `kill()` of `child_process` is later
+     * called to "double kill". Also, all subsequent tools in queue are cleared,
+     * including ones in the current recipe and (if available) those from the
+     * cached recipe to be executed.
+     */
     kill() {
         if (this.process === undefined) {
             this.extension.logger.addLogMessage('LaTeX build process to kill is not found.')
@@ -78,6 +86,19 @@ export class Builder implements IBuilder {
         }
     }
 
+    /**
+     * Build LaTeX project using external command. This function creates a
+     * {@link Tool} containing the external command info and adds it to the
+     * queue. After that, this function tries to initiate a {@link buildLoop} if
+     * there is no one running.
+     *
+     * @param command The external command to be executed.
+     * @param args The arguments to {@link command}.
+     * @param pwd The current working directory. This argument will be overrided
+     * if there are workspace folders. If so, the root of the first workspace
+     * folder is used as the current working directory.
+     * @param rootFile Path to the root LaTeX file.
+     */
     async buildExternal(command: string, args: string[], pwd: string, rootFile?: string) {
         if (this.building) {
             void this.extension.logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
@@ -101,6 +122,18 @@ export class Builder implements IBuilder {
         await this.buildLoop()
     }
 
+    /**
+     * Build LaTeX project using the recipe system. This function creates
+     * {@link Tool}s containing the tool info and adds them to the queue. After
+     * that, this function tries to initiate a {@link buildLoop} if there is no
+     * one running.
+     *
+     * @param rootFile Path to the root LaTeX file.
+     * @param langId The language ID of the root file. This argument is used to
+     * determine whether the previous recipe can be applied to this root file.
+     * @param recipeName The name of recipe to be used. If `undefined`, the
+     * builder tries to determine on its own, in {@link createBuildTools}.
+     */
     async build(rootFile: string, langId: string, recipeName?: string) {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
 
@@ -131,6 +164,13 @@ export class Builder implements IBuilder {
         setTimeout(() => this.disableBuildAfterSave = false, configuration.get('latex.autoBuild.interval', 1000) as number)
     }
 
+    /**
+     * This function returns if there is another {@link buildLoop} function/loop
+     * running. If not, this function iterates through the
+     * {@link BuildToolQueue} and execute each {@link Tool} one by one. During
+     * this process, the {@link Tool}s in {@link BuildToolQueue} can be
+     * dynamically added or removed, handled by {@link BuildToolQueue}.
+     */
     private async buildLoop() {
         if (this.building) {
             return
@@ -150,6 +190,18 @@ export class Builder implements IBuilder {
         this.building = false
     }
 
+    /**
+     * Spawns a `child_process` for the {@link step}. This function first
+     * creates the environment variables needed for the {@link step}. Then a
+     * process is spawned according to the nature of the {@link step}: 1) is a
+     * magic command (tex or bib), 2) is a recipe tool, or 3) is an external
+     * command. After spawned, the process is stored as a class property, and
+     * the io handling is performed in {@link monitorProcess}.
+     *
+     * @param step The {@link Step} to be executed.
+     * @param cwd The current working directory.
+     * @returns The process environment passed to the spawned process.
+     */
     private spawnProcess(step: Step, cwd?: string): ProcessEnv {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', step.rootFile ? vscode.Uri.file(step.rootFile) : undefined)
         if (step.index === 0 || configuration.get('latex.build.clearLog.everyRecipeStep.enabled') as boolean) {
@@ -197,6 +249,26 @@ export class Builder implements IBuilder {
         return env
     }
 
+    /**
+     * Monitors the output and termination of the tool process. This function
+     * monitors the `stdout` and `stderr` channels to log and parse the output
+     * messages. This function also **waits** for `error` or `exit` signal of
+     * the process. The former indicates an unexpected error, e.g., killed by
+     * user or ENOENT, and the latter is the typical exit of the process,
+     * successfully built or not. If the build is unsuccessful (code != 0), this
+     * function considers the four different cases: 1) tool of a recipe, not
+     * terminated by user, is not a retry and should retry, 2) tool of a recipe,
+     * not terminated by user, is a retry or should not retry, 3) unsuccessful
+     * external command, won't retry regardless of the retry config, and 4)
+     * terminated by user. In the first case, a retry {@link Tool} is created
+     * and added to the {@link BuildToolQueue} based on {@link step}. In the
+     * latter three, all subsequent tools in queue are cleared, including ones
+     * in the current recipe and (if available) those from the cached recipe to
+     * be executed.
+     *
+     * @param step The {@link Step} of process whose io is monitored.
+     * @param env The process environment passed to the spawned process.
+     */
     private async monitorProcess(step: Step, env: ProcessEnv) {
         if (this.process === undefined) {
             return
@@ -289,6 +361,13 @@ export class Builder implements IBuilder {
         })
     }
 
+    /**
+     * Some follow-up operations after finishing a recipe. Primarily concerning
+     * PDF refreshing and file cleaning. The execution is covered in
+     * {@link buildLoop}.
+     *
+     * @param step The last {@link Step} in the recipe.
+     */
     private async afterBuilt(step: Step) {
         if (step.rootFile === undefined) {
             // This only happens when the step is an external command.
@@ -316,6 +395,9 @@ export class Builder implements IBuilder {
         }
     }
 
+    /**
+     * Given an optional recipe, create the corresponding {@link Tool}s.
+     */
     private createBuildTools(rootFile: string, langId: string, recipeName?: string): Tool[] | undefined {
         let buildTools: Tool[] = []
 
@@ -358,6 +440,10 @@ export class Builder implements IBuilder {
         return buildTools
     }
 
+    /**
+     * Expand the bare {@link Tool} with docker and argument placeholder
+     * strings.
+     */
     private populateTools(rootFile: string, buildTools: Tool[]): Tool[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(rootFile))
         const docker = configuration.get('docker.enabled')
@@ -547,11 +633,35 @@ export class Builder implements IBuilder {
 }
 
 class BuildToolQueue {
+    /**
+     * The {@link Step}s in the current recipe.
+     */
     private steps: Step[] = []
+    /**
+     * The {@link Step}s in the next recipe to be executed after the current
+     * ones.
+     */
     private nextSteps: Step[] = []
 
     constructor() {}
 
+    /**
+     * Add a {@link Tool} to the queue. The input {@link tool} is first wrapped
+     * to be a {@link RecipeStep} or {@link ExternalStep} with additional
+     * information, according to the nature {@link isExternal}. Then the wrapped
+     * {@link Step} is added to the current {@link steps} if they belongs to the
+     * same recipe, determined by the same {@link timestamp}, or added to the
+     * {@link nextSteps} for later execution.
+     *
+     * @param tool The {@link Tool} to be added to the queue.
+     * @param rootFile Path to the root LaTeX file.
+     * @param recipeName The name of the recipe which the {@link tool} belongs
+     * to.
+     * @param timestamp The timestamp when the recipe is called.
+     * @param isExternal Whether the {@link tool} is an external command.
+     * @param cwd The current working directory if the {@link tool} is an
+     * external command.
+     */
     add(tool: Tool, rootFile: string | undefined, recipeName: string, timestamp: number, isExternal: boolean = false, cwd?: string) {
         let step: RecipeStep | ExternalStep
         if (!isExternal && rootFile !== undefined) {
