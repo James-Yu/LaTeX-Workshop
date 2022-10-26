@@ -872,9 +872,9 @@ export class Manager implements IManager {
         await this.buildOnFileChanged(file)
     }
 
-    private async onWatchedFileDeleted(file: string) {
+    private onWatchedFileDeleted(file: string) {
         this.extension.logger.addLogMessage(`File watcher - file deleted: ${file}`)
-        await this.deleteFromFileWatcher(file)
+        this.deleteFromFileWatcher(file)
         delete this.cachedContent[file]
         if (file === this.rootFile) {
             this.extension.logger.addLogMessage(`Root file deleted: ${file}`)
