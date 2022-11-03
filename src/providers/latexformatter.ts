@@ -4,7 +4,6 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 
-import {Mutex} from '../lib/await-semaphore'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 import type {BuilderLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
 
@@ -36,9 +35,10 @@ export class LaTexFormatter {
     private readonly extension: IExtension
     private readonly machineOs: string
     private readonly currentOs?: OperatingSystem
-    private readonly formatMutex: Mutex = new Mutex()
     private formatter: string = ''
     private formatterArgs: string[] = []
+
+    #formatting: boolean = false
 
     constructor(extension: IExtension) {
         this.extension = extension
@@ -55,11 +55,14 @@ export class LaTexFormatter {
     }
 
     public async formatDocument(document: vscode.TextDocument, range?: vscode.Range): Promise<vscode.TextEdit[]> {
+        if (this.#formatting) {
+            this.extension.logger.addLogMessage('Formatting in progress. Aborted.')
+        }
+        this.#formatting = true
         const configuration = vscode.workspace.getConfiguration('latex-workshop', document.uri)
         const pathMeta = configuration.get('latexindent.path') as string
         this.formatterArgs = configuration.get('latexindent.args') as string[]
         this.extension.logger.addLogMessage('Start formatting with latexindent.')
-        const releaseMutex = await this.formatMutex.acquire()
         try {
             if (pathMeta !== this.formatter) {
                 this.formatter = pathMeta
@@ -74,7 +77,7 @@ export class LaTexFormatter {
             const edit = await this.format(document, range)
             return edit
         } finally {
-            releaseMutex()
+            this.#formatting = false
         }
     }
 
