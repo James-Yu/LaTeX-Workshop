@@ -241,7 +241,7 @@ export class EnvPair {
         }
 
         void vscode.workspace.applyEdit(edit).then(success => {
-            if (success) {
+            if (success || edit.size === 0) {
                 switch (action) {
                     case 'cursor':
                         editor.selections = [new vscode.Selection(beginEnvStartPos, beginEnvStartPos), new vscode.Selection(endEnvStartPos, endEnvStartPos)]
@@ -288,7 +288,7 @@ export class EnvPair {
         }
 
         let envNameLength: number = 0
-        const edit = new vscode.WorkspaceEdit()
+        // const edit = new vscode.WorkspaceEdit()
 
         if (beginEnv.type === 'begin' && endEnv.type === 'end') {
             envNameLength = beginEnv.name.length + 2 // for '{' and '}'
@@ -297,13 +297,15 @@ export class EnvPair {
             }
         }
 
-        void vscode.workspace.applyEdit(edit).then(success => {
-            if (success) {
-                const beginEnvPos = beginEnv.pos.translate(0, -1)
-                const endEnvPos = endEnv.pos.translate(0, envNameLength + beginEnv.type.length)
-                editor.selections = [new vscode.Selection(beginEnvPos, endEnvPos)]
-            }
-        })
+        const beginEnvPos = beginEnv.pos.translate(0, -1)
+        const endEnvPos = endEnv.pos.translate(0, envNameLength + beginEnv.type.length)
+        editor.selections = [new vscode.Selection(beginEnvPos, endEnvPos)]
+
+        // applyEdit now returns false if edit is empty.
+        // void vscode.workspace.applyEdit(edit).then(success => {
+        //     if (success) {
+        //     }
+        // })
 
         // editor.revealRange(new vscode.Range(beginEnvStartPos, endEnvStartPos))
     }
