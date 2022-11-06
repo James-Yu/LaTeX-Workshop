@@ -1,15 +1,15 @@
---- ../tmp/pdfjs-2.15/web/viewer.js	2022-07-31 13:44:12.000000000 +0900
-+++ viewer/viewer.js	2022-08-27 07:47:39.000000000 +0900
-@@ -934,7 +934,7 @@
+--- ../tmp/pdfjs-3.0/web/viewer.js	2022-10-29 19:29:58.000000000 +0900
++++ viewer/viewer.js	2022-10-31 10:24:18.000000000 +0900
+@@ -1758,7 +1758,7 @@
+         title = url;
        }
      }
- 
 -    this.setTitle(title);
 +    // this.setTitle(title);
    },
- 
-   setTitle(title) {
-@@ -5673,7 +5673,7 @@
+   setTitle(title = this._title) {
+     this._title = title;
+@@ -4703,7 +4703,7 @@
  };
  exports.FindState = FindState;
  const FIND_TIMEOUT = 250;
@@ -18,16 +18,16 @@
  const MATCH_SCROLL_OFFSET_LEFT = -400;
  const CHARACTERS_TO_NORMALIZE = {
    "\u2010": "-",
-@@ -8759,7 +8759,7 @@
+@@ -7223,7 +7223,7 @@
+       this.#dispatchEvent();
        return;
      }
- 
 -    this.switchView(view, true);
 +    this.switchView(view, false);
- 
      if (!this.isInitialEventDispatched) {
        this.#dispatchEvent();
-@@ -10022,7 +10022,7 @@
+     }
+@@ -8203,7 +8203,7 @@
      this.downloadManager = options.downloadManager || null;
      this.findController = options.findController || null;
      this._scriptingManager = options.scriptingManager || null;
@@ -35,55 +35,44 @@
 +    this.removePageBorders = options.removePageBorders || true;
      this.textLayerMode = options.textLayerMode ?? _ui_utils.TextLayerMode.ENABLE;
      this.#annotationMode = options.annotationMode ?? _pdfjsLib.AnnotationMode.ENABLE_FORMS;
-     this.#annotationEditorMode = options.annotationEditorMode ?? ANNOTATION_EDITOR_MODE;
-@@ -14344,11 +14344,11 @@
- 
+     this.#annotationEditorMode = options.annotationEditorMode ?? _pdfjsLib.AnnotationEditorType.NONE;
+@@ -11944,10 +11944,10 @@
+   }
    async _writeToStorage() {
      const databaseStr = JSON.stringify(this.database);
 -    localStorage.setItem("pdfjs.history", databaseStr);
 +    // localStorage.setItem("pdfjs.history", databaseStr);
    }
- 
    async _readFromStorage() {
 -    return localStorage.getItem("pdfjs.history");
 +    return // localStorage.getItem("pdfjs.history");
    }
- 
    async set(name, val) {
-@@ -14416,11 +14416,11 @@
- 
+     await this._initializedPromise;
+@@ -11998,10 +11998,10 @@
+ exports.GenericCom = GenericCom;
  class GenericPreferences extends _preferences.BasePreferences {
    async _writeToStorage(prefObj) {
 -    localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
 +    // localStorage.setItem("pdfjs.preferences", JSON.stringify(prefObj));
    }
- 
    async _readFromStorage(prefObj) {
 -    return JSON.parse(localStorage.getItem("pdfjs.preferences"));
 +    return // JSON.parse(localStorage.getItem("pdfjs.preferences"));
    }
- 
  }
-@@ -15364,7 +15364,7 @@
-     var data = gL10nData[key];
- 
-     if (!data) {
--      console.warn('#' + key + ' is undefined.');
-+      // console.warn('#' + key + ' is undefined.');
- 
-       if (!fallback) {
-         return null;
-@@ -15429,7 +15429,7 @@
+ class GenericExternalServices extends _app.DefaultExternalServices {
+@@ -12873,7 +12873,7 @@
+     if (!l10n.id) return;
      var data = getL10nData(l10n.id, l10n.args);
- 
      if (!data) {
 -      console.warn('#' + l10n.id + ' is undefined.');
 +      // console.warn('#' + l10n.id + ' is undefined.');
        return;
      }
- 
-@@ -15873,6 +15873,9 @@
- 
+     if (data[gTextProp]) {
+@@ -13253,6 +13253,9 @@
+ }
  window.addEventListener("keydown", function (event) {
    if (event.keyCode === 80 && (event.ctrlKey || event.metaKey) && !event.altKey && (!event.shiftKey || window.chrome || window.opera)) {
 +    if (window.parent !== window) {
@@ -91,8 +80,8 @@
 +    }
      window.print();
      event.preventDefault();
- 
-@@ -16178,7 +16181,7 @@
+     event.stopImmediatePropagation();
+@@ -13529,7 +13532,7 @@
    try {
      parent.document.dispatchEvent(event);
    } catch (ex) {
@@ -100,4 +89,4 @@
 +    // console.error(`webviewerloaded: ${ex}`);
      document.dispatchEvent(event);
    }
- 
+   _app.PDFViewerApplication.run(config);
