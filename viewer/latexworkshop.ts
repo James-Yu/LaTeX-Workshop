@@ -181,9 +181,11 @@ class LateXWorkshopPdfViewer implements ILatexWorkshopPdfViewer {
         document.addEventListener('webviewerloaded', () => {
             const color = this.isPrefersColorSchemeDark() ? params.color.dark : params.color.light
             const options = {
+                annotationEditorMode: -1,
                 disablePreferences: true,
                 enableScripting: false,
                 cMapUrl: '/cmaps/',
+                sidebarViewOnLoad: 0,
                 standardFontDataUrl: '/standard_fonts/',
                 workerPort,
                 workerSrc: '/build/pdf.worker.js',

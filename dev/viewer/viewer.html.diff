@@ -1,5 +1,5 @@
---- ../tmp/pdfjs-2.15/web/viewer.html	2022-07-31 13:43:58.000000000 +0900
-+++ viewer/viewer.html	2022-08-27 07:27:33.000000000 +0900
+--- ../tmp/pdfjs-3.0/web/viewer.html	2022-10-29 19:29:44.000000000 +0900
++++ viewer/viewer.html	2022-10-31 10:08:38.000000000 +0900
 @@ -25,19 +25,26 @@
      <meta charset="utf-8">
      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -41,7 +41,7 @@
        </div>  <!-- sidebarContainer -->
  
        <div id="mainContainer">
-@@ -228,6 +235,14 @@
+@@ -230,6 +237,14 @@
                </button>
              </div>
  
@@ -56,7 +56,7 @@
              <div class="horizontalToolbarSeparator"></div>
  
              <button id="documentProperties" class="secondaryToolbarButton" title="Document Properties…" tabindex="69" data-l10n-id="document_properties" aria-controls="documentPropertiesDialog">
-@@ -236,13 +251,20 @@
+@@ -238,13 +253,20 @@
            </div>
          </div>  <!-- secondaryToolbar -->
  
@@ -78,7 +78,7 @@
                  <div class="toolbarButtonSpacer"></div>
                  <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar" aria-expanded="false" aria-controls="findbar">
                    <span data-l10n-id="findbar_label">Find</span>
-@@ -325,6 +347,15 @@
+@@ -316,6 +338,15 @@
                      <option title="" value="2" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 200 }'>200%</option>
                      <option title="" value="3" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 300 }'>300%</option>
                      <option title="" value="4" data-l10n-id="page_scale_percent" data-l10n-args='{ "scale": 400 }'>400%</option>
@@ -94,11 +94,11 @@
                    </select>
                  </span>
                </div>
-@@ -340,6 +371,7 @@
+@@ -331,6 +362,7 @@
  
          <div id="viewerContainer" tabindex="0">
            <div id="viewer" class="pdfViewer"></div>
 +          <div id="synctex-indicator"></div>
          </div>
+       </div> <!-- mainContainer -->
  
-         <div id="errorWrapper" hidden='true'>
