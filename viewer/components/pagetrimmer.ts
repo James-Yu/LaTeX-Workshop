@@ -161,17 +161,17 @@ export class PageTrimmer {
         }, {once: true})
 
         this.lwApp.onPagesLoaded(() => {
-            const container = document.getElementById('trimSelectContainer') as HTMLElement
+            // const container = document.getElementById('trimSelectContainer') as HTMLElement
             const select = document.getElementById('trimSelect') as HTMLSelectElement
 
             // tweak UI https://github.com/James-Yu/LaTeX-Workshop/pull/979
-            container.setAttribute('style', 'display: inherit;')
-            if (container.clientWidth > 0) {
-                select.setAttribute('style', 'min-width: inherit;')
-                const width = select.clientWidth + 8
-                select.setAttribute('style', 'min-width: ' + (width + 22) + 'px;')
-                container.setAttribute('style', 'min-width: ' + width + 'px; ' + 'max-width: ' + width + 'px;')
-            }
+            // container.setAttribute('style', 'display: inherit;')
+            // if (container.clientWidth > 0) {
+            //     select.setAttribute('style', 'min-width: inherit;')
+            //     const width = select.clientWidth + 8
+            //     select.setAttribute('style', 'min-width: ' + (width + 22) + 'px;')
+            //     container.setAttribute('style', 'min-width: ' + width + 'px; ' + 'max-width: ' + width + 'px;')
+            // }
 
             if (select.selectedIndex <= 0) {
                 return
