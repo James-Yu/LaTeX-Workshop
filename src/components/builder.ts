@@ -679,10 +679,10 @@ class BuildToolQueue {
             step.cwd = cwd || ''
         }
         if (this.steps.length === 0 || step.timestamp === this.steps[0].timestamp) {
-            step.index = (this.steps[0]?.timestamp || -1) + 1
+            step.index = (this.steps[0]?.index || -1) + 1
             this.steps.push(step)
         } else if (this.nextSteps.length === 0 || step.timestamp === this.nextSteps[0].timestamp){
-            step.index = (this.nextSteps[0]?.timestamp || -1) + 1
+            step.index = (this.nextSteps[0]?.index || -1) + 1
             this.nextSteps.push(step)
         } else {
             step.index = 0
