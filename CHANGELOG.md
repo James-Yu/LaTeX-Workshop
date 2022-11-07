@@ -1,5 +1,29 @@
 # Change Log
 
+## [9.0.0] - 2022-11-07 - Builder Update
+
+### General
+- LaTeX Workshop refactored the previous builder logic and adopt a new queue based implementation.
+  - Details are recorded in (#3514).
+  - If you experience anything unusual, please file an issue and rollback to previous versions temporarily.
+- PDF.js is updated to version 3.
+
+### Added
+- (#3451) Clean arguments now accepts placeholders.
+- (#3468) Parse page number in fullbox logs.
+- (#3488) Add `pageBorderColor` config for pdf viewer.
+
+### Changed
+- Copy `href` to clipboard instead of directly opening when clicking on embedded internal PDF viewer.
+- (#3444) `view.outline` configs are now responsive without vscode reload.
+
+### Fixed
+- Enable completion on the first line of a `.bib` file.
+- (#3445) Use source file extension to create temp indent file for `latexindent`.
+- (#3419) Math preview also shows `flalign`.
+- (#3478) Typo in `hyphenrules` newenv.
+- (#3520) Select current environment content/name not working.
+
 ## [8.29.0] - 2022-08-25
 
 ### Added
