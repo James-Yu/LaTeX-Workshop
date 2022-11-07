@@ -1,5 +1,10 @@
 # Change Log
 
+## [9.0.1] - 2022-11-08
+
+### Fixed
+- (#3526) The total number of tools in a recipe displays timestamp if there are more than one tools.
+
 ## [9.0.0] - 2022-11-07 - Builder Update
 
 ### General
