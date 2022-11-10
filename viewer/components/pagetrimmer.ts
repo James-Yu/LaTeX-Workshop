@@ -105,9 +105,9 @@ function trimPage(page: HTMLElement) {
             } else {
                 originalLeft = secionOfAnnotation.dataset.originalLeft
             }
-            const mat = originalLeft.match(/(\d+)/)
+            const mat = originalLeft.match(/([\d.]+)/)
             if (mat) {
-                secionOfAnnotation.style.left = (Number(mat[1]) + offsetX) + 'px'
+                secionOfAnnotation.style.left = Number(mat[1]) - (1 - 1 / trimScale) / 2 * 100 + '%'
             }
         }
     }
