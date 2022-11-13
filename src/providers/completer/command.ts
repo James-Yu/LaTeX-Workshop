@@ -5,6 +5,7 @@ import {latexParser} from 'latex-utensils'
 import {Environment, EnvSnippetType} from './environment'
 import type {IProvider, ILwCompletionItem, ICommand} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
+import {CmdEnvSuggestion, splitSignatureString} from './commandlib/commandutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
@@ -28,57 +29,6 @@ export interface CmdSignature {
 
 function isCmdItemEntry(obj: any): obj is CmdItemEntry {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
-}
-
-/**
- * Return {name, args} from a signature string `name` + `args`
- */
-export function splitSignatureString(signature: string): CmdSignature {
-    const i = signature.search(/[[{]/)
-    if (i > -1) {
-        return {
-            name: signature.substring(0, i),
-            args: signature.substring(i, undefined)
-        }
-    } else {
-        return {
-            name: signature,
-            args: ''
-        }
-    }
-}
-
-export class CmdEnvSuggestion extends vscode.CompletionItem implements ILwCompletionItem {
-    label: string
-    package: string
-    signature: CmdSignature
-
-    constructor(label: string, pkg: string, signature: CmdSignature, kind: vscode.CompletionItemKind) {
-        super(label, kind)
-        this.label = label
-        this.package = pkg
-        this.signature = signature
-    }
-
-    /**
-     * Return the signature, ie the name + {} for mandatory arguments + [] for optional arguments.
-     * The leading backward slash is not part of the signature
-     */
-    signatureAsString(): string {
-        return this.signature.name + this.signature.args
-    }
-
-    /**
-     * Return the name without the arguments
-     * The leading backward slash is not part of the signature
-     */
-    name(): string {
-        return this.signature.name
-    }
-
-    hasOptionalArgs(): boolean {
-        return this.signature.args.includes('[')
-    }
 }
 
 interface IExtension extends

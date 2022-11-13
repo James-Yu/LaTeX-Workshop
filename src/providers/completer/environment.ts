@@ -4,7 +4,7 @@ import {latexParser} from 'latex-utensils'
 
 import type {IProvider} from './interface'
 import {resolveCmdEnvFile, CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString} from './command'
+import {CmdEnvSuggestion, splitSignatureString} from './commandlib/commandutils'
 import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')

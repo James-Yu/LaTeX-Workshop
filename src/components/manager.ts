@@ -10,7 +10,7 @@ import {InputFileRegExp} from '../utils/inputfilepath'
 
 import type {Extension} from '../main'
 import * as eventbus from './eventbus'
-import type {CmdEnvSuggestion} from '../providers/completer/command'
+import type {CmdEnvSuggestion} from '../providers/completer/commandlib/commandutils'
 import type {CiteSuggestion} from '../providers/completer/citation'
 import type {GlossarySuggestion} from '../providers/completer/glossary'
 import type {ILwCompletionItem} from '../providers/completer/interface'
