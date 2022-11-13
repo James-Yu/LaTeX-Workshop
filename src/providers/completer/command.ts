@@ -5,7 +5,7 @@ import {latexParser} from 'latex-utensils'
 import {Environment, EnvSnippetType} from './environment'
 import type {IProvider, ILwCompletionItem, ICommand} from './interface'
 import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString} from './commandlib/commandutils'
+import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './commandlib/commandutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
 import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
@@ -88,7 +88,8 @@ export class Command implements IProvider, ICommand {
                 return exactSuggestion
             }
         }
-        return suggestions
+        // Commands starting with a non letter character are not filtered properly because of wordPattern definition.
+       return filterNonLetterSuggestions(suggestions, result[1], args.position)
     }
 
     private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): ILwCompletionItem[] {

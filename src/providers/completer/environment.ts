@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import type {IProvider} from './interface'
+import type {IProvider, ILwCompletionItem} from './interface'
 import {resolveCmdEnvFile, CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
-import {CmdEnvSuggestion, splitSignatureString} from './commandlib/commandutils'
+import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './commandlib/commandutils'
 import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
 type DataEnvsJsonType = typeof import('../../../data/environments.json')
@@ -89,14 +89,16 @@ export class Environment implements IProvider {
     }
 
     provideFrom(
-        _result: RegExpMatchArray,
+        result: RegExpMatchArray,
         args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}
     ) {
         const payload = {document: args.document, position: args.position}
-        return this.provide(payload)
+        const suggestions = this.provide(payload)
+        // Commands starting with a non letter character are not filtered properly because of wordPattern definition.
+       return filterNonLetterSuggestions(suggestions, result[1], args.position)
     }
 
-    private provide(args: {document: vscode.TextDocument, position: vscode.Position}): vscode.CompletionItem[] {
+    private provide(args: {document: vscode.TextDocument, position: vscode.Position}): ILwCompletionItem[] {
         if (vscode.window.activeTextEditor === undefined) {
             return []
         }
@@ -106,7 +108,7 @@ export class Environment implements IProvider {
         }
 
         // Extract cached envs and add to default ones
-        const suggestions: vscode.CompletionItem[] = Array.from(this.getDefaultEnvs(snippetType))
+        const suggestions: CmdEnvSuggestion[] = Array.from(this.getDefaultEnvs(snippetType))
         const envList: string[] = this.getDefaultEnvs(snippetType).map(env => env.label)
 
         // Insert package environments

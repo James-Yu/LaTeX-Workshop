@@ -57,3 +57,15 @@ export class CmdEnvSuggestion extends vscode.CompletionItem implements ILwComple
     }
 }
 
+export function filterNonLetterSuggestions(suggestions: ILwCompletionItem[], typedText: string, pos: vscode.Position): ILwCompletionItem[] {
+    if (typedText.match(/[^a-zA-Z]/)) {
+        const exactSuggestion = suggestions.filter(entry => entry.label.startsWith(typedText))
+        if (exactSuggestion.length > 0) {
+            return exactSuggestion.map(item => {
+                item.range = new vscode.Range(pos.translate(undefined, -typedText.length), pos)
+                return item
+            })
+        }
+    }
+    return suggestions
+}
