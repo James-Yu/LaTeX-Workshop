@@ -166,7 +166,7 @@ export class Completer implements vscode.CompletionItemProvider, CommandLocator 
                 provider = this.environment
                 break
             case 'command':
-                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\([a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
+                reg = args.document.languageId === 'latex-expl3' ? /\\([a-zA-Z_@]*(?::[a-zA-Z]*)?)$/ : /\\(\+?[a-zA-Z]*|(?:left|[Bb]ig{1,2}l)?[({[]?)$/
                 provider = this.command
                 break
             case 'package':
