@@ -69,3 +69,14 @@ export function filterNonLetterSuggestions(suggestions: ILwCompletionItem[], typ
     }
     return suggestions
 }
+
+export function computeFilteringRange(document: vscode.TextDocument, position: vscode.Position): vscode.Range | undefined {
+    const line = document.lineAt(position).text
+    const curlyStart = line.lastIndexOf('{', position.character)
+    const commaStart = line.lastIndexOf(',', position.character)
+    const startPos = Math.max(curlyStart, commaStart)
+    if (startPos >= 0) {
+        return new vscode.Range(position.line, startPos + 1, position.line, position.character)
+    }
+    return undefined
+}
