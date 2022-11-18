@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
 import {stripEnvironments, isNewCommand, isNewEnvironment} from '../../utils/utils'
-
+import {computeFilteringRange} from './completerutils'
 import type {IProvider, ILwCompletionItem} from './interface'
 import type {ManagerLocator} from '../../interfaces'
 
@@ -109,11 +109,7 @@ export class Reference implements IProvider {
         const refList: string[] = []
         let range: vscode.Range | undefined = undefined
         if (args) {
-            const startPos = args.document.lineAt(args.position).text.lastIndexOf('{', args.position.character)
-            if (startPos < 0) {
-                return
-            }
-            range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
+            range = computeFilteringRange(args.document, args.position)
         }
         this.extension.manager.getIncludedTeX().forEach(cachedFile => {
             const cachedRefs = this.extension.manager.getCachedContent(cachedFile)?.element.reference

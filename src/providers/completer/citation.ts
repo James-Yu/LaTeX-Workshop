@@ -2,8 +2,8 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
 import {trimMultiLineString} from '../../utils/utils'
+import {computeFilteringRange} from './completerutils'
 import type {ILwCompletionItem} from './interface'
-
 import type {IProvider} from './interface'
 import type {LoggerLocator, ManagerLocator, UtensilsParserLocator} from '../../interfaces'
 
@@ -99,14 +99,7 @@ export class Citation implements IProvider {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', args.document.uri)
         const label = configuration.get('intellisense.citation.label') as string
         const fields = readCitationFormat(configuration)
-        let range: vscode.Range | undefined = undefined
-        const line = args.document.lineAt(args.position).text
-        const curlyStart = line.lastIndexOf('{', args.position.character)
-        const commaStart = line.lastIndexOf(',', args.position.character)
-        const startPos = Math.max(curlyStart, commaStart)
-        if (startPos >= 0) {
-            range = new vscode.Range(args.position.line, startPos + 1, args.position.line, args.position.character)
-        }
+        const range: vscode.Range | undefined = computeFilteringRange(args.document, args.position)
         return this.updateAll(this.getIncludedBibs(this.extension.manager.rootFile)).map(item => {
             // Compile the completion item label
             switch(label) {
