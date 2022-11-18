@@ -1,7 +1,7 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
-import {CmdEnvSuggestion} from './commandutils'
+import {CmdEnvSuggestion} from '../completerutils'
 import type {ILwCompletionItem} from '../interface'
 import type {CompleterLocator, ManagerLocator} from '../../../interfaces'
 

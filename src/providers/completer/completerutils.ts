@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type {ILwCompletionItem} from '../interface'
+import type {ILwCompletionItem} from './interface'
 
 export interface CmdSignature {
     readonly name: string, // name without leading `\`
