@@ -22,8 +22,7 @@ export interface BuilderLocator {
 }
 
 export interface IBuilder {
-    readonly tmpDir: string,
-    readonly disableBuildAfterSave: boolean
+    readonly tmpDir: string
 }
 
 export interface LoggerLocator {
