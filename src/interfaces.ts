@@ -22,7 +22,6 @@ export interface BuilderLocator {
 }
 
 export interface IBuilder {
-    readonly tmpDir: string,
     readonly disableBuildAfterSave: boolean
 }
 
@@ -70,6 +69,7 @@ export interface ManagerLocator {
 }
 
 export interface IManager {
+    readonly tmpDir: string,
     readonly rootDir: string | undefined,
     rootFile: string | undefined,
     rootFileUri: vscode.Uri | undefined,

@@ -183,7 +183,7 @@ export class LaTexFormatter {
 
             // generate command line arguments
             const rootFile = this.extension.manager.rootFile ? this.extension.manager.rootFile : document.fileName
-            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
+            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent)

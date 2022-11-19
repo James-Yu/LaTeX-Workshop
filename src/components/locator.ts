@@ -491,7 +491,7 @@ export class Locator {
         }
         if (args) {
             args = args.map(arg => {
-                return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
+                return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
                         .replace(/%PDF%/g, pdfFile)
                         .replace(/%LINE%/g, line.toString())
                         .replace(/%TEX%/g, texFile)
