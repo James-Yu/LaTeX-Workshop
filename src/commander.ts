@@ -65,7 +65,7 @@ export class Commander {
             .catch(err => this.extension.logger.addLogMessage(`Error reading data: ${err}.`))
     }
 
-    async build(skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
+    async build(type: 'manual' | 'auto', skipSelection: boolean = false, rootFile: string | undefined = undefined, languageId: string | undefined = undefined, recipe: string | undefined = undefined) {
         this.extension.logger.addLogMessage('BUILD command invoked.')
         if (!vscode.window.activeTextEditor) {
             this.extension.logger.addLogMessage('Cannot start to build because the active editor is undefined.')
@@ -83,7 +83,7 @@ export class Commander {
         }
         if (externalBuildCommand) {
             const pwd = path.dirname(rootFile ? rootFile : vscode.window.activeTextEditor.document.fileName)
-            await this.extension.builder.buildExternal(externalBuildCommand, externalBuildArgs, pwd, rootFile)
+            await this.extension.builder.buildExternal(type, externalBuildCommand, externalBuildArgs, pwd, rootFile)
             return
         }
         if (rootFile === undefined || languageId === undefined) {
@@ -99,7 +99,7 @@ export class Commander {
             }
         }
         this.extension.logger.addLogMessage(`Building root file: ${pickedRootFile}`)
-        await this.extension.builder.build(pickedRootFile, languageId, recipe)
+        await this.extension.builder.build(type, pickedRootFile, languageId, recipe)
     }
 
     async revealOutputDir() {
@@ -125,7 +125,7 @@ export class Commander {
             return
         }
         if (recipe) {
-            return this.build(false, undefined, undefined, recipe)
+            return this.build('manual', false, undefined, undefined, recipe)
         }
         return vscode.window.showQuickPick(recipes.map(candidate => candidate.name), {
             placeHolder: 'Please Select a LaTeX Recipe'
@@ -133,7 +133,7 @@ export class Commander {
             if (!selected) {
                 return
             }
-            return this.build(false, undefined, undefined, selected)
+            return this.build('manual', false, undefined, undefined, selected)
         })
     }
 
@@ -523,13 +523,8 @@ export class Commander {
         this._texdoc.texdocUsepackages()
     }
 
-    async saveWithoutBuilding() {
-        if (vscode.window.activeTextEditor === undefined) {
-            return
-        }
-        this.extension.builder.disableBuildAfterSave = true
-        await vscode.window.activeTextEditor.document.save()
-        setTimeout(() => this.extension.builder.disableBuildAfterSave = false, 1000)
+    async saveActive() {
+        await this.extension.builder.saveActive()
     }
 
     openMathPreviewPanel() {

@@ -17,14 +17,6 @@ export interface ExtensionRootLocator {
     readonly extensionRoot: string
 }
 
-export interface BuilderLocator {
-    readonly builder: IBuilder
-}
-
-export interface IBuilder {
-    readonly disableBuildAfterSave: boolean
-}
-
 export interface LoggerLocator {
     readonly logger: ILogger
 }

@@ -39,7 +39,7 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
-import type {ExtensionRootLocator, BuilderLocator, LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator, CompleterLocator, ViewerLocator} from './interfaces'
+import type {ExtensionRootLocator, LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator, CompleterLocator, ViewerLocator} from './interfaces'
 
 
 function conflictExtensionCheck() {
@@ -61,8 +61,8 @@ function selectDocumentsWithId(ids: string[]): vscode.DocumentSelector {
 function registerLatexWorkshopCommands(extension: Extension, context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveWithoutBuilding()),
-        vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build()),
+        vscode.commands.registerCommand('latex-workshop.saveWithoutBuilding', () => extension.commander.saveActive()),
+        vscode.commands.registerCommand('latex-workshop.build', () => extension.commander.build('manual')),
         vscode.commands.registerCommand('latex-workshop.recipes', (recipe: string | undefined) => extension.commander.recipes(recipe)),
         vscode.commands.registerCommand('latex-workshop.view', (mode: 'tab' | 'browser' | 'external' | vscode.Uri | undefined) => extension.commander.view(mode)),
         vscode.commands.registerCommand('latex-workshop.refresh-viewer', () => extension.commander.refresh()),
@@ -317,7 +317,6 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
 
 interface IExtension extends
     ExtensionRootLocator,
-    BuilderLocator,
     CompleterLocator,
     LoggerLocator,
     LwfsLocator,
