@@ -39,7 +39,7 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
-import type {ExtensionRootLocator, BuilderLocator, LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator, CompleterLocator, ViewerLocator} from './interfaces'
+import type {ExtensionRootLocator, LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator, CompleterLocator, ViewerLocator} from './interfaces'
 
 
 function conflictExtensionCheck() {
@@ -317,7 +317,6 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
 
 interface IExtension extends
     ExtensionRootLocator,
-    BuilderLocator,
     CompleterLocator,
     LoggerLocator,
     LwfsLocator,

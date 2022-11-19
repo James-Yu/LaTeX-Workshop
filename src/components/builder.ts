@@ -3,17 +3,12 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as cp from 'child_process'
 import * as cs from 'cross-spawn'
-import * as os from 'os'
-import * as tmp from 'tmp'
 
 import type { Extension } from '../main'
 import { replaceArgumentPlaceholders } from '../utils/utils'
 import { BuildFinished } from './eventbus'
-import type { IBuilder } from '../interfaces'
 
-export class Builder implements IBuilder {
-    readonly tmpDir: string
-
+export class Builder {
     private lastAutoBuild: number = 0
     private prevLangId: string | undefined
     private prevRecipe: Recipe | undefined
@@ -29,20 +24,6 @@ export class Builder implements IBuilder {
     private readonly MAX_PRINT_LINE = '10000'
 
     constructor(private readonly extension: Extension) {
-        // Create temp folder
-        try {
-            this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
-        } catch (error) {
-            void vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
-            console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
-            // https://github.com/James-Yu/LaTeX-Workshop/issues/2911#issuecomment-944318278
-            if (/['"]/.exec(os.tmpdir())) {
-                const msg = `The path of tmpdir cannot include single quotes and double quotes: ${os.tmpdir()}`
-                void vscode.window.showErrorMessage(msg)
-                console.log(msg)
-            }
-            throw error
-        }
         // Check if pdflatex is available, and is MikTeX distro
         try {
             const pdflatexVersion = cp.execSync('pdflatex --version')
@@ -127,7 +108,7 @@ export class Builder implements IBuilder {
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const cwd = workspaceFolder?.uri.fsPath || pwd
         if (rootFile !== undefined) {
-            args = args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
+            args = args.map(replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir))
         }
         const tool: Tool = { name: command, command, args }
 
@@ -506,13 +487,13 @@ export class Builder implements IBuilder {
                 }
             }
             if (tool.args) {
-                tool.args = tool.args.map(replaceArgumentPlaceholders(rootFile, this.tmpDir))
+                tool.args = tool.args.map(replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir))
             }
             if (tool.env) {
                 Object.keys(tool.env).forEach( v => {
                     const e = tool.env && tool.env[v]
                     if (tool.env && e) {
-                        tool.env[v] = replaceArgumentPlaceholders(rootFile, this.tmpDir)(e)
+                        tool.env[v] = replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(e)
                     }
                 })
             }

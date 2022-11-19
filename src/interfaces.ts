@@ -17,14 +17,6 @@ export interface ExtensionRootLocator {
     readonly extensionRoot: string
 }
 
-export interface BuilderLocator {
-    readonly builder: IBuilder
-}
-
-export interface IBuilder {
-    readonly tmpDir: string
-}
-
 export interface LoggerLocator {
     readonly logger: ILogger
 }
@@ -69,6 +61,7 @@ export interface ManagerLocator {
 }
 
 export interface IManager {
+    readonly tmpDir: string,
     readonly rootDir: string | undefined,
     rootFile: string | undefined,
     rootFileUri: vscode.Uri | undefined,

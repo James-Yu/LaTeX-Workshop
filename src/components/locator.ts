@@ -7,7 +7,7 @@ import {replaceArgumentPlaceholders} from '../utils/utils'
 import {isSameRealPath} from '../utils/pathnormalize'
 
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
-import type {BuilderLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator, ViewerLocator} from '../interfaces'
+import type {ExtensionRootLocator, LoggerLocator, ManagerLocator, ViewerLocator} from '../interfaces'
 
 export type SyncTeXRecordForward = {
     page: number,
@@ -23,7 +23,6 @@ export type SyncTeXRecordBackward = {
 
 interface IExtension extends
     ExtensionRootLocator,
-    BuilderLocator,
     LoggerLocator,
     ManagerLocator,
     ViewerLocator { }
@@ -491,7 +490,7 @@ export class Locator {
         }
         if (args) {
             args = args.map(arg => {
-                return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
+                return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
                         .replace(/%PDF%/g, pdfFile)
                         .replace(/%LINE%/g, line.toString())
                         .replace(/%TEX%/g, texFile)

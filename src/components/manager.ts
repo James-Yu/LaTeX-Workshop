@@ -2,6 +2,7 @@ import * as vscode from 'vscode'
 import * as os from 'os'
 import * as path from 'path'
 import * as fs from 'fs'
+import * as tmp from 'tmp'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
 import type {latexParser} from 'latex-utensils'
@@ -86,6 +87,7 @@ export class Manager implements IManager {
     private _localRootFile: string | undefined
     private _rootFileLanguageId: string | undefined
     private _rootFile: RootFileType | undefined
+    readonly tmpDir: string
 
     private readonly extension: Extension
     private readonly fileWatcher: chokidar.FSWatcher
@@ -122,6 +124,21 @@ export class Manager implements IManager {
         this.pathUtils = new PathUtils(extension)
         this.registerSetEnvVar()
         this.extension.eventBus.onDidChangeRootFile(() => this.logWatchedFiles())
+
+        // Create temp folder
+        try {
+            this.tmpDir = tmp.dirSync({unsafeCleanup: true}).name.split(path.sep).join('/')
+        } catch (error) {
+            void vscode.window.showErrorMessage('Error during making tmpdir to build TeX files. Please check the environment variables, TEMP, TMP, and TMPDIR on your system.')
+            console.log(`TEMP, TMP, and TMPDIR: ${JSON.stringify([process.env.TEMP, process.env.TMP, process.env.TMPDIR])}`)
+            // https://github.com/James-Yu/LaTeX-Workshop/issues/2911#issuecomment-944318278
+            if (/['"]/.exec(os.tmpdir())) {
+                const msg = `The path of tmpdir cannot include single quotes and double quotes: ${os.tmpdir()}`
+                void vscode.window.showErrorMessage(msg)
+                console.log(msg)
+            }
+            throw error
+        }
     }
 
     async dispose() {
@@ -179,7 +196,7 @@ export class Manager implements IManager {
 
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(texPath))
         const outDir = configuration.get('latex.outDir') as string
-        const out = utils.replaceArgumentPlaceholders(texPath, this.extension.builder.tmpDir)(outDir)
+        const out = utils.replaceArgumentPlaceholders(texPath, this.tmpDir)(outDir)
         return path.normalize(out).split(path.sep).join('/')
     }
 

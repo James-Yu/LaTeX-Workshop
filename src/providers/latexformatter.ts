@@ -5,7 +5,7 @@ import * as fs from 'fs'
 import * as os from 'os'
 
 import {replaceArgumentPlaceholders} from '../utils/utils'
-import type {BuilderLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
+import type {ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -27,7 +27,6 @@ const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 
 interface IExtension extends
     ExtensionRootLocator,
-    BuilderLocator,
     LoggerLocator,
     ManagerLocator { }
 
@@ -183,7 +182,7 @@ export class LaTexFormatter {
 
             // generate command line arguments
             const rootFile = this.extension.manager.rootFile ? this.extension.manager.rootFile : document.fileName
-            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
+            const args = this.formatterArgs.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
                 // latexformatter.ts specific tokens
                 .replace(/%TMPFILE%/g, useDocker ? path.basename(temporaryFile) : temporaryFile.split(path.sep).join('/'))
                 .replace(/%INDENT%/g, indent)

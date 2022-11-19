@@ -159,7 +159,7 @@ export class Cleaner {
         const command = configuration.get('latex.clean.command') as string
         let args = configuration.get('latex.clean.args') as string[]
         if (args) {
-            args = args.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.builder.tmpDir)(arg)
+            args = args.map(arg => { return replaceArgumentPlaceholders(rootFile, this.extension.manager.tmpDir)(arg)
                 // cleaner.ts specific tokens
                 .replace(/%TEX%/g, rootFile)
             })
