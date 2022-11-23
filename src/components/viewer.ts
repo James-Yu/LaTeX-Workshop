@@ -261,7 +261,24 @@ export class Viewer implements IViewer {
             }
             case 'external_link': {
                 void vscode.env.clipboard.writeText(data.url)
-                void vscode.window.showInformationMessage(`The link ${data.url} has been copied to clipboard.`, 'OK')
+                const uri = vscode.Uri.parse(data.url)
+                if (['http', 'https'].includes(uri.scheme)) {
+                    void vscode.env.openExternal(uri)
+                } else {
+                    vscode.window.showInformationMessage(`The link ${data.url} has been copied to clipboard.`, 'Open link', 'Dismiss').then(
+                        option => {
+                            switch (option) {
+                                case 'Open link':
+                                    void vscode.env.openExternal(uri)
+                                    break
+                                default:
+                                    break
+                            }
+                        },
+                        reason => {
+                            this.extension.logger.addLogMessage(`Unknown error when opening URI. Error: ${JSON.stringify(reason)}, URI: ${data.url}`)
+                        })
+                }
                 break
             }
             case 'ping': {
