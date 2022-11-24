@@ -203,9 +203,9 @@ export class Builder {
                 break
             }
             const env = this.spawnProcess(step)
-            await this.monitorProcess(step, env)
-            if (this.stepQueue.isLastStep(step)) {
-                await this.afterBuilt(step)
+            const success = await this.monitorProcess(step, env)
+            if (success && this.stepQueue.isLastStep(step)) {
+                await this.afterSuccessfulBuilt(step)
             }
         }
         this.building = false
@@ -289,10 +289,11 @@ export class Builder {
      *
      * @param step The {@link Step} of process whose io is monitored.
      * @param env The process environment passed to the spawned process.
+     * @return Whether the step is successfully executed.
      */
-    private async monitorProcess(step: Step, env: ProcessEnv) {
+    private async monitorProcess(step: Step, env: ProcessEnv): Promise<boolean> {
         if (this.process === undefined) {
-            return
+            return false
         }
         let stdout = ''
         this.process.stdout.on('data', (msg: Buffer | string) => {
@@ -306,9 +307,9 @@ export class Builder {
             this.extension.logger.addCompilerMessage(msg.toString())
         })
 
-        await new Promise(resolve => {
+        const result: boolean = await new Promise(resolve => {
             if (this.process === undefined) {
-                resolve(0)
+                resolve(false)
                 return
             }
             this.process.on('error', err => {
@@ -320,7 +321,7 @@ export class Builder {
                 void this.extension.logger.showErrorMessageWithExtensionLogButton(`Recipe terminated with fatal error: ${err.message}.`)
                 this.process = undefined
                 this.stepQueue.clear()
-                resolve(0)
+                resolve(false)
             })
 
             this.process.on('exit', async (code, signal) => {
@@ -328,7 +329,7 @@ export class Builder {
                 if (!step.isExternal && code === 0) {
                     this.extension.logger.addLogMessage(`A step in recipe finished. PID: ${this.process?.pid}.`)
                     this.process = undefined
-                    resolve(0)
+                    resolve(true)
                     return
                 } else if (code === 0) {
                     this.extension.logger.addLogMessage(`Successfully built. PID: ${this.process?.pid}`)
@@ -337,7 +338,7 @@ export class Builder {
                         this.extension.viewer.refreshExistingViewer()
                     }
                     this.process = undefined
-                    resolve(0)
+                    resolve(true)
                     return
                 }
 
@@ -377,19 +378,21 @@ export class Builder {
                     this.stepQueue.clear()
                 }
                 this.process = undefined
-                resolve(0)
+                resolve(false)
             })
         })
+
+        return result
     }
 
     /**
-     * Some follow-up operations after finishing a recipe. Primarily concerning
-     * PDF refreshing and file cleaning. The execution is covered in
-     * {@link buildLoop}.
+     * Some follow-up operations after successfully finishing a recipe.
+     * Primarily concerning PDF refreshing and file cleaning. The execution is
+     * covered in {@link buildLoop}.
      *
      * @param step The last {@link Step} in the recipe.
      */
-    private async afterBuilt(step: Step) {
+    private async afterSuccessfulBuilt(step: Step) {
         if (step.rootFile === undefined) {
             // This only happens when the step is an external command.
             return
