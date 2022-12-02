@@ -1,5 +1,21 @@
 # Change Log
 
+## [9.1.0] - 2022-12-02
+
+### Added
+- (#3539) Add completion for environment starting with a `+`.
+- (#3546) Completion in comma separated lists.
+
+### Changed
+- (#3540) Use `ctrl+shift+m` instead of `cmd+m` for macos keybindings.
+- (#3550) Open http(s) directly from viewer, prompt to open for others.
+
+### Fixed
+- Fix wrong count of tools in recipe.
+- (#3502) `href` boxes in viewer misplaced on trim.
+- (#3549) Use base file name for latexindent temp file.
+- (#3556) `check` icon in status on failed builds.
+
 ## [9.0.1] - 2022-11-08
 
 ### Fixed
