@@ -85,8 +85,11 @@ export class CommandFinder {
                 cmds.push(cmd)
                 commandNameDuplicationDetector.add(node.name)
             }
-            if (['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP'].includes(node.name.replace(/\*$/, '')) &&
-                Array.isArray(node.args) && node.args.length > 0) {
+            const newCommandDeclarations = ['newcommand', 'renewcommand', 'providecommand', 'DeclareMathOperator', 'DeclarePairedDelimiter', 'DeclarePairedDelimiterX', 'DeclarePairedDelimiterXPP']
+            if (newCommandDeclarations.includes(node.name.replace(/\*$/, '')) &&
+                Array.isArray(node.args) && node.args.length > 0 &&
+                latexParser.isGroup(node.args[0]) && node.args[0].content.length > 0 &&
+                latexParser.isCommand(node.args[0].content[0])) {
                 const label = (node.args[0].content[0] as latexParser.Command).name
                 let tabStops = ''
                 let args = ''
