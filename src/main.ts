@@ -149,7 +149,7 @@ export function deactivate() {
 }
 
 export function activate(context: vscode.ExtensionContext): ReturnType<typeof generateLatexWorkshopApi> {
-    const extension = new Extension()
+    const extension = new Extension(context)
     extensionToDispose = extension
     void vscode.commands.executeCommand('setContext', 'latex-workshop:enabled', true)
 
@@ -163,7 +163,6 @@ export function activate(context: vscode.ExtensionContext): ReturnType<typeof ge
             extension.logger.addLogMessage(`onDidSaveTextDocument triggered: ${e.uri.toString(true)}`)
             extension.manager.updateCachedContent(e)
             extension.linter.lintRootFileIfEnabled()
-            void extension.manager.buildOnSaveIfEnabled(e.fileName)
             extension.counter.countOnSaveIfEnabled(e.fileName)
         }
     }))
@@ -326,6 +325,8 @@ interface IExtension extends
 
 export class Extension implements IExtension {
     readonly extensionRoot: string
+    readonly extensionContext: vscode.ExtensionContext
+
     readonly logger: Logger
     readonly eventBus = new EventBus()
     readonly lwfs: LwFileSystem
@@ -356,8 +357,9 @@ export class Extension implements IExtension {
     readonly mathPreviewPanel: MathPreviewPanel
     readonly duplicateLabels: DuplicateLabels
 
-    constructor() {
+    constructor(context: vscode.ExtensionContext) {
         this.extensionRoot = path.resolve(`${__dirname}/../../`)
+        this.extensionContext = context
         // We must create an instance of Logger first to enable
         // adding log messages during initialization.
         this.logger = new Logger()
@@ -397,6 +399,27 @@ export class Extension implements IExtension {
         this.server.dispose()
         await this.pegParser.dispose()
         await this.mathPreview.dispose()
+    }
+
+    createBuildOnSaveEvent(): vscode.Disposable {
+        const disposable = vscode.workspace.onDidSaveTextDocument( (e: vscode.TextDocument) => {
+            if (this.lwfs.isVirtualUri(e.uri)){
+                return
+            }
+            if (this.manager.hasTexId(e.languageId)) {
+                void this.manager.buildOnSaveIfEnabled(e.fileName)
+            }
+        })
+        this.extensionContext.subscriptions.push(disposable)
+        return disposable
+    }
+
+    async removeBuildOnSaveEvent(disposable: vscode.Disposable) {
+        const index = this.extensionContext.subscriptions.indexOf(disposable)
+        if (index > -1) {
+            this.extensionContext.subscriptions.splice(index, 1)
+        }
+        await disposable.dispose()
     }
 
     private addLogFundamentals() {

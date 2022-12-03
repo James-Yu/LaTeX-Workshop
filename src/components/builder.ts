@@ -13,7 +13,7 @@ export class Builder {
     private prevLangId: string | undefined
     private prevRecipe: Recipe | undefined
     private building: boolean = false
-    private saving: boolean = false
+    private buildOnSaveEvent: vscode.Disposable
     private process: cp.ChildProcessWithoutNullStreams | undefined
 
     private readonly isMiktex: boolean = false
@@ -24,6 +24,7 @@ export class Builder {
     private readonly MAX_PRINT_LINE = '10000'
 
     constructor(private readonly extension: Extension) {
+        this.buildOnSaveEvent = extension.createBuildOnSaveEvent()
         // Check if pdflatex is available, and is MikTeX distro
         try {
             const pdflatexVersion = cp.execSync('pdflatex --version')
@@ -83,9 +84,6 @@ export class Builder {
      * @param rootFile Path to the root LaTeX file.
      */
     async buildExternal(type: 'manual' | 'auto', command: string, args: string[], pwd: string, rootFile?: string) {
-        if (type === 'auto' && this.saving) {
-            return
-        }
         if (this.building) {
             void this.extension.logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
             return
@@ -131,9 +129,6 @@ export class Builder {
      * builder tries to determine on its own, in {@link createBuildTools}.
      */
     async build(type: 'manual' | 'auto', rootFile: string, langId: string, recipeName?: string) {
-        if (type === 'auto' && this.saving) {
-            return
-        }
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
 
         if (!this.canBuild(type, rootFile)) {
@@ -174,15 +169,17 @@ export class Builder {
     }
 
     async saveActive() {
-        this.saving = true
+        await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
         await vscode.window.activeTextEditor?.document.save()
-        this.saving = false
+        const disposable = this.extension.createBuildOnSaveEvent()
+        this.buildOnSaveEvent = disposable
     }
 
     private async saveAll() {
-        this.saving = true
+        await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
         await vscode.workspace.saveAll()
-        this.saving = false
+        const disposable = this.extension.createBuildOnSaveEvent()
+        this.buildOnSaveEvent = disposable
     }
 
     /**
