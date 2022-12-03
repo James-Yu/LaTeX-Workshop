@@ -430,6 +430,7 @@ export class Builder {
             if (recipe === undefined) {
                 return undefined
             }
+            this.extension.logger.addLogMessage(`Preparing to run recipe: ${recipe.name}`)
             this.prevRecipe = recipe
             this.prevLangId = langId
             const tools = configuration.get('latex.tools') as Tool[]
@@ -437,8 +438,8 @@ export class Builder {
                 if (typeof tool === 'string') {
                     const candidates = tools.filter(candidate => candidate.name === tool)
                     if (candidates.length < 1) {
-                        this.extension.logger.addLogMessage(`Skipping undefined tool: ${tool} in ${recipe?.name}`)
-                        void this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe?.name}."`)
+                        this.extension.logger.addLogMessage(`Skipping undefined tool: ${tool} in ${recipe.name}`)
+                        void this.extension.logger.showErrorMessage(`Skipping undefined tool "${tool}" in recipe "${recipe.name}."`)
                     } else {
                         buildTools.push(candidates[0])
                     }
