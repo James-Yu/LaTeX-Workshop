@@ -91,6 +91,7 @@ export class Manager implements IManager {
 
     private readonly extension: Extension
     private readonly fileWatcher: chokidar.FSWatcher
+    private readonly buildOnFileChangedListener: (file: string) => Promise<void> | undefined
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
     private readonly intellisenseWatcher: IntellisenseWatcher
@@ -117,6 +118,8 @@ export class Manager implements IManager {
             awaitWriteFinish: {stabilityThreshold: delay}
         }
         this.fileWatcher = this.createFileWatcher()
+        this.buildOnFileChangedListener = (file: string) => this.buildOnFileChanged(file)
+        this.registerbuildOnFileChanged()
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
         this.intellisenseWatcher = new IntellisenseWatcher()
@@ -858,6 +861,14 @@ export class Manager implements IManager {
         fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
     }
 
+    registerbuildOnFileChanged() {
+        this.fileWatcher.on('change', this.buildOnFileChangedListener)
+    }
+
+    unregisterbuildOnFileChanged() {
+        this.fileWatcher.removeListener('change', this.buildOnFileChangedListener)
+    }
+
     private async resetFileWatcher() {
         this.extension.logger.addLogMessage('Reset file watcher.')
         await this.fileWatcher.close()
@@ -886,7 +897,6 @@ export class Manager implements IManager {
             await this.parseFileAndSubs(file, this.rootFile)
             await this.updateCompleterOnChange(file)
         }
-        await this.buildOnFileChanged(file)
     }
 
     private onWatchedFileDeleted(file: string) {

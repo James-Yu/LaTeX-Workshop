@@ -170,14 +170,18 @@ export class Builder {
 
     async saveActive() {
         await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
+        this.extension.manager.unregisterbuildOnFileChanged()
         await vscode.window.activeTextEditor?.document.save()
         this.buildOnSaveEvent = this.extension.createBuildOnSaveEvent()
+        this.extension.manager.registerbuildOnFileChanged()
     }
 
     private async saveAll() {
         await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
+        this.extension.manager.unregisterbuildOnFileChanged()
         await vscode.workspace.saveAll()
         this.buildOnSaveEvent = this.extension.createBuildOnSaveEvent()
+        this.extension.manager.registerbuildOnFileChanged()
     }
 
     /**
