@@ -171,15 +171,13 @@ export class Builder {
     async saveActive() {
         await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
         await vscode.window.activeTextEditor?.document.save()
-        const disposable = this.extension.createBuildOnSaveEvent()
-        this.buildOnSaveEvent = disposable
+        this.buildOnSaveEvent = this.extension.createBuildOnSaveEvent()
     }
 
     private async saveAll() {
         await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
         await vscode.workspace.saveAll()
-        const disposable = this.extension.createBuildOnSaveEvent()
-        this.buildOnSaveEvent = disposable
+        this.buildOnSaveEvent = this.extension.createBuildOnSaveEvent()
     }
 
     /**
