@@ -117,9 +117,8 @@ export class Manager implements IManager {
             binaryInterval: Math.max(interval, 1000),
             awaitWriteFinish: {stabilityThreshold: delay}
         }
-        this.fileWatcher = this.createFileWatcher()
         this.buildOnFileChangedListener = (file: string) => this.buildOnFileChanged(file)
-        this.registerbuildOnFileChanged()
+        this.fileWatcher = this.createFileWatcher()
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
         this.intellisenseWatcher = new IntellisenseWatcher()
@@ -859,10 +858,11 @@ export class Manager implements IManager {
         fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
         fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
         fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
+        this.registerbuildOnFileChanged(fileWatcher)
     }
 
-    registerbuildOnFileChanged() {
-        this.fileWatcher.on('change', this.buildOnFileChangedListener)
+    registerbuildOnFileChanged(fileWatcher?: chokidar.FSWatcher) {
+        (fileWatcher || this.fileWatcher).on('change', this.buildOnFileChangedListener)
     }
 
     unregisterbuildOnFileChanged() {
