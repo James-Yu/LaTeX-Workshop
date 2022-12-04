@@ -37,7 +37,7 @@ export class UtensilsParser implements IUtensilsParser {
     }
 
     async parseBibtex(s: string, options?: bibtexParser.ParserOptions): Promise<bibtexParser.BibtexAst> {
-        return (await this.proxy).parseBibtex(s, options).timeout(30000)
+        return (await this.proxy).parseBibtex(s, options).timeout(30000).catch(() => {return { content: [] }})
     }
 
 }
