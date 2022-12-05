@@ -13,7 +13,7 @@ export class Builder {
     private prevLangId: string | undefined
     private prevRecipe: Recipe | undefined
     private building: boolean = false
-    private buildOnSaveEvent: vscode.Disposable
+    private saving: boolean = false
     private process: cp.ChildProcessWithoutNullStreams | undefined
 
     private readonly isMiktex: boolean = false
@@ -24,7 +24,6 @@ export class Builder {
     private readonly MAX_PRINT_LINE = '10000'
 
     constructor(private readonly extension: Extension) {
-        this.buildOnSaveEvent = extension.createBuildOnSaveEvent()
         // Check if pdflatex is available, and is MikTeX distro
         try {
             const pdflatexVersion = cp.execSync('pdflatex --version')
@@ -168,20 +167,20 @@ export class Builder {
         return true
     }
 
+    isAutoBuildEnabled() {
+        return !this.saving
+    }
+
     async saveActive() {
-        await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
-        this.extension.manager.unregisterbuildOnFileChanged()
+        this.saving = true
         await vscode.window.activeTextEditor?.document.save()
-        this.buildOnSaveEvent = this.extension.createBuildOnSaveEvent()
-        this.extension.manager.registerbuildOnFileChanged()
+        setTimeout(() => this.saving = false, 500)
     }
 
     private async saveAll() {
-        await this.extension.removeBuildOnSaveEvent(this.buildOnSaveEvent)
-        this.extension.manager.unregisterbuildOnFileChanged()
+        this.saving = true
         await vscode.workspace.saveAll()
-        this.buildOnSaveEvent = this.extension.createBuildOnSaveEvent()
-        this.extension.manager.registerbuildOnFileChanged()
+        setTimeout(() => this.saving = false, 500)
     }
 
     /**

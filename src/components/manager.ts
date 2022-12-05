@@ -91,7 +91,6 @@ export class Manager implements IManager {
 
     private readonly extension: Extension
     private readonly fileWatcher: chokidar.FSWatcher
-    private readonly buildOnFileChangedListener: (file: string) => Promise<void> | undefined
     private readonly pdfWatcher: PdfWatcher
     private readonly bibWatcher: BibWatcher
     private readonly intellisenseWatcher: IntellisenseWatcher
@@ -117,7 +116,6 @@ export class Manager implements IManager {
             binaryInterval: Math.max(interval, 1000),
             awaitWriteFinish: {stabilityThreshold: delay}
         }
-        this.buildOnFileChangedListener = (file: string) => this.buildOnFileChanged(file)
         this.fileWatcher = this.createFileWatcher()
         this.pdfWatcher = new PdfWatcher(extension)
         this.bibWatcher = new BibWatcher(extension)
@@ -858,15 +856,6 @@ export class Manager implements IManager {
         fileWatcher.on('add', (file: string) => this.onWatchingNewFile(file))
         fileWatcher.on('change', (file: string) => this.onWatchedFileChanged(file))
         fileWatcher.on('unlink', (file: string) => this.onWatchedFileDeleted(file))
-        this.registerbuildOnFileChanged(fileWatcher)
-    }
-
-    registerbuildOnFileChanged(fileWatcher?: chokidar.FSWatcher) {
-        (fileWatcher || this.fileWatcher).on('change', this.buildOnFileChangedListener)
-    }
-
-    unregisterbuildOnFileChanged() {
-        this.fileWatcher.removeListener('change', this.buildOnFileChangedListener)
     }
 
     private async resetFileWatcher() {
@@ -897,6 +886,7 @@ export class Manager implements IManager {
             await this.parseFileAndSubs(file, this.rootFile)
             await this.updateCompleterOnChange(file)
         }
+        await this.buildOnFileChanged(file)
     }
 
     private onWatchedFileDeleted(file: string) {
@@ -919,7 +909,6 @@ export class Manager implements IManager {
     }
 
     private autoBuild(file: string, bibChanged: boolean ) {
-        this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
             return this.extension.commander.build('auto', true, this.localRootFile, this.rootFileLanguageId)
@@ -933,12 +922,19 @@ export class Manager implements IManager {
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
             return
         }
+        if (!this.extension.builder.isAutoBuildEnabled()) {
+            return
+        }
+        this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
         return this.autoBuild(file, bibChanged)
     }
 
     buildOnSaveIfEnabled(file: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
+            return
+        }
+        if (!this.extension.builder.isAutoBuildEnabled()) {
             return
         }
         this.extension.logger.addLogMessage(`Auto build started on saving file: ${file}`)
