@@ -9,11 +9,10 @@ import { replaceArgumentPlaceholders } from '../utils/utils'
 import { BuildFinished } from './eventbus'
 
 export class Builder {
-    private lastAutoBuild: number = 0
+    private lastBuild: number = 0
     private prevLangId: string | undefined
     private prevRecipe: Recipe | undefined
     private building: boolean = false
-    private saving: boolean = false
     private process: cp.ChildProcessWithoutNullStreams | undefined
 
     private readonly isMiktex: boolean = false
@@ -74,7 +73,6 @@ export class Builder {
      * queue. After that, this function tries to initiate a {@link buildLoop} if
      * there is no one running.
      *
-     * @param type Whether the build is triggered manually or via auto-build.
      * @param command The external command to be executed.
      * @param args The arguments to {@link command}.
      * @param pwd The current working directory. This argument will be overrided
@@ -82,25 +80,19 @@ export class Builder {
      * folder is used as the current working directory.
      * @param rootFile Path to the root LaTeX file.
      */
-    async buildExternal(type: 'manual' | 'auto', command: string, args: string[], pwd: string, rootFile?: string) {
+    async buildExternal(command: string, args: string[], pwd: string, rootFile?: string) {
         if (this.building) {
             void this.extension.logger.showErrorMessageWithCompilerLogButton('Please wait for the current build to finish.')
             return
         }
 
-        if (!this.canBuild(type)) {
-            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled for `latex.autoBuild.interval`.')
-            return
-        }
-        if (type === 'auto') {
-            this.lastAutoBuild = Date.now()
-        }
+        this.lastBuild = Date.now()
 
         if (rootFile) {
             this.extension.manager.ignorePdfFile(rootFile)
         }
 
-        await this.saveAll()
+        await vscode.workspace.saveAll()
 
         const workspaceFolder = vscode.workspace.workspaceFolders?.[0]
         const cwd = workspaceFolder?.uri.fsPath || pwd
@@ -120,29 +112,22 @@ export class Builder {
      * that, this function tries to initiate a {@link buildLoop} if there is no
      * one running.
      *
-     * @param type Whether the build is triggered manually or via auto-build.
      * @param rootFile Path to the root LaTeX file.
      * @param langId The language ID of the root file. This argument is used to
      * determine whether the previous recipe can be applied to this root file.
      * @param recipeName The name of recipe to be used. If `undefined`, the
      * builder tries to determine on its own, in {@link createBuildTools}.
      */
-    async build(type: 'manual' | 'auto', rootFile: string, langId: string, recipeName?: string) {
+    async build(rootFile: string, langId: string, recipeName?: string) {
         this.extension.logger.addLogMessage(`Build root file ${rootFile}`)
 
-        if (!this.canBuild(type, rootFile)) {
-            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled for `latex.autoBuild.interval`.')
-            return
-        }
-        if (type === 'auto') {
-            this.lastAutoBuild = Date.now()
-        }
+        this.lastBuild = Date.now()
 
         // Stop watching the PDF file to avoid reloading the PDF viewer twice.
         // The builder will be responsible for refreshing the viewer.
         this.extension.manager.ignorePdfFile(rootFile)
 
-        await this.saveAll()
+        await vscode.workspace.saveAll()
 
         this.createOuputSubFolders(rootFile)
 
@@ -158,29 +143,25 @@ export class Builder {
         await this.buildLoop()
     }
 
-    private canBuild(type: 'manual' | 'auto', rootFile?: string) {
-        const configuration = vscode.workspace.getConfiguration('latex-workshop', rootFile ? vscode.Uri.file(rootFile) : undefined)
-        if (type === 'auto' &&
-            Date.now() - this.lastAutoBuild < (configuration.get('latex.autoBuild.interval', 1000) as number)) {
+    /**
+     * This function determines whether an auto-build on save or on change can
+     * be triggered. There are two conditions that this function should take
+     * care of: 1. Defined `latex.autoBuild.interval` config, 2. Unwanted
+     * auto-build triggered by the `saveAll()` in another previous building
+     * process.
+     * @returns Whether auto build can be triggered now.
+     */
+    canAutoBuild() {
+        const configuration = vscode.workspace.getConfiguration('latex-workshop', this.extension.manager.rootFile ? vscode.Uri.file(this.extension.manager.rootFile) : undefined)
+        if (Date.now() - this.lastBuild < (configuration.get('latex.autoBuild.interval', 1000) as number)) {
             return false
         }
         return true
     }
 
-    isAutoBuildEnabled() {
-        return !this.saving
-    }
-
     async saveActive() {
-        this.saving = true
+        this.lastBuild = Date.now()
         await vscode.window.activeTextEditor?.document.save()
-        setTimeout(() => this.saving = false, 500)
-    }
-
-    private async saveAll() {
-        this.saving = true
-        await vscode.workspace.saveAll()
-        setTimeout(() => this.saving = false, 500)
     }
 
     /**

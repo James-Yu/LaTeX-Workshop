@@ -909,20 +909,21 @@ export class Manager implements IManager {
     }
 
     private autoBuild(file: string, bibChanged: boolean ) {
+        if (!this.extension.builder.canAutoBuild()) {
+            this.extension.logger.addLogMessage('Auto Build Run is temporarily disabled for `latex.autoBuild.interval`.')
+            return
+        }
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (!bibChanged && this.localRootFile && configuration.get('latex.rootFile.useSubFile')) {
-            return this.extension.commander.build('auto', true, this.localRootFile, this.rootFileLanguageId)
+            return this.extension.commander.build(true, this.localRootFile, this.rootFileLanguageId)
         } else {
-            return this.extension.commander.build('auto', true, this.rootFile, this.rootFileLanguageId)
+            return this.extension.commander.build(true, this.rootFile, this.rootFileLanguageId)
         }
     }
 
     buildOnFileChanged(file: string, bibChanged: boolean = false) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onFileChange) {
-            return
-        }
-        if (!this.extension.builder.isAutoBuildEnabled()) {
             return
         }
         this.extension.logger.addLogMessage(`Auto build started detecting the change of a file: ${file}`)
@@ -932,9 +933,6 @@ export class Manager implements IManager {
     buildOnSaveIfEnabled(file: string) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop', vscode.Uri.file(file))
         if (configuration.get('latex.autoBuild.run') as string !== BuildEvents.onSave) {
-            return
-        }
-        if (!this.extension.builder.isAutoBuildEnabled()) {
             return
         }
         this.extension.logger.addLogMessage(`Auto build started on saving file: ${file}`)
