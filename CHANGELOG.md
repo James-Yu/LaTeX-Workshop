@@ -1,5 +1,12 @@
 # Change Log
 
+## [9.1.1] - 2022-12-08
+
+### Fixed
+- (#3566, #3569) Make sure command names start with a `\`.
+- (#3568, #3570) Use delay to prevent simultaneous auto build by file save or change.
+- (#3571) Handle rejected promise on bib parsing.
+
 ## [9.1.0] - 2022-12-02
 
 ### Added
