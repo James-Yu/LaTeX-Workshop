@@ -104,11 +104,11 @@ export class CursorRenderer {
         const curLine = arry[line]
         arry[line] =
         curLine.substring(0, nodeStart.character)
-        + '{~'
+        + (curLine[nodeStart.character - 1] === '{' ? '~' : '{~')
         + curLine.substring(nodeStart.character, cursorPosInSnippet.character)
         + cursor
         + curLine.substring(cursorPosInSnippet.character, nodeEnd.character)
-        + '~}'
+        + (curLine[nodeEnd.character] === '}' ? '~' : '~}')
         + curLine.substring(nodeEnd.character, curLine.length)
         return arry.join('\n')
     }

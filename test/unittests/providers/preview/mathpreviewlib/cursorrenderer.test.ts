@@ -86,7 +86,19 @@ suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
         assert(texMath)
         const renderer = new CursorRenderer({pegParser})
         const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
-        assert.strictEqual(result, '$a^{~b| ~}$')
+        assert.strictEqual(result, '${~a^b|~} $')
+    })
+
+    runUnitTestWithFixture('fixture001', 'test $a^{b|} $', async () => {
+        const docString = '$a^{b} $'
+        const doc = new TextDocumentLike(docString)
+        const finder = new TeXMathEnvFinder()
+        const cursorPos = new vscode.Position(0, 5)
+        const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
+        assert(texMath)
+        const renderer = new CursorRenderer({pegParser})
+        const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
+        assert.strictEqual(result, '$a^{~b|~} $')
     })
 
     runUnitTestWithFixture('fixture001', 'test a_|b', async () => {
