@@ -3,7 +3,7 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
 import type {IProvider, ILwCompletionItem} from './interface'
-import {resolveCmdEnvFile, CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
+import {resolvePkgFile, CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
 import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
@@ -247,17 +247,19 @@ export class Environment implements IProvider {
     }
 
     private getEnvItemsFromPkg(pkg: string): {[key: string]: EnvItemEntry} {
-        const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_env.json`, `${this.extension.extensionRoot}/data/packages/`)
+        const filePath: string | undefined = resolvePkgFile(`${pkg}.json`, `${this.extension.extensionRoot}/data/packages/`)
         if (filePath === undefined) {
             return {}
         }
         try {
-            const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString()) as DataEnvsJsonType
+            const envs: {[key: string]: EnvItemEntry} = JSON.parse(fs.readFileSync(filePath).toString()).envs as DataEnvsJsonType
             Object.keys(envs).forEach(key => {
                 if (! isEnvItemEntry(envs[key])) {
                     this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
                     this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(envs[key])}`)
                     delete envs[key]
+                } else {
+                    envs[key].package = pkg
                 }
             })
             return envs

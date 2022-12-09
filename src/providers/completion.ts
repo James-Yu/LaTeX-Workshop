@@ -20,7 +20,7 @@ import type {CommandLocator} from '../interfaces'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
 type DataCmdsJsonType = typeof import('../../data/commands.json')
-type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols_cmd.json')
+type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols.json')
 
 export class Completer implements vscode.CompletionItemProvider, CommandLocator {
     private readonly extension: Extension
@@ -57,10 +57,10 @@ export class Completer implements vscode.CompletionItemProvider, CommandLocator 
     private loadDefaultItems() {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
-        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols_cmd.json`, {encoding: 'utf8'})
+        const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols.json`, {encoding: 'utf8'})
         const env: { [key: string]: EnvItemEntry } = JSON.parse(defaultEnvs) as DataEnvsJsonType
         const cmds = JSON.parse(defaultCommands) as DataCmdsJsonType
-        const maths: { [key: string]: CmdItemEntry } = JSON.parse(defaultLaTeXMathSymbols) as DataLatexMathSymbolsJsonType
+        const maths: { [key: string]: CmdItemEntry } = (JSON.parse(defaultLaTeXMathSymbols) as DataLatexMathSymbolsJsonType).cmds
         for (const key of Object.keys(maths)) {
             if (key.match(/\{.*?\}/)) {
                 const ent = maths[key]

@@ -1,0 +1,801 @@
+{
+  "includes": [
+    "graphicx",
+    "pgfsys",
+    "keyval",
+    "xcolor"
+  ],
+  "cmds": {
+    "foreach": {},
+    "breakforeach": {},
+    "pgfmathincluded": {},
+    "pgfmathloop{}": {
+      "command": "pgfmathloop",
+      "snippet": "pgfmathloop{${1:arg1}}"
+    },
+    "pgfmathcounter": {},
+    "pgfmathbreakloop": {},
+    "expandafter": {},
+    "expandafter{}": {
+      "command": "expandafter",
+      "snippet": "expandafter{${1:arg1}}"
+    },
+    "pgfmathprint{}": {
+      "command": "pgfmathprint",
+      "snippet": "pgfmathprint{${1:arg1}}"
+    },
+    "pgfmathparse": {},
+    "pgfmathqparse": {},
+    "pgfmathscaleresult": {},
+    "pgfmathsetresultunitscale{}": {
+      "command": "pgfmathsetresultunitscale",
+      "snippet": "pgfmathsetresultunitscale{${1:arg1}}"
+    },
+    "pgfmathresultunitscale": {},
+    "pgfmathresult": {},
+    "pgfmathdeclareoperator{}": {
+      "command": "pgfmathdeclareoperator",
+      "snippet": "pgfmathdeclareoperator{${1:arg1}}"
+    },
+    "pgfmathdeclarefunction": {},
+    "pgfmathredeclarefunction{}": {
+      "command": "pgfmathredeclarefunction",
+      "snippet": "pgfmathredeclarefunction{${1:arg1}}"
+    },
+    "pgfmathdeclarepseudoconstant{}": {
+      "command": "pgfmathdeclarepseudoconstant",
+      "snippet": "pgfmathdeclarepseudoconstant{${1:arg1}}"
+    },
+    "pgfmathredeclarepseudoconstant{}": {
+      "command": "pgfmathredeclarepseudoconstant",
+      "snippet": "pgfmathredeclarepseudoconstant{${1:arg1}}"
+    },
+    "pgfmathsincos{}": {
+      "command": "pgfmathsincos",
+      "snippet": "pgfmathsincos{${1:arg1}}"
+    },
+    "pgfmathsetseed{}": {
+      "command": "pgfmathsetseed",
+      "snippet": "pgfmathsetseed{${1:arg1}}"
+    },
+    "pgfmathgeneratepseudorandomnumber": {},
+    "pgfmathrandominteger{}{}{}": {
+      "command": "pgfmathrandominteger",
+      "snippet": "pgfmathrandominteger{${1:cmd}}{${2:minimum}}{${3:maximum}}"
+    },
+    "pgfmathdeclarerandomlist{}": {
+      "command": "pgfmathdeclarerandomlist",
+      "snippet": "pgfmathdeclarerandomlist{${1:arg1}}"
+    },
+    "pgfmathrandomitem{}{}": {
+      "command": "pgfmathrandomitem",
+      "snippet": "pgfmathrandomitem{${1:cmd}}{${2:listname}}"
+    },
+    "pgfmathbasetodec{}{}{}": {
+      "command": "pgfmathbasetodec",
+      "snippet": "pgfmathbasetodec{${1:cmd}}{${2:number}}{${3:base}}"
+    },
+    "pgfmathdectobase{}{}{}": {
+      "command": "pgfmathdectobase",
+      "snippet": "pgfmathdectobase{${1:cmd}}{${2:number}}{${3:base}}"
+    },
+    "pgfmathdectoBase{}{}{}": {
+      "command": "pgfmathdectoBase",
+      "snippet": "pgfmathdectoBase{${1:cmd}}{${2:number}}{${3:base}}"
+    },
+    "pgfmathbasetobase{}{}{}{}": {
+      "command": "pgfmathbasetobase",
+      "snippet": "pgfmathbasetobase{${1:cmd}}{${2:number}}{${3:base1}}{${4:base2}}"
+    },
+    "pgfmathbasetoBase{}{}{}{}": {
+      "command": "pgfmathbasetoBase",
+      "snippet": "pgfmathbasetoBase{${1:cmd}}{${2:number}}{${3:base1}}{${4:base2}}"
+    },
+    "pgfmathsetbasenumberlength{}": {
+      "command": "pgfmathsetbasenumberlength",
+      "snippet": "pgfmathsetbasenumberlength{${1:arg1}}"
+    },
+    "pgfmathscientific{}": {
+      "command": "pgfmathscientific",
+      "snippet": "pgfmathscientific{${1:arg1}}"
+    },
+    "pgfmathmax{}": {
+      "command": "pgfmathmax",
+      "snippet": "pgfmathmax{${1:arg1}}"
+    },
+    "pgfmathmin{}": {
+      "command": "pgfmathmin",
+      "snippet": "pgfmathmin{${1:arg1}}"
+    },
+    "pgfmathsetlength{}": {
+      "command": "pgfmathsetlength",
+      "snippet": "pgfmathsetlength{${1:arg1}}"
+    },
+    "pgfmathaddtolength{}": {
+      "command": "pgfmathaddtolength",
+      "snippet": "pgfmathaddtolength{${1:arg1}}"
+    },
+    "pgfmathsetcount{}": {
+      "command": "pgfmathsetcount",
+      "snippet": "pgfmathsetcount{${1:arg1}}"
+    },
+    "pgfmathaddtocount{}": {
+      "command": "pgfmathaddtocount",
+      "snippet": "pgfmathaddtocount{${1:arg1}}"
+    },
+    "pgfmathnewcounter{}": {
+      "command": "pgfmathnewcounter",
+      "snippet": "pgfmathnewcounter{${1:arg1}}"
+    },
+    "csname": {},
+    "pgfmathsetcounter{}": {
+      "command": "pgfmathsetcounter",
+      "snippet": "pgfmathsetcounter{${1:arg1}}"
+    },
+    "pgfmathaddtocounter{}": {
+      "command": "pgfmathaddtocounter",
+      "snippet": "pgfmathaddtocounter{${1:arg1}}"
+    },
+    "pgfmathmakecounterglobal{}": {
+      "command": "pgfmathmakecounterglobal",
+      "snippet": "pgfmathmakecounterglobal{${1:arg1}}"
+    },
+    "pgfmathsetmacro{}{}": {
+      "command": "pgfmathsetmacro",
+      "snippet": "pgfmathsetmacro{${1:cmd}}{${2:def}}"
+    },
+    "pgfmathsetlengthmacro{}{}": {
+      "command": "pgfmathsetlengthmacro",
+      "snippet": "pgfmathsetlengthmacro{${1:cmd}}{${2:def}}"
+    },
+    "pgfmathtruncatemacro{}{}": {
+      "command": "pgfmathtruncatemacro",
+      "snippet": "pgfmathtruncatemacro{${1:cmd}}{${2:def}}"
+    },
+    "pgfmathanglebetweenpoints{}": {
+      "command": "pgfmathanglebetweenpoints",
+      "snippet": "pgfmathanglebetweenpoints{${1:arg1}}"
+    },
+    "pgfmathrotatepointaround{}": {
+      "command": "pgfmathrotatepointaround",
+      "snippet": "pgfmathrotatepointaround{${1:arg1}}"
+    },
+    "pgfmathanglebetweenlines{}": {
+      "command": "pgfmathanglebetweenlines",
+      "snippet": "pgfmathanglebetweenlines{${1:arg1}}"
+    },
+    "pgfmathreflectpointalongaxis{}": {
+      "command": "pgfmathreflectpointalongaxis",
+      "snippet": "pgfmathreflectpointalongaxis{${1:arg1}}"
+    },
+    "pgfmathpointintersectionoflineandarc{}": {
+      "command": "pgfmathpointintersectionoflineandarc",
+      "snippet": "pgfmathpointintersectionoflineandarc{${1:arg1}}"
+    },
+    "m": {
+      "detail": "𝑚",
+      "documentation": "MATHEMATICAL ITALIC SMALL M"
+    },
+    "pgfmathangleonellipse{}": {
+      "command": "pgfmathangleonellipse",
+      "snippet": "pgfmathangleonellipse{${1:arg1}}"
+    },
+    "pgfpoint{}": {
+      "command": "pgfpoint",
+      "snippet": "pgfpoint{${1:arg1}}"
+    },
+    "pgfqpoint{}": {
+      "command": "pgfqpoint",
+      "snippet": "pgfqpoint{${1:arg1}}"
+    },
+    "pgfpointorigin": {},
+    "pgfpointtransformed{}": {
+      "command": "pgfpointtransformed",
+      "snippet": "pgfpointtransformed{${1:arg1}}"
+    },
+    "pgfpointdiff{}": {
+      "command": "pgfpointdiff",
+      "snippet": "pgfpointdiff{${1:arg1}}"
+    },
+    "pgfpointadd{}": {
+      "command": "pgfpointadd",
+      "snippet": "pgfpointadd{${1:arg1}}"
+    },
+    "pgfpointscale{}": {
+      "command": "pgfpointscale",
+      "snippet": "pgfpointscale{${1:arg1}}"
+    },
+    "pgfqpointscale{}": {
+      "command": "pgfqpointscale",
+      "snippet": "pgfqpointscale{${1:arg1}}"
+    },
+    "pgfpointintersectionoflines{}": {
+      "command": "pgfpointintersectionoflines",
+      "snippet": "pgfpointintersectionoflines{${1:arg1}}"
+    },
+    "pgfpointintersectionofcircles{}": {
+      "command": "pgfpointintersectionofcircles",
+      "snippet": "pgfpointintersectionofcircles{${1:arg1}}"
+    },
+    "pgfpointlineattime{}": {
+      "command": "pgfpointlineattime",
+      "snippet": "pgfpointlineattime{${1:arg1}}"
+    },
+    "pgfpointlineatdistance{}": {
+      "command": "pgfpointlineatdistance",
+      "snippet": "pgfpointlineatdistance{${1:arg1}}"
+    },
+    "pgfpointcurveattime{}": {
+      "command": "pgfpointcurveattime",
+      "snippet": "pgfpointcurveattime{${1:arg1}}"
+    },
+    "pgfpointpolar{}": {
+      "command": "pgfpointpolar",
+      "snippet": "pgfpointpolar{${1:arg1}}"
+    },
+    "pgfqpointpolar{}": {
+      "command": "pgfqpointpolar",
+      "snippet": "pgfqpointpolar{${1:arg1}}"
+    },
+    "pgfpointpolarxy{}": {
+      "command": "pgfpointpolarxy",
+      "snippet": "pgfpointpolarxy{${1:arg1}}"
+    },
+    "pgfpointcylindrical{}": {
+      "command": "pgfpointcylindrical",
+      "snippet": "pgfpointcylindrical{${1:arg1}}"
+    },
+    "pgfpointspherical{}": {
+      "command": "pgfpointspherical",
+      "snippet": "pgfpointspherical{${1:arg1}}"
+    },
+    "pgfpointxy{}": {
+      "command": "pgfpointxy",
+      "snippet": "pgfpointxy{${1:arg1}}"
+    },
+    "pgfqpointxy{}": {
+      "command": "pgfqpointxy",
+      "snippet": "pgfqpointxy{${1:arg1}}"
+    },
+    "pgfpointxyz{}": {
+      "command": "pgfpointxyz",
+      "snippet": "pgfpointxyz{${1:arg1}}"
+    },
+    "pgfqpointxyz{}": {
+      "command": "pgfqpointxyz",
+      "snippet": "pgfqpointxyz{${1:arg1}}"
+    },
+    "pgfsetxvec{}": {
+      "command": "pgfsetxvec",
+      "snippet": "pgfsetxvec{${1:arg1}}"
+    },
+    "pgfsetyvec{}": {
+      "command": "pgfsetyvec",
+      "snippet": "pgfsetyvec{${1:arg1}}"
+    },
+    "pgfsetzvec{}": {
+      "command": "pgfsetzvec",
+      "snippet": "pgfsetzvec{${1:arg1}}"
+    },
+    "pgfpointnormalised{}": {
+      "command": "pgfpointnormalised",
+      "snippet": "pgfpointnormalised{${1:arg1}}"
+    },
+    "pgfpointborderrectangle{}": {
+      "command": "pgfpointborderrectangle",
+      "snippet": "pgfpointborderrectangle{${1:arg1}}"
+    },
+    "pgfpointborderellipse{}": {
+      "command": "pgfpointborderellipse",
+      "snippet": "pgfpointborderellipse{${1:arg1}}"
+    },
+    "pgfextractx{}": {
+      "command": "pgfextractx",
+      "snippet": "pgfextractx{${1:arg1}}"
+    },
+    "pgfextracty{}": {
+      "command": "pgfextracty",
+      "snippet": "pgfextracty{${1:arg1}}"
+    },
+    "pgfgetlastxy{}": {
+      "command": "pgfgetlastxy",
+      "snippet": "pgfgetlastxy{${1:arg1}}"
+    },
+    "pgfsetcornersarced{}": {
+      "command": "pgfsetcornersarced",
+      "snippet": "pgfsetcornersarced{${1:arg1}}"
+    },
+    "pgfpathmoveto{}": {
+      "command": "pgfpathmoveto",
+      "snippet": "pgfpathmoveto{${1:arg1}}"
+    },
+    "pgfpathlineto{}": {
+      "command": "pgfpathlineto",
+      "snippet": "pgfpathlineto{${1:arg1}}"
+    },
+    "pgfpathclose": {},
+    "pgfpathcurveto{}": {
+      "command": "pgfpathcurveto",
+      "snippet": "pgfpathcurveto{${1:arg1}}"
+    },
+    "pgfpathquadraticcurveto{}": {
+      "command": "pgfpathquadraticcurveto",
+      "snippet": "pgfpathquadraticcurveto{${1:arg1}}"
+    },
+    "pgfpatharc{}": {
+      "command": "pgfpatharc",
+      "snippet": "pgfpatharc{${1:arg1}}"
+    },
+    "pgfpatharcaxes{}": {
+      "command": "pgfpatharcaxes",
+      "snippet": "pgfpatharcaxes{${1:arg1}}"
+    },
+    "pgfpatharcto{}": {
+      "command": "pgfpatharcto",
+      "snippet": "pgfpatharcto{${1:arg1}}"
+    },
+    "pgfpatharctomaxstepsize": {},
+    "cx": {},
+    "cy": {},
+    "startangle": {},
+    "endangle": {},
+    "a": {
+      "detail": "𝑎",
+      "documentation": "MATHEMATICAL ITALIC SMALL A"
+    },
+    "b": {
+      "detail": "𝑏",
+      "documentation": "MATHEMATICAL ITALIC SMALL B"
+    },
+    "pgfpatharctoprecomputed{}": {
+      "command": "pgfpatharctoprecomputed",
+      "snippet": "pgfpatharctoprecomputed{${1:arg1}}"
+    },
+    "pgfpathellipse{}": {
+      "command": "pgfpathellipse",
+      "snippet": "pgfpathellipse{${1:arg1}}"
+    },
+    "pgfpathcircle{}": {
+      "command": "pgfpathcircle",
+      "snippet": "pgfpathcircle{${1:arg1}}"
+    },
+    "pgfpathrectangle": {},
+    "pgfpathrectanglecorners{}": {
+      "command": "pgfpathrectanglecorners",
+      "snippet": "pgfpathrectanglecorners{${1:arg1}}"
+    },
+    "pgfpathgrid": {},
+    "pgfpathparabola{}": {
+      "command": "pgfpathparabola",
+      "snippet": "pgfpathparabola{${1:arg1}}"
+    },
+    "pgfpathsine{}": {
+      "command": "pgfpathsine",
+      "snippet": "pgfpathsine{${1:arg1}}"
+    },
+    "pgfpathcosine{}": {
+      "command": "pgfpathcosine",
+      "snippet": "pgfpathcosine{${1:arg1}}"
+    },
+    "pgfpathcurvebetweentime": {},
+    "pgfpathcurvebetweentimecontinue": {},
+    "pgfusepath{}": {
+      "command": "pgfusepath",
+      "snippet": "pgfusepath{${1:arg1}}"
+    },
+    "pgfsetshortenstart{}": {
+      "command": "pgfsetshortenstart",
+      "snippet": "pgfsetshortenstart{${1:arg1}}"
+    },
+    "pgfsetshortenend{}": {
+      "command": "pgfsetshortenend",
+      "snippet": "pgfsetshortenend{${1:arg1}}"
+    },
+    "pgfscope": {},
+    "endpgfscope": {},
+    "pgfqbox{}": {
+      "command": "pgfqbox",
+      "snippet": "pgfqbox{${1:arg1}}"
+    },
+    "pgfqboxsynced{}": {
+      "command": "pgfqboxsynced",
+      "snippet": "pgfqboxsynced{${1:arg1}}"
+    },
+    "pgftext": {},
+    "pgfresetboundingbox": {},
+    "pgfpicture": {},
+    "endpgfpicture": {},
+    "pgfsetbaselinepointlater{}": {
+      "command": "pgfsetbaselinepointlater",
+      "snippet": "pgfsetbaselinepointlater{${1:arg1}}"
+    },
+    "pgfsetbaselinepointnow{}": {
+      "command": "pgfsetbaselinepointnow",
+      "snippet": "pgfsetbaselinepointnow{${1:arg1}}"
+    },
+    "pgfsetbaseline{}": {
+      "command": "pgfsetbaseline",
+      "snippet": "pgfsetbaseline{${1:arg1}}"
+    },
+    "pgfsettrimleftpointlater{}": {
+      "command": "pgfsettrimleftpointlater",
+      "snippet": "pgfsettrimleftpointlater{${1:arg1}}"
+    },
+    "pgfsettrimleftpointnow{}": {
+      "command": "pgfsettrimleftpointnow",
+      "snippet": "pgfsettrimleftpointnow{${1:arg1}}"
+    },
+    "pgfsettrimleft{}": {
+      "command": "pgfsettrimleft",
+      "snippet": "pgfsettrimleft{${1:arg1}}"
+    },
+    "pgfsettrimrightpointlater{}": {
+      "command": "pgfsettrimrightpointlater",
+      "snippet": "pgfsettrimrightpointlater{${1:arg1}}"
+    },
+    "pgfsettrimrightpointnow{}": {
+      "command": "pgfsettrimrightpointnow",
+      "snippet": "pgfsettrimrightpointnow{${1:arg1}}"
+    },
+    "pgfsettrimright{}": {
+      "command": "pgfsettrimright",
+      "snippet": "pgfsettrimright{${1:arg1}}"
+    },
+    "pgfinterruptpath": {},
+    "endpgfinterruptpath": {},
+    "pgfinterruptboundingbox": {},
+    "endpgfinterruptboundingbox": {},
+    "pgfinterruptpicture": {},
+    "endpgfinterruptpicture": {},
+    "pgfsetlinewidth{}": {
+      "command": "pgfsetlinewidth",
+      "snippet": "pgfsetlinewidth{${1:arg1}}"
+    },
+    "pgfsetinnerlinewidth{}": {
+      "command": "pgfsetinnerlinewidth",
+      "snippet": "pgfsetinnerlinewidth{${1:arg1}}"
+    },
+    "pgfinnerlinewidth": {},
+    "pgfsetinnerstrokecolor{}": {
+      "command": "pgfsetinnerstrokecolor",
+      "snippet": "pgfsetinnerstrokecolor{${1:arg1}}"
+    },
+    "pgfinnerstrokecolor": {},
+    "pgfsetmiterlimit{}": {
+      "command": "pgfsetmiterlimit",
+      "snippet": "pgfsetmiterlimit{${1:arg1}}"
+    },
+    "pgfsetdash{}": {
+      "command": "pgfsetdash",
+      "snippet": "pgfsetdash{${1:arg1}}"
+    },
+    "pgfsetstrokecolor{}": {
+      "command": "pgfsetstrokecolor",
+      "snippet": "pgfsetstrokecolor{${1:arg1}}"
+    },
+    "pgfsetfillcolor{}": {
+      "command": "pgfsetfillcolor",
+      "snippet": "pgfsetfillcolor{${1:arg1}}"
+    },
+    "pgfsetcolor{}": {
+      "command": "pgfsetcolor",
+      "snippet": "pgfsetcolor{${1:arg1}}"
+    },
+    "pgfsetbuttcap": {},
+    "pgfsetroundcap": {},
+    "pgfsetrectcap": {},
+    "pgfsetmiterjoin": {},
+    "pgfsetbeveljoin": {},
+    "pgfsetroundjoin": {},
+    "pgfseteorule": {},
+    "pgfsetnonzerorule": {},
+    "pgfgettransform{}": {
+      "command": "pgfgettransform",
+      "snippet": "pgfgettransform{${1:arg1}}"
+    },
+    "pgfgettransformentries{}": {
+      "command": "pgfgettransformentries",
+      "snippet": "pgfgettransformentries{${1:arg1}}"
+    },
+    "pgfsettransformentries{}": {
+      "command": "pgfsettransformentries",
+      "snippet": "pgfsettransformentries{${1:arg1}}"
+    },
+    "pgfsettransform{}": {
+      "command": "pgfsettransform",
+      "snippet": "pgfsettransform{${1:arg1}}"
+    },
+    "pgftransforminvert": {},
+    "pgftransformcm{}": {
+      "command": "pgftransformcm",
+      "snippet": "pgftransformcm{${1:arg1}}"
+    },
+    "pgfmorphaddpre{}": {
+      "command": "pgfmorphaddpre",
+      "snippet": "pgfmorphaddpre{${1:arg1}}"
+    },
+    "pgfmorphaddpost{}": {
+      "command": "pgfmorphaddpost",
+      "snippet": "pgfmorphaddpost{${1:arg1}}"
+    },
+    "pgftransformtriangle{}": {
+      "command": "pgftransformtriangle",
+      "snippet": "pgftransformtriangle{${1:arg1}}"
+    },
+    "pgftransformreset": {},
+    "pgftransformresetnontranslations": {},
+    "pgftransformshift{}": {
+      "command": "pgftransformshift",
+      "snippet": "pgftransformshift{${1:arg1}}"
+    },
+    "pgftransformxshift{}": {
+      "command": "pgftransformxshift",
+      "snippet": "pgftransformxshift{${1:arg1}}"
+    },
+    "pgftransformyshift{}": {
+      "command": "pgftransformyshift",
+      "snippet": "pgftransformyshift{${1:arg1}}"
+    },
+    "pgftransformscale{}": {
+      "command": "pgftransformscale",
+      "snippet": "pgftransformscale{${1:arg1}}"
+    },
+    "pgftransformxscale{}": {
+      "command": "pgftransformxscale",
+      "snippet": "pgftransformxscale{${1:arg1}}"
+    },
+    "pgftransformyscale{}": {
+      "command": "pgftransformyscale",
+      "snippet": "pgftransformyscale{${1:arg1}}"
+    },
+    "pgftransformxslant{}": {
+      "command": "pgftransformxslant",
+      "snippet": "pgftransformxslant{${1:arg1}}"
+    },
+    "pgftransformyslant{}": {
+      "command": "pgftransformyslant",
+      "snippet": "pgftransformyslant{${1:arg1}}"
+    },
+    "pgftransformrotate{}": {
+      "command": "pgftransformrotate",
+      "snippet": "pgftransformrotate{${1:arg1}}"
+    },
+    "pgftransformlineattime{}": {
+      "command": "pgftransformlineattime",
+      "snippet": "pgftransformlineattime{${1:arg1}}"
+    },
+    "pgftransformcurveattime{}": {
+      "command": "pgftransformcurveattime",
+      "snippet": "pgftransformcurveattime{${1:arg1}}"
+    },
+    "pgftransformarrow{}": {
+      "command": "pgftransformarrow",
+      "snippet": "pgftransformarrow{${1:arg1}}"
+    },
+    "pgflowlevelsynccm": {},
+    "pgflowlevel{}": {
+      "command": "pgflowlevel",
+      "snippet": "pgflowlevel{${1:arg1}}"
+    },
+    "pgflowlevelscope{}": {
+      "command": "pgflowlevelscope",
+      "snippet": "pgflowlevelscope{${1:arg1}}"
+    },
+    "endpgflowlevelscope": {},
+    "pgflowlevelobj{}": {
+      "command": "pgflowlevelobj",
+      "snippet": "pgflowlevelobj{${1:arg1}}"
+    },
+    "pgfpathqmoveto{}": {
+      "command": "pgfpathqmoveto",
+      "snippet": "pgfpathqmoveto{${1:arg1}}"
+    },
+    "pgfpathqlineto{}": {
+      "command": "pgfpathqlineto",
+      "snippet": "pgfpathqlineto{${1:arg1}}"
+    },
+    "pgfpathqcurveto{}": {
+      "command": "pgfpathqcurveto",
+      "snippet": "pgfpathqcurveto{${1:arg1}}"
+    },
+    "pgfpathqcircle{}": {
+      "command": "pgfpathqcircle",
+      "snippet": "pgfpathqcircle{${1:arg1}}"
+    },
+    "pgfusepathqstroke": {},
+    "pgfusepathqfill": {},
+    "pgfusepathqfillstroke": {},
+    "pgfusepathqclip": {},
+    "pgfdefobject{}": {
+      "command": "pgfdefobject",
+      "snippet": "pgfdefobject{${1:arg1}}"
+    },
+    "pgfuseobject{}": {
+      "command": "pgfuseobject",
+      "snippet": "pgfuseobject{${1:arg1}}"
+    },
+    "pgfuseobjectmagnify{}": {
+      "command": "pgfuseobjectmagnify",
+      "snippet": "pgfuseobjectmagnify{${1:arg1}}"
+    },
+    "pgfprocesspathextractpoints{}": {
+      "command": "pgfprocesspathextractpoints",
+      "snippet": "pgfprocesspathextractpoints{${1:arg1}}"
+    },
+    "pgfpointfirstonpath": {},
+    "pgfpointsecondonpath": {},
+    "pgfpointlastonpath": {},
+    "pgfprocesscheckclosed{}": {
+      "command": "pgfprocesscheckclosed",
+      "snippet": "pgfprocesscheckclosed{${1:arg1}}"
+    },
+    "pgfprocessround{}": {
+      "command": "pgfprocessround",
+      "snippet": "pgfprocessround{${1:arg1}}"
+    },
+    "pgfprocesspathreplacestartandend{}": {
+      "command": "pgfprocesspathreplacestartandend",
+      "snippet": "pgfprocesspathreplacestartandend{${1:arg1}}"
+    },
+    "pgfsetarrowsend{}": {
+      "command": "pgfsetarrowsend",
+      "snippet": "pgfsetarrowsend{${1:arg1}}"
+    },
+    "pgfsetarrowsstart{}": {
+      "command": "pgfsetarrowsstart",
+      "snippet": "pgfsetarrowsstart{${1:arg1}}"
+    },
+    "pgfsetarrows{}": {
+      "command": "pgfsetarrows",
+      "snippet": "pgfsetarrows{${1:arg1}}"
+    },
+    "pgfgetarrowoptions{}": {
+      "command": "pgfgetarrowoptions",
+      "snippet": "pgfgetarrowoptions{${1:arg1}}"
+    },
+    "pgfsetarrowoptions{}": {
+      "command": "pgfsetarrowoptions",
+      "snippet": "pgfsetarrowoptions{${1:arg1}}"
+    },
+    "pgfarrowsdeclare{}": {
+      "command": "pgfarrowsdeclare",
+      "snippet": "pgfarrowsdeclare{${1:arg1}}"
+    },
+    "pgfarrowsleftextend{}": {
+      "command": "pgfarrowsleftextend",
+      "snippet": "pgfarrowsleftextend{${1:arg1}}"
+    },
+    "pgfarrowsrightextend{}": {
+      "command": "pgfarrowsrightextend",
+      "snippet": "pgfarrowsrightextend{${1:arg1}}"
+    },
+    "pgfarrowsdeclarealias{}": {
+      "command": "pgfarrowsdeclarealias",
+      "snippet": "pgfarrowsdeclarealias{${1:arg1}}"
+    },
+    "pgfarrowsdeclarereversed{}": {
+      "command": "pgfarrowsdeclarereversed",
+      "snippet": "pgfarrowsdeclarereversed{${1:arg1}}"
+    },
+    "pgfarrowsdeclarecombine": {},
+    "pgfarrowsdeclaredouble": {},
+    "pgfarrowsdeclaretriple": {},
+    "pgfdeclarehorizontalshading": {},
+    "pgfdeclareverticalshading": {},
+    "pgfdeclareradialshading": {},
+    "pgfdeclarefunctionalshading": {},
+    "pgfshadecolortorgb{}": {
+      "command": "pgfshadecolortorgb",
+      "snippet": "pgfshadecolortorgb{${1:arg1}}"
+    },
+    "pgfuseshading{}": {
+      "command": "pgfuseshading",
+      "snippet": "pgfuseshading{${1:arg1}}"
+    },
+    "pgfaliasshading{}": {
+      "command": "pgfaliasshading",
+      "snippet": "pgfaliasshading{${1:arg1}}"
+    },
+    "pgfshadepath{}": {
+      "command": "pgfshadepath",
+      "snippet": "pgfshadepath{${1:arg1}}"
+    },
+    "pgfsetadditionalshadetransform{}": {
+      "command": "pgfsetadditionalshadetransform",
+      "snippet": "pgfsetadditionalshadetransform{${1:arg1}}"
+    },
+    "pgfdeclareimage": {},
+    "pgfdeclaremask": {},
+    "pgfaliasimage{}": {
+      "command": "pgfaliasimage",
+      "snippet": "pgfaliasimage{${1:arg1}}"
+    },
+    "pgfuseimage{}": {
+      "command": "pgfuseimage",
+      "snippet": "pgfuseimage{${1:arg1}}"
+    },
+    "pgfalternateextension": {},
+    "pgfimage": {},
+    "pgfrealjobname{}": {
+      "command": "pgfrealjobname",
+      "snippet": "pgfrealjobname{${1:arg1}}"
+    },
+    "relax": {},
+    "shipout": {},
+    "pgfincludeexternalgraphics{}": {
+      "command": "pgfincludeexternalgraphics",
+      "snippet": "pgfincludeexternalgraphics{${1:arg1}}"
+    },
+    "pgfexternalreaddpth{}": {
+      "command": "pgfexternalreaddpth",
+      "snippet": "pgfexternalreaddpth{${1:arg1}}"
+    },
+    "pgfexternaldepth": {},
+    "pgfexternaltrimleft": {},
+    "pgfexternaltrimright": {},
+    "dpthimport": {},
+    "noexpand": {},
+    "pgfexternalstorecommand{}": {
+      "command": "pgfexternalstorecommand",
+      "snippet": "pgfexternalstorecommand{${1:arg1}}"
+    },
+    "n": {
+      "detail": "𝑛",
+      "documentation": "MATHEMATICAL ITALIC SMALL N"
+    },
+    "write": {},
+    "pgfdeclarelayer{}": {
+      "command": "pgfdeclarelayer",
+      "snippet": "pgfdeclarelayer{${1:arg1}}"
+    },
+    "pgfsetlayers{}": {
+      "command": "pgfsetlayers",
+      "snippet": "pgfsetlayers{${1:arg1}}"
+    },
+    "pgfonlayer{}": {
+      "command": "pgfonlayer",
+      "snippet": "pgfonlayer{${1:arg1}}"
+    },
+    "endpgfonlayer": {},
+    "pgfsetstrokeopacity{}": {
+      "command": "pgfsetstrokeopacity",
+      "snippet": "pgfsetstrokeopacity{${1:arg1}}"
+    },
+    "pgfsetfillopacity{}": {
+      "command": "pgfsetfillopacity",
+      "snippet": "pgfsetfillopacity{${1:arg1}}"
+    },
+    "pgfdeclarefading{}": {
+      "command": "pgfdeclarefading",
+      "snippet": "pgfdeclarefading{${1:arg1}}"
+    },
+    "pgfsetfading{}": {
+      "command": "pgfsetfading",
+      "snippet": "pgfsetfading{${1:arg1}}"
+    },
+    "pgfsetfadingforcurrentpath{}": {
+      "command": "pgfsetfadingforcurrentpath",
+      "snippet": "pgfsetfadingforcurrentpath{${1:arg1}}"
+    },
+    "pgftransparencygroup": {},
+    "endpgftransparencygroup": {},
+    "pgfdeclarepatternformonly": {},
+    "pgfdeclarepatterninherentlycolored": {},
+    "pgfpatternreleasename{}": {
+      "command": "pgfpatternreleasename",
+      "snippet": "pgfpatternreleasename{${1:arg1}}"
+    },
+    "pgfsetfillpattern{}": {
+      "command": "pgfsetfillpattern",
+      "snippet": "pgfsetfillpattern{${1:arg1}}"
+    }
+  },
+  "envs": {
+    "pgfonlayer": {
+      "name": "pgfonlayer",
+      "detail": "pgfonlayer",
+      "snippet": ""
+    }
+  },
+  "options": []
+}

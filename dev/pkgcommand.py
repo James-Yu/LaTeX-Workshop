@@ -4,11 +4,12 @@ import zipfile
 from shutil import copy
 import argparse
 import sys
+import dataclasses
 from pathlib import Path
 from typing import List
 from pyintel import CwlIntel
 
-FILES_TO_IGNORE = ['diagxy.cwl', 'calculator.cwl', 'calculus.cwl', 'physics.cwl']
+FILES_TO_IGNORE = ['diagxy.cwl', 'calculator.cwl', 'calculus.cwl']
 FILES_TO_REMOVE_SPACES_IN = ['chemformula.cwl', 'context-document.cwl', 'class-beamer.cwl', 'csquotes.cwl', 'datatool.cwl', 'newclude.cwl', 'pgfplots.cwl', 'tabu.cwl', 'tikz.cwl']
 
 CWD = Path(__file__).expanduser().resolve().parent
@@ -60,9 +61,9 @@ def parse_cwl_files(cwl_files):
         remove_spaces = False
         if cwl_file.name in FILES_TO_REMOVE_SPACES_IN:
             remove_spaces = True
-        (pkg_cmds, pkg_envs) = cwlIntel.parse_cwl_file(cwl_file, remove_spaces)
-        dump_dict(pkg_envs, OUT_DIR.joinpath(cwl_file.stem + '_env.json'))
-        dump_dict(pkg_cmds, OUT_DIR.joinpath(cwl_file.stem + '_cmd.json'))
+        pkg = cwlIntel.parse_cwl_file(cwl_file, remove_spaces)
+        json.dump(dataclasses.asdict(pkg, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}),
+                  open(OUT_DIR.joinpath(cwl_file.stem + '.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)
 
 
 if __name__ == '__main__':
@@ -80,5 +81,4 @@ if __name__ == '__main__':
         # Handle aggregated files
         for scr in ['scrartcl', 'scrreprt', 'scrbook']:
             dest = OUT_DIR.joinpath('class-' + scr)
-            copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_cmd.json'), dest.as_posix() + '_cmd.json')
-            copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook_env.json'), dest.as_posix() + '_env.json')
+            copy(OUT_DIR.joinpath('class-scrartcl,scrreprt,scrbook.json'), dest.as_posix() + '.json')

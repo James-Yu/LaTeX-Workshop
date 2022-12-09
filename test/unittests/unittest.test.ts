@@ -64,14 +64,14 @@ suite('unit test suite', () => {
 
     runUnitTestWithFixture('fixture001', 'check environments from package .json completion files', () => {
         const extensionRoot = getExtensionDevelopmentPath()
-        const files = glob.sync('data/packages/*_env.json', {cwd: extensionRoot})
+        const files = glob.sync('data/packages/*.json', {cwd: extensionRoot})
         files.forEach(file => {
-            const envs = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {[key: string]: EnvType}
-            assert.ok(Object.keys(envs).length > 0)
+            const envs = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})).envs as {[key: string]: EnvType}
+            // assert.ok(Object.keys(envs).length > 0)
             Object.keys(envs).forEach(name => {
                 assertDictKeyNames(
                     Object.keys(envs[name]),
-                    ['name', 'snippet', 'detail', 'package'],
+                    ['name', 'snippet', 'detail'],
                     [],
                     file + ': ' + JSON.stringify(envs[name])
                 )
@@ -96,15 +96,15 @@ suite('unit test suite', () => {
 
     runUnitTestWithFixture('fixture001', 'check commands from package .json completion files', () => {
         const extensionRoot = getExtensionDevelopmentPath()
-        const files = glob.sync('data/packages/*_cmd.json', {cwd: extensionRoot})
+        const files = glob.sync('data/packages/*.json', {cwd: extensionRoot})
         files.forEach(file => {
-            const cmds = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {[key: string]: CmdType}
-            assert.ok(Object.keys(cmds).length > 0)
+            const cmds = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})).cmds as {[key: string]: CmdType}
+            // assert.ok(Object.keys(cmds).length > 0)
             Object.keys(cmds).forEach(name => {
                 assertDictKeyNames(
                     Object.keys(cmds[name]),
-                    ['command', 'snippet'],
-                    ['documentation', 'detail', 'postAction', 'package', 'label'],
+                    [],
+                    ['command', 'snippet', 'documentation', 'detail', 'postAction', 'label'],
                     file + ': ' + JSON.stringify(cmds[name])
                 )
             })

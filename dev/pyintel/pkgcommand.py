@@ -2,7 +2,37 @@ import json
 import urllib.request
 import re
 from pathlib import Path
+from dataclasses import dataclass
 from typing import List, Dict, Tuple, Union
+
+@dataclass
+class KeyVal:
+    key: str
+    snippet: str
+
+@dataclass
+class Cmd:
+    command: Union[str, None]
+    snippet: Union[str, None]
+    option: Union[str, None]
+    keyvals: Union[List[KeyVal], None]
+    detail: Union[str, None]
+    documentation: Union[str, None]
+
+@dataclass
+class Env:
+    name: str
+    detail: str
+    snippet: str
+    option: Union[str, None]
+    keyvals: Union[List[KeyVal], None]
+
+@dataclass
+class Pkg:
+    includes: List[str]
+    cmds: Dict[str, Cmd]
+    envs: Dict[str, Env]
+    options: List[str]
 
 def create_snippet(line: str) -> str:
     """
@@ -145,7 +175,7 @@ class CwlIntel:
 
 
 
-    def parse_cwl_file(self, file_path: Union[Path, str], remove_spaces: bool = False) -> Tuple[Dict[str, Dict[str, str]], List[str]]:
+    def parse_cwl_file(self, file_path: Union[Path, str], remove_spaces: bool = False) -> Pkg:
         """
         Parse a CWL file to extract the provided commands and environments
 
@@ -157,55 +187,79 @@ class CwlIntel:
         if not file_path.exists():
             print(f'File {file_path.as_posix} does not exist')
             return ({}, {})
-        package = file_path.stem
         with file_path.open(encoding='utf8') as f:
             lines = f.readlines()
-        pkg_cmds: Dict[str, Dict[str, str]] = {}
-        pkg_envs: Dict[str, Dict[str, str, str]] = {}
+        pkg = Pkg(includes=[], cmds={}, envs={}, options=[])
         if file_path.name == 'caption.cwl':
             lines = apply_caption_tweaks(lines)
+        
+        cwl_keyval = None
+        cwl_option = None
         for line in lines:
             line = line.rstrip()
-            index_hash = line.find('#')
-            if index_hash >= 0:
-                line = line[:index_hash]
-            if not line:
+
+            if line.startswith('#include:'):        # '#include:keyval'
+                pkg.includes.append(line[9:])       # 'keyval'
+            elif line.startswith('#ifOption:'):     # '#ifOption:newfloat=true'
+                cwl_option = line[10:]              # 'newfloat=true'
+            elif line.startswith('#endif'):         # '#endif'
+                cwl_option = None
+            elif line.startswith('#keyvals:\\usepackage/'): # '#keyvals:\usepackage/color#c'
+                cwl_keyval = 'PACKAGE_OPTIONS'
+            elif line.startswith('#keyvals:'):      # '#keyvals:\begin{minted},\mint,\inputminted'
+                cwl_keyval = line[9:0]              # '\begin{minted},\mint,\inputminted'
+            elif line.startswith('#endkeyvals'):    # '#endkeyvals'
+                cwl_keyval = None
+            elif line.startswith('#'):
                 continue
-            if line[:7] == '\\begin{':
-                env = line[line.index('{') + 1:line.index('}')]
-                if env in self.envs:
+            elif line.startswith('\\begin{'):       # '\begin{minted}[options%keyvals]#S'
+                match = re.match(r'\\begin{(.*?)}([^#\n]*)#?(.*)$', line)
+                if match is None:
                     continue
-                args = line[line.index('}') + 1:]
-                snippet_name = env + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', args)
-                snippet_name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', snippet_name)
-                if remove_spaces:
-                    snippet_name = snippet_name.replace(' ', '')
+                if len(match.groups()) >= 2 and match[2]:
+                    name = match[1] + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', match[2])
                 else:
-                    snippet_name = snippet_name.strip()
-                snippet = create_snippet(args)
-                pkg_envs[snippet_name] = {'name': env, 'detail': env + args, 'snippet': snippet, 'package': package}
-                continue
-            if line[:5] == '\\end{':
-                continue
-            if line[0] == '\\':
-                line = line[1:]  # Remove leading '\'
-                command = line.rstrip()
-                name = re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', command)
-                name = re.sub(r'\([^\{\}\[\]\(\)]*\)', r'()', name)
+                    name = match[1]
                 name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
                 if remove_spaces:
                     name = name.replace(' ', '')
                 else:
                     name = name.strip()
-                command_dict: Dict[str, str] = {'command': command, 'package': package}
+                # The name field can only contain letters, `{`, `}`, `[`, `]` and `*`.
+                # https://github.com/James-Yu/LaTeX-Workshop/issues/3264#issuecomment-1138733921
+                if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None:
+                    continue
+                snippet = create_snippet(match[2] if len(match.groups()) >= 2 and match[2] else '')
+                pkg.envs[name] = Env(name=match[1],detail=match[1]+match[2],snippet=snippet,option=cwl_option,keyvals=None)
+            elif line.startswith('\\end{'):         # '\end{minted}'
+                continue
+            elif line.startswith('\\'):             # '\inputminted[options%keyvals]{language}{file}#i'
+                match = re.match(r'\\([^[\{\n]*?)((?:\{|\[)[^#\n]*)?(#.*)?$', line)
+                if match is None:
+                    continue
+                if len(match.groups()) >= 2 and match[2]:
+                    name = match[1] + re.sub(r'(\{|\[)[^\{\[\$]*(\}|\])', r'\1\2', match[2])
+                else:
+                    name = match[1]
+                name = re.sub(r'\([^\{\}\[\]\(\)]*\)', r'()', name)
+                name = re.sub(r'\<[a-zA-Z\s]*\>', '<>', name)
+                name = re.sub(r'\|.*?\|', '', name) # Remove |%<code%>| from '\mintinline[%<options%>]{%<language%>}|%<code%>|#M'
+                if remove_spaces:
+                    name = name.replace(' ', '')
+                else:
+                    name = name.strip()
+                # The name field can only contain letters, `{`, `}`, `[`, `]` and `*`.
+                # https://github.com/James-Yu/LaTeX-Workshop/issues/3264#issuecomment-1138733921
+                if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None or '(' in name or ')' in name or '\\' in name:
+                    continue
                 if name in self.commands:
                     continue
+                snippet = create_snippet(match[1] + (match[2] if len(match.groups()) >= 2 and match[2] else ''))
+                detail = self.unimath_dict[name]['detail'] if self.unimath_dict.get(name) else None
+                documentation = self.unimath_dict[name]['documentation'] if self.unimath_dict.get(name) else None
+                pkg.cmds[name] = Cmd(
+                    command=match[1] if match[1] != name else None,
+                    snippet=snippet if snippet != name else None,
+                    option=cwl_option,keyvals=None,detail=detail,documentation=documentation)
 
-                command_dict['snippet'] = create_snippet(line)
-                if self.unimath_dict.get(name):
-                    command_dict['detail'] = self.unimath_dict[name]['detail']
-                    command_dict['documentation'] = self.unimath_dict[name]['documentation']
-                pkg_cmds[name] = command_dict
-                continue
-            continue
-        return (pkg_cmds, pkg_envs)
+        return pkg

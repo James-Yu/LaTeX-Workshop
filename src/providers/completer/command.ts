@@ -4,7 +4,7 @@ import {latexParser} from 'latex-utensils'
 
 import {Environment, EnvSnippetType} from './environment'
 import type {IProvider, ILwCompletionItem, ICommand} from './interface'
-import {CommandFinder, isTriggerSuggestNeeded, resolveCmdEnvFile} from './commandlib/commandfinder'
+import {CommandFinder, isTriggerSuggestNeeded, resolvePkgFile} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
@@ -13,9 +13,9 @@ import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocat
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
 export interface CmdItemEntry {
-    readonly command: string, // frame
+    command?: string, // frame
     snippet?: string,
-    readonly package?: string,
+    package?: string,
     readonly label?: string, // \\begin{frame} ... \\end{frame}
     readonly detail?: string,
     readonly documentation?: string,
@@ -303,6 +303,7 @@ export class Command implements IProvider, ICommand {
 
 
     private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): CmdEnvSuggestion {
+        item.command = item.command || itemKey
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
@@ -342,12 +343,15 @@ export class Command implements IProvider, ICommand {
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
         if (!this.packageCmds.has(pkg)) {
-            const filePath: string | undefined = resolveCmdEnvFile(`${pkg}_cmd.json`, `${this.extension.extensionRoot}/data/packages/`)
+            const filePath: string | undefined = resolvePkgFile(`${pkg}.json`, `${this.extension.extensionRoot}/data/packages/`)
             const pkgEntry: CmdEnvSuggestion[] = []
             if (filePath !== undefined) {
                 try {
-                    const cmds = JSON.parse(fs.readFileSync(filePath).toString()) as {[key: string]: CmdItemEntry}
+                    const cmds = JSON.parse(fs.readFileSync(filePath).toString()).cmds as {[key: string]: CmdItemEntry}
                     Object.keys(cmds).forEach(key => {
+                        cmds[key].command = cmds[key].command || key
+                        cmds[key].snippet = cmds[key].snippet || key
+                        cmds[key].package = pkg
                         if (isCmdItemEntry(cmds[key])) {
                             pkgEntry.push(this.entryCmdToCompletion(key, cmds[key]))
                         } else {
