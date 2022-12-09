@@ -29,10 +29,10 @@ class Env:
 
 @dataclass
 class Pkg:
-    includes: List[str]
+    includes: Union[List[str], None]
     cmds: Dict[str, Cmd]
     envs: Dict[str, Env]
-    options: List[str]
+    options: Union[List[str], None]
 
 def create_snippet(line: str) -> str:
     """
@@ -189,7 +189,7 @@ class CwlIntel:
             return ({}, {})
         with file_path.open(encoding='utf8') as f:
             lines = f.readlines()
-        pkg = Pkg(includes=[], cmds={}, envs={}, options=[])
+        pkg = Pkg(includes=None, cmds={}, envs={}, options=None)
         if file_path.name == 'caption.cwl':
             lines = apply_caption_tweaks(lines)
         
@@ -197,8 +197,11 @@ class CwlIntel:
         cwl_option = None
         for line in lines:
             line = line.rstrip()
-
-            if line.startswith('#include:'):        # '#include:keyval'
+            if len(line) == 0:                      # empty line
+                continue
+            elif line.startswith('#include:'):      # '#include:keyval'
+                if (pkg.includes is None):
+                    pkg.includes = []
                 pkg.includes.append(line[9:])       # 'keyval'
             elif line.startswith('#ifOption:'):     # '#ifOption:newfloat=true'
                 cwl_option = line[10:]              # 'newfloat=true'
@@ -207,7 +210,7 @@ class CwlIntel:
             elif line.startswith('#keyvals:\\usepackage/'): # '#keyvals:\usepackage/color#c'
                 cwl_keyval = 'PACKAGE_OPTIONS'
             elif line.startswith('#keyvals:'):      # '#keyvals:\begin{minted},\mint,\inputminted'
-                cwl_keyval = line[9:0]              # '\begin{minted},\mint,\inputminted'
+                cwl_keyval = line[9:]              # '\begin{minted},\mint,\inputminted'
             elif line.startswith('#endkeyvals'):    # '#endkeyvals'
                 cwl_keyval = None
             elif line.startswith('#'):
@@ -261,5 +264,32 @@ class CwlIntel:
                     command=match[1] if match[1] != name else None,
                     snippet=snippet if snippet != name else None,
                     option=cwl_option,keyvals=None,detail=detail,documentation=documentation)
+            elif cwl_keyval == 'PACKAGE_OPTIONS':
+                match = re.match(r'^([^#%\n]*)', line)
+                if match is None:
+                    continue
+                if (pkg.options is None):
+                    pkg.options = []
+                pkg.options.append(match[1])
+            elif cwl_keyval is not None:            # '\begin{minted},\mint,\inputminted'
+                match = re.match(r'^([^#%\n]*)', line)
+                if match is None:
+                    continue
+                for envcmd in cwl_keyval.split(','):
+                    print(cwl_keyval)
+                    if envcmd.startswith('\\begin{'):
+                        env = re.match(r'\\begin{(.*?)}', envcmd)[1]
+                        if env not in pkg.envs:
+                            continue
+                        if (pkg.envs[env].keyvals is None):
+                            pkg.envs[env].keyvals = []
+                        pkg.envs[env].keyvals.append(match[1])
+                    else:
+                        cmd = re.match(r'\\(.*)', envcmd)[1]
+                        if cmd not in pkg.cmds:
+                            continue
+                        if (pkg.cmds[cmd].keyvals is None):
+                            pkg.cmds[cmd].keyvals = []
+                        pkg.cmds[cmd].keyvals.append(match[1])
 
         return pkg
