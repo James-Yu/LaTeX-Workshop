@@ -72,7 +72,7 @@ suite('unit test suite', () => {
                 assertDictKeyNames(
                     Object.keys(envs[name]),
                     ['name', 'snippet', 'detail'],
-                    [],
+                    ['option', 'keyvals'],
                     file + ': ' + JSON.stringify(envs[name])
                 )
             })
@@ -104,7 +104,7 @@ suite('unit test suite', () => {
                 assertDictKeyNames(
                     Object.keys(cmds[name]),
                     [],
-                    ['command', 'snippet', 'documentation', 'detail', 'postAction', 'label'],
+                    ['command', 'snippet', 'documentation', 'option', 'keyvals', 'detail'],
                     file + ': ' + JSON.stringify(cmds[name])
                 )
             })

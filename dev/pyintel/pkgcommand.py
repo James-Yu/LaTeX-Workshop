@@ -3,7 +3,9 @@ import urllib.request
 import re
 from pathlib import Path
 from dataclasses import dataclass
-from typing import List, Dict, Tuple, Union
+from typing import List, Dict, Union
+
+PKGS_IGNORE_KEYVALS = ['tcolorbox']
 
 @dataclass
 class KeyVal:
@@ -271,25 +273,26 @@ class CwlIntel:
                 if (pkg.options is None):
                     pkg.options = []
                 pkg.options.append(match[1])
-            elif cwl_keyval is not None:            # '\begin{minted},\mint,\inputminted'
+            elif cwl_keyval is not None and file_path.stem not in PKGS_IGNORE_KEYVALS:
                 match = re.match(r'^([^#%\n]*)', line)
                 if match is None:
                     continue
                 for envcmd in cwl_keyval.split(','):
-                    print(cwl_keyval)
                     if envcmd.startswith('\\begin{'):
                         env = re.match(r'\\begin{(.*?)}', envcmd)[1]
-                        if env not in pkg.envs:
-                            continue
-                        if (pkg.envs[env].keyvals is None):
-                            pkg.envs[env].keyvals = []
-                        pkg.envs[env].keyvals.append(match[1])
+                        for pkgenv in pkg.envs:
+                            if (pkg.envs[pkgenv].name != env):
+                                continue
+                            if (pkg.envs[pkgenv].keyvals is None):
+                                pkg.envs[pkgenv].keyvals = []
+                            pkg.envs[pkgenv].keyvals.append(match[1])
                     else:
-                        cmd = re.match(r'\\(.*)', envcmd)[1]
-                        if cmd not in pkg.cmds:
-                            continue
-                        if (pkg.cmds[cmd].keyvals is None):
-                            pkg.cmds[cmd].keyvals = []
-                        pkg.cmds[cmd].keyvals.append(match[1])
+                        cmd = re.match(r'\\([^{\[]*)', envcmd)[1]
+                        for pkgcmd in pkg.cmds:
+                            if (pkg.cmds[pkgcmd].command != cmd):
+                                continue
+                            if (pkg.cmds[pkgcmd].keyvals is None):
+                                pkg.cmds[pkgcmd].keyvals = []
+                            pkg.cmds[pkgcmd].keyvals.append(match[1])
 
         return pkg
