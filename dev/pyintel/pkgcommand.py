@@ -14,7 +14,7 @@ class KeyVal:
 class Cmd:
     command: Union[str, None]
     snippet: Union[str, None]
-    options: Union[str, None]
+    option: Union[str, None]
     keyvals: Union[List[KeyVal], None]
     detail: Union[str, None]
     documentation: Union[str, None]
@@ -24,7 +24,7 @@ class Env:
     name: str
     detail: str
     snippet: str
-    options: Union[str, None]
+    option: Union[str, None]
     keyvals: Union[List[KeyVal], None]
 
 @dataclass
