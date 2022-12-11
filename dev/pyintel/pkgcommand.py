@@ -14,10 +14,10 @@ class KeyVal:
 
 @dataclass
 class Cmd:
-    command: Union[str, None]
-    snippet: Union[str, None]
-    option: Union[str, None]
-    keyvals: Union[List[KeyVal], None]
+    command: str
+    snippet: str
+    option: str
+    keyvals: List[KeyVal]
     detail: Union[str, None]
     documentation: Union[str, None]
 
@@ -26,15 +26,15 @@ class Env:
     name: str
     detail: str
     snippet: str
-    option: Union[str, None]
-    keyvals: Union[List[KeyVal], None]
+    option: str
+    keyvals: List[KeyVal]
 
 @dataclass
 class Pkg:
-    includes: Union[List[str], None]
+    includes: List[str]
     cmds: Dict[str, Cmd]
     envs: Dict[str, Env]
-    options: Union[List[str], None]
+    options: List[str]
 
 def create_snippet(line: str) -> str:
     """
@@ -191,28 +191,26 @@ class CwlIntel:
             return ({}, {})
         with file_path.open(encoding='utf8') as f:
             lines = f.readlines()
-        pkg = Pkg(includes=None, cmds={}, envs={}, options=None)
+        pkg = Pkg(includes=[], cmds={}, envs={}, options=[])
         if file_path.name == 'caption.cwl':
             lines = apply_caption_tweaks(lines)
         
         cwl_keyval = None
-        cwl_option = None
+        cwl_option = ''
         for line in lines:
             line = line.rstrip()
             if len(line) == 0:                      # empty line
                 continue
             elif line.startswith('#include:'):      # '#include:keyval'
-                if (pkg.includes is None):
-                    pkg.includes = []
                 pkg.includes.append(line[9:])       # 'keyval'
             elif line.startswith('#ifOption:'):     # '#ifOption:newfloat=true'
                 cwl_option = line[10:]              # 'newfloat=true'
             elif line.startswith('#endif'):         # '#endif'
-                cwl_option = None
+                cwl_option = ''
             elif line.startswith('#keyvals:\\usepackage/'): # '#keyvals:\usepackage/color#c'
                 cwl_keyval = 'PACKAGE_OPTIONS'
             elif line.startswith('#keyvals:'):      # '#keyvals:\begin{minted},\mint,\inputminted'
-                cwl_keyval = line[9:]              # '\begin{minted},\mint,\inputminted'
+                cwl_keyval = line[9:]               # '\begin{minted},\mint,\inputminted'
             elif line.startswith('#endkeyvals'):    # '#endkeyvals'
                 cwl_keyval = None
             elif line.startswith('#'):
@@ -235,7 +233,7 @@ class CwlIntel:
                 if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None:
                     continue
                 snippet = create_snippet(match[2] if len(match.groups()) >= 2 and match[2] else '')
-                pkg.envs[name] = Env(name=match[1],detail=match[1]+match[2],snippet=snippet,option=cwl_option,keyvals=None)
+                pkg.envs[name] = Env(name=match[1],detail=match[1]+match[2],snippet=snippet,option=cwl_option,keyvals=[])
             elif line.startswith('\\end{'):         # '\end{minted}'
                 continue
             elif line.startswith('\\'):             # '\inputminted[options%keyvals]{language}{file}#i'
@@ -262,16 +260,11 @@ class CwlIntel:
                 snippet = create_snippet(match[1] + (match[2] if len(match.groups()) >= 2 and match[2] else ''))
                 detail = self.unimath_dict[name]['detail'] if self.unimath_dict.get(name) else None
                 documentation = self.unimath_dict[name]['documentation'] if self.unimath_dict.get(name) else None
-                pkg.cmds[name] = Cmd(
-                    command=match[1] if match[1] != name else None,
-                    snippet=snippet if snippet != name else None,
-                    option=cwl_option,keyvals=None,detail=detail,documentation=documentation)
+                pkg.cmds[name] = Cmd(command=match[1], snippet=snippet, option=cwl_option,keyvals=[],detail=detail,documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
                 match = re.match(r'^([^#%\n]*)', line)
                 if match is None:
                     continue
-                if (pkg.options is None):
-                    pkg.options = []
                 pkg.options.append(match[1])
             elif cwl_keyval is not None and file_path.stem not in PKGS_IGNORE_KEYVALS:
                 match = re.match(r'^([^#%\n]*)', line)
@@ -283,16 +276,12 @@ class CwlIntel:
                         for pkgenv in pkg.envs:
                             if (pkg.envs[pkgenv].name != env):
                                 continue
-                            if (pkg.envs[pkgenv].keyvals is None):
-                                pkg.envs[pkgenv].keyvals = []
                             pkg.envs[pkgenv].keyvals.append(match[1])
                     else:
                         cmd = re.match(r'\\([^{\[]*)', envcmd)[1]
                         for pkgcmd in pkg.cmds:
                             if (pkg.cmds[pkgcmd].command != cmd):
                                 continue
-                            if (pkg.cmds[pkgcmd].keyvals is None):
-                                pkg.cmds[pkgcmd].keyvals = []
                             pkg.cmds[pkgcmd].keyvals.append(match[1])
 
         return pkg

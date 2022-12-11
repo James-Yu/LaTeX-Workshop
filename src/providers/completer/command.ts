@@ -13,7 +13,7 @@ import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocat
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
 export interface CmdItemEntry {
-    command?: string, // frame
+    command: string, // frame
     snippet?: string,
     package?: string,
     readonly label?: string, // \\begin{frame} ... \\end{frame}
@@ -303,7 +303,6 @@ export class Command implements IProvider, ICommand {
 
 
     private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): CmdEnvSuggestion {
-        item.command = item.command || itemKey
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
@@ -349,8 +348,6 @@ export class Command implements IProvider, ICommand {
                 try {
                     const cmds = JSON.parse(fs.readFileSync(filePath).toString()).cmds as {[key: string]: CmdItemEntry}
                     Object.keys(cmds).forEach(key => {
-                        cmds[key].command = cmds[key].command || key
-                        cmds[key].snippet = cmds[key].snippet || key
                         cmds[key].package = pkg
                         if (isCmdItemEntry(cmds[key])) {
                             pkgEntry.push(this.entryCmdToCompletion(key, cmds[key]))

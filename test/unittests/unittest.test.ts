@@ -9,20 +9,20 @@ import { runUnitTestWithFixture } from '../utils/ciutils'
 import { getExtensionDevelopmentPath } from '../utils/runnerutils'
 
 type EnvType = {
-    name?: string,
-    detail?: string,
-    snippet?: string,
-    option?: string,
-    keyvals?: {key: string, snippet: string}[]
+    name: string,
+    detail: string,
+    snippet: string,
+    option: string,
+    keyvals: {key: string, snippet: string}[]
 }
 
 type CmdType = {
-    command?: string,
-    snippet?: string,
-    option?: string,
-    keyvals?: {key: string, snippet: string}[],
-    detail?: string,
-    documentation?: string
+    command: string,
+    snippet: string,
+    option: string,
+    keyvals: {key: string, snippet: string}[],
+    detail: string,
+    documentation: string
 }
 
 function assertDictKeyNames(keys: string[], expectedKeys: string[], optKeys: string[] = [], message: string): void {
@@ -86,8 +86,8 @@ suite('unit test suite', () => {
             Object.keys(pkg.cmds).forEach(name => {
                 assertDictKeyNames(
                     Object.keys(pkg.cmds[name]),
-                    [],
-                    ['command', 'snippet', 'documentation', 'option', 'keyvals', 'detail'],
+                    ['command', 'snippet', 'option', 'keyvals'],
+                    ['documentation', 'detail'],
                     file + ': ' + JSON.stringify(pkg.cmds[name])
                 )
             })
@@ -96,8 +96,8 @@ suite('unit test suite', () => {
             Object.keys(pkg.envs).forEach(name => {
                 assertDictKeyNames(
                     Object.keys(pkg.envs[name]),
-                    ['name', 'snippet', 'detail'],
-                    ['option', 'keyvals'],
+                    ['name', 'snippet', 'detail', 'option', 'keyvals'],
+                    [],
                     file + ': ' + JSON.stringify(pkg.envs[name])
                 )
             })

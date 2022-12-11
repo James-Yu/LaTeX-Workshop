@@ -59,52 +59,63 @@ optional arguments:
 
 This script generates intellisense data from the files given by `-i` option and writes the generated `.json` files to the directory specified by `-o`. Note that the directory must already exist.
 
-For every package or class, two files are generated:
+For every package or class, one `.json` file is generated, containing the data for the package defined in the `.cwl` file. This file has the following structure
+```typescript
+{
+  includes: string[] // this list of string describes the parent packages this package imports
+  cmds: {[key: string]: Cmd} // all commands of this package
+  envs: {[key: string]: Env} // all environments of this package
+  options: string[] // the options that can be used for \usepackage this package
+}
+```
 
-- a `_cmd.json` file containing the data for the commands defined in the `.cwl` file. Entry example
+In this `json` object, the commands have the following structure:
+```typescript
+{
+  command: string, // the command name
+  snippet: string, // the snippet to insert
+  option: string, // the package option that enables this command
+  keyvals: {key: string, snippet: string}[], // the possible optional keyvals of this command
+  detail: string | undefined,
+  documentation: string | undefined
+}
+```
+An example is:
+```json
+"acro{}{}": {
+  "command": "acro",
+  "snippet": "acro{${1:acronym}}{${2:full name}}",
+  "option": "",
+  "keyvals": []
+}
+```
 
-    ```json
-    "acro{}{}": {
-        "command": "acro{acronym}{full name}",
-        "package": "acronym",
-        "snippet": "acro{${1:acronym}}{${2:full name}}"
-    }
-    ```
-
-- a `_env.json` file containing the data for the environments defined in the `.cwl` file.
-
-    ```json
-    "aligned": {
-        "name": "aligned",
-        "detail": "aligned",
-        "snippet": "",
-        "package": "amsmath"
-    }
-    ```
-
-    If the environment takes extra arguments, they are listed in the `snippet` field
-
-    ```json
-    "aligned []": {
-        "name": "aligned",
-        "detail": "aligned[alignment]",
-        "snippet": "[${1:alignment}]",
-        "package": "amsmath"
-   }
-
-    "alignat* []{}": {
-        "name": "alignat*",
-        "detail": "alignat*[alignment]{n}",
-        "snippet": "[${2:alignment}]{${1:n}}",
-        "package": "amsmath"
-    }
-   ```
+The environments have the following structure:
+```typescript
+{
+    name: string, // the environment name
+    detail: string, // the signature of this environment, including its name and arguments
+    snippet: string, // the snippet to insert after \begin{env}
+    option: string, // the package option that enables this environment
+    keyvals: {key: string, snippet: string}[] // the possible optional keyvals of this environment
+}
+```
+An example is:
+```json
+"aligned[]": {
+  "name": "aligned",
+  "detail": "aligned[alignment]",
+  "snippet": "[${1:alignment}]",
+  "option": "",
+  "keyvals": []
+}
+```
 
 Completion files for classes are all prefixed by `class-`.
 
 ### func3.py
 
-This script generates intellisense data for LaTeX stored in [`../data/expl3_cmd.json`](../data/expl3_cmd.json).
+This script generates intellisense data for LaTeX stored in [`../data/expl3.json`](../data/expl3.json).
 
 ## Grammar files
 

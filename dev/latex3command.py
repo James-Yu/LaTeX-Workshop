@@ -96,6 +96,10 @@ if __name__ == "__main__":
     cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
     expl3 = cwlIntel.parse_cwl_file('expl3.cwl')
     expl3.cmds['ExplSyntaxBlock'] = {
+        'command': 'ExplSyntaxBlock',
+        'option': '',
+        'keyvals': [],
+        'detail': '',
         'snippet': 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff',
         'documentation': 'Insert a \\ExplSyntax block'
     }
