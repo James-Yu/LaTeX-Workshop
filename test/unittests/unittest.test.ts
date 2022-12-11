@@ -9,20 +9,20 @@ import { runUnitTestWithFixture } from '../utils/ciutils'
 import { getExtensionDevelopmentPath } from '../utils/runnerutils'
 
 type EnvType = {
-    name: string,
-    snippet?: string,
+    name?: string,
     detail?: string,
-    package?: string
+    snippet?: string,
+    option?: string,
+    keyvals?: {key: string, snippet: string}[]
 }
 
 type CmdType = {
-    command: string,
+    command?: string,
     snippet?: string,
-    documentation?: string,
-    package?: string,
+    option?: string,
+    keyvals?: {key: string, snippet: string}[],
     detail?: string,
-    postAction?: string,
-    label?: string
+    documentation?: string
 }
 
 function assertDictKeyNames(keys: string[], expectedKeys: string[], optKeys: string[] = [], message: string): void {
@@ -62,23 +62,6 @@ suite('unit test suite', () => {
         })
     })
 
-    runUnitTestWithFixture('fixture001', 'check environments from package .json completion files', () => {
-        const extensionRoot = getExtensionDevelopmentPath()
-        const files = glob.sync('data/packages/*.json', {cwd: extensionRoot})
-        files.forEach(file => {
-            const envs = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})).envs as {[key: string]: EnvType}
-            // assert.ok(Object.keys(envs).length > 0)
-            Object.keys(envs).forEach(name => {
-                assertDictKeyNames(
-                    Object.keys(envs[name]),
-                    ['name', 'snippet', 'detail'],
-                    ['option', 'keyvals'],
-                    file + ': ' + JSON.stringify(envs[name])
-                )
-            })
-        })
-    })
-
     runUnitTestWithFixture('fixture001', 'check default commands .json completion file', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         const file = `${extensionRoot}/data/commands.json`
@@ -94,18 +77,28 @@ suite('unit test suite', () => {
         })
     })
 
-    runUnitTestWithFixture('fixture001', 'check commands from package .json completion files', () => {
+    runUnitTestWithFixture('fixture001', 'check package .json completion files', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         const files = glob.sync('data/packages/*.json', {cwd: extensionRoot})
         files.forEach(file => {
-            const cmds = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})).cmds as {[key: string]: CmdType}
+            const pkg = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {includes?: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: CmdType}, options: string[]}
             // assert.ok(Object.keys(cmds).length > 0)
-            Object.keys(cmds).forEach(name => {
+            Object.keys(pkg.cmds).forEach(name => {
                 assertDictKeyNames(
-                    Object.keys(cmds[name]),
+                    Object.keys(pkg.cmds[name]),
                     [],
                     ['command', 'snippet', 'documentation', 'option', 'keyvals', 'detail'],
-                    file + ': ' + JSON.stringify(cmds[name])
+                    file + ': ' + JSON.stringify(pkg.cmds[name])
+                )
+            })
+
+            // assert.ok(Object.keys(envs).length > 0)
+            Object.keys(pkg.envs).forEach(name => {
+                assertDictKeyNames(
+                    Object.keys(pkg.envs[name]),
+                    ['name', 'snippet', 'detail'],
+                    ['option', 'keyvals'],
+                    file + ': ' + JSON.stringify(pkg.envs[name])
                 )
             })
         })
