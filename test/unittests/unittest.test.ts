@@ -5,25 +5,11 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as glob from 'glob'
 
+import type { PkgType } from '../../src/providers/completion'
+import type { CmdType } from '../../src/providers/completer/command'
+import type { EnvType } from '../../src/providers/completer/environment'
 import { runUnitTestWithFixture } from '../utils/ciutils'
 import { getExtensionDevelopmentPath } from '../utils/runnerutils'
-
-type EnvType = {
-    name: string,
-    detail: string,
-    snippet: string,
-    option: string,
-    keyvals: {key: string, snippet: string}[]
-}
-
-type CmdType = {
-    command: string,
-    snippet: string,
-    option: string,
-    keyvals: {key: string, snippet: string}[],
-    detail: string,
-    documentation: string
-}
 
 function assertDictKeyNames(keys: string[], expectedKeys: string[], optKeys: string[] = [], message: string): void {
     assert.ok(
@@ -81,7 +67,7 @@ suite('unit test suite', () => {
         const extensionRoot = getExtensionDevelopmentPath()
         const files = glob.sync('data/packages/*.json', {cwd: extensionRoot})
         files.forEach(file => {
-            const pkg = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as {includes?: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: CmdType}, options: string[]}
+            const pkg = JSON.parse(fs.readFileSync(path.join(extensionRoot, file), {encoding: 'utf8'})) as PkgType
             // assert.ok(Object.keys(cmds).length > 0)
             Object.keys(pkg.cmds).forEach(name => {
                 assertDictKeyNames(

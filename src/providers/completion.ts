@@ -6,9 +6,9 @@ import type {IProvider} from './completer/interface'
 import {Citation} from './completer/citation'
 import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'
-import type {CmdItemEntry} from './completer/command'
+import type {CmdType} from './completer/command'
 import {Environment} from './completer/environment'
-import type {EnvItemEntry} from './completer/environment'
+import type {EnvType} from './completer/environment'
 import {AtSuggestion} from './completer/atsuggestion'
 import {Reference} from './completer/reference'
 import {Package} from './completer/package'
@@ -16,13 +16,17 @@ import {Input, Import, SubImport} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 import {escapeRegExp} from '../utils/utils'
-import type {CommandLocator} from '../interfaces'
+import type {ICompleter} from '../interfaces'
+import {resolvePkgFile} from './completer/commandlib/commandfinder'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
 type DataCmdsJsonType = typeof import('../../data/commands.json')
 type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols.json')
 
-export class Completer implements vscode.CompletionItemProvider, CommandLocator {
+
+export type PkgType = {includes?: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
+
+export class Completer implements vscode.CompletionItemProvider, ICompleter {
     private readonly extension: Extension
     readonly citation: Citation
     readonly command: Command
@@ -35,11 +39,13 @@ export class Completer implements vscode.CompletionItemProvider, CommandLocator 
     readonly subImport: SubImport
     readonly glossary: Glossary
 
+    private readonly packageData: {[key: string]: PkgType | null} = {}
+
     constructor(extension: Extension) {
         this.extension = extension
         this.citation = new Citation(extension)
         this.environment = new Environment(extension) // Must be created before command
-        this.command = new Command(extension, this.environment)
+        this.command = new Command(extension)
         this.documentClass = new DocumentClass(extension)
         this.reference = new Reference(extension)
         this.package = new Package(extension)
@@ -54,13 +60,34 @@ export class Completer implements vscode.CompletionItemProvider, CommandLocator 
         }
     }
 
+    loadPackageData(packageName: string) {
+        const candidate = this.packageData[packageName]
+        if (candidate || candidate === null) {
+            return
+        }
+
+        const filePath: string | undefined = resolvePkgFile(`${packageName}.json`, `${this.extension.extensionRoot}/data/packages/`)
+        if (filePath === undefined) {
+            this.packageData[packageName] = null
+            return
+        }
+
+        try {
+            const pkgData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
+            this.command.setPackageCmds(packageName, pkgData.cmds)
+            this.environment.setPackageEnvs(packageName, pkgData.envs)
+        } catch (e) {
+            this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
+        }
+    }
+
     private loadDefaultItems() {
         const defaultEnvs = fs.readFileSync(`${this.extension.extensionRoot}/data/environments.json`, {encoding: 'utf8'})
         const defaultCommands = fs.readFileSync(`${this.extension.extensionRoot}/data/commands.json`, {encoding: 'utf8'})
         const defaultLaTeXMathSymbols = fs.readFileSync(`${this.extension.extensionRoot}/data/packages/latex-mathsymbols.json`, {encoding: 'utf8'})
-        const env: { [key: string]: EnvItemEntry } = JSON.parse(defaultEnvs) as DataEnvsJsonType
+        const env: { [key: string]: EnvType } = JSON.parse(defaultEnvs) as DataEnvsJsonType
         const cmds = JSON.parse(defaultCommands) as DataCmdsJsonType
-        const maths: { [key: string]: CmdItemEntry } = (JSON.parse(defaultLaTeXMathSymbols) as DataLatexMathSymbolsJsonType).cmds
+        const maths: { [key: string]: CmdType } = (JSON.parse(defaultLaTeXMathSymbols) as DataLatexMathSymbolsJsonType).cmds
         for (const key of Object.keys(maths)) {
             if (key.match(/\{.*?\}/)) {
                 const ent = maths[key]

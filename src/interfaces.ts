@@ -3,14 +3,22 @@ import type {latexParser, bibtexParser} from 'latex-utensils'
 import type vscode from 'vscode'
 import type {SyncTeXRecordForward} from './components/locator'
 import type {Content} from './components/manager'
-import type {ICommand} from './providers/completer/interface'
+import type {ICommand, IEnvironment} from './providers/completer/interface'
 
 export interface CommandLocator {
     readonly command: ICommand
 }
 
+export interface EnvironmentLocator {
+    readonly environment: IEnvironment
+}
+
+export interface ICompleter extends CommandLocator, EnvironmentLocator {
+    loadPackageData(packageName: string): void
+}
+
 export interface CompleterLocator {
-    readonly completer: CommandLocator
+    readonly completer: ICompleter
 }
 
 export interface ExtensionRootLocator {

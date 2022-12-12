@@ -2,9 +2,9 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
-import {Environment, EnvSnippetType} from './environment'
+import {EnvSnippetType} from './environment'
 import type {IProvider, ILwCompletionItem, ICommand} from './interface'
-import {CommandFinder, isTriggerSuggestNeeded, resolvePkgFile} from './commandlib/commandfinder'
+import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
@@ -12,14 +12,16 @@ import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocat
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
-export interface CmdItemEntry {
-    command: string, // frame
+export type CmdType = {
+    command: string,
     snippet?: string,
+    option?: string,
+    keyvals?: {key: string, snippet: string}[],
+    detail?: string,
+    documentation?: string,
     package?: string,
-    readonly label?: string, // \\begin{frame} ... \\end{frame}
-    readonly detail?: string,
-    readonly documentation?: string,
-    readonly postAction?: string
+    label?: string,
+    postAction?: string
 }
 
 export interface CmdSignature {
@@ -27,7 +29,7 @@ export interface CmdSignature {
     readonly args: string // {} for mandatory args and [] for optional args
 }
 
-function isCmdItemEntry(obj: any): obj is CmdItemEntry {
+function isCmdWithSnippet(obj: any): obj is CmdType {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }
 
@@ -39,22 +41,20 @@ interface IExtension extends
 
 export class Command implements IProvider, ICommand {
     private readonly extension: IExtension
-    private readonly environment: Environment
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
 
     private readonly defaultCmds: CmdEnvSuggestion[] = []
-    private readonly defaultSymbols: CmdEnvSuggestion[] = []
+    private readonly _defaultSymbols: CmdEnvSuggestion[] = []
     private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: IExtension, environment: Environment) {
+    constructor(extension: IExtension) {
         this.extension = extension
-        this.environment = environment
         this.commandFinder = new CommandFinder(extension)
         this.surroundCommand = new SurroundCommand()
     }
 
-    initialize(defaultCmds: {[key: string]: CmdItemEntry}) {
+    initialize(defaultCmds: {[key: string]: CmdType}) {
         const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
 
         // Initialize default commands and `latex-mathsymbols`
@@ -70,13 +70,23 @@ export class Command implements IProvider, ICommand {
         })
 
         // Initialize default env begin-end pairs
-        this.environment.getDefaultEnvs(EnvSnippetType.AsCommand).forEach(cmd => {
+        this.extension.completer.environment.getDefaultEnvs(EnvSnippetType.AsCommand).forEach(cmd => {
             this.defaultCmds.push(cmd)
         })
     }
 
     get definedCmds() {
         return this.commandFinder.definedCmds
+    }
+
+    get defaultSymbols() {
+        if (this._defaultSymbols.length === 0) {
+            const symbols: { [key: string]: CmdType } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
+            Object.keys(symbols).forEach(key => {
+                this._defaultSymbols.push(this.entryCmdToCompletion(key, symbols[key]))
+            })
+        }
+        return this._defaultSymbols
     }
 
     provideFrom(result: RegExpMatchArray, args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}) {
@@ -116,12 +126,6 @@ export class Command implements IProvider, ICommand {
 
         // Insert unimathsymbols
         if (configuration.get('intellisense.unimathsymbols.enabled')) {
-            if (this.defaultSymbols.length === 0) {
-                const symbols: { [key: string]: CmdItemEntry } = JSON.parse(fs.readFileSync(`${this.extension.extensionRoot}/data/unimathsymbols.json`).toString()) as DataUnimathSymbolsJsonType
-                Object.keys(symbols).forEach(key => {
-                    this.defaultSymbols.push(this.entryCmdToCompletion(key, symbols[key]))
-                })
-            }
             this.defaultSymbols.forEach(symbol => {
                 suggestions.push(symbol)
                 cmdDuplicationDetector.add(symbol)
@@ -134,7 +138,7 @@ export class Command implements IProvider, ICommand {
             if (extraPackages) {
                 extraPackages.forEach(pkg => {
                     this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
-                    this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
+                    this.extension.completer.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
                 })
             }
             this.extension.manager.getIncludedTeX().forEach(tex => {
@@ -142,7 +146,7 @@ export class Command implements IProvider, ICommand {
                 if (pkgs !== undefined) {
                     pkgs.forEach(pkg => {
                         this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
-                        this.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
+                        this.extension.completer.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
                     })
                 }
             })
@@ -302,7 +306,7 @@ export class Command implements IProvider, ICommand {
     }
 
 
-    private entryCmdToCompletion(itemKey: string, item: CmdItemEntry): CmdEnvSuggestion {
+    private entryCmdToCompletion(itemKey: string, item: CmdType): CmdEnvSuggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
@@ -337,40 +341,34 @@ export class Command implements IProvider, ICommand {
         return suggestion
     }
 
+    setPackageCmds(packageName: string, cmds: {[key: string]: CmdType}) {
+        const commands: CmdEnvSuggestion[] = []
+        Object.keys(cmds).forEach(key => {
+            cmds[key].package = packageName
+            if (isCmdWithSnippet(cmds[key])) {
+                commands.push(this.entryCmdToCompletion(key, cmds[key]))
+            } else {
+                this.extension.logger.addLogMessage(`Cannot parse intellisense file for ${packageName}.`)
+                this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}.`)
+            }
+        })
+        this.packageCmds.set(packageName, commands)
+    }
+
     provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         // Load command in pkg
-        if (!this.packageCmds.has(pkg)) {
-            const filePath: string | undefined = resolvePkgFile(`${pkg}.json`, `${this.extension.extensionRoot}/data/packages/`)
-            const pkgEntry: CmdEnvSuggestion[] = []
-            if (filePath !== undefined) {
-                try {
-                    const cmds = JSON.parse(fs.readFileSync(filePath).toString()).cmds as {[key: string]: CmdItemEntry}
-                    Object.keys(cmds).forEach(key => {
-                        cmds[key].package = pkg
-                        if (isCmdItemEntry(cmds[key])) {
-                            pkgEntry.push(this.entryCmdToCompletion(key, cmds[key]))
-                        } else {
-                            this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
-                            this.extension.logger.addLogMessage(`Missing field in entry: "${key}": ${JSON.stringify(cmds[key])}`)
-                        }
-                    })
-                } catch (e) {
-                    this.extension.logger.addLogMessage(`Cannot parse intellisense file: ${filePath}`)
-                }
-            }
-            this.packageCmds.set(pkg, pkgEntry)
-        }
+        this.extension.completer.loadPackageData(pkg)
 
         // No package command defined
-        const pkgEntry = this.packageCmds.get(pkg)
-        if (!pkgEntry || pkgEntry.length === 0) {
+        const pkgCmds = this.packageCmds.get(pkg)
+        if (!pkgCmds || pkgCmds.length === 0) {
             return
         }
 
         // Insert commands
-        pkgEntry.forEach(cmd => {
+        pkgCmds.forEach(cmd => {
             if (!useOptionalArgsEntries && cmd.hasOptionalArgs()) {
                 return
             }

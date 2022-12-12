@@ -1,5 +1,7 @@
 import type * as vscode from 'vscode'
 import type {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
+import { CmdEnvSuggestion } from './completerutils'
+import { EnvSnippetType } from './environment'
 
 export interface IProvider {
 
@@ -19,4 +21,9 @@ export interface ILwCompletionItem extends vscode.CompletionItem {
 export interface ICommand {
     getExtraPkgs(languageId: string): string[],
     provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector): void
+}
+
+export interface IEnvironment {
+    getDefaultEnvs(type: EnvSnippetType): CmdEnvSuggestion[],
+    provideEnvsAsCommandInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector): void
 }
