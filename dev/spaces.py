@@ -3,11 +3,11 @@ import json
 import sys
 
 cwd = Path(sys.argv[0]).parent
-cmd_files = cwd.joinpath('../data/packages').glob('*_cmd.json')
+cmd_files = cwd.joinpath('../data/packages').glob('*.json')
 all_cmds = {}
 for f in cmd_files:
-    f_cmds = json.load(open(f,  encoding='utf8'))
-    all_cmds.update(f_cmds)
+    f_cmds = json.load(open(f, encoding='utf8'))
+    all_cmds.update(f_cmds.cmds)
 
 cmds_with_spaces = {}
 for key in all_cmds:

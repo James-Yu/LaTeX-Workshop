@@ -1,11 +1,12 @@
 """
 This script generates intellisense data for LaTeX 3
-    ../data/expl3_cmd.json
+    ../data/expl3.json
 """
 from pathlib import Path
 import re
 import json
 import itertools
+import dataclasses
 from pyintel import CwlIntel
 
 CWD = Path(__file__).expanduser().resolve().parent
@@ -13,7 +14,7 @@ UNIMATHSYMBOLS = CWD.joinpath('unimathsymbols.txt').resolve()
 COMMANDS_FILE = CWD.joinpath('../data/commands.json').resolve()
 ENVS_FILE = CWD.joinpath('../data/environments.json').resolve()
 OUT_DIR = CWD.joinpath('../data/packages').resolve()
-dtx_files = Path('/usr/local/texlive/2020/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
+dtx_files = Path('/usr/local/texlive/2022/texmf-dist/source/latex/l3kernel/').glob('*.dtx')
 dtx_files_to_ignore = ['l3doc.dtx']
 
 def exclude(entry: str) -> bool:
@@ -93,10 +94,14 @@ if __name__ == "__main__":
     with open('expl3.cwl', encoding='utf8', mode='w') as fp:
         fp.writelines([e + '\n' for e in entries_array])
     cwlIntel = CwlIntel(COMMANDS_FILE, ENVS_FILE, UNIMATHSYMBOLS)
-    (cmds, _envs) = cwlIntel.parse_cwl_file('expl3.cwl')
-    cmds['ExplSyntaxBlock'] = {
+    expl3 = cwlIntel.parse_cwl_file('expl3.cwl')
+    expl3.cmds['ExplSyntaxBlock'] = {
         'command': 'ExplSyntaxBlock',
+        'option': '',
+        'keyvals': [],
+        'detail': '',
         'snippet': 'ExplSyntaxOn\n\t$0\n\\ExplSyntaxOff',
         'documentation': 'Insert a \\ExplSyntax block'
     }
-    json.dump(cmds, OUT_DIR.joinpath('expl3_cmd.json').open('w', encoding='utf8'), indent=2, ensure_ascii=False)
+    json.dump(dataclasses.asdict(expl3, dict_factory=lambda x: {k: v for (k, v) in x if v is not None}),
+                open(OUT_DIR.joinpath('expl3.json'), 'w', encoding='utf8'), indent=2, ensure_ascii=False)

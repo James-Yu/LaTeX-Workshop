@@ -1,0 +1,154 @@
+{
+  "includes": [],
+  "cmds": {
+    "addplot": {
+      "command": "addplot",
+      "snippet": "addplot",
+      "option": "",
+      "keyvals": []
+    },
+    "addplot{};": {
+      "command": "addplot ",
+      "snippet": "addplot {${1:%|}};",
+      "option": "",
+      "keyvals": []
+    },
+    "addplottable[]{};": {
+      "command": "addplot table",
+      "snippet": "addplot table[${2:x=%<column header%>,y=%<column header%>}] {${1:%<file%>}};",
+      "option": "",
+      "keyvals": []
+    },
+    "addplotcoordinates{};": {
+      "command": "addplot coordinates ",
+      "snippet": "addplot coordinates {${1:%|}};",
+      "option": "",
+      "keyvals": []
+    },
+    "addplotgnuplot{};": {
+      "command": "addplot gnuplot ",
+      "snippet": "addplot gnuplot {${1:%<gnuplot code%>}};",
+      "option": "",
+      "keyvals": []
+    },
+    "addplotfile{};": {
+      "command": "addplot file ",
+      "snippet": "addplot file {${1:%<file%>}};",
+      "option": "",
+      "keyvals": []
+    },
+    "legend": {
+      "command": "legend",
+      "snippet": "legend",
+      "option": "",
+      "keyvals": []
+    },
+    "pgfplotsset{}": {
+      "command": "pgfplotsset",
+      "snippet": "pgfplotsset{${1:compat=%<version number%>,%<other settings%>}}",
+      "option": "",
+      "keyvals": []
+    }
+  },
+  "envs": {
+    "tikzpicture%function%\\\\begin{}[]%\\\\addplot{};%\\\\end{}%\\\\end{}": {
+      "name": "tikzpicture",
+      "detail": "tikzpicture% function%\\\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\\\addplot {%|};%\\\\end{axis}%\\\\end{tikzpicture}",
+      "snippet": "% function%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot {${3:%|}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}",
+      "option": "",
+      "keyvals": []
+    },
+    "tikzpicture%table%\\\\begin{}[]%\\\\addplottable[]{};%\\\\end{}%\\\\end{}": {
+      "name": "tikzpicture",
+      "detail": "tikzpicture% table%\\\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\\\addplot table[x=%<column header%>,y=%<column header%>] {%<file%>};%\\\\end{axis}%\\\\end{tikzpicture}",
+      "snippet": "% table%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot table[${3:x=%<column header%>,y=%<column header%>}] {${4:%<file%>}};%\\\\end{${5:axis}}%\\\\end{${6:tikzpicture}}",
+      "option": "",
+      "keyvals": []
+    },
+    "tikzpicture%coordinates%\\\\begin{}[]%\\\\addplotcoordinates{};%\\\\end{}%\\\\end{}": {
+      "name": "tikzpicture",
+      "detail": "tikzpicture% coordinates%\\\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\\\addplot coordinates {%|};%\\\\end{axis}%\\\\end{tikzpicture}",
+      "snippet": "% coordinates%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot coordinates {${3:%|}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}",
+      "option": "",
+      "keyvals": []
+    },
+    "tikzpicture%file%\\\\begin{}[]%\\\\addplotfile{};%\\\\end{}%\\\\end{}": {
+      "name": "tikzpicture",
+      "detail": "tikzpicture% file%\\\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\\\addplot file {%<file%>};%\\\\end{axis}%\\\\end{tikzpicture}",
+      "snippet": "% file%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot file {${3:%<file%>}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}",
+      "option": "",
+      "keyvals": []
+    },
+    "tikzpicture%gnuplot%\\\\begin{}[]%\\\\addplotgnuplot{};%\\\\end{}%\\\\end{}": {
+      "name": "tikzpicture",
+      "detail": "tikzpicture% gnuplot%\\\\begin{axis}[xlabel=%<x axis label%>,ylabel=%<y axis label%>]%\\\\addplot gnuplot {%<gnuplot code%>};%\\\\end{axis}%\\\\end{tikzpicture}",
+      "snippet": "% gnuplot%\\\\begin{${1:axis}}[${2:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]%\\\\addplot gnuplot {${3:%<gnuplot code%>}};%\\\\end{${4:axis}}%\\\\end{${5:tikzpicture}}",
+      "option": "",
+      "keyvals": []
+    },
+    "axis": {
+      "name": "axis",
+      "detail": "axis",
+      "snippet": "",
+      "option": "",
+      "keyvals": []
+    },
+    "axis[]%function%\\\\addplot{};%\\\\end{}": {
+      "name": "axis",
+      "detail": "axis[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% function%\\\\addplot {%|};%\\\\end{axis}",
+      "snippet": "[${3:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]% function%\\\\addplot {${1:%|}};%\\\\end{${2:axis}}",
+      "option": "",
+      "keyvals": []
+    },
+    "axis[]%table%\\\\addplottable[]{};%\\\\end{}": {
+      "name": "axis",
+      "detail": "axis[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% table%\\\\addplot table[x=%<column header%>,y=%<column header%>] {%<file%>};%\\\\end{axis}",
+      "snippet": "[${3:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]% table%\\\\addplot table[${4:x=%<column header%>,y=%<column header%>}] {${1:%<file%>}};%\\\\end{${2:axis}}",
+      "option": "",
+      "keyvals": []
+    },
+    "axis[]%coordinates%\\\\addplotcoordinates{};%\\\\end{}": {
+      "name": "axis",
+      "detail": "axis[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% coordinates%\\\\addplot coordinates {%|};%\\\\end{axis}",
+      "snippet": "[${3:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]% coordinates%\\\\addplot coordinates {${1:%|}};%\\\\end{${2:axis}}",
+      "option": "",
+      "keyvals": []
+    },
+    "axis[]%file%\\\\addplotfile{};%\\\\end{}": {
+      "name": "axis",
+      "detail": "axis[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% file%\\\\addplot file {%<file%>};%\\\\end{axis}",
+      "snippet": "[${3:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]% file%\\\\addplot file {${1:%<file%>}};%\\\\end{${2:axis}}",
+      "option": "",
+      "keyvals": []
+    },
+    "axis[]%gnuplot%\\\\addplotgnuplot{};%\\\\end{}": {
+      "name": "axis",
+      "detail": "axis[xlabel=%<x axis label%>,ylabel=%<y axis label%>]% gnuplot%\\\\addplot gnuplot {%<gnuplot code%>};%\\\\end{axis}",
+      "snippet": "[${3:xlabel=%<x axis label%>,ylabel=%<y axis label%>}]% gnuplot%\\\\addplot gnuplot {${1:%<gnuplot code%>}};%\\\\end{${2:axis}}",
+      "option": "",
+      "keyvals": []
+    },
+    "semilogxaxis": {
+      "name": "semilogxaxis",
+      "detail": "semilogxaxis",
+      "snippet": "",
+      "option": "",
+      "keyvals": []
+    },
+    "semilogyaxis": {
+      "name": "semilogyaxis",
+      "detail": "semilogyaxis",
+      "snippet": "",
+      "option": "",
+      "keyvals": []
+    },
+    "loglogaxis": {
+      "name": "loglogaxis",
+      "detail": "loglogaxis",
+      "snippet": "",
+      "option": "",
+      "keyvals": []
+    }
+  },
+  "options": []
+}

@@ -1,0 +1,499 @@
+{
+  "includes": [
+    "expl3",
+    "xparse",
+    "l3keys2e",
+    "tikz",
+    "amstext",
+    "xfrac",
+    "nicefrac",
+    "scrlfile"
+  ],
+  "cmds": {
+    "setchemformula{}": {
+      "command": "setchemformula",
+      "snippet": "setchemformula{${1:%<options%>}}",
+      "option": "",
+      "keyvals": [
+        "decimal-marker={",
+        "frac-style=",
+        "frac-math-cmd={",
+        "stoich-space={",
+        "stoich-paren-parse=",
+        "stoich-print={",
+        "circled=",
+        "circletype=",
+        "subscript-vshift={",
+        "subscript-style=",
+        "charge-hshift={",
+        "charge-vshift={",
+        "charge-style=",
+        "adduct-space={",
+        "adduct-penalty={",
+        "bond-length={",
+        "bond-offset={",
+        "bond-style={",
+        "bond-penalty={",
+        "radical-style={",
+        "radical-radius={",
+        "radical-hshift={",
+        "radical-vshift={",
+        "radical-space={",
+        "plus-space={",
+        "plus-penalty={",
+        "plus-output-symbol={",
+        "minus-space={",
+        "minus-penalty={",
+        "minus-output-symbol={",
+        "math-space={",
+        "arrow-offset={",
+        "arrow-min-length={",
+        "arrow-yshift={",
+        "arrow-ratio={",
+        "compound-sep={",
+        "label-offset={",
+        "label-style={",
+        "arrow-penalty={",
+        "arrow-style={",
+        "name-format={",
+        "name-width=",
+        "format={",
+        "atom-format={",
+        "font-family={",
+        "font-series={",
+        "font-shape={",
+        "font-spec={",
+        "font-spec={[",
+        "tikz-external-disable=",
+        "lewis-default=",
+        "lewis-distance={",
+        "lewis-line-length={",
+        "lewis-line-width={",
+        "lewis-offset={",
+        "kroeger-vink=",
+        "kv-positive-style={",
+        "kv-positive-radius={",
+        "kv-positive-hshift={",
+        "kv-positive-vshift={",
+        "kv-positive-offset={",
+        "kv-positive-symbol={"
+      ]
+    },
+    "ch{}": {
+      "command": "ch",
+      "snippet": "ch{${1:formula}}",
+      "option": "",
+      "keyvals": [
+        "decimal-marker={",
+        "frac-style=",
+        "frac-math-cmd={",
+        "stoich-space={",
+        "stoich-paren-parse=",
+        "stoich-print={",
+        "circled=",
+        "circletype=",
+        "charge-hshift={",
+        "subscript-vshift={",
+        "subscript-style=",
+        "charge-hshift={",
+        "charge-vshift={",
+        "charge-style=",
+        "adduct-space={",
+        "adduct-penalty={",
+        "bond-length={",
+        "bond-offset={",
+        "bond-style={",
+        "bond-penalty={",
+        "radical-style={",
+        "radical-radius={",
+        "radical-hshift={",
+        "radical-vshift={",
+        "radical-space={",
+        "plus-space={",
+        "plus-penalty={",
+        "plus-output-symbol={",
+        "minus-space={",
+        "minus-penalty={",
+        "minus-output-symbol={",
+        "math-space={",
+        "arrow-offset={",
+        "arrow-min-length={",
+        "arrow-yshift={",
+        "arrow-ratio={",
+        "compound-sep={",
+        "label-offset={",
+        "label-style={",
+        "arrow-penalty={",
+        "arrow-style={",
+        "name-format={",
+        "name-width=",
+        "format={",
+        "atom-format={",
+        "font-family={",
+        "font-series={",
+        "font-shape={",
+        "font-spec={",
+        "font-spec={[",
+        "kroeger-vink=",
+        "kv-positive-style={",
+        "kv-positive-radius={",
+        "kv-positive-hshift={",
+        "kv-positive-vshift={",
+        "kv-positive-offset={",
+        "kv-positive-symbol={"
+      ]
+    },
+    "ch[]{}": {
+      "command": "ch",
+      "snippet": "ch[${2:%<options%>}]{${1:formula}}",
+      "option": "",
+      "keyvals": [
+        "decimal-marker={",
+        "frac-style=",
+        "frac-math-cmd={",
+        "stoich-space={",
+        "stoich-paren-parse=",
+        "stoich-print={",
+        "circled=",
+        "circletype=",
+        "charge-hshift={",
+        "subscript-vshift={",
+        "subscript-style=",
+        "charge-hshift={",
+        "charge-vshift={",
+        "charge-style=",
+        "adduct-space={",
+        "adduct-penalty={",
+        "bond-length={",
+        "bond-offset={",
+        "bond-style={",
+        "bond-penalty={",
+        "radical-style={",
+        "radical-radius={",
+        "radical-hshift={",
+        "radical-vshift={",
+        "radical-space={",
+        "plus-space={",
+        "plus-penalty={",
+        "plus-output-symbol={",
+        "minus-space={",
+        "minus-penalty={",
+        "minus-output-symbol={",
+        "math-space={",
+        "arrow-offset={",
+        "arrow-min-length={",
+        "arrow-yshift={",
+        "arrow-ratio={",
+        "compound-sep={",
+        "label-offset={",
+        "label-style={",
+        "arrow-penalty={",
+        "arrow-style={",
+        "name-format={",
+        "name-width=",
+        "format={",
+        "atom-format={",
+        "font-family={",
+        "font-series={",
+        "font-shape={",
+        "font-spec={",
+        "font-spec={[",
+        "kroeger-vink=",
+        "kv-positive-style={",
+        "kv-positive-radius={",
+        "kv-positive-hshift={",
+        "kv-positive-vshift={",
+        "kv-positive-offset={",
+        "kv-positive-symbol={"
+      ]
+    },
+    "bond{}": {
+      "command": "bond",
+      "snippet": "bond{${1:bond name}}",
+      "option": "",
+      "keyvals": []
+    },
+    "NewChemBond{}{}": {
+      "command": "NewChemBond",
+      "snippet": "NewChemBond{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": []
+    },
+    "DeclareChemBond{}{}": {
+      "command": "DeclareChemBond",
+      "snippet": "DeclareChemBond{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": []
+    },
+    "RenewChemBond{}{}": {
+      "command": "RenewChemBond",
+      "snippet": "RenewChemBond{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": []
+    },
+    "ProvideChemBond{}{}": {
+      "command": "ProvideChemBond",
+      "snippet": "ProvideChemBond{${1:name}}{${2:code}}",
+      "option": "",
+      "keyvals": []
+    },
+    "NewChemBondAlias{}{}": {
+      "command": "NewChemBondAlias",
+      "snippet": "NewChemBondAlias{${1:new name}}{${2:old name}}",
+      "option": "",
+      "keyvals": []
+    },
+    "DeclareChemBondAlias{}{}": {
+      "command": "DeclareChemBondAlias",
+      "snippet": "DeclareChemBondAlias{${1:new name}}{${2:old name}}",
+      "option": "",
+      "keyvals": []
+    },
+    "ShowChemBond{}": {
+      "command": "ShowChemBond",
+      "snippet": "ShowChemBond{${1:name}}",
+      "option": "",
+      "keyvals": []
+    },
+    "chcpd{}": {
+      "command": "chcpd",
+      "snippet": "chcpd{${1:compound}}",
+      "option": "",
+      "keyvals": [
+        "plus-space={",
+        "plus-penalty={",
+        "plus-output-symbol={",
+        "minus-space={",
+        "minus-penalty={",
+        "minus-output-symbol={",
+        "math-space={",
+        "arrow-offset={",
+        "arrow-min-length={",
+        "arrow-yshift={",
+        "arrow-ratio={",
+        "compound-sep={",
+        "label-offset={",
+        "label-style={",
+        "arrow-penalty={",
+        "arrow-style={",
+        "name-format={",
+        "name-width=",
+        "format={",
+        "atom-format={",
+        "font-family={",
+        "font-series={",
+        "font-shape={",
+        "font-spec={",
+        "font-spec={["
+      ]
+    },
+    "chcpd[]{}": {
+      "command": "chcpd",
+      "snippet": "chcpd[${2:%<options%>}]{${1:compound}}",
+      "option": "",
+      "keyvals": [
+        "plus-space={",
+        "plus-penalty={",
+        "plus-output-symbol={",
+        "minus-space={",
+        "minus-penalty={",
+        "minus-output-symbol={",
+        "math-space={",
+        "arrow-offset={",
+        "arrow-min-length={",
+        "arrow-yshift={",
+        "arrow-ratio={",
+        "compound-sep={",
+        "label-offset={",
+        "label-style={",
+        "arrow-penalty={",
+        "arrow-style={",
+        "name-format={",
+        "name-width=",
+        "format={",
+        "atom-format={",
+        "font-family={",
+        "font-series={",
+        "font-shape={",
+        "font-spec={",
+        "font-spec={["
+      ]
+    },
+    "NewChemCompoundProperty{}{}": {
+      "command": "NewChemCompoundProperty",
+      "snippet": "NewChemCompoundProperty{${1:token}}{${2:replacement}}",
+      "option": "",
+      "keyvals": []
+    },
+    "ProvideChemCompoundProperty{}{}": {
+      "command": "ProvideChemCompoundProperty",
+      "snippet": "ProvideChemCompoundProperty{${1:token}}{${2:replacement}}",
+      "option": "",
+      "keyvals": []
+    },
+    "RenewChemCompoundProperty{}{}": {
+      "command": "RenewChemCompoundProperty",
+      "snippet": "RenewChemCompoundProperty{${1:token}}{${2:replacement}}",
+      "option": "",
+      "keyvals": []
+    },
+    "DeclareChemCompoundProperty{}{}": {
+      "command": "DeclareChemCompoundProperty",
+      "snippet": "DeclareChemCompoundProperty{${1:token}}{${2:replacement}}",
+      "option": "",
+      "keyvals": []
+    },
+    "RemoveChemCompoundProperty{}": {
+      "command": "RemoveChemCompoundProperty",
+      "snippet": "RemoveChemCompoundProperty{${1:token}}",
+      "option": "",
+      "keyvals": []
+    },
+    "NewChemAdditionSymbol{}{}{}": {
+      "command": "NewChemAdditionSymbol",
+      "snippet": "NewChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "ProvideChemAdditionSymbol{}{}{}": {
+      "command": "ProvideChemAdditionSymbol",
+      "snippet": "ProvideChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "RenewChemAdditionSymbol{}{}{}": {
+      "command": "RenewChemAdditionSymbol",
+      "snippet": "RenewChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "DeclareChemAdditionSymbol{}{}{}": {
+      "command": "DeclareChemAdditionSymbol",
+      "snippet": "DeclareChemAdditionSymbol{${1:name}}{${2:input}}{${3:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "NewChemSymbol{}{}": {
+      "command": "NewChemSymbol",
+      "snippet": "NewChemSymbol{${1:input}}{${2:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "ProvideChemSymbol{}{}": {
+      "command": "ProvideChemSymbol",
+      "snippet": "ProvideChemSymbol{${1:input}}{${2:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "RenewChemSymbol{}{}": {
+      "command": "RenewChemSymbol",
+      "snippet": "RenewChemSymbol{${1:input}}{${2:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "DeclareChemSymbol{}{}": {
+      "command": "DeclareChemSymbol",
+      "snippet": "DeclareChemSymbol{${1:input}}{${2:output}}",
+      "option": "",
+      "keyvals": []
+    },
+    "NewChemArrow{}{}": {
+      "command": "NewChemArrow",
+      "snippet": "NewChemArrow{${1:type}}{${2:TikZ}}",
+      "option": "",
+      "keyvals": []
+    },
+    "ProvideChemArrow{}{}": {
+      "command": "ProvideChemArrow",
+      "snippet": "ProvideChemArrow{${1:type}}{${2:TikZ}}",
+      "option": "",
+      "keyvals": []
+    },
+    "DeclareChemArrow{}{}": {
+      "command": "DeclareChemArrow",
+      "snippet": "DeclareChemArrow{${1:type}}{${2:TikZ}}",
+      "option": "",
+      "keyvals": []
+    },
+    "RenewChemArrow{}{}": {
+      "command": "RenewChemArrow",
+      "snippet": "RenewChemArrow{${1:type}}{${2:TikZ}}",
+      "option": "",
+      "keyvals": []
+    },
+    "ShowChemArrow{}": {
+      "command": "ShowChemArrow",
+      "snippet": "ShowChemArrow{${1:type}}",
+      "option": "",
+      "keyvals": []
+    },
+    "charrow{}": {
+      "command": "charrow",
+      "snippet": "charrow{${1:type}}",
+      "option": "",
+      "keyvals": []
+    },
+    "charrow{}[]": {
+      "command": "charrow",
+      "snippet": "charrow{${1:type}}[${2:above}]",
+      "option": "",
+      "keyvals": []
+    },
+    "charrow{}[][]": {
+      "command": "charrow",
+      "snippet": "charrow{${1:type}}[${2:above}][${3:below}]",
+      "option": "",
+      "keyvals": []
+    },
+    "chlewis{}{}": {
+      "command": "chlewis",
+      "snippet": "chlewis{${1:electron spec}}{${2:atom}}",
+      "option": "",
+      "keyvals": [
+        "lewis-default=",
+        "lewis-distance={",
+        "lewis-line-length={",
+        "lewis-line-width={",
+        "lewis-offset={"
+      ]
+    },
+    "chlewis[]{}{}": {
+      "command": "chlewis",
+      "snippet": "chlewis[${3:%<options%>}]{${1:electron spec}}{${2:atom}}",
+      "option": "",
+      "keyvals": [
+        "lewis-default=",
+        "lewis-distance={",
+        "lewis-line-length={",
+        "lewis-line-width={",
+        "lewis-offset={"
+      ]
+    },
+    "chstoich{}": {
+      "command": "chstoich",
+      "snippet": "chstoich{${1:arg1}}",
+      "option": "",
+      "keyvals": []
+    },
+    "DeprecatedFormulaCommand{}{}{}": {
+      "command": "DeprecatedFormulaCommand",
+      "snippet": "DeprecatedFormulaCommand{${1:deprecated macro}}{${2:replacement macro}}{${3:code}}",
+      "option": "",
+      "keyvals": []
+    },
+    "chemformula@version": {
+      "command": "chemformula@version",
+      "snippet": "chemformula@version",
+      "option": "",
+      "keyvals": []
+    },
+    "chemformula@date": {
+      "command": "chemformula@date",
+      "snippet": "chemformula@date",
+      "option": "",
+      "keyvals": []
+    }
+  },
+  "envs": {},
+  "options": []
+}
