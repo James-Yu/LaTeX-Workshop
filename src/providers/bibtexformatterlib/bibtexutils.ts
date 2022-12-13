@@ -1,8 +1,7 @@
 import * as vscode from 'vscode'
 import {bibtexParser} from 'latex-utensils'
 
-import type {LoggerLocator} from '../../interfaces'
-
+import type { Extension } from '../../main'
 
 export declare type BibtexEntry = bibtexParser.Entry | bibtexParser.StringEntry
 
@@ -26,10 +25,8 @@ function getBibtexFormatTab(tab: string): string | undefined {
     }
 }
 
-interface IExtension extends LoggerLocator { }
-
 export class BibtexFormatConfig {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     // private scope: vscode.WorkspaceFolder | undefined
     tab !: string
     left !: string
@@ -42,7 +39,7 @@ export class BibtexFormatConfig {
     fieldsOrder !: string[]
     firstEntries !: string[]
 
-    constructor(extension: IExtension, scope: vscode.ConfigurationScope | undefined) {
+    constructor(extension: Extension, scope: vscode.ConfigurationScope | undefined) {
         this.extension = extension
         this.loadConfiguration(scope)
     }
@@ -90,7 +87,7 @@ export class BibtexFormatConfig {
 export class BibtexUtils {
     readonly bibtexFormatConfig: BibtexFormatConfig
 
-    constructor(extension: IExtension, scope: vscode.ConfigurationScope | undefined) {
+    constructor(extension: Extension, scope: vscode.ConfigurationScope | undefined) {
         this.bibtexFormatConfig = new BibtexFormatConfig(extension, scope)
     }
 

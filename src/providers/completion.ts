@@ -2,7 +2,6 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 
 import type {Extension} from '../main'
-import type {IProvider} from './completer/interface'
 import {Citation} from './completer/citation'
 import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'
@@ -16,7 +15,6 @@ import {Input, Import, SubImport} from './completer/input'
 import {Glossary} from './completer/glossary'
 import type {ReferenceDocType} from './completer/reference'
 import {escapeRegExp} from '../utils/utils'
-import type {ICompleter} from '../interfaces'
 import {resolvePkgFile} from './completer/commandlib/commandfinder'
 
 type DataEnvsJsonType = typeof import('../../data/environments.json')
@@ -26,7 +24,22 @@ type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mat
 
 export type PkgType = {includes?: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
 
-export class Completer implements vscode.CompletionItemProvider, ICompleter {
+export interface IProvider {
+
+    /**
+     * Returns the array of completion items. Should be called only from `Completer.completion`.
+     */
+    provideFrom(
+        result: RegExpMatchArray,
+        args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}
+    ): vscode.CompletionItem[]
+}
+
+export interface ICompletionItem extends vscode.CompletionItem {
+    label: string
+}
+
+export class Completer implements vscode.CompletionItemProvider {
     private readonly extension: Extension
     readonly citation: Citation
     readonly command: Command

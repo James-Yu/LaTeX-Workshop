@@ -1,25 +1,20 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
+import type { Extension } from '../main'
 import {BibtexFormatConfig} from './bibtexformatterlib/bibtexutils'
-import type {ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
 
 type DataBibtexJsonType = typeof import('../../data/bibtex-entries.json')
 type DataBibtexOptionalJsonType = typeof import('../../data/bibtex-optional-entries.json')
 
-interface IExtension extends
-    ExtensionRootLocator,
-    LoggerLocator,
-    ManagerLocator { }
-
 export class BibtexCompleter implements vscode.CompletionItemProvider {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     private scope: vscode.ConfigurationScope | undefined = undefined
     private readonly entryItems: vscode.CompletionItem[] = []
     private readonly optFieldItems = Object.create(null) as { [key: string]: vscode.CompletionItem[] }
     private readonly bibtexFormatConfig: BibtexFormatConfig
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
         if (vscode.window.activeTextEditor) {
             this.scope = vscode.workspace.getWorkspaceFolder(vscode.window.activeTextEditor.document.uri)

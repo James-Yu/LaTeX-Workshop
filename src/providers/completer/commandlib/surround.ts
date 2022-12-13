@@ -1,9 +1,9 @@
-import type {ILwCompletionItem} from '../interface'
+import type { ICompletionItem } from '../../completion'
 import * as vscode from 'vscode'
 
 export class SurroundCommand {
 
-    surround(cmdItems: ILwCompletionItem[]) {
+    surround(cmdItems: ICompletionItem[]) {
         if (!vscode.window.activeTextEditor) {
             return
         }

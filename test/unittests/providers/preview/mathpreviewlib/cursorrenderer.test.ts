@@ -1,19 +1,12 @@
 import assert from 'assert'
 import * as vscode from 'vscode'
 
-import { runUnitTestWithFixture } from '../../../../utils/ciutils'
-import { UtensilsParser } from '../../../../../src/components/parser/syntax'
+import { runUnitTestWithFixture, waitLatexWorkshopActivated } from '../../../../utils/ciutils'
 import { TeXMathEnvFinder } from '../../../../../src/providers/preview/mathpreviewlib/texmathenvfinder'
 import { CursorRenderer } from '../../../../../src/providers/preview/mathpreviewlib/cursorrenderer'
 import { TextDocumentLike } from '../../../../../src/providers/preview/mathpreviewlib/textdocumentlike'
 
-const pegParser = new UtensilsParser()
-
 suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
-
-    suiteTeardown(() => {
-        return pegParser.dispose()
-    })
 
     runUnitTestWithFixture('fixture001', 'test insertCursor', async () => {
         const docString = '$a+b$'
@@ -22,19 +15,24 @@ suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
         const cursorPos = new vscode.Position(0, 2)
         const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
         assert(texMath)
-        const renderer = new CursorRenderer({pegParser})
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
+        console.log(extension)
+        assert.ok(extension)
+        const renderer = new CursorRenderer(extension)
         const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '${~a|+b~}$')
     })
 
-    runUnitTestWithFixture('fixture001', 'test shouldNotWriteCursor', () => {
+    runUnitTestWithFixture('fixture001', 'test shouldNotWriteCursor', async () => {
         const docString = '$a+b$'
         const doc = new TextDocumentLike(docString)
         const finder = new TeXMathEnvFinder()
         const cursorPos = new vscode.Position(0, 0)
         const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
         assert(texMath)
-        const renderer = new CursorRenderer({pegParser})
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
+        assert.ok(extension)
+        const renderer = new CursorRenderer(extension)
 
         const result = renderer.isCursorInsideTexMath(texMath.range, cursorPos)
         assert.strictEqual(result, false)
@@ -60,7 +58,9 @@ suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
         const cursorPos = new vscode.Position(0, 3)
         const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
         assert(texMath)
-        const renderer = new CursorRenderer({pegParser})
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
+        assert.ok(extension)
+        const renderer = new CursorRenderer(extension)
         const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$\\frac{1}{2}$')
     })
@@ -72,7 +72,9 @@ suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
         const cursorPos = new vscode.Position(0, 3)
         const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
         assert(texMath)
-        const renderer = new CursorRenderer({pegParser})
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
+        assert.ok(extension)
+        const renderer = new CursorRenderer(extension)
         const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a^{~|b~}$')
     })
@@ -84,7 +86,9 @@ suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
         const cursorPos = new vscode.Position(0, 4)
         const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
         assert(texMath)
-        const renderer = new CursorRenderer({pegParser})
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
+        assert.ok(extension)
+        const renderer = new CursorRenderer(extension)
         const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '${~a^b|~} $')
     })
@@ -96,7 +100,9 @@ suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
         const cursorPos = new vscode.Position(0, 5)
         const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
         assert(texMath)
-        const renderer = new CursorRenderer({pegParser})
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
+        assert.ok(extension)
+        const renderer = new CursorRenderer(extension)
         const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a^{~b|~} $')
     })
@@ -108,7 +114,9 @@ suite('unit test suite: mathpreviewlib/cursorrenderer', () => {
         const cursorPos = new vscode.Position(0, 3)
         const texMath = finder.findMathEnvIncludingPosition(doc, cursorPos)
         assert(texMath)
-        const renderer = new CursorRenderer({pegParser})
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
+        assert.ok(extension)
+        const renderer = new CursorRenderer(extension)
         const result = texMath && await renderer.insertCursor(texMath, cursorPos, '|')
         assert.strictEqual(result, '$a_{~|b~}$')
     })

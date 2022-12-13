@@ -2,13 +2,13 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
+import type { Extension } from '../../main'
 import {EnvSnippetType} from './environment'
-import type {IProvider, ILwCompletionItem, ICommand} from './interface'
+import type { IProvider, ICompletionItem } from '../completion'
 import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
 import {CommandSignatureDuplicationDetector, CommandNameDuplicationDetector} from './commandlib/commandfinder'
 import {SurroundCommand} from './commandlib/surround'
-import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
 type DataUnimathSymbolsJsonType = typeof import('../../../data/unimathsymbols.json')
 
@@ -33,14 +33,8 @@ function isCmdWithSnippet(obj: any): obj is CmdType {
     return (typeof obj.command === 'string') && (typeof obj.snippet === 'string')
 }
 
-interface IExtension extends
-    ExtensionRootLocator,
-    CompleterLocator,
-    LoggerLocator,
-    ManagerLocator { }
-
-export class Command implements IProvider, ICommand {
-    private readonly extension: IExtension
+export class Command implements IProvider {
+    private readonly extension: Extension
     private readonly commandFinder: CommandFinder
     private readonly surroundCommand: SurroundCommand
 
@@ -48,7 +42,7 @@ export class Command implements IProvider, ICommand {
     private readonly _defaultSymbols: CmdEnvSuggestion[] = []
     private readonly packageCmds = new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
         this.commandFinder = new CommandFinder(extension)
         this.surroundCommand = new SurroundCommand()
@@ -102,7 +96,7 @@ export class Command implements IProvider, ICommand {
        return filterNonLetterSuggestions(suggestions, result[1], args.position)
     }
 
-    private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): ILwCompletionItem[] {
+    private provide(languageId: string, document?: vscode.TextDocument, position?: vscode.Position): ICompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')
         let range: vscode.Range | undefined = undefined

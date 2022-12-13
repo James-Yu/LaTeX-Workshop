@@ -1,9 +1,10 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
+
+import type { Extension } from '../../../main'
 import {CmdEnvSuggestion} from '../completerutils'
-import type {ILwCompletionItem} from '../interface'
-import type {CompleterLocator, ManagerLocator} from '../../../interfaces'
+import type { ICompletionItem } from '../../completion'
 
 
 export function isTriggerSuggestNeeded(name: string): boolean {
@@ -33,15 +34,11 @@ export function resolvePkgFile(name: string, dataDir: string): string | undefine
     return undefined
 }
 
-interface IExtension extends
-    CompleterLocator,
-    ManagerLocator { }
-
 export class CommandFinder {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     definedCmds = new Map<string, {file: string, location: vscode.Location}>()
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 
@@ -277,7 +274,7 @@ export class CommandFinder {
                     continue
                 }
                 for (const pkg of cachedPkgs) {
-                    const commands: ILwCompletionItem[] = []
+                    const commands: ICompletionItem[] = []
                     this.extension.completer.command.provideCmdInPkg(pkg, commands, new CommandSignatureDuplicationDetector())
                     for (const cmd of commands) {
                         const label = cmd.label.slice(1)

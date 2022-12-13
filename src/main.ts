@@ -39,7 +39,6 @@ import {FoldingProvider, WeaveFoldingProvider} from './providers/folding'
 import {SelectionRangeProvider} from './providers/selection'
 import { BibtexFormatter, BibtexFormatterProvider } from './providers/bibtexformatter'
 import {SnippetView} from './components/snippetview'
-import type {ExtensionRootLocator, LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator, CompleterLocator, ViewerLocator} from './interfaces'
 
 
 function conflictExtensionCheck() {
@@ -135,9 +134,7 @@ function registerLatexWorkshopCommands(extension: Extension, context: vscode.Ext
 }
 
 function generateLatexWorkshopApi(extension: Extension) {
-    return {
-        realExtension:  process.env['LATEXWORKSHOP_CI'] ? extension : undefined
-    }
+    return { extension }
 }
 
 let extensionToDispose: Extension | undefined
@@ -315,16 +312,7 @@ function registerProviders(extension: Extension, context: vscode.ExtensionContex
     )
 }
 
-interface IExtension extends
-    ExtensionRootLocator,
-    CompleterLocator,
-    LoggerLocator,
-    LwfsLocator,
-    ManagerLocator,
-    UtensilsParserLocator,
-    ViewerLocator { }
-
-export class Extension implements IExtension {
+export class Extension {
     readonly extensionRoot: string
     readonly logger: Logger
     readonly eventBus = new EventBus()

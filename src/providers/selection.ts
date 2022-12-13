@@ -1,8 +1,7 @@
 import {latexParser} from 'latex-utensils'
 import * as vscode from 'vscode'
 
-import type {UtensilsParserLocator} from '../interfaces'
-
+import type { Extension } from '../main'
 
 interface ILuRange {
     start: ILuPos,
@@ -75,11 +74,9 @@ function toLatexUtensilPosition(pos: vscode.Position): LuPos {
     return new LuPos(pos.line + 1, pos.character + 1)
 }
 
-interface IExtension extends UtensilsParserLocator { }
-
 export class SelectionRangeProvider implements vscode.SelectionRangeProvider {
 
-    constructor(private readonly extension: IExtension) {}
+    constructor(private readonly extension: Extension) {}
 
     async provideSelectionRanges(document: vscode.TextDocument, positions: vscode.Position[]) {
         const content = document.getText()

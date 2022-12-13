@@ -14,8 +14,7 @@ import * as eventbus from './eventbus'
 import type {CmdEnvSuggestion} from '../providers/completer/completerutils'
 import type {CiteSuggestion} from '../providers/completer/citation'
 import type {GlossarySuggestion} from '../providers/completer/glossary'
-import type {ILwCompletionItem} from '../providers/completer/interface'
-import type {IManager} from '../interfaces'
+import type { ICompletionItem } from '../providers/completion'
 
 import {PdfWatcher} from './managerlib/pdfwatcher'
 import {BibWatcher} from './managerlib/bibwatcher'
@@ -37,7 +36,7 @@ export interface Content {
          * Completion item and other items for the LaTeX file.
          */
         element: {
-            reference?: ILwCompletionItem[],
+            reference?: ICompletionItem[],
             glossary?: GlossarySuggestion[],
             environment?: CmdEnvSuggestion[],
             bibitem?: CiteSuggestion[],
@@ -78,7 +77,7 @@ type RootFileType = {
     uri: vscode.Uri
 }
 
-export class Manager implements IManager {
+export class Manager {
     /**
      * The content cache for each LaTeX file.
      */

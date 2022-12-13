@@ -1,8 +1,9 @@
 import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
 
-import type {IProvider, ILwCompletionItem} from './interface'
-import type {ManagerLocator} from '../../interfaces'
+import type { Extension } from '../../main'
+import type { ICompletionItem } from '../completion'
+import type { IProvider } from '../completion'
 
 enum GlossaryType {
     glossary,
@@ -14,22 +15,19 @@ interface GlossaryEntry {
     description: string | undefined
 }
 
-export interface GlossarySuggestion extends ILwCompletionItem {
+export interface GlossarySuggestion extends ICompletionItem {
     type: GlossaryType,
     file: string,
     position: vscode.Position
 }
 
-interface IExtension extends
-    ManagerLocator { }
-
 export class Glossary implements IProvider {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     // use object for deduplication
     private readonly glossaries = new Map<string, GlossarySuggestion>()
     private readonly acronyms = new Map<string, GlossarySuggestion>()
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 

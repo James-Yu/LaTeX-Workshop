@@ -12,7 +12,7 @@ suite('linter test suite', () => {
     runUnitTestWithFixture('fixture030_linter', 'test chktex', async () => {
         const fixtureDir = getFixtureDir()
         const texFilePath = path.join(fixtureDir, 'main.tex')
-        const extension = (await waitLatexWorkshopActivated()).exports.realExtension
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
         assert.ok(extension)
         extension.manager.rootFile = texFilePath
         const linter = new ChkTeX(extension)
@@ -24,7 +24,7 @@ suite('linter test suite', () => {
         const fixtureDir = getFixtureDir()
         const texFilePath = path.join(fixtureDir, 'main.tex')
         const subFilePath = path.join(fixtureDir, 'sub/sub.tex')
-        const extension = (await waitLatexWorkshopActivated()).exports.realExtension
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
         assert.ok(extension)
         extension.manager.rootFile = texFilePath
         const linter = new ChkTeX(extension)
@@ -39,7 +39,7 @@ suite('linter test suite', () => {
     runUnitTestWithFixture('fixture030_linter', 'test lacheck', async () => {
         const fixtureDir = getFixtureDir()
         const texFilePath = path.join(fixtureDir, 'main.tex')
-        const extension = (await waitLatexWorkshopActivated()).exports.realExtension
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
         assert.ok(extension)
         extension.manager.rootFile = texFilePath
         const linter = new LaCheck(extension)
@@ -51,7 +51,7 @@ suite('linter test suite', () => {
         const fixtureDir = getFixtureDir()
         const texFilePath = path.join(fixtureDir, 'main.tex')
         const subFilePath = path.join(fixtureDir, 'sub/sub.tex')
-        const extension = (await waitLatexWorkshopActivated()).exports.realExtension
+        const extension = (await waitLatexWorkshopActivated()).exports.extension
         assert.ok(extension)
         extension.manager.rootFile = texFilePath
         const linter = new LaCheck(extension)

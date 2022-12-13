@@ -3,9 +3,8 @@ import * as path from 'path'
 import * as workerpool from 'workerpool'
 import type {Proxy} from 'workerpool'
 import type {ISyntaxWorker} from './syntax_worker'
-import type {IUtensilsParser} from '../../interfaces'
 
-export class UtensilsParser implements IUtensilsParser {
+export class UtensilsParser {
     private readonly pool: workerpool.WorkerPool
     private readonly proxy: workerpool.Promise<Proxy<ISyntaxWorker>>
 

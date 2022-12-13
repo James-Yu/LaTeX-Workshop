@@ -1,9 +1,8 @@
 import * as vscode from 'vscode'
-import type {ExtensionRootLocator} from '../interfaces'
 
-interface IExtension extends ExtensionRootLocator { }
+import type { Extension } from '../main'
 
-export function replaceWebviewPlaceholders(content: string, extension: IExtension, webview: vscode.Webview): string {
+export function replaceWebviewPlaceholders(content: string, extension: Extension, webview: vscode.Webview): string {
     const extensionRootUri = vscode.Uri.file(extension.extensionRoot)
     const resourcesFolderUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionRootUri, 'resources'))
     const resourcesFolderLink = resourcesFolderUri.toString()

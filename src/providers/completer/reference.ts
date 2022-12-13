@@ -2,12 +2,13 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import {latexParser} from 'latex-utensils'
+
+import type { Extension } from '../../main'
 import {stripEnvironments, isNewCommand, isNewEnvironment} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
-import type {IProvider, ILwCompletionItem} from './interface'
-import type {ManagerLocator} from '../../interfaces'
+import type { IProvider, ICompletionItem } from '../completion'
 
-export interface ReferenceEntry extends ILwCompletionItem {
+export interface ReferenceEntry extends ICompletionItem {
     /**
      *  The file that defines the ref.
      */
@@ -31,17 +32,14 @@ export type ReferenceDocType = {
     prevIndex: ReferenceEntry['prevIndex']
 }
 
-interface IExtension extends
-    ManagerLocator { }
-
 export class Reference implements IProvider {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     // Here we use an object instead of an array for de-duplication
     private readonly suggestions = new Map<string, ReferenceEntry>()
     private prevIndexObj = new Map<string, {refNumber: string, pageNumber: string}>()
     private readonly envsToSkip = ['tikzpicture']
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 
@@ -138,8 +136,8 @@ export class Reference implements IProvider {
     }
 
     // This function will return all references in a node array, including sub-nodes
-    private getRefFromNodeArray(nodes: latexParser.Node[], lines: string[]): ILwCompletionItem[] {
-        let refs: ILwCompletionItem[] = []
+    private getRefFromNodeArray(nodes: latexParser.Node[], lines: string[]): ICompletionItem[] {
+        let refs: ICompletionItem[] = []
         for (let index = 0; index < nodes.length; ++index) {
             if (index < nodes.length - 1) {
                 // Also pass the next node to handle cases like `label={some-text}`
@@ -152,10 +150,10 @@ export class Reference implements IProvider {
     }
 
     // This function will return the reference defined by the node, or all references in `content`
-    private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): ILwCompletionItem[] {
+    private getRefFromNode(node: latexParser.Node, lines: string[], nextNode?: latexParser.Node): ICompletionItem[] {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useLabelKeyVal = configuration.get('intellisense.label.keyval')
-        const refs: ILwCompletionItem[] = []
+        const refs: ICompletionItem[] = []
         let label = ''
         if (isNewCommand(node) || isNewEnvironment(node) || latexParser.isDefCommand(node)) {
             // Do not scan labels inside \newcommand, \newenvironment & co
@@ -208,9 +206,9 @@ export class Reference implements IProvider {
         return refs
     }
 
-    private getRefFromContent(content: string): ILwCompletionItem[] {
+    private getRefFromContent(content: string): ICompletionItem[] {
         const refReg = /(?:\\label(?:\[[^[\]{}]*\])?|(?:^|[,\s])label=){([^#\\}]*)}/gm
-        const refs: ILwCompletionItem[] = []
+        const refs: ICompletionItem[] = []
         const refList: string[] = []
         content = stripEnvironments(content, this.envsToSkip)
         while (true) {

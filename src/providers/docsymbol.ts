@@ -1,19 +1,13 @@
 import * as vscode from 'vscode'
 
+import type { Extension } from '../main'
 import {Section, SectionNodeProvider} from './structure'
-import type {LoggerLocator, LwfsLocator, ManagerLocator, UtensilsParserLocator} from '../interfaces'
-
-interface IExtension extends
-    LoggerLocator,
-    LwfsLocator,
-    ManagerLocator,
-    UtensilsParserLocator { }
 
 export class DocSymbolProvider implements vscode.DocumentSymbolProvider {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     private readonly sectionNodeProvider: SectionNodeProvider
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
         this.sectionNodeProvider = new SectionNodeProvider(extension)
     }

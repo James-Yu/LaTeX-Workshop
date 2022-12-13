@@ -1,15 +1,12 @@
 import {ChildProcessWithoutNullStreams, spawn} from 'child_process'
 import {EOL} from 'os'
-import type {LoggerLocator} from '../../interfaces'
 
-
-interface IExtension extends
-    LoggerLocator { }
+import type { Extension } from '../../main'
 
 export class LinterUtil {
     readonly #currentProcesses = Object.create(null) as { [linterId: string]: ChildProcessWithoutNullStreams }
 
-    constructor(private readonly extension: IExtension) {
+    constructor(private readonly extension: Extension) {
     }
 
     processWrapper(linterId: string, command: string, args: string[], options: {cwd: string}, stdin?: string): Promise<string> {

@@ -1,5 +1,6 @@
 import * as vscode from 'vscode'
-import type {LoggerLocator} from '../interfaces'
+
+import type { Extension } from '../main'
 import { stripCommentsAndVerbatim } from '../utils/utils'
 
 interface MatchSection {
@@ -7,16 +8,13 @@ interface MatchSection {
     pos: vscode.Position
 }
 
-interface IExtension extends
-    LoggerLocator { }
-
 export class Section {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     private readonly levels: string[] = ['part', 'chapter', 'section', 'subsection', 'subsubsection', 'paragraph', 'subparagraph']
     private readonly upperLevels = Object.create(null) as {[key: string]: string}
     private readonly lowerLevels = Object.create(null) as {[key: string]: string}
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
         for (let i = 0; i < this.levels.length; i++) {
             const current = this.levels[i]

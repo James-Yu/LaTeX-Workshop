@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 
-import type {IProvider} from './interface'
+import type { Extension } from '../../main'
+import type {IProvider} from '../completion'
 import {escapeRegExp} from '../../utils/utils'
-import type {ExtensionRootLocator} from '../../interfaces'
 
 export interface AtSuggestionItemEntry {
     prefix: string,
@@ -13,15 +13,13 @@ export interface AtSuggestionItemEntry {
 
 type DataAtSuggestionJsonType = typeof import('../../../data/at-suggestions.json')
 
-interface IExtension extends ExtensionRootLocator { }
-
 export class AtSuggestion implements IProvider {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     private readonly triggerCharacter: string
     private readonly escapedTriggerCharacter: string
     private readonly suggestions: vscode.CompletionItem[] = []
 
-    constructor(extension: IExtension, triggerCharacter: string) {
+    constructor(extension: Extension, triggerCharacter: string) {
         this.extension = extension
         this.triggerCharacter = triggerCharacter
         this.escapedTriggerCharacter = escapeRegExp(this.triggerCharacter)

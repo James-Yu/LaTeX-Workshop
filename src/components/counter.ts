@@ -15,7 +15,7 @@ export class Counter {
     private commandPath: string = ''
     private texCountMessage: string = ''
     private wordCount: string = ''
-    private status: vscode.StatusBarItem
+    private readonly status: vscode.StatusBarItem
 
     constructor(extension: Extension) {
         this.extension = extension

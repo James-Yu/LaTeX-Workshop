@@ -4,8 +4,8 @@ import * as path from 'path'
 import * as fs from 'fs'
 import * as os from 'os'
 
+import type { Extension } from '../main'
 import {replaceArgumentPlaceholders} from '../utils/utils'
-import type {ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../interfaces'
 
 const fullRange = (doc: vscode.TextDocument) => doc.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE))
 
@@ -25,13 +25,8 @@ const windows: OperatingSystem = new OperatingSystem('win32', '.exe', 'where')
 const linux: OperatingSystem = new OperatingSystem('linux', '.pl', 'which')
 const mac: OperatingSystem = new OperatingSystem('darwin', '.pl', 'which')
 
-interface IExtension extends
-    ExtensionRootLocator,
-    LoggerLocator,
-    ManagerLocator { }
-
 export class LaTexFormatter {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     private readonly machineOs: string
     private readonly currentOs?: OperatingSystem
     private formatter: string = ''
@@ -39,7 +34,7 @@ export class LaTexFormatter {
 
     #formatting: boolean = false
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
         this.machineOs = os.platform()
         if (this.machineOs === windows.name) {
@@ -227,7 +222,7 @@ export class LaTexFormatter {
 export class LatexFormatterProvider implements vscode.DocumentFormattingEditProvider, vscode.DocumentRangeFormattingEditProvider {
     private readonly formatter: LaTexFormatter
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.formatter = new LaTexFormatter(extension)
     }
 

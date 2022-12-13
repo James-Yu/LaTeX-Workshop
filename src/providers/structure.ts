@@ -5,12 +5,6 @@ import { latexParser,bibtexParser } from 'latex-utensils'
 import type { Extension } from '../main'
 import { resolveFile, stripText } from '../utils/utils'
 import { InputFileRegExp } from '../utils/inputfilepath'
-import type { LoggerLocator, ManagerLocator, UtensilsParserLocator } from '../interfaces'
-
-interface IExtension extends
-    LoggerLocator,
-    ManagerLocator,
-    UtensilsParserLocator { }
 
 export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
 
@@ -30,7 +24,7 @@ export class SectionNodeProvider implements vscode.TreeDataProvider<Section> {
     // commands.
     private readonly LaTeXSectionDepths: {[cmd: string]: number} = {}
 
-    constructor(private readonly extension: IExtension) {
+    constructor(private readonly extension: Extension) {
         this.onDidChangeTreeData = this._onDidChangeTreeData.event
     }
 

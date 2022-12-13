@@ -2,11 +2,12 @@ import * as fs from 'fs'
 import * as iconv from 'iconv-lite'
 import * as path from 'path'
 import * as zlib from 'zlib'
+
+import type { Extension } from '../../main'
 import type { SyncTeXRecordForward, SyncTeXRecordBackward } from '../locator'
 import { PdfSyncObject, parseSyncTex, Block, SyncTexJsError } from '../../lib/synctexjs'
 import {iconvLiteSupportedEncodings} from '../../utils/convertfilename'
 import {isSameRealPath} from '../../utils/pathnormalize'
-import type {LoggerLocator} from '../../interfaces'
 
 
 class Rectangle {
@@ -71,12 +72,10 @@ class Rectangle {
     }
 }
 
-interface IExtension extends LoggerLocator { }
-
 export class SyncTexJs {
-    private readonly extension: IExtension
+    private readonly extension: Extension
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 

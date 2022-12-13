@@ -1,11 +1,11 @@
 import * as vscode from 'vscode'
 import * as fs from 'fs'
 import {bibtexParser} from 'latex-utensils'
+
+import type { Extension } from '../../main'
 import {trimMultiLineString} from '../../utils/utils'
 import {computeFilteringRange} from './completerutils'
-import type {ILwCompletionItem} from './interface'
-import type {IProvider} from './interface'
-import type {LoggerLocator, ManagerLocator, UtensilsParserLocator} from '../../interfaces'
+import type { IProvider, ICompletionItem } from '../completion'
 
 
 class Fields extends Map<string, string> {
@@ -54,7 +54,7 @@ class Fields extends Map<string, string> {
 
 }
 
-export interface CiteSuggestion extends ILwCompletionItem {
+export interface CiteSuggestion extends ICompletionItem {
     key: string,
     fields: Fields,
     file: string,
@@ -74,19 +74,14 @@ function readCitationFormat(configuration: vscode.WorkspaceConfiguration, exclud
     return fields
 }
 
-interface IExtension extends
-    LoggerLocator,
-    ManagerLocator,
-    UtensilsParserLocator { }
-
 export class Citation implements IProvider {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     /**
      * Bib entries in each bib `file`.
      */
     private readonly bibEntries = new Map<string, CiteSuggestion[]>()
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 
@@ -94,7 +89,7 @@ export class Citation implements IProvider {
         return this.provide(args)
     }
 
-    private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ILwCompletionItem[] {
+    private provide(args: {document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext}): ICompletionItem[] {
         // Compile the suggestion array to vscode completion array
         const configuration = vscode.workspace.getConfiguration('latex-workshop', args.document.uri)
         const label = configuration.get('intellisense.citation.label') as string

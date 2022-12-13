@@ -1,10 +1,11 @@
 import * as vscode from 'vscode'
 import {latexParser} from 'latex-utensils'
 
-import type {IProvider, ILwCompletionItem, IEnvironment} from './interface'
+import type { Extension } from '../../main'
+import type { ICompletionItem } from '../completion'
+import type { IProvider } from '../completion'
 import {CommandSignatureDuplicationDetector} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
-import type {CompleterLocator, ExtensionRootLocator, LoggerLocator, ManagerLocator} from '../../interfaces'
 
 export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
@@ -21,14 +22,8 @@ function isEnv(obj: any): obj is EnvType {
 
 export enum EnvSnippetType { AsName, AsCommand, ForBegin, }
 
-interface IExtension extends
-    ExtensionRootLocator,
-    CompleterLocator,
-    LoggerLocator,
-    ManagerLocator { }
-
-export class Environment implements IProvider, IEnvironment {
-    private readonly extension: IExtension
+export class Environment implements IProvider {
+    private readonly extension: Extension
     private defaultEnvsAsName: CmdEnvSuggestion[] = []
     private defaultEnvsAsCommand: CmdEnvSuggestion[] = []
     private defaultEnvsForBegin: CmdEnvSuggestion[] = []
@@ -37,7 +32,7 @@ export class Environment implements IProvider, IEnvironment {
     private readonly packageEnvsAsCommand = new Map<string, CmdEnvSuggestion[]>()
     private readonly packageEnvsForBegin= new Map<string, CmdEnvSuggestion[]>()
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 
@@ -98,7 +93,7 @@ export class Environment implements IProvider, IEnvironment {
        return filterNonLetterSuggestions(suggestions, result[1], args.position)
     }
 
-    private provide(args: {document: vscode.TextDocument, position: vscode.Position}): ILwCompletionItem[] {
+    private provide(args: {document: vscode.TextDocument, position: vscode.Position}): ICompletionItem[] {
         if (vscode.window.activeTextEditor === undefined) {
             return []
         }

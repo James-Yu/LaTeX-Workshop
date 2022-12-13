@@ -2,12 +2,13 @@ import * as vscode from 'vscode'
 import * as fs from 'fs'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
+
+import type { Extension } from '../main'
 import {SyncTexJs} from './locatorlib/synctex'
 import {replaceArgumentPlaceholders} from '../utils/utils'
 import {isSameRealPath} from '../utils/pathnormalize'
 
 import type {ClientRequest} from '../../types/latex-workshop-protocol-types'
-import type {ExtensionRootLocator, LoggerLocator, ManagerLocator, ViewerLocator} from '../interfaces'
 
 export type SyncTeXRecordForward = {
     page: number,
@@ -21,17 +22,11 @@ export type SyncTeXRecordBackward = {
     column: number
 }
 
-interface IExtension extends
-    ExtensionRootLocator,
-    LoggerLocator,
-    ManagerLocator,
-    ViewerLocator { }
-
 export class Locator {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     private readonly synctexjs: SyncTexJs
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
         this.synctexjs = new SyncTexJs(extension)
     }

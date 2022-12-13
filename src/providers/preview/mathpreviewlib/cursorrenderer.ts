@@ -1,18 +1,16 @@
 import { latexParser } from 'latex-utensils'
 import * as vscode from 'vscode'
-import { TexMathEnv } from './texmathenvfinder'
 
-import type { UtensilsParserLocator } from '../../../interfaces'
+import type { Extension } from '../../../main'
+import { TexMathEnv } from './texmathenvfinder'
 import type { ITextDocumentLike } from './textdocumentlike'
 
-interface IExtension extends UtensilsParserLocator { }
-
 export class CursorRenderer {
-    private readonly extension: IExtension
+    private readonly extension: Extension
     private currentTeXString: string | undefined
     private currentAst: latexParser.LatexAst | undefined
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 

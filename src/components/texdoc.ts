@@ -1,15 +1,12 @@
 import * as vscode from 'vscode'
 import * as cs from 'cross-spawn'
-import type {LoggerLocator, ManagerLocator} from '../interfaces'
 
-interface IExtension extends
-    LoggerLocator,
-    ManagerLocator { }
+import type { Extension } from '../main'
 
 export class TeXDoc {
-    private readonly extension: IExtension
+    private readonly extension: Extension
 
-    constructor(e: IExtension) {
+    constructor(e: Extension) {
         this.extension = e
     }
 

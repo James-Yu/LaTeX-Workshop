@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import type {ILwCompletionItem} from './interface'
+import type { ICompletionItem } from '../completion'
 
 export interface CmdSignature {
     readonly name: string, // name without leading `\`
@@ -24,7 +24,7 @@ export interface CmdSignature {
     }
 }
 
-export class CmdEnvSuggestion extends vscode.CompletionItem implements ILwCompletionItem {
+export class CmdEnvSuggestion extends vscode.CompletionItem implements ICompletionItem {
     label: string
     package: string
     signature: CmdSignature
@@ -57,7 +57,7 @@ export class CmdEnvSuggestion extends vscode.CompletionItem implements ILwComple
     }
 }
 
-export function filterNonLetterSuggestions(suggestions: ILwCompletionItem[], typedText: string, pos: vscode.Position): ILwCompletionItem[] {
+export function filterNonLetterSuggestions(suggestions: ICompletionItem[], typedText: string, pos: vscode.Position): ICompletionItem[] {
     if (typedText.match(/[^a-zA-Z]/)) {
         const exactSuggestion = suggestions.filter(entry => entry.label.startsWith(typedText))
         if (exactSuggestion.length > 0) {

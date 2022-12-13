@@ -2,18 +2,14 @@ import * as vscode from 'vscode'
 import * as path from 'path'
 import * as cs from 'cross-spawn'
 import * as fs from 'fs'
+
+import type { Extension } from '../../main'
 import * as utils from '../../utils/utils'
 
-import type {LoggerLocator, ManagerLocator} from '../../interfaces'
-
-interface IExtension extends
-    LoggerLocator,
-    ManagerLocator { }
-
 export class PathUtils {
-    private readonly extension: IExtension
+    private readonly extension: Extension
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 

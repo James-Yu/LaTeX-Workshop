@@ -3,21 +3,18 @@ import * as fs from 'fs'
 import * as path from 'path'
 import * as micromatch from 'micromatch'
 
-import type {IProvider} from './interface'
+import type { Extension } from '../../main'
+import type { IProvider } from '../completion'
 import {stripCommentsAndVerbatim} from '../../utils/utils'
-import type {LoggerLocator, ManagerLocator} from '../../interfaces'
 
 const ignoreFiles = ['**/.vscode', '**/.vscodeignore', '**/.gitignore']
 
-interface IExtension extends
-    LoggerLocator,
-    ManagerLocator { }
 
 abstract class InputAbstract implements IProvider {
-    protected readonly extension: IExtension
+    protected readonly extension: Extension
     graphicsPath: string[] = []
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         this.extension = extension
     }
 
@@ -146,7 +143,7 @@ abstract class InputAbstract implements IProvider {
 
 export class Input extends InputAbstract {
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         super(extension)
     }
 
@@ -190,7 +187,7 @@ export class Input extends InputAbstract {
 
 export class Import extends InputAbstract {
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         super(extension)
     }
 
@@ -210,7 +207,7 @@ export class Import extends InputAbstract {
 
 export class SubImport extends InputAbstract {
 
-    constructor(extension: IExtension) {
+    constructor(extension: Extension) {
         super(extension)
     }
 

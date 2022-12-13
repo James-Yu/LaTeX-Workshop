@@ -165,7 +165,7 @@ export function promisifySeq(...eventArray: EventName[]): Promise<void> {
             process.env.CI ? 30000 : 10000
         )
         for (const event of eventArray) {
-            const disposable = extension.exports.realExtension?.eventBus.on(event, () => {
+            const disposable = extension.exports.extension.eventBus.on(event, () => {
                 if (eventArray[index] === event) {
                     index += 1
                     if (index === eventArray.length) {
@@ -182,7 +182,7 @@ export function promisifySeq(...eventArray: EventName[]): Promise<void> {
 export async function promisify(event: EventName, count = 1): Promise<void> {
     const extension = await waitLatexWorkshopActivated()
     const promise = new Promise<void>((resolve, reject) => {
-        const disposable = extension.exports.realExtension?.eventBus.on(event, () => {
+        const disposable = extension.exports.extension.eventBus.on(event, () => {
             count -= 1
             if (count === 0) {
                 resolve()
@@ -213,7 +213,7 @@ export async function waitLatexWorkshopActivated() {
 
 export async function waitRootFileFound(): Promise<void> {
     const extension = await waitLatexWorkshopActivated()
-    const rootFile = extension.exports.realExtension?.manager.rootFile
+    const rootFile = extension.exports.extension.manager.rootFile
     if (rootFile) {
         return
     } else {
@@ -226,7 +226,7 @@ export async function waitRootFileFound(): Promise<void> {
 export function waitGivenRootFile(file: string) {
     return waitUntil( async () => {
         const extension = await waitLatexWorkshopActivated()
-        const rootFile = extension.exports.realExtension?.manager.rootFile
+        const rootFile = extension.exports.extension.manager.rootFile
         return rootFile === file
     })
 }
@@ -246,7 +246,7 @@ export async function viewPdf() {
 export async function getViewerStatus(pdfFilePath: string) {
     const extension = await waitLatexWorkshopActivated()
     const pdfFileUri = vscode.Uri.file(pdfFilePath)
-    const rs = extension.exports.realExtension?.viewer.getViewerState(pdfFileUri)
+    const rs = extension.exports.extension.viewer.getViewerState(pdfFileUri)
     let ret: PdfViewerState | undefined
     if (rs && rs.length > 0 && rs[0]) {
         ret = rs[0]
