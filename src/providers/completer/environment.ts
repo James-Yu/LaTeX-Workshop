@@ -201,6 +201,9 @@ export class Environment implements IProvider, IEnvironment {
      * @param content The content of a LaTeX file.
      */
     update(file: string, nodes?: latexParser.Node[], lines?: string[], content?: string) {
+        // First, we must update the package list
+        this.extension.manager.updateUsepackage(file, nodes, content)
+
         const cache = this.extension.manager.getCachedContent(file)
         if (cache === undefined) {
             return

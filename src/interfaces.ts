@@ -83,7 +83,8 @@ export interface IManager {
     getIncludedTeX(file?: string, includedTeX?: string[]): string[],
     getDirtyContent(file: string): string | undefined,
     getWorkspaceFolderRootDir(): vscode.WorkspaceFolder | undefined,
-    tex2pdf(texPath: string, respectOutDir?: boolean): string
+    tex2pdf(texPath: string, respectOutDir?: boolean): string,
+    updateUsepackage(file: string, nodes?: latexParser.Node[], content?: string): void
 }
 
 export interface UtensilsParserLocator {

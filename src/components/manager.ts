@@ -5,7 +5,7 @@ import * as fs from 'fs'
 import * as tmp from 'tmp'
 import * as chokidar from 'chokidar'
 import * as micromatch from 'micromatch'
-import type {latexParser} from 'latex-utensils'
+import {latexParser} from 'latex-utensils'
 import * as utils from '../utils/utils'
 import {InputFileRegExp} from '../utils/inputfilepath'
 
@@ -979,6 +979,73 @@ export class Manager implements IManager {
             this.extension.completer.command.update(file, undefined, contentNoComment)
         }
         this.extension.manager.intellisenseWatcher.emitUpdate(file)
+    }
+
+    /**
+     * Updates the Manager cache for packages used in `file` with `nodes`.
+     * If `nodes` is `undefined`, `content` is parsed with regular expressions,
+     * and the result is used to update the cache.
+     *
+     * @param file The path of a LaTeX file.
+     * @param nodes AST of a LaTeX file.
+     * @param content The content of a LaTeX file.
+     */
+    updateUsepackage(file: string, nodes?: latexParser.Node[], content?: string) {
+        if (nodes !== undefined) {
+            this.updateUsepackageNodes(file, nodes)
+        } else if (content !== undefined) {
+            const pkgReg = /\\usepackage(?:\[[^[\]{}]*\])?{(.*)}/g
+
+            while (true) {
+                const result = pkgReg.exec(content)
+                if (result === null) {
+                    break
+                }
+                result[1].split(',').forEach(packageName => this.pushUsepackage(file, packageName))
+            }
+        }
+    }
+
+    private updateUsepackageNodes(file: string, nodes: latexParser.Node[]) {
+        nodes.forEach(node => {
+            if ( latexParser.isCommand(node) && (node.name === 'usepackage' || node.name === 'documentclass') ) {
+                node.args.forEach(arg => {
+                    if (latexParser.isOptionalArg(arg)) {
+                        return
+                    }
+                    for (const c of arg.content) {
+                        if (!latexParser.isTextString(c)) {
+                            continue
+                        }
+                        c.content.split(',').forEach(packageName => this.pushUsepackage(file, packageName, node))
+                    }
+                })
+            } else {
+                if (latexParser.hasContentArray(node)) {
+                    this.updateUsepackageNodes(file, node.content)
+                }
+            }
+        })
+    }
+
+    private pushUsepackage(fileName: string, packageName: string, node?: latexParser.Command) {
+        packageName = packageName.trim()
+        if (packageName === '') {
+            return
+        }
+        if (node?.name === 'documentclass') {
+            packageName = 'class-' + packageName
+        }
+        const cache = this.getCachedContent(fileName)
+        if (cache === undefined) {
+            return
+        }
+        let packages = cache.element.package
+        if (!packages) {
+            packages = new Set<string>()
+            cache.element.package = packages
+        }
+        packages.add(packageName)
     }
 
     private registerSetEnvVar() {
