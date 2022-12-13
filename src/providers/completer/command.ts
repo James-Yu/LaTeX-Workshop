@@ -128,21 +128,9 @@ export class Command implements IProvider {
 
         // Insert commands from packages
         if ((configuration.get('intellisense.package.enabled'))) {
-            const extraPackages = this.extension.completer.command.getExtraPkgs(languageId)
-            if (extraPackages) {
-                extraPackages.forEach(pkg => {
-                    this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
-                    this.extension.completer.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
-                })
-            }
-            this.extension.manager.getIncludedTeX().forEach(tex => {
-                const pkgs = this.extension.manager.getCachedContent(tex)?.element.package
-                if (pkgs !== undefined) {
-                    Object.keys(pkgs).forEach(pkg => {
-                        this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
-                        this.extension.completer.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
-                    })
-                }
+            this.extension.completer.package.getPackagesIncluded(languageId).forEach(packageName => {
+                this.provideCmdInPkg(packageName, suggestions, cmdDuplicationDetector)
+                this.extension.completer.environment.provideEnvsAsCommandInPkg(packageName, suggestions, cmdDuplicationDetector)
             })
         }
 

@@ -15,6 +15,7 @@ type PackageItemEntry = {
 export class Package implements IProvider {
     private readonly extension: Extension
     private readonly suggestions: vscode.CompletionItem[] = []
+    private readonly packageDeps: {[packageName: string]: string[]} = {}
 
     constructor(extension: Extension) {
         this.extension = extension
@@ -40,5 +41,37 @@ export class Package implements IProvider {
             this.initialize(pkgs)
         }
         return this.suggestions
+    }
+
+    setPackageDeps(packageName: string, deps: string[]) {
+        this.packageDeps[packageName] = deps
+    }
+
+    private getPackageDeps(packageName: string): string[] {
+        return this.packageDeps[packageName] || []
+    }
+
+    getPackagesIncluded(languageId: string): Set<string> {
+        const packages: Set<string> = new Set()
+
+        this.extension.completer.command.getExtraPkgs(languageId).forEach(packageName => packages.add(packageName))
+
+        this.extension.manager.getIncludedTeX().forEach(tex => {
+            const included = this.extension.manager.getCachedContent(tex)?.element.package
+            if (included === undefined) {
+                return
+            }
+            Object.keys(included).forEach(packageName => packages.add(packageName))
+        })
+
+        while (true) {
+            const initLength = packages.size
+            packages.forEach(packageName => this.getPackageDeps(packageName).forEach(dependName => packages.add(dependName)))
+            if (packages.size === initLength) {
+                break
+            }
+        }
+
+        return packages
     }
 }

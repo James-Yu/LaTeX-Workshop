@@ -22,7 +22,7 @@ type DataCmdsJsonType = typeof import('../../data/commands.json')
 type DataLatexMathSymbolsJsonType = typeof import('../../data/packages/latex-mathsymbols.json')
 
 
-export type PkgType = {includes?: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
+export type PkgType = {includes: string[], cmds: {[key: string]: CmdType}, envs: {[key: string]: EnvType}, options: string[]}
 
 export interface IProvider {
 
@@ -87,6 +87,7 @@ export class Completer implements vscode.CompletionItemProvider {
 
         try {
             const pkgData = JSON.parse(fs.readFileSync(filePath).toString()) as PkgType
+            this.package.setPackageDeps(packageName, pkgData.includes)
             this.command.setPackageCmds(packageName, pkgData.cmds)
             this.environment.setPackageEnvs(packageName, pkgData.envs)
         } catch (e) {
