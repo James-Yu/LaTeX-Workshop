@@ -138,7 +138,7 @@ export class Command implements IProvider {
             this.extension.manager.getIncludedTeX().forEach(tex => {
                 const pkgs = this.extension.manager.getCachedContent(tex)?.element.package
                 if (pkgs !== undefined) {
-                    pkgs.forEach(pkg => {
+                    Object.keys(pkgs).forEach(pkg => {
                         this.provideCmdInPkg(pkg, suggestions, cmdDuplicationDetector)
                         this.extension.completer.environment.provideEnvsAsCommandInPkg(pkg, suggestions, cmdDuplicationDetector)
                     })

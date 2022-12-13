@@ -273,7 +273,7 @@ export class CommandFinder {
                 if (cachedPkgs === undefined) {
                     continue
                 }
-                for (const pkg of cachedPkgs) {
+                for (const pkg of Object.keys(cachedPkgs)) {
                     const commands: ICompletionItem[] = []
                     this.extension.completer.command.provideCmdInPkg(pkg, commands, new CommandSignatureDuplicationDetector())
                     for (const cmd of commands) {

@@ -72,7 +72,7 @@ export class TeXDoc {
             if (!pkgs) {
                 continue
             }
-            pkgs.forEach(pkg => names.add(pkg))
+            Object.keys(pkgs).forEach(pkg => names.add(pkg))
         }
         const packagenames = Array.from(new Set(names))
         const items: vscode.QuickPickItem[] = packagenames.map( name => {

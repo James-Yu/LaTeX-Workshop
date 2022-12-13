@@ -41,7 +41,7 @@ export interface Content {
             environment?: CmdEnvSuggestion[],
             bibitem?: CiteSuggestion[],
             command?: CmdEnvSuggestion[],
-            package?: Set<string>
+            package?: {[packageName: string]: string[]}
         },
         /**
          * The sub-files of the LaTeX file. They should be tex or plain files.
@@ -993,14 +993,17 @@ export class Manager {
         if (nodes !== undefined) {
             this.updateUsepackageNodes(file, nodes)
         } else if (content !== undefined) {
-            const pkgReg = /\\usepackage(?:\[[^[\]{}]*\])?{(.*)}/g
+            const pkgReg = /\\usepackage(\[[^[\]{}]*\])?{(.*)}/g
 
             while (true) {
                 const result = pkgReg.exec(content)
                 if (result === null) {
                     break
                 }
-                result[1].split(',').forEach(packageName => this.pushUsepackage(file, packageName))
+                const packages = result[2].split(',')
+                const options = result[1].slice(1,-1).replaceAll(/\s*=\s*/g,'=').split(',')
+                const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
+                packages.forEach(packageName => this.pushUsepackage(file, packageName, [...options, ...optionsNoTrue]))
             }
         }
     }
@@ -1008,15 +1011,19 @@ export class Manager {
     private updateUsepackageNodes(file: string, nodes: latexParser.Node[]) {
         nodes.forEach(node => {
             if ( latexParser.isCommand(node) && (node.name === 'usepackage' || node.name === 'documentclass') ) {
+                let options: string[] = []
                 node.args.forEach(arg => {
                     if (latexParser.isOptionalArg(arg)) {
+                        options = arg.content.filter(latexParser.isTextString).filter(str => str.content !== ',').map(str => str.content)
+                        const optionsNoTrue = options.filter(option => option.includes('=true')).map(option => option.replace('=true', ''))
+                        options = [...options, ...optionsNoTrue]
                         return
                     }
                     for (const c of arg.content) {
                         if (!latexParser.isTextString(c)) {
                             continue
                         }
-                        c.content.split(',').forEach(packageName => this.pushUsepackage(file, packageName, node))
+                        c.content.split(',').forEach(packageName => this.pushUsepackage(file, packageName, options, node))
                     }
                 })
             } else {
@@ -1027,7 +1034,7 @@ export class Manager {
         })
     }
 
-    private pushUsepackage(fileName: string, packageName: string, node?: latexParser.Command) {
+    private pushUsepackage(fileName: string, packageName: string, options: string[], node?: latexParser.Command) {
         packageName = packageName.trim()
         if (packageName === '') {
             return
@@ -1039,12 +1046,8 @@ export class Manager {
         if (cache === undefined) {
             return
         }
-        let packages = cache.element.package
-        if (!packages) {
-            packages = new Set<string>()
-            cache.element.package = packages
-        }
-        packages.add(packageName)
+        cache.element.package = cache.element.package || {}
+        cache.element.package[packageName] = options
     }
 
     private registerSetEnvVar() {
