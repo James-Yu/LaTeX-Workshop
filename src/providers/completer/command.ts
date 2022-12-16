@@ -263,6 +263,10 @@ export class Command implements IProvider {
         this.packageCmds.set(packageName, commands)
     }
 
+    getPackageCmds(packageName: string) {
+        return this.packageCmds.get(packageName) || []
+    }
+
     provideCmdInPkg(pkg: string, suggestions: vscode.CompletionItem[], cmdDuplicationDetector: CommandSignatureDuplicationDetector) {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
         const useOptionalArgsEntries = configuration.get('intellisense.optionalArgsEntries.enabled')

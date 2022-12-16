@@ -68,17 +68,14 @@ export class Environment implements IProvider {
         }
     }
 
-    private getPackageEnvs(type: EnvSnippetType): Map<string, CmdEnvSuggestion[]> {
+    getPackageEnvs(type?: EnvSnippetType): Map<string, CmdEnvSuggestion[]> {
         switch (type) {
             case EnvSnippetType.AsName:
                 return this.packageEnvsAsName
-                break
             case EnvSnippetType.AsCommand:
                 return this.packageEnvsAsCommand
-                break
             case EnvSnippetType.ForBegin:
                 return this.packageEnvsForBegin
-                break
             default:
                 return new Map<string, CmdEnvSuggestion[]>()
         }
