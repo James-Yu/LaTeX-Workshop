@@ -55,7 +55,7 @@ export class CommandFinder {
         if (latexParser.isDefCommand(node)) {
            const name = node.token.slice(1)
             if (!commandNameDuplicationDetector.has(name)) {
-                const cmd = new CmdEnvSuggestion(`\\${name}`, '', [], {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
+                const cmd = new CmdEnvSuggestion(`\\${name}`, '', [], -1, {name, args: this.getArgsFromNode(node)}, vscode.CompletionItemKind.Function)
                 cmd.documentation = '`' + name + '`'
                 cmd.insertText = new vscode.SnippetString(name + this.getTabStopsFromNode(node))
                 cmd.filterText = name
@@ -70,6 +70,7 @@ export class CommandFinder {
                 const cmd = new CmdEnvSuggestion(`\\${node.name}`,
                     this.whichPackageProvidesCommand(node.name),
                     [],
+                    -1,
                     { name: node.name, args: this.getArgsFromNode(node) },
                     vscode.CompletionItemKind.Function
                 )
@@ -98,7 +99,7 @@ export class CommandFinder {
                     }
                 }
                 if (!commandNameDuplicationDetector.has(label)) {
-                    const cmd = new CmdEnvSuggestion(`\\${label}`, 'user-defined', [], {name: label, args}, vscode.CompletionItemKind.Function)
+                    const cmd = new CmdEnvSuggestion(`\\${label}`, 'user-defined', [], -1, {name: label, args}, vscode.CompletionItemKind.Function)
                     cmd.documentation = '`' + label + '`'
                     cmd.insertText = new vscode.SnippetString(label + tabStops)
                     cmd.filterText = label
@@ -192,6 +193,7 @@ export class CommandFinder {
                 `\\${result[1]}`,
                 this.whichPackageProvidesCommand(result[1]),
                 [],
+                -1,
                 { name: result[1], args: this.getArgsFromRegResult(result) },
                 vscode.CompletionItemKind.Function
             )
@@ -225,7 +227,7 @@ export class CommandFinder {
                 }
             }
 
-            const cmd = new CmdEnvSuggestion(`\\${result[1]}`, 'user-defined', [], {name: result[1], args}, vscode.CompletionItemKind.Function)
+            const cmd = new CmdEnvSuggestion(`\\${result[1]}`, 'user-defined', [], -1, {name: result[1], args}, vscode.CompletionItemKind.Function)
             cmd.documentation = '`' + result[1] + '`'
             cmd.insertText = new vscode.SnippetString(result[1] + tabStops)
             cmd.filterText = result[1]

@@ -11,7 +11,8 @@ export type EnvType = {
     name: string, // Name of the environment, what comes inside \begin{...}
     snippet?: string, // To be inserted after \begin{..}
     option?: string,
-    keyvals?: {key: string, snippet: string}[],
+    keyvals?: string[],
+    keyvalindex?: number,
     package?: string, // The package providing the environment
     detail?: string
 }
@@ -208,7 +209,7 @@ export class Environment implements IProvider {
         // Here we only check `isEnvironment` which excludes `align*` and `verbatim`.
         // Nonetheless, they have already been included in `defaultEnvs`.
         if (latexParser.isEnvironment(node)) {
-            const env = new CmdEnvSuggestion(`${node.name}`, '', [], { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
+            const env = new CmdEnvSuggestion(`${node.name}`, '', [], -1, { name: node.name, args: '' }, vscode.CompletionItemKind.Module)
             env.documentation = '`' + node.name + '`'
             env.filterText = node.name
             envs.push(env)
@@ -253,7 +254,7 @@ export class Environment implements IProvider {
             if (envList.includes(result[1])) {
                 continue
             }
-            const env = new CmdEnvSuggestion(`${result[1]}`, '', [], { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
+            const env = new CmdEnvSuggestion(`${result[1]}`, '', [], -1, { name: result[1], args: '' }, vscode.CompletionItemKind.Module)
             env.documentation = '`' + result[1] + '`'
             env.filterText = result[1]
 
@@ -280,7 +281,13 @@ export class Environment implements IProvider {
 
     private entryEnvToCompletion(itemKey: string, item: EnvType, type: EnvSnippetType): CmdEnvSuggestion {
         const label = item.detail ? item.detail : item.name
-        const suggestion = new CmdEnvSuggestion(item.name, 'latex', [], splitSignatureString(itemKey), vscode.CompletionItemKind.Module)
+        const suggestion = new CmdEnvSuggestion(
+            item.name,
+            item.package || 'latex',
+            item.keyvals || [],
+            item.keyvalindex === undefined ? -1 : item.keyvalindex,
+            splitSignatureString(itemKey),
+            vscode.CompletionItemKind.Module)
         suggestion.detail = `Insert environment ${item.name}.`
         suggestion.documentation = item.name
         if (item.package) {
