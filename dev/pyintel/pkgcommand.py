@@ -59,6 +59,9 @@ def create_snippet(line: str) -> str:
 
     t = TabStop()
     snippet = re.sub(r'(?<![\. ])\.\.(?![\. ])', t.sub, snippet)
+
+    snippet = re.sub(r'%keyvals', '', snippet)
+    snippet = re.sub(r'%<options%>', 'options', snippet)
     return snippet
 
 
@@ -278,7 +281,7 @@ class CwlIntel:
                         for pkgenv in pkg.envs:
                             if (pkg.envs[pkgenv].name != env):
                                 continue
-                            haskeyvals = re.search(r':keys|:keyvals|:options%keyvals|:%<options%>', pkg.envs[pkgenv].snippet)
+                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.envs[pkgenv].snippet)
                             if (haskeyvals is None):
                                 continue
                             if (pkg.envs[pkgenv].keyvalindex == -1):
@@ -289,7 +292,7 @@ class CwlIntel:
                         for pkgcmd in pkg.cmds:
                             if (re.sub(r'\[\]|\(\)|<>|{}', '', pkg.cmds[pkgcmd].command) != cmd):
                                 continue
-                            haskeyvals = re.search(r':keys|:keyvals|:options%keyvals|:%<options%>', pkg.cmds[pkgcmd].snippet)
+                            haskeyvals = re.search(r':keys|:keyvals|:options', pkg.cmds[pkgcmd].snippet)
                             if (haskeyvals is None):
                                 continue
                             if (pkg.cmds[pkgcmd].keyvalindex == -1):
