@@ -285,10 +285,10 @@ export class Environment implements IProvider {
             item.keyvalindex === undefined ? -1 : item.keyvalindex,
             splitSignatureString(itemKey),
             vscode.CompletionItemKind.Module)
-        suggestion.detail = `Insert environment ${item.name}.`
-        suggestion.documentation = item.name
+        suggestion.detail = `\\begin{${item.name}}${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}\n...\n\\end{${item.name}}`
+        suggestion.documentation = `Environment ${item.name}.`
         if (item.package) {
-            suggestion.documentation += '\n' + `Package: ${item.package}`
+            suggestion.documentation += ` From package: ${item.package}.`
         }
         suggestion.sortText = label.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)

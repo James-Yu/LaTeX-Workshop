@@ -238,7 +238,7 @@ class CwlIntel:
                 if re.match(r'[^A-Za-z\[\]{}<>*\s]', name) is not None:
                     continue
                 snippet = create_snippet(match[2] if len(match.groups()) >= 2 and match[2] else '')
-                pkg.envs[name] = Env(name=match[1],detail=match[1]+match[2],snippet=snippet,option=cwl_option,keyvals=[],keyvalindex=-1)
+                pkg.envs[name] = Env(name=match[1],detail=name,snippet=snippet,option=cwl_option,keyvals=[],keyvalindex=-1)
             elif line.startswith('\\end{'):         # '\end{minted}'
                 continue
             elif line.startswith('\\'):             # '\inputminted[options%keyvals]{language}{file}#i'

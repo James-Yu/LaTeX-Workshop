@@ -232,8 +232,11 @@ export class Command implements IProvider {
             suggestion.insertText = item.command
         }
         suggestion.filterText = itemKey
-        suggestion.detail = item.detail
-        suggestion.documentation = item.documentation ? item.documentation : '`' + item.command + '`'
+        suggestion.detail = item.detail || `\\${item.snippet?.replace(/\$\{\d+:([^$}]*)\}/g, '$1')}`
+        suggestion.documentation = item.documentation ? item.documentation : `Command \\${item.command}.`
+        if (item.package) {
+            suggestion.documentation += ` From package: ${item.package}.`
+        }
         suggestion.sortText = item.command.replace(/^[a-zA-Z]/, c => {
             const n = c.match(/[a-z]/) ? c.toUpperCase().charCodeAt(0): c.toLowerCase().charCodeAt(0)
             return n !== undefined ? n.toString(16): c
