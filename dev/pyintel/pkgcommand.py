@@ -260,7 +260,7 @@ class CwlIntel:
                 snippet = create_snippet(match[1] + (match[2] if len(match.groups()) >= 2 and match[2] else ''))
                 detail = self.unimath_dict[name]['detail'] if self.unimath_dict.get(name) else None
                 documentation = self.unimath_dict[name]['documentation'] if self.unimath_dict.get(name) else None
-                pkg.cmds[name] = Cmd(command=match[1], snippet=snippet, option=cwl_option,keyvals=[],detail=detail,documentation=documentation)
+                pkg.cmds[name] = Cmd(command=name, snippet=snippet, option=cwl_option,keyvals=[],detail=detail,documentation=documentation)
             elif cwl_keyval == 'PACKAGE_OPTIONS':
                 match = re.match(r'^([^#%\n]*)', line)
                 if match is None:
