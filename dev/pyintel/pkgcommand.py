@@ -287,7 +287,7 @@ class CwlIntel:
                     else:
                         cmd = re.match(r'\\([^{\[]*)', envcmd)[1]
                         for pkgcmd in pkg.cmds:
-                            if (pkg.cmds[pkgcmd].command != cmd):
+                            if (re.sub(r'\[\]|\(\)|<>|{}', '', pkg.cmds[pkgcmd].command) != cmd):
                                 continue
                             haskeyvals = re.search(r':keys|:keyvals|:options%keyvals|:%<options%>', pkg.cmds[pkgcmd].snippet)
                             if (haskeyvals is None):
