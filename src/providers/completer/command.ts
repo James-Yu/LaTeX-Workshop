@@ -16,7 +16,7 @@ export type CmdType = {
     command: string,
     snippet?: string,
     option?: string,
-    keyvals?: {key: string, snippet: string}[],
+    keyvals?: string[],
     detail?: string,
     documentation?: string,
     package?: string,
@@ -212,7 +212,7 @@ export class Command implements IProvider {
         const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
         const label = item.label ? `${item.label}` : `${backslash}${item.command}`
-        const suggestion = new CmdEnvSuggestion(label, 'latex', splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
+        const suggestion = new CmdEnvSuggestion(label, 'latex', item.keyvals || [], splitSignatureString(itemKey), vscode.CompletionItemKind.Function)
 
         if (item.snippet) {
             if (useTabStops) {
