@@ -210,11 +210,9 @@ export class Command implements IProvider {
 
     private entryCmdToCompletion(itemKey: string, item: CmdType): CmdEnvSuggestion {
         const configuration = vscode.workspace.getConfiguration('latex-workshop')
-        const useTabStops = configuration.get('intellisense.useTabStops.enabled')
         const backslash = item.command.startsWith(' ') ? '' : '\\'
-        const label = item.label ? `${item.label}` : `${backslash}${item.command}`
         const suggestion = new CmdEnvSuggestion(
-            label,
+            item.label || `${backslash}${item.command}`,
             item.package || 'latex',
             item.keyvals || [],
             item.keyvalindex === undefined ? -1 : item.keyvalindex,
@@ -222,7 +220,7 @@ export class Command implements IProvider {
             vscode.CompletionItemKind.Function)
 
         if (item.snippet) {
-            if (useTabStops) {
+            if (!configuration.get('intellisense.argumentHint.enabled')) {
                 item.snippet = item.snippet.replace(/\$\{(\d+):[^$}]*\}/g, '$${$1}')
             }
             // Wrap the selected text when there is a single placeholder
