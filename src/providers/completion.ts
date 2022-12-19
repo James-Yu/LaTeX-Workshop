@@ -6,7 +6,7 @@ import {Citation} from './completer/citation'
 import {DocumentClass} from './completer/documentclass'
 import {Command} from './completer/command'
 import type {CmdType} from './completer/command'
-import {Environment} from './completer/environment'
+import {Environment, EnvSnippetType} from './completer/environment'
 import type {EnvType} from './completer/environment'
 import {AtSuggestion} from './completer/atsuggestion'
 import {Reference} from './completer/reference'
@@ -113,7 +113,7 @@ export class Completer implements vscode.CompletionItemProvider {
         Object.assign(maths, cmds)
         // Make sure to initialize environment first
         this.environment.initialize(env)
-        this.command.initialize(maths)
+        this.command.initialize(maths, this.environment.getDefaultEnvs(EnvSnippetType.AsCommand))
     }
 
     provideCompletionItems(

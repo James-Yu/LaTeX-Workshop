@@ -3,7 +3,6 @@ import * as fs from 'fs'
 import {latexParser} from 'latex-utensils'
 
 import type { Extension } from '../../main'
-import {EnvSnippetType} from './environment'
 import type { IProvider, ICompletionItem } from '../completion'
 import {CommandFinder, isTriggerSuggestNeeded} from './commandlib/commandfinder'
 import {CmdEnvSuggestion, splitSignatureString, filterNonLetterSuggestions} from './completerutils'
@@ -48,7 +47,7 @@ export class Command implements IProvider {
         this.surroundCommand = new SurroundCommand()
     }
 
-    initialize(defaultCmds: {[key: string]: CmdType}) {
+    initialize(defaultCmds: {[key: string]: CmdType}, defaultEnvs: CmdEnvSuggestion[]) {
         const snippetReplacements = vscode.workspace.getConfiguration('latex-workshop').get('intellisense.commandsJSON.replace') as {[key: string]: string}
 
         // Initialize default commands and `latex-mathsymbols`
@@ -64,7 +63,7 @@ export class Command implements IProvider {
         })
 
         // Initialize default env begin-end pairs
-        this.extension.completer.environment.getDefaultEnvs(EnvSnippetType.AsCommand).forEach(cmd => {
+        defaultEnvs.forEach(cmd => {
             this.defaultCmds.push(cmd)
         })
     }
