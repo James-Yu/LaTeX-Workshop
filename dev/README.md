@@ -76,6 +76,7 @@ In this `json` object, the commands have the following structure:
   snippet: string, // the snippet to insert
   option: string, // the package option that enables this command
   keyvals: {key: string, snippet: string}[], // the possible optional keyvals of this command
+  keyvalindex: number, // the index of argument (mandatory and optional together) where the keyvals should be hinted
   detail: string | undefined,
   documentation: string | undefined
 }
@@ -83,10 +84,25 @@ In this `json` object, the commands have the following structure:
 An example is:
 ```json
 "acro{}{}": {
-  "command": "acro",
+  "command": "acro{}{}",
   "snippet": "acro{${1:acronym}}{${2:full name}}",
   "option": "",
-  "keyvals": []
+  "keyvals": [],
+  "keyvalindex": -1
+}
+```
+The optional argument intellisense are typically defined as follows:
+```json
+"mint[]{}{}": {
+  "command": "mint[]{}{}",
+  "snippet": "mint[${3:keys}]{${1:language}}{${2:verbatimSymbol}}",
+  "option": "",
+  "keyvals": [
+    "autogobble",
+    "baselinestretch=",
+    "beameroverlays" // And a hundred options omitted.
+  ],
+  "keyvalindex": 0
 }
 ```
 
@@ -104,10 +120,11 @@ An example is:
 ```json
 "aligned[]": {
   "name": "aligned",
-  "detail": "aligned[alignment]",
+  "detail": "aligned[]",
   "snippet": "[${1:alignment}]",
   "option": "",
-  "keyvals": []
+  "keyvals": [],
+  "keyvalindex": -1
 }
 ```
 
